@@ -16,7 +16,7 @@ isHome: false
 
 * It has clean, built-in support for all major bidders (Amazon, AppNexus, Criteo, Pubmatic, etc), as well as major ad servers (DFP, AdTech). 
 * Prebid.js has solved many known problems publishers are facing - high latency, unfair auction mechanics, long development time. 
-* Plugging in prebid.js is easy. Adding new pre-bid bidders is a matter of editing JSON config.
+* Plugging in prebid.js is easy. Adding new pre-bid bidders is a matter of editing a JSON config.
 
 <br>
 
