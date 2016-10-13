@@ -21,4 +21,4 @@ biddercode_longer_than_12: false
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
-| `publisherId` | required | The publisher id from Roxot | "550e8400-e29b-41d4-a716-446655440000" |
+| `publisherId` | required | The publisher id from Roxot | `"550e8400-e29b-41d4-a716-446655440000"` |
