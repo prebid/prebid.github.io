@@ -31,7 +31,7 @@ $(function(){
 
 function submit_download() {
     var form_data = get_form_data();
-    
+
     var alertStatus = $('#download-status');
 
     if (!(form_data['email'] && form_data['company'])) {
