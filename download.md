@@ -31,6 +31,8 @@ $(function(){
 
 function submit_download() {
     var form_data = get_form_data();
+    console.log(form_data);
+    return;
 
     var alertStatus = $('#download-status');
 
@@ -70,22 +72,27 @@ function submit_download() {
 }
 
 function get_form_data() {
-    var bidders = [];
-
-    var bidder_check_boxes = $('.bidder-check-box');
-    for (var i = 0; i < bidder_check_boxes.length; i++) {
-        var box = bidder_check_boxes[i];
-        if (box.checked) {
-            bidders.push(box.getAttribute('bidderCode'));
-        }
-    }
-
+    var bidders = get_partners_checked('.bidder-check-box', 'bidderCode');
+    var analytics = get_partners_checked('.analytics-check-box', 'analyticsCode');
     var form_data = {};
     form_data['email'] = $('#input-email').val();
     form_data['company'] = $('#input-company').val();
     form_data['bidders'] = bidders;
+    form_data['analytics'] = analytics;
 
     return form_data;
+}
+
+function get_partners_checked(clazz, attr) {
+    var partners = [];
+    var checked_partners = $(clazz);
+    for (var i = 0; i < checked_partners.length; i++) {
+        var box = checked_partners[i];
+        if (box.checked) {
+            partners.push(box.getAttribute(attr));
+        }
+    }
+    return partners;
 }
 
 
@@ -104,10 +111,11 @@ function get_form_data() {
 {: .lead :}
 To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
 
-### Option 1: Select header bidding partners
+### Option 1: Select header bidding partners and analytics partners
 
 
-<form>
+<form markdown="1">
+#### Header bidding partners
 <div class="row">
 <div class="col-md-4">
   <div class="checkbox">
@@ -420,10 +428,38 @@ To improve the speed and load time of your site, build Prebid.js for only the he
       </label>
     </div>
   </div>
+</div>
 
-
-
-
+#### Analytics adapters
+<div class="row">
+   <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" analyticsCode="ga" class="analytics-check-box"> Google
+      </label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" analyticsCode="appnexus" class="analytics-check-box"> AppNexus
+      </label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" analyticsCode="pulsepoint" class="analytics-check-box"> PulsePoint
+      </label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" analyticsCode="roxot" class="analytics-check-box"> Roxot
+      </label>
+    </div>
+  </div>
 </div>
 
 <br>
