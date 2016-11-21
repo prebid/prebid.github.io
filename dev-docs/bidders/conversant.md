@@ -22,4 +22,4 @@
 +| :--- | :---- | :---------- | :------ |
 +| `site_id` | required | Site ID registered in Conversant system | `123` |
 +| `secure` | required | Whether to load HTTPS ad code | `1` |
-+| `bidfloor` | optional | Minimum bid amount | `2.00` |
++| `bidFloor` | optional | Minimum bid amount | `2.00` |
