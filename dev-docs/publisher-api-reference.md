@@ -23,6 +23,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAdserverTargetingForAdUnitCode([adUnitCode])](#module_pbjs.getAdserverTargetingForAdUnitCode) ⇒ `Object`
   * [.getBidResponses()](#module_pbjs.getBidResponses) ⇒ `Object`
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode) ⇒ `Object`
+  * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids) ⇒ `Array`
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.allBidsAvailable()](#module_pbjs.allBidsAvailable) ⇒ `boolean`
   * [.enableSendAllBids()](#module_pbjs.enableSendAllBids)
@@ -35,6 +36,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.addCallback(event, func)](#module_pbjs.addCallback) ⇒ `String`
   * [.removeCallback(cbId)](#module_pbjs.removeCallback) ⇒ `String`
   * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String`
+  * [.setBidderSequence(order)](#module_pbjs.setBidderSequence)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -266,8 +268,6 @@ This function returns the bid responses at the given moment.
 </div>
 </div>
 
-
-
 <hr class="full-rule">
 
 <a name="module_pbjs.getBidResponsesForAdUnitCode"></a>
@@ -284,6 +284,17 @@ Returns bidResponses for the specified adUnitCode. See full documentation at [pb
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | adUnitCode | Required | `String` | adUnitCode |
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getHighestCpmBids"></a>
+
+### pbjs.getHighestCpmBids([adUnitCode]) ⇒ `Array`
+
+Use this method to retrieve an array of winning bids.
+
++ `pbjs.getHighestCpmBids()`: with no argument, returns an array of winning bid objects for each ad unit on page
++ `pbjs.getHighestCpmBids(adUnitCode)`: when passed an ad unit code, returns an array with the winning bid object for that ad unit
 
 <hr class="full-rule">
 
@@ -365,6 +376,7 @@ Accepted values:
 + `"high"`: $0.01 increments, capped at $20 CPM
 + `"auto"`: Applies a sliding scale to determine granularity as shown in the [Auto Granularity](#autoGranularityBucket) table below.
 + `"dense"`: Like `"auto"`, but the bid price granularity uses smaller increments, especially at lower CPMs.  For details, see the [Dense Granularity](#denseGranularityBucket) table below.
++ `customConfigObject`: If you pass in a custom config object (as shown in the [Custom CPM Bucket Sizing](#customCPMObject) example below), you can have much finer control over CPM bucket sizes, precision, and caps.
 
 <div class="alert alert-danger" role="alert">
   <p>
@@ -396,6 +408,37 @@ Accepted values:
 | CPM <= $20 and >$8 | 	$0.50 increments             | $14.26 floored to $14.00 |
 | CPM >  $20 | 	Caps the price bucket at $20 | $24.82 floored to $20.00 |
 
+<a name="customCPMObject"></a>
+
+#### Custom CPM Bucket Sizing
+
+To set up your own custom CPM buckets, create an object like the following, and pass it into `setPriceGranularity`:
+
+```javascript
+const customConfigObject = {
+  "buckets" : [{
+      "precision": 2,  //default is 2 if omitted - means 2.1234 rounded to 2 decimal places = 2.12
+      "min" : 0,
+      "max" : 5,
+      "increment" : 0.01
+    },
+    {
+      "precision": 2,
+      "min" : 5,
+      "max" : 8,
+      "increment" : 0.05
+    },
+    {
+      "precision": 2,
+      "min" : 8,
+      "max" : 20,
+      "increment" : 0.5
+    }]
+};
+
+//set custom config object
+pbjs.setPriceGranularity(customConfigObject);
+```
 
 <hr class="full-rule">
 
@@ -542,7 +585,7 @@ bid along with all non-CPM bids, just specify this flag and the adapter-specific
 
 ##### 2.2. adserverTargeting
 
-As described in the [AdOps documentation](adops.html), Prebid has a recommended standard
+As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both secenarios are described below.
@@ -767,7 +810,22 @@ var options = {
 
 For an example showing how to use this method, see [Show Video Ads with a DFP Video Tag]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
-</div>
+<hr class="full-rule" />
 
-<br />
-<br />
+<a name="module_pbjs.setBidderSequence"></a>
+
+### pbjs.setBidderSequence(order)
+
+This method shuffles the order in which bidders are called.
+
+It takes an argument `order` that currently only accepts the string `"random"` to shuffle the sequence bidders are called in.
+
+If the sequence is not set with this method, the bidders are called in the order they are defined within the `adUnit.bids` array on page, which is the current default.
+
+Example use:
+
+```javascript
+pbjs.setBidderSequence('random');
+```
+
+</div>
