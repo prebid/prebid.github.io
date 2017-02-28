@@ -85,7 +85,7 @@ function get_form_data() {
     for (var i = 0; i < analytics_check_boxes.length; i++) {
         var box = analytics_check_boxes[i];
         if (box.checked) {
-            analytics.push(box.getAttribute('analyticcode'));
+            analytics.push(box.getAttribute('analyticscode'));
         }
     }
 
@@ -592,7 +592,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticcode="appnexus" class="analytics-check-box"> AppNexus Analytics
+      <input type="checkbox" analyticscode="appnexus" class="analytics-check-box"> AppNexus Analytics
     </label>
   </div>
 </div>
