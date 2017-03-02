@@ -581,6 +581,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 
 </div>
 
+#### Analytics adapters
 <div class="row">
    <div class="col-md-4">
     <div class="checkbox">
