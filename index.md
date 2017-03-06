@@ -20,14 +20,14 @@ description: A free and open source library for publishers to quickly implement 
 
     <p class="lead">The above header bidding ad is auctioned with Prebid.js. <a href="/overview/intro.html" target="_blank">Learn more about this auction here.</a></p>
 
-<div class="form-inline">
-  <div class="form-group form-group-lg">
-    <input type="text" class="form-control" id="email-field" placeholder="Email" required>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-outline btn-lg" id="submit-email" onclick="submitEmail()">Join Best Practices Group</button>
-  </div>        
-</div>
+<!-- <div class="form-inline"> -->
+<!--   <div class="form-group form-group-lg"> -->
+<!--     <input type="text" class="form-control" id="email-field" placeholder="Email" required> -->
+<!--   </div> -->
+<!--   <div class="form-group"> -->
+<!--     <button class="btn btn-outline btn-lg" id="submit-email" onclick="submitEmail()">Get the Latest Updates</button> -->
+<!--   </div> -->
+<!-- </div> -->
 
     <hr class="full-rule">
 
@@ -91,6 +91,7 @@ description: A free and open source library for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Meme Global</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Underdog Media</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Centro</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Conversant</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Adblade</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Piximedia</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>GetIntent</h3></div>
@@ -103,9 +104,19 @@ description: A free and open source library for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>GumGum</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Vertoz</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Smart AdServer</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>AdButler</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Sharethrough</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Mantis Ad Network</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>AdMixer</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Twenga</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Lifestreet</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Vertamedia</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>StickyAdsTV</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>152Media</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Matomy</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Fidelity Media</h3></div>
 
     <!-- END BIDDERS -->
-    
     </div>
 
     <hr class="full-rule">
