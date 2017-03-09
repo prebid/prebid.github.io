@@ -525,7 +525,6 @@ To improve the speed and load time of your site, build Prebid.js for only the he
       <label>
         <input type="checkbox" bidderCode="lifestreet" class="bidder-check-box"> Lifestreet | Display
       </label>
-      
     </div>
   </div>
 
