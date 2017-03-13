@@ -13,6 +13,7 @@ nav_section: download
 
 
 ---
+
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
 <script>
@@ -87,24 +88,25 @@ function get_form_data() {
     return form_data;
 }
 
+
 </script>
 
 <style>
-    .disabled {
-        color: #aaa;
-    }
+.disabled {
+  color: #aaa;
+}
 </style>
 
 <div class="bs-docs-section" markdown="1">
 
-    # Customize and Download Prebid.js <span class="label label-warning" style="font-size:14px">Beta</span>
+# Customize and Download Prebid.js <span class="label label-warning" style="font-size:14px">Beta</span>
 
-    {: .lead :}
-    To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
+{: .lead :}
+To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
 
-    ### Option 1: Select header bidding partners
+### Option 1: Select header bidding partners
 
-    <form>
+   <form>
         <div class="row">
 
             <div class="col-md-4">
@@ -609,57 +611,57 @@ function get_form_data() {
         </div>
 
     </form>
-
-</div>
+  </div>
 
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                <h4 class="modal-title" id="myModalLabel">Download Custom Built Prebid.js</h4>
-            </div>
+        <h4 class="modal-title" id="myModalLabel">Download Custom Built Prebid.js</h4>
+      </div>
 
-            <div class="modal-body">
+      <div class="modal-body">
 
-                <div class="lead">
-                    The download link will be in your inbox in a few minutes. Check the spam folder too!
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="input-email">Email address</label>
-                    <input type="email" class="form-control" id="input-email" placeholder="Email" name="email">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="input-company">Company Name</label>
-                    <input type="text" class="form-control" id="input-company" placeholder="Your Company" name="company_email">
-                </div>
-
-                <div class="form-group">
-                    <button type="button" id="download-button" class="btn btn-lg btn-primary" onclick="submit_download()"><i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js</button>
-                </div>
-
-                <div class="alert alert-warning hide" role="alert" id="download-status"></div>
-
-                <p>
-                    Ran into problems? Email <code>info@prebid.org</code>
-                </p>
-
-            </div>
-
-
+        <div class="lead">
+          The download link will be in your inbox in a few minutes. Check the spam folder too!
         </div>
+
+
+        <div class="form-group col-md-6">
+            <label for="input-email">Email address</label>
+            <input type="email" class="form-control" id="input-email" placeholder="Email" name="email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="input-company">Company Name</label>
+            <input type="text" class="form-control" id="input-company" placeholder="Your Company" name="company_email">
+        </div>
+
+        <div class="form-group">
+            <button type="button" id="download-button" class="btn btn-lg btn-primary" onclick="submit_download()"><i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js</button>
+        </div>
+
+        <div class="alert alert-warning hide" role="alert" id="download-status"></div>
+
+        <p>
+        Ran into problems? Email <code>info@prebid.org</code>
+        </p>
+
+      </div>
+
+
     </div>
+  </div>
 </div>
 
 
 <div class="bs-docs-section" markdown="1">
 
-    ### Option 2: Build from Source Code (More Advanced)
+### Option 2: Build from Source Code (More Advanced)
 
-    {: .lead :}
-    Alternatively, you can build Prebid.js from the source code.  For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
+{: .lead :}
+Alternatively, you can build Prebid.js from the source code.  For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
