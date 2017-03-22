@@ -573,11 +573,27 @@ To improve the speed and load time of your site, build Prebid.js for only the he
     </div>
   </div>
 
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="thoughtleadr" class="bidder-check-box"> ThoughtLeadr
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="adbund" class="bidder-check-box"> AdBund
+      </label>
+    </div>
+  </div>
+
 </div>
 
 <br>
 <p>
-(Version 0.19.0)
+(Version 0.20.0)
 </p>
 
 <div class="form-group">
