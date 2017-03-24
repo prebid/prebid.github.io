@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Innity
-description: Prebid Innity Bidder Adaptor
+description: Prebid Innity Bidder Adapter
 
 top_nav_section: dev_docs
 nav_section: reference
