@@ -143,6 +143,6 @@ Add your ad tag to the page as usual:
 ## Related Topics
 
 + [Prebid Native example]({{site.github.url}}/dev-docs/examples/show-native-ads.html) (Example Code for Developers)
-+ [Set up Native Ads in your Ad Server]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
++ [Setting up Prebid Native in DFP]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
 
 </div>
