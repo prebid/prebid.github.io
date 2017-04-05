@@ -106,506 +106,512 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 
 ### Option 1: Select header bidding partners
 
+   <form>
+        <div class="row">
 
-<form>
-<div class="row">
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="appnexus" class="bidder-check-box"> AppNexus
-    </label>
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="oftmedia" class="bidder-check-box"> 152Media
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="aardvark" class="bidder-check-box"> Aardvark
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="adblade" class="bidder-check-box"> Adblade
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="adbund" class="bidder-check-box"> AdBund
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="adbutler" class="bidder-check-box"> AdButler
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="adequant" class="bidder-check-box"> Adequant
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="adform" class="bidder-check-box"> Adform
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="adkernel" class="bidder-check-box"> AdKernel
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="admedia" class="bidder-check-box"> AdMedia
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="admixer" class="bidder-check-box"> AdMixer
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="aol" class="bidder-check-box"> AOL
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="appnexus" class="bidder-check-box"> AppNexus
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="appnexusAst" class="bidder-check-box"> AppNexusAST (Beta)
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="bidfluence" class="bidder-check-box"> Bidfluence
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="brealtime" class="bidder-check-box"> bRealTime
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="brightcom" class="bidder-check-box"> Brightcom
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="centro" class="bidder-check-box"> Centro
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="conversant" class="bidder-check-box"> Conversant Media
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="defymedia" class="bidder-check-box"> DefyMedia
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="districtmDMX" class="bidder-check-box"> DistrictmDMX
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="featureforward" class="bidder-check-box"> FeatureForward
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="fidelity" class="bidder-check-box"> Fidelity Media
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="getintent" class="bidder-check-box"> GetIntent
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="gumgum" class="bidder-check-box"> GumGum
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="headbidding" class="bidder-check-box"> Headbidding
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="hiromedia" class="bidder-check-box"> HIRO Media
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="indexExchange" class="bidder-check-box"> Index Exchange
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="jcm" class="bidder-check-box"> J Carter Marketing
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="komoona" class="bidder-check-box"> Komoona
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="kruxlink" class="bidder-check-box"> Krux Link
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="lifestreet" class="bidder-check-box"> Lifestreet
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="mantis" class="bidder-check-box"> Mantis Ad Network
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="matomy" class="bidder-check-box"> Matomy
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="memeglobal" class="bidder-check-box"> Meme Global
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="nginad" class="bidder-check-box"> NginAd
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="openx" class="bidder-check-box"> OpenX
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="pagescience" class="bidder-check-box"> Pagescience
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="piximedia" class="bidder-check-box"> Piximedia
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="pubmatic" class="bidder-check-box"> Pubmatic
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="pulsepoint" class="bidder-check-box"> PulsePoint
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="roxot" class="bidder-check-box"> Roxot
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="rubicon" class="bidder-check-box"> Rubicon
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="rhythmone" class="bidder-check-box"> RhythmOne
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="sekindoUM" class="bidder-check-box"> Sekindo Universal Mccann
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="sharethrough" class="bidder-check-box"> Sharethrough
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="smartadserver" class="bidder-check-box"> Smart AdServer
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="smartyads" class="bidder-check-box"> SmartyAds
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="sonobi" class="bidder-check-box"> Sonobi
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="sovrn" class="bidder-check-box"> Sovrn
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="springserve" class="bidder-check-box"> SpringServe
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="stickyadstv" class="bidder-check-box"> StickyAdsTV
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="thoughtleadr" class="bidder-check-box"> ThoughtLeadr
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="triplelift" class="bidder-check-box"> TripleLift
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="twenga" class="bidder-check-box"> Twenga
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="underdogmedia" class="bidder-check-box"> Underdog Media
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="vertamedia" class="bidder-check-box"> Vertamedia
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="vertoz" class="bidder-check-box"> Vertoz
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="wideorbit" class="bidder-check-box"> WideOrbit
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="widespace" class="bidder-check-box"> Widespace
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="xhb" class="bidder-check-box"> Xaxis
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" bidderCode="yieldbot" class="bidder-check-box"> Yieldbot
+                    </label>
+                </div>
+            </div>
+           
+        </div>
+
+        <br>
+        <p>
+            (Version 0.20.0)
+        </p>
+
+        <div class="form-group">
+
+            <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Custom Prebid.js</button>
+
+        </div>
+
+    </form>
   </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="appnexusAst" class="bidder-check-box"> AppNexusAST (Beta)
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="openx" class="bidder-check-box"> OpenX
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="pubmatic" class="bidder-check-box"> Pubmatic
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="rubicon" class="bidder-check-box"> Rubicon
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="yieldbot" class="bidder-check-box"> Yieldbot
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="aol" class="bidder-check-box"> AOL
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="indexExchange" class="bidder-check-box"> Index Exchange
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="sovrn" class="bidder-check-box"> Sovrn
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="pulsepoint" class="bidder-check-box"> PulsePoint
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="triplelift" class="bidder-check-box"> TripleLift
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="springserve" class="bidder-check-box"> SpringServe
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="adform" class="bidder-check-box"> Adform
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="nginad" class="bidder-check-box"> NginAd
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="brightcom" class="bidder-check-box"> Brightcom
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="adequant" class="bidder-check-box"> Adequant
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" bidderCode="sonobi" class="bidder-check-box"> Sonobi
-    </label>
-  </div>
-</div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="aardvark" class="bidder-check-box"> Aardvark
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="wideorbit" class="bidder-check-box"> WideOrbit
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="kruxlink" class="bidder-check-box"> Krux Link
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="admedia" class="bidder-check-box"> AdMedia
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="jcm" class="bidder-check-box"> J Carter Marketing
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="memeglobal" class="bidder-check-box"> Meme Global
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="underdogmedia" class="bidder-check-box"> Underdog Media
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="brealtime" class="bidder-check-box"> bRealTime
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="pagescience" class="bidder-check-box"> Pagescience
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="centro" class="bidder-check-box"> Centro
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="adblade" class="bidder-check-box"> Adblade
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="piximedia" class="bidder-check-box"> Piximedia
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="getintent" class="bidder-check-box"> GetIntent
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="defymedia" class="bidder-check-box"> DefyMedia
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="hiromedia" class="bidder-check-box"> HIRO Media
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="roxot" class="bidder-check-box"> Roxot
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="adbutler" class="bidder-check-box"> AdButler
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="komoona" class="bidder-check-box"> Komoona
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="rhythmone" class="bidder-check-box"> RhythmOne
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="vertoz" class="bidder-check-box"> Vertoz
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="adkernel" class="bidder-check-box"> AdKernel
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="conversant" class="bidder-check-box"> Conversant Media
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="featureforward" class="bidder-check-box"> FeatureForward
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="districtmDMX" class="bidder-check-box"> DistrictmDMX
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="gumgum" class="bidder-check-box"> GumGum
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="fidelity" class="bidder-check-box"> Fidelity Media
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="widespace" class="bidder-check-box"> Widespace
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="sekindoUM" class="bidder-check-box"> Sekindo Universal Mccann
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="smartadserver" class="bidder-check-box"> Smart AdServer
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="headbidding" class="bidder-check-box"> Headbidding
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="sharethrough" class="bidder-check-box"> Sharethrough
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="smartyads" class="bidder-check-box"> SmartyAds
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="twenga" class="bidder-check-box"> Twenga
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="xhb" class="bidder-check-box"> Xaxis
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="lifestreet" class="bidder-check-box"> Lifestreet
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="mantis" class="bidder-check-box"> Mantis Ad Network
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="admixer" class="bidder-check-box"> AdMixer
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="vertamedia" class="bidder-check-box"> Vertamedia
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="oftmedia" class="bidder-check-box"> 152Media
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="matomy" class="bidder-check-box"> Matomy
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="stickyadstv" class="bidder-check-box"> StickyAdsTV
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="thoughtleadr" class="bidder-check-box"> ThoughtLeadr
-      </label>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" bidderCode="adbund" class="bidder-check-box"> AdBund
-      </label>
-    </div>
-  </div>
-
-</div>
-
-<br>
-<p>
-(Version 0.20.0)
-</p>
-
-<div class="form-group">
-
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Custom Prebid.js</button>
-
-</div>
-
-</form>
-
-</div>
-
 
 
 <!-- Modal -->
