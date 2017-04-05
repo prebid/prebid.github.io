@@ -589,6 +589,14 @@ To improve the speed and load time of your site, build Prebid.js for only the he
     </div>
   </div>
 
+  <div class="col-md-4">
+   <div class="checkbox">
+    <label>
+      <input type="checkbox" bidderCode="inneractive" class="bidder-check-box"> Inneractive
+    </label>
+   </div>
+  </div>
+  
 </div>
 
 <br>
