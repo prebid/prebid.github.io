@@ -11,9 +11,7 @@ about:
 - Show native ads using Prebid.js, the AppNexus AST adapter, and DFP
 - For more information, see <a href="/dev-docs/show-native-ads.html">Show Native Ads with Prebid.js</a>
 
-<!-- jsfiddle_link: jsfiddle.net/prebid/hn06j4f4/10/embedded/html,result -->
-
-jsfiddle_link: jsfiddle.net/prebid/h3e3cqLs/4/embedded/html,result
+jsfiddle_link: jsfiddle.net/prebid/h3e3cqLs/5/embedded/html,result
 
 code_height: 3000
 code_lines: 150
