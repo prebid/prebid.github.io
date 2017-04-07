@@ -20,4 +20,4 @@ The Beachfront adapter currently supports video ads only.
 | Name     | Scope    | Description             | Example  |
 | :------- | :------- | :---------------------- | :------  |
 | appId  - | required | Beachfront Exchange ID  | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` |
-| bidfloor | required | Bid floor               | `5.00` |
+| bidfloor | required | Bid floor               | `0.01` |
