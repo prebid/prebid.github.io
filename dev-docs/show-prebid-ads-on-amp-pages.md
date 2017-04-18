@@ -238,7 +238,10 @@ The function `loadPrebidJS()` shown below is what's called by the AMP `draw3p` f
 
 `draw3p` is the integration point between AMP and content in third-party iframes (which is what this page is).
 
-In the page's body, implement the `draw3p` function as shown below.  This implementation should work even on pages that have multiple AMP ad types.  Don't forget to add the arrays showing the ad networks used and the domains allowed to load this file in an iFrame.
+In the page's body, implement the `draw3p` function as shown below.  This implementation should work even on pages that have multiple AMP ad types.
+
+{: .alert.alert-danger :}
+Don't forget to add the required arrays at the end of the function showing the ad networks used and the domains allowed to load this file in an iFrame.  You **must** add all `amp-ad` types on page to the `draw3p` array, even if they are not being used with Prebid demand.
 
 For an example showing how `draw3p` is used, see [this AMP test](https://dfp-amp-testing-1185.appspot.com/amp_tests/dfp-3p-iframe.html).
 
