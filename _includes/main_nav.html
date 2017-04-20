@@ -12,57 +12,73 @@
         </button>
         <a class="navbar-brand" href="{{site.github.url}}/">{{site.name}}</a>
       </div>
-      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+      <nav class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" role="navigation">
         <ul class="nav navbar-nav">
 
-          <li {% if page.top_nav_section == 'overview' %}class="active"{% endif %}>
-            <a href="{{site.github.url}}/overview/intro.html">Overview
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Learn
+              <span class="caret" />
             </a>
-          </li>          
-
-          <li {% if page.top_nav_section == 'dev_docs' %}class="active"{% endif %}>
-            <a href="{{site.github.url}}/dev-docs/getting-started.html">Dev Docs
-            </a>
-          </li>          
-
-          <li {% if page.top_nav_section == 'adops' %}class="active"{% endif %}>
-            <a href="{{site.github.url}}/adops.html">Adops
-            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Header Bidding 101</a></li>
+              <li><a href="#">What is Header Bidding?</a></li>
+              <li><a href="#">What is Prebid.js?</a></li>
+              <li><a href="#">How Prebid.js Works</a></li>
+              <li><a href="#">Case Studies</a></li>
+            </ul>
           </li>
 
-          <li {% if page.top_nav_section == faq' %}class="active"{% endif %}>
-            <a href="{{site.github.url}}/dev-docs/faq.html">FAQ</a>
-          </li>
-
-          <li {% if page.top_nav_section == 'support' %}class="active"{% endif %}>
-            <a href="{{site.github.url}}/support/support.html">Support
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Offerings
+              <span class="caret" />
             </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Display</a></li>
+              <li><a href="#">Video</a></li>
+              <li><a href="#">Mobile</a></li>
+              <li><a href="#">Server-to-Server (s2s)</a></li>
+              <li><a href="#">Native</a></li>
+              <li><a href="#">AMP</a></li>
+              <li><a href="#">Header Bidding Tools</a></li>
+            </ul>
           </li>
 
-          <li {% if page.top_nav_section == 'beta' %}class="active"{% endif %}>
-            <a href="{{site.github.url}}/blog.html">Blog</a>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Docs &amp; Support
+              <span class="caret" />
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Docs by Format</a></li>
+              <li><a href="#">Docs by Ad Server</a></li>
+              <li><a href="#">Tutorials</a></li>
+              <li><a href="#">Stuck? Have Questions?</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              About
+              <span class="caret" />
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Release Notes (GitHub)</a></li>
+              <li><a href="#">Code of Conduct</a></li>
+              <li><a href="#">Available Partners</a></li>
+              <li><a href="#">Add an Adaptor</a></li>
+            </ul>
           </li>
 
           <li {% if page.top_nav_section == 'download' %}class="active"{% endif %}>
-            <!-- <a href="https://github.com/prebid/Prebid.js/releases">Download
-            </a> -->
-            <a href="{{site.github.url}}/download.html">Download
-            <!-- <span class="badge">New</span> -->
-            <span class="label label-warning">Beta</span>
-
-            </a>
+            <a href="{{site.github.url}}/download.html">Downloads</a>
           </li>  
 
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-        {% for p in site.headerLinks %}
-          <li>
-            <a href="{{p.url}}">{{p.title}}</a>
-          </li>
-        {% endfor %}
-        </ul>
-        
       </nav>
     </div>
   </header>
