@@ -101,6 +101,7 @@ description: A free and open source library for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Komoona</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>RhythmOne</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>FeatureForward</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Huddled Masses</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>DistrictmDMX</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>GumGum</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Vertoz</h3></div>
