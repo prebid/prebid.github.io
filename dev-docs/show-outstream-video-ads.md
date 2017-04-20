@@ -12,15 +12,13 @@ nav_section: prebid-video
 # Show Outstream Video Ads
 {: .no_toc}
 
-<span style="color: rgb(255,0,0);">FIXME</span>: <strong>OVERVIEW OF OUTSTREAM VIDEO</strong>
-
 Unlike instream video ads, which require you to have your own video inventory, Outstream video ads can be shown on any web page, even pages that only have text content.
 
-This page has information you'll need to set up Prebid for Outstream Video from the engineering side.
+This page has information you'll need to set up Prebid.js to show outstream video.
 
-Other than using a slightly different ad unit in your Prebid code on the page, you won't have to make any major engineering changes from a standard Prebid setup.  And there should be no changes required on the ad ops side.
+Other than using a slightly different ad unit in your Prebid code on the page, you won't have to make any major engineering changes from a standard Prebid setup.
 
-<span style="color: rgb(255,0,0);">FIXME</span>: <strong>verify that ad ops comment yo</strong>
+There should be no changes required on the ad ops side, since the outstream units use the standard Prebid creative, line item targeting setup, etc.
 
 * TOC
 {:toc }
@@ -28,37 +26,86 @@ Other than using a slightly different ad unit in your Prebid code on the page, y
 ## Prerequisites
 
 + Demand from a bidder adapter that supports the `"video-outstream"` media type
++ The bidder adapter will have to implement an outstream video renderer that is returned on the bid response.  For more technical information about custom renderers, see [the pull request adding the 'Renderer' type](https://github.com/prebid/Prebid.js/pull/1082).
 
-+ <span style="color: rgb(255,0,0);">FIXME</span>: <strong>Something something custom renderer setup?</strong>
+## 1. Set up outstream video slot sizes
 
-## Set up your Ad Unit with the Outstream Video Media Type
-
-As mentioned above, there are no code changes required to your standard Prebid setup except in the ad unit.
-
-Below is an example of a Prebid ad unit that supports outstream video.
-
-<span style="color: rgb(255,0,0);">FIXME</span>: <strong>verify this is the case with the "renderer" talk you've heard</strong>
-
-As far as what fields are supported in the `video` object, that will depend on how much of the [OpenRTB spec](https://www.iab.com/guidelines/real-time-bidding-rtb-project/) your bidder adaptor of choice supports.
+In your standard Prebid preamble in the header, configure slot sizes to suit your page layout and/or the available demand for those sizes.
 
 {% highlight js %}
-var videoAdUnit = {
+
+var pbjs = pbjs || {};
+
+// ...
+
+var rightSlotSizes = [[ 300, 250 ], [ 300, 600 ], [ 300, 250 ], [ 100, 100 ]];
+
+// ...
+
+{% endhighlight %}
+
+## 2. Set up your ad units with the outstream video media type
+
+Still in the header, set up your ad units with the `video-outstream` media type.  Note that you must be integrated with bidder adaptors that can respond with outstream video ads.
+
+As far as what fields are supported in the `video` object, that will depend on the rendering options supported by your preferred bidder adaptor(s).
+
+{% highlight js %}
+
+var videoAdUnits = [
+  {
     code: 'video1',
     sizes: [ 640, 480 ],
     mediaType: 'video-outstream',
     bids: [
-        {
-            bidder: 'appnexusAst',
-            params: {
-                placementId: '5768085',
-                video: {
-                    skippable: true,
-                    playback_method: [ 'auto_play_sound_off' ]
-                }
-            }
+      {
+        bidder: 'appnexusAst',
+        params: {
+          placementId: '5768085',
+          video: {
+            skippable: true,
+            playback_method: [ 'auto_play_sound_off' ]
+          }
         }
+      }
     ]
-};
+  },
+  {
+    code: 'video2',
+    sizes: [ 640, 480 ],
+    mediaType: 'video-outstream',
+    bids: [
+      {
+        bidder: 'appnexusAst',
+        params: {
+          placementId: '5768085',
+          video: {
+            skippable: true,
+            playback_method: [ 'auto_play_sound_off' ]
+          }
+        }
+      }
+    ]
+  }
+];
+
+{% endhighlight %}
+
+## 3. Show ads on the page as normal
+
+In the body of the page, insert your ads as usual:
+
+{% highlight html %}
+
+<div id='video1'>
+  <p>Prebid Outstream Video Ad</p>
+  <script type='text/javascript'>
+    googletag.cmd.push(function () {
+      googletag.display('video2');
+    });
+  </script>
+</div>
+
 {% endhighlight %}
 
 ## Related Topics

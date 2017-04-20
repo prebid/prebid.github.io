@@ -8,9 +8,9 @@ hide: true
 
 about:
 - Show Outstream Video Ads
-- New Media Type: <code>"video-outstream"</code>
+- New Media Type: <code>video-outstream</code>
 - Other than setting up the ad unit, very little change from standard Prebid for engineering
-- No changes for ad ops
+- No changes in ad ops setup; use standard Prebid creatives
 - Must have demand from outstream-video-enabled bidder adapters
 - For more information, see <a href="/dev-docs/show-outstream-video-ads.html">Show Outstream Video Ads</a>
 
