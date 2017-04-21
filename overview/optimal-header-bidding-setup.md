@@ -5,9 +5,6 @@ description: What is the optimal header bidding setup and some common problems.
 
 pid: 10
 
-
-show_disqus: true
-
 top_nav_section: overview
 nav_section: studies
 
@@ -145,7 +142,7 @@ The ad server sees the impression and header bidding info immediately after all 
 Add the Plugin [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop) to your browser.
 
 <div class="pb-md-img">
-<a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop" target="_blank"><img src="/assets/images/hb-expert/headerbid-expert-logo.png" style="cursor:pointer">
+<a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop" target="_blank"><img src="/assets/images/hb-expert/headerbid-expert-logo.png" alt="headerbid-expert-logo" style="cursor:pointer">
 </a>
 </div>
 

@@ -32,6 +32,19 @@ The code below was built with access to the following libraries:
 + video.js version 5.9.2
 + MailOnline videojs-vast-vpaid plugin version 2.0.2
 
+Also, you need to make sure to include the code below in your
+`adapters.json` when building Prebid.js.  If you don't build Prebid.js
+with support for at least one video-enabled bidder, you will not be
+able to show any video ads.
+
+{% highlight js %}
+{
+  "appnexusAst" : {
+    "supportedMediaTypes" : ["video"]
+  }
+}
+{% endhighlight %}
+
 ## Implementation
 
 This section will take you through the code you need to write to show
@@ -72,7 +85,13 @@ var videoAdUnit = {
 };
 ```
 
-### 2. Request bids, build a video tag, and invoke the player
+### 2. Implement Custom Price Buckets to work around the default CPM cap of $20
+
+By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets using the [`setPriceGranularity`]({{site.github.url}}/dev-docs/publisher-api-reference.html#customCPMObject) method.
+
+For instructions, see [Custom Price Bucket with `setPriceGranularity`]({{site.github.url}}/dev-docs/examples/custom-price-bucket-using-setpricegranularity.html).
+
+### 3. Request bids, build a video tag, and invoke the player
 
 Next, do the standard Prebid "add ad units and request bids" dance.
 In the example below, we've added some code that is not strictly
@@ -128,7 +147,7 @@ pbjs.que.push(function(){
 });
 ```
 
-### 3. Add the video player code to the page body
+### 4. Add the video player code to the page body
 
 In the body of the page, some HTML and JS like the following will show
 the ad -- this is where `invokeVideoPlayer` is defined:
@@ -168,7 +187,7 @@ function invokeVideoPlayer(url) {
 ```
 
 If you have [set up your adserver line items/ creatives]({{site.github.url}}/adops/setting-up-prebid-video-in-dfp.html) correctly, you should see
-an instream preroll video ad followed by the oceans video from the [video.js homepage](http://videojs.com/).
+an instream pre-roll video ad followed by the oceans video from the [video.js homepage](http://videojs.com/).
 
 ## Working Examples
 
@@ -178,5 +197,8 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 
 + [video.js](http://video-demo.appnexus.com/pbjs/mjacobson/video_testing/prebid_video_videojs_new.html)
 + [JWPlayer](http://video-demo.appnexus.com/pbjs/JWPlayerDemo/jwPlayerPrebid.html)
++ [Brightcove](http://video-demo.appnexus.com/pbjs/brightcove-prebid/bc-demo.html)
++ [Kaltura](http://video-demo.appnexus.com/pbjs/kaltura-prebid/klt-demo.html)
++ [Ooyala](http://video-demo.appnexus.com/pbjs/ooyala-prebid/ooyala-demo.html)
 
 </div>

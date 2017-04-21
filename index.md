@@ -26,7 +26,7 @@ description: A free and open source library for publishers to quickly implement 
   </div>
   <div class="form-group">
     <button class="btn btn-outline btn-lg" id="submit-email" onclick="submitEmail()">Join Best Practices Group</button>
-  </div>        
+  </div>
 </div>
 
     <hr class="full-rule">
@@ -99,7 +99,7 @@ description: A free and open source library for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Roxot</h3></div>
 
     <!-- END BIDDERS -->
-    
+
     </div>
 
     <hr class="full-rule">

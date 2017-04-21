@@ -1,3 +1,21 @@
+/* top navbar floats at top of screen when you scroll */
+
+header#top {
+    position: fixed;
+    width: 100%;
+}
+
+/* bump top of left nav below floating top navbar  */
+
+.row {
+    margin-top: 3em;
+}
+
+/* bump top of 'Prebid.js' text on homepage below floating top navbar */
+
+.home-title {
+    margin-top: 1em;
+}
 
 .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav>li>a {
   color: #444;
@@ -119,11 +137,16 @@ img {
 }
 
 .bs-docs-section {
-    /*text-align: justify;*/
     text-indent: auto;
     hyphens: auto;
-    line-height: 1.45;
-    font-size: 16px;
+}
+
+@media (min-width: 1024px) {
+    .bs-docs-section {
+        line-height: 1.6;
+        font-size: large;
+        margin-right: 10em;
+    }
 }
 
 .bs-docs-section h1 {
@@ -325,4 +348,13 @@ table.jsfiddle-line-number .line-number {
 
 #example-tab li {
   margin-bottom: 6px;
+}
+
+table:not(.jsfiddle-line-number) {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+div.pl-doc-entry{
+  position: absolute;
 }

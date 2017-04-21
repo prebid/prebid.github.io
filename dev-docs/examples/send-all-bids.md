@@ -9,13 +9,13 @@ nav_section: quick-start
 hide: true
 
 about:
-- One set of line items for EACH bidder.
-- Send all bids mode's keyword targeting setup. <a href="/dev-docs/publisher-api-reference.html#module_pbjs.enableSendAllBids">Reference here</a>
-- Send all bids to the ad server so you can track historical bid prices from various bidders in reporting.
-- Standard price granularity (pbMg see <a href="/dev-docs/publisher-api-reference.html#bidResponse">reference here</a>).
-- Standard integration with DFP's GPT single request asynchronous mode.
+- One set of line items for each bidder
+- Send all bids mode keyword targeting setup (<a href="/dev-docs/publisher-api-reference.html#module_pbjs.enableSendAllBids">reference here</a>)
+- Send all bids to the ad server so you can track historical bid prices from various bidders in reporting
+- Standard price granularity
+- Standard integration with DFP's GPT single request asynchronous mode
 
-jsfiddle_link: jsfiddle.net/prebid/qu68xoz5/3/embedded/html,result
+jsfiddle_link: jsfiddle.net/prebid/qu68xoz5/35/embedded/html,result
 
 code_lines: 121
 code_height: 2641

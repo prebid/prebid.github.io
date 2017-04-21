@@ -2,12 +2,14 @@
 layout: page
 title: Integrate with the Prebid Analytics API
 description: Integrate with the Prebid Analytics API
-pid: 27
+pid: 28
 
 top_nav_section: dev_docs
 nav_section: adaptors
 hide: false
 ---
+
+<div class="bs-docs-section" markdown="1">
 
 # Integrate with the Prebid Analytics API
 {:.no_toc}
@@ -87,3 +89,5 @@ pbjs.que.push(function () {
 + Create an analytics adapter to listen for Prebid events and call the analytics library (See `src/adapters/analytics/ga.js` in the repo for the Google Analytics adapter, or `src/adapters/analytics/example.js` for a generic adapter).
 
 + Add the analytics adapter's file name to the `"analytics"` array in `package.json` and build `Prebid.js`.  The build will contain only the analytics adapters you specified.
+
+</div>
