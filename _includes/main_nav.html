@@ -18,64 +18,81 @@
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Learn
-              <span class="caret" />
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Header Bidding 101</a></li>
-              <li><a href="#">What is Header Bidding?</a></li>
-              <li><a href="#">What is Prebid.js?</a></li>
-              <li><a href="#">How Prebid.js Works</a></li>
-              <li><a href="#">Case Studies</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Offerings
-              <span class="caret" />
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Display</a></li>
-              <li><a href="#">Video</a></li>
-              <li><a href="#">Mobile</a></li>
-              <li><a href="#">Server-to-Server (s2s)</a></li>
-              <li><a href="#">Native</a></li>
-              <li><a href="#">AMP</a></li>
-              <li><a href="#">Header Bidding Tools</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Docs &amp; Support
-              <span class="caret" />
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Docs by Format</a></li>
-              <li><a href="#">Docs by Ad Server</a></li>
-              <li><a href="#">Tutorials</a></li>
-              <li><a href="#">Stuck? Have Questions?</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               About
               <span class="caret" />
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Release Notes (GitHub)</a></li>
+              <li><a href="">What is Prebid?</a></li>
+              <li><a href="{{site.github.url}}/overview/intro.html">How Prebid Works</a></li>
               <li><a href="#">Code of Conduct</a></li>
-              <li><a href="#">Available Partners</a></li>
-              <li><a href="#">Add an Adaptor</a></li>
+              <li><a href="#">Case Studies</a></li>
+              <li><a href="{{site.github.io}}/blog.html">Blog</a></li>
             </ul>
           </li>
 
-          <li {% if page.top_nav_section == 'download' %}class="active"{% endif %}>
-            <a href="{{site.github.url}}/download.html">Downloads</a>
-          </li>  
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Docs
+              <span class="caret" />
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-submenu">
+                <a href="{{site.github.url}}/overview/getting-started.html">Prebid.js for web</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Docs by Format</a></li>
+                  <li><a href="#">Docs by Ad Server</a></li>
+                  <li><a href="{{site.github.url}}/dev-docs/examples/basic-example.html">Examples</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Prebid Server <sup><font color="red">Coming soon</font></sup></a></li>
+              <li><a href="#">Prebid Mobile for apps <sup><font color="red">Coming soon</font></sup></a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Tools &amp; Analytics
+              <span class="caret" />
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop">Chrome Extension</a></li>
+              <li><a href="{{site.github.url}}/dev-docs/integrate-with-the-prebid-analytics-api.html">Analytics</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Support &amp; Downloads
+              <span class="caret" />
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="http://stackoverflow.com/questions/tagged/prebid.js">Stack Overflow</a></li>
+              <li><a href="https://reddit.com/r/adops">Ad Ops Reddit</a></li>
+              <li><a href="#">Slack</a></li>
+              <li><a href="#">Professional Services &amp; Support</a></li>
+              <li><a href="{{site.github.url}}/download.html">Download</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Contribute
+              <span class="caret" />
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-submenu">
+                <a href="#">Repos</a>
+                <ul class="dropdown-menu">
+                  <li><a href="https://github.com/prebid/Prebid.js/">Prebid.js</a></li>
+                  <li><a href="#">Prebid Server <sup><font color="red">Coming soon</font></sup></a></li>
+                  <li><a href="#">Prebid Mobile <sup><font color="red">Coming soon</font></sup></a></li>
+                </ul>
+              </li>
+              <li><a href="{{site.github.io}}/dev-docs/bidder-adaptor.html">Add an Adapter</a></li>
+              <li><a href="#">Roadmap</a></li>
+              <li><a href="#">Release Notes</a></li>
+            </ul>
+          </li>
 
         </ul>
 
