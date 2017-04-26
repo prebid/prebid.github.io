@@ -712,7 +712,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="ga" class="analytics-check-box"> Google Analytics
+      <input type="checkbox" analyticscode="ga" class="analytics-check-box"> Google Analtyics
     </label>
   </div>
 </div>
