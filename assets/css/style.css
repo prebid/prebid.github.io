@@ -44,6 +44,21 @@ header#top {
 }
 
 /* End dropdown submenu */
+
+/* External links should have an icon denoting them */
+
+a[href^="http://"]:after,
+a[href^="https://"]:after {
+  content: url(http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png);
+  margin: 0 0 0 5px;
+}
+
+a[href^="http://prebid.org/"]:after,
+a[href^="https://prebid.org/"]:after {
+  content: '';
+  margin: 0;
+}
+
 .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav>li>a {
   color: #444;
   font-weight: 400;
