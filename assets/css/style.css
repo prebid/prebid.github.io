@@ -55,7 +55,7 @@ header#top {
 
 a[href^="http://"]:after,
 a[href^="https://"]:after {
-  content: url(http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png);
+  content: url(/assets/images/Icon_External_Link.png);
   margin: 0 0 0 5px;
 }
 
