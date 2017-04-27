@@ -12,7 +12,41 @@ nav_section: analytics
 
 # Prebid Analytics by Roxot
 
-Prebid Analytics by Roxot provides clean client-side data about all Prebid auctions running on a website as well as all demand partners participating - with no limits on traffic or events, every Prebid.js auction counts. This powerful tool allows you to monitor daily, hourly and real-time changes in header bidding performance, uncover issues with Prebid.js setup, and gain insights into increasing a website's revenue. Prebid Analytics by Roxot is designed specifically for publishers, providing features and metrics not available in any other web analytics tool.
+Prebid Analytics by Roxot provides client-side data about Prebid auctions running on a website as well as all demand partners participating. It allows you to monitor daily, hourly and real-time changes in header bidding performance and uncover issues with Prebid.js setup.
+
+The following metrics are available for analysis:
+
+- Sites and Ad Units: Requests, Impressions, Fill Rate, Impression Rate, eCPM, Revenue
+- Bidders: Requests, Impressions, Bid Rate, Win Rate, eCPM, Revenue, avg. Bid Price, avg. Win Price, avg. Response Time, Timeout Rate
+
+## Getting Started
+
+1. Sign up for a free account <a href="http://prebidanalytics.com/" target="_blank">here</a>.
+2. Log in to Prebid Analytics by Roxot and follow instructions to add the site domains where you wish to analyze prebid.js preformance.
+3. Make sure you use official Prebid.js setup.
+4. Build new Prebid.js with the Prebid Analytics by Roxot adapter. You can go to <a href="/download.html" target="_blank">Download page</a>, select the header bidding partners you already work with, check the Prebid Analytics by Roxot box under the Analytics Adapters section.
+5. Update your config:
+	- Upload your new prebid.js to the same location on your website/s as the old.
+	- Edit the link to reflect the changes.
+	- Add the following code to your prebid.js config to activate Prebid Analytics:
+
+{% highlight js %}
+
+// Add the below code snippet to your page
+pbjs.que.push(function () {
+  pbjs.enableAnalytics({
+    provider: 'roxot',
+    options: {
+      publisherIds: ["YOUR-PUBLISHER-ID"]
+    }
+  });
+});
+
+{% endhighlight %}
+
+Your publisher ID can be found <a href="http://panel.prebidanalytics.com/installation/step4" target="_blank">here</a>. You should be logged in to Prebid Analytics by Roxot to access the page.
+
+As soon as you finish the installation and the system detects requests from the sites you added, your data will be displayed across all dashboards.
 
 ## Workflow Examples
 
