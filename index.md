@@ -1,9 +1,9 @@
 ---
 layout: home
-title: Prebid.js - Header Bidding Made Easy
-head_title: Prebid.js - Header Bidding Made Easy
+title: Prebid.org - Header Bidding Made Easy
+head_title: Prebid.org - Header Bidding Made Easy
 isHome: true
-description: A free and open source library for publishers to quickly implement header bidding
+description: Free and open source solutions for publishers to quickly implement header bidding.
 ---
 
 <a name="pb-home-live-demo"></a>
