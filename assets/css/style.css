@@ -1,3 +1,9 @@
+/* Use Open Sans webfont */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body { font-family: 'Open Sans'; sans-serif; }
+
 /* top navbar floats at top of screen when you scroll */
 
 header#top {
