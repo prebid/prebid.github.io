@@ -68,10 +68,13 @@ nav_sections:
 
   - top_nav: dev_docs
     code: quick-start
-    name: QUICK START
+    name: DEVELOPER QUICK START
   - top_nav: dev_docs
     code: prebid-video
     name: PREBID VIDEO (BETA)
+  - top_nav: dev_docs
+    code: prebid-server
+    name: PREBID SERVER
   - top_nav: dev_docs
     code: prebid-amp
     name: PREBID FOR AMP (ALPHA)
@@ -106,7 +109,7 @@ nav_sections:
 
   - top_nav: adops
     code: tutorials
-    name: TUTORIALS
+    name: AD OPS TUTORIALS
 
   - top_nav: support
     code: support
