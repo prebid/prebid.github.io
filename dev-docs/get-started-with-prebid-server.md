@@ -74,8 +74,8 @@ pbjs.setS2SConfig({
   // endpoint, in milliseconds. Default value is 1000.
   timeout: 1000,
 
-  // String (optional): Adapter code for S2S. Defaults to 's2s'.
-  adapter: 's2s',
+  // String (optional): Adapter code for S2S. Defaults to 'prebidServer'.
+  adapter: 'prebidServer',
 
   // String (optional): Will override the default endpoint for Prebid Server.
   endpoint: 'http://prebid.adnxs.com'
