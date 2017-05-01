@@ -110,6 +110,9 @@ nav_sections:
   - top_nav: adops
     code: tutorials
     name: AD OPS TUTORIALS
+  - top_nav: adops
+    code: reference
+    name: REFERENCE
 
   - top_nav: support
     code: support
