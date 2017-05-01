@@ -12,28 +12,32 @@ nav_section: prebid-server
 # Get Started with Prebid Server
 {:.no_toc}
 
-This page has instructions for setting up Prebid.js with [Prebid Server]() (<span style="color: rgb(255,0,0);">FIXME</span>: <strong>link?</strong>).
+This page has instructions for setting up Prebid.js with [Prebid Server](https://prebid.adnxs.com).
 
 For many publishers, client-side header bidding is a balancing act between the inclusion of demand partners and impact to the page.
 
-Using [Prebid Server]() (<span style="color: rgb(255,0,0);">FIXME</span>: <strong>link?</strong>), you can move demand partners server-side, eliminating most of the latency impact that comes with adding more partners.
+Using [Prebid Server](https://prebid.adnxs.com), you can move demand partners server-side, eliminating most of the latency impact that comes with adding more partners.
 
 This should help you make more money without sacrificing user experience.
+
+{: .alert.alert-success :}
+**Prebid Server is open source!**  
+Prebid Server is an open source project.  [The source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-server).
 
 * TOC
 {:toc}
 
-## Step 1: Register for a Prebid Server Account
+## Step 1. Register for a Prebid Server account
 
-- Go to the [Prebid Server signup page]() (<span style="color: rgb(255,0,0);">FIXME</span>: <strong>link?</strong>) and click the button to sign up
+- Go to the [Prebid Server sign-up page](https://prebid.adnxs.com) and click the button to sign up.
 
-- Fill out the form details, including your email address
+- Fill out the form details, including your email address.
 
 - When approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid.js to use Prebid Server.
 
-## Step 2: Download Prebid.js with Prebid Server Enabled
+## Step 2. Download Prebid.js with Prebid Server enabled
 
-- Go to [the Prebid.org download page]({{site.github.url}}/download.html) and select all the demand adapters you want to work with, including "Prebid Server".
+- Go to [the Prebid.org download page]({{site.github.url}}/download.html), select all the demand adapters you want to work with, and include "Prebid Server".
 
 - For example, if you want to use AppNexus, Index Exchange, and Rubicon with Prebid Server, select:
   - *AppNexus*
@@ -43,11 +47,13 @@ This should help you make more money without sacrificing user experience.
 
 - Then, click **Get Custom Prebid.js** and follow the instructions.
 
-## Step 3: Incorporate the Build and Configure S2S Bidder Adapters
+## Step 3. Update your site with the new build of Prebid.js
 
-1. Update your site's hosted copy of Prebid.js to use the new build you just generated.  (For example, you may host your copy on your site's servers or using a [CDN](https://en.wikipedia.org/wiki/Content_delivery_network) such as Fastly or Akamai.)
+Update your site's hosted copy of Prebid.js to use the new build you just generated.  (For example, you may host your copy on your site's servers or using a [CDN](https://en.wikipedia.org/wiki/Content_delivery_network) such as Fastly or Akamai.)
 
-2. Include the following code in your Prebid.js configuration:
+## Step 4. Configure S2S bidder adapters
+
+Include the following code in your Prebid.js configuration:
 
 {% highlight js %}
 
@@ -79,6 +85,7 @@ pbjs.setS2SConfig({
 
 ## Related Topics
 
-+ [Prebid.js Developer Docs]({{}}/dev-docs/getting-started.html)
++ [Prebid.js Developer Docs]({{site.github.url}}/dev-docs/getting-started.html)
++ [Prebid Server homepage](https://prebid.adnxs.com/)
 
 </div>
