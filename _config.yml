@@ -118,12 +118,16 @@ nav_sections:
     code: support
     name: SUPPORT
 
+  - top_nav: principles
+    code: principles
+    name: PRINCIPLES
+
   - top_nav: download
     code: download
     name: DOWNLOAD
 
 
-port: 80
+port: 8080
 
 exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
 
