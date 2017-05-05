@@ -14,6 +14,9 @@ biddercode_longer_than_12: false
 
 ---
 
+### Note:
+The current OpenX adapter is not supported by the OpenX team.
+
 
 
 ### bid params
