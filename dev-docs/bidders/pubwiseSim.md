@@ -21,6 +21,8 @@ PubWise Sim is an 'echo' bidder for testing and troubleshooting. Sample uses:
 * introduce latency in the bidding process to test page timeouts
 * test the display of mismatched sizes
 
+On an organizational basis, PubWise Sim lets a team integrate, test and verify a Prebid site integration without ever running demand partner tags. Reducing confusion, improper serving and providing more accuracy.
+
 ### bid params
 
 {: .table .table-bordered .table-striped }
