@@ -14,36 +14,23 @@ nav_section: analytics
 
 There are several analytics adapter plugins available to track header bidding performance for your site.
 
-## Self-Serve Analytics
+| Analytics Adapter | Cost | Contact | Version Added |
+| ------------- | ------------- | ----------- | ------------|
+| [Google Analytics](http://prebid.org/overview/ga-analytics.html) | Free up to a certain volume | [website](https://www.google.com/analytics) | |
+| AppNexus | contact vendor | [website](https://www.appnexus.com/en/publishers/header-bidding) | |
+| PulsePoint | contact vendor | [website](https://www.pulsepoint.com/header-bidding.html) | |
+| ShareThrough |contact vendor | | |
+| PrebidAnalytics by Roxot | Free, see [terms](http://panel.prebidanalytics.com/account/pages/terms-of-service) | [website](http://prebidanalytics.com) | 0.22 |
+| PubWise | contact vendor | [website](https://pubwise.io/) | 0.24 |
 
-If you've installed Prebid on your own, these are the options for plugging in reporting. Note that none of them are endorsed or supported by Prebid.org.
-
-#### [Google Analytics](/overview/ga-analytics.html)
-
-Provided by the open source team as a basic approach to get header bidding stats. It assumes you've already signed up for a Google Analytics account - either free or paid.
-
-#### [PrebidAnalytics by Roxot](http://prebidanalytics.com)
-
-Roxot offers [prebidanalytics.com](http://prebidanalytics.com) as a free analytics service.
-
-
-## Managed Services
-
-There are several other analytics adapters available to publishers who work directly with a specific service provider.
-
-For additional service and analytics options, you may contact:
-
-* AppNexus (link or contact info)
-* PulsePoint
-* [RubiconProject](http://rubiconproject.com/headerbidding/)
-* Sharethrough
+None of these analytics options are endorsed or supported by Prebid.org.
 
 ## How it works
 
 Each analytics provider has specific instructions for using their system, but these are the general steps:
 
 * Create an account with the analytics vendor and obtain the necessary IDs
-* Build the Prebid.js package with the vendor's analytics adapter
+* Build Prebid.js package with the vendor's analytics adapter
 * Load analytics javascript from vendor directly on the page
 * Call the pbjs.enableAnalytics() function
 * Use the vendor's UI for reporting
@@ -60,8 +47,6 @@ pbjs.que.push(function() {
     });
 });
 ```
-
 ## More Details
-
 * [Creating a new analytics adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
 </div>
