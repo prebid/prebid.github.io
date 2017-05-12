@@ -13,6 +13,8 @@ nav_section: intro
 # What is Prebid?
 {:.no_toc}
 
+  THIS IS MY FIRST ATTEMPT TO BREAK THE INTERNET
+
 Prebid is a free open source library and community that helps publishers implement Header Bidding on their websites & apps.
 
 Header Bidding (also known as header auctions, parallel bidding, or header bidding) is a technique that involves running SSP & Ad Exchange code directly on page so publishers can receive bids on their inventory that may be unavailable through their primary ad server and exchange.
@@ -28,7 +30,7 @@ The early days of Header Bidding were dominated by bad practices, closed proprie
 
 Launched in 2015, Prebid changed the game and made header bidding easy for publishers. By creating a simple, open tech layer upon which companies could add their code to a standard but optimized foundation, Prebid made it easier to implement header bidding the right way, and offered the largest repository of working adapters.
 
-Today, Prebid is the most widely used Header Bidding "container" or "wrapper" on the web. The ecosystem supports 60+ demand partners, numerous publishers, and analytics providers. 
+Today, Prebid is the most widely used Header Bidding "container" or "wrapper" on the web. The ecosystem supports 60+ demand partners, numerous publishers, and analytics providers.
 
 ## Benefits of Prebid
 
