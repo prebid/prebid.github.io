@@ -58,6 +58,5 @@ Then, select the appropriate native format for your needs.
 ## Related Topics
 
 + [Show Native Ads with Prebid.js]({{site.github.url}}/dev-docs/show-native-ads.html) (Engineering setup instructions)
-+ [Prebid Native Example with DFP]({{site.github.url}}/dev-docs/examples/prebid-native-example.html) (Full example code)
 + [Step by Step Guide to DFP Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
 + [Send all bids to the ad server]({{site.github.url}}/adops/send-all-bids-adops.html)
