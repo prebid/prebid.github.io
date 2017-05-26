@@ -106,7 +106,6 @@ pbjs.addAdUnits({
   sizes: slot.size,
   mediaType: "native",
   nativeParams: {
-    /* type: 'image', */
     title: {
       required: true,
       len: 80
