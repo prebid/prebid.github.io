@@ -187,9 +187,11 @@ The required parameters to add into `bidObject` are:
 
 ## Step 6: Register User Sync Pixels
 
-All user syncs within Prebid adapters should be queued and triggered using
-the new UserSync feature. For the time being only image pixels are supported,
-but in the near future adapters will be able to use iframe and ajax requests.
+In order to protect page performance, user sync logic within Prebid adapters should
+be queued and triggered using the registerSync() function. For the time being, only
+image pixels are supported, but in the near future adapters will be able to use iframe and ajax requests.
+
+At some point after the auctions are complete, Prebid will write out the registered userSyncs. Note that in Prebid 1.0, use of the registerSync function will be required.
 
 To add a user sync from an adapter
 1. Load the userSync module in the adapter file
