@@ -185,6 +185,34 @@ The required parameters to add into `bidObject` are:
 | `height`     | Required  | The height of the returned creative.                                     | 250                                  |
 | `ad`         | Required  | The creative payload of the returned bid                                 | `"<html><h3>I am an ad</h3></html>"` |
 
+## Step 6: Register User Sync Pixels
+
+All user syncs within Prebid adapters should be queued and triggered using
+the new UserSync feature. For the time being only image pixels are supported,
+but in the near future adapters will be able to use iframe and ajax requests.
+
+To add a user sync from an adapter
+1. Load the userSync module in the adapter file
+```
+import { registerSync } from '../userSync.js';
+```
+2. Register the sync
+
+```
+registerSync(type, adapterName, pixelUrl);
+
+e.g.
+
+registerSync('image', 'exampleAdapter', ‘http://example.com/pixel’);
+```
+Parameters for registerSync:
+
+| Param | Type | Description |
+| ----- | ---- | ----------- |
+| type | string enum | The type of sync. Currently 'image' is the only supported type. |
+| adapterName | string | The name of the adapter. Used for logging. |
+| pixelUrl | string | The fully qualified URL used for tracking.|
+
 
 ## Helper functions
 
@@ -193,6 +221,8 @@ The required parameters to add into `bidObject` are:
 Load a script asynchronously. The callback function will be executed when the script finishes loading.
 
 Use this with the `cacheRequest` argument set to `true` if the script you're loading is a library or something else that doesn't change between requests.  It will cache the script so you don't have to wait for it to load before firing the supplied callback.
+
+Note that Prebid 1.0 will not allow external scripts, as they can affect page and bidder performance.
 
 For usage examples, see [the working adapters in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters).
 
