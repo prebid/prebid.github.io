@@ -88,4 +88,4 @@ To ensure that publishers can take advantage of outstream video with every deman
 
 We will consolidate instream and outstream video impressions under a common video adUnit definition, and add support for format-specific targeting parameters that demand partners will be able to ingest. As a result, instream and outstream video supply will have access to the same set of video-capable demand partners by default.
 
-Supporting documentation specific to Prebid outstream video is available through prebid.org, including [How to Show Outstream Video Ads]({{ site.github.url }}/dev-docs/show-outstream-video-ads.html) and [Outstream Video Example]({{ site.github.url }}/dev-docs/examples/outstream-video-example.html).  
+Supporting documentation specific to Prebid outstream video is available through prebid.org, including [How to Show Outstream Video Ads]({{ site.github.url }}/dev-docs/show-outstream-video-ads.html) and an [outstream end-to-end working example page](http://acdn.adnxs.com/prebid/alpha/unrulydemo.html).  
