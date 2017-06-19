@@ -79,6 +79,7 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>SpringServe</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Adform</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>bRealTime</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Beachfront</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>NginAd</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Brightcom</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Adequant</h3></div>
@@ -101,6 +102,7 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Komoona</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>RhythmOne</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>FeatureForward</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Huddled Masses</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>DistrictmDMX</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>GumGum</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Vertoz</h3></div>
@@ -119,6 +121,9 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>ThoughtLeadr</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>TapSense</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Atomx</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Bidfluence</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Trion</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Innity</h3></div>
 
     <!-- END BIDDERS -->
     </div>

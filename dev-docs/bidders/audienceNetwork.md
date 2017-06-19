@@ -10,6 +10,13 @@ biddercode_longer_than_12: true
 
 ---
 
+#### send all bids ad server keys
+
+(Truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
+
+`hb_pb_audienceNetwor`
+`hb_adid_audienceNetw`
+`hb_size_audienceNetw`
 
 ### bid params
 
@@ -17,3 +24,4 @@ biddercode_longer_than_12: true
 | Name          | Scope    | Description                            | Example                           |
 | :------------ | :------- | :------------------------------------- | :-------------------------------- |
 | `placementId` | required | The Placement ID from Audience Network | "555555555555555_555555555555555" |
+| `format`      | optional | Format, one of "native" or "fullwidth" | "native"                          |

@@ -33,7 +33,7 @@ There is an analysis from the Prebid team here which may be useful:
 
 [How many bidders should I work with?]({{site.github.url}}/blog/how-many-bidders-for-header-bidding)
 
-## Some of my Demand Partners send Gross Bids while others send Net Bids; how can I account for this difference?
+## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
 You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible. 
 
@@ -58,6 +58,18 @@ Here are a couple of alternative workarounds:
 - **Option 2:**
 
 	Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with DFP/AdX, but they can still compete with each other.  For more information, see [What is post-bid?](http://prebid.org/overview/what-is-post-bid.html).
+
+## How do I use Prebid.js on secure (HTTPS) pages?
+
+All prebid adapters that get merged should automatically detect if they're serving into a secure page environment and respond appropriately.
+
+In other words, you shouldn't have to do anything other than make sure your own page loads Prebid.js securely, e.g.,
+
+```html
+<script src='https://acdn.adnxs.com/prebid/not-for-prod/prebid.js' async=true />
+```
+
+(Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)
 
 ## Related Reading
 

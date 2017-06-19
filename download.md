@@ -703,6 +703,38 @@ To improve the speed and load time of your site, build Prebid.js for only the he
     </div>
   </div>
 
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="pubgears" class="bidder-check-box"> Pubgears
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="adsupply" class="bidder-check-box"> AdSupply
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="quantcast" class="bidder-check-box"> Quantcast
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="prebidServer" class="bidder-check-box"> Prebid Server
+      </label>
+    </div>
+  </div>
+
 </div>
 
 <br>
@@ -713,6 +745,14 @@ To improve the speed and load time of your site, build Prebid.js for only the he
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="ga" class="analytics-check-box"> Google Analtyics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pubwiseanalytics" class="analytics-check-box"> PubWise.io Analytics
     </label>
   </div>
 </div>
@@ -744,7 +784,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 </div>
 <br/>
 <p>
-(Version 0.22.2)
+(Version 0.24.1)
 </p>
 
 <div class="form-group">
