@@ -1,15 +1,15 @@
 ---
 layout: page
-title: How to Add a New Bidder Adaptor
-description: Documentation on how to add a new bidder adaptor
+title: How to Add a New Bidder Adapter
+description: Documentation on how to add a new bidder adapter
 pid: 25
 top_nav_section: dev_docs
-nav_section: adaptors
+nav_section: adapters
 ---
 
 <div class="bs-docs-section" markdown="1">
 
-# How to Add a New Bidder Adaptor
+# How to Add a New Bidder Adapter
 {:.no_toc}
 
 At a high level, a bidder adapter is responsible for:
@@ -20,8 +20,8 @@ At a high level, a bidder adapter is responsible for:
 This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the Github repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters) for reference.
 
 {: .alert.alert-success :}
-**Adding a Video Bidder Adaptor?**  
-See [How to Add a New Video Bidder Adaptor]({{site.github.url}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html).
+**Adding a Video Bidder Adapter?**  
+See [How to Add a New Video Bidder Adapter]({{site.baseurl}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html).
 
 * TOC
 {:toc}
@@ -37,15 +37,16 @@ In your PR to add the new adapter, please provide the following information:
 
 ## Step 2: Add a new bidder JS file
 
-1. Create a JS file under `src/adapters` with the name of the bidder, e.g., `rubicon.js`
+1. Create a JS file under `src/modules` with the name of the bidder suffixed with 'BidAdapter', e.g., `xyzBidAdapter.js`
 
 2. Create an adapter factory function with the signature shown below:
 
 {% highlight js %}
-var bidfactory = require('../bidfactory.js');
-var bidmanager = require('../bidmanager.js');
-
-var BidderNameAdapter = function BidderNameAdapter() {
+var utils = require('src/utils.js');
+var bidfactory = require('src/bidfactory.js');
+var bidmanager = require('src/bidmanager.js');
+var adaptermanager = require('src/adaptermanager');
+function XYZBidAdapter() {
 
     function _callBids(params){}
 
@@ -56,16 +57,17 @@ var BidderNameAdapter = function BidderNameAdapter() {
     };
 };
 
-module.exports = BidderNameAdapter;
+adaptermanager.registerBidAdapter(new XYZBidAdapter, 'xyz');
+module.exports = XYZBidAdapter;
 {% endhighlight %}
 
-A good example of an adapter that uses this pattern for its implementation is [OpenX](https://github.com/prebid/Prebid.js/blob/master/src/adapters/openx.js).
+A good example of an adapter that uses this pattern for its implementation is [Pubmatic](https://github.com/prebid/Prebid.js/blob/master/src/adapters/pubmatic.js).
 
 ## Step 3: Design your bid params
 
-Use the `bid.params` object for defining the parameters of your ad request.  You can include tag ID, site ID, ad size, keywords, and other data, such as [video bidding information]({{site.github.url}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html).
+Use the `bid.params` object for defining the parameters of your ad request.  You can include tag ID, site ID, ad size, keywords, and other data, such as [video bidding information]({{site.baseurl}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html).
 
-For more information about the kinds of information that can be passed using these parameters, see [the list of bidder parameters]({{site.github.url}}/dev-docs/bidders.html).
+For more information about the kinds of information that can be passed using these parameters, see [the list of bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
 
 For more information about how the implementation of `callBids` should work generally, see the next section.
 
@@ -190,6 +192,12 @@ The required parameters to add into `bidObject` are:
 
 **`adloader.loadScript(scriptURL, callback, cacheRequest)`**
 
+<div class="alert alert-danger" role="alert">
+<p>
+Note that loading external code into your adapter will be prohibited starting with Prebid 1.0.
+</p>
+</div>
+
 Load a script asynchronously. The callback function will be executed when the script finishes loading.
 
 Use this with the `cacheRequest` argument set to `true` if the script you're loading is a library or something else that doesn't change between requests.  It will cache the script so you don't have to wait for it to load before firing the supplied callback.
@@ -198,7 +206,7 @@ For usage examples, see [the working adapters in the repo](https://github.com/pr
 
 ## Further Reading
 
-+ [How to Add a New Video Bidder Adaptor]({{site.github.url}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)
++ [How to Add a New Video Bidder Adapter]({{site.baseurl}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters)
 

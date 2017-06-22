@@ -1,25 +1,25 @@
 ---
 layout: page
-title: How to Add a New Video Bidder Adaptor
-description: Documentation on how to add a new video bidder adaptor
+title: How to Add a New Video Bidder Adapter
+description: Documentation on how to add a new video bidder adapter
 pid: 26
 top_nav_section: dev_docs
-nav_section: adaptors
+nav_section: adapters
 ---
 
 <div class="bs-docs-section" markdown="1">
 
-# How to Add a New Video Bidder Adaptor
+# How to Add a New Video Bidder Adapter
 {:.no_toc}
 
-At a high level, a bidder adaptor is responsible for:
+At a high level, a bidder adapter is responsible for:
 
 1. Sending out bid requests to the ad server
 2. Registering the bids that are returned with Prebid.js
 
-This page has instructions for writing your own video-enabled bidder adaptor.  The instructions here try to walk you through some of the code you'll need to write for your adaptor.
+This page has instructions for writing your own video-enabled bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.
 
-When in doubt, use an adaptor that already has support for video for reference, such as [the AppNexus AST adaptor in the Github repo](https://github.com/prebid/Prebid.js/blob/master/src/adapters/appnexusAst.js).  (The code samples and descriptions below are based on it.)
+When in doubt, use an adapter that already has support for video for reference, such as [the AppNexus AST adapter in the Github repo](https://github.com/prebid/Prebid.js/blob/master/src/adapters/appnexusAst.js).  (The code samples and descriptions below are based on it.)
 
 * TOC
 {:toc}
@@ -34,16 +34,16 @@ In your PR to add the new adapter, please provide the following information:
 
 ## Step 2: Add a new bidder JS file
 
-1. Create a JS file under `src/adapters` with the name of the bidder,
-   e.g., `yourBidder.js`
+1. Create a JS file under `src/modules` with the name of the bidder suffixed with 'BidAdapter', e.g., `xyzBidAdapter.js`
 
 2. Your adapter should export the `callBids` function.  Prebid.js
    executes this function when the page asks to send out bid requests.
 
 {% highlight js %}
-import Adapter    from 'src/adapters/adapter';
-import bidfactory from 'src/bidfactory';
-import bidmanager from 'src/bidmanager';
+var utils = require('src/utils.js');
+var bidfactory = require('src/bidfactory.js');
+var bidmanager = require('src/bidmanager.js');
+var adaptermanager = require('src/adaptermanager');
 
 // This constant is used when adding video params to the tag below.
 // You should use params that are understood by your bidder.
@@ -52,8 +52,8 @@ const VIDEO_TARGETING = ['id', 'mimes', 'minduration',
                          'skippable', 'playback_method', 
                          'frameworks'];
 
-function YourBidderAdapter() {
-    let baseAdapter = Adapter.createNew('yourBidderAdapter');
+function XYZBidAdapter() {
+    let baseAdapter = Adapter.createNew('XYZBidAdapter');
 
     baseAdapter.callBids = function(bidRequest) {
       // Add your implementation here.
@@ -76,20 +76,23 @@ function YourBidderAdapter() {
     // ... other code ...
 }
 
-module.exports = YourBidderAdapter;
+adaptermanager.registerBidAdapter(new XYZBidAdapter, 'xyz', {
+  supportedMediaTypes: ['video']
+});
+module.exports = XYZBidAdapter;
 {% endhighlight %}
 
 ## Step 3: Design your bid params
 
 Use the `bid.params` object for defining the parameters of your ad request.  You can include tag ID, site ID, ad size, keywords, and other data, such as video bidding information.
 
-For more information about the kinds of information that can be passed using these parameters, see [the list of bidder parameters]({{site.github.url}}/dev-docs/bidders.html).
+For more information about the kinds of information that can be passed using these parameters, see [the list of bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
 
-In order to make sure your adaptor supports video, you'll need to:
+In order to make sure your adapter supports video, you'll need to:
 
-1. Add a `video` object to your adapter's bid parameters like the one in the [AppNexus AST adapter]({{site.github.url}}/dev-docs/bidders.html#appnexusAst).  To see an example showing how those video params are processed and added to the ad tag, see [the AST adapter's implementation of the `callBids` function](https://github.com/prebid/Prebid.js/blob/master/src/adapters/appnexusAst.js).
+1. Add a `video` object to your adapter's bid parameters like the one in the [AppNexus AST adapter]({{site.baseurl}}/dev-docs/bidders.html#appnexusAst).  To see an example showing how those video params are processed and added to the ad tag, see [the AST adapter's implementation of the `callBids` function](https://github.com/prebid/Prebid.js/blob/master/src/adapters/appnexusAst.js).
 
-2. Your bidder will have to support returning a VAST URL somewhere in its bid response.  Each new bidder adaptor added to Prebid.js will have to support its own video URL.  For more information, see the implementation of [pbjs.buildMasterVideoTagFromAdserverTag](https://github.com/prebid/Prebid.js/blob/master/src/prebid.js#L656).
+2. Your bidder will have to support returning a VAST URL somewhere in its bid response.  Each new bidder adapter added to Prebid.js will have to support its own video URL.  For more information, see the implementation of [pbjs.buildMasterVideoTagFromAdserverTag](https://github.com/prebid/Prebid.js/blob/master/src/prebid.js#L656).
 
 ## Step 4: Send out bid requests
 
@@ -202,21 +205,15 @@ bidmanager.addBidResponse(adUnitCode, bidObject);
 
 In bidder API's callback, there'll be ID(s) that tie back to the request params in the `bid` object. Building a map from `adUnitCode` to the request param(s)/ID(s) will help you retrieve the `adUnitCode` based on the callback.
 
-## Step 6. Update `adapters.json`
-
-Finally, add `"video"` to the array of media types your adapter supports.
-
-```javascript
-{
-  "yourBidder": {
-    "supportedMediaTypes": ["video"]
-  }
-}
-```
-
 ## Helper functions
 
 **`adloader.loadScript(scriptURL, callback, cacheRequest)`**
+
+<div class="alert alert-danger" role="alert">
+<p>
+Note that loading external code into your adapter will be prohibited starting with Prebid 1.0.
+</p>
+</div>
 
 Load a script asynchronously. The callback function will be executed when the script finishes loading.
 
@@ -226,7 +223,7 @@ For usage examples of `loadScript`, see [the adapters in the repo](https://githu
 
 ## Further Reading
 
-+ [How to Add a New Bidder Adapter]({{site.github.url}}/dev-docs/bidder-adaptor.html)
++ [How to Add a New Bidder Adapter]({{site.baseurl}}/dev-docs/bidder-adaptor.html)
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters)
 
