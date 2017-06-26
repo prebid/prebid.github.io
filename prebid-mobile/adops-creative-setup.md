@@ -17,10 +17,10 @@ Add the following code snippets to your creative in your line items.
 ### For DFP
 
 ```
-<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/mbpb.js"></script>
+<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
 <script type="text/javascript">
-    apntag.showAdFromCacheId({
-        admCacheID : '%%PATTERN:pb_cache_id%%'
+    pbm.showAdFromCacheId({
+        admCacheID : '%%PATTERN:hb_cache_id%%'
     });
 </script>
 ```
@@ -28,10 +28,10 @@ Add the following code snippets to your creative in your line items.
 ### For MoPub
 
 ```
-<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/mbpb.js"></script>
+<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
 <script type="text/javascript">
-    apntag.showAdFromCacheId({
-        admCacheID: '%%KEYWORD:pb_cache_id%%’  
+    pbm.showAdFromCacheId({
+        admCacheID: '%%KEYWORD:hb_cache_id%%’  
     });
 </script>
 ```

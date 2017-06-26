@@ -12,18 +12,17 @@ nav_section: prebid-mobile-ios
 # Quickstart
 {:.no_toc}
 
-Get started with Prebid Mobile by creating a Prebid Server account here--http://prebid.org/dev-docs/get-started-with-prebid-server.html
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html)
 
-### Use cocoapods?
+### Use Cocoapods?
 
-Easily include the Prebid Mobile SDK for your priamy ad server in your Podfile/
+Easily include the Prebid Mobile SDK for your primary ad server in your Podfile/
 
-```objc
+```
 platform :ios, '8.0'
 
 target 'MyAmazingApp' do 
-    pod 'Prebid-Mobile-For-DFP'
-    pod 'Prebid-Mobile-For-MoPub'
+    pod 'Prebid-Mobile-SDK'
 end
 ```
 
@@ -31,7 +30,7 @@ end
 
 Build Prebid Mobile from source code. After cloning the repo, from the root directory run
 
-```objc
+```
 ./scripts/buildPrebidMobile.sh
 ```
 

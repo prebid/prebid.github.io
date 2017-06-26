@@ -14,7 +14,7 @@ nav_section: prebid-mobile-android
 
 Get started with Prebid Mobile by creating a Prebid Server account here--http://prebid.org/dev-docs/get-started-with-prebid-server.html
 
-### Use maven?
+### Use Maven?
 
 Easily include the Prebid Mobile SDK for your priamy ad server using Maven.
 

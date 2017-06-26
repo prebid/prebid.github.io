@@ -24,11 +24,10 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 Embed the ad unit registration in a try-catch block to catch all the exceptions (if any) thrown by the SDK.
 
 ```objc
-#import "PrebidMobileForDFP/PBBannerAdUnit.h"
-#import "PrebidMobileForDFP/PBServerAdapter.h"
-#import "PrebidMobileForDFP/PBTargetingParams.h"
-#import "PrebidMobileForDFP/PrebidMobile.h"
-#import "PrebidMobileForDFP/PBLogManager.h"
+#import "PrebidMobile/PBBannerAdUnit.h"
+#import "PrebidMobile/PBServerAdapter.h"
+#import "PrebidMobile/PBTargetingParams.h"
+#import "PrebidMobile/PrebidMobile.h"
  
 [PBLogManager setPBLogLevel:PBLogLevelAll];
   

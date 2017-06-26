@@ -13,13 +13,9 @@ nav_section: prebid-mobile-pbs
 # Get Started with Prebid Server
 {:.no_toc}
 
-This page has instructions for setting up Prebid.js with [Prebid Server](https://prebid.adnxs.com).
+This page has instructions for setting up Prebid Mobile with [Prebid Server](https://prebid.adnxs.com).
 
-For many publishers, client-side header bidding is a balancing act between the inclusion of demand partners and impact to the page.
-
-Using [Prebid Server](https://prebid.adnxs.com), you can move demand partners server-side, eliminating most of the latency impact that comes with adding more partners.
-
-This should help you make more money without sacrificing user experience.
+Use [Prebid Server](https://prebid.adnxs.com), to add more demand partners server-side to Prebid Mobile and make more money.
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**  
@@ -34,18 +30,18 @@ Prebid Server is an open source project.  [The source code is hosted under the P
 
 - Fill out the form details, including your email address.
 
-- When approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid.js to use Prebid Server.
+- When approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid Mobile to use Prebid Server.
 
-## Step 2. Download Prebid Mobile for iOS or for Android
+## Step 2. Setup your demand partner configurations on Prebid Server
 
-- Go to github and download
+- Go to the [Prebid Server configs page](https://prebid.adnxs.com/configs/) and click the button to add a new config.
 
-## Step 3. Setup your demand partner configurations on Prebid Server
+## Step 3. Download Prebid Mobile for iOS or for Android
 
-Setup demand partner configs
+- Go to Github and download the SDK for either iOS or Android or both
 
 ## Step 4. Implement Prebid Mobile on your app. 
 
-By following developer docs found here. 
+By following [iOS developer docs]({{site.github.url}}/prebid-mobile/quickstart-ios.html) or the [Android developer docs]({{site.github.url}}/prebid-mobile/quickstart-android.html)
 
 </div>

@@ -15,14 +15,16 @@ nav_section: prebid-mobile
 
 Prebid Mobile auctions run directly on the device and allow app developers to access demand that may not be available from their mobile ad network.
 
-Benefits and features of Prebid Mobile include:
+All of the demand for Prebid Mobile is sourced through Prebid Server. This means you **must** have a Prebid Server account in order to use Prebid Mobile. To set up you Prebid Server account for Prebid Mobile, refer to [Get Started with Prebid Server]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html)
+
+### Benefits and features of Prebid Mobile include:
 
  - Direct access to more mobile buyers
  - Increased yield due to increased competition between demand sources
  - A lightweight library that uses simple query strings to send ad requests and to pass results
  - Minimized latency due to background pre-caching of creatives
 
-Step by step explanation of Prebid Mobile:
+### Step by step explanation of Prebid Mobile:
 
  1. Prebid Mobile works by having our Prebid Mobile module running, fetching bids from your demand partners on Prebid Server in the background.
  2. Our Prebid Mobile module sends this bid information to your primary ad server SDK (e.g., MoPub) in the form of custom parameters.
