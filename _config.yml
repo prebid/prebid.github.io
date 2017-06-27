@@ -91,6 +91,9 @@ nav_sections:
     code: adaptors
     name: ADAPTORS
   - top_nav: dev_docs
+    code: modules
+    name: MODULES
+  - top_nav: dev_docs
     code: hacking
     name: HACKING ON PREBID.JS
 
