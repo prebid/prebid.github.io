@@ -37,18 +37,19 @@ In your PR to add the new adapter, please provide the following information:
 
 ## Step 2: Add a new bidder JS file
 
-1. Create a JS file under `src/modules` with the name of the bidder suffixed with 'BidAdapter', e.g., `xyzBidAdapter.js`
+1. Create a JS file under `modules` with the name of the bidder suffixed with 'BidAdapter', e.g., `xyzBidAdapter.js`
 
 2. Create an adapter factory function with the signature shown below:
 
 {% highlight js %}
-var utils = require('src/utils.js');
-var bidfactory = require('src/bidfactory.js');
-var bidmanager = require('src/bidmanager.js');
-var adaptermanager = require('src/adaptermanager');
-function XYZBidAdapter() {
+import bidfactory from 'src/bidfactory';
+import bidmanager from 'src/bidmanager';
+import * as utils from 'src/utils';       // useful functions
+import { ajax } from 'src/ajax';          // recommended AJAX library
+import { STATUS } from 'src/constants';
+function xyzBidAdapter() {
 
-    function _callBids(params){}
+    function _callBids(params) {... add code here ...}
 
     // Export the `callBids` function, so that Prebid.js can execute
     // this function when the page asks to send out bid requests.
@@ -58,7 +59,7 @@ function XYZBidAdapter() {
 };
 
 adaptermanager.registerBidAdapter(new XYZBidAdapter, 'xyz');
-module.exports = XYZBidAdapter;
+module.exports = xyzBidAdapter;
 {% endhighlight %}
 
 A good example of an adapter that uses this pattern for its implementation is [Pubmatic](https://github.com/prebid/Prebid.js/blob/master/src/adapters/pubmatic.js).
@@ -126,21 +127,21 @@ When the bid response(s) are available, notify Prebid.js immediately, so that yo
 
 To register the bid, call the `bidmanager.addBidResponse(adUnitCode, bidObject)` function. To register multiple bids, call the function multiple times.
 
-If the bid is valid, create the bid response as shown below, matching the bid request/response pair.  A status of `1` means the bid response is valid.  For details about the status codes, see [constants.json](https://github.com/prebid/Prebid.js/blob/master/src/constants.json).
+If the bid is valid, create the bid response as shown below, matching the bid request/response pair. For details about the status codes, see [constants.json](https://github.com/prebid/Prebid.js/blob/master/src/constants.json).
 
 {% highlight js %}
 var utils       = require('../utils.js');
 var bidfactory  = require('../bidfactory.js');
 
 var bidRequest  = utils.getBidRequest(id);
-var bidResponse = bidfactory.createBid(1, bidRequest);
+var bidResponse = bidfactory.createBid(STATUS.GOOD, bidRequest);
 {% endhighlight %}
 
-If the bid is invalid (no fill or error), create the `bidObject` as shown below.  A status of `2` means "no bid".
+If the bid is invalid (no fill or error), create the `bidObject` as shown below.
 
 {% highlight js %}
 var bidRequest  = utils.getBidRequest(id);
-var bidResponse = bidfactory.createBid(2, bidRequest);
+var bidResponse = bidfactory.createBid(STATUS.NO_BID, bidRequest);
 {% endhighlight %}
 
 Example:
@@ -153,7 +154,7 @@ Example:
 var adUnit;
 
 var bidRequest  = utils.getBidRequest(id);
-var bidObject = bidfactory.createBid(1, bidRequest);
+var bidObject = bidfactory.createBid(STATUS.GOOD, bidRequest);
 bidObject.bidderCode = 'openx';
 bidObject.cpm = Number(adUnit.get('pub_rev')) / 1000;
 bidObject.ad = adUnit.get('html');
@@ -164,7 +165,7 @@ bidObject.height = adUnit.get('height');
 bidmanager.addBidResponse(adUnitCode, bidObject);
 
 // invalid bid response
-bidObject = bidfactory.createBid(2, bidRequest);
+bidObject = bidfactory.createBid(STATUS.NO_BID, bidRequest);
 bidObject.bidderCode = 'openx';
 bidmanager.addBidResponse(adUnitCode, bidObject);
 

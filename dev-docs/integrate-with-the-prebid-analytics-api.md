@@ -35,9 +35,9 @@ For instructions on integrating an analytics provider, see the next section.
 
 ## Integrate an Analytics Provider
 
-You can integrate an analytics provider using the steps outlined below.  In the example we'll use Google Analytics for simplicity, but you can integrate any analytics provider you like as long as you have an adapter and a library.
+You can integrate an analytics provider using the steps outlined below.  In the example we'll use Google Analytics for simplicity, but you can integrate any analytics provider you like as long as you have an adapter and any necessary libraries.
 
-If you want to see how to write your own adapters and libraries, there are analytics adapters in the repo under `modules`, and libraries under `src/adapters/analytics/libraries`.
+If you want to see how to write your own analytics adapters, look in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 Summary of the steps involved:
 
@@ -103,9 +103,21 @@ In your PR to add the new adapter, please provide the following information:
 
 #### Step 2: Add a new analytics JS file
 
-1. Create a JS file under `src/modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `abcAnalyticsAdapter.js`
+1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `abcAnalyticsAdapter.js`
 
-2. Create an analytics adapter to listen for Prebid events and call the analytics library (See `modules/googleAnalyticsAdapter.js` in the repo for the Google Analytics adapter, or `src/adapters/analytics/example.js` for a generic adapter).
+2. Create an analytics adapter to listen for Prebid events and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
+
+3. There are several types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'library' and 'bundle' types.
+
+    * endpoint - Calls the specified URL on analytics events. Doesn't require a global context.
+    * library - The URL is considered to be a library to load. Exepects a global context.
+    * bundle - An advanced option expecting a global context.
+
+4. In order to get access to the configuration passed in from the page, the analytics
+adapter needs to specify an enableAnalytics() function, but it should also call
+the base class function to set up the events.
+
+A basic prototype analytics adapter:
 
 {% highlight js %}
 import {ajax} from 'src/ajax';
@@ -113,10 +125,24 @@ import adapter from 'src/AnalyticsAdapter';
 import CONSTANTS from 'src/constants.json';
 import adaptermanager from 'src/adaptermanager';
 
-// ... code ...
+const analyticsType = 'endpoint';
+const url = 'URL_TO_SERVER_ENDPOINT';
+
+let abcAnalytics = Object.assign(adapter({url, analyticsType}), {
+  // ... code ...
+});
+
+// save the base class function
+abcAnalytics.originEnableAnalytics = roxotAdapter.enableAnalytics;
+
+// override enableAnalytics so we can get access to the config passed in from the page
+abcAnalytics.enableAnalytics = function (config) {
+  initOptions = config.options;
+  abcAnalytics.originEnableAnalytics(config);  // call the base class function
+};
 
 adaptermanager.registerAnalyticsAdapter({
-  adapter: 'abcAdapter',
+  adapter: abcAnalytics,
   code: 'abc'
 });
 {% endhighlight %}
