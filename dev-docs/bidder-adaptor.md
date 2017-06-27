@@ -17,7 +17,7 @@ At a high level, a bidder adapter is responsible for:
 1. Sending out bid requests to the ad server
 2. Registering the bids that are returned with Prebid.js
 
-This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the Github repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters) for reference.
+This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the Github repo](https://github.com/prebid/Prebid.js/tree/master/modules) for reference.
 
 {: .alert.alert-success :}
 **Adding a Video Bidder Adapter?**  
@@ -62,7 +62,7 @@ adaptermanager.registerBidAdapter(new XYZBidAdapter, 'xyz');
 module.exports = xyzBidAdapter;
 {% endhighlight %}
 
-A good example of an adapter that uses this pattern for its implementation is [Pubmatic](https://github.com/prebid/Prebid.js/blob/master/src/adapters/pubmatic.js).
+A good example of an adapter that uses this pattern for its implementation is [Pubmatic](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js).
 
 ## Step 3: Design your bid params
 
@@ -203,12 +203,12 @@ Load a script asynchronously. The callback function will be executed when the sc
 
 Use this with the `cacheRequest` argument set to `true` if the script you're loading is a library or something else that doesn't change between requests.  It will cache the script so you don't have to wait for it to load before firing the supplied callback.
 
-For usage examples, see [the working adapters in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters).
+For usage examples, see [the working adapters in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 ## Further Reading
 
 + [How to Add a New Video Bidder Adapter]({{site.baseurl}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)
 
-+ [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters)
++ [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
 
 </div>
