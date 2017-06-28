@@ -53,6 +53,7 @@ var outstreamVideoAdUnit = [
   }
 ];  
 ```
+
 #### Renderers
 
 With its brand new support for "renderers", Prebid.js is able to traffic outstream video through display placements. In general, a renderer is the client-side code (usually a combination of JavaScript, HTML and CSS) responsible for displaying a creative on a page. Fundamentally, a renderer for outstream ads must provide a player environment capable of playing a video creative (most commonly, a VAST XML document). However, in practice, most outstream renderers provide additional functionality / logic, including, but not limited to:
