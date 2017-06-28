@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Add an ad server adapter
-description: Add an ad server adapter
+title: Add an Ad Server Adapter
+description: Add an Ad Server Adapter
 pid: 0
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-contributors 

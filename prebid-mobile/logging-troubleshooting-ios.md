@@ -2,7 +2,7 @@
 layout: page
 title: Logging & Troubleshooting
 description: Logging & Troubleshooting
-pid: 27
+pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
 ---
@@ -17,5 +17,7 @@ To add Prebid Mobile logs for troubleshooting or to see successful bids simply i
 ```objc
 [PBLogManager setPBLogLevel:PBLogLevelAll];
 ```
+
+# FAQs
 
 </div>

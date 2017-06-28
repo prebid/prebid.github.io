@@ -2,7 +2,7 @@
 layout: page
 title: Logging & Troubleshooting
 description: Logging & Troubleshooting
-pid: 27
+pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-android
 ---
@@ -12,6 +12,7 @@ nav_section: prebid-mobile-android
 # Logging & Troubleshooting
 {:.no_toc}
 
+# FAQs
 
 
 </div>

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: How it works?
+title: How it Works?
 description: How does Prebid Mobile work?
 pid: 0
 is_top_nav: yeah
@@ -13,9 +13,9 @@ nav_section: prebid-mobile
 # How does Prebid Mobile work?
 {:.no_toc}
 
-Prebid Mobile auctions run directly on the device and allow app developers to access demand that may not be available from their mobile ad network.
+Prebid Mobile SDK sends requests to Prebid Server to help app developers to access additional demand that is not available from their mobile ad network.
 
-All of the demand for Prebid Mobile is sourced through Prebid Server. This means you **must** have a Prebid Server account in order to use Prebid Mobile. To set up you Prebid Server account for Prebid Mobile, refer to [Get Started with Prebid Server]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html)
+This means you **must** have a Prebid Server account in order to use Prebid Mobile. To set up your Prebid Server account for Prebid Mobile, refer to [Get Started with Prebid Server]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html)
 
 ### Benefits and features of Prebid Mobile include:
 
@@ -27,7 +27,7 @@ All of the demand for Prebid Mobile is sourced through Prebid Server. This means
 ### Step by step explanation of Prebid Mobile:
 
  1. Prebid Mobile works by having our Prebid Mobile module running, fetching bids from your demand partners on Prebid Server in the background.
- 2. Our Prebid Mobile module sends this bid information to your primary ad server SDK (e.g., MoPub) in the form of custom parameters.
+ 2. Our Prebid Mobile module sends this bid information to your primary ad server SDK (e.g. MoPub) in the form of custom parameters.
  3. Your primary SDK sends a request to your ad network that includes these custom parameters. Meanwhile, your ad ops team has set up line items targeting these custom parameters.
  4. If the Prebid Mobile bid wins, the ad network returns our creative JS to your primary SDK's ad view.
  5. The creative JS in the ad view calls Prebid Server cache to fetch the actual creative content. When this happens, the impression is counted.
