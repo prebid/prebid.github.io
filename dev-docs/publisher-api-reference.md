@@ -34,6 +34,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
   * [.bidderSettings](#module_pbjs.bidderSettings)
+  * [.userSync](#module_pbjs.userSync)
   * [.addCallback(event, func)](#module_pbjs.addCallback)
   * [.removeCallback(cbId)](#module_pbjs.removeCallback)
   * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String`
@@ -758,6 +759,73 @@ See the [example above](#key-targeting-specific-bidder) for example usage.
 ##### 2.5. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.userSync"></a>
+
+### pbjs.userSync
+
+The userSync object allows Publishers to control how adapters behave with respect to dropping pixels or scripts to cookie users with IDs.
+This practice is called 'userSync' because the aim is to let the bidders match IDs between their cookie space and the DSP cookie space.
+There's a good reason for bidders to be doing this -- DSPs are more likely to bid on impressions where they know something about the history of a user.
+However, there are also good reasons why Publishers may want to control the use of these practices:
+
+* page performance - Publishers may wish to move ad-related cookie work to much later in the page load after ads and content have loaded.
+* user privacy - Some publishers may want to opt out of these practices even though it limits their user's values on the open market.
+* security - Publishers may want to control which bidders are trusted to inject sync javascript into their pages.
+
+A simple example of setting the userSync rules:
+{% highlight js %}
+pbjs.userSync = {
+    pixelEnabled: true,   // allow all adapters to drop user-sync pixels
+    syncDelay: 6000       // 6 seconds after the auction
+};
+{% endhighlight %}
+
+In this example, only certain adapters are allowed to drop sync pixels:
+{% highlight js %}
+pbjs.userSync = {
+    enabledBidders: ['abc','xyz'] // only these bidders are allowed to sync
+    pixelEnabled: true,           // and only for pixels
+    syncsPerBidder: 3,            // and no more than 3 pixels at a time
+    syncDelay: 6000,              // 6 seconds after the auction
+};
+{% endhighlight %}
+
+In the last example, the same bidders can drop sync pixels, but the timing will be controlled by the page:
+{% highlight js %}
+pbjs.userSync = {
+    enabledBidders: ['abc','xyz'] // only these bidders are allowed to sync
+    pixelEnabled: true,           // and only for pixels
+    enableOverride: true          // publisher will call pbjs.userSync.syncAll()
+};
+{% endhighlight %}
+
+Here are all the options for userSync control:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Type | Description |
+| --- | --- | --- |
+| syncDelay | integer | The delay in milliseconds for autosyncing once the first auction is run. 3000 by default. |
+| pixelEnabled | boolean | Enables image pixel syncs. |
+| syncsPerBidder | integer | Number of registered syncs allowed per adapter. Default is all. |
+| enabledBidders | array | Array of names of trusted adapters which are allowed to sync users. |
+| enableOverride | boolean | Allows the publisher to manually trigger the user syncs to fire. This prevents autosyncing and exposes the method syncAll() below. |
+| syncAll | function | The page code calls this function to trigger user syncing. Only available if enableOverride is true. |
+
+{: .alert.alert-success :}
+In the near future, there will be options for `iframeEnabled` and `ajaxEnabled`.
+
+#### How it works
+
+The [registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-register-user-sync-pixels) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
+
+* Removes undesired sync types. (i.e. enforces the pixelEnabled flag)
+* Removes undesired adapters. (i.e. enforces the enabledBidders option)
+* Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
+
+When syncAll() runs, regardless of whether it's initiated by platform or page, the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
 
 <hr class="full-rule">
 

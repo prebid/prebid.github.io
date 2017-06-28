@@ -191,29 +191,41 @@ In order to protect page performance, user sync logic within Prebid adapters sho
 be queued using the registerSync() function. For the time being, only
 image pixels are supported, but in the near future adapters will be able to use iframe and ajax requests.
 
-At some point after the auctions are complete, Prebid will write out the registered userSyncs. Note that in Prebid 1.0, use of the registerSync function will be required.
+At some point after the auctions are complete, Prebid will write out the registered userSyncs. See the userSync section of the Publisher API Reference for information about how Publishers can control which syncs are allowed.
 
-To add a user sync from an adapter
+Add a user sync in an adapter in two steps:
+
 1. Load the userSync module in the adapter file
-```
-import { registerSync } from '../userSync.js';
-```
 2. Register the sync
 
-```
-registerSync(type, adapterName, pixelUrl);
+{% highlight js %}
+import { registerSync } from 'src/userSync.js';
 
-e.g.
+   // ... code ...
+   registerSync('image', 'exampleAdapter', 'http://example.com/pixel');
+   // ... code ...
+{% endhighlight %}
 
-registerSync('image', 'exampleAdapter', ‘http://example.com/pixel’);
-```
+The syntax for the userSync.registerSync() function:
+{% highlight js %}
+userSync.registerSync(type, adapterName, pixelUrl);
+{% endhighlight %}
+
+Note that the userSync object contains the registerSync function. The example above shows a destructed import, which 
+eliminates the need to refer the to function through its object.
+
 Parameters for registerSync:
 
+{: .table .table-bordered .table-striped }
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| type | string enum | The type of sync. Currently 'image' is the only supported type. |
-| adapterName | string | The name of the adapter. Used for logging. |
-| pixelUrl | string | The fully qualified URL used for tracking.|
+| `type` | string enum | The type of sync. Currently 'image' is the only supported type. |
+| `adapterName` | string | The name of the adapter. Used for logging. |
+| `pixelUrl` | string | The fully qualified URL used for tracking.|
+
+{: .alert.alert-success :}
+Note that in Prebid 1.0, use of the registerSync() function will be required for all user ID activity.
+
 
 
 ## Helper functions
