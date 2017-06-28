@@ -224,9 +224,13 @@ Parameters for registerSync:
 | `pixelUrl` | string | The fully qualified URL used for tracking.|
 
 {: .alert.alert-success :}
+See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.userSync) for more information about how this feature works.
+
+<div class="alert alert-danger" role="alert">
+<p>
 Note that in Prebid 1.0, use of the registerSync() function will be required for all user ID activity.
-
-
+</p>
+</div>
 
 ## Helper functions
 
@@ -242,7 +246,7 @@ For usage examples, see [the working adapters in the repo](https://github.com/pr
 
 ## Further Reading
 
-+ [How to Add a New Video Bidder Adaptor]({{site.github.url}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)
++ [How to Add a New Video Bidder Adaptor]({{site.baseurl}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters)
 

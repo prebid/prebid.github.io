@@ -825,7 +825,7 @@ The [registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-regist
 * Removes undesired adapters. (i.e. enforces the enabledBidders option)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
-When syncAll() runs, regardless of whether it's initiated by platform or page, the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
+When user syncs are run, regardless of whether they are automated by the platform or the page triggers userSync.syncAll(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
 
 <hr class="full-rule">
 
