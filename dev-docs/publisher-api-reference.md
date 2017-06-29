@@ -809,7 +809,7 @@ Here are all the options for userSync control:
 | --- | --- | --- |
 | syncDelay | integer | The delay in milliseconds for autosyncing once the first auction is run. 3000 by default. |
 | pixelEnabled | boolean | Enables image pixel syncs. |
-| syncsPerBidder | integer | Number of registered syncs allowed per adapter. Default is all. |
+| syncsPerBidder | integer | Number of registered syncs allowed per adapter. Default is 5. Set to 0 to allow all. |
 | enabledBidders | array | Array of names of trusted adapters which are allowed to sync users. |
 | enableOverride | boolean | Allows the publisher to manually trigger the user syncs to fire. This prevents autosyncing and exposes the method syncAll() below. |
 | syncAll | function | The page code calls this function to trigger user syncing. Only available if enableOverride is true. |
