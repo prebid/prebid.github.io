@@ -97,7 +97,17 @@ public void onAttachComplete(Object adObj) {
         Prebid.detachUsedBid(adObj);
     }
 }
-  ```
+```
+
+Prebid Mobile will immediately tell your app whether it has a bid or not without waiting. If it does have a bid, the code below will attach the bids to the ad request by applying keyword targeting. Use the table below to see which ad objects are supported currently.
+
+{: .table .table-bordered .table-striped }
+| Primary Ad Server | Ad Object Type | Ad Object                  | Load Method                               |
+|-------------------|----------------|----------------------------|-------------------------------------------|
+| DFP               | Banner         | DFPBannerView              | - (void)loadRequest:(GADRequest *)request |
+| DFP               | Interstitial   | DFPInterstitial            | - (void)loadRequest:(GADRequest *)request |
+| MoPub             | Banner         | MPAdView                   | - (void)loadAd                            |
+| MoPub             | Interstitial   | MPInterstitialAdController | - (void)loadAd                            |
 
 
 
