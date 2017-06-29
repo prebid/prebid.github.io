@@ -951,8 +951,15 @@ pbjs.aliasBidder('appnexusAst', 'newAlias');
 
 {% endhighlight %}
 
-Defining an alias can help avoid user confusion since it's possible to load an adapter with the same string name twice in different contexts (e.g., `"appnexusAst"` may be loaded once by an SSP and once by the publisher).
+Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexusAst"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexusAst"` adapter to serve their own unique demand).
 
 It's not technically necessary to define an alias, since each copy of an adapter with the same name gets a different ID in the internal bidder registry so Prebid.js can still tell them apart.
+
+If you define an alias and are using `pbjs.sendAllBids`, you must also set up additional line items in the ad server with keyword targeting that matches the name of the alias.  For example:
+
++ `hb_pb_newalias`
++ `hb_adid_newalias`
++ `hb_size_newalias`
++ `hb_deal_newalias`
 
 </div>
