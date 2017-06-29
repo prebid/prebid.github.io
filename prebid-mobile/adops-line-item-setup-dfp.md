@@ -9,7 +9,7 @@ nav_section: prebid-mobile-adops
 
 <div class="bs-docs-section" markdown="1">
 
-# Step by step line item setup for DFP
+# Step by Step Line Item Setup for DFP
 
 * TOC
 {:toc }
@@ -47,6 +47,9 @@ By default, `Prebid Mobile` will send the highest bid price to DFP using the key
 
 This line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
 
+{: .pb-img.pb-md-img :}
+![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png)
+
 **You must enter the value to two decimal places, e.g., `1.50`.  If you don't use two decimal places, header bidding will not work.**
 
 {: .pb-img.pb-md-img :}
@@ -64,24 +67,11 @@ Note that this has to be a **Third party** creative. The **"Serve in Safeframe"*
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
-#### For DFP
-
 ```
 <script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
 <script type="text/javascript">
     pbm.showAdFromCacheId({
         admCacheID : '%%PATTERN:hb_cache_id%%'
-    });
-</script>
-```
-
-#### For MoPub
-
-```
-<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
-<script type="text/javascript">
-    pbm.showAdFromCacheId({
-        admCacheID: '%%KEYWORD:hb_cache_id%%’  
     });
 </script>
 ```

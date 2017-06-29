@@ -46,15 +46,15 @@ As early as possible in your app's lifecycle, create the ad units that represent
 ArrayList<AdUnit> adUnits = new ArrayList<AdUnit>();
  
 // Configure a Banner Ad Unit with size 320x50
-BannerAdUnit adUnit1 = new BannerAdUnit(SampleConstants.DFP_BANNER_ADUNIT_320x50, "138c4d03-0efb-4498-9dc6-cb5a9acb2ea4");
+BannerAdUnit adUnit1 = new BannerAdUnit("your-ad-unit-id-here", "your-config-id-here");
 adUnit1.addSize(320, 50);
  
 // Configure a Banner Ad Unit with size 300x250
-BannerAdUnit adUnit2 = new BannerAdUnit(SampleConstants.DFP_BANNER_ADUNIT_300x250, "0c286d00-b3ee-4550-b15d-f71f8e746865");
+BannerAdUnit adUnit2 = new BannerAdUnit("your-second-ad-unit-id-here", "your-config-id-here");
 adUnit2.addSize(300, 250);
  
 // Configure an Interstitial Ad Unit
-InterstitialAdUnit adUnit3 = new InterstitialAdUnit("Interstitial", "35f1d17d-c99a-4d55-800e-062b80750d65");
+InterstitialAdUnit adUnit3 = new InterstitialAdUnit("your-interstitial-ad-unit-id-here", "your-config-id-here");
  
 // Add them to the list 
 adUnits.add(adUnit1);
@@ -78,69 +78,27 @@ try {
 }
 ```
 
-## Attach Bid to Ad View
+## Set Ad Server Targeting Params on Ad Object
 {:.no_toc}
 
-Call API to attach the bid.
-
-### For DFP
-
-For developers using DFP, use the following API to attach the top bid:
+Call API to set bid keywords on ad object. The code to attach bids immediately is below.
 
 ```java
-PrebidMobileForDFP.attachTopBid(request, SampleConstants.DFP_BANNER_ADUNIT_320x50, context); 
+Prebid.attachBids(ad-request-here, ad-unit-id-here, this.getActivity());
 ```
 
-To wait until bid is ready, implement the following listener:
+To wait for ads before attaching bids, implement the following listener.
 
 ```java
-
-/**
- * Listener Interface to be used with attachTopBidWhenReady for PublisherAdRequest.
- */
-public interface OnAttachCompleteListener {
- 
-    /**
-     * Called whenever the bid has been attached to the PublisherAdRequest, or when the timeout has occurred. Which ever is the earliest.
-     */
-    void onAttachComplete(PublisherAdRequest request);
+@Override
+public void onAttachComplete(Object adObj) {
+    if (adView2 != null && adObj != null && adObj instanceof PublisherAdRequest) {
+        adView2.loadAd((PublisherAdRequest) adObj);
+        Prebid.detachUsedBid(adObj);
+    }
 }
-```
+  ```
 
-Use the following API to listen to bid ready:
-
-```java
-PrebidMobileForDFP.attachTopBidWhenReady(request, adUnitCode, context, timeoutInMillis, listener);
-```
-
-### For MoPub
-
-For developers using MoPub, use the following API to attach the top bid:
-
-```java
-PrebidMobileForMoPub.attachTopBid(MoPubView adView, String adUnitCode)
-```
-
-To wait until the bid is ready before attaching the top bid, implement the following listener:
-
-```java
-/**
- * Listener Interface to be used with attachTopBidWhenReady for Banner.
- */
-public interface OnAttachCompleteListener {
- 
-    /**
-     * Called whenever the bid has been attached to the Banner view, or when the timeout has occurred. Which ever is the earliest.
-     */
-    void onAttachComplete(MoPubView adView);
-}
-```
-
-Then call this API to listen to bid ready:
-
-```java
-PrebidMobileForMoPub.attachTopBidWhenReady(adView, adUnitCode, listener, waitTime);
-```
 
 
 </div>

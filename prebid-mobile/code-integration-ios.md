@@ -76,8 +76,6 @@ PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdent
 
 Prebid Mobile continuously pre-caches creatives in the background, so that right before the ad unit makes an ad request from your network, your app can ask Prebid Mobile for a bid price and creative without waiting as shown in the code below.
 
-Prebid Mobile will immediately tell your app whether it has a bid or not without waiting. If it does have a bid, the code below will attach the bids to the ad request by applying keyword targeting.
-
 
 ```objc
 #import <PrebidMobile/PrebidMobile.h>
@@ -87,6 +85,18 @@ Prebid Mobile will immediately tell your app whether it has a bid or not without
     [YOUR-AD-VIEW YOUR-ADS-LOAD-METHOD];
 }];
 ```
+
+Prebid Mobile will immediately tell your app whether it has a bid or not without waiting. If it does have a bid, the code below will attach the bids to the ad request by applying keyword targeting. Use the table below to see which ad objects are supported currently.
+
+{: .table .table-bordered .table-striped }
+| Primary Ad Server | Ad Object Type | Ad Object                  | Load Method                               |
+|-------------------|----------------|----------------------------|-------------------------------------------|
+| DFP               | Banner         | DFPBannerView              | - (void)loadRequest:(GADRequest *)request |
+| DFP               | Interstitial   | DFPInterstitial            | - (void)loadRequest:(GADRequest *)request |
+| MoPub             | Banner         | MPAdView                   | - (void)loadAd                            |
+| MoPub             | Interstitial   | MPInterstitialAdController | - (void)loadAd                            |
+
+
 
 
 </div>

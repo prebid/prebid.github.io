@@ -1,7 +1,7 @@
 ---
 layout: page
 title: How it Works?
-description: How does Prebid Mobile work?
+description: How Does Prebid Mobile Work?
 pid: 0
 is_top_nav: yeah
 top_nav_section: prebid-mobile
@@ -10,7 +10,7 @@ nav_section: prebid-mobile
 
 <div class="bs-docs-section" markdown="1">
 
-# How does Prebid Mobile work?
+# How Does Prebid Mobile Work?
 {:.no_toc}
 
 Prebid Mobile SDK sends requests to Prebid Server to help app developers to access additional demand that is not available from their mobile ad network.

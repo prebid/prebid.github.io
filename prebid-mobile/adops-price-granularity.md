@@ -24,12 +24,16 @@ Example:
 
 #### Available options for price granularity
 
-TODO: go into detail about the available options here....
 "low", "med", "high", "auto", "dense"
-
-Note that DFP has an order [object limits](https://support.google.com/dfp_premium/answer/1628457?hl=en#Trafficking) of containing up to 450 line items (including archived line items). If you are designing your own granularity setup, make sure you do not exceed that amount. Or, you can find the recommended pre-configured granularities [here](/dev-docs/publisher-api-reference.html#module_pbjs.setPriceGranularity).
+Default is "med".
 
 {: .alert.alert-success :}
 **Action Item:** Once you have decided the price granularity, go to Prebid Server [account page](https://prebid.adnxs.com/account/) to set the price granularity setting for your account.
+
+
+The below screenshot is taken from the Prebid Server account page where you can choose your price granularity setting from the options.
+
+{: .pb-img.pb-md-img :}
+![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-price-granularity/pg-setting.png)
 
 </div>
