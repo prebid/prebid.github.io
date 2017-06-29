@@ -775,29 +775,35 @@ However, there are also good reasons why Publishers may want to control the use 
 * user privacy - Some publishers may want to opt out of these practices even though it limits their user's values on the open market.
 * security - Publishers may want to control which bidders are trusted to inject sync javascript into their pages.
 
-A simple example of setting the userSync rules:
+The default behavior of the platform is to allow every adapter to drop up to 5 image-based user syncs. The sync images will be dropped 3 seconds after the auction starts.
+
+Push the user syncs to later in the page load:
 {% highlight js %}
 pbjs.userSync = {
-    pixelEnabled: true,   // allow all adapters to drop user-sync pixels
-    syncDelay: 6000       // 6 seconds after the auction
+    syncDelay: 5000       // 5 seconds after the auction
 };
 {% endhighlight %}
 
-In this example, only certain adapters are allowed to drop sync pixels:
+Turn off userSync entirely:
+{% highlight js %}
+pbjs.userSync = {
+    syncEnabled: false
+};
+{% endhighlight %}
+
+Only certain adapters are allowed to drop sync images:
 {% highlight js %}
 pbjs.userSync = {
     enabledBidders: ['abc','xyz'] // only these bidders are allowed to sync
-    pixelEnabled: true,           // and only for pixels
-    syncsPerBidder: 3,            // and no more than 3 pixels at a time
+    syncsPerBidder: 3,            // and no more than 3 syncs at a time
     syncDelay: 6000,              // 6 seconds after the auction
 };
 {% endhighlight %}
 
-In the last example, the same bidders can drop sync pixels, but the timing will be controlled by the page:
+The same bidders can drop sync pixels, but the timing will be controlled by the page:
 {% highlight js %}
 pbjs.userSync = {
     enabledBidders: ['abc','xyz'] // only these bidders are allowed to sync
-    pixelEnabled: true,           // and only for pixels
     enableOverride: true          // publisher will call pbjs.userSync.syncAll()
 };
 {% endhighlight %}
@@ -807,8 +813,8 @@ Here are all the options for userSync control:
 {: .table .table-bordered .table-striped }
 | Attribute | Type | Description |
 | --- | --- | --- |
+| syncEnabled | boolean | Enables/disables the userSync feature. Defaults to true. |
 | syncDelay | integer | The delay in milliseconds for autosyncing once the first auction is run. 3000 by default. |
-| pixelEnabled | boolean | Enables image pixel syncs. |
 | syncsPerBidder | integer | Number of registered syncs allowed per adapter. Default is 5. Set to 0 to allow all. |
 | enabledBidders | array | Array of names of trusted adapters which are allowed to sync users. |
 | enableOverride | boolean | Allows the publisher to manually trigger the user syncs to fire. This prevents autosyncing and exposes the method syncAll() below. |
