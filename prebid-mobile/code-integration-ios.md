@@ -22,7 +22,7 @@ Easily include the Prebid Mobile SDK for your primary ad server in your Podfile.
 platform :ios, '8.0'
 
 target 'MyAmazingApp' do 
-    pod 'Prebid-Mobile-SDK'
+    pod 'PrebidMobile'
 end
 ```
 
