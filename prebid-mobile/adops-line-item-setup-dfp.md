@@ -14,11 +14,11 @@ nav_section: prebid-mobile-adops
 * TOC
 {:toc }
 
-## Step 1. Add a line item
+## Step 1. Add a Line Item
 
 In DFP, create a new order with a $0.50 line item.
 
-Enter the inventory size of your mobile ad slots.
+Enter the inventory size of your mobile ad slots. Make sure to specify all the inventory sizes on your app. 
 
 Because header bidding partners return prices, set the Line Item **Type** to **Price priority** to enable them to compete on price.
 
@@ -76,6 +76,9 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
 </script>
 ```
 
+Make sure the creative size is set to 1x1. This allows us to set up size override, which allows this creative to serve on all inventory sizes.
+
+<br>
 
 ## Step 3. Attach the Creative to the Line Item
 
@@ -97,19 +100,7 @@ Save the creative and go back to the line item.
 
 <br>
 
-## Step 4. Duplicate Creatives
-
-DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
-
-Let's say your page has 4 ad units.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
-
-Therefore, we need to duplicate our Prebid creative 4 times.
-
-Once that's done, we have a fully functioning line item with 4 creatives attached.
-
-<br>
-
-## Step 5. Duplicate Line Items
+## Step 4. Duplicate Line Items
 
 Now let's duplicate our line item for bids above $0.50.
 

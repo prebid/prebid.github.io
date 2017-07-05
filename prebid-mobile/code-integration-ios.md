@@ -12,11 +12,11 @@ nav_section: prebid-mobile-ios
 
 # Code Integration for iOS
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html)
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
 
 ### Use Cocoapods?
 
-Easily include the Prebid Mobile SDK for your primary ad server in your Podfile/
+Easily include the Prebid Mobile SDK for your primary ad server in your Podfile.
 
 ```
 platform :ios, '8.0'
@@ -34,20 +34,20 @@ Build Prebid Mobile from source code. After cloning the repo, from the root dire
 ./scripts/buildPrebidMobile.sh
 ```
 
-to output the PrebidMobileForDFP and PrebidMobileForMoPub frameworks.
+to output the PrebidMobile.framework.
 
 
 ## Ad Unit Setup for iOS
 {:.no_toc}
 
-Register Prebid Mobile ad units as early as possible in the application's lifecycle.
+Register Prebid Mobile ad units as early as possible in the application's lifecycle. Each ad unit has an `adUnitId` which is an arbitrary unique identifier of the developer's choice. 
 
 We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDelegate.m` using the following steps as shown in the code sample below:
 
-	1. Create the ad units with ad unit ids and add sizes for banner ad units
-	2. Add a server side configuration for each ad unit to Prebid Server Adapter
-	3. Set targeting parameters for the ad units (Optional)
-	4. Register the ad units with the adapter to start bid fetching process
+1. Create the ad units with ad unit ids and add sizes for banner ad units
+2. Add a server side configuration for each ad unit to Prebid Server Adapter
+3. Set targeting parameters for the ad units (Optional)
+4. Register the ad units with the adapter to start bid fetching process
 
 Embed the ad unit registration in a try-catch block to catch all the exceptions (if any) thrown by the SDK.
 
@@ -89,12 +89,12 @@ Prebid Mobile continuously pre-caches creatives in the background, so that right
 Prebid Mobile will immediately tell your app whether it has a bid or not without waiting. If it does have a bid, the code below will attach the bids to the ad request by applying keyword targeting. Use the table below to see which ad objects are supported currently.
 
 {: .table .table-bordered .table-striped }
-| Primary Ad Server | Ad Object Type | Ad Object                  | Load Method                               |
-|-------------------|----------------|----------------------------|-------------------------------------------|
-| DFP               | Banner         | DFPBannerView              | - (void)loadRequest:(GADRequest *)request |
-| DFP               | Interstitial   | DFPInterstitial            | - (void)loadRequest:(GADRequest *)request |
-| MoPub             | Banner         | MPAdView                   | - (void)loadAd                            |
-| MoPub             | Interstitial   | MPInterstitialAdController | - (void)loadAd                            |
+| Primary Ad Server | Ad Object Type | Ad Object                    | Load Method                                 |
+|-------------------|----------------|------------------------------|---------------------------------------------|
+| DFP               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
+| DFP               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
+| MoPub             | Banner         | `MPAdView`                   | `- (void)loadAd`                            |
+| MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            |
 
 
 

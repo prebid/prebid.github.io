@@ -20,4 +20,6 @@ To add Prebid Mobile logs for troubleshooting or to see successful bids simply i
 
 # FAQs
 
+Coming soon.
+
 </div>

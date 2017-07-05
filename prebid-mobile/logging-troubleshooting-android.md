@@ -23,5 +23,6 @@ Troubleshoot your Prebid Mobile integration by following these steps to check yo
 
 # FAQs
 
+Coming soon.
 
 </div>
