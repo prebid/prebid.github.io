@@ -122,7 +122,7 @@ In this section we'll explain the setup at a high level. For a live example show
 
 ### Step 1. Set up ad units with the outstream video media type
 
-Set up your video ad units with the outstream video media type as shown below:
+Set up your video ad units with the outstream video media type as shown below.  Note that the `code` in your video ad unit must match a div ID in your page's body where the ad will be inserted.
 
 {% highlight js %}
 // Prebid outstream video adUnit
