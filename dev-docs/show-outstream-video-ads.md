@@ -160,6 +160,11 @@ pbjs.que.push(function () {
     pbjs.requestBids({
         timeout: 3000,
         bidsBackHandler: function (bids) {
+            /*
+            `getAdServerTargetingForAdUnitCode` is used as an easy
+            way to get the ad ID, it doesn't actually require you
+            to use an ad server.
+            */
             var video1 = pbjs.getAdserverTargetingForAdUnitCode('video1');
             pbjs.renderAd(document, video1.hb_adid);
         }
