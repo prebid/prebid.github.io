@@ -15,6 +15,9 @@ biddercode_longer_than_12: false
 
 ---
 
+### Note:
+Kargo is an invitation-only marketplace.  Please reach out to your Kargo account manager to get setup.
+
 ### bid params
 
 {: .table .table-bordered .table-striped }
