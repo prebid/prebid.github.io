@@ -242,12 +242,12 @@ Use this with the `cacheRequest` argument set to `true` if the script you're loa
 
 Note that Prebid 1.0 will not allow external scripts, as they can affect page and bidder performance.
 
-For usage examples, see [the working adapters in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters).
+For usage examples, see [the working adapters in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 ## Further Reading
 
-+ [How to Add a New Video Bidder Adaptor]({{site.baseurl}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)
++ [How to Add a New Video Bidder Adapter]({{site.baseurl}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)
 
-+ [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/src/adapters)
++ [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
 
 </div>
