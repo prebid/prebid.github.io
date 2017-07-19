@@ -28,7 +28,7 @@ The standard options:
 ### Step 2: Download the DigiTrust code:
 
 {% highlight url %}
-curl -o digitrust.js http://cdn.digitru.st/prod/1.3.3/digitrust.min.js
+curl -o digitrust.js http://cdn.digitru.st/prod/1/digitrust.min.js
 {% endhighlight %}
 
 Note that the DigiTrust URL may change from time to time, check with them for the latest.
@@ -55,7 +55,7 @@ DigiTrust.initialize({
     }
   });
  var identityResponse=DigiTrust.getUser( { "member": "PUBLISHER_DIGITRUST_MEMBER_ID" });
- pbjs.digiTrustID=identityResponse;
+ pbjs.digiTrustId=identityResponse;
 {% endhighlight %}
 
 Of course you'll need replace the placeholders PUBLISHER_DIGITRUST_MEMBER_ID and PUBLISHER_DIGITRUST_SITE_ID.
