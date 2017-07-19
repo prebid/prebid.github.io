@@ -807,6 +807,9 @@ Remove a callback event
 
 ### pbjs.buildMasterVideoTagFromAdserverTag(adserverTag, options) ⇒ `String`
 
+{: .alert.alert-danger :}
+This method is deprecated.  To show video ads, include the `dfpVideoSupport` module in your build, and use `pbjs.adserver.buildVideoAdUrl` (if DFP is your only ad server) or `pbjs.adservers.dfp.buildVideoAdUrl` (if you use other ad servers too).  For more information, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
 **Kind**: static method of [pbjs](#module_pbjs)
 
 **Returns**: `String` - Video ad tag
