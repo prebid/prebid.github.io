@@ -236,11 +236,15 @@ Note that in Prebid 1.0, use of the registerSync() function will be required for
 
 **`adloader.loadScript(scriptURL, callback, cacheRequest)`**
 
+<div class="alert alert-danger" role="alert">
+<p>
+Note that loading external code into your adapter will be prohibited starting with Prebid 1.0.
+</p>
+</div>
+
 Load a script asynchronously. The callback function will be executed when the script finishes loading.
 
 Use this with the `cacheRequest` argument set to `true` if the script you're loading is a library or something else that doesn't change between requests.  It will cache the script so you don't have to wait for it to load before firing the supplied callback.
-
-Note that Prebid 1.0 will not allow external scripts, as they can affect page and bidder performance.
 
 For usage examples, see [the working adapters in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
