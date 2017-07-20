@@ -51,14 +51,6 @@ following the instructions at
 This section will take you through the code you need to write to show
 video ads using Prebid.js and Video.js.
 
-At a high level, we'll:
-
-+ Create a video ad unit
-+ Add the video ad unit to our list of ad units
-+ Request bids
-+ Build a video URL from the bids that are returned
-+ Invoke the video player on the video URL you just built
-
 ### 1. Create a video ad unit
 
 First you need a video ad unit.  It should look something like this.
@@ -92,31 +84,12 @@ For instructions, see [Custom Price Bucket with `setPriceGranularity`]({{site.ba
 
 Next, we need to do the standard Prebid "add ad units and request bids" dance.  In the example below, our callback builds the video URL the player needs using the `buildVideoUrl` method from the DFP ad server module that we built into our copy of Prebid.js in the **Prerequisites** section.
 
-This method wraps the video URL in VAST tags and tries to add it to
-[a cache in Prebid Server](https://github.com/prebid/prebid-server/tree/master/prebid_cache_client).
-The use of the cache is transparent to the user and doesn't require a
-Prebid Server login.  It's designed to provide the following benefits:
-
-1. Sets
-   [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)
-   headers appropriately on the DFP VAST URL so video players can
-   access the content across multiple devices/platforms.  When these
-   headers are absent, video will fail on certain devices/browsers.
-2. Without the cache, each new demand partner would have to provide
-   their own VAST creative URL/configure their own custom DFP VAST
-   Creative.
-3. #2 creates too much overhead for publishers who would have to
-   configure custom line items and creatives per bidder.
-
-{: .alert.alert-warning :}
-To optimize the setup for low latency, we recommend that this code
-(and that referenced above in step #1) be added to the page header.
+This method wraps the video URL in VAST tags and tries to add it to a server-side Prebid Cache. The use of the cache is transparent to the user and doesn't require a login or account of any kind.  It's designed to simplify ad ops workflows by enabling all Prebid video demand partners to serve through a single common video URL.
 
 ```javascript
 pbjs.que.push(function() {
     pbjs.addAdUnits(videoAdUnit);
     pbjs.requestBids({
-        timeout: 700,
         bidsBackHandler: function(bids) {
             var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
                 adUnit: videoAdUnit,
@@ -130,7 +103,7 @@ pbjs.que.push(function() {
 });
 ```
 
-### 4. Add video player code to the page body
+### 4. Invoke video player on Prebid video URL
 
 In the body of the page, the following HTML and JS will show the ad:
 

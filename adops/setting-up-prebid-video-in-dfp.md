@@ -57,8 +57,8 @@ Be sure to duplicate your line item and video creative for each Prebid price buc
 {: .alert.alert-warning :}
 **VAST creative URL warning**  
 DFP will show you a warning that fetching VAST from the creative URL failed.  This is expected, since the creative URL above points to a cache hosted by Prebid Server.  Why do we do this caching?  For several reasons:  
-- Sets [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) headers appropriately on the DFP VAST URL so video players can access the content across multiple devices/platforms.  When these headers are absent, video will fail on certain devices/browsers.  
-- Without the cache, each new demand partner would have to provide their own VAST creative URL/configure their own custom DFP VAST Creative, which could create too much overhead for publishers who would have to configure custom line items and creatives per bidder.
+&bull; Sets [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) headers appropriately on the DFP VAST URL so video players can access the content across multiple devices/platforms.  When these headers are absent, video will fail on certain devices/browsers.  
+&bull; Without the cache, each new demand partner would have to provide their own VAST creative URL/configure their own custom DFP VAST Creative, which could create too much overhead for publishers who would have to configure custom line items and creatives per bidder.
 
 That's it as far as Prebid setup is concerned.  At this point you can add any other options you would normally use, e.g., labels or tracking URLs.
 
