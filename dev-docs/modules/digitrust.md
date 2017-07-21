@@ -45,20 +45,21 @@ cat digitrust.js build/dist/prebid.js > build/dist/prebid_digitrust.js
 
 {% highlight js %}
 DigiTrust.initialize({
-   member: "PUBLISHER_DIGITRUST_MEMBER_ID",
-   site: "PUBLISHER_DIGITRUST_SITE_ID",
-   adblocker: { blockContent: false }   // modify as desired
-  },
-  function (digiTrustResult) {
-    if (digiTrustResult && digiTrustResult.success) {
-    console.log("digiTrust initialized");
-    }
-  });
- var identityResponse=DigiTrust.getUser( { "member": "PUBLISHER_DIGITRUST_MEMBER_ID" });
- pbjs.digiTrustId=identityResponse;
+  member: "PUBLISHER_DIGITRUST_MEMBER_ID",
+  site: "PUBLISHER_DIGITRUST_SITE_ID",
+  redirects: true
+});
+var identityResponse = DigiTrust.getUser({
+  "member": "PUBLISHER_DIGITRUST_MEMBER_ID"
+});
+if (identityResponse && identityResponse.success) {
+  pbjs.digiTrustId=identityResponse;
+}
 {% endhighlight %}
 
-Of course you'll need replace the placeholders PUBLISHER_DIGITRUST_MEMBER_ID and PUBLISHER_DIGITRUST_SITE_ID.
+**Notes**:
+* you'll need replace the placeholders PUBLISHER_DIGITRUST_MEMBER_ID and PUBLISHER_DIGITRUST_SITE_ID.
+* the 'redirects' option to DigiTrust.initialize() may be set to false in order to disable the link-rewriting behavior to acquire a first party cookie context.
  
 ### Step 5: Publish
 
