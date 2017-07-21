@@ -44,10 +44,9 @@ approach to loading AdUnits is to bring them in from separate files:
 
 The two-line method may allow for easier future update of the Prebid codebase, and allows Prebid code to be obtained from the [Download](http://prebid.org/download.html) page.
 
-## Building the Prebid package
+## Implementation
 
-
-### Step 1: Configure the AdUnits
+### Configure the AdUnits
 
 Create an AdUnits file and source control it in a separate local repository. E.g. my-prebid-config/pub123adUnits.js:
  
@@ -57,7 +56,7 @@ Create an AdUnits file and source control it in a separate local repository. E.g
      pbjs.que.push(function() {
         pbjs.addAdUnits({
             code: 'door-medrect',   // must match DFP slot name
-            // optional: Express will copy sizes from the DFP slot
+            // sizes are optional: Express will copy sizes from the DFP slot
             sizes: [[300, 250], [300,600]],
             bids: [{
                 bidder: 'rubicon',
