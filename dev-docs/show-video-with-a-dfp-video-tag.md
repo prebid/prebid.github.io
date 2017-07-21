@@ -40,7 +40,7 @@ Video ad server adapter, use the following command:
 gulp build --modules=dfpAdServerVideo,appnexusAstBidAdapter
 ```
 
-For more information about how to build with modules, see the [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md).
+For more information about how to build with modules, see the [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization).
 
 Finally, your ad ops team needs to have set up line items in DFP
 following the instructions at
@@ -80,11 +80,13 @@ By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect t
 
 For instructions, see [Custom Price Bucket with `setPriceGranularity`]({{site.baseurl}}/dev-docs/examples/custom-price-bucket-using-setpricegranularity.html).
 
-### 3. Request bids, build video URL, invoke player
+### 3. Request bids, build video URL
 
 Next, we need to do the standard Prebid "add ad units and request bids" dance.  In the example below, our callback builds the video URL the player needs using the `buildVideoUrl` method from the DFP ad server module that we built into our copy of Prebid.js in the **Prerequisites** section.
 
-This method wraps the video URL in VAST tags and tries to add it to a server-side Prebid Cache. The use of the cache is transparent to the user and doesn't require a login or account of any kind.  It's designed to simplify ad ops workflows by enabling all Prebid video demand partners to serve through a single common video URL.
+{: .alert.alert-info :}
+**All DFP Parameters are supported**  
+The `params` key in the argument to `buildVideoUrl` supports any parameters from the [DFP API](https://support.google.com/dfp_premium/answer/1068325?hl=en).
 
 ```javascript
 pbjs.que.push(function() {
