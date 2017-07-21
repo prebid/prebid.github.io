@@ -13,7 +13,7 @@ nav_section: modules
 
 This module is a simplified alternate installation mechanism for publishers that have DoubleClick Google Publisher Tag (GPT) ad calls in their pages. Here's how it works:
  
-* You build a Prebid.js package that contains the module code and the page's AdUnits.
+* You build a Prebid.js package that contains the extra module code and optionally the page's AdUnits.
 * One or two lines of javascript are added to a page already coded with GPT ad calls.
 * The module intercepts ad behavior by overriding certain GPT APIs, coordinating the appropriate header bidding behavior, and then calling DoubleClick.
 * Bidder parameters for the auction are determined by linking the DFP slots to the Prebid AdUnits
@@ -46,7 +46,7 @@ The two-line method may allow for easier future update of the Prebid codebase, a
 
 ## Implementation
 
-### Configure the AdUnits
+### Prepare the AdUnit Configuration
 
 Create an AdUnits file and source control it in a separate local repository. E.g. my-prebid-config/pub123adUnits.js:
  
@@ -116,7 +116,7 @@ pbjs.express(AdUnits);
 
 This function initiates the scanning of the in-page DFP slots, mapping them to Prebid AdUnits, kicking off the Prebid auction, and forwarding the results to DFP.
 
-The AdUnits argument is optional -- if not provided it will look for AdUnits previously registered with pbjs.addAdUnits(). If no AdUnits are specified, it will return an error.
+The AdUnits argument is optional -- if not provided it will look for AdUnits previously registered with pbjs.addAdUnits(). If no AdUnits can be found, it will return an error.
 
 ## Technical Details
 
