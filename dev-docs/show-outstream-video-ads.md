@@ -185,16 +185,11 @@ For more information, see the API documentation for:
 
 ## Option 3. With a Publisher-defined Renderer
 
-By default, an outstream bid response is accompanied by a video renderer in the form of a URL that points to a script containing the renderer software.  This software is used by Prebid.js to load and play the winning outstream bid.
+An outstream bid response is accompanied by a video renderer in the form of a URL that points to a script containing the renderer software.  This software is used by Prebid.js to load and play the winning outstream bid.
 
-However, if you as a publisher would prefer to use a different renderer than the one provided in the bid response, you can specify that renderer on a per-outstream-ad-unit basis.  This renderer will be used to load and play the outstream ad, instead of the renderer that is supplied with the bid.  If both a publisher-supplied ad unit renderer and a bid renderer are present, the publisher-supplied renderer will be used.
+If you would prefer to use a different renderer than the one provided in the bid response, you can specify that renderer on a per-outstream-ad-unit basis.  This renderer will be used to load and play the outstream ad, instead of the renderer that is supplied with the bid.  If both a publisher-supplied ad unit renderer and a bid renderer are present, the publisher-supplied renderer will be used.
 
-In order for Prebid.js to use the publisher-defined renderer, you need to set up an outstream ad unit with the `renderer` property.  It's an object with the following properties:
-
-+ `url`: A URL pointing to the render script
-+ `render`: A function that receives a bid parameter and invokes the renderer that tells Prebid.js how to use the script to render the bid
-
-For a usage example, see the ad unit below.  Other than the ad unit, the rest of the setup will be the same as that described in [Option 1. With an ad server](#option-1-with-an-ad-server).
+To use a publisher-defined renderer, add a `renderer` property to your outstream ad unit as shown below.  Other than the ad unit, the rest of the setup will be the same as for [Option 1. With an ad server](#option-1-with-an-ad-server).
 
 {% highlight js %}
 
@@ -203,7 +198,11 @@ pbjs.addAdUnit({
     sizes: [640, 480],
     mediaType: 'video-outstream',
     renderer: {
+        /* URL pointing to the render script */
         url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+
+        /* Function that tells Prebid.js how to use the script from
+        `url` to render the ad */
         render: function(bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
