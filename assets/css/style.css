@@ -290,11 +290,6 @@ img {
   margin-top: 40px;
 }
 
-/*
-#pb-home-demo .col-xs-12 {
-  text-align: center;
-}*/
-
 .bs-callout code {
   background-color: transparent;
 }
@@ -323,7 +318,6 @@ img {
   padding: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background: #f4f8fa;
   border-radius: 2px;
 }
 

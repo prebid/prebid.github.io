@@ -20,22 +20,13 @@ description: Free and open source solutions for publishers to quickly implement 
 
     <p class="lead">The above header bidding ad is auctioned with Prebid.js. <a href="/overview/intro.html" target="_blank">Learn more about this auction here.</a></p>
 
-<!-- <div class="form-inline"> -->
-<!--   <div class="form-group form-group-lg"> -->
-<!--     <input type="text" class="form-control" id="email-field" placeholder="Email" required> -->
-<!--   </div> -->
-<!--   <div class="form-group"> -->
-<!--     <button class="btn btn-outline btn-lg" id="submit-email" onclick="submitEmail()">Get the Latest Updates</button> -->
-<!--   </div> -->
-<!-- </div> -->
-
     <hr class="full-rule">
 
     <div class="row benefits">
       <div class="col-sm-4">
         <img src="assets/images/icons/icon-ninja.png" alt="Header bidding no dev" class="img-responsive">
         <h3>No development required</h3>
-        <p>Prebid.js includes adaptors for AppNexus, Pubmatic, Rubicon Project, and more.</p>
+        <p>Prebid.js includes adapters for AppNexus, Pubmatic, Rubicon Project, and many more.</p>
         <a href="/dev-docs/bidders.html" class="btn btn-outline">See the Full Bidder List</a>
       </div>
 
@@ -124,6 +115,7 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Bidfluence</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Trion</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Innity</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Adyoulike</h3></div>
 
     <!-- END BIDDERS -->
     </div>
