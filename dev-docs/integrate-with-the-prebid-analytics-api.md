@@ -112,7 +112,7 @@ In your PR to add the new adapter, please provide the following information:
 3. There are several types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'library' and 'bundle' types.
 
     * endpoint - Calls the specified URL on analytics events. Doesn't require a global context.
-    * library - The URL is considered to be a library to load. Exepects a global context.
+    * library - The URL is considered to be a library to load. Expects a global context.
     * bundle - An advanced option expecting a global context.
 
 4. In order to get access to the configuration passed in from the page, the analytics
