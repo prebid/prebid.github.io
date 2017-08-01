@@ -166,7 +166,7 @@ gulp bundle --modules=abcAnalyticsAdapter,xyzBidAdapter
 
 ## Further Reading
 
-- [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of Analytics providers)
+- [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
 
 </div>
