@@ -188,8 +188,8 @@ The required parameters to add into `bidObject` are:
 ## Step 6: Register User Sync Pixels
 
 In order to protect page performance, user sync logic within Prebid adapters should
-be queued using the registerSync() function. For the time being, only
-image pixels are supported, but in the near future adapters will be able to use iframe and ajax requests.
+be queued using the registerSync() function. Both image pixels and iframe sync methods are supported, but
+publishers may control which method(s) are allowed.
 
 At some point after the auctions are complete, Prebid will write out the registered userSyncs. See the userSync section of the Publisher API Reference for information about how Publishers can control which syncs are allowed.
 
@@ -202,13 +202,17 @@ Add a user sync in an adapter in two steps:
 import { registerSync } from 'src/userSync.js';
 
    // ... code ...
-   registerSync('image', 'exampleAdapter', 'http://example.com/pixel');
+   if ($$PREBID_GLOBAL$$.userSync.iframeEnabled) {
+     registerSync('iframe', 'exampleAdapter', 'http://example.com/iframe-url');
+   } else {
+     registerSync('image', 'exampleAdapter', 'http://example.com/pixel');
+   }
    // ... code ...
 {% endhighlight %}
 
-The syntax for the userSync.registerSync() function:
+The general syntax for the userSync.registerSync() function:
 {% highlight js %}
-userSync.registerSync(type, adapterName, pixelUrl);
+userSync.registerSync(type, adapterName, url);
 {% endhighlight %}
 
 Note that the userSync object contains the registerSync function. The example above shows a destructed import, which 
@@ -219,9 +223,9 @@ Parameters for registerSync:
 {: .table .table-bordered .table-striped }
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| `type` | string enum | The type of sync. Currently 'image' is the only supported type. |
+| `type` | string enum | The type of sync, either 'image' or 'iframe'. |
 | `adapterName` | string | The name of the adapter. Used for logging. |
-| `pixelUrl` | string | The fully qualified URL used for tracking.|
+| `url` | string | The fully qualified URL.|
 
 {: .alert.alert-success :}
 See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.userSync) for more information about how this feature works.
