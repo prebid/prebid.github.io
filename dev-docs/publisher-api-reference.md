@@ -34,10 +34,13 @@ This page has documentation for the public API methods of Prebid.js.
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
   * [.bidderSettings](#module_pbjs.bidderSettings)
-  * [.addCallback(event, func)](#module_pbjs.addCallback) ⇒ `String`
-  * [.removeCallback(cbId)](#module_pbjs.removeCallback) ⇒ `String`
+  * [.addCallback(event, func)](#module_pbjs.addCallback)
+  * [.removeCallback(cbId)](#module_pbjs.removeCallback)
   * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String`
   * [.setBidderSequence(order)](#module_pbjs.setBidderSequence)
+  * [.onEvent(event, handler, id)](#module_pbjs.onEvent)
+  * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
+  * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -392,7 +395,7 @@ Accepted values:
 
 <div class="alert alert-danger" role="alert">
   <p>
-  If you define your own <code>bidderSettings</code> object, the <code>setPriceGranularity</code> method won't have any effect, since it assumes you are setting your own custom values.
+  If you define 'adserverTargeting' in your own <code>bidderSettings</code> object, the <code>setPriceGranularity</code> method won't have any effect, since it assumes you are setting your own custom values.
   </p>
 </div>
 
@@ -499,8 +502,8 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | requestObj | Optional | `Object` |  |
-| requestObj.adUnitCodes | Optional | `Array of strings` | adUnit codes to request. Use this or requestObj.adUnits |
-| requestObj.adUnits | Optional | `Array of objects` | AdUnitObjects to request. Use this or requestObj.adUnitCodes |
+| requestObj.adUnitCodes | Optional | `Array of strings` | adUnit codes to request. Use this or `requestObj.adUnits`. Default to all `adUnitCodes` if empty. |
+| requestObj.adUnits | Optional | `Array of objects` | AdUnitObjects to request. Use this or `requestObj.adUnitCodes`. Default to all `adUnits` if empty. |
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
 | requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. |
 
@@ -517,16 +520,19 @@ Define ad units and their corresponding header bidding bidders' tag IDs.  For us
 {: .table .table-bordered .table-striped }
 | Param | Type | Description |
 | --- | --- | --- |
-| Array | `string` &#124; `Array of strings` | of adUnits or single adUnit Object. |
+| Array | `Object` &#124; `Array of objects` | of adUnits or single adUnit Object. |
 
 **adUnit**
 
 {: .table .table-bordered .table-striped }
-| Name    | Scope     | Type     | Description                                                                                                                                                                                                   |
-| :----   | :-------- | :------- | :-----------                                                                                                                                                                                                  |
-| `code`  | required  | string   | A unique identifier that you create and assign to this ad unit.  This identifier will be used to set query string targeting on the ad. If you're using GPT, we recommend setting this to the slot element ID. |
-| `sizes` | required  | array    | All the sizes that this ad unit can accept.                                                                                                                                                                   |
-| `bids`  | required  | array    | An array of bid objects. Find the [complete reference here](bidders.html).                                                                                                                                    |
+| Name          | Scope     | Type     | Description                                                                                                                                                                                                    |
+| :----         | :-------- | :------- | :-----------                                                                                                                                                                                                   |
+| `code`        | required  | string   | A unique identifier that you create and assign to this ad unit.  This identifier will be used to set query string targeting on the ad. If you're using GPT, we recommend setting this to the slot element ID.  |
+| `sizes`       | required  | array    | All the sizes that this ad unit can accept.                                                                                                                                                                    |
+| `bids`        | required  | array    | An array of bid objects. Find the [complete reference here](bidders.html).                                                                                                                                     |
+| `sizeMapping` | optional  | array    | Declaratively specifies ad sizes to be shown when device's screen is greater than or equal to a given size.  For more information, see [the example]({{site.github.url}}/dev-docs/examples/size-mapping.html). |
+
+{% include sizemapping-and-screen-widths.md %}
 
 **bid**
 
@@ -571,12 +577,6 @@ Some sample scenarios where publishers may wish to alter the default settings:
 * passing additional information to the ad server
 * adjusting the bid CPM sent to the ad server
 
-<div class="alert alert-danger" role="alert">
-  <p>
-  If you define your own <code>bidderSettings</code> object, the <code>setPriceGranularity</code> method won't have any effect, since it assumes you are setting your own custom values.
-  </p>
-</div>
-
 #### 2. Bidder Setting Attributes
 
 {: .table .table-bordered .table-striped }
@@ -587,6 +587,12 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Could, for example, adjust a bidder's gross-price bid to net price. |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
+
+<div class="alert alert-danger" role="alert">
+  <p>
+  If you define 'adserverTargeting' in your own <code>bidderSettings</code> object, the <code>setPriceGranularity</code> method won't have any effect, since it assumes you are setting your own custom values.
+  </p>
+</div>
 
 ##### 2.1. alwaysUseBid
 
@@ -742,7 +748,7 @@ In the above example, the AOL bidder will inherit from "standard" adserverTarget
 
 ##### 2.4. sendStandardTargeting
 
-This boolean flag minimizes key/value pairs sent to the ad server when 
+This boolean flag minimizes key/value pairs sent to the ad server when
 adapter-specific targeting is specified. By default, the platform will send both adapter-specific adServerTargeting as well as the standard adServerTargeting.
 
 While sending extra targeting the ad server may not matter, this flag can be used to
@@ -759,6 +765,10 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 <a name="module_pbjs.addCallback"></a>
 
 ### pbjs.addCallback(event, func) ⇒ `String`
+
+{: .alert.alert-danger :}
+This method is deprecated.  Please use [`onEvent`](#module_pbjs.onEvent) or [`offEvent`](#module_pbjs.onEvent) instead.
+
 Add a callback event
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -776,6 +786,10 @@ Add a callback event
 <a name="module_pbjs.removeCallback"></a>
 
 ### pbjs.removeCallback(cbId) ⇒ `String`
+
+{: .alert.alert-danger :}
+This method is deprecated.  Please use [`onEvent`](#module_pbjs.onEvent) or [`offEvent`](#module_pbjs.onEvent) instead.
+
 Remove a callback event
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -839,5 +853,113 @@ Example use:
 ```javascript
 pbjs.setBidderSequence('random');
 ```
+
+<a name="module_pbjs.onEvent"></a>
+
+<p>
+</p>
+
+### pbjs.onEvent(event, handler, id)
+
+**pbjs.offEvent(event, handler, id)**
+
+The methods `onEvent` and `offEvent` are provided for you to register
+a callback to handle a Prebid.js event.
+
+They replace the following deprecated methods:
+
+- [.addCallback(event, func)](#module_pbjs.addCallback)
+- [.removeCallback(cbId)](#module_pbjs.removeCallback)
+
+The optional `id` parameter provides more finely-grained event
+callback registration.  This makes it possible to register callback
+events for a specific item in the event context.
+
+For example, `bidWon` events will accept an `id` for ad unit code.
+`bidWon` callbacks registered with an ad unit code id will be called
+when a bid for that ad unit code wins the auction. Without an `id`
+this method registers the callback for every `bidWon` event.
+
+{: .alert.alert-info :}
+Currently, `bidWon` is the only event that accepts the `id` parameter.
+
+The available events are:
+
+{: .table .table-bordered .table-striped }
+| Event         | Description                            |
+|---------------+----------------------------------------|
+| auctionInit   | The auction has started                |
+| auctionEnd    | The auction has ended                  |
+| bidAdjustment | A bid was adjusted                     |
+| bidTimeout    | A bid timed out                        |
+| bidRequested  | A bid was requested                    |
+| bidResponse   | A bid response has arrived             |
+| bidWon        | A bid has won                          |
+| setTargeting  | Targeting has been set                 |
+| requestBids   | Bids have been requested from adapters |
+
+The example below shows how to use these methods:
+
+{% highlight js %}
+
+        /* Define your event handler callbacks */
+        var allSlotsBidWon = function allSlotsBidWon() {
+            console.log('allSlotsBidWon called');
+        };
+
+        /* In this event handler callback we use the `pbjs.offEvent`
+           method to remove the handler once it has been called */
+        var rightSlotBidWon = function rightSlotBidWon() {
+            console.log('rightSlotBidWon: ', arguments);
+            pbjs.offEvent('bidWon', rightSlotBidWon, rightSlotCode);
+        };
+
+        googletag.cmd.push(function () {
+
+            /* Ad slots need to be defined before trying to register
+               callbacks on their events */
+
+            var rightSlot =
+              googletag.defineSlot(rightSlotCode, rightSlotSizes, rightSlotElementId).addService(googletag.pubads());
+
+            var topSlot =
+              googletag.defineSlot(topSlotCode, topSlotSizes, topSlotElementId).setTargeting().addService(googletag.pubads());
+
+            pbjs.que.push(function () {
+
+                /* Register a callback for every `bidWon` event */
+                pbjs.onEvent('bidWon', allSlotsBidWon);
+
+                /* Register a callback for just the rightSlot `bidWon`
+                   event */
+                pbjs.onEvent('bidWon', rightSlotBidWon, rightSlotCode);
+
+                pbjs.setTargetingForGPTAsync();
+                ...
+
+{% endhighlight %}
+
+<a name="module_pbjs.aliasBidder"></a>
+
+### pbjs.aliasBidder(adapterName, aliasedName)
+
+To define an alias for a bidder adapter, call this method at runtime:
+
+{% highlight js %}
+
+pbjs.aliasBidder('appnexusAst', 'newAlias');
+
+{% endhighlight %}
+
+Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexusAst"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexusAst"` adapter to serve their own unique demand).
+
+It's not technically necessary to define an alias, since each copy of an adapter with the same name gets a different ID in the internal bidder registry so Prebid.js can still tell them apart.
+
+If you define an alias and are using `pbjs.sendAllBids`, you must also set up additional line items in the ad server with keyword targeting that matches the name of the alias.  For example:
+
++ `hb_pb_newalias`
++ `hb_adid_newalias`
++ `hb_size_newalias`
++ `hb_deal_newalias`
 
 </div>

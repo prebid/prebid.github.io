@@ -1,12 +1,12 @@
 ---
+redirect_to: "/overview/analytics.html"
 layout: page
 title: Analytics with GA
 description: Prebid.js Analytics with GA
 pid: 30
-
 top_nav_section: dev_docs
 nav_section: reference
-
+hide: true
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -51,6 +51,29 @@ pbjs.que.push(function() {
 Note: we recommend disabling `enableDistribution` if you are using more than 4 bidders. This is because GA throttles the number of events that can be logged (20 initial + 2/second). Distribution data provides you with a histogram of CPM distribution and bid load time (latency) for each bidder. See distribution data [demo here](/blog/header-bidding-analytics-coming-soon/#histogram-analysis-of-latency-and-cpm-distribution).
 
 See [this link](https://developers.google.com/analytics/devguides/collection/protocol/v1/limits-quotas) for details on GA's throttling.
+
+##### Sampling
+
+To track a lower volume of traffic in Google Analytics, you may specify a sample rate in the options. For example, to set up a 5% sample rate:
+
+{% highlight js %}
+pbjs.que.push(function() {
+    pbjs.enableAnalytics({
+        provider: 'ga',
+        options: {
+            global: 'ga'
+            enableDistribution: false,
+            sampling: 0.05
+        }
+    });
+});
+{% endhighlight %}
+
+At the start of each page, Prebid chooses a random number between 0 and 1 
+and logs the analytics only if the number is less than the supplied sample rate, which defaults to 1 (100%).
+Of course a smaller sample rate means that reported numbers will be correspondingly lower, so a scaling factor in reports may be useful, but is outside the scope of Prebid.
+
+It should also be noted that all events on a given page are subject to the same analytics behavior. This means that all requests, responses, and renders on a page are either logged or not logged.
 
 ### How Prebid.js uses GA's Events
 

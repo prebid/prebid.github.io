@@ -679,6 +679,102 @@ To improve the speed and load time of your site, build Prebid.js for only the he
     </div>
   </div>
 
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="innity" class="bidder-check-box"> Innity
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="beachfront" class="bidder-check-box"> Beachfront Media
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="trion" class="bidder-check-box"> Trion Interactive
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="huddledmasses" class="bidder-check-box"> HuddledMasses
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="pubgears" class="bidder-check-box"> Pubgears
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="adsupply" class="bidder-check-box"> AdSupply
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="quantcast" class="bidder-check-box"> Quantcast
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="prebidServer" class="bidder-check-box"> Prebid Server
+      </label>
+    </div>
+  </div>
+
+    <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="carambola" class="bidder-check-box"> Carambola
+      </label>
+    </div>
+  </div>
+
+    <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="cox" class="bidder-check-box"> Cox
+      </label>
+    </div>
+  </div>
+
+    <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="eplanning" class="bidder-check-box"> EPlanning
+      </label>
+    </div>
+  </div>
+
+    <div class="col-md-4">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" bidderCode="unruly" class="bidder-check-box"> Unruly
+      </label>
+    </div>
+  </div>
+
 </div>
 
 <br>
@@ -689,6 +785,14 @@ To improve the speed and load time of your site, build Prebid.js for only the he
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="ga" class="analytics-check-box"> Google Analtyics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pubwiseanalytics" class="analytics-check-box"> PubWise.io Analytics
     </label>
   </div>
 </div>
@@ -712,7 +816,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Roxot
+      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
     </label>
   </div>
 </div>
@@ -720,7 +824,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 </div>
 <br/>
 <p>
-(Version 0.21.0)
+(Version 0.25.0)
 </p>
 
 <div class="form-group">
