@@ -20,7 +20,8 @@ A list of the optional features that can be added to enhance header bidding func
 {: .table .table-bordered .table-striped }
 | Module              | Description  |
 |---------------------+--------------|
-| [*DFP Express*]({{site.baseurl}}/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have DoubleClick Google Publisher Tag (GPT) ad calls in their pages. |
-| [*DigiTrust*]({{site.baseurl}}/dev-docs/modules/digitrust.html) | A method of including the standard cross-domain ID in a DigiTrust package. |
+| [**Currency**]({{site.baseurl}}/dev-docs/modules/currency.html) | Converts bid currency into ad server currency based on data in a supplied exchange rate file. |
+| [**DFP Express**]({{site.baseurl}}/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have DoubleClick Google Publisher Tag (GPT) ad calls in their pages. |
+| [**DigiTrust**]({{site.baseurl}}/dev-docs/modules/digitrust.html) | A method of including the standard cross-domain ID in a DigiTrust package. |
 
 </div>
