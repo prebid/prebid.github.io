@@ -85,6 +85,10 @@ The file naming conventions are:
 + `yourbidder.go`: implementation
 + `yourbidder_test.go`: tests
 
+## Step 5. Register your adapter with Prebid Server
+
+Finally, in order for Prebid Server to integrate your adapter, it has to be added to the list of adapters in [the implementation of `setupExchanges`](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L625).
+
 ## Further Reading
 
 + [Get Started with Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html)
