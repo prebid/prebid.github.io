@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Platformio
-description: Prebid Platformio Bidder Adapter
+title: Platform.io
+description: Prebid Platform.io Bidder Adapter
 
 top_nav_section: dev_docs
 nav_section: reference
