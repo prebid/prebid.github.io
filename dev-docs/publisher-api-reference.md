@@ -817,7 +817,7 @@ Remove a callback event
 ### pbjs.buildMasterVideoTagFromAdserverTag(adserverTag, options) ⇒ `String`
 
 {: .alert.alert-danger :}
-This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
+This method is deprecated as of version 0.27.0.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -857,16 +857,21 @@ For an example showing how to use this method, see [Show Video Ads with a DFP Vi
 {: .alert.alert-danger :}
 This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
+{: .alert.alert-danger :}
+**BREAKING CHANGE**  
+As of version 0.27.0, To encourage fairer auctions, Prebid will randomize the order bidders are called by default. To replicate legacy behavior, call `pbjs.setBidderSequence('fixed')`.
+
 This method shuffles the order in which bidders are called.
 
-It takes an argument `order` that currently only accepts the string `"random"` to shuffle the sequence bidders are called in.
+It takes an argument `order` that currently accepts the following strings:
 
-If the sequence is not set with this method, the bidders are called in the order they are defined within the `adUnit.bids` array on page, which is the current default.
+- `"random"`: shuffle the sequence bidders are called in
+- `"fixed"`: bidders are called in the order they are defined within the `adUnit.bids` array on page
 
 Example use:
 
 ```javascript
-pbjs.setBidderSequence('random');
+pbjs.setBidderSequence('fixed'); /* defaults to 'random' as of 0.27.0 */
 ```
 
 <a name="module_pbjs.onEvent"></a>
@@ -1009,10 +1014,10 @@ Turn on enable send all bids mode:
 pbjs.setConfig({ enableSendAllBids: true })
 {% endhighlight %}
 
-Set the order in which bidders are called to "random":
+Set the order in which bidders are called:
 
 {% highlight js %}
-pbjs.setConfig({ bidderSequence: "random" })
+pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" as of 0.27.0 */
 {% endhighlight %}
 
 Set the publisher's domain where Prebid is running, for cross-domain iFrame communication:
@@ -1071,6 +1076,22 @@ pbjs.setConfig({
 Set arbitrary configuration values:
 
 `pbjs.setConfig({ <key>: <value> });`
+
+#### Troubleshooting your configuration
+
+If you call `pbjs.setConfig` without an object, e.g.,
+
+{% highlight js %}
+pbjs.setConfig('debug', 'true'))
+{% endhighlight %}
+
+then Prebid.js will print an error to the console that says:
+
+```
+ERROR: setConfig options must be an object
+```
+
+If you don't see that message, you can assume the config object is valid.
 
 <a name="module_pbjs.getConfig"></a>
 

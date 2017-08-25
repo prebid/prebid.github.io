@@ -53,7 +53,7 @@ Update your site's hosted copy of Prebid.js to use the new build you just genera
 
 ## Step 4. Configure S2S bidder adapters
 
-The Prebid Server settings (defined by the [`pbjs.setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) method) go in the same anonmymous function where you define your ad units.  This method must be called before `pbjs.requestBids`.
+The Prebid Server settings (defined by the [`pbjs.setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) method) go in the same anonymous function where you define your ad units.  This method must be called before `pbjs.requestBids`.
 
 The code in your Prebid configuration block should look something like the following.  See the table below the code sample for definitions of the keys in the `setS2SConfig` object.
 
@@ -61,8 +61,6 @@ The code in your Prebid configuration block should look something like the follo
 var pbjs = pbjs || {};
 
 pbjs.que.push(function() {
-
-    pbjs.logging = true;
 
     pbjs.setConfig({
         s2sConfig: {
