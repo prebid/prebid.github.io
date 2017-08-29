@@ -15,7 +15,7 @@ biddercode_longer_than_12: false
 ---
 
 ### Note:
-Banner sizes will be derived from placement's configuration in the [AerServ SSUI](https://platform.aerserv.com/), and will ignore the values within the bid request.
+Banner sizes will be derived from placement's configuration in the [AerServ UI](https://platform.aerserv.com/), and will ignore the values within the bid request.
 
 ### bid params
 
@@ -28,7 +28,7 @@ Banner sizes will be derived from placement's configuration in the [AerServ SSUI
 <a name="aerserv-video"></a>
 
 ### Video
-Video requests will use the first size passed in the request, or be overridden with the parameters below.
+Video requests will use the first size passed in the Prebid request, but it can be overridden with the parameters below.
 
 ### video params
 
