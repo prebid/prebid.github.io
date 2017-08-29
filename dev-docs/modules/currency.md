@@ -21,7 +21,8 @@ Publishers may continue to use the bidCpmAdjustment approach, or may begin using
 1. A Prebid.js package is built that contains the extra currency module code
 1. Config in the page defines the currency used by the Publisher's ad server and other configuration parameters.
 1. The existence of this configuration causes the Prebid platform to load a
-currency conversion file while the bids are taking place.
+currency conversion file while the bids are taking place. Alternately, the conversion rates can
+be provided in the page.
 1. At runtime, bids are converted to the ad server currency as needed.
 
 ## Currency Architecture
@@ -45,7 +46,7 @@ For example, the default Prebid "low granularity" bucket is:
 | USD$0.50 increments, capped at USD$5 |
 
 The following config translates the "low granularity" bucket with a conversion rate of
-108 yen to 1 US dollar:
+108 yen to 1 US dollar. It also defines the current conversion rate as being 110 yen to the dollar,
 
 {% highlight js %}
 pbjs.setConfig({
@@ -188,6 +189,17 @@ pbjs.setConfig({
    }
 });
 {% endhighlight %}
+And finally, here's an example where the conversion rate is specified right in the config, so
+the external file won't be loaded:
+{% highlight js %}
+pbjs.setConfig({
+    "currency": {
+       "adServerCurrency": "JPY",
+       "granularityMultiplier": 108,
+       "rates": { "USD": { "JPY": 110.21 }}
+    }
+});
+{% endhighlight %}
 
 
 ## Building the Prebid package with Currency Support
@@ -218,12 +230,13 @@ No additional functions are provided with this module. Rather, the setConfig() c
 a currency object that may contain several parameters:
 
 {: .table .table-bordered .table-striped }
-| Param | Type | Description |
-| --- | --- | --- |
-| adServerCurrency | `string` | ISO 4217 3-letter currency code. (e.g. "EUR"). If this value is present, the currency conversion feature is activated. |
-| granularityMultiplier | `decimal` | How much to scale the price granularity calculations. Defaults to 1. |
-| conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. |
-| bidderCurrencyDefault | `object` | This is an optional argument to provide publishers a way to define bid currency. This option is provided as a transition until such a time that most bidder adapters define currency on bid response. |
+| Param | Type | Description | Example |
+| --- | --- | --- | --- |
+| adServerCurrency | `string` | ISO 4217 3-letter currency code. If this value is present, the currency conversion feature is activated. | "EUR" |
+| granularityMultiplier | `decimal` | How much to scale the price granularity calculations. Defaults to 1. | 108 |
+| conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. | `http://example.com/rates.json` |
+| rates | object | This optional argument allows you to specify the rates with a JSON object, subverting the need for the conversionRateFile parameter.  If this argument is specified, the conversion rate file will not be loaded. | { 'USD': { 'CNY': 6.8842, 'GBP': 0.7798, 'JPY': 110.49 } } |
+| bidderCurrencyDefault | `object` | This is an optional argument to provide publishers a way to define bid currency. This option is provided as a transition until such a time that most bidder adapters define currency on bid response. | { "bidderXYZ": "GBP" } |
 
 ## Currency Rate Conversion File
 
