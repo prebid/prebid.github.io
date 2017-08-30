@@ -23,5 +23,6 @@ biddercode_longer_than_12: false
 | :--- | :---- | :---------- | :------ |
 | `zone` | required | The zone ID provided by Justpremium | "34604" |
 | `allow` | optional | Permits publisher to decide which products can be run from specific ad unit | ["lb", "wp"] |
-| `exclude` | optional | Permits publisher to decide which products can be
-excluded from running in specific ad unit | ["is"] |
+| `exclude` | optional | Permits publisher to decide which products should be excluded from running in specific ad unit | ["is"] |
+
+
