@@ -187,8 +187,8 @@ The required parameters to add into `bidObject` are:
 
 ## Step 6: Register User Sync Pixels
 
-In order to protect page performance, user sync logic within Prebid adapters should
-be queued using the registerSync() function. Both image pixels and iframe sync methods are supported, but
+In order to protect page performance, user ID sync logic within Prebid adapters should
+be queued using the userSync.registerSync() function. Both image pixels and iframe sync methods are supported, but
 publishers may control which method(s) are allowed.
 
 At some point after the auctions are complete, Prebid will write out the registered userSyncs. See the userSync section of the Publisher API Reference for information about how Publishers can control which syncs are allowed.
@@ -199,13 +199,13 @@ Add a user sync in an adapter in two steps:
 2. Register the sync
 
 {% highlight js %}
-import { registerSync } from 'src/userSync.js';
+import { userSync } from 'src/userSync.js';
 
    // ... code ...
    if ($$PREBID_GLOBAL$$.userSync.iframeEnabled) {
-     registerSync('iframe', 'exampleAdapter', 'http://example.com/iframe-url');
+     userSync.registerSync('iframe', 'exampleAdapter', 'http://example.com/iframe-url');
    } else {
-     registerSync('image', 'exampleAdapter', 'http://example.com/pixel');
+     userSync.registerSync('image', 'exampleAdapter', 'http://example.com/pixel');
    }
    // ... code ...
 {% endhighlight %}
