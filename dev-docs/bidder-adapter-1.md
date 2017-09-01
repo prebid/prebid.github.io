@@ -16,8 +16,8 @@ nav_section: adapters
 
 At a high level, a bidder adapter is responsible for:
 
-1. Sending out bid requests to the ad server
-2. Registering the bids that are returned with Prebid.js
+1. Creating the bid requests for the bidder's server.
+2. Parsing and registering the bid responses.
 
 This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the Github repo](https://github.com/prebid/Prebid.js/tree/master/modules) for reference.
 
@@ -25,7 +25,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 {:toc}
 
 
-## Step 1: Planning your adapter
+## Planning your adapter
 
 With each adapter submission, there are two files in the pull request:
 
@@ -51,12 +51,23 @@ Module that connects to Example's demand sources
     var adUnits = [
            {
                code: 'test-div',
-               sizes: [[300, 250]],
+               sizes: [[300, 250]],  // a display size
                bids: [
                    {
-                       bidder: example,
+                       bidder: "example",
                        params: {
                            placement: '12345'
+                       }
+                   }
+               ]
+           },{
+               code: 'test-div',
+               sizes: [[300, 50]],   // a mobile size
+               bids: [
+                   {
+                       bidder: "example",
+                       params: {
+                           placement: 67890
                        }
                    }
                ]
@@ -86,7 +97,7 @@ Failure to follow any of the above conventions could lead to delays in approving
   </p>
 </div>
 
-## Step 2: Design your bid params
+### Design your bid params
 
 The AdUnit's `bid.params` object will define the parameters of your ad request.  You can include tag ID, site ID, ad size, keywords, and other data, such as video parameters.
 
@@ -114,132 +125,149 @@ var adUnits = [{
 {% endhighlight %}
 
 {: .alert.alert-warning :}
-**Prebid 1.0:** the `AdUnit.code` parameter has been deprecated. Instead, use slotId or divId.
+**Prebid 1.0:** the `AdUnit.code` parameter has been deprecated. Instead, use slotId, divId, or both.
 
-## Step 3: Add a new bidder JS file
+## Create the Adapter
 
 {: .alert.alert-success :}
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
 
-1. Create a JS file under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`
+1. The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`
+1. There are two architectures for creating an adapter in Prebid 1.0: 
+    1. You may use the BaseAdapter structure to simplify some technical details and organize the adapter.
+    1. Or you can build the adapter directly against a modified version of 'callbids' similar to previous versions of Prebid.
 
-2. The basic outline of a module is:
+The next few sections assume you've chosen to use the BaseAdapter approach. See [the last section](#bidder-example-no-baseAdapter) for the alternate approach.
+
+Using the BaseAdapter model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the BaseAdapter approach defines 4 entry points:
+
+* areParamsValid - takes a single bids.params object and responds with true (valid) or false (invalid)
+* buildRequests - takes the entire array of bidRequests and returns an array of ServerRequest objects
+* interpretResponse - takes a single request/response and generates a bid object.
+* registerSync - if the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.
+
 
 {% highlight js %}
 import Adapter from 'src/adapter';
-import bidfactory from 'src/bidfactory';
+import (new factory to create bids)
+import (new factory to create ServerRequests)
 import adaptermanager from 'src/adaptermanager';
-import * as utils from 'src/utils';
-import { ajax } from 'src/ajax';
-import { STATUS } from 'src/constants';
+import { userSync } from 'src/userSync.js';
 
-const BIDDER_CODE = 'example';
-const ENDPOINT = 'https://bids.example.com';
+const ExampleAdapter = newBidder({
+   code: 'example',
+   areParamsValid: function(paramsObject) { return true/false },
+   buildRequests: function(bidRequests) { return some ServerRequest(s) },
+   interpretResponse: function(oneServerResponse) { return some Bids, or throw an error. }
+   registerSync: function(syncPolicy, responseArray) { call userSync.registerSync() as needed }
+});
 
-function ExampleAdapter() {
-  return Object.assign(new Adapter(BIDDER_CODE), {
-    callBids: function(auctionRequests, addBidResponse, done) {
-       // main function called by the Prebid platform
-    }
-  });
-
-  // helper functions
-}
-adaptermanager.registerBidAdapter(new ExampleAdapter, BIDDER_CODE);
+adaptermanager.registerBidAdapter(new ExampleAdapter, BIDDER_CODE, {
+  supportedMediaTypes: ['video'] // for video only
+});
+ 
+adaptermanager.aliasBidAdapter(BIDDER_CODE, 'ex'); // short code
+ 
 module.exports = ExampleAdapter;
 {% endhighlight %}
 
-{: .alert.alert-warning :}
-**Prebid 1.0:** Note that callBids has a different signature.
+### Building the Request
 
-Notes on the callBids function signature:
-
-* The `auctionRequests` object contains multiple bids.params as configured in multiple AdUnits. TBD
-* The `addBidResponse` function is where your code will register the bid response(s)
-* The `done` callback function is used to indicate your module has registered all bids for this auction. Until you
-call done, you're holding up the call to the ad server!
-
-
-## Step 4: Send out bid requests
-
-When the page asks Prebid.js to send out bid requests, your module's `callBids` function will be executed. This is a good place for you to send out bid requests to your server.
-
-Example:
-
-{% highlight js %}
-ajax(
-    ENDPOINT,
-    {
-          success: handleSuccessResponse.bind(this, auctionRequest, addBidResponse, done)
-          error: handleErrorResponse.bind(this, done)
-    },
-    buildPostBody(bids),  // uses a helper function
-    {
-          withCredentials: true
-    }
-);
-{% endhighlight %}
-
-Building the request will use data from several places:
+When the page asks Prebid.js for bids, your module’s `buildRequests` function will be executed. Building the request will use data from several places:
 
 * AdUnit params - this is what's in the auctionRequest.bids array. TBD
-* Auction Transaction ID - auctionRequest.transactionId should be sent to your server and forwarded to any Demand Side Platforms your server communicates with. TBD
+* Transaction ID - bidRequest.transactionId should be sent to your server and forwarded to any Demand Side Platforms your server communicates with. TBD
 * Ad Server Currency - if your service supports bidding in more than one currency, your adapter should call pbjs.getConfig(currency) to see if the page has defined which currency it prefers for bids.
-* Referrer - auctionRequest.referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter.
+* Referrer - bidRequest.referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter.
 
 {: .alert.alert-warning :}
 **Prebid 1.0:** Some of these bid request recommendations are new.
 
-After making the request, `callBids` is done -- control will pass back to Prebid and your adapter code will
-be called again later: either handleSuccessResponse() or handleErrorResponse() in the example above.
+{: .alert.alert-success :}
+There are several IDs present in the bidRequest object: **Bid ID** is unique across AdUnits and Bidders.
+**Auction ID** is unique per call to requestBids(), but is the same across AdUnits. And finally,
+**Transaction ID** is unique for each AdUnit with a call to requestBids, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
 
-## Step 5: Register bid responses
+The ServerRequest objects returned from your adapter have this structure:
+ 
+{: .table .table-bordered .table-striped }
+| Attribute | Type | Description | Example Value |
+| --- | --- | --- | --- |
+| type | string | Which HTTP method should be used | GET/POST |
+| endpoint | string | The endpoint for the request. | "http://bids.example.com" |
+| data | string | Data to be sent in the POST request | |
 
-Your `callBids` function will set up a callback to be notified when the browser has received the response
-from your server.
-
-To register the bid, call the `addBidResponse(bidId, bidObject)` function. To register multiple bids, call the function multiple times.
-
-If the bid is valid, create the bid response as shown below, matching the bid request/response pair. For details about the status codes, see [constants.json](https://github.com/prebid/Prebid.js/blob/master/src/constants.json).
+Here's a sample block of code creating a ServerRequest object:
 
 {% highlight js %}
-[TBD ... insert code from example ...]
+(insert example)
+{% endhighlight %}
+
+### Interpreting the Response
+
+The `interpretResponse` function will be called when the browser has received the response from your server. The function will parse the response and create a bidResponse object.
+
+If the bid is invalid (no fill or error), create the bidObject as shown below.
+
+{% highlight js %}
+let bid = Object.assign(
+      	bidfactory.createBid(STATUS.GOOD, bidRequest), {
+              id: bidRequest.id,
+              ad: bidResponse.ad.html,
+              width: bidResponse.ad.width,
+              height: bidResponse.ad.height,
+              cpm: bidResponse.cpm,
+    	      ttl: TIME_TO_LIVE,
+    	      creative_id: bidResponse.BIDDER_SPECIFIC_CREATIVEID,
+    	      currency: "USD",
+    	      netRevenue: true,
+              bidderCode: this.getBidderCode(),
+      	   }
+    	);
 {% endhighlight %}
 
 If the bid is invalid (no fill or error), create the `bidObject` as shown below.
 
 {% highlight js %}
-addBidResponse(
-          bidRequest.id,
-          bidfactory.createBid(STATUS.NO_BID, bidRequest)
-);
+    bidfactory.createBid(STATUS.NO_BID, bidRequest);
 {% endhighlight %}
 
-The addBidResponse function has two parameters:
-
-* id - in bidder API's callback, there'll be ID(s) that tie back to the request params in the `auctionRequest` object. Building a map from `id` to the request param(s)/ID(s) will help you retrieve the `id` based on the callback. TBD
-* bidObject - your server's auction response
+For details about the status codes, see [constants.json](https://github.com/prebid/Prebid.js/blob/master/src/constants.json).
 
 {: .alert.alert-warning :}
-**Prebid 1.0:** The auctionId is new and replaces code as the key to match the AdUnit. Also note that there
-are several new parameters required on the bid response object.
+**Prebid 1.0:** There are several new parameters required on the bid response object.
 
 The parameters of the `bidObject` are:
 
 {: .table .table-bordered .table-striped }
 | Key          | Scope     | Description                                                              | Example                              |
 | :----        | :-------- | :-------                                                                 | :-------  |
-| `id` | Required  | TBD - The ID of the auctionRequest. Used to tie this bid back to the request.    | 12345     |
+| `id` | Required  | The bid ID. Used to tie this bid back to the request.    | 12345     |
 | `bidderCode` | Required  | The bidder code.                                                         | `"example"`  |
 | `cpm`        | Required  | The bid price. We recommend the most granular price a bidder can provide | 3.5764    |
 | `width`      | Required  | The width of the returned creative. For video, this is the player width. | 300       |
 | `height`     | Required  | The height of the returned creative. For video, this is the player height. | 250       |
-| `ad`         | Required  | The creative payload of the returned bid                                 | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl`        | Required  | Time-to-Live -- how long (in ms) Prebid can use this bid. (TBD - DEFAULT?)       | 100 |
+| `ad`         | Required  | The creative payload of the returned bid.                                | `"<html><h3>I am an ad</h3></html>"` |
+| `ttl`        | Required  | Time-to-Live – how long (in seconds) Prebid can use this bid. Default value is 5 minutes. | 360 |
 | `creative_id`| Required  | A bidder-specific unique code that supports tracing the ad creative back to the source. | `"123abc"` |
+| `currency`   | Required  | 3-letter code defining the currency of the bid. Defaults to USD. | `"EUR"` |
 | `vastUrl`| Required for video | URL where the VAST document can be retrieved when ready for display. | `"http://vid.example.com/9876` |
 | `netRevenue` | Optional  | Boolean defining whether the bid is Net or Gross. The default is true (Net). Bidders responding with Gross-price bids should set this to false. | `false` |
-| `currency`   | Optional  | 3-letter code defining the currency of the bid. Defaults to USD. | `"EUR"` |
+
+### Register User Syncs
+
+All user ID sync activity must be done via the userSync.registerSync function(). This activity is meant to be
+done within the registerSync callback of the BaseAdapter model.
+
+{% highlight js %}
+// syncPolicy is an object containing the values pixelEnabled and iframeEnabled
+// arrayOfResponses is an array of BidResponse objects
+registerSync: function(syncPolicy, arrayOfResponses) {
+   // call userSync.registerSync() as needed
+}
+{% endhighlight %}
+
+See (TBD - link to UserSync) for more information.
 
 
 ## Supporting Video
@@ -248,8 +276,8 @@ The parameters of the `bidObject` are:
 **Prebid 1.0:** There aren't any differences in video except that there was formerly a separate
 document describing how to build a video adapter. That information has been moved here.
 
-There are a few differences for adapters supporting video auctions. To check that your module properly supports
-video:
+There are a few differences for adapters supporting video auctions. Here are the steps to ensure that an
+adapter properly supports video:
 
 **Step 1: Register the adapter as supporting video**
 
@@ -266,26 +294,189 @@ adaptermanager.registerBidAdapter(new ExampleBidAdapter, 'example', {
 See the [AppNexus AST adapter]({{site.baseurl}}/dev-docs/bidders.html#appnexusAst) for an example of how
 video parameters may be passed in from the AdUnit.
 
-**Step 3: Respond with a VAST URL**
+**Step 3: Respond with VAST or a VAST URL **
 
-Your bidder must support returning a VAST URL in its bid response. This is the URL where the player will go to display the
-video ad if its chosen for display.
+When bidder returns VAST or a VAST URL in its bid response, Prebid provides a service to cache these results.
+If you want to override where the system caches the VAST, call setConfig:
 
-{: .alert.alert-warning :}
-**Note:** Prebid doesn't provide a service to cache video creatives. You'll need to provide your own video URL.
+{% highlight js %}
+pbjs.setConfig({videoConfig: { cache: CACHE_URL}});
+{% endhighlight %}
 
 For more information, see the implementation of [pbjs.buildMasterVideoTagFromAdserverTag](https://github.com/prebid/Prebid.js/blob/master/src/prebid.js).
 
 
 <a name="bidder-example"></a>
 
-## Full Bid Adapter Example
+## Full Bid Adapter Example using the BaseAdapter
 
 {% highlight js %}
-
-[copy in example code]
-
+(copy in once complete)
 {% endhighlight %}
+
+<a name="bidder-example-no-baseAdapter"></a>
+
+## Making an Adapter without using the BaseAdapter
+
+Though we recommend using the BaseAdapter approach, some adapter maintainers may find it easier to port from 0.X to 1.0 using the 'callbids' approach. Note there are several important differences even without using the BaseAdapter:
+
+* The callbids() function signature is different.
+* There are additional attributes required on the bidResponse
+* User sync activities must be registered with a new function
+
+{% highlight js %}
+import Adapter from 'src/adapter';
+import bidfactory from 'src/bidfactory';
+import adaptermanager from 'src/adaptermanager';
+import { userSync } from 'src/userSync.js';
+import * as utils from 'src/utils';
+import { ajax } from 'src/ajax';
+import { STATUS } from 'src/constants';
+ 
+const BIDDER_CODE = 'example';
+const ENDPOINT = 'https://bids.example.com';
+ 
+function ExampleAdapter() {
+  return Object.assign(new Adapter(BIDDER_CODE), {
+	callBids: function(auctionRequest, addBidResponse, done) {
+  	let bids = [];
+  	
+    	// validate AdUnits and add them to a local array
+  	auctionRequest.bids.forEach(bid  => {
+    	if ( validBid (bid) ) {
+       	bids.push(bid);
+    	} else {
+        	utils.logWarn('bad bid', bid);
+    	}
+  	});
+ 
+    	// call the endpoint
+  	// GET
+  	ajax(
+    	ENDPOINT + '?' + buildGetRequest(bids),
+    	{
+      	success: handleSuccessResponse.bind(this, auctionRequest, addBidResponse, done)
+	      error: handleErrorResponse.bind(this, done)
+    	},
+    	undefined,
+    	{
+      	withCredentials: true
+    	}
+  	);
+ 
+  	// or POST
+  	ajax(
+    	ENDPOINT,
+    	{
+      	success: handleSuccessResponse.bind(this, auctionRequest, addBidResponse, done)
+      	error: handleErrorResponse.bind(this, done)
+    	},
+    	buildPostBody(bids),
+    	{
+      	withCredentials: true
+    	}
+  	);
+	}
+  });
+ 
+  function handleSuccessResponse(auctionRequest, addBidresponse, done, response) {
+	let response;
+ 
+	try {
+  	response = JSON.parse(response);
+	} catch (err) {
+  	return handleErrorResponse(done, err);
+	}
+ 
+	response.bids.forEach(bidResponse => {
+  	
+   	// do adapter specific stuff parsing bidResponse ...
+ 
+  	let bidRequest = auctionRequest.bids.find(...); // find the original bidRequest this bidResponse is for
+  	
+  	try {
+    	  let bid = Object.assign(
+      	  bidfactory.createBid(STATUS.GOOD, bidRequest),
+      	  {
+        	ad: bidResponse.ad.html,
+        	width: bidResponse.ad.width,
+        	height: bidResponse.ad.height,
+        	cpm: bidResponse.cpm,
+    	        ttl: TIME_TO_LIVE,
+    	        creative_id: bidResponse.BIDDER_SPECIFIC_CREATIVEID,
+    	        currency: “USD”,
+    	        netRevenue: true,
+        	bidderCode: this.getBidderCode()
+      	  }
+    	);
+ 
+    	  addBidResponse(
+       	    bidRequest.id,
+       	    bid
+    	  );
+  	} catch (err) {
+    	  utils.logError("error bid", null, err);
+ 
+ 	  addBidResponse(
+      	    bidRequest.placementCode,
+      	    bidfactory.createBid(STATUS.NO_BID, bidRequest)
+    	  );
+  	}
+ 
+	});
+
+        // register any user ID sync activity with userSync.registerSync()
+
+	// tell the platform we're all set
+	done();
+  }
+ 
+  function handleErrorResponse(done, err, xhr) {
+	utils.logError("bid request error", xhr.status || 0, err);
+	done();
+  }
+ 
+  function validBid(bid) {
+	// do adapter specific validations of the AdUnit params...
+  }
+ 
+  function buildGetRequest(bids) {
+	// convert adapter-specific params to a URL format...
+  }
+ 
+  function buildPostBody(bids) {
+	// convert adapter-specific params to a POST body...
+  }
+}
+  	  	  	  	  	  	  	  	
+adaptermanager.registerBidAdapter(new ExampleAdapter, BIDDER_CODE, {
+  supportedMediaTypes: ['video'] // for video only
+});
+ 
+adaptermanager.aliasBidAdapter(BIDDER_CODE, 'ex'); // short code
+ 
+module.exports = ExampleAdapter;
+{% endhighlight %}
+
+Notes on the callBids function signature:
+
+* The auctionRequests object contains multiple bids.params as configured in multiple AdUnits.
+* The addBidResponse function is where your code will register the bid response(s)
+* The done callback function is used to indicate your module has registered all bids for this auction. Until you call done, you’re holding up the call to the ad server!
+
+## Open Items
+
+Items to complete before this doc is taken out of draft mode:
+
+1. Complete the BaseAdapter example(s)
+1. Confirm the bidRequest IDs: bid ID, transaction ID
+1. Confirm that Rubicon's ok with netRevenue being mandatory
+1. Flesh out video section:
+    1. Confirm cache override
+    1. Add Outstream
+1. Add Native
+1. Tune the formatting of the non-BaseAdapter example when it's finalized
+
 
 ## Further Reading
 
