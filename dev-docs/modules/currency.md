@@ -73,7 +73,9 @@ to USD, e.g. GBP and EUR. In those scenarios, just leave the granularityMultipli
 {: .alert.alert-success :}
 The multiplier doesn't have to be an exact exchange rate. Rather, it can be designed to
 make sense for the publisher. e.g. maybe a multiplier of 100 gives nice rounded buckets with
-good enough bucket distribution.
+good enough bucket distribution. If the ad server currency is close in value to USD, you may consider
+leaving the granularityMultiplier at 1. Basically, the goal of the granularityMultiplier is to scale up the default Prebid
+buckets where they would otherwise cap out too low for some currencies. e.g. Capping out at 5 yen makes the "low" granularity bucket pretty useless.
 
 ### 2. Prebid Configuration
 
