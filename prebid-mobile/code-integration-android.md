@@ -111,6 +111,42 @@ Prebid Mobile will immediately tell your app whether it has a bid or not without
 | MoPub             | Banner         | `MoPubView`                | `public void loadAd()`                             |
 | MoPub             | Interstitial   | `MoPubInterstitial`        | `public void load()`                               |
 
+## Enable Prebid With Auto Rresh On
+Prebid Mobile Android does not update the bids automatically for auto refesh, the following code integration is required when you have auto refresh turned on for your ad units.
+
+### Primary Ad Server is MoPub
+For MoPub banner, in the banner ad lisnter implementation, add the following API usage.
+```
+   // MoPub Banner Listener Implementation
+    @Override
+    public void onBannerLoaded(MoPubView banner) {
+        Prebid.attachBids(banner, YOUR-AD-UNIT-ID-HERE, Context);
+    }
+
+    @Override
+    public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
+        Prebid.attachBids(banner, YOUR-AD-UNIT-ID-HERE, Context);
+    }
+ ```
+
+ ### Primary Ad Server is DFP
+ For DFP banner, the `loadAd(AdRequest)` has to be called again with updated bids info. We recommend doing client side auto referesh yourself using code like the following:
+ ```
+final Handler handler = new Handler(Looper.getMainLooper());
+Runnable loadAdRunnable = new Runnable() {
+    @Override
+    public void run() {
+        PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
+        PublisherAdRequest request = builder.build();
+        Prebid.attachBids(request, YOUR-AD-UNIT-ID-HERE, Context);
+        adView.loadAd(request);
+        handler.postDelayed(this, 30000); // load ad with new bids every 30 seconds
+    }
+};
+handler.post(loadAdRunnable);
+ ```
+
+
 
 
 </div>
