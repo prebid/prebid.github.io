@@ -133,17 +133,23 @@ For MoPub banner, in the banner ad lisnter implementation, add the following API
  For DFP banner, the `loadAd(AdRequest)` has to be called again with updated bids info. We recommend doing client side auto referesh yourself using code like the following:
  ```
 final Handler handler = new Handler(Looper.getMainLooper());
-Runnable loadAdRunnable = new Runnable() {
+Runnable refreshRunnable = new Runnable() {
     @Override
     public void run() {
-        PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
-        PublisherAdRequest request = builder.build();
         Prebid.attachBids(request, YOUR-AD-UNIT-ID-HERE, Context);
         adView.loadAd(request);
         handler.postDelayed(this, 30000); // load ad with new bids every 30 seconds
     }
 };
-handler.post(loadAdRunnable);
+handler.post(refreshRunnable);
+
+// Assume some condition is triggered to stop the auto-refresh
+boolean conditionToStopRefresh = true;
+if(conditionToStopRefresh) {
+    // remove refresh runnable and destroy the banner
+    handler.removeCallbacks(refreshRunnable);
+    adView.destroy();
+}
  ```
 
 
