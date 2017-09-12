@@ -125,11 +125,17 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-      <input type="checkbox" bidderCode="{{ page.biddercode }}" class="bidder-check-box"> {{ page.title }}
+  {% if page.aliasCode %} 
+    <input type="checkbox" bidderCode="{{ page.aliasCode }}" class="bidder-check-box"> {{ page.title }}
+  {% else %}
+    <input type="checkbox" bidderCode="{{ page.biddercode }}" class="bidder-check-box"> {{ page.title }}
+  {% endif %}
+      
     </label>
 </div>
 </div>
 {% endfor %}
+</div>
 
 <br>
 <div class="row">
@@ -138,7 +144,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="ga" class="analytics-check-box"> Google Analtyics
+      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analtyics
     </label>
   </div>
 </div>
@@ -146,7 +152,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="pubwiseanalytics" class="analytics-check-box"> PubWise.io Analytics
+      <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
     </label>
   </div>
 </div>
@@ -162,7 +168,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="sharethrough-analytics" class="analytics-check-box"> Sharethrough
+      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
     </label>
   </div>
 </div>
