@@ -36,10 +36,10 @@ partners they want to work with, and quickly add new ones at will.
 
 Given how much header bidding has benefited the digital ecosystem –
 including advertisers and consumers – we want to bring it to as many
-different publishers as possible. It's so important to us that, rather
-than backing a proprietary solution, we want it to be a group
-effort. We want to work together with the rest of the industry to keep
-driving header bidding adoption and effectiveness.
+different publishers and vendors as possible. It's so important to us
+that, rather than backing a proprietary solution, we want it to be a
+group effort. We want to work together with the rest of the industry
+to keep driving header bidding adoption and effectiveness.
 
 That's why we're launching
 [Prebid.org](http://prebid.org/overview/what-is-prebid-org.html): a
