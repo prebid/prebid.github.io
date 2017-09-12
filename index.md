@@ -64,7 +64,6 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Yieldbot</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>AOL</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Index Exchange</h3></div>
-    <div class="col-xs-6 col-sm-4"><h3>SpotX</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Sovrn</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>SpotX</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>PulsePoint</h3></div>
