@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Eseens
+title: Essens
 description: Prebid Essens Bidder Adaptor
 
 top_nav_section: dev_docs
