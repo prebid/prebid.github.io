@@ -108,7 +108,7 @@ A sample AdUnit with parameters for the 'example' bidder:
 {% highlight js %}
 {
 var adUnits = [{
-    slotId: "top-med-rect",
+    code: "top-med-rect",
     sizes: [ [300, 250], [300, 600] ]
     bids: [{
             bidder: "example",
@@ -124,27 +124,19 @@ var adUnits = [{
 }];
 {% endhighlight %}
 
-{: .alert.alert-warning :}
-**Prebid 1.0:** the `AdUnit.code` parameter has been deprecated. Instead, use slotId, divId, or both.
-
 ## Create the Adapter
 
 {: .alert.alert-success :}
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
 
-1. The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`
-1. There are two architectures for creating an adapter in Prebid 1.0: 
-    1. You may use the BaseAdapter structure to simplify some technical details and organize the adapter.
-    1. Or you can build the adapter directly against a modified version of 'callbids' similar to previous versions of Prebid.
+The new code will reside under the modules directory with the name of the bidder suffixed by ‘BidAdapter’, e.g., exampleBidAdapter.js
 
-The next few sections assume you've chosen to use the BaseAdapter approach. See [the last section](#bidder-example-no-baseAdapter) for the alternate approach.
+Compared to previous versions of Prebid, the new BaseAdapter model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the BaseAdapter approach defines 4 entry points:
 
-Using the BaseAdapter model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the BaseAdapter approach defines 4 entry points:
-
-* areParamsValid - takes a single bids.params object and responds with true (valid) or false (invalid)
+* isBidRequestValid - takes a single bids.params object and responds with true (valid) or false (invalid)
 * buildRequests - takes the entire array of bidRequests and returns an array of ServerRequest objects
 * interpretResponse - takes a single request/response and generates a bid object.
-* registerSync - if the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.
+* getUserSyncs - if the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.
 
 
 {% highlight js %}
@@ -156,10 +148,10 @@ import { userSync } from 'src/userSync.js';
 
 const ExampleAdapter = newBidder({
    code: 'example',
-   areParamsValid: function(paramsObject) { return true/false },
+   isBidRequestValid: function(paramsObject) { return true/false },
    buildRequests: function(bidRequests) { return some ServerRequest(s) },
    interpretResponse: function(oneServerResponse) { return some Bids, or throw an error. }
-   registerSync: function(syncPolicy, responseArray) { call userSync.registerSync() as needed }
+   getUserSyncs: function(syncPolicy, responseArray) { call userSync.registerSync() as needed }
 });
 
 adaptermanager.registerBidAdapter(new ExampleAdapter, BIDDER_CODE, {
@@ -311,158 +303,68 @@ For more information, see the implementation of [pbjs.buildMasterVideoTagFromAds
 ## Full Bid Adapter Example using the BaseAdapter
 
 {% highlight js %}
-(copy in once complete)
-{% endhighlight %}
-
-<a name="bidder-example-no-baseAdapter"></a>
-
-## Making an Adapter without using the BaseAdapter
-
-Though we recommend using the BaseAdapter approach, some adapter maintainers may find it easier to port from 0.X to 1.0 using the 'callbids' approach. Note there are several important differences even without using the BaseAdapter:
-
-* The callbids() function signature is different.
-* There are additional attributes required on the bidResponse
-* User sync activities must be registered with a new function
-
-{% highlight js %}
-import Adapter from 'src/adapter';
-import bidfactory from 'src/bidfactory';
-import adaptermanager from 'src/adaptermanager';
-import { userSync } from 'src/userSync.js';
+import { Renderer } from 'src/Renderer';
 import * as utils from 'src/utils';
-import { ajax } from 'src/ajax';
-import { STATUS } from 'src/constants';
- 
-const BIDDER_CODE = 'example';
-const ENDPOINT = 'https://bids.example.com';
- 
-function ExampleAdapter() {
-  return Object.assign(new Adapter(BIDDER_CODE), {
-	callBids: function(auctionRequest, addBidResponse, done) {
-  	let bids = [];
-  	
-    	// validate AdUnits and add them to a local array
-  	auctionRequest.bids.forEach(bid  => {
-    	if ( validBid (bid) ) {
-       	bids.push(bid);
-    	} else {
-        	utils.logWarn('bad bid', bid);
-    	}
-  	});
- 
-    	// call the endpoint
-  	// GET
-  	ajax(
-    	ENDPOINT + '?' + buildGetRequest(bids),
-    	{
-      	success: handleSuccessResponse.bind(this, auctionRequest, addBidResponse, done)
-	      error: handleErrorResponse.bind(this, done)
-    	},
-    	undefined,
-    	{
-      	withCredentials: true
-    	}
-  	);
- 
-  	// or POST
-  	ajax(
-    	ENDPOINT,
-    	{
-      	success: handleSuccessResponse.bind(this, auctionRequest, addBidResponse, done)
-      	error: handleErrorResponse.bind(this, done)
-    	},
-    	buildPostBody(bids),
-    	{
-      	withCredentials: true
-    	}
-  	);
-	}
-  });
- 
-  function handleSuccessResponse(auctionRequest, addBidresponse, done, response) {
-	let response;
- 
-	try {
-  	response = JSON.parse(response);
-	} catch (err) {
-  	return handleErrorResponse(done, err);
-	}
- 
-	response.bids.forEach(bidResponse => {
-  	
-   	// do adapter specific stuff parsing bidResponse ...
- 
-  	let bidRequest = auctionRequest.bids.find(...); // find the original bidRequest this bidResponse is for
-  	
-  	try {
-    	  let bid = Object.assign(
-      	  bidfactory.createBid(STATUS.GOOD, bidRequest),
-      	  {
-        	ad: bidResponse.ad.html,
-        	width: bidResponse.ad.width,
-        	height: bidResponse.ad.height,
-        	cpm: bidResponse.cpm,
-    	        ttl: TIME_TO_LIVE,
-    	        creative_id: bidResponse.BIDDER_SPECIFIC_CREATIVEID,
-    	        currency: “USD”,
-    	        netRevenue: true,
-        	bidderCode: this.getBidderCode()
-      	  }
-    	);
- 
-    	  addBidResponse(
-       	    bidRequest.id,
-       	    bid
-    	  );
-  	} catch (err) {
-    	  utils.logError("error bid", null, err);
- 
- 	  addBidResponse(
-      	    bidRequest.placementCode,
-      	    bidfactory.createBid(STATUS.NO_BID, bidRequest)
-    	  );
-  	}
- 
-	});
-
-        // register any user ID sync activity with userSync.registerSync()
-
-	// tell the platform we're all set
-	done();
-  }
- 
-  function handleErrorResponse(done, err, xhr) {
-	utils.logError("bid request error", xhr.status || 0, err);
-	done();
-  }
- 
-  function validBid(bid) {
-	// do adapter specific validations of the AdUnit params...
-  }
- 
-  function buildGetRequest(bids) {
-	// convert adapter-specific params to a URL format...
-  }
- 
-  function buildPostBody(bids) {
-	// convert adapter-specific params to a POST body...
-  }
+import { registerBidder } from 'src/adapters/bidderFactory';
+const BIDDER_CODE = 'MYBIDDER';
+export const spec = {
+    code: BIDDER_CODE,
+    /**
+     * Determines whether or not the given bid request is valid.
+     *
+     * @param {BidRequest} bid The bid params to validate.
+     * @return boolean True if this is a valid bid, and false otherwise.
+     */
+    isBidRequestValid: function(bid) {
+        return !!(bid.params.placementId || (bid.params.member && bid.params.invCode));
+    },
+    /**
+     * Make a server request from the list of BidRequests.
+     *
+     * @param {BidRequest[]} bidRequests A non-empty list of bid requests which should be sent to the Server.
+     * @return ServerRequest Info describing the request to the server.
+     */
+    buildRequests: function(bidRequests) {
+        const tags = bidRequests.map(bidToTag);
+        const payload = {
+		// bidder-dependent request info
+        };
+        const payloadString = JSON.stringify(payload);
+        return {
+            method: 'POST',
+            url: URL,
+            data: payloadString,
+        };
+    },
+    /**
+     * Unpack the response from the server into a list of bids.
+     *
+     * @param {*} serverResponse A successful response from the server.
+     * @return {Bid[]} An array of bids which were nested inside the server.
+     */
+    interpretResponse: function(serverResponse) {
+        const bids = [];
+        serverResponse.tags.forEach(serverBid => {
+            const rtbBid = getRtbBid(serverBid);  // validate as bid
+            if (rtbBid) {
+                if (rtbBid.cpm !== 0 && SUPPORTED_AD_TYPES.includes(rtbBid.ad_type)) {
+                    const bid = newBid(serverBid, rtbBid);
+                    bids.push(bid);
+                }
+            }
+        });
+        return bids;
+    },
+    getUserSyncs: function(syncOptions) {
+        if (syncOptions.iframeEnabled) {
+            return [{
+                type: 'iframe',
+                url: 'ADAPTER_SYNC_URL'
+            }];
+        }
+    }
 }
-  	  	  	  	  	  	  	  	
-adaptermanager.registerBidAdapter(new ExampleAdapter, BIDDER_CODE, {
-  supportedMediaTypes: ['video'] // for video only
-});
- 
-adaptermanager.aliasBidAdapter(BIDDER_CODE, 'ex'); // short code
- 
-module.exports = ExampleAdapter;
 {% endhighlight %}
-
-Notes on the callBids function signature:
-
-* The auctionRequests object contains multiple bids.params as configured in multiple AdUnits.
-* The addBidResponse function is where your code will register the bid response(s)
-* The done callback function is used to indicate your module has registered all bids for this auction. Until you call done, you’re holding up the call to the ad server!
 
 ## Open Items
 
@@ -475,7 +377,6 @@ Items to complete before this doc is taken out of draft mode:
     1. Confirm cache override
     1. Add Outstream
 1. Add Native
-1. Tune the formatting of the non-BaseAdapter example when it's finalized
 
 
 ## Further Reading
