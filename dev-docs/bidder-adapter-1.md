@@ -272,7 +272,7 @@ adapter properly supports video:
 
 **Step 1: Register the adapter as supporting video**
 
-Add the 'supportedMediaTypes' argument to the `registerBidAdapter` call:
+Add the 'supportedMediaTypes' argument to the spec object:
 
 {% highlight js %}
 export const spec = {
