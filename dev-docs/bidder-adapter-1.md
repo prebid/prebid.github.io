@@ -138,29 +138,21 @@ Compared to previous versions of Prebid, the new BaseAdapter model saves the ada
 * interpretResponse - takes a single request/response and generates a bid object.
 * getUserSyncs - if the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.
 
+A high level example of the structure:
 
 {% highlight js %}
-import Adapter from 'src/adapter';
-import (new factory to create bids)
-import (new factory to create ServerRequests)
-import adaptermanager from 'src/adaptermanager';
-import { userSync } from 'src/userSync.js';
-
-const ExampleAdapter = newBidder({
-   code: 'example',
-   isBidRequestValid: function(paramsObject) { return true/false },
-   buildRequests: function(bidRequests) { return some ServerRequest(s) },
-   interpretResponse: function(oneServerResponse) { return some Bids, or throw an error. }
-   getUserSyncs: function(syncPolicy, responseArray) { call userSync.registerSync() as needed }
-});
-
-adaptermanager.registerBidAdapter(new ExampleAdapter, BIDDER_CODE, {
-  supportedMediaTypes: ['video'] // for video only
-});
- 
+import * as utils from 'src/utils';
+import { registerBidder } from 'src/adapters/bidderFactory';
+const BIDDER_CODE = 'example';
+export const spec = {
+    code: BIDDER_CODE,
+    isBidRequestValid: function(bid) { },
+    buildRequests: function(bidRequests) { },
+    interpretResponse: function(serverResponse) { },
+    getUserSyncs: function(syncOptions) { }
+}
 adaptermanager.aliasBidAdapter(BIDDER_CODE, 'ex'); // short code
- 
-module.exports = ExampleAdapter;
+registerBidder(spec);
 {% endhighlight %}
 
 ### Building the Request
@@ -189,10 +181,14 @@ The ServerRequest objects returned from your adapter have this structure:
 | endpoint | string | The endpoint for the request. | "http://bids.example.com" |
 | data | string | Data to be sent in the POST request | |
 
-Here's a sample block of code creating a ServerRequest object:
+Here's a sample block of code returning a ServerRequest object:
 
 {% highlight js %}
-(insert example)
+return {
+            method: 'POST',
+            url: URL,
+            data: payloadString,
+        };
 {% endhighlight %}
 
 ### Interpreting the Response
@@ -202,26 +198,25 @@ The `interpretResponse` function will be called when the browser has received th
 If the bid is invalid (no fill or error), create the bidObject as shown below.
 
 {% highlight js %}
-let bid = Object.assign(
-      	bidfactory.createBid(STATUS.GOOD, bidRequest), {
-              id: bidRequest.id,
-              ad: bidResponse.ad.html,
-              width: bidResponse.ad.width,
-              height: bidResponse.ad.height,
-              cpm: bidResponse.cpm,
-    	      ttl: TIME_TO_LIVE,
-    	      creative_id: bidResponse.BIDDER_SPECIFIC_CREATIVEID,
-    	      currency: "USD",
-    	      netRevenue: true,
-              bidderCode: this.getBidderCode(),
-      	   }
-    	);
-{% endhighlight %}
-
-If the bid is invalid (no fill or error), create the `bidObject` as shown below.
-
-{% highlight js %}
-    bidfactory.createBid(STATUS.NO_BID, bidRequest);
+    if (NO_BID || ERROR_BID) {
+      return [];
+    }
+    const bids = [];
+    const bid = {
+	requestId: bidRequest.bidId,
+	bidderCode: spec.code,
+	cpm: CPM,
+	width: WIDTH,
+	height: HEIGHT,
+	creative_id: CREATIVE_ID,
+	dealId: DEAL_ID,
+	currency: CURRENCY,
+	netRevenue: true,
+	ttl: TIME_TO_LIVE,
+	ad: CREATIVE_BODY
+    };
+    bids.push(bid);
+    return bids;
 {% endhighlight %}
 
 For details about the status codes, see [constants.json](https://github.com/prebid/Prebid.js/blob/master/src/constants.json).
@@ -248,15 +243,19 @@ The parameters of the `bidObject` are:
 
 ### Register User Syncs
 
-All user ID sync activity must be done via the userSync.registerSync function(). This activity is meant to be
-done within the registerSync callback of the BaseAdapter model.
+All user ID sync activity must be done in one of two ways:
+1. The `getUserSyncs` callback of the BaseAdapter model
+2. The userSync.registerSync function()
 
 {% highlight js %}
-// syncPolicy is an object containing the values pixelEnabled and iframeEnabled
-// arrayOfResponses is an array of BidResponse objects
-registerSync: function(syncPolicy, arrayOfResponses) {
-   // call userSync.registerSync() as needed
-}
+getUserSyncs: function(syncOptions) {
+        if (syncOptions.iframeEnabled) {
+            return [{
+                type: 'iframe',
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+            }];
+        }
+    }
 {% endhighlight %}
 
 See (TBD - link to UserSync) for more information.
@@ -276,9 +275,11 @@ adapter properly supports video:
 Add the 'supportedMediaTypes' argument to the `registerBidAdapter` call:
 
 {% highlight js %}
-adaptermanager.registerBidAdapter(new ExampleBidAdapter, 'example', {
-  supportedMediaTypes: ['video']
-});
+export const spec = {
+    code: BIDDER_CODE,
+    supportedMediaTypes: [VIDEO],
+    ...
+}
 {% endhighlight %}
 
 **Step 2: Accept video parameters and pass them to your server**
@@ -303,7 +304,6 @@ For more information, see the implementation of [pbjs.buildMasterVideoTagFromAds
 ## Full Bid Adapter Example using the BaseAdapter
 
 {% highlight js %}
-import { Renderer } from 'src/Renderer';
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
 const BIDDER_CODE = 'MYBIDDER';
@@ -325,14 +325,15 @@ export const spec = {
      * @return ServerRequest Info describing the request to the server.
      */
     buildRequests: function(bidRequests) {
-        const tags = bidRequests.map(bidToTag);
         const payload = {
-		// bidder-dependent request info
+		// use bidRequests to get bidder-dependent request info
+
+		// pull requested transaction ID from bidRequests[].tid
         };
         const payloadString = JSON.stringify(payload);
         return {
             method: 'POST',
-            url: URL,
+            url: ENDPOINT_URL,
             data: payloadString,
         };
     },
@@ -343,16 +344,24 @@ export const spec = {
      * @return {Bid[]} An array of bids which were nested inside the server.
      */
     interpretResponse: function(serverResponse) {
+        let bidRequest = this.bidRequest;
         const bids = [];
-        serverResponse.tags.forEach(serverBid => {
-            const rtbBid = getRtbBid(serverBid);  // validate as bid
-            if (rtbBid) {
-                if (rtbBid.cpm !== 0 && SUPPORTED_AD_TYPES.includes(rtbBid.ad_type)) {
-                    const bid = newBid(serverBid, rtbBid);
-                    bids.push(bid);
-                }
-            }
-        });
+        // loop through serverResponses {
+            const bid = {
+                requestId: bidRequest.bidId,
+		bidderCode: spec.code,
+                cpm: CPM,
+                width: WIDTH,
+                height: HEIGHT,
+                creative_id: CREATIVE_ID,
+                dealId: DEAL_ID,
+		currency: CURRENCY,
+		netRevenue: true,
+		ttl: TIME_TO_LIVE,
+		ad: CREATIVE_BODY
+	    };
+	    bids.push(bid);
+        };
         return bids;
     },
     getUserSyncs: function(syncOptions) {
@@ -364,6 +373,8 @@ export const spec = {
         }
     }
 }
+adaptermanager.aliasBidAdapter(BIDDER_CODE, 'ex'); // short code
+registerBidder(spec);
 {% endhighlight %}
 
 ## Open Items
