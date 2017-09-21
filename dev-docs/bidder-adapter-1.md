@@ -143,6 +143,7 @@ A high level example of the structure:
 {% highlight js %}
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
+import { config } from 'src/config';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
@@ -161,7 +162,7 @@ When the page asks Prebid.js for bids, your module’s `buildRequests` function 
 
 * AdUnit params - the arguments provided by the page are in bidderRequest.bids[]
 * Transaction ID - bidderRequest.bids[].transactionId should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
-* Ad Server Currency - if your service supports bidding in more than one currency, your adapter should call `$$PREBID_GLOBAL$$.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
+* Ad Server Currency - if your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
 * Referrer - referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. We suggest using the `utils.getTopWindowUrl()` function to obtain the referrer.
 
 {: .alert.alert-warning :}
@@ -193,12 +194,12 @@ return {
 
 ### Interpreting the Response
 
-The `interpretResponse` function will be called when the browser has received the response from your server. The function will parse the response and create a bidResponse object.
+The `interpretResponse` function will be called when the browser has received the response from your server. The function will parse the response and create a bidResponse object containing one or more bids. The adapter should indicate no valid bids by returning an empty array. An example showing a single bid:
 
 {% highlight js %}
-    if (NO_BID || ERROR_BID) {
-      return [];
-    }
+    // if the bid response was empty or an error, return []
+    // otherwise parse the response and return a bidReponses array
+
     const bidResponses = [];
     const bidResponse = {
 	requestId: bidRequest.bidId,
@@ -214,7 +215,7 @@ The `interpretResponse` function will be called when the browser has received th
 	referrer: REFERER,
 	ad: CREATIVE_BODY
     };
-    bidResponses.push(bid);
+    bidResponses.push(bidResponse);
     return bidResponses;
 {% endhighlight %}
 
@@ -337,6 +338,7 @@ For example, below is the [code in the AppNexus AST adapter](https://github.com/
 
 {% highlight js %}
 import * as utils from 'src/utils';
+import { config } from 'src/config';
 import { registerBidder } from 'src/adapters/bidderFactory';
 const BIDDER_CODE = 'example';
 export const spec = {
@@ -361,6 +363,9 @@ export const spec = {
         const payload = {
 		// use bidderRequest.bids[] to get bidder-dependent request info
 
+		// if your bidder supports multiple currencies, use config.getConfig(currency)
+		// to find which one the ad server needs
+
 		// pull requested transaction ID from bidderRequest.bids[].transactionId
         };
         const payloadString = JSON.stringify(payload);
@@ -377,9 +382,9 @@ export const spec = {
      * @return {Bid[]} An array of bids which were nested inside the server.
      */
     interpretResponse: function(serverResponse, bidRequest) {
-        const bids = [];
+        const bidResponses = [];
         // loop through serverResponses {
-            const bid = {
+            const bidResponse = {
                 requestId: bidRequest.bidId,
 		bidderCode: spec.code,
                 cpm: CPM,
@@ -393,9 +398,9 @@ export const spec = {
 		referrer: REFERER,
 		ad: CREATIVE_BODY
 	    };
-	    bids.push(bid);
+	    bidResponses.push(bidResponse);
         };
-        return bids;
+        return bidResponses;
     },
     getUserSyncs: function(syncOptions) {
         if (syncOptions.iframeEnabled) {
