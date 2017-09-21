@@ -299,6 +299,37 @@ When bidder returns VAST or a VAST URL in its bid response, it needs to add the 
             };
 {% endhighlight %}
 
+## Supporting Native
+
+In order for your bidder to support the native media type, you need 2 things:
+
+1. Your (server-side) bidder needs to respond with a bid that has native information.
+2. Your (client-side) bidder adapter needs to unpack the server's bid into a Prebid-compatible bid populated with the required native information.
+
+For example, below is the [code in the AppNexus AST adapter](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusAstBidAdapter.js#L192) that achieves #2.  As you can see, we:
+
+1. Check for native information on the bid response.
+2. Fill in the bid's `native` object with information from the bid.
+
+{% highlight js %}
+/* Does the bidder respond with native information? */
+} else if (rtbBid.rtb.native) {
+
+  const native = rtbBid.rtb.native;
+
+  /* Bidder supports native, so let's populate our Prebid-compatible
+  bid with native info */
+  bid.native = {
+    title: native.title,
+    body: native.desc,
+    cta: native.ctatext,
+    sponsoredBy: native.sponsored,
+    image: native.main_img && native.main_img.url,
+    icon: native.icon && native.icon.url,
+    clickUrl: native.link.url,
+    impressionTrackers: native.impression_trackers,
+  };
+{% endhighlight %}
 
 <a name="bidder-example"></a>
 
