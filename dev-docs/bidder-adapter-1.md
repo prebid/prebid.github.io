@@ -90,6 +90,7 @@ In order to provide a fast and safe header bidding environment for publishers, t
 * Compressed responses - all bid responses from the bidder’s server must be gzipped.
 * Bid responses may not use JSONP - all requests must be AJAX with JSON responses.
 * All user-sync activity must be registered via the provided functions - the platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
+* Adapters may not use the $$PREBID_GLOBAL$$ variable. Instead, they must load any necessary functions and call them directly.
 
 <div class="alert alert-danger" role="alert">
   <p>
@@ -271,12 +272,12 @@ adapter properly supports video:
 
 **Step 1: Register the adapter as supporting video**
 
-Add the 'supportedMediaTypes' argument to the spec object:
+Add the `supportedMediaTypes` argument to the spec object, and make sure `video` is in the list:
 
 {% highlight js %}
 export const spec = {
     code: BIDDER_CODE,
-    supportedMediaTypes: [VIDEO],
+    supportedMediaTypes: ['video'],
     ...
 }
 {% endhighlight %}
@@ -288,16 +289,23 @@ video parameters may be passed in from the AdUnit.
 
 **Step 3: Respond with VAST or a VAST URL**
 
-When bidder returns VAST or a VAST URL in its bid response, it needs to add the result into either bid.vastXml or vastUrl. For example:
+When the bidder returns VAST or a VAST URL in its bid response, it needs to add the result into either `bid.vastXml` or `bid.vastUrl`. For example, here is some [code from the Tremor adapter](https://github.com/prebid/Prebid.js/blob/master/modules/tremorBidAdapter.js#L142) showing how it's done:
 
 {% highlight js %}
-            const bid = {
-                requestId: bidRequest.bidId,
-                bidderCode: spec.code,
-                cpm: CPM,
-		vastXml: VAST_XML,
-		...
-            };
+function createBid(status, reqBid, response) {
+    let bid = bidfactory.createBid(status, reqBid);
+    bid.code = baseAdapter.getBidderCode();
+    bid.bidderCode = baseAdapter.getBidderCode();
+
+    if (response) {
+        bid.cpm = response.price;
+        bid.crid = response.crid;
+        bid.vastXml = response.adm;
+        bid.mediaType = 'video';
+    }
+
+    return bid;
+}
 {% endhighlight %}
 
 ## Supporting Native
@@ -331,6 +339,16 @@ For example, below is the [code in the AppNexus AST adapter](https://github.com/
     impressionTrackers: native.impression_trackers,
   };
 {% endhighlight %}
+
+## Unit Tests
+
+Every adapter submission must include unit tests. See existing test suites in test/spec/modules.
+
+## Migrating from Prebid 0.x to 1.0
+
+During the transition period between Prebid 0.x and 1.0, all adapters should submit pull requests to the master branch. We will rebase to the prebid-1.0 branch regularly.
+ 
+During the transition, please test your adapter with the prebid-1.0 branch.
 
 <a name="bidder-example"></a>
 
