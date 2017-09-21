@@ -84,7 +84,7 @@ required conventions.
 
 In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the following conventions:
 
-* Support multiple instances - all adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on global variables.
+* Support multiple instances - all adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on mutable global variables.
 * No loading of external libraries - all code must be present in the adapter, not loaded at runtime.
 * Must support HTTPS - within a secure page context, the request to the bidder’s server must also be secure.
 * Compressed responses - all bid responses from the bidder’s server must be gzipped.
@@ -133,9 +133,9 @@ The new code will reside under the modules directory with the name of the bidder
 
 Compared to previous versions of Prebid, the new BaseAdapter model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the BaseAdapter approach defines 4 entry points:
 
-* isBidRequestValid - takes a single bids.params object and responds with true (valid) or false (invalid)
-* buildRequests - takes the entire array of bidRequests and returns an array of ServerRequest objects
-* interpretResponse - takes a single request/response and generates a bid object.
+* isBidRequestValid - verify the the AdUnits.bids, respond with true (valid) or false (invalid)
+* buildRequests - convert AdUnit[].bids[] into bidder-specific URL(s)
+* interpretResponse - parse the response and generate one or more bid ojects.
 * getUserSyncs - if the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.
 
 A high level example of the structure:
@@ -146,12 +146,12 @@ import { registerBidder } from 'src/adapters/bidderFactory';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
+    aliases: ['ex'],   // short code
     isBidRequestValid: function(bid) { },
-    buildRequests: function(bidRequests) { },
-    interpretResponse: function(serverResponse) { },
+    buildRequests: function(bidderRequest) { },
+    interpretResponse: function(serverResponse, request) { },
     getUserSyncs: function(syncOptions) { }
 }
-adaptermanager.aliasBidAdapter(BIDDER_CODE, 'ex'); // short code
 registerBidder(spec);
 {% endhighlight %}
 
@@ -159,10 +159,10 @@ registerBidder(spec);
 
 When the page asks Prebid.js for bids, your module’s `buildRequests` function will be executed. Building the request will use data from several places:
 
-* AdUnit params - this is what's in the auctionRequest.bids array. TBD
-* Transaction ID - bidRequest.transactionId should be sent to your server and forwarded to any Demand Side Platforms your server communicates with. TBD
-* Ad Server Currency - if your service supports bidding in more than one currency, your adapter should call pbjs.getConfig(currency) to see if the page has defined which currency it prefers for bids.
-* Referrer - bidRequest.referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter.
+* AdUnit params - the arguments provided by the page are in bidderRequest.bids[]
+* Transaction ID - bidderRequest.bids[].transactionId should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
+* Ad Server Currency - if your service supports bidding in more than one currency, your adapter should call `$$PREBID_GLOBAL$$.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
+* Referrer - referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. We suggest using the `utils.getTopWindowUrl()` function to obtain the referrer.
 
 {: .alert.alert-warning :}
 **Prebid 1.0:** Some of these bid request recommendations are new.
@@ -179,7 +179,7 @@ The ServerRequest objects returned from your adapter have this structure:
 | --- | --- | --- | --- |
 | type | string | Which HTTP method should be used | GET/POST |
 | endpoint | string | The endpoint for the request. | "http://bids.example.com" |
-| data | string | Data to be sent in the POST request | |
+| data | string or object | Data to be sent in the POST request. Objects will be sent as JSON. | |
 
 Here's a sample block of code returning a ServerRequest object:
 
@@ -187,7 +187,7 @@ Here's a sample block of code returning a ServerRequest object:
 return {
             method: 'POST',
             url: URL,
-            data: payloadString,
+            data: payloadObject
         };
 {% endhighlight %}
 
@@ -195,34 +195,31 @@ return {
 
 The `interpretResponse` function will be called when the browser has received the response from your server. The function will parse the response and create a bidResponse object.
 
-If the bid is invalid (no fill or error), create the bidObject as shown below.
-
 {% highlight js %}
     if (NO_BID || ERROR_BID) {
       return [];
     }
-    const bids = [];
-    const bid = {
+    const bidResponses = [];
+    const bidResponse = {
 	requestId: bidRequest.bidId,
 	bidderCode: spec.code,
 	cpm: CPM,
 	width: WIDTH,
 	height: HEIGHT,
-	creative_id: CREATIVE_ID,
+	creativeId: CREATIVE_ID,
 	dealId: DEAL_ID,
 	currency: CURRENCY,
 	netRevenue: true,
 	ttl: TIME_TO_LIVE,
+	referrer: REFERER,
 	ad: CREATIVE_BODY
     };
-    bids.push(bid);
-    return bids;
+    bidResponses.push(bid);
+    return bidResponses;
 {% endhighlight %}
 
-For details about the status codes, see [constants.json](https://github.com/prebid/Prebid.js/blob/master/src/constants.json).
-
 {: .alert.alert-warning :}
-**Prebid 1.0:** There are several new parameters required on the bid response object.
+**Prebid 1.0:** There are several new parameters required on the bid response object. Note that that the bidResponse `creativeId` field is different than in 0.x when it was `creative_id`. It's been changed to camel-case to be consistent with the other fields.
 
 The parameters of the `bidObject` are:
 
@@ -236,30 +233,31 @@ The parameters of the `bidObject` are:
 | `height`     | Required  | The height of the returned creative. For video, this is the player height. | 250       |
 | `ad`         | Required  | The creative payload of the returned bid.                                | `"<html><h3>I am an ad</h3></html>"` |
 | `ttl`        | Required  | Time-to-Live – how long (in seconds) Prebid can use this bid. Default value is 5 minutes. | 360 |
-| `creative_id`| Required  | A bidder-specific unique code that supports tracing the ad creative back to the source. | `"123abc"` |
+| `creativeId`| Required  | A bidder-specific unique code that supports tracing the ad creative back to the source. | `"123abc"` |
+| `netRevenue` | Required | Boolean defining whether the bid is Net or Gross. The default is true (Net). Bidders responding with Gross-price bids should set this to false. | `false` |
 | `currency`   | Required  | 3-letter code defining the currency of the bid. Defaults to USD. | `"EUR"` |
-| `vastUrl`| Required for video | URL where the VAST document can be retrieved when ready for display. | `"http://vid.example.com/9876` |
-| `netRevenue` | Optional  | Boolean defining whether the bid is Net or Gross. The default is true (Net). Bidders responding with Gross-price bids should set this to false. | `false` |
+| `vastUrl`| Either this or vastXml required for video | URL where the VAST document can be retrieved when ready for display. | `"http://vid.example.com/9876` |
+| `vastXml`| Either this or vastUrl required for video | XML for VAST document to be cached for later retrieval. | `<VAST version="3.0">...` |
 
 ### Register User Syncs
 
 All user ID sync activity must be done in one of two ways:
+
 1. The `getUserSyncs` callback of the BaseAdapter model
 2. The userSync.registerSync function()
 
 {% highlight js %}
-getUserSyncs: function(syncOptions) {
+{
+  getUserSyncs: function(syncOptions) {
         if (syncOptions.iframeEnabled) {
             return [{
                 type: 'iframe',
                 url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
             }];
         }
-    }
+  }
+}
 {% endhighlight %}
-
-See (TBD - link to UserSync) for more information.
-
 
 ## Supporting Video
 
@@ -287,16 +285,19 @@ export const spec = {
 See the [AppNexus AST adapter]({{site.baseurl}}/dev-docs/bidders.html#appnexusAst) for an example of how
 video parameters may be passed in from the AdUnit.
 
-**Step 3: Respond with VAST or a VAST URL **
+**Step 3: Respond with VAST or a VAST URL**
 
-When bidder returns VAST or a VAST URL in its bid response, Prebid provides a service to cache these results.
-If you want to override where the system caches the VAST, call setConfig:
+When bidder returns VAST or a VAST URL in its bid response, it needs to add the result into either bid.vastXml or vastUrl. For example:
 
 {% highlight js %}
-pbjs.setConfig({videoConfig: { cache: CACHE_URL}});
+            const bid = {
+                requestId: bidRequest.bidId,
+                bidderCode: spec.code,
+                cpm: CPM,
+		vastXml: VAST_XML,
+		...
+            };
 {% endhighlight %}
-
-For more information, see the implementation of [pbjs.buildMasterVideoTagFromAdserverTag](https://github.com/prebid/Prebid.js/blob/master/src/prebid.js).
 
 
 <a name="bidder-example"></a>
@@ -306,9 +307,10 @@ For more information, see the implementation of [pbjs.buildMasterVideoTagFromAds
 {% highlight js %}
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
-const BIDDER_CODE = 'MYBIDDER';
+const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
+    aliases: ['ex'],   // short code
     /**
      * Determines whether or not the given bid request is valid.
      *
@@ -321,14 +323,14 @@ export const spec = {
     /**
      * Make a server request from the list of BidRequests.
      *
-     * @param {BidRequest[]} bidRequests A non-empty list of bid requests which should be sent to the Server.
+     * @param {bidderRequest} - bidderRequest.bids[] is an array of AdUnits and bids
      * @return ServerRequest Info describing the request to the server.
      */
-    buildRequests: function(bidRequests) {
+    buildRequests: function(bidderRequest) {
         const payload = {
-		// use bidRequests to get bidder-dependent request info
+		// use bidderRequest.bids[] to get bidder-dependent request info
 
-		// pull requested transaction ID from bidRequests[].tid
+		// pull requested transaction ID from bidderRequest.bids[].transactionId
         };
         const payloadString = JSON.stringify(payload);
         return {
@@ -343,8 +345,7 @@ export const spec = {
      * @param {*} serverResponse A successful response from the server.
      * @return {Bid[]} An array of bids which were nested inside the server.
      */
-    interpretResponse: function(serverResponse) {
-        let bidRequest = this.bidRequest;
+    interpretResponse: function(serverResponse, bidRequest) {
         const bids = [];
         // loop through serverResponses {
             const bid = {
@@ -353,11 +354,12 @@ export const spec = {
                 cpm: CPM,
                 width: WIDTH,
                 height: HEIGHT,
-                creative_id: CREATIVE_ID,
+                creativeId: CREATIVE_ID,
                 dealId: DEAL_ID,
 		currency: CURRENCY,
 		netRevenue: true,
 		ttl: TIME_TO_LIVE,
+		referrer: REFERER,
 		ad: CREATIVE_BODY
 	    };
 	    bids.push(bid);
@@ -373,22 +375,8 @@ export const spec = {
         }
     }
 }
-adaptermanager.aliasBidAdapter(BIDDER_CODE, 'ex'); // short code
 registerBidder(spec);
 {% endhighlight %}
-
-## Open Items
-
-Items to complete before this doc is taken out of draft mode:
-
-1. Complete the BaseAdapter example(s)
-1. Confirm the bidRequest IDs: bid ID, transaction ID
-1. Confirm that Rubicon's ok with netRevenue being mandatory
-1. Flesh out video section:
-    1. Confirm cache override
-    1. Add Outstream
-1. Add Native
-
 
 ## Further Reading
 
