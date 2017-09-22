@@ -20,12 +20,22 @@ Bid params are sourced from the adapter configurations set for client side. Thes
 ### Configuration
 To enable prebid server, set the following configuration. 
 
-{% highlight js %}
-    pbjs.setS2SConfig({
-        accountId : '1',                            //string:required: account ID obtained in sign up process
-        enabled : true,                             //boolean:required: enables s2s - default false
-        bidders : ['appnexus','audienceNetwork'],   //array[string]:required: of bidder codes to enable S2S.
-        timeout : 1000,                             //number:optional timeout in ms for bidders called via the S2S endpoint.
-        cookieSet : true                            //boolean:optional: If 'false' (not recommended), opt out of link rewriting to improve cookie syncing.
-    });
-{% endhighlight %}
+```
+pbjs.setS2SConfig({
+    accountId : '12345',
+    enabled : true,
+    bidders : ['appnexus','audienceNetwork', 'rubicon'], 
+    timeout : 1000, 
+    cookieSet : true
+});
+```
+Configuration options
+
+{: .table .table-bordered .table-striped }
+| Name | Required? | Description
+|:-----------|:-----------|:---------------------------|
+| `accountId` | required | string:required: account ID obtained in sign up process |
+| `enabled` | required | boolean:required: enables s2s - default false |
+| `bidders` | required | array[string]:required: of bidder codes to enable S2S. |
+| `timeout` | optional | number:optional timeout in ms for bidders called via the S2S endpoint.|
+| `cookieSet` | optional | boolean:optional: If `false` (not recommended), opt out of link rewriting to improve cookie syncing. |
