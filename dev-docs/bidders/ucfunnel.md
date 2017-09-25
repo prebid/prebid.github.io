@@ -21,6 +21,4 @@ biddercode_longer_than_12: false
 | Name | Scope | Description | Example |
 |:-----------|:---------|:------------|:-----------------|
 | `adid` | required | `ID of the ad unit` | |
-| `width` | required | `width of ad slot` | |
-| `height`| required | `height of ad slot` | |
 | `` | optional | | |
