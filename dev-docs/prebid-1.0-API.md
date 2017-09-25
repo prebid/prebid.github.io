@@ -48,7 +48,7 @@ pbjs.setConfig({
         "conversionRateFile": "url" // allows the publisher to override the default rate file
     },
     "debug" : true, // previously `logging`
-    "s2sConfig : {...},
+    "s2sConfig" : {...},
     "priceGranularity": "medium",
     "enableSendAllBids": false, // default will be `true` as of 1.0
     "bidderSequence": "random",
