@@ -34,7 +34,7 @@ Please let us know your feedback and how we can make Prebid.js and the Prebid co
 
 Prebid 1.0 Documentation:
 
-- [Prebid publisher guide]()
+- [Prebid publisher guide](http://prebid.org/dev-docs//prebid-1.0-API.html)
 - [Prebid adapter guide](http://prebid.org/dev-docs/bidder-adapter-1.html)
 
 As always, we love PRs. Thanks for contributing. 
