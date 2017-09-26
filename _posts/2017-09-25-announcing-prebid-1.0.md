@@ -2,13 +2,14 @@
 
 It's been a long time since we [first released Prebid.js](http://prebid.org/blog/happy-birthday-prebid-js); so long, in fact, that people have questioned why were are still a [pre 1.0 library.](https://github.com/prebid/Prebid.js/issues/891) While I'd like to think it's because we had everything right from the start - we definitely did not - we've been hard at work to make things even better. We've also grown a lot since then, and even [made some friends along the way](http://prebid.org/blog/announcing-prebid-org).
 
-Suffice to say, we are ready to cross over the 1.0 milestone :rocket:. A great part about us working on the Prebid 1.0 journey is that we ended up integrating many of the ideas now, instead of waiting for the big release. So, some of these features are already inside prebid.js today.
+Suffice to say, we are ready to cross over the 1.0 milestone :rocket:. A great part about us working on the Prebid 1.0 journey is that we ended up delivering many of the original ideas already, instead of waiting for the big release. So, some of these features are already inside Prebid.js today.
+
 
 ## What to expect
 
-The best part of Prebid.js has and always will be the community that supports it. Since the library has many open ended APIs, we haven't had to change many core things about the library. So you won't have to do a whole lot to get a lot. Here are some things that are changing:
+The best part of Prebid.js has, and always will be, the community that supports it. Since the library has many open ended APIs, we haven't had to change many core things about the library. So you won't have to do a whole lot to get a lot. Here are some things that are changing:
 
-As a **publisher**, you can look forward to the following when adopting prebid 1.0:
+As a **publisher**, you can look forward to the following when adopting Prebid.js 1.0:
 
 - Universal adunit type support for Native, Video and banner.
 - Faster performance due to cutting out of additional JS libraries and simplified adapter code.
@@ -20,11 +21,11 @@ As a **publisher**, you can look forward to the following when adopting prebid 1
 
 - Once you update your adapter to work with the base adapter in 1.0 - you will be able to integrate with more ad formats easier such as Native and Video. 
 - We have broken down the parts of what an adapter does into separate functions - this will make it easier to integrate and test your adapter.
-- We have some additional requirements on what needs to be returned and what kind of endpoints are supporteed (only XHR). Please see the full how to update adapter guide for details.(link)
+- We have some additional requirements on what needs to be returned and what kind of endpoints are supporteed (only XHR). Please see the full [adpater guide](http://prebid.org/dev-docs/bidder-adapter-1.html) for details.
 
 ## What's next
 
-We have already created the [1.0 branch](https://github.com/prebid/Prebid.js/tree/prebid-1.0). We expect to merge this to master once we have enough support from demand adapters. The tentative date to *release to master is October 16th 2017.* 
+We have already created the [1.0 branch](https://github.com/prebid/Prebid.js/tree/prebid-1.0). We expect to merge this to master once we have enough support from demand adapters. The tentative date to *release to master is October 23rd 2017.* 
 
 ## How to get involved
 
