@@ -21,7 +21,7 @@ As a **publisher**, you can look forward to the following when adopting Prebid.j
 
 - Once you update your adapter to work with the base adapter in 1.0 - you will be able to integrate with more ad formats easier such as Native and Video. 
 - We have broken down the parts of what an adapter does into separate functions - this will make it easier to integrate and test your adapter.
-- We have some additional requirements on what needs to be returned and what kind of endpoints are supporteed (only XHR). Please see the full [adpater guide](http://prebid.org/dev-docs/bidder-adapter-1.html) for details.
+- We have some additional requirements on what needs to be returned and what kind of endpoints are supporteed (only XHR). Please see the full [adapter guide](http://prebid.org/dev-docs/bidder-adapter-1.html) for details.
 
 ## What's next
 
