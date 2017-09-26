@@ -1,3 +1,11 @@
+---
+layout: post
+title: Announcing Prebid.js 1.0
+head_title: Announcing Prebid.js 1.0 release milestone
+description: This week, we're pleased to announce the Prebid.js 1.0 release milestone
+permalink: /blog/announcing-prebid-1-0
+---
+
 ## Prebid 1.0 - here at last
 
 It's been a long time since we [first released Prebid.js](http://prebid.org/blog/happy-birthday-prebid-js); so long, in fact, that people have questioned why were are still a [pre 1.0 library.](https://github.com/prebid/Prebid.js/issues/891) While I'd like to think it's because we had everything right from the start - we definitely did not - we've been hard at work to make things even better. We've also grown a lot since then, and even [made some friends along the way](http://prebid.org/blog/announcing-prebid-org).
@@ -41,5 +49,3 @@ Prebid 1.0 Documentation:
 As always, we love PRs. Thanks for contributing. 
 
 By [Matt Kendall](https://github.com/mkendall07), Engineer Manager @ AppNexus. 
-
-
