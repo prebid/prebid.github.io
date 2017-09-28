@@ -26,7 +26,7 @@ The following functions/variables are removed as part of 1.0.
   - `pbjs._bidsRequested`
   - `pbjs._adUnitCodes`
   - `pbjs._adsReceived`
-  - `pbjs.cbTimeout `
+  - `pbjs.cbTimeout`
 - `pbjs.addCallback` & `pbjs.removeCallback` in favor of [onEvent API](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.onEvent). 
 - `pbjs.allBidsAvailable`
 - `pbjs.buildMasterVideoTagFromAdserverTag` in favor of `pbjs.adServers.dfp.buildVideoUrl`
@@ -46,6 +46,7 @@ For 1.0, we're **deprecating** the following APIs in favor of a generic "options
 - `pbjs.enableSendAllBids` (* [2](#options-footnotes))
 - `pbjs.setBidderSequence`
 - `pbjs.setS2SConfig`
+- `pbjs.timeoutBuffer`
 
 Mapping will be straightforward with the name of the param being the same, except dropping the `set` prefix where appropriate.
 
