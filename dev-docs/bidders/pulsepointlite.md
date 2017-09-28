@@ -8,7 +8,7 @@ nav_section: reference
 
 hide: true
 
-biddercode: pulsepointLite
+biddercode: pulseLite
 
 biddercode_longer_than_12: true
 
