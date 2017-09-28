@@ -90,9 +90,6 @@ nav_sections:
   - top_nav: dev_docs
     code: adapters
     name: ADAPTERS
-  - top_nav: dev_docs
-    code: hacking
-    name: HACKING ON PREBID.JS
 
   - top_nav: overview
     code: intro
@@ -128,6 +125,10 @@ nav_sections:
   - top_nav: download
     code: download
     name: DOWNLOAD
+
+  - top_nav: modules
+    code: modules
+    name: MODULES
 
   - top_nav: prebid-mobile
     code: prebid-mobile

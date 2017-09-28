@@ -20,7 +20,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 Easily include the Prebid Mobile SDK using Maven. Simply add this line to your gradle dependencies:
 
 ```
-compile 'org.prebid:prebid-mobile-sdk:0.0.1'
+compile 'org.prebid:prebid-mobile-sdk:[0,1)'
 ```
 
 ### Build framework from source
@@ -85,7 +85,7 @@ try {
 The final step for implementing Prebid Mobile is to attach bid keywords on the ad object. You can either attach bids immediately or wait for ads before attaching bids. To attach bids immediately use the following API.
 
 ```java
-Prebid.attachBids(YOUR-AD-REQUEST-HERE, YOUR-AD-UNIT-ID-HERE, this.getActivity());
+Prebid.attachBids(YOUR-AD-OBJECT-HERE, YOUR-AD-UNIT-ID-HERE, Context);
 ```
 
 To wait for ads before attaching bids, implement the following listener.
@@ -93,8 +93,9 @@ To wait for ads before attaching bids, implement the following listener.
 ```java
 @Override
 public void onAttachComplete(Object adObj) {
-    if (adView2 != null && adObj != null && adObj instanceof PublisherAdRequest) {
-        adView2.loadAd((PublisherAdRequest) adObj);
+	// using dfp implementation as an example
+    if (adView != null && adObj != null && adObj instanceof PublisherAdRequest) {
+        adView.loadAd((PublisherAdRequest) adObj);
         Prebid.detachUsedBid(adObj);
     }
 }
@@ -105,11 +106,61 @@ Prebid Mobile will immediately tell your app whether it has a bid or not without
 {: .table .table-bordered .table-striped }
 | Primary Ad Server | Ad Object Type | Ad Object                  | Load Method                                        |
 |-------------------|----------------|----------------------------|----------------------------------------------------|
-| DFP               | Banner         | `PublisherAdView`          | `public void loadAd(PublisherAdRequest adRequest)` |
-| DFP               | Interstitial   | `PublisherInterstitialAd`  | `public void loadAd(PublisherAdRequest adRequest)` |
+| DFP               | Banner         | `PublisherAdRequest`       | `public void loadAd(PublisherAdRequest adRequest)` |
+| DFP               | Interstitial   | `PublisherAdRequest`       | `public void loadAd(PublisherAdRequest adRequest)` |
 | MoPub             | Banner         | `MoPubView`                | `public void loadAd()`                             |
 | MoPub             | Interstitial   | `MoPubInterstitial`        | `public void load()`                               |
 
+## Enable Prebid With Auto Refresh On
+Prebid Mobile Android does not update the bids automatically like iOS implementation. To enable prebid with auto refesh, the following code integration is required.
+
+### Primary Ad Server is MoPub
+For MoPub banner, in the banner ad listener implementation, add the following API usage.
+```
+// MoPub Banner Listener Implementation
+@Override
+public void onBannerLoaded(MoPubView banner) {
+    Prebid.attachBids(banner, YOUR-AD-UNIT-ID-HERE, Context);
+}
+
+@Override
+public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
+    Prebid.attachBids(banner, YOUR-AD-UNIT-ID-HERE, Context);
+}
+ ```
+
+### Primary Ad Server is DFP
+For DFP banner, the `loadAd(AdRequest)` has to be called again with updated bids info. If not, same set of bids will be used repeatedly until `loadAd()` is called with a new `AdRequest`. We recommend doing client side auto refresh yourself using code like the following:
+ ```
+final Handler handler = new Handler(Looper.getMainLooper());
+Runnable refreshRunnable = new Runnable() {
+    @Override
+    public void run() {
+        Prebid.attachBids(request, YOUR-AD-UNIT-ID-HERE, Context);
+        adView.loadAd(request);
+        handler.postDelayed(this, 30000); // load ad with new bids every 30 seconds
+    }
+};
+handler.post(refreshRunnable);
+
+// Assume some condition is triggered to stop the auto-refresh
+boolean conditionToStopRefresh = true;
+if(conditionToStopRefresh) {
+    // remove refresh runnable and destroy the banner
+    handler.removeCallbacks(refreshRunnable);
+    adView.destroy();
+}
+ ```
+
+## If proguard is ON
+
+### Primary Ad Server is DFP
+To avoid dfp class being obfuscated and prebid not working, add the following lines to your proguard file:
+```
+-keep class com.google.android.gms.ads.doubleclick.PublisherAdRequest {
+   public *;
+}
+```
 
 
 </div>

@@ -65,6 +65,7 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>AOL</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Index Exchange</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Sovrn</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>SpotX</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>PulsePoint</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>TripleLift</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>SpringServe</h3></div>
@@ -77,7 +78,6 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Sonobi</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Aardvark</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>WideOrbit</h3></div>
-    <div class="col-xs-6 col-sm-4"><h3>Krux Link</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>AdMedia</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>JCM</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>SmartyAds</h3></div>
@@ -115,6 +115,8 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Bidfluence</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Trion</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Innity</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Adyoulike</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Criteo</h3></div>
 
     <!-- END BIDDERS -->
     </div>

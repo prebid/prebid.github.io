@@ -34,6 +34,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
   * [.bidderSettings](#module_pbjs.bidderSettings)
+  * [userSync](#module_pbjs.userSync)
   * [.addCallback(event, func)](#module_pbjs.addCallback)
   * [.removeCallback(cbId)](#module_pbjs.removeCallback)
   * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String`
@@ -41,6 +42,8 @@ This page has documentation for the public API methods of Prebid.js.
   * [.onEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
+  * [.setConfig(options)](#module_pbjs.setConfig)
+  * [.getConfig([string])](#module_pbjs.getConfig)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -344,7 +347,11 @@ Returns a bool if all the bids have returned or timed out
 
 ### pbjs.enableSendAllBids()
 
-(Added in version 0.9.2)
+{: .alert.alert-info :}
+Added in version 0.9.2
+
+{: .alert.alert-danger :}
+This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
 After this method is called, Prebid.js will generate bid keywords for all bids, instead of the default behavior of only sending the top winning bid to the ad server.
 
@@ -381,6 +388,9 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 <a name="module_pbjs.setPriceGranularity"></a>
 
 ### pbjs.setPriceGranularity
+
+{: .alert.alert-danger :}
+This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
 This method is used to configure which price bucket is used for the `hb_pb` keyword.  For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
 
@@ -680,7 +690,7 @@ pbjs.bidderSettings = {
 {% endhighlight %}
 
 
-In otherwords, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the documentation of bidResponse object [here](bidders.html#common-bidresponse).
+In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the documentation of bidResponse object [here](bidders.html#common-bidresponse).
 
 Note that sendStandardTargeting is set to false so that the standard Prebid targeting (hb_bidder, etc.) aren't also sent to the ad server.
 
@@ -759,6 +769,89 @@ See the [example above](#key-targeting-specific-bidder) for example usage.
 ##### 2.5. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.userSync"></a>
+
+### UserSync
+
+UserSync configuration allows Publishers to control how adapters behave with respect to dropping pixels or scripts to cookie users with IDs.
+This practice is called 'userSync' because the aim is to let the bidders match IDs between their cookie space and the DSP cookie space.
+There's a good reason for bidders to be doing this -- DSPs are more likely to bid on impressions where they know something about the history of a user.
+However, there are also good reasons why Publishers may want to control the use of these practices:
+
+* page performance - Publishers may wish to move ad-related cookie work to much later in the page load after ads and content have loaded.
+* user privacy - Some publishers may want to opt out of these practices even though it limits their user's values on the open market.
+* security - Publishers may want to control which bidders are trusted to inject images and javascript into their pages.
+
+The default behavior of the platform is to allow every adapter to drop up to 5 image-based user syncs. The sync images will be dropped 3 seconds after the auction starts. Here are some examples of config that will change the default behavior.
+
+Push the user syncs to later in the page load:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    syncDelay: 5000       // write image pixels 5 seconds after the auction
+}});
+{% endhighlight %}
+
+Turn off userSync entirely:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    syncEnabled: false
+}});
+{% endhighlight %}
+
+Allow iframe-based syncs:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    iframeEnabled: true
+}});
+{% endhighlight %}
+
+Only certain adapters are allowed to sync, either images or iframes:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    enabledBidders: ['abc','xyz'], // only these bidders are allowed to sync
+    iframeEnabled: true,
+    syncsPerBidder: 3,            // and no more than 3 syncs at a time
+    syncDelay: 6000,              // 6 seconds after the auction
+}});
+{% endhighlight %}
+
+The same bidders can drop sync pixels, but the timing will be controlled by the page:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    enabledBidders: ['abc','xyz'], // only these bidders are allowed to sync, and only image pixels
+    enableOverride: true          // publisher will call pbjs.triggerUserSyncs()
+}});
+{% endhighlight %}
+
+Here are all the options for userSync control:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Type | Description |
+| --- | --- | --- |
+| syncEnabled | boolean | Enables/disables the userSync feature. Defaults to true. |
+| iframeEnabled | boolean | Enables/disables the use of iframes for syncing. Defaults to false. |
+| syncDelay | integer | The delay in milliseconds for autosyncing once the first auction is run. 3000 by default. |
+| syncsPerBidder | integer | Number of registered syncs allowed per adapter. Default is 5. Set to 0 to allow all. |
+| enabledBidders | array | Array of names of trusted adapters which are allowed to sync users. |
+| enableOverride | boolean | Allows the publisher to manually trigger the user syncs to fire by calling pbjs.triggerUserSyncs(). |
+
+As noted, there's a function available to give the page control of when registered userSyncs are added.
+{% highlight js %}
+pbjs.triggerUserSyncs()
+{% endhighlight %}
+
+#### How it works
+
+The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-register-user-sync-pixels) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
+
+* Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
+* Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
+* Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
+
+When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
 
 <hr class="full-rule">
 
@@ -845,16 +938,24 @@ For an example showing how to use this method, see [Show Video Ads with a DFP Vi
 
 ### pbjs.setBidderSequence(order)
 
+{: .alert.alert-danger :}
+This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
+
+{: .alert.alert-danger :}
+**BREAKING CHANGE**  
+As of version 0.27.0, To encourage fairer auctions, Prebid will randomize the order bidders are called by default. To replicate legacy behavior, call `pbjs.setBidderSequence('fixed')`.
+
 This method shuffles the order in which bidders are called.
 
-It takes an argument `order` that currently only accepts the string `"random"` to shuffle the sequence bidders are called in.
+It takes an argument `order` that currently accepts the following strings:
 
-If the sequence is not set with this method, the bidders are called in the order they are defined within the `adUnit.bids` array on page, which is the current default.
+- `"random"`: shuffle the sequence bidders are called in
+- `"fixed"`: bidders are called in the order they are defined within the `adUnit.bids` array on page
 
 Example use:
 
 ```javascript
-pbjs.setBidderSequence('random');
+pbjs.setBidderSequence('fixed'); /* defaults to 'random' as of 0.27.0 */
 ```
 
 <a name="module_pbjs.onEvent"></a>
@@ -964,5 +1065,155 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 + `hb_adid_newalias`
 + `hb_size_newalias`
 + `hb_deal_newalias`
+
+<a name="module_pbjs.setConfig"></a>
+
+### pbjs.setConfig(options)
+
+{: .alert.alert-info :}
+Added in version 0.27.0
+
+`setConfig` is designed to allow for advanced configuration while reducing the surface area of the public API.  For more information about the move to `setConfig` (and the resulting deprecations of some other public methods), see [the Prebid 1.0 public API proposal](https://gist.github.com/mkendall07/51ee5f6b9f2df01a89162cf6de7fe5b6).
+
+See below for usage examples.
+
+{: .alert.alert-warning :}
+The `options` param object must be JSON - no JavaScript functions are allowed.
+
+Turn on debugging:
+
+{% highlight js %}
+pbjs.setConfig({ debug: true });
+{% endhighlight %}
+
+Set a global bidder timeout:
+
+{% highlight js %}
+pbjs.setConfig({ bidderTimeout: 3000 });
+{% endhighlight %}
+
+{: .alert.alert-warning :}
+**Bid Timeouts and JavaScript Timers**  
+Note that it's possible for the timeout to be triggered later than expected, leading to a bid participating in the auction later than expected.  This is due to how [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) works in JS: it queues the callback in the event loop in an approximate location that *should* execute after this time but *it is not guaranteed*.  
+With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.  
+For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
+
+Turn on enable send all bids mode:
+
+{% highlight js %}
+pbjs.setConfig({ enableSendAllBids: true })
+{% endhighlight %}
+
+Set the order in which bidders are called:
+
+{% highlight js %}
+pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" as of 0.27.0 */
+{% endhighlight %}
+
+Set the publisher's domain where Prebid is running, for cross-domain iFrame communication:
+
+{% highlight js %}
+pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
+{% endhighlight %}
+
+Set a delay (in milliseconds) for requesting cookie sync to stay out of the critical path of page load:
+
+{% highlight js %}
+pbjs.setConfig({ cookieSyncDelay: 100 )
+{% endhighlight %}
+
+Set a default price granularity scheme:
+
+{% highlight js %}
+pbjs.setConfig({ priceGranularity: "medium" })
+{% endhighlight %}
+
+{: .alert.alert-info :}
+Note that the allowed values for `priceGranularity` have not changed: string values, or the custom CPM bucket object.
+
+Set a custom price granularity scheme:
+
+{% highlight js %}
+const customGranularity = {
+  'buckets': [{
+      'min': 0,
+      'max': 3,
+      'increment': 0.01,
+      'cap': true
+  }]
+};
+
+pbjs.setConfig({
+    priceGranularity: customGranularity
+})
+{% endhighlight %}
+
+Set config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html) header bidding:
+
+{% highlight js %}
+pbjs.setConfig({
+    s2sConfig: {
+        accountId: '1',
+        enabled: true,
+        bidders: ['appnexus', 'pubmatic'],
+        timeout: 1000,
+        adapter: 'prebidServer',
+        endpoint: 'https://prebid.adnxs.com/pbs/v1/auction'
+    }
+})
+{% endhighlight %}
+
+Set arbitrary configuration values:
+
+`pbjs.setConfig({ <key>: <value> });`
+
+#### Troubleshooting your configuration
+
+If you call `pbjs.setConfig` without an object, e.g.,
+
+{% highlight js %}
+pbjs.setConfig('debug', 'true'))
+{% endhighlight %}
+
+then Prebid.js will print an error to the console that says:
+
+```
+ERROR: setConfig options must be an object
+```
+
+If you don't see that message, you can assume the config object is valid.
+
+<a name="module_pbjs.getConfig"></a>
+
+### pbjs.getConfig([string])
+
+{: .alert.alert-info :}
+Added in version 0.27.0
+
+The `getConfig` function is for retrieving the current configuration object or subscribing to configuration updates. When called with no parameters, the entire config object is returned. When called with a string parameter, a single configuration property matching that parameter is returned.
+
+{% highlight js %}
+/* Get config object */
+config.getConfig()
+
+/* Get debug config */
+config.getConfig('debug')
+{% endhighlight %}
+
+The `getConfig` function also contains a 'subscribe' ability that adds a callback function to a set of listeners that are invoked whenever `setConfig` is called. The subscribed function will be passed the options object that was used in the `setConfig` call. Individual topics can be subscribed to by passing a string as the first parameter and a callback function as the second.  For example:
+
+{% highlight js %}
+
+/* Subscribe to all configuration changes */
+getConfig((config) => console.log('config set:', config));
+
+/* Subscribe to only 'logging' changes */
+getConfig('logging', (config) => console.log('logging set:', config));
+
+/* Unsubscribe */
+const unsubscribe = getConfig(...);
+unsubscribe(); // no longer listening
+
+{% endhighlight %}
 
 </div>
