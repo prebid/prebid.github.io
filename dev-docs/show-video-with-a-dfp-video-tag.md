@@ -84,13 +84,26 @@ For instructions, see [Custom Price Bucket with `setPriceGranularity`]({{site.ba
 
 Next, we need to do the standard Prebid "add ad units and request bids" dance.  In the example below, our callback builds the video URL the player needs using the `buildVideoUrl` method from the DFP ad server module that we built into our copy of Prebid.js in the **Prerequisites** section.
 
+
+
 {: .alert.alert-info :}
 **All DFP Parameters are supported**  
 The `params` key in the argument to `buildVideoUrl` supports any parameters from the [DFP API](https://support.google.com/dfp_premium/answer/1068325?hl=en).
 
+{: .alert.alert-warning :}
+**Prebid Cache must be enabled**  
+You must enable Prebid Cache as shown below in order for the DFP Ad Server Video module's call to `buildVideoUrl` to work.
+
 ```javascript
 pbjs.que.push(function() {
     pbjs.addAdUnits(videoAdUnit);
+
+    /* Required for the DFP video URL to be built correctly in the
+    `bidsBackHandler` */
+    pbjs.setConfig({
+        usePrebidCache: true
+    });
+
     pbjs.requestBids({
         bidsBackHandler: function(bids) {
             var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
