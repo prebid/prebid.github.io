@@ -44,6 +44,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
   * [.setConfig(options)](#module_pbjs.setConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
+  * [.dfp.buildVideoUrl(options)](#module_pbjs.dfp.buildVideoUrl) ⇒ `String`
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -317,7 +318,7 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | -- |
-| [codeArr] | Optional | `array` | an array of adUnitodes to set targeting for. |
+| [codeArr] | Optional | `array` | an array of adUnitCodes to set targeting for. |
 
 <hr class="full-rule">
 
@@ -616,7 +617,7 @@ bid along with all non-CPM bids, just specify this flag and the adapter-specific
 As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
-per adapter as needed. Both secenarios are described below.
+per adapter as needed. Both scenarios are described below.
 
 **Keyword targeting for all bidders**
 
@@ -901,7 +902,7 @@ Remove a callback event
 ### pbjs.buildMasterVideoTagFromAdserverTag(adserverTag, options) ⇒ `String`
 
 {: .alert.alert-danger :}
-This method is deprecated as of version [0.26.0](https://github.com/prebid/Prebid.js/releases/tag/0.26.0).  To show video ads, include the `dfpVideoSupport` module in your build, and use `pbjs.adServers.dfp.buildVideoUrl`.  For more information, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+This method is deprecated as of version [0.26.0](https://github.com/prebid/Prebid.js/releases/tag/0.26.0).  Please use [`pbjs.dfp.buildVideoUrl`](#module_pbjs.dfp.buildVideoUrl) instead.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -1214,5 +1215,75 @@ const unsubscribe = getConfig(...);
 unsubscribe(); // no longer listening
 
 {% endhighlight %}
+
+<a name="module_pbjs.dfp.buildVideoUrl"></a>
+
+### pbjs.adServers.dfp.buildVideoUrl(options) ⇒ `String`
+
+{: .alert.alert-info :}
+This method was added in 0.26.0.  For a usage example and instructions showing how to build Prebid.js to include this method, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
+This method builds a DFP video ad tag URL by merging all of the bid data and publisher-supplied options into a single URL, and then returning it.
+
+It takes one argument, an `options` object (described [below](#adservers-dfp-options)) which should be used to construct the URL.
+
+It returns a (string) URL which calls DFP, letting `options.bid` (or the auction's winning bid for this adUnit, if undefined) compete alongside the rest of the demand in DFP.
+
+For more information about the options supported by the DFP API, see [the DFP API docs](https://support.google.com/dfp_premium/answer/1068325?hl=en#env).
+
+For more information about the arguments to this method, and example usage, see the sections below:
+
++ [Options](#adservers-dfp-options)
++ [Params](#adservers-dfp-params)
++ [Example](#adservers-dfp-example)
+
+<a name="adservers-dfp-options" />
+
+#### Options
+
+This object has the following properties:
+
++ `adUnit` (Object): The adUnit which this bid is supposed to help fill.  Required.
++ `bid` (Object): The bid which should be considered alongside the rest of the adserver's demand. If this isn't defined, then we'll use the winning bid for the adUnit. Optional.
++ `params` (Object): Query params which should be set on the DFP request. These will override this module's defaults whenever they conflict.  For more information, see the next section, [Params](#adservers-dfp-params).
+
+<a name="adservers-dfp-params" />
+
+#### Params
+
+This object contains the params needed to form a URL which hits the [DFP API](https://support.google.com/dfp_premium/answer/1068325?hl=en).
+
+All params (except `iu`, mentioned below) should be considered optional. This module will choose reasonable
+defaults for all of the other required params.
+
+The `params` object has the following properties:
+
++ `iu` (String): This param *must* be included, in order for us to create a valid request.
++ `description_url` (String): This field is required if you want Ad Exchange to bid on our ad unit... but otherwise optional.
++ `cust_params` (Object): If present, this will be merged with the rest of the standard Prebid targeting params (`hb_adid`, `hb_bidder`, etc).  For more information, see the [DFP documentation on `cust_params`](https://support.google.com/dfp_premium/answer/1068325?hl=en#cust_params) and the [Example](#adservers-dfp-example) below.
+
+<a name="adservers-dfp-example" />
+
+#### Example
+
+This example shows how to pass the `options` and `params` objects to the method.  For a fuller usage example, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
+```javascript
+pbjs.requestBids({
+    bidsBackHandler: function(bids) {
+        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+            adUnit: videoAdUnit,
+            params: {
+                iu: '/19968336/prebid_cache_video_adunit'
+                cust_params: {
+                  section: "blog",
+                  anotherKey: ["value1", "value2"]
+                }
+            }
+        });
+        invokeVideoPlayer(videoUrl);
+    }
+});
+```
 
 </div>
