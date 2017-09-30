@@ -60,7 +60,11 @@ Don't forget to add your own valid placement ID.
 var videoAdUnit = {
     code: 'video',
     sizes: [640, 480],
-    mediaType: 'video',
+    mediaTypes: {
+        video: {
+            context: "instream"
+        },
+    },
     bids: [{
         bidder: 'appnexusAst',
         params: {

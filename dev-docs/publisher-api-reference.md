@@ -1266,7 +1266,7 @@ The `params` object has the following properties:
 
 #### Example
 
-This example shows how to pass the `options` and `params` objects to the method.  For a fuller usage example, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+This example calls `pbjs.adServers.dfp.buildVideoUrl` passing an `options` object containing the `adUnit` and `params` fields.   Note that the key-values in the `params.cust_params` field will be merged with standard Prebid keys.  For a usage example in context, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
 ```javascript
 pbjs.requestBids({
