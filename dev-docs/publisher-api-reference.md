@@ -1258,8 +1258,8 @@ defaults for all of the other required params.
 
 The `params` object has the following properties:
 
-+ `iu` (String): This param *must* be included, in order for us to create a valid request.
-+ `cust_params` (Object): If present, this will be merged with the rest of the standard Prebid targeting params (`hb_adid`, `hb_bidder`, etc).  For more information, see the [DFP documentation on `cust_params`](https://support.google.com/dfp_premium/answer/1068325?hl=en#cust_params) and the [Example](#adservers-dfp-example) below.
++ `iu` (String): This required param denotes the DFP ad unit.  It *must* be included, in order for us to create a valid request.  For more information, see the [DFP documentation on `iu`](https://support.google.com/dfp_premium/answer/1068325?hl=en#iu) and the [Example](#adservers-dfp-example) below.
++ `cust_params` (Object): If present, this optional param will be merged with the rest of the standard Prebid targeting params (`hb_adid`, `hb_bidder`, etc).  For more information, see the [DFP documentation on `cust_params`](https://support.google.com/dfp_premium/answer/1068325?hl=en#cust_params) and the [Example](#adservers-dfp-example) below.
 
 <a name="adservers-dfp-example" />
 
