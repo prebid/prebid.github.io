@@ -1276,7 +1276,7 @@ pbjs.requestBids({
                 iu: '/19968336/prebid_cache_video_adunit'
                 cust_params: {
                   section: "blog",
-                  anotherKey: ["value1", "value2"]
+                  anotherKey: "anotherValue"
                 }
             }
         });
