@@ -271,6 +271,7 @@ The parameters of the `bidObject` are:
 | `currency`   | Required                                    | 3-letter code defining the currency of the bid.                                                                               | `"EUR"`                              |
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                            | `"http://vid.example.com/9876`       |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                         | `<VAST version="3.0">...`            |
+| `dealId`     | Optional                                    | Deal ID | `"123abc"` |
 
 ### Register User Syncs
 
