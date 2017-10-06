@@ -65,8 +65,8 @@ var videoAdUnits = [
 
 To display an outstream video, two things are needed:
 
-1. A VAST XML document, provided by the Prebid video demand partner.
-2. A Client-side player environment capable of playing a VAST XML creative.  We will refer to this as the `renderer`.
+1. A VAST URL or VAST XML document, provided by the Prebid video demand partner.
+2. A Client-side player environment capable of playing a VAST creative.  We will refer to this as the `renderer`.
 
 Prebid.js will select the `renderer` used to display the outstream video in the following way:
 
