@@ -41,7 +41,7 @@ var videoAdUnits = [
     sizes: [ 640, 480 ],
     mediaTypes: {
       video: {
-        context: "outstream"
+        context: 'outstream'
       }
     },
     bids: [
@@ -88,7 +88,7 @@ pbjs.addAdUnit({
     sizes: [640, 480],
     mediaTypes: {
       video: {
-        context: "outstream"
+        context: 'outstream'
       }
     },
     renderer: {
