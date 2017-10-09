@@ -18,6 +18,9 @@ biddercode_longer_than_12: false
 | placementId | required | The placement ID                                 | `"12345"`           |
 | host        | required | The advertiser specific url provided by AdSpirit | `"adserver.url.de"` |
 
+
+
+
 ---
 layout: bidder
 title: AdSpirit adapter alias connectad
@@ -36,6 +39,9 @@ biddercode_longer_than_12: false
 | Name        | Scope    | Description                                      | Example             |
 | :---        | :----    | :----------                                      | :------             |
 | placementId | required | The placement ID                                 | `"12345"`           |
+
+
+
 
 ---
 layout: bidder
