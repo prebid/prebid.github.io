@@ -31,16 +31,14 @@ Prebid Server is an open source project.  [The source code is hosted under the P
 
 - If you plan to host Prebid Server on your own server, please skip to **Step 2** below. If you do *not* have your own server, please choose from one of the Prebid.org members below to get started.
 
+- **AppNexus**
+  - Go to the [Prebid Server sign-up page](https://prebid.adnxs.com) and click the button to sign up.
+  - Fill out the form details, including your email address.
+  - When approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid.js to use Prebid Server.
+
 - **Rubicon Project**
   - Please send an email to prebidserver@rubiconproject.com and proceed to **Step 2** below. You do not have to wait for a verification email to get started.
 
-- **AppNexus**
-
-  - Go to the [Prebid Server sign-up page](https://prebid.adnxs.com) and click the button to sign up.
-
-  - Fill out the form details, including your email address.
-
-  - When approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid.js to use Prebid Server.
 
 ## Step 2. Download Prebid.js with Prebid Server enabled
 
