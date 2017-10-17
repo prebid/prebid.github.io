@@ -54,7 +54,7 @@ Be sure to duplicate your line item and video creative for each Prebid price buc
 
    {: .alert.alert-warning :}
    This creative URL is **required** in order to show video ads.  It points to
-   a server-side cache hosted by Prebid.org.
+   a server-side cache hosted by Prebid Server.
 
    {: .alert.alert-info :}
    **Prebid Cache and the VAST creative URL warning**  
