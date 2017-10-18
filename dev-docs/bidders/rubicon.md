@@ -15,11 +15,8 @@ biddercode_longer_than_12: false
 ---
 
 
-
 ### Note:
-The Rubicon Fastlane adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information and to enable using this adapter.
-
-For multiple zoneIds support for one given adunit, is necessary duplicate bidder configurations per adUnit.
+The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
 
 ### bid params
 
@@ -31,12 +28,12 @@ For multiple zoneIds support for one given adunit, is necessary duplicate bidder
 | `zoneId` | 0.6.0 | required | The zone ID | `"23948"` |
 | `sizes` | 0.6.0 | optional | Array of Rubicon Project size IDs. If not specified, the system will try to convert from bid.sizes. | `[15]` |
 | `keywords` | 0.6.0 | optional | Array of page-specific keywords. May be referenced in Rubicon Project reports. | `["travel", "tourism"]` |
-| `inventory` | 0.6.0 | optional | An object defining arbitrary key-value pairs concerning the page for use in targeting. | `{"rating":"5-star", "prodtype":"tech"}` |
-| `visitor` | 0.6.0 | optional | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. | `{"ucat":"new", "search":"iphone"}` |
+| `inventory` | 0.6.0 | optional | An object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}` |
+| `visitor` | 0.6.0 | optional | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}` |
 | `position` | 0.6.0 | optional | Set the page position. Valid values are "atf" and "btf". | `"atf"` |
 | `userId` | 0.6.0 | optional | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `"12345abc"` |
 | `floor` | 0.19.0 | optional | Sets the global floor -- no bids will be made under this value. | `0.50` |
-| `video` | 0.19.0 | optional | Video targeting parameters. See the [video section below](#rubicon-video). | `{"language": "en", "playerHeight": "360", "playerWidth": "640", "size_id": "201"}` |
+| `video` | 0.19.0 | optional | Video targeting parameters. See the [video section below](#rubicon-video). | `{"language": "en", "playerHeight": "360", "playerWidth": "640", "size_id": "201"}` |
 
 <a name="rubicon-video"></a>
 
@@ -60,17 +57,18 @@ The following video parameters are supported as of 0.19.0:
 
 ### Configuration
 
-As of Prebid 0.27, the Rubicon adapter initiates user-sync requests that will improve DSP match rate,
-with the aim of generating higher bid prices.
-
-By default, sync requests are fired 5 seconds after the auction is complete. User-sync behavior can be 
-controlled with a call to setConfig():
+The Rubicon adapter has the ability to initiate user-sync requests that will improve DSP user ID match rate,
+with the aim of generating higher bid prices. By default, Rubicon Project sync requests are off. To improve monetization, we recommend firing user syncs 5 seconds after the auction is complete with a call to setConfig().
 
 ```javascript
-$$PREBID_GLOBAL$$.setConfig({ rubicon: {
-    userSync: {
-      enabled: true,  // set enabled to false to turn off user-sync
-      delay: 7000     // milliseconds after auction is complete
-    }
+$$PREBID_GLOBAL$$.setConfig({ 
+   userSync: {
+    enabledBidders: ['rubicon'],
+    iframeEnabled: true
  }});
 ```
+Note: this config should be combined with any other UserSync config calls, as subsequent calls to setConfig for the same attribute overwrite each other.
+
+### Notes
+
+There can only be one siteId and zoneId in an AdUnit. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.

@@ -34,6 +34,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
   * [.bidderSettings](#module_pbjs.bidderSettings)
+  * [userSync](#module_pbjs.userSync)
   * [.addCallback(event, func)](#module_pbjs.addCallback)
   * [.removeCallback(cbId)](#module_pbjs.removeCallback)
   * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String`
@@ -43,6 +44,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
   * [.setConfig(options)](#module_pbjs.setConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) ⇒ `String`
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -316,7 +318,7 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | -- |
-| [codeArr] | Optional | `array` | an array of adUnitodes to set targeting for. |
+| [codeArr] | Optional | `array` | an array of adUnitCodes to set targeting for. |
 
 <hr class="full-rule">
 
@@ -615,7 +617,7 @@ bid along with all non-CPM bids, just specify this flag and the adapter-specific
 As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
-per adapter as needed. Both secenarios are described below.
+per adapter as needed. Both scenarios are described below.
 
 **Keyword targeting for all bidders**
 
@@ -771,6 +773,89 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 
 <hr class="full-rule">
 
+<a name="module_pbjs.userSync"></a>
+
+### UserSync
+
+UserSync configuration allows Publishers to control how adapters behave with respect to dropping pixels or scripts to cookie users with IDs.
+This practice is called 'userSync' because the aim is to let the bidders match IDs between their cookie space and the DSP cookie space.
+There's a good reason for bidders to be doing this -- DSPs are more likely to bid on impressions where they know something about the history of a user.
+However, there are also good reasons why Publishers may want to control the use of these practices:
+
+* page performance - Publishers may wish to move ad-related cookie work to much later in the page load after ads and content have loaded.
+* user privacy - Some publishers may want to opt out of these practices even though it limits their user's values on the open market.
+* security - Publishers may want to control which bidders are trusted to inject images and javascript into their pages.
+
+The default behavior of the platform is to allow every adapter to drop up to 5 image-based user syncs. The sync images will be dropped 3 seconds after the auction starts. Here are some examples of config that will change the default behavior.
+
+Push the user syncs to later in the page load:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    syncDelay: 5000       // write image pixels 5 seconds after the auction
+}});
+{% endhighlight %}
+
+Turn off userSync entirely:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    syncEnabled: false
+}});
+{% endhighlight %}
+
+Allow iframe-based syncs:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    iframeEnabled: true
+}});
+{% endhighlight %}
+
+Only certain adapters are allowed to sync, either images or iframes:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    enabledBidders: ['abc','xyz'], // only these bidders are allowed to sync
+    iframeEnabled: true,
+    syncsPerBidder: 3,            // and no more than 3 syncs at a time
+    syncDelay: 6000,              // 6 seconds after the auction
+}});
+{% endhighlight %}
+
+The same bidders can drop sync pixels, but the timing will be controlled by the page:
+{% highlight js %}
+pbjs.setConfig({ userSync: {
+    enabledBidders: ['abc','xyz'], // only these bidders are allowed to sync, and only image pixels
+    enableOverride: true          // publisher will call pbjs.triggerUserSyncs()
+}});
+{% endhighlight %}
+
+Here are all the options for userSync control:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Type | Description |
+| --- | --- | --- |
+| syncEnabled | boolean | Enables/disables the userSync feature. Defaults to true. |
+| iframeEnabled | boolean | Enables/disables the use of iframes for syncing. Defaults to false. |
+| syncDelay | integer | The delay in milliseconds for autosyncing once the first auction is run. 3000 by default. |
+| syncsPerBidder | integer | Number of registered syncs allowed per adapter. Default is 5. Set to 0 to allow all. |
+| enabledBidders | array | Array of names of trusted adapters which are allowed to sync users. |
+| enableOverride | boolean | Allows the publisher to manually trigger the user syncs to fire by calling pbjs.triggerUserSyncs(). |
+
+As noted, there's a function available to give the page control of when registered userSyncs are added.
+{% highlight js %}
+pbjs.triggerUserSyncs()
+{% endhighlight %}
+
+#### How it works
+
+The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-register-user-sync-pixels) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
+
+* Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
+* Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
+* Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
+
+When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
+
+<hr class="full-rule">
+
 <a name="module_pbjs.addCallback"></a>
 
 ### pbjs.addCallback(event, func) ⇒ `String`
@@ -817,7 +902,7 @@ Remove a callback event
 ### pbjs.buildMasterVideoTagFromAdserverTag(adserverTag, options) ⇒ `String`
 
 {: .alert.alert-danger :}
-This method is deprecated as of version 0.27.0.
+This method is deprecated as of version [0.26.0](https://github.com/prebid/Prebid.js/releases/tag/0.26.0).  Please use [`pbjs.adServers.dfp.buildVideoUrl`](#module_pbjs.adServers.dfp.buildVideoUrl) instead.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -1008,6 +1093,12 @@ Set a global bidder timeout:
 pbjs.setConfig({ bidderTimeout: 3000 });
 {% endhighlight %}
 
+{: .alert.alert-warning :}
+**Bid Timeouts and JavaScript Timers**  
+Note that it's possible for the timeout to be triggered later than expected, leading to a bid participating in the auction later than expected.  This is due to how [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) works in JS: it queues the callback in the event loop in an approximate location that *should* execute after this time but *it is not guaranteed*.  
+With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.  
+For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
+
 Turn on enable send all bids mode:
 
 {% highlight js %}
@@ -1048,8 +1139,7 @@ const customGranularity = {
   'buckets': [{
       'min': 0,
       'max': 3,
-      'increment': 0.01,
-      'cap': true
+      'increment': 0.01
   }]
 };
 
@@ -1125,5 +1215,68 @@ const unsubscribe = getConfig(...);
 unsubscribe(); // no longer listening
 
 {% endhighlight %}
+
+<a name="module_pbjs.adServers.dfp.buildVideoUrl"></a>
+
+### pbjs.adServers.dfp.buildVideoUrl(options) ⇒ `String`
+
+{: .alert.alert-info :}
+This method was added in 0.26.0.  For a usage example and instructions showing how to build Prebid.js to include this method, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
+This method returns a DFP video ad tag URL which is built by combining publisher-provided URL parameters with Prebid.js key-values.
+
+This method takes a single `options` object as an argument, described below:
+
+{: .table .table-bordered .table-striped }
+| Field  | Type   | Description                                                                                                                                     |
+|--------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| adUnit | object | (Required) The Prebid adUnit to which the returned URL will map.                                                                                |
+| bid    | object | (Optional) The Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit. |
+| params | object | (Required) Querystring parameters that will be used to construct the DFP video ad tag URL.                                                      |
+
+The `options.params` object is described below:
+
+{: .table .table-bordered .table-striped }
+| Field          | Type   | Description                                                                                                                                                                                                                                                                                                          | Example                                       |
+|----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| iu             | string | (Required) DFP adUnit ID.  For more information, see the [DFP documentation on `iu`](https://support.google.com/dfp_premium/answer/1068325?hl=en#iu)                                                                                                                                                                 | `/19968336/prebid_cache_video_adunit`         |
+| cust_params    | object | (Optional) Key-value pairs that will be sent to DFP on the video ad tag URL.  If present, any key-values here will be merged with Prebid standard targeting key-values.  For more information, see the [DFP documentation on `cust_params`](https://support.google.com/dfp_premium/answer/1068325?hl=en#cust_params) | {section: "blog", anotherKey: "anotherValue"} |
+| "arbitraryKey" | string | (Optional) Any additional querystring parameters that will be used to construct the DFP video ad tag URL.                                                                                                                                                                                                            | `output: "vast"`                              |
+
+{: .alert.alert-info :}
+Note: Prebid.js will choose reasonable default values for any required DFP URL parameters that are not included in the `options.params` object.
+
+For more information about the options supported by the DFP API, see [the DFP API docs](https://support.google.com/dfp_premium/answer/1068325?hl=en#env).
+
+#### Example Usage
+
+For a usage example in context, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
+```javascript
+pbjs.requestBids({
+    bidsBackHandler: function(bids) {
+        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+            adUnit: videoAdUnit,
+            params: {
+                iu: '/19968336/prebid_cache_video_adunit',
+                cust_params: {
+                  section: "blog",
+                  anotherKey: "anotherValue"
+                },
+                hl: "en",
+                output: "vast",
+                url: "http://www.referer-url.com"
+            }
+        });
+        invokeVideoPlayer(videoUrl);
+    }
+});
+```
+
+This call returns the following DFP video ad tag URL:
+
+```
+https://pubads.g.doubleclick.net/gampad/ads?env=vp&gdfp_req=1&output=vast&unviewed_position_start=1&correlator=1507127916397&sz=640x480&url=http://www.referer-url.com&iu=/19968336/prebid_cache_video_adunit&cust_params=hb_bidder%3DappnexusAst%26hb_adid%3D26d4996ee83709%26hb_pb%3D10.00%26hb_size%3D640x480%26hb_uuid%3D16c887cf-9986-4cb2-a02f-8e9bd025f875%26section%3Dblog%26anotherKey%3DanotherValue&hl=en
+```
 
 </div>

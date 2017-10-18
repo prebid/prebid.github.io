@@ -30,6 +30,7 @@ For information about which bidders support video and native demand, see <a href
 - [Bidders](#bidders)
 - [Common Bid Response Parameters](#common-bid-response-parameters)
 - [Bidders with Video and Native Demand](#bidders-with-video-and-native-demand)
+- [Bidders integrated with Prebid Server](#prebid-server-bidders)
 
 ## Bidders
 
@@ -75,16 +76,37 @@ The following parameters in the `bidResponse` object are common across all bidde
 |-----------------+-----------------------|
 | adkernel        | 'video'               |
 | admixer         | 'video'               |
+| adxcg           | 'video', 'native'     |
+| aerserv         | 'video'               |
 | appnexusAst     | 'video', 'native'     |
 | audienceNetwork | 'video'               |
 | beachfront      | 'video'               |
 | conversant      | 'video'               |
 | getintent       | 'video'               |
+| indexExchange   | 'video'               |
 | pulsepointLite  | 'native'              |
 | rhythmone       | 'video'               |
 | rubicon         | 'video'               |
 | spotx           | 'video'               |
+| tremor          | 'video'               |
+| unruly          | 'video'               |
 | vertamedia      | 'video'               |
+
+<a name="prebid-server-bidders"></a>
+
+## Bidders integrated with Prebid Server
+{: .no_toc }
+
+Demand from the bidders listed below is available via the [Prebid Server integration]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).
+
+- [appnexus](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L598)
+- [districtm](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L599)
+- [indexExchange](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L600)
+- [pubmatic](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L601)
+- [pulsepoint](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L602)
+- [rubicon](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L603)
+- [audienceNetwork](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L605)
+- [lifestreet](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L606)
 
 </div>
 
@@ -92,6 +114,10 @@ The following parameters in the `bidResponse` object are common across all bidde
 
 <div class="bs-docs-section" markdown="1">
 <h2><a name="{{ page.biddercode }}" />{{ page.title }}</h2>
+
+{% if page.s2s_only == true %}  
+<h3>Note:</h3> This is a S2S adapter only.
+{% endif %}
 
 <h3>Bidder Code</h3>
 
@@ -104,6 +130,10 @@ The following parameters in the `bidResponse` object are common across all bidde
 <code>hb_pb_{{ page.biddercode }}</code>
 <code>hb_adid_{{ page.biddercode }}</code>
 <code>hb_size_{{ page.biddercode }}</code>
+
+{% endif %}
+
+{% if page.bidder_supports_deals != false %}
 
 <h3>"Default Deal ID" Ad Server Key</h3>
 
