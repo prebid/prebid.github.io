@@ -231,7 +231,7 @@ The `interpretResponse` function will be called when the browser has received th
 {% highlight js %}
 
     // if the bid response was empty or an error, return []
-    // otherwise parse the response and return a bidReponses array
+    // otherwise parse the response and return a bidResponses array
 
     // The response body and headers can be retrieved like this:
     //
