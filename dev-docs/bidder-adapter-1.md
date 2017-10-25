@@ -162,7 +162,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[]) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions) {}
+    getUserSyncs: function(syncOptions, serverResponses) {}
 }
 registerBidder(spec);
 
@@ -287,11 +287,15 @@ All user ID sync activity must be done in one of two ways:
 {% highlight js %}
 
 {
-    getUserSyncs: function(syncOptions) {
-        if (syncOptions.iframeEnabled) {
+    getUserSyncs: function(syncOptions, serverResponses) {
+        if (syncOptions.iframeEnabled && serverResponses.length > 0) {
+            const syncFromServer = serverResponses[0].body.userSync
             return [{
                 type: 'iframe',
                 url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+            }, {
+                type: 'url',
+                url: syncFromServer.url
             }];
         }
     }
@@ -465,7 +469,7 @@ export const spec = {
         };
         return bidResponses;
     },
-    getUserSyncs: function(syncOptions) {
+    getUserSyncs: function(syncOptions, serverResponses) {
         if (syncOptions.iframeEnabled) {
             return [{
                 type: 'iframe',
