@@ -289,13 +289,12 @@ All user ID sync activity must be done in one of two ways:
 {
     getUserSyncs: function(syncOptions, serverResponses) {
         if (syncOptions.iframeEnabled && serverResponses.length > 0) {
-            const syncFromServer = serverResponses[0].body.userSync
             return [{
                 type: 'iframe',
                 url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
             }, {
-                type: 'url',
-                url: syncFromServer.url
+                type: 'image',
+                url: serverResponses[0].body.userSync.url
             }];
         }
     }
