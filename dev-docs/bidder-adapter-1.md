@@ -288,15 +288,20 @@ All user ID sync activity must be done in one of two ways:
 
 {
     getUserSyncs: function(syncOptions, serverResponses) {
-        if (syncOptions.iframeEnabled && serverResponses.length > 0) {
-            return [{
+        const syncs = []
+        if (syncOptions.iframeEnabled) {
+            syncs.push({
                 type: 'iframe',
                 url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
-            }, {
-                type: 'iframe',
-                url: serverResponses[0].body.userSync.url
-            }];
+            });
         }
+        if (syncOptions.pixelEnabled && serverResponses.length > 0) {
+            syncs.push({
+                type: 'image',
+                url: serverResponses[0].body.userSync.url
+            });
+        }
+        return syncs;
     }
 }
 
@@ -477,15 +482,20 @@ export const spec = {
      * @return {UserSync[]} The user syncs which should be dropped.
      */
     getUserSyncs: function(syncOptions, serverResponses) {
-        if (syncOptions.iframeEnabled && serverResponses.length > 0) {
-            return [{
+        const syncs = []
+        if (syncOptions.iframeEnabled) {
+            syncs.push({
                 type: 'iframe',
-                url: 'ADAPTER_SYNC_URL'
-            }, {
-                type: 'iframe',
-                url: serverResponses[0].body.userSync.url
-            }];
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+            });
         }
+        if (syncOptions.pixelEnabled && serverResponses.length > 0) {
+            syncs.push({
+                type: 'image',
+                url: serverResponses[0].body.userSync.url
+            });
+        }
+        return syncs;
     }
 }
 registerBidder(spec);
