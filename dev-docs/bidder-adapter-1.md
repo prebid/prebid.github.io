@@ -293,7 +293,7 @@ All user ID sync activity must be done in one of two ways:
                 type: 'iframe',
                 url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
             }, {
-                type: 'image',
+                type: 'iframe',
                 url: serverResponses[0].body.userSync.url
             }];
         }
@@ -469,10 +469,13 @@ export const spec = {
         return bidResponses;
     },
     getUserSyncs: function(syncOptions, serverResponses) {
-        if (syncOptions.iframeEnabled) {
+        if (syncOptions.iframeEnabled && serverResponses.length > 0) {
             return [{
                 type: 'iframe',
                 url: 'ADAPTER_SYNC_URL'
+            }, {
+                type: 'iframe',
+                url: serverResponses[0].body.userSync.url
             }];
         }
     }
