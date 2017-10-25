@@ -472,9 +472,9 @@ export const spec = {
     /**
      * Register the user sync pixels which should be dropped after the auction.
      *
-     * @param {SyncOptions} syncOptions An object describing which user sync types are allowed.
-     * @param {ServerResponse[]} serverResponses An array of all the responses from the server.
-     * @return {UserSync[]} An array of user syncs which prebid should add to the page.
+     * @param {SyncOptions} syncOptions Which user syncs are allowed?
+     * @param {ServerResponse[]} serverResponses List of server's responses.
+     * @return {UserSync[]} The user syncs which should be dropped.
      */
     getUserSyncs: function(syncOptions, serverResponses) {
         if (syncOptions.iframeEnabled && serverResponses.length > 0) {
