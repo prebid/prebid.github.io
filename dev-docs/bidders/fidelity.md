@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Fidelity Media
-description: Prebid Fidelity Media Bidder Adaptor
+description: Prebid Fidelity Media Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
@@ -17,4 +17,4 @@ biddercode_longer_than_12: false
 | :------| :--------| :--------------------------------------------------| :------------------------------------|
 | zoneid | required | The ad zone or tag specific ID 					 | `"27248"` 							|
 | floor	 | optional | The floor CPM price for the request				 | `0.1234` 							|
-| server | optional | Bidder Domain  					 				 | `"x.fidelity-media.com" by default` 	|
+| server | optional | Bidder domain  					 				 | `"x.fidelity-media.com" by default` 	|
