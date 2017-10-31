@@ -44,7 +44,7 @@ The native ad responses get placed on specific keys that are sent into your ad s
 + `hb_native_linkurl`
 + `hb_native_cta`
 
-Note that these keys correspond directly to the native object you define in your ad unit (which is [described in more detail below](#native-ad-keys)).
+Note that these keys correspond directly to the `mediaTypes.native` object you define in your ad unit (which is [described in more detail below](#native-ad-keys)).
 
 The ad ops team will then reference these keys in the ad server to set up the title, body, etc.  For ad ops setup instructions, see [Set up Native Ads in your Ad Server]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html).
 
