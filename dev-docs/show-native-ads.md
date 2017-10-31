@@ -145,7 +145,7 @@ pbjs.addAdUnits({
 {% endhighlight %}
 
 {: .alert.alert-danger :}
-For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter.  If there are any bidders without native support in a native ad unit, the request won't be made.  For a list of bidders with native support, see [Bidders with Video and Native Demand]({{site.baseurl}}/bidders.html#bidders-with-video-and-native-demand).
+For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter if you want ads to appear.  If there are any bidders without native support in a native ad unit, requests will not be made to those bidders.  For a list of bidders with native support, see [Bidders with Video and Native Demand]({{site.baseurl}}/bidders.html#bidders-with-video-and-native-demand).
 
 #### Pre-defined native types
 
