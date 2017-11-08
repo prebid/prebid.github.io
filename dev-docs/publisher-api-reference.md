@@ -1353,10 +1353,10 @@ The table below lists the expected behavior of this method when called with vari
 |------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `options.params` only              | Yes                   | None.                                                                                                                                                                                     |
 | `options.params` only              | No                    | Bidder's response must contain `bid.vastUrl` for video ad to serve.                                                                                                                      |
-| `options.params` and `options.url` | Yes                   | Prebid attaches the bid's adserver targeting and rebuilds the URL based on the input by merging publisher input with default values. It does not set `description_url` to `bid.vastUrl`. |
-| `options.params` and `options.url` | No                    | Bidder's response must contain `bid.vastUrl` for video ad to serve.                                                                                                                      |
 | `options.url` only                 | Yes                   | Prebid attaches the bid's adserver targeting and rebuilds the URL based on the input by merging publisher input with default values. It does not set `description_url` to `bid.vastUrl`. |
 | `options.url` only                 | No                    | Bidder's response must contain `bid.vastUrl` for video ad to serve.  Prebid sets `description_url` to `bid.vastUrl`.                                                                     |
+| `options.params` and `options.url` | Yes                   | Prebid attaches the bid's adserver targeting and rebuilds the URL based on the input by merging publisher input with default values. It does not set `description_url` to `bid.vastUrl`. |
+| `options.params` and `options.url` | No                    | Bidder's response must contain `bid.vastUrl` for video ad to serve.                                                                                                                      |
 
 {: .alert.alert-info :}
 **Bid Responses and Prebid Cache**  
