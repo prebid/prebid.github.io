@@ -27,19 +27,19 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids) ⇒ `Array`
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
-  * [.allBidsAvailable()](#module_pbjs.allBidsAvailable) ⇒ `boolean`
-  * [.enableSendAllBids()](#module_pbjs.enableSendAllBids)
-  * [.setPriceGranularity(granularity)](#module_pbjs.setPriceGranularity)
+  * [.allBidsAvailable()](#module_pbjs.allBidsAvailable) ⇒ `boolean` (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
+  * [.enableSendAllBids()](#module_pbjs.enableSendAllBids) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
+  * [.setPriceGranularity(granularity)](#module_pbjs.setPriceGranularity) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
   * [.bidderSettings](#module_pbjs.bidderSettings)
   * [userSync](#module_pbjs.userSync)
-  * [.addCallback(event, func)](#module_pbjs.addCallback)
-  * [.removeCallback(cbId)](#module_pbjs.removeCallback)
-  * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String`
-  * [.setBidderSequence(order)](#module_pbjs.setBidderSequence)
+  * [.addCallback(event, func)](#module_pbjs.addCallback) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
+  * [.removeCallback(cbId)](#module_pbjs.removeCallback) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
+  * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String` (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
+  * [.setBidderSequence(order)](#module_pbjs.setBidderSequence) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
   * [.onEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
@@ -51,6 +51,7 @@ This page has documentation for the public API methods of Prebid.js.
 <a name="module_pbjs.getAdserverTargeting"></a>
 
 ### pbjs.getAdserverTargeting() ⇒ `object`
+
 Returns all ad server targeting for all ad units. Note that some bidder's response may not have been received if you call this function too quickly after the requests are sent.
 
 The targeting keys can be configured in [ad server targeting](#module_pbjs.bidderSettings).
@@ -89,6 +90,7 @@ When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned
 <a name="module_pbjs.getAdserverTargetingForAdUnitCode"></a>
 
 ### pbjs.getAdserverTargetingForAdUnitCode([adunitCode]) ⇒ `object`
+
 This function returns the query string targeting parameters available at this moment for a given ad unit. For full documentation see function [pbjs.getAdserverTargeting()](#module_pbjs.getAdserverTargeting).
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -347,6 +349,10 @@ Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnex
 <a name="module_pbjs.allBidsAvailable"></a>
 
 ### pbjs.allBidsAvailable() ⇒ `bool`
+
+{: .alert.alert-danger :}
+This method is deprecated as of version 1.0.
+
 Returns a bool if all the bids have returned or timed out
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -483,6 +489,7 @@ pbjs.setPriceGranularity(customConfigObject);
 <a name="module_pbjs.renderAd"></a>
 
 ### pbjs.renderAd(doc, id)
+
 This function will render the ad (based on params) in the given iframe document passed through. Note that doc SHOULD NOT be the parent document page as we can't doc.write() asynchronously. This function is usually used in the ad server's creative.
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -500,6 +507,7 @@ This function will render the ad (based on params) in the given iframe document 
 <a name="module_pbjs.removeAdUnit"></a>
 
 ### pbjs.removeAdUnit(adUnitCode)
+
 Remove adUnit from the pbjs configuration
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -516,6 +524,7 @@ Remove adUnit from the pbjs configuration
 <a name="module_pbjs.requestBids"></a>
 
 ### pbjs.requestBids(requestObj)
+
 Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids for all ad units added.
 
 **Kind**: static method of [pbjs](#module_pbjs)
