@@ -13,40 +13,45 @@ pid: 10
 
 This page has documentation for the public API methods of Prebid.js.
 
+{: .alert.alert-danger :}
+Methods marked as deprecated will be removed in version 1.0 (scheduled for release Q4 2017).  
+After a transition period, documentation for these methods will be removed from Prebid.org (likely early 2018).
+
 <a name="module_pbjs"></a>
 
 ## pbjs
 
 * [pbjs](#module_pbjs)
 
-  * [.getAdserverTargeting()](#module_pbjs.getAdserverTargeting) ⇒ `Object`
-  * [.getAdserverTargetingForAdUnitCode([adUnitCode])](#module_pbjs.getAdserverTargetingForAdUnitCode) ⇒ `Object`
-  * [.getBidResponses()](#module_pbjs.getBidResponses) ⇒ `Object`
-  * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode) ⇒ `Object`
-  * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids) ⇒ `Array`
-  * [.getAllWinningBids()](#module_pbjs.getAllWinningBids) ⇒ `Array`
+  * [.getAdserverTargeting()](#module_pbjs.getAdserverTargeting)
+  * [.getAdserverTargetingForAdUnitCode([adUnitCode])](#module_pbjs.getAdserverTargetingForAdUnitCode)
+  * [.getBidResponses()](#module_pbjs.getBidResponses)
+  * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
+  * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
+  * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
-  * [.allBidsAvailable()](#module_pbjs.allBidsAvailable) ⇒ `boolean` (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
-  * [.enableSendAllBids()](#module_pbjs.enableSendAllBids) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
-  * [.setPriceGranularity(granularity)](#module_pbjs.setPriceGranularity) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
+  * [.allBidsAvailable()](#module_pbjs.allBidsAvailable) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
+  * [.enableSendAllBids()](#module_pbjs.enableSendAllBids) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
+  * [.setPriceGranularity(granularity)](#module_pbjs.setPriceGranularity) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
+  * [.addBidResponse(adUnitCode, bid)](#module_pbjs.addBidResponse) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.bidderSettings](#module_pbjs.bidderSettings)
   * [userSync](#module_pbjs.userSync)
-  * [.addCallback(event, func)](#module_pbjs.addCallback) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
-  * [.removeCallback(cbId)](#module_pbjs.removeCallback) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
-  * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) ⇒ `String` (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
-  * [.setBidderSequence(order)](#module_pbjs.setBidderSequence) (<font style="color: red; background-color: yellow;">REMOVED IN 1.0</font> )
+  * [.addCallback(event, func)](#module_pbjs.addCallback) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
+  * [.removeCallback(cbId)](#module_pbjs.removeCallback) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
+  * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
+  * [.setBidderSequence(order)](#module_pbjs.setBidderSequence) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.onEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
   * [.setConfig(options)](#module_pbjs.setConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
-  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) ⇒ `String`
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -351,7 +356,7 @@ Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnex
 ### pbjs.allBidsAvailable() ⇒ `bool`
 
 {: .alert.alert-danger :}
-This method is deprecated as of version 1.0.
+This method is deprecated and will be removed in version 1.0 (scheduled for release Q4 2017).
 
 Returns a bool if all the bids have returned or timed out
 
@@ -370,7 +375,7 @@ Returns a bool if all the bids have returned or timed out
 Added in version 0.9.2
 
 {: .alert.alert-danger :}
-This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
+This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
 After this method is called, Prebid.js will generate bid keywords for all bids, instead of the default behavior of only sending the top winning bid to the ad server.
 
@@ -409,7 +414,7 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 ### pbjs.setPriceGranularity
 
 {: .alert.alert-danger :}
-This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
+This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
 This method is used to configure which price bucket is used for the `hb_pb` keyword.  For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
 
@@ -573,6 +578,17 @@ Define ad units and their corresponding header bidding bidders' tag IDs.  For us
 | :----  |:--------| :-------| :----------- |
 | `bidder` |    required |  string |    The bidder code. Find the [complete list here](bidders.html). |
 | `params` |    required |  object |    The bidder's preferred way of identifying a bid request. Find the [complete reference here](bidders.html). |
+
+<hr class="full-rule">
+
+<a name="module_pbjs.addBidResponse"></a>
+
+### pbjs.addBidResponse(adUnitCode, bid)
+
+{: .alert.alert-danger :}
+This method is deprecated and will be removed in version 1.0 (scheduled for release Q4 2017).
+
+This function should be called by the bidder adapter to register a bid response for the auction.  It will also run any callbacks added using [`pbjs.addCallback`](#module_pbjs.addCallback).
 
 <hr class="full-rule">
 
@@ -882,7 +898,7 @@ When user syncs are run, regardless of whether they are invoked by the platform 
 ### pbjs.addCallback(event, func) ⇒ `String`
 
 {: .alert.alert-danger :}
-This method is deprecated.  Please use [`onEvent`](#module_pbjs.onEvent) or [`offEvent`](#module_pbjs.onEvent) instead.
+This method is deprecated and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`onEvent`](#module_pbjs.onEvent) or [`offEvent`](#module_pbjs.onEvent) instead.
 
 Add a callback event
 
@@ -903,7 +919,7 @@ Add a callback event
 ### pbjs.removeCallback(cbId) ⇒ `String`
 
 {: .alert.alert-danger :}
-This method is deprecated.  Please use [`onEvent`](#module_pbjs.onEvent) or [`offEvent`](#module_pbjs.onEvent) instead.
+This method is deprecated and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`onEvent`](#module_pbjs.onEvent) or [`offEvent`](#module_pbjs.onEvent) instead.
 
 Remove a callback event
 
@@ -923,7 +939,7 @@ Remove a callback event
 ### pbjs.buildMasterVideoTagFromAdserverTag(adserverTag, options) ⇒ `String`
 
 {: .alert.alert-danger :}
-This method is deprecated as of version [0.26.0](https://github.com/prebid/Prebid.js/releases/tag/0.26.0).  Please use [`pbjs.adServers.dfp.buildVideoUrl`](#module_pbjs.adServers.dfp.buildVideoUrl) instead.
+This method is deprecated as of version [0.26.0](https://github.com/prebid/Prebid.js/releases/tag/0.26.0) and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`pbjs.adServers.dfp.buildVideoUrl`](#module_pbjs.adServers.dfp.buildVideoUrl) instead.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -961,7 +977,7 @@ For an example showing how to use this method, see [Show Video Ads with a DFP Vi
 ### pbjs.setBidderSequence(order)
 
 {: .alert.alert-danger :}
-This method is deprecated as of version 0.27.0.  Please use [`setConfig`](#module_pbjs.setConfig) instead.
+This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
 {: .alert.alert-danger :}
 **BREAKING CHANGE**  
