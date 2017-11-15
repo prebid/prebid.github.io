@@ -45,7 +45,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
   * [.setConfig(options)](#module_pbjs.setConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
-  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) ⇒ `String`
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -344,7 +344,6 @@ Returns a bool if all the bids have returned or timed out
 
 <hr class="full-rule">
 
-
 <a name="module_pbjs.enableSendAllBids"></a>
 
 ### pbjs.enableSendAllBids()
@@ -472,6 +471,7 @@ pbjs.setPriceGranularity(customConfigObject);
 <a name="module_pbjs.renderAd"></a>
 
 ### pbjs.renderAd(doc, id)
+
 This function will render the ad (based on params) in the given iframe document passed through. Note that doc SHOULD NOT be the parent document page as we can't doc.write() asynchronously. This function is usually used in the ad server's creative.
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -489,6 +489,7 @@ This function will render the ad (based on params) in the given iframe document 
 <a name="module_pbjs.removeAdUnit"></a>
 
 ### pbjs.removeAdUnit(adUnitCode)
+
 Remove adUnit from the pbjs configuration
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -505,6 +506,7 @@ Remove adUnit from the pbjs configuration
 <a name="module_pbjs.requestBids"></a>
 
 ### pbjs.requestBids(requestObj)
+
 Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids for all ad units added.
 
 **Kind**: static method of [pbjs](#module_pbjs)
@@ -731,7 +733,6 @@ pbjs.bidderSettings = {
 
 {% endhighlight %}
 
-
 ##### 2.3. bidCpmAdjustment
 
 Some bidders return gross prices instead of the net prices (what the publisher will actually
@@ -756,7 +757,6 @@ pbjs.bidderSettings = {
 {% endhighlight %}
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
-
 
 ##### 2.4. sendStandardTargeting
 
@@ -960,10 +960,9 @@ Example use:
 pbjs.setBidderSequence('fixed'); /* defaults to 'random' as of 0.27.0 */
 ```
 
-<a name="module_pbjs.onEvent"></a>
+<hr class="full-rule" />
 
-<p>
-</p>
+<a name="module_pbjs.onEvent"></a>
 
 ### pbjs.onEvent(event, handler, id)
 
@@ -1045,6 +1044,8 @@ The example below shows how to use these methods:
 
 {% endhighlight %}
 
+<hr class="full-rule" />
+
 <a name="module_pbjs.enableAnalytics"></a>
 
 ### pbjs.enableAnalytics(config)
@@ -1054,6 +1055,8 @@ Enable sending analytics data to the analytics provider of your choice.
 For usage, see [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html).
 
 For a list of analytics adapters, see [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html).
+
+<hr class="full-rule" />
 
 <a name="module_pbjs.aliasBidder"></a>
 
@@ -1077,6 +1080,8 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 + `hb_adid_newalias`
 + `hb_size_newalias`
 + `hb_deal_newalias`
+
+<hr class="full-rule" />
 
 <a name="module_pbjs.setConfig"></a>
 
@@ -1194,6 +1199,8 @@ ERROR: setConfig options must be an object
 
 If you don't see that message, you can assume the config object is valid.
 
+<hr class="full-rule" />
+
 <a name="module_pbjs.getConfig"></a>
 
 ### pbjs.getConfig([string])
@@ -1227,38 +1234,50 @@ unsubscribe(); // no longer listening
 
 {% endhighlight %}
 
+<hr class="full-rule" />
+
 <a name="module_pbjs.adServers.dfp.buildVideoUrl"></a>
 
-### pbjs.adServers.dfp.buildVideoUrl(options) ⇒ `String`
+### pbjs.adServers.dfp.buildVideoUrl(options)
 
 {: .alert.alert-info :}
 This method was added in [0.26.0](https://github.com/prebid/Prebid.js/releases/tag/0.26.0).
 
-This method returns a DFP video ad tag URL.  The tag is built by combining publisher-provided parameters with Prebid.js targeting parameters, and then used by your video player.
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
 
-For a longer usage example and instructions showing how to build Prebid.js to include this method, see [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+#### Argument Reference
 
-For more information, see the sections below.
+##### The `options` object
 
-+ [Examples](#buildVideoUrl-example-usage): *Code samples showing how to build a video ad tag URL*.
-+ [The `options` object](#buildVideoUrl-options-object): *Field definitions for the method's only argument*.
-+ [The `options.params` object](#buildVideoUrl-options-params): *Field definitions for the `options.params` sub-object*.
-+ [Usage scenarios and expected behavior](#buildVideoUrl-usage-scenarios-and-expected-behavior): *How the method's different arguments interact with each other and your (optional) usage of the Prebid Cache*.
+{: .table .table-bordered .table-striped }
+| Field    | Type   | Description                                                                                                                                                                        |
+|----------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `adUnit` | object | *Required*. The Prebid ad unit to which the returned URL will map.                                                                                                                 |
+| `params` | object | *Optional*. Querystring parameters that will be used to construct the DFP video ad tag URL. Publisher-supplied values will override values set by Prebid.js. See below for fields. |
+| `url`    | string | *Optional*. The video ad server URL. When given alongside params, the parsed URL will be overwritten with any matching components of params.                                       |
+| `bid`    | object | *Optional*. The Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.                                   |
 
-<a name="buildVideoUrl-example-usage" />
+{: .alert.alert-warning :}
+One or both of options.params and options.url is required. In other words, you may pass in one, the other, or both, but not neither.
+
+##### The `options.params` object
+
+{: .table .table-bordered .table-striped }
+| Field             | Type   | Description                                                                                                                 | Example                                         |
+|-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
+| `iu`              | string | *Required*. DFP ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
+| `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to DFP on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
+| `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
+
+For more information on any of these params, see [the DFP video tag documentation](https://support.google.com/dfp_premium/answer/1068325?hl=en).
 
 #### Examples
 
-In this example, we use the [`options.params`](#buildVideoUrl-options-params) argument to build up the ad tag:
+There are several different ways to build up your video URL, as shown in the examples below:
+
+Using `options.params` only:
 
 ```javascript
-/* Prebid Cache is enabled in this example.  See elsewhere in this
-section for how turning it off affects the usage of
-`dfp.buildVideoUrl`. */
-pbjs.setConfig({
-    usePrebidCache: true
-});
-
 pbjs.requestBids({
     bidsBackHandler: function(bids) {
         var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -1270,8 +1289,8 @@ pbjs.requestBids({
                     anotherKey: "anotherValue"
                 },
                 hl: "en",
-                output: "vast",
-                url: "http://www.referer-url.com"
+                output: "xml_vast2",
+                url: "http://www.example.com",
             }
         });
         invokeVideoPlayer(videoUrl);
@@ -1279,85 +1298,21 @@ pbjs.requestBids({
 });
 ```
 
-This call returns the following DFP video ad tag URL:
-
-```
-https://pubads.g.doubleclick.net/gampad/ads?env=vp&gdfp_req=1&output=vast&unviewed_position_start=1&correlator=1507127916397&sz=640x480&url=http://www.referer-url.com&iu=/19968336/prebid_cache_video_adunit&cust_params=hb_bidder%3DappnexusAst%26hb_adid%3D26d4996ee83709%26hb_pb%3D10.00%26hb_size%3D640x480%26hb_uuid%3D16c887cf-9986-4cb2-a02f-8e9bd025f875%26section%3Dblog%26anotherKey%3DanotherValue&hl=en
-```
-
-In this example, we use the [`options.url`](#buildVideoUrl-options-object) argument to pass in the video ad server directly:
+Using `options.url` only:
 
 ```javascript
 var adserverTag = 'https://pubads.g.doubleclick.net/gampad/ads?'
-+ 'sz=640x480&iu=/19968336/prebid_video_adunit&impl=s&gdfp_req=1'
-+ '&env=vp&output=xml_vast2&correlator=' + Date.now();
-
++ 'sz=640x480&iu=/19968336/prebid_cache_video_adunit&impl=s&gdfp_req=1'
++ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=http://www.example.com'
++ '&cust_params=section%3Dblog%26anotherKey%3DanotherValue';
+ 
 var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
     adUnit: videoAdUnit,
     url: adserverTag
 });
 ```
 
+{: .alert.alert-warning :}
+In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.
+
 </div>
-
-<a name="buildVideoUrl-options-object" />
-
-#### The `options` object
-
-The `options` object has the following fields:
-
-{: .table .table-bordered .table-striped }
-| Field  | Type   | Description                                                                                                                                                                         |
-|--------+--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| adUnit | object | (Required) The Prebid adUnit to which the returned URL will map.                                                                                                                    |
-| bid    | object | (Optional) The Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.                                     |
-| params | object | (Required) Querystring parameters that will be used to construct the DFP video ad tag URL.  Publisher-supplied values will override values set by Prebid.js.  See below for fields. |
-| url    | string | (Optional) The video ad server URL.  When given alongside `params`, the parsed URL will be overwritten with any matching components of `params`.                                    |
-
-<a name="buildVideoUrl-options-params" />
-
-#### The `options.params` object
-
-The `options.params` object contains the parameters needed to form a URL which hits the [DFP API](https://support.google.com/dfp_premium/answer/1068325?hl=en).  It has the following fields:
-
-{: .table .table-bordered .table-striped }
-| Field             | Type   | Description                                                                                                                                                                                                                                   | Example                                         |
-|-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-| iu                | string | (Required) DFP adUnit ID.  For more information, see the [DFP documentation on `iu`](https://support.google.com/dfp_premium/answer/1068325?hl=en#iu)                                                                                          | `/19968336/prebid_cache_video_adunit`           |
-| cust_params       | object | (Optional) Key-value pairs merged with Prebid's targeting values and sent to DFP on the video ad tag URL.  For more information, see the [DFP docs on `cust_params`](https://support.google.com/dfp_premium/answer/1068325?hl=en#cust_params) | `{section: "blog", anotherKey: "anotherValue"}` |
-| `description_url` | string | (Optional) Describes the video.  Required for Ad Exchange.  Prebid.js will build this for you unless you pass it explicitly.                                                                                                                  |                                                 |
-
-{: .alert.alert-info :}
-Note: Prebid.js will choose reasonable default values for any required DFP URL parameters that are not included in the `options.params` object.
-
-For more information about the options supported by the DFP API, see [the DFP API docs](https://support.google.com/dfp_premium/answer/1068325?hl=en#env).
-
-<a name="buildVideoUrl-usage-scenarios-and-expected-behavior" />
-
-#### Usage scenarios and expected behavior
-
-How you call `dfp.buildVideoUrl` may change depending on:
-
-+ Whether you pass in query string parameters via `options.params`, the ad server URL via `options.url`, or both.
-+ Whether you choose to use Prebid Cache, a server-side asset cache hosted by Prebid.org.
-
-Reasons you might pass the `options.url` field include:
-
-- You are not using an ad server, and you want to insert the winning VAST content into your player directly
-- You are using a video ad server that can accept a standalone VAST URL, as opposed to having to pass the VAST URL as a query string parameter  
-
-The table below lists the expected behavior of this method when called with various combinations of arguments and cache usage.
-
-{: .table .table-bordered .table-striped }
-| Argument                           | Prebid Cache Enabled? | Notes                                                                                                                                                                                    |
-|------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `options.params` only              | Yes                   | None.                                                                                                                                                                                     |
-| `options.params` only              | No                    | Bidder's response must contain `bid.vastUrl` for video ad to serve.                                                                                                                      |
-| `options.url` only                 | Yes                   | Prebid attaches the bid's adserver targeting and rebuilds the URL based on the input by merging publisher input with default values. It does not set `description_url` to `bid.vastUrl`. |
-| `options.url` only                 | No                    | Bidder's response must contain `bid.vastUrl` for video ad to serve.  Prebid sets `description_url` to `bid.vastUrl`.                                                                     |
-| `options.params` and `options.url` | Yes                   | Prebid attaches the bid's adserver targeting and rebuilds the URL based on the input by merging publisher input with default values. It does not set `description_url` to `bid.vastUrl`. |
-| `options.params` and `options.url` | No                    | Bidder's response must contain `bid.vastUrl` for video ad to serve.                                                                                                                      |
-
-{: .alert.alert-info :}
-**Bid Responses and Prebid Cache**  
-Video bidders must supply either `bid.vastUrl` or `bid.vastXml`.  They may supply both.  If the video bidder supplies *only* `bid.vastXml` and Prebid Cache is disabled, this will not work and the bid will be dropped from the auction (if Prebid Cache is enabled, this same scenario is fine). If a video bidder supplies neither `bid.vastUrl` or `bid.vastXml`, the bid is dropped.
