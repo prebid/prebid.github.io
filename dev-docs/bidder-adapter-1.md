@@ -313,10 +313,9 @@ All user ID sync activity must be done in one of two ways:
 **Prebid 1.0:** There aren't any differences in video except that there was formerly a separate
 document describing how to build a video adapter. That information has been moved here.
 
-There are a few differences for adapters supporting video auctions. Here are the steps to ensure that an
-adapter properly supports video:
+Follow the steps in this section to ensure that your adapter properly supports video.
 
-**Step 1: Register the adapter as supporting video**
+### Step 1: Register the adapter as supporting video
 
 Add the `supportedMediaTypes` argument to the spec object, and make sure `video` is in the list:
 
@@ -330,12 +329,12 @@ export const spec = {
 
 {% endhighlight %}
 
-**Step 2: Accept video parameters and pass them to your server**
+### Step 2: Accept video parameters and pass them to your server
 
 See the [AppNexus AST adapter]({{site.baseurl}}/dev-docs/bidders.html#appnexusAst) for an example of how
-video parameters may be passed in from the AdUnit.
+video parameters may be passed in from the ad unit.
 
-**Step 3: Respond with VAST or a VAST URL**
+### Step 3: Respond with VAST or a VAST URL
 
 When the bidder returns VAST or a VAST URL in its bid response, it needs to add the result into either `bid.vastXml` or `bid.vastUrl`. For example, here is some [code from the Tremor adapter](https://github.com/prebid/Prebid.js/blob/master/modules/tremorBidAdapter.js#L142) showing how it's done:
 
@@ -357,6 +356,39 @@ function createBid(status, reqBid, response) {
 }
 
 {% endhighlight %}
+
+#### If you would like to participate in auctions for outstream video ads
+
+Prebid.js passes a signal on video impressions that indicates whether the video context is instream or outstream.  You can start ingesting this signal if you wish.
+
+As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), video ad units have a publisher-defined video context, which can be either `"instream"` or `"outstream"`:
+
+```javascript
+...
+mediaTypes: {
+    video: {
+        context: "outstream"
+    },
+},
+...
+```
+
+For an ad unit to play outstream ads, a "renderer" is required.  A renderer is a client-side media player (a JS file) that can play the VAST creative from the bid response.
+
+We currently recommend that publishers define a renderer in their ad units, as a hedge against the fact that adapters may not be providing a renderer.  Prebid.js will always use this publisher-defined renderer, if it is provided.
+
+However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
+
+You can check for the outstream video context in your adapter as shown below, and then modify your response as needed to provide a renderer:
+
+```javascript
+const videoMediaType = utils.deepAccess(bid, 'mediaTypes.video');
+const context        = utils.deepAccess(bid, 'mediaTypes.video.context');
+
+if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
+    /* Change this for your adapter as needed to provide a renderer. */
+}
+```
 
 ## Supporting Native
 
