@@ -12,7 +12,7 @@ hide: false
 # Prebid 1.0 Publisher API Changes
 {:.no_toc}
 
-This document describes the changes to the Publisher API for version 1.0.
+This document describes the changes to the Publisher API for Prebid.js version 1.0.
 
 * TOC
 {:toc}
@@ -20,19 +20,24 @@ This document describes the changes to the Publisher API for version 1.0.
 ## Deprecations 
 The following functions/variables are removed as part of 1.0.
 
-- All `pbjs._*` varaibles will be depracated as part of 1.0. This includes the following
+- All `pbjs._*` variables will be deprecated as part of 1.0. This includes the following:
   - `pbjs._winningBids`
   - `pbjs._bidsReceived`
   - `pbjs._bidsRequested`
   - `pbjs._adUnitCodes`
   - `pbjs._adsReceived`
   - `pbjs.cbTimeout`
-- `pbjs.addCallback` & `pbjs.removeCallback` in favor of [onEvent API](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.onEvent). 
+- `pbjs.addCallback` & `pbjs.removeCallback` in favor of the [onEvent API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
 - `pbjs.allBidsAvailable`
-- `pbjs.buildMasterVideoTagFromAdserverTag` in favor of `pbjs.adServers.dfp.buildVideoUrl`
-- `adUnit.sizeMapping` - see below for [details on sizeConfig]({{site.baseurl}}/dev-docs/prebid-1.0-API.html#size-mapping-changes) 
+- `pbjs.buildMasterVideoTagFromAdserverTag` in favor of [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
+- `adUnit.sizeMapping` in favor of [`pbjs.setConfig({sizeConfig:[ ... ]})`]({{site.baseurl}}/dev-docs/prebid-1.0-API.html#size-mapping-changes)
 
-Other methods are removed as part of the `setConfig` API -  see below `pbjs.setConfig` for details. 
+Other methods are being removed as part of the [`setConfig` API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) - for details, see:
+
++ The [section below describing the new `pbjs.setConfig` API](#pbjs.setConfig).
++ The [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for a complete list of deprecated methods.
+
+<a name="pbjs.setConfig" />
 
 ## New API - `pbjs.setConfig`
 
@@ -65,38 +70,44 @@ The input to `pbjs.setConfig` must be JSON (no JavaScript functions allowed).
 
 pbjs.setConfig({
     "currency": {
-        "adServerCurrency": "JPY", /* Enables currency feature -- loads the rate file */
-        "conversionRateFile": "url" // Allows the publisher to override the default rate file
+        // Enables currency feature -- loads the rate file
+        "adServerCurrency": "JPY",
+        // Allows the publisher to override the default rate file
+        "conversionRateFile": "url"
     },
-    "debug" : true, // Previously `logging`
-    "s2sConfig" : {...},
+    "debug": true, // Previously `logging`
+    "s2sConfig": { ... },
     "priceGranularity": "medium",
     "enableSendAllBids": false, // Default will be `true` as of 1.0
     "bidderSequence": "random",
-    "bidderTimeout" : 700,      // Default for all requests. 
-    "publisherDomain" : "abc.com", // Used for SafeFrame creative. 
-    "pageOptions" : {...},
-    "sizeConfig" : {...}
+    "bidderTimeout": 700, // Default for all requests.
+    "publisherDomain": "abc.com", // Used for SafeFrame creative.
+    "pageOptions": { ... },
+    "sizeConfig": { ... }
 });
 
 {% endhighlight %}
 
 ## Size Mapping Changes 
 
-The previous `sizeMapping` functionality will be deprecated in favor of a more powerful way to describe types of devices and screens that uses the `pbjs.setConfig` method.
+The previous `sizeMapping` functionality will be deprecated in favor of a more powerful way to describe types of devices and screens that passes a `sizeConfig` parameter to the `pbjs.setConfig` method.
 
-**Rules if `sizeConfig` is present**
+If `sizeConfig` is passed to `pbjs.setConfig`:
 
-- Before `requestBids` sends bids requests to adapters, it will evaluate and pick the appropriate `label(s)` based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` based on the `labels` defined (by dropping those adUnits that don't match the label definition).
- - The `sizeConfig.mediaQuery` property allows media queries in the form described [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  They are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
-- If a label doesn't exist on an adUnit, it is automatically included in all requests for bids
-- If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.  
-- The `adUnit.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.sizes`. 
+- Before `requestBids` sends bids requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` based on the `labels` defined (by dropping those ad units that don't match the label definition).
+
+ - The `sizeConfig.mediaQuery` property allows media queries in the form described [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  They are tested using the [`window.matchMedia` API](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia).
+
+- If a label doesn't exist on an ad unit, it is automatically included in all requests for bids.
+
+- If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
+
+- The `adUnit.sizes` selected will be filtered based on the `sizesSupported` property of the matched `sizeConfig`. So the `adUnit.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.sizes`.
 
 ### `sizeConfig` Example
 {:.no_toc}
 
-To set size configuration rules, you can use `pbjs.setConfig` as follows:
+To set size configuration rules, you can pass `sizeConfig` into `pbjs.setConfig` as follows:
 
 {% highlight js %}
 
@@ -131,63 +142,68 @@ pbjs.setConfig({
 ### Labels
 {:.no_toc}
 
-Labels can now be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the adUnit or bidder unless a sizeConfig rule has matched and enabled the label or the label has been enabled manually through `pbjs.setConfig({labels:[]})`.  Defining labels on the adUnit looks like the following:
+Labels can now be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the ad unit or bidder unless a `sizeConfig` rule has matched and enabled the label or the label has been enabled manually through `pbjs.setConfig({labels:[]})`.  Defining labels on the ad unit looks like the following:
 
 {% highlight js %}
 
 pbjs.addAdUnits([{
-  "code": "ad-slot-1",
-  "sizes": [ [ 970,90 ], [ 728,90 ], [ 300,250 ], [ 300,100 ] ],
-  "labels": ["visitor-uk"] 
-  "bids": [  // the full set of bids, not all of which are relevant on all devices
-    {
-      "bidder": "pulsepoint",
-      "labels": [ "desktop", "tablet" ], // flags this bid as relevant only on these screen sizes
-      "params": {
-        "cf": "728X90",
-        "cp": 123456,
-        "ct": 123456
-      }
-    },
-    {
-      "bidder": "pulsepoint",
-      "labels": [ "desktop", "phone" ],
-      "params": {
-        "cf": "300x250",
-        "cp": 123456,
-        "ct": 123456
-      }
-    },
-    {
-      "bidder": "sovrn",
-      "labels": [ "desktop", "tablet" ],
-      "params": {
-        "tagid": "123456"
-      }
-    },
-    {
-      "bidder": "sovrn",
-      "labels": [ "phone" ],
-      "params": {
-        "tagid": "111111"
-      }
-    }
-  ]
-}];
+    "code": "ad-slot-1",
+    "sizes": [
+        [970, 90],
+        [728, 90],
+        [300, 250],
+        [300, 100]
+    ],
+    "labels": ["visitor-uk"]
+    "bids": [ // the full set of bids, not all of which are relevant on all devices
+        {
+            "bidder": "pulsepoint",
+            "labels": ["desktop", "tablet"], // flags this bid as relevant only on these screen sizes
+            "params": {
+                "cf": "728X90",
+                "cp": 123456,
+                "ct": 123456
+            }
+        },
+        {
+            "bidder": "pulsepoint",
+            "labels": ["desktop", "phone"],
+            "params": {
+                "cf": "300x250",
+                "cp": 123456,
+                "ct": 123456
+            }
+        },
+        {
+            "bidder": "sovrn",
+            "labels": ["desktop", "tablet"],
+            "params": {
+                "tagid": "123456"
+            }
+        },
+        {
+            "bidder": "sovrn",
+            "labels": ["phone"],
+            "params": {
+                "tagid": "111111"
+            }
+        }
+    ]
+}]);
 
 {% endhighlight %}
 
 ### Manual Label Configuration
 {:.no_toc}
 
-If an adUnit and/or adUnit.bids[] bidder has labels defined, they will be disabled by default.  Manually setting active labels using `pbjs.setConfig` will re-enable the selected adUnits and/or bidders.
+If an ad unit and/or `adUnit.bids[]` bidder has labels defined, they will be disabled by default.  Manually setting active labels using `pbjs.setConfig` will re-enable the selected ad units and/or bidders.
 
 You can manually turn on labels using the following:
 
 {% highlight js %}
 
 pbjs.setConfig({
-  labels: ['visitor-uk']
+    labels: ['visitor-uk']
 });
 
 {% endhighlight %}
@@ -221,4 +237,4 @@ adUnit = {
 
 ## Further Reading
 
-[Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html)
++ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html)
