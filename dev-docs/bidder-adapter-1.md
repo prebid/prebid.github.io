@@ -359,9 +359,7 @@ function createBid(status, reqBid, response) {
 
 #### If you would like to participate in auctions for outstream video ads
 
-Prebid.js passes a signal on video impressions that indicates whether the video context is instream or outstream.  You can start ingesting this signal if you wish.
-
-As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), video ad units have a publisher-defined video context, which can be either `"instream"` or `"outstream"`:
+As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), video ad units have a publisher-defined video context, which can be either `"instream"` or `"outstream"`.  Video demand partners can choose to ingest this signal for targeting purposes.
 
 ```javascript
 ...
@@ -373,9 +371,9 @@ mediaTypes: {
 ...
 ```
 
-For an ad unit to play outstream ads, a "renderer" is required.  A renderer is a client-side media player (a JS file) that can play the VAST creative from the bid response.
+For an ad unit to play outstream ads, a "renderer" is required.  A renderer is the client-side code (usually a combination of JavaScript, HTML, and CSS) responsible for displaying a creative on a page.  A renderer must provide a player environment capable of playing a video creative (most commonly an XML document).
 
-We currently recommend that publishers define a renderer in their ad units, as a hedge against the fact that adapters may not be providing a renderer.  Prebid.js will always use this publisher-defined renderer, if it is provided.
+If possible, we recommend that publishers associate a renderer with their outstream video ad units.  By doing so, all video-enabled demand partners will be able to participate in the auction, regardless of whether a given demand partner provides a renderer on its bid responses.  Prebid.js will always invoke a publisher-defined renderer on a given ad unit.
 
 However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
 
