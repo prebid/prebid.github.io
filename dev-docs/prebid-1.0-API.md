@@ -17,54 +17,50 @@ This document describes the changes to the Publisher API for Prebid.js version 1
 * TOC
 {:toc}
 
-## Deprecations 
-The following functions/variables are removed as part of 1.0.
+## Removed Functions and Variables
 
-- All `pbjs._*` variables will be deprecated as part of 1.0. This includes the following:
+The following functions and variables will be removed in 1.0:
+
+- All `pbjs._*` variables, including:
   - `pbjs._winningBids`
   - `pbjs._bidsReceived`
   - `pbjs._bidsRequested`
   - `pbjs._adUnitCodes`
   - `pbjs._adsReceived`
   - `pbjs.cbTimeout`
-- `pbjs.addCallback` & `pbjs.removeCallback` in favor of the [onEvent API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
+- `pbjs.addCallback` and `pbjs.removeCallback` in favor of the [onEvent API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
 - `pbjs.allBidsAvailable`
 - `pbjs.buildMasterVideoTagFromAdserverTag` in favor of [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
 - `adUnit.sizeMapping` in favor of [`pbjs.setConfig({sizeConfig:[ ... ]})`]({{site.baseurl}}/dev-docs/prebid-1.0-API.html#size-mapping-changes)
 
-Other methods are being removed as part of the [`setConfig` API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) - for details, see:
+Other methods are being removed as part of the [new `setConfig` API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) - for details, see [the section below describing the new `pbjs.setConfig` API](#pbjs.setConfig).
 
-+ The [section below describing the new `pbjs.setConfig` API](#pbjs.setConfig).
-+ The [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for a complete list of deprecated methods.
+{: .alert.alert-success :}
+For a complete list of methods that will be removed, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
 
 <a name="pbjs.setConfig" />
 
 ## New API - `pbjs.setConfig`
 
-For 1.0, we're **deprecating** the following APIs in favor of a generic "options" param object passed to the [`pbjs.setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) method:
+For 1.0, the following APIs will be removed in favor of a generic "options" param object passed to [`pbjs.setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig):
 
 - `pbjs.bidderTimeout`
-- `pbjs.logging` (* [1](#options-footnotes))
+- `pbjs.logging` (renamed to `debug`)
 - `pbjs.publisherDomain`
 - `pbjs.cookieSyncDelay`
 - `pbjs.setPriceGranularity`
-- `pbjs.enableSendAllBids` (* [2](#options-footnotes))
+- `pbjs.enableSendAllBids` (behavior will default to `true`)
 - `pbjs.setBidderSequence`
 - `pbjs.setS2SConfig`
 - `pbjs.timeoutBuffer`
 
 Mapping will be straightforward with the name of the param being the same, except dropping the `set` prefix where appropriate.
 
-<a name="options-footnotes" />
-
-1. Renamed to `debug`
-2. `pbjs.enableSendAllBids` will default to `true` in 1.0
-
-### `pbjs.setConfig` example
+### `pbjs.setConfig` Example
 {:.no_toc}
 
 {: .alert.alert-warning :}
-The input to `pbjs.setConfig` must be JSON (no JavaScript functions allowed).
+The input to `pbjs.setConfig` must be JSON (no JavaScript functions are allowed).
 
 {% highlight js %}
 
@@ -90,7 +86,8 @@ pbjs.setConfig({
 
 ## Size Mapping Changes 
 
-The previous `sizeMapping` functionality will be deprecated in favor of a more powerful way to describe types of devices and screens that passes a `sizeConfig` parameter to the `pbjs.setConfig` method.
+The previous [`sizeMapping` functionality]({{site.baseurl}}/dev-docs/examples/size-mapping.html) will be removed and replaced by a `sizeConfig` parameter to the `pbjs.setConfig` method that provides a more powerful way to describe types of devices and
+screens.
 
 If `sizeConfig` is passed to `pbjs.setConfig`:
 
@@ -142,7 +139,7 @@ pbjs.setConfig({
 ### Labels
 {:.no_toc}
 
-Labels can now be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the ad unit or bidder unless a `sizeConfig` rule has matched and enabled the label or the label has been enabled manually through `pbjs.setConfig({labels:[]})`.  Defining labels on the ad unit looks like the following:
+Labels can be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the ad unit or bidder unless a `sizeConfig` rule has matched and enabled the label or the label has been enabled manually through `pbjs.setConfig({labels:[]})`.  Defining labels on the ad unit looks like the following:
 
 {% highlight js %}
 
@@ -198,7 +195,7 @@ pbjs.addAdUnits([{
 
 If an ad unit and/or `adUnit.bids[]` bidder has labels defined, they will be disabled by default.  Manually setting active labels using `pbjs.setConfig` will re-enable the selected ad units and/or bidders.
 
-You can manually turn on labels using the following:
+You can manually turn on labels using the following code:
 
 {% highlight js %}
 
@@ -208,12 +205,9 @@ pbjs.setConfig({
 
 {% endhighlight %}
 
-## AdUnit Changes
+## Ad Unit Changes
 
-The `mediaType` attribute is **deprecated** in favor of a `mediaTypes` object. This will accept multiple items (i.e. `video`, `banner`, `native` etc) with a optional key-value pair object nested inside.
-
-### AdUnit Example
-{:.no_toc}
+The `mediaType` attribute is being removed in favor of a `mediaTypes` object. This will accept multiple properties (i.e. `video`, `banner`, `native` etc) with a optional key-value pair object nested inside, e.g.,
 
 {% highlight js %}
 
