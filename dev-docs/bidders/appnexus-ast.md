@@ -19,6 +19,10 @@ adapter include:
 - Will continue to be upgraded as enhancements are made to Prebid.js
   for expanding capabilities
 
+{: .alert.alert-danger :}
+**All AppNexus placements on the page must come from the same publisher**  
+All AppNexus placement IDs across all ad units included in the page-level auction **MUST** belong to the same publisher object in the AppNexus system.  If there are placements in the bid request from two or more different publishers, the ad call will fail.  This may cause the page to break entirely, depending on how the publisher has implemented Prebid.js.
+
 ### bid params
 
 {: .table .table-bordered .table-striped }
