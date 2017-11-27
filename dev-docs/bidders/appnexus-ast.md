@@ -20,8 +20,8 @@ adapter include:
   for expanding capabilities
 
 {: .alert.alert-danger :}
-**All AppNexus placements on the page must come from the same publisher**  
-All AppNexus placement IDs across all ad units included in the page-level auction **MUST** belong to the same publisher object in the AppNexus system.  If there are placements in the bid request from two or more different publishers, the ad call will fail.  This may cause the page to break entirely, depending on how the publisher has implemented Prebid.js.
+All AppNexus placements included in a single call to `requestBids` must belong to the same publisher object.  If placements from two different publishers are included in the call, the AppNexus bidder may not return any demand for those placements. <br />
+*Note: This requirement does not apply to adapters that are [aliasing]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) the AppNexus adapter.*
 
 ### bid params
 
