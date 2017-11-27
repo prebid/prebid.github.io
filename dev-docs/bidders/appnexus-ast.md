@@ -19,6 +19,10 @@ adapter include:
 - Will continue to be upgraded as enhancements are made to Prebid.js
   for expanding capabilities
 
+{: .alert.alert-warning :}
+**Prebid 1.0 Breaking Change**  
+As part of the transition to Prebid 1.0, the "AppNexus AST" adapter will replace the legacy AppNexus adapter (and be renamed to "AppNexus" without the "AST").  The only breaking change from the developer's perspective is that keywords are now passed using the `keywords` parameter documented below.
+
 {: .alert.alert-danger :}
 All AppNexus placements included in a single call to `requestBids` must belong to the same publisher object.  If placements from two different publishers are included in the call, the AppNexus bidder may not return any demand for those placements. <br />
 *Note: This requirement does not apply to adapters that are [aliasing]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) the AppNexus adapter.*
