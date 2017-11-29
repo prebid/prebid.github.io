@@ -1,5 +1,5 @@
 ---
-redirect_to: "/dev-docs/bidder-adapter.html"
+redirect_to: "/dev-docs/bidder-adaptor.html"
 layout: page
 title: Add Video Support to an Existing Bidder Adapter
 description: Documentation on how to add video support to an existing bidder adapter
