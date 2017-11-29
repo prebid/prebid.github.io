@@ -106,7 +106,7 @@ Module that connects to Example's demand sources
 
 ### Designing your Bid Params
 
-The parameters of your ad request will be stored in the ad unit's `bid.params` object.  You can include tag ID, site ID, ad size, keywords, and other data, such as video parameters.
+The parameters of your ad request will be stored in the ad unit's `bid.params` object.  You can include tag info, ad size, keywords, and other data such as video parameters.
 
 For more information about the kinds of information that can be passed using these parameters, see the example below, as well as [the existing bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
 
