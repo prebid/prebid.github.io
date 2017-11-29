@@ -147,7 +147,7 @@ Compared to previous versions of Prebid, the new `BaseAdapter` model saves the a
 * `isBidRequestValid` - Verify the the `AdUnits.bids`, respond with `true` (valid) or `false` (invalid).
 * `buildRequests` - Takes an array of valid bid requests, all of which are guaranteed to have passed the `isBidRequestValid()` test.
 * `interpretResponse` - Parse the response and generate one or more bid objects.
-* `getUserSyncs` - If the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.
+* `getUserSyncs` - If the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.  For more information, see [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs) below.
 
 A high level example of the structure:
 
