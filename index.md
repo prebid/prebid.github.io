@@ -59,6 +59,7 @@ description: Free and open source solutions for publishers to quickly implement 
 
     <div class="col-xs-6 col-sm-4"><h3>AppNexus</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>OpenX</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Yieldmo</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>PubMatic</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Rubicon</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Yieldbot</h3></div>
