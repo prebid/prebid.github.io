@@ -28,7 +28,7 @@ With each adapter submission, there are two files required to be in the pull req
 * `modules/exampleBidAdapter.js`: the file containing the code for the adapter
 * `modules/exampleBidAdapter.md`: a markdown file containing key information about the adapter:
    * The contact email of the adapter's maintainer.
-   * A test ad unit that will consistently return test creatives. This helps us to ensure future Prebid.js updates do not break your adapter.  Note that if your adapter supports video, outstream video, or native, you must also provide example parameters for each type.
+   * A test ad unit that will consistently return test creatives. This helps us to ensure future Prebid.js updates do not break your adapter.  Note that if your adapter supports video (instream and/or outstream context) or native, you must also provide example parameters for each type.
 
 Example markdown file:
 
