@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Kummma
+title: Kumma
 description: Prebid Kumma Bidder Adapter
 
 top_nav_section: dev_docs
