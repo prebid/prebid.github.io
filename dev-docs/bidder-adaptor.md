@@ -21,7 +21,32 @@ This page has instructions for writing your own bidder adapter.  The instruction
 * TOC
 {:toc}
 
-## Planning your adapter
+## Planning your Adapter
+
++ [Required Adapter Conventions](#bidder-adaptor-Required-Adapter-Conventions)
++ [Required Files](#bidder-adaptor-Required-Files)
++ [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
+
+<a name="bidder-adaptor-Required-Adapter-Conventions" />
+
+### Required Adapter Conventions
+
+In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the following required conventions:
+
+* *Support multiple instances*: All adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on mutable global variables.
+* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime.
+* *Must support HTTPS*: Within a secure page context, the request to the bidder's server must also be secure.
+* *Compressed responses*: All bid responses from the bidder's server must be gzipped.
+* *Bid responses may not use JSONP*: All requests must be AJAX with JSON responses.
+* *All user-sync activity must be registered via the provided functions*: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
+* *Adapters may not use the `$$PREBID_GLOBAL$$` variable*: Instead, they must load any necessary functions and call them directly.
+
+{: .alert.alert-danger :}
+Failure to follow any of the above conventions could lead to delays in approving your adapter for inclusion in Prebid.js.
+
+<a name="bidder-adaptor-Required-Files" />
+
+### Required Files
 
 With each adapter submission, there are two files required to be in the pull request:
 
@@ -77,30 +102,13 @@ Module that connects to Example's demand sources
 
 {% endhighlight %}
 
-### Required adapter conventions
+<a name="bidder-adaptor-Designing-your-Bid-Params" />
 
-Adapters must follow the conventions listed below.
+### Designing your Bid Params
 
-In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the following required conventions:
+The parameters of your ad request will be stored in the ad unit's `bid.params` object.  You can include tag ID, site ID, ad size, keywords, and other data, such as video parameters.
 
-* *Support multiple instances*: All adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on mutable global variables.
-* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime.
-* *Must support HTTPS*: Within a secure page context, the request to the bidder's server must also be secure.
-* *Compressed responses*: All bid responses from the bidder's server must be gzipped.
-* *Bid responses may not use JSONP*: All requests must be AJAX with JSON responses.
-* *All user-sync activity must be registered via the provided functions*: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
-* *Adapters may not use the `$$PREBID_GLOBAL$$` variable*: Instead, they must load any necessary functions and call them directly.
-
-{: .alert.alert-danger :}
-Failure to follow any of the above conventions could lead to delays in approving your adapter for inclusion in Prebid.js.
-
-### Design your bid params
-
-The AdUnit's `bid.params` object will define the parameters of your ad request.  You can include tag ID, site ID, ad size, keywords, and other data, such as video parameters.
-
-For more information about the kinds of information that can be passed using these parameters, see [the existing bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
-
-A sample AdUnit with parameters for the 'example' bidder:
+For more information about the kinds of information that can be passed using these parameters, see the example below, as well as [the existing bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
 
 {% highlight js %}
 
