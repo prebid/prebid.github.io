@@ -94,7 +94,7 @@ pbjs.que.push(function() {
 
 ### The `s2sConfig` object
 
-See [Prebid Server adapter docs]({{site.baseurl}}/dev-docs/add-a-prebid-server-adapter.html) for a list of the fields in the `s2sConfig` object:
+See the [Prebid Server adapter docs]({{site.baseurl}}/dev-docs/add-a-prebid-server-adapter.html) for a list of the fields in the `s2sConfig` object.
 
 
 {: .alert.alert-info :}

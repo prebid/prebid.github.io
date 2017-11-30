@@ -34,12 +34,12 @@ Configuration options
 {: .table .table-bordered .table-striped }
 | Field        | Type          | Required? | Description                                                              |
 |--------------+---------------+-----------+--------------------------------------------------------------------------|
-| `accountId`  | String        | X         | Prebid Server account ID                                                 |
-| `enabled`    | Boolean       | X         | Enables S2S; default: `false`                                            |
-| `bidders`    | Array[String] | X         | List of bidder codes; must have been enabled during Prebid.js build      |
+| `accountId`  | String        | X         | Prebid Server account ID.                                                |
+| `enabled`    | Boolean       | X         | Enables S2S; default: `false`.                                           |
+| `bidders`    | Array[String] | X         | List of bidder codes; must have been enabled during Prebid.js build.     |
 | `endpoint`   | String        | X         | Set the endpoint. For example: `https://prebid.adnxs.com/pbs/v1/auction` |
-| `timeout`    | Number        |           | Bidder timeout, in milliseconds; default: `1000`                         |
-| `syncEndpoint` | String     |           | Configures the user-sync endpoint. Highly recommended                     |
-| `adapter`    | String        |           | Adapter code; default: `"prebidServer"`                                  |
-| `cookieSet`  | Boolean       |           | Set to `false` to opt out of cookieset/link rewriting; default: `true`   |
+| `timeout`    | Number        |           | Bidder timeout, in milliseconds; default: `1000`.                         |
+| `syncEndpoint` | String     |           | Configures the user-sync endpoint. Highly recommended.                    |
+| `adapter`    | String        |           | Adapter code; default: `"prebidServer"`.                                  |
+| `cookieSet`  | Boolean       |           | Set to `false` to opt out of cookieset/link rewriting; default: `true`.   |
 | `secure`     | Integer       |           | Override Prebid Server's determination of whether the request needs secure assets. Set to `1` to force secure assets on the response, or `0` for non-secure assets. |
