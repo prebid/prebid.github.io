@@ -4,6 +4,8 @@ title: Module - Prebid Server Testing
 description: Adds A/B test support to ease analysis of server-side header bidding
 top_nav_section: dev_docs
 nav_section: modules
+module_code : s2sTesting
+display_name : Prebid Server Testing
 ---
 
 <div class="bs-docs-section" markdown="1">
