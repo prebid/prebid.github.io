@@ -386,35 +386,37 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 
 ## Supporting Native
 
-In order for your bidder to support the native media type, you need 2 things:
+In order for your bidder to support the native media type:
 
-1. Your (server-side) bidder needs to respond with a bid that has native information.
-2. Your (client-side) bidder adapter needs to unpack the server's bid into a Prebid-compatible bid populated with the required native information.
+1. Your (server-side) bidder needs to return a response that contains native assets.
+2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
+3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
 
-For example, below is the [code in the AppNexus AST adapter](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusAstBidAdapter.js#L192) that achieves #2.  As you can see, we:
+The adapter code sample below fulfills requirement #2, unpacking the server's reponse and:
 
-1. Check for native information on the bid response.
-2. Fill in the bid's `native` object with information from the bid.
+1. Checking for native assets on the response.
+2. If present, filling in the `native` object with those assets.
 
 {% highlight js %}
 
-/* Does the bidder respond with native information? */
-} else if (rtbBid.rtb.native) {
+/* Does the bidder respond with native assets? */
+else if (rtbBid.rtb.native) {
 
-  const native = rtbBid.rtb.native;
+    /* If yes, let's populate our response with native assets */
 
-  /* Bidder supports native, so let's populate our Prebid-compatible
-  bid with native info */
-  bid.native = {
-    title: native.title,
-    body: native.desc,
-    cta: native.ctatext,
-    sponsoredBy: native.sponsored,
-    image: native.main_img && native.main_img.url,
-    icon: native.icon && native.icon.url,
-    clickUrl: native.link.url,
-    impressionTrackers: native.impression_trackers,
-  };
+    const native = rtbBid.rtb.native;
+
+    bid.native = {
+        title: native.title,
+        body: native.desc,
+        cta: native.ctatext,
+        sponsoredBy: native.sponsored,
+        image: native.main_img && native.main_img.url,
+        icon: native.icon && native.icon.url,
+        clickUrl: native.link.url,
+        impressionTrackers: native.impression_trackers,
+    };
+}
 
 {% endhighlight %}
 
