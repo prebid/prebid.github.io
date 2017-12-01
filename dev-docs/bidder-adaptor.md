@@ -271,12 +271,15 @@ The parameters of the `bidObject` are:
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 
-### Register User Syncs
+<a name="bidder-adaptor-Registering-User-Syncs" />
 
-All user ID sync activity must be done in one of two ways:
+### Registering User Syncs
 
-1. The `getUserSyncs` callback of the `BaseAdapter` model
-2. The `userSync.registerSync` function
+All user ID sync activity should be done using the `getUserSyncs` callback of the `BaseAdapter` model.
+
+Given an array of all the responses from the server, `getUserSyncs` is used to determine which user syncs should occur. The order of syncs in the `serverResponses` array matters. The most important ones should come first, since publishers may limit how many are dropped on their page.
+
+See below for an example implementation.  For more examples, search for `getUserSyncs` in the [modules directory in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 {% highlight js %}
 
