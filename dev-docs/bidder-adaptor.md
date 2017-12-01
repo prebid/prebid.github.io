@@ -420,9 +420,11 @@ else if (rtbBid.rtb.native) {
 
 {% endhighlight %}
 
-## Unit Tests
+## Adding Unit Tests
 
-Every adapter submission must include unit tests. See existing test suites in [test/spec/modules](https://github.com/prebid/Prebid.js/tree/master/test/spec/modules).
+Every adapter submission must include unit tests.  For details about adapter testing requirements, see the **Writing Tests** section of [CONTRIBUTING.md](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+
+For example tests, see [the existing adapter test suites](https://github.com/prebid/Prebid.js/tree/master/test/spec/modules).
 
 <a name="bidder-example"></a>
 
