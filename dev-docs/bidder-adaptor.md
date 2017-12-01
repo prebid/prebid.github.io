@@ -327,9 +327,11 @@ The design of these parameters may vary depending on what your server-side bidde
 
 For examples of video parameters accepted by different adapters, see [the list of bidders with video demand]({{site.baseurl}}/dev-docs/bidders.html#bidder-video-native).
 
-### Step 3: Respond with VAST or a VAST URL
+### Step 3: Respond with a VAST URL or raw VAST XML
 
-When the bidder returns VAST or a VAST URL in its bid response, it needs to add the result into either `bid.vastXml` or `bid.vastUrl`. For example, here is some [code from the Tremor adapter](https://github.com/prebid/Prebid.js/blob/master/modules/tremorBidAdapter.js#L142) showing how it's done:
+The returned VAST URL or raw VAST XML should be added into `bid.vastUrl` or `bid.vastXml`, respectively.
+
+For example, here is some [code from the Tremor adapter](https://github.com/prebid/Prebid.js/blob/master/modules/tremorBidAdapter.js#L142) showing how it's done:
 
 {% highlight js %}
 
