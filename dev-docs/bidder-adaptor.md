@@ -321,8 +321,11 @@ export const spec = {
 
 ### Step 2: Accept video parameters and pass them to your server
 
-See the [AppNexus AST adapter]({{site.baseurl}}/dev-docs/bidders.html#appnexusAst) for an example of how
-video parameters may be passed in from the ad unit.
+Video parameters are often passed in from the ad unit in a `video` object.
+
+The design of these parameters may vary depending on what your server-side bidder accepts.  If possible, we recommend using the video parameters in the [OpenRTB specification](https://iabtechlab.com/specifications-guidelines/openrtb/).
+
+For examples of video parameters accepted by different adapters, see [the list of bidders with video demand]({{site.baseurl}}/dev-docs/bidders.html#bidder-video-native).
 
 ### Step 3: Respond with VAST or a VAST URL
 
