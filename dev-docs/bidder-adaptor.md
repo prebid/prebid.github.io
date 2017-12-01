@@ -246,7 +246,6 @@ The `interpretResponse` function will be called when the browser has received th
         currency: CURRENCY,
         netRevenue: true,
         ttl: TIME_TO_LIVE,
-        referrer: REFERER,
         ad: CREATIVE_BODY
     };
     bidResponses.push(bidResponse);
