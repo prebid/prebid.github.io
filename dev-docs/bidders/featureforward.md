@@ -11,7 +11,6 @@ hide: true
 biddercode: featureforward
 
 biddercode_longer_than_12: true
-
 ---
 
 ### bid params
