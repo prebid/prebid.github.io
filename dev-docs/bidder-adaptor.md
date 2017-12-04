@@ -204,11 +204,11 @@ There are several IDs present in the bidRequest object:
 The ServerRequest objects returned from your adapter have this structure:
 
 {: .table .table-bordered .table-striped }
-| Attribute | Type             | Description                                                        | Example Value             |
-|-----------+------------------+--------------------------------------------------------------------+---------------------------|
-| type      | string           | Which HTTP method should be used                                   | GET/POST                  |
-| endpoint  | string           | The endpoint for the request.                                      | "http://bids.example.com" |
-| data      | string or object | Data to be sent in the POST request. Objects will be sent as JSON. |                           |
+| Attribute | Type             | Description                                                        | Example Value               |
+|-----------+------------------+--------------------------------------------------------------------+-----------------------------|
+| `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
+| `url`     | String           | The endpoint for the request.                                      | `"http://bids.example.com"` |
+| `data`    | String or Object | Data to be sent in the POST request. Objects will be sent as JSON. |                             |
 
 Here's a sample block of code returning a ServerRequest object:
 
