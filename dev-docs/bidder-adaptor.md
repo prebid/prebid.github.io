@@ -330,6 +330,39 @@ The design of these parameters may vary depending on what your server-side bidde
 
 For examples of video parameters accepted by different adapters, see [the list of bidders with video demand]({{site.baseurl}}/dev-docs/bidders.html#bidder-video-native).
 
+#### Ingesting the Video Context
+
+Video ad units have a publisher-defined video context, which can be either `"instream"` or `"outstream"`.  Video demand partners can choose to ingest this signal for targeting purposes.  For example, the ad unit shown below has the outstream video context:
+
+```javascript
+...
+mediaTypes: {
+    video: {
+        context: "outstream"
+    },
+},
+...
+```
+
+You can check for the video context in your adapter as shown below, and then modify your response as needed:
+
+```javascript
+const videoMediaType = utils.deepAccess(bid, 'mediaTypes.video');
+const context        = utils.deepAccess(bid, 'mediaTypes.video.context');
+
+if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
+    /* Do something here. */
+}
+```
+
+#### Outstream Video Renderers
+
+As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), for an ad unit to play outstream ads, a "renderer" is required.  A renderer is the client-side code (usually a combination of JavaScript, HTML, and CSS) responsible for displaying a creative on a page.  A renderer must provide a player environment capable of playing a video creative (most commonly an XML document).
+
+If possible, we recommend that publishers associate a renderer with their outstream video ad units.  By doing so, all video-enabled demand partners will be able to participate in the auction, regardless of whether a given demand partner provides a renderer on its bid responses.  Prebid.js will always invoke a publisher-defined renderer on a given ad unit.
+
+However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
+
 ### Step 3: Respond with a VAST URL or raw VAST XML
 
 The returned VAST URL or raw VAST XML should be added into `bid.vastUrl` or `bid.vastXml`, respectively.
@@ -352,37 +385,6 @@ function createBid(status, reqBid, response) {
 }
 
 {% endhighlight %}
-
-#### If you would like to participate in auctions for outstream video ads
-
-As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), video ad units have a publisher-defined video context, which can be either `"instream"` or `"outstream"`.  Video demand partners can choose to ingest this signal for targeting purposes.
-
-```javascript
-...
-mediaTypes: {
-    video: {
-        context: "outstream"
-    },
-},
-...
-```
-
-For an ad unit to play outstream ads, a "renderer" is required.  A renderer is the client-side code (usually a combination of JavaScript, HTML, and CSS) responsible for displaying a creative on a page.  A renderer must provide a player environment capable of playing a video creative (most commonly an XML document).
-
-If possible, we recommend that publishers associate a renderer with their outstream video ad units.  By doing so, all video-enabled demand partners will be able to participate in the auction, regardless of whether a given demand partner provides a renderer on its bid responses.  Prebid.js will always invoke a publisher-defined renderer on a given ad unit.
-
-However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
-
-You can check for the outstream video context in your adapter as shown below, and then modify your response as needed to provide a renderer:
-
-```javascript
-const videoMediaType = utils.deepAccess(bid, 'mediaTypes.video');
-const context        = utils.deepAccess(bid, 'mediaTypes.video.context');
-
-if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
-    /* Change this for your adapter as needed to provide a renderer. */
-}
-```
 
 ## Supporting Native
 
