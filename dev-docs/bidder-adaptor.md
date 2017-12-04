@@ -135,14 +135,23 @@ For more information about the kinds of information that can be passed using the
 
 {% endhighlight %}
 
-## Create the Adapter
+## Creating the Adapter
 
 {: .alert.alert-success :}
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
 
++ [Overview](#bidder-adaptor-Overview)
++ [Building the Request](#bidder-adaptor-Building-the-Request)
++ [Interpreting the Response](#bidder-adaptor-Interpreting-the-Response)
++ [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
+
+<a name="bidder-adaptor-Overview" />
+
+### Overview
+
 The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`.
 
-Compared to previous versions of Prebid, the new `BaseAdapter` model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the `BaseAdapter` approach defines 4 entry points:
+Compared to previous versions of Prebid, the new `BaseAdapter` model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the `BaseAdapter` approach defines the following entry points:
 
 * `isBidRequestValid` - Verify the the `AdUnits.bids`, respond with `true` (valid) or `false` (invalid).
 * `buildRequests` - Takes an array of valid bid requests, all of which are guaranteed to have passed the `isBidRequestValid()` test.
@@ -169,16 +178,19 @@ registerBidder(spec);
 
 {% endhighlight %}
 
+<a name="bidder-adaptor-Building-the-Request" />
+
 ### Building the Request
 
 When the page asks Prebid.js for bids, your module's `buildRequests` function will be executed. Building the request will use data from several places:
 
-* *AdUnit params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
+* *Ad Unit Params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
 * *Transaction ID*: `bidderRequest.bids[].transactionId` should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
 * *Ad Server Currency*: If your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
 * *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. We suggest using the `utils.getTopWindowUrl()` function to obtain the referrer.
 
-Sample array entry for validBidRequests[]:
+Sample array entry for `validBidRequests[]`:
+
 {% highlight js %}
 [{
   "bidder": "example",
@@ -197,9 +209,9 @@ Sample array entry for validBidRequests[]:
 
 {: .alert.alert-success :}
 There are several IDs present in the bidRequest object:  
-- **Bid ID** is unique across AdUnits and Bidders.  
-- **Auction ID** is unique per call to requestBids(), but is the same across AdUnits. And finally,  
-- **Transaction ID** is unique for each AdUnit with a call to requestBids, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
+- **Bid ID** is unique across ad units and bidders.  
+- **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.  
+- **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
 
 The ServerRequest objects returned from your adapter have this structure:
 
@@ -221,6 +233,8 @@ return {
 };
 
 {% endhighlight %}
+
+<a name="bidder-adaptor-Interpreting-the-Response" />
 
 ### Interpreting the Response
 
@@ -430,7 +444,7 @@ For example tests, see [the existing adapter test suites](https://github.com/pre
 
 <a name="bidder-example"></a>
 
-## Full Bid Adapter Example using the `BaseAdapter`
+## Full Bid Adapter Example
 
 {% highlight js %}
 
@@ -458,12 +472,17 @@ export const spec = {
          */
         buildRequests: function(validBidRequests) {
             const payload = {
-                // use bidderRequest.bids[] to get bidder-dependent request info
+                /*
+                Use `bidderRequest.bids[]` to get bidder-dependent
+                request info.
 
-                // if your bidder supports multiple currencies, use config.getConfig(currency)
-                // to find which one the ad server needs
+                If your bidder supports multiple currencies, use
+                `config.getConfig(currency)` to find which one the ad
+                server needs.
 
-                // pull requested transaction ID from bidderRequest.bids[].transactionId
+                Pull the requested transaction ID from
+                `bidderRequest.bids[].transactionId`.
+                */
             };
             const payloadString = JSON.stringify(payload);
             return {
@@ -479,8 +498,8 @@ export const spec = {
          * @return {Bid[]} An array of bids which were nested inside the server.
          */
         interpretResponse: function(serverResponse, bidRequest) {
-            // const serverBody = serverResponse.body;
-            // const headerValue = serverResponse.headers.get('some-response-header')
+            // const serverBody  = serverResponse.body;
+            // const headerValue = serverResponse.headers.get('some-response-header');
             const bidResponses = [];
             const bidResponse = {
                 requestId: bidRequest.bidId,
