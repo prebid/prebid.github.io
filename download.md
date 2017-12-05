@@ -71,6 +71,7 @@ function submit_download() {
 function get_form_data() {
     var bidders = [];
     var analytics = [];
+    var version = $('.selectpicker').val();
 
     var bidder_check_boxes = $('.bidder-check-box');
     for (var i = 0; i < bidder_check_boxes.length; i++) {
@@ -93,6 +94,7 @@ function get_form_data() {
     form_data['company'] = $('#input-company').val();
     form_data['bidders'] = bidders;
     form_data['analytics'] = analytics;
+    form_data['version'] = version;
 
     return form_data;
 }
@@ -113,14 +115,20 @@ function get_form_data() {
 {: .lead :}
 To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
 
-### Option 1: Select header bidding partners
+### Option 1: Customize your download here
 
 {% assign bidder_pages = (site.pages | where: "layout", "bidder") %}
 {% assign module_pages = (site.pages | where: "nav_section", "modules") %}
 
 <form>
 <div class="row">
-<h4>Bidder Adapters</h4>
+<h4>Select Prebid Version</h4>
+<select class="selectpicker">
+  <option value="">0.34.0</option>
+  <option>1.0.0-pre</option>
+</select>
+
+<h4>Select Bidder Adapters</h4>
 
 {% for page in bidder_pages %}
   {% if page.s2s_only == true %}  
@@ -224,7 +232,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 
 <br>
 <p>
-(Version 0.34.0)
+
 </p>
 
 <div class="form-group">
