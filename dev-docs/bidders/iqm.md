@@ -1,7 +1,13 @@
-
-| layout | title | description | top_nav_section | nav_section | hide | biddercode | biddercode_longer_than_12 |
-| :----- | :---- | :------------------------ | :-------------- | :---------- | :--- | :--------- | :---------- |
-| bidder | iQM | Prebid iQM Bidder Adaptor  | dev_docs | reference | true | iqm | false |
+---
+layout: bidder
+title: iQM
+description: Prebid iQM Bidder Adaptor
+top_nav_section: dev_docs
+nav_section: reference
+hide: true
+biddercode: iqm
+biddercode_longer_than_12: false 
+---
 
 
 ### bid params
