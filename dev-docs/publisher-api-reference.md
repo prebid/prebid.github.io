@@ -549,33 +549,151 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 
 ### pbjs.addAdUnits(Array)
 
-Define ad units and their corresponding header bidding bidders' tag IDs.  For usage examples, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
+Takes an array of one or more ad unit objects and adds it to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html) page.
 
-**Kind**: static method of [pbjs](#module_pbjs)
++ [Ad Unit Properties](#addAdUnits-AdUnitProperties)
++ [Examples](#addAdUnits-Examples)
 
-{: .table .table-bordered .table-striped }
-| Param | Type | Description |
-| --- | --- | --- |
-| Array | `Object` &#124; `Array of objects` | of adUnits or single adUnit Object. |
+<a name="addAdUnits-AdUnitProperties">
 
-**adUnit**
+#### Ad Unit Properties
 
-{: .table .table-bordered .table-striped }
-| Name     | Scope     | Type          | Description                                                                                                                                                                                                   |
-| :----    | :-------- | :-------      | :-----------                                                                                                                                                                                                  |
-| `code`   | required  | string        | A unique identifier that you create and assign to this ad unit.  This identifier will be used to set query string targeting on the ad. If you're using GPT, we recommend setting this to the slot element ID. |
-| `sizes`  | required  | array         | All the sizes that this ad unit can accept.                                                                                                                                                                   |
-| `bids`   | required  | array         | An array of bid objects. Find the [complete reference here](bidders.html).                                                                                                                                    |
-| `labels` | optional  | array<string> | An array of string labels, used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
-
-**bid**
+See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope     | Type          | Description                                                                                                                                                                                                  |
-| :----    | :-------- | :-------      | :-----------                                                                                                                                                                                                 |
-| `bidder` | required  | string        | The bidder code. Find the [complete list here](bidders.html).                                                                                                                                                |
-| `params` | required  | object        | The bidder's preferred way of identifying a bid request. Find the [complete reference here](bidders.html).                                                                                                   |
-| `labels` | optional  | array<string> | An array of string labels, used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
+| Name         | Scope    | Type          | Description                                                                                                                                                                       |
+|--------------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`       | Required | String        | Unique identifier that you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.          |
+| `sizes`      | Required | Array         | All the sizes that this ad unit can accept.                                                                                                                                       |
+| `bids`       | Required | Array<Object> | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
+| `mediaTypes` | Optional | Object        | Defines the media type of the ad.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
+| `labels`     | Optional | Array<String> | Used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
+
+<a name="addAdUnits-Bids" />
+
+##### Bids
+
+See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
+
+{: .table .table-bordered .table-striped }
+| Name     | Scope    | Type          | Description                                                                                                                                                                       |
+|----------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](bidders.html).                                                                                          |
+| `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](bidders.html).                                                  |
+| `labels` | Optional | Array<String> | Used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
+
+<a name="addAdUnits-MediaTypes" />
+
+##### Media Types
+
+See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#addAdUnits-Examples) below.
+
+{: .table .table-bordered .table-striped }
+| Name     | Scope                                 | Type   | Description                                                                                                        |
+|----------+---------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
+| `native` | Required, unless `video` is present.  | Object | Defines properties of a native ad.  For an example native ad unit, see [the native example below](#adUnit-native). |
+| `video`  | Required, unless `native` is present. | Object | Defines properties of a video ad.  For examples, see [the video examples below](#adUnit-video).                    |
+
+<a name="addAdUnits-Examples">
+
+#### Examples
+
++ [Native](#adUnit-native)
++ [Video](#adUnit-video)
+
+<a name="adUnit-native">
+
+##### Native
+
+For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    sizes: slot.size,
+    mediaTypes: {
+        native: {
+            image: {
+                required: true
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            clickUrl: {
+                required: true
+            },
+            body: {
+                required: true
+            },
+            icon: {
+                required: true
+            },
+        },
+        bids: [{
+            bidder: 'appnexusAst',
+            params: {
+                placementId: '9880618'
+            }
+        }, ]
+    }
+})
+```
+
+<a name="adUnit-video">
+
+##### Video
+
+For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: 'video',
+    sizes: [640, 480],
+    mediaTypes: {
+        video: {
+            context: "instream"
+        },
+    },
+    bids: [{
+        bidder: 'appnexusAst',
+        params: {
+            placementId: '9333431',
+            video: {
+                skippable: true,
+                playback_methods: ['auto_play_sound_off']
+            }
+        }
+    }]
+});
+```
+
+For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
+
+```javascript
+pbjs.addAdUnit({
+    code: 'video1',
+    sizes: [640, 480],
+    mediaTypes: {
+        video: {
+            context: 'outstream'
+        }
+    },
+    renderer: {
+        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        render: function(bid) {
+            ANOutstreamVideo.renderAd({
+                targetId: bid.adUnitCode,
+                adResponse: bid.adResponse,
+            });
+        }
+    },
+    ...
+})
+```
 
 <hr class="full-rule">
 
