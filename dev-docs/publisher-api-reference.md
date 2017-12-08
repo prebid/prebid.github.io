@@ -1179,7 +1179,7 @@ pbjs.setConfig({
 
 The user sync configuration options described in this section give publishers control over how adapters behave with respect to dropping pixels or scripts to cookie users with IDs.
 This practice is called "user syncing" because the aim is to let the bidders match IDs between their cookie space and the DSP's cookie space.
-There's a good reason for bidders to be doing this -- DSPs are more likely to bid on impressions where they know something about the history of a user.
+There's a good reason for bidders to be doing this -- DSPs are more likely to bid on impressions where they know something about the history of the user.
 However, there are also good reasons why publishers may want to control the use of these practices:
 
 - *Page performance*: Publishers may wish to move ad-related cookie work to much later in the page load after ads and content have loaded.
@@ -1187,8 +1187,8 @@ However, there are also good reasons why publishers may want to control the use 
 - *Security*: Publishers may want to control which bidders are trusted to inject images and JavaScript into their pages.
 
 {: .alert.alert-warning :}
-**FIXME: VERIFY DEFAULT BEHAVIOR**  
-The default behavior of Prebid.js is to allow every adapter to drop up to 5 image-based user syncs.  The sync images will be dropped 3 seconds after the auction starts.
+**User syncing default behavior**
+The default behavior of Prebid.js is to allow every adapter to drop up to 5 image-based user syncs.  The sync images will be dropped 3 seconds after the auction ends.
 
 For more information, see the sections below.
 
@@ -1206,13 +1206,12 @@ For descriptions of all the properties that control user syncs, see the table be
 | Attribute        | Type    | Description                                                                                             |
 |------------------+---------+---------------------------------------------------------------------------------------------------------|
 | `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.                                               |
+| `pixelEnabled`   | Boolean | Enable/disable the use of pixels for user syncing.  Default: `true`.                                    |
 | `iframeEnabled`  | Boolean | Enable/disable the use of iFrames for syncing. Default: `false`.                                        |
-| `syncDelay`      | Integer | Delay in milliseconds for syncing once the first auction is run. Default: `3000`.                       |
 | `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
+| `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
 | `enabledBidders` | Array   | Trusted adapters which are allowed to do user syncing.                                                  |
-| `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. | 
-
-**FIXME: VERIFY `enableOverride` DEFAULT.**
+| `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
 
