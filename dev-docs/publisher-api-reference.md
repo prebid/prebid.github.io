@@ -1186,9 +1186,9 @@ However, there are also good reasons why publishers may want to control the use 
 - *User privacy*: Some publishers may want to opt out of these practices even though it limits their users' values on the open market.
 - *Security*: Publishers may want to control which bidders are trusted to inject images and JavaScript into their pages.
 
-{: .alert.alert-warning :}
-**User syncing default behavior**
-The default behavior of Prebid.js is to allow every adapter to drop up to 5 image-based user syncs.  The sync images will be dropped 3 seconds after the auction ends.
+{: .alert.alert-info :}
+**User syncing default behavior**  
+If you don't tweak any of the settings described in this section, the default behavior of Prebid.js is to wait 3 seconds after the auction ends, and then allow every adapter to drop up to 5 image-based user syncs.
 
 For more information, see the sections below.
 
