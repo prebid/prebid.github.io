@@ -7,6 +7,7 @@ nav_section: reference
 biddercode: appnexus
 biddercode_longer_than_12: false
 hide: true
+prebid_1_0_supported : true
 ---
 
 ### bid params
@@ -40,6 +41,8 @@ var adUnits = [{
         }
     }]
 }]
+
+foobar
 {% endhighlight %}
 
 (Sizes set in `adUnit` object will also apply to the AppNexus bid requests.)

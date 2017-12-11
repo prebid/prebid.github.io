@@ -26,6 +26,16 @@ $(function(){
     }
     return;
   });
+
+  $( ".selectpicker" ).change(function() {
+    if(this.value === '1.0.0') {
+      $('.adapters .col-md-4').hide();
+      $('.prebid_1_0').show();
+    }
+    else{
+       $('.adapters .col-md-4').show();
+    }
+  });
 });
 
 function submit_download() {
@@ -126,16 +136,17 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <select class="selectpicker">
   <!-- empty value indicates legacy --> 
   <option value="">0.34.0</option>
-  <option>1.0.0-pre</option>
+  <option>1.0.0</option>
 </select>
 
-<h4>Select Bidder Adapters</h4>
 
+<h4>Select Bidder Adapters</h4>
+<div class="adapters">
 {% for page in bidder_pages %}
   {% if page.s2s_only == true %}  
     {% continue %}
   {% endif %}
-<div class="col-md-4">
+<div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
  <div class="checkbox">
   <label>
   {% if page.aliasCode %} 
@@ -148,6 +159,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 </div>
 </div>
 {% endfor %}
+</div>
 </div>
 
 <br>
