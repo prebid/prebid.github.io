@@ -41,8 +41,6 @@ var adUnits = [{
         }
     }]
 }]
-
-foobar
 {% endhighlight %}
 
 (Sizes set in `adUnit` object will also apply to the AppNexus bid requests.)
