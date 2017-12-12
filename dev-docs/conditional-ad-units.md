@@ -8,7 +8,7 @@ description: Using labels for conditional ad units
 
 # Conditional Ad Units
 
-The `sizeConfig` feature is useful for [responsive ad designs]({{site.baseurl}}/dev-docs/feature-responsive.html), but a number of other scenarios are supported as well:
+The `sizeConfig` feature is useful for [responsive ad designs]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads), but a number of other scenarios are supported as well:
 
 1. What if some bidders should be skipped for some devices?
 1. What if some bidders have different parameters for different devices?
@@ -228,7 +228,7 @@ Only one conditional may be specified on a given AdUnit or bid -- if both `label
 
 ## Further Reading
 
-+ [Responsive ad designs]({{site.baseurl}}/dev-docs/feature-responsive.html)
++ [Responsive ad designs]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads)
 + [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
 
 
