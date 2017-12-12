@@ -67,13 +67,12 @@ pbjs.setConfig({
     },
     debug: true, // Previously `logging`
     s2sConfig: { ... },
-    priceGranularit": "medium",
+    priceGranularity: "medium",
     enableSendAllBids: false, // Default will be `true` as of 1.0
     bidderSequence: "random", // Default is random
     bidderTimeout: 700, // Default for all requests.
     publisherDomain: "abc.com", // Used for SafeFrame creative.
     pageOptions: { ... },
-    sizeConfig: { ... },
     cache: {url: "<prebid cache url>"}
 });
 
@@ -81,7 +80,7 @@ pbjs.setConfig({
 
 ## No More Default Endpoints
 
-In Prebid 0.x there were defaults for the Prebid Server endpoints and the video cache URL. With 1.0, these defaults have been removed to be vendor neutral, so all publisher pages must define them via pbjs.setConfig(). The same functionality as 0.x may be achieved with this setConfig: 
+In Prebid 0.x there were defaults for the Prebid Server endpoints and the video cache URL. With 1.0, these defaults have been removed to be vendor neutral, so all publisher pages must define them via pbjs.setConfig(). The same functionality as 0.x may be achieved as shown below: 
 
 {% highlight js %}
 
