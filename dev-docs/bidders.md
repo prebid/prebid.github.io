@@ -66,6 +66,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 | `height` | Integer | Height of the bid creative in pixels                                                                                                                              | `250`                                                                   |
 | `adTag`  | String  | Creative's payload in HTML                                                                                                                                        | `"<html><body><img src=\"http://cdn.com/creative.png\"></body></html>"` |
 
+<a name="bidders-with-video-and-native-demand"></a>
 <a name="bidder-video-native"></a>
 
 ## Bidders with Video and Native Demand
@@ -74,6 +75,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 {: .table .table-bordered .table-striped }
 | Bidder          | Supported Media Types |
 |-----------------+-----------------------|
+| adkernelAdn     | 'video'               |
 | adkernel        | 'video'               |
 | admixer         | 'video'               |
 | adxcg           | 'video', 'native'     |
@@ -84,9 +86,12 @@ The following parameters in the `bidResponse` object are common across all bidde
 | conversant      | 'video'               |
 | getintent       | 'video'               |
 | indexExchange   | 'video'               |
+| optimatic       | 'video'               |
 | pulsepointLite  | 'native'              |
+| readpeak        | 'native'              |
 | rhythmone       | 'video'               |
 | rubicon         | 'video'               |
+| sekindoUM       | 'video'               |
 | spotx           | 'video'               |
 | tremor          | 'video'               |
 | unruly          | 'video'               |
@@ -99,15 +104,15 @@ The following parameters in the `bidResponse` object are common across all bidde
 
 Demand from the bidders listed below is available via the [Prebid Server integration]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).
 
-- [appnexus](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L598)
-- [districtm](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L599)
-- [indexExchange](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L600)
-- [pubmatic](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L601)
-- [pulsepoint](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L602)
-- [rubicon](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L603)
-- [audienceNetwork](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L605)
-- [lifestreet](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L606)
-
+- [appnexus](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L740)
+- [districtm](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L741)
+- [indexExchange](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L742)
+- [pubmatic](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L743)
+- [pulsepoint](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L744)
+- [rubicon](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L745)
+- [audienceNetwork](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L747)
+- [lifestreet](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L748)
+- [conversant](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L749)
 </div>
 
 {% for page in bidder_pages %}

@@ -162,7 +162,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[]) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions) {}
+    getUserSyncs: function(syncOptions, serverResponses) {}
 }
 registerBidder(spec);
 
@@ -231,12 +231,15 @@ The `interpretResponse` function will be called when the browser has received th
 {% highlight js %}
 
     // if the bid response was empty or an error, return []
-    // otherwise parse the response and return a bidReponses array
+    // otherwise parse the response and return a bidResponses array
 
+    // The response body and headers can be retrieved like this:
+    //
+    // const serverBody = serverResponse.body;
+    // const headerValue = serverResponse.headers.get('some-response-header')
     const bidResponses = [];
     const bidResponse = {
         requestId: bidRequest.bidId,
-        bidderCode: spec.code,
         cpm: CPM,
         width: WIDTH,
         height: HEIGHT,
@@ -261,8 +264,7 @@ The parameters of the `bidObject` are:
 {: .table .table-bordered .table-striped }
 | Key          | Scope                                       | Description                                                                                                                                     | Example                              |
 |--------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
-| `id`         | Required                                    | The bid ID. Used to tie this bid back to the request.                                                                                           | 12345                                |
-| `bidderCode` | Required                                    | The bidder code.                                                                                                                                | `"example"`                          |
+| `requestId`         | Required                                    | The bid ID. Used to tie this bid back to the request.                                                                                           | 12345                                |
 | `cpm`        | Required                                    | The bid price. We recommend the most granular price a bidder can provide                                                                        | 3.5764                               |
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                        | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                      | 250                                  |
@@ -285,13 +287,21 @@ All user ID sync activity must be done in one of two ways:
 {% highlight js %}
 
 {
-    getUserSyncs: function(syncOptions) {
+    getUserSyncs: function(syncOptions, serverResponses) {
+        const syncs = []
         if (syncOptions.iframeEnabled) {
-            return [{
+            syncs.push({
                 type: 'iframe',
                 url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
-            }];
+            });
         }
+        if (syncOptions.pixelEnabled && serverResponses.length > 0) {
+            syncs.push({
+                type: 'image',
+                url: serverResponses[0].body.userSync.url
+            });
+        }
+        return syncs;
     }
 }
 
@@ -303,10 +313,9 @@ All user ID sync activity must be done in one of two ways:
 **Prebid 1.0:** There aren't any differences in video except that there was formerly a separate
 document describing how to build a video adapter. That information has been moved here.
 
-There are a few differences for adapters supporting video auctions. Here are the steps to ensure that an
-adapter properly supports video:
+Follow the steps in this section to ensure that your adapter properly supports video.
 
-**Step 1: Register the adapter as supporting video**
+### Step 1: Register the adapter as supporting video
 
 Add the `supportedMediaTypes` argument to the spec object, and make sure `video` is in the list:
 
@@ -320,12 +329,12 @@ export const spec = {
 
 {% endhighlight %}
 
-**Step 2: Accept video parameters and pass them to your server**
+### Step 2: Accept video parameters and pass them to your server
 
 See the [AppNexus AST adapter]({{site.baseurl}}/dev-docs/bidders.html#appnexusAst) for an example of how
-video parameters may be passed in from the AdUnit.
+video parameters may be passed in from the ad unit.
 
-**Step 3: Respond with VAST or a VAST URL**
+### Step 3: Respond with VAST or a VAST URL
 
 When the bidder returns VAST or a VAST URL in its bid response, it needs to add the result into either `bid.vastXml` or `bid.vastUrl`. For example, here is some [code from the Tremor adapter](https://github.com/prebid/Prebid.js/blob/master/modules/tremorBidAdapter.js#L142) showing how it's done:
 
@@ -333,8 +342,6 @@ When the bidder returns VAST or a VAST URL in its bid response, it needs to add 
 
 function createBid(status, reqBid, response) {
     let bid = bidfactory.createBid(status, reqBid);
-    bid.code = baseAdapter.getBidderCode();
-    bid.bidderCode = baseAdapter.getBidderCode();
 
     if (response) {
         bid.cpm = response.price;
@@ -347,6 +354,37 @@ function createBid(status, reqBid, response) {
 }
 
 {% endhighlight %}
+
+#### If you would like to participate in auctions for outstream video ads
+
+As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), video ad units have a publisher-defined video context, which can be either `"instream"` or `"outstream"`.  Video demand partners can choose to ingest this signal for targeting purposes.
+
+```javascript
+...
+mediaTypes: {
+    video: {
+        context: "outstream"
+    },
+},
+...
+```
+
+For an ad unit to play outstream ads, a "renderer" is required.  A renderer is the client-side code (usually a combination of JavaScript, HTML, and CSS) responsible for displaying a creative on a page.  A renderer must provide a player environment capable of playing a video creative (most commonly an XML document).
+
+If possible, we recommend that publishers associate a renderer with their outstream video ad units.  By doing so, all video-enabled demand partners will be able to participate in the auction, regardless of whether a given demand partner provides a renderer on its bid responses.  Prebid.js will always invoke a publisher-defined renderer on a given ad unit.
+
+However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
+
+You can check for the outstream video context in your adapter as shown below, and then modify your response as needed to provide a renderer:
+
+```javascript
+const videoMediaType = utils.deepAccess(bid, 'mediaTypes.video');
+const context        = utils.deepAccess(bid, 'mediaTypes.video.context');
+
+if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
+    /* Change this for your adapter as needed to provide a renderer. */
+}
+```
 
 ## Supporting Native
 
@@ -439,15 +477,15 @@ export const spec = {
         /**
          * Unpack the response from the server into a list of bids.
          *
-         * @param {*} serverResponse A successful response from the server.
+         * @param {ServerResponse} serverResponse A successful response from the server.
          * @return {Bid[]} An array of bids which were nested inside the server.
          */
         interpretResponse: function(serverResponse, bidRequest) {
+            // const serverBody = serverResponse.body;
+            // const headerValue = serverResponse.headers.get('some-response-header')
             const bidResponses = [];
-            // loop through serverResponses {
             const bidResponse = {
                 requestId: bidRequest.bidId,
-                bidderCode: spec.code,
                 cpm: CPM,
                 width: WIDTH,
                 height: HEIGHT,
@@ -463,13 +501,29 @@ export const spec = {
         };
         return bidResponses;
     },
-    getUserSyncs: function(syncOptions) {
+    
+    /**
+     * Register the user sync pixels which should be dropped after the auction.
+     *
+     * @param {SyncOptions} syncOptions Which user syncs are allowed?
+     * @param {ServerResponse[]} serverResponses List of server's responses.
+     * @return {UserSync[]} The user syncs which should be dropped.
+     */
+    getUserSyncs: function(syncOptions, serverResponses) {
+        const syncs = []
         if (syncOptions.iframeEnabled) {
-            return [{
+            syncs.push({
                 type: 'iframe',
-                url: 'ADAPTER_SYNC_URL'
-            }];
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+            });
         }
+        if (syncOptions.pixelEnabled && serverResponses.length > 0) {
+            syncs.push({
+                type: 'image',
+                url: serverResponses[0].body.userSync.url
+            });
+        }
+        return syncs;
     }
 }
 registerBidder(spec);
