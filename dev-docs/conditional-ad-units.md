@@ -10,10 +10,10 @@ description: Using labels for conditional ad units
 
 The `sizeConfig` feature is useful for [responsive ad designs]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads), but a number of other scenarios are supported as well:
 
-1. What if some bidders should be skipped for some devices?
-1. What if some bidders have different parameters for different devices?
-1. What if some ad unit auctions should be skipped entirely for some devices?
-1. What if some bid requests apply only to users originating from certain countries? 
+1. [What if some bidders should be skipped for some devices?](#usecase-1)
+1. [What if some bidders have different parameters for different devices?](#usecase-2)
+1. [What if some ad unit auctions should be skipped entirely for some devices?](#usecase-3)
+1. [What if some bid requests apply only to users originating certain from countries?](#usecase-4)
 
 By supporting these scenarios, header bidding can be more efficient - the browser can send bids to a more surgical set of bidders based on device size or other attributes the page code can create.
 
@@ -24,8 +24,7 @@ The basic steps are:
 
 See below for examples.
 
-* TOC
-{:toc}
+<a href="#usecase-1"></a>
 
 ## Use Case: What if some bidders should be skipped for some devices?
 
@@ -40,15 +39,15 @@ pbjs.setConfig({
   sizeConfig: [{
        mediaQuery: '(min-width: 1200px)',
        sizesSupported: [[970,90], [728,90], [300,250], [160,600]],
-       label: [ "display"]
+       labels: [ "display"]
      }, {
        mediaQuery: '(min-width: 768px) and (max-width: 1199px)',
        sizesSupported: [[468,60], [300,250], [160,600]],
-       label: [ "tablet"]
+       labels: [ "tablet"]
      }, {
        mediaQuery: '(min-width: 0px) and (max-width: 767px)',
        sizesSupported: [[300,50],[320,50],[120,20],[168,28]],
-       label: [ "phone"]
+       labels: [ "phone"]
   }]
 });
 
@@ -88,7 +87,9 @@ How this works:
     1. The first bid doesn't have any conditional logic, so is present in every auction.
     1. The second bid requires that "phone" be present in the label array, otherwise it won't be part of the auction.
 
-## Use case: What if some bidders have different parameters for different devices?
+<a href="#usecase-2"></a>
+
+## Use Case: What if some bidders have different parameters for different devices?
 
 For reporting and targeting purposes, Publishers and SSPs sometimes break out different inventory structures for different platforms.
 
@@ -136,6 +137,8 @@ How this works:
     1. The first bid requires that the label "display" be present in the array. It's not, so that bid is skipped.
     1. The second bid requires that either "phone" or "tablet" be present. Since tablet is in the label array, that bid is activated and the correct placement is sent to bidderA.
 
+<a href="#usecase-3"></a>
+
 ## Use Case: What if some ad unit auctions should be skipped entirely for some devices?
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
@@ -165,6 +168,8 @@ var AdUnits = [{
 
 {% endhighlight %}
 
+<a href="#usecase-4"></a>
+
 ## Use Case: What if some bid requests apply only to users originating certain from countries? 
 
 Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids) function as an argument.
@@ -179,7 +184,7 @@ a label can be implemented and applied to make the bid conditional.
 If (europeanUser) {
     reqArgs={labels:['eur']};
 } 
-requestBids(reqArgs);
+pbjs.requestBids(reqArgs);
 {% endhighlight %}
 
 Then this label can be applied to conditions in the AdUnit just like labels that originate from `sizeConfig`. E.g.
