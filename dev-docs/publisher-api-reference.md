@@ -561,13 +561,13 @@ Takes an array of one or more ad unit objects and adds it to the Prebid auction.
 See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
 {: .table .table-bordered .table-striped }
-| Name         | Scope    | Type          | Description                                                                                                                                                                       |
-|--------------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`       | Required | String        | Unique identifier that you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.          |
-| `sizes`      | Required | Array         | All the sizes that this ad unit can accept.                                                                                                                                       |
-| `bids`       | Required | Array<Object> | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
-| `mediaTypes` | Optional | Object        | Defines the media type of the ad.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
-| `labels`     | Optional | Array<String> | Used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
+| Name         | Scope    | Type                                  | Description                                                                                                                                                                       |
+|--------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`       | Required | String                                | Unique identifier that you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.          |
+| `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
+| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
+| `mediaTypes` | Optional | Object                                | Defines the media type of the ad.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
+| `labels`     | Optional | Array<String>                         | Used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
 
 <a name="addAdUnits-Bids" />
 
@@ -589,10 +589,11 @@ See the table below for the list of properties in the `bids` array of the ad uni
 See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#addAdUnits-Examples) below.
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope                                 | Type   | Description                                                                                                        |
-|----------+---------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
-| `native` | Required, unless `video` is present.  | Object | Defines properties of a native ad.  For an example native ad unit, see [the native example below](#adUnit-native). |
-| `video`  | Required, unless `native` is present. | Object | Defines properties of a video ad.  For examples, see [the video examples below](#adUnit-video).                    |
+| Name     | Scope                                                        | Type   | Description                                                                                                        |
+|----------+--------------------------------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
+| `native` | Required, unless either of the other properties are present. | Object | Defines properties of a native ad.  For an example native ad unit, see [the native example below](#adUnit-native). |
+| `video`  | Required, unless either of the other properties are present. | Object | Defines properties of a video ad.  For examples, see [the video examples below](#adUnit-video).                    |
+| `banner` | Required, unless either of the other properties are present. | Object | Defines properties of a banner ad.  For examples, see [the banner example below](#adUnit-banner).                  |
 
 <a name="addAdUnits-Examples">
 
@@ -600,6 +601,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 + [Native](#adUnit-native)
 + [Video](#adUnit-video)
++ [Banner](#adUnit-banner)
 
 <a name="adUnit-native">
 
@@ -692,6 +694,30 @@ pbjs.addAdUnit({
         }
     },
     ...
+})
+```
+
+<a name="adUnit-banner">
+
+##### Banner
+
+For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    sizes: slot.size,
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250], [300, 600]]
+        },
+        bids: [{
+            bidder: 'appnexusAst',
+            params: {
+                placementId: '9880618'
+            }
+        }, ]
+    }
 })
 ```
 
