@@ -1168,7 +1168,8 @@ pbjs.setConfig({
         bidders: ['appnexus', 'pubmatic'],
         timeout: 1000,
         adapter: 'prebidServer',
-        endpoint: 'https://prebid.adnxs.com/pbs/v1/auction'
+        endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
+        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
     }
 })
 {% endhighlight %}
