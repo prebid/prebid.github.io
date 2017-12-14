@@ -1437,7 +1437,7 @@ pbjs.addAdUnits([{
 
 {% endhighlight %}
 
-See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.md) for additional use cases around labels.
+See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
 <a name="setConfig-Generic-Configuration" />
 

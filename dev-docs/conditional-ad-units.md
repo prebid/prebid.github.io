@@ -2,18 +2,20 @@
 layout: page
 title: Conditional Ad Units - <font color="red">NEW!</font>
 description: Using labels for conditional ad units
+top_nav_section: dev_docs
+nav_section: features
+hide: false
 ---
 
 <div class="bs-docs-section" markdown="1">
 
 # Conditional Ad Units
+{:.no_toc}
 
 The `sizeConfig` feature is useful for [responsive ad designs]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads), but a number of other scenarios are supported as well:
 
-1. [What if some bidders should be skipped for some devices?](#usecase-1)
-1. [What if some bidders have different parameters for different devices?](#usecase-2)
-1. [What if some ad unit auctions should be skipped entirely for some devices?](#usecase-3)
-1. [What if some bid requests apply only to users originating certain from countries?](#usecase-4)
+* TOC
+{:toc}
 
 By supporting these scenarios, header bidding can be more efficient - the browser can send bids to a more surgical set of bidders based on device size or other attributes the page code can create.
 
@@ -24,9 +26,7 @@ The basic steps are:
 
 See below for examples.
 
-<a href="#usecase-1"></a>
-
-## Use Case: What if some bidders should be skipped for some devices?
+## What if some bidders should be skipped for some devices?
 
 Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile 
 to send them requests from display or tablets.
@@ -87,9 +87,7 @@ How this works:
     1. The first bid doesn't have any conditional logic, so is present in every auction.
     1. The second bid requires that "phone" be present in the label array, otherwise it won't be part of the auction.
 
-<a href="#usecase-2"></a>
-
-## Use Case: What if some bidders have different parameters for different devices?
+## What if some bidders have different parameters for different devices?
 
 For reporting and targeting purposes, Publishers and SSPs sometimes break out different inventory structures for different platforms.
 
@@ -137,9 +135,7 @@ How this works:
     1. The first bid requires that the label "display" be present in the array. It's not, so that bid is skipped.
     1. The second bid requires that either "phone" or "tablet" be present. Since tablet is in the label array, that bid is activated and the correct placement is sent to bidderA.
 
-<a href="#usecase-3"></a>
-
-## Use Case: What if some ad unit auctions should be skipped entirely for some devices?
+## What if some ad unit auctions should be skipped entirely for some devices?
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
 on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. For example:
@@ -168,9 +164,7 @@ var AdUnits = [{
 
 {% endhighlight %}
 
-<a href="#usecase-4"></a>
-
-## Use Case: What if some bid requests apply only to users originating certain from countries? 
+## What if some bid requests apply only to users originating certain from countries? 
 
 Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids) function as an argument.
 
@@ -211,25 +205,6 @@ labels:
 
 * "eur" as passed into [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids)
 * "phone" as created by `sizeConfig`
-
-
-## Label Targeting
-
-Labels may be targeted by two conditional operators in the AdUnit structure: `labelAny` and `labelAll`.
-
-With the `labelAny` operator, just one label has to match for the condition to be true. In the example below, either A or B can be defined in the label array to activate the bid or ad unit:
-{% highlight bash %}
-labelAny: ["A", "B"]
-{% endhighlight %}
-
-With the `labelAll` conditional, every element of the target array must match an element of the label array in
-order for the condition to be true. In the example below, both A and B must be defined in the label array to activate the bid or ad unit:
-{% highlight bash %}
-labelAll: ["A", "B"] 
-{% endhighlight %}
-
-{: .alert.alert-warning :}
-Only one conditional may be specified on a given AdUnit or bid -- if both `labelAny` and `labelAll` are specified, only the first one will be utilized and an error will be logged to the console. It is allowable for an AdUnit to have one condition and a bid to have another.
 
 ## Further Reading
 
