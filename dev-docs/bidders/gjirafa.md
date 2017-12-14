@@ -1,3 +1,5 @@
+prebid_1_0_supported : true
+
 ---
 layout: bidder
 title: Gjirafa
