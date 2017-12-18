@@ -14,6 +14,5 @@ prebid_1_0_supported : true
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
+| :----------- |: --------- | :------------ |: ----------------- |
 | `aid` | required | | |
-| `placementId` | required | | |
