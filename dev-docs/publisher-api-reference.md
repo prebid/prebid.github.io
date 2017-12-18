@@ -40,7 +40,6 @@ After a transition period, documentation for these methods will be removed from 
   * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
   * [.addBidResponse(adUnitCode, bid)](#module_pbjs.addBidResponse) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.bidderSettings](#module_pbjs.bidderSettings)
-  * [userSync](#module_pbjs.userSync)
   * [.addCallback(event, func)](#module_pbjs.addCallback) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.removeCallback(cbId)](#module_pbjs.removeCallback) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.buildMasterVideoTagFromAdserverTag(adserverTag, options)](#module_pbjs.buildMasterVideoTagFromAdserverTag) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
@@ -542,6 +541,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | requestObj.adUnits | Optional | `Array of objects` | AdUnitObjects to request. Use this or `requestObj.adUnitCodes`. Default to all `adUnits` if empty. |
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
 | requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. |
+| requestObj.labels | Optional | `Array of strings` | Defines [labels](#labels) that may be matched on ad unit targeting conditions. |
 
 <hr class="full-rule">
 
@@ -567,7 +567,8 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
 | `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
 | `mediaTypes` | Optional | Object                                | Defines the media type of the ad.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
-| `labels`     | Optional | Array<String>                         | Used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
+| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
 
 <a name="addAdUnits-Bids" />
 
@@ -576,11 +577,13 @@ See the table below for the list of properties on the ad unit.  For example ad u
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
 {: .table .table-bordered .table-striped }
+
 | Name     | Scope    | Type          | Description                                                                                                                                                                       |
 |----------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](bidders.html).                                                                                          |
 | `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](bidders.html).                                                  |
-| `labels` | Optional | Array<String> | Used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
+| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
 
 <a name="addAdUnits-MediaTypes" />
 
@@ -950,89 +953,6 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 
 <hr class="full-rule">
 
-<a name="module_pbjs.userSync"></a>
-
-### UserSync
-
-UserSync configuration allows Publishers to control how adapters behave with respect to dropping pixels or scripts to cookie users with IDs.
-This practice is called 'userSync' because the aim is to let the bidders match IDs between their cookie space and the DSP cookie space.
-There's a good reason for bidders to be doing this -- DSPs are more likely to bid on impressions where they know something about the history of a user.
-However, there are also good reasons why Publishers may want to control the use of these practices:
-
-* page performance - Publishers may wish to move ad-related cookie work to much later in the page load after ads and content have loaded.
-* user privacy - Some publishers may want to opt out of these practices even though it limits their user's values on the open market.
-* security - Publishers may want to control which bidders are trusted to inject images and javascript into their pages.
-
-The default behavior of the platform is to allow every adapter to drop up to 5 image-based user syncs. The sync images will be dropped 3 seconds after the auction starts. Here are some examples of config that will change the default behavior.
-
-Push the user syncs to later in the page load:
-{% highlight js %}
-pbjs.setConfig({ userSync: {
-    syncDelay: 5000       // write image pixels 5 seconds after the auction
-}});
-{% endhighlight %}
-
-Turn off userSync entirely:
-{% highlight js %}
-pbjs.setConfig({ userSync: {
-    syncEnabled: false
-}});
-{% endhighlight %}
-
-Allow iframe-based syncs:
-{% highlight js %}
-pbjs.setConfig({ userSync: {
-    iframeEnabled: true
-}});
-{% endhighlight %}
-
-Only certain adapters are allowed to sync, either images or iframes:
-{% highlight js %}
-pbjs.setConfig({ userSync: {
-    enabledBidders: ['abc','xyz'], // only these bidders are allowed to sync
-    iframeEnabled: true,
-    syncsPerBidder: 3,            // and no more than 3 syncs at a time
-    syncDelay: 6000,              // 6 seconds after the auction
-}});
-{% endhighlight %}
-
-The same bidders can drop sync pixels, but the timing will be controlled by the page:
-{% highlight js %}
-pbjs.setConfig({ userSync: {
-    enabledBidders: ['abc','xyz'], // only these bidders are allowed to sync, and only image pixels
-    enableOverride: true          // publisher will call pbjs.triggerUserSyncs()
-}});
-{% endhighlight %}
-
-Here are all the options for userSync control:
-
-{: .table .table-bordered .table-striped }
-| Attribute | Type | Description |
-| --- | --- | --- |
-| syncEnabled | boolean | Enables/disables the userSync feature. Defaults to true. |
-| iframeEnabled | boolean | Enables/disables the use of iframes for syncing. Defaults to false. |
-| syncDelay | integer | The delay in milliseconds for autosyncing once the first auction is run. 3000 by default. |
-| syncsPerBidder | integer | Number of registered syncs allowed per adapter. Default is 5. Set to 0 to allow all. |
-| enabledBidders | array | Array of names of trusted adapters which are allowed to sync users. |
-| enableOverride | boolean | Allows the publisher to manually trigger the user syncs to fire by calling pbjs.triggerUserSyncs(). |
-
-As noted, there's a function available to give the page control of when registered userSyncs are added.
-{% highlight js %}
-pbjs.triggerUserSyncs()
-{% endhighlight %}
-
-#### How it works
-
-The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-register-user-sync-pixels) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
-
-* Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
-* Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
-* Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
-
-When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
-
-<hr class="full-rule">
-
 <a name="module_pbjs.addCallback"></a>
 
 ### pbjs.addCallback(event, func) ⇒ `String`
@@ -1279,6 +1199,7 @@ See below for usage examples.
 + [Set a delay before requesting cookie sync](#setConfig-Cookie-Sync-Delay)
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
++ [Configure user syncing](#setConfig-Configure-User-Syncing)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
@@ -1400,6 +1321,125 @@ pbjs.setConfig({
 })
 {% endhighlight %}
 
+<a name="setConfig-Configure-User-Syncing" />
+
+#### Configure User Syncing
+
+The user sync configuration options described in this section give publishers control over how adapters behave with respect to dropping pixels or scripts to cookie users with IDs.
+This practice is called "user syncing" because the aim is to let the bidders match IDs between their cookie space and the DSP's cookie space.
+There's a good reason for bidders to be doing this -- DSPs are more likely to bid on impressions where they know something about the history of the user.
+However, there are also good reasons why publishers may want to control the use of these practices:
+
+- *Page performance*: Publishers may wish to move ad-related cookie work to much later in the page load after ads and content have loaded.
+- *User privacy*: Some publishers may want to opt out of these practices even though it limits their users' values on the open market.
+- *Security*: Publishers may want to control which bidders are trusted to inject images and JavaScript into their pages.
+
+{: .alert.alert-info :}
+**User syncing default behavior**  
+If you don't tweak any of the settings described in this section, the default behavior of Prebid.js is to wait 3 seconds after the auction ends, and then allow every adapter to drop up to 5 image-based user syncs.
+
+For more information, see the sections below.
+
+- [User Sync Properties](#setConfig-ConfigureUserSyncing-UserSyncProperties)
+- [User Sync Examples](#setConfig-ConfigureUserSyncing-UserSyncExamples)
+- [How User Syncing Works](#setConfig-ConfigureUserSyncing-HowUserSyncingWorks)
+
+<a name="setConfig-ConfigureUserSyncing-UserSyncProperties" />
+
+##### User Sync Properties
+
+For descriptions of all the properties that control user syncs, see the table below.
+
+{: .table .table-bordered .table-striped }
+| Attribute        | Type    | Description                                                                                             |
+|------------------+---------+---------------------------------------------------------------------------------------------------------|
+| `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.                                               |
+| `pixelEnabled`   | Boolean | Enable/disable the use of pixels for user syncing.  Default: `true`.                                    |
+| `iframeEnabled`  | Boolean | Enable/disable the use of iFrames for syncing. Default: `false`.                                        |
+| `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
+| `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
+| `enabledBidders` | Array   | Trusted adapters which are allowed to do user syncing.                                                  |
+| `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
+
+<a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
+
+##### User Sync Examples
+
+For examples of configurations that will change the default behavior, see below.
+
+Push the user syncs to later in the page load:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        syncDelay: 5000 // write image pixels 5 seconds after the auction
+    }
+});
+{% endhighlight %}
+
+Turn off user syncing entirely:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        syncEnabled: false
+    }
+});
+{% endhighlight %}
+
+Allow iFrame-based syncs:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        iframeEnabled: true
+    }
+});
+{% endhighlight %}
+
+Only certain adapters are allowed to sync -- either images or iFrames:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        enabledBidders: ['abc', 'xyz'], // only these bidders are allowed to sync
+        iframeEnabled: true,
+        syncsPerBidder: 3, // and no more than 3 syncs at a time
+        syncDelay: 6000, // 6 seconds after the auction
+    }
+});
+{% endhighlight %}
+
+The same bidders can drop sync pixels, but the timing will be controlled by the page:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        /* only these bidders are allowed to sync, and only image pixels */
+        enabledBidders: ['abc', 'xyz'],
+        enableOverride: true // publisher will call `pbjs.triggerUserSyncs()`
+    }
+});
+{% endhighlight %}
+
+As noted, there's a function available to give the page control of when registered user syncs are added.
+
+{% highlight js %}
+pbjs.triggerUserSyncs();
+{% endhighlight %}
+
+<a name="setConfig-ConfigureUserSyncing-HowUserSyncingWorks" />
+
+##### How User Syncing Works
+
+The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-register-user-sync-pixels) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
+
+* Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
+* Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
+* Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
+
+When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
+
 <a name="setConfig-Configure-Responsive-Ads" />
 
 #### Configure Responsive Ads
@@ -1408,15 +1448,15 @@ The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to de
 
 + [How it works](#sizeConfig-How-it-Works)
 + [Example](#sizeConfig-Example)
-+ [Labels](#sizeConfig-Labels)
++ [Labels](#labels)
 
 <a name="sizeConfig-How-it-Works" />
 
 ##### How it Works
 
-- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` array based on the `labels` defined (by dropping those ad units that don't match the label definition).
+- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` array based on the `labels` defined. Ad units that don't match the label definition are dropped.
 - The `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
-- If a label doesn't exist on an ad unit, it is automatically included in all requests for bids.
+- If a label conditional (e.g. `labelAny`) doesn't exist on an ad unit, it is automatically included in all requests for bids.
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
 - The `adUnit.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.sizes`.
 
@@ -1443,7 +1483,7 @@ pbjs.setConfig({
             [728, 90],
             [300, 250]
         ],
-        'labels': ['tablet', 'phone']
+        'labels': ['tablet']
     }, {
         'mediaQuery': '(min-width: 0px)',
         'sizesSupported': [
@@ -1456,65 +1496,84 @@ pbjs.setConfig({
 
 {% endhighlight %}
 
-<a name="sizeConfig-Labels" />
+<a name="labels" />
 
 ##### Labels
 
-Labels can now be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the ad unit or bidder unless either:
+There are two parts to defining responsive and conditional ad units with labels:
 
-+ A `sizeConfig` rule has matched and enabled the label, or
+1. Defining the labels
+2. Defining the conditional ad unit targeting for the labels
 
-+ The label has been enabled manually, e.g.,
-    ```javascript
-    pbjs.setConfig({
-        labels: [labels: ['visitor-uk']]
-    })
-    ```
+Labels may be defined in two ways:
 
-Defining labels on the ad unit looks like the following:
+1. Through [`sizeConfig`](#setConfig-Configure-Responsive-Ads)
+2. As an argument to [`pbjs.requestBids`](#module_pbjs.requestBids)
+
+{% highlight js %}
+pbjs.requestBids({labels: []});
+{% endhighlight %}
+
+Labels may be targeted in the AdUnit structure by two conditional operators: `labelAny` and `labelAll`.
+
+With the `labelAny` operator, just one label has to match for the condition to be true. In the example below, either A or B can be defined in the label array to activate the bid or ad unit:
+{% highlight bash %}
+labelAny: ["A", "B"]
+{% endhighlight %}
+
+With the `labelAll` conditional, every element of the target array must match an element of the label array in
+order for the condition to be true. In the example below, both A and B must be defined in the label array to activate the bid or ad unit:
+{% highlight bash %}
+labelAll: ["A", "B"]
+{% endhighlight %}
+
+{: .alert.alert-warning :}
+Only one conditional may be specified on a given AdUnit or bid -- if both `labelAny` and `labelAll` are specified, only the first one will be utilized and an error will be logged to the console. It is allowable for an AdUnit to have one condition and a bid to have another.
+
+Label targeting on the ad unit looks like the following:
 
 {% highlight js %}
 
 pbjs.addAdUnits([{
-    "code": "ad-slot-1",
-    "sizes": [
+    code: "ad-slot-1",
+    sizes: [
         [970, 90],
         [728, 90],
         [300, 250],
         [300, 100]
     ],
-    "labels": ["visitor-uk"]
+    labelAny: ["visitor-uk"]
     /* The full set of bids, not all of which are relevant on all devices */
-    "bids": [{
-            "bidder": "pulsepoint",
+    bids: [{
+            bidder: "pulsepoint",
             /* Labels flag this bid as relevant only on these screen sizes. */
-            "labels": ["desktop", "tablet"],
-            "params": {
+            labelAny: ["desktop", "tablet"],
+            params: {
                 "cf": "728X90",
                 "cp": 123456,
                 "ct": 123456
             }
         },
         {
-            "bidder": "pulsepoint",
-            "labels": ["desktop", "phone"],
-            "params": {
+            bidder: "pulsepoint",
+            labelAny: ["desktop", "phone"],
+            params: {
                 "cf": "300x250",
                 "cp": 123456,
                 "ct": 123456
             }
         },
         {
-            "bidder": "sovrn",
-            "labels": ["desktop", "tablet"],
-            "params": {
+            bidder: "sovrn",
+            labelAny: ["desktop", "tablet"],
+            params: {
                 "tagid": "123456"
             }
         },
         {
-            "bidder": "sovrn",
-            "labels": ["phone"],
-            "params": {
+            bidder: "sovrn",
+            labelAny: ["phone"],
+            params: {
                 "tagid": "111111"
             }
         }
@@ -1523,21 +1582,11 @@ pbjs.addAdUnits([{
 
 {% endhighlight %}
 
-{: .alert.alert-warning :}
-**Manual Label Configuration**  
-If an ad unit and/or a bidder in `adUnit.bids[]` already has `labels` defined, they will be disabled by default.  Manually setting active labels as shown below will re-enable the selected ad units and/or bidders.
-
-{% highlight js %}
-
-pbjs.setConfig({
-    labels: ['visitor-uk']
-});
-
-{% endhighlight %}
+See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
 <a name="setConfig-Generic-Configuration" />
 
-#### Generic Configuration
+#### Generic setConfig Configuration
 
 Set arbitrary configuration values:
 
