@@ -17,11 +17,4 @@ prebid_1_0_supported : true
 
 | Name | Scope    | Description        | Example  |
 | :--- | :----    | :----------        | :------  |
-| ai   | required | The rtk auction ID | `"XBC1"` |
-| sc   | required | The rtk shortcode  | `"AF2g"` |
-
-
-
-| Name | Scope | Description | Example |
-| :----------- |: --------- | :------------ |: ----------------- |
-| `aid` | required | | |
+| `aid`| required |                    |          |
