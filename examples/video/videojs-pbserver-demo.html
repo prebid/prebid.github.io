@@ -58,7 +58,7 @@
 			video: {
 			    context: "instream",
 			    mimes: ['video/mp4'],
-			    protocols : [1,2,3,4,5,6,7,8],
+			    protocols : [1,2,3,4,5,6],
 			    playbackmethod : [2]
 			}
 		},
@@ -201,6 +201,7 @@
 			var player = this;
 			var vastAd = player.vastClient({
 				adTagUrl: url,
+				prerollTimeout: 500,
 				playAdAlways: true,
 				verbosity: 4,
 				vpaidFlashLoaderPath: "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",

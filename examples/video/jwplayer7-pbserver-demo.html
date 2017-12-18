@@ -4,16 +4,16 @@
 	<!-- This page is an example of prebid and JWPlayer integration with
 	a JWPlayer playAd call once the player is ready for playback -->
 	<meta charset="utf-8" />
-	<title>Prebid Server Video -- Self-Hosted JW Player</title>
+	<title>Prebid Server Video -- Self-Hosted JW 8 Player</title>
 
 	<!-- prebid.js -->
 	<script src="https://acdn.origin.appnexus.net/prebid/not-for-prod/1/prebid.js"></script>
 
 	<!-- JWPlayer -->
 	<script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"></script>
-	<script type="text/javascript">
+    <script type="text/javascript">
 		jwplayer.key="YEUwUA9wRFeDcydr"; //Test Key - replace this with your own valid JWPlayer license key
-	</script>
+    </script>
 	<script>
 	var pbjs = pbjs || {};
 	pbjs.que = pbjs.que || [];
@@ -47,7 +47,7 @@
 			video: {
 				context: "instream",
 				mimes: ['video/mp4'],
-				protocols : [1,2,3,4,5,6,7,8],
+				protocols : [1,2,3,4,5,6],
 				playbackmethod : [2]
 			}
 		},
@@ -55,7 +55,7 @@
 			{
 				bidder: 'appnexus',
 				params: {
-					placementId: '9333431', // Add your own placement id here
+					placementId: '12349520', // Add your own placement id here
 					video: {
 						skippable: true,
 						playback_method: ['auto_play_sound_off']
@@ -149,7 +149,6 @@
 
   <script>
 	var jwPlayerInstance = jwplayer("playerContainerJW");
-
 	invokeVideoPlayer = function(url) {
 		console.log("starting player with url " + url);
 		jwPlayerInstance.setup({
@@ -165,17 +164,14 @@
 
 		jwPlayerInstance.on('beforePlay', function(){
 			jwPlayerInstance.playAd(url);
-		})
-	}
+		});
+	};
 
 	if (tempTag) {
 		invokeVideoPlayer(tempTag);
 		tempTag = false;
 	}
   </script>
-  <p>
-	<a href="jwplayer7-pbserver-demo.html">Click here to see an example of integrating Prebid with JW Player 7.</a>
-  </p>
   <p>
 	<a href="jwplatform-pbserver-demo.html">Click here to see an example of integrating Prebid with a JW Platform account.</a>
   </p>
