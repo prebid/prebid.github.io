@@ -1306,7 +1306,7 @@ pbjs.setConfig({
 
 #### Server to Server
 
-Set config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html) header bidding:
+Example config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html) header bidding:
 
 {% highlight js %}
 pbjs.setConfig({
@@ -1318,9 +1318,29 @@ pbjs.setConfig({
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
         syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+        cookieSet: true,
+        cookieSetUrl: 'https://acdn.adnxs.com/cookieset/cs.js',
     }
 })
 {% endhighlight %}
+
+Additional information of these properties:
+
+{: .table .table-bordered .table-striped }
+| Attribute        | Type    | Description                                                                                             |
+|------------------+---------+---------------------------------------------------------------------------------------------------------|
+| `accountId` | String | Your Prebid Server account ID |
+| `enabled` | Boolean | Enables S2S - defaults to `false` |
+| `bidders` | Array of Strings | Which bidders support auctions on the server side |
+| `timeout` | Integer | Number of milliseconds allowed for the server-side auctions |
+| `adapter` | String | Adapter code for S2S. Defaults to 'prebidServer' |
+| `endpoint` | URL | Defines the auction endpoint for the Prebid Server cluster |
+| `syncEndpoint` | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
+| `cookieSet` | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. Defaults 'true' |
+| `cookieSetUrl` | URL | Cluster-specific script for Safari link-rewriting |
+
+Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
+
 
 <a name="setConfig-Configure-User-Syncing" />
 
