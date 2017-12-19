@@ -37,6 +37,7 @@
     <script>
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
+     iosDevice = !!navigator.platform.match(/iPhone|iPod|iPad/);
      console.log("|||| Start of prebid: " + performance.now());
 
      /* PRE-DEFINE `invokeVideoPlayer`
@@ -52,9 +53,9 @@
         ad. In this first version it simply stores the winning VAST to
         use later.  */
 
-     var dynamicTag = false;
+     var tempTag = false;
      var invokeVideoPlayer = function(url){
-       dynamicTag = url;
+       tempTag = url;
      }
 
      /* Prebid video ad unit */
@@ -71,7 +72,7 @@
          {
            bidder: 'appnexusAst',
            params: {
-             placementId: '9333431', // Add your own placement id here
+             placementId: iosDevice ? '12349520':'9333431', // Add your own placement id here. Note, skippable video is not supported on iOS 
              video: {
                skippable: true,
                playback_method: ['auto_play_sound_off']
@@ -235,9 +236,9 @@
         the "real" version of `invokeVideoPlayer` was already called.
       */
 
-     if (dynamicTag) {
-       invokeVideoPlayer(dynamicTag);
-       dynamicTag = false;
+     if (tempTag) {
+       invokeVideoPlayer(tempTag);
+       tempTag = false;
      }
     </script>
   </body>
