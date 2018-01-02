@@ -48,7 +48,7 @@ $ gem install bundler
 If you are on a Mac and the above command fails with a permissions error (e.g., `"ERROR:  While executing gem ... You don't have write permissions for the /Library/Ruby/Gems/... directory."`), try the following steps:
 
 1. Build your own `ruby` binary using [Homebrew](https://brew.sh/) to avoid changing the system Ruby as much as possible: `brew install ruby`, which should include its own version of the `gem` command.
-2. If necessary because `gem install bunder` fails, install the `bundler` executable using `sudo gem install bundler`.
+2. Try `gem install bundler` again.  If it still fails, try `sudo gem install bundler`.  After that, you should be able to avoid any further use of `sudo` by running `bundler` as shown in the next section.
 
 <a name="running-jekyll-locally" />
 
