@@ -547,7 +547,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 
 <a name="module_pbjs.addAdUnits"></a>
 
-### pbjs.addAdUnits(Array)
+### pbjs.addAdUnits(Array|Object)
 
 Takes an array of one or more ad unit objects and adds it to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html) page.
 
