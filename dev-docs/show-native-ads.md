@@ -110,11 +110,12 @@ Each key's value is an object with several fields.  Most important is the `requi
 
 pbjs.addAdUnits({
     code: slot.code,
-    sizes: slot.size,
     mediaTypes: {
         native: {
             image: {
-                required: true
+                required: true,
+                sizes: slot.size,
+                aspect_ratios: slot.size
             },
             title: {
                 required: true,
@@ -130,7 +131,8 @@ pbjs.addAdUnits({
                 required: true
             },
             icon: {
-                required: true
+                required: true,
+                sizes: slot.size,
             },
         },
         bids: [{
@@ -172,7 +174,7 @@ A native `image` ad unit can be set up in the manner below:
 
       const adUnits = [{
         code: 'adUnit-code',
-        mediaTypes: { native: { type: 'image' } }
+        mediaTypes: { native: { image: { sizes: [[100, 50]] } } }
         bids: [
           { bidder: 'appnexusAst', params: { placementId: '123456' } }
         ]
