@@ -37,14 +37,14 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 
 ### Configuration
 
-PubMatic recommends the UserSync configuration below.  Without it, the PubMatic adapter will not able to perform user syncs, which lowers match and reduces monetization.
+PubMatic recommends the UserSync configuration below.  Without it, the PubMatic adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
 
 ```javascript
-$$PREBID_GLOBAL$$.setConfig({
+pbjs.setConfig({
    userSync: {
     iframeEnabled: true,
     enabledBidders: ['pubmatic'],
     syncDelay: 6000
  }});
 ```
-Note: Combine the above the configuration with any other UserSync configuration.  Multiple setConfig() overwrite each other and only last call for a given attribute will take effect.
+Note: Combine the above the configuration with any other UserSync configuration.  Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
