@@ -1,18 +1,9 @@
 
-<!-- Site navigation
-=========================================== -->
-<div class="col-md-3">
-
-
-
-
-
-
 {% if page.top_nav_section %}
 
 
 
-  <div class="docs-sidebar">
+  
 
 {% assign left_nav_sections = (site.nav_sections | where: "top_nav", page.top_nav_section) %}
 
@@ -48,12 +39,4 @@
 
 
 
-
-  </div>
-
 {% endif %}
-
-</div>
-
-
-

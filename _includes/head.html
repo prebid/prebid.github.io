@@ -7,6 +7,8 @@
   <meta name="keywords" content="Header Bidding, Advanced Bidding, Header Bid, Pre-bid">
   <meta name="description" content="{{page.description}}" />
 
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+
   {% if page.head_title %}
     <title>{{page.head_title}}</title>
   {% else %}
@@ -18,9 +20,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{site.github.url}}/assets/css/docs.min.css" rel="stylesheet">
-  <link href="{{site.github.url}}/assets/css/style.css" rel="stylesheet">
+  <link href="{{site.baseurl}}/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{site.baseurl}}/assets/css/docs.min.css" rel="stylesheet">
+  <link href="{{site.baseurl}}/assets/css/style.css" rel="stylesheet">
 
   <style>
     #content {
@@ -29,12 +31,11 @@
     }
   </style>
 
-  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
-  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.3.0/bootbox.min.js"></script>
-  <script src="{{site.github.url}}/assets/js/docs.min.js"></script>
-  <script type="text/javascript" src="{{site.github.url}}/assets/js/pbjs_home.js"></script>
+  <script src="{{site.baseurl}}/assets/js/jquery.min.js"></script>
+  <script src="{{site.baseurl}}/assets/js/bootstrap.min.js"></script>
+  <script src="{{site.baseurl}}/assets/js/bootbox.min.js"></script>
+  <script src="{{site.baseurl}}/assets/js/docs.min.js"></script>
+  <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
 </head>
 
 <body>

@@ -1,9 +1,7 @@
 # name of the software
-name: Prebid.js
+name: Prebid
 # current version of the software
 version: 1.0.0
-# url of the download button
-downloadUrl: https://github.com/prebid/Prebid.js/releases
 # licence of the software
 license: Apache License
 licenseUrl: http://www.apache.org/licenses/LICENSE-2.0
@@ -11,17 +9,17 @@ licenseUrl: http://www.apache.org/licenses/LICENSE-2.0
 # list of additional links on the right of the top menu
 headerLinks:
   - title: GitHub
-    url: https://github.com/prebid/Prebid.js
+    url: https://github.com/prebid
 
 
 # list if additional links on the footer
 footerLinks:
   - title: GitHub
-    url: https://github.com/prebid/Prebid.js
-  - title: Issues
-    url: https://github.com/prebid/Prebid.js/issues?state=open
- # - title: About Us
- #   url: /about.html
+    url: https://github.com/prebid/
+# - title: Issues
+#   url: https://github.com/prebid/Prebid.js/issues?state=open
+# - title: About Us
+#   url: /about.html
 
 
 # header
@@ -61,9 +59,28 @@ facebook:
 markdown: kramdown
 
 nav_sections:
+  - top_nav: beta
+    code: current
+    name: CURRENT BETA
+  - top_nav: beta
+    code: past
+    name: PAST BETA
+
   - top_nav: dev_docs
     code: quick-start
-    name: QUICK START
+    name: DEVELOPER QUICK START
+  - top_nav: dev_docs
+    code: prebid-video
+    name: PREBID VIDEO (BETA)
+  - top_nav: dev_docs
+    code: prebid-native
+    name: PREBID NATIVE (ALPHA)
+  - top_nav: dev_docs
+    code: prebid-server
+    name: PREBID SERVER
+  - top_nav: dev_docs
+    code: prebid-amp
+    name: PREBID FOR AMP (ALPHA)
   - top_nav: dev_docs
     code: troubleshooting
     name: TROUBLESHOOTING
@@ -71,8 +88,11 @@ nav_sections:
     code: reference
     name: REFERENCE
   - top_nav: dev_docs
-    code: adaptors
-    name: ADAPTORS
+    code: features
+    name: FEATURES
+  - top_nav: dev_docs
+    code: adapters
+    name: ADAPTERS
 
   - top_nav: overview
     code: intro
@@ -92,22 +112,52 @@ nav_sections:
 
   - top_nav: adops
     code: tutorials
-    name: TUTORIALS
+    name: AD OPS TUTORIALS
+  - top_nav: adops
+    code: reference
+    name: REFERENCE
 
   - top_nav: support
     code: support
     name: SUPPORT
 
+  - top_nav: principles
+    code: principles
+    name: PRINCIPLES
+
   - top_nav: download
     code: download
     name: DOWNLOAD
 
+  - top_nav: modules
+    code: modules
+    name: MODULES
 
-port: 80
+  - top_nav: prebid-mobile
+    code: prebid-mobile
+    name: PREBID MOBILE
+  - top_nav: prebid-mobile
+    code: prebid-mobile-pbs
+    name: PREBID SERVER
+  - top_nav: prebid-mobile
+    code: prebid-mobile-ios
+    name: FOR IOS
+  - top_nav: prebid-mobile
+    code: prebid-mobile-android
+    name: FOR ANDROID
+  - top_nav: prebid-mobile
+    code: prebid-mobile-adops
+    name: FOR ADOPS
+  - top_nav: prebid-mobile
+    code: prebid-mobile-contributors
+    name: FOR CONTRIBUTORS
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
 
-gems:
+port: 8080
+
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor']
+
+plugins:
   - jekyll-mentions
   - jemoji
   - jekyll-redirect-from

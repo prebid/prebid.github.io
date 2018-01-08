@@ -1,5 +1,8 @@
 <html>
 <head>
+<link rel="icon" 
+      type="image/png" 
+      href="/favicon.png">
 <script>
     // Define the sizes here:
     var tagWidth = 300;
@@ -10,7 +13,7 @@
         {
             bidder: 'appnexus',
             params: {
-               placementId: '4799418'
+               placementId: '10433394'
             }
         }, {
             bidder: 'pubmatic',
@@ -45,11 +48,11 @@
     var pbjs = pbjs || {};
     pbjs.que = pbjs.que || [];
 
-    var doNotChange = 'doNotChange';
+    var adUnitCode = 'ad-unit-0';
 
     pbjs.que.push(function() {
         var adUnits = [{
-            code: doNotChange,
+            code: adUnitCode,
             sizes: [[tagWidth, tagHeight]],
             bids: bids
         }];
@@ -61,7 +64,7 @@
             bidsBackHandler: function() {
                 var iframe = document.getElementById('postbid_if');
                 var iframeDoc = iframe.contentWindow.document;
-                var params = pbjs.getAdserverTargetingForAdUnitCode(doNotChange);
+                var params = pbjs.getAdserverTargetingForAdUnitCode(adUnitCode);
 
                 // If any bidders return any creatives
                 if(params && params['hb_adid']){
@@ -71,7 +74,9 @@
                     // Passback 3rd party tag in Javascript
                     iframe.width = tagWidth;
                     iframe.height = tagHeight;
+                    iframeDoc.open("text/html", "replace");
                     iframeDoc.write(passbackTagHtml);
+                    iframeDoc.close();
                 }
             }
         });
