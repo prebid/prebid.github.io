@@ -10,21 +10,7 @@ biddercode_longer_than_12: false
 prebid_1_0_supported : true
 ---
 
-### Overview
-
-```
-Module Name: vi bid adapter
-Module Type: Bidder adapter
-Maintainer: support@vi.ai
-```
-
-### Description
-
-The video intelligence (vi) adapter integration to the Prebid library.
-Connects to vi’s demand sources.
-There should be only one ad unit with vi bid adapter on each single page.
-
-### Parameters
+### bid params
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                     | Example                           |
 | :------------ | :------- | :---------------------------------------------- | :--------------------------------- |
