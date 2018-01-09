@@ -1,4 +1,16 @@
-# Overview
+---
+layout: bidder
+title: vi
+description: vi bid adapter
+top_nav_section: dev_docs
+nav_section: reference
+hide: true
+biddercode: vi
+biddercode_longer_than_12: false
+prebid_1_0_supported : true
+---
+
+### Overview
 
 ```
 Module Name: vi bid adapter
@@ -6,32 +18,14 @@ Module Type: Bidder adapter
 Maintainer: support@vi.ai
 ```
 
-# Description
+### Description
 
 The video intelligence (vi) adapter integration to the Prebid library.
 Connects to vi’s demand sources.
 There should be only one ad unit with vi bid adapter on each single page.
 
-# Test Parameters
-
-```
-var adUnits = [{
-    code: 'div-0',
-    sizes: [[320, 480]],
-    bids: [{
-        bidder: 'vi',
-        params: {
-            pubId: 'sb_test',
-            lang: 'en-US',
-            cat: 'IAB1',
-	        bidFloor: 0.05 //optional
-        }
-    }]
-}];
-```
-
-# Parameters
-
+### Parameters
+{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                     | Example                           |
 | :------------ | :------- | :---------------------------------------------- | :--------------------------------- |
 | `pubId` | required | Publisher ID, provided by vi           | 'sb_test' |
