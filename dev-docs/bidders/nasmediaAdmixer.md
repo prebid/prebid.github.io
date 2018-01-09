@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: NasmediaAdmixer
-description: Prebid nasmediaAdmixer Bidder Adapter
+title: Nasmedia Admixer
+description: Prebid Nasmedia Admixer Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
@@ -17,7 +17,7 @@ biddercode_longer_than_12: true
 
 | Name       | Scope    | Description                                    | Example         |
 | :--------- | :------- | :--------------------------------------------- | :-------------- |
-| ax_key     | required | Publisher Key provided by NasMedia AdMixer     |`'ajj7jba3'`     |
+| ax_key     | required | Publisher Key provided by Nasmedia Admixer     |`'ajj7jba3'`     |
 
 ---
 
