@@ -436,7 +436,7 @@ else if (rtbBid.rtb.native) {
 
 {% endhighlight %}
 
-As of the [0.34.1 release](https://github.com/prebid/Prebid.js/releases/tag/0.34.1), a bidder may optionally return the height and width of a native image asset.
+As of the [0.34.1 release](https://github.com/prebid/Prebid.js/releases/tag/0.34.1), a bidder may optionally return the height and width of a native `image` or `icon` asset.
 
 If your bidder does return the image size, you can expose the image dimensions on the bid response object as shown below.
 
