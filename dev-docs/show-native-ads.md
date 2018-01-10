@@ -174,7 +174,7 @@ A native `image` ad unit can be set up in the manner below:
 
       const adUnits = [{
         code: 'adUnit-code',
-        mediaTypes: { native: { image: { sizes: [[100, 50]] } } }
+        mediaTypes: { native: { type: 'image' } }
         bids: [
           { bidder: 'appnexusAst', params: { placementId: '123456' } }
         ]
