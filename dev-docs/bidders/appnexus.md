@@ -60,13 +60,17 @@ Sizes set in the `adUnit` object will also apply to the AppNexus bid requests.
 
 #### Specify aspect ratios for native images and icons
 
-The AppNexus adapter supports specifying aspect ratios for native "image" and "icon" assets. Aspect ratios are defined by the following properties of the `aspect_ratios` array (as shown in the example below):
+The AppNexus adapter supports specifying aspect ratios for native "image" and "icon" assets. Aspect ratios are defined by the following properties of the `aspect_ratios` array.  For usage, see the example code below.
 
-- `ratio_width`
-- `ratio_height`
-- `min_width` (optional)
+{: .table .table-bordered .table-striped }
+| Name           | Scope    | Type    | Description                                              |
+|----------------+----------+---------+----------------------------------------------------------|
+| `ratio_width`  | Required | Integer | The width of the aspect ratio of the native ad.          |
+| `ratio_height` | Required | Integer | The height of the aspect ratio of the native ad.         |
+| `min_width`    | Optional | Integer | The required minimum width of the image asset in pixels. |
 
-For example:
+{: .alert.alert-info :}
+This implementation follows the [OpenRTB Native 1.2 specification](https://www.iab.com/wp-content/uploads/2017/04/OpenRTB-Native-Ads-Specification-Draft_1.2_2017-04.pdf)
 
 ```javascript
     mediaTypes: {
