@@ -69,9 +69,6 @@ The AppNexus adapter supports specifying aspect ratios for native "image" and "i
 | `ratio_height` | Required | Integer | The height of the aspect ratio of the native ad.         |
 | `min_width`    | Optional | Integer | The required minimum width of the image asset in pixels. |
 
-{: .alert.alert-info :}
-This implementation follows the [OpenRTB Native 1.2 specification](https://www.iab.com/wp-content/uploads/2017/04/OpenRTB-Native-Ads-Specification-Draft_1.2_2017-04.pdf)
-
 ```javascript
     mediaTypes: {
         native: {
