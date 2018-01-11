@@ -166,19 +166,63 @@ And the following optional fields:
 + icon
 + cta
 
-A native `image` ad unit can be set up in the manner below:
+A native `image` ad unit can be set up as shown in the examples below.  You can either specify an absolute width and height, or use an aspect ratio.  As of this writing, more bidders support the absolute width and height method.  Be sure to check with your demand partners for details.
 
-{% highlight js %}
+Specifying the native ad unit using width and height:
 
-      const adUnits = [{
-        code: 'adUnit-code',
-        mediaTypes: { native: { type: 'image' } }
-        bids: [
-          { bidder: 'appnexusAst', params: { placementId: '123456' } }
-        ]
-      }];
+```javascript
+    const adUnits = [{
+    code: 'adUnit-code',
+    mediaTypes: {
+        native: {
+            image: {
+                required: true,
+                height: , // height and width are in pixels
+                width: YYY,
+            }
+        }
+    }
+    bids: [{
+        bidder: 'appnexusAst',
+        params: {
+            placementId: '123456'
+        }
+    }]
+}];
+```
 
-{% endhighlight %}
+Specifying the native ad unit using aspect ratios:
+
+```javascript
+    const adUnits = [{
+
+        mediaTypes: {
+            code: 'adUnit-code',
+            native: {
+                title: {
+                    required: true
+                },
+                body: {
+                    required: true
+                },
+                image: {
+                    required: true,
+                    aspect_ratios: [{
+                        min_width: 100,
+                        ratio_width: 2,
+                        ratio_height: 3,
+                    }]
+                },
+            },
+            bids: [{
+                bidder: 'appnexusAst',
+                params: {
+                    placementId: '123456'
+                }
+            }]
+        }
+    }];
+```
 
 ### 3. Add your native ad tag to the page body as usual:
 

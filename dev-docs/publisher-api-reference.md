@@ -610,7 +610,9 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 ##### Native
 
-For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+For examples of native ad units, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+
+In this example, we mark pretty much every type of native asset as required.
 
 ```javascript
 pbjs.addAdUnits({
@@ -646,6 +648,48 @@ pbjs.addAdUnits({
         }, ]
     }
 })
+```
+
+Alternatively, you can specify aspect ratios for native "image" and "icon" assets. Aspect ratios are defined by the following properties of the `aspect_ratios` array.  For usage, see the example code below.
+
+{: .table .table-bordered .table-striped }
+| Name           | Scope    | Type    | Description                                              |
+|----------------+----------+---------+----------------------------------------------------------|
+| `ratio_width`  | Required | Integer | The width of the aspect ratio of the native ad.          |
+| `ratio_height` | Required | Integer | The height of the aspect ratio of the native ad.         |
+| `min_width`    | Optional | Integer | The required minimum width of the image asset in pixels. |
+
+```javascript
+    pbjs.addAdUnits({
+        code: slot.code,
+        sizes: slot.size,
+        mediaTypes: {
+            native: {
+                title: {
+                    required: true
+                },
+                body: {
+                    required: true
+                },
+                sponsoredBy: XXX,
+                clickUrl: YYY,
+                image: {
+                    required: true,
+                    aspect_ratios: [{
+                        min_width: 100,
+                        ratio_width: 2,
+                        ratio_height: 3,
+                    }]
+                },
+            }
+        },
+        bids: [{
+            bidder: 'appnexusAst',
+            params: {
+                placementId: '9880618'
+            }
+        }, ]
+    });
 ```
 
 <a name="adUnit-video">
