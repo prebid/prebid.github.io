@@ -14,7 +14,9 @@ prebid_1_0_supported : true
 
 - [Bid params](#appnexus-bid-params)
 - [Support for publisher-defined keys](#appnexus-pub-keys)
-- [Specify aspect ratios for native images and icons](#appnexus-aspect-ratios)
+- [Banner Ads](#appnexus-Banner)
+- [Video Ads](#appnexus-Video)
+- [Native Ads](#appnexus-Native)
 
 <a name="appnexus-bid-params" />
 
@@ -56,9 +58,35 @@ var adUnits = [{
 {: .alert.alert-info :}
 Sizes set in the `adUnit` object will also apply to the AppNexus bid requests.
 
-<a name="appnexus-aspect-ratios" />
+<a name="appnexus-Banner" />
 
-#### Specify aspect ratios for native images and icons
+#### Banner Ads
+
+AppNexus supports the banner features described in:
+
+- [the `adUnit` properties documentation]({{site.baseurl}}/dev-docs/publisher-api-reference.html#adUnit-banner)
+- [Getting Started (for developers)]({{site.baseurl}}/dev-docs/getting-started.html)
+
+<a name="appnexus-Video" />
+
+#### Video Ads
+
+AppNexus supports the video features described in:
+
+- [the `adUnit` properties documentation]({{site.baseurl}}/dev-docs/publisher-api-reference.html#adUnit-video).
+- [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
+- [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
+
+<a name="appnexus-Native" />
+
+#### Native Ads
+
+AppNexus supports the native features described in:
+
+- [the `adUnit` properties documentation]({{site.baseurl}}/dev-docs/publisher-api-reference.html#adUnit-native).
+- [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html)
+
+##### Specify aspect ratios for native images and icons
 
 The AppNexus adapter supports specifying aspect ratios for native "image" and "icon" assets. Aspect ratios are defined by the following properties of the `aspect_ratios` array.  For usage, see the example code below.
 
