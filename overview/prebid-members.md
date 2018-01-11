@@ -30,7 +30,7 @@ Prebid.org was developed to bring together the oversight, guidance, and developm
 
 ## Standard Tier
 
-### [Pubmatic](https://pubmatic.com/products/header-bidding/)
+### [PubMatic](https://pubmatic.com/products/header-bidding/)
 
 
 ## Further Reading
