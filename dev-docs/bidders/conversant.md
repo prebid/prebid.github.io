@@ -21,7 +21,7 @@ prebid_1_0_supported : true
 | `site_id` | String | Required | The site ID from Conversant. | `"87293"` |
 | `secure` | Integer | Required (For Secure Pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1` |
 | `bidfloor` | Float | Optional | Bid floor | `0.50` |
-| `tag_id` | String | Optional | Identifies specific ad placement. | `cnvr-test-tag` |
+| `tag_id` | String | Optional | Identifies specific ad placement. | `"cnvr-test-tag"` |
 | `position` | Integer | Optional | Ad position on screen. See details below. | `1` |
 | `mimes` | String (Inside an Array) | Optional | Array of content MIME types supported. Required for video| `["video/mp4"]`|
 | `maxduration` | Integer | Optional | Maximum duration in seconds for this video as an integer. | `30` |
