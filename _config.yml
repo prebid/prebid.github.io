@@ -155,9 +155,9 @@ nav_sections:
 
 port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor']
 
-gems:
+plugins:
   - jekyll-mentions
   - jemoji
   - jekyll-redirect-from

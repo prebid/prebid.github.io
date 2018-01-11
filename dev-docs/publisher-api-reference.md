@@ -37,7 +37,7 @@ After a transition period, documentation for these methods will be removed from 
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
-  * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
+  * [.addAdUnits(Array\|Object)](#module_pbjs.addAdUnits)
   * [.addBidResponse(adUnitCode, bid)](#module_pbjs.addBidResponse) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.bidderSettings](#module_pbjs.bidderSettings)
   * [.addCallback(event, func)](#module_pbjs.addCallback) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
@@ -547,9 +547,9 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 
 <a name="module_pbjs.addAdUnits"></a>
 
-### pbjs.addAdUnits(Array)
+### pbjs.addAdUnits(Array|Object)
 
-Takes an array of one or more ad unit objects and adds it to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html) page.
+Takes one ad unit object or an array of ad unit objects and adds them to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html) page.
 
 + [Ad Unit Properties](#addAdUnits-AdUnitProperties)
 + [Examples](#addAdUnits-Examples)
@@ -803,7 +803,7 @@ per adapter as needed. Both scenarios are described below.
 
 **Keyword targeting for all bidders**
 
-The below code snippet is the *default* setting for ad server targeting. For each bidder's bid, Prebid.js will set 4 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`) with their corresponding values. The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items target these keys.
+The below code snippet is the *default* setting for ad server targeting. For each bidder's bid, Prebid.js will set 5 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`) with their corresponding values. The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items target these keys.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
 
@@ -836,6 +836,11 @@ pbjs.bidderSettings = {
             key: 'hb_size',
             val: function (bidResponse) {
                 return bidResponse.size;
+            }
+        }, {
+            key: 'hb_source',
+            val: function (bidResponse) {
+                return bidResponse.source;
             }
         }]
     }
@@ -1453,7 +1458,7 @@ pbjs.triggerUserSyncs();
 
 ##### How User Syncing Works
 
-The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-register-user-sync-pixels) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
+The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-User-Syncs) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
 
 * Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
 * Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
@@ -1516,8 +1521,6 @@ pbjs.setConfig({
 });
 
 {% endhighlight %}
-
-<a name="labels" />
 
 ##### Labels
 
