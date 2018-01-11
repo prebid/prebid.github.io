@@ -79,7 +79,7 @@ try {
     e.printStackTrace();
 }
 ```
-Please use the one below for initilization:
+Please use the one below for initialization:
 ```java
 // Register ad units for prebid.
 try {
