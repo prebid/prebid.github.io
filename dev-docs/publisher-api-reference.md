@@ -594,9 +594,9 @@ See the table below for the list of properties in the `mediaTypes` object of the
 {: .table .table-bordered .table-striped }
 | Name     | Scope                                                        | Type   | Description                                                                                                        |
 |----------+--------------------------------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
+| `banner` | optional. If no other properties are specified, this is the default | Object | Defines properties of a banner ad.  For examples, see [the banner example below](#adUnit-banner).                  |
 | `native` | optional | Object | Defines properties of a native ad.  For an example native ad unit, see [the native example below](#adUnit-native). |
 | `video`  | optional | Object | Defines properties of a video ad.  For examples, see [the video examples below](#adUnit-video).                    |
-| `banner` | optional. If no other properties are specified, this is the default | Object | Defines properties of a banner ad.  For examples, see [the banner example below](#adUnit-banner).                  |
 
 <a name="addAdUnits-Examples">
 
@@ -738,9 +738,16 @@ For examples of a multi-format ad units and behavior, see below.
 pbjs.addAdUnits({
   code: 'div-banner-outstream-native',
   mediaTypes: {
-    banner: {},
-    native: {},
-    video: {context: 'outstream'},
+    banner: { sizes: [[300, 250], [300, 600]] },
+    native: {
+        title: {required: true},
+        image: {required: true},
+        body: {required: false},
+    },
+    video: {
+        context: 'outstream',
+        playerSize: [400, 600],
+    },
   },
   bids: [
     {
@@ -764,8 +771,8 @@ pbjs.addAdUnits({
 pbjs.addAdUnits({
   code: 'div-native-outstream',
   mediaTypes: {
-    native: {},
-    video: {context: 'outstream'},
+    native: { type: 'image' },
+    video: { context: 'outstream', playerSize: [400, 600] },
   },
   bids: [
     {
