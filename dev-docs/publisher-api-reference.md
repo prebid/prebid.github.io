@@ -610,54 +610,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 ##### Native
 
-For examples of native ad units, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
-
-In this example, we mark pretty much every type of native asset as required.
-
-```javascript
-pbjs.addAdUnits({
-    code: slot.code,
-    sizes: slot.size,
-    mediaTypes: {
-        native: {
-            image: {
-                required: true
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            body: {
-                required: true
-            },
-            icon: {
-                required: true
-            },
-        },
-        bids: [{
-            bidder: 'appnexusAst',
-            params: {
-                placementId: '9880618'
-            }
-        }, ]
-    }
-})
-```
-
-Alternatively, you can specify aspect ratios for native "image" and "icon" assets. Aspect ratios are defined by the following properties of the `aspect_ratios` array.  For usage, see the example code below.
-
-{: .table .table-bordered .table-striped }
-| Name           | Scope    | Type    | Description                                              |
-|----------------+----------+---------+----------------------------------------------------------|
-| `ratio_width`  | Required | Integer | The width of the aspect ratio of the native ad.          |
-| `ratio_height` | Required | Integer | The height of the aspect ratio of the native ad.         |
-| `min_width`    | Optional | Integer | The required minimum width of the image asset in pixels. |
+For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
 
 ```javascript
     pbjs.addAdUnits({
@@ -665,31 +618,43 @@ Alternatively, you can specify aspect ratios for native "image" and "icon" asset
         sizes: slot.size,
         mediaTypes: {
             native: {
+                image: {
+                    required: true,
+
+                    /* If your bidder supports it, you can specify
+                       aspect ratios for image and icon native assets */
+
+                    aspect_ratios: [{
+                        min_width: 300,        /* Optional */
+                        ratio_width: 2,        /* Required */
+                        ratio_height: 3,       /* Required */
+                    }]
+                },
                 title: {
+                    required: true,
+                    len: 80
+                },
+                sponsoredBy: {
+                    required: true
+                },
+                clickUrl: {
                     required: true
                 },
                 body: {
                     required: true
                 },
-                sponsoredBy: XXX,
-                clickUrl: YYY,
-                image: {
-                    required: true,
-                    aspect_ratios: [{
-                        min_width: 100,
-                        ratio_width: 2,
-                        ratio_height: 3,
-                    }]
+                icon: {
+                    required: true
                 },
-            }
-        },
-        bids: [{
-            bidder: 'appnexusAst',
-            params: {
-                placementId: '9880618'
-            }
-        }, ]
-    });
+            },
+            bids: [{
+                bidder: 'appnexus',
+                params: {
+                    placementId: '9880618'
+                }
+            }, ]
+        }
+    })
 ```
 
 <a name="adUnit-video">
@@ -708,7 +673,7 @@ pbjs.addAdUnits({
         },
     },
     bids: [{
-        bidder: 'appnexusAst',
+        bidder: 'appnexus',
         params: {
             placementId: '9333431',
             video: {
@@ -759,7 +724,7 @@ pbjs.addAdUnits({
             sizes: [[300, 250], [300, 600]]
         },
         bids: [{
-            bidder: 'appnexusAst',
+            bidder: 'appnexus',
             params: {
                 placementId: '9880618'
             }
@@ -1212,11 +1177,11 @@ To define an alias for a bidder adapter, call this method at runtime:
 
 {% highlight js %}
 
-pbjs.aliasBidder('appnexusAst', 'newAlias');
+pbjs.aliasBidder('appnexus', 'newAlias');
 
 {% endhighlight %}
 
-Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexusAst"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexusAst"` adapter to serve their own unique demand).
+Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexus"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexus"` adapter to serve their own unique demand).
 
 It's not technically necessary to define an alias, since each copy of an adapter with the same name gets a different ID in the internal bidder registry so Prebid.js can still tell them apart.
 
