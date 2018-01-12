@@ -15,7 +15,7 @@ nav_section: prebid-native
 
 In this tutorial, we'll set up Prebid.js to show native ads.
 
-We'll use the [AppNexus AST adapter]({{site.github.url}}/dev-docs/bidders.html#appnexusAst) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
+We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
 Similarly, we'll use DFP as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
@@ -134,7 +134,7 @@ pbjs.addAdUnits({
             },
         },
         bids: [{
-            bidder: 'appnexusAst',
+            bidder: 'appnexus',
             params: {
                 placementId: '9880618'
             }
@@ -166,61 +166,33 @@ And the following optional fields:
 + icon
 + cta
 
-A native `image` ad unit can be set up as shown in the examples below.  You can either specify an absolute width and height, or use an aspect ratio.  As of this writing, more bidders support the absolute width and height method.  Be sure to check with your demand partners for details.
-
-Specifying the native ad unit using width and height:
+A native "image-type" ad unit can be set up as shown in the following example.
 
 ```javascript
     const adUnits = [{
-    code: 'adUnit-code',
-    mediaTypes: {
-        native: {
-            image: {
-                required: true,
-                height: , // height and width are in pixels
-                width: YYY,
-            }
-        }
-    }
-    bids: [{
-        bidder: 'appnexusAst',
-        params: {
-            placementId: '123456'
-        }
-    }]
-}];
-```
-
-Specifying the native ad unit using aspect ratios:
-
-```javascript
-    const adUnits = [{
-
+        code: 'adUnit-code',
         mediaTypes: {
-            code: 'adUnit-code',
             native: {
-                title: {
-                    required: true
-                },
-                body: {
-                    required: true
-                },
                 image: {
                     required: true,
+
+                    /* If your bidder supports it, you can specify aspect
+                       ratios for image and icon native assets */
+
                     aspect_ratios: [{
-                        min_width: 100,
-                        ratio_width: 2,
-                        ratio_height: 3,
+                        min_width: 300,      /* Optional */
+                        ratio_width: 2,      /* Required */
+                        ratio_height: 3,     /* Required */
                     }]
-                },
-            },
-            bids: [{
-                bidder: 'appnexusAst',
-                params: {
-                    placementId: '123456'
                 }
-            }]
+            }
         }
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: '123456'
+            }
+        }]
     }];
 ```
 
