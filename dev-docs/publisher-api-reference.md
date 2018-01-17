@@ -620,15 +620,7 @@ For an example of a native ad unit, see below.  For more detailed instructions, 
             native: {
                 image: {
                     required: true,
-
-                    /* If your bidder supports it, you can specify
-                       aspect ratios for image and icon native assets */
-
-                    aspect_ratios: [{
-                        min_width: 300,        /* Optional */
-                        ratio_width: 2,        /* Required */
-                        ratio_height: 3,       /* Required */
-                    }]
+                    sizes: [150, 50]
                 },
                 title: {
                     required: true,
@@ -644,7 +636,8 @@ For an example of a native ad unit, see below.  For more detailed instructions, 
                     required: true
                 },
                 icon: {
-                    required: true
+                    required: true,
+                    sizes: [50, 50]
                 },
             },
             bids: [{
@@ -656,6 +649,8 @@ For an example of a native ad unit, see below.  For more detailed instructions, 
         }
     })
 ```
+
+{% include dev-docs/native-image-asset-sizes.md %}
 
 <a name="adUnit-video">
 

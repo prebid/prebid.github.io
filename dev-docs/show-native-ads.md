@@ -114,7 +114,8 @@ pbjs.addAdUnits({
     mediaTypes: {
         native: {
             image: {
-                required: true
+                required: true,
+                sizes: [150, 50]
             },
             title: {
                 required: true,
@@ -130,7 +131,8 @@ pbjs.addAdUnits({
                 required: true
             },
             icon: {
-                required: true
+                required: true,
+                sizes: [50, 50]
             },
         },
         bids: [{
@@ -175,15 +177,7 @@ A native "image-type" ad unit can be set up as shown in the following example.
             native: {
                 image: {
                     required: true,
-
-                    /* If your bidder supports it, you can specify aspect
-                       ratios for image and icon native assets */
-
-                    aspect_ratios: [{
-                        min_width: 300,      /* Optional */
-                        ratio_width: 2,      /* Required */
-                        ratio_height: 3,     /* Required */
-                    }]
+                    sizes: [150, 50]
                 }
             }
         }
@@ -195,6 +189,8 @@ A native "image-type" ad unit can be set up as shown in the following example.
         }]
     }];
 ```
+
+{% include dev-docs/native-image-asset-sizes.md %}
 
 ### 3. Add your native ad tag to the page body as usual:
 
