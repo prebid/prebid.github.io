@@ -174,10 +174,7 @@ A native "image-type" ad unit can be set up as shown in the following example.
         code: 'adUnit-code',
         mediaTypes: {
             native: {
-                image: {
-                    required: true,
-                    sizes: [150, 50]
-                }
+                type: 'image'
             }
         }
         bids: [{
