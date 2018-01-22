@@ -615,7 +615,6 @@ For an example of a native ad unit, see below.  For more detailed instructions, 
 ```javascript
     pbjs.addAdUnits({
         code: slot.code,
-        sizes: slot.size,
         mediaTypes: {
             native: {
                 image: {
