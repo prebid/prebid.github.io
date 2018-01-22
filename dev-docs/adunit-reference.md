@@ -202,6 +202,128 @@ The `native` object contains the following properties that correspond to the ass
 
 ## Examples
 
++ [Banner](#adUnit-banner-example)
++ [Video](#adUnit-video-example)
++ [Native](#adUnit-native-example)
+
+<a name="adUnit-banner-example">
+
+##### Banner
+
+For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250], [300, 600]]
+        },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: '9880618'
+            }
+        }, ]
+    }
+})
+```
+
+<a name="adUnit-video-example">
+
+##### Video
+
+For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: 'video',
+    mediaTypes: {
+        video: {
+            context: "instream",
+            sizes: [640, 480],
+        },
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: '9333431',
+            video: {
+                skippable: true,
+                playback_methods: ['auto_play_sound_off']
+            }
+        }
+    }]
+});
+```
+
+For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
+
+```javascript
+pbjs.addAdUnit({
+    code: 'video1',
+    mediaTypes: {
+        video: {
+            context: 'outstream',
+            sizes: [640, 480]
+        }
+    },
+    renderer: {
+        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        render: function(bid) {
+            ANOutstreamVideo.renderAd({
+                targetId: bid.adUnitCode,
+                adResponse: bid.adResponse,
+            });
+        }
+    },
+    ...
+})
+```
+
+<a name="adUnit-native-example">
+
+##### Native
+
+For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            clickUrl: {
+                required: true
+            },
+            body: {
+                required: true
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            },
+        },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: '9880618'
+            }
+        }, ]
+    }
+})
+```
+
 ## Related Topics
 
 + [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html)
