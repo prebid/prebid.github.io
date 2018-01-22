@@ -110,7 +110,6 @@ Each key's value is an object with several fields.  Most important is the `requi
 
 pbjs.addAdUnits({
     code: slot.code,
-    sizes: slot.size,
     mediaTypes: {
         native: {
             image: {
