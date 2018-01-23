@@ -37,7 +37,7 @@ At a high level, Prebid.js supports multi-format ads as follows:
 
 The following key is added to your ad server targeting, and set to the value of the bid response's `mediaType` property.
 
-+ `hb_mediatype`
++ `hb_format`
 
 The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multiformat-in-dfp.html).
 
