@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Setting up Prebid Multi-Format in DFP
-head_title: Setting up Prebid Multi-Format in DFP
-description: Setting up Prebid Multi-Format in DFP
+title: Setting up Prebid Multiformat in DFP
+head_title: Setting up Prebid Multiformat in DFP
+description: Setting up Prebid Multiformat in DFP
 pid: 3
 hide: false
 top_nav_section: adops
@@ -11,15 +11,15 @@ nav_section: tutorials
 
 <div class="bs-docs-section" markdown="1">
 
-# Setting up Prebid Multi-Format in DFP
+# Setting up Prebid Multiformat in DFP
 {: .no_toc}
 
-This page shows how to set up your ad server so that you can serve multi-format ads.
+This page shows how to set up your ad server so that you can serve multiformat ads.
 
-Multi-format ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad on the page that could show a banner, native, or video ad, depending on which had the highest bid.
+Multiformat ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad on the page that could show a banner, native, or video ad, depending on which had the highest bid.
 
 {: .alert.alert-info :}
-For instructions, on how to set up multi-format ads from the engineering side, see [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html).
+For instructions, on how to set up multiformat ads from the engineering side, see [Show Multiformat Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html).
 
 * TOC
 {: toc }
@@ -40,6 +40,6 @@ For instructions, on how to set up multi-format ads from the engineering side, s
 
 ## Related Topics
 
-+ [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html)
++ [Show Multiformat Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html)
 
 </div>
