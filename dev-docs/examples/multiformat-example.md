@@ -10,7 +10,7 @@ about:
 - Any bidder that supports at least one of the listed media types can participate in the auction for that ad unit
 - For engineering setup instructions, see <a href="/dev-docs/show-multiformat-ads.html">Show Multi-format ads</a>
 - For ad ops setup instructions, see <a href="/adops/setting-up-prebid-multiformat-in-dfp.html">Setting up Prebid Multi-Format in DFP</a>
-jsfiddle_link: jsfiddle.net/prebid/mg81j0rw/2/embedded/html,result
+jsfiddle_link: jsfiddle.net/prebid/mg81j0rw/3/embedded/html,result
 code_lines: 110
 code_height: 2389
 use_old_example_style: false
