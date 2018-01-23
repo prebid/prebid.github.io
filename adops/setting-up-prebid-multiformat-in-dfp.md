@@ -26,20 +26,48 @@ For instructions, on how to set up multiformat ads from the engineering side, se
 
 ## Step 1. Add an Order
 
-## Step 2. Add a Line Item for each Media Type
+In DFP, create a new order for each of your header bidding partners.
 
-## Step 3. Add a Creative (<span style="color: rgb(255,0,0);">FIXME</span>: <strong>for each media type?</strong>)
+Repeat this step and step 2 when you are adding a new partner.
 
-## Step 4. Attach Creatives to the Appropriate Line Items
+## Step 2. Add Line Items and Creatives for each Media Type
 
-## Step 5. Duplicate Creatives
+Because of the way multiformat support works in Prebid.js, for each price bucket, you will need to set up line items for each of the following formats:
 
-## Step 6. Duplicate Line Items
++ One for [banner and outstream video][bannerAdSetup].  Banners and outstream videos will serve into a DFP banner creative.
 
-## Step 7. Create Orders for your other Demand Partners (Bidders)
++ One for [native][nativeAdSetup].  Native ads will serve into a native creative with native format and styles
+
+### Banner/Outstream
+
+Follow the instructions for creating line items and creatives in [Send all bids to the ad server][bannerAdSetup], with the following changes:
+
++ Add key-value targeting for the `hb_format` key: `video, banner`
+    + This will allow either banner or outstream video to serve
++ Make sure that you're targeting the right sizes for both banner ads and any outstream ads you want to serve in this slot, e.g.,
+    + 1x1 for outstream (or whatever size you pass into DFP as your outstream impression)
+    + whatever banner sizes are valid for your site / use case
+
+### Native
+
+Follow the instructions for creating line items, creatives, custom native formats, and native styles in [Show Native Ads][nativeAdSetup], with the following changes:
+
++ Add key-value targeting for the `hb_format` key: `native`
++ Make sure you're targeting the right sizes for the native ads you want to serve:
+    + Fixed-size native, where you specify the sizes
+    + Fluid, which expands to fit whatever space it's put in
+    + Either fluid or fixed-size can be created from the same [custom native format][createCustomNativeFormat]
+    + For more information on fluid vs. fixed, see [the DFP docs](https://support.google.com/dfp_premium/answer/6366914?hl=en)
 
 ## Related Topics
 
-+ [Show Multiformat Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html)
++ [Show Multiformat Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html) (Engineering setup)
++ [Multiformat Example]({{site.baseurl}}/dev-docs/examples/multiformat-example.html) (Example code)
 
 </div>
+
+<!-- Reference Links -->
+
+[bannerAdSetup]: {{site.baseurl}}/adops/send-all-bids-adops.html
+[nativeAdSetup]: {{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html
+[createCustomNativeFormat]: {{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html#create-a-custom-native-ad-format
