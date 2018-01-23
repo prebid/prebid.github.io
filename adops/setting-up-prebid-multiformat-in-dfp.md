@@ -16,7 +16,7 @@ nav_section: tutorials
 
 This page shows how to set up your ad server so that you can serve multiformat ads.
 
-Multiformat ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad on the page that could show a banner, native, or video ad, depending on which had the highest bid.
+Multiformat ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad on the page that could show a banner, native, or outstream video ad, depending on which had the highest bid.
 
 {: .alert.alert-info :}
 For instructions, on how to set up multiformat ads from the engineering side, see [Show Multiformat Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html).
