@@ -123,7 +123,7 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 ## Working Examples
 
-+ [Prebid.js Multiformat Example]({{site.baseurl}}/dev-docs/examples/multiformat-example.html)
++ [Multiformat Example]({{site.baseurl}}/dev-docs/examples/multiformat-example.html)
 
 ## Related Topics
 
