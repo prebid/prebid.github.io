@@ -15,7 +15,7 @@ nav_section: prebid-native
 
 In this tutorial, we'll set up Prebid.js to show native ads.
 
-We'll use the [AppNexus AST adapter]({{site.github.url}}/dev-docs/bidders.html#appnexusAst) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
+We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
 Similarly, we'll use DFP as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
@@ -114,8 +114,7 @@ pbjs.addAdUnits({
         native: {
             image: {
                 required: true,
-                sizes: slot.size,
-                aspect_ratios: slot.size
+                sizes: [150, 50]
             },
             title: {
                 required: true,
@@ -132,11 +131,11 @@ pbjs.addAdUnits({
             },
             icon: {
                 required: true,
-                sizes: slot.size,
+                sizes: [50, 50]
             },
         },
         bids: [{
-            bidder: 'appnexusAst',
+            bidder: 'appnexus',
             params: {
                 placementId: '9880618'
             }
@@ -168,19 +167,26 @@ And the following optional fields:
 + icon
 + cta
 
-A native `image` ad unit can be set up in the manner below:
+A native "image-type" ad unit can be set up as shown in the following example.
 
-{% highlight js %}
-
-      const adUnits = [{
+```javascript
+    const adUnits = [{
         code: 'adUnit-code',
-        mediaTypes: { native: { type: 'image' } }
-        bids: [
-          { bidder: 'appnexusAst', params: { placementId: '123456' } }
-        ]
-      }];
+        mediaTypes: {
+            native: {
+                type: 'image'
+            }
+        }
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: '123456'
+            }
+        }]
+    }];
+```
 
-{% endhighlight %}
+{% include dev-docs/native-image-asset-sizes.md %}
 
 ### 3. Add your native ad tag to the page body as usual:
 

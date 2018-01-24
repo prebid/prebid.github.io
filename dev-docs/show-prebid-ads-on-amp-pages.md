@@ -45,8 +45,6 @@ We *strongly* recommend that you use the example files from the repo as a starti
 
 The best way to read this page is side-by-side with [the AMP example in the repo](https://github.com/prebid/Prebid.js/tree/master/integrationExamples/gpt/amp).
 
-<a name="amp-content-page" />
-
 ### AMP content page
 
 The special meta tag in [amp_page.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/amp/amp_page.html) specifies the path to the publisher-hosted file to use as the AMP cross-domain host:
@@ -214,11 +212,9 @@ The function `loadPrebidJS()` shown below is what's called by the AMP `draw3p` f
       }
     }
 
-    /** wrap the rest of the setup in a function that will be called by the
-     * AMP `draw3p` hook see
-     * this example for more info:
-     * https://dfp-amp-testing-1185.appspot.com/amp_tests/dfp-3p-iframe.html
-     * */
+    /* wrap the rest of the setup in a function that will be called by
+    the AMP `draw3p` hook */
+
      function loadPrebidJS() {
         pbjs.que.push(function () {
             pbjs.logging = true;
@@ -244,8 +240,6 @@ In the page's body, implement the `draw3p` function as shown below.  This implem
 
 {: .alert.alert-danger :}
 Don't forget to add the required arrays at the end of the function showing the ad networks used and the domains allowed to load this file in an iFrame.  You **must** add all `amp-ad` types on page to the `draw3p` array, even if they are not being used with Prebid demand.
-
-For an example showing how `draw3p` is used, see [this AMP test](https://dfp-amp-testing-1185.appspot.com/amp_tests/dfp-3p-iframe.html).
 
 For more information about `draw3p`, see:
 
@@ -288,8 +282,6 @@ listenAdRequestFromCreative();
 ```
 
 which is one of the helper functions defined in Step 3.
-
-<a name="html-creative" />
 
 ### HTML Creative
 

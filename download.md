@@ -127,8 +127,8 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 
 ### Option 1: Customize your download here
 
-{% assign bidder_pages = (site.pages | where: "layout", "bidder") %}
-{% assign module_pages = (site.pages | where: "nav_section", "modules") %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+{% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
 <form>
 <div class="row">
@@ -169,7 +169,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analtyics
+      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
     </label>
   </div>
 </div>
