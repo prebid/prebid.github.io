@@ -1,0 +1,21 @@
+---
+layout: bidder
+title: Adgeneration
+description: Prebid Adgeneration Bidder Adaptor
+top_nav_section: dev_docs
+nav_section: reference
+hide: true
+biddercode: adgeneration
+biddercode_longer_than_12: false
+prebid_1_0_supported : true
+---
+
+
+### bid params
+
+{: .table .table-bordered .table-striped }
+| Name            | Scope    | Description                          | Example                  |
+|:----------------|:---------|:-------------------------------------|:-------------------------|
+| `id`        | required | adId        | `'1234'`               |
+| `width`        | required | width        | `'300'`               |
+| `height`        | required | height        | `'250'`               |
