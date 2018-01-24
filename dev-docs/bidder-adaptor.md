@@ -44,6 +44,9 @@ In order to provide a fast and safe header bidding environment for publishers, t
 {: .alert.alert-danger :}
 Failure to follow any of the above conventions could lead to delays in approving your adapter for inclusion in Prebid.js.
 
+{: .alert.alert-danger :}
+Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
+
 <a name="bidder-adaptor-Required-Files" />
 
 ### Required Files
