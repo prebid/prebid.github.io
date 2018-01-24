@@ -14,7 +14,6 @@
 
           <div class="col-md-6">
             {% include example_tab.html %}
-            <!-- </div> -->
           </div>
       </div>
     </div>
@@ -32,20 +31,21 @@
           <li>Please refer to the <a href="{{page.why_link}}" target="_blank">product feature launch notes</a>.</li>
         </ul>
       {% endif %}
-      <p>This page is an example of using prebid video with a specific player. For a general guide to using video in prebid, click <a href="{{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html">here.</a></p>
-      <br>
 
-      <h4>This page contains:</h4>
+        <p>
+          This page is an example of using Prebid Video with a specific player. For a general guide to showing video ads with Prebid.js, see <a href="{{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html">Show Video Ads with DFP</a>.
+        </p>
 
-      <p>
+        <p>
+          This page contains:
         <ul>
           {% for about_bullet in page.about %}
             <li>{{ about_bullet}}</li>
           {% endfor %}
         </ul>
       </p>
-      <br>
-      <h4>Player specific notes:</h4>
+
+      <h2>Player-specific notes</h2>
       <p>
         <ul>
           {% for player_bullet in page.player_notes %}
@@ -53,12 +53,18 @@
           {% endfor %}
         </ul>
       </p>
-      <br>
+
+      <h2>Examples</h2>
+
       <p>
-
-        Click <a href="//{{page.demo_link}}">here</a> to view a demo page with this example. Click <strong>Edit in JSFiddle</strong> to open the example in a new tab. 
-
+        Click <a href="//{{page.demo_link}}">here</a> to view a demo page with this example.
       </p>
+
+      <p>
+        Click <strong>Edit in JSFiddle</strong> (below) to open the example in a new tab.
+      </p>
+
+      <h2>Troubleshooting Common Issues</h2>
 
       <p>
         For tips and troublshooting info, see:
@@ -77,10 +83,9 @@
 
 </div>
 
-<br>
-
 <div class="row">
 
+{% unless page.use_old_example_style == false %}
 <div class="col-sm-6">
 
 
@@ -106,6 +111,7 @@
 
 
 </div>
+{% endunless %}
 
 <div class="col-sm-6">
 
@@ -115,11 +121,15 @@
 {{content}}
 
 </div>
-<br><br>
 
 </div>
 
-  </div>
+{% if page.use_old_example_style == false %}
+  <br />
+  <iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+{% endif %}
+
+</div>
 
 
 {% include foot.html %}

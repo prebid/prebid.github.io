@@ -11,8 +11,7 @@ hide: true
 biddercode: featureforward
 
 biddercode_longer_than_12: true
-
-
+prebid_1_0_supported : true
 ---
 
 ### bid params
@@ -20,6 +19,7 @@ biddercode_longer_than_12: true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
 |:-----------|:---------|:------------|:-----------------|
-| `placementId` | required | | |
+| `pubId` | required | unique identifier per publisher, number range 1-999  | '32' |
+| `siteId` | required | unique identifier per publisher site, number range 1-999  | '01' |
+| `placementId` | required | unique identifier per placement per publisher site, ranges from 0-9 | '3' |
 
-Feature Forward is an aliased bidder for AppNexus

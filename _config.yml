@@ -73,6 +73,9 @@ nav_sections:
     code: prebid-video
     name: PREBID VIDEO (BETA)
   - top_nav: dev_docs
+    code: prebid-native
+    name: PREBID NATIVE (ALPHA)
+  - top_nav: dev_docs
     code: prebid-server
     name: PREBID SERVER
   - top_nav: dev_docs
@@ -85,11 +88,11 @@ nav_sections:
     code: reference
     name: REFERENCE
   - top_nav: dev_docs
-    code: adaptors
-    name: ADAPTORS
+    code: features
+    name: FEATURES
   - top_nav: dev_docs
-    code: hacking
-    name: HACKING ON PREBID.JS
+    code: adapters
+    name: ADAPTERS
 
   - top_nav: overview
     code: intro
@@ -126,12 +129,35 @@ nav_sections:
     code: download
     name: DOWNLOAD
 
+  - top_nav: modules
+    code: modules
+    name: MODULES
+
+  - top_nav: prebid-mobile
+    code: prebid-mobile
+    name: PREBID MOBILE
+  - top_nav: prebid-mobile
+    code: prebid-mobile-pbs
+    name: PREBID SERVER
+  - top_nav: prebid-mobile
+    code: prebid-mobile-ios
+    name: FOR IOS
+  - top_nav: prebid-mobile
+    code: prebid-mobile-android
+    name: FOR ANDROID
+  - top_nav: prebid-mobile
+    code: prebid-mobile-adops
+    name: FOR ADOPS
+  - top_nav: prebid-mobile
+    code: prebid-mobile-contributors
+    name: FOR CONTRIBUTORS
+
 
 port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor']
 
-gems:
+plugins:
   - jekyll-mentions
   - jemoji
   - jekyll-redirect-from

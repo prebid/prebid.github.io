@@ -14,6 +14,8 @@ nav_section: tutorials
 # Setting up Prebid for AMP in DFP
 {: .no_toc}
 
+{% include amp-deprecation-warning.md %}
+
 This page describes how to set up a line item and creative to serve on AMP pages with Prebid.js.
 
 * TOC
@@ -24,7 +26,7 @@ This page describes how to set up a line item and creative to serve on AMP pages
 
 In addition to your other line item settings, you'll need the following:
 
-+ Set **Inventory Sizes** to 1x1
++ Enter the **Inventory Sizes** of the creatives you want the line item to use, e.g., *300x250*, *300x50*, etc.
 
 + Set the **Type** to *Price Priority*
 
