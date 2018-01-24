@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Adgeneration
-description: Prebid Adgeneration Bidder Adaptor
+title: Ad Generation
+description: Prebid Ad Generation Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
