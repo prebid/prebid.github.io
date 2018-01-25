@@ -38,11 +38,11 @@ In DFP, create a new order.  This order will be associated with the multiple lin
 
 ## Step 3. Add Line Items and Creatives for each Media Type
 
-Because of the way multi-format support works in Prebid.js, for each price bucket, you will need to set up line items for each of the following formats:
+Multi-format ad units which support native require at least two distinct sets of line items and creatives:
 
-+ One for [banner and outstream video][bannerAdSetup].  Banners and outstream videos will serve into a DFP banner creative.
++ One for [banners and outstream video][bannerAdSetup].  Banners and outstream videos will serve into a DFP banner creative.
 
-+ One for [native][nativeAdSetup].  Native ads will serve into a native creative with native format and styles
++ One for [native][nativeAdSetup].  Native ads will serve into a native creative with native format and styles.
 
 ### Banner/Outstream
 
