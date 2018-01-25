@@ -26,9 +26,7 @@ For instructions, on how to set up multi-format ads from the engineering side, s
 
 ## Step 1. Add an Order
 
-In DFP, create a new order for each of your header bidding partners.
-
-Repeat this step and step 2 when you are adding a new partner.
+In DFP, create a new order.  This order will be associated with the multiple line items needed to run multi-format auctions.
 
 ## Step 2. Add Line Items and Creatives for each Media Type
 
