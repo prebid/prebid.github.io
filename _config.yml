@@ -70,7 +70,7 @@ nav_sections:
     code: quick-start
     name: DEVELOPER QUICK START
   - top_nav: dev_docs
-    code: prebid-multiformat
+    code: prebid-multi-format
     name: PREBID MULTI-FORMAT (ALPHA)
   - top_nav: dev_docs
     code: prebid-video

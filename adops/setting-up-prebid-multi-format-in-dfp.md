@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Setting up Prebid Multiformat in DFP
-head_title: Setting up Prebid Multiformat in DFP
-description: Setting up Prebid Multiformat in DFP
+title: Setting up Prebid Multi-Format in DFP
+head_title: Setting up Prebid Multi-Format in DFP
+description: Setting up Prebid Multi-Format in DFP
 pid: 3
 hide: false
 top_nav_section: adops
@@ -11,15 +11,15 @@ nav_section: tutorials
 
 <div class="bs-docs-section" markdown="1">
 
-# Setting up Prebid Multiformat in DFP
+# Setting up Prebid Multi-Format in DFP
 {: .no_toc}
 
-This page shows how to set up your ad server so that you can serve multiformat ads.
+This page shows how to set up your ad server so that you can serve multi-format ads.
 
-Multiformat ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad on the page that could show a banner, native, or outstream video ad, depending on which had the highest bid.
+Multi-Format ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad on the page that could show a banner, native, or outstream video ad, depending on which had the highest bid.
 
 {: .alert.alert-info :}
-For instructions, on how to set up multiformat ads from the engineering side, see [Show Multiformat Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html).
+For instructions, on how to set up multi-format ads from the engineering side, see [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multi-format-ads.html).
 
 * TOC
 {: toc }
@@ -32,7 +32,7 @@ Repeat this step and step 2 when you are adding a new partner.
 
 ## Step 2. Add Line Items and Creatives for each Media Type
 
-Because of the way multiformat support works in Prebid.js, for each price bucket, you will need to set up line items for each of the following formats:
+Because of the way multi-format support works in Prebid.js, for each price bucket, you will need to set up line items for each of the following formats:
 
 + One for [banner and outstream video][bannerAdSetup].  Banners and outstream videos will serve into a DFP banner creative.
 
@@ -61,8 +61,8 @@ Follow the instructions for creating line items, creatives, custom native format
 
 ## Related Topics
 
-+ [Show Multiformat Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multiformat-ads.html) (Engineering setup)
-+ [Multiformat Example]({{site.baseurl}}/dev-docs/examples/multiformat-example.html) (Example code)
++ [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multi-format-ads.html) (Engineering setup)
++ [Multi-Format Example]({{site.baseurl}}/dev-docs/examples/multi-format-example.html) (Example code)
 
 </div>
 

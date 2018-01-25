@@ -605,7 +605,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 + [Native](#adUnit-native)
 + [Video](#adUnit-video)
 + [Banner](#adUnit-banner)
-+ [Multi-format](#adUnit-multiformat)
++ [Multi-format](#adUnit-multi-format)
 
 <a name="adUnit-native">
 
@@ -727,7 +727,7 @@ pbjs.addAdUnits({
 })
 ```
 
-<a name="adUnit-multiformat">
+<a name="adUnit-multi-format">
 
 ##### Multi-format
 
