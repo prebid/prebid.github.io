@@ -57,7 +57,7 @@ This section describes the implementation using code samples, but ignores some o
 
 ### 1. Add multi-format ad units
 
-In the ad unit below, we define the requirements for each media type that could serve: banner, native, or video.
+The ad unit below supports the banner, native, and video media types.
 
 ```javascript
 
