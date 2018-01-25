@@ -19,16 +19,24 @@ This page shows how to set up your ad server so that you can serve multi-format 
 Multi-Format ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad on the page that could show a banner, native, or outstream video ad, depending on which had the highest bid.
 
 {: .alert.alert-info :}
-For instructions, on how to set up multi-format ads from the engineering side, see [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multi-format-ads.html).
+For instructions on how to set up multi-format ads from the engineering side, see [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multi-format-ads.html).
 
 * TOC
 {: toc }
 
-## Step 1. Add an Order
+## Step 1. Add an Ad Unit
+
+In DFP, [create an ad unit](https://support.google.com/dfp_premium/answer/177203?hl=en).
+
+Decide what combination of formats will be permitted on the ad unit.  This will determine what sizes you allow to serve.  The ad unit's sizes must be configured properly to support the combination of formats that will be permitted.
+
+If your ad unit will support native ads, you must create a custom **Prebid Native Format** and **Prebid Native Style** as described in [Setting up Prebid Native in DFP][nativeAdSetup].
+
+## Step 2. Add an Order
 
 In DFP, create a new order.  This order will be associated with the multiple line items needed to run multi-format auctions.
 
-## Step 2. Add Line Items and Creatives for each Media Type
+## Step 3. Add Line Items and Creatives for each Media Type
 
 Because of the way multi-format support works in Prebid.js, for each price bucket, you will need to set up line items for each of the following formats:
 
