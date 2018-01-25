@@ -31,7 +31,7 @@ For ad ops setup instructions, see [Setting up Prebid Multi-Format in DFP]({{sit
 
 ## How Multi-Format Ads Work
 
-Multi-Format ads allow you to say that a single ad unit may be filled by any eligible banner, video, or native ad.
+Prebid multi-format ad units allow direct competition between banner, native, and/or video bids.
 
 At a high level, Prebid.js supports multi-format ads as follows:
 
