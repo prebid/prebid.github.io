@@ -54,7 +54,6 @@ Follow the instructions for creating line items, creatives, custom native format
 + Make sure you're targeting the right sizes for the native ads you want to serve:
     + Fixed-size native, where you specify the sizes
     + Fluid, which expands to fit whatever space it's put in
-    + Either fluid or fixed-size can be created from the same [custom native format][createCustomNativeFormat]
     + For more information on fluid vs. fixed, see [the DFP docs](https://support.google.com/dfp_premium/answer/6366914?hl=en)
 
 ## Related Topics
