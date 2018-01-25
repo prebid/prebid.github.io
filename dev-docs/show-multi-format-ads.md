@@ -15,7 +15,11 @@ nav_section: prebid-multi-format
 
 This page has instructions for showing multi-format ads using Prebid.js.
 
-Multi-Format ads allow you to declare multiple media types on a single ad unit.  For example, you can set up one ad unit that could show a banner, native, or outstream video ad, depending on which had the highest bid. 
+An ad unit is said to be multi-format if it supports at least two of the following media types:
+
++ Banner
++ Native
++ Video
 
 Once declared, any bidder that supports at least one of the media types can participate in the auction for that ad unit.
 
