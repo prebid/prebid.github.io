@@ -4,6 +4,7 @@ title: Prebid.js Multi-Format Example
 description: Prebid.js Multi-Format Example
 top_nav_section: dev_docs
 nav_section: quick-start
+hide: true
 about:
 - Multi-Format ads allow you to declare multiple media types on a single ad unit
 - Set up one ad unit that could show a banner, native, or outstream video ad
