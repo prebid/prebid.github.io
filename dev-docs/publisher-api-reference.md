@@ -14,7 +14,7 @@ pid: 10
 This page has documentation for the public API methods of Prebid.js.
 
 {: .alert.alert-danger :}
-Methods marked as deprecated will be removed in version 1.0 (scheduled for release Q4 2017).
+Methods marked as deprecated were removed in version 1.0.  For more information about the changes, see [the release announcement]({{site.baseurl}}/blog/prebid-1-is-released).  
 After a transition period, documentation for these methods will be removed from Prebid.org (likely early 2018).
 
 <a name="module_pbjs"></a>
