@@ -30,7 +30,7 @@ In DFP, [create an ad unit](https://support.google.com/dfp_premium/answer/177203
 
 Decide what combination of formats will be permitted on the ad unit.  This will determine what sizes you allow to serve.  The ad unit's sizes must be configured properly to support the combination of formats that will be permitted.
 
-If your ad unit will support native ads, you must create a custom **Prebid Native Format** and **Prebid Native Style** as described in [Setting up Prebid Native in DFP][nativeAdSetup].
+If your ad unit will support native ads, you may want to create a custom **Prebid Native Format** and at least one **Prebid Native Style**.  Examples of each are given in [Setting up Prebid Native in DFP][nativeAdSetup].
 
 ## Step 2. Add an Order
 
