@@ -48,8 +48,11 @@ Multi-format ad units which support native require at least two distinct sets of
 
 Follow the instructions for creating line items and creatives in [Send all bids to the ad server][bannerAdSetup], with the following changes:
 
-+ Add key-value targeting for the `hb_format` key: `video, banner`
++ Add key-value targeting for **'hb_format' is ('banner' OR 'video')**
     + This will allow either banner or outstream video to serve
+
+    ![Set hb_format to 'banner,video']({{site.baseurl}}/assets/images/ad-ops/multi-format/hb_format_video_banner.png)
+
 + Make sure that you're targeting the right sizes for both banner ads and any outstream ads you want to serve in this slot, e.g.,
     + 1x1 for outstream (or whatever size you pass into DFP as your outstream impression)
     + whatever banner sizes are valid for your site / use case
@@ -58,7 +61,10 @@ Follow the instructions for creating line items and creatives in [Send all bids 
 
 Follow the instructions for creating line items, creatives, custom native formats, and native styles in [Show Native Ads][nativeAdSetup], with the following changes:
 
-+ Add key-value targeting for the `hb_format` key: `native`
++ Add key-value targeting for **'hb_format' is 'native'**
+
+    ![Set 'hb_format' to 'native']({{site.baseurl}}/assets/images/ad-ops/multi-format/hb_format_native.png)
+
 + Make sure you're targeting the right sizes for the native ads you want to serve:
     + Fixed-size native, where you specify the sizes
     + Fluid, which expands to fit whatever space it's put in
