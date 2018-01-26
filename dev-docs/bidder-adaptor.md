@@ -93,7 +93,7 @@ Module that connects to Example's demand sources
             code: 'test-div',
             mediaTypes: {
                 banner: {
-                    sizes: [[300, 50]],   // a mobile size
+                    sizes: [[320, 50]],   // a mobile size
                 }
             },
             bids: [
