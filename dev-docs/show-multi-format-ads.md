@@ -127,7 +127,7 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 ## Working Examples
 
-+ [Multi-Format Example]({{site.baseurl}}/dev-docs/examples/multi-format-example.html)
++ [Multi-Format Example]({{site.baseurl}}/examples/multi_format_example.html)
 
 ## Related Topics
 
