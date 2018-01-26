@@ -40,7 +40,7 @@ In DFP, create a new order.  This order will be associated with the multiple lin
 
 Multi-format ad units which support native require at least two distinct sets of line items and creatives:
 
-+ One for [banners and outstream video][bannerAdSetup].  Banners and outstream videos will serve into a DFP banner creative.
++ One for [banners and/or outstream video][bannerAdSetup].  Banners and outstream videos will serve into a DFP banner creative.
 
 + One for [native][nativeAdSetup].  Native ads will serve into a native creative with native format and styles.
 
