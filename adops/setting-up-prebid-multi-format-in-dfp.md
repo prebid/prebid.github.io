@@ -49,7 +49,7 @@ Multi-format ad units which support native require at least two distinct sets of
 Follow the instructions for creating line items and creatives in [Send all bids to the ad server][bannerAdSetup], with the following changes:
 
 + Add key-value targeting for **'hb_format' is ('banner' OR 'video')**
-    + This will allow either banner or outstream video to serve
+    + This will ensure that the appropriate ad server line item is activated for banner / outstream bids
     + For bidder-specific line items, specify `hb_format_{BIDDER_CODE}`, e.g., `hb_format_appnexus`
 
     ![Set hb_format to 'banner,video']({{site.baseurl}}/assets/images/ad-ops/multi-format/hb_format_video_banner.png)
