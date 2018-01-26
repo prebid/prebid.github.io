@@ -67,7 +67,7 @@ Follow the instructions for creating line items, creatives, custom native format
     ![Set 'hb_format' to 'native']({{site.baseurl}}/assets/images/ad-ops/multi-format/hb_format_native.png)
 
 + Make sure you're targeting the right sizes for the native ads you want to serve:
-    + Fixed-size native, where you specify the sizes
+    + Fixed-size native, where you specify one or more absolute sizes
     + Fluid, which expands to fit whatever space it's put in
     + For more information on fluid vs. fixed, see [the DFP docs](https://support.google.com/dfp_premium/answer/6366914?hl=en)
 
