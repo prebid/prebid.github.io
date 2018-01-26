@@ -50,6 +50,7 @@ Follow the instructions for creating line items and creatives in [Send all bids 
 
 + Add key-value targeting for **'hb_format' is ('banner' OR 'video')**
     + This will allow either banner or outstream video to serve
+    + For bidder-specific line items, specify `hb_format_{BIDDER_CODE}`, e.g., `hb_format_appnexus`
 
     ![Set hb_format to 'banner,video']({{site.baseurl}}/assets/images/ad-ops/multi-format/hb_format_video_banner.png)
 
