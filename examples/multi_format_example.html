@@ -51,6 +51,22 @@
          },
 
          {
+           code: 'div-banner-outstream',
+           mediaTypes: {
+             banner: { sizes: [[300, 250]] },
+             video: { context: 'outstream', playerSize: [800, 1200] },
+           },
+           bids: [
+             {
+               bidder: 'appnexus',
+               params: {
+                 placementId: 12340418,
+               }
+             },
+           ]
+         },
+
+         {
            code: 'div-banner-outstream-native',
            mediaTypes: {
              banner: { sizes: [[300, 250]] },
@@ -136,6 +152,14 @@
        googletag
          .defineSlot(
            '/19968336/prebid_multiformat_test',
+           [[640, 480], [300, 250], [360, 360]],
+           'div-banner-outstream'
+         )
+         .addService(googletag.pubads());
+
+       googletag
+         .defineSlot(
+           '/19968336/prebid_multiformat_test',
            [[1, 1], [300, 250], [360, 360]],
            'div-banner-outstream-native'
          )
@@ -157,6 +181,16 @@
       <script type='text/javascript'>
        googletag.cmd.push(function() {
          googletag.display('div-banner-native');
+       });
+      </script>
+    </div>
+
+    <h3>div-banner-outstream</h3>
+    <div id='div-banner-outstream'>
+      <p>No response</p>
+      <script type='text/javascript'>
+       googletag.cmd.push(function() {
+         googletag.display('div-banner-outstream');
        });
       </script>
     </div>
