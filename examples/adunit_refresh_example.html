@@ -10,7 +10,11 @@
 
      var adUnits = [{
        code: 'div-gpt-ad-1438287399331-0',
-       sizes: [[300, 250], [300, 600]],
+       mediaTypes: {
+         banner: {
+          sizes: [[300, 250], [300, 600]],
+         }
+       },
        bids: [{
          bidder: 'appnexus',
          params: { placementId: '10433394' }
