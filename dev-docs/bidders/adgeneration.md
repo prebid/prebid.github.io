@@ -17,5 +17,3 @@ prebid_1_0_supported : true
 | Name            | Scope    | Description                          | Example                  |
 |:----------------|:---------|:-------------------------------------|:-------------------------|
 | `id`        | required | adId        | `'1234'`               |
-| `width`        | required | width        | `'300'`               |
-| `height`        | required | height        | `'250'`               |
