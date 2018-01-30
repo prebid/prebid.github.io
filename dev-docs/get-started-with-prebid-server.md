@@ -93,7 +93,7 @@ pbjs.que.push(function() {
 });
 {% endhighlight %}
 
-Optionally, if you chose to use one of the existing Prebig.org members as your server host, you can also use the following type of configuration:
+Optionally, if you chose to use one of the existing Prebid.org members as your server host, you can also use the following type of configuration:
 
 {% highlight js %}
 var pbjs = pbjs || {};

@@ -26,7 +26,7 @@ pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
         bidders : ['appnexus','audienceNetwork', 'rubicon'], 
-        defaultVendor: 'appenxus'
+        defaultVendor: 'appnexus'
     }
 });
 ```
