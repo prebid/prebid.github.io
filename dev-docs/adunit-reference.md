@@ -36,16 +36,16 @@ See the table below for the list of properties on the ad unit.  For example ad u
 |--------------+----------+---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `code`       | Required | String                                | Unique identifier you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID. |
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer one of the `mediaTypes.*.sizes` listed below.    |
-| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#bids) below.                                                                      |
-| `mediaTypes` | Optional | Object                                | Defines the media type of the ad.  For a list of properties, see [Media Types](#mediatypes) below.                                                                  |
+| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#adUnit.bids) below.                                                               |
+| `mediaTypes` | Optional | Object                                | Defines the media type of the ad.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                                   |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                                                       |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                                                        |
 
-<a name="bids" />
+<a name="adUnit.bids" />
 
 ### adUnit.bids
 
-See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
+See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#adUnit-examples) below.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type          | Description                                                                                                                              |
@@ -55,20 +55,20 @@ See the table below for the list of properties in the `bids` array of the ad uni
 | `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                            |
 | `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                             |
 
-<a name="mediatypes" />
+<a name="adUnit.mediaTypes" />
 
 ### adUnit.mediaTypes
 
-See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#addAdUnits-Examples) below.
+See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#adUnit-examples) below.
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope                                                        | Type   | Description                                                                                    |
-|----------+--------------------------------------------------------------+--------+------------------------------------------------------------------------------------------------|
-| `banner` | Required, unless either of the other properties are present. | Object | Defines properties of a banner ad.  For examples, see [`adUnit.mediaTypes.banner`](#banner).   |
-| `video`  | Required, unless either of the other properties are present. | Object | Defines properties of a video ad.  For examples, see [`adUnit.mediaTypes.video`](#video).      |
-| `native` | Required, unless either of the other properties are present. | Object | Defines properties of a native ad.  For properties, see [`adUnit.mediaTypes.native`](#native). |
+| Name                                  | Scope                                                        | Type   | Description                                                                                                      |
+|---------------------------------------+--------------------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------|
+| [`banner`](#adUnit.mediaTypes.banner) | Required, unless either of the other properties are present. | Object | Defines properties of a banner ad.  For examples, see [`adUnit.mediaTypes.banner`](#adUnit.mediaTypes.banner).   |
+| [`native`](#adUnit.mediaTypes.native) | Required, unless either of the other properties are present. | Object | Defines properties of a native ad.  For properties, see [`adUnit.mediaTypes.native`](#adUnit.mediaTypes.native). |
+| [`video`](#adUnit.mediaTypes.video)   | Required, unless either of the other properties are present. | Object | Defines properties of a video ad.  For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video).      |
 
-<a name="banner" />
+<a name="adUnit.mediaTypes.banner" />
 
 #### adUnit.mediaTypes.banner
 
@@ -78,24 +78,24 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. |
 | `name`  | Optional | String                                | Name for this banner ad unit.  Can be used for testing and debugging.                   |
 
-<a name="native" />
+<a name="adUnit.mediaTypes.native" />
 
 #### adUnit.mediaTypes.native
 
 The `native` object contains the following properties that correspond to the assets of the native ad.
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Type                                  | Description                                                                                                                       |
-|---------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------|
-| `sizes`       | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                           |
-| `type`        | Optional | String                                | Used as a shorthand, e.g., `type: 'image'` implies required fields `image`, `title`, `sponsoredBy`, `clickUrl`.                   |
-| `title`       | Required | Object                                | The title of the ad, usually a call to action or a brand name.  For properties, see [`native.title`](#native-title).              |
-| `body`        | Required | Object                                | Text of the ad copy.  For properties, see [`native.body`](#native-body).                                                          |
-| `sponsoredBy` | Required | String                                | The name of the brand associated with the ad.  For properties, see [`native.sponsoredBy`](#native-sponsoredby).                   |
-| `icon`        | Optional | Object                                | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#native-icon).                                  |
-| `image`       | Optional | Object                                | A picture that is associated with the brand, or grabs the user's attention.  For properties, see [`native.image`](#native-image). |
-| `clickUrl`    | Optional | Object                                | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#native-clickurl).                      |
-| `cta`         | Optional | Object                                | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#native-cta).                 |
+| Name          | Scope    | Type                                  | Description                                                                                                                                         |
+|---------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `sizes`       | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                             |
+| `type`        | Optional | String                                | Used as a shorthand, e.g., `type: 'image'` implies required fields `image`, `title`, `sponsoredBy`, `clickUrl`.                                     |
+| `title`       | Required | Object                                | The title of the ad, usually a call to action or a brand name.  For properties, see [`native.title`](#adUnit.mediaTypes.native.title).              |
+| `body`        | Required | Object                                | Text of the ad copy.  For properties, see [`native.body`](#adUnit.mediaTypes.native.body).                                                          |
+| `sponsoredBy` | Required | String                                | The name of the brand associated with the ad.  For properties, see [`native.sponsoredBy`](#adUnit.mediaTypes.native.sponsoredby).                   |
+| `icon`        | Optional | Object                                | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#adUnit.mediaTypes.native.icon).                                  |
+| `image`       | Optional | Object                                | A picture that is associated with the brand, or grabs the user's attention.  For properties, see [`native.image`](#adUnit.mediaTypes.native.image). |
+| `clickUrl`    | Optional | Object                                | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                      |
+| `cta`         | Optional | Object                                | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#adUnit.mediaTypes.native.cta).                 |
 
 <div class="alert alert-warning">
   <strong>Prebid Native Ad Validation</strong>
@@ -112,18 +112,18 @@ The `native` object contains the following properties that correspond to the ass
   </p>
 </div>
 
-<a name="native-image" />
+<a name="adUnit.mediaTypes.native.image" />
 
 ##### adUnit.mediaTypes.native.image
 
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Type                                  | Description                                                                                                                         |
-|-----------------+----------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------|
-| `required`      | Required | Boolean                               | Whether this asset is required.                                                                                                     |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                             |
-| `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#native-image-aspectratios). |
+| Name            | Scope    | Type                                  | Description                                                                                                                                            |
+|-----------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `required`      | Required | Boolean                               | Whether this asset is required.                                                                                                                        |
+| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                                |
+| `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#adUnit.mediaTypes.native.image.aspect_ratios). |
 
-<a name="native-image-aspectratios" />
+<a name="adUnit.mediaTypes.native.image.aspect_ratios" />
 
 ###### adUnit.mediaTypes.native.image.aspect_ratios
 
@@ -134,7 +134,7 @@ The `native` object contains the following properties that correspond to the ass
 | `ratio_height` | Required | Integer | This, combined with `ratio_width`, determines the required aspect ratio for an image that can serve. |
 | `ratio_width`  | Required | Integer | See above.                                                                                           |
 
-<a name="native-title" />
+<a name="adUnit.mediaTypes.native.title" />
 
 ##### adUnit.mediaTypes.native.title
 
@@ -144,7 +144,7 @@ The `native` object contains the following properties that correspond to the ass
 | `required` | Required | Boolean | Whether a title asset is required on this native ad. |
 | `len`      | Optional | Integer | Length of title text, in characters.                 |
 
-<a name="native-sponsoredBy" />
+<a name="adUnit.mediaTypes.native.sponsoredBy" />
 
 ##### adUnit.mediaTypes.native.sponsoredBy
 
@@ -153,7 +153,7 @@ The `native` object contains the following properties that correspond to the ass
 |------------+----------+---------+-----------------------------------------------------------|
 | `required` | Required | Boolean | Whether a brand name asset is required on this native ad. |
 
-<a name="native-clickUrl" />
+<a name="adUnit.mediaTypes.native.clickUrl" />
 
 ##### adUnit.mediaTypes.native.clickUrl
 
@@ -171,29 +171,29 @@ The `native` object contains the following properties that correspond to the ass
 |------------+----------+---------+---------------------------------------------------|
 | `required` | Required | Boolean | Whether body text is required for this native ad. |
 
-<a name="native-icon" />
+<a name="adUnit.mediaTypes.native.icon" />
 
 ##### adUnit.mediaTypes.native.icon
 
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Type                                  | Description                                                                                                                       |
-|-----------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------|
-| `required`      | Requird  | Boolean                               | Whether an icon asset is required on this ad.                                                                                     |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                           |
-| `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`icon.aspect_ratios`](#native-icon-aspectratios). |
+| Name            | Scope    | Type                                  | Description                                                                                                                                          |
+|-----------------+----------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `required`      | Required | Boolean                               | Whether an icon asset is required on this ad.                                                                                                        |
+| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                              |
+| `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`icon.aspect_ratios`](#adUnit.mediaTypes.native.icon.aspect_ratios). |
 
-<a name="native-icon-aspectratios" />
+<a name="adUnit.mediaTypes.native.icon.aspect_ratios" />
 
 ###### adUnit.mediaTypes.native.icon.aspect_ratios
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope | Type | Description |
-|----------------+-------+------+-------------|
+| Name           | Scope    | Type    | Description                                                                                          |
+|----------------+----------+---------+------------------------------------------------------------------------------------------------------|
 | `min_width`    | Optional | Integer | The minimum width required for an image to serve (in pixels).                                        |
 | `ratio_height` | Required | Integer | This, combined with `ratio_width`, determines the required aspect ratio for an image that can serve. |
 | `ratio_width`  | Required | Integer | See above.                                                                                           |
 
-<a name="video" />
+<a name="adUnit.mediaTypes.video" />
 
 #### adUnit.mediaTypes.video
 
@@ -205,6 +205,8 @@ The `native` object contains the following properties that correspond to the ass
 | `mimes`          | Optional | Array[String]          | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `mimes: ['video/mp4']`         |
 | `protocols`      | Optional | Array[Integer]         | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `protocols: [1,2,3,4,5,6,7,8]` |
 | `playbackmethod` | Optional | Array[Integer]         | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `playbackmethod: [2]`          |
+
+<a name="adUnit-examples" />
 
 ## Examples
 
