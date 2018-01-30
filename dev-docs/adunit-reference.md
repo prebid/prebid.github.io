@@ -126,7 +126,7 @@ The `native` object contains the following properties that correspond to the ass
 | Name       | Scope    | Type    | Description                                          |
 |------------+----------+---------+------------------------------------------------------|
 | `required` | Required | Boolean | Whether a title asset is required on this native ad. |
-| `len`      | Optional | Integer | Length of title text, in characters.                 |
+| `len`      | Optional | Integer | Maximum length of title text, in characters.         |
 
 <a name="adUnit.mediaTypes.native.sponsoredBy" />
 
