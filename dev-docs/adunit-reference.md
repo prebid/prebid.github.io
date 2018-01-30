@@ -87,7 +87,6 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Type                                  | Description                                                                                                                                         |
 |---------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `sizes`       | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                             |
 | `type`        | Optional | String                                | Used as a shorthand, e.g., `type: 'image'` implies required fields `image`, `title`, `sponsoredBy`, `clickUrl`.                                     |
 | `title`       | Required | Object                                | The title of the ad, usually a call to action or a brand name.  For properties, see [`native.title`](#adUnit.mediaTypes.native.title).              |
 | `body`        | Required | Object                                | Text of the ad copy.  For properties, see [`native.body`](#adUnit.mediaTypes.native.body).                                                          |
