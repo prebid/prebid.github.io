@@ -62,11 +62,11 @@ See the table below for the list of properties in the `bids` array of the ad uni
 See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#adUnit-examples) below.
 
 {: .table .table-bordered .table-striped }
-| Name                                  | Scope                                                        | Type   | Description                                                                                                      |
-|---------------------------------------+--------------------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------|
-| [`banner`](#adUnit.mediaTypes.banner) | Required, unless either of the other properties are present. | Object | Defines properties of a banner ad.  For examples, see [`adUnit.mediaTypes.banner`](#adUnit.mediaTypes.banner).   |
-| [`native`](#adUnit.mediaTypes.native) | Required, unless either of the other properties are present. | Object | Defines properties of a native ad.  For properties, see [`adUnit.mediaTypes.native`](#adUnit.mediaTypes.native). |
-| [`video`](#adUnit.mediaTypes.video)   | Required, unless either of the other properties are present. | Object | Defines properties of a video ad.  For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video).      |
+| Name                                  | Scope                                                                    | Type   | Description                                                                                                      |
+|---------------------------------------+--------------------------------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------|
+| [`banner`](#adUnit.mediaTypes.banner) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a banner ad.  For examples, see [`adUnit.mediaTypes.banner`](#adUnit.mediaTypes.banner).   |
+| [`native`](#adUnit.mediaTypes.native) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a native ad.  For properties, see [`adUnit.mediaTypes.native`](#adUnit.mediaTypes.native). |
+| [`video`](#adUnit.mediaTypes.video)   | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a video ad.  For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video).      |
 
 <a name="adUnit.mediaTypes.banner" />
 
