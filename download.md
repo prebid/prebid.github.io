@@ -28,7 +28,7 @@ $(function(){
   });
 
   $( ".selectpicker" ).change(function() {
-    if(this.value.match(/1\.\d\.\d/i)) {
+    if(this.value.match(/1\.\d+\.\d+/i)) {
       $('.adapters .col-md-4').hide();
       $('.prebid_1_0').show();
     }
