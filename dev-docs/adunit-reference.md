@@ -101,10 +101,10 @@ The `native` object contains the following properties that correspond to the ass
 ##### adUnit.mediaTypes.native.image
 
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Type                                  | Description                                                                                                                                            |
-|-----------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `required`      | Required | Boolean                               | Whether this asset is required.                                                                                                                        |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                                |
+| Name            | Scope    | Type                                  | Description                                                                                                                                           |
+|-----------------+----------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `required`      | Optional | Boolean                               | Whether this asset is required.                                                                                                                       |
+| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                               |
 | `aspect_ratios` | Optional | Array[Object]                         | Alongside `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#adUnit.mediaTypes.native.image.aspect_ratios). |
 
 <a name="adUnit.mediaTypes.native.image.aspect_ratios" />
@@ -125,7 +125,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                          |
 |------------+----------+---------+------------------------------------------------------|
-| `required` | Required | Boolean | Whether a title asset is required on this native ad. |
+| `required` | Optional | Boolean | Whether a title asset is required on this native ad. |
 | `len`      | Optional | Integer | Maximum length of title text, in characters.         |
 
 <a name="adUnit.mediaTypes.native.sponsoredBy" />
@@ -135,7 +135,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                               |
 |------------+----------+---------+-----------------------------------------------------------|
-| `required` | Required | Boolean | Whether a brand name asset is required on this native ad. |
+| `required` | Optional | Boolean | Whether a brand name asset is required on this native ad. |
 
 <a name="adUnit.mediaTypes.native.clickUrl" />
 
@@ -144,7 +144,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                              |
 |------------+----------+---------+----------------------------------------------------------|
-| `required` | Required | Boolean | Whether a click URL asset is required on this native ad. |
+| `required` | Optional | Boolean | Whether a click URL asset is required on this native ad. |
 
 <a name="adUnit.mediaTypes.native.body" />
 
@@ -153,7 +153,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                       |
 |------------+----------+---------+---------------------------------------------------|
-| `required` | Required | Boolean | Whether body text is required for this native ad. |
+| `required` | Optional | Boolean | Whether body text is required for this native ad. |
 
 <a name="adUnit.mediaTypes.native.icon" />
 
@@ -162,7 +162,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Type                                  | Description                                                                                                                                          |
 |-----------------+----------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `required`      | Required | Boolean                               | Whether an icon asset is required on this ad.                                                                                                        |
+| `required`      | Optional | Boolean                               | Whether an icon asset is required on this ad.                                                                                                        |
 | `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                              |
 | `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`icon.aspect_ratios`](#adUnit.mediaTypes.native.icon.aspect_ratios). |
 
