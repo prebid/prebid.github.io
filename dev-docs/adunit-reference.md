@@ -96,21 +96,6 @@ The `native` object contains the following properties that correspond to the ass
 | `clickUrl`    | Optional | Object | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                                                                                       |
 | `cta`         | Optional | Object | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#adUnit.mediaTypes.native.cta).                                                                                  |
 
-<div class="alert alert-warning">
-  <strong>Prebid Native Ad Validation</strong>
-  <p>
-   Prebid.js validates the assets on native bid responses like so:
-  <ul>
-      <li>
-       If the asset is marked as "required", it checks the bid response to ensure the asset is part of the response
-      </li>
-      <li>
-       However, Prebid.js does not do any additional checking of a required asset beyond ensuring that it's included in the response; for example, it doesn't validate that the asset has a certain length or file size, just that that key exists in the response JSON
-      </li>
-    </ul>
-  </p>
-</div>
-
 <a name="adUnit.mediaTypes.native.image" />
 
 ##### adUnit.mediaTypes.native.image
