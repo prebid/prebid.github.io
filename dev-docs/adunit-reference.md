@@ -12,12 +12,17 @@ pid: 10
 # Ad Unit Reference
 {:.no_toc}
 
-Correctly configuring the `adUnit` object is of central importance to setting up Prebid.js on your site.
+The ad unit object is where you configure what kinds of ads you will show in a given ad slot on your page, including:
 
-This page is an API reference describing all the features of the `adUnit`.
++ Allowed sizes
++ Allowed media types (e.g., banner, native, and/or video)
 
-{: .alert.alert-success :}
-This page is a work in progress.  Over time, we will be pointing all `adUnit`-related documentation at this page.  We are releasing it now in the hopes that it will be useful even in its incomplete state.
+It's also where you will configure bidders, e.g.:
+
++ Which bidders are allowed to bid for that ad slot
++ What information is passed to those bidders via their [parameters]({{site.baseurl}}/dev-docs/bidders.html)
+
+This page describes the properties of the `adUnit` object.
 
 * TOC
 {:toc}
