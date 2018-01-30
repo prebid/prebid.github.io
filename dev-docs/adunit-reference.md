@@ -105,7 +105,7 @@ The `native` object contains the following properties that correspond to the ass
 |-----------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `required`      | Required | Boolean                               | Whether this asset is required.                                                                                                                        |
 | `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                                |
-| `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#adUnit.mediaTypes.native.image.aspect_ratios). |
+| `aspect_ratios` | Optional | Array[Object]                         | Alongside `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#adUnit.mediaTypes.native.image.aspect_ratios). |
 
 <a name="adUnit.mediaTypes.native.image.aspect_ratios" />
 
