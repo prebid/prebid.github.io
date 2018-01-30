@@ -184,7 +184,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Type                   | Description                                                                                                                                             |
 |------------------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Required | String                 | The video context, either `"instream"` or `"outstream"`.  Example: `context: "outstream"`                                                               |
+| `context`        | Optional | String                 | The video context, either `"instream"` or `"outstream"`.  Example: `context: "outstream"`                                                               |
 | `playerSize`     | Optional | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                 |
 | `mimes`          | Optional | Array[String]          | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `mimes: ['video/mp4']`         |
 | `protocols`      | Optional | Array[Integer]         | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `protocols: [1,2,3,4,5,6,7,8]` |
