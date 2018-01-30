@@ -27,10 +27,9 @@ This page describes the properties of the `adUnit` object.
 * TOC
 {:toc}
 
-## `adUnit`
+## adUnit
 
-See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
-
+See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#adUnit-examples) below.
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Type                                  | Description                                                                                                                                                         |
@@ -44,7 +43,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 
 <a name="bids" />
 
-### `adUnit.bids`
+### adUnit.bids
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
@@ -58,7 +57,7 @@ See the table below for the list of properties in the `bids` array of the ad uni
 
 <a name="mediatypes" />
 
-### `adUnit.mediaTypes`
+### adUnit.mediaTypes
 
 See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#addAdUnits-Examples) below.
 
@@ -71,7 +70,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 <a name="banner" />
 
-#### `adUnit.mediaTypes.banner`
+#### adUnit.mediaTypes.banner
 
 {: .table .table-bordered .table-striped }
 | Name    | Scope    | Type                                  | Description                                                                             |
@@ -81,7 +80,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 <a name="native" />
 
-#### `adUnit.mediaTypes.native`
+#### adUnit.mediaTypes.native
 
 The `native` object contains the following properties that correspond to the assets of the native ad.
 
@@ -115,7 +114,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="native-image" />
 
-##### `adUnit.mediaTypes.native.image`
+##### adUnit.mediaTypes.native.image
 
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Type                                  | Description                                                                                                                         |
@@ -126,7 +125,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="native-image-aspectratios" />
 
-###### `adUnit.mediaTypes.native.image.aspect_ratios`
+###### adUnit.mediaTypes.native.image.aspect_ratios
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Type    | Description                                                                                          |
@@ -137,7 +136,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="native-title" />
 
-##### `adUnit.mediaTypes.native.title`
+##### adUnit.mediaTypes.native.title
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                          |
@@ -147,7 +146,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="native-sponsoredBy" />
 
-##### `adUnit.mediaTypes.native.sponsoredBy`
+##### adUnit.mediaTypes.native.sponsoredBy
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                               |
@@ -156,14 +155,16 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="native-clickUrl" />
 
-##### `adUnit.mediaTypes.native.clickUrl`
+##### adUnit.mediaTypes.native.clickUrl
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                              |
 |------------+----------+---------+----------------------------------------------------------|
 | `required` | Required | Boolean | Whether a click URL asset is required on this native ad. |
 
-##### `adUnit.mediaTypes.native.body`
+<a name="adUnit.mediaTypes.native.body" />
+
+##### adUnit.mediaTypes.native.body
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type    | Description                                       |
@@ -172,7 +173,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="native-icon" />
 
-##### `adUnit.mediaTypes.native.icon`
+##### adUnit.mediaTypes.native.icon
 
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Type                                  | Description                                                                                                                       |
@@ -183,7 +184,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="native-icon-aspectratios" />
 
-###### `adUnit.mediaTypes.native.icon.aspect_ratios`
+###### adUnit.mediaTypes.native.icon.aspect_ratios
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope | Type | Description |
@@ -194,7 +195,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="video" />
 
-#### `adUnit.mediaTypes.video`
+#### adUnit.mediaTypes.video
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Type                   | Description                                                                                                                                             |
@@ -213,7 +214,7 @@ The `native` object contains the following properties that correspond to the ass
 
 <a name="adUnit-banner-example">
 
-##### Banner
+### Banner
 
 For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
 
@@ -236,7 +237,7 @@ pbjs.addAdUnits({
 
 <a name="adUnit-video-example">
 
-##### Video
+### Video
 
 For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
@@ -288,7 +289,7 @@ pbjs.addAdUnit({
 
 <a name="adUnit-native-example">
 
-##### Native
+### Native
 
 For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
 
