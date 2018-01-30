@@ -85,16 +85,16 @@ See the table below for the list of properties in the `mediaTypes` object of the
 The `native` object contains the following properties that correspond to the assets of the native ad.
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Type                                  | Description                                                                                                                                         |
-|---------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `type`        | Optional | String                                | Used as a shorthand, e.g., `type: 'image'` implies required fields `image`, `title`, `sponsoredBy`, `clickUrl`.                                     |
-| `title`       | Required | Object                                | The title of the ad, usually a call to action or a brand name.  For properties, see [`native.title`](#adUnit.mediaTypes.native.title).              |
-| `body`        | Required | Object                                | Text of the ad copy.  For properties, see [`native.body`](#adUnit.mediaTypes.native.body).                                                          |
-| `sponsoredBy` | Required | String                                | The name of the brand associated with the ad.  For properties, see [`native.sponsoredBy`](#adUnit.mediaTypes.native.sponsoredby).                   |
-| `icon`        | Optional | Object                                | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#adUnit.mediaTypes.native.icon).                                  |
-| `image`       | Optional | Object                                | A picture that is associated with the brand, or grabs the user's attention.  For properties, see [`native.image`](#adUnit.mediaTypes.native.image). |
-| `clickUrl`    | Optional | Object                                | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                      |
-| `cta`         | Optional | Object                                | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#adUnit.mediaTypes.native.cta).                 |
+| Name          | Scope    | Type   | Description                                                                                                                                                                                                          |
+|---------------+----------+--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `type`        | Optional | String | A [pre-defined native type]({{site.baseurl}}/dev-docs/show-native-ads.html#pre-defined-native-types) used as a shorthand, e.g., `type: 'image'` implies required fields `image`, `title`, `sponsoredBy`, `clickUrl`. |
+| `title`       | Required | Object | The title of the ad, usually a call to action or a brand name.  For properties, see [`native.title`](#adUnit.mediaTypes.native.title).                                                                               |
+| `body`        | Required | Object | Text of the ad copy.  For properties, see [`native.body`](#adUnit.mediaTypes.native.body).                                                                                                                           |
+| `sponsoredBy` | Required | String | The name of the brand associated with the ad.  For properties, see [`native.sponsoredBy`](#adUnit.mediaTypes.native.sponsoredby).                                                                                    |
+| `icon`        | Optional | Object | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#adUnit.mediaTypes.native.icon).                                                                                                   |
+| `image`       | Optional | Object | A picture that is associated with the brand, or grabs the user's attention.  For properties, see [`native.image`](#adUnit.mediaTypes.native.image).                                                                  |
+| `clickUrl`    | Optional | Object | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                                                                                       |
+| `cta`         | Optional | Object | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#adUnit.mediaTypes.native.cta).                                                                                  |
 
 <div class="alert alert-warning">
   <strong>Prebid Native Ad Validation</strong>
