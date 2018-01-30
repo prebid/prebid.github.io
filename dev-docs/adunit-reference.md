@@ -213,6 +213,7 @@ The `native` object contains the following properties that correspond to the ass
 + [Banner](#adUnit-banner-example)
 + [Video](#adUnit-video-example)
 + [Native](#adUnit-native-example)
++ [Multi-Format](#adUnit-multi-format-example)
 
 <a name="adUnit-banner-example">
 
@@ -331,6 +332,82 @@ pbjs.addAdUnits({
     }
 })
 ```
+
+<a name="adUnit-multi-format-example">
+
+### Multi-Format
+
+For an example of a multi-format ad unit, see below.  For more detailed instructions, see [Show Multi-Format Ads]({{site.baseurl}}/dev-docs/show-multi-format-ads.html).
+
+{% highlight js %}
+
+    pbjs.addAdUnits([{
+            code: 'div-banner-native',
+            mediaTypes: {
+                banner: {
+                    sizes: [
+                        [300, 250]
+                    ]
+                },
+                native: {
+                    type: 'image'
+                },
+            },
+            bids: [{
+                bidder: 'appnexus',
+                params: {
+                    placementId: 12340414,
+                }
+            }]
+        },
+
+        {
+            code: 'div-banner-outstream',
+            mediaTypes: {
+                banner: {
+                    sizes: [
+                        [300, 250]
+                    ]
+                },
+                video: {
+                    context: 'outstream',
+                    playerSize: [300, 250]
+                },
+            },
+            bids: [{
+                bidder: 'appnexus',
+                params: {
+                    placementId: 12340414,
+                }
+            }, ]
+        },
+
+        {
+            code: 'div-banner-outstream-native',
+            mediaTypes: {
+                banner: {
+                    sizes: [
+                        [300, 250]
+                    ]
+                },
+                native: {
+                    type: 'image'
+                },
+                video: {
+                    context: 'outstream',
+                    playerSize: [300, 250]
+                },
+            },
+            bids: [{
+                bidder: 'appnexus',
+                params: {
+                    placementId: 12340414,
+                }
+            }, ]
+        }
+    ]);
+
+{% endhighlight %}
 
 ## Related Topics
 
