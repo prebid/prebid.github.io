@@ -93,6 +93,31 @@ pbjs.que.push(function() {
 });
 {% endhighlight %}
 
+Optionally, if you chose to use one of the existing Prebig.org members as your server host, you can also use the following type of configuration:
+
+{% highlight js %}
+var pbjs = pbjs || {};
+
+pbjs.que.push(function() {
+
+    pbjs.setConfig({
+        s2sConfig: {
+            accountId: '1',            
+            bidders: ['appnexus', 'pubmatic'],
+            defaultVendor: 'appnexus'
+        }
+    });
+
+    var adUnits = [{
+        code: '/19968336/header-bid-tag-1',
+        sizes: sizes,
+        bids: [{
+            /* Etc. */
+        }]
+    }];
+});
+{% endhighlight %}
+
 {: .alert.alert-info :}
 **Additional `cookieSet` details**  
 We recommend that users leave `cookieSet` enabled since it's essential for server-to-server header bidding that we have a persistent cookie for improved cookie match rates.  If set to `false`:  
