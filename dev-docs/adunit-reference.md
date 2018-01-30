@@ -32,14 +32,14 @@ This page describes the properties of the `adUnit` object.
 See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#adUnit-examples) below.
 
 {: .table .table-bordered .table-striped }
-| Name         | Scope    | Type                                  | Description                                                                                                                                                         |
-|--------------+----------+---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`       | Required | String                                | Unique identifier you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID. |
-| `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer one of the `mediaTypes.*.sizes` listed below.    |
-| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#adUnit.bids) below.                                                               |
-| `mediaTypes` | Optional | Object                                | Defines the media type of the ad.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                                   |
-| `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                                                       |
-| `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                                                        |
+| Name         | Scope    | Type                                  | Description                                                                                                                                                                                |
+|--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`       | Required | String                                | Unique identifier you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.                        |
+| `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, define sizes within the appropriate `mediaTypes.{banner,native,video}` object. |
+| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#adUnit.bids) below.                                                                                      |
+| `mediaTypes` | Optional | Object                                | Defines the media type of the ad.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                                                          |
+| `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                                                                              |
+| `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][setConfig].                                                                               |
 
 <a name="adUnit.bids" />
 
