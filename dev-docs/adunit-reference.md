@@ -183,13 +183,13 @@ The `native` object contains the following properties that correspond to the ass
 #### adUnit.mediaTypes.video
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Type                   | Description                                                                                                                                             |
-|------------------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Optional | String                 | The video context, either `"instream"` or `"outstream"`.  Example: `context: "outstream"`                                                               |
-| `playerSize`     | Optional | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                 |
-| `mimes`          | Optional | Array[String]          | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `mimes: ['video/mp4']`         |
-| `protocols`      | Optional | Array[Integer]         | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `protocols: [1,2,3,4,5,6,7,8]` |
-| `playbackmethod` | Optional | Array[Integer]         | Required by OpenRTB when using [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).  Example: `playbackmethod: [2]`          |
+| Name             | Scope       | Type                   | Description                                                                                                                                                         |
+|------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`        | Optional    | String                 | The video context, either `"instream"` or `"outstream"`.  Example: `context: "outstream"`                                                                           |
+| `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                             |
+| `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                |
+| `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                           |
+| `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**. |
 
 <a name="adUnit-examples" />
 
@@ -410,3 +410,5 @@ For an example of a multi-format ad unit, see below.  For more detailed instruct
 
 [conditionalAds]: {{site.baseurl}}/dev-docs/conditional-ad-units.html
 [setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig
+[openRTB]: https://www.iab.com/wp-content/uploads/2015/05/OpenRTB_API_Specification_Version_2_3_1.pdf
+[pbServer]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
