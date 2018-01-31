@@ -154,6 +154,7 @@ The `native` object contains the following properties that correspond to the ass
 | Name       | Scope    | Type    | Description                                       |
 |------------+----------+---------+---------------------------------------------------|
 | `required` | Optional | Boolean | Whether body text is required for this native ad. |
+| `len`      | Optional | Integer | Maximum length of body text, in characters.       |
 
 <a name="adUnit.mediaTypes.native.icon" />
 
