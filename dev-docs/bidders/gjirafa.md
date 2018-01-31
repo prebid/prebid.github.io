@@ -1,6 +1,6 @@
-prebid_1_0_supported : true
 
 ---
+prebid_1_0_supported : true
 layout: bidder
 title: Gjirafa
 description: Prebid Gjirafa Bidder Adaptor
