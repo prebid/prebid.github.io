@@ -43,5 +43,5 @@ Configuration options
 | `timeout`    | Number        |           | Bidder timeout, in milliseconds; default: `1000`.                         |
 | `syncEndpoint` | String     |           | Configures the user-sync endpoint. Highly recommended.                    |
 | `adapter`    | String        |           | Adapter code; default: `"prebidServer"`.                                  |
-| `cookieSet`  | Boolean       |           | Set to `false` to opt out of cookieset/link rewriting; default: `true`.   |
+| `cookieSet`  | Boolean       |           | Set to `false` to opt out of cookieset/link rewriting.   |
 | `secure`     | Integer       |           | Override Prebid Server's determination of whether the request needs secure assets. Set to `1` to force secure assets on the response, or `0` for non-secure assets. |
