@@ -24,6 +24,7 @@ information.
 ### bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Scope    | Description | Example          |
 |:-----------|:---------|:------------|:-----------------|
 | `pubId` | required | Publisher client ID, provided by IAS | `'1234'` |
