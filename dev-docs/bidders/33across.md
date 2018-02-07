@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: 33Across
-description: Prebid 33Across Bidder Adaptor
+description: Prebid 33Across Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
