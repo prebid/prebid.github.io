@@ -341,7 +341,7 @@ For an example of a multi-format ad unit, see below.  For more detailed instruct
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: 12340414,
+                    placementId: '12340414',
                 }
             }]
         },
@@ -362,7 +362,7 @@ For an example of a multi-format ad unit, see below.  For more detailed instruct
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: 12340414,
+                    placementId: '12340414',
                 }
             }, ]
         },
@@ -386,7 +386,7 @@ For an example of a multi-format ad unit, see below.  For more detailed instruct
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: 12340414,
+                    placementId: '12340414',
                 }
             }, ]
         }
