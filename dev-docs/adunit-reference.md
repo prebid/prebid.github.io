@@ -235,7 +235,7 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: "instream",
-            sizes: [640, 480],
+            playerSize: [640, 480],
         },
     },
     bids: [{
@@ -259,7 +259,7 @@ pbjs.addAdUnit({
     mediaTypes: {
         video: {
             context: 'outstream',
-            sizes: [640, 480]
+            playerSize: [640, 480]
         }
     },
     renderer: {
