@@ -17,4 +17,3 @@ prebid_1_0_supported : true
 | :--------- | :------- | :-------------------- | :------ | :---------------------- |
 | siteId     | required | Site ID               | integer |`1465446377`             |
 | zoneId     | required | Zone ID               | integer |`1515999290`             |
-| gaxDomain  | required | header bidding domain | string  |`'hb.gammaplatform.com'` |
