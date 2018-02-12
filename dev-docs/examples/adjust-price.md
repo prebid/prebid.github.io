@@ -17,7 +17,7 @@ about:
 - Standard price granularity
 
 
-jsfiddle_link: jsfiddle.net/prebid/hn06j4f4/19/embedded/html,result
+jsfiddle_link: jsfiddle.net/prebid/hn06j4f4/21/embedded/html,result
 
 code_height: 2725
 code_lines: 125

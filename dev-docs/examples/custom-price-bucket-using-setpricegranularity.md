@@ -12,7 +12,7 @@ about:
 - Integration with DFP's GPT single request asynchronous mode
 - One set of line items for all bidders
 
-jsfiddle_link: jsfiddle.net/prebid/qhdnvdhj/1/embedded/html,result
+jsfiddle_link: jsfiddle.net/prebid/qhdnvdhj/2/embedded/html,result
 code_height: 3166
 code_lines: 146
 pid: 101
