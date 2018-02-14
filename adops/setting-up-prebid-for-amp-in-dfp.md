@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Setting up Prebid for AMP in DFP (Pre-release)
+title: Setting up Prebid for AMP in DFP
 head_title: Setting up Prebid for AMP in DFP
 description: Setting up Prebid for AMP in DFP
 pid: 3
@@ -11,11 +11,8 @@ nav_section: tutorials
 
 <div class="bs-docs-section" markdown="1">
 
-# Setting up Prebid for AMP in DFP (Pre-release)
+# Setting up Prebid for AMP in DFP
 {: .no_toc}
-
-{: .alert.alert-warning :}
-The instructions on this page refer to the new "[AMP RTC][RTC-Overview] over [Prebid Server][PBS]" method which is planned for the [1.4 release](https://github.com/prebid/Prebid.js/releases/tag/1.4.0).  It doesn't actually work yet.  This page will be updated when the release goes out.
 
 This page describes how to set up a line item and creative to serve on AMP pages with Prebid.js.
 
