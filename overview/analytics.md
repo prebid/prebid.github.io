@@ -22,7 +22,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | ShareThrough                                                     | Contact vendor                                                                      |                                                                  |               |
 | PrebidAnalytics by Roxot                                         | Paid, see [pricing](http://prebidanalytics.com/#pricing). | [Website](http://prebidanalytics.com/overview-examples)          |          0.22 |
 | PubWise                                                          | Free & Paid, see [pricing](https://pubwise.io/pricing/)                                    | [Website](https://pubwise.io/pubwise/)                                   |          0.24 |
-| Assertive Yield | Free (Expense-Contribution or low sample rate for big players) | [Website](https://yield.assertcom.de) | |
+| Assertive Yield | Free (Expense-Contribution ($0.2 CPM) or low sample rate (< 10mm/m imp.) for big players) | [Website](https://yield.assertcom.de) | |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
