@@ -42,7 +42,7 @@ Save your line item and add a creative.
 
 On the new creative screen, select the **Third party** creative type.
 
-Enter the below code snippet in the **Code snippet** text area, and *make sure to uncheck the **Serve into a SafeFrame** checkbox*.
+Enter the below code snippet in the **Code snippet** text area.
 
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.js).
