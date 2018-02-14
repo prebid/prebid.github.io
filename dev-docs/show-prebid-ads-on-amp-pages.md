@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Show Prebid Ads on AMP Pages (Pre-release)
+title: Show Prebid Ads on AMP Pages
 description: Show Prebid Ads using Prebid Server and AMP RTC
 pid: 1
 is_top_nav: yeah
@@ -10,11 +10,8 @@ nav_section: prebid-amp
 
 <div class="bs-docs-section" markdown="1">
 
-# Show Prebid Ads on AMP Pages (Pre-release)
+# Show Prebid Ads on AMP Pages
 {: .no_toc}
-
-{: .alert.alert-warning :}
-The instructions on this page refer to the new "[AMP RTC][RTC-Overview] over [Prebid Server][PBS]" method which is planned for the [1.4 release](https://github.com/prebid/Prebid.js/releases/tag/1.4.0).  It doesn't actually work yet.  This page will be updated when the release goes out.
 
 This page has instructions for showing ads on AMP pages using Prebid.js.
 
