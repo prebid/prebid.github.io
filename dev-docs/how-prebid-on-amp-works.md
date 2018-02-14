@@ -13,7 +13,8 @@ nav_section: prebid-amp
 # How Prebid on AMP Works
 {: .no_toc}
 
-{% include amp-deprecation-warning.md %}
+{: .alert.alert-warning :}
+The information on this page is out of date.  It will be updated soon with the new "[AMP RTC][RTC-Overview] over [Prebid Server][PBS]" method which is planned for the [1.4 release](https://github.com/prebid/Prebid.js/releases/tag/1.4.0).
 
 This page has information about how Prebid.js works with AMP to show Prebid ads on AMP pages.
 
@@ -43,3 +44,8 @@ For more information, see [the AMP example in our Github repo](https://github.co
 + [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops)
 
 </div>
+
+<!-- Reference Links -->
+
+[PBS]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
+[RTC-Overview]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md
