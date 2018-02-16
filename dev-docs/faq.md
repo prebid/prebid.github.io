@@ -31,13 +31,13 @@ In both scenarios, your goal should be to see your inventory fill at the highest
 
 There is an analysis from the Prebid team here which may be useful:
 
-[How many bidders should I work with?]({{site.github.url}}/blog/how-many-bidders-for-header-bidding)
+[How many bidders should I work with?]({{site.baseurl}}/blog/how-many-bidders-for-header-bidding)
 
 ## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
 You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible. 
 
-In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings) to adjust any bidder that sends gross bids.
+In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings) to adjust any bidder that sends gross bids.
 
 ## Does Prebid.js support synchronous ad server tags?
 
@@ -57,7 +57,7 @@ Here are a couple of alternative workarounds:
 
 - **Option 2:**
 
-	Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with DFP/AdX, but they can still compete with each other.  For more information, see [What is post-bid?](http://prebid.org/overview/what-is-post-bid.html).
+	Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with DFP/AdX, but they can still compete with each other.  For more information, see [What is post-bid?]({{site.baseurl}}/overview/what-is-post-bid.html).
 
 ## How do I use Prebid.js on secure (HTTPS) pages?
 
@@ -71,10 +71,32 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 (Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)
 
+## How can I use Prebid Server in a mobile app post-bid scenario?
+
+Just schedule a [post-bid creative]({{site.baseurl}}/dev-docs/examples/postbid.html) in the ad server.
+
+1. Load the production Prebid JS package
+1. Set up the AdUnit
+1. Set the app and device objects with setConfig(). e.g.
+
+```
+pbjs.setConfig({
+    s2sConfig: {
+    ...
+    },
+    app: {
+        bundle: "com.test.app"
+    },
+    device: {
+         ifa: "6D92078A-8246-4BA4-AE5B-76104861E7DC"
+    }
+});
+```
+
 ## Related Reading
 
-+ [Prebid Dev Tips]({{site.github.com}}/dev-docs/troubleshooting-tips.html)
-+ [Prebid Common Issues]({{site.github.com}}/dev-docs/common-issues.html)
++ [Prebid Dev Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
++ [Prebid Common Issues]({{site.baseurl}}/dev-docs/common-issues.html)
 + [Prebid.js issues tagged 'question'](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)
 
 </div>

@@ -68,7 +68,14 @@ PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdent
 [[PBTargetingParams sharedInstance] setGender:PBTargetingParamsGenderFemale];
   
 // 3. Register the ad units with Prebid Mobile to start bid fetching process
-[PrebidMobile registerAdUnits:@[adUnit1] withAccountId:@"YOUR-ACCOUNT-ID-HERE"];
+// The following two APIs are being deprecated
+//[PrebidMobile registerAdUnits:@[adUnit1] withAccountId:@"YOUR-ACCOUNT-ID-HERE"];
+//[PrebidMobile registerAdUnits:@[adUnit1, adUnit2] withAccountId:kAccountId andPrimaryAdServer:PBPrimaryAdServerDFP];
+// Use this instead:
+[PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
+          		withAccountId:kAccountId
+               		 withHost:PBServerHostAppNexus
+    	   andPrimaryAdServer:PBPrimaryAdServerDFP];
 ```
 
 ## Set bid keywords on ad object
@@ -78,15 +85,20 @@ Prebid Mobile continuously pre-caches creatives in the background, so that right
 
 
 ```objc
-#import <PrebidMobile/PrebidMobile.h>
-  
+// Set the prebid keywords immediately on your adObject
+[PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE"];
+```
+
+Alternatively, if you want to set the bid keywords on your adObject shortly after registering ad units, you can wait for bids with a timeout using the API method below.
+
+```objc
 // Set the prebid keywords on your adObject, upon completion load the adObject's ad
 [PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE" withTimeout:600 completionHandler:^{
     [YOUR-AD-VIEW YOUR-ADS-LOAD-METHOD];
 }];
 ```
 
-Prebid Mobile will immediately tell your app whether it has a bid or not without waiting. If it does have a bid, the code below will attach the bids to the ad request by applying keyword targeting. Use the table below to see which ad objects are supported currently.
+Use the table below to see which ad objects are supported currently.
 
 {: .table .table-bordered .table-striped }
 | Primary Ad Server | Ad Object Type | Ad Object                    | Load Method                                 |

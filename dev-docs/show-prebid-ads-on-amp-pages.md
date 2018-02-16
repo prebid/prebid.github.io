@@ -13,6 +13,8 @@ nav_section: prebid-amp
 # Show Prebid Ads on AMP Pages (Alpha)
 {: .no_toc}
 
+{% include amp-deprecation-warning.md %}
+
 This page has instructions for showing ads on AMP pages using Prebid.js.
 
 These instructions assume you have read [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html).
@@ -42,8 +44,6 @@ Note that these instructions just try to explain what is in the [AMP integration
 We *strongly* recommend that you use the example files from the repo as a starting point for your integration.  We do not recommend just copying and pasting the code from this page.  Even though it is the same code as in the repo at the time of this writing, it's meant to be used as an explainer for the example code in the repo, which is likely to get updates and fixes faster than this doc.
 
 The best way to read this page is side-by-side with [the AMP example in the repo](https://github.com/prebid/Prebid.js/tree/master/integrationExamples/gpt/amp).
-
-<a name="amp-content-page" />
 
 ### AMP content page
 
@@ -212,11 +212,9 @@ The function `loadPrebidJS()` shown below is what's called by the AMP `draw3p` f
       }
     }
 
-    /** wrap the rest of the setup in a function that will be called by the
-     * AMP `draw3p` hook see
-     * this example for more info:
-     * https://dfp-amp-testing-1185.appspot.com/amp_tests/dfp-3p-iframe.html
-     * */
+    /* wrap the rest of the setup in a function that will be called by
+    the AMP `draw3p` hook */
+
      function loadPrebidJS() {
         pbjs.que.push(function () {
             pbjs.logging = true;
@@ -242,8 +240,6 @@ In the page's body, implement the `draw3p` function as shown below.  This implem
 
 {: .alert.alert-danger :}
 Don't forget to add the required arrays at the end of the function showing the ad networks used and the domains allowed to load this file in an iFrame.  You **must** add all `amp-ad` types on page to the `draw3p` array, even if they are not being used with Prebid demand.
-
-For an example showing how `draw3p` is used, see [this AMP test](https://dfp-amp-testing-1185.appspot.com/amp_tests/dfp-3p-iframe.html).
 
 For more information about `draw3p`, see:
 
@@ -286,8 +282,6 @@ listenAdRequestFromCreative();
 ```
 
 which is one of the helper functions defined in Step 3.
-
-<a name="html-creative" />
 
 ### HTML Creative
 
