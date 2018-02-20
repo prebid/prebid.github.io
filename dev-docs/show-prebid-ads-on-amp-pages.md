@@ -45,7 +45,7 @@ To set up Prebid.js to serve ads into your AMP pages, you'll need:
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
 + `data-slot`: Identifies the ad slot for the auction.
-+ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which will actually handle the communication with AMP RTC.  The `vendors` property should list all of the [bidder adapters]({{site.baseurl}}/dev-docs/bidders.html#prebid-server-bidders) you're working with, along with their [required parameters]({{site.baseurl}}/dev-docs/bidders.html).
++ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which will actually handle the communication with AMP RTC.  The `vendors` property should list all of the Prebid Server vendor instances you will be using.
 
 {% highlight html %}
 
