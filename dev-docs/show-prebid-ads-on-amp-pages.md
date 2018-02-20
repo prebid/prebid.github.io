@@ -68,7 +68,7 @@ You can always get the latest version of the creative code below from [the AMP e
 
 {% highlight html %}
 
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative/dist/creative.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.1.2/dist/creative.js"></script>
     <script>
     var adId = "%%PATTERN:hb_adid%%";
     var cacheHost = "%%PATTERN:hb_cache_host%%";
