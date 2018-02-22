@@ -19,6 +19,7 @@ At a high level, our implementation uses [Prebid Server][PBS] to talk to [AMP ad
 
 For more information about AMP RTC, see:
 
++ [Hpw Prebid on AMP Works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
