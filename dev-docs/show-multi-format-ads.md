@@ -10,12 +10,12 @@ nav_section: prebid-multi-format
 
 <div class="bs-docs-section" markdown="1">
 
-# Show Multi-Format Ads with Prebid.js
+# Show Multiformat Ads with Prebid.js
 {: .no_toc }
 
-This page has instructions for showing multi-format ads using Prebid.js.
+This page has instructions for showing multiformat ads using Prebid.js.
 
-An ad unit is said to be multi-format if it supports at least two of the following media types:
+An ad unit is said to be multiformat if it supports at least two of the following media types:
 
 + Banner
 + Native
@@ -24,16 +24,16 @@ An ad unit is said to be multi-format if it supports at least two of the followi
 Once declared, any bidder that supports at least one of the media types can participate in the auction for that ad unit.
 
 {: .alert.alert-info :}
-For ad ops setup instructions, see [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
+For ad ops setup instructions, see [Setting up Prebid Multiformat in DFP]({{site.baseurl}}/adops/setting-up-prebid-multiformat-in-dfp.html).
 
 * TOC
 {:toc}
 
-## How Multi-Format Ads Work
+## How Multiformat Ads Work
 
-Prebid multi-format ad units allow direct competition between banner, native, and/or video bids.
+Prebid multiformat ad units allow direct competition between banner, native, and/or video bids.
 
-At a high level, Prebid.js supports multi-format ads as follows:
+At a high level, Prebid.js supports multiformat ads as follows:
 
 1. An ad unit may define a [`mediaTypes`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
 2. Each bidder specified on a given ad unit will be eligible to bid if the bidder supports at least one of the media types specified via `adUnit.mediaTypes`.
@@ -43,7 +43,7 @@ The following key is added to your ad server targeting, and set to the value of 
 
 + `hb_format`
 
-The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
+The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Setting up Prebid Multiformat in DFP]({{site.baseurl}}/adops/setting-up-prebid-multiformat-in-dfp.html).
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ Keep the following prerequisites in mind during the implementation:
 
 This section describes the implementation using code samples, but ignores some of the details that are common to all Prebid.js setups.
 
-### 1. Add multi-format ad units
+### 1. Add multiformat ad units
 
 The ad unit below supports the banner, native, and video media types.
 
@@ -127,10 +127,10 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 ## Working Examples
 
-+ [Multi-Format Example]({{site.baseurl}}/examples/multi_format_example.html)
++ [Multiformat Example]({{site.baseurl}}/examples/multi_format_example.html)
 
 ## Related Topics
 
-+ [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
++ [Setting up Prebid Multiformat in DFP]({{site.baseurl}}/adops/setting-up-prebid-multiformat-in-dfp.html)
 
 </div>
