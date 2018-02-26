@@ -31,9 +31,8 @@ For ad ops setup instructions, see [Setting up Prebid for AMP in DFP]({{site.git
 
 ## Prerequisites
 
-To set up Prebid.js to serve ads into your AMP pages, you'll need:
+To set up Prebid to serve ads into your AMP pages, you'll need:
 
-+ Prebid.js
 + An account with a [Prebid Server][PBS] instance
 
 ## Implementation

@@ -13,7 +13,7 @@ nav_section: prebid-amp
 # How Prebid on AMP Works
 {: .no_toc}
 
-This page has information about how Prebid.js works with AMP to show Prebid ads on AMP pages.
+This page has information about how Prebid works with AMP to show Prebid ads on AMP pages.
 
 The diagram below shows how the pieces fit together:
 
