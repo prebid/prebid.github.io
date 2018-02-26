@@ -1,15 +1,15 @@
 ---
 layout: bidder
-title: Sovrn
-description: Prebid Sovrn Bidder Adaptor
+title: Yieldmo
+description: Prebid Yieldmo Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
-biddercode: sovrn
+biddercode: yieldmo
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
----
 
+---
 
 
 ### bid params
@@ -17,5 +17,4 @@ prebid_1_0_supported : true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
-| `tagid` | required | The sovrn Ad Tag ID | "315045" |
-| `bidfloor` | optional | Bid floor in dollars | "0.04" |
+| `placementId`   | required | Yieldmo placement id    | `'ym_825209316101005155'` |
