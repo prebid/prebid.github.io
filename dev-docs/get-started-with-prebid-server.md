@@ -93,7 +93,7 @@ pbjs.que.push(function() {
 });
 {% endhighlight %}
 
-Optionally, if you chose to use one of the existing Prebid.org members as your server host, you can also use the defaultVendor property.  This property represents the vendor's default settings for the s2sConfi.  When used, these settings will be automatically populated to the s2sConfig, saving the need to individually list out all data points.
+Optionally, if you chose to use one of the existing Prebid.org members as your server host, you can also use the defaultVendor property.  This property represents the vendor's default settings for the s2sConfig.  When used, these settings will be automatically populated to the s2sConfig, saving the need to individually list out all data points. Currently 'appnexus' and 'rubicon' are supported values.
 
 These defaults can still be overridden by simply including the property with the value you want in the config.  The following example represents the bare minimum configuration required when using the defaultVendor option:
 
@@ -122,10 +122,9 @@ pbjs.que.push(function() {
 
 {: .alert.alert-info :}
 **Additional `cookieSet` details**  
-We recommend that users leave `cookieSet` enabled since it's essential for server-to-server header bidding that we have a persistent cookie for improved cookie match rates.  If set to `false`:  
-&bull; Prebid.js will not overwrite all links on page to redirect through a persistent cookie URL  
-&bull; Prebid.js will not display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies
-Please also note - certain vendors may opt to use the cookieSet feature by default.  If you wish to disable the cookieSet feature but use the rest of the vendor's settings, please use the override method described above to set cookieSet to `false`.
+If set to `true`:  
+&bull; Prebid.js will overwrite all links on page to redirect through a persistent cookie URL  
+&bull; Prebid.js will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies
 
 <a name="prebid-server-video-openrtb" />
 
