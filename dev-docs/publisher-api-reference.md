@@ -1392,8 +1392,9 @@ Example config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with
 pbjs.setConfig({
     s2sConfig: {
         accountId: '1',
-        enabled: true,
         bidders: ['appnexus', 'pubmatic'],
+        defaultVendor: 'appnexus',
+        enabled: true,
         timeout: 1000,
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
@@ -1410,14 +1411,18 @@ Additional information of these properties:
 | Attribute | Scope | Type | Description                                                                                   |
 |------------+---------+---------+---------------------------------------------------------------|
 | `accountId` | Required | String | Your Prebid Server account ID |
-| `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
 | `bidders` | Required | Array of Strings | Which bidders support auctions on the server side |
+| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.*  Individual properties can be overridden by including them in the config along with this setting. |
+| `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
 | `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions |
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. Defaults 'true' |
+| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. |
 | `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
+
+*Currently supported vendors are: appnexus & rubicon
+*Note - When using defaultVendor option, accountId and bidders properties still need to be defined.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
@@ -1556,7 +1561,7 @@ The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to de
 ##### How it Works
 
 - Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` array based on the `labels` defined. Ad units that don't match the label definition are dropped.
-- The `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
+- The required `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
 - If a label conditional (e.g. `labelAny`) doesn't exist on an ad unit, it is automatically included in all requests for bids.
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
 - The `adUnit.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.sizes`.

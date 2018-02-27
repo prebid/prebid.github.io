@@ -1,13 +1,17 @@
 ---
 layout: bidder
-title: Sovrn
-description: Prebid Sovrn Bidder Adaptor
+title: Yieldlab
+description: Prebid Yieldlab Bidder Adapter
+
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
-biddercode: sovrn
+
+biddercode: yieldlab
 biddercode_longer_than_12: false
+
 prebid_1_0_supported : true
+
 ---
 
 
@@ -17,5 +21,6 @@ prebid_1_0_supported : true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
-| `tagid` | required | The sovrn Ad Tag ID | "315045" |
-| `bidfloor` | optional | Bid floor in dollars | "0.04" |
+| `placementId` | required | The Yieldlab placement ID | '12345' |
+| `accountId` | required | The Yieldlab account ID | '12345' |
+| `adSize` | required | Override the default prebid size | '970x250' |
