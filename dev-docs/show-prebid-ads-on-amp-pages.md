@@ -15,11 +15,11 @@ nav_section: prebid-amp
 
 This page has instructions for showing ads on AMP pages using Prebid.js.
 
-At a high level, our implementation uses [Prebid Server][PBS] to talk to [AMP ads][AMPads] using the [AMP Real Time Config (RTC)][RTC-Overview] protocol.
+At a high level, our implementation uses [Prebid Server][PBS] to talk to [AMP][AMPads] runtim using the [AMP Real Time Config (RTC)][RTC-Overview] protocol.
 
 For more information about AMP RTC, see:
 
-+ [Hpw Prebid on AMP Works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
++ [How Prebid on AMP Works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
@@ -34,6 +34,8 @@ For ad ops setup instructions, see [Setting up Prebid for AMP in DFP]({{site.git
 To set up Prebid to serve ads into your AMP pages, you'll need:
 
 + An account with a [Prebid Server][PBS] instance
++ One or more Prebid Server demand partner configurations. A configuration is essentially just a list of the demand partners that you want to work with, along with their respective parameters
++ An AMP page containing at least one amp-ad element for an AMP ad network that supports Fast Fetch and AMP RTC
 
 ## Implementation
 
@@ -45,7 +47,7 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
 + `data-slot`: Identifies the ad slot for the auction.
-+ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which will actually handle the communication with AMP RTC.  The `vendors` property should list all of the Prebid Server vendor instances you will be using.
++ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which will actually handle the communication with AMP RTC. The rtc_config.vendors property should define any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five
 
 {% highlight html %}
 
@@ -61,10 +63,8 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
 
 This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)).
 
-It works by calling out to the cache on a [Prebid Server][PBS] instance, which will handle the communication via [AMP RTC][RTC-Overview].
-
 {: .alert.alert-success :}
-You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.js).
+You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
 {% highlight html %}
 

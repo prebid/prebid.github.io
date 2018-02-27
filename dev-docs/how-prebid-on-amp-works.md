@@ -13,6 +13,9 @@ nav_section: prebid-amp
 # How Prebid on AMP Works
 {: .no_toc}
 
+{: .pb-img.pb-md-img :}
+![Prebid AMP Overview Diagram]({{site.github.url}}/assets/images/dev-docs/amp-rtc.png)
+
 This page has information about how Prebid works with AMP to show Prebid ads on AMP pages.
 
 The diagram below shows how the pieces fit together:
@@ -29,8 +32,6 @@ The diagram below shows how the pieces fit together:
 
 6. Creative content is retrieved from cache and renders.
 
-{: .pb-img.pb-md-img :}
-![Prebid AMP Overview Diagram]({{site.github.url}}/assets/images/dev-docs/amp-rtc.png)
 
 ## Related Topics
 
