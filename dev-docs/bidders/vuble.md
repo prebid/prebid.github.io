@@ -11,7 +11,7 @@ prebid_1_0_supported : true
 ---
 
 ### Note:
-The Vuble adapter requires setup and approval from the Vuble team, even for existing Vuble publishers. Please reach out to your account team or vuble@vuble.tv for more information.
+The Vuble adapter requires setup and approval from the Vuble team, even for existing Vuble publishers. Please reach out to your account team, or contact publishers-us@vuble.tv or publishers-fr@vuble.tv for more information.
 
 ### Bid params
 
