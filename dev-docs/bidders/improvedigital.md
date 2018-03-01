@@ -1,0 +1,115 @@
+---
+layout: bidder
+title: ImproveDigital
+description: Prebid Improve Digital Bidder Adaptor
+top_nav_section: dev_docs
+nav_section: reference
+biddercode: improvedigital
+biddercode_longer_than_12: true
+prebid_1_0_supported : true
+---
+
+**Table of Contents**
+
+- [Bid params](#improvedigital-bid-params)
+- [Examples](#improvedigital-examples)
+
+<a name="improvedigital-bid-params" />
+
+### Bid params
+
+Depending on your setup in our system, your placements will either have a globally-unique placement ID or a publisher-unique placement key as an identifier.  Therefore, to identify your placement you either need a placementId only or a combination of publisherId and placementKey.
+
+{: .table .table-bordered .table-striped }
+| Name             | Scope    | Description                                                                                                                                                                                                          | Example           |
+|------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------|
+| `placementId`    | optional | The placement ID from Improve Digital.                                                                                          | `1234567`      |
+| `publisherId` | optional | Your publisher ID.  This is only required when using a placementKey  | `950` |
+| `placementKey`        | optional | The placement key for your placement.  Must be used with `publisherId`.                                                                                                                                                        | `"myMainBannerPlacement300x200"`        |
+| `keyValues`         | optional | Contains one or more key-value pairings for key-value targeting                                                                                                                                                           | `{testKey1: ["testValueA"], testKey2: ["testValueB", "testValueC"]}`         |
+| `size`        | optional | Size filter.  Where a placement supports multiple sizes, this forces the response to featur only one of the multiple sizes                                                                                                                                                                     | `{w:300,h:250}`            |
+
+
+<a name="improvedigital-examples" />
+
+### Examples
+
+#### Configuration With placementId
+
+{% highlight js %}
+var adUnits = [{
+    code: 'div-gpt-ad-1499748733608-0',
+    sizes: [[600, 290]],
+    bids: [
+        {
+            bidder: 'improvedigital',
+            params: {
+                placementId:1053688
+            }
+        }
+    ]
+}];
+{% endhighlight %}
+
+#### Configuration With publisherId/placementKey
+
+{% highlight js %}
+var adUnits = [{
+    code: 'div-gpt-ad-1499748733608-0',
+    sizes: [[600, 290]],
+    bids: [
+        {
+            bidder: 'improvedigital',
+            params: {
+                placementKey:'',
+                publisherId: 
+            }
+        }
+    ]
+}];
+{% endhighlight %}
+
+#### Configuration With Key-Values
+
+{% highlight js %}
+var adUnits = [{
+    code: 'div-gpt-ad-1499748733608-0',
+    sizes: [[600, 290]],
+    bids: [
+        {
+            bidder: 'improvedigital',
+            params: {
+                placementId:1053689,
+                keyValues: {
+                    testKey1: ["testValueA"],
+                    testKey2: ["testValueB", "testValueC"]
+                }
+            }
+        }
+    ]
+}];
+{% endhighlight %}
+
+#### Configuration With Size Filter
+
+{% highlight js %}
+var adUnits = [{
+    code: 'div-gpt-ad-1499748733608-0',
+    sizes: [[600, 290]],
+    bids: [
+        {
+            bidder: 'improvedigital',
+            params: {
+                placementId:1053687,
+                size: {
+                    w:300,
+                    h:300
+                }
+            }
+        }
+    ]
+}];
+{% endhighlight %}
+
+{: .alert.alert-info :}
+Sizes set in the `adUnit` object will not be used since they are already defined as part of the placement.
