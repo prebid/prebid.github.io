@@ -6,19 +6,20 @@ top_nav_section: dev_docs
 nav_section: reference
 biddercode: improvedigital
 biddercode_longer_than_12: true
+hide: true
 prebid_1_0_supported : true
 ---
 
 **Table of Contents**
 
 - [Bid params](#improvedigital-bid-params)
-- [Examples](#improvedigital-examples)
++ [Examples](#improvedigital-examples)
 
 <a name="improvedigital-bid-params" />
 
 ### Bid params
 
-Depending on your setup in our system, your placements will either have a globally-unique placement ID or a publisher-unique placement key as an identifier.  Therefore, to identify your placement you either need a placementId only or a combination of publisherId and placementKey.
+Depending on your setup in our system, your placements will either have a globally-unique placement ID or a publisher-unique placement key as an identifier.  Therefore, to identify your placement you either need a placementId only, or a combination of publisherId and placementKey.
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description                                                                                                                                                                                                          | Example           |
@@ -36,80 +37,72 @@ Depending on your setup in our system, your placements will either have a global
 
 #### Configuration With placementId
 
-{% highlight js %}
-var adUnits = [{
-    code: 'div-gpt-ad-1499748733608-0',
-    sizes: [[600, 290]],
-    bids: [
-        {
-            bidder: 'improvedigital',
-            params: {
-                placementId:1053688
+    var adUnits = [{
+        code: 'div-gpt-ad-1499748733608-0',
+        sizes: [[600, 290]],
+        bids: [
+            {
+                bidder: 'improvedigital',
+                params: {
+                    placementId:1053688
+                }
             }
-        }
-    ]
-}];
-{% endhighlight %}
+        ]
+    }];
 
 #### Configuration With publisherId/placementKey
 
-{% highlight js %}
-var adUnits = [{
-    code: 'div-gpt-ad-1499748733608-0',
-    sizes: [[600, 290]],
-    bids: [
-        {
-            bidder: 'improvedigital',
-            params: {
-                placementKey:'',
-                publisherId: 
-            }
-        }
-    ]
-}];
-{% endhighlight %}
-
-#### Configuration With Key-Values
-
-{% highlight js %}
-var adUnits = [{
-    code: 'div-gpt-ad-1499748733608-0',
-    sizes: [[600, 290]],
-    bids: [
-        {
-            bidder: 'improvedigital',
-            params: {
-                placementId:1053689,
-                keyValues: {
-                    testKey1: ["testValueA"],
-                    testKey2: ["testValueB", "testValueC"]
+    var adUnits = [{
+        code: 'div-gpt-ad-1499748733608-0',
+        sizes: [[600, 290]],
+        bids: [
+            {
+                bidder: 'improvedigital',
+                params: {
+                    placementKey:'',
+                    publisherId: 
                 }
             }
-        }
-    ]
-}];
-{% endhighlight %}
+        ]
+    }];
 
-#### Configuration With Size Filter
+#### Configuration With PlacementId and Key-Values
 
-{% highlight js %}
-var adUnits = [{
-    code: 'div-gpt-ad-1499748733608-0',
-    sizes: [[600, 290]],
-    bids: [
-        {
-            bidder: 'improvedigital',
-            params: {
-                placementId:1053687,
-                size: {
-                    w:300,
-                    h:300
+    var adUnits = [{
+        code: 'div-gpt-ad-1499748733608-0',
+        sizes: [[600, 290]],
+        bids: [
+            {
+                bidder: 'improvedigital',
+                params: {
+                   placementId:1053689,
+                    keyValues: {
+                        testKey1: ["testValueA"],
+                        testKey2: ["testValueB", "testValueC"]
+                    }
                 }
             }
-        }
-    ]
-}];
-{% endhighlight %}
+        ]
+    }];
+
+#### Configuration With PlacementId and Size Filter
+
+    var adUnits = [{
+        code: 'div-gpt-ad-1499748733608-0',
+        sizes: [[600, 290]],
+        bids: [
+            {
+                bidder: 'improvedigital',
+                params: {
+                    placementId:1053687,
+                    size: {
+                        w:300,
+                        h:300
+                    }
+                }
+            }
+        ]
+    }];
 
 {: .alert.alert-info :}
-Sizes set in the `adUnit` object will not be used since they are already defined as part of the placement.
+Sizes set in the `adUnit` object will not be used since sizes are already defined as part of the placement setup.
