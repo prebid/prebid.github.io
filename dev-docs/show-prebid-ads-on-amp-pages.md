@@ -41,6 +41,7 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 + [AMP content page](#amp-content-page): This is where your content lives.
 + [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
++ [User Sync in AMP](#user-sync-in-amp): This is what you need to put on page to do User Sync.
 
 ### AMP content page
 
@@ -93,6 +94,28 @@ You can always get the latest version of the creative code below from [the AMP e
     </script>
 
 {% endhighlight %}
+
+### User Sync
+
+To do User Sync on Amp pages, `amp-iframe` element need to be set up on the page as shown below. Below given `amp-iframe` will do User Sync for all the bidders in Prebid Server. We are supporting image pixel syncs as of now, iframe syncs are not supported.
+
+{: .alert.alert-warning :}
+Iframes must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+
+{% highlight html %}
+
+    <amp-iframe width="1" title="User Sync"
+                            height="1"
+                            layout="responsive"
+                            sandbox="allow-scripts"
+                            frameborder="0"
+                            src="https://acdn.adnxs.com/prebid/amp/load-cookie.html?<PLACEMENT_ID1>,<PLACEMENT_ID2>">
+    </amp-iframe>
+
+{% endhighlight %}
+
+Work in Progress: You need to pass all the placement id's on the page as query param in the `src` of amp-iframe element. By doing so Prebid server will find bidders participating in auction and will return User Sync status for those bidders only. By doing so you will not have to update your setup once this is implemented in Prebid server.
+
 
 ## Related Topics
 
