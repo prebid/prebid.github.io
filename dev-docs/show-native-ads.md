@@ -15,12 +15,12 @@ nav_section: prebid-native
 
 In this tutorial, we'll set up Prebid.js to show native ads.
 
-We'll use the [AppNexus AST adapter]({{site.github.url}}/dev-docs/bidders.html#appnexusAst) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
+We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
 Similarly, we'll use DFP as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
-<!-- {: .alert.alert-success :}
-For a full working code sample using the techniques described on this page, see the [Prebid Native Example]({{site.github.url}}/dev-docs/examples/prebid-native-example.html). -->
+{: .alert.alert-success :}
+For a full working code sample using the techniques described on this page, see the [Prebid Native Example]({{site.github.url}}/examples/native/native-demo.html).
 
 * TOC
 {:toc}
@@ -100,6 +100,9 @@ Each key's value is an object with several fields.  Most important is the `requi
       <li>
        However, Prebid.js does not do any additional checking of a required asset beyond ensuring that it's included in the response; for example, it doesn't validate that the asset has a certain length or file size, just that that key exists in the response JSON
       </li>
+      <li>
+       Finally, the response is checked to make sure it defines a landing page URL.
+      </li>
     </ul>
   </p>
 </div>
@@ -108,39 +111,40 @@ Each key's value is an object with several fields.  Most important is the `requi
 
 {% highlight js %}
 
-pbjs.addAdUnits({
-    code: slot.code,
-    sizes: slot.size,
-    mediaTypes: {
-        native: {
-            image: {
-                required: true
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            body: {
-                required: true
-            },
-            icon: {
-                required: true
-            },
+    pbjs.addAdUnits({
+        code: slot.code,
+        mediaTypes: {
+            native: {
+                image: {
+                    required: true,
+                    sizes: [150, 50]
+                },
+                title: {
+                    required: true,
+                    len: 80
+                },
+                sponsoredBy: {
+                    required: true
+                },
+                clickUrl: {
+                    required: true
+                },
+                body: {
+                    required: true
+                },
+                icon: {
+                    required: true,
+                    sizes: [50, 50]
+                }
+            }
         },
         bids: [{
-            bidder: 'appnexusAst',
+            bidder: 'appnexus',
             params: {
                 placementId: '9880618'
             }
         }, ]
-    }
-});
+    })
 
 {% endhighlight %}
 
@@ -166,19 +170,26 @@ And the following optional fields:
 + icon
 + cta
 
-A native `image` ad unit can be set up in the manner below:
+A native "image-type" ad unit can be set up as shown in the following example.
 
-{% highlight js %}
-
-      const adUnits = [{
+```javascript
+    const adUnits = [{
         code: 'adUnit-code',
-        mediaTypes: { native: { type: 'image' } }
-        bids: [
-          { bidder: 'appnexusAst', params: { placementId: '123456' } }
-        ]
-      }];
+        mediaTypes: {
+            native: {
+                type: 'image'
+            }
+        }
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: '123456'
+            }
+        }]
+    }];
+```
 
-{% endhighlight %}
+{% include dev-docs/native-image-asset-sizes.md %}
 
 ### 3. Add your native ad tag to the page body as usual:
 
@@ -195,6 +206,7 @@ A native `image` ad unit can be set up in the manner below:
 ## Working Examples
 
 + [Prebid Native with two slots]({{site.github.url}}/examples/native/native-demo.html)
++ [Prebid Native Examples]({{site.github.url}}/examples/native)
 
 ## Related Topics
 
