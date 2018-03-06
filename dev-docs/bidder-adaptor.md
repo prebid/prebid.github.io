@@ -44,6 +44,9 @@ In order to provide a fast and safe header bidding environment for publishers, t
 {: .alert.alert-danger :}
 Failure to follow any of the above conventions could lead to delays in approving your adapter for inclusion in Prebid.js.
 
+{: .alert.alert-danger :}
+Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
+
 <a name="bidder-adaptor-Required-Files" />
 
 ### Required Files
@@ -74,30 +77,38 @@ Module that connects to Example's demand sources
 # Test Parameters
 ```
     var adUnits = [
-           {
-               code: 'test-div',
-               sizes: [[300, 250]],  // a display size
-               bids: [
-                   {
-                       bidder: "example",
-                       params: {
-                           placement: '12345'
-                       }
-                   }
-               ]
-           },{
-               code: 'test-div',
-               sizes: [[300, 50]],   // a mobile size
-               bids: [
-                   {
-                       bidder: "example",
-                       params: {
-                           placement: 67890
-                       }
-                   }
-               ]
-           }
-       ];
+        {
+            code: 'test-div',
+            mediaTypes: {
+                banner: {
+                    sizes: [[300, 250]],  // a display size
+                }
+            },
+            bids: [
+                {
+                    bidder: "example",
+                    params: {
+                        placement: '12345'
+                    }
+                }
+            ]
+        },{
+            code: 'test-div',
+            mediaTypes: {
+                banner: {
+                    sizes: [[320, 50]],   // a mobile size
+                }
+            },
+            bids: [
+                {
+                    bidder: "example",
+                    params: {
+                        placement: 67890
+                    }
+                }
+            ]
+        }
+    ];
 ```
 
 {% endhighlight %}
@@ -115,10 +126,14 @@ For more information about the kinds of information that can be passed using the
 {
     var adUnits = [{
         code: "top-med-rect",
-        sizes: [
-            [300, 250],
-            [300, 600]
-        ]
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250],
+                    [300, 600]
+                ]
+            }
+        },
         bids: [{
             bidder: "example",
             // params is custom to the bidder adapter and will be
@@ -187,7 +202,7 @@ When the page asks Prebid.js for bids, your module's `buildRequests` function wi
 * *Ad Unit Params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
 * *Transaction ID*: `bidderRequest.bids[].transactionId` should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
 * *Ad Server Currency*: If your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
-* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. We suggest using the `utils.getTopWindowUrl()` function to obtain the referrer.
+* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. The convention is to do something like this: `referrer: config.getConfig('pageUrl') || utils.getTopWindowUrl()`.
 
 Sample array entry for `validBidRequests[]`:
 
@@ -208,9 +223,9 @@ Sample array entry for `validBidRequests[]`:
 {% endhighlight %}
 
 {: .alert.alert-success :}
-There are several IDs present in the bidRequest object:  
-- **Bid ID** is unique across ad units and bidders.  
-- **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.  
+There are several IDs present in the bidRequest object:
+- **Bid ID** is unique across ad units and bidders.
+- **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.
 - **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
 
 The ServerRequest objects returned from your adapter have this structure:
@@ -335,6 +350,9 @@ export const spec = {
 }
 
 {% endhighlight %}
+
+{: .alert.alert-info :}
+If your adapter supports banner and video media types, make sure to include `'banner'` in the `supportedMediaTypes` array as well
 
 ### Step 2: Accept video parameters and pass them to your server
 

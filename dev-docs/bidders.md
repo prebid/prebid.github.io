@@ -75,8 +75,10 @@ The following parameters in the `bidResponse` object are common across all bidde
 {: .table .table-bordered .table-striped }
 | Bidder          | Supported Media Types | Prebid 1.0 Support? |
 |-----------------+-----------------------+---------------------|
+| adgeneration    | native                | X                   |
 | adkernelAdn     | video                 | X                   |
 | adkernel        | video                 | X                   |
+| admixer         | video                 | X                   |
 | adxcg           | video,native          | X                   |
 | aol             | video                 | X                   |
 | appnexus        | video,native          | X                   |
@@ -84,24 +86,29 @@ The following parameters in the `bidResponse` object are common across all bidde
 | beachfront      | video                 | X                   |
 | conversant      | video                 | X                   |
 | freewheelSSP    | video                 | X                   |
+| gamma           | video                 | X                   |
 | getintent       | video                 | X                   |
+| gumgum          | native                | X                   |
+| mantis          | video,native          | X                   |
 | mobfox          | video                 | X                   |
 | openx           | video                 | X                   |
 | optimatic       | video                 | X                   |
+| platformio      | native                | X                   |
 | prebidServer    | video                 | X                   |
 | pulsepoint      | native                | X                   |
 | quantcast       | video                 | X                   |
 | readpeak        | native                | X                   |
 | rhythmone       | video                 | X                   |
+| rockyou         | video                 | X                   |
 | rubicon         | video                 | X                   |
 | sekindoUM       | video                 | X                   |
 | sharethrough    | native                | X                   |
 | vertamedia      | video                 | X                   |
-| admixer         | video                 |                     |
+| yieldlab        | video                 | X                   |
+| yieldmo         | native                | X                   |
 | aerserv         | video                 |                     |
 | appnexusAst     | video,native          |                     |
 | criteo          | native                |                     |
-| gumgum          | native                |                     |
 | indexExchange   | video                 |                     |
 | pulsepointLite  | native                |                     |
 | spotx           | video                 |                     |

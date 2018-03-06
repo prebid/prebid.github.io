@@ -38,10 +38,10 @@ The fields supported in a given `bid.params.video` object will vary based on the
 var videoAdUnits = [
   {
     code: 'video1',
-    sizes: [ 640, 480 ],
     mediaTypes: {
       video: {
-        context: 'outstream'
+        context: 'outstream',
+        playerSize: [640, 480]
       }
     },
     bids: [
@@ -85,10 +85,10 @@ Renderers are associated with adUnits through the `adUnit.renderer` object.  Thi
 
 pbjs.addAdUnit({
     code: 'video1',
-    sizes: [640, 480],
     mediaTypes: {
       video: {
-        context: 'outstream'
+        context: 'outstream',
+        playerSize: [640, 480]
       }
     },
     renderer: {
@@ -99,6 +99,25 @@ pbjs.addAdUnit({
                 adResponse: bid.adResponse,
             });
         }
+    },
+    ...
+});
+
+{% endhighlight %}
+
+Some demand partners that return a renderer with their video bid responses may support renderer configuration with the `adUnit.renderer.options` object. These configurations are bidder specific and may include options for skippability, player size, and ad text, for example. An example renderer configuration follows:
+
+{% highlight js %}
+
+pbjs.addAdUnit({
+    code: 'video1',
+    mediaTypes: {
+      video: { context: 'outstream', playerSize: [640, 480] }
+    },
+    renderer: {
+      options: {
+        adText: 'This text was configured in the ad unit',
+      }
     },
     ...
 });
