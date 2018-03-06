@@ -23,14 +23,14 @@ Prebid Server is an open source project, but it requires a server somewhere to r
 
 ## Architecture
 
-This diagram shows how the components of Prebid Org fit together:
+This diagram shows how the components from Prebid Org fit together:
 
 ![Prebid Server Architecture]({{site.baseurl}}/assets/images/dev-docs/PrebidServerArchitecture.png)
 
-Prebid Server works smoothly with Prebid.js - a special client-side adapter is configured to send requests to the server where server-side bid adapters handle communication to the bidders. Moving a bidder from
-client-side to server-side is tiny tweak to configuration.
+Prebid Server works with Prebid.js - a special client-side adapter is configured to send requests to the server where server-side bid adapters handle communication to the bidders. Moving a bidder from
+client-side to server-side is a tweak to configuration.
 
-Prebid Cache is a key component of the system for video and mobile -- storing bids for a few minutes. When header bidding wins, the creative to be displayed is loaded from the cache.
+Prebid Cache is an important component of the system for video and mobile -- storing bids for a few minutes. When header bidding wins, the creative to be displayed is loaded from the cache.
 
 ## Step 1. Choose Your Server Host
 
@@ -130,12 +130,12 @@ var adUnit1 = {
 
 ### Server adapter cookie sync
 
-When Prebid Server reaches out to each bidder adapter (i.e. SSP, exchange, etc), it needs to have the user's ID
-for that SSP available.
+When Prebid Server reaches out to each bidder adapter (e.g. an SSP), it needs to have the user's ID
+for that bidder available.
 
 In order to make these IDs available, Prebid Server and PrebidJS work together to build up a
-"match table" stored in the 'uids' cookie of Prebid Server's domain. Here's an example of what the
-match table might look like logically:
+'match table' stored in the `uids` cookie of Prebid Server's domain. Here's an example of what the
+match table looks like:
 
 {% highlight bash %}
 pubmatic: 1111111
@@ -145,16 +145,16 @@ appnexus: 3333333
 
 Here's how it works:
 
-1. When Prebid Server is initialized on the client side, a call to /cookie_sync is made which proactively calls to Prebid Server with the list of supported adapters.
-1. The server responds with sync pixels needed for any of the listed adapters. 
+1. When Prebid Server is initialized on the client side, a call to /cookie_sync is made which proactively calls to Prebid Server with the list of adapters in the page.
+1. The server can see the `uids` cookie and responds with sync pixels needed for any of the listed adapters. 
 1. The browser calls the sync pixels.
-1. Sync pixels redirect back to the Prebid Server /setuid command, setting the uids 'match table' cookie.
+1. Sync pixels redirect back to the Prebid Server /setuid command, setting the `uids` cookie.
 
 ### DSP Cookie Sync
 
-When each server adapter reaches out to their bidders, those DSPs also need to know this user or they're less likely to bid.
+When a server bidder adapter reaches out to their bidders, those DSPs also need to know this user or they're less likely to bid.
 
-Prebid Server isn't involved in DSP cookie matching at all. The feature in PrebidJS that supports DSP cookie matching is called ["user sync"]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing). Publishers are encouraged to allow SSPs to define several iframe-based user syncs on each page.
+Prebid Server isn't involved in DSP cookie matching at all. The feature in PrebidJS that supports DSP cookie matching is called ["user sync"]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing). Publishers are encouraged to consider allowing trusted SSPs to define several iframe-based user syncs on each page.
 
 
 ## Related Topics

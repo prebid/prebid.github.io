@@ -12,15 +12,18 @@ nav_section: prebid-server
 # Running Your Own Prebid Server
 {:.no_toc}
 
-Prebid.org offers Prebid Server and Prebid Cache in two different languages at this time: GoLang and Java.
-The existence of these versions of the functionality is a representation of the variety of companies and
-their associated infrastructures that participate in the Prebid.org ecosystem. Prebid.org espouses no
+Prebid.org offers Prebid Server and Prebid Cache in two different languages at this time: Go and Java.
+The existence of these alternate versions is a representation of the variety of companies and
+infrastructures that are part of the Prebid.org ecosystem. Prebid.org espouses no
 specific language or framework, but rather lives by the rules outlined in the Code of Conduct.
 As a result, any implementation of any system that follows these rules is welcome into the community,
 as long as there is a path to long-term maintenance and upgrades.
 
 The choice to run your own production instance of a Prebid Server and Prebid Cache cluster should not be
 taken lightly. In addition to the challenge of managing and upgrading a globally distributed revenue-critical production system, this section outlines additional considerations.
+
+We recommend you reach out to Prebid.org to discuss the tradeoffs and determine the best path
+forward for your case. Email us at info@prebid.org.
 
 * TOC
 {:toc}
@@ -30,19 +33,18 @@ taken lightly. In addition to the challenge of managing and upgrading a globally
 Source for the different implementations:
 
 * Prebid Server
-  * GoLang - [https://github.com/prebid/prebid-server](https://github.com/prebid/prebid-server)
+  * Go - [https://github.com/prebid/prebid-server](https://github.com/prebid/prebid-server)
   * Java - [https://github.com/prebid/prebid-server-java](https://github.com/prebid/prebid-server-java)
 * Prebid Cache
-  * GoLang - [https://github.com/prebid/prebid-cache](https://github.com/prebid/prebid-cache)
+  * Go - [https://github.com/prebid/prebid-cache](https://github.com/prebid/prebid-cache)
   * Java - [https://github.com/prebid/prebid-cache-java](https://github.com/prebid/prebid-cache-java)
 
-Note that all of the above repositories contain developer documentation that may be more up-to-date than what's presented below.
+{: .alert.alert-info :}
+Note that the above repositories contain developer documentation that may be more up-to-date than what's presented below.
 
 ## Endpoint Change In Progress
 
-While not critical for most aspects of operation, there are some configuration differences driven by a change we're making in the main Prebid Server endpoint.
-
-The original endpoint was `/auction` -- it supported a custom block of JSON arguments that
+There are some configuration differences driven by a change we're making in the main Prebid Server endpoint. The original endpoint was `/auction` -- it supported a custom block of JSON arguments that
 fit the prototype well.
 
 As the scope of server-side header-bidding grew, it became obvious that the types of parameters needed
@@ -57,9 +59,9 @@ managing user match tables between itself and downstream demand integrations. In
 lightweight and efficient, Prebid Server leverages the cookie space of its host domain to synchronize
 users with the bidders with which it integrates. For example, if Publisher A hosts a Prebid Server
 cluster at prebid-server.publisher-a.com, and leverages a bidder Exchange A, the user ID for Exchange A
-is pushed into the uuids cookie on the prebid-server.publisher-a.com domain. As a result, operating a
+is pushed into the `uids` cookie on the prebid-server.publisher-a.com domain. As a result, operating a
 Prebid Server cluster on a publisher's primary domain has the benefit of increasing cookie persistence.
-This is different than if Exchange A is hosting Prebid Server on its domain, since it is able to build
+This is different than if Exchange A is hosting Prebid Server on the exchange-a domain, since it is able to build
 its user sync pool across all of the domains on which it serves. The primary benefit of a publisher
 hosting their own Prebid Server is therefore cookie persistence, which may be a worthwhile tradeoff for
 sites that have heavy Safari traffic.
@@ -68,23 +70,20 @@ It is worth noting that as the prevalence and penetration of "universal user ID"
 Digitru.st take off, the value of leveraging the broad base of user synchronization enjoyed by
 exchanges is diminished.
 
-We highly recommend you reach out to Prebid.org to discuss these tradeoffs and determine the best path
-forward. Email us at info@prebid.org.
-
 ## Exchange Integrations
 
-Prebid Server requires server-to-server connections from Prebid Server to the various demand sources
+Prebid Server requires server-to-server connections to the various demand sources
 that are plugged in. Please note that some of the bidders require separate authentication parameters
-and contracts in order to integrate, as server-to-server integrations pose a greater risk of
+and contracts in order to integrate. This is because server-to-server integrations pose a greater risk of
 accidentally or purposefully misrepresenting the inventory and audience being sold. Please consult the
-bidders with whom you would like to integrate on this matter to ensure that the appropriate agreements
+bidders with whom you would like to integrate to ensure that the appropriate agreements
 are in place to proceed forward.
 
 See [https://github.com/prebid/prebid-server/blob/master/docs/bidders](https://github.com/prebid/prebid-server/blob/master/docs/bidders) for information about each adapter.
 
-Note that the open source team has ported all of the adapters that were implemented in Go, but 
+Note that the Java open source team has ported all of the adapters that were implemented in Go, but 
 it may take some time for all of the owning exchanges to review, test, and approve the port. See the
-[adapter status page](https://github.com/rubicon-project/prebid-server-java/tree/master/src/main/java/org/prebid/server/adapter) for the current status.
+[adapter status page](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
 
 ## Prebid Cache Server
 
@@ -94,9 +93,9 @@ If you plan to run mobile or video ads in your Prebid Server environment, you'll
 - If caching succeeds, add values to the client response: cache_id, cache_url
 - Remove the bid's creative body before responding to the client
 
-Eventually the ad server will make a decision which ad to display, and if one of the bids wins, cache_id and/or cache_url are used to retrieve the creative body for display.
+The ad server will make a decision which ad to display, and if one of the bids wins, cache_id and/or cache_url are used to retrieve the creative body for display.
 
-Follow the instructions in the [GoLang](https://github.com/prebid/prebid-cache) or [Java](https://github.rp-core.com/Mobile/prebid_cache_webflux/blob/master/README.md) repository to set up the cache server, and then configure it in pbs.json:
+Follow the instructions in the [Go](https://github.com/prebid/prebid-cache) or [Java](https://github.rp-core.com/Mobile/prebid_cache_webflux/blob/master/README.md) repository to set up the cache server, and then configure it in pbs.json:
 
 ```
 ...
@@ -116,14 +115,14 @@ and Prebid Cache servers are bound together in the same region.
 The Prebid Server data store is a way to configure account and request data. Specifically:
 
 - Specified account is valid (currently `/auction` endpoint only)
-- Price granularity for the specified account (used for the "sort_bids" option)
+- Price granularity for the specified account
 - Bidders and bidder parameters
 
-With the legacy `/auction` endpoint, there are two options: YAML or relational tables. MySql is supported for Java, Postgres for both Go and Java.
+With the legacy `/auction` endpoint, there are two options: YAML or relational tables. MySql is supported for Java, and Postgres is supported for both Go and Java.
 
 ### YAML file
 
-YAML file example
+YAML config data example
 {% highlight bash %}
 accounts:
   - 1111
@@ -142,7 +141,7 @@ The `/auction` endpoint has the ability to query a relational database to get 3 
 
 1. Account validation
 1. Account price granuarity
-1. "Config" ID - the original implementation of stored_requests, this is a table that defines bidders and bid parameters for a given "config_id".
+1. "Config" ID - the original implementation of [stored requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md), this is a table that defines bidders and bid parameters for a given "config_id".
 
 Example schemas:
 
@@ -173,8 +172,8 @@ The `/openrtb2/auction` endpoint has a more generalized approach to configuratio
 
 - A query may be defined in the config file that returns a single override column.
 - The output of the query must be JSON OpenRTB2
-- In place of queries, flat files may be placed in `stored_requests/data/by_id/{id}.json`
-- The query or file is merged with the incoming OpenRTB2 request, with the query or file taking precedence.
+    - In place of queries, flat files may be placed in `stored_requests/data/by_id/{id}.json`
+- The query or file is **merged** with the incoming OpenRTB2 request, with the query or file taking precedence.
 
 ```
     "stored_requests": {
@@ -185,13 +184,13 @@ The `/openrtb2/auction` endpoint has a more generalized approach to configuratio
             "port": 5432,
             "user": "",
             "password": "",
-            "query": "SELECT id, config FROM myTable WHERE id IN %ID_LIST%"
+            "query": "SELECT id, config FROM myTable WHERE id IN %ID_LIST%",
             "amp-query": "SELECT id, config FROM myAmpTable WHERE id IN %ID_LIST%"
         }
     },
 ```
 
-Note that the query for AMP-RTC support may be different than for standard `/openrtb2` requsts.
+Note that the query for AMP-RTC support may be different than for standard `/openrtb2/auction` requests.
 
 The implication of this approach is that the either the database has to store fully-formed JSON or
 a sophisticated query is needed to construct the JSON output as part of the query. Here's an example illustrating the possible use of the Postgres jsonb_build_object function:
@@ -230,7 +229,7 @@ The Java version supports some additional options:
     - flushingCounter: integer of event counts that resets to 0 at each reporting interval
     - meter: measures events and event rates
 
-See graphite and influxdb options in the [Java config](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/config-app.md) reference.
+See graphite and influxdb options in the [Java config](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md) reference.
 
 There are quite a few metrics produced at the granularity of the account and adapter. Some examples:
 
@@ -271,7 +270,7 @@ For both versions, we recommend implementing a proxy server in front of Prebid S
 
 ## Performance
 
-Performance testing has been done comparing the Java version of Prebid Server with the Go version. Results:
+Performance testing has been done comparing the Java version of Prebid Server with the Go version. Results with two bidders:
 {% highlight bash %}
 1000 requests per second
 CPU % Java: 51
@@ -324,15 +323,15 @@ Go Prebid Server
 
 Java Prebid Server
 
-- [Basic Configuration](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/config.md)
-- [All config options](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/config-app.md)
-- [Contributing to the project](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/contributing.md)
-- [Building for AWS ElasticBeanstalk](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/build-aws.md)
-- [Adding a new bid adapter](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
+- [Basic Configuration](https://github.com/prebid/prebid-server-java/blob/master/docs/config.md)
+- [All config options](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md)
+- [Contributing to the project](https://github.com/prebid/prebid-server-java/blob/master/docs/contributing.md)
+- [Building for AWS ElasticBeanstalk](https://github.com/prebid/prebid-server-java/blob/master/docs/build-aws.md)
+- [Adding a new bid adapter](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
 
 Java Prebid Cache
 
-- [Prebid Cache details](https://github.rp-core.com/Mobile/prebid_cache_webflux/blob/master/README.md)
+- [Prebid Cache details](https://github.com/prebid/prebid-cache-java)
 
 
 # Related Topics
