@@ -41,7 +41,7 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 + [AMP content page](#amp-content-page): This is where your content lives.
 + [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
-+ [User Sync in AMP](#user-sync-in-amp): This is what you need to put on page to do User Sync.
++ [User Sync in AMP](#user-sync-in-amp): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
 
 ### AMP content page
 
@@ -97,7 +97,7 @@ You can always get the latest version of the creative code below from [the AMP e
 
 ### User Sync
 
-To do User Sync on Amp pages, `amp-iframe` element need to be set up on the page as shown below. Below given `amp-iframe` will do User Sync for all the bidders in Prebid Server. We are supporting image pixel syncs as of now, iframe syncs are not supported.
+To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
 
 {: .alert.alert-warning :}
 Iframes must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
