@@ -71,7 +71,7 @@ You can always get the latest version of the creative code below from [the AMP e
 
 {% highlight html %}
 
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.1.2/dist/creative.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.0/dist/creative.js"></script>
     <script>
     var adId = "%%PATTERN:hb_adid%%";
     var cacheHost = "%%PATTERN:hb_cache_host%%";
@@ -109,13 +109,10 @@ Iframes must be either 600px away from the top or not within the first 75% of th
                             layout="responsive"
                             sandbox="allow-scripts"
                             frameborder="0"
-                            src="https://acdn.adnxs.com/prebid/amp/load-cookie.html?<PLACEMENT_ID1>,<PLACEMENT_ID2>">
+                            src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.0/dist/load-cookie.html">
     </amp-iframe>
 
 {% endhighlight %}
-
-Work in Progress: You need to pass all the placement id's on the page as query param in the `src` of amp-iframe element. By doing so Prebid server will find bidders participating in auction and will return User Sync status for those bidders only. By doing so you will not have to update your setup once this is implemented in Prebid server.
-
 
 ## Related Topics
 
