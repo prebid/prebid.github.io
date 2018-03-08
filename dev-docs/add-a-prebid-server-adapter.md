@@ -9,6 +9,8 @@ nav_section: prebid-server
 
 <div class="bs-docs-section" markdown="1">
 
+# Add a Bidder Adapter to Prebid Server
+
 These instructions have moved to [the GitHub repo](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md).
 
 ## Further Reading
