@@ -30,6 +30,7 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `gender` | optional | Gender | "M" |
 | `kadpageurl` | optional | Overrides Page URL | "http://www.yahoo.com/" |
 | `kadfloor` | optional | Bid Floor | "1.75" |
+| `dctr` | optional | Deal Custom Targeting | "key1=v1,v11|key2=v2,v22|key3=v3" |
 
 ### Configuration
 
