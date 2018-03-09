@@ -71,7 +71,7 @@ You can always get the latest version of the creative code below from [the AMP e
 
 {% highlight html %}
 
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.0/dist/creative.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.1/dist/creative.js"></script>
     <script>
     var adId = "%%PATTERN:hb_adid%%";
     var cacheHost = "%%PATTERN:hb_cache_host%%";
@@ -109,7 +109,7 @@ Iframes must be either 600px away from the top or not within the first 75% of th
                             layout="responsive"
                             sandbox="allow-scripts"
                             frameborder="0"
-                            src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.0/dist/load-cookie.html">
+                            src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.1/dist/load-cookie.html">
     </amp-iframe>
 
 {% endhighlight %}
