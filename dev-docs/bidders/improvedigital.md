@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: ImproveDigital
+title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
@@ -10,12 +10,13 @@ hide: true
 prebid_1_0_supported : true
 ---
 
-**Table of Contents**
+### Send All Bids Ad Server Keys:
+(truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
 
-- [Bid params](#improvedigital-bid-params)
-+ [Examples](#improvedigital-examples)
-
-<a name="improvedigital-bid-params" />
+`hb_bidder_improvedig`
+`hb_pb_improvedigital`
+`hb_adid_improvedigit`
+`hb_size_improvedigit`
 
 ### Bid params
 
