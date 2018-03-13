@@ -1,25 +1,24 @@
 ---
 layout: bidder
-title: Yieldbot
-description: Prebid Yieldbot Bidder Adaptor
+title: RTBHouse
+description: Prebid RTB House Bidder Adapter
 
 top_nav_section: dev_docs
 nav_section: reference
 
 hide: true
-
-biddercode: yieldbot
-
+biddercode: rtbhouse
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 
+prebid_1_0_supported : true
 ---
 
 
 ### bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
-| `psn` | required | The publisher ID |  |
-| `slot` | required | The slot |  |
+| `publisherId` | required | Unique publisher ID | `ABCDEF` |
+| `region` | required | Assigned region | `prebid-eu` |
