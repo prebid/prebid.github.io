@@ -42,12 +42,20 @@ to output the PrebidMobile.framework.
 
 Register Prebid Mobile ad units as early as possible in the application's lifecycle. Each ad unit has an `adUnitId` which is an arbitrary unique identifier of the developer's choice. 
 
+```
+Note: The existing registerAPI's listed below are deprecated.
+[PrebidMobile registerAdUnits:@[adUnit1] withAccountId:@"YOUR-ACCOUNT-ID-HERE"];
+[PrebidMobile registerAdUnits:@[adUnit1, adUnit2] withAccountId:kAccountId andPrimaryAdServer:PBPrimaryAdServerDFP];
+```
+
 We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDelegate.m` using the following steps as shown in the code sample below:
 
 1. Create the ad units with ad unit ids and add sizes for banner ad units
 2. Add a server side configuration for each ad unit to Prebid Server Adapter
 3. Set targeting parameters for the ad units (Optional)
-4. Register the ad units with the adapter to start bid fetching process
+4. Set the primary adserver for the bid to either DFP or MoPub (primary ad server is necessary to determine the caching mechanism)
+5. Set the Host for the bid to AppNexus or Rubicon
+6. Register the ad units with the adapter to start bid fetching process
 
 Embed the ad unit registration in a try-catch block to catch all the exceptions (if any) thrown by the SDK.
 
@@ -68,10 +76,6 @@ PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdent
 [[PBTargetingParams sharedInstance] setGender:PBTargetingParamsGenderFemale];
   
 // 3. Register the ad units with Prebid Mobile to start bid fetching process
-// The following two APIs are being deprecated
-//[PrebidMobile registerAdUnits:@[adUnit1] withAccountId:@"YOUR-ACCOUNT-ID-HERE"];
-//[PrebidMobile registerAdUnits:@[adUnit1, adUnit2] withAccountId:kAccountId andPrimaryAdServer:PBPrimaryAdServerDFP];
-// Use this instead:
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
           		withAccountId:kAccountId
                		 withHost:PBServerHostAppNexus
