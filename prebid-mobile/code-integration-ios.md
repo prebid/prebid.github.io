@@ -53,10 +53,10 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 
 1. Create the ad units with ad unit ids and add sizes for banner ad units
 2. Add a server side configuration for each ad unit to Prebid Server Adapter
-3. Set targeting parameters for the ad units (Optional)
-4. Set the primary adserver for the bid to either DFP or MoPub (primary ad server is necessary to determine the caching mechanism)
-5. Set the Host for the bid to AppNexus or Rubicon
-6. Register the ad units with the adapter to start bid fetching process
+3. Set the targeting parameters for the ad units (Optional)
+4. Set the primary adserver for the bid to either DFP or MoPub (the primary ad server is necessary to determine the caching mechanism)
+5. Set the host for the bid to AppNexus or Rubicon
+6. Register the ad units with the adapter to start the bid fetching process
 
 Embed the ad unit registration in a try-catch block to catch all the exceptions (if any) thrown by the SDK.
 
