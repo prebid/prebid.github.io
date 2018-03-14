@@ -42,9 +42,10 @@ to output the PrebidMobile.framework.
 
 Register Prebid Mobile ad units as early as possible in the application's lifecycle. Each ad unit has an `adUnitId` which is an arbitrary unique identifier of the developer's choice. 
 
-```
-Note: The existing registerAPI's listed below are deprecated.
-[PrebidMobile registerAdUnits:@[adUnit1] withAccountId:@"YOUR-ACCOUNT-ID-HERE"];
+
+Note: The existing registerAPIs listed below are deprecated:
+
+```[PrebidMobile registerAdUnits:@[adUnit1] withAccountId:@"YOUR-ACCOUNT-ID-HERE"];
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2] withAccountId:kAccountId andPrimaryAdServer:PBPrimaryAdServerDFP];
 ```
 
