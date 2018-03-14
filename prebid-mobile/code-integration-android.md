@@ -47,7 +47,7 @@ The steps for using Prebid Mobile are as following:
 5. Set the host for the bid to AppNexus or Rubicon
 6. Register the ad units with the adapter to start the bid fetching process
 
-### How to create ad units?
+### How to Create Ad Units
 
 Create the ad units that represent the ad spaces in your app using following APIs:
 
