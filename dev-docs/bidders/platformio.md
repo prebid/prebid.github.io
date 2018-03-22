@@ -7,7 +7,7 @@ nav_section: reference
 hide: true
 biddercode: platformio
 biddercode_longer_than_12: false
-prebid_1_7_supported : true
+prebid_1_0_supported : true
 ---
 
 ### bid params
