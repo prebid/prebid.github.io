@@ -15,7 +15,7 @@ nav_section: prebid-amp
 
 This page has instructions for showing ads on AMP pages using Prebid.js.
 
-At a high level, our implementation uses [Prebid Server][PBS] to talk to [AMP][AMPads] runtim using the [AMP Real Time Config (RTC)][RTC-Overview] protocol.
+Through this implementation, [Prebid Server][PBS] fetches demand and returns key-value targeting to the AMP runtime using the [AMP Real Time Config (RTC)][RTC-Overview] protocol.
 
 For more information about AMP RTC, see:
 
@@ -41,20 +41,23 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 + [AMP content page](#amp-content-page): This is where your content lives.
 + [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
++ [User Sync in AMP](#user-sync-in-amp): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
 
 ### AMP content page
 
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
 + `data-slot`: Identifies the ad slot for the auction.
-+ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which will actually handle the communication with AMP RTC. The rtc_config.vendors property should define any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five
++ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC. 
+    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js].
+    + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
 {% highlight html %}
 
     <amp-ad width="300" height="250"
             type="doubleclick"
             data-slot="/19968336/universal_creative"
-            rtc-config='{"vendors": {"PrebidAppNexus": {"PLACEMENT_ID": "12345679"}}, "timeoutMillis": 500}'>
+            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "12345679"}}, "timeoutMillis": 500}'>
     </amp-ad>
 
 {% endhighlight %}
@@ -68,7 +71,7 @@ You can always get the latest version of the creative code below from [the AMP e
 
 {% highlight html %}
 
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.1.2/dist/creative.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.1/dist/creative.js"></script>
     <script>
     var adId = "%%PATTERN:hb_adid%%";
     var cacheHost = "%%PATTERN:hb_cache_host%%";
@@ -92,11 +95,31 @@ You can always get the latest version of the creative code below from [the AMP e
 
 {% endhighlight %}
 
+### User Sync
+
+To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
+
+{: .alert.alert-warning :}
+Iframes must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+
+{% highlight html %}
+
+    <amp-iframe width="1" title="User Sync"
+                            height="1"
+                            layout="responsive"
+                            sandbox="allow-scripts"
+                            frameborder="0"
+                            src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.2.1/dist/load-cookie.html">
+    </amp-iframe>
+
+{% endhighlight %}
+
 ## Related Topics
 
++ [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
++ [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
-+ [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
 
 </div>
 
@@ -104,4 +127,4 @@ You can always get the latest version of the creative code below from [the AMP e
 
 [PBS]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
 [RTC-Overview]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md
-[AMPads]: https://github.com/ampproject/amphtml/blob/master/ads/google/a4a/docs/a4a-readme.md
+[callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js
