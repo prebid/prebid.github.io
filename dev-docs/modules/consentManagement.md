@@ -23,34 +23,34 @@ This module will perform its tasks with the CMP prior to the auction starting.  
 
 There are timeout settings in place in the module to permit this interaction with the CMP a specified length of time to operate before it's unacceptable or assumed an issue has occurred.  
 
-When this timeout occurs, one of two options are taken, either:
+When this timeout occurs one of two options are taken, either:
 
-1. The auction is canceled outright 
+1. The auction is canceled outright.
 2. The auction proceeds without the user's consent information.  
 
-Though these options are mutually exclusive, they are configurable by the site with the site's implementation of the prebid code (see further below for details) so that they can be used in the proper scenarios for that site/audience (as decided by the site's developers).
+Though these options are mutually exclusive, they are configurable by the publisher via the site's implementation of the prebid code (see further below for details) so that they can be used in the proper scenarios for that site/audience.
 
 
 ## Page integration
 
 To utilize this module, a separate CMP needs to be implemented onto the site to interact with the user and obtain their consent choices.  
 
-The actual implementation details of this CMP is not covered by this page; any questions on that implemenation should be referred to the CMP in question.  However, we would recommend to have the CMP's code located before the prebid code in the head of the page, in order to ensure their framework is implemented before the prebid code starts to execute.
+The actual implementation details of this CMP are not covered by this page; any questions on that implemenation should be referred to the CMP in question.  However, we would recommend to have the CMP's code located before the prebid code in the head of the page, in order to ensure their framework is implemented before the prebid code starts to execute.
 
 The module currently supports the following CMPs:
 
-* IAB (iab)
+* AppNexus (appnexus)
 
 Once the CMP is implemented, simply include the module in your build and add a consentManagement object in the setConfig() call.  Adapters that support this feature will be able to retrieve the consent information and incorporate it in their requests.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
-| cmp | `string` | The ID for the CMP in use on the page.  Default is 'iab' | 'iab' |
-| waitForConsentTimeout | `integer` | Length of time (in milliseconds) to allow the CMP to perform its tasks before aborting the process. Default is 5000 | 5000 |
-| lookUpFailureResolution | `string` | A setting to determine what will happen when obtaining consent information from the CMP fails; to either **cancel** the auction entirely or **proceed** with the auction minus the user's encoded consent string. Default is 'proceed' | 'proceed' or 'cancel' |
+| cmp | `string` | The ID for the CMP in use on the page.  Default is 'appnexus' | 'appnexus' |
+| timeout | `integer` | Length of time (in milliseconds) to allow the CMP to perform its tasks before aborting the process. Default is 10000 | 10000 |
+| allowAuctionWithoutConsent | `boolean` | A setting to determine what will happen when obtaining consent information from the CMP fails; either allow the auction to proceed (**true**) or cancel the auction (**false**). Default is true | true|false |
 
-Example: Using IAB CMP with a custom timeout value and cancel option.
+Example: Using AppNexus CMP with a custom timeout value and cancel option.
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -58,9 +58,9 @@ Example: Using IAB CMP with a custom timeout value and cancel option.
      pbjs.que.push(function() {
         pbjs.setConfig({
           consentManagement: {
-            cmp: 'iab',
-            waitForConsentTimeout: 4000,
-            lookUpFailureResolution: 'cancel'
+            cmp: 'appnexus',
+            timeout: 8000,
+            allowAuctionWithoutConsent: false
           }
         });
         pbjs.addAdUnits(adUnits);
@@ -85,7 +85,7 @@ Note that there are more dynamic ways of combining these components for publishe
 
 ## Adapter integration
 
-Adapters should look for `bidderRequest.gdprConsent` in buildRequests() method. 
+Adapters should look for `bidderRequest.gdprConsent` in their buildRequests() method. 
 
 {% highlight js %}
 {
@@ -117,9 +117,22 @@ Adapters should look for `bidderRequest.gdprConsent` in buildRequests() method.
 }
 {% endhighlight %}
 
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 
-## Technical Details
+<script>
+$(function(){
+  $('.adapters .col-md-4').hide();
+  $('.gdpr_supported').show();
+});
+</script>
 
-- 
+Below is a list of supported Adapters:
+<div class="adapters">
+{% for page in bidder_pages %}
+  <div class="col-md-4{% if page.gdpr_supported %} gdpr_supported{% endif %}">
+  {{ page.title }}
+  </div>
+{% endfor %}
+</div>
 
 </div>
