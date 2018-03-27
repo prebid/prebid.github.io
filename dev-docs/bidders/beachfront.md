@@ -13,8 +13,17 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example |
+| :--- | :---- | :---------- | :------ |
+| `appId` | required | Beachfront Exchange ID | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` |
+| `bidfloor` | required | Bid floor | `0.01` |
+| `video` | optional | Object with video parameters. See the [video section below](#beachfront-video) for details. | |
 
-| Name       | Scope    | Description             | Example  |
-| :--------- | :------- | :---------------------- | :------  |
-| `appId`    | required | Beachfront Exchange ID  | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` |
-| `bidfloor` | required | Bid floor               | `0.01` |
+<a name="beachfront-video"></a>
+
+### video params
+
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example |
+| :--- | :---- | :---------- | :------ |
+| `mimes` | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` |
