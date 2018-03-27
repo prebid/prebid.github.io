@@ -13,6 +13,7 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
 | `appId` | required | Beachfront Exchange ID | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` |
@@ -24,6 +25,7 @@ prebid_1_0_supported : true
 ### video params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
 | `mimes` | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` |
