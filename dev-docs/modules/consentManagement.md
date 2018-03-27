@@ -47,10 +47,13 @@ Once the CMP is implemented, simply include the module in your build and add a c
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | cmp | `string` | The ID for the CMP in use on the page.  Default is 'appnexus' | 'appnexus' |
+| consentRequired | `boolean` | An override type setting to indicate if GDPR consent is required or not.  Default is true* | true|false |
 | timeout | `integer` | Length of time (in milliseconds) to allow the CMP to perform its tasks before aborting the process. Default is 10000 | 10000 |
 | allowAuctionWithoutConsent | `boolean` | A setting to determine what will happen when obtaining consent information from the CMP fails; either allow the auction to proceed (**true**) or cancel the auction (**false**). Default is true | true|false |
 
-Example: Using AppNexus CMP with a custom timeout value and cancel option.
+* Note - There are some technologies to determine if a given request is in scope of GDPR or not.  While this technology is not part of the consentManagement module (nor prebid), some adapters may have this technology available.  If they do, they have the opportunity to set their own default value for the consentRequired field instead of using the module's default.  If you are using a GDPR supported adapter that has this capability, simply do **not** include this field in your config to let the corresponding adapter(s) set their value.  All other adapters will use the system default (true), to err on the side that consent was likely required.
+
+Example: AppNexus CMP using the custom timeout and cancel auction options with the consentRequired field not defined.
 
 {% highlight js %}
      var pbjs = pbjs || {};
