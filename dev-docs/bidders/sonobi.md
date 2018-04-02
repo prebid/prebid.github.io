@@ -67,7 +67,7 @@ The `hfa` parameter requires your Sonobi Account Manager to enable this feature 
 
       var videoAdUnit = {
         code: 'video1',
-        sizes: [640,480],
+        sizes: [640, 480],
         mediaTypes: {
           video: {context: 'instream'}
         },
@@ -75,7 +75,12 @@ The `hfa` parameter requires your Sonobi Account Manager to enable this feature 
           {
             bidder: 'sonobi',
             params: {
+            	sizes: [],
               placement_id: '92e95368e86639dbd86d',
+              video: {
+                skipppable: false,
+                playback_methods: ['auto_play_sound_off']
+              }
             }
           }
         ]
