@@ -76,11 +76,7 @@ The `hfa` parameter requires your Sonobi Account Manager to enable this feature 
             bidder: 'sonobi',
             params: {
             	sizes: [],
-              placement_id: '92e95368e86639dbd86d',
-              video: {
-                skipppable: false,
-                playback_methods: ['auto_play_sound_off']
-              }
+              placement_id: '92e95368e86639dbd86d'
             }
           }
         ]
