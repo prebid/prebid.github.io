@@ -46,12 +46,12 @@ Once the CMP is implemented, simply include the module in your build and add a c
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
-| cmp | `string` | The ID for the CMP in use on the page.  Default is 'appnexus' | 'appnexus' |
-| consentRequired | `boolean` | An override type setting to indicate if GDPR consent is required or not.  Default is true* | true|false |
-| timeout | `integer` | Length of time (in milliseconds) to allow the CMP to perform its tasks before aborting the process. Default is 10000 | 10000 |
-| allowAuctionWithoutConsent | `boolean` | A setting to determine what will happen when obtaining consent information from the CMP fails; either allow the auction to proceed (**true**) or cancel the auction (**false**). Default is true | true|false |
+| cmp | `string` | The ID for the CMP in use on the page.  Default is `'appnexus'` | `'appnexus'` |
+| consentRequired | `boolean` | An override type setting to indicate if GDPR consent is required or not.  See note in regards to default. | `true` or `false` |
+| timeout | `integer` | Length of time (in milliseconds) to allow the CMP to perform its tasks before aborting the process. Default is `10000` | `10000` |
+| allowAuctionWithoutConsent | `boolean` | A setting to determine what will happen when obtaining consent information from the CMP fails; either allow the auction to proceed (**true**) or cancel the auction (**false**). Default is `true` | `true` or `false` |
 
-* Note - There are some technologies to determine if a given request is in scope of GDPR or not.  While this technology is not part of the consentManagement module (nor prebid), some adapters may have this technology available.  If they do, they have the opportunity to set their own default value for the consentRequired field instead of using the module's default.  If you are using a GDPR supported adapter that has this capability, simply do **not** include this field in your config to let the corresponding adapter(s) set their value.
+* Note - There are some technologies to determine if a given request is in scope of GDPR or not.  While this technology is not part of the consentManagement module (nor prebid), some adapters may have this technology available.  If they do, they have the opportunity to set their own default value for the `consentRequired` field.  If you are using a GDPR supported adapter that has this capability, simply do **not** include this field in your config to let the corresponding adapter(s) set their value.
 
 Example: AppNexus CMP using the custom timeout and cancel auction options with the consentRequired field not defined.
 
@@ -70,7 +70,7 @@ Example: AppNexus CMP using the custom timeout and cancel auction options with t
      });
 {% endhighlight %}
 
-### Build the package
+## Build the package
  
 #### Step 1: Bundle the module code
 
@@ -121,6 +121,12 @@ Below is a sample of how the data is structured in the `bidderRequest` object:
 }
 {% endhighlight %}
 
+### Notes about data fields
+
+#### *consentString*
+This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field may come to you with an `undefined` value; normally this happens when there was an error during the CMP interaction and the publisher had the config option `allowAuctionWithoutConsent` set to `true`.  If you wish to set your own value for this scenario rather than pass along `undefined` to your system, you can check for the `undefined` value in the field and replace it accordingly.  The code sample provided in the *consentRequried* section below provides a possible approach to perform this type of check/replacement.
+
+#### *consentRequired*
 As described earlier in this page - if the publisher didn't set their own value for `consentRequired` in the prebid `setConfig` code, each adapter has the opportunity to set their own value for this field.
 There are two general approaches that can be taken by the adapter to populate this field:
 
@@ -144,9 +150,9 @@ buildRequests: function (bidRequests, bidderRequest) {
 ...
 {% endhighlight %}
 
-The implementation of the latter option is up to the adapter, but the general premise should be the same.  You would check to see if the `bidderRequest.gdprConsent.consentRequired` field is undefined and if so, set the derived value.
+The implementation of the latter option is up to the adapter, but the general premise should be the same.  You would check to see if the `bidderRequest.gdprConsent.consentRequired` field is undefined and if so, set the derived value from your independent system.  Otherwise, you would use the publisher's value that was set in the `bidderRequest.gdprConsent.consentRequired` field.
 
-If neither option are taken, then there is a chance this field's value will be undefined on certain requests.  As long as that acceptable, this could be a potential third option - though we recommend to set a default at that point.
+If neither option are taken, then there is a chance this field's value will be undefined on certain requests.  As long as that acceptable, this could be a potential third option.
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 
