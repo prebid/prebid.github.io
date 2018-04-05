@@ -18,17 +18,17 @@ The VIS.X adaptor requires setup and approval from your YOC account manager team
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Description | Example |
 | :--- | :------ | :---- | :---------- | :------ |
-| `uid` | required | The publisher's ad unit ID in VIS.X | `"903536"` |
-| `priceType` | optional | The price type for received bids. Valid values are `"net"` or `"gross"`. Defaults to `"net". Net represents the header bid price with the header bidder margin already extracted. Gross price does contain the VIS.X bidder margin within. | `"net"` |
+| `uid` | required | The publisher's ad unit ID in VIS.X | `'903536'` |
+| `priceType` | optional | The price type for received bids. Valid values are `'net'` or `'gross'`. Defaults to `'net'`. Net represents the header bid price with the header bidder margin already extracted. Gross price does contain the VIS.X bidder margin within. | `'net'` |
 
 ### Configuration
 
-The VIS.X adaptor has the ability to work in different currencies. Currently this adaptor supports `"EUR"`, `"USD"`, `"GBP"`, `"PLN"`. Defaults to `"EUR"`.
+The VIS.X adaptor has the ability to work in different currencies. Currently this adaptor supports `'EUR'`, `'USD'`, `'GBP'`, `'PLN'`. Defaults to `'EUR'`.
 
 ```javascript
 $$PREBID_GLOBAL$$.setConfig({
     currency: {
-        adServerCurrency: "GBP"
+        adServerCurrency: 'GBP'
     }
 });
 ```
