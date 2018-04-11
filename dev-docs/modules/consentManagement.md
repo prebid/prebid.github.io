@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Module - GDPR ConsentManagement
-description: User ID persisted in first party domain
+description: Manage consent data in support of EU GDPR
 top_nav_section: dev_docs
 nav_section: modules
 module_code : consentManagement
@@ -145,6 +145,7 @@ buildRequests: function (bidRequests, bidderRequest) {
   if (bidderRequest && bidderRequest.gdprConsent) {
     adapterRequest.gdpr_consent = {
       consent_string: bidderRequest.gdprConsent.consentString,
+      // will check if the consentRequired field was populated with a boolean value (ie from page config).  If it's undefined, then default to true
       consent_required: (typeof bidderRequest.gdprConsent.consentRequired === 'boolean') ? bidderRequest.gdprConsent.consentRequired : true
     }
   }
