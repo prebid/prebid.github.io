@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Module - GDPR ConsentManagement
-description: Manage consent data in support of EU GDPR
+description: Add on module to consume and distribute consent information to bidder adapters
 top_nav_section: dev_docs
 nav_section: modules
 module_code : consentManagement
