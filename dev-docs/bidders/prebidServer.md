@@ -9,6 +9,7 @@ biddercode_longer_than_12: true
 hide: true
 prebid_1_0_supported : true
 media_types: video
+gdpr_supported: true
 ---
 
 ### Sign up
@@ -26,7 +27,7 @@ To enable prebid server, set the following configuration.
 pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
-        bidders : ['appnexus','audienceNetwork', 'rubicon'], 
+        bidders : ['appnexus','pubmatic', 'rubicon'], 
         defaultVendor: 'appnexus'
     }
 });
