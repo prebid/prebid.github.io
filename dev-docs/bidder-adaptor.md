@@ -160,6 +160,7 @@ If you're the type that likes to skip to the answer instead of going through a t
 + [Building the Request](#bidder-adaptor-Building-the-Request)
 + [Interpreting the Response](#bidder-adaptor-Interpreting-the-Response)
 + [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
++ [Registering on Timeout](#bidder-adaptor-Registering-on-Timout)
 
 <a name="bidder-adaptor-Overview" />
 
@@ -173,6 +174,7 @@ Compared to previous versions of Prebid, the new `BaseAdapter` model saves the a
 * `buildRequests` - Takes an array of valid bid requests, all of which are guaranteed to have passed the `isBidRequestValid()` test.
 * `interpretResponse` - Parse the response and generate one or more bid objects.
 * `getUserSyncs` - If the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.  For more information, see [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs) below.
+* `onTimeout` - If the adapter timed out for an auction, the platform will call this function and the adapter may register timeout.  For more information, see [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs) below.
 
 A high level example of the structure:
 
@@ -186,9 +188,10 @@ export const spec = {
     code: BIDDER_CODE,
     aliases: ['ex'], // short code
     isBidRequestValid: function(bid) {},
-    buildRequests: function(validBidRequests[]) {},
+    buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses) {}
+    getUserSyncs: function(syncOptions, serverResponses) {},
+    onTimeout: function(timeoutData) {}
 }
 registerBidder(spec);
 
@@ -298,6 +301,7 @@ The parameters of the `bidObject` are:
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"http://vid.example.com/9876`       |
+| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"http://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 
@@ -332,6 +336,27 @@ See below for an example implementation.  For more examples, search for `getUser
     }
 }
 
+{% endhighlight %}
+
+<a name="bidder-adaptor-Registering-on-Timout" />
+
+### Registering on Timeout 
+
+The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end. 
+
+Sample data received to this function:
+
+{% highlight js %}
+{ 
+  "bidder": "example",
+  "bidId": "51ef8751f9aead",
+  "params": {
+    ...
+  },
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "timeout": 3000,
+  "auctionId": "18fd8b8b0bd757"
+}
 {% endhighlight %}
 
 ## Supporting Video
@@ -589,6 +614,14 @@ export const spec = {
         }
         return syncs;
     }
+
+    /**
+     * Register bidder specific code, which will execute if bidder timed out after an auction
+     * @param {data} Containing timeout specific data
+     */
+    onTimeout: function(data) {
+        // Bidder specifc code
+    }    
 }
 registerBidder(spec);
 
