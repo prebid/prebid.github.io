@@ -64,7 +64,13 @@ An example Stored Request is given below:
         "ext": {
             "prebid": {
                 "targeting": {
-                    "pricegranularity": "dense"
+                    "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
+                        "precision": 2,
+                        "ranges": [{
+                            "max": 20.00,
+                            "increment": 0.10
+                        }]
+                    }
                 }
             }
         },
