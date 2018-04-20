@@ -66,7 +66,7 @@ Example: IAB CMP using the custom timeout and cancel auction options with the co
      pbjs.que.push(function() {
         pbjs.setConfig({
           consentManagement: {
-            cmp: 'iab',
+            cmpApi: 'iab',
             timeout: 1000,
             allowAuctionWithoutConsent: false
           }
