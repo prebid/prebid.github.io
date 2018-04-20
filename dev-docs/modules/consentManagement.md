@@ -58,7 +58,7 @@ Once the CMP is implemented, simply include the module in your build and add a `
 
 * Note - Some SSPs can determine whether a given request is in GDPR scope or not. If the page specifies `consentRequired`, it will override any dynamic determination and force the bidders to use this override value -- i.e. tell the SSP whether the consent string must be enforced for this user. Each bidder adapter supporting GDPR will default to the proper setting for the backend SSP, so it's not recommended to set this value unless override is what's desired.
 
-Example: AppNexus CMP using the custom timeout and cancel auction options with the consentRequired field not defined.
+Example: IAB CMP using the custom timeout and cancel auction options with the consentRequired field not defined.
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -66,7 +66,7 @@ Example: AppNexus CMP using the custom timeout and cancel auction options with t
      pbjs.que.push(function() {
         pbjs.setConfig({
           consentManagement: {
-            cmp: 'appnexus',
+            cmp: 'iab',
             timeout: 1000,
             allowAuctionWithoutConsent: false
           }
