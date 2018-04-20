@@ -14,7 +14,12 @@ display_name : GDPR ConsentManagement
 This module is still considered under development, but the core logic and integration steps documented here will very likely remain as described.
 
 # GDPR ConsentManagement Module
-{:.no_toc}
+{: .no_toc }
+
+* TOC
+{: toc }
+
+## Summary & Purpose
 
 Designed to support the EU General Data Protection Regulation ([GDPR](https://www.eugdpr.org/)), this module works with supported Consent Management Platforms (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
@@ -86,7 +91,9 @@ After testing, get your javascript file(s) out to your Content Delivery Network 
 
 Note that there are more dynamic ways of combining these components for publishers or integrators ready to build a more advanced infrastructure.
 
-## Adapter integration
+## Adapter Integration
+
+### BuildRequests Integration
 
 To find the GDPR consent information to pass along to your system, adapters should look for the `bidderRequest.gdprConsent` field in their buildRequests() method. 
 Below is a sample of how the data is structured in the `bidderRequest` object:
@@ -121,12 +128,14 @@ Below is a sample of how the data is structured in the `bidderRequest` object:
 }
 {% endhighlight %}
 
-### Notes about data fields
+#### **Notes about the data fields**
 
-#### *consentString*
+**_consentString_**
+
 This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field may come to you with an `undefined` value; normally this happens when there was an error during the CMP interaction and the publisher had the config option `allowAuctionWithoutConsent` set to `true`.  If you wish to set your own value for this scenario rather than pass along `undefined` to your system, you can check for the `undefined` value in the field and replace it accordingly.  The code sample provided in the *consentRequried* section below provides a possible approach to perform this type of check/replacement.
 
-#### *consentRequired*
+**_consentRequired_**
+
 As described earlier in this page - if the publisher didn't set their own value for `consentRequired` in the prebid `setConfig` code, each adapter has the opportunity to set their own value for this field.
 There are two general approaches that can be taken by the adapter to populate this field:
 
@@ -155,6 +164,18 @@ The implementation of the latter option is up to the adapter, but the general pr
 
 If neither option are taken, then there is a chance this field's value will be undefined on certain requests.  As long as that acceptable, this could be a potential third option.
 
+### UserSync Integration
+
+The `gdprConsent` object is also available when registering `userSync` pixels.  The object can be accessed by including it as an argument in the `getUserSyncs` function in the following manner:
+
+{% highlight js %}
+getUserSyncs: function(syncOptions, responses, gdprConsent) {
+...
+}
+{% endhighlight %}
+
+Depending on your needs, you could potentially either include the consent information in a query of your pixel and/or given the consent choices determine if you should drop the pixels at all.
+
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 
 <script>
@@ -164,7 +185,9 @@ $(function(){
 });
 </script>
 
-Below is a list of Adapters that support GDPR:
+## List of GDPR compliant Adapters
+
+Below is a list of Adapters that currently support GDPR:
 <div class="adapters">
 {% for page in bidder_pages %}
   <div class="col-md-4{% if page.gdpr_supported %} gdpr_supported{% endif %}">
