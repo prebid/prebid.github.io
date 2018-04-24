@@ -1,11 +1,11 @@
 ---
 layout: bidder
-title: Vertamedia
-description: Prebid Vertamedia Bidder Adaptor
+title: Adtelligent
+description: Prebid Adtelligent Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
-biddercode: vertamedia
+biddercode: adtelligent
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
 media_types: video
@@ -18,13 +18,13 @@ media_types: video
 
 | Name | Scope    | Description                   | Example  |
 | :--- | :----    | :----------                   | :------  |
-| `aid`| required | The source ID from Vertamedia.| 350975   | 
+| `aid`| required | The source ID from Adtelligent.| 350975   | 
 
 
 ### Description
-Get access to multiple demand partners across VertaMedia AdExchange and maximize your yield with VertaMedia header bidding adapter.
+Get access to multiple demand partners across Adtelligent AdExchange and maximize your yield with Adtelligent header bidding adapter.
 
-VertaMedia header bidding adapter connects with VertaMedia demand sources in order to fetch bids.
+Adtelligent header bidding adapter connects with Adtelligent demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand
 
 ### Test Parameters
@@ -41,7 +41,7 @@ This adapter provides a solution for accessing Video demand and display demand
           }
         },
         bids: [{
-          bidder: 'vertamedia',
+          bidder: 'adtelligent',
           params: {
             aid: 331133
           }
@@ -58,7 +58,7 @@ This adapter provides a solution for accessing Video demand and display demand
           }
         },
         bids: [{
-          bidder: 'vertamedia',
+          bidder: 'adtelligent',
           params: {
             aid: 331133
           }
@@ -70,7 +70,7 @@ This adapter provides a solution for accessing Video demand and display demand
         code: 'div-test-div',
         sizes: [[300, 250]],
         bids: [{
-          bidder: 'vertamedia',
+          bidder: 'adtelligent',
           params: {
             aid: 350975
           }
