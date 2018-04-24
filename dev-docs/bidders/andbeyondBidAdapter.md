@@ -1,45 +1,24 @@
-# Overview
+---
+layout: bidder
+title: andbeyond
+description: Prebid Andbeyond Bidder Adaptor
+top_nav_section: dev_docs
+nav_section: reference
+hide: true
+biddercode: andbeyond
+biddercode_longer_than_12: false
+prebid_1_0_supported : true
+---
 
-```
-Module Name: andbeyond Bidder Adapter
-Module Type: Bidder Adapter
-Maintainer: pankil@andbeyond.com
-```
+### Note:
 
-# Description
+The Andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <pankil@andbeyond.com> for more details
 
-Connects to andbeyond whitelabel platform.
-Banner and video formats are supported.
+### bid params
 
+{: .table .table-bordered .table-striped } 
 
-# Test Parameters
-```
-    var adUnits = [
-      {
-        code: 'banner-ad-div',
-        sizes: [[300, 250]],  // banner size
-        bids: [
-          {
-            bidder: 'andbeyond',
-            params: {
-              zoneId: '30164',  //required parameter
-              host: 'cpm.metaadserving.com' //required parameter
-            }
-          }
-        ]
-      }, {
-        code: 'video-ad-player',
-        sizes: [640, 480],   // video player size
-        bids: [
-          {
-            bidder: 'andbeyond',
-            mediaType : 'video',
-            params: {
-              zoneId: '30164',  //required parameter
-              host: 'cpm.metaadserving.com' //required parameter
-            }
-          }
-        ]
-      }
-    ];
-```
+| Name | Scope    | Description        | Example  |
+| :--- | :----    | :----------        | :------  |
+| `host`   | required | Ad network's RTB host    | `'cpm.metaadserving.com'` |
+| `zoneId` | required | RTB zone id        | `'30164'` |
