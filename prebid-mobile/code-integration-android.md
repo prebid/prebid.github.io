@@ -47,22 +47,22 @@ The steps for using Prebid Mobile are as following:
 5. Set the Host for the bid to AppNexus or Rubicon
 6. Register the ad units with the adapter to start bid fetching process
 
-### How to create ad units?
+### How to Create Ad Units
 
 Create the ad units that represent the ad spaces in your app using following APIs:
 
 ```java
 
 ArrayList<AdUnit> adUnits = new ArrayList<AdUnit>();
- 
+
 // Configure a Banner Ad Unit with size 320x50
 BannerAdUnit adUnit1 = new BannerAdUnit("YOUR-AD-UNIT-ID-HERE", "YOUR-CONFIG-ID-HERE");
 adUnit1.addSize(320, 50);
- 
+
 // Configure an Interstitial Ad Unit
 InterstitialAdUnit adUnit2 = new InterstitialAdUnit("YOUR-INTERSTITIAL-AD-UNIT-ID-HERE", "YOUR-INTERSTITIAL-CONFIG-ID-HERE");
- 
-// Add them to the list 
+
+// Add them to the list
 adUnits.add(adUnit1);
 adUnits.add(adUnit2);
 
