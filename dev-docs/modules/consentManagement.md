@@ -135,7 +135,7 @@ This field contains the user's choices on consent, represented as an encoded str
 
 **_vendorData_**
 
-This field contains the raw vendor data in relation to the user's choices on consent.  This object will contain a map of all available vendors for any potential adapters that may wish to read the data directly.  Adapters will need to read through the object to find their appropriate information.
+This field contains the raw vendor data in relation to the user's choices on consent.  This object will contain a map of all available vendors for any potential adapters that may wish to read the data directly.  One use-case for reading this data could be if an adapter wished to be omitted in a request if they knew if consent wasn't given for them.  Adapters will need to read through the object to find their appropriate information.
 
 **_gdprApplies_**
 
