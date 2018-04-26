@@ -25,11 +25,11 @@ Designed to support the EU General Data Protection Regulation ([GDPR](https://ww
 
 This module will perform its tasks with the CMP prior to the auction starting.  A rough synopsis of this interaction process would be:
 
-1. Fetch the user's encoded consent string from the CMP (see note below regarding a workflow variance for new users).
+1. Fetch the user's consent data from the CMP (see note below regarding a workflow variance for new users).
 2. With a valid set of consent information, we will incorporate this data into the auction objects (for adapters to collect) and then allow the auction to proceed.
 
 Note - In the the case of a new user, the CMP will respond only once there is consent information available; ie the user picked their consent choices.  Given this can take some time for the average user, coupled into the module is a timeout setting.
-With this timeout setting in place, the CMP will be permitted a specified amount of time to operate before it's deemed unacceptable or it's assumed an issue has occurred.
+For those unfamiliar with this timeout setting in place, the CMP will be permitted a specified amount of time to operate before it's deemed unacceptable or it's assumed an issue has occurred.
 
 When either this timeout occurs or if an error from the CMP is thrown, one of two options are taken; either:
 
