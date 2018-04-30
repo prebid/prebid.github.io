@@ -48,7 +48,7 @@ var videoAdUnits = [
       {
         bidder: 'appnexusAst',
         params: {
-          placementId: '5768085',
+          placementId: 13232385,
           video: {
             skippable: true,
             playback_method: [ 'auto_play_sound_off' ]
@@ -132,7 +132,7 @@ For more technical information about renderers, see [the pull request adding the
 
 Invoke your ad server for the outstream adUnit from the body of the page in the same way that you would for a display adUnit
 
-For a live example, see [Outstream with an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-dfp-two-adapters-demo.html).
+For a live example, see [Outstream with DFP]({{site.github.url}}/examples/video/outstream/outstream-dfp.html).
 
 {% highlight html %}
 
@@ -151,7 +151,7 @@ For a live example, see [Outstream with an Ad Server]({{site.github.url}}/exampl
 
 Prebid can serve outstream demand directly without going through a primary ad server.
 
-For a live example, see [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver-demo.html).
+For a live example, see [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html).
 
 In the Prebid.js event queue, you'll need to add a function that:
 
@@ -183,8 +183,8 @@ For more information, see the API documentation for:
 
 Below, find links to end-to-end "working examples" demonstrating Prebid Outstream:
 
-+ [Outstream with two adapters]({{site.github.url}}/examples/video/outstream/outstream-dfp-two-adapters-demo.html)
-+ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver-demo.html)
++ [Outstream with DFP]({{site.github.url}}/examples/video/outstream/outstream-dfp.html)
++ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html)
 + [Prebid Video Examples]({{site.github.url}}/examples/video)
 
 ## Related Topics
