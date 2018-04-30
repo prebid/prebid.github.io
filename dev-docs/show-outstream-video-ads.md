@@ -35,29 +35,25 @@ The fields supported in a given `bid.params.video` object will vary based on the
 
 {% highlight js %}
 
-var videoAdUnits = [
-  {
+var videoAdUnits = [{
     code: 'video1',
     mediaTypes: {
-      video: {
-        context: 'outstream',
-        playerSize: [640, 480]
-      }
-    },
-    bids: [
-      {
-        bidder: 'appnexusAst',
-        params: {
-          placementId: 13232385,
-          video: {
-            skippable: true,
-            playback_method: [ 'auto_play_sound_off' ]
-          }
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480]
         }
-      }
-    ]
-  }
-];
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232385,
+            video: {
+                skippable: true,
+                playback_method: ['auto_play_sound_off']
+            }
+        }
+    }]
+}];
 
 {% endhighlight %}
 
@@ -86,14 +82,14 @@ Renderers are associated with adUnits through the `adUnit.renderer` object.  Thi
 pbjs.addAdUnit({
     code: 'video1',
     mediaTypes: {
-      video: {
-        context: 'outstream',
-        playerSize: [640, 480]
-      }
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480]
+        }
     },
     renderer: {
         url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
-        render: function(bid) {
+        render: function (bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
                 adResponse: bid.adResponse,
@@ -112,12 +108,15 @@ Some demand partners that return a renderer with their video bid responses may s
 pbjs.addAdUnit({
     code: 'video1',
     mediaTypes: {
-      video: { context: 'outstream', playerSize: [640, 480] }
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480]
+        }
     },
     renderer: {
-      options: {
-        adText: 'This text was configured in the ad unit',
-      }
+        options: {
+            adText: 'This text was configured in the ad unit',
+        }
     },
     ...
 });
@@ -137,12 +136,13 @@ For a live example, see [Outstream with DFP]({{site.github.url}}/examples/video/
 {% highlight html %}
 
 <div id='video1'>
-  <p>Prebid Outstream Video Ad</p>
-  <script type='text/javascript'>
-    googletag.cmd.push(function () {
-      googletag.display('video1');
-    });
-  </script>
+    <p>Prebid Outstream Video Ad</p>
+    <script type='text/javascript'>
+        googletag.cmd.push(function() {
+            googletag.display('video1');
+        });
+
+    </script>
 </div>
 
 {% endhighlight %}
@@ -161,6 +161,7 @@ In the Prebid.js event queue, you'll need to add a function that:
     2. Renders the ad
 
 {% highlight js %}
+
 pbjs.que.push(function () {
     pbjs.addAdUnits(videoAdUnits);
     pbjs.requestBids({
@@ -171,6 +172,7 @@ pbjs.que.push(function () {
         }
     });
 });
+
 {% endhighlight %}
 
 For more information, see the API documentation for:
