@@ -3,7 +3,7 @@
 
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
-        <script type="text/javascript" src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
         <title>Prebid Server Video -- Ooyala Player</title>
 
         <!-- LOAD OOYALA PLUGINS
@@ -67,7 +67,7 @@
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: "instream",
+                        context: 'instream',
                         mimes: ['video/mp4'],
                         protocols: [1, 2, 3, 4, 5, 6, 7, 8],
                         playbackmethod: [2]
@@ -91,7 +91,7 @@
                 // make sure to add your own accountId to your s2sConfig object
                 pbjs.setConfig({
                     cache: {
-                        url: "https://prebid.adnxs.com/pbc/v1/cache"
+                        url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
                     debug: true,
                     s2sConfig: {
@@ -111,10 +111,10 @@
                             params: {
                                 iu: '/19968336/prebid_cache_video_adunit',
                                 cust_params: {
-                                    section: "blog",
-                                    anotherKey: "anotherValue"
+                                    section: 'blog',
+                                    anotherKey: 'anotherValue'
                                 },
-                                output: "vast"
+                                output: 'vast'
                             }
                         });
                         invokeVideoPlayer(videoUrl);

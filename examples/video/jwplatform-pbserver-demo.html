@@ -3,10 +3,9 @@
 
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
-        <!-- This page is an example of prebid and JW Platform integration -->
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
         <meta charset="utf-8" />
         <title>Prebid Server Video -- JW Platform</title>
-        <script src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js" async=true></script>
         <script>
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
@@ -36,7 +35,7 @@
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: "instream",
+                        context: 'instream',
                         mimes: ['video/mp4'],
                         protocols: [1, 2, 3, 4, 5, 6, 7, 8],
                         playbackmethod: [2]
@@ -60,7 +59,7 @@
                 // make sure to add your own accountId to your s2sConfig object
                 pbjs.setConfig({
                     cache: {
-                        url: "https://prebid.adnxs.com/pbc/v1/cache"
+                        url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
                     debug: true,
                     s2sConfig: {
@@ -80,10 +79,10 @@
                             params: {
                                 iu: '/19968336/prebid_cache_video_adunit',
                                 cust_params: {
-                                    section: "blog",
-                                    anotherKey: "anotherValue"
+                                    section: 'blog',
+                                    anotherKey: 'anotherValue'
                                 },
-                                output: "vast"
+                                output: 'vast'
                             }
                         });
                         invokeVideoPlayer(videoUrl);

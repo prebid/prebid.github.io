@@ -3,17 +3,12 @@
 
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
-        <!-- This page is an example of prebid and JWPlayer integration with
-        a JWPlayer playAd call once the player is ready for playback -->
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
         <meta charset="utf-8" />
         <title>Prebid.js Self-Hosted JW Player Example</title>
-        <script src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js" async=true></script>
-
-        <!-- JWPlayer -->
         <script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"></script>
         <script type="text/javascript">
             jwplayer.key = "YEUwUA9wRFeDcydr"; //Test Key - replace this with your own valid JWPlayer license key
-
         </script>
         <script>
             var pbjs = pbjs || {};
@@ -30,7 +25,7 @@
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: "instream"
+                        context: 'instream'
                     }
                 },
                 bids: [{
@@ -45,28 +40,8 @@
                 }]
             };
 
-            var logBids = function(bids) {
-                console.log('MESSAGE: got bids back: ');
-                console.log(bids);
-                if (!bids.video1) {
-                    console.log('MESSAGE: no video demand');
-                } else {
-                    console.log('MESSAGE: we got video demand!');
-                }
-
-                // Log the VAST URL, if there is one
-                try {
-                    url = bids.video1.bids[0].vastUrl;
-                    console.log('MESSAGE: VAST URL: ');
-                    console.log('MESSAGE: ' + url);
-                } catch (e) {
-                    console.log("MESSAGE: There was an error logging the vast url: " + e);
-                } // ignore if there is no vastUrl
-            }
-
             pbjs.que.push(function() {
                 pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-
                 pbjs.setConfig({
                     debug: true,
                     cache: {
@@ -81,10 +56,10 @@
                             params: {
                                 iu: '/19968336/prebid_cache_video_adunit',
                                 cust_params: {
-                                    section: "blog",
-                                    anotherKey: "anotherValue"
+                                    section: 'blog',
+                                    anotherKey: 'anotherValue'
                                 },
-                                output: "vast"
+                                output: 'vast'
                             }
                         });
                         invokeVideoPlayer(videoUrl);

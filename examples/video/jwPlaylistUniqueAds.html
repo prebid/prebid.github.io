@@ -3,10 +3,9 @@
 
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
-        <!-- This page is an example of prebid and JWPlatform integration -->
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
         <meta charset="utf-8" />
         <title>Prebid.js JWPlayer Example</title>
-        <script src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js" async=true></script>
         <script>
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
@@ -25,7 +24,7 @@
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: "instream"
+                        context: 'instream'
                     }
                 },
                 bids: [{
@@ -40,25 +39,6 @@
                 }]
             };
 
-            var logBids = function(bids) {
-                console.log('MESSAGE: got bids back: ');
-                console.log(bids);
-                if (!bids.video1) {
-                    console.log('MESSAGE: no video demand');
-                } else {
-                    console.log('MESSAGE: we got video demand!');
-                }
-
-                // Log the VAST URL, if there is one
-                try {
-                    url = bids.video1.bids[0].vastUrl;
-                    console.log('MESSAGE: VAST URL: ');
-                    console.log('MESSAGE: ' + url);
-                } catch (e) {
-                    console.log("MESSAGE: There was an error logging the vast url: " + e);
-                } // ignore if there is no vastUrl
-            }
-
             var requestVideoAd = function() {
 
                 pbjs.requestBids({
@@ -68,10 +48,10 @@
                             params: {
                                 iu: '/19968336/prebid_cache_video_adunit',
                                 cust_params: {
-                                    section: "blog",
-                                    anotherKey: "anotherValue"
+                                    section: 'blog',
+                                    anotherKey: 'anotherValue'
                                 },
-                                output: "vast"
+                                output: 'vast'
                             }
                         });
                         invokeVideoPlayer(videoUrl);

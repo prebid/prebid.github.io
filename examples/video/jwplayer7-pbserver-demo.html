@@ -3,17 +3,12 @@
 
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
-        <!-- This page is an example of prebid and JWPlayer integration with
-    	a JWPlayer playAd call once the player is ready for playback -->
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
         <meta charset="utf-8" />
         <title>Prebid Server Video -- Self-Hosted JW V7 Player</title>
-        <script src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
-
-        <!-- JWPlayer -->
         <script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"></script>
         <script type="text/javascript">
             jwplayer.key = "YEUwUA9wRFeDcydr"; //Test Key - replace this with your own valid JWPlayer license key
-
         </script>
         <script>
             var pbjs = pbjs || {};
@@ -46,7 +41,7 @@
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: "instream",
+                        context: 'instream',
                         mimes: ['video/mp4'],
                         protocols: [1, 2, 3, 4, 5, 6],
                         playbackmethod: [2]
@@ -70,11 +65,10 @@
                 // make sure to add your own accountId to your s2sConfig object
                 pbjs.setConfig({
                     cache: {
-                        url: "https://prebid.adnxs.com/pbc/v1/cache"
+                        url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
                     debug: true,
                     enableSendAllBids: true,
-                    priceGranularity: "medium",
                     s2sConfig: {
                         endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                         accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
@@ -83,20 +77,17 @@
                 });
 
                 pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-
                 pbjs.requestBids({
                     bidsBackHandler: function(bids) {
-                        console.log("got some bids");
-                        console.log(bids);
                         var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
                             adUnit: videoAdUnit,
                             params: {
                                 iu: '/19968336/prebid_cache_video_adunit',
                                 cust_params: {
-                                    section: "blog",
-                                    anotherKey: "anotherValue"
+                                    section: 'blog',
+                                    anotherKey: 'anotherValue'
                                 },
-                                output: "vast"
+                                output: 'vast'
                             }
                         });
                         invokeVideoPlayer(videoUrl);

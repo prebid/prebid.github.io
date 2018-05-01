@@ -88,9 +88,7 @@
 
             (function() {
                 eventLogger.logEventTime('loadPBJS', 'start');
-                var d = document,
-                    pbs = d.createElement("script"),
-                    pro = d.location.protocal;
+                var d = document, pbs = d.createElement("script");
                 pbs.type = "text/javascript";
                 pbs.src = 'https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js';
                 var target = document.getElementsByTagName("head")[0];
@@ -104,9 +102,7 @@
                 var gads = document.createElement('script');
                 gads.async = true;
                 gads.type = 'text/javascript';
-                var useSSL = 'https:' == document.location.protocol;
-                gads.src = (useSSL ? 'https:' : 'http:') +
-                    '//www.googletagservices.com/tag/js/gpt.js';
+                gads.src = '//www.googletagservices.com/tag/js/gpt.js';
                 var node = document.getElementsByTagName('script')[0];
                 node.parentNode.insertBefore(gads, node);
                 eventLogger.logEventTime('loadGPT', 'end');

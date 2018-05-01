@@ -3,16 +3,9 @@
 
 	<head>
 		<link rel="icon" type="image/png" href="/favicon.png">
-
-		<!-- LOAD THE IMA3 CSS
-
-		 Load the ima3 css file to ensure the ad displays correctly in
-		 the player. -->
-
+		<script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
 		<link href="//players.brightcove.net/videojs-ima3/2/videojs.ima3.min.css" rel="stylesheet">
-
 		<title>Prebid Video -- Brightcove Player</title>
-		<script type="text/javascript" src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
 		<script>
 			var pbjs = pbjs || {};
 			pbjs.que = pbjs.que || [];
@@ -43,7 +36,7 @@
 				mediaTypes: {
 					video: {
 						playerSize: [640, 480],
-						context: "instream"
+						context: 'instream'
 					}
 				},
 				bids: [{
@@ -56,23 +49,6 @@
 						}
 					}
 				}]
-			};
-
-			var logBids = function(bids) {
-				console.log('MESSAGE: got bids back: ');
-				console.log(bids);
-				if (!bids.video1) {
-					console.log('MESSAGE: no video demand');
-				} else {
-					console.log('MESSAGE: we got video demand!');
-				}
-				try {
-					url = bids.video1.bids[0].vastUrl;
-					console.log('MESSAGE: VAST URL: ');
-					console.log('MESSAGE: ' + url);
-				} catch (e) {
-					console.log("MESSAGE: There was an error logging the vast url: " + e);
-				}
 			};
 
 			pbjs.que.push(function() {
@@ -90,10 +66,10 @@
 							params: {
 								iu: '/19968336/prebid_cache_video_adunit',
 								cust_params: {
-									section: "blog",
-									anotherKey: "anotherValue"
+									section: 'blog',
+									anotherKey: 'anotherValue'
 								},
-								output: "vast"
+								output: 'vast'
 							}
 						});
 						invokeVideoPlayer(videoUrl);

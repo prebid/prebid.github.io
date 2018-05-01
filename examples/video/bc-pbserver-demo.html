@@ -3,15 +3,9 @@
 
     <head>
 
-        <!-- LOAD THE IMA3 CSS
-
-         Load the ima3 css file to ensure the ad displays correctly in
-         the player. -->
-
         <link href="//players.brightcove.net/videojs-ima3/2/videojs.ima3.min.css" rel="stylesheet">
-
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
         <title>Prebid Server Video -- Brightcove</title>
-        <script type="text/javascript" src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
         <script>
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
@@ -44,7 +38,7 @@
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: "instream",
+                        context: 'instream',
                         mimes: ['video/mp4'],
                         protocols: [1, 2, 3, 4, 5, 6],
                         playbackmethod: [2]
@@ -67,7 +61,7 @@
                 // make sure to add your own accountId to your s2sConfig object
                 pbjs.setConfig({
                     cache: {
-                        url: "https://prebid.adnxs.com/pbc/v1/cache"
+                        url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
                     debug: true,
                     s2sConfig: {
@@ -86,10 +80,10 @@
                             params: {
                                 iu: '/19968336/prebid_cache_video_adunit',
                                 cust_params: {
-                                    section: "blog",
+                                    section: 'blog',
                                     anotherKey: "anotherValue"
                                 },
-                                output: "vast"
+                                output: 'vast'
                             }
                         });
                         invokeVideoPlayer(videoUrl);
