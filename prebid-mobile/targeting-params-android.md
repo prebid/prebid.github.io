@@ -36,7 +36,6 @@ TargetingParams.setLocationDecimalDigits(6);
 
 
 ## Age and Gender
-{:.no_toc}
 
 Age and gender can be added to the targeting params directly as shown below.
 
@@ -47,7 +46,6 @@ TargetingParams.setGender(GENDER.FEMALE);
 
 
 ## Pass Custom Keywords
-{:.no_toc}
 
 Custom keywords are used to attach arbitrary key-value pairs to the ad call. These are used for adding users to segments
 On PBM, custom keywords are passed on as below:
