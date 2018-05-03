@@ -655,7 +655,7 @@ For an example of a native ad unit, see below.  For more detailed instructions, 
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: '9880618'
+                    placementId: 13232354
                 }
             }, ]
         }
@@ -672,7 +672,7 @@ For an example of an instream video ad unit, see below.  For more detailed instr
 
 ```javascript
 pbjs.addAdUnits({
-    code: 'video',
+    code: slot.code,
     mediaTypes: {
         video: {
             context: "instream",
@@ -682,7 +682,7 @@ pbjs.addAdUnits({
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: '9333431',
+            placementId: 13232361,
             video: {
                 skippable: true,
                 playback_methods: ['auto_play_sound_off']
@@ -696,7 +696,7 @@ For an example of an outstream video ad unit, see below.  For more detailed inst
 
 ```javascript
 pbjs.addAdUnit({
-    code: 'video1',
+    code: slot.code,
     mediaTypes: {
         video: {
             context: 'outstream',
@@ -732,7 +732,7 @@ pbjs.addAdUnits({
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: '9880618'
+                placementId: 13144370
             }
         }, ]
     }
@@ -1210,6 +1210,7 @@ The available events are:
 | requestBids   | Bids have been requested from adapters  |
 | addAdUnits    | Ad units have been added to the auction |
 | adRenderFailed| Ad rendering failed (added in v1.7)     |
+| bidderDone    | A bidder has signaled they are done responding (added in v1.8)|
 
 The example below shows how to use these methods:
 

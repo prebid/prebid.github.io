@@ -113,7 +113,7 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
     <amp-ad width="300" height="250"
             type="doubleclick"
             data-slot="/19968336/universal_creative"
-            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "12345679"}}, "timeoutMillis": 500}'>
+            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
     </amp-ad>
 
 {% endhighlight %}
@@ -125,33 +125,7 @@ This is the creative that your Ad Ops team needs to upload to the ad server (it'
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% highlight html %}
-
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.3.0/dist/creative.js"></script>
-    <script>
-    var adId = "%%PATTERN:hb_adid%%";
-    var cacheHost = "%%PATTERN:hb_cache_host%%";
-    var cachePath = "%%PATTERN:hb_cache_path%%";
-    var uuid = "%%PATTERN:hb_cache_id%%";
-    var mediaType = "%%PATTERN:hb_format%%";
-    var pubUrl = "%%PATTERN:url%%";
-    var size = "%%PATTERN:hb_size%%";
-
-    try {
-        pbjs.renderAd(document, adId, {
-            cacheHost: cacheHost,
-            cachePath: cachePath,
-            uuid: uuid,
-            mediaType: mediaType,
-            pubUrl: pubUrl,
-            size: size
-        });
-    } catch (e) {
-        console.log(e);
-    }
-    </script>
-
-{% endhighlight %}
+{% include dev-docs/amp-creative.md %}
 
 ### User Sync
 
