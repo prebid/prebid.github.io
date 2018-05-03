@@ -28,7 +28,7 @@ $(function(){
   });
 
   $( ".selectpicker" ).change(function() {
-    if(this.value === '1.0.0') {
+    if(this.value.match(/1\.\d+\.\d+/i)) {
       $('.adapters .col-md-4').hide();
       $('.prebid_1_0').show();
     }
@@ -127,16 +127,16 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 
 ### Option 1: Customize your download here
 
-{% assign bidder_pages = (site.pages | where: "layout", "bidder") %}
-{% assign module_pages = (site.pages | where: "nav_section", "modules") %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+{% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
 <form>
 <div class="row">
 <h4>Select Prebid Version</h4>
 <select class="selectpicker">
   <!-- empty value indicates legacy --> 
-  <option value="">0.34.0</option>
-  <option>1.0.0</option>
+  <option value="">0.34.7</option>
+  <option>1.7.0</option>
 </select>
 
 
@@ -169,7 +169,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analtyics
+      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
     </label>
   </div>
 </div>
@@ -235,6 +235,9 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
+  {% if page.enable_download == false %}  
+    {% continue %}
+  {% endif %}
  <div class="col-md-4">
  <div class="checkbox">
   <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
@@ -291,7 +294,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
         <div class="alert alert-warning hide" role="alert" id="download-status"></div>
 
         <p>
-        Ran into problems? Email <code>info@prebid.org</code>
+        Ran into problems? Email <code>support@prebid.org</code>
         </p>
 
       </div>

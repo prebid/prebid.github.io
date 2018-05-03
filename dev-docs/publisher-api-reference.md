@@ -14,7 +14,7 @@ pid: 10
 This page has documentation for the public API methods of Prebid.js.
 
 {: .alert.alert-danger :}
-Methods marked as deprecated will be removed in version 1.0 (scheduled for release Q4 2017).  
+Methods marked as deprecated were removed in version 1.0.  For more information about the changes, see [the release announcement]({{site.baseurl}}/blog/prebid-1-is-released).  
 After a transition period, documentation for these methods will be removed from Prebid.org (likely early 2018).
 
 <a name="module_pbjs"></a>
@@ -29,6 +29,7 @@ After a transition period, documentation for these methods will be removed from 
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
+  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.allBidsAvailable()](#module_pbjs.allBidsAvailable) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
@@ -37,7 +38,7 @@ After a transition period, documentation for these methods will be removed from 
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
-  * [.addAdUnits(Array)](#module_pbjs.addAdUnits)
+  * [.addAdUnits(Array\|Object)](#module_pbjs.addAdUnits)
   * [.addBidResponse(adUnitCode, bid)](#module_pbjs.addBidResponse) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.bidderSettings](#module_pbjs.bidderSettings)
   * [.addCallback(event, func)](#module_pbjs.addCallback) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
@@ -318,9 +319,19 @@ Use this method to retrieve an array of winning bids.
 
 ### pbjs.getAllWinningBids() ⇒ `Array`
 
-Use this method to get all of the bids that have won their respective auctions.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+Use this method to get all of the bids that have won their respective auctions and also rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
 
-+ `pbjs.getAllWinningBids()`: returns an array of bid objects that have won their respective auctions.
++ `pbjs.getAllWinningBids()`: returns an array of bid objects that have won their respective auctions and also rendered on the page.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getAllPrebidWinningBids"></a>
+
+### pbjs.getAllPrebidWinningBids() ⇒ `Array`
+
+Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+
++ `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
 
 <hr class="full-rule">
 
@@ -541,40 +552,258 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | requestObj.adUnits | Optional | `Array of objects` | AdUnitObjects to request. Use this or `requestObj.adUnitCodes`. Default to all `adUnits` if empty. |
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
 | requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. |
+| requestObj.labels | Optional | `Array of strings` | Defines [labels](#labels) that may be matched on ad unit targeting conditions. |
 
 <hr class="full-rule">
 
 <a name="module_pbjs.addAdUnits"></a>
 
-### pbjs.addAdUnits(Array)
+### pbjs.addAdUnits(Array|Object)
 
-Define ad units and their corresponding header bidding bidders' tag IDs.  For usage examples, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
+Takes one ad unit object or an array of ad unit objects and adds them to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html) page.
 
-**Kind**: static method of [pbjs](#module_pbjs)
++ [Ad Unit Properties](#addAdUnits-AdUnitProperties)
++ [Examples](#addAdUnits-Examples)
 
-{: .table .table-bordered .table-striped }
-| Param | Type | Description |
-| --- | --- | --- |
-| Array | `Object` &#124; `Array of objects` | of adUnits or single adUnit Object. |
+<a name="addAdUnits-AdUnitProperties">
 
-**adUnit**
+#### Ad Unit Properties
 
-{: .table .table-bordered .table-striped }
-| Name     | Scope     | Type          | Description                                                                                                                                                                                                   |
-| :----    | :-------- | :-------      | :-----------                                                                                                                                                                                                  |
-| `code`   | required  | string        | A unique identifier that you create and assign to this ad unit.  This identifier will be used to set query string targeting on the ad. If you're using GPT, we recommend setting this to the slot element ID. |
-| `sizes`  | required  | array         | All the sizes that this ad unit can accept.                                                                                                                                                                   |
-| `bids`   | required  | array         | An array of bid objects. Find the [complete reference here](bidders.html).                                                                                                                                    |
-| `labels` | optional  | array<string> | An array of string labels, used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
-
-**bid**
+See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope     | Type          | Description                                                                                                                                                                                                  |
-| :----    | :-------- | :-------      | :-----------                                                                                                                                                                                                 |
-| `bidder` | required  | string        | The bidder code. Find the [complete list here](bidders.html).                                                                                                                                                |
-| `params` | required  | object        | The bidder's preferred way of identifying a bid request. Find the [complete reference here](bidders.html).                                                                                                   |
-| `labels` | optional  | array<string> | An array of string labels, used for showing responsive ads.  Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). |
+| Name         | Scope    | Type                                  | Description                                                                                                                                                                       |
+|--------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`       | Required | String                                | Unique identifier that you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.          |
+| `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
+| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
+| `mediaTypes` | Optional | Object                                | Defines one or multiple media types the ad unit supports.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
+| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+
+<a name="addAdUnits-Bids" />
+
+##### Bids
+
+See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
+
+{: .table .table-bordered .table-striped }
+
+| Name     | Scope    | Type          | Description                                                                                                                                                                       |
+|----------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](bidders.html).                                                                                          |
+| `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](bidders.html).                                                  |
+| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+
+<a name="addAdUnits-MediaTypes" />
+
+##### Media Types
+
+See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#addAdUnits-Examples) below.
+
+{: .table .table-bordered .table-striped }
+| Name     | Scope                                                        | Type   | Description                                                                                                        |
+|----------+--------------------------------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
+| `banner` | optional. If no other properties are specified, this is the default | Object | Defines properties of a banner ad.  For examples, see [the banner example below](#adUnit-banner).                  |
+| `native` | optional | Object | Defines properties of a native ad.  For an example native ad unit, see [the native example below](#adUnit-native). |
+| `video`  | optional | Object | Defines properties of a video ad.  For examples, see [the video examples below](#adUnit-video).                    |
+
+<a name="addAdUnits-Examples">
+
+#### Examples
+
++ [Native](#adUnit-native)
++ [Video](#adUnit-video)
++ [Banner](#adUnit-banner)
++ [Multi-format](#adUnit-multi-format)
+
+
+<a name="adUnit-native">
+
+##### Native
+
+For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+
+```javascript
+    pbjs.addAdUnits({
+        code: slot.code,
+        mediaTypes: {
+            native: {
+                image: {
+                    required: true,
+                    sizes: [150, 50]
+                },
+                title: {
+                    required: true,
+                    len: 80
+                },
+                sponsoredBy: {
+                    required: true
+                },
+                clickUrl: {
+                    required: true
+                },
+                body: {
+                    required: true
+                },
+                icon: {
+                    required: true,
+                    sizes: [50, 50]
+                }
+            },
+            bids: [{
+                bidder: 'appnexus',
+                params: {
+                    placementId: 13232354
+                }
+            }, ]
+        }
+    })
+```
+
+{% include dev-docs/native-image-asset-sizes.md %}
+
+<a name="adUnit-video">
+
+##### Video
+
+For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        video: {
+            context: "instream",
+            playerSize: [640, 480]
+        },
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232361,
+            video: {
+                skippable: true,
+                playback_methods: ['auto_play_sound_off']
+            }
+        }
+    }]
+});
+```
+
+For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
+
+```javascript
+pbjs.addAdUnit({
+    code: slot.code,
+    mediaTypes: {
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480]
+        }
+    },
+    renderer: {
+        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        render: function(bid) {
+            ANOutstreamVideo.renderAd({
+                targetId: bid.adUnitCode,
+                adResponse: bid.adResponse,
+            });
+        }
+    },
+    ...
+})
+```
+
+<a name="adUnit-banner">
+
+##### Banner
+
+For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250], [300, 600]]
+        },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13144370
+            }
+        }, ]
+    }
+})
+```
+
+<a name="adUnit-multi-format">
+
+##### Multi-format
+
+Multiple media formats may be declared on a single ad unit, allowing any bidder that supports at least one of those media formats to participate in the auction. Any bidder that isn't compatible with the specified `mediaTypes` will be dropped from the ad unit. If `mediaTypes` is not specified on an ad unit, `banner` is the assumed format and any banner bidder is eligible for inclusion.
+
+For examples of a multi-format ad units and behavior, see below.
+
+```javascript
+// each bidder supports at least one of the formats, so all will participate
+pbjs.addAdUnits({
+  code: 'div-banner-outstream-native',
+  mediaTypes: {
+    banner: { sizes: [[300, 250], [300, 600]] },
+    native: {
+        title: {required: true},
+        image: {required: true},
+        body: {required: false},
+    },
+    video: {
+        context: 'outstream',
+        playerSize: [400, 600],
+    },
+  },
+  bids: [
+    {
+      bidder: 'bannerBidder',
+      params: {placementId: '481'}
+    },
+    {
+      bidder: 'nativeBidder',
+      params: {titleAsset: '516'}
+    },
+    {
+      bidder: 'videoBidder',
+      params: {vidId: '234'}
+    },
+  ]
+});
+```
+
+```javascript
+// only nativeBidder and videoBidder will participate
+pbjs.addAdUnits({
+  code: 'div-native-outstream',
+  mediaTypes: {
+    native: { type: 'image' },
+    video: { context: 'outstream', playerSize: [400, 600] },
+  },
+  bids: [
+    {
+      bidder: 'bannerBidder',
+      params: {placementId: '481'}
+    },
+    {
+      bidder: 'nativeBidder',
+      params: {titleAsset: '516'}
+    },
+    {
+      bidder: 'videoBidder',
+      params: {vidId: '234'}
+    },
+  ]
+});
+```
 
 <hr class="full-rule">
 
@@ -655,7 +884,16 @@ per adapter as needed. Both scenarios are described below.
 
 **Keyword targeting for all bidders**
 
-The below code snippet is the *default* setting for ad server targeting. For each bidder's bid, Prebid.js will set 4 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`) with their corresponding values. The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items target these keys.
+The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
+Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
+In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
+The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
+
+   {: .alert.alert-warning :}
+   Note that `hb_cache_id` will be the video ad server targeting variable going forward.
+   In previous versions, mobile used `hb_cache_id` and video used `hb_uuid`. There will be a
+   transition period where both of these values are provided to the ad server.
+   Please begin converting video creatives to use `hb_cache_id`.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
 
@@ -688,6 +926,26 @@ pbjs.bidderSettings = {
             key: 'hb_size',
             val: function (bidResponse) {
                 return bidResponse.size;
+            }
+        }, {
+            key: 'hb_source',
+            val: function (bidResponse) {
+                return bidResponse.source;
+            }
+        }, {
+            key: 'hb_format',
+            val: function (bidResponse) {
+                return bidResponse.mediaType;
+            }
+        }, {
+            key: 'hb_cache_id',
+            val: function (bidResponse) {
+                return bidResponse.videoCacheKey;
+            }
+        }, {
+            key: 'hb_uuid',
+            val: function (bidResponse) {
+                return bidResponse.videoCacheKey;
             }
         }]
     }
@@ -892,7 +1150,7 @@ For an example showing how to use this method, see [Show Video Ads with a DFP Vi
 This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
 {: .alert.alert-danger :}
-**BREAKING CHANGE**  
+**BREAKING CHANGE**
 As of version 0.27.0, To encourage fairer auctions, Prebid will randomize the order bidders are called by default. To replicate legacy behavior, call `pbjs.setBidderSequence('fixed')`.
 
 This method shuffles the order in which bidders are called.
@@ -951,6 +1209,8 @@ The available events are:
 | setTargeting  | Targeting has been set                  |
 | requestBids   | Bids have been requested from adapters  |
 | addAdUnits    | Ad units have been added to the auction |
+| adRenderFailed| Ad rendering failed (added in v1.7)     |
+| bidderDone    | A bidder has signaled they are done responding (added in v1.8)|
 
 The example below shows how to use these methods:
 
@@ -1015,11 +1275,11 @@ To define an alias for a bidder adapter, call this method at runtime:
 
 {% highlight js %}
 
-pbjs.aliasBidder('appnexusAst', 'newAlias');
+pbjs.aliasBidder('appnexus', 'newAlias');
 
 {% endhighlight %}
 
-Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexusAst"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexusAst"` adapter to serve their own unique demand).
+Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexus"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexus"` adapter to serve their own unique demand).
 
 It's not technically necessary to define an alias, since each copy of an adapter with the same name gets a different ID in the internal bidder registry so Prebid.js can still tell them apart.
 
@@ -1080,9 +1340,9 @@ pbjs.setConfig({ bidderTimeout: 3000 });
 {% endhighlight %}
 
 {: .alert.alert-warning :}
-**Bid Timeouts and JavaScript Timers**  
-Note that it's possible for the timeout to be triggered later than expected, leading to a bid participating in the auction later than expected.  This is due to how [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) works in JS: it queues the callback in the event loop in an approximate location that *should* execute after this time but *it is not guaranteed*.  
-With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.  
+**Bid Timeouts and JavaScript Timers**
+Note that it's possible for the timeout to be triggered later than expected, leading to a bid participating in the auction later than expected.  This is due to how [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) works in JS: it queues the callback in the event loop in an approximate location that *should* execute after this time but *it is not guaranteed*.
+With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.
 For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
 
 <a name="setConfig-Send-All-Bids" />
@@ -1158,20 +1418,46 @@ pbjs.setConfig({
 
 #### Server to Server
 
-Set config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html) header bidding:
+Example config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html) header bidding:
 
 {% highlight js %}
 pbjs.setConfig({
     s2sConfig: {
         accountId: '1',
-        enabled: true,
         bidders: ['appnexus', 'pubmatic'],
+        defaultVendor: 'appnexus',
+        enabled: true,
         timeout: 1000,
         adapter: 'prebidServer',
-        endpoint: 'https://prebid.adnxs.com/pbs/v1/auction'
+        endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
+        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+        cookieSet: true,
+        cookieSetUrl: 'https://acdn.adnxs.com/cookieset/cs.js',
     }
 })
 {% endhighlight %}
+
+Additional information of these properties:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Scope | Type | Description                                                                                   |
+|------------+---------+---------+---------------------------------------------------------------|
+| `accountId` | Required | String | Your Prebid Server account ID |
+| `bidders` | Required | Array of Strings | Which bidders support auctions on the server side |
+| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.*  Individual properties can be overridden by including them in the config along with this setting. |
+| `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
+| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions |
+| `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
+| `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
+| `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
+| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. |
+| `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
+
+*Currently supported vendors are: appnexus & rubicon
+*Note - When using defaultVendor option, accountId and bidders properties still need to be defined.
+
+Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
+
 
 <a name="setConfig-Configure-User-Syncing" />
 
@@ -1187,7 +1473,7 @@ However, there are also good reasons why publishers may want to control the use 
 - *Security*: Publishers may want to control which bidders are trusted to inject images and JavaScript into their pages.
 
 {: .alert.alert-info :}
-**User syncing default behavior**  
+**User syncing default behavior**
 If you don't tweak any of the settings described in this section, the default behavior of Prebid.js is to wait 3 seconds after the auction ends, and then allow every adapter to drop up to 5 image-based user syncs.
 
 For more information, see the sections below.
@@ -1284,7 +1570,7 @@ pbjs.triggerUserSyncs();
 
 ##### How User Syncing Works
 
-The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#step-6-register-user-sync-pixels) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
+The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-User-Syncs) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
 
 * Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
 * Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
@@ -1300,15 +1586,15 @@ The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to de
 
 + [How it works](#sizeConfig-How-it-Works)
 + [Example](#sizeConfig-Example)
-+ [Labels](#sizeConfig-Labels)
++ [Labels](#labels)
 
 <a name="sizeConfig-How-it-Works" />
 
 ##### How it Works
 
-- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` array based on the `labels` defined (by dropping those ad units that don't match the label definition).
-- The `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
-- If a label doesn't exist on an ad unit, it is automatically included in all requests for bids.
+- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` array based on the `labels` defined. Ad units that don't match the label definition are dropped.
+- The required `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
+- If a label conditional (e.g. `labelAny`) doesn't exist on an ad unit, it is automatically included in all requests for bids.
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
 - The `adUnit.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.sizes`.
 
@@ -1335,7 +1621,7 @@ pbjs.setConfig({
             [728, 90],
             [300, 250]
         ],
-        'labels': ['tablet', 'phone']
+        'labels': ['tablet']
     }, {
         'mediaQuery': '(min-width: 0px)',
         'sizesSupported': [
@@ -1348,65 +1634,89 @@ pbjs.setConfig({
 
 {% endhighlight %}
 
-<a name="sizeConfig-Labels" />
-
 ##### Labels
 
-Labels can now be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the ad unit or bidder unless either:
+There are two parts to defining responsive and conditional ad units with labels:
 
-+ A `sizeConfig` rule has matched and enabled the label, or
+1. Defining the labels
+2. Defining the conditional ad unit targeting for the labels
 
-+ The label has been enabled manually, e.g.,
-    ```javascript
-    pbjs.setConfig({
-        labels: [labels: ['visitor-uk']]
-    })
-    ```
+Labels may be defined in two ways:
 
-Defining labels on the ad unit looks like the following:
+1. Through [`sizeConfig`](#setConfig-Configure-Responsive-Ads)
+2. As an argument to [`pbjs.requestBids`](#module_pbjs.requestBids)
+
+{% highlight js %}
+pbjs.requestBids({labels: []});
+{% endhighlight %}
+
+Labels may be targeted in the AdUnit structure by two conditional operators: `labelAny` and `labelAll`.
+
+With the `labelAny` operator, just one label has to match for the condition to be true. In the example below, either A or B can be defined in the label array to activate the bid or ad unit:
+{% highlight bash %}
+labelAny: ["A", "B"]
+{% endhighlight %}
+
+With the `labelAll` conditional, every element of the target array must match an element of the label array in
+order for the condition to be true. In the example below, both A and B must be defined in the label array to activate the bid or ad unit:
+{% highlight bash %}
+labelAll: ["A", "B"]
+{% endhighlight %}
+
+{: .alert.alert-warning :}
+Only one conditional may be specified on a given AdUnit or bid -- if both `labelAny` and `labelAll` are specified, only the first one will be utilized and an error will be logged to the console. It is allowable for an AdUnit to have one condition and a bid to have another.
+
+{: .alert.alert-warning :}
+If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`. 
+
+Label targeting on the ad unit looks like the following:
 
 {% highlight js %}
 
 pbjs.addAdUnits([{
-    "code": "ad-slot-1",
-    "sizes": [
-        [970, 90],
-        [728, 90],
-        [300, 250],
-        [300, 100]
-    ],
-    "labels": ["visitor-uk"]
+    code: "ad-slot-1",
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [970, 90],
+                [728, 90],
+                [300, 250],
+                [300, 100]
+            ]
+        }
+    },
+    labelAny: ["visitor-uk"]
     /* The full set of bids, not all of which are relevant on all devices */
-    "bids": [{
-            "bidder": "pulsepoint",
+    bids: [{
+            bidder: "pulsepoint",
             /* Labels flag this bid as relevant only on these screen sizes. */
-            "labels": ["desktop", "tablet"],
-            "params": {
+            labelAny: ["desktop", "tablet"],
+            params: {
                 "cf": "728X90",
                 "cp": 123456,
                 "ct": 123456
             }
         },
         {
-            "bidder": "pulsepoint",
-            "labels": ["desktop", "phone"],
-            "params": {
+            bidder: "pulsepoint",
+            labelAny: ["desktop", "phone"],
+            params: {
                 "cf": "300x250",
                 "cp": 123456,
                 "ct": 123456
             }
         },
         {
-            "bidder": "sovrn",
-            "labels": ["desktop", "tablet"],
-            "params": {
+            bidder: "sovrn",
+            labelAny: ["desktop", "tablet"],
+            params: {
                 "tagid": "123456"
             }
         },
         {
-            "bidder": "sovrn",
-            "labels": ["phone"],
-            "params": {
+            bidder: "sovrn",
+            labelAny: ["phone"],
+            params: {
                 "tagid": "111111"
             }
         }
@@ -1415,21 +1725,11 @@ pbjs.addAdUnits([{
 
 {% endhighlight %}
 
-{: .alert.alert-warning :}
-**Manual Label Configuration**  
-If an ad unit and/or a bidder in `adUnit.bids[]` already has `labels` defined, they will be disabled by default.  Manually setting active labels as shown below will re-enable the selected ad units and/or bidders.
-
-{% highlight js %}
-
-pbjs.setConfig({
-    labels: ['visitor-uk']
-});
-
-{% endhighlight %}
+See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
 <a name="setConfig-Generic-Configuration" />
 
-#### Generic Configuration
+#### Generic setConfig Configuration
 
 Set arbitrary configuration values:
 
@@ -1559,7 +1859,7 @@ var adserverTag = 'https://pubads.g.doubleclick.net/gampad/ads?'
 + 'sz=640x480&iu=/19968336/prebid_cache_video_adunit&impl=s&gdfp_req=1'
 + '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=http://www.example.com'
 + '&cust_params=section%3Dblog%26anotherKey%3DanotherValue';
- 
+
 var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
     adUnit: videoAdUnit,
     url: adserverTag
