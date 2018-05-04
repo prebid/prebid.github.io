@@ -13,7 +13,7 @@ about:
 
 jsfiddle_link: jsfiddle.net/prebid_org/5crq9cse/embedded/html,result
 
-code_height: 1600
+code_height: 2300
 
 pid: 10
 ---
