@@ -12,6 +12,13 @@ media_types: banner
 gdpr_supported: true
 ---
 
+<br>
+### Requirements:
+To be able to get identification key (`pid`), you must register at <br> 
+`https://audiencemanager.de/public/data-partners-register` <br>
+and follow further instructions.
+<br><br><br>
+
 #### Send All Bids Ad Server Keys:
 (truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
 
@@ -30,7 +37,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                         | Example |
 | :------------- | :------- | :---------------------------------- | :------ |
-| `pid`        | required | Identification key, always '58bfec94eb0a1916fa380163' | `'58bfec94eb0a1916fa380163'` |
+| `pid`        | required | Identification key | `'58bfec94eb0a1916fa380163'` |
 
 #### Example
     var adUnits = [{
@@ -49,7 +56,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                         | Example |
 | :------------- | :------- | :---------------------------------- | :------ |
-| `pid`        | required | Identification key, always '58bfec94eb0a1916fa380163' | `'58bfec94eb0a1916fa380163'` |
+| `pid`        | required | Identification key | `'58bfec94eb0a1916fa380163'` |
 | `nq`   | optional | User search query | `some search query` |
 
 #### Example
@@ -71,7 +78,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                         | Example |
 | :------------- | :------- | :---------------------------------- | :------ |
-| `pid`        | required | Identification key, always '58bfec94eb0a1916fa380163' | `'58bfec94eb0a1916fa380163'` |
+| `pid`        | required | Identification key | `'58bfec94eb0a1916fa380163'` |
 | `name`   | optional | Search query param name of the current URL | `search_param` |
 
 #### Example
