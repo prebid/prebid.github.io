@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Add Targeting Parameters
+title: Targeting Parameters
 description: Add Targeting Parameters
 pid: 1
 top_nav_section: prebid-mobile
@@ -14,18 +14,18 @@ nav_section: prebid-mobile-ios
 
 ## User location
 
-By default, the iOS PBM SDK does not automatically send location information. In order for the PBM to use location information for targeting, the app developer must explicitly pass the location information to PBM.
+By default, the iOS Prebid Mobile SDK does not automatically send location information. In order for Prebid Mobile to use location information for targeting, the app developer must explicitly pass the location information to Prebid Mobile.
 
-Note: Developers should ensure adequate consent is obtained before sharing location information. Developers can control whether location is collected and sent by the PBM.
+Note: Developers should ensure adequate consent is obtained before sharing location information. Developers can control whether location is collected and sent by Prebid Mobile.
 
-In this snippet, we implement the CLLocationManagerDelegate delegate. Create a location manager object as
+In this snippet, we implement the `CLLocationManagerDelegate` delegate. Create a location manager object as shown here:
 
 ```
 @property (nonatomic, readwrite) CLLocationManager *locationManager;
 
 ```
 
-Initialize the location manager as
+Initialize the location manager:
 
 ```
 - (void)setupPrebidLocationManager {
@@ -42,7 +42,7 @@ if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthoriza
 
 ```
 
-Implement the location delegate as
+Implement the location delegate as:
 ```
 // Location Manager Delegate Methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -53,7 +53,7 @@ Implement the location delegate as
 ## Age and Gender
 {:.no_toc}
 
-Age and gender can be added to the targeting params directly as shown below.
+Age and gender can be added to the targeting params directly.
 
 ```
 [[PBTargetingParams sharedInstance] setAge:25];
@@ -64,49 +64,44 @@ Age and gender can be added to the targeting params directly as shown below.
 ## Pass Custom Keywords
 {:.no_toc}
 
-Custom keywords are used to attach arbitrary key-value pairs to the ad call. These are used for adding users to segments
-On PBM, custom keywords are passed on as below:
+Custom keywords are used to attach arbitrary key/value pairs to the ad call. Use key/value pairs to add users to segments, as shown here:
 
-We have 2 API's to set the custom Keywords.
 ```
 [[PBTargetingParams sharedInstance] setUserKeywords:@"foo" withValue:@"bar"];
 [[PBTargetingParams sharedInstance] setUserKeywords:@"foo" withValue:@"baz"];
 [[PBTargetingParams sharedInstance] setUserKeywords:@"foo" withValue:@"bay"];
 [[PBTargetingParams sharedInstance] setUserKeywords:@"foo" withValue:@"bee"];
 ```
-If the values are set for the same keyword then the value for the key is replaced with the new value.
+If a value is set for an existing keyword, the value for the key is replaced with the new value. In the preceding example, the key `foo` will have a value of `bee`, the most recent value associated with that key.
 
-If the key needs to have an array of values then they can be set with a new API
+You can set a key to have an array of values with the following API:
 ```
 [[PBTargetingParams sharedInstance] setUserKeywords:@"boo" withValues:@[@"bar",@"baz",@"bay",@"bee"]];
 
 ```
-will result in the request json body constructed as
+The preceding commands will result in the following request JSON body construct:
 
-```user =     {
+```
+user =     {
 keywords = "foo=bee,boo=bar,boo=bay,boo=baz,boo=bee";
 };
 ```
 
 ## GDPR Support
 
-Prebid Mobile supports the IAB's GDPR recommendations, which can be found here.
+Prebid Mobile supports the [IAB GDPR recommendations](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md). For a general overview of Prebid Mobile support for GDPR, see [GDPR Support]({{site.github.url}}/prebid-mobile/gdpr.html)
 
-Two API's are provided to get the consent from the publisher & also the consent string.
-
-To enable publishers to provide the consent
+Enable (true) or disable (false) the ability to provide consent.
 ```
 [[PBTargetingParams sharedInstance] setSubjectToGDPR:YES];
 ```
-To enable publishers to set the consent string
+Enable publishers to set the consent string.
 
 ```
 [[PBTargetingParams sharedInstance] setGdprConsentString:@"sample_consent_string"];
 ```
 
-Prebid mobile also checks if the values are present in the NSUserDefaults keys specified by the IAB here
-
-if the values are set in these objects too they will be passed in the openRTB request object
+Prebid mobile also checks if the values are present in the [NSUserDefaults](https://developer.apple.com/documentation/foundation/nsuserdefaults#1664798?language=objc) keys specified by the IAB. If the values are also set in these objects they will be passed in the OpenRTB request object.
 
 
 </div>

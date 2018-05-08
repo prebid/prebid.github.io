@@ -1,32 +1,35 @@
 ---
 layout: page
-title: GDPR
+title: GDPR Support
 description: Set GDPR
 pid: 1
 top_nav_section: prebid-mobile
-nav_section: prebid-mobile-ios
+nav_section: prebid-mobile
 ---
 
 
 <div class="bs-docs-section" markdown="1">
 
-# GDPR
+# GDPR Support
 
+Prebid Mobile provides two APIs for app publishers to apply General Data Protection Regulation (GDPR) controls.
 
-## GDPR Support
+## GDPR APIs
 
-PrebidMobile(PBM) will provide two new APIs for app publishers
+The GDPR APIs allow you to:
 
-To define if the GDPR should apply and
-To set the IAB consent string.
+-   Define whether GDPR should apply
+-   Set the Interactive Advertising Bureau (IAB) consent string
 
-This information will be persisted by PBM and will be added to each ad call to apply GDPR controls. Publishers/CMPs are free to store these values in a NSUserDefault/SharedPreferences as defined by Mobile In-App CMP API v1.0: Transparency & Consent Framework instead of passing it via the new API's, and PBM will read the values as a fallback.
+This information will be persisted by Prebid Mobile and will be added to each ad call. Publishers/Consent Management Platforms (CMPs) are free to store these values in an NSUserDefaults/SharedPreferences interface (as defined by [Mobile In-App CMP API v1.0: Transparency & Consent Framework](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md)) instead of passing them via the new APIs, and Prebid Mobile will read the values as a fallback.
 
-Publishers are responsible for collecting consent from their users independent of AppNexus, either using their own Consent Management Platform (CMP) or working with a vendor.
+Publishers are responsible for collecting consent from their users independent of AppNexus, either using their own CMP or working with a vendor.
 
-AppNexus will provide a version of CMP that a publisher can use as a reference only.
+AppNexus will provide a version of CMP that a publisher can use only as a reference.
 
-API's for the GPDR will be provided here
+[Android GDPR API]({{site.github.url}}/prebid-mobile/targeting-params-android.html)
+
+[iOS GDPR API]({{site.github.url}}/prebid-mobile/targeting-params-ios.html)
 
 
 </div>
