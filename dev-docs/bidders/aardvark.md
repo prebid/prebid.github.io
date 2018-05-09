@@ -7,11 +7,12 @@ nav_section: reference
 hide: true
 biddercode: aardvark
 biddercode_longer_than_12: false
+gdpr_supported: true
 ---
 
 ### bid params
 
-{: .table .table-bordered .table-striped } 
+{: .table .table-bordered .table-striped }
 
 | Name | Scope    | Description        | Example  |
 | :--- | :----    | :----------        | :------  |
