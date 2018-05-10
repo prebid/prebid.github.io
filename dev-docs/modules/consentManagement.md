@@ -11,9 +11,6 @@ enable_download : true
 
 <div class="bs-docs-section" markdown="1">
 
-## PENDING RELEASE
-This module is still considered under development, but the core logic and integration steps documented here will very likely remain as described.
-
 # GDPR ConsentManagement Module
 {: .no_toc }
 
