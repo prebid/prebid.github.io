@@ -8,6 +8,7 @@ hide: true
 biddercode: aardvark
 biddercode_longer_than_12: false
 gdpr_supported: true
+prebid_1_0_supported: true
 ---
 
 ### bid params
