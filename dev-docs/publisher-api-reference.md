@@ -14,7 +14,7 @@ pid: 10
 This page has documentation for the public API methods of Prebid.js.
 
 {: .alert.alert-danger :}
-Methods marked as deprecated were removed in version 1.0.  For more information about the changes, see [the release announcement]({{site.baseurl}}/blog/prebid-1-is-released).  
+Methods marked as deprecated were removed in version 1.0.  For more information about the changes, see [the release announcement]({{site.baseurl}}/blog/prebid-1-is-released).
 After a transition period, documentation for these methods will be removed from Prebid.org (likely early 2018).
 
 <a name="module_pbjs"></a>
@@ -29,6 +29,7 @@ After a transition period, documentation for these methods will be removed from 
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
+  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.allBidsAvailable()](#module_pbjs.allBidsAvailable) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
@@ -318,9 +319,19 @@ Use this method to retrieve an array of winning bids.
 
 ### pbjs.getAllWinningBids() ⇒ `Array`
 
-Use this method to get all of the bids that have won their respective auctions.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+Use this method to get all of the bids that have won their respective auctions and also rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
 
-+ `pbjs.getAllWinningBids()`: returns an array of bid objects that have won their respective auctions.
++ `pbjs.getAllWinningBids()`: returns an array of bid objects that have won their respective auctions and also rendered on the page.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getAllPrebidWinningBids"></a>
+
+### pbjs.getAllPrebidWinningBids() ⇒ `Array`
+
+Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+
++ `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
 
 <hr class="full-rule">
 
@@ -388,9 +399,9 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 
 {% highlight js %}
 {
-  "hb_adid_indexExchang": "129a7ed7a6fb40e",
-  "hb_pb_indexExchange": "10.00",
-  "hb_size_indexExchang": "300x250",
+  "hb_adid_ix": "129a7ed7a6fb40e",
+  "hb_pb_ix": "10.00",
+  "hb_size_ix": "300x250",
   "hb_adid_triplelift": "1663076dadb443d",
   "hb_pb_triplelift": "10.00",
   "hb_size_triplelift": "0x0",
@@ -414,7 +425,7 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 {: .alert.alert-danger :}
 This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
-This method is used to configure which price bucket is used for the `hb_pb` keyword.  For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
+This method is used to configure which price bucket is used for the `hb_pb` keyword.
 
 Accepted values:
 
@@ -644,7 +655,7 @@ For an example of a native ad unit, see below.  For more detailed instructions, 
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: '9880618'
+                    placementId: 13232354
                 }
             }, ]
         }
@@ -661,17 +672,17 @@ For an example of an instream video ad unit, see below.  For more detailed instr
 
 ```javascript
 pbjs.addAdUnits({
-    code: 'video',
+    code: slot.code,
     mediaTypes: {
         video: {
-            context: "instream",
+            context: 'instream',
             playerSize: [640, 480]
         },
     },
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: '9333431',
+            placementId: 13232361,
             video: {
                 skippable: true,
                 playback_methods: ['auto_play_sound_off']
@@ -685,7 +696,7 @@ For an example of an outstream video ad unit, see below.  For more detailed inst
 
 ```javascript
 pbjs.addAdUnit({
-    code: 'video1',
+    code: slot.code,
     mediaTypes: {
         video: {
             context: 'outstream',
@@ -721,7 +732,7 @@ pbjs.addAdUnits({
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: '9880618'
+                placementId: 13144370
             }
         }, ]
     }
@@ -822,7 +833,7 @@ pbjs.bidderSettings = {
     standard: {
          [...]
     },
-    indexExchange: {
+    ix: {
          [...]
     },
     rubicon: {
@@ -873,7 +884,16 @@ per adapter as needed. Both scenarios are described below.
 
 **Keyword targeting for all bidders**
 
-The below code snippet is the *default* setting for ad server targeting. For each bidder's bid, Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values. The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items target these keys.
+The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
+Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
+In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
+The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
+
+   {: .alert.alert-warning :}
+   Note that `hb_cache_id` will be the video ad server targeting variable going forward.
+   In previous versions, mobile used `hb_cache_id` and video used `hb_uuid`. There will be a
+   transition period where both of these values are provided to the ad server.
+   Please begin converting video creatives to use `hb_cache_id`.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
 
@@ -916,6 +936,16 @@ pbjs.bidderSettings = {
             key: 'hb_format',
             val: function (bidResponse) {
                 return bidResponse.mediaType;
+            }
+        }, {
+            key: 'hb_cache_id',
+            val: function (bidResponse) {
+                return bidResponse.videoCacheKey;
+            }
+        }, {
+            key: 'hb_uuid',
+            val: function (bidResponse) {
+                return bidResponse.videoCacheKey;
             }
         }]
     }
@@ -1179,6 +1209,8 @@ The available events are:
 | setTargeting  | Targeting has been set                  |
 | requestBids   | Bids have been requested from adapters  |
 | addAdUnits    | Ad units have been added to the auction |
+| adRenderFailed| Ad rendering failed (added in v1.7)     |
+| bidderDone    | A bidder has signaled they are done responding (added in v1.8)|
 
 The example below shows how to use these methods:
 
@@ -1635,7 +1667,7 @@ labelAll: ["A", "B"]
 Only one conditional may be specified on a given AdUnit or bid -- if both `labelAny` and `labelAll` are specified, only the first one will be utilized and an error will be logged to the console. It is allowable for an AdUnit to have one condition and a bid to have another.
 
 {: .alert.alert-warning :}
-If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`. 
+If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`.
 
 Label targeting on the ad unit looks like the following:
 

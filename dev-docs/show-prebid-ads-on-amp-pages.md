@@ -20,6 +20,8 @@ Through this implementation, [Prebid Server][PBS] fetches demand and returns key
 For more information about AMP RTC, see:
 
 + [How Prebid on AMP Works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
++ [Prebid Server AMP Endpoint](https://github.com/prebid/prebid-server/blob/master/docs/endpoints/openrtb2/amp.md)
++ [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
@@ -34,14 +36,68 @@ For ad ops setup instructions, see [Setting up Prebid for AMP in DFP]({{site.git
 To set up Prebid to serve ads into your AMP pages, you'll need:
 
 + An account with a [Prebid Server][PBS] instance
-+ One or more Prebid Server demand partner configurations. A configuration is essentially just a list of the demand partners that you want to work with, along with their respective parameters
++ One or more Prebid Server Stored Bid Requests. A Stored Bid Request is a partial OpenRTB JSON request which:
+    + Specifies properties like timeout and price granularity
+    + Contains a list of demand partners and their respective parameters
 + An AMP page containing at least one amp-ad element for an AMP ad network that supports Fast Fetch and AMP RTC
 
 ## Implementation
 
++ [Prebid Server Stored Request](#pbs-stored-request): This is the Prebid Server Stored Bid Request.
 + [AMP content page](#amp-content-page): This is where your content lives.
 + [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
 + [User Sync in AMP](#user-sync-in-amp): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
+
+### Prebid Server Stored Request
+
+You will have to create at least one Stored Request for Prebid Server.  Valid Stored Requests for AMP pages must contain an `imp` array with exactly one element.  It is not necessary to include a `tmax` field in the Stored Request, as Prebid Server will always use the smaller of the AMP default timeout (1000ms) and the value passed via the `timeoutMillis` field of the `amp-ad.rtc-config` attribute (explained in the next section).
+
+An example Stored Request is given below:
+
+{% highlight javascript %}
+
+    {
+        "id": "some-request-id",
+        "site": {
+            "page": "prebid.org"
+        },
+        "ext": {
+            "prebid": {
+                "targeting": {
+                    "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
+                        "precision": 2,
+                        "ranges": [{
+                            "max": 20.00,
+                            "increment": 0.10
+                        }]
+                    }
+                }
+            }
+        },
+        "imp": [
+            {
+                "id": "some-impression-id",
+                "banner": {
+                    "format": [
+                        {
+                            "w": 300,
+                            "h": 250
+                        }
+                    ]
+                },
+                "ext": {
+                    "appnexus": {
+                        // Insert parameters here
+                    },
+                    "rubicon": {
+                        // Insert parameters here
+                    }
+                }
+            }
+        ]
+    }
+
+{% endhighlight %}
 
 ### AMP content page
 
@@ -57,7 +113,7 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
     <amp-ad width="300" height="250"
             type="doubleclick"
             data-slot="/19968336/universal_creative"
-            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "12345679"}}, "timeoutMillis": 500}'>
+            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
     </amp-ad>
 
 {% endhighlight %}
@@ -69,33 +125,7 @@ This is the creative that your Ad Ops team needs to upload to the ad server (it'
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% highlight html %}
-
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.3.0/dist/creative.js"></script>
-    <script>
-    var adId = "%%PATTERN:hb_adid%%";
-    var cacheHost = "%%PATTERN:hb_cache_host%%";
-    var cachePath = "%%PATTERN:hb_cache_path%%";
-    var uuid = "%%PATTERN:hb_cache_id%%";
-    var mediaType = "%%PATTERN:hb_format%%";
-    var pubUrl = "%%PATTERN:url%%";
-    var size = "%%PATTERN:hb_size%%";
-
-    try {
-        pbjs.renderAd(document, adId, {
-            cacheHost: cacheHost,
-            cachePath: cachePath,
-            uuid: uuid,
-            mediaType: mediaType,
-            pubUrl: pubUrl,
-            size: size
-        });
-    } catch (e) {
-        console.log(e);
-    }
-    </script>
-
-{% endhighlight %}
+{% include dev-docs/amp-creative.md %}
 
 ### User Sync
 
@@ -118,6 +148,8 @@ Iframes must be either 600px away from the top or not within the first 75% of th
 ## Related Topics
 
 + [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
++ [Prebid Server AMP Endpoint](https://github.com/prebid/prebid-server/blob/master/docs/endpoints/openrtb2/amp.md)
++ [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
 + [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
