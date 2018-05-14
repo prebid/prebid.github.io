@@ -83,7 +83,7 @@ The preceding commands will result in the following request JSON body construct:
 
 ```
 user =     {
-keywords = "foo=bee,boo=bar,boo=bay,boo=baz,boo=bee";
+keywords = "foo=bar,foo=baz,foo=bay,foo=bee";
 };
 ```
 
