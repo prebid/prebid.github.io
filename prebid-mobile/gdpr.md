@@ -29,7 +29,7 @@ nav_section: prebid-mobile
 
 Prebid Mobile provides two APIs for app publishers to use the Framework. These APIs allow you to:
 
--   Define whether the user is located in the European Economic Area (the "EEA") and that European privacy regulations should apply
+-   Define whether European privacy regulations should apply
 -   Set the [IAB Europe](https://www.iabeurope.eu/) (IAB) consent string
 
 This information will be persisted by Prebid Mobile and will be added to each ad call. Publishers/Consent Management Platforms (CMPs) are free to store these values in an NSUserDefaults/SharedPreferences interface (as defined by [Mobile In-App CMP API v1.0: Transparency & Consent Framework](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md)) instead of passing them via the new APIs, and Prebid Mobile will read the values as a fallback.
