@@ -181,6 +181,52 @@ Check the output in Console to see the bids (note that this screenshot shows the
 {: .pb-img.pb-lg-img :}
 ![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png)
 
+## Modifying bid responses
+
+Using the `pbjs.setConfig({debugging:{ ... }})` options it is possible to override and filter bids as they come in.
+When this type of debugging is enabled it will persist across page loads using `sessionStorage`.  This allows 
+for easy testing of pages that immediately start auctions (most pages), but also means you need to remember
+to deactivate debugging when you are done (or clear your local storage / use incognito mode when testing).
+
+```
+// Filtering bidders
+pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bidders: ['appnexus', 'rubicon']
+  }
+});
+    
+// Overwriting bid responses for all bidders
+pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bids: [{
+      cpm: 1.5
+    }]
+  }
+});
+    
+// Overwriting bid responses for a specific bidder and adUnit code (can use either separately)
+pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bids: [{
+      bidder: 'rubicon',
+      adUnitCode: '/19968336/header-bid-tag-0',
+      cpm: 1.5
+    }]
+  }
+});
+    
+// Disabling debugging
+pbjs.setConfig({
+  debugging: {
+    enabled: false
+  }
+});
+```
+
 ## Related Reading
 
 + [Prebid FAQ]({{site.github.url}}/dev-docs/faq.html)
