@@ -52,8 +52,6 @@ The steps for using Prebid Mobile are as follows:
 Create the ad units that represent the ad spaces in your app using following APIs:
 
 ```
-java
-
 ArrayList<AdUnit> adUnits = new ArrayList<AdUnit>();
 
 // Configure a Banner Ad Unit with size 320x50
@@ -75,7 +73,6 @@ Once configuration is done, use the following API to initialize Prebid Mobile an
 
 The following two APIs are being deprecated:
 ```
-java
 // Register ad units for prebid.
 try {
     Prebid.init(getApplicationContext(), adUnits, "YOUR-ACCOUNT-ID-HERE");
@@ -92,7 +89,6 @@ try {
 
 Please use the one below for initialization:
 ```
-java
 // Register ad units for prebid.
 try {
     Prebid.init(getApplicationContext(), adUnits, "YOUR-ACCOUNT-ID-HERE", Prebid.AdServer.DFP, Host.APPNEXUS);
@@ -107,14 +103,12 @@ try {
 The final step for implementing Prebid Mobile is to attach bid keywords on the ad object. You can either attach bids immediately or wait for ads before attaching bids. To attach bids immediately use the following API.
 
 ```
-java
 Prebid.attachBids(YOUR-AD-OBJECT-HERE, YOUR-AD-UNIT-ID-HERE, Context);
 ```
 
 To wait for ads before attaching bids, implement the following listener.
 
 ```
-java
 @Override
 public void onAttachComplete(Object adObj) {
 	// using dfp implementation as an example

@@ -26,8 +26,8 @@ Fetch location data and pass it to Prebid Mobile:
 
 ```
 TargetingParams.setLocation(location);
-
 ```
+
 Choose the precision of location data:
 
 ```

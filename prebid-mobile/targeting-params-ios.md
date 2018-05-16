@@ -22,31 +22,31 @@ In this snippet, we implement the `CLLocationManagerDelegate` delegate. Create a
 
 ```
 @property (nonatomic, readwrite) CLLocationManager *locationManager;
-
 ```
 
 Initialize the location manager:
 
 ```
 - (void)setupPrebidLocationManager {
-self.locationManager = [[CLLocationManager alloc] init];
-self.locationManager.delegate = self;
-self.locationManager.distanceFilter = kCLDistanceFilterNone;
-self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-// Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
-if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-[self.locationManager requestWhenInUseAuthorization];
-}
-[self.locationManager startUpdatingLocation];
-}
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
 
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+}
 ```
 
 Implement the location delegate as:
 ```
 // Location Manager Delegate Methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-[[PBTargetingParams sharedInstance] setLocation:[locations lastObject]];
+    [[PBTargetingParams sharedInstance] setLocation:[locations lastObject]];
 }
 ```
 
@@ -77,8 +77,8 @@ If a value is set for an existing keyword, the value for the key is replaced wit
 You can set a key to have an array of values with the following API:
 ```
 [[PBTargetingParams sharedInstance] setUserKeywords:@"boo" withValues:@[@"bar",@"baz",@"bay",@"bee"]];
-
 ```
+
 The preceding commands will result in the following request JSON body construct:
 
 ```

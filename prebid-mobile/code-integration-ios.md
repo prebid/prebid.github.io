@@ -71,7 +71,6 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 Embed the ad unit registration in a try-catch block to catch all the exceptions (if any) thrown by the SDK.
 
 ```
-objc
 #import "PrebidMobile/PBBannerAdUnit.h"
 #import "PrebidMobile/PBServerAdapter.h"
 #import "PrebidMobile/PBTargetingParams.h"
@@ -101,7 +100,6 @@ Prebid Mobile continuously pre-caches creatives in the background, so that right
 
 
 ```
-objc
 // Set the prebid keywords immediately on your adObject
 [PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE"];
 ```
@@ -109,7 +107,6 @@ objc
 Alternatively, if you want to set the bid keywords on your adObject shortly after registering ad units, you can wait for bids with a timeout using the API method below.
 
 ```
-objc
 // Set the prebid keywords on your adObject, upon completion load the adObject's ad
 [PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE" withTimeout:600 completionHandler:^{
     [YOUR-AD-VIEW YOUR-ADS-LOAD-METHOD];
