@@ -604,6 +604,30 @@ pbjs.addAdUnits({
 })
 ```
 
+<a name="adUnit-banner-sizeoverrides">
+
+##### Banner Per Bid Size Overrides
+
+For an example of a banner ad unit using per-bid size overrides, see below.
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250], [300, 600]]
+        },
+        bids: [{
+            bidder: 'appnexus',
+            sizes: [[300, 250], [300, 600]],
+            params: {
+                placementId: 13144370
+            }
+        }, ]
+    }
+})
+```
+
 <a name="adUnit-multi-format">
 
 ##### Multi-format
