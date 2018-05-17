@@ -135,16 +135,16 @@ pbjs.addAdUnits({
             icon: {
                 required: true,
                 sizes: [50, 50]
-            },
-        },
-        bids: [{
-            bidder: 'appnexus',
-            params: {
-                placementId: '9880618'
             }
-        }, ]
-    }
-});
+        }
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232354
+        }
+    }, ]
+})
 
 {% endhighlight %}
 
@@ -173,20 +173,20 @@ And the following optional fields:
 A native "image-type" ad unit can be set up as shown in the following example.
 
 ```javascript
-    const adUnits = [{
-        code: 'adUnit-code',
-        mediaTypes: {
-            native: {
-                type: 'image'
-            }
+const adUnits = [{
+    code: 'adUnit-code',
+    mediaTypes: {
+        native: {
+            type: 'image'
         }
-        bids: [{
-            bidder: 'appnexus',
-            params: {
-                placementId: '123456'
-            }
-        }]
-    }];
+    }
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232354
+        }
+    }]
+}];
 ```
 
 {% include dev-docs/native-image-asset-sizes.md %}
