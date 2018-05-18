@@ -2,17 +2,11 @@
 layout: bidder
 title: brainy
 description: Prebid brainy Bidder Adaptor
-
 top_nav_section: dev_docs
 nav_section: reference
-
 hide: true
-
 biddercode: brainy
-
 biddercode_longer_than_12: false
-
-
 ---
 
 ### bid params
@@ -24,4 +18,3 @@ biddercode_longer_than_12: false
 | `slotID` | required | `slotID of the ad unit` | |
 | `width` | required | `width of ad slot` | |
 | `height`| required | `height of ad slot` | |
-| `` | optional | | |
