@@ -38,29 +38,30 @@ to output the PrebidMobile framework for Android.
 
 Register Prebid Mobile ad units as early as possible in the application's lifecycle. Each ad unit has an `adUnitId` which is an arbitrary unique identifier of the developer's choice.
 
-The steps for using Prebid Mobile are as following:
+The steps for using Prebid Mobile are as follows:
 
-1. Create the ad units with ad unit ids and add sizes for banner ad units
-2. Add a server side configuration for each ad unit to Prebid Server Adapter
-3. Set targeting parameters for the ad units (Optional)
-4. Register the ad units with the adapter to start bid fetching process
+1. Create the ad units with ad unit ids and add sizes for banner ad units.
+2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
+3. Set targeting parameters for the ad units. (Optional)
+4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+5. Set the Host for the bid to AppNexus or Rubicon.
+6. Register the ad units with the adapter to start the bid fetching process.
 
-### How to create ad units?
+### How to Create Ad Units
 
 Create the ad units that represent the ad spaces in your app using following APIs:
 
-```java
-
+```
 ArrayList<AdUnit> adUnits = new ArrayList<AdUnit>();
- 
+
 // Configure a Banner Ad Unit with size 320x50
 BannerAdUnit adUnit1 = new BannerAdUnit("YOUR-AD-UNIT-ID-HERE", "YOUR-CONFIG-ID-HERE");
 adUnit1.addSize(320, 50);
- 
+
 // Configure an Interstitial Ad Unit
 InterstitialAdUnit adUnit2 = new InterstitialAdUnit("YOUR-INTERSTITIAL-AD-UNIT-ID-HERE", "YOUR-INTERSTITIAL-CONFIG-ID-HERE");
- 
-// Add them to the list 
+
+// Add them to the list
 adUnits.add(adUnit1);
 adUnits.add(adUnit2);
 
@@ -68,12 +69,29 @@ adUnits.add(adUnit2);
 
 ### Initialize the SDK
 
-Once configuration is done, use the following API to initialize Prebid Mobile and start fetching Prebid ads for your list of ad units:
+Once configuration is done, use the following API to initialize Prebid Mobile and start fetching Prebid ads for your list of ad units.
 
-```java
+The following two APIs are being deprecated:
+```
 // Register ad units for prebid.
 try {
     Prebid.init(getApplicationContext(), adUnits, "YOUR-ACCOUNT-ID-HERE");
+} catch (PrebidException e) {
+    e.printStackTrace();
+}
+
+try {
+    Prebid.init(getApplicationContext(), adUnits, "YOUR-ACCOUNT-ID-HERE", Prebid.AdServer.DFP)
+} catch (PrebidException e) {
+    e.printStackTrace();
+}
+```
+
+Please use the one below for initialization:
+```
+// Register ad units for prebid.
+try {
+    Prebid.init(getApplicationContext(), adUnits, "YOUR-ACCOUNT-ID-HERE", Prebid.AdServer.DFP, Host.APPNEXUS);
 } catch (PrebidException e) {
     e.printStackTrace();
 }
@@ -84,13 +102,13 @@ try {
 
 The final step for implementing Prebid Mobile is to attach bid keywords on the ad object. You can either attach bids immediately or wait for ads before attaching bids. To attach bids immediately use the following API.
 
-```java
+```
 Prebid.attachBids(YOUR-AD-OBJECT-HERE, YOUR-AD-UNIT-ID-HERE, Context);
 ```
 
 To wait for ads before attaching bids, implement the following listener.
 
-```java
+```
 @Override
 public void onAttachComplete(Object adObj) {
 	// using dfp implementation as an example
@@ -152,6 +170,15 @@ if(conditionToStopRefresh) {
 }
  ```
 
+## If proguard is ON
+
+### Primary Ad Server is DFP
+To avoid dfp class being obfuscated and prebid not working, add the following lines to your proguard file:
+```
+-keep class com.google.android.gms.ads.doubleclick.PublisherAdRequest {
+   public *;
+}
+```
 
 
 </div>

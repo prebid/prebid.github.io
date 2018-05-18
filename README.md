@@ -1,8 +1,6 @@
-Home of the Prebid.js documentation and downloads at [Prebid.org](http://prebid.org).
+This repository contains the source files for the Prebid.js documentation site at [Prebid.org](http://prebid.org).
 
-Thanks in advance for any contributions!  All contributors are listed in the **Thanks** section below.
-
-Please see the sections below before submitting a PR.
+Please see the sections below for more information.
 
 + [Contributing](#contributing)
 + [License](#license)
@@ -16,7 +14,7 @@ Please see the sections below before submitting a PR.
 
 ## Contributing
 
-This is the repo that controls [Prebid.org](http://prebid.org).  We welcome any contributions.
+Thanks in advance for your contribution!  Contributors are listed in the **Thanks** section below.
 
 For smaller changes, such as fixing a typo or adding a new section to an existing page, submit a pull request.
 
@@ -37,11 +35,18 @@ All docs are under the license shown in the `LICENSE` file in this directory.
 
 The site uses [Jekyll](http://jekyllrb.com/), which is written in the [Ruby](http://www.ruby-lang.org/en/) language.
 
-To follow the instructions in the next section, you will need to install the [Bundler](http://bundler.io/) Ruby gem, probably like so:
+To follow the instructions in the next section, you will need to install the [Bundler](http://bundler.io/) Ruby gem.
+
+Try the following command:
 
 ```
 $ gem install bundler
 ```
+
+If you are on a Mac and the above command fails with a permissions error (e.g., `"ERROR:  While executing gem ... You don't have write permissions for the /Library/Ruby/Gems/... directory."`), try the following steps:
+
+1. Build your own `ruby` binary using [Homebrew](https://brew.sh/): `brew install ruby`.  The Homebrew-built Ruby should include its own version of the `gem` command which avoids modifying system libraries.
+2. Try `gem install bundler` again.  If it still fails, try `sudo gem install bundler`.  After that, you should be able to avoid any further use of `sudo` by running `bundler` with the arguments shown in the next section.
 
 <a name="running-jekyll-locally" />
 
@@ -53,7 +58,7 @@ To get started editing the site and seeing your changes, clone this repo and ent
 
 - `cd /path/to/prebid.github.io`
 
-- `bundle install`
+- `bundle install --path vendor/bundle`
 
 - `bundle exec jekyll serve`
 

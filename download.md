@@ -26,6 +26,20 @@ $(function(){
     }
     return;
   });
+
+  $( ".selectpicker" ).change(function() {
+    if(this.value.match(/1\.\d+\.\d+/i)) {
+      $('.adapters .col-md-4').hide();
+      $('.prebid_1_0').show();
+    }
+    else{
+       $('.adapters .col-md-4').show();
+    }
+  });
+
+  //default to 1.x adapters:
+  $('.adapters .col-md-4').hide();
+  $('.prebid_1_0').show();
 });
 
 function submit_download() {
@@ -64,19 +78,18 @@ function submit_download() {
       buttn.removeClass('disabled');
       alert('Ran into an issue.'); // + e.responseText
     });
-
-    newDownload(form_data['email'], form_data['company'], form_data['bidders']);
 }
 
 function get_form_data() {
     var bidders = [];
     var analytics = [];
+    var version = $('.selectpicker').val();
 
     var bidder_check_boxes = $('.bidder-check-box');
     for (var i = 0; i < bidder_check_boxes.length; i++) {
         var box = bidder_check_boxes[i];
         if (box.checked) {
-            bidders.push(box.getAttribute('bidderCode'));
+            bidders.push(box.getAttribute('moduleCode'));
         }
     }
 
@@ -93,6 +106,7 @@ function get_form_data() {
     form_data['company'] = $('#input-company').val();
     form_data['bidders'] = bidders;
     form_data['analytics'] = analytics;
+    form_data['version'] = version;
 
     return form_data;
 }
@@ -113,31 +127,44 @@ function get_form_data() {
 {: .lead :}
 To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
 
-### Option 1: Select header bidding partners
+### Option 1: Customize your download here
 
-{% assign bidder_pages = (site.pages | where: "layout", "bidder") %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+{% assign module_pages = site.pages | where: "nav_section", "modules" %}
+
+{: .alert.alert-success :}
+Note if you receive an email with a broken link you most likely selected a configuration that is not supported. Verify that each bidder / module is supported in the selected version. 
 
 <form>
 <div class="row">
-<h4>Bidder Adapters</h4>
+<h4>Select Prebid Version</h4>
+<select class="selectpicker">
+  <!-- empty value indicates legacy --> 
+  <option value="1.10.0">1.10.0 - latest</option>
+  <option value="">0.34.9 - legacy not recommended</option>
+</select>
 
+
+<h4>Select Bidder Adapters</h4>
+<div class="adapters">
 {% for page in bidder_pages %}
   {% if page.s2s_only == true %}  
     {% continue %}
   {% endif %}
-<div class="col-md-4">
+<div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
  <div class="checkbox">
   <label>
   {% if page.aliasCode %} 
-    <input type="checkbox" bidderCode="{{ page.aliasCode }}" class="bidder-check-box"> {{ page.title }}
+    <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% else %}
-    <input type="checkbox" bidderCode="{{ page.biddercode }}" class="bidder-check-box"> {{ page.title }}
+    <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% endif %}
       
     </label>
 </div>
 </div>
 {% endfor %}
+</div>
 </div>
 
 <br>
@@ -147,7 +174,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analtyics
+      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
     </label>
   </div>
 </div>
@@ -192,11 +219,39 @@ To improve the speed and load time of your site, build Prebid.js for only the he
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adomik" class="analytics-check-box"> Adomik Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adxcg" class="analytics-check-box"> Adxcg Analytics
+    </label>
+  </div>
+</div>
+
 </div>
 <br/>
-<p>
-(Version 0.29.0)
-</p>
+<div class="row">
+ <h4>Modules</h4>
+ {% for page in module_pages %}
+  {% if page.enable_download == false %}  
+    {% continue %}
+  {% endif %}
+ <div class="col-md-4">
+ <div class="checkbox">
+  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
+</div>
+</div>
+ {% endfor %}
+</div>
+
+<br>
 
 <div class="form-group">
 
@@ -244,7 +299,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
         <div class="alert alert-warning hide" role="alert" id="download-status"></div>
 
         <p>
-        Ran into problems? Email <code>info@prebid.org</code>
+        Ran into problems? Email <code>support@prebid.org</code>
         </p>
 
       </div>
