@@ -608,7 +608,12 @@ pbjs.addAdUnits({
 
 ##### Banner Per Bid Size Overrides
 
-For an example of a banner ad unit using per-bid size overrides, see below.
+{: .alert.alert-info :}
+Available as of Prebid.js 1.12
+
+Individual bids can be constrained to a subset of the ad unit's size list. If a size is defined on a bid that don't exist in the ad unit's sizes, that size will be ignored.
+
+Here's an example of a bid that calls for a subset of the sizes allowed in the ad unit: 
 
 ```javascript
 pbjs.addAdUnits({
@@ -619,7 +624,7 @@ pbjs.addAdUnits({
         },
         bids: [{
             bidder: 'appnexus',
-            sizes: [[300, 250], [300, 600]],
+            sizes: [[300, 250]],
             params: {
                 placementId: 13144370
             }
