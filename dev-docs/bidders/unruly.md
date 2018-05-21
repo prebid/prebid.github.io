@@ -8,6 +8,7 @@ hide: true
 biddercode: unruly
 biddercode_longer_than_12: false
 media_types: native, video
+prebid_1_0_supported:true
 gdpr_supported: true
 ---
 
