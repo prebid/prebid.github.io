@@ -72,49 +72,21 @@ The following parameters in the `bidResponse` object are common across all bidde
 ## Bidders with Video and Native Demand
 {: .no_toc }
 
-{: .table .table-bordered .table-striped }
-| Bidder          | Supported Media Types | Prebid 1.0 Support? |
-|-----------------+-----------------------+---------------------|
-| adgeneration    | video,native          | X                   |
-| adkernelAdn     | video                 | X                   |
-| adkernel        | video                 | X                   |
-| admixer         | video                 | X                   |
-| adxcg           | video,native          | X                   |
-| aol             | video                 | X                   |
-| appnexus        | video,native          | X                   |
-| audienceNetwork | video,native          | X                   |
-| beachfront      | video                 | X                   |
-| conversant      | video                 | X                   |
-| freewheelSSP    | video                 | X                   |
-| gamma           | video                 | X                   |
-| getintent       | video                 | X                   |
-| gumgum          | native                | X                   |
-| mantis          | video,native          | X                   |
-| mobfox          | video                 | X                   |
-| openx           | video                 | X                   |
-| optimatic       | video                 | X                   |
-| platformio      | native                | X                   |
-| prebidServer    | video                 | X                   |
-| pulsepoint      | native                | X                   |
-| quantcast       | video                 | X                   |
-| readpeak        | native                | X                   |
-| rhythmone       | video                 | X                   |
-| rockyou         | video                 | X                   |
-| rubicon         | video                 | X                   |
-| sekindoUM       | video                 | X                   |
-| sharethrough    | native                | X                   |
-| vertamedia      | video                 | X                   |
-| yieldlab        | video                 | X                   |
-| yieldmo         | native                | X                   |
-| aerserv         | video                 |                     |
-| appnexusAst     | video,native          |                     |
-| criteo          | native                |                     |
-| indexExchange   | video                 |                     |
-| pulsepointLite  | native                |                     |
-| spotx           | video                 |                     |
-| stickyadstv     | native                |                     |
-| tremor          | video                 |                     |
-| unruly          | video,native          |                     |
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+<table class="table table-bordered table-striped">
+<thead><tr>
+<th>Bidder</th>
+<th>Supported Media Types</th>
+<th> Prebid 1.0 Support?</th>
+</tr></thead>
+<tbody>
+{% for page in bidder_pages %}
+{% if page.media_types %}
+<tr><td> {{page.biddercode}} </td><td> {% if page.media_types contains 'video' and page.media_types contains 'native' %} video, native {% elsif page.media_types contains 'native' %} native {% elsif page.media_types contains 'video' %} video {% endif %} </td><td> {% if page.prebid_1_0_supported %}X{% endif %} </td></tr>
+{% endif %}
+{% endfor %}
+</tbody>
+</table>
 
 <a name="prebid-server-bidders"></a>
 
@@ -129,7 +101,6 @@ Demand from the bidders listed below is available via the [Prebid Server integra
 - [pubmatic](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L743)
 - [pulsepoint](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L744)
 - [rubicon](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L745)
-- [audienceNetwork](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L747)
 - [lifestreet](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L748)
 - [conversant](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L749)
 </div>
@@ -137,7 +108,7 @@ Demand from the bidders listed below is available via the [Prebid Server integra
 {% for page in bidder_pages %}
 
 <div class="bs-docs-section" markdown="1">
-<h2><a name="{{ page.biddercode }}" />{{ page.title }}</h2>
+<h2><a name="{{ page.biddercode }}" >{{ page.title }}</a></h2>
 
 {% if page.s2s_only == true %}  
 <h3>Note:</h3> This is a S2S adapter only.

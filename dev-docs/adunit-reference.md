@@ -185,7 +185,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Optional    | String                 | The video context, either `"instream"` or `"outstream"`.  Example: `context: "outstream"`                                                                           |
+| `context`        | Optional    | String                 | The video context, either `'instream'` or `'outstream'`.  Example: `context: 'outstream'`                                                                           |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                             |
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                |
 | `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                           |
@@ -211,16 +211,18 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         banner: {
-            sizes: [[300, 250], [300, 600]]
-        },
-        bids: [{
+            sizes: [[300, 250]]
+        }
+    },
+    bids: [
+        {
             bidder: 'appnexus',
             params: {
-                placementId: '9880618'
+                placementId: 13144370
             }
-        }, ]
-    }
-})
+        }
+    ]
+});
 ```
 
 <a name="adUnit-video-example">
@@ -231,17 +233,17 @@ For an example of an instream video ad unit, see below.  For more detailed instr
 
 ```javascript
 pbjs.addAdUnits({
-    code: 'video',
+    code: slot.code,
     mediaTypes: {
         video: {
-            context: "instream",
+            context: 'instream',
             playerSize: [640, 480],
         },
     },
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: '9333431',
+            placementId: 13232361,
             video: {
                 skippable: true,
                 playback_methods: ['auto_play_sound_off']
@@ -254,8 +256,8 @@ pbjs.addAdUnits({
 For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
 
 ```javascript
-pbjs.addAdUnit({
-    code: 'video1',
+pbjs.addAdUnits({
+    code: slot.code,
     mediaTypes: {
         video: {
             context: 'outstream',
@@ -272,7 +274,7 @@ pbjs.addAdUnit({
         }
     },
     ...
-})
+});
 ```
 
 <a name="adUnit-native-example">
@@ -306,16 +308,18 @@ pbjs.addAdUnits({
             icon: {
                 required: true,
                 sizes: [50, 50]
-            },
-        },
-        bids: [{
+            }
+        }
+    },
+    bids: [
+        {
             bidder: 'appnexus',
             params: {
-                placementId: '9880618'
+                placementId: 13232354
             }
-        }, ]
-    }
-})
+        }
+    ]
+});
 ```
 
 <a name="adUnit-multi-format-example">
@@ -326,71 +330,71 @@ For an example of a multi-format ad unit, see below.  For more detailed instruct
 
 {% highlight js %}
 
-    pbjs.addAdUnits([{
-            code: 'div-banner-native',
-            mediaTypes: {
-                banner: {
-                    sizes: [
-                        [300, 250]
-                    ]
-                },
-                native: {
-                    type: 'image'
-                },
+pbjs.addAdUnits([{
+        code: 'div-banner-native',
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250]
+                ]
             },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: '12340414',
-                }
-            }]
+            native: {
+                type: 'image'
+            },
         },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232392,
+            }
+        }]
+    },
 
-        {
-            code: 'div-banner-outstream',
-            mediaTypes: {
-                banner: {
-                    sizes: [
-                        [300, 250]
-                    ]
-                },
-                video: {
-                    context: 'outstream',
-                    playerSize: [300, 250]
-                },
+    {
+        code: 'div-banner-outstream',
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250]
+                ]
             },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: '12340414',
-                }
-            }, ]
+            video: {
+                context: 'outstream',
+                playerSize: [300, 250]
+            },
         },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232392,
+            }
+        }, ]
+    },
 
-        {
-            code: 'div-banner-outstream-native',
-            mediaTypes: {
-                banner: {
-                    sizes: [
-                        [300, 250]
-                    ]
-                },
-                native: {
-                    type: 'image'
-                },
-                video: {
-                    context: 'outstream',
-                    playerSize: [300, 250]
-                },
+    {
+        code: 'div-banner-outstream-native',
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250]
+                ]
             },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: '12340414',
-                }
-            }, ]
-        }
-    ]);
+            native: {
+                type: 'image'
+            },
+            video: {
+                context: 'outstream',
+                playerSize: [300, 250]
+            },
+        },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232392,
+            }
+        }, ]
+    }
+]);
 
 {% endhighlight %}
 
