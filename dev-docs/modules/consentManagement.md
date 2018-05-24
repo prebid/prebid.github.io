@@ -201,47 +201,48 @@ At a high level this looks like:
 Below is sample code for implementing the stub functions. Sample code for formatting the consent string may be obtained [here](https://github.com/appnexus/cmp).
 
 {% highlight js %}
+var iabConsentData;  // build the IAB consent string
+var gdprApplies;     // true if gdpr Applies to the user, else false
+var responseCode;    // false if there was an error, else true
+var cmpLoaded;       // true if iabConsentData was loaded and processed
 (function(window, document) {
-	var iabConsentData;  // build the IAB consent string
-	var gdprApplies;     // true if gdpr Applies to the user, else false
-	var responseCode;    // false if there was an error, else true
-	function addFrame() {
-		if (window.frames['__cmpLocator'])
-			return;
-		if ( document.body ) {
-			var body = document.body,
-				iframe = document.createElement('iframe');
-			iframe.name = '__cmpLocator';
-			iframe.style.display = 'none';
-			body.appendChild(iframe);
-		} else {
-			setTimeout( addFrame, 5 );
-		}
-	}
-	addFrame();
-	function cmpMsgHandler(event) {
-	    try {
-	        var json = event.data;
-	        var msgIsString = typeof json === "string";
-	        if ( msgIsString ) {
-	            json = JSON.parse(json);
-	        }
-	        var call = json.__cmpCall;
-	        if (call) {
-	            window.__cmp(call.command, call.parameter, function(retValue, success) {
-	                var returnMsg = {
-	                    __cmpReturn: {
-	                        returnValue: retValue, success: success, callId: call.callId
-	                    }
-	                };
-	                event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*');
-	            });
-	        }
-	    } catch (e) {}  // do nothing
-	}
-	function cmpFunc = function(command, version, callback) {
+    function addFrame() {
+        if (window.frames['__cmpLocator'])
+            return;
+        if ( document.body ) {
+            var body = document.body,
+                iframe = document.createElement('iframe');
+            iframe.name = '__cmpLocator';
+            iframe.style.display = 'none';
+            body.appendChild(iframe);
+        } else {
+            setTimeout( addFrame, 5 );
+        }
+    }
+    addFrame();
+    function cmpMsgHandler(event) {
+        try {
+            var json = event.data;
+            var msgIsString = typeof json === "string";
+            if ( msgIsString ) {
+                json = JSON.parse(json);
+            }
+            var call = json.__cmpCall;
+            if (call) {
+                window.__cmp(call.command, call.parameter, function(retValue, success) {
+                    var returnMsg = {
+                        __cmpReturn: {
+                            returnValue: retValue, success: success, callId: call.callId
+                        }
+                    };
+                    event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*');
+                });
+            }
+        } catch (e) {}  // do nothing
+    }
+    function cmpFunc = function(command, version, callback) {
         if (command === 'ping') {
-            callback({gdprAppliesGlobally: gdprApplies, cmpLoaded: true}, responseCode);
+            callback({gdprAppliesGlobally: gdprApplies, cmpLoaded: cmpLoaded}, responseCode);
         } else if (command === 'getConsentData') {
             callback({consentData: iabConsentData, gdprApplies: gdprApplies}, responseCode);
         } else if (command === 'getVendorConsents') {
@@ -249,17 +250,16 @@ Below is sample code for implementing the stub functions. Sample code for format
         } else {
             callback(undefined, false);
         }
-	};
-	if ( typeof (__cmp) !== 'function' ) {
-		window.__cmp = cmpFunc;
-		window.__cmp.msgHandler = cmpMsgHandler;
-		if ( window.addEventListener ) {
-			window.addEventListener( 'message', cmpMsgHandler, false );
-		} else {
-			window.attachEvent( 'onmessage', cmpMsgHandler );
-		}
-	}
-	
+    };
+    if ( typeof (__cmp) !== 'function' ) {
+        window.__cmp = cmpFunc;
+        window.__cmp.msgHandler = cmpMsgHandler;
+        if ( window.addEventListener ) {
+            window.addEventListener( 'message', cmpMsgHandler, false );
+        } else {
+            window.attachEvent( 'onmessage', cmpMsgHandler );
+        }
+    }
 })(window, document);
 {% endhighlight %}
 
@@ -274,7 +274,10 @@ How to generate the gdprApplies field:
 - Leave the attribute unspecified if user's location is unknown
 
 **responseCode**
-This should be false if there was some error in the consent data, true otherwise.  False is the same as calling the callback with no parameters.
+This should be false if there was some error in the consent data, true otherwise. False is the same as calling the callback with no parameters.
+
+**cmpLoaded**
+This should be be set to true once parameters above are processed.
 
 ## List of GDPR compliant Adapters
 
