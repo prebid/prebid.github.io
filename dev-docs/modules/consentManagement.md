@@ -216,7 +216,7 @@ var cmpLoaded;       // true if iabConsentData was loaded and processed
             iframe.style.display = 'none';
             body.appendChild(iframe);
         } else {
-            setTimeout( addFrame, 5 );
+            setTimeout(addFrame, 5);
         }
     }
     addFrame();
@@ -255,9 +255,9 @@ var cmpLoaded;       // true if iabConsentData was loaded and processed
         window.__cmp = cmpFunc;
         window.__cmp.msgHandler = cmpMsgHandler;
         if ( window.addEventListener ) {
-            window.addEventListener( 'message', cmpMsgHandler, false );
+            window.addEventListener('message', cmpMsgHandler, false);
         } else {
-            window.attachEvent( 'onmessage', cmpMsgHandler );
+            window.attachEvent('onmessage', cmpMsgHandler);
         }
     }
 })(window, document);
