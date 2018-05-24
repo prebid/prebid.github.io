@@ -203,6 +203,7 @@ Below is sample code for implementing the stub functions. Sample code for format
 {% highlight js %}
 var iabConsentData;  // build the IAB consent string
 var gdprApplies;     // true if gdpr Applies to the user, else false
+var hasGlobalScope;  // true if consent data was retrieved globally
 var responseCode;    // false if there was an error, else true
 var cmpLoaded;       // true if iabConsentData was loaded and processed
 (function(window, document) {
@@ -244,9 +245,9 @@ var cmpLoaded;       // true if iabConsentData was loaded and processed
         if (command === 'ping') {
             callback({gdprAppliesGlobally: gdprApplies, cmpLoaded: cmpLoaded}, responseCode);
         } else if (command === 'getConsentData') {
-            callback({consentData: iabConsentData, gdprApplies: gdprApplies}, responseCode);
+            callback({consentData: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
         } else if (command === 'getVendorConsents') {
-            callback({metadata: iabConsentData, gdprApplies: gdprApplies}, responseCode);
+            callback({metadata: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
         } else {
             callback(undefined, false);
         }
@@ -272,6 +273,9 @@ How to generate the gdprApplies field:
 - True if the current user is in the European Economic Area (EEA) OR if the publisher wants to have all traffic considered in-scope for GDPR
 - False if it's known that the user is outside the EEA
 - Leave the attribute unspecified if user's location is unknown
+
+**hasGlobalScope**
+This should be set as true if consent data was retrieved globally, or was it publisher-specific. For general purpose, set this to true.
 
 **responseCode**
 This should be false if there was some error in the consent data, true otherwise. False is the same as calling the callback with no parameters.
