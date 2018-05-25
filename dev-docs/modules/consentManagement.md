@@ -275,7 +275,7 @@ How to generate the gdprApplies field:
 - Leave the attribute unspecified if user's location is unknown
 
 **hasGlobalScope**
-This should be set as true if consent data was retrieved globally, or was it publisher-specific. For general purpose, set this to true.
+This should be set as true if consent data was retrieved from global "euconsent" cookie, or was it publisher-specific. For general purpose, set this to false.
 
 **responseCode**
 This should be false if there was some error in the consent data, true otherwise. False is the same as calling the callback with no parameters.
