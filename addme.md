@@ -1,4 +1,5 @@
 ---
+redirect_to: "/index.html"
 layout: page
 title: Add me!
 description: 
@@ -90,12 +91,12 @@ If you are a publisher that'd like to be contacted by bidders, or if you're a bi
 <!--
 ### Publisher Companies
 
-If you'd like to edit existing entries, email info@prebid.org. 
+If you'd like to edit existing entries, email support@prebid.org. 
 
 
 ### "Bidder" Companies
 
-If you'd like to edit existing entries, email info@prebid.org. 
+If you'd like to edit existing entries, email support@prebid.org. 
 
 -->
 

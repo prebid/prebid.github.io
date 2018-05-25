@@ -1,52 +1,31 @@
 {% include head.html %}
-
 {% include main_nav.html %}
 
-  <!-- Header
-  =========================================== -->
+<div class="container bs-docs-container">
 
-<!-- 
-  <div class="bs-docs-header" id="content">
-    <div class="container">
-      <h1>{{page.title}}</h1>
-      <p>{{page.description}}</p>
-    </div>
-  </div>
- -->
-
-  <div class="container bs-docs-container">
-
-  {% if page.is_full_screen %}
-
-    {{content}}
-
-  {% else %}
-
-    <div class="row">
-
-      <div class="col-md-3">
-        <div class="docs-sidebar">
-          {% include left_nav.html %}
-        </div>
-      </div>
-
-      <!-- Content
-      =========================================== -->
-      <div class="col-md-9" role="main">
+    {% if page.is_full_screen %}
         {{content}}
+    {% else %}
 
-      </div>
-    </div>
+        <div class="row">
 
-  {% endif %}
+            <div class="col-md-3">
+                <div class="docs-sidebar">
+                    {% include left_nav.html %}
+                </div>
+            </div>
 
+            <div class="col-md-9" role="main">
+                {{content}}
+            </div>
+        </div>
 
- {% if page.show_disqus %}
-   {% include disqus_addon.html %}
- {% endif %}
+    {% endif %} 
 
+    {% if page.show_disqus %}
+        {% include disqus_addon.html %}
+    {% endif %}
 
-  </div>
-
+</div>
 
 {% include foot.html %}

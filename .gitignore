@@ -3,7 +3,6 @@ Gemfile.lock
 /dist/bootstrap
 /dist/jquery
 /.idea
-<<<<<<< HEAD
-=======
 .DS_Store
->>>>>>> master
+/vendor
+/.bundle
