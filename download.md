@@ -229,6 +229,13 @@ To improve the speed and load time of your site, build Prebid.js for only the he
     </label>
   </div>
 </div>
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> Yuktamedia Analytics
+    </label>
+  </div>
+</div>
 
 </div>
 <br/>
