@@ -70,6 +70,9 @@ nav_sections:
     code: quick-start
     name: DEVELOPER QUICK START
   - top_nav: dev_docs
+    code: prebid-multi-format
+    name: PREBID MULTI-FORMAT (ALPHA)
+  - top_nav: dev_docs
     code: prebid-video
     name: PREBID VIDEO (BETA)
   - top_nav: dev_docs
@@ -87,6 +90,9 @@ nav_sections:
   - top_nav: dev_docs
     code: reference
     name: REFERENCE
+  - top_nav: dev_docs
+    code: features
+    name: FEATURES
   - top_nav: dev_docs
     code: adapters
     name: ADAPTERS
@@ -117,6 +123,10 @@ nav_sections:
   - top_nav: support
     code: support
     name: SUPPORT
+
+  - top_nav: videos
+    code: videos
+    name: VIDEOS
 
   - top_nav: principles
     code: principles
@@ -152,9 +162,9 @@ nav_sections:
 
 port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor']
 
-gems:
+plugins:
   - jekyll-mentions
   - jemoji
   - jekyll-redirect-from

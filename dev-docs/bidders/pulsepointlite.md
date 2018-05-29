@@ -8,9 +8,10 @@ nav_section: reference
 
 hide: true
 
-biddercode: pulseLite
+biddercode: pulsepointLite
 
 biddercode_longer_than_12: true
+media_types: native
 
 ---
 

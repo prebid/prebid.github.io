@@ -62,7 +62,7 @@ The Prebid Server settings (defined by the [`pbjs.setConfig`]({{site.baseurl}}/d
 
 The code in your Prebid configuration block should look something like the following (unless you want to show video ads, in which case see [Using Prebid Server to show video ads](#prebid-server-video-openrtb) below).
 
-See [The `s2sConfig` object](#the-s2sconfig-object) below for definitions of the keys in the `setS2SConfig` object.
+See [The `s2sConfig` object]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) for definitions of the keys in the `s2sConfig` object.
 
 {% highlight js %}
 var pbjs = pbjs || {};
@@ -76,7 +76,10 @@ pbjs.que.push(function() {
             bidders: ['appnexus', 'pubmatic'],
             timeout: 1000,
             adapter: 'prebidServer',
-            endpoint: 'https://prebid.adnxs.com/pbs/v1/auction'
+            endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
+            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+            cookieSet: true,
+            cookiesetUrl: 'https://acdn.adnxs.com/cookieset/cs.js'
         }
     });
 
@@ -90,29 +93,42 @@ pbjs.que.push(function() {
 });
 {% endhighlight %}
 
-<a name="the-s2sconfig-object" />
+Optionally, if you chose to use one of the existing Prebid.org members as your server host, you can also use the defaultVendor property.  This property represents the vendor's default settings for the s2sConfig.  When used, these settings will be automatically populated to the s2sConfig, saving the need to individually list out all data points. Currently 'appnexus' and 'rubicon' are supported values.
 
-### The `s2sConfig` object
+These defaults can still be overridden by simply including the property with the value you want in the config.  The following example represents the bare minimum configuration required when using the defaultVendor option:
 
-See below for a list of the fields in the `s2sConfig` object:
+{% highlight js %}
+var pbjs = pbjs || {};
 
-{: .table .table-bordered .table-striped }
-| Field       | Type          | Required? | Description                                                            |
-|-------------+---------------+-----------+------------------------------------------------------------------------|
-| `accountId` | String        | X         | Prebid Server account ID                                               |
-| `enabled`   | Boolean       | X         | Enables S2S; default: `false`                                          |
-| `bidders`   | Array[String] | X         | List of bidder codes; must have been enabled during Prebid.js build    |
-| `timeout`   | Number        |           | Bidder timeout, in milliseconds; default: `1000`                       |
-| `adapter`   | String        |           | Adapter code; default: `"prebidServer"`                                |
-| `endpoint`  | String        |           | Will override the default endpoint                                     |
-| `cookieSet` | Boolean       |           | Set to `false` to opt out of cookieset/link rewriting; default: `true` |
-| `secure`    | Integer       |           | Override Prebid Server's determination of whether the request needs secure assets. Set to `1` to force secure assets on the response, or `0` for non-secure assets. |
+pbjs.que.push(function() {
+
+    pbjs.setConfig({
+        s2sConfig: {
+            accountId: '1',            
+            bidders: ['appnexus', 'pubmatic'],
+            defaultVendor: 'appnexus'
+        }
+    });
+
+    var adUnits = [{
+        code: '/19968336/header-bid-tag-1',
+        sizes: sizes,
+        bids: [{
+            /* Etc. */
+        }]
+    }];
+});
+{% endhighlight %}
+
+{: .alert.alert-info :}
+**OpenRTB Endpoint**  
+If your `s2sConfig.endpoint` points to a url containing the path `openrtb2/auction`, such as the AppNexus-hosted endpoint https://prebid.adnxs.com/pbs/v1/openrtb2/auction', Prebid will communicate with that endpoint using the OpenRTB protocol.  
 
 {: .alert.alert-info :}
 **Additional `cookieSet` details**  
-We recommend that users leave `cookieSet` enabled since it's essential for server-to-server header bidding that we have a persistent cookie for improved cookie match rates.  If set to `false`:  
-&bull; Prebid.js will not overwrite all links on page to redirect through an AppNexus persistent cookie URL  
-&bull; Prebid.js will not display a footer message on Safari indicating that AppNexus will be placing cookies on browsers that block 3rd party cookies  
+If set to `true`:  
+&bull; Prebid.js will overwrite all links on page to redirect through a persistent cookie URL  
+&bull; Prebid.js will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies
 
 <a name="prebid-server-video-openrtb" />
 
@@ -120,14 +136,17 @@ We recommend that users leave `cookieSet` enabled since it's essential for serve
 
 If you are using Prebid Server and you want to show video ads, you must use [OpenRTB video parameters](https://www.iab.com/guidelines/real-time-bidding-rtb-project/) in your Prebid ad unit as shown below.
 
+{: .alert.alert-warning :}
+The `mimes` parameter is required by OpenRTB.  For all other parameters, check with your server-side header bidding partner.
+
 ```javascript
 var adUnit1 = {
     code: 'videoAdUnit',
-    sizes: [400, 600],
     mediaTypes: {
         video: {
-            context: "instream",
+            context: 'instream',
             mimes: ['video/mp4'],
+            playerSize: [400, 600],
             minduration: 1,
             maxduration: 2,
             protocols: [1, 2],

@@ -4,6 +4,9 @@ title: Module - Currency
 description: Converts bids to the ad server currency
 top_nav_section: dev_docs
 nav_section: modules
+module_code : currency
+display_name : Currency
+enable_download : true
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -246,14 +249,9 @@ a currency object that may contain several parameters:
 
 Prebid.org hosts a conversion file at [http://currency.prebid.org/latest.json](http://currency.prebid.org/latest.json). This file is created daily from the public data at [fixer.io](http://api.fixer.io/latest) and cached on a CDN. Notes:
 
+* The file is also available at [https://currency.prebid.org/latest.json](https://currency.prebid.org/latest.json)
 * The conversions available in Prebid.org's file are all of those available at fixer.io.
 * To make sure this file doesn't become stale, Prebid.org members are alerted if this file becomes older than 2 days.
-
-<div class="alert alert-danger" role="alert">
-<p>
-Note that Prebid.org's currency file doesn't currently support secure loading over HTTPS.
-</p>
-</div>
 
 ### Format
 
@@ -263,7 +261,7 @@ The file format expected by the Prebid platform is illustrated by the example be
 
 ``` text
 {
-   "dataAsOf":"2017-04-24",
+   "dataAsOf":"2018-03-13",
    "conversions":{
       "USD":{        // from USD to other currencies
          "AUD":1.321,
