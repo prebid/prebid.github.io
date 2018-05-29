@@ -1,8 +1,4 @@
 
-// ===== Parse ====/
-Parse.initialize("6ZZDyvR3T7JcfxPqRqdkvW6q89IKoSjRJxpDc8gw", "bvzQPaz6EILUCspXr38z2kZDpRXqwhSy9AtBrLrP");
-
-
 function submitEmail() {
   var email = $('#email-field').val();
   var site = $('#site-field').val();
@@ -27,7 +23,7 @@ function newVisitor(email, site, iab_vote) {
     },
     error: function(visitor, error) {
       // Show the error message somewhere and let the user try again.
-      console.log("Submit failed :( Please send an email to info@prebid.org. Thank you!" + error);
+      console.log("Submit failed :( Please send an email to support@prebid.org. Thank you!" + error);
       console.log(error);
     }
   });
@@ -59,31 +55,11 @@ function newComment(comment, email, site) {
     },
     error: function(commentObj, error) {
       // Show the error message somewhere and let the user try again.
-      alert("Submit failed :( Please send an email to info@prebid.org. Thank you!");
+      alert("Submit failed :( Please send an email to support@prebid.org. Thank you!");
     }
   });
 
 }
-
-function newDownload(email, company, bidders) {
-  var Download = Parse.Object.extend("Download");
-
-  var downloadObj = new Download();
-  downloadObj.set("email", email);
-  downloadObj.set("company", company);
-  downloadObj.set("bidders", bidders)
-  
-  downloadObj.save(null, {
-    success: function(downloadObj) {
-      console.log('parse succeeded');
-    },
-    error: function(downloadObj, error) {
-      console.log('parse failed');
-    }
-  });
-
-}
-
 
 $( document ).ready(function() {
   $('#form-company').submit(function(event) {
@@ -132,7 +108,7 @@ function newCompany(company_type, name, logo, email, intro) {
     error: function(companyObj, error) {
       // Show the error message somewhere and let the user try again.
       console.log(error);
-      alert("Submit failed :( Please send an email to info@prebid.org. Thank you!");
+      alert("Submit failed :( Please send an email to support@prebid.org. Thank you!");
     }
   });
 }

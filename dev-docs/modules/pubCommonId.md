@@ -4,8 +4,9 @@ title: Module - Publisher Common ID
 description: User ID persisted in first party domain
 top_nav_section: dev_docs
 nav_section: modules
-module_code : pubcid
+module_code : pubCommonId
 display_name : Publisher Common ID
+enable_download : true
 ---
 
 <div class="bs-docs-section" markdown="1">

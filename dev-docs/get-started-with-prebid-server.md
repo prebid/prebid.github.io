@@ -76,10 +76,37 @@ pbjs.que.push(function() {
             bidders: ['appnexus', 'pubmatic'],
             timeout: 1000,
             adapter: 'prebidServer',
-            endpoint: 'https://prebid.adnxs.com/pbs/v1/auction'
-            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+            endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
+            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
             cookieSet: true,
             cookiesetUrl: 'https://acdn.adnxs.com/cookieset/cs.js'
+        }
+    });
+
+    var adUnits = [{
+        code: '/19968336/header-bid-tag-1',
+        sizes: sizes,
+        bids: [{
+            /* Etc. */
+        }]
+    }];
+});
+{% endhighlight %}
+
+Optionally, if you chose to use one of the existing Prebid.org members as your server host, you can also use the defaultVendor property.  This property represents the vendor's default settings for the s2sConfig.  When used, these settings will be automatically populated to the s2sConfig, saving the need to individually list out all data points. Currently 'appnexus' and 'rubicon' are supported values.
+
+These defaults can still be overridden by simply including the property with the value you want in the config.  The following example represents the bare minimum configuration required when using the defaultVendor option:
+
+{% highlight js %}
+var pbjs = pbjs || {};
+
+pbjs.que.push(function() {
+
+    pbjs.setConfig({
+        s2sConfig: {
+            accountId: '1',            
+            bidders: ['appnexus', 'pubmatic'],
+            defaultVendor: 'appnexus'
         }
     });
 
@@ -99,9 +126,9 @@ If your `s2sConfig.endpoint` points to a url containing the path `openrtb2/aucti
 
 {: .alert.alert-info :}
 **Additional `cookieSet` details**  
-We recommend that users leave `cookieSet` enabled since it's essential for server-to-server header bidding that we have a persistent cookie for improved cookie match rates.  If set to `false`:  
-&bull; Prebid.js will not overwrite all links on page to redirect through a persistent cookie URL  
-&bull; Prebid.js will not display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies  
+If set to `true`:  
+&bull; Prebid.js will overwrite all links on page to redirect through a persistent cookie URL  
+&bull; Prebid.js will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies
 
 <a name="prebid-server-video-openrtb" />
 
@@ -117,7 +144,7 @@ var adUnit1 = {
     code: 'videoAdUnit',
     mediaTypes: {
         video: {
-            context: "instream",
+            context: 'instream',
             mimes: ['video/mp4'],
             playerSize: [400, 600],
             minduration: 1,
