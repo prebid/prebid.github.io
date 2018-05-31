@@ -122,7 +122,7 @@ pbjs.que.push(function() {
 
 {: .alert.alert-info :}
 **OpenRTB Endpoint**
-If your `s2sConfig.endpoint` points to a url containing the path `openrtb2/auction`, such as the AppNexus-hosted endpoint https://prebid.adnxs.com/pbs/v1/openrtb2/auction', Prebid will communicate with that endpoint using the OpenRTB protocol.
+If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, such as the AppNexus-hosted endpoint https://prebid.adnxs.com/pbs/v1/openrtb2/auction', Prebid will communicate with that endpoint using the OpenRTB protocol.
 
 {: .alert.alert-info :}
 **Additional `cookieSet` details**
