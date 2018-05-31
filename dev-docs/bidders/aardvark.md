@@ -1,12 +1,14 @@
 ---
 layout: bidder
-title: Aardvark
-description: Prebid Aardvark Bidder Adaptor
+title: Aardvark by RTK
+description: RTK's Prebid Aardvark Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
-hide: true
 biddercode: aardvark
 biddercode_longer_than_12: false
+hide: true
+prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
 ### bid params
