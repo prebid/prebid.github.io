@@ -16,7 +16,7 @@ nav_section: prebid-server
 Prebid Server improves your page's performance by running the header bidding auction on a server.
 This will improve your page's load time, which should improve your users' experience.
 
-The following adapters are supported by Prebid Server:
+The following adapters are supported by the latest tagged version of Prebid Server:
 
 <ul id="prebid-server-bidder-list"></ul>
 
