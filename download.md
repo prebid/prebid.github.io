@@ -254,7 +254,7 @@ Note if you receive an email with a broken link you most likely selected a confi
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> eplanning Analytics
+      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
     </label>
   </div>
 </div>
@@ -262,7 +262,7 @@ Note if you receive an email with a broken link you most likely selected a confi
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> realvu Analytics
+      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
     </label>
   </div>
 </div>
@@ -270,7 +270,7 @@ Note if you receive an email with a broken link you most likely selected a confi
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> vuble Analytics
+      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
     </label>
   </div>
 </div>
