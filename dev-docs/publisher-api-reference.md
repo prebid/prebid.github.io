@@ -29,7 +29,7 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
-  * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
+  * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
@@ -341,7 +341,7 @@ Use this method to get all of the bids that have won their respective auctions b
 
 <a name="module_pbjs.setTargetingForGPTAsync"></a>
 
-### pbjs.setTargetingForGPTAsync([codeArr])
+### pbjs.setTargetingForGPTAsync([codeArr], customSlotMatching)
 
 Set query string targeting on all GPT ad units. The logic for deciding query strings is described in the section Configure AdServer Targeting. Note that this function has to be called after all ad units on page are defined.
 
@@ -352,6 +352,7 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 | Param | Scope | Type | Description |
 | --- | --- | --- | -- |
 | [codeArr] | Optional | `array` | an array of adUnitCodes to set targeting for. |
+| customSlotMatching | Optional | `function` | gets a GoogleTag slot and returns a filter function for adUnitCode. |
 
 <hr class="full-rule">
 
