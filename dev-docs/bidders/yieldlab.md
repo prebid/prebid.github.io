@@ -26,3 +26,4 @@ gdpr_supported: true
 | `adslotId` | required | Yieldlab Adslot ID | '12345' |
 | `supplyId` | required | Yieldlab Supply ID. Please reach out to your account management for more information. | '12345' |
 | `adSize` | required | Override the default prebid size | '970x250' |
+| `targeting` | optional | Key-Value Targeting | { 'key1': 'value1', 'key2': 'value2'} |
