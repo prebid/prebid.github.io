@@ -6,6 +6,7 @@ top_nav_section: dev_docs
 nav_section: reference
 hide: true
 biddercode: adspirit
+prebid_1_0_supported: true
 biddercode_longer_than_12: false
 ---
 
@@ -13,8 +14,8 @@ biddercode_longer_than_12: false
 
 {: .table .table-bordered .table-striped } 
 
-| Name        | Scope                                 | Description                                      | Example             |
-| :---        | :----                                 | :----------                                      | :------             |
-| placementId | required                              | The placement ID                                 | `"12345"`           |
-| host        | required only for biddercode adspirit | The advertiser specific url provided by AdSpirit | `"adserver.url.de"` |
+| Name        | Scope                                 | Description                                      | Example                |
+| :---        | :----                                 | :----------                                      | :------                |
+| placementId | required                              | The placement ID                                 | `"5"`              |
+| host        | required only for biddercode adspirit | The advertiser specific url provided by AdSpirit | `"n1test.adspirit.de"` |
 
