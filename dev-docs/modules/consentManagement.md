@@ -6,13 +6,10 @@ top_nav_section: dev_docs
 nav_section: modules
 module_code : consentManagement
 display_name : GDPR ConsentManagement
-enable_download : false
+enable_download : true
 ---
 
 <div class="bs-docs-section" markdown="1">
-
-## PENDING RELEASE
-This module is still considered under development, but the core logic and integration steps documented here will very likely remain as described.
 
 # GDPR ConsentManagement Module
 {: .no_toc }
@@ -190,6 +187,101 @@ $(function(){
   $('.gdpr_supported').show();
 });
 </script>
+
+## Publishers not using an IAB-Compliant CMP
+
+Prebid.js and much of the ad industry rely on the IAB CMP standard for GDPR support, but there are some publishers who may have
+implemented different approach to meeting the privacy rules. Those publishers may utilize Prebid.js and the whole header bidding ecosystem if they build a translation layer between their consent method and the IAB method.
+
+At a high level this looks like:
+- build a window.__cmp() function which will be seen by Prebid
+- build a message receiver function if safeframes are in use
+- format consent data in a string according to the [IAB standard](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework)
+
+Below is sample code for implementing the stub functions. Sample code for formatting the consent string may be obtained [here](https://github.com/appnexus/cmp).
+
+{% highlight js %}
+var iabConsentData;  // build the IAB consent string
+var gdprApplies;     // true if gdpr Applies to the user, else false
+var hasGlobalScope;  // true if consent data was retrieved globally
+var responseCode;    // false if there was an error, else true
+var cmpLoaded;       // true if iabConsentData was loaded and processed
+(function(window, document) {
+    function addFrame() {
+        if (window.frames['__cmpLocator'])
+            return;
+        if ( document.body ) {
+            var body = document.body,
+                iframe = document.createElement('iframe');
+            iframe.name = '__cmpLocator';
+            iframe.style.display = 'none';
+            body.appendChild(iframe);
+        } else {
+            setTimeout(addFrame, 5);
+        }
+    }
+    addFrame();
+    function cmpMsgHandler(event) {
+        try {
+            var json = event.data;
+            var msgIsString = typeof json === "string";
+            if ( msgIsString ) {
+                json = JSON.parse(json);
+            }
+            var call = json.__cmpCall;
+            if (call) {
+                window.__cmp(call.command, call.parameter, function(retValue, success) {
+                    var returnMsg = {
+                        __cmpReturn: {
+                            returnValue: retValue, success: success, callId: call.callId
+                        }
+                    };
+                    event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*');
+                });
+            }
+        } catch (e) {}  // do nothing
+    }
+    function cmpFunc = function(command, version, callback) {
+        if (command === 'ping') {
+            callback({gdprAppliesGlobally: gdprApplies, cmpLoaded: cmpLoaded}, responseCode);
+        } else if (command === 'getConsentData') {
+            callback({consentData: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
+        } else if (command === 'getVendorConsents') {
+            callback({metadata: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
+        } else {
+            callback(undefined, false);
+        }
+    };
+    if ( typeof (__cmp) !== 'function' ) {
+        window.__cmp = cmpFunc;
+        window.__cmp.msgHandler = cmpMsgHandler;
+        if ( window.addEventListener ) {
+            window.addEventListener('message', cmpMsgHandler, false);
+        } else {
+            window.attachEvent('onmessage', cmpMsgHandler);
+        }
+    }
+})(window, document);
+{% endhighlight %}
+
+### Explanation of Parameters
+**iabConsentData**
+For how to generate the IAB consent string see the [IAB CMP 1.1 Spec](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework) and [IAB Consent String SDK](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/tree/master/Consent%20String%20SDK).
+
+**gdprApplies**
+How to generate the gdprApplies field:
+- True if the current user is in the European Economic Area (EEA) OR if the publisher wants to have all traffic considered in-scope for GDPR
+- False if it's known that the user is outside the EEA
+- Leave the attribute unspecified if user's location is unknown
+
+**hasGlobalScope**
+This should be set as true if consent data was retrieved from global "euconsent" cookie, or was it publisher-specific. For general purpose, set this to false.
+
+**responseCode**
+This should be false if there was some error in the consent data, true otherwise. False is the same as calling the callback with no parameters.
+
+**cmpLoaded**
+This should be be set to true once parameters above are processed.
 
 ## List of GDPR compliant Adapters
 
