@@ -2,13 +2,14 @@
 layout: bidder
 title: Playground XYZ
 description: Prebid Playground XYZ Bidder Adapter
+gdpr_supported: true
 
 top_nav_section: dev_docs
 nav_section: reference
 
 hide: true
 biddercode: playgroundxyz
-biddercode_longer_than_12: false
+biddercode_longer_than_12: true
 
 prebid_1_0_supported : true
 ---
