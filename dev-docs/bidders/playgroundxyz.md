@@ -8,7 +8,7 @@ nav_section: reference
 
 hide: true
 biddercode: playgroundxyz
-biddercode_longer_than_12: false
+biddercode_longer_than_12: true
 
 prebid_1_0_supported : true
 ---
