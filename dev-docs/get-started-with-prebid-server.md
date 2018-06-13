@@ -44,7 +44,7 @@ Prebid Server is an open source project.  [The source code is hosted under the P
 
 - Go to [the Prebid.org download page]({{site.baseurl}}/download.html), select all the demand adapters you want to work with, and include "Prebid Server".
   - Some Prebid Server demand adapters may not have a corresponding client-side adapter that's present on the download page.  In this case, just ensure to select "Prebid Server" as part of your build and you will be able to interact with these Prebid Server only bidders.
-  - In lieu of the point above, we still strongly recommend to select any listed demand adapters in your build.  These additional selections will allow any client-side features (such as userSyncs) to function as well as allow you to easily use any of the adapter's currently registered aliases.
+  - We still strongly recommend to select any listed demand adapters in your build.  These additional selections will allow any client-side features (such as userSyncs) to function as well as allow you to easily use any of the adapter's currently registered aliases.
 
 - For example, if you want to use AppNexus, Index Exchange, and Rubicon with Prebid Server, select:
   - *AppNexus*
@@ -128,7 +128,7 @@ If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, s
 
 {: .alert.alert-info :}
 **Aliasing Prebid Server only bidders**
-If you wish to set/use an alias for a Prebid Server only bidders, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
+If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
 
 {: .alert.alert-info :}
 **Additional `cookieSet` details**
