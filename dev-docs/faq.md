@@ -31,13 +31,13 @@ In both scenarios, your goal should be to see your inventory fill at the highest
 
 There is an analysis from the Prebid team here which may be useful:
 
-[How many bidders should I work with?]({{site.github.url}}/blog/how-many-bidders-for-header-bidding)
+[How many bidders should I work with?]({{site.baseurl}}/blog/how-many-bidders-for-header-bidding)
 
 ## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
 You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible. 
 
-In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings) to adjust any bidder that sends gross bids.
+In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings) to adjust any bidder that sends gross bids.
 
 ## Does Prebid.js support synchronous ad server tags?
 
@@ -70,6 +70,45 @@ In other words, you shouldn't have to do anything other than make sure your own 
 ```
 
 (Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)
+
+## How can I use Prebid Server in a mobile app post-bid scenario?
+
+Just schedule a [post-bid creative]({{site.baseurl}}/dev-docs/examples/postbid.html) in the ad server.
+
+1. Load the production Prebid JS package
+1. Set up the AdUnit
+1. Set the app and device objects with setConfig(). e.g.
+
+```
+pbjs.setConfig({
+    s2sConfig: {
+    ...
+    },
+    app: {
+        bundle: "com.test.app"
+    },
+    device: {
+         ifa: "6D92078A-8246-4BA4-AE5B-76104861E7DC"
+    }
+});
+```
+
+## How often is Prebid.js updated?
+
+See [the github release schedule](https://github.com/prebid/Prebid.js/blob/master/README.md) for more details.
+
+## How can I change the price granularity for different ad units?
+
+If you need different [price granularities]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) for different AdUnits (e.g. video and display), the only way for now is to make sure the auctions don't run at the same time. e.g. Run one of them first, then kick off the other in the bidsBackHandler. e.g. here's one approach:
+
+1. Call `setConfig` to define the priceGranularity for the first set of AdUnits
+1. Initiate the first auction with `requestBids`
+1. In the bidsBackHandler
+   1. Set the adserver targeting for the first auction
+   1. Call `setConfig` to define the priceGranularity for the second set of AdUnits
+   1. Initiate the second auction with `requestBids`
+   
+The handling of this scenario will be improved in a future release.
 
 ## Related Reading
 

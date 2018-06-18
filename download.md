@@ -28,7 +28,7 @@ $(function(){
   });
 
   $( ".selectpicker" ).change(function() {
-    if(this.value === '1.0.0') {
+    if(this.value.match(/1\.\d+\.\d+/i)) {
       $('.adapters .col-md-4').hide();
       $('.prebid_1_0').show();
     }
@@ -36,6 +36,10 @@ $(function(){
        $('.adapters .col-md-4').show();
     }
   });
+
+  //default to 1.x adapters:
+  $('.adapters .col-md-4').hide();
+  $('.prebid_1_0').show();
 });
 
 function submit_download() {
@@ -74,8 +78,6 @@ function submit_download() {
       buttn.removeClass('disabled');
       alert('Ran into an issue.'); // + e.responseText
     });
-
-    newDownload(form_data['email'], form_data['company'], form_data['bidders']);
 }
 
 function get_form_data() {
@@ -130,13 +132,16 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
+{: .alert.alert-success :}
+Note if you receive an email with a broken link you most likely selected a configuration that is not supported. Verify that each bidder / module is supported in the selected version. 
+
 <form>
 <div class="row">
 <h4>Select Prebid Version</h4>
 <select class="selectpicker">
   <!-- empty value indicates legacy --> 
-  <option value="">0.34.0</option>
-  <option>1.0.0</option>
+  <option value="1.13.0">1.13.0 - latest</option>
+  <option value="">0.34.13 - legacy not recommended</option>
 </select>
 
 
@@ -169,7 +174,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analtyics
+      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
     </label>
   </div>
 </div>
@@ -230,11 +235,63 @@ To improve the speed and load time of your site, build Prebid.js for only the he
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
+    </label>
+  </div>
+</div>
+
+
 </div>
 <br/>
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
+  {% if page.enable_download == false %}  
+    {% continue %}
+  {% endif %}
  <div class="col-md-4">
  <div class="checkbox">
   <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
@@ -291,7 +348,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
         <div class="alert alert-warning hide" role="alert" id="download-status"></div>
 
         <p>
-        Ran into problems? Email <code>info@prebid.org</code>
+        Ran into problems? Email <code>support@prebid.org</code>
         </p>
 
       </div>
