@@ -15,89 +15,67 @@ nav_section: prebid-mobile
 * TOC
 {:toc }
 
-Prebid Mobile helps app publishers by making the advantages of “traditional” web header bidding available to mobile app environments. This is accomplished by providing libraries that enable mobile app publishers to implement end-to-end, open source header bidding solutions.
+Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers. Use this library with your ad server's Mobile SDK to communicate with Prebid Server to request and receive bids over RTB. These bids can then compete directly with bids from your primary ad server.
+
+Prebid Mobile libraries are available for iOS and Android.
 
 ## Benefits and Features
 
 Some of the benefits to using the Prebid Mobile header bidding solution include:
 
 -   Provides a single integration point with Prebid Server, providing direct access to more mobile buyers.
--   Server-side configuration management; no need for developers to update the app to make configuration changes.
--   Prebid Mobile is a transparent, open source solution.
--   Created for integration with other prebid products and open source servers.
+-   Allows for server-side configuration management; no need for developers to update the app to make configuration changes.
+-   Provides a transparent, open source header bidding solution.
 -   Flattens mediation layers, reducing ad ops burden for managing mediation partners.
--   Latency is reduced compared to mediation.
+-   Reduces latency compared to mediation.
+-   Designed to integrate with Prebid Server, and can also integrate with any vendor hosting their own Prebid Server deployment (vendor must be registered in Prebid Mobile as a Prebid Server host).
+
+## Requirements
+
+-   **Prebid Server Configuration**  
+    You *must* have a Prebid Server account in order to use Prebid Mobile. Prebid Server is a server-based host that communicates bid requests and responses between Prebid Mobile and demand partners.  
+
+    To set up your Prebid Server account for Prebid Mobile, refer to [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
+
+-   **Primary Ad Server Setup**  
+    Prebid Mobile enables you to retrieve bids simultaneously from multiple demand partners outside of a single ad server. This header bidding process does not determine a final winning bid. Ad ops users need to set up line items associated with each ad unit on a primary ad server. Prebid Mobile will send bids (via the primary ad server SDK) to the primary ad server. This ad server will include the bids from the header bidding process in determining a winning bid. (See "How It Works" below.)
+
+-   **Prebid Mobile SDK**  
+    Mobile app developers implement header bidding through the Prebid Mobile SDK integration. SDKs are available for [iOS](https://github.com/prebid/prebid-mobile-ios) and [Android](https://github.com/prebid/prebid-mobile-android).
 
 ## How It Works
 
-Prebid Mobile works in conjunction with Prebid Server, demand partners, and your primary ad server to deliver programmable demand to your mobile app.
-
-### What You Need to Get Started
-
-Before you begin to use Prebid Mobile in your apps, you need to prepare your end-to-end system.
-
-**Mobile Developers**
-
-The following is a one-time setup process for *mobile developers*:
-
--   [Set up a Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
-
--   Download the Prebid Mobile SDK:
-    -   [SDK for iOS](https://github.com/prebid/prebid-mobile-ios)
-    -   [SDK for Android](https://github.com/prebid/prebid-mobile-android)
-
-After the initial setup, ad slots and line items will need to be set up and maintained:
-
--   *Mobile developers* register ad units with the Prebid Mobile framework.
-    -   [iOS Code Integration]({{site.github.url}}/prebid-mobile/code-integration-ios.html)
-    -   [Android Code Integration]({{site.github.url}}/prebid-mobile/code-integration-android.html)
-
-**Ad Ops**
-
--   *Ad ops team members* configure their primary ad server with Prebid Mobile line items targeted to key/values.
-    -   [Set Up Line Items for DFP]({{site.github.url}}/prebid-mobile/adops-line-item-setup-dfp.html)
-    -   [Set Up Line Items for MoPub]({{site.github.url}}/prebid-mobile/adops-line-item-setup-mopub.html)
-
-### Lifecycle of a Mobile Ad Call
-
-After you've set up Prebid Mobile and created your line items on your ad server, your ad calls go through the following workflow:
+The following diagram shows how the Prebid Mobile header bidding solution works.
 
 {: .pb-img.pb-lg-img :}
 ![How Prebid Mobile Works - Diagram]({{site.baseurl}}/assets/images/prebid-mobile/pbm-overview-flow.png)
 
-1.  Prebid Mobile calls Prebid Server, sending along ad unit information.
-2.  Prebid Server passes ad unit information on to the demand partners.
-3.  Each demand partner conducts an internal auction and sends the top bids to Prebid Server.
-4.  Prebid Server returns key/value data, including bid price, to the Prebid Mobile app.
-5.  Prebid Mobile sends this key/value data to the primary ad server. (This data will match the key/value targeting previously configured on Prebid line items by the ad ops team.)
-6.  Primary ad server sends winning line item information, including creative ad ID (or creative), to Prebid Mobile.
-7.  Prebid Mobile app displays the ad and sends tracking data to the primary ad server.
+1.  Prebid Mobile sends a request to Prebid Server.  
+    This request consists of the Prebid Server account ID and config ID for each tag included in the request.
 
-## Additional Information
+2.  Prebid Server constructs a bid request and passes it to the demand partners.  
+    An OpenRTB request is constructed for each demand partner from their Prebid Server adapter.
 
-The following resources are available for further information on working with Prebid Mobile:
+3.  Each demand partner returns a bid response to Prebid Server.  
+    The bid response includes the bid price and the creative content.
 
-### Mobile Developers
+4.  Prebid Server sends the bid responses to Prebid Mobile.
 
-**iOS**
+5.  Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK.  
+    This targeting will match the key/value targeting that was pre-configured on the prebid line items on the primary ad server.
 
--   [Targetting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)  
-    Learn about the parameters available in the iOS Prebid Mobile SDK.
+6.  If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JS to the ad server's SDK.
 
--   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-and-troubleshooting-ios)  
-    Instructions on troubleshooting issues you might encounter.
+7.  The creative JS will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
 
-**Android**
+## GDPR
 
--   [Targetting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)  
-    Learn about the parameters available in the Android Prebid Mobile SDK.
+Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](http://advertisingconsent.eu/).
 
--   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-and-troubleshooting-android)  
-    Instructions on troubleshooting issues you might encounter.
+For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
 
-### Ad Ops
-
--   [Price Granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity)  
-    Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
+For specific implementation details, see the "GDPR Consent" section here:
+-   [iOS - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)
+-   [Android - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)
 
 </div>
