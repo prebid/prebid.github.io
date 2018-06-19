@@ -16,9 +16,15 @@ nav_section: prebid-server
 Prebid Server improves your page's performance by running the header bidding auction on a server.
 This will improve your page's load time, which should improve your users' experience.
 
-The following adapters are supported by the latest tagged version of Prebid Server:
+Prebid Server supports different adapters from Prebid.js.
+The [latest Prebid Server release](https://github.com/prebid/prebid-server/releases/latest) supports:
 
 <ul id="prebid-server-bidder-list"></ul>
+
+If you want to report a bug which isn't listed, please [open an issue](https://github.com/prebid/prebid-server/issues/new)
+with a title that begins with `[{bidderName}]`.
+
+Bidder params are specified by JSON schemas. For more info, see [this tutorial](https://spacetelescope.github.io/understanding-json-schema/).
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**
@@ -172,13 +178,30 @@ var adUnit1 = {
 </div>
 <script type="text/javascript" async>
 (function() {
+    function newListLink(link, linkText) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = link;
+        a.innerHTML = linkText;
+        li.appendChild(a);
+        return li;
+    }
+    function insertBidderInfo(parentNode, bidderName) {
+        var thisElement = document.createElement("li")
+        var bidderNameElement = document.createElement("strong");
+        bidderNameElement.innerHTML = bidderName;
+        usefulLinks = document.createElement("ul");
+        usefulLinks.appendChild(newListLink("https://github.com/prebid/prebid-server/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Abug+%5B" + bidderName + "%5D+in%3Atitle+", "open bugs"));
+        usefulLinks.appendChild(newListLink("https://github.com/prebid/prebid-server/blob/master/static/bidder-params/" + bidderName + ".json", "bidder params"));
+        thisElement.appendChild(bidderNameElement);
+        thisElement.appendChild(usefulLinks);
+        parentNode.appendChild(thisElement);
+    }
     function onSuccess(bidders) {
         bidders.sort();
         var list = document.getElementById("prebid-server-bidder-list");
         for (var i = 0; i < bidders.length; i++) {
-            var thisElement = document.createElement("li")
-            thisElement.innerHTML = bidders[i]
-            list.appendChild(thisElement)
+            insertBidderInfo(list, bidders[i])
         }
     }
     function onError(status, err) {
