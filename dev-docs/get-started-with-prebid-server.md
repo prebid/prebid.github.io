@@ -21,10 +21,10 @@ The [latest Prebid Server release](https://github.com/prebid/prebid-server/relea
 
 <ul id="prebid-server-bidder-list"></ul>
 
-If you want to report a bug which isn't listed, please [open an issue](https://github.com/prebid/prebid-server/issues/new)
-with a title that begins with `[{bidderName}]`.
+If you want to report a bug which isn't listed, please [open an issue](https://github.com/prebid/prebid-server/issues/new).
+Use the bidder code at the beginning of the title. For example, `[indexExchange]` or `[sovrn]`.
 
-Bidder params are specified by JSON schemas. For more info, see [this tutorial](https://spacetelescope.github.io/understanding-json-schema/).
+The bidder params are specified by JSON schemas. For more details, see [this tutorial](https://spacetelescope.github.io/understanding-json-schema/).
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**
