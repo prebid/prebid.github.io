@@ -7,21 +7,21 @@ top_nav_section: dev_docs
 nav_section: prebid-server
 ---
 
+<script type="text/javascript" src="{{site.baseurl}}/assets/js/prebid-server-api.js"></script>
 <div class="bs-docs-section" markdown="1">
 
 # Get Started with Prebid Server
 {:.no_toc}
 
-This page has instructions for adding Prebid Server to Prebid.js.
+Prebid Server improves your page's performance by running the header bidding auction on a server.
+This will improve your page's load time, which should improve your users' experience.
 
-For many publishers, client-side header bidding is a balancing act between the inclusion of demand partners and impact to the page.
+The following adapters are supported by the latest tagged version of Prebid Server:
 
-Using Prebid Server, you can move demand partners server-side, eliminating most of the latency impact that comes with adding more partners.
-
-This should help you make more money without sacrificing user experience.
+<ul id="prebid-server-bidder-list"></ul>
 
 {: .alert.alert-success :}
-**Prebid Server is open source!**  
+**Prebid Server is open source!**
 Prebid Server is an open source project.  [The source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-server).
 
 * TOC
@@ -76,7 +76,7 @@ pbjs.que.push(function() {
             bidders: ['appnexus', 'pubmatic'],
             timeout: 1000,
             adapter: 'prebidServer',
-            endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
+            endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
             syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
             cookieSet: true,
             cookiesetUrl: 'https://acdn.adnxs.com/cookieset/cs.js'
@@ -104,7 +104,7 @@ pbjs.que.push(function() {
 
     pbjs.setConfig({
         s2sConfig: {
-            accountId: '1',            
+            accountId: '1',
             bidders: ['appnexus', 'pubmatic'],
             defaultVendor: 'appnexus'
         }
@@ -121,13 +121,13 @@ pbjs.que.push(function() {
 {% endhighlight %}
 
 {: .alert.alert-info :}
-**OpenRTB Endpoint**  
-If your `s2sConfig.endpoint` points to a url containing the path `openrtb2/auction`, such as the AppNexus-hosted endpoint https://prebid.adnxs.com/pbs/v1/openrtb2/auction', Prebid will communicate with that endpoint using the OpenRTB protocol.  
+**OpenRTB Endpoint**
+If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, such as the AppNexus-hosted endpoint https://prebid.adnxs.com/pbs/v1/openrtb2/auction', Prebid will communicate with that endpoint using the OpenRTB protocol.
 
 {: .alert.alert-info :}
-**Additional `cookieSet` details**  
-If set to `true`:  
-&bull; Prebid.js will overwrite all links on page to redirect through a persistent cookie URL  
+**Additional `cookieSet` details**
+If set to `true`:
+&bull; Prebid.js will overwrite all links on page to redirect through a persistent cookie URL
 &bull; Prebid.js will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies
 
 <a name="prebid-server-video-openrtb" />
@@ -170,3 +170,23 @@ var adUnit1 = {
 + [Add a Bidder Adapter to Prebid Server]({{site.baseurl}}/dev-docs/add-a-prebid-server-adapter.html)
 
 </div>
+<script type="text/javascript" async>
+(function() {
+    function onSuccess(bidders) {
+        bidders.sort();
+        var list = document.getElementById("prebid-server-bidder-list");
+        for (var i = 0; i < bidders.length; i++) {
+            var thisElement = document.createElement("li")
+            thisElement.innerHTML = bidders[i]
+            list.appendChild(thisElement)
+        }
+    }
+    function onError(status, err) {
+        var list = document.getElementById("prebid-server-bidder-list");
+        var err = document.createElement("span")
+        err.innerHTML = "Failed to fetch Prebid Server adapters. HTTP status: " + status + ". error: " + err;
+        list.parentNode.replaceChild(list, err)
+    }
+    pbs.fetchBidders(onSuccess, onError);
+})()
+</script>
