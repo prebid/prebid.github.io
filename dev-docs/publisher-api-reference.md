@@ -1539,7 +1539,7 @@ pbjs.setConfig({
 {% endhighlight %}
 _Note - iframe-based syncing is disabled by default.  Image-based syncing is enabled by default; it can be disabled by excluding all/certain bidders via the `filterSettings` object._
 
-Only certain adapters are allowed to sync -- either images or iframes:
+Only certain bidders are allowed to sync and only certain types of sync pixels:
 
 {% highlight js %}
 pbjs.setConfig({
@@ -1559,6 +1559,26 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+If you want to apply the same bidder inclusion/exlusion rules for both types of sync pixels, you can use the `all` object instead specifying both `image` and `iframe` objects like so:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        /* only these bidders are allowed to sync.  Both iframe and image pixels are permitted. */
+        filterSettings: {
+            all: {
+                bidders: ['abc', 'def', 'xyz'],
+                filter: 'include'
+            }
+        },
+        syncsPerBidder: 3, // and no more than 3 syncs at a time
+        syncDelay: 6000, // 6 seconds after the auction
+    }
+});
+{% endhighlight %}
+
+_Note - the `all` field is mutually exclusive and cannot be combined with the `iframe`/`image` fields in the `userSync` config.  This restriction is to promote clear logic as to how bidders will operate in regards to their `userSync` pixels.  If the fields are used together, this will be considered an invalid config and Prebid will instead use the default `userSync` logic (all image pixels permitted and all iframe pixels are blocked)._
 
 The same bidders can drop sync pixels, but the timing will be controlled by the page:
 
