@@ -71,7 +71,7 @@ adUnits.add(adUnit2);
 
 Once configuration is done, use the following API to initialize Prebid Mobile and start fetching Prebid ads for your list of ad units.
 
-Please use the one below for initialization:
+If you're using DFP as your primary ad server, use the API like this:
 ```
 // Register ad units for prebid.
 try {

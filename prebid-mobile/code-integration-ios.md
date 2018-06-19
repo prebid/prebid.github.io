@@ -77,7 +77,7 @@ PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdent
     	   andPrimaryAdServer:PBPrimaryAdServerDFP];
 ```
 
-The above example is for app using DFP as the primary ad server. If you're using MoPub, please use the API like this:
+The preceding example is for apps using DFP as the primary ad server. For apps using MoPub, modify step 3 to use PBPrimaryAdServerMoPub, as shown here:
 ```
 // 3. Register the ad units with Prebid Mobile to start bid fetching process
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
