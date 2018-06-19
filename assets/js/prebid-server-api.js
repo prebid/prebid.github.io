@@ -4,7 +4,11 @@ var pbs = function() {
     req.onreadystatechange = function() {
       if (req.readyState === 4) {
         if (req.status === 200) {
-          onSuccess(JSON.parse(req.responseText));
+          try {
+            onSuccess(JSON.parse(req.responseText));
+          } catch (e) {
+            onFailure(req.status, e.message)
+          }
         } else {
           onFailure(req.status, req.responseText);
         }

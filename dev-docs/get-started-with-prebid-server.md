@@ -184,7 +184,7 @@ var adUnit1 = {
     function onError(status, err) {
         var list = document.getElementById("prebid-server-bidder-list");
         var err = document.createElement("span")
-        err.innerHTML = "Failed to fetch Prebid Server adapters. HTTP status: " + status + ". response:  " + err;
+        err.innerHTML = "Failed to fetch Prebid Server adapters. HTTP status: " + status + ". error: " + err;
         list.parentNode.replaceChild(list, err)
     }
     pbs.fetchBidders(onSuccess, onError);
