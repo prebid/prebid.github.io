@@ -16,15 +16,8 @@ nav_section: prebid-server
 Prebid Server improves your page's performance by running the header bidding auction on a server.
 This will improve your page's load time, which should improve your users' experience.
 
-Prebid Server supports different adapters from Prebid.js.
-The [latest Prebid Server release](https://github.com/prebid/prebid-server/releases/latest) supports:
-
-<ul id="prebid-server-bidder-list"></ul>
-
-If you want to report a bug which isn't listed, please [open an issue](https://github.com/prebid/prebid-server/issues/new).
-Use the bidder code at the beginning of the title. For example, `[indexExchange]` or `[sovrn]`.
-
-The bidder params are specified by JSON schemas. For more details, see [this tutorial](https://spacetelescope.github.io/understanding-json-schema/).
+Prebid Server supports different adapters from Prebid.js. For info about Prebid Server adapters, see
+the [Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**
@@ -176,40 +169,3 @@ var adUnit1 = {
 + [Add a Bidder Adapter to Prebid Server]({{site.baseurl}}/dev-docs/add-a-prebid-server-adapter.html)
 
 </div>
-<script type="text/javascript" async>
-(function() {
-    function newListLink(link, linkText) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = link;
-        a.innerHTML = linkText;
-        li.appendChild(a);
-        return li;
-    }
-    function insertBidderInfo(parentNode, bidderName) {
-        var thisElement = document.createElement("li")
-        var bidderNameElement = document.createElement("strong");
-        bidderNameElement.innerHTML = bidderName;
-        usefulLinks = document.createElement("ul");
-        usefulLinks.appendChild(newListLink("https://github.com/prebid/prebid-server/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Abug+%5B" + bidderName + "%5D+in%3Atitle+", "open bugs"));
-        usefulLinks.appendChild(newListLink("https://github.com/prebid/prebid-server/blob/master/static/bidder-params/" + bidderName + ".json", "bidder params"));
-        thisElement.appendChild(bidderNameElement);
-        thisElement.appendChild(usefulLinks);
-        parentNode.appendChild(thisElement);
-    }
-    function onSuccess(bidders) {
-        bidders.sort();
-        var list = document.getElementById("prebid-server-bidder-list");
-        for (var i = 0; i < bidders.length; i++) {
-            insertBidderInfo(list, bidders[i])
-        }
-    }
-    function onError(status, err) {
-        var list = document.getElementById("prebid-server-bidder-list");
-        var err = document.createElement("span")
-        err.innerHTML = "Failed to fetch Prebid Server adapters. HTTP status: " + status + ". error: " + err;
-        list.parentNode.replaceChild(list, err)
-    }
-    pbs.fetchBidders(onSuccess, onError);
-})()
-</script>
