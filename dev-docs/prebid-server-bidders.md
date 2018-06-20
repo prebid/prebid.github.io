@@ -20,7 +20,7 @@ Not all Prebid.js adapters are in Prebid Server, and not all Prebid Server adapt
 
 All the Prebid Server bidders are listed below. Use the dropdowns to get more information about them.
 
-## What do you need?
+### Why are you here?
 
 <span>I want to </span>
 <select id="purpose-dropdown">
@@ -67,7 +67,7 @@ All the Prebid Server bidders are listed below. Use the dropdowns to get more in
         var button = newButton("https://github.com/prebid/prebid-server/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Abug+%5B" + bidder + "%5D+in%3Atitle+", "Do it!");
         output.appendChild(button);
       } else if (purpose == "file-bug") {
-        var button = newButton("https://github.com/prebid/prebid-server/issues/new?title=[" + bidder + "]+(your+bug+description+here)&body=Describe+the+adapter+bug+here+before+submitting", "Do it!");
+        var button = newButton("https://github.com/prebid/prebid-server/issues/new?title=[" + bidder + "]+(your+bug+description+here)&body=Describe+the+bug+here.+Include+a+sample+request+if+possible.", "Do it!");
         output.appendChild(button);
       } else {
         output.innerHTML = "Uh oh! This option was never implemented. Please <a href=\"https://github.com/prebid/prebid.github.io/issues/new\">file a bug</a> or <a href=\"https://github.com/prebid/prebid.github.io/compare\">submit a PR</a> to fix it.";
