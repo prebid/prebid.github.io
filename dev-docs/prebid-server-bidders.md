@@ -10,6 +10,12 @@ nav_section: prebid-server
 .output-workspace {
   margin-top: 3em;
 }
+.bidder-selection {
+  margin-bottom: 1em;
+}
+.bidder-selection input {
+  margin-right: 0.5em;
+}
 </style>
 <script type="text/javascript" src="{{site.baseurl}}/assets/js/prebid-server-api.js"></script>
 <div class="bs-docs-section" markdown="1">
@@ -18,23 +24,40 @@ nav_section: prebid-server
 
 Not all Prebid.js adapters are in Prebid Server, and not all Prebid Server adapters are in Prebid.js.
 
-All the Prebid Server bidders are listed below. Use the dropdowns to get more information about them.
+All the Prebid Server bidders are listed below. Select one, and then click one of the buttons for more details.
 
-### Why are you here?
+<fieldset id="bidder-selection" class="bidder-selection">
+  <legend>Choose a Bidder from the list</legend>
+</fieldset>
+
+<strong>Then select the option which applies to you...</strong>
 
 <span>I want to </span>
 <select id="purpose-dropdown">
   <option value="bidder-params">see the bidder params for</option>
-  <option value="see-bugs">see open bugs for</option>
+  <option value="see-bugs">see open bugs involving</option>
   <option value="file-bug">log a bug about</option>
 </select>
-<span> the </span>
-<select id="bidder-dropdown"></select>
-<span> adapter.</span>
+<span id="selected-bidder"></span>
 <div id="output-workspace" class="output-workspace"></div>
 </div>
 <script type="text/javascript" async>
 (function() {
+    function addBidder(parentNode, bidder, checked) {
+      var inputNode = document.createElement("input");
+      inputNode.type = "radio";
+      inputNode.id = bidder + "-choice";
+      inputNode.name = "bidder";
+      if (checked) {
+        inputNode.checked = true;
+      }
+      parentNode.appendChild(inputNode);
+      var labelNode = document.createElement("label");
+      labelNode.htmlFor = inputNode.id;
+      labelNode.innerHTML = bidder;
+      parentNode.appendChild(labelNode);
+      parentNode.appendChild(document.createElement("br"));
+    }
     function newOption(text) {
       var element = document.createElement("option");
       element.value = text;
@@ -50,11 +73,20 @@ All the Prebid Server bidders are listed below. Use the dropdowns to get more in
       });
       return button;
     }
-    function syncOutput() {
+    function getSelectedBidder() {
+      var radios = document.getElementsByName('bidder');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          return radios[i].id.substring(0, radios[i].id.length - 7);
+        }
+      }
+    }
+    function syncOutput(payload) {
       var output = document.getElementById("output-workspace");
       output.innerHTML = "";
       var purpose = document.getElementById("purpose-dropdown").value;
-      var bidder = document.getElementById("bidder-dropdown").value;
+      var bidder = getSelectedBidder();
+      document.getElementById("selected-bidder").innerHTML = bidder;
       if (purpose == "bidder-params") {
         var caveat = document.createElement("span");
         caveat.innerHTML = "Prebid Server enforces bidder params with <a href=\"https://spacetelescope.github.io/understanding-json-schema/\">JSON schemas.</a>. Today, the best documentation is the schema itself.";
@@ -75,20 +107,20 @@ All the Prebid Server bidders are listed below. Use the dropdowns to get more in
     }
     function onSuccess(bidders) {
         bidders.sort();
-        var bidderDropdown = document.getElementById("bidder-dropdown");
+        var bidderList = document.getElementById("bidder-selection");
         for (var i = 0; i < bidders.length; i++) {
-            bidderDropdown.appendChild(newOption(bidders[i]));
+            addBidder(bidderList, bidders[i], i === 0)
         }
         // syncOutput() & event listeners can only be attached after we've fetched the bidders. Otherwise `bidder-dropdown.value` is null.
         document.getElementById("purpose-dropdown").addEventListener("change", syncOutput)
-        document.getElementById("bidder-dropdown").addEventListener("change", syncOutput)
+        document.getElementById("bidder-selection").addEventListener("change", syncOutput)
         syncOutput();
     }
     function onError(status, err) {
         var dropdown = document.getElementById("bidder-dropdown");
-        var err = document.createElement("span")
-        err.innerHTML = "{Failed to fetch adapters from Prebid Server. Try reloading the page. HTTP status: " + status + ". error: " + err + "}";
-        dropdown.parentNode.replaceChild(dropdown, err)
+        var errElement = document.createElement("span")
+        errElement.innerHTML = "{Failed to fetch adapters from Prebid Server. Try reloading the page. HTTP status: " + status + ". error: " + err + "}";
+        dropdown.parentNode.replaceChild(errElement, dropdown)
     }
 
     pbs.fetchBidders(onSuccess, onError);
