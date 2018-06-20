@@ -7,7 +7,6 @@ top_nav_section: dev_docs
 nav_section: prebid-server
 ---
 
-<script type="text/javascript" src="{{site.baseurl}}/assets/js/prebid-server-api.js"></script>
 <div class="bs-docs-section" markdown="1">
 
 # Get Started with Prebid Server
