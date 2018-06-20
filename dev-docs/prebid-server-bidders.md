@@ -16,11 +16,15 @@ nav_section: prebid-server
 
 # Prebid Server Bidders
 
-Not all Prebid.js adapters are in Prebid Server, and not all Prebid Server adapters are in Prebid.js.
+Prebid Server requires a different implementation for each demand source, so not all Prebid.js adapters are in Prebid Server, and vice versa.
 
-All the Prebid Server bidders are listed below. Use the dropdowns to get more information about them.
+All the Prebid Server bidders are listed below.
 
-### Why are you here?
+<ul id="prebid-server-bidder-list"></ul>
+
+### Bidder Details
+
+Use the dropdowns below to get more information about each.
 
 <span>I want to </span>
 <select id="purpose-dropdown">
@@ -75,6 +79,14 @@ All the Prebid Server bidders are listed below. Use the dropdowns to get more in
     }
     function onSuccess(bidders) {
         bidders.sort();
+	// populate the unordered list
+        var list = document.getElementById("prebid-server-bidder-list");
+        for (var i = 0; i < bidders.length; i++) {
+            var thisElement = document.createElement("li")
+            thisElement.innerHTML = bidders[i]
+            list.appendChild(thisElement)
+        }
+	// populate the dropdown
         var bidderDropdown = document.getElementById("bidder-dropdown");
         for (var i = 0; i < bidders.length; i++) {
             bidderDropdown.appendChild(newOption(bidders[i]));
@@ -85,10 +97,16 @@ All the Prebid Server bidders are listed below. Use the dropdowns to get more in
         syncOutput();
     }
     function onError(status, err) {
+        var list = document.getElementById("prebid-server-bidder-list");
+        var ulErr = document.createElement("span");
+        ulErr.innerHTML = "<ul><strong>Failed to fetch Prebid Server adapters</strong>. HTTP status: " + status + ". error: " + err + "</ul>";
+        list.parentNode.replaceChild(ulErr, list);
+
+
         var dropdown = document.getElementById("bidder-dropdown");
-        var err = document.createElement("span")
-        err.innerHTML = "{Failed to fetch adapters from Prebid Server. Try reloading the page. HTTP status: " + status + ". error: " + err + "}";
-        dropdown.parentNode.replaceChild(dropdown, err)
+        var dropErr = document.createElement("span");
+        dropErr.innerHTML = "{Error}";
+        dropdown.parentNode.replaceChild(dropErr, dropdown);
     }
 
     pbs.fetchBidders(onSuccess, onError);
