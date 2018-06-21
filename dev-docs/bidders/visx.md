@@ -8,10 +8,11 @@ hide: true
 biddercode: visx
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
 ### Note
-The VIS.X adaptor requires setup and approval from your YOC account manager team, even for existing YOC publishers. Please reach out to your account manager to enable Prebid.js for your account.
+The YOC VIS.X adaptor requires setup and approval from your YOC account manager team, even for existing YOC publishers. Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Bid params
 
