@@ -16,6 +16,9 @@ nav_section: prebid-server
 .bidder-selection input {
   margin-right: 0.5em;
 }
+.bidder-fetch-error {
+  margin-left: 40px;
+}
 </style>
 <script type="text/javascript" src="{{site.baseurl}}/assets/js/prebid-server-api.js"></script>
 <div class="bs-docs-section" markdown="1">
@@ -118,8 +121,9 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
     }
     function onError(status, err) {
         var selection = document.getElementById("bidder-selection");
-        var errElement = document.createElement("span")
-        errElement.innerHTML = "<ul><strong>Failed to fetch adapters from Prebid Server.</strong> Try reloading the page. HTTP status: " + status + ". error: " + err + "}";
+        var errElement = document.createElement("p");
+        errElement.className = "bidder-fetch-error"
+        errElement.innerHTML = "<strong>Failed to fetch adapters from Prebid Server.</strong> Try reloading the page. HTTP status: " + status + ". error: " + err;
         selection.parentNode.replaceChild(errElement, selection)
     }
 
