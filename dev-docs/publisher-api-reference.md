@@ -1064,6 +1064,7 @@ See below for usage examples.
 
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
++ [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1104,9 +1105,27 @@ Note that it's possible for the timeout to be triggered later than expected, lea
 With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.
 For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
 
-<a name="setConfig-Send-All-Bids" />
+#### Max Requests Per Origin
+
+<a name="setConfig-Max-Requests-Per-Origin" />
+
+Since browsers have a limit of how many requests they will allow to a specific domain before they block, Prebid.js
+will queue auctions that would cause requests to a specific origin to exceed that limit.  The limit is different 
+for each browser. Prebid.js defaults to a max of `4` requests per origin.  That value can be configured with 
+`maxRequestsPerOrigin`.
+
+{% highlight js %}
+// most browsers allow at least 6 requests, but your results may vary for your user base.  Sometimes using all 
+// `6` requests can impact performance negatively for users with poor internet connections.
+pbjs.setConfig({ maxRequestsPerOrigin: 6 });
+
+// to emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set it to `1`.
+pbjs.setConfig({ maxRequestsPerOrigin: 1 });
+{% endhighlight %}
 
 #### Send All Bids
+
+<a name="setConfig-Send-All-Bids" />
 
 Sending all bids is the default, but should you wish to turn it off:
 
