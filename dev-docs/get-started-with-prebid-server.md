@@ -7,7 +7,6 @@ top_nav_section: dev_docs
 nav_section: prebid-server
 ---
 
-<script type="text/javascript" src="{{site.baseurl}}/assets/js/prebid-server-api.js"></script>
 <div class="bs-docs-section" markdown="1">
 
 # Get Started with Prebid Server
@@ -16,9 +15,8 @@ nav_section: prebid-server
 Prebid Server improves your page's performance by running the header bidding auction on a server.
 This will improve your page's load time, which should improve your users' experience.
 
-The following adapters are supported by the latest tagged version of Prebid Server:
-
-<ul id="prebid-server-bidder-list"></ul>
+Prebid Server supports different adapters from Prebid.js. For info about Prebid Server adapters, see
+the [Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**
@@ -176,23 +174,3 @@ var adUnit1 = {
 + [Add a Bidder Adapter to Prebid Server]({{site.baseurl}}/dev-docs/add-a-prebid-server-adapter.html)
 
 </div>
-<script type="text/javascript" async>
-(function() {
-    function onSuccess(bidders) {
-        bidders.sort();
-        var list = document.getElementById("prebid-server-bidder-list");
-        for (var i = 0; i < bidders.length; i++) {
-            var thisElement = document.createElement("li")
-            thisElement.innerHTML = bidders[i]
-            list.appendChild(thisElement)
-        }
-    }
-    function onError(status, err) {
-        var list = document.getElementById("prebid-server-bidder-list");
-        var err = document.createElement("span")
-        err.innerHTML = "Failed to fetch Prebid Server adapters. HTTP status: " + status + ". error: " + err;
-        list.parentNode.replaceChild(list, err)
-    }
-    pbs.fetchBidders(onSuccess, onError);
-})()
-</script>
