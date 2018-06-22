@@ -59,7 +59,7 @@ function submit_download() {
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://ec2-35-170-245-39.compute-1.amazonaws.com/download",
+        url: "http://js-download.prebid.org/download",
         //dataType: 'json',
         data: form_data
     })
