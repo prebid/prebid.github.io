@@ -1172,7 +1172,7 @@ pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
 
 #### Publisher Domain
 
-Set the publisher's domain where Prebid is running, for cross-domain iFrame communication:
+Set the publisher's domain where Prebid is running, for cross-domain iframe communication:
 
 {% highlight js %}
 pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
@@ -1374,11 +1374,9 @@ For descriptions of all the properties that control user syncs, see the table be
 | Attribute        | Type    | Description                                                                                             |
 |------------------+---------+---------------------------------------------------------------------------------------------------------|
 | `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.                                               |
-| `pixelEnabled`   | Boolean | Enable/disable the use of pixels for user syncing.  Default: `true`.                                    |
-| `iframeEnabled`  | Boolean | Enable/disable the use of iFrames for syncing. Default: `false`.                                        |
+| `filterSettings` | Object  | Configure lists of adapters to include or exclude their user syncing based on the pixel type (image/iframe). |
 | `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
 | `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
-| `enabledBidders` | Array   | Trusted adapters which are allowed to do user syncing.                                                  |
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
@@ -1407,28 +1405,62 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-Allow iFrame-based syncs:
+Allow iframe-based syncs (the presence of a valid `filterSettings.iframe` object automatically enables iframe type user-syncing):
 
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        iframeEnabled: true
+        filterSettings: {
+            iframe: {
+                bidders: ['*'],   // '*' means all bidders
+                filter: 'include'
+            }
+        }
     }
 });
 {% endhighlight %}
+_Note - iframe-based syncing is disabled by default.  Image-based syncing is enabled by default; it can be disabled by excluding all/certain bidders via the `filterSettings` object._
 
-Only certain adapters are allowed to sync -- either images or iFrames:
+Only certain bidders are allowed to sync and only certain types of sync pixels:
 
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        enabledBidders: ['abc', 'xyz'], // only these bidders are allowed to sync
-        iframeEnabled: true,
+        filterSettings: {
+            iframe: {
+                bidders: ['def'],  // only this bidder is excluded from syncing iframe pixels, all other bidders are allowed
+                filter: 'exclude'
+            },
+            image: {
+                bidders: ['abc', 'def', 'xyz'],  //only these 3 bidders are allowed to sync image pixels
+                filter: 'include'
+            }
+        },
         syncsPerBidder: 3, // and no more than 3 syncs at a time
         syncDelay: 6000, // 6 seconds after the auction
     }
 });
 {% endhighlight %}
+
+If you want to apply the same bidder inclusion/exlusion rules for both types of sync pixels, you can use the `all` object instead specifying both `image` and `iframe` objects like so:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        /* only these bidders are allowed to sync.  Both iframe and image pixels are permitted. */
+        filterSettings: {
+            all: {
+                bidders: ['abc', 'def', 'xyz'],
+                filter: 'include'
+            }
+        },
+        syncsPerBidder: 3, // and no more than 3 syncs at a time
+        syncDelay: 6000, // 6 seconds after the auction
+    }
+});
+{% endhighlight %}
+
+_Note - the `all` field is mutually exclusive and cannot be combined with the `iframe`/`image` fields in the `userSync` config.  This restriction is to promote clear logic as to how bidders will operate in regards to their `userSync` pixels.  If the fields are used together, this will be considered an invalid config and Prebid will instead use the default `userSync` logic (all image pixels permitted and all iframe pixels are blocked)._
 
 The same bidders can drop sync pixels, but the timing will be controlled by the page:
 
@@ -1436,7 +1468,12 @@ The same bidders can drop sync pixels, but the timing will be controlled by the 
 pbjs.setConfig({
     userSync: {
         /* only these bidders are allowed to sync, and only image pixels */
-        enabledBidders: ['abc', 'xyz'],
+        filterSettings: {
+            image: {
+                bidders: ['abc', 'def', 'xyz'],
+                filter: 'include'
+            }
+        },
         enableOverride: true // publisher will call `pbjs.triggerUserSyncs()`
     }
 });
@@ -1454,8 +1491,8 @@ pbjs.triggerUserSyncs();
 
 The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-User-Syncs) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
 
-* Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
-* Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
+* Removes undesired sync types. (i.e. blocks iframe pixels if `filterSettings.iframe` wasn't declared)
+* Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the `filterSettings` object)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
