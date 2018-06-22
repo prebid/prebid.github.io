@@ -72,7 +72,7 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
       button.type = "button";
       button.innerHTML = text;
       button.addEventListener("click", function() {
-        window.location = link;
+        window.open(link);
       });
       return button;
     }
