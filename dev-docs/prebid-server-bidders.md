@@ -37,6 +37,7 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
 
 <span>I want to </span>
 <select id="purpose-dropdown">
+  <option value="see-details">see details about</option>
   <option value="bidder-params">see the bidder params for</option>
   <option value="see-bugs">see open bugs involving</option>
   <option value="file-bug">log a bug about</option>
@@ -76,6 +77,15 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
       });
       return button;
     }
+    function makeList(elements) {
+      var ul = document.createElement("ul");
+      for (var i = 0; i < elements.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = elements[i];
+        ul.appendChild(li);
+      }
+      return ul;
+    }
     function getSelectedBidder() {
       var radios = document.getElementsByName('bidder');
       for (var i = 0; i < radios.length; i++) {
@@ -87,10 +97,34 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
     function syncOutput(payload) {
       var output = document.getElementById("output-workspace");
       output.innerHTML = "";
+      function showBidderInfo(info) {
+        var contact = document.createElement("p");
+        contact.textContent = "Contact email: " + info.maintainer.email;
+        output.appendChild(contact);
+        function process(capabilities, source, client) {
+          if (capabilities) {
+            var site  = document.createElement("p");
+            site.textContent = "For " + source + " traffic, this bidder supports the following Media Types:";
+            output.appendChild(site);
+            output.appendChild(makeList(capabilities.mediaTypes));
+          } else {
+            var noSite  = document.createElement("p");
+            noSite.textContent = "This bidder does not support " + source + " traffic. Don't use it in " + client + ".";
+            output.appendChild(noSite);
+          }
+        }
+        process(info.capabilities.site, "Web", "Prebid.js");
+        process(info.capabilities.app, "Mobile App", "Prebid Mobile");
+      }
+      function onBidderInfoErr(status, err) {
+        var errMsg = document.createElement("p");
+        errMsg.innerHTML = "Failed to fetch bidder info. Try again later. HTTP status: " + status + ", body: " + err;
+        output.appendChild(errMsg);
+      }
       var purpose = document.getElementById("purpose-dropdown").value;
       var bidder = getSelectedBidder();
       document.getElementById("selected-bidder").innerHTML = bidder;
-      if (purpose == "bidder-params") {
+      if (purpose === "bidder-params") {
         var caveat = document.createElement("span");
         caveat.innerHTML = "Prebid Server enforces bidder params with <a href=\"https://spacetelescope.github.io/understanding-json-schema/\">JSON schemas.</a>. Today, the best documentation is the schema itself.";
         var button = newButton("https://github.com/prebid/prebid-server/blob/master/static/bidder-params/" + bidder + ".json", "show me the schema");
@@ -98,10 +132,12 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
         output.appendChild(document.createElement("br"));
         output.appendChild(document.createElement("br"));
         output.appendChild(button);
-      } else if (purpose == "see-bugs") {
+      } else if (purpose === "see-details") {
+        pbs.fetchBidderInfo(bidder, showBidderInfo, onBidderInfoErr);
+      } else if (purpose === "see-bugs") {
         var button = newButton("https://github.com/prebid/prebid-server/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Abug+%5B" + bidder + "%5D+in%3Atitle+", "Do it!");
         output.appendChild(button);
-      } else if (purpose == "file-bug") {
+      } else if (purpose === "file-bug") {
         var button = newButton("https://github.com/prebid/prebid-server/issues/new?title=[" + bidder + "]+(your+bug+description+here)&body=Describe+the+bug+here.+Include+a+sample+request+if+possible.", "Do it!");
         output.appendChild(button);
       } else {
