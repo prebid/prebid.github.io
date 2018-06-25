@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Gamoshi Gambid
+title: Gamoshi
 description: Prebid Gambid Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
