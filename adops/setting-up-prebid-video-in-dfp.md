@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Setting up Prebid Video in DFP (Beta)
+title: Setting up Prebid Video in DFP
 head_title: Setting up Prebid Video in DFP
 description: Setting up Prebid Video in DFP
 pid: 3
@@ -11,7 +11,7 @@ nav_section: tutorials
 
 <div class="bs-docs-section" markdown="1">
 
-# Setting up Prebid Video in DFP (Beta)
+# Setting up Prebid Video in DFP
 {: .no_toc}
 
 This page describes how to set up video creatives in DFP for use with Prebid.js.

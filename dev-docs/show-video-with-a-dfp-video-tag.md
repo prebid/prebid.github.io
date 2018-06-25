@@ -10,7 +10,7 @@ nav_section: prebid-video
 
 <div class="bs-docs-section" markdown="1">
 
-# Show Video Ads with DFP (Beta)
+# Show Video Ads with DFP
 {: .no_toc}
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
