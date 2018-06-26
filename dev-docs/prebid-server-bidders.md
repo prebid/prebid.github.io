@@ -77,6 +77,11 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
       });
       return button;
     }
+    function newParagraph(text) {
+      var p = document.createElement("p");
+      p.textContent = text;
+      return p;
+    }
     function makeList(elements) {
       var ul = document.createElement("ul");
       for (var i = 0; i < elements.length; i++) {
@@ -98,23 +103,17 @@ All the Prebid Server bidders are listed below. Select one, and then choose an o
       var output = document.getElementById("output-workspace");
       output.innerHTML = "";
       function showBidderInfo(info) {
-        var contact = document.createElement("p");
-        contact.textContent = "Contact email: " + info.maintainer.email;
-        output.appendChild(contact);
-        function process(capabilities, source, client) {
+        output.appendChild(newParagraph("Contact email: " + info.maintainer.email));
+        function printCapabilities(capabilities, source, client) {
           if (capabilities) {
-            var site  = document.createElement("p");
-            site.textContent = "For " + source + " traffic, this bidder supports the following Media Types:";
-            output.appendChild(site);
+            output.appendChild(newParagraph("For " + source + " traffic, this bidder supports the following Media Types:"));
             output.appendChild(makeList(capabilities.mediaTypes));
           } else {
-            var noSite  = document.createElement("p");
-            noSite.textContent = "This bidder does not support " + source + " traffic. Don't use it in " + client + ".";
-            output.appendChild(noSite);
+            output.appendChild(newParagraph("This bidder does not support " + source + " traffic. Don't use it in " + client + "."));
           }
         }
-        process(info.capabilities.site, "Web", "Prebid.js");
-        process(info.capabilities.app, "Mobile App", "Prebid Mobile");
+        printCapabilities(info.capabilities.site, "Web", "Prebid.js");
+        printCapabilities(info.capabilities.app, "Mobile App", "Prebid Mobile");
       }
       function onBidderInfoErr(status, err) {
         var errMsg = document.createElement("p");
