@@ -192,7 +192,8 @@ export const spec = {
     interpretResponse: function(serverResponse, request) {},
     getUserSyncs: function(syncOptions, serverResponses) {},
     onTimeout: function(timeoutData) {},
-    onBidWon: function(bid) {}
+    onBidWon: function(bid) {},
+    onSetTargeting: function(bid) {}
 }
 registerBidder(spec);
 
@@ -374,6 +375,33 @@ Sample data received by this function:
   "adId": "330a22bdea4cac",
   "mediaType": "banner",
   "cpm": 0.28
+  "ad": "...",
+  "requestId": "418b37f85e772c",
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "size": "350x250",
+  "adserverTargeting": {
+    "hb_bidder": "example",
+    "hb_adid": "330a22bdea4cac",
+    "hb_pb": "0.20",
+    "hb_size": "350x250"
+  }
+}
+{% endhighlight %}
+
+### Registering on Set Targeting
+
+The `onSetTargeting` function will be called when the adserver targeting has been set for a bid from the adapter.
+
+Sample data received by this function:
+
+{% highlight js %}
+{
+  "bidder": "example",
+  "width": 300,
+  "height": 250,
+  "adId": "330a22bdea4cac",
+  "mediaType": "banner",
+  "cpm": 0.28,
   "ad": "...",
   "requestId": "418b37f85e772c",
   "adUnitCode": "div-gpt-ad-1460505748561-0",
@@ -656,6 +684,14 @@ export const spec = {
      * @param {Bid} The bid that won the auction
      */
     onBidWon: function(bid) {
+        // Bidder specific code
+    }
+
+    /**
+     * Register bidder specific code, which will execute when the adserver targeting has been set for a bid from this bidder
+     * @param {Bid} The bid of which the targeting has been set
+     */
+    onSetTargeting: function(bid) {
         // Bidder specific code
     }
 }
