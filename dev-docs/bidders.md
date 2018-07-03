@@ -96,6 +96,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 | platformio      | native                | X                   |
 | prebidServer    | video                 | X                   |
 | pulsepoint      | native                | X                   |
+| pubmatic		  | video 				  | X 					|
 | quantcast       | video                 | X                   |
 | readpeak        | native                | X                   |
 | rhythmone       | video                 | X                   |
