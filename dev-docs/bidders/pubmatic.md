@@ -16,7 +16,7 @@ Before configuring the PubMatic adapter as S2S, you must reach out to the PubMat
 ### Prebid 1.0 Upgrade Note:
 If you upgrading from a Prebid version prior to 1.0, please reach out to your PubMatic Customer Success Manager prior to your upgrade.  Publisher accounts need new settings to function correctly with the PubMatic Prebid 1.0 adapter and your Customer Success Manager will ensure your account is setup correctly.
 
-### bid params
+### Banner Bid params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
@@ -31,7 +31,20 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `kadpageurl` | optional | Overrides Page URL | "http://www.yahoo.com/" |
 | `kadfloor` | optional | Bid Floor | "1.75" |
 
-### Video Params
+### Configuration
+
+PubMatic recommends the UserSync configuration below.  Without it, the PubMatic adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
+
+```javascript
+pbjs.setConfig({
+   userSync: {
+    iframeEnabled: true,
+    enabledBidders: ['pubmatic'],
+    syncDelay: 6000
+ }});
+```
+
+### Video Bid Params
 The following video parameters are supported. For more information, see the video parameters in the OpenRTB specification.
 
 {: .table .table-bordered .table-striped }
@@ -49,6 +62,9 @@ The following video parameters are supported. For more information, see the vide
 | `video.protocols` 	 | optional | Array of supported video bid response protocols 			  | Supported values: 1=VAST 1.0, 2=VAST 2.0, 3=VAST 3.0, 4=VAST 1.0 Wrapper, 5=VAST 2.0 Wrapper, 6=VAST 3.0 Wrapper |
 | `video.battr` 		 | optional | Blocked creative attributes 								  | [3,6] |
 | `video.linearity` 	 | optional | Indicates if the impression is linear or nonlinear. 		  | Supported values: 1=Linear/In-Stream, 2=Non-Linear/Overlay |
+  `placement`			 | optional | Placement type for the impression							  | Supported values: 1=In
+-
+Stream,2=In Banner,3=In Article,4=In Feed,5=Interstitial/Slider/Floating
 | `video.minbitrate` 	 | optional | Minumim bit rate in Kbps. 								  | 50 |
 | `video.maxbitrate` 	 | optional | Maximum bit rate in Kbps. 								  | 70 |
 
@@ -88,18 +104,7 @@ var videoAdUnits = [
 }]
 ```
 
-### Configuration
 
-PubMatic recommends the UserSync configuration below.  Without it, the PubMatic adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
-
-```javascript
-pbjs.setConfig({
-   userSync: {
-    iframeEnabled: true,
-    enabledBidders: ['pubmatic'],
-    syncDelay: 6000
- }});
-```
 ### Configuration for video 
 For Video ads, prebid cache needs to be enabled for PubMatic adapter.
 ```
@@ -111,7 +116,4 @@ pbjs.setConfig({
 });
 ```
 
-
-
-
-Note: Combine the above the configuration with any other UserSync configuration.  Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
+Note: Combine the above the configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
