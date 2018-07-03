@@ -31,6 +31,84 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `kadpageurl` | optional | Overrides Page URL | "http://www.yahoo.com/" |
 | `kadfloor` | optional | Bid Floor | "1.75" |
 
+### Video Params
+The following video parameters are supported. For more information, see the video parameters in the OpenRTB specification.
+
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example |
+| :--- | :---- | :---------- | :------ |
+| `publisherId` | required | Publisher ID | "32572" |
+| `adSlot` | required | Ad Unit ID | "38519891@300x250" |
+| `video.mimes` | required | Content MIME types supported | Supported mime types: "ALL", "video/mp4", "application/x-shockwave-flash", "video/x-ms-wmv", "video/h264", "video/webm", "application/javascript", "video/ogg", "video/x-flv" |
+| `video.skippable` | optional | Indicator for ability to skip video | true/false |
+| `video.minduration` | optional | Minimum video ad duration in seconds | 5 |
+| `video.maxduration` | optional | Maximum video ad duration in seconds | 15 |
+| `video.startdelay` | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. | 1 |
+| `video.playbackmethod` | optional | Array of numbers listing playback methods supported by the publisher | Supported values:
+																										Auto-play sound on: 1,
+																										Auto-play sound off: 2
+																										Click-to-play: 3
+																										Mouse-over: 4
+																									  |
+| `video.api` | optional | API frameworks supported | Supported values:
+												 VPAID 1.0: 1
+												 VPAID 2.0: 2
+												 MRAID-1: 3
+												 ORMMA: 4
+												 MRAID-2: 5
+											  |
+| `video.protocols` | optional | Array of supported video bid response protocols | Supported values:
+																			  VAST 1.0: 1
+																			  VAST 2.0: 2
+																			  VAST 3.0: 3
+																			  VAST 1.0 Wrapper: 4
+																			  VAST 2.0 Wrapper: 5
+																			  VAST 3.0 Wrapper: 6
+																		   |
+| `video.battr` | optional | Blocked creative attributes | [3,6] |
+| `video.linearity` | optional | Indicates if the impression is linear or nonlinear. | Supported values:
+																				  Linear/In-Stream: 1
+																				  Non-Linear/Overlay: 2
+																			   |
+| `video.minbitrate` | optional | Minumim bit rate in Kbps. | 50 |
+| `video.maxbitrate` | optional | Maximum bit rate in Kbps. | 70 |
+
+### AdUnit Format for Video
+```javascript
+var videoAdUnits = [
+{
+    code: 'test-div-video',
+    mediaTypes: {
+        video: {
+            playerSize: [640, 480],           // required
+            context: 'instream'
+        }
+    },
+    bids: [{
+      bidder: 'pubmatic',
+      params: {
+        publisherId: '32572',                     // required
+        adSlot: '38519891@300x250',              // required
+        video: {
+          mimes: ['video/mp4','video/x-flv'],   // required
+          skippable: true,                      // optional
+          minduration: 5,                       // optional
+          maxduration: 30,                      // optional
+          startdelay: 5,                        // optional
+          playbackmethod: [1,3],                // optional
+          api: [ 1, 2 ],                        // optional
+          protocols: [ 2, 3 ],                  // optional
+          battr: [ 13, 14 ],                    // optional
+          linearity: 1,                         // optional
+          placement: 2,                         // optional
+          minbitrate: 10,                       // optional
+          maxbitrate: 10                        // optional
+        }
+      }
+    }]
+}]
+```
+
 ### Configuration
 
 PubMatic recommends the UserSync configuration below.  Without it, the PubMatic adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
@@ -43,4 +121,18 @@ pbjs.setConfig({
     syncDelay: 6000
  }});
 ```
+### Configuration for video 
+For Video ads, prebid cache needs to be enabled for PubMatic adapter.
+```
+pbjs.setConfig({
+    debug: true,
+    cache: {
+        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    }
+});
+```
+
+
+
+
 Note: Combine the above the configuration with any other UserSync configuration.  Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
