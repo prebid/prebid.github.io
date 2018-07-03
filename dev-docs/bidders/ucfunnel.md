@@ -11,18 +11,9 @@ prebid_1_0_supported : true
 gdpr_supported: true
 ---
 
-### bid params Prebid 0.34
+### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `adid` | required | | |
-| `` | optional | | |
-
-### bid params Prebid 1.x
-
-{: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `adid` | required | | |
-| `` | optional | | |
+| Name   | Scope    | Description | Example | Type     |
+|--------|----------|-------------|---------|----------|
+| `adid` | required |             |         | `string` |

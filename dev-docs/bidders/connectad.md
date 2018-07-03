@@ -22,7 +22,7 @@ prebid_1_0_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                                                                                          | Example                                       |
-| :---              | :----    | :----------                                                                                                          | :------                                       |
-| `siteId`      | required | The site ID from ConnectAd.                                                                           | `12345`                                       |
-| `networkId`       | required | The network ID from ConnectAd.           | `10047`                                       |
+| Name        | Scope    | Description                    | Example | Type      |
+|-------------|----------|--------------------------------|---------|-----------|
+| `siteId`    | required | The site ID from ConnectAd.    | `12345` | `integer` |
+| `networkId` | required | The network ID from ConnectAd. | `10047` | `integer` |

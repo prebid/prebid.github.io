@@ -17,8 +17,8 @@ biddercode_longer_than_12: false
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `pid` | required |  |  |
-| `did` | required |  |  |
-| `wid` | required |  |  |
+| Name  | Scope    | Description | Example | Type     |
+|-------|----------|-------------|---------|----------|
+| `pid` | required |             |         | `string` |
+| `did` | required |             |         | `string` |
+| `wid` | required |             |         | `string` |

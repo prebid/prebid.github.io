@@ -86,12 +86,13 @@ object are detailed here.
 
 ### Banner
 
-| Key | Scope | Type | Description
-| --- | --- | --- | ---
-| siteId | Required | String | <p>An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have.</p><p>Examples:<ul><li>`'3723'`</li><li>`'6482'`</li><li>`'3639'`</li></ul></p>
-| size | Required | Number[] | <p>The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.</p><p>Examples:<ul><li>`[300, 250]`</li><li>`[300, 600]`</li><li>`[728, 90]`</li></ul></p>
-| bidFloor | Optional<sup>1</sup> | Number | <p>The minimum bid required to participate in an auction for this ad unit. Assuming the bid floor currency that is set has a main unit (e.g. dollars, pounds) and a sub-unit (e.g. cents, pence), the bid floor should be in decimal-point format. If the currency only has main a unit (e.g. JPY), then the bid floor should be a whole number.</p><p>Examples:<ul><li>10.26 USD => `bidFloor: 10.26`</li><li>13.41 GBP => `bidFloor: 13.41`</li><li>600 JPY => `bidFloor: 600`</li></ul></p> | N/A
-| bidFloorCur | Optional<sup>1</sup> | String | <p>The currency of the bid floor.</p><p>Examples:<ul><li>`'USD'`</li><li>`'GBP'`</li><li>`'JPY'`</li></ul></p>
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description                                                                                                                                                                                                                                                                                                                                   | Example      | Type             |
+|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------|
+| `siteId`      | required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have.                                                                                                                                                                           | `'3723'`     | `string`         |
+| `size`        | required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.                                                                                                                                                                              | `[300, 250]` | `Array<integer>` |
+| `bidFloor`    | optional | The minimum bid required to participate in an auction for this ad unit. Assuming the bid floor currency that is set has a main unit (e.g. dollars, pounds) and a sub-unit (e.g. cents, pence), the bid floor should be in decimal-point format. If the currency only has main a unit (e.g. JPY), then the bid floor should be a whole number. | `13.41`      | `float`          |
+| `bidFloorCur` | optional | The currency of the bid floor.                                                                                                                                                                                                                                                                                                                | `'USD'`      | `string`         |
 
 <p>
     <sup>1</sup> <code>bidFloor</code> and <code>bidFloorCur</code> <b>must</b>

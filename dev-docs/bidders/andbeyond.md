@@ -16,9 +16,8 @@ The andbeyond Bidding adaptor requires setup and approval before beginning. Plea
 
 ### bid params
 
-{: .table .table-bordered .table-striped } 
-
-| Name | Scope    | Description        | Example  |
-| :--- | :----    | :----------        | :------  |
-| `host`   | required | Ad network's RTB host    | `'cpm.metaadserving.com'` |
-| `zoneId` | required | RTB zone id        | `'30164'` |
+{: .table .table-bordered .table-striped }
+| Name     | Scope    | Description           | Example                   | Type     |
+|----------|----------|-----------------------|---------------------------|----------|
+| `host`   | required | Ad network's RTB host | `'cpm.metaadserving.com'` | `string` |
+| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |

@@ -17,12 +17,12 @@ gdpr_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" |
-| `delDomain` | required | OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net" |
-| `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` |
-| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 | 1.50 |
+| Name           | Scope    | Description                                                                                                                   | Example                              | Type     |
+|----------------|----------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------|----------|
+| `unit`         | required | OpenX ad unit ID provided by your OpenX representative.                                                                       | `'1611023122'`                       | `string` |
+| `delDomain`    | required | OpenX delivery domain provided by your OpenX representative.                                                                  | `'PUBLISHER-d.openx.net'`            | `string` |
+| `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit.                                              | `{ key1: 'v1', key2: ['v2', 'v3'] }` | `object` |
+| `customFloor`  | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 | `1.50`                               | `float`  |
 
 
 ### Configuration

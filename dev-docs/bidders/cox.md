@@ -13,8 +13,8 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name   | Scope    | Description | Example         |
-| :---   | :----    | :---------- | :------         |
-| size   | required | Size        | `"300x250"`     |
-| id     | required | Ad space id | `2000005991707` |
-| siteId | required | Site id     | `2000100948180` |
+| Name     | Scope    | Description | Example         | Type      |
+|----------|----------|-------------|-----------------|-----------|
+| `size`   | required | Size        | `'300x250'`     | `string`  |
+| `id`     | required | Ad space id | `2000005991707` | `integer` |
+| `siteId` | required | Site id     | `2000100948180` | `integer` |

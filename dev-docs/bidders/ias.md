@@ -24,8 +24,7 @@ information.
 ### bid params
 
 {: .table .table-bordered .table-striped }
-
-| Name       | Scope    | Description | Example          |
-|:-----------|:---------|:------------|:-----------------|
-| `pubId` | required | Publisher client ID, provided by IAS | `'1234'` |
-| `adUnitPath`   | required | Ad unit path. The same one you use for GPT      | `'/1234567/sports'`              |
+| Name         | Scope    | Description                                | Example             | Type     |
+|--------------|----------|--------------------------------------------|---------------------|----------|
+| `pubId`      | required | Publisher client ID, provided by IAS       | `'1234'`            | `string` |
+| `adUnitPath` | required | Ad unit path. The same one you use for GPT | `'/1234567/sports'` | `string` |

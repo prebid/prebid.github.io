@@ -18,6 +18,6 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `pkey` | required | The placement key | `'DfFKxpkRGPMS7A9f71CquBgZ'` |
+| Name   | Scope    | Description       | Example                      | Type     |
+|--------|----------|-------------------|------------------------------|----------|
+| `pkey` | required | The placement key | `'DfFKxpkRGPMS7A9f71CquBgZ'` | `string` |

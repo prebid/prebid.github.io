@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Consumable
-description: Prebid Consumable Bidder Adaptor 
+description: Prebid Consumable Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
@@ -16,9 +16,9 @@ The Consumable adaptor requires setup and approval from your Consumable account 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placement` | required | The placement ID from Consumable. | `"1234567"` |
-| `unitId` | required | The unit ID from Consumable. | `"1234"` |
-| `unitName` | required | The unit name from Consumable. | `"cnsmbl-300x250"` |
-| `zoneId` | required | The zone ID from Consumable. | `"13136.52"` |
+| Name        | Scope    | Description                       | Example            | Type     |
+|-------------|----------|-----------------------------------|--------------------|----------|
+| `placement` | required | The placement ID from Consumable. | `'1234567'`        | `string` |
+| `unitId`    | required | The unit ID from Consumable.      | `'1234'`           | `string` |
+| `unitName`  | required | The unit name from Consumable.    | `'cnsmbl-300x250'` | `string` |
+| `zoneId`    | required | The zone ID from Consumable.      | `'13136.52'`       | `string` |

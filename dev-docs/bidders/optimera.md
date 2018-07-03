@@ -13,7 +13,6 @@ prebid_1_0_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-
-| Name | Scope    | Description        | Example  |
-| :--- | :----    | :----------        | :------  |
-| clientID | required | The Optimera Client ID | `"123"` |
+| Name     | Scope    | Description            | Example | Type     |
+|----------|----------|------------------------|---------|----------|
+| clientID | required | The Optimera Client ID | `'123'` | `string` |

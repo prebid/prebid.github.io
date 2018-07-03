@@ -14,6 +14,6 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `id` | required | Atomx placement ID | 1234 |
+| Name | Scope    | Description        | Example | Type      |
+|------|----------|--------------------|---------|-----------|
+| `id` | required | Atomx placement ID | 1234    | `integer` |
