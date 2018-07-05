@@ -11,6 +11,7 @@ hide: true
 biddercode: c1x
 
 biddercode_longer_than_12: false
+gdpr_supported: true
 
 ---
 
