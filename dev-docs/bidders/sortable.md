@@ -26,7 +26,7 @@ gdpr_supported: true
 | Name | Scope | Description | Example |
 |------+-------+-------------+---------|
 | `tagId` | required | The tag ID from Sortable. | `"test-pb-leaderboard"` |
-| `siteId` | required | The site ID from Sortable. To blanket set the site ID, [see here](#sortable-configuration). Please reach out to your Sortable Account Manager for more details. | `1` or `"example.com"` |
+| `siteId` | optional | Override the global Sortable site ID, [see here](#sortable-configuration). Please reach out to your Sortable Account Manager for more details. | `"example.com"` |
 | `keywords` | optional | Publisher-defined key-value string pairs | `{ "key1": "val1", "key2": "val2" }` |
 
 <a name="sortable-banner" />
@@ -43,12 +43,14 @@ Sortable supports the banner features described in:
 
 ### Configuration
 
-If the Sortable site ID is set globally, `siteId` is not required as a bid param. How to do so:
+The Sortable site ID should be set globally in order to improve user sync. How to do so:
 
 ```javascript
 $$PREBID_GLOBAL$$.setConfig({
-   sortableId: "example.com"
- }});
+   sortable {
+     siteId: "example.com"
+   }
+});
  ```
 
 The Sortable adapter has the ability to initiate user-sync requests that will improve DSP user ID match rate,
