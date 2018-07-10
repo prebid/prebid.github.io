@@ -57,7 +57,7 @@ To see all of the winning bids, open your browser console and type [`pbjs.getAll
 Keep in mind that any bid responses that come back after [the timeout you configured during setup]({{site.github.url}}/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
 
 {: .alert.alert-success :}
-You can also [print this data to the console in table format](http://prebid.org/dev-docs/toubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
+You can also [print this data to the console in table format](http://prebid.org/dev-docs/troubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
 
 {: .pb-lg-img :}
 ![pbjs.getBidResponses() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()")
@@ -117,7 +117,7 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 
 ## Related Topics
 
-+ [Developer Troubleshooting Tips]({{site.github.url}}/dev-docs/toubleshooting-tips.html)
++ [Developer Troubleshooting Tips]({{site.github.url}}/dev-docs/troubleshooting-tips.html)
 
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
 

@@ -12,13 +12,11 @@ nav_section: prebid-server
 # Get Started with Prebid Server
 {:.no_toc}
 
-This page has instructions for adding Prebid Server to Prebid.js.
+Prebid Server improves your page's performance by running the header bidding auction on a server.
+This will improve your page's load time, which should improve your users' experience.
 
-For many publishers, client-side header bidding is a balancing act between the inclusion of demand partners and impact to the page.
-
-Using Prebid Server, you can move demand partners server-side, eliminating most of the latency impact that comes with adding more partners.
-
-This should help you make more money without sacrificing user experience.
+Prebid Server supports different adapters from Prebid.js. For info about Prebid Server adapters, see
+the [Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**
@@ -43,6 +41,8 @@ Prebid Server is an open source project.  [The source code is hosted under the P
 ## Step 2. Download Prebid.js with Prebid Server enabled
 
 - Go to [the Prebid.org download page]({{site.baseurl}}/download.html), select all the demand adapters you want to work with, and include "Prebid Server".
+  - Some Prebid Server demand adapters may not have a corresponding client-side adapter that's present on the download page.  In this case, just ensure to select "Prebid Server" as part of your build and you will be able to interact with these Prebid Server only bidders.
+  - We still strongly recommend to select any listed demand adapters in your build.  These additional selections will allow any client-side features (such as userSyncs) to function as well as allow you to easily use any of the adapter's currently registered aliases.
 
 - For example, if you want to use AppNexus, Index Exchange, and Rubicon with Prebid Server, select:
   - *AppNexus*
@@ -123,6 +123,10 @@ pbjs.que.push(function() {
 {: .alert.alert-info :}
 **OpenRTB Endpoint**
 If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, such as the AppNexus-hosted endpoint https://prebid.adnxs.com/pbs/v1/openrtb2/auction', Prebid will communicate with that endpoint using the OpenRTB protocol.
+
+{: .alert.alert-info :}
+**Aliasing Prebid Server only bidders**
+If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
 
 {: .alert.alert-info :}
 **Additional `cookieSet` details**
