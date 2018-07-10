@@ -1,14 +1,14 @@
 ---
 layout: bidder
-title: bRealTime
-description: Prebid bRealTime Bidder Adaptor
+title: EMX Digital (formally bRealTime)
+description: Prebid EMX Digital Bidder Adaptor
 
 top_nav_section: dev_docs
 nav_section: reference
 
 hide: true
 
-biddercode: brealtime
+biddercode: emxdigital
 
 aliasCode : appnexus
 
@@ -23,6 +23,6 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
-| `placementId` | required | The placement ID from bRealTime | `"1234567"` |
+| `placementId` | required | The placement ID from EMX Digital | `"1234567"` |
 
-bRealTime is an aliased bidder for AppNexus
+EMX Digital is an aliased bidder for AppNexus
