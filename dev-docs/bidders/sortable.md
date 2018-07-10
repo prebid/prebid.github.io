@@ -47,7 +47,7 @@ The Sortable site ID should be set globally in order to improve user sync. How t
 
 ```javascript
 pbjs.setConfig({
-   sortable {
+   sortable: {
      siteId: "example.com"
    }
 });
