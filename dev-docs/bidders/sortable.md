@@ -46,7 +46,7 @@ Sortable supports the banner features described in:
 The Sortable site ID should be set globally in order to improve user sync. How to do so:
 
 ```javascript
-$$PREBID_GLOBAL$$.setConfig({
+pbjs.setConfig({
    sortable {
      siteId: "example.com"
    }
@@ -57,7 +57,7 @@ The Sortable adapter has the ability to initiate user-sync requests that will im
 with the aim of generating higher bid prices. By default, Sortable sync requests are off. Setting the Sortable site ID globally as described above is required for user-sync requests. 
 
 ```javascript
-$$PREBID_GLOBAL$$.setConfig({
+pbjs.setConfig({
    userSync: {
     enabledBidders: ['sortable'],
     iframeEnabled: true
