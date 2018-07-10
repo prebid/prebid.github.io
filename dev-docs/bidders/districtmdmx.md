@@ -15,12 +15,12 @@ biddercode_longer_than_12: false
 
 ---
 
+
+
 ### bid params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
 |:-----------|:---------|:------------|:-----------------|
-| `id` | required | | |
-| `floor` | optional | | |
-| `revShare` | optional | | |
-| `currency` | optional | | |
+| `dmxid` | required | DMX placement id| |
+| `memberid` | required | DMX main account id| |
