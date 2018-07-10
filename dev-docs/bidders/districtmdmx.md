@@ -22,5 +22,5 @@ biddercode_longer_than_12: false
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example |
 |:-----------|:---------|:------------|:-----------------|
-| `dmxid` | required | DMX placement id| |
-| `memberid` | required | DMX main account id| |
+| `dmxid` | required | DMX placement id | |
+| `memberid` | required | DMX main account id | |
