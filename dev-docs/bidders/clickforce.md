@@ -10,10 +10,15 @@ biddercode_longer_than_12: false
 prebid_1_0_supported : true
 ---
 
-### bid params
-
-{: .table .table-bordered .table-striped } 
+### bid params (display ad)
 
 | Name        | Scope    | Description                                | Example                              |
 | :---------- | :------- | :----------------------------------------- | :----------------------------------- |
-| zone        | required | The CLICKFORCE zone ID                     | `"6682"`                            |
+| zone        | required | The CLICKFORCE zone ID                     | `"6682"`                             |
+
+### bid params (native ad)
+
+| Name        | Scope    | Description                                | Example                              |
+| :---------- | :------- | :----------------------------------------- | :----------------------------------- |
+| zone        | required | The CLICKFORCE zone ID                     | `"6878"`                             |
+
