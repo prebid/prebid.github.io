@@ -27,6 +27,7 @@ gdpr_supported: true
 |------+-------+-------------+---------|
 | `tagId` | required | The tag ID from Sortable. | `"test-pb-leaderboard"` |
 | `siteId` | optional | Override the global Sortable site ID, [see here](#sortable-configuration). Please reach out to your Sortable Account Manager for more details. | `"example.com"` |
+| `floor` | optional | The minumum CPM (in USD) requred to participate | `0.25` |
 | `keywords` | optional | Publisher-defined key-value string pairs | `{ "key1": "val1", "key2": "val2" }` |
 
 <a name="sortable-banner" />
