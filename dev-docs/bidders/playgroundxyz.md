@@ -14,6 +14,11 @@ biddercode_longer_than_12: true
 prebid_1_0_supported : true
 ---
 
+#### Send All Bids Ad Server Keys
+
+(Truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
+
+`hb_adid_playgroundxy`
 
 ### bid params
 
