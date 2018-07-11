@@ -18,6 +18,6 @@ One Video adapter only supports video ads.
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description  | Example  | Type     |
-|-------|----------|--------------|----------|----------|
-| pubId | required | Publisher ID | `'brxd'` | `string` |
+| Name    | Scope    | Description  | Example  | Type     |
+|---------|----------|--------------|----------|----------|
+| `pubId` | required | Publisher ID | `'brxd'` | `string` |

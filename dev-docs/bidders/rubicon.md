@@ -44,13 +44,14 @@ The following video parameters are supported as of 0.19.0:
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `playerWidth`  | required for video | Video player width in pixels                                                                                                                                                                             | `'640'` | `string`  |
-| `playerHeight` | required for video | Video player height in pixels                                                                                                                                                                            | `360`   | `string`  |
+| `playerHeight` | required for video | Video player height in pixels                                                                                                                                                                            | `'360'` | `string`  |
 | `size_id`      | required for video | Integer indicating the video ad format ID:<br/><br/>201: Pre-Roll<br/>202: Interstitial <br/>204: Mid-Roll <br/>205: Post-Roll <br/>207: Vertical Video                                                  | `201`   | `integer` |
 | `language`     | required for video | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 | `aeParams`     | optional           | Optional parameter that enables overriding of pre-defined video options in account setup. Some common samples are shown below. Additional options are available by contacting your account team.         |         | `object`  |
 
 #### aeParams
 
+{: .table .table-bordered .table-striped }
 | Name                                     | Scope    | Description                                                                                                                                      | Example | Type      |
 |------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `aeParams.p_aso.video.ext.skip`          | optional | Defines whether the user can skip the ad. Defaults to non-skippable. Set to 1 to indicate skippable.                                             | `1`     | `integer` |

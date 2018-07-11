@@ -33,4 +33,3 @@ Please reach out to <prebid@nasmedia.co.kr> for more information.
 | Name     | Scope    | Description                                | Example      | Type     |
 |----------|----------|--------------------------------------------|--------------|----------|
 | `ax_key` | required | Publisher Key provided by Nasmedia Admixer | `'ajj7jba3'` | `string` |
----

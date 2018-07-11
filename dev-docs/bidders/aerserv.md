@@ -34,7 +34,7 @@ Video requests will use the first size passed in the Prebid request, but it can 
 ### video params
 
 {: .table .table-bordered .table-striped }
-| Name    | Scope    | Description           | Example |
-| :---    | :----    | :----------           | :-----  |
-| `vpw`   | optional | video width override  | `480`   |
-| `vph`   | optional | video height override | `360`   |
+| Name  | Scope    | Description           | Example | Type      |
+|-------|----------|-----------------------|---------|-----------|
+| `vpw` | optional | video width override  | `480`   | `integer` |
+| `vph` | optional | video height override | `360`   | `integer` |

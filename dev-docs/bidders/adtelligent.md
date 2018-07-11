@@ -14,9 +14,9 @@ media_types: video
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                     | Example | Type      |
-|-------|----------|---------------------------------|---------|-----------|
-| `aid` | required | The source ID from Adtelligent. | 350975  | `integer` |
+| Name  | Scope    | Description                     | Example  | Type      |
+|-------|----------|---------------------------------|----------|-----------|
+| `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
 
 
 ### Description

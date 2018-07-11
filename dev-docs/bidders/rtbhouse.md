@@ -18,7 +18,7 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description         | Example     | Type     |
-|---------------|----------|---------------------|-------------|----------|
-| `publisherId` | required | Unique publisher ID | `ABCDEF`    | `string` |
-| `region`      | required | Assigned region     | `prebid-eu` | `string` |
+| Name          | Scope    | Description         | Example       | Type     |
+|---------------|----------|---------------------|---------------|----------|
+| `publisherId` | required | Unique publisher ID | `'ABCDEF'`    | `string` |
+| `region`      | required | Assigned region     | `'prebid-eu'` | `string` |
