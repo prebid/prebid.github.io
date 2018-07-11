@@ -24,19 +24,17 @@ gdpr_supported: true
 | `unit` | required | String | OpenX ad unit ID provided by your OpenX representative. | "1611023122"
 | `customParams` | optional | Object | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}`
 | `customFloor` | optional | Number | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50
-| `doNotTrack` | optional | Boolean | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Request-level setting.  May impact revenue. | true
-| `coppa` | optional | Boolean | Enables Child's Online Privacy Protection Act (COPPA) regulations. | true
+| `doNotTrack` | optional | Boolean | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true
+| `coppa` | optional | Boolean | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true
 
 #### Video
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope    | Description                                                                                                                   | Example                              | Type     |
-|----------------|----------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------|----------|
-| `unit`         | required | OpenX ad unit ID provided by your OpenX representative.                                                                       | `'1611023122'`                       | `string` |
-| `placementId`  | optional | OpenX placement ID provided by your OpenX representative. Required if `unit` is not available.                                | `'/123/abcdefg`                      | `string` |
-| `delDomain`    | required | OpenX delivery domain provided by your OpenX representative.                                                                  | `'PUBLISHER-d.openx.net'`            | `string` |
-| `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit.                                              | `{ key1: 'v1', key2: ['v2', 'v3'] }` | `object` |
-| `customFloor`  | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 | `1.50`                               | `float`  |
+| Name | Scope | Type | Description | Example
+| ---- | ----- | ---- | ----------- | -------
+| `unit` | required | String | OpenX ad unit ID provided by your OpenX representative. | "1611023122"
+| `delDomain` | required | String |  OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net"
+| `openrtb` | optional | OpenRTB Impression | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }`
 
 
 # Example
