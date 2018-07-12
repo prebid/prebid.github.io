@@ -45,6 +45,8 @@ pbjs.setConfig({
  }});
 ```
 
+Note: Combine the above the configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
+
 ### video parameters
 The PubMatic adapter supports video as of Prebid 1.16.0
 
@@ -112,5 +114,3 @@ pbjs.setConfig({
     }
 });
 ```
-
-Note: Combine the above the configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
