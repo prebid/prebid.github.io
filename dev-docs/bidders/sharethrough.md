@@ -8,6 +8,8 @@ hide: true
 biddercode: sharethrough
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+media_types: native
+gdpr_supported: true
 ---
 
 ### Note:
@@ -19,3 +21,5 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
 | `pkey` | required | The placement key | `'DfFKxpkRGPMS7A9f71CquBgZ'` |
+| `iframe` | optional | If `true`, the ad will render in an iframe. Defaults to `false`. | `true` |
+| `iframeSize` | optional | `[width, height]` If provided, use this size for the iframe size. Only applicable if `iframe` is `true`. If omitted, the largest size from the ad unit sizes array will be used.   | `[300, 250]` |

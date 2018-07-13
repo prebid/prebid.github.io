@@ -8,6 +8,8 @@ hide: true
 biddercode: rubicon
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+gdpr_supported: true
+media_types: video
 ---
 
 
@@ -29,6 +31,7 @@ The Rubicon Project adapter requires setup and approval from the Rubicon Project
 | `position` | 0.6.0 | optional | Set the page position. Valid values are "atf" and "btf". | `"atf"` |
 | `userId` | 0.6.0 | optional | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `"12345abc"` |
 | `floor` | 0.19.0 | optional | Sets the global floor -- no bids will be made under this value. | `0.50` |
+| `latLong` | 1.10.0 | optional | Sets the latitude and longitude for the visitor | `[40.7608, 111.8910]` |
 | `video` | 0.19.0 | required for video | Video targeting parameters. See the [video section below](#rubicon-video). | `{"language": "en", "playerHeight": "360", "playerWidth": "640", "size_id": "201"}` |
 
 <a name="rubicon-video"></a>
@@ -42,7 +45,7 @@ The following video parameters are supported as of 0.19.0:
 | :-------------- | :---- | :---------- | :------ |
 | `playerWidth` | required for video | Video player width in pixels | `"playerWidth": "640"` |
 | `playerHeight` | required for video | Video player height in pixels | `"playerHeight": "360"` |
-| `size_id` | required for video | Integer indicating the video ad format ID:<br/><br/>201: Pre-Roll<br/>202: Interstitial <br/>203: OutStream <br/>204: Mid-Roll <br/>205: Post-Roll <br/>207: Vertical Video | `"size_id": "201"` |
+| `size_id` | required for video | Integer indicating the video ad format ID:<br/><br/>201: Pre-Roll<br/>202: Interstitial <br/>204: Mid-Roll <br/>205: Post-Roll <br/>207: Vertical Video | `"size_id": "201"` |
 | `language` | required for video | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `"language": "en"` |
 | aeParams | optional | Optional parameter that enables overriding of pre-defined video options in account setup. Some common samples are shown below. Additional options are available by contacting your account team. | |
 | `aeParams.p_aso.video.ext.skip` | optional | Defines whether the user can skip the ad. Defaults to non-skippable. Set to 1 to indicate skippable. | `"aeParams": {"p_aso.video.ext.skip": "1"}` |

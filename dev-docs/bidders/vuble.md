@@ -8,6 +8,7 @@ hide: true
 biddercode: vuble
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+media_types: video
 ---
 
 ### Note:
@@ -24,24 +25,24 @@ The Vuble adapter requires setup and approval from the Vuble team, even for exis
 | `referrer`   | optional | The page's referrer. Not mandatory but recommended.                                               | `"http://www.vuble.tv/"` |
 | `floorPrice` | optional | The desired floor price. If none is given, the floor price will depend on the zone ID.            | `5.00`                   |
 
-#### Example
+### Example
 
-{% highlight js %}
+```
 var adUnits = [
     {
         code: 'test-vuble-instream',
         sizes: [[640, 360]],
+        mediaTypes: {
+            video: {
+                context: 'instream'
+            }
+        },
         bids: [
             {
                 bidder: 'vuble',
-                mediaTypes: {
-                    video: {
-                        context: 'instream'
-                    }
-                },
                 params: {
                     env: 'net',
-                    pubId: '3',
+                    pubId: 18,
                     zoneId: '12345',
                     referrer: "http://www.vuble.tv/",
                     floorPrice: 5.00
@@ -50,7 +51,7 @@ var adUnits = [
         ]
     }
 ]
-{% endhighlight %}
+```
 
 {: .alert.alert-info :}
 Sizes set in the `adUnit` object will also apply to the Vuble bid requests.
