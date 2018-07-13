@@ -42,8 +42,6 @@ Here are examples of both formats.
 var adUnits = [{
     // ...
 
-    mediaType: 'banner',
-
     sizes: [
         [300, 250],
         [300, 600]
@@ -91,13 +89,7 @@ object are detailed here.
 |---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------|
 | `siteId`      | required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have.                                                                                                                                                                           | `'3723'`     | `string`         |
 | `size`        | required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.                                                                                                                                                                              | `[300, 250]` | `Array<integer>` |
-| `bidFloor`    | optional | The minimum bid required to participate in an auction for this ad unit. Assuming the bid floor currency that is set has a main unit (e.g. dollars, pounds) and a sub-unit (e.g. cents, pence), the bid floor should be in decimal-point format. If the currency only has main a unit (e.g. JPY), then the bid floor should be a whole number. | `13.41`      | `float`          |
-| `bidFloorCur` | optional | The currency of the bid floor.                                                                                                                                                                                                                                                                                                                | `'USD'`      | `string`         |
 
-<p>
-    <sup>1</sup> <code>bidFloor</code> and <code>bidFloorCur</code> <b>must</b>
-    both be set when a bid floor is being configured.
-</p>
 
 Setup Guide
 ===========
@@ -168,7 +160,8 @@ var adUnits = [{
 }];
 ```
 
-Please note that you can re-use the existing `siteId` within the same flex position.
+Please note that you can re-use the existing `siteId` within the same flex
+position.
 
 ##### 2. Include `ixBidAdapter` in your build process
 
@@ -265,7 +258,7 @@ to `'ix'` across all ad units that bids are being requested for does not exceed
 
 ### Time-To-Live (TTL)
 
-All bids received from IX have a TTL of 60 seconds, after which time they become
+All bids received from IX have a TTL of 35 seconds, after which time they become
 invalid.
 
 If an invalid bid wins, and its associated ad is rendered, it will not count
