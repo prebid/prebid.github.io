@@ -108,9 +108,9 @@ var videoAdUnits = [
 For Video ads, prebid cache needs to be enabled for PubMatic adapter.
 ```
 pbjs.setConfig({
-    debug: true,
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }
 });
 ```
+<!-- workaround bug where code blocks at end of a file are incorrectly formatted-->
