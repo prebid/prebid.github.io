@@ -1,0 +1,30 @@
+---
+layout: bidder
+title: UOL
+description: Prebid UOL Bidder Adaptor
+top_nav_section: dev_docs
+nav_section: reference
+hide: true
+biddercode: uol
+biddercode_longer_than_12: false
+prebid_1_0_supported : true
+gdpr_supported: true
+media_types: banner
+---
+
+
+### Note:
+The UOL Project adapter requires setup and approval from the UOL Project team, even for existing UOL Project publishers. Please reach out to your account team or l-prebid@uolinc.com for more information.
+
+### bid params
+
+{: .table .table-bordered .table-striped }
+| Name            | Scope    | Description                                                      | Example                |
+|-----------------+----------+------------------------------------------------------------------+------------------------|
+| `placementId`   | required | UOL placement ID                                                 | '123124', 123154       |
+| `syncEnabled`   | optional | UserSync functionality. Shall contain a boolean value            | true, false            |
+| `test`          | optional | Activate AdServer test endpoint                                  | true, false            |
+| `cpmFactor`     | optional | Positive Integer value that will be used by the AdServer as a cpm multiplier. If passed, also requires 'test' flag to be set to 'true' | 1, 2, 5 |
+
+## Note:
+Currently, the UOL bidAdapter is under initial tests. Please follow this page for updates regarding required parameters and new features. 
