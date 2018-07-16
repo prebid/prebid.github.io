@@ -24,8 +24,8 @@ The Gjirafa Header Bidding adapter requires to have: placementId param in place 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placementId` | optional | Your PlacementId (provided by Gjirafa) | `71-1` |
-| `minCPM` | optional | The minCPM for units returned by Gjirafa (required if placementId is not provided) | `0.50` |
-| `minCPC` | optional | The minCPC for units returned by Gjirafa (required if placementId is not provided) | `0.50` |
+| Name          | Scope    | Description                                                                        | Example  | Type     |
+|---------------|----------|------------------------------------------------------------------------------------|----------|----------|
+| `placementId` | optional | Your PlacementId (provided by Gjirafa)                                             | `'71-1'` | `string` |
+| `minCPM`      | optional | The minCPM for units returned by Gjirafa (required if placementId is not provided) | `0.50`   | `float`  |
+| `minCPC`      | optional | The minCPC for units returned by Gjirafa (required if placementId is not provided) | `0.50`   | `float`  |

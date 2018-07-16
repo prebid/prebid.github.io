@@ -18,9 +18,8 @@ The AdkernelAdn Header Bidding adaptor requires setup and approval before beginn
 
 ### bid params
 
-{: .table .table-bordered .table-striped } 
-
-| Name | Scope    | Description        | Example  |
-| :--- | :----    | :----------        | :------  |
-| `host`   | optional | Ad network host    | `'tag.adkernel.com'` |
-| `pubId` | required | Publisher Id        | `102` |
+{: .table .table-bordered .table-striped }
+| Name    | Scope    | Description     | Example              | Type      |
+|---------|----------|-----------------|----------------------|-----------|
+| `host`  | optional | Ad network host | `'tag.adkernel.com'` | `string`  |
+| `pubId` | required | Publisher Id    | `102`                | `integer` |

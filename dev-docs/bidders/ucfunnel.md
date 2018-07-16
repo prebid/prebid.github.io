@@ -22,10 +22,9 @@ gdpr_supported: true
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                      | Example          |
-|:------------|:---------|:-------------------------------------------------|:-----------------|
-| `adid`      | required | The ad unit ID retrived from ucfunnel dashboard  |                  |
-| ``          | optional |                                                  |                  |
+| Name   | Scope    | Description                                     | Example | Type     |
+|--------|----------|-------------------------------------------------|---------|----------|
+| `adid` | required | The ad unit ID retrived from ucfunnel dashboard |         | `string` |
 
 {% highlight js %}
 var adUnits = [{
