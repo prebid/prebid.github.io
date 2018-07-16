@@ -8,7 +8,7 @@ hide: true
 biddercode: uol
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
-gdpr_supported: true
+gdpr_supported: false
 media_types: banner
 ---
 
@@ -22,7 +22,6 @@ The UOL Project adapter requires setup and approval from the UOL Project team, e
 | Name            | Scope    | Description                                                      | Example                |
 |-----------------+----------+------------------------------------------------------------------+------------------------|
 | `placementId`   | required | UOL placement ID                                                 | '123124', 123154       |
-| `syncEnabled`   | optional | UserSync functionality. Shall contain a boolean value            | true, false            |
 | `test`          | optional | Activate AdServer test endpoint                                  | true, false            |
 | `cpmFactor`     | optional | Positive Integer value that will be used by the AdServer as a cpm multiplier. If passed, also requires 'test' flag to be set to 'true' | 1, 2, 5 |
 
