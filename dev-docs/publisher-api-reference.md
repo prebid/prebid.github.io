@@ -56,7 +56,7 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
-  * [.markWinningBidAsUsed(adUnitCode)](#module_pbjs.markWinningBidAsUsed)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 
 
@@ -1794,17 +1794,18 @@ In the event of collisions, querystring values passed via `options.params` take 
 
 <a name="module_pbjs.markWinningBidAsUsed"></a>
 
-### pbjs.markWinningBidAsUsed(adUnitCode)
+### pbjs.markWinningBidAsUsed(markBidRequest)
 
 This function can be used to mark the winning bid as used. This is useful when running multiple video advertisements on the page, since these are not automatically marked as “rendered”.
 
-**Kind**: static method of [pbjs](#module_pbjs)
+#### Argument Reference
 
+##### The `markBidRequest` object
 
 {: .table .table-bordered .table-striped }
-| Param | Scope | Type | Description |
-| --- | --- | --- | --- |
-| adUnitCode | Required | `String` | the adUnitCode for which we'll mark the winning bid |
-
+| Param | Type | Description |
+| --- | --- | --- |
+| adUnitCode | `string` | The ad unit code |
+| adId | `string` | The id representing the ad we want to mark |
 
 </div>
