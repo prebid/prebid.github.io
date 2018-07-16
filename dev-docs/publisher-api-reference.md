@@ -58,8 +58,6 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
-
-
 <a name="module_pbjs.getAdserverTargeting"></a>
 
 ### pbjs.getAdserverTargeting() ⇒ `object`
