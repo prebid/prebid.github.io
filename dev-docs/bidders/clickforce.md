@@ -8,7 +8,7 @@ hide: true
 biddercode: clickforce
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
-media_types : native
+media_types: native
 ---
 
 ### bid params (display ad)
