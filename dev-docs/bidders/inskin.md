@@ -16,7 +16,7 @@ The Inskin bidder adapter requires additional setup and approval from the Inskin
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                             | Example                                       |
-| :---              | :----    | :----------                                             | :------                                       |
-| `siteId`          | required | Site ID provided by Inskin.                             | `12345`                                       |
-| `networkId`       | required | Network ID provided by Inskin.                          | `9969`                                        |
+| Name        | Scope    | Description                    | Example | Type      |
+|-------------|----------|--------------------------------|---------|-----------|
+| `siteId`    | required | Site ID provided by Inskin.    | `12345` | `integer` |
+| `networkId` | required | Network ID provided by Inskin. | `9969`  | `integer` |

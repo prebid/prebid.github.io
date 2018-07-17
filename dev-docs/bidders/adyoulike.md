@@ -13,6 +13,7 @@ biddercode: adyoulike
 biddercode_longer_than_12: false
 
 prebid_1_0_supported: true
+gdpr_supported: true
 ---
 
 ### Note:
@@ -21,7 +22,7 @@ The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoul
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `placement` | required | The placement ID from Adyoulike. | `"194f787b85c829fb8822cdaf1ae64435"`|
-| `DC` | optional | The data center name | `"usa01"`|
+| Name        | Scope    | Description                      | Example                              | Type     |
+|-------------|----------|----------------------------------|--------------------------------------|----------|
+| `placement` | required | The placement ID from Adyoulike. | `'194f787b85c829fb8822cdaf1ae64435'` | `string` |
+| `DC`        | optional | The data center name             | `'usa01'`                            | `string` |

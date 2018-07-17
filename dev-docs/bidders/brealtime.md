@@ -14,15 +14,15 @@ aliasCode : appnexus
 
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
-
+gdpr_supported: true
 ---
 
 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placementId` | required | The placement ID from bRealTime | `"1234567"` |
+| Name          | Scope    | Description                     | Example     | Type     |
+|---------------|----------|---------------------------------|-------------|----------|
+| `placementId` | required | The placement ID from bRealTime | `'1234567'` | `string` |
 
 bRealTime is an aliased bidder for AppNexus
