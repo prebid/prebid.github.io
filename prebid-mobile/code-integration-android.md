@@ -173,6 +173,12 @@ To avoid dfp class being obfuscated and prebid not working, add the following li
    public *;
 }
 ```
-
+### Primary Ad Server is DFP
+To avoid PrebidServerAdapter class being obfuscated and prebid not working, add the following lines to your proguard file:
+```
+-keep class org.prebid.mobile.prebidserver.PrebidServerAdapter {
+   public *;
+}
+```
 
 </div>
