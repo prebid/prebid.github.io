@@ -134,12 +134,8 @@ Display banners are rendered with the help of the renderAd function. This functi
 ```javascript
 pbjs.requestBids({
     bidsBackHandler: function(bids) {
-        // The video advertisement you want to show
-        const bid = ...
-
         var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
             adUnit: videoAdUnit,
-            bid: bid
             params: {
                 iu: '/19968336/prebid_cache_video_adunit'
             }
@@ -147,8 +143,8 @@ pbjs.requestBids({
 
         // Mark the bid, used in buildVideoUrl, as used
         pbjs.markWinningBidAsUsed({
-            adUnitCode: videoAdUnit.code
-            adId: bid.adId
+            adUnitCode: videoAdUnit.code // optional if you know the adId
+            adId: bid.adId // optional
         });
 
         invokeVideoPlayer(videoUrl);
