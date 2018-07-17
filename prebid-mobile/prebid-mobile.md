@@ -23,12 +23,12 @@ Prebid Mobile libraries are available for iOS and Android.
 
 Some of the benefits to using the Prebid Mobile header bidding solution include:
 
--   Provides a single integration point with Prebid Server, providing direct access to more mobile buyers.
+-   Provides a single integration point with Prebid Server, enabling direct access to more mobile buyers.
 -   Allows for server-side configuration management; no need for developers to update the app to make configuration changes.
 -   Provides a transparent, open source header bidding solution.
 -   Flattens mediation layers, reducing ad ops burden for managing mediation partners.
 -   Reduces latency compared to mediation.
--   Designed to integrate with Prebid Server, and can also integrate with any vendor hosting their own Prebid Server deployment (vendor must be registered in Prebid Mobile as a Prebid Server host).
+-   Designed to integrate with any deployment of the open-source Prebid Server code. (Vendor must be registered in Prebid Mobile as a Prebid Server host.)
 
 ## Requirements
 
@@ -50,32 +50,18 @@ The following diagram shows how the Prebid Mobile header bidding solution works.
 {: .pb-img.pb-lg-img :}
 ![How Prebid Mobile Works - Diagram]({{site.baseurl}}/assets/images/prebid-mobile/pbm-overview-flow.png)
 
-1.  Prebid Mobile sends a request to Prebid Server.  
-    This request consists of the Prebid Server account ID and config ID for each tag included in the request.
+1.  Prebid Mobile sends a request to Prebid Server. This request consists of the Prebid Server account ID and config ID for each tag included in the request.
 
-2.  Prebid Server constructs a bid request and passes it to the demand partners.  
-    An OpenRTB request is constructed for each demand partner from their Prebid Server adapter.
+2.  Prebid Server constructs an OpenRTB bid request and passes it to the demand partners.  
 
-3.  Each demand partner returns a bid response to Prebid Server.  
-    The bid response includes the bid price and the creative content.
+3.  Each demand partner returns a bid response to Prebid Server. The bid response includes the bid price and the creative content.
 
 4.  Prebid Server sends the bid responses to Prebid Mobile.
 
-5.  Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK.  
-    This targeting will match the key/value targeting that was pre-configured on the prebid line items on the primary ad server.
+5.  Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK. This targeting will activate one or more of Prebid line items that were previously configured in the primary ad server.
 
-6.  If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JS to the ad server's SDK.
+6.  If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JavaScript to the ad server's SDK.
 
-7.  The creative JS will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
-
-## GDPR
-
-Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](http://advertisingconsent.eu/).
-
-For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
-
-For specific implementation details, see the "GDPR Consent" section here:
--   [iOS - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)
--   [Android - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)
+7.  The Prebid Mobile creative JavaScript will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
 
 </div>

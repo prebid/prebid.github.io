@@ -31,8 +31,8 @@ Before you begin using Prebid Mobile in your apps, you need to prepare your end-
 
 ### Register with AppNexus
 
--   Go to the [Prebid Server sign-up page](https://prebid.adnxs.com) and click the button to sign up.
--   You'll receive an account ID and will be able to set up server-side bidder configurations.
+-   Go to the [Prebid Server application page](https://prebid.adnxs.com) and click **Apply**.
+-   You'll receive an email notifying you as to whether you've been granted access to the AppNexus-hosted Prebid Server implementation. If you receive access you'll be provided with an account ID and will be able to set up server-side bidder configurations.
 
 ### Register with Rubicon Project
 
@@ -46,7 +46,7 @@ See the [Prebid Server docs on Github](https://github.com/prebid/prebid-server/t
 
 ## Configure Prebid Server
 
-After you've registered with your chosen Prebid Server host, configure Prebid Server for each bidder as required by the host. The configuration will be in the form of a JSON structure, similar to this:
+After you've registered with your chosen Prebid Server host, you need to create at least one Prebid Server bidder configuration. Each configuration contains a list of bidders and their parameters. The configuration will be in the form of a JSON structure, similar to this:
 
 ```
 [
@@ -59,7 +59,7 @@ After you've registered with your chosen Prebid Server host, configure Prebid Se
 ]
 ```
 
-The preceding is an example structure using AppNexus as the bidder. See [Bidder Parameters]({{site.github.url}}/dev-docs/bidders.html) for a full list of parameters for available bidders.
+The preceding is an example structure using AppNexus as the bidder. The parameters you need to set differ for each bidder. See [Bidder Parameters]({{site.github.url}}/dev-docs/bidders.html) for a full list of parameters for available bidders.
 
 ## Developers - Using the SDK
 
@@ -81,6 +81,11 @@ Ad ops users configure the primary ad server with Prebid Mobile line items targe
 
 The following resources are available for further information on working with Prebid Mobile:
 
+### Ad Ops
+
+-   [Price Granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity)  
+    Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
+
 ### Mobile Developers
 
 **iOS**
@@ -99,9 +104,14 @@ The following resources are available for further information on working with Pr
 -   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-and-troubleshooting-android)  
     Instructions on troubleshooting issues you might encounter.
 
-### Ad Ops
+### GDPR
 
--   [Price Granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity)  
-    Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
+Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](http://advertisingconsent.eu/).
+
+For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
+
+For specific implementation details, see the "GDPR Consent" section here:
+-   [iOS - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)
+-   [Android - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)
 
 </div>
