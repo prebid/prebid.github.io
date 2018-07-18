@@ -9,6 +9,7 @@ biddercode: rhythmone
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
 media_types: video
+gdpr_supported: true
 ---
 
 
@@ -16,6 +17,6 @@ media_types: video
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placementId` | required | The ID issued by RhythmOne to the publisher | `34887` |
+| Name          | Scope    | Description                                 | Example | Type      |
+|---------------|----------|---------------------------------------------|---------|-----------|
+| `placementId` | required | The ID issued by RhythmOne to the publisher | `34887` | `integer` |

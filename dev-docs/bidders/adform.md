@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Adform
-description: Prebid Adform Bidder Adaptor 
+description: Prebid Adform Bidder Adaptor
 
 top_nav_section: dev_docs
 nav_section: reference
@@ -21,8 +21,7 @@ gdpr_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `mid` | required | | `12345` |
-| `adxDomain` | optional | The Adform domain | `"adx.adform.net"` |
+| Name        | Scope    | Description       | Example            | Type      |
+|-------------|----------|-------------------|--------------------|-----------|
+| `mid`       | required |                   | `12345`            | `integer` |
+| `adxDomain` | optional | The Adform domain | `'adx.adform.net'` | `string`  |

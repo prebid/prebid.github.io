@@ -13,7 +13,6 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-
-| Name  | Scope    | Description       | Example  |
-| :---- | :------- | :---------------- | :------- |
-| `uid` | required | The ID from Peak226 | 76221035 |
+| Name  | Scope    | Description         | Example  | Type      |
+|-------|----------|---------------------|----------|-----------|
+| `uid` | required | The ID from Peak226 | 76221035 | `integer` |

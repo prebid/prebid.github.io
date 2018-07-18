@@ -8,18 +8,19 @@ hide: true
 biddercode: visx
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
 ### Note
-The VIS.X adaptor requires setup and approval from your YOC account manager team, even for existing YOC publishers. Please reach out to your account manager to enable Prebid.js for your account.
+The YOC VIS.X adaptor requires setup and approval from your YOC account manager team, even for existing YOC publishers. Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Parameter | Scope | Description | Example |
-| :--- | :------ | :---- | :---------- | :------ |
-| `uid` | required | The publisher's ad unit ID in VIS.X | `'903536'` |
-| `priceType` | optional | The price type for received bids. Valid values are `'net'` or `'gross'`. Defaults to `'net'`. Net represents the header bid price with the header bidder margin already extracted. Gross price does contain the VIS.X bidder margin within. | `'net'` |
+| Name        | Scope    | Description                                                                                                                                                                                                                                 | Example    | Type     |
+|-------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|----------|
+| `uid`       | required | The publisher's ad unit ID in VIS.X                                                                                                                                                                                                         | `'903536'` | `string` |
+| `priceType` | optional | The price type for received bids. Valid values are `'net'` or `'gross'`. Defaults to `'net'`. Net represents the header bid price with the header bidder margin already extracted. Gross price does contain the VIS.X bidder margin within. | `'net'`    | `string` |
 
 ### Configuration
 
@@ -33,4 +34,3 @@ $$PREBID_GLOBAL$$.setConfig({
 });
 ```
 Note: this currency config should correspond with your VIS.X account setting. Please reach out to your account manager for more information.
-

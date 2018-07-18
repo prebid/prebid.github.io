@@ -8,6 +8,7 @@ biddercode: improvedigital
 biddercode_longer_than_12: true
 hide: true
 prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
 ### Send All Bids Ad Server Keys:
@@ -23,14 +24,13 @@ prebid_1_0_supported : true
 Depending on your setup in our system, your placements will either have a globally-unique placement ID or a publisher-unique placement key as an identifier.  Therefore, to identify your placement you either need a placementId only, or a combination of publisherId and placementKey.
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Description                                                                                                                                                                                                          | Example           |
-|------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------|
-| `placementId`    | optional | The placement ID from Improve Digital.                                                                                          | `1234567`      |
-| `publisherId` | optional | Your publisher ID.  This is only required when using a placementKey  | `950` |
-| `placementKey`        | optional | The placement key for your placement.  Must be used with `publisherId`.                                                                                                                                                        | `"myMainBannerPlacement300x200"`        |
-| `keyValues`         | optional | Contains one or more key-value pairings for key-value targeting                                                                                                                                                           | `{testKey1: ["testValueA"], testKey2: ["testValueB", "testValueC"]}`         |
-| `size`        | optional | Size filter.  Where a placement supports multiple sizes, this forces the response to featur only one of the multiple sizes                                                                                                                                                                     | `{w:300,h:250}`            |
-
+| Name           | Scope    | Description                                                                                                                | Example                                                                | Type      |
+|----------------|----------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------|
+| `placementId`  | optional | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
+| `publisherId`  | optional | Your publisher ID.  This is only required when using a placementKey                                                        | `950`                                                                  | `integer` |
+| `placementKey` | optional | The placement key for your placement.  Must be used with `publisherId`.                                                    | `'myMainBannerPlacement300x200'`                                       | `string`  |
+| `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
+| `size`         | optional | Size filter.  Where a placement supports multiple sizes, this forces the response to featur only one of the multiple sizes | `{ w:300, h:250 }`                                                     | `object`  |
 
 <a name="improvedigital-examples" />
 
@@ -61,7 +61,7 @@ Depending on your setup in our system, your placements will either have a global
                 bidder: 'improvedigital',
                 params: {
                     placementKey:'',
-                    publisherId: 
+                    publisherId:
                 }
             }
         ]
