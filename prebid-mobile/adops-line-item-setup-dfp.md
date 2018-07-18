@@ -67,7 +67,14 @@ Note that this has to be a **Third party** creative. The **"Serve in Safeframe"*
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
-{% include dev-docs/amp-creative.md %}
+```
+<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
+<script type="text/javascript">
+    pbm.showAdFromCacheId({
+        admCacheID : '%%PATTERN:hb_cache_id%%'
+    });
+</script>
+```
 
 Make sure the creative size is set to 1x1. This allows us to set up size override, which allows this creative to serve on all inventory sizes.
 

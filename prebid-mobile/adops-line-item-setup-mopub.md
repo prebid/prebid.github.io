@@ -39,11 +39,18 @@ Line items must be set up to target custom keywords that include bid price infor
 Banner creatives must be HTML banners with the **Format** set to **Banner** that include the code shown below.
 
 {: .pb-med-img :}
-  ![MoPub Creative Setup]({{site.github.url}}/assets/images/prebid-mobile/adops-line-item-setup-mopub/mopub4.png "Example MoPub Creative")
+  ![MoPub Creative Setup]({{site.github.url}}/assets/images/prebid-mobile/adops-line-item-setup-mopub/mopub3.png "Example MoPub Creative")
 
 The **hb_cache_id** variable stands for the cache id that will load the ad markup from the bid from Prebid Cache. Within each line item, for each ad unit size there should be one creative with this content. 
 
-{% include dev-docs/amp-creative.md %}
+```
+<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
+<script type="text/javascript">
+    pbm.showAdFromCacheId({
+        admCacheID: '%%KEYWORD:hb_cache_id%%'  
+    });
+</script>
+```
 
 ## Step 3. Duplicate line items
 
