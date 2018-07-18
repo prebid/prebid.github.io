@@ -170,7 +170,7 @@ labelAll: ["A", "B"]
 Only one conditional may be specified on a given AdUnit or bid -- if both `labelAny` and `labelAll` are specified, only the first one will be utilized and an error will be logged to the console. It is allowable for an AdUnit to have one condition and a bid to have another.
 
 {: .alert.alert-warning :}
-If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`.
+If either `labelAny` or `labelAll` values is an empty array, it evaluates to `true`.
 
 
 Defining labels on the adUnit looks like the following:
