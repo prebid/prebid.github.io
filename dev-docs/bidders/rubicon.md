@@ -19,26 +19,26 @@ The Rubicon Project adapter requires setup and approval from the Rubicon Project
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Version | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
+| Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
-| `accountId` | 0.6.0   | required           | The publisher account ID                                                                                                    | `'4934'`                                                                            | `string`         |
-| `siteId`    | 0.6.0   | required           | The site ID                                                                                                                 | `'13945'`                                                                           | `string`         |
-| `zoneId`    | 0.6.0   | required           | The zone ID                                                                                                                 | `'23948'`                                                                           | `string`         |
-| `sizes`     | 0.6.0   | optional           | Array of Rubicon Project size IDs. If not specified, the system will try to convert from bid.sizes.                         | `[15]`                                                                              | `Array<integer>` |
-| `keywords`  | 0.6.0   | optional           | Array of page-specific keywords. May be referenced in Rubicon Project reports.                                              | `['travel', 'tourism']`                                                             | `Array<string>`  |
-| `inventory` | 0.6.0   | optional           | An object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{'rating':['5-star'], 'prodtype':['tech','mobile']}`                               | `object`         |
-| `visitor`   | 0.6.0   | optional           | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays.        | `{'ucat':['new'], 'search':['iphone']}`                                             | `object`         |
-| `position`  | 0.6.0   | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
-| `userId`    | 0.6.0   | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
-| `floor`     | 0.19.0  | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
-| `latLong`   | 1.10.0  | optional           | Sets the latitude and longitude for the visitor                                                                             | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
-| `video`     | 0.19.0  | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{'language': 'en', 'playerHeight': '360', 'playerWidth': '640', 'size_id': '201'}` | `object`         |
+| `accountId`    | required           | The publisher account ID                                                                                                    | `'4934'`                                                                            | `string`         |
+| `siteId`       | required           | The site ID                                                                                                                 | `'13945'`                                                                           | `string`         |
+| `zoneId`       | required           | The zone ID                                                                                                                 | `'23948'`                                                                           | `string`         |
+| `sizes`        | optional           | Array of Rubicon Project size IDs. If not specified, the system will try to convert from bid.sizes.                         | `[15]`                                                                              | `Array<integer>` |
+| `keywords`     | optional           | Array of page-specific keywords. May be referenced in Rubicon Project reports.                                              | `['travel', 'tourism']`                                                             | `Array<string>`  |
+| `inventory` |   | optional           | An object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{'rating':['5-star'], 'prodtype':['tech','mobile']}`                               | `object`         |
+| `visitor`      | optional           | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays.        | `{'ucat':['new'], 'search':['iphone']}`                                             | `object`         |
+| `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
+| `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
+| `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
+| `latLong`     | optional           | Sets the latitude and longitude for the visitor (avail since PBJS 1.10)                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
+| `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{'language': 'en', 'playerHeight': '360', 'playerWidth': '640', 'size_id': '201'}` | `object`         |
 
 <a name="rubicon-video"></a>
 
 #### Video
 
-The following video parameters are supported as of 0.19.0:
+The following video parameters are supported:
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
@@ -62,18 +62,17 @@ The following video parameters are supported as of 0.19.0:
 
 ### Configuration
 
-The Rubicon adapter has the ability to initiate user-sync requests that will improve DSP user ID match rate,
-with the aim of generating higher bid prices. By default, Rubicon Project sync requests are off. To improve monetization, we recommend firing user syncs 5 seconds after the auction is complete with a call to setConfig().
+#### Single-Request
 
-```javascript
-$$PREBID_GLOBAL$$.setConfig({
-   userSync: {
-    enabledBidders: ['rubicon'],
-    iframeEnabled: true
- }});
+By default, the Rubicon Project adapter sends one request to rubiconproject.com for each AdUnit. For example, if there are 4 PBJS AdUnits defined on the page, you'll see 4 calls out to rubiconproject.com/fastlane.json.
+
+As of PBJS 1.12, the Rubicon Project adapter supports `Single Request` mode, where all AdUnit requests are made in a single call to rubiconproject.com. To turn this feature on, call `setConfig`:
 ```
-Note: this config should be combined with any other UserSync config calls, as subsequent calls to setConfig for the same attribute overwrite each other.
+pbjs.setConfig({
+   rubicon: {singleRequest: true}
+});
+```
 
 ### Notes
 
-There can only be one siteId and zoneId in an AdUnit. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
