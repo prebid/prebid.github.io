@@ -20,18 +20,19 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `publisherId` | required | Publisher ID | "32572" |
-| `adSlot` | required | Ad Unit ID | "38519891@300x250" |
-| `pmzoneid` | optional | Zone ID | "zone1,zone2" |
-| `lat` | optional | Latitude | "40.712775" |
-| `lon` | optional | Longitude | "-74.005973" |
-| `yob` | optional | Year of Birth | "1982" |
-| `gender` | optional | Gender | "M" |
-| `kadpageurl` | optional | Overrides Page URL | "http://www.yahoo.com/" |
-| `kadfloor` | optional | Bid Floor | "1.75" |
-| `bidfloorcur` | optional | Bid currency | 'AUD' |
+| Name          | Scope    | Description        | Example                      | Type     |
+|---------------|----------|--------------------|------------------------------|----------|
+| `publisherId` | required | Publisher ID          | `'32572'`                 | `string` |
+| `adSlot`      | required | Ad Unit ID            | `'38519891@300x250'`      | `string` |
+| `pmzoneid`    | optional | Zone ID               | `'zone1,zone2'`           | `string` |
+| `lat`         | optional | Latitude              | `'40.712775'`             | `string` |
+| `lon`         | optional | Longitude             | `'-74.005973'`            | `string` |
+| `yob`         | optional | Year of Birth         | `'1982'`                  | `string` |
+| `gender`      | optional | Gender                | `'M'`                     | `string` |
+| `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |
+| `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
+| `currency`    | optional | Bid currency    	   | 'AUD' 					   | `string` |
+| `dctr`		| optional | Deal Custom Targeting | 'key1=123|key2=345' 	   | `string` |
 
 ### Configuration
 
