@@ -40,11 +40,13 @@ to output the PrebidMobile.framework.
 ## Ad Unit Setup for iOS
 {:.no_toc}
 
-Register Prebid Mobile ad units as early as possible in the application's lifecycle. Each ad unit has an `adUnitId` which is an arbitrary unique identifier of the developer's choice.
+Register Prebid Mobile ad units as early as possible in the application's lifecycle.  
+
+When registering a Prebid Mobile ad unit, you must replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.  Prebid Mobile will use this identifier to determine the unique ad unit to which bid key-values will be associated.  This identifier must be unique across all registered Prebid Mobile ad units, and does not need to map to any ad unit ID definted in your ad server.
 
 We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDelegate.m` using the following steps, as shown in the code sample below:
 
-1. Create the ad units with ad unit ids and add sizes for banner ad units.
+1. Create the ad units and add sizes for banner ad units.  Be sure to replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
 4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
@@ -62,8 +64,9 @@ Embed the ad unit registration in a try-catch block to catch all the exceptions 
 
 [PBLogManager setPBLogLevel:PBLogLevelAll];
 
-// 1. Create the ad units with ad unit ids and add sizes for banner ad units
-PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdentifier:@"YOUR-AD-UNIT-ID-HERE" andConfigId:@"YOUR-CONFIG-ID-HERE"];
+// 1. Create the ad units and add sizes for banner ad units
+// Replace @"PREBID-MOBILE-SLOT-ID" with a unique ad slot identifier of your choice 
+PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdentifier:@"PREBID-MOBILE-SLOT-ID" andConfigId:@"YOUR-CONFIG-ID-HERE"];
 [adUnit1 addSize:CGSizeMake(300, 250)];
 
 // 2. Set targeting parameters for the ad units (Optional)
@@ -94,15 +97,19 @@ Prebid Mobile continuously pre-caches creatives in the background, so that right
 
 
 ```
-// Set the prebid keywords immediately on your adObject
-[PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE"];
+// Set the prebid keywords immediately on your adObject.
+// Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+// you defined when you registered the ad unit with Prebid Mobile.
+[PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"PREBID-MOBILE-SLOT-ID"];
 ```
 
 Alternatively, if you want to set the bid keywords on your adObject shortly after registering ad units, you can wait for bids with a timeout using the API method below.
 
 ```
-// Set the prebid keywords on your adObject, upon completion load the adObject's ad
-[PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE" withTimeout:600 completionHandler:^{
+// Set the prebid keywords on your adObject, upon completion load the adObject's ad.
+// Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+// you defined when you registered the ad unit with Prebid Mobile.
+[PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"PREBID-MOBILE-SLOT-ID" withTimeout:600 completionHandler:^{
     [YOUR-AD-VIEW YOUR-ADS-LOAD-METHOD];
 }];
 ```

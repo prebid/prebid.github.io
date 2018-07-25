@@ -36,11 +36,13 @@ to output the PrebidMobile framework for Android.
 ## Ad Unit Setup for Android
 {:.no_toc}
 
-Register Prebid Mobile ad units as early as possible in the application's lifecycle. Each ad unit has an `adUnitId` which is an arbitrary unique identifier of the developer's choice.
+Register Prebid Mobile ad units as early as possible in the application's lifecycle.  
+
+When registering a Prebid Mobile ad unit, you must replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.  Prebid Mobile will use this identifier to determine the unique ad unit to which bid key-values will be associated.  This identifier must be unique across all registered Prebid Mobile ad units, and does not need to map to any ad unit ID definted in your ad server.
 
 The steps for using Prebid Mobile are as follows:
 
-1. Create the ad units with ad unit ids and add sizes for banner ad units.
+1. Create the ad units and add sizes for banner ad units.  Be sure to replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
 4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
@@ -54,12 +56,16 @@ Create the ad units that represent the ad spaces in your app using following API
 ```
 ArrayList<AdUnit> adUnits = new ArrayList<AdUnit>();
 
-// Configure a Banner Ad Unit with size 320x50
-BannerAdUnit adUnit1 = new BannerAdUnit("YOUR-AD-UNIT-ID-HERE", "YOUR-CONFIG-ID-HERE");
+// Configure a Banner Ad Unit with size 320x50.
+// Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+// you defined when you registered the ad unit with Prebid Mobile.
+BannerAdUnit adUnit1 = new BannerAdUnit("PREBID-MOBILE-SLOT-ID", "YOUR-CONFIG-ID-HERE");
 adUnit1.addSize(320, 50);
 
-// Configure an Interstitial Ad Unit
-InterstitialAdUnit adUnit2 = new InterstitialAdUnit("YOUR-INTERSTITIAL-AD-UNIT-ID-HERE", "YOUR-INTERSTITIAL-CONFIG-ID-HERE");
+// Configure an Interstitial Ad Unit.
+// Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+// you defined when you registered the ad unit with Prebid Mobile.
+InterstitialAdUnit adUnit2 = new InterstitialAdUnit("PREBID-MOBILE-SLOT-ID", "YOUR-INTERSTITIAL-CONFIG-ID-HERE");
 
 // Add them to the list
 adUnits.add(adUnit1);
@@ -97,7 +103,7 @@ Note that host should be the prebid server host you're using.
 The final step for implementing Prebid Mobile is to attach bid keywords on the ad object. You can either attach bids immediately or wait for ads before attaching bids. To attach bids immediately use the following API.
 
 ```
-Prebid.attachBids(YOUR-AD-OBJECT-HERE, YOUR-AD-UNIT-ID-HERE, Context);
+Prebid.attachBids(YOUR-AD-OBJECT-HERE, PREBID-MOBILE-SLOT-ID, Context);
 ```
 
 To wait for ads before attaching bids, implement the following listener.
@@ -130,25 +136,29 @@ Prebid Mobile Android does not update the bids automatically like iOS implementa
 For MoPub banner, in the banner ad listener implementation, add the following API usage.
 ```
 // MoPub Banner Listener Implementation
+// Replace PREBID-MOBILE-SLOT-ID with the unique ad slot identifier
+// you defined when you registered the ad unit with Prebid Mobile.
 @Override
 public void onBannerLoaded(MoPubView banner) {
-    Prebid.attachBids(banner, YOUR-AD-UNIT-ID-HERE, Context);
+    Prebid.attachBids(banner, PREBID-MOBILE-SLOT-ID, Context);
 }
 
 @Override
 public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
-    Prebid.attachBids(banner, YOUR-AD-UNIT-ID-HERE, Context);
+    Prebid.attachBids(banner, PREBID-MOBILE-SLOT-ID, Context);
 }
  ```
 
 ### Primary Ad Server is DFP
 For DFP banner, the `loadAd(AdRequest)` has to be called again with updated bids info. If not, same set of bids will be used repeatedly until `loadAd()` is called with a new `AdRequest`. We recommend doing client side auto refresh yourself using code like the following:
  ```
+// Replace PREBID-MOBILE-SLOT-ID with the unique ad slot identifier
+// you defined when you registered the ad unit with Prebid Mobile.
 final Handler handler = new Handler(Looper.getMainLooper());
 Runnable refreshRunnable = new Runnable() {
     @Override
     public void run() {
-        Prebid.attachBids(request, YOUR-AD-UNIT-ID-HERE, Context);
+        Prebid.attachBids(request, PREBID-MOBILE-SLOT-ID, Context);
         adView.loadAd(request);
         handler.postDelayed(this, 30000); // load ad with new bids every 30 seconds
     }
