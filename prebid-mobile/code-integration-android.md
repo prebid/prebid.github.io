@@ -38,7 +38,7 @@ to output the PrebidMobile framework for Android.
 
 Register Prebid Mobile ad units as early as possible in the application's lifecycle.  
 
-When registering a Prebid Mobile ad unit, you must replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.  Prebid Mobile will use this identifier to determine the unique ad unit to which bid key-values will be associated.  This identifier must be unique across all registered Prebid Mobile ad units, and does not need to map to any ad unit ID definted in your ad server.
+When registering a Prebid Mobile ad unit, you must replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.  Prebid Mobile will use this identifier to determine the unique ad unit to which bid key-values will be associated.  This identifier must be unique across all registered Prebid Mobile ad units, and does not need to map to any ad unit ID defined in your ad server.
 
 The steps for using Prebid Mobile are as follows:
 
