@@ -20,7 +20,7 @@ nav_section: download
 $(function(){
   $('#myModal').on('show.bs.modal', function (e) {
     var form_data = get_form_data();
-    if(form_data.bidders.length < 1){
+    if(form_data.modules.length < 1){
       alert('Please select at least 1 bidder');
       return e.preventDefault() // stops modal from being shown
     }
@@ -36,6 +36,10 @@ $(function(){
        $('.adapters .col-md-4').show();
     }
   });
+
+  //default to 1.x adapters:
+  $('.adapters .col-md-4').hide();
+  $('.prebid_1_0').show();
 });
 
 function submit_download() {
@@ -51,20 +55,36 @@ function submit_download() {
     alertStatus.addClass('hide');
 
     $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
-    alertStatus.html('Request sent! Please hang tight, this might take a few minutes.');
+    alertStatus.html('Request sent! This should only take a few moments!');
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://client-test.devnxs.net/prebid",
+        url: "http://js-download.prebid.org/download",
         //dataType: 'json',
         data: form_data
     })
-    .done(function() {
+    .success(function(data, textStatus, jqXHR) {
       var buttn = $('#download-button');
       //buttn.addClass('btn-success');
-      buttn.html('<i class="glyphicon glyphicon-ok"></i> Email Sent!');
-      console.log('Succeeded!');
+      buttn.html('<i class="glyphicon glyphicon-ok"></i> Prebid.js file successfully generated!');
       alertStatus.addClass('hide');
+      // Try to find out the filename from the content disposition `filename` value
+      var filename = "prebid" + form_data['version'] + ".js";
+      // this doens't work in our current jquery version. 
+      var disposition = jqXHR.getResponseHeader('Content-Disposition');
+      if (disposition && disposition.indexOf('attachment') !== -1) {
+          var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          var matches = filenameRegex.exec(disposition);
+          if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+      }
+      // The actual download
+      var blob = new Blob([data], { type: 'text/javascript' });
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     })
     .fail(function(e) {
       errorO = e;
@@ -72,10 +92,8 @@ function submit_download() {
       var buttn = $('#download-button');
       buttn.html('<i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js');
       buttn.removeClass('disabled');
-      alert('Ran into an issue.'); // + e.responseText
+      alert('Ran into an issue.'); 
     });
-
-    newDownload(form_data['email'], form_data['company'], form_data['bidders']);
 }
 
 function get_form_data() {
@@ -95,15 +113,14 @@ function get_form_data() {
     for (var i = 0; i < analytics_check_boxes.length; i++) {
         var box = analytics_check_boxes[i];
         if (box.checked) {
-            analytics.push(box.getAttribute('analyticscode'));
+            analytics.push(box.getAttribute('analyticscode') + 'AnalyticsAdapter');
         }
     }
 
     var form_data = {};
     form_data['email'] = $('#input-email').val();
     form_data['company'] = $('#input-company').val();
-    form_data['bidders'] = bidders;
-    form_data['analytics'] = analytics;
+    form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
 
     return form_data;
@@ -130,13 +147,21 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
+{: .alert.alert-success :}
+Note if you receive an email with a broken link you most likely selected a configuration that is not supported. Verify that each bidder / module is supported in the selected version. 
+
 <form>
 <div class="row">
 <h4>Select Prebid Version</h4>
 <select class="selectpicker">
   <!-- empty value indicates legacy --> 
-  <option value="">0.34.4</option>
-  <option>1.4.0</option>
+  <option value="1.16.0">1.16.0 - latest</option>
+  <option value="1.15.0">1.15.0</option>
+  <option value="1.14.0">1.14.0</option>
+  <option value="1.13.0">1.13.0</option>
+  <option value="1.12.0">1.12.0</option>
+  <option value="0.34.16">0.34.16 - legacy not recommended</option>
+  <option value="0.34.15">0.34.15 - legacy not recommended</option>
 </select>
 
 
@@ -230,11 +255,63 @@ To improve the speed and load time of your site, build Prebid.js for only the he
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
+    </label>
+  </div>
+</div>
+
+
 </div>
 <br/>
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
+  {% if page.enable_download == false %}  
+    {% continue %}
+  {% endif %}
  <div class="col-md-4">
  <div class="checkbox">
   <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
@@ -247,7 +324,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Custom Prebid.js</button>
+  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Prebid.js! </button>
 
 </div>
 
@@ -271,7 +348,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
       <div class="modal-body">
 
         <div class="lead">
-          The download link will be in your inbox in a few minutes. Check the spam folder too!
+          Enter your information below to generate the download file. 
         </div>
 
 
@@ -285,13 +362,13 @@ To improve the speed and load time of your site, build Prebid.js for only the he
         </div>
 
         <div class="form-group">
-            <button type="button" id="download-button" class="btn btn-lg btn-primary" onclick="submit_download()"><i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js</button>
+            <button type="button" id="download-button" class="btn btn-lg btn-primary" onclick="submit_download()"><i class="glyphicon glyphicon-envelope"></i> Download Prebid.js</button>
         </div>
 
         <div class="alert alert-warning hide" role="alert" id="download-status"></div>
 
         <p>
-        Ran into problems? Email <code>info@prebid.org</code>
+        Ran into problems? Email <code>support@prebid.org</code>
         </p>
 
       </div>

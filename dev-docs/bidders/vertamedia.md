@@ -8,16 +8,15 @@ hide: true
 biddercode: vertamedia
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+media_types: video
 ---
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
-
-| Name | Scope    | Description                   | Example  |
-| :--- | :----    | :----------                   | :------  |
-| `aid`| required | The source ID from Vertamedia.| 324758   | 
+| Name  | Scope    | Description                    | Example  | Type      |
+|-------|----------|--------------------------------|----------|-----------|
+| `aid` | required | The source ID from Vertamedia. | `350975` | `integer` |
 
 
 ### Description
@@ -42,7 +41,7 @@ This adapter provides a solution for accessing Video demand and display demand
         bids: [{
           bidder: 'vertamedia',
           params: {
-            aid: 332842
+            aid: 331133
           }
         }]
       },
@@ -59,7 +58,7 @@ This adapter provides a solution for accessing Video demand and display demand
         bids: [{
           bidder: 'vertamedia',
           params: {
-            aid: 332842
+            aid: 331133
           }
         }]
       },
@@ -71,7 +70,7 @@ This adapter provides a solution for accessing Video demand and display demand
         bids: [{
           bidder: 'vertamedia',
           params: {
-            aid: 324758
+            aid: 350975
           }
         }]
       }

@@ -12,12 +12,13 @@ biddercode: somoaudience
 
 biddercode_longer_than_12: false
 
+prebid_1_0_supported: true
 ---
 
 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placementId` | required | Placement ID provided by Somo Audience | `22a58cfb0c9b656bff713d1236e930e8` |
+| Name          | Scope    | Description                            | Example                              | Type     |
+|---------------|----------|----------------------------------------|--------------------------------------|----------|
+| `placementId` | required | Placement ID provided by Somo Audience | `'22a58cfb0c9b656bff713d1236e930e8'` | `string` |
