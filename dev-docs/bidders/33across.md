@@ -16,5 +16,5 @@ prebid_1_0_supported : true
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                          | Example                  |
 |:----------------|:---------|:-------------------------------------|:-------------------------|
-| `siteId`        | required | Publisher  GUID from 33Across        | `'pub123'`               |
+| `siteId`        | required | Publisher  GUID from 33Across        | `'examplePub123'`               |
 | `productId`     | required | 33Across Product ID that the Publisher has registered for (use only 'siab' for the present since others are not supported yet)  | `'siab'`          
