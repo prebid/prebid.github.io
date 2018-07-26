@@ -45,8 +45,8 @@ The steps for using Prebid Mobile are as follows:
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
-5. Set the Host for the bid to AppNexus or Rubicon.
+4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism).
+5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
 ### User-Replaced Macros
@@ -57,10 +57,10 @@ In the code snippets below, any values that must be substituted by your develope
 | Value | Description |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `PREBID-SERVER-ACCOUNT-ID` | Your unique account ID with your Prebid Server vendor.  |
-| `PREBID-MOBILE-SLOT-ID` | User-defined identifier that must be unique across all registered Prebid Mobile ad units.  Note: this value does not need to map to any ad unit ID defined in your ad server. |
+| `PREBID-MOBILE-SLOT-ID` | User-defined identifier that must be unique across all registered Prebid Mobile ad units.  Note: this value should not map to any ad unit ID defined in your ad server, unless that ID is unique. |
 | `PREBID-SERVER-CONFIGURATION-ID` | The ID of a Prebid Server demand partner configuration.  Represents the set of demand that will be fetched for a given ad unit. |
 | `AD-SERVER-OBJECT-INSTANCE` | The ad server object instance to which bids will be attached.  Supported values are defined in a table below. |
-| `AD-SERVER-AD-LOAD-METHOD` | The calling instance defined in the ad server API |
+| `AD-SERVER-AD-LOAD-METHOD` | The ad server API to load this ad type. |
 
 ### Ad Unit Registration
 
@@ -108,6 +108,9 @@ If you're using DFP as your primary ad server, use the API like this:
  * Register ad units for prebid.
  *
  * Replace "PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
+ * 
+ * If you are using a Prebid Server host other than AppNexus, be sure
+ * to replace 'Host.APPNEXUS'.
  */ 
 try {
     Prebid.init(getApplicationContext(), adUnits, "PREBID-SERVER-ACCOUNT-ID", Prebid.AdServer.DFP, Host.APPNEXUS);
@@ -121,6 +124,9 @@ If you're using MoPub as your primary ad server, use the API like this:
  * Register ad units for prebid.
  *
  * Replace "PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
+ * 
+ * If you are using a Prebid Server host other than AppNexus, be sure
+ * to replace 'Host.APPNEXUS'.
  */ 
 try {
     Prebid.init(getApplicationContext(), adUnits, "PREBID-SERVER-ACCOUNT-ID", Prebid.AdServer.MOPUB, Host.APPNEXUS);

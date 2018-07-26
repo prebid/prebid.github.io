@@ -50,7 +50,7 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
 4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
-5. Set the Host for the bid to AppNexus or Rubicon.
+5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
 ### User-Replaced Macros
@@ -61,10 +61,10 @@ In the code snippets below, any values that must be substituted by your develope
 | Value | Description |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `PREBID-SERVER-ACCOUNT-ID` | Your unique account ID with your Prebid Server vendor.  |
-| `PREBID-MOBILE-SLOT-ID` | User-defined identifier that must be unique across all registered Prebid Mobile ad units.  Note: this value does not need to map to any ad unit ID defined in your ad server. |
+| `PREBID-MOBILE-SLOT-ID` | User-defined identifier that must be unique across all registered Prebid Mobile ad units.  Note: this value should not map to any ad unit ID defined in your ad server, unless that ID is unique. |
 | `PREBID-SERVER-CONFIGURATION-ID` | The ID of a Prebid Server demand partner configuration.  Represents the set of demand that will be fetched for a given ad unit. |
 | `AD-SERVER-AD-VIEW-INSTANCE` | The ad server ad view object instance to which bids will be attached.  Supported values are defined in a table below. |
-| `AD-SERVER-AD-LOAD-METHOD` | The calling instance defined in the ad server API |
+| `AD-SERVER-AD-LOAD-METHOD` | The ad server API to load this ad type. |
 
 ### Ad Unit Registration
 
@@ -98,8 +98,13 @@ PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdent
 
 /**
  * 3. Register the ad units with Prebid Mobile to start bid fetching process.
+ * 
+ * DFP Example
  *
  * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
+ * 
+ * If you are using a Prebid Server host other than AppNexus, be sure
+ * to replace 'PBServerHostAppNexus'.
  */ 
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
           		withAccountId:@"PREBID-SERVER-ACCOUNT-ID"
@@ -111,8 +116,13 @@ If you are using MoPub as your ad server, modify step 3 above to use `PBPrimaryA
 ```
 /**
  * 3. Register the ad units with Prebid Mobile to start bid fetching process.
+ * 
+ * MoPub Example
  *
  * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
+ * 
+ * If you are using a Prebid Server host other than AppNexus, be sure
+ * to replace 'PBServerHostAppNexus'.
  */ 
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
           		withAccountId:@"PREBID-SERVER-ACCOUNT-ID"
@@ -144,7 +154,8 @@ Alternatively, if you want to set the bid keywords on your adObject shortly afte
 
 ```
 /**
- * Set the prebid keywords on your adObject, upon completion load the adObject's ad.
+ * Set the prebid keywords on your adObject.  
+ * Upon completion, call the ad server's ad load method.
  *
  * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
  * you defined when you registered the ad unit with Prebid Mobile.
@@ -163,7 +174,7 @@ Alternatively, if you want to set the bid keywords on your adObject shortly afte
 Use the table below to see which ad objects are supported currently.
 
 {: .table .table-bordered .table-striped }
-| Primary Ad Server | Ad Object Type | Ad Server Ad View Instance   | Ad Server Ad Load Method                    |
+| Primary Ad Server | Ad Object Type | Ad Server Ad View            | Ad Server Ad Load Method                    |
 |-------------------|----------------|------------------------------|---------------------------------------------|
 | DFP               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
 | DFP               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
