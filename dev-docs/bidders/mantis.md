@@ -15,7 +15,7 @@ media_types: native, video
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `property` | required | The unique identifier provided for your entire account. | 5a5840d00000000000000000 |
-| `zone` | required | The unique identifier for the placement defined in our admin. | sidebar-top-1 |
+| Name       | Scope    | Description                                                   | Example                      | Type     |
+|------------|----------|---------------------------------------------------------------|------------------------------|----------|
+| `property` | required | The unique identifier provided for your entire account.       | `'5a5840d00000000000000000'` | `string` |
+| `zone`     | required | The unique identifier for the placement defined in our admin. | `'sidebar-top-1'`            | `string` |
