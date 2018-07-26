@@ -11,7 +11,11 @@ pid: 28
 
 # Prebid Plugins
 
-Prebid plugins allow you to extend your header bidding solutions.
+Plugins are software components (that can consist of multiple modules) that allow you to extend the functionality of an application. Plugins can be used to enable an application to work with Prebid.js to implement a header bidding solution.
+
+## Brightcove Plugin
+
+The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](https://www.brightcove.com/). The following documentation provides an overview of the Brightcove Plugin and how to use it to enable the Brightcove Player to work with Prebid.js.
 
 -   [Prebid Plugin for Brightcove Player - Overview]({{site.baseurl}}/dev-docs/plugins/bc/about-bc-prebid-plugin.html)
     -   [Prebid Plugin for Brightcove (Videojs) Player API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-api.html)
