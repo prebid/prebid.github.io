@@ -48,7 +48,7 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 
-   NOTE: The fluid ad size (used in DFP) is not supported.
+   NOTE: The [fluid ad size](https://developers.google.com/mobile-ads-sdk/docs/dfp/ios/api/reference/Constants#/c:@kGADAdSizeFluid) (used in DFP) is not supported.
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)

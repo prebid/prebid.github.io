@@ -43,7 +43,7 @@ The steps for using Prebid Mobile are as follows:
 
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 
-   NOTE: The fluid ad size (used in DFP) is not supported.
+   NOTE: The [fluid ad size](https://developers.google.com/android/reference/com/google/android/gms/ads/AdSize.html#FLUID) (used in DFP) is not supported.
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
