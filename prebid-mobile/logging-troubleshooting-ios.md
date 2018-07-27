@@ -20,6 +20,10 @@ To add Prebid Mobile logs for troubleshooting or to see successful bids simply i
 
 # FAQs
 
-Coming soon.
+**Q:** I've defined a banner size as fluid in DFP SDK (`AdSize(-3,-4)`), why am I receiving an empty response?
+
+**A:** Prebid Mobile does not support fluid size.
+
+
 
 </div>
