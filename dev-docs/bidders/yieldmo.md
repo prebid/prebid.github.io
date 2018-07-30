@@ -16,6 +16,6 @@ media_types: native
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placementId`   | required | Yieldmo placement id    | `'ym_825209316101005155'` |
+| Name          | Scope    | Description          | Example                   | Type     |
+|---------------|----------|----------------------|---------------------------|----------|
+| `placementId` | required | Yieldmo placement id | `'ym_825209316101005155'` | `string` |

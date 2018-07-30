@@ -84,10 +84,11 @@ object are detailed here.
 
 ### Banner
 
-| Key | Scope | Type | Description
-| --- | --- | --- | ---
-| siteId | Required | String | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. Examples: `'3723'`, `'6482'`, `'3639'`
-| size | Required | Number[] | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Examples: `[300, 250]`, `[300, 600]`, `[728, 90]`
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description                                                                                                                                                                                                                                                                                                                                   | Example      | Type             |
+|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------|
+| `siteId`      | required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have.                                                                                                                                                                           | `'3723'`     | `string`         |
+| `size`        | required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.                                                                                                                                                                              | `[300, 250]` | `Array<integer>` |
 
 
 Setup Guide

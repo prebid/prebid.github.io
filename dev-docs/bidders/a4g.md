@@ -13,9 +13,8 @@ gdpr_supported: true
 
 ### bid params
 
-{: .table .table-bordered .table-striped } 
-
-| Name        | Scope    | Description                                | Example                              |
-| :---------- | :------- | :----------------------------------------- | :----------------------------------- |
-| `zoneId`     | required | The A4G zone ID                            | `"59304"`                            |
-| `deliveryUrl` | optional | The bid endpoint (might be used for debug) | `"http://dev01.ad4game.com/v1/bid"`  |
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description                                | Example                             | Type     |
+|---------------|----------|--------------------------------------------|-------------------------------------|----------|
+| `zoneId`      | required | The A4G zone ID                            | `'59304'`                           | `string` |
+| `deliveryUrl` | optional | The bid endpoint (might be used for debug) | `'http://dev01.ad4game.com/v1/bid'` | `string` |

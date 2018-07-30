@@ -13,13 +13,15 @@ media_types: native
 
 ### bid params (display ad)
 
-| Name        | Scope    | Description                                | Example                              |
-| :---------- | :------- | :----------------------------------------- | :----------------------------------- |
-| zone        | required | The CLICKFORCE zone ID                     | `"6682"`                             |
+{: .table .table-bordered .table-striped }
+| Name   | Scope    | Description            | Example  | Type     |
+|--------|----------|------------------------|----------|----------|
+| `zone` | required | The CLICKFORCE zone ID | `'6682'` | `string` |
 
 ### bid params (native ad)
 
-| Name        | Scope    | Description                                | Example                              |
-| :---------- | :------- | :----------------------------------------- | :----------------------------------- |
-| zone        | required | The CLICKFORCE zone ID                     | `"6878"`                             |
+{: .table .table-bordered .table-striped }
+| Name   | Scope    | Description            | Example  | Type     |
+|--------|----------|------------------------|----------|----------|
+| `zone` | required | The CLICKFORCE zone ID | `'6878'` | `string` |
 
