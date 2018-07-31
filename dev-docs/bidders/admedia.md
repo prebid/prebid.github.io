@@ -18,7 +18,6 @@ biddercode_longer_than_12: false
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `aid` | required | The Affiliate ID for the Publisher | `"1234"` |
-
+| Name  | Scope    | Description                        | Example  | Type     |
+|-------|----------|------------------------------------|----------|----------|
+| `aid` | required | The Affiliate ID for the Publisher | `'1234'` | `string` |

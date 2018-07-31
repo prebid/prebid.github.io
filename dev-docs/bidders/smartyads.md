@@ -15,15 +15,13 @@ media_types: native
 ### bid params Prebid 0.34
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `banner_id` | required | | |
-| `` | optional | | |
+| Name        | Scope    | Description | Example | Type     |
+|-------------|----------|-------------|---------|----------|
+| `banner_id` | required |             |         | `string` |
 
 ### bid params Prebid 1.x
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `placementId` | required | | |
-| `` | optional | | |
+| Name          | Scope    | Description | Example | Type     |
+|---------------|----------|-------------|---------|----------|
+| `placementId` | required |             |         | `string` |

@@ -14,6 +14,6 @@ media_types: video
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placementId` | required | The placement ID assigned to the publisher by RockYou | `4322` |
+| Name          | Scope    | Description                                           | Example | Type      |
+|---------------|----------|-------------------------------------------------------|---------|-----------|
+| `placementId` | required | The placement ID assigned to the publisher by RockYou | `4322`  | `integer` |

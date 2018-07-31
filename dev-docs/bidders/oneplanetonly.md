@@ -13,11 +13,11 @@ prebid_1_0_supported : true
 
 ### bid params
 
-| Name   | Scope    | Description | Example         |
-| :---   | :----    | :---------- | :------         |
-| siteId   | required | The site id     | '5'     |
-| adUnitId | required | The ad unit id  | '5-4587544'     |
-
+{: .table .table-bordered .table-striped }
+| Name       | Scope    | Description    | Example       | Type     |
+|------------|----------|----------------|---------------|----------|
+| `siteId`   | required | The site id    | `'5'`         | `string` |
+| `adUnitId` | required | The ad unit id | `'5-4587544'` | `string` |
 
 Example:
 ```javascript

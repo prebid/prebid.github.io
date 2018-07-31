@@ -18,9 +18,26 @@ biddercode_longer_than_12: false
 
 
 ### bid params
+##### Setting for Prebid version 1.0 and above  
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `dmxid` | required | DMX placement id | |
-| `memberid` | required | DMX main account id | |
+
+
+| Name       | Scope    | Description         | Example          |
+|------------|----------|---------------------|------------------|
+| `dmxid`    | required | Placement Id        |                  |
+| `memberid` | required | Account id          |                  |
+
+=======
+
+##### Prebid 0.34~ legacy
+
+{: .table .table-bordered .table-striped }
+
+| Name       | Scope    | Description | Example | Type     |
+|------------|----------|-------------|---------|----------|
+| `id`       | required |             |         | `string` |
+| `floor`    | optional |             |         | `string` |
+| `revShare` | optional |             |         | `string` |
+| `currency` | optional |             |         | `string` |
+
