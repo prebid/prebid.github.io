@@ -11,9 +11,13 @@ prebid_1_0_supported: true
 media_types: video
 ---
 
+### Note:
+
+The AJA Bidding adaptor requires setup and approval before beginning. Please reach out to <ssp_support@aja-kk.co.jp> for more details
+
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description  | Example | Type     |
-|-------|----------|--------------|---------|----------|
-| `asi` | required | `as slot id` |         | `string` |
+| Name  | Scope    | Description         | Example    | Type     |
+|-------|----------|---------------------|------------|----------|
+| `asi` | required | ad spot hash code   | `'123abc'` | `string` |
