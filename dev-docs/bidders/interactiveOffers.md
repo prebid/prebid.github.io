@@ -6,7 +6,7 @@ top_nav_section: dev_docs
 nav_section: reference
 hide: true
 biddercode: interactiveOffers
-biddercode_longer_than_12: false
+biddercode_longer_than_12: true
 prebid_1_0_supported : true
 gdpr_supported: false
 media_types: banner
