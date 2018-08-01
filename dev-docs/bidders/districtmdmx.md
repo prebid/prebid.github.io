@@ -18,15 +18,15 @@ biddercode_longer_than_12: false
 
 
 ### bid params
-##### Setting for Prebid version 1.0 and above  
+##### Setting for Prebid version 1.0 and above.
 
 {: .table .table-bordered .table-striped }
 
 
-| Name       | Scope    | Description         | Example          |
-|------------|----------|---------------------|------------------|
-| `dmxid`    | required | Placement Id        |                  |
-| `memberid` | required | Account id          |                  |
+| Name       | Scope    | Description         | Example          |    Type   |
+|------------|----------|---------------------|------------------|-----------|
+| `dmxid`    | required | Placement Id        |  100001          | `integer` |
+| `memberid` | required | Account id          |  100003          | `integer` |
 
 =======
 
@@ -34,10 +34,10 @@ biddercode_longer_than_12: false
 
 {: .table .table-bordered .table-striped }
 
-| Name       | Scope    | Description | Example | Type     |
-|------------|----------|-------------|---------|----------|
-| `id`       | required |             |         | `string` |
-| `floor`    | optional |             |         | `string` |
-| `revShare` | optional |             |         | `string` |
-| `currency` | optional |             |         | `string` |
+| Name       | Scope    | Description             | Example          | Type      |
+|------------|----------|-------------------------|------------------|-----------|
+| `id`       | required | Placement ID            | 123456789        | `integer` |
+| `floor`    | optional | Account ID              | "1.00"           | `string`  |
+| `revShare` | optional | Publisher Revenue Share | "0.85"           | `string`  |
+| `currency` | optional | Currency code           | "usd"            | `string`  |
 
