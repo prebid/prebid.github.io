@@ -43,6 +43,8 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
+    * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
+    * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [publisherDomain](#setConfig-Publisher-Domain)
@@ -1065,6 +1067,7 @@ See below for usage examples.
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
++ [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1121,6 +1124,16 @@ pbjs.setConfig({ maxRequestsPerOrigin: 6 });
 
 // to emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set it to `1`.
 pbjs.setConfig({ maxRequestsPerOrigin: 1 });
+{% endhighlight %}
+
+#### Disable Ajax Timeout
+
+<a name="setConfig-Disable-Ajax-Timeout" />
+
+Prebid core adds a timeout on XMLHttpRequest request to terminate the request once auction is timedout. Since Prebid is ignoring all the bids after timeout it does not make sense to continue the request after timeout. However, you have the option to disable this by using `disableAjaxTimeout`.
+
+{% highlight js %}
+pbjs.setConfig({ disableAjaxTimeout: true });
 {% endhighlight %}
 
 #### Send All Bids
