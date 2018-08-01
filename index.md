@@ -127,6 +127,7 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>RTB House</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Gamoshi</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>33Across</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>TEST</h3></div>
 
     <!-- END BIDDERS -->
     </div>
