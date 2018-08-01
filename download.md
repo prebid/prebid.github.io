@@ -154,12 +154,14 @@ Note if you receive an email with a broken link you most likely selected a confi
 <div class="row">
 <h4>Select Prebid Version</h4>
 <select class="selectpicker">
-  <option value="1.17.0">1.17.0 - latest</option>
+  <option value="1.18.0">1.18.0 - latest</option>
+  <option value="1.17.0">1.17.0</option>
   <option value="1.16.0">1.16.0</option>
   <option value="1.15.0">1.15.0</option>
   <option value="1.14.0">1.14.0</option>
   <option value="1.13.0">1.13.0</option>
   <option value="1.12.0">1.12.0</option>
+  <option value="0.34.17">0.34.18 - legacy not recommended</option>
   <option value="0.34.17">0.34.17 - legacy not recommended</option>
   <option value="0.34.16">0.34.16 - legacy not recommended</option>
   <option value="0.34.15">0.34.15 - legacy not recommended</option>
