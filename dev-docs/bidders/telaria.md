@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Telaria
-description: Prebid Telaria Bidder Adaptor
+description: **Prebid 1.x** Telaria Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
@@ -10,7 +10,8 @@ biddercode_longer_than_12: false
 media_types: video
 ---
 
-This is the **Telaria** `(previously Tremor Video)` adapter
+### Overview
+This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found in the **tremor.md** file 
 
 
 ### bid params
