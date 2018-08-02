@@ -18,23 +18,23 @@ gdpr_supported: true
 #### Banner
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description | Example
-| ---- | ----- | ---- | ----------- | -------
-| `delDomain` | required | String | OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net"
-| `unit` | required | String | OpenX ad unit ID provided by your OpenX representative. | "1611023122"
-| `customParams` | optional | Object | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}`
-| `customFloor` | optional | Number | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50
-| `doNotTrack` | optional | Boolean | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true
-| `coppa` | optional | Boolean | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true
+| Name | Scope | Description | Example | Type | 
+| ---- | ----- | ----------- | ------- | ---- | 
+| `delDomain` | required | OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net" | String | 
+| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String | 
+| `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object | 
+| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50 | Number | 
+| `doNotTrack` | optional | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean | 
+| `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean | 
 
 #### Video
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description | Example
-| ---- | ----- | ---- | ----------- | -------
-| `unit` | required | String | OpenX ad unit ID provided by your OpenX representative. | "1611023122"
-| `delDomain` | required | String |  OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net"
-| `openrtb` | optional | OpenRTB Impression | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }`
+| Name | Scope | Description | Example | Type | 
+| ---- | ----- | ----------- | ------- | ---- | 
+| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String | 
+| `delDomain` | required | OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net" | String |  
+| `openrtb` | optional | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }` | Object | 
 
 
 # Example
