@@ -179,6 +179,10 @@ To avoid PrebidServerAdapter class being obfuscated and prebid not working, add 
 -keep class org.prebid.mobile.prebidserver.PrebidServerAdapter {
    public *;
 }
+
+-keepnames class org.prebid.mobile.prebidserver.PrebidServerAdapter {
+   public *;
+}
 ```
 
 </div>
