@@ -57,8 +57,18 @@ function getVersionList() {
         showError();
         return;
       }
-      versions.forEach(function(version){
-        $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
+      versions.forEach(function(version, index){
+        if(index === 0) {
+          $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
+        }
+        else{
+          if(version.match(/1\.\d+\.\d+/i)){
+            $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
+          }
+          else{
+            $('.selectpicker').append('<option value="'+version+'">'+version+' - legacy, not recommended</option>');
+          }
+        }
       });
     }
     catch(e) {
@@ -182,7 +192,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
 {: .alert.alert-success :}
-Note if you receive an error during download you must likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
+Note if you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
 <form>
 <div class="row">
