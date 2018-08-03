@@ -49,20 +49,31 @@ function getVersionList() {
       type: "GET",
       url: "http://js-download.prebid.org/versions",
   })
-  .success(function(data, textStatus, jqXHR) {
-    data = JSON.parse(data);
-    var versions = data.versions;
-    if(!versions || versions.length === 0) {
-      return;
+  .success(function(data) {
+    try{
+      data = JSON.parse(data);
+      var versions = data.versions;
+      if(!versions || versions.length === 0) {
+        showError();
+        return;
+      }
+      versions.forEach(function(version){
+        $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
+      });
     }
-    versions.forEach(function(version){
-      $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
-    });
+    catch(e) {
+      console.log(e);
+      showError();
+    }
+
   })
   .fail(function(e) {
-    $('.selectpicker').append('<option value="error">Error generating version list. Please try later</option>');
     console.log(e);
+    showError();
   });
+  function showError(){
+     $('.selectpicker').append('<option value="error">Error generating version list. Please try again later</option>');
+  }
 }
 
 function submit_download() {
