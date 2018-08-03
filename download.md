@@ -17,6 +17,8 @@ nav_section: download
 
 <script>
 
+  getVersionList();
+
 $(function(){
   $('#myModal').on('show.bs.modal', function (e) {
     var form_data = get_form_data();
@@ -41,6 +43,27 @@ $(function(){
   $('.adapters .col-md-4').hide();
   $('.prebid_1_0').show();
 });
+
+function getVersionList() {
+  $.ajax({
+      type: "GET",
+      url: "http://js-download.prebid.org/versions",
+  })
+  .success(function(data, textStatus, jqXHR) {
+    data = JSON.parse(data);
+    var versions = data.versions;
+    if(!versions || versions.length === 0) {
+      return;
+    }
+    versions.forEach(function(version){
+      $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
+    });
+  })
+  .fail(function(e) {
+    $('.selectpicker').append('<option value="error">Error generating version list. Please try later</option>');
+    console.log(e);
+  });
+}
 
 function submit_download() {
     var form_data = get_form_data();
@@ -137,7 +160,7 @@ function get_form_data() {
 
 <div class="bs-docs-section" markdown="1">
 
-# Customize and Download Prebid.js <span class="label label-warning" style="font-size:14px">Beta</span>
+# Customize and Download Prebid.js
 
 {: .lead :}
 To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
@@ -148,23 +171,12 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
 {: .alert.alert-success :}
-Note if you receive an email with a broken link you most likely selected a configuration that is not supported. Verify that each bidder / module is supported in the selected version. 
+Note if you receive an error during download you must likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
 <form>
 <div class="row">
 <h4>Select Prebid Version</h4>
-<select class="selectpicker">
-  <option value="1.18.0">1.18.0 - latest</option>
-  <option value="1.17.0">1.17.0</option>
-  <option value="1.16.0">1.16.0</option>
-  <option value="1.15.0">1.15.0</option>
-  <option value="1.14.0">1.14.0</option>
-  <option value="1.13.0">1.13.0</option>
-  <option value="1.12.0">1.12.0</option>
-  <option value="0.34.18">0.34.18 - legacy not recommended</option>
-  <option value="0.34.17">0.34.17 - legacy not recommended</option>
-  <option value="0.34.16">0.34.16 - legacy not recommended</option>
-  <option value="0.34.15">0.34.15 - legacy not recommended</option>
+<select id="version_selector" class="selectpicker">
 </select>
 
 
