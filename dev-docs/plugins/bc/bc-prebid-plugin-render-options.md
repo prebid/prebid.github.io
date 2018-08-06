@@ -32,6 +32,8 @@ These options are used to customize the ad playback characteristics.  The option
 - [adStartTimeout](#adStartTimeout)
 - [timeOffset](#timeOffset)
 - [adText](#adText)
+- [wrapperLimit](#wrapperLimit)
+- [frequencyRules](#frequencyRules)
 
 <a name="skippable"></a>
 ### skippable
@@ -259,6 +261,67 @@ No
 
 `options.adText = 'Publicité'`
 
+<a name="wrapperLimit"></a>
+### wrapperLimit
+
+**Description:**
+
+Specifies the maximum number of XML redirects that are allowed to be considered when attempting to play an ad.
+
+**Acceptable Values:**
+
+Integer
+
+The number of XML strings being parsed in a wrapper chain to obtain the media file to play. This includes the number of wrapper XML strings and the inline XML.
+
+If the number of steps in the XML chain equals or exceeds this limit, no ad will play.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+5
+
+**Example:**
+
+`wrapperLimit: 3`
+
+<a name="frequencyRules"></a>
+### frequencyRules
+
+**Description:**
+
+Specifies rules controlling how frequently the plugin should attempt to play an ad.
+
+**Acceptable Values:**
+
+JSON Object
+
+playlistClips = integer that specifies how often an ad should be shown for videos within a single playlist
+  - playlistClips = 1: the plugin will attempt to play an ad for every video in the playlist
+  - playlistClips = 2: the plugin will attempt to play an ad for every other video in the playlist, starting at video #1
+  - playlistClips = 3: the plugin will attempt to play an ad every third video in the playlist, start at video #1
+
+For example, if playlistClips = 2 and there 6 videos in the playlist, the plugin will attempt to play an ad for video #1, video #3, and video #5.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+playlistClips = 1
+
+**Example:**
+
+```
+frequencyRules
+  {
+    playlistClips : 2
+  }
+```
 
 ## Links
 

@@ -45,7 +45,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
     <script>
         // define the prebid options variable
         // NOTE:  you MUST use this variable name
-        window.plugin_prebid_options = {};
+        window.bc_plugin_pbjs = { plugin_prebid_options: {} };
 
         // specify prebid parameters as the value of biddersSpec
         // the set of bidders here shows how to specify the AppNexus video bidder:  appnexus
@@ -66,7 +66,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
                 }
             ]
         };
-        window.plugin_prebid_options.biddersSpec = params;
+        window.bc_plugin_pbjs.plugin_prebid_options.biddersSpec = params;
 
         // set the DFP Parameters
         var dfpParams = {
@@ -76,7 +76,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
             }
         };
 
-        window.plugin_prebid_options.dfpParameters = dfpParams;
+        window.bc_plugin_pbjs.plugin_prebid_options.dfpParameters = dfpParams;
     </script>
 
     <script type="text/javascript" src="https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js"></script>
