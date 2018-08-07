@@ -272,7 +272,7 @@ Specifies the maximum number of XML redirects that are allowed to be considered 
 
 Integer
 
-The number of XML strings being parsed in a wrapper chain to obtain the media file to play. This includes the number of wrapper XML strings and the inline XML.
+The number of XML documents being parsed in a wrapper chain to obtain the media file to play. This includes the number of wrapper XML documents and the inline XML.
 
 If the number of steps in the XML chain equals or exceeds this limit, no ad will play.
 
