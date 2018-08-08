@@ -56,7 +56,6 @@ The plugin supports:
 -  Midroll
     - by time
     - by percentage
-    - by cue-point
 - Postroll
 - Ad Icons
 -	Playlisting Players
