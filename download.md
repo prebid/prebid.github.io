@@ -290,6 +290,13 @@ Note if you receive an error during download you most likely selected a configur
     </label>
   </div>
 </div>
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> Yuktamedia Analytics
+    </label>
+  </div>
+</div>
 
 <div class="col-md-4">
   <div class="checkbox">
