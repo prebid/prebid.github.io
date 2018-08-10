@@ -32,8 +32,8 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `gender`      | optional | Gender                | `'M'`                     | `string` |
 | `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |
 | `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
-| `currency`    | optional | Bid currency    	   | 'AUD' 					   | `string` |
-| `dctr`		| optional | Deal Custom Targeting | 'key1=123|key2=345' 	   | `string` |
+| `currency`    | optional | Bid currency    	   | `'AUD'` 				   | `string` |
+| `dctr`		| optional | Deal Custom Targeting | `'key1=123|key2=345'` 	   | `string` |
 
 ### Configuration
 
