@@ -127,6 +127,7 @@ In alphabetical order:
 + Bart van Bragt <github.com@vanbragt.com>
 + Bret Gorsline <bgorsline@rubiconproject.com>
 + Carson Banov <carson@spanishdict.com>
++ Casper van Wezel <casper@poki.com>
 + Chris Hepner <me@chrishepner.info>
 + Christopher Allene <christopher.allene@piximedia.fr>
 + Dan Harton <dan@sparklit.com>
