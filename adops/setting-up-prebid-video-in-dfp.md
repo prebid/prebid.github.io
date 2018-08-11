@@ -38,7 +38,7 @@ Other line item settings and key/value targeting are the same as [those recommen
 + By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs higher than $20.  In order to receive those bids, you'll need to make sure your dev team implements custom price buckets as described in the [engineering setup instructions]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).  Once those changes are made on the engineering side, there should be no changes required from the ad ops side to support CPMs over $20.
 
 {: .alert.alert-success :}
-Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create.
+Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create. You may also need separate video line items for each cache service being used. e.g. if both AppNexus and Rubicon Project are bidders, you'll need separate line items to support the different cache URLs required.
 
 ## Creative Setup
 
@@ -46,21 +46,29 @@ Be sure to duplicate your line item and video creative for each Prebid price buc
 
 2\. In the dialog that appears, set the **creative set type** to **"Redirect"**
 
-3\. Set the **VAST tag URL** to:
+3\. Set the **VAST tag URL** to the cache location. Note that each bidder may have a different cache location URL.
 
 Prebid.js versions 1.6+, 0.34.6+:
 {% highlight html %}
    https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_cache_id%%
+or
+   https://prebid-server.rubiconproject.com/cache?uuid=%%PATTERN:hb_cache_id%%
+or
+   [other bidder cache location]
 {% endhighlight %}
 
 Prebid.js versions 1.0-1.5, 0.x-0.34.5:
 {% highlight html %}
    https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
+or
+   https://prebid-server.rubiconproject.com/cache?uuid=%%PATTERN:hb_uuid%%
+or
+   [other bidder cache location]
 {% endhighlight %}
 
    {: .alert.alert-warning :}
-   This creative URL is **required** in order to show video ads.  It points to
-   a server-side cache hosted by Prebid Server.
+   This Vast tag URL is **required** in order to show video ads.  It points to
+   a server-side cache hosted by your Prebid Server provider.
 
    {: .alert.alert-info :}
    **Prebid Cache and the VAST creative URL warning**  

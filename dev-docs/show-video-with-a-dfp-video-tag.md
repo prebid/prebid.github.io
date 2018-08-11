@@ -119,13 +119,14 @@ pbjs.que.push(function() {
 
 #### Notes on Prebid Cache
 
-You can show video ads even if Prebid Cache is disabled.  However, there are some conditions:
+The VAST XML has to be cached somewhere because most video players can only work with a URL that returns VAST XML, not VAST directly. Some bidders cache the VAST XML on the server side, while others depend on PBJS to perform the caching.
 
-+ In general, video-enabled bidders must supply either `bid.vastUrl` or `bid.vastXml` on their responses, and they may supply both.
-+ If you have Prebid Cache disabled, and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl) will not be able to generate a video ad tag URL from that response, and it will be dropped from the auction.
++ In general, video-enabled bidders must supply either `bid.videoCacheKey` or `bid.vastXml` on their responses, and they may supply both.
++ If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
++ If `pbjs.setConfig({cache: {URL}})` is defined and the bidder responds with `bid.videoCacheKey`, PBJS will not re-cache the VastXml. Note, however, that the DFP creative will likely need to be different for each bidder.
 + If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl):
-    + If Prebid Cache is enabled, Prebid does not set the `description_url` field to the bid response's `bid.vastUrl`. It just attaches the bid's ad server targeting and builds the URL based on user input.
-    + If Prebid Cache is disabled, Prebid sets the `description_url` field to the bid response's `bid.vastUrl`.
+    + If Prebid Cache is disabled, Prebid sets `description_url` field to the bid response's `bid.vastUrl`.
+    + If Prebid Cache is enabled, Prebid sets `description_url` field to the cache URL.
 
 #### Notes on multiple video advertisements on one page
 
