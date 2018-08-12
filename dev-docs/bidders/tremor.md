@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Tremor 
-description: **Prebid 0.x** Tremor Bidder Adaptor
+description: Tremor Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
