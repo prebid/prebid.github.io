@@ -663,6 +663,20 @@ registerBidder(spec);
 
 {% endhighlight %}
 
+
+## Submitting your adapter
+
+- [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
+- Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
+  - Fork the repo
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify
+- Submit both the code and docs pull requests
+
+Within a few days, the code pull request will be assigned to a developer for review.
+Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
+
+The Prebid.org [download page](http://prebid.org/download.html) will automatically be updated with your adapter once everything's been merged.
+
 ## Further Reading
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
