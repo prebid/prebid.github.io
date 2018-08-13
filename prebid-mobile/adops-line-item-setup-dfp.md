@@ -75,7 +75,7 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% include dev-docs/amp-creative.md %}
+{% include /amp-creative.md %}
 
 Make sure the creative size is set to 1x1. This allows us to set up size override, which allows this creative to serve on all inventory sizes.
 
