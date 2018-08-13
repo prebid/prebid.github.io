@@ -49,7 +49,7 @@ The **hb_cache_id** variable stands for the cache id that will load the ad marku
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% include dev-docs/amp-creative.md %}
+{% include /amp-creative.md %}
 
 ## Step 3. Duplicate line items
 
