@@ -57,6 +57,11 @@ The plugin supports:
     - by time
     - by percentage
 - Postroll
+- Ad Icons
+-	Playlisting Players
+    - This feature includes the ability to customize how often, by video clips, you want to display an ad during a playlist.
+    - Be default, the plugin will attempt to play an ad for every video in the playlist.
+
 
 ## Components
 

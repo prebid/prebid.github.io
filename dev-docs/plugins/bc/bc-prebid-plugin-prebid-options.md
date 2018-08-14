@@ -193,7 +193,10 @@ Specifies the callback that the plugin should use if the publisher is using an a
 
 **Acceptable Values:**
 
-function (bids, pluginCallback)
+May be one of the following:
+
+- function (bids, pluginCallback)
+- String identifying the name of the function that exists on the page that the plugin should call with the prebid results. NOTE: You must use this format if you are configuring the prebid options inside the Brightcove Studio.
 
 The publisher-provided callback should take the following arguments:
 
