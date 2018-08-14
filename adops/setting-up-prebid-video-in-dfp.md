@@ -38,7 +38,7 @@ Other line item settings and key/value targeting are the same as [those recommen
 + By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs higher than $20.  In order to receive those bids, you'll need to make sure your dev team implements custom price buckets as described in the [engineering setup instructions]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).  Once those changes are made on the engineering side, there should be no changes required from the ad ops side to support CPMs over $20.
 
 {: .alert.alert-success :}
-Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create. You may also need separate video line items for each cache service being used. e.g. if both AppNexus and Rubicon Project are bidders, you'll need separate line items to support the different cache URLs required.
+Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create. You may also need separate video line items for each cache service being used. For example, if both AppNexus and Rubicon Project are bidders, you'll need separate line items to support the different cache URLs required.
 
 ## Creative Setup
 
@@ -67,7 +67,7 @@ or
 {% endhighlight %}
 
    {: .alert.alert-warning :}
-   This Vast tag URL is **required** in order to show video ads.  It points to
+   This VAST tag URL is **required** in order to show video ads.  It points to
    a server-side cache hosted by your Prebid Server provider.
 
    {: .alert.alert-info :}

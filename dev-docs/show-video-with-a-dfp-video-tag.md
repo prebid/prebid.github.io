@@ -119,11 +119,11 @@ pbjs.que.push(function() {
 
 #### Notes on Prebid Cache
 
-The VAST XML has to be cached somewhere because most video players can only work with a URL that returns VAST XML, not VAST directly. Some bidders cache the VAST XML on the server side, while others depend on PBJS to perform the caching.
+The VAST XML has to be cached somewhere because most video players can only work with a URL that returns VAST XML, not VAST directly. Some bidders cache the VAST XML on the server side, while others depend on Prebid.js to perform the caching.
 
 + In general, video-enabled bidders must supply either `bid.videoCacheKey` or `bid.vastXml` on their responses, and they may supply both.
 + If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
-+ If `pbjs.setConfig({cache: {URL}})` is defined and the bidder responds with `bid.videoCacheKey`, PBJS will not re-cache the VastXml. Note, however, that the DFP creative will likely need to be different for each bidder.
++ If `pbjs.setConfig({cache: {URL}})` is defined and the bidder responds with `bid.videoCacheKey`, Prebid.js will not re-cache the VAST XML.
 + If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl):
     + If Prebid Cache is disabled, Prebid sets `description_url` field to the bid response's `bid.vastUrl`.
     + If Prebid Cache is enabled, Prebid sets `description_url` field to the cache URL.
