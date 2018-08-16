@@ -8,18 +8,18 @@ biddercode: appnexus
 biddercode_longer_than_12: false
 hide: true
 prebid_1_0_supported : true
-media_types: video, native
+media_types: banner, video, native
 gdpr_supported: true
 ---
 
 **Table of Contents**
 
 - [Bid params](#appnexus-bid-params)
-- [Support for publisher-defined keys](#appnexus-pub-keys)
 - [Banner Ads](#appnexus-Banner)
 - [Video Ads](#appnexus-Video)
 - [Native Ads](#appnexus-Native)
 - [Multi-Format Ads](#appnexus-Multi-Format)
+- [Mobile App](#appnexus-Mobile-App)
 
 <a name="appnexus-bid-params" />
 
@@ -28,38 +28,31 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description                                                                                                                                                                                                          | Example           | Type             |
 |------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
-| `placementId`    | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID.                                                                                            | `234234`        | `int`         |
+| `placementId`    | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID.                                                                                            | `234234`          | `int`            |
 | `"arbitraryKey"` | optional | This key can be *any publisher-defined string*. The value (also a string) maps to a querystring segment for enhanced buy-side targeting. Multiple key-value pairs can be added as shown [below](#appnexus-pub-keys). | `'genre': 'rock'` | `keyValue`       |
 | `invCode`        | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                                                        | `'abc123'`        | `string`         |
 | `member`         | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                                                           | `'12345'`         | `string`         |
 | `reserve`        | optional | Sets a floor price for the bid that is returned.                                                                                                                                                                     | `0.90`            | `float`          |
 
-<a name="appnexus-pub-keys" />
+{: .alert.alert-danger :}
+All AppNexus placements included in a single call to `requestBids` must belong to the same publisher object.  If placements from two different publishers are included in the call, the AppNexus bidder may not return any demand for those placements. <br />
+*Note: This requirement does not apply to adapters that are [aliasing]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) the AppNexus adapter.*
 
-#### Support for publisher-defined keys
 
-To pass in a publisher-defined key whose value maps to a querystring segment for buy-side targeting, set up your `params` object as shown below.  For more information, see the [query string targeting documentation](https://wiki.appnexus.com/x/7oCzAQ) (login required).
+### Bid Params
 
-{% highlight js %}
-var adUnits = [{
-    code: 'div-gpt-ad-1460505748511-01',
-    sizes: [
-        [300, 250],
-        [300, 50]
-    ],
-    bids: [{
-        bidder: 'appnexus',
-        params: {
-            placementId: '123456789',
-            'playlist': '12345', // <----| Publisher-defined key-values
-            'genre': 'rock'      // <----| (key and value must be strings)
-        }
-    }]
-}]
-{% endhighlight %}
+{: .table .table-bordered .table-striped }
+| Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type      |
+|---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-----------|
+| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID.                                                     | `'234234'`                                            | `string`  |
+| `allowSmallerSizes` | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean` |
+| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [query string segments for buy-side targeting](https://wiki.appnexus.com/x/7oCzAQ) (login required). | `{ genre: ['rock', 'pop'] }`                          | `object`  |
+| `video`             | optional | Video targeting parameters.  See the [video section below](#appnexus-Video) for details.                                                                                      | `{ playback_method: ['auto_play_sound_off'] }`        | `object`  |
+| `app`               | optional | Mobile App parameters.  See the [mobile app section below](#appnexus-Mobile-App) for details.                                                                                 | `{ app : { id: 'app-id'} }`                           | `object`  |
+| `invCode`           | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`  |
+| `member`            | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`  |
+| `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here.                | `0.90`                                                | `float`   |
 
-{: .alert.alert-info :}
-Sizes set in the `adUnit` object will also apply to the AppNexus bid requests.
 
 <a name="appnexus-Banner" />
 
@@ -97,3 +90,21 @@ AppNexus supports the multi-format ad unit features described in:
 
 - [The `adUnit` multi-format documentation]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit-multi-format-example)
 - [Show Multi-Format Ads]({{site.baseurl}}/dev-docs/show-multi-format-ads.html)
+
+<a name="appnexus-Mobile-App" />
+
+### Mobile App
+
+AppNexus supports using prebid within a mobile app's webview. If you are interested in using an SDK, please see [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html) instead.
+
+The Following mobile app related parameters are supported under the `app` parameter
+
+{: .table .table-bordered .table-striped }
+| Name              | Description                                                                                                                     | Example                                                                  | Type             |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|------------------|
+| `id`              | The App ID                                                                                                                      | `app: { id: "B1O2W3M4AN.com.prebid.webview" }`.                          | `string`         |
+| `device_id`       | Object that contains the advertising identifiers of the user (`idfa`, `aaid`, `md5udid`, `sha1udid`, or `windowsadid`).         | `app: { device_id: { aaid: "38400000-8cf0-11bd-b23e-10b96e40000d" }}`    | `object`         |
+| `geo`             | Object that contains the latitude (`lat`) and longitude (`lng`) of the user.                                                    | `app: { geo: { lat: 40.0964439, lng: -75.3009142 }}`                     | `object`         |
+
+### Upgrading from Prebid 0.x
+As part of the transition to Prebid 1.0, the existing AppNexus AST (legacy) adapter has become the standard and only AppNexus adapter (and renamed to "AppNexus"). You may continue to use the existing `appnexus` or `appnexusAst` bidder code without the need to re-create ad server line items/key value targeting.
