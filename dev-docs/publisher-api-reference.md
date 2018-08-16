@@ -43,6 +43,8 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
+    * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
+    * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [publisherDomain](#setConfig-Publisher-Domain)
@@ -56,6 +58,7 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -416,7 +419,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | requestObj.adUnitCodes | Optional | `Array of strings` | adUnit codes to request. Use this or `requestObj.adUnits`. Default to all `adUnitCodes` if empty. |
 | requestObj.adUnits | Optional | `Array of objects` | AdUnitObjects to request. Use this or `requestObj.adUnitCodes`. Default to all `adUnits` if empty. |
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
-| requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. |
+| requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. Callback will be passed two parameters, the bids themselves and `timedOut`, which will be true if any bidders timed out. |
 | requestObj.labels | Optional | `Array of strings` | Defines [labels](#labels) that may be matched on ad unit targeting conditions. |
 
 <hr class="full-rule">
@@ -1064,6 +1067,8 @@ See below for usage examples.
 
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
++ [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
++ [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1104,9 +1109,37 @@ Note that it's possible for the timeout to be triggered later than expected, lea
 With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.
 For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
 
-<a name="setConfig-Send-All-Bids" />
+#### Max Requests Per Origin
+
+<a name="setConfig-Max-Requests-Per-Origin" />
+
+Since browsers have a limit of how many requests they will allow to a specific domain before they block, Prebid.js
+will queue auctions that would cause requests to a specific origin to exceed that limit.  The limit is different
+for each browser. Prebid.js defaults to a max of `4` requests per origin.  That value can be configured with
+`maxRequestsPerOrigin`.
+
+{% highlight js %}
+// most browsers allow at least 6 requests, but your results may vary for your user base.  Sometimes using all
+// `6` requests can impact performance negatively for users with poor internet connections.
+pbjs.setConfig({ maxRequestsPerOrigin: 6 });
+
+// to emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set it to `1`.
+pbjs.setConfig({ maxRequestsPerOrigin: 1 });
+{% endhighlight %}
+
+#### Disable Ajax Timeout
+
+<a name="setConfig-Disable-Ajax-Timeout" />
+
+Prebid core adds a timeout on XMLHttpRequest request to terminate the request once auction is timedout. Since Prebid is ignoring all the bids after timeout it does not make sense to continue the request after timeout. However, you have the option to disable this by using `disableAjaxTimeout`.
+
+{% highlight js %}
+pbjs.setConfig({ disableAjaxTimeout: true });
+{% endhighlight %}
 
 #### Send All Bids
+
+<a name="setConfig-Send-All-Bids" />
 
 Sending all bids is the default, but should you wish to turn it off:
 
@@ -1153,7 +1186,7 @@ pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
 
 #### Publisher Domain
 
-Set the publisher's domain where Prebid is running, for cross-domain iFrame communication:
+Set the publisher's domain where Prebid is running, for cross-domain iframe communication:
 
 {% highlight js %}
 pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
@@ -1355,11 +1388,9 @@ For descriptions of all the properties that control user syncs, see the table be
 | Attribute        | Type    | Description                                                                                             |
 |------------------+---------+---------------------------------------------------------------------------------------------------------|
 | `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.                                               |
-| `pixelEnabled`   | Boolean | Enable/disable the use of pixels for user syncing.  Default: `true`.                                    |
-| `iframeEnabled`  | Boolean | Enable/disable the use of iFrames for syncing. Default: `false`.                                        |
+| `filterSettings` | Object  | Configure lists of adapters to include or exclude their user syncing based on the pixel type (image/iframe). |
 | `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
 | `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
-| `enabledBidders` | Array   | Trusted adapters which are allowed to do user syncing.                                                  |
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
@@ -1388,28 +1419,62 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-Allow iFrame-based syncs:
+Allow iframe-based syncs (the presence of a valid `filterSettings.iframe` object automatically enables iframe type user-syncing):
 
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        iframeEnabled: true
+        filterSettings: {
+            iframe: {
+                bidders: ['*'],   // '*' means all bidders
+                filter: 'include'
+            }
+        }
     }
 });
 {% endhighlight %}
+_Note - iframe-based syncing is disabled by default.  Image-based syncing is enabled by default; it can be disabled by excluding all/certain bidders via the `filterSettings` object._
 
-Only certain adapters are allowed to sync -- either images or iFrames:
+Only certain bidders are allowed to sync and only certain types of sync pixels:
 
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        enabledBidders: ['abc', 'xyz'], // only these bidders are allowed to sync
-        iframeEnabled: true,
+        filterSettings: {
+            iframe: {
+                bidders: ['def'],  // only this bidder is excluded from syncing iframe pixels, all other bidders are allowed
+                filter: 'exclude'
+            },
+            image: {
+                bidders: ['abc', 'def', 'xyz'],  //only these 3 bidders are allowed to sync image pixels
+                filter: 'include'
+            }
+        },
         syncsPerBidder: 3, // and no more than 3 syncs at a time
         syncDelay: 6000, // 6 seconds after the auction
     }
 });
 {% endhighlight %}
+
+If you want to apply the same bidder inclusion/exlusion rules for both types of sync pixels, you can use the `all` object instead specifying both `image` and `iframe` objects like so:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        /* only these bidders are allowed to sync.  Both iframe and image pixels are permitted. */
+        filterSettings: {
+            all: {
+                bidders: ['abc', 'def', 'xyz'],
+                filter: 'include'
+            }
+        },
+        syncsPerBidder: 3, // and no more than 3 syncs at a time
+        syncDelay: 6000, // 6 seconds after the auction
+    }
+});
+{% endhighlight %}
+
+_Note - the `all` field is mutually exclusive and cannot be combined with the `iframe`/`image` fields in the `userSync` config.  This restriction is to promote clear logic as to how bidders will operate in regards to their `userSync` pixels.  If the fields are used together, this will be considered an invalid config and Prebid will instead use the default `userSync` logic (all image pixels permitted and all iframe pixels are blocked)._
 
 The same bidders can drop sync pixels, but the timing will be controlled by the page:
 
@@ -1417,7 +1482,12 @@ The same bidders can drop sync pixels, but the timing will be controlled by the 
 pbjs.setConfig({
     userSync: {
         /* only these bidders are allowed to sync, and only image pixels */
-        enabledBidders: ['abc', 'xyz'],
+        filterSettings: {
+            image: {
+                bidders: ['abc', 'def', 'xyz'],
+                filter: 'include'
+            }
+        },
         enableOverride: true // publisher will call `pbjs.triggerUserSyncs()`
     }
 });
@@ -1435,8 +1505,8 @@ pbjs.triggerUserSyncs();
 
 The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-User-Syncs) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
 
-* Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
-* Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
+* Removes undesired sync types. (i.e. blocks iframe pixels if `filterSettings.iframe` wasn't declared)
+* Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the `filterSettings` object)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
@@ -1726,7 +1796,28 @@ var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
 });
 ```
 
+<a name="module_pbjs.requestBids"></a>
+
 {: .alert.alert-warning :}
 In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.markWinningBidAsUsed"></a>
+
+### pbjs.markWinningBidAsUsed(markBidRequest)
+
+This function can be used to mark the winning bid as used. This is useful when running multiple video advertisements on the page, since these are not automatically marked as “rendered”.
+If you know the adId, then be specific, otherwise Prebid will retrieve the winning bid for the adUnitCode and mark it accordingly.
+
+#### Argument Reference
+
+##### The `markBidRequest` object (use one or both)
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description |
+| --- | --- | --- |
+| adUnitCode | `string` | (Optional) The ad unit code |
+| adId | `string` | (Optional) The id representing the ad we want to mark |
 
 </div>

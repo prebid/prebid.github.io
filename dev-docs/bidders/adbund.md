@@ -18,7 +18,7 @@ biddercode_longer_than_12: false
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `sid` | required | slot id | 110238 |
-| `bidfloor` | required |  | 0.036 |
+| Name       | Scope    | Description | Example  | Type      |
+|------------|----------|-------------|----------|-----------|
+| `sid`      | required | slot id     | `110238` | `integer` |
+| `bidfloor` | required |             | `0.036`  | `float`   |

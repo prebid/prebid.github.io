@@ -10,7 +10,7 @@ nav_section: prebid-video
 
 <div class="bs-docs-section" markdown="1">
 
-# Show Video Ads with DFP (Beta)
+# Show Video Ads with DFP
 {: .no_toc}
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
@@ -126,6 +126,31 @@ You can show video ads even if Prebid Cache is disabled.  However, there are som
 + If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl):
     + If Prebid Cache is enabled, Prebid does not set the `description_url` field to the bid response's `bid.vastUrl`. It just attaches the bid's ad server targeting and builds the URL based on user input.
     + If Prebid Cache is disabled, Prebid sets the `description_url` field to the bid response's `bid.vastUrl`.
+
+#### Notes on multiple video advertisements on one page
+
+Display banners are rendered with the help of the renderAd function. This function automatically marks a bid as used. In the case of video we use a VAST-chain to display the advertisement, this has the downside that there is no way to automatically mark the video as shown. If you run multiple video-advertisements on the same page you’ll need to proactively mark the ad as shown or risk serving the same advertisements multiple times.
+
+```javascript
+pbjs.requestBids({
+    bidsBackHandler: function(bids) {
+        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+            adUnit: videoAdUnit,
+            params: {
+                iu: '/19968336/prebid_cache_video_adunit'
+            }
+        });
+
+        // Mark the bid, used in buildVideoUrl, as used
+        pbjs.markWinningBidAsUsed({
+            adUnitCode: videoAdUnit.code // optional if you know the adId
+            adId: bid.adId // optional
+        });
+
+        invokeVideoPlayer(videoUrl);
+    }
+});
+```
 
 ### 4. Invoke video player on Prebid video URL
 

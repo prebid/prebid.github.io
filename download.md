@@ -17,10 +17,12 @@ nav_section: download
 
 <script>
 
+  getVersionList();
+
 $(function(){
   $('#myModal').on('show.bs.modal', function (e) {
     var form_data = get_form_data();
-    if(form_data.bidders.length < 1){
+    if(form_data.modules.length < 1){
       alert('Please select at least 1 bidder');
       return e.preventDefault() // stops modal from being shown
     }
@@ -42,6 +44,48 @@ $(function(){
   $('.prebid_1_0').show();
 });
 
+function getVersionList() {
+  $.ajax({
+      type: "GET",
+      url: "http://js-download.prebid.org/versions",
+  })
+  .success(function(data) {
+    try{
+      data = JSON.parse(data);
+      var versions = data.versions;
+      if(!versions || versions.length === 0) {
+        showError();
+        return;
+      }
+      versions.forEach(function(version, index){
+        if(index === 0) {
+          $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
+        }
+        else{
+          if(version.match(/1\.\d+\.\d+/i)){
+            $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
+          }
+          else{
+            $('.selectpicker').append('<option value="'+version+'">'+version+' - legacy, not recommended</option>');
+          }
+        }
+      });
+    }
+    catch(e) {
+      console.log(e);
+      showError();
+    }
+
+  })
+  .fail(function(e) {
+    console.log(e);
+    showError();
+  });
+  function showError(){
+     $('.selectpicker').append('<option value="error">Error generating version list. Please try again later</option>');
+  }
+}
+
 function submit_download() {
     var form_data = get_form_data();
 
@@ -55,20 +99,36 @@ function submit_download() {
     alertStatus.addClass('hide');
 
     $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
-    alertStatus.html('Request sent! Please hang tight, this might take a few minutes.');
+    alertStatus.html('Request sent! This should only take a few moments!');
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://client-test.devnxs.net/prebid",
+        url: "http://js-download.prebid.org/download",
         //dataType: 'json',
         data: form_data
     })
-    .done(function() {
+    .success(function(data, textStatus, jqXHR) {
       var buttn = $('#download-button');
       //buttn.addClass('btn-success');
-      buttn.html('<i class="glyphicon glyphicon-ok"></i> Email Sent!');
-      console.log('Succeeded!');
+      buttn.html('<i class="glyphicon glyphicon-ok"></i> Prebid.js file successfully generated!');
       alertStatus.addClass('hide');
+      // Try to find out the filename from the content disposition `filename` value
+      var filename = "prebid" + form_data['version'] + ".js";
+      // this doens't work in our current jquery version. 
+      var disposition = jqXHR.getResponseHeader('Content-Disposition');
+      if (disposition && disposition.indexOf('attachment') !== -1) {
+          var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          var matches = filenameRegex.exec(disposition);
+          if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+      }
+      // The actual download
+      var blob = new Blob([data], { type: 'text/javascript' });
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     })
     .fail(function(e) {
       errorO = e;
@@ -76,7 +136,7 @@ function submit_download() {
       var buttn = $('#download-button');
       buttn.html('<i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js');
       buttn.removeClass('disabled');
-      alert('Ran into an issue.'); // + e.responseText
+      alert('Ran into an issue.'); 
     });
 }
 
@@ -97,15 +157,14 @@ function get_form_data() {
     for (var i = 0; i < analytics_check_boxes.length; i++) {
         var box = analytics_check_boxes[i];
         if (box.checked) {
-            analytics.push(box.getAttribute('analyticscode'));
+            analytics.push(box.getAttribute('analyticscode') + 'AnalyticsAdapter');
         }
     }
 
     var form_data = {};
     form_data['email'] = $('#input-email').val();
     form_data['company'] = $('#input-company').val();
-    form_data['bidders'] = bidders;
-    form_data['analytics'] = analytics;
+    form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
 
     return form_data;
@@ -122,7 +181,7 @@ function get_form_data() {
 
 <div class="bs-docs-section" markdown="1">
 
-# Customize and Download Prebid.js <span class="label label-warning" style="font-size:14px">Beta</span>
+# Customize and Download Prebid.js
 
 {: .lead :}
 To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
@@ -133,15 +192,12 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
 {: .alert.alert-success :}
-Note if you receive an email with a broken link you most likely selected a configuration that is not supported. Verify that each bidder / module is supported in the selected version. 
+Note if you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
 <form>
 <div class="row">
 <h4>Select Prebid Version</h4>
-<select class="selectpicker">
-  <!-- empty value indicates legacy --> 
-  <option value="1.13.0">1.13.0 - latest</option>
-  <option value="">0.34.13 - legacy not recommended</option>
+<select id="version_selector" class="selectpicker">
 </select>
 
 
@@ -304,7 +360,7 @@ Note if you receive an email with a broken link you most likely selected a confi
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Custom Prebid.js</button>
+  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Prebid.js! </button>
 
 </div>
 
@@ -328,7 +384,7 @@ Note if you receive an email with a broken link you most likely selected a confi
       <div class="modal-body">
 
         <div class="lead">
-          The download link will be in your inbox in a few minutes. Check the spam folder too!
+          Enter your information below to generate the download file. 
         </div>
 
 
@@ -342,7 +398,7 @@ Note if you receive an email with a broken link you most likely selected a confi
         </div>
 
         <div class="form-group">
-            <button type="button" id="download-button" class="btn btn-lg btn-primary" onclick="submit_download()"><i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js</button>
+            <button type="button" id="download-button" class="btn btn-lg btn-primary" onclick="submit_download()"><i class="glyphicon glyphicon-envelope"></i> Download Prebid.js</button>
         </div>
 
         <div class="alert alert-warning hide" role="alert" id="download-status"></div>
