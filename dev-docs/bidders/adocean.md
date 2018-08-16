@@ -2,11 +2,16 @@
 layout: bidder
 title: AdOcean
 description: Prebid AdOcean Bidder Adaptor
+
 top_nav_section: dev_docs
 nav_section: reference
+
 hide: true
+
 biddercode: adocean
+
 prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
 ### bid params
