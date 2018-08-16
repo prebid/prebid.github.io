@@ -28,7 +28,7 @@ header:
   #color1: "#55acee"
   color1: "#3b88c3"
   #color1: "#2ABBB0"
-  
+
   #color1: "#080331"
   #color2: "#673051"
   trianglify: false
@@ -71,19 +71,19 @@ nav_sections:
     name: DEVELOPER QUICK START
   - top_nav: dev_docs
     code: prebid-multi-format
-    name: PREBID MULTI-FORMAT (ALPHA)
+    name: PREBID MULTI-FORMAT (BETA)
   - top_nav: dev_docs
     code: prebid-video
-    name: PREBID VIDEO (BETA)
+    name: PREBID VIDEO
   - top_nav: dev_docs
     code: prebid-native
-    name: PREBID NATIVE (ALPHA)
+    name: PREBID NATIVE
   - top_nav: dev_docs
     code: prebid-server
     name: PREBID SERVER
   - top_nav: dev_docs
     code: prebid-amp
-    name: PREBID FOR AMP (ALPHA)
+    name: PREBID FOR AMP (BETA)
   - top_nav: dev_docs
     code: troubleshooting
     name: TROUBLESHOOTING
@@ -96,6 +96,9 @@ nav_sections:
   - top_nav: dev_docs
     code: adapters
     name: ADAPTERS
+  - top_nav: dev_docs
+    code: interfaces
+    name: EXTERNAL INTERFACES
 
   - top_nav: overview
     code: intro

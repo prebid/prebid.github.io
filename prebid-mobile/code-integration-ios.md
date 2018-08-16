@@ -21,7 +21,7 @@ Easily include the Prebid Mobile SDK for your primary ad server in your Podfile.
 ```
 platform :ios, '8.0'
 
-target 'MyAmazingApp' do 
+target 'MyAmazingApp' do
     pod 'PrebidMobile'
 end
 ```
@@ -40,68 +40,144 @@ to output the PrebidMobile.framework.
 ## Ad Unit Setup for iOS
 {:.no_toc}
 
-Register Prebid Mobile ad units as early as possible in the application's lifecycle. Each ad unit has an `adUnitId` which is an arbitrary unique identifier of the developer's choice. 
+Register Prebid Mobile ad units as early as possible in the application's lifecycle.  
 
-We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDelegate.m` using the following steps as shown in the code sample below:
+When registering a Prebid Mobile ad unit, you must replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.  Prebid Mobile will use this identifier to determine the unique ad unit to which bid key-values will be associated.  This identifier must be unique across all registered Prebid Mobile ad units, and does not need to map to any ad unit ID defined in your ad server.
 
-1. Create the ad units with ad unit ids and add sizes for banner ad units
-2. Add a server side configuration for each ad unit to Prebid Server Adapter
-3. Set targeting parameters for the ad units (Optional)
-4. Register the ad units with the adapter to start bid fetching process
+We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDelegate.m` using the following steps, as shown in the code sample below:
+
+1. Create the ad units and add sizes for banner ad units.  Be sure to replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
+
+   NOTE: The [fluid ad size](https://developers.google.com/mobile-ads-sdk/docs/dfp/ios/api/reference/Constants#/c:@kGADAdSizeFluid) (used in DFP) is not supported.
+
+2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
+3. Set targeting parameters for the ad units. (Optional)
+4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+5. Set the Prebid Server host to AppNexus or Rubicon.
+6. Register the ad units with the adapter to start the bid fetching process.
+
+### User-Replaced Macros
+
+In the code snippets below, any values that must be substituted by your developers are identified in capital letters.  These values are defined below:
+
+{: .table .table-bordered .table-striped }
+| Value | Description |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `PREBID-SERVER-ACCOUNT-ID` | Your unique account ID with your Prebid Server vendor.  |
+| `PREBID-MOBILE-SLOT-ID` | User-defined identifier that must be unique across all registered Prebid Mobile ad units.  Note: this value should not map to any ad unit ID defined in your ad server, unless that ID is unique. |
+| `PREBID-SERVER-CONFIGURATION-ID` | The ID of a Prebid Server demand partner configuration.  Represents the set of demand that will be fetched for a given ad unit. |
+| `AD-SERVER-AD-VIEW-INSTANCE` | The ad server ad view object instance to which bids will be attached.  Supported values are defined in a table below. |
+| `AD-SERVER-AD-LOAD-METHOD` | The ad server API to load this ad type. |
+
+### Ad Unit Registration
 
 Embed the ad unit registration in a try-catch block to catch all the exceptions (if any) thrown by the SDK.
 
-```objc
+```
 #import "PrebidMobile/PBBannerAdUnit.h"
 #import "PrebidMobile/PBServerAdapter.h"
 #import "PrebidMobile/PBTargetingParams.h"
 #import "PrebidMobile/PrebidMobile.h"
- 
+
 [PBLogManager setPBLogLevel:PBLogLevelAll];
-  
-// 1. Create the ad units with ad unit ids and add sizes for banner ad units
-PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdentifier:@"YOUR-AD-UNIT-ID-HERE" andConfigId:@"YOUR-CONFIG-ID-HERE"];
+
+/**
+ * 1. Create the ad units and add sizes for banner ad units.
+ *
+ * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+ * you defined when you registered the ad unit with Prebid Mobile.
+ *
+ * Replace @"PREBID-SERVER-CONFIGURATION-ID" with the ID of
+ * your Prebid Server demand partner configuration.
+ */
+PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdentifier:@"PREBID-MOBILE-SLOT-ID" andConfigId:@"PREBID-SERVER-CONFIGURATION-ID"];
 [adUnit1 addSize:CGSizeMake(300, 250)];
-  
-// 2. Set targeting parameters for the ad units (Optional)
+
+/**
+ * 2. Set targeting parameters for the ad units (Optional).
+ */
 [[PBTargetingParams sharedInstance] setAge:25];
 [[PBTargetingParams sharedInstance] setGender:PBTargetingParamsGenderFemale];
-  
-// 3. Register the ad units with Prebid Mobile to start bid fetching process
-// The following two APIs are being deprecated
-//[PrebidMobile registerAdUnits:@[adUnit1] withAccountId:@"YOUR-ACCOUNT-ID-HERE"];
-//[PrebidMobile registerAdUnits:@[adUnit1, adUnit2] withAccountId:kAccountId andPrimaryAdServer:PBPrimaryAdServerDFP];
-// Use this instead:
+
+/**
+ * 3. Register the ad units with Prebid Mobile to start bid fetching process.
+ *
+ * DFP Example
+ *
+ * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
+ *
+ * If you are using a Prebid Server host other than AppNexus, be sure
+ * to replace 'PBServerHostAppNexus'.
+ */
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
-          		withAccountId:kAccountId
+          		withAccountId:@"PREBID-SERVER-ACCOUNT-ID"
                		 withHost:PBServerHostAppNexus
     	   andPrimaryAdServer:PBPrimaryAdServerDFP];
 ```
 
-## Set bid keywords on ad object
+If you are using MoPub as your ad server, modify step 3 above to use `PBPrimaryAdServerMoPub`, as shown below:
+```
+/**
+ * 3. Register the ad units with Prebid Mobile to start bid fetching process.
+ *
+ * MoPub Example
+ *
+ * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
+ *
+ * If you are using a Prebid Server host other than AppNexus, be sure
+ * to replace 'PBServerHostAppNexus'.
+ */
+[PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
+          		withAccountId:@"PREBID-SERVER-ACCOUNT-ID"
+               		 withHost:PBServerHostAppNexus
+    	   andPrimaryAdServer:PBPrimaryAdServerMoPub];
+```
+Note that host should be the prebid server host you're using.
+
+### Set Ad Server Targeting
 {:.no_toc}
 
 Prebid Mobile continuously pre-caches creatives in the background, so that right before the ad unit makes an ad request from your network, your app can ask Prebid Mobile for a bid price and creative without waiting as shown in the code below.
 
 
-```objc
-// Set the prebid keywords immediately on your adObject
-[PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE"];
+```
+/**
+ * Set the prebid keywords on your adObject immediately.
+ *
+ * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+ * you defined when you registered the ad unit with Prebid Mobile.
+ *
+ * Replace AD-SERVER-AD-VIEW-INSTANCE with the ad view instance
+ * from your ad server (defined in the table below).
+ */
+[PrebidMobile setBidKeywordsOnAdObject:AD-SERVER-AD-VIEW-INSTANCE withAdUnitId:@"PREBID-MOBILE-SLOT-ID"];
 ```
 
 Alternatively, if you want to set the bid keywords on your adObject shortly after registering ad units, you can wait for bids with a timeout using the API method below.
 
-```objc
-// Set the prebid keywords on your adObject, upon completion load the adObject's ad
-[PrebidMobile setBidKeywordsOnAdObject:YOUR-AD-VIEW withAdUnitId:@"YOUR-AD-UNIT-ID-HERE" withTimeout:600 completionHandler:^{
-    [YOUR-AD-VIEW YOUR-ADS-LOAD-METHOD];
+```
+/**
+ * Set the prebid keywords on your adObject.  
+ * Upon completion, call the ad server's ad load method.
+ *
+ * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+ * you defined when you registered the ad unit with Prebid Mobile.
+ *
+ * Replace AD-SERVER-AD-VIEW-INSTANCE with the ad view instance
+ * from your ad server (defined in the table below).
+ *
+ * Replace AD-SERVER-AD-LOAD-METHOD with the ad server's method
+ * to load this ad type (defined in the table below).
+ */
+[PrebidMobile setBidKeywordsOnAdObject:AD-SERVER-AD-VIEW-INSTANCE withAdUnitId:@"PREBID-MOBILE-SLOT-ID" withTimeout:600 completionHandler:^{
+    [AD-SERVER-AD-VIEW-INSTANCE AD-SERVER-AD-LOAD-METHOD];
 }];
 ```
 
 Use the table below to see which ad objects are supported currently.
 
 {: .table .table-bordered .table-striped }
-| Primary Ad Server | Ad Object Type | Ad Object                    | Load Method                                 |
+| Primary Ad Server | Ad Object Type | Ad Server Ad View            | Ad Server Ad Load Method                    |
 |-------------------|----------------|------------------------------|---------------------------------------------|
 | DFP               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
 | DFP               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |

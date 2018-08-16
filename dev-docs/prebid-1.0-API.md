@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Prebid 1.0 Publisher API Changes - <font color="red">NEW!</font>
+title: Prebid 1.0 Publisher API Changes
 description: Description of the changes to the publisher facing API for Prebid 1.0
 top_nav_section: dev_docs
 nav_section: reference
@@ -80,7 +80,7 @@ pbjs.setConfig({
 
 ## No More Default Endpoints
 
-In Prebid 0.x there were defaults for the Prebid Server endpoints and the video cache URL. With 1.0, these defaults have been removed to be vendor neutral, so all publisher pages must define them via pbjs.setConfig(). The same functionality as 0.x may be achieved as shown below: 
+In Prebid 0.x there were defaults for the Prebid Server endpoints and the video cache URL. With 1.0, these defaults have been removed to be vendor neutral, so all publisher pages must define them via pbjs.setConfig(). The same functionality as 0.x may be achieved as shown below:
 
 {% highlight js %}
 
@@ -88,7 +88,7 @@ pbjs.setConfig({
     cache: {url: "https://prebid.adnxs.com/pbc/v1/cache"},
     s2sConfig: {
         ...
-        endpoint: "https://prebid.adnxs.com/pbs/v1/auction",
+        endpoint: "https://prebid.adnxs.com/pbs/v1/openrtb2/auction",
         syncEndpoint: "https://prebid.adnxs.com/pbs/v1/cookie_sync",
         ...
     }
@@ -96,7 +96,7 @@ pbjs.setConfig({
 
 {% endhighlight %}
 
-## Size Mapping Changes 
+## Size Mapping Changes
 
 The previous [`sizeMapping` functionality]({{site.baseurl}}/dev-docs/examples/size-mapping.html) will be removed and replaced by a `sizeConfig` parameter to the `pbjs.setConfig` method that provides a more powerful way to describe types of devices and
 screens.
@@ -107,7 +107,7 @@ If `sizeConfig` is passed to `pbjs.setConfig`:
 
  - The `sizeConfig.mediaQuery` property allows media queries in the form described [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  They are tested using the [`window.matchMedia` API](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia).
 
-- If a label doesn't exist on an ad unit, it is automatically included in all requests for bids.
+- If a label conditional (e.g. labelAny) doesn’t exist on an ad unit, it is automatically included in all requests for bids.
 
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
 
@@ -151,53 +151,76 @@ pbjs.setConfig({
 ### Labels
 {:.no_toc}
 
-Labels can now be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the adUnit or bidder unless a sizeConfig rule has matched and enabled the label or the label has been enabled manually by passing them into through requestBids: `pbjs.requestBids({labels:[]})`.  Defining labels on the adUnit looks like the following:
+Labels can now be specified as a property on either an `adUnit` or on `adUnit.bids[]`.  The presence of a label will disable the adUnit or bidder unless a sizeConfig rule has matched and enabled the label or the label has been enabled manually by passing them into through requestBids: `pbjs.requestBids({labels:[]})`.  
+
+Labels may be targeted in the AdUnit structure by two conditional operators: `labelAny` and `labelAll`.
+
+With the `labelAny` operator, just one label has to match for the condition to be true. In the example below, either A or B can be defined in the label array to activate the bid or ad unit:
+{% highlight bash %}
+labelAny: ["A", "B"]
+{% endhighlight %}
+
+With the `labelAll` conditional, every element of the target array must match an element of the label array in
+order for the condition to be true. In the example below, both A and B must be defined in the label array to activate the bid or ad unit:
+{% highlight bash %}
+labelAll: ["A", "B"]
+{% endhighlight %}
+
+{: .alert.alert-warning :}
+Only one conditional may be specified on a given AdUnit or bid -- if both `labelAny` and `labelAll` are specified, only the first one will be utilized and an error will be logged to the console. It is allowable for an AdUnit to have one condition and a bid to have another.
+
+{: .alert.alert-warning :}
+If either `labelAny` or `labelAll` values is an empty array, it evaluates to `true`.
+
+
+Defining labels on the adUnit looks like the following:
 
 {% highlight js %}
 
 pbjs.addAdUnits([{
-    "code": "ad-slot-1",
-    "mediaTypes": {
-        "banner": {
-            "sizes": [
+    code: "ad-slot-1",
+    mediaTypes: {
+        banner: {
+            sizes: [
                 [970, 90],
                 [728, 90],
                 [300, 250],
                 [300, 100]
-            ],
+            ]
         }
-    }
-    "labels": ["visitor-uk"]
-    "bids": [ // the full set of bids, not all of which are relevant on all devices
-        {
-            "bidder": "pulsepoint",
-            "labels": ["desktop", "tablet"], // flags this bid as relevant only on these screen sizes
-            "params": {
+    },
+    labelAny: ["visitor-uk"]
+    /* The full set of bids, not all of which are relevant on all devices */
+    bids: [{
+            bidder: "pulsepoint",
+            /* Labels flag this bid as relevant only on these screen sizes. */
+            labelAny: ["desktop", "tablet"],
+            params: {
                 "cf": "728X90",
                 "cp": 123456,
                 "ct": 123456
             }
         },
         {
-            "bidder": "pulsepoint",
-            "labels": ["desktop", "phone"],
-            "params": {
+            bidder: "pulsepoint",
+            labelAny: ["desktop", "phone"],
+            params: {
                 "cf": "300x250",
                 "cp": 123456,
                 "ct": 123456
             }
         },
         {
-            "bidder": "sovrn",
-            "labels": ["desktop", "tablet"],
-            "params": {
+            bidder: "sovrn",
+            labelAny: ["desktop", "tablet"],
+            params: {
                 "tagid": "123456"
             }
         },
         {
-            "bidder": "sovrn",
-            "labels": ["phone"],
-            "params": {
+            bidder: "sovrn",
+            labelAny: ["phone"],
+            params: {
                 "tagid": "111111"
             }
         }
@@ -205,6 +228,9 @@ pbjs.addAdUnits([{
 }]);
 
 {% endhighlight %}
+
+See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
+
 
 ### Manual Label Configuration
 {:.no_toc}
@@ -231,16 +257,16 @@ adUnit = {
     "code": "unique_code_for_placement"
     "mediaTypes": { // New field to replace `mediaType`. Defaults to `banner` if not specified.
         video: {
-            context: "outstream",
+            context: 'outstream',
             playerSize: [600, 480]
         },
-        banner: { 
+        banner: {
             sizes: [300, 250],
-            ...options 
+            ...options
         },
         native: { ...options }
     },
-    labels: ["desktop", "mobile"]
+    labelAny: ["desktop", "mobile"]
     bids: { ... } // Same as existing definition with addition of `label` attribute.
 }
 

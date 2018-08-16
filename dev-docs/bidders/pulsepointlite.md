@@ -11,6 +11,7 @@ hide: true
 biddercode: pulsepointLite
 
 biddercode_longer_than_12: true
+media_types: native
 
 ---
 
@@ -18,8 +19,8 @@ biddercode_longer_than_12: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `cf` | required | Ad size identifier | `"300X250"` |
-| `cp` | required | Publisher Id | `12345` |
-| `ct` | required | Ad Tag Id | `12345` |
+| Name | Scope    | Description        | Example     | Type      |
+|------|----------|--------------------|-------------|-----------|
+| `cf` | required | Ad size identifier | `'300X250'` | `string`  |
+| `cp` | required | Publisher Id       | `12345`     | `integer` |
+| `ct` | required | Ad Tag Id          | `12345`     | `integer` |

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Conditional Ad Units - <font color="red">NEW!</font>
+title: Conditional Ad Units
 description: Using labels for conditional ad units
 top_nav_section: dev_docs
 nav_section: features
@@ -24,7 +24,7 @@ The basic steps are:
 1. Build up an array of 'labels' from two sources: either as an output of `sizeConfig`, as an optional argument to [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids), or both.
 1. Apply label targeting to AdUnits or specific bids.
 
-See below for examples.
+See the [Publisher API reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads) for syntax.
 
 ## What if some bidders should be skipped for some devices?
 
@@ -60,7 +60,11 @@ conditional ad unit logic. Now you need to label your AdUnits to match. For exam
 
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90], [468,60], [320,50]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90], [468,60], [320,50]]
+        }
+    },
     bids: [
         {
             bidder: "bidderA",
@@ -107,7 +111,11 @@ or more of the strings in the array matches a defined label.
 
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90], [468,60], [320,50]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90], [468,60], [320,50]]
+        }
+    },
     bids: [
         {
             bidder: "bidderA",
@@ -144,7 +152,11 @@ on phones. To suppress the ad unit for mobile users, we can apply conditional lo
 
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90]]
+        }
+    },
     labelAny: ["display", "tablet"], // skip the ad unit entirely for phones
     bids: [
         {
@@ -186,7 +198,11 @@ Then this label can be applied to conditions in the AdUnit just like labels that
 {% highlight js %}
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90], [468,60], [320,50]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90], [468,60], [320,50]]      
+        }
+    },
     bids: [
        {
             bidder: "euroMobileBidder",

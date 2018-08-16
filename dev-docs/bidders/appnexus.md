@@ -8,6 +8,8 @@ biddercode: appnexus
 biddercode_longer_than_12: false
 hide: true
 prebid_1_0_supported : true
+media_types: video, native
+gdpr_supported: true
 ---
 
 **Table of Contents**
@@ -17,20 +19,20 @@ prebid_1_0_supported : true
 - [Banner Ads](#appnexus-Banner)
 - [Video Ads](#appnexus-Video)
 - [Native Ads](#appnexus-Native)
-+ [Multi-Format Ads](#appnexus-Multi-Format)
+- [Multi-Format Ads](#appnexus-Multi-Format)
 
 <a name="appnexus-bid-params" />
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Description                                                                                                                                                                                                          | Example           |
-|------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------|
-| `placementId`    | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID.                                                                                            | `"234234"`        |
-| `"arbitraryKey"` | optional | This key can be *any publisher-defined string*. The value (also a string) maps to a querystring segment for enhanced buy-side targeting. Multiple key-value pairs can be added as shown [below](#appnexus-pub-keys). | `'genre': 'rock'` |
-| `invCode`        | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                                                        | `"abc123"`        |
-| `member`         | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                                                           | `"12345"`         |
-| `reserve`        | optional | Sets a floor price for the bid that is returned.                                                                                                                                                                     | `0.90`            |
+| Name             | Scope    | Description                                                                                                                                                                                                          | Example           | Type             |
+|------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
+| `placementId`    | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID.                                                                                            | `234234`        | `int`         |
+| `"arbitraryKey"` | optional | This key can be *any publisher-defined string*. The value (also a string) maps to a querystring segment for enhanced buy-side targeting. Multiple key-value pairs can be added as shown [below](#appnexus-pub-keys). | `'genre': 'rock'` | `keyValue`       |
+| `invCode`        | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                                                        | `'abc123'`        | `string`         |
+| `member`         | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                                                           | `'12345'`         | `string`         |
+| `reserve`        | optional | Sets a floor price for the bid that is returned.                                                                                                                                                                     | `0.90`            | `float`          |
 
 <a name="appnexus-pub-keys" />
 
