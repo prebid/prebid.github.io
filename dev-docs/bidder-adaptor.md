@@ -191,7 +191,8 @@ export const spec = {
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
     getUserSyncs: function(syncOptions, serverResponses) {},
-    onTimeout: function(timeoutData) {}
+    onTimeout: function(timeoutData) {},
+    onBidWon: function(bid) {}
 }
 registerBidder(spec);
 
@@ -356,6 +357,33 @@ Sample data received to this function:
   "adUnitCode": "div-gpt-ad-1460505748561-0",
   "timeout": 3000,
   "auctionId": "18fd8b8b0bd757"
+}
+{% endhighlight %}
+
+### Registering on Bid Won
+
+The `onBidWon` function will be called when a bid from the adapter won the auction.
+
+Sample data received by this function:
+
+{% highlight js %}
+{
+  "bidder": "example",
+  "width": 300,
+  "height": 250,
+  "adId": "330a22bdea4cac",
+  "mediaType": "banner",
+  "cpm": 0.28
+  "ad": "...",
+  "requestId": "418b37f85e772c",
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "size": "350x250",
+  "adserverTargeting": {
+    "hb_bidder": "example",
+    "hb_adid": "330a22bdea4cac",
+    "hb_pb": "0.20",
+    "hb_size": "350x250"
+  }
 }
 {% endhighlight %}
 
@@ -621,11 +649,33 @@ export const spec = {
      */
     onTimeout: function(data) {
         // Bidder specifc code
-    }    
+    }
+
+    /**
+     * Register bidder specific code, which will execute if a bid from this bidder won the auction
+     * @param {Bid} The bid that won the auction
+     */
+    onBidWon: function(bid) {
+        // Bidder specific code
+    }
 }
 registerBidder(spec);
 
 {% endhighlight %}
+
+
+## Submitting your adapter
+
+- [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
+- Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
+  - Fork the repo
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify
+- Submit both the code and docs pull requests
+
+Within a few days, the code pull request will be assigned to a developer for review.
+Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
+
+The Prebid.org [download page](http://prebid.org/download.html) will automatically be updated with your adapter once everything's been merged.
 
 ## Further Reading
 

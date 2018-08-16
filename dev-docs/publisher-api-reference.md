@@ -43,6 +43,8 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
+    * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
+    * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [publisherDomain](#setConfig-Publisher-Domain)
@@ -56,6 +58,7 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -1065,6 +1068,7 @@ See below for usage examples.
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
++ [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1110,17 +1114,27 @@ For more information about the asynchronous event loop and `setTimeout`, see [Ho
 <a name="setConfig-Max-Requests-Per-Origin" />
 
 Since browsers have a limit of how many requests they will allow to a specific domain before they block, Prebid.js
-will queue auctions that would cause requests to a specific origin to exceed that limit.  The limit is different 
-for each browser. Prebid.js defaults to a max of `4` requests per origin.  That value can be configured with 
+will queue auctions that would cause requests to a specific origin to exceed that limit.  The limit is different
+for each browser. Prebid.js defaults to a max of `4` requests per origin.  That value can be configured with
 `maxRequestsPerOrigin`.
 
 {% highlight js %}
-// most browsers allow at least 6 requests, but your results may vary for your user base.  Sometimes using all 
+// most browsers allow at least 6 requests, but your results may vary for your user base.  Sometimes using all
 // `6` requests can impact performance negatively for users with poor internet connections.
 pbjs.setConfig({ maxRequestsPerOrigin: 6 });
 
 // to emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set it to `1`.
 pbjs.setConfig({ maxRequestsPerOrigin: 1 });
+{% endhighlight %}
+
+#### Disable Ajax Timeout
+
+<a name="setConfig-Disable-Ajax-Timeout" />
+
+Prebid core adds a timeout on XMLHttpRequest request to terminate the request once auction is timedout. Since Prebid is ignoring all the bids after timeout it does not make sense to continue the request after timeout. However, you have the option to disable this by using `disableAjaxTimeout`.
+
+{% highlight js %}
+pbjs.setConfig({ disableAjaxTimeout: true });
 {% endhighlight %}
 
 #### Send All Bids
@@ -1782,7 +1796,28 @@ var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
 });
 ```
 
+<a name="module_pbjs.requestBids"></a>
+
 {: .alert.alert-warning :}
 In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.markWinningBidAsUsed"></a>
+
+### pbjs.markWinningBidAsUsed(markBidRequest)
+
+This function can be used to mark the winning bid as used. This is useful when running multiple video advertisements on the page, since these are not automatically marked as “rendered”.
+If you know the adId, then be specific, otherwise Prebid will retrieve the winning bid for the adUnitCode and mark it accordingly.
+
+#### Argument Reference
+
+##### The `markBidRequest` object (use one or both)
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description |
+| --- | --- | --- |
+| adUnitCode | `string` | (Optional) The ad unit code |
+| adId | `string` | (Optional) The id representing the ad we want to mark |
 
 </div>
