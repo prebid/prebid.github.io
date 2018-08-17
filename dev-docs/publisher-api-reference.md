@@ -161,7 +161,7 @@ This function returns the bid responses at the given moment.
 | `dealId`            | String  | (Optional) If the bid is [associated with a Deal]({{site.baseurl}}/adops/deals.html), this field contains the deal ID.          |                                                 "ABC_123" |
 | `adserverTargeting`  | Object  | Contains all the adserver targeting parameters | `{ "hb_bidder": "appnexus", "hb_adid": "7a53a9d3" }` |
 | `native`  | Object  | Contains native key value pairs. | `{ "title": "", "body": "" }` |
-| `status`  | String  | Status of the bid. Possible values: (TBD) | `"targetingSet"` |
+| `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
 | `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
 | `ttl`  | Integer  | How long (in milliseconds) this bid is considered valid. | `300` |
 
