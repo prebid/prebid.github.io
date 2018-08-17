@@ -237,5 +237,15 @@ If ProGuard is enabled, the following lines must be added to your ProGuard file:
 }
 ```
 
+To avoid PrebidServerAdapter class being obfuscated and prebid not working, add the following lines to your proguard file:
+```
+-keep class org.prebid.mobile.prebidserver.PrebidServerAdapter {
+   public *;
+}
+
+-keepnames class org.prebid.mobile.prebidserver.PrebidServerAdapter {
+   public *;
+}
+```
 
 </div>
