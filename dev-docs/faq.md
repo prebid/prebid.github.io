@@ -33,6 +33,35 @@ There is an analysis from the Prebid team here which may be useful:
 
 [How many bidders should I work with?]({{site.baseurl}}/blog/how-many-bidders-for-header-bidding)
 
+## Does Prebid.js cache bids?
+
+Yes, since 1.0, Prebid.js will re-consider previous bids under limited circumstances. It will cache and reconsider bids when these conditions are met:
+
+- bid is for the same AdUnit
+- on the same page view
+- for the same user
+- up to a certain Time-to-Live (TTL)
+- or until the bid wins and is displayed
+
+Since the storage is in the browser, cached bids only apply to the same page context. If the user refreshes the page, the bid is lost.
+
+Each bid adapter defines the amount of time that their bids can be cached and reconsidered.
+This setting is called “time to live” (TTL), documented [here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses). 
+
+Examples of scenarios where a bid may be reconsidered in Prebid.js:
+
+- Auto-refresh: some pages will reload an AdUnit on a set interval (often 60-240 seconds). Previous bids for that particular AdUnit can be reconsidered for subsequent refreshes of that unit up to the TTL or until they win the unit.
+- Infinite scroll: as the user scrolls, the same AdUnit may be dynamically created over and over. The bid can be reconsidered for dynamically-created AdUnits with the same name. Again, the bid is only re-considered on that AdUnit up to the bid TTL or until it's displayed.
+- Galleries: Some pages feature carousel-style galleries that contain an AdUnit which refreshes as the user cycles through the content in the gallery
+
+Here's how it works:
+
+1. Bid responses are stored in an AdUnit-specific bid pool.
+1. When the same AdUnit is called, Prebid.js calls the bidder again regardless of whether there's a bid in that AdUnit's bid pool.
+1. When all the new bids are back or the timeout is reached, Prebid.js considers both the new bids on that AdUnit and previous bids on the AdUnit that haven't reached their TTL.
+1. The cached bid is only used if its CPM beats the new bid.
+1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.markWinningBidAsUsed) function.
+
 ## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
 You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible. 
