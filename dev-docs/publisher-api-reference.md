@@ -163,7 +163,7 @@ This function returns the bid responses at the given moment.
 | `native`  | Object  | Contains native key value pairs. | `{ "title": "", "body": "" }` |
 | `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
 | `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
-| `ttl`  | Integer  | How long (in milliseconds) this bid is considered valid. | `300` |
+| `ttl`  | Integer  | How long (in milliseconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
