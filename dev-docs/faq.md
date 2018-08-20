@@ -25,7 +25,7 @@ This page has answers to some frequently asked questions.  If you don't find wha
 
 Every publisher is different.  In order to answer this question you'll need to run some tests, gather data, and decide what works for you based on your performance and monetization needs.
 
-Generally speaking, in a client-side header bidding implementation, you should aim to bring in approximately 1-5 demand partners. In a server-to-server implementation, you have some flexibility to add more partners. 
+Generally speaking, in a client-side header bidding implementation, you should aim to bring in approximately 1-5 demand partners. In a server-to-server implementation, you have some flexibility to add more partners.
 
 In both scenarios, your goal should be to see your inventory fill at the highest CPMs without adding too much latency in the process. When selecting your demand partners, it’s important to choose marketplaces that have premium demand at scale, high ad quality and low latency.
 
@@ -35,24 +35,27 @@ There is an analysis from the Prebid team here which may be useful:
 
 ## Does Prebid.js cache bids?
 
-Yes, since 1.0, Prebid.js will re-consider previous bids under limited circumstances. It will cache and reconsider bids in refresh scenarios when these conditions are met:
+Yes. As of version 1.0, Prebid.js will re-consider previous bids under limited circumstances. It will cache and reconsider bids in refresh scenarios when the bid is:
 
-- bid is for the same AdUnit
-- on the same page view
-- for the same user
+- for the same AdUnit,
+- on the same page view,
+- for the same user, and
 - up to a certain Time-to-Live (TTL)
-- or until the bid wins and is displayed
 
-Since the storage is in the browser, cached bids only apply to the same page context. If the user refreshes the page, the bid is lost.
+  or
 
-Each bid adapter defines the amount of time that their bids can be cached and reconsidered.
-This setting is called “time to live” (TTL), documented [here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses). 
+- until the bid wins and is displayed.
+
+Since the storage is in the browser, cached bids only apply to a single page context. If the user refreshes the page, the bid is lost.
+
+Each bid adapter defines the amount of time their bids can be cached and reconsidered.
+This setting is called “Time to Live” (TTL), documented [here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
 
 Examples of scenarios where a bid may be reconsidered in Prebid.js:
 
-- Auto-refresh: some pages will reload an AdUnit on a set interval (often 60-240 seconds). Previous bids for that particular AdUnit can be reconsidered for subsequent refreshes of that unit up to the TTL or until they win the unit.
-- Infinite scroll: as the user scrolls, the same AdUnit may be dynamically created over and over. The bid can be reconsidered for dynamically-created AdUnits with the same name. Again, the bid is only re-considered on that AdUnit up to the bid TTL or until it's displayed.
-- Galleries: Some pages feature carousel-style galleries that contain an AdUnit which refreshes as the user cycles through the content in the gallery
+- Auto-refresh: Some pages will reload an AdUnit on a set interval (often 60-240 seconds). Previous bids for that particular AdUnit can be reconsidered for subsequent refreshes of that unit up to the TTL or until they win the unit.
+- Infinite scroll: As the user scrolls, the same AdUnit may be dynamically created over and over. The bid can be reconsidered for dynamically-created AdUnits with the same name. Again, the bid is only re-considered on that AdUnit up to the bid TTL or until it's displayed.
+- Galleries: Some pages feature carousel-style galleries that contain an AdUnit that refreshes as the user cycles through the content in the gallery.
 
 Here's how it works:
 
@@ -64,7 +67,7 @@ Here's how it works:
 
 ## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
-You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible. 
+You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible.
 
 In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings) to adjust any bidder that sends gross bids.
 
@@ -136,7 +139,7 @@ If you need different [price granularities]({{site.baseurl}}/dev-docs/publisher-
    1. Set the adserver targeting for the first auction
    1. Call `setConfig` to define the priceGranularity for the second set of AdUnits
    1. Initiate the second auction with `requestBids`
-   
+
 The handling of this scenario will be improved in a future release.
 
 ## Related Reading
