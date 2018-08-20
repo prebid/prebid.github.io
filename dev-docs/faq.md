@@ -35,7 +35,7 @@ There is an analysis from the Prebid team here which may be useful:
 
 ## Does Prebid.js cache bids?
 
-Yes, since 1.0, Prebid.js will re-consider previous bids under limited circumstances. It will cache and reconsider bids when these conditions are met:
+Yes, since 1.0, Prebid.js will re-consider previous bids under limited circumstances. It will cache and reconsider bids in refresh scenarios when these conditions are met:
 
 - bid is for the same AdUnit
 - on the same page view
