@@ -73,7 +73,7 @@ AppNexus supports the video features described in:
 - [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
 - [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
 
-The Following videorelated parameters are supported under the `video` parameter
+The Following video-related parameters are supported under the `video` parameter
 
 {: .table .table-bordered .table-striped }
 | Name              | Description                                                                                                                                                                                                                                  | Type             |
@@ -122,4 +122,4 @@ The Following mobile app related parameters are supported under the `app` parame
 ### Upgrading from Prebid 0.x
 As part of the transition to Prebid 1.0, the existing AppNexus AST (legacy) adapter has become the standard and only AppNexus adapter (and renamed to "AppNexus"). You may continue to use the existing `appnexus` or `appnexusAst` bidder code without the need to re-create ad server line items/key value targeting.
 
-If an From a developer's perspective, the primary change needed is that keywords must be passed using the `keywords` parameter instead of an `"arbitraryKey"` if they were not already being passing in this manner.
+From a developer's perspective, the primary change needed is that keywords must be passed using the `keywords` parameter instead of an `"arbitraryKey"` if they were not already being passing in this manner.
