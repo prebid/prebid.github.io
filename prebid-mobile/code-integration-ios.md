@@ -79,6 +79,12 @@ Embed the ad unit registration in a try-catch block to catch all the exceptions 
 #import "PrebidMobile/PBTargetingParams.h"
 #import "PrebidMobile/PrebidMobile.h"
 
+/**
+* Set the log level to PBLogLevelAll ONLY for test purposes.
+* This setting indicates this is a test auction and impressions will not be reported.
+* See http://prebid.org/prebid-mobile/logging-troubleshooting-ios.html for information on log level settings.
+*/
+
 [PBLogManager setPBLogLevel:PBLogLevelAll];
 
 /**
