@@ -12,7 +12,7 @@ media_types: banner, native, video
 ---
 
 {: .alert.alert-warning :}
-Prebid.js 0.x includes two AppNexus Adaptors: `appnexus` and `appnexusAst`. As part of the transition to Prebid 1.0, the AppNexus AST adapter will become the standard (and only) AppNexus adapter (and be renamed to "AppNexus").  From a developer's perspective, the primary change from the legacy adapter is that keywords must be passed using the `keywords` parameter documented below.
+Prebid.js 0.x includes two AppNexus Adaptors: `appnexus` and `appnexusAst`. As part of the transition to Prebid 1.0, the AppNexus AST adapter will become the standard (and only) AppNexus adapter (and be renamed to "AppNexus").
 
 
 ### Bid Params
@@ -51,11 +51,10 @@ The following video parameters are supported.  For more information, see the vid
 | `playback_method` | Array of strings listing playback methods supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouseover"`; `"auto_play_sound_unknown"`.                                       | `Array<string>`  |
 | `frameworks`      | Array of integers listing API frameworks supported by the publisher. Allowed values: None: `0`; VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; ORMMA: `4`; MRAID 2.0: `5`.                                                                  | `Array<integer>` |
 
-### Advantages of using the Appnexus AST (legacy) Adaptor over the AppNexus (legacy) adaptor
+### Advantages of using the Appnexus AST (legacy) Adaptor over the AppNexus (legacy) Adaptor
 
 - Requests all the adUnits at once, which reduces latency on page
 
 - Supports additional formats (such as Video and Native)
 
-- Will continue to be upgraded as enhancements are made to Prebid.js
-  for expanding capabilities
+- Uses the same endpoints and parameter settings as the Prebid 1.x AppNexus adaptor.

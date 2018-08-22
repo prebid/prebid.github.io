@@ -73,6 +73,19 @@ AppNexus supports the video features described in:
 - [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
 - [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
 
+The Following videorelated parameters are supported under the `video` parameter
+
+{: .table .table-bordered .table-striped }
+| Name              | Description                                                                                                                                                                                                                                  | Type             |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+| `mimes`           | Array of strings listing the content MIME types supported, e.g., `["video/x-flv", "video/x-ms-wmv"]`.                                                                                                                                        | `Array<string>`  |
+| `minduration`     | Integer that defines the minimum video ad duration in seconds.                                                                                                                                                                               | `integer`        |
+| `maxduration`     | Integer that defines the maximum video ad duration in seconds.                                                                                                                                                                               | `integer`        |
+| `startdelay`      | Integer that determines whether to show the ad before, during, or after video content.  If > 0, position is mid-roll and value indicates start delay, in seconds. Allowed values: Pre-roll: `0` (default); Mid-roll: `-1` ; Post-roll: `-2`. | `integer`        |
+| `skippable`       | Boolean which, if `true`, means the user can click a button to skip the video ad.  Defaults to `false`.                                                                                                                                      | `boolean`        |
+| `playback_method` | Array of strings listing playback methods supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouseover"`; `"auto_play_sound_unknown"`.                                       | `Array<string>`  |
+| `frameworks`      | Array of integers listing API frameworks supported by the publisher. Allowed values: None: `0`; VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; ORMMA: `4`; MRAID 2.0: `5`.                                                                  | `Array<integer>` |
+
 <a name="appnexus-Native" />
 
 #### Native Ads
@@ -108,3 +121,5 @@ The Following mobile app related parameters are supported under the `app` parame
 
 ### Upgrading from Prebid 0.x
 As part of the transition to Prebid 1.0, the existing AppNexus AST (legacy) adapter has become the standard and only AppNexus adapter (and renamed to "AppNexus"). You may continue to use the existing `appnexus` or `appnexusAst` bidder code without the need to re-create ad server line items/key value targeting.
+
+If an From a developer's perspective, the primary change needed is that keywords must be passed using the `keywords` parameter instead of an `"arbitraryKey"` if they were not already being passing in this manner.

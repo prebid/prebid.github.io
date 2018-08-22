@@ -12,7 +12,7 @@ media_types: banner
 ---
 
 {: .alert.alert-warning :}
-Prebid.js 0.x includes two AppNexus Adaptors: `appnexus` and `appnexusAst`. As part of the transition to Prebid 1.0, the AppNexus AST adapter will become the standard (and only) AppNexus adapter (and be renamed to "AppNexus").  From a developer's perspective, the primary change from the legacy adapter is that keywords must be passed using the `keywords` parameter documented below.
+Prebid.js 0.x includes two AppNexus Adaptors: `appnexus` and `appnexusAst`. As part of the transition to Prebid 1.0, the AppNexus AST adapter will become the standard (and only) AppNexus adapter (and be renamed to "AppNexus").  From a developer's perspective, the primary change from the AppNexus (legacy) adapter to either the AppNexus AST (legacy) or Prebid 1.x adaptor is that keywords must be passed using the `keywords` parameter instead of an `"arbitraryKey"`.
 
 ### Bid Params
 
