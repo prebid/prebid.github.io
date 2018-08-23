@@ -19,7 +19,16 @@ This page has answers to some frequently asked questions.  If you don't find wha
 
 ## When starting out, what should my timeouts be?
 
-1,000 milliseconds or less is considered best practice as a starting point for header-bidding container solutions.
+Below is a set of recommended best practice starting points for your timeout settings:
+
+- 1,000 milliseconds or less for the internal auction timeout
+- 3,000 milliseconds or less for the prebid tag's overall failsafe timeout
+
+The former setting is used to track the auction once it started; if it expires, we will use whichever bidders have responded and select the winner(s) accordingly.
+
+The latter setting is used when for some reason Prebid did not load (or there's some other serious issue); if it expires, we will default to the adserver.
+
+For examples of setting up these timeouts, please refer to the [Basic Example]({{site.baseurl}}/dev-docs/examples/basic-example.html) page.
 
 ## How many header bidders should I have?
 
