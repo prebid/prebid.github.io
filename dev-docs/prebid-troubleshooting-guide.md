@@ -13,6 +13,9 @@ nav_section: troubleshooting
 # Prebid.js Troubleshooting Guide
 {:.no_toc}
 
+{: .alert.alert-danger :}
+**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+
 Use this guide to troubleshoot your Prebid.js integration. You can follow this guide sequentially to determine if Prebid.js is working as intended on your website. It takes you through the ad call from start to finish.
 
 * TOC
