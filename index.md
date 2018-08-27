@@ -24,7 +24,7 @@ description: Free and open source solutions for publishers to quickly implement 
 
     <div class="row benefits">
       <div class="col-sm-4">
-        <img src="assets/images/icons/icon-ninja.png" alt="Header bidding no dev" class="img-responsive">
+        <img src="assets/images/icons/icon-money.png" alt="Header bidding no dev" class="img-responsive">
         <h3>No development required</h3>
         <p>Prebid.js includes adapters for AppNexus, Pubmatic, Rubicon Project, and many more.</p>
         <a href="/dev-docs/bidders.html" class="btn btn-outline">See the Full Bidder List</a>
