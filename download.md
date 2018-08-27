@@ -66,7 +66,7 @@ function getVersionList() {
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{
-            $('.selectpicker').append('<option value="'+version+'">'+version+' - legacy, deprecating</option>');
+            $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecating on September 27, 2018</option>');
           }
         }
       });

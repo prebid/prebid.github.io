@@ -13,11 +13,11 @@ pid: 10
 
 This page has documentation for the public API methods of Prebid.js.
 
-{: .alert.alert-warning :}
-Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{site.baseurl}}/dev-docs/publisher-api-reference-old.html) is available.
-
 {: .alert.alert-danger :}
 **Note:** As of **September 27, 2018**, versions of Prebid.js prior to 1.0 will be unavailable and no longer supported.
+
+{: .alert.alert-warning :}
+Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{site.baseurl}}/dev-docs/publisher-api-reference-old.html) is available.
 
 <a name="module_pbjs"></a>
 
