@@ -45,12 +45,16 @@ Publishers can instruct the Brightcove Prebid Plugin to run prebid in the header
 
 To do this, the publisher must add code in the header and in the body of the document where the Brightcove Player will  be located.  If the  Brightcove Player is going to be located in an iframe, then the header code must be defined in the header of the iframe.
 
-### Code To Be Added To The Header
+Publishers need to define all of the options needed to configure the prebid process in a well-known variable in the header, as described below.  They must also load the Plugin script in the header *after* they have defined the options.  When the Plugin script loads, it looks to see if the specific variable is present and it has a non-empty value.  If it does, then the script will invoke the prebid process before the rest of the page loads.
+
+Once the Brightcove Player has loaded, then publisher needs to call `renderAd()` on the plugin, passing in any render options as well as the ID of the Brightcove Player video tag.  At that time, the plugin will find the prebid results and will use those results to display the ad when `renderAd()` is called.
+
+### Code to be Added to the Header
 
 - Define the prebid options in the header of the document where the Brightcove Player will be located.
     - The specified options MUST be saved in a variable named `bc_plugin_pbjs` in a property named `plugin_prebid_options`.
     - These options can include any of the options supported in **[Prebid Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)**
-- AFTER the prebid options have been defined, load the Plugin script.
+- AFTER the prebid options have been defined, load the Plugin script. Once the script is loaded, it will look to see if `bc_plugin_pbjs.plugin_prebid_options` is defined.  If so, then the Plugin script will invoke the prebid process.
 
 #### How To Invoke Header Prebid by the Plugin
 

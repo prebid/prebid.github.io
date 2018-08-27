@@ -6,7 +6,6 @@ pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-android
 ---
-
 <div class="bs-docs-section" markdown="1">
 
 # Code Integration for Android
@@ -43,9 +42,12 @@ When registering a Prebid Mobile ad unit, you must replace `"PREBID-MOBILE-SLOT-
 The steps for using Prebid Mobile are as follows:
 
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
+
+   NOTE: The [fluid ad size](https://developers.google.com/android/reference/com/google/android/gms/ads/AdSize.html#FLUID) (used in DFP) is not supported.
+
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism).
+4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
 5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
@@ -73,11 +75,11 @@ ArrayList<AdUnit> adUnits = new ArrayList<AdUnit>();
  * Configure a Banner Ad Unit with size 320x50.
  *
  * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
- * you defined when you registered the ad unit with Prebid Mobile. 
+ * you defined when you registered the ad unit with Prebid Mobile.
  *
  * Replace @"PREBID-SERVER-CONFIGURATION-ID" with the ID of
  * your Prebid Server demand partner configuration.
- */ 
+ */
 BannerAdUnit adUnit1 = new BannerAdUnit("PREBID-MOBILE-SLOT-ID", "PREBID-SERVER-CONFIGURATION-ID");
 adUnit1.addSize(320, 50);
 
@@ -85,11 +87,11 @@ adUnit1.addSize(320, 50);
  * Configure an Interstitial Ad Unit.
  *
  * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
- * you defined when you registered the ad unit with Prebid Mobile. 
+ * you defined when you registered the ad unit with Prebid Mobile.
  *
- * Replace @"PREBID-SERVER-CONFIGURATION-ID" with the ID of 
+ * Replace @"PREBID-SERVER-CONFIGURATION-ID" with the ID of
  * your Prebid Server demand partner configuration.
- */ 
+ */
 InterstitialAdUnit adUnit2 = new InterstitialAdUnit("PREBID-MOBILE-SLOT-ID", "PREBID-SERVER-CONFIGURATION-ID");
 
 // Add them to the list
@@ -108,10 +110,10 @@ If you're using DFP as your primary ad server, use the API like this:
  * Register ad units for prebid.
  *
  * Replace "PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
- * 
+ *
  * If you are using a Prebid Server host other than AppNexus, be sure
  * to replace 'Host.APPNEXUS'.
- */ 
+ */
 try {
     Prebid.init(getApplicationContext(), adUnits, "PREBID-SERVER-ACCOUNT-ID", Prebid.AdServer.DFP, Host.APPNEXUS);
 } catch (PrebidException e) {
@@ -124,10 +126,10 @@ If you're using MoPub as your primary ad server, use the API like this:
  * Register ad units for prebid.
  *
  * Replace "PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
- * 
+ *
  * If you are using a Prebid Server host other than AppNexus, be sure
  * to replace 'Host.APPNEXUS'.
- */ 
+ */
 try {
     Prebid.init(getApplicationContext(), adUnits, "PREBID-SERVER-ACCOUNT-ID", Prebid.AdServer.MOPUB, Host.APPNEXUS);
 } catch (PrebidException e) {
@@ -143,12 +145,12 @@ The final step for implementing Prebid Mobile is to attach bid keywords on the a
 
 ```
 /**
- * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier 
+ * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
  * you defined when you registered the ad unit with Prebid Mobile.
- * 
- * Replace AD-SERVER-OBJECT-INSTANCE with the ad view instance 
+ *
+ * Replace AD-SERVER-OBJECT-INSTANCE with the ad view instance
  * from your ad server (defined in the table below).
- */ 
+ */
 Prebid.attachBids(AD-SERVER-OBJECT-INSTANCE, "PREBID-MOBILE-SLOT-ID", Context);
 ```
 
@@ -184,9 +186,9 @@ For MoPub banner, in the banner ad listener implementation, add the following AP
 /**
  * MoPub Banner Listener Implementation.
  *
- * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier 
+ * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
  * you defined when you registered the ad unit with Prebid Mobile.
- */ 
+ */
 @Override
 public void onBannerLoaded(MoPubView banner) {
     Prebid.attachBids(banner, "PREBID-MOBILE-SLOT-ID", Context);
@@ -202,9 +204,9 @@ public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
 For DFP banner, the `loadAd(AdRequest)` has to be called again with updated bids info. If not, same set of bids will be used repeatedly until `loadAd()` is called with a new `AdRequest`. We recommend doing client side auto refresh yourself using code like the following:
  ```
  /**
- * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier 
+ * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
  * you defined when you registered the ad unit with Prebid Mobile.
- */ 
+ */
 final Handler handler = new Handler(Looper.getMainLooper());
 Runnable refreshRunnable = new Runnable() {
     @Override
@@ -235,5 +237,15 @@ If ProGuard is enabled, the following lines must be added to your ProGuard file:
 }
 ```
 
+To avoid PrebidServerAdapter class being obfuscated and prebid not working, add the following lines to your proguard file:
+```
+-keep class org.prebid.mobile.prebidserver.PrebidServerAdapter {
+   public *;
+}
+
+-keepnames class org.prebid.mobile.prebidserver.PrebidServerAdapter {
+   public *;
+}
+```
 
 </div>

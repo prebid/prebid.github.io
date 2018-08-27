@@ -53,9 +53,9 @@ There are two ways to register the Brightcove Prebid Plugin in Brightcove Studio
     - Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-Plugin-API.html)**.
     - Publisher may use this method when they want to use a third-party ad server other than DFP as their primary ad server
 
-- **Configured  Integration**
+- **Configured Integration**
     - In addition to adding the plugin to the Brightcove Player when the player is embedded on the page, it also invokes the plugin to execute prebid and render the ad based on the prebid options and render options defined in the Studio.
-    - Publisher may *not* use this method when using a third-party ad server other than DFP as their primary ad server.
+    - Publisher may use this method when using a third-party ad server other than DFP as their primary ad server by specifying the `adServerCallback` function by name.
 
 Details for each option are provided below.
 
@@ -68,10 +68,7 @@ Details for each option are provided below.
 
 ### When to Use This Option
 
-You should use this integration option when:
-
-- you use the same player instance on a number of publisher pages but different targeting parameters on some of those pages
-- you are using a third-party ad server as the primary ad server
+You should use this integration option when you use the same player instance on a number of publisher pages but different targeting parameters on some of those pages.
 
 ### Values to Provide in Brightcove Studio
 
@@ -191,9 +188,9 @@ Visit **[sample publisher page using the General Integration Method]({{site.base
 
 Use this integration option when:
 
-- you use the same player instance AND the same targeting parameters on one or more pages
-- you want to avoid making targeting changes directly on a publisher page
-- you are NOT using a third-party ad server as the primary ad server
+- you use the same player instance AND the same targeting parameters on one or more pages.
+- you want to avoid making targeting changes directly on a publisher page.
+- you are using a third-party ad server as the primary ad server; simply specify the name of the `adServerCallback` as part of the configuration options defined in the Studio.
 
 You can create different player instances, each with their own targeting parameters, if you have different targeting requirements on pages.
 

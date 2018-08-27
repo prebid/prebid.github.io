@@ -223,15 +223,16 @@ Sample array entry for `validBidRequests[]`:
   "transactionId": "d7b773de-ceaa-484d-89ca-d9f51b8d61ec",
   "sizes": [[320,50],[300,250],[300,600]],
   "bidderRequestId": "418b37f85e772c",
-  "auctionId": "18fd8b8b0bd757"
+  "auctionId": "18fd8b8b0bd757",
+  "bidRequestsCount": 1
 }]
 {% endhighlight %}
 
-{: .alert.alert-success :}
-There are several IDs present in the bidRequest object:
+Notes on parameters in the bidRequest object:
 - **Bid ID** is unique across ad units and bidders.
 - **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.
 - **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
+- **Bid Request Count** is the number of times `requestBids` has been called for this ad unit.
 
 The ServerRequest objects returned from your adapter have this structure:
 
@@ -297,7 +298,7 @@ The parameters of the `bidObject` are:
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid.                                                                                 | 360                                  |
+| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
@@ -662,6 +663,20 @@ export const spec = {
 registerBidder(spec);
 
 {% endhighlight %}
+
+
+## Submitting your adapter
+
+- [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
+- Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
+  - Fork the repo
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify
+- Submit both the code and docs pull requests
+
+Within a few days, the code pull request will be assigned to a developer for review.
+Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
+
+The Prebid.org [download page](http://prebid.org/download.html) will automatically be updated with your adapter once everything's been merged.
 
 ## Further Reading
 

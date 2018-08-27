@@ -39,7 +39,7 @@ The following is a sample Brightcove Prebid Plugin integration that invokes preb
  <script>
         // define the prebid options variable
         // NOTE:  you MUST use this variable name
-        window.plugin_prebid_options = {};
+        window.bc_plugin_pbjs = { plugin_prebid_options: {} };
 
         // specify prebid parameters as the value of biddersSpec
         // the set of bidders here shows how to specify the AppNexus video bidder:  appnexus
@@ -60,10 +60,10 @@ The following is a sample Brightcove Prebid Plugin integration that invokes preb
                 }
             ]
         };
-        window.plugin_prebid_options.biddersSpec = params;
+        window.bc_plugin_pbjs.plugin_prebid_options.biddersSpec = params;
 
         // set the callback for the external ad server
-        window.plugin_prebid_options.adServerCallback = function (bids) {
+        window.bc_plugin_pbjs.plugin_prebid_options.adServerCallback = function (bids) {
             callMyAdServerCode(bids, function (creative) {window.myPrebidCreative = creative});
         };
 

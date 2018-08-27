@@ -17,7 +17,10 @@ Plugins are software components (that can consist of multiple modules) that allo
 
 The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](https://www.brightcove.com/). The following documentation provides an overview of the Brightcove Plugin and how to use it to enable the Brightcove Player to work with Prebid.js.
 
--   [Prebid Plugin for Brightcove Player - Overview]({{site.baseurl}}/dev-docs/plugins/bc/about-bc-prebid-plugin.html)
+-   **Introduction**
+    -   [Prebid Plugin for Brightcove Player - Overview]({{site.baseurl}}/dev-docs/plugins/bc/about-bc-prebid-plugin.html)
+
+-   **How-To**
     -   [Prebid Plugin for Brightcove (Videojs) Player API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-api.html)
     -   [Dynamic Plugin Integration With Brightcove Player - On the Page]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-integration-dynamic.html)
     -   [Plugin Integration with Brightcove Player Using Brightcove Player Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-integration-studio.html)
@@ -25,6 +28,8 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html)
     -   [Prebid Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)
     -   [Render Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)
+
+-   **Samples**
     -   [Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)
     -   [Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body.html)
     -   [Sample Brightcove Player Prebid Plugin Integration - Prebid in Header]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header.html)

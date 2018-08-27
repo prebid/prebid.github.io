@@ -18,3 +18,4 @@ prebid_1_0_supported: true
 |------|----------|--------------------|----------|----------|
 | `ai` | required | The rtk auction ID | `'XBC1'` | `string` |
 | `sc` | required | The rtk shortcode  | `'AF2g'` | `string` |
+| `categories` | optional | Deal ID Categories  | `['news','sports']` | `array` |
