@@ -1310,8 +1310,7 @@ pbjs.setConfig({ cookieSyncDelay: 100 )
 
 #### Price Granularity
 
-This config is used to configure which price bucket is used for the `hb_pb` keyword.
-For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
+This configuration defines the price bucket granularity setting that will be used for the `hb_pb` keyword.
 
 {% highlight js %}
 pbjs.setConfig({ priceGranularity: "medium" })

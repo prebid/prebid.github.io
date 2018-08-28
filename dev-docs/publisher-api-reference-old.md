@@ -425,7 +425,7 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 {: .alert.alert-danger :}
 This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
-This method is used to configure which price bucket is used for the `hb_pb` keyword.  For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
+This function defines the price bucket granularity setting that will be used for the `hb_pb` keyword.
 
 Accepted values:
 
