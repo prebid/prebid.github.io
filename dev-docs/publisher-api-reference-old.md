@@ -14,6 +14,9 @@ This page has documentation for the pre-1.0 public API methods of Prebid.js.
 {: .alert.alert-danger :}
 Warning: do not use this API reference for new Prebid.js implementations. This document is kept for users on old (Pre-1.0) versions of Prebid.js who need to maintain their pages.
 
+{: .alert.alert-danger :}
+**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+
 <a name="module_pbjs"></a>
 
 ## pbjs

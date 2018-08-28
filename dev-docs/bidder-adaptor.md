@@ -48,6 +48,9 @@ Failure to follow any of the above conventions could lead to delays in approving
 {: .alert.alert-danger :}
 Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
 
+{: .alert.alert-danger :}
+**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+
 <a name="bidder-adaptor-Required-Files" />
 
 ### Required Files
@@ -342,14 +345,14 @@ See below for an example implementation.  For more examples, search for `getUser
 
 <a name="bidder-adaptor-Registering-on-Timout" />
 
-### Registering on Timeout 
+### Registering on Timeout
 
-The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end. 
+The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end.
 
 Sample data received to this function:
 
 {% highlight js %}
-{ 
+{
   "bidder": "example",
   "bidId": "51ef8751f9aead",
   "params": {

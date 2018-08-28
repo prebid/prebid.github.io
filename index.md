@@ -22,6 +22,19 @@ description: Free and open source solutions for publishers to quickly implement 
 
     <hr class="full-rule">
 
+    <img src="assets/images/icons/icon-notification.png" alt="Notifications" class="img-responsive">
+    <h3>Notifications</h3>
+    <br />
+    <div class="bg-danger">
+    <div align="left">
+      <p><b>Deprecation of Prebid.js 0.x</b></p>
+      <p>Legacy versions of Prebid.js (0.x) will be deprecated as of <b>September 27, 2018</b>. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.</p>
+    </div>
+    </div>
+
+
+    <hr class="full-rule">
+
     <div class="row benefits">
       <div class="col-sm-4">
         <img src="assets/images/icons/icon-ninja.png" alt="Header bidding no dev" class="img-responsive">

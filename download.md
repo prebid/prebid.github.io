@@ -66,7 +66,7 @@ function getVersionList() {
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{
-            $('.selectpicker').append('<option value="'+version+'">'+version+' - legacy, not recommended</option>');
+            $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecating on September 27, 2018</option>');
           }
         }
       });
@@ -114,7 +114,7 @@ function submit_download() {
       alertStatus.addClass('hide');
       // Try to find out the filename from the content disposition `filename` value
       var filename = "prebid" + form_data['version'] + ".js";
-      // this doens't work in our current jquery version. 
+      // this doens't work in our current jquery version.
       var disposition = jqXHR.getResponseHeader('Content-Disposition');
       if (disposition && disposition.indexOf('attachment') !== -1) {
           var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
@@ -136,7 +136,7 @@ function submit_download() {
       var buttn = $('#download-button');
       buttn.html('<i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js');
       buttn.removeClass('disabled');
-      alert('Ran into an issue.'); 
+      alert('Ran into an issue.');
     });
 }
 
@@ -191,8 +191,11 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
+{: .alert.alert-danger :}
+**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+
 {: .alert.alert-success :}
-Note if you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
+Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
 <form>
 <div class="row">
@@ -210,12 +213,12 @@ Note if you receive an error during download you most likely selected a configur
 <div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %} 
+  {% if page.aliasCode %}
     <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% else %}
     <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% endif %}
-      
+
     </label>
 </div>
 </div>
@@ -384,7 +387,7 @@ Note if you receive an error during download you most likely selected a configur
       <div class="modal-body">
 
         <div class="lead">
-          Enter your information below to generate the download file. 
+          Enter your information below to generate the download file.
         </div>
 
 
