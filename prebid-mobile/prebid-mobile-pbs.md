@@ -2,10 +2,10 @@
 layout: page
 title: Getting Started with Prebid Mobile
 description: Getting Started with Prebid Mobile
-pid: 0
+pid: 1
 is_top_nav: yeah
 top_nav_section: prebid-mobile
-nav_section: prebid-mobile-pbs
+nav_section: prebid-mobile
 ---
 
 <div class="bs-docs-section" markdown="1">

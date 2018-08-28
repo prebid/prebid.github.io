@@ -146,9 +146,9 @@ nav_sections:
   - top_nav: prebid-mobile
     code: prebid-mobile
     name: PREBID MOBILE
-  - top_nav: prebid-mobile
-    code: prebid-mobile-pbs
-    name: PREBID SERVER
+  #- top_nav: prebid-mobile
+    #code: prebid-mobile-pbs
+    #name: PREBID SERVER
   - top_nav: prebid-mobile
     code: prebid-mobile-ios
     name: FOR IOS
