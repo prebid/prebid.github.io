@@ -77,9 +77,7 @@ pbjs.que.push(function() {
             timeout: 1000,
             adapter: 'prebidServer',
             endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
-            cookieSet: true,
-            cookiesetUrl: 'https://acdn.adnxs.com/cookieset/cs.js'
+            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
         }
     });
 
@@ -127,12 +125,6 @@ If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, s
 {: .alert.alert-info :}
 **Aliasing Prebid Server only bidders**
 If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
-
-{: .alert.alert-info :}
-**Additional `cookieSet` details**
-If set to `true`:
-&bull; Prebid.js will overwrite all links on page to redirect through a persistent cookie URL
-&bull; Prebid.js will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies
 
 <a name="prebid-server-video-openrtb" />
 

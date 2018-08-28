@@ -1430,8 +1430,6 @@ pbjs.setConfig({
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
         syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
-        cookieSet: true,
-        cookieSetUrl: 'https://acdn.adnxs.com/cookieset/cs.js',
     }
 })
 {% endhighlight %}
@@ -1449,7 +1447,7 @@ Additional information of these properties:
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. |
+| `cookieSet` | Optional | Boolean | Defaults to `false`.  Initiates link-rewriting for Safari to improve cookie match rate. |
 | `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
 
 *Currently supported vendors are: appnexus & rubicon
