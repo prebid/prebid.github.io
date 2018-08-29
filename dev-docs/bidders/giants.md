@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Giants
-description: Prebid Giants Bidder Adaptor
+title: IPAX
+description: Prebid IPAX Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
