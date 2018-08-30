@@ -11,6 +11,7 @@ hide: true
 biddercode: rtbhouse
 biddercode_longer_than_12: false
 
+media_types: banner, native
 prebid_1_0_supported : true
 ---
 
