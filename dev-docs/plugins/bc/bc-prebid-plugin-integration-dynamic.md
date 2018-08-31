@@ -29,7 +29,7 @@ Here is sample code for loading in the plugin and its constituents directly on t
 <!-- Load in the plugin css stylesheets -->
 <!-- This is usually done in the header -->
 <!-- You may need to modify these paths if you are using your own build -->
-<link href="https://acdn.adnxs.com/video/plugins/bc/vmap/bc_vpaid_vast_mo.css" rel="stylesheet">
+<link href="https://acdn.adnxs.com/video/plugins/css/mol/bc_vpaid_vast_mo.css" rel="stylesheet">
 <link href="https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_vjs.css" rel="stylesheet">
 
 

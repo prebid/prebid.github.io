@@ -40,7 +40,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
     <meta charset="utf-8">
     <title>Brightcove Player Prebid Plugin - Prebid in Header</title>
 
-    <link href="https://acdn.adnxs.com/video/plugins/bc/vmap/bc_vpaid_vast_mo.css" rel="stylesheet">
+    <link href="https://acdn.adnxs.com/video/plugins/css/mol/bc_vpaid_vast_mo.css" rel="stylesheet">
     <link href="https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_vjs.css" rel="stylesheet">
     <script>
         // define the prebid options variable
