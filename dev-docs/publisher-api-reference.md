@@ -820,20 +820,12 @@ Some sample scenarios where publishers may wish to alter the default settings:
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Version | Default | Description |
 | --- | --- | --- | --- | --- |
-| alwaysUseBid | adapter-specific | all | false | Useful when working with a prebid partner not returning a cpm value. |
 | adserverTargeting | standard or adapter-specific | all | see below | Define which key/value pairs are sent to the ad server. |
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Could, for example, adjust a bidder's gross-price bid to net price. |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 
-##### 2.1. alwaysUseBid
-
-By default, only the winning bid (with the highest cpm) will be sent to the ad server.
-However, if you're working with a Prebid partner that's not returning a CPM value, it
-won't be able to compete against the other bids. One option is to use [enableSendAllBids()](publisher-api-reference.html#setConfig-Send-All-Bids). But if you want to send the highest CPM
-bid along with all non-CPM bids, just specify this flag and the adapter-specific adserverTargeting object will always be sent to the ad server.
-
-##### 2.2. adserverTargeting
+##### 2.1. adserverTargeting
 
 As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
@@ -864,7 +856,6 @@ There's no need to include the following code if you choose to use the *below de
 
 pbjs.bidderSettings = {
     standard: {
-        alwaysUseBid: false,
         adserverTargeting: [{
             key: "hb_bidder",
             val: function(bidResponse) {
@@ -980,7 +971,7 @@ pbjs.bidderSettings = {
 
 {% endhighlight %}
 
-##### 2.3. bidCpmAdjustment
+##### 2.2. bidCpmAdjustment
 
 Some bidders return gross prices instead of the net prices (what the publisher will actually
 get paid). For example, a publisher's net price might be 15% below the returned gross price.
@@ -1005,7 +996,7 @@ pbjs.bidderSettings = {
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
 
-##### 2.4. sendStandardTargeting
+##### 2.3. sendStandardTargeting
 
 This boolean flag minimizes key/value pairs sent to the ad server when
 adapter-specific targeting is specified. By default, the platform will send both adapter-specific adServerTargeting as well as the standard adServerTargeting.
@@ -1015,7 +1006,7 @@ suppress the standard targeting for adapters that define their own.
 
 See the [example above](#key-targeting-specific-bidder) for example usage.
 
-##### 2.5. suppressEmptyKeys
+##### 2.4. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
 
