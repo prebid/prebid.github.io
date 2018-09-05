@@ -14,6 +14,9 @@ This page has documentation for the pre-1.0 public API methods of Prebid.js.
 {: .alert.alert-danger :}
 Warning: do not use this API reference for new Prebid.js implementations. This document is kept for users on old (Pre-1.0) versions of Prebid.js who need to maintain their pages.
 
+{: .alert.alert-danger :}
+**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+
 <a name="module_pbjs"></a>
 
 ## pbjs
@@ -422,7 +425,7 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 {: .alert.alert-danger :}
 This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
-This method is used to configure which price bucket is used for the `hb_pb` keyword.  For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
+This function defines the price bucket granularity setting that will be used for the `hb_pb` keyword.
 
 Accepted values:
 
@@ -1432,8 +1435,6 @@ pbjs.setConfig({
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
         syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
-        cookieSet: true,
-        cookieSetUrl: 'https://acdn.adnxs.com/cookieset/cs.js',
     }
 })
 {% endhighlight %}
@@ -1451,7 +1452,7 @@ Additional information of these properties:
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. |
+| `cookieSet` | Optional | Boolean | Defaults to `false`.  If set to `true`, Prebid.js will overwrite all links on page to redirect through a persistent cookie URL and will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies. |
 | `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
 
 *Currently supported vendors are: appnexus & rubicon

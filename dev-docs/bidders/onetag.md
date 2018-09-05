@@ -9,7 +9,6 @@ nav_section: reference
 hide: true
 
 biddercode: onetag
-
 biddercode_longer_than_12: false
 
 media_types: banner

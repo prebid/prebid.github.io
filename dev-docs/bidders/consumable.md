@@ -16,9 +16,9 @@ The Consumable adaptor requires setup and approval from your Consumable account 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                       | Example            | Type     |
-|-------------|----------|-----------------------------------|--------------------|----------|
-| `placement` | required | The placement ID from Consumable. | `'1234567'`        | `string` |
-| `unitId`    | required | The unit ID from Consumable.      | `'1234'`           | `string` |
-| `unitName`  | required | The unit name from Consumable.    | `'cnsmbl-300x250'` | `string` |
-| `zoneId`    | required | The zone ID from Consumable.      | `'13136.52'`       | `string` |
+| Name        | Scope    | Description                    | Example | Type      |
+|-------------|----------|--------------------------------|---------|-----------|
+| `siteId`    | required | The site ID from Consumable.    | `12345` | `integer` |
+| `networkId` | required | The network ID from Consumable. | `9969`  | `integer` |
+| `unitId` | required | The unit ID from Consumable. | `987654`  | `integer` |
+| `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |

@@ -28,7 +28,7 @@ header:
   #color1: "#55acee"
   color1: "#3b88c3"
   #color1: "#2ABBB0"
-  
+
   #color1: "#080331"
   #color2: "#673051"
   trianglify: false
@@ -96,6 +96,9 @@ nav_sections:
   - top_nav: dev_docs
     code: adapters
     name: ADAPTERS
+  - top_nav: dev_docs
+    code: interfaces
+    name: EXTERNAL INTERFACES
 
   - top_nav: overview
     code: intro
@@ -143,9 +146,9 @@ nav_sections:
   - top_nav: prebid-mobile
     code: prebid-mobile
     name: PREBID MOBILE
-  - top_nav: prebid-mobile
-    code: prebid-mobile-pbs
-    name: PREBID SERVER
+  #- top_nav: prebid-mobile
+    #code: prebid-mobile-pbs
+    #name: PREBID SERVER
   - top_nav: prebid-mobile
     code: prebid-mobile-ios
     name: FOR IOS

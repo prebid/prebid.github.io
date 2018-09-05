@@ -11,6 +11,9 @@ nav_section: reference
 
 # Bidders' Params
 
+{: .alert.alert-danger :}
+**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+
 This page contains documentation on the specific parameters required by each supported bidder.
 
 For each bidder listed below, you'll find the following information:

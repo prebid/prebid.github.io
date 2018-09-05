@@ -17,6 +17,8 @@ nav_section: download
 
 <script>
 
+  getVersionList();
+
 $(function(){
   $('#myModal').on('show.bs.modal', function (e) {
     var form_data = get_form_data();
@@ -41,6 +43,48 @@ $(function(){
   $('.adapters .col-md-4').hide();
   $('.prebid_1_0').show();
 });
+
+function getVersionList() {
+  $.ajax({
+      type: "GET",
+      url: "http://js-download.prebid.org/versions",
+  })
+  .success(function(data) {
+    try{
+      data = JSON.parse(data);
+      var versions = data.versions;
+      if(!versions || versions.length === 0) {
+        showError();
+        return;
+      }
+      versions.forEach(function(version, index){
+        if(index === 0) {
+          $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
+        }
+        else{
+          if(version.match(/1\.\d+\.\d+/i)){
+            $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
+          }
+          else{
+            $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecating on September 27, 2018</option>');
+          }
+        }
+      });
+    }
+    catch(e) {
+      console.log(e);
+      showError();
+    }
+
+  })
+  .fail(function(e) {
+    console.log(e);
+    showError();
+  });
+  function showError(){
+     $('.selectpicker').append('<option value="error">Error generating version list. Please try again later</option>');
+  }
+}
 
 function submit_download() {
     var form_data = get_form_data();
@@ -70,7 +114,7 @@ function submit_download() {
       alertStatus.addClass('hide');
       // Try to find out the filename from the content disposition `filename` value
       var filename = "prebid" + form_data['version'] + ".js";
-      // this doens't work in our current jquery version. 
+      // this doens't work in our current jquery version.
       var disposition = jqXHR.getResponseHeader('Content-Disposition');
       if (disposition && disposition.indexOf('attachment') !== -1) {
           var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
@@ -92,7 +136,7 @@ function submit_download() {
       var buttn = $('#download-button');
       buttn.html('<i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js');
       buttn.removeClass('disabled');
-      alert('Ran into an issue.'); 
+      alert('Ran into an issue.');
     });
 }
 
@@ -137,7 +181,7 @@ function get_form_data() {
 
 <div class="bs-docs-section" markdown="1">
 
-# Customize and Download Prebid.js <span class="label label-warning" style="font-size:14px">Beta</span>
+# Customize and Download Prebid.js
 
 {: .lead :}
 To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
@@ -147,21 +191,16 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
+{: .alert.alert-danger :}
+**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+
 {: .alert.alert-success :}
-Note if you receive an email with a broken link you most likely selected a configuration that is not supported. Verify that each bidder / module is supported in the selected version. 
+Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
 <form>
 <div class="row">
 <h4>Select Prebid Version</h4>
-<select class="selectpicker">
-  <!-- empty value indicates legacy --> 
-  <option value="1.16.0">1.16.0 - latest</option>
-  <option value="1.15.0">1.15.0</option>
-  <option value="1.14.0">1.14.0</option>
-  <option value="1.13.0">1.13.0</option>
-  <option value="1.12.0">1.12.0</option>
-  <option value="0.34.16">0.34.16 - legacy not recommended</option>
-  <option value="0.34.15">0.34.15 - legacy not recommended</option>
+<select id="version_selector" class="selectpicker">
 </select>
 
 
@@ -174,12 +213,12 @@ Note if you receive an email with a broken link you most likely selected a confi
 <div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %} 
+  {% if page.aliasCode %}
     <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% else %}
     <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% endif %}
-      
+
     </label>
 </div>
 </div>
@@ -348,7 +387,7 @@ Note if you receive an email with a broken link you most likely selected a confi
       <div class="modal-body">
 
         <div class="lead">
-          Enter your information below to generate the download file. 
+          Enter your information below to generate the download file.
         </div>
 
 
