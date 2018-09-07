@@ -49,11 +49,7 @@ Yes. As of version 1.0, Prebid.js will re-consider previous bids under limited c
 - for the same AdUnit,
 - on the same page view,
 - for the same user, and
-- up to a certain Time-to-Live (TTL)
-
-  or
-
-- until the bid wins and is displayed.
+- up to a certain Time-to-Live (TTL) or until the bid wins and is displayed.
 
 Since the storage is in the browser, cached bids only apply to a single page context. If the user refreshes the page, the bid is lost.
 
