@@ -162,6 +162,12 @@ nav_sections:
     code: prebid-mobile-contributors
     name: FOR CONTRIBUTORS
 
+  - top_nav: pbjs-video
+    code: pbjs-video-get-started
+    name: GETTING STARTED WITH VIDEO
+  - top_nav: pbjs-video
+    code: pbjs-video-examples
+    name: EXAMPLES
 
 port: 8080
 
