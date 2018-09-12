@@ -20,4 +20,4 @@ prebid_1_0_supported : true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description    | Example | Type     |
 |---------------|----------|----------------|---------|----------|
-| `adSpotId`    | required | The AdSpot ID  |         | `int` |
+| `adSpotId`    | required | The AdSpot ID  | 1234    | `int`    |
