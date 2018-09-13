@@ -15,7 +15,7 @@ nav_section: prebid-mobile-adops
 * TOC
 {:toc }
 
-This page describes step by step how to set up Prebid Mobile line items for MoPub.
+This page describes step by step how to set up Prebid Mobile line items for MoPub to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 ## Step 1. Add a line item
 
@@ -34,6 +34,8 @@ For each level of pricing granularity you need, you will have to set up one line
 
 Line items must be set up to target custom keywords that include bid price information. The bid price keywords tell you how much the buyer bid on the impression.
 
+By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
+
 ## Step 2. Add creatives to your line item
 
 Banner creatives must be HTML banners with the **Format** set to **Banner** that include the code shown below.
@@ -43,14 +45,11 @@ Banner creatives must be HTML banners with the **Format** set to **Banner** that
 
 The **hb_cache_id** variable stands for the cache id that will load the ad markup from the bid from Prebid Cache. Within each line item, for each ad unit size there should be one creative with this content. 
 
-```
-<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
-<script type="text/javascript">
-    pbm.showAdFromCacheId({
-        admCacheID: '%%KEYWORD:hb_cache_id%%'  
-    });
-</script>
-```
+
+{: .alert.alert-success :}
+You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+
+{% include dev_docs/amp-creative.md %}
 
 ## Step 3. Duplicate line items
 

@@ -10,6 +10,9 @@ nav_section: prebid-mobile-adops
 <div class="bs-docs-section" markdown="1">
 
 # Step by Step Line Item Setup for DFP
+{: .no_toc}
+
+This page describes step by step how to set up Prebid Mobile line items for DFP to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 * TOC
 {:toc }
@@ -43,9 +46,11 @@ Set **Rotate Creatives** to *Evenly*.
 
 Choose the inventory that you want to run header bidding on.
 
-By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb`.
+By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
 
-This line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
+You'll need to coordinate with your development team on what key-values you want to target.
+
+For instance, this line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
 
 {: .pb-img.pb-md-img :}
 ![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png)
@@ -63,18 +68,14 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
 
 Choose the same advertiser we've assigned the line item to.
 
-Note that this has to be a **Third party** creative. The **"Serve in Safeframe"** box has to be **UNCHECKED** (there are plans to make the below creative safeframe compatible).
+Note that this has to be a **Third party** creative. The **"Serve in Safeframe"** box has to be **UNCHECKED** or **CHECKED** (the Prebid Universal Creatve is safeframe compatible).
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
-```
-<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
-<script type="text/javascript">
-    pbm.showAdFromCacheId({
-        admCacheID : '%%PATTERN:hb_cache_id%%'
-    });
-</script>
-```
+{: .alert.alert-success :}
+You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+
+{% include dev_docs/amp-creative.md %}
 
 Make sure the creative size is set to 1x1. This allows us to set up size override, which allows this creative to serve on all inventory sizes.
 
