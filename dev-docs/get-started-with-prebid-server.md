@@ -12,16 +12,14 @@ nav_section: prebid-server
 # Get Started with Prebid Server
 {:.no_toc}
 
-This page has instructions for adding Prebid Server to Prebid.js.
+Prebid Server improves your page's performance by running the header bidding auction on a server.
+This will improve your page's load time, which should improve your users' experience.
 
-For many publishers, client-side header bidding is a balancing act between the inclusion of demand partners and impact to the page.
-
-Using Prebid Server, you can move demand partners server-side, eliminating most of the latency impact that comes with adding more partners.
-
-This should help you make more money without sacrificing user experience.
+Prebid Server supports different adapters from Prebid.js. For info about Prebid Server adapters, see
+the [Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.
 
 {: .alert.alert-success :}
-**Prebid Server is open source!**  
+**Prebid Server is open source!**
 Prebid Server is an open source project.  [The source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-server).
 
 * TOC
@@ -43,6 +41,8 @@ Prebid Server is an open source project.  [The source code is hosted under the P
 ## Step 2. Download Prebid.js with Prebid Server enabled
 
 - Go to [the Prebid.org download page]({{site.baseurl}}/download.html), select all the demand adapters you want to work with, and include "Prebid Server".
+  - Some Prebid Server demand adapters may not have a corresponding client-side adapter that's present on the download page.  In this case, just ensure to select "Prebid Server" as part of your build and you will be able to interact with these Prebid Server only bidders.
+  - We still strongly recommend to select any listed demand adapters in your build.  These additional selections will allow any client-side features (such as userSyncs) to function as well as allow you to easily use any of the adapter's currently registered aliases.
 
 - For example, if you want to use AppNexus, Index Exchange, and Rubicon with Prebid Server, select:
   - *AppNexus*
@@ -62,7 +62,7 @@ The Prebid Server settings (defined by the [`pbjs.setConfig`]({{site.baseurl}}/d
 
 The code in your Prebid configuration block should look something like the following (unless you want to show video ads, in which case see [Using Prebid Server to show video ads](#prebid-server-video-openrtb) below).
 
-See [The `s2sConfig` object](#the-s2sconfig-object) below for definitions of the keys in the `setS2SConfig` object.
+See [The `s2sConfig` object]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) for definitions of the keys in the `s2sConfig` object.
 
 {% highlight js %}
 var pbjs = pbjs || {};
@@ -76,7 +76,8 @@ pbjs.que.push(function() {
             bidders: ['appnexus', 'pubmatic'],
             timeout: 1000,
             adapter: 'prebidServer',
-            endpoint: 'https://prebid.adnxs.com/pbs/v1/auction'
+            endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
         }
     });
 
@@ -90,18 +91,40 @@ pbjs.que.push(function() {
 });
 {% endhighlight %}
 
-<a name="the-s2sconfig-object" />
+Optionally, if you chose to use one of the existing Prebid.org members as your server host, you can also use the defaultVendor property.  This property represents the vendor's default settings for the s2sConfig.  When used, these settings will be automatically populated to the s2sConfig, saving the need to individually list out all data points. Currently 'appnexus' and 'rubicon' are supported values.
 
-### The `s2sConfig` object
+These defaults can still be overridden by simply including the property with the value you want in the config.  The following example represents the bare minimum configuration required when using the defaultVendor option:
 
-See the [Prebid Server adapter docs]({{site.baseurl}}/dev-docs/add-a-prebid-server-adapter.html) for a list of the fields in the `s2sConfig` object.
+{% highlight js %}
+var pbjs = pbjs || {};
 
+pbjs.que.push(function() {
+
+    pbjs.setConfig({
+        s2sConfig: {
+            accountId: '1',
+            bidders: ['appnexus', 'pubmatic'],
+            defaultVendor: 'appnexus'
+        }
+    });
+
+    var adUnits = [{
+        code: '/19968336/header-bid-tag-1',
+        sizes: sizes,
+        bids: [{
+            /* Etc. */
+        }]
+    }];
+});
+{% endhighlight %}
 
 {: .alert.alert-info :}
-**Additional `cookieSet` details**  
-We recommend that users leave `cookieSet` enabled since it's essential for server-to-server header bidding that we have a persistent cookie for improved cookie match rates.  If set to `false`:  
-&bull; Prebid.js will not overwrite all links on page to redirect through an AppNexus persistent cookie URL  
-&bull; Prebid.js will not display a footer message on Safari indicating that AppNexus will be placing cookies on browsers that block 3rd party cookies  
+**OpenRTB Endpoint**
+If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, such as the AppNexus-hosted endpoint https://prebid.adnxs.com/pbs/v1/openrtb2/auction', Prebid will communicate with that endpoint using the OpenRTB protocol.
+
+{: .alert.alert-info :}
+**Aliasing Prebid Server only bidders**
+If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
 
 <a name="prebid-server-video-openrtb" />
 
@@ -115,11 +138,11 @@ The `mimes` parameter is required by OpenRTB.  For all other parameters, check w
 ```javascript
 var adUnit1 = {
     code: 'videoAdUnit',
-    sizes: [400, 600],
     mediaTypes: {
         video: {
-            context: "instream",
+            context: 'instream',
             mimes: ['video/mp4'],
+            playerSize: [400, 600],
             minduration: 1,
             maxduration: 2,
             protocols: [1, 2],

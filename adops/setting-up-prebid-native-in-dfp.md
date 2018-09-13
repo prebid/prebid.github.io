@@ -44,11 +44,11 @@ In this example, we're targeting `"prebid_native_adunit"`, so the *Size* is set 
 Add the HTML and CSS that define your native ad template. Note that `%%PATTERN%%` macros can be included in either field, and the HTML can contain JavaScript.  For more information, see the [DFP native styles docs](https://support.google.com/dfp_premium/answer/6366914).
 
 {: .alert.alert-danger :}
-**Native impression tracking requirements**  
-You must include the `postMessage` code snippet as shown in the screenshot and example code below so impression trackers will fire.
+**Native impression and click tracking requirements**  
+You must include the `postMessage` and `onclick` JavaScript snippets as shown in the example code below so that impression trackers and click trackers will fire.
 
 {: .pb-img.pb-lg-img :}
-![]({{site.github.url}}/assets/images/ad-ops/dfp-native/native-content-ad.png)
+![Native ad content]({{site.github.url}}/assets/images/ad-ops/dfp-native/native-content-ad.png)
 
 Example HTML and CSS:
 
@@ -57,17 +57,19 @@ Example HTML and CSS:
 <div class="sponsored-post">
   <div class="thumbnail"></div>
   <div class="content">
-    <h1><a href="%%CLICK_URL_UNESC%%%%PATTERN:hb_native_linkurl%%" target="_blank">%%PATTERN:hb_native_title%%</a></h1>
+    <h1><a href="%%CLICK_URL_UNESC%%%%PATTERN:hb_native_linkurl%%" target="_blank" onclick="window.track('click', '%%PATTERN:hb_adid%%');">%%PATTERN:hb_native_title%%</a></h1>
     <p>%%PATTERN:hb_native_body%%</p>
     <div class="attribution">%%PATTERN:hb_native_brand%%</div>
   </div>
 </div>
 
 <script>
-window.parent.postMessage(JSON.stringify({
-  message: 'Prebid Native',
-  adId: '%%PATTERN:hb_adid%%'
-}), '*');
+window.track = function (action, adId) {
+	var message = {message: 'Prebid Native', adId: adId};
+	if (action === 'click') { message.action = 'click'; }
+	window.parent.postMessage(JSON.stringify(message), '*');
+}
+window.track('impression', '%%PATTERN:hb_adid%%');
 </script>
 
 {% endhighlight %}

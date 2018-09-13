@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Setting up Prebid Video in DFP (Beta)
+title: Setting up Prebid Video in DFP
 head_title: Setting up Prebid Video in DFP
 description: Setting up Prebid Video in DFP
 pid: 3
@@ -11,7 +11,7 @@ nav_section: tutorials
 
 <div class="bs-docs-section" markdown="1">
 
-# Setting up Prebid Video in DFP (Beta)
+# Setting up Prebid Video in DFP
 {: .no_toc}
 
 This page describes how to set up video creatives in DFP for use with Prebid.js.
@@ -38,23 +38,37 @@ Other line item settings and key/value targeting are the same as [those recommen
 + By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs higher than $20.  In order to receive those bids, you'll need to make sure your dev team implements custom price buckets as described in the [engineering setup instructions]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).  Once those changes are made on the engineering side, there should be no changes required from the ad ops side to support CPMs over $20.
 
 {: .alert.alert-success :}
-Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create.
+Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create. You may also need separate video line items for each cache service being used. For example, if both AppNexus and Rubicon Project are bidders, you'll need separate line items to support the different cache URLs required.
 
 ## Creative Setup
 
-1. For each line item you created above, select **new creative set**.
+1\. For each line item you created above, select **new creative set**.
 
-2. In the dialog that appears, set the **creative set type** to **"Redirect"**
+2\. In the dialog that appears, set the **creative set type** to **"Redirect"**
 
-3. Set the **VAST tag URL** to:
+3\. Set the **VAST tag URL** to the cache location. Note that each bidder may have a different cache location URL.
 
-   ```
+Prebid.js versions 1.6+, 0.34.6+:
+{% highlight html %}
+   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_cache_id%%
+or
+   https://prebid-server.rubiconproject.com/cache?uuid=%%PATTERN:hb_cache_id%%
+or
+   [other bidder cache location]
+{% endhighlight %}
+
+Prebid.js versions 1.0-1.5, 0.x-0.34.5:
+{% highlight html %}
    https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
-   ```
+or
+   https://prebid-server.rubiconproject.com/cache?uuid=%%PATTERN:hb_uuid%%
+or
+   [other bidder cache location]
+{% endhighlight %}
 
    {: .alert.alert-warning :}
-   This creative URL is **required** in order to show video ads.  It points to
-   a server-side cache hosted by Prebid Server.
+   This VAST tag URL is **required** in order to show video ads.  It points to
+   a server-side cache hosted by your Prebid Server provider.
 
    {: .alert.alert-info :}
    **Prebid Cache and the VAST creative URL warning**  
@@ -62,7 +76,13 @@ Be sure to duplicate your line item and video creative for each Prebid price buc
    URL failed.  This is expected, since the creative URL above points
    to a server-side asset cache hosted by Prebid Server.
 
-4. Set the **duration** to **1**
+   {: .alert.alert-warning :}
+   Note that `hb_cache_id` will be the video ad server targeting variable going forward.
+   In previous versions, mobile used `hb_cache_id` and video used `hb_uuid`. There will be a
+   transition period where both of these values are provided to the ad server.
+   Please begin converting video creatives to use `hb_cache_id`.
+
+4\. Set the **duration** to **1**
 
 The resulting creative should look something like the following:
 
@@ -74,11 +94,8 @@ That's it as far as Prebid setup is concerned.  At this point you can add any ot
 ## Further Reading
 
 + [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html) (Engineering setup)
-
 + [Create a Master Video Tag Manually](https://support.google.com/dfp_premium/answer/1068325?hl=en&ref_topic=2480647) (DFP)
-
 + [Add Key-Values to a Master Video Ad Tag](https://support.google.com/dfp_premium/answer/1080597) (DFP)
-
 + [DFP Macros](https://support.google.com/dfp_premium/answer/1242718) (DFP)
 
 </div>

@@ -7,17 +7,19 @@ nav_section: reference
 hide: true
 biddercode: orbitsoft
 biddercode_longer_than_12: false
+prebid_1_0_supported : true
 ---
 
 
 ### bid params
 
-| Name   | Scope    | Description | Example         |
-| :---   | :----    | :---------- | :------         |
-| placementId   | required | The placement ID (site channel ID)        | 142     |
-| requestUrl   | required | Url to perform search request        | "http://adserver.com/ads/show/hb"     |
-| style     | optional | Creative styles. Actual only for text ads | ... |
-| customParams | optional | Permits passing any publisher key-value pairing into the bid request     | { macro_name: "macro_value" } |
+{: .table .table-bordered .table-striped }
+| Name           | Scope    | Description                                                          | Example                             | Type      |
+|----------------|----------|----------------------------------------------------------------------|-------------------------------------|-----------|
+| `placementId`  | required | The placement ID (site channel ID)                                   | `142`                               | `integer` |
+| `requestUrl`   | required | Url to perform search request                                        | `'http://adserver.com/ads/show/hb'` | `string`  |
+| `style`        | optional | Creative styles. Actual only for text ads                            |                                     | `string`  |
+| `customParams` | optional | Permits passing any publisher key-value pairing into the bid request | `{ macro_name: 'macro_value' }`     | `object`  |
 
 Example:
 ```javascript
@@ -25,7 +27,7 @@ Example:
     bidder: "orbitsoft",
     params: {
         placementId: 142,
-        requestUrl: "http://adserver.com/ads/show/hb",
+        requestUrl: "https://orbitsoft.com/php/ads/hb.php",
         style: {
             title: {
                 family: "Tahoma",

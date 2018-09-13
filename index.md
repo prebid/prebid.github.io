@@ -22,6 +22,19 @@ description: Free and open source solutions for publishers to quickly implement 
 
     <hr class="full-rule">
 
+    <img src="assets/images/icons/icon-notification.png" alt="Notifications" class="img-responsive">
+    <h3>Notifications</h3>
+    <br />
+    <div class="bg-danger">
+    <div align="left">
+      <p><b>Deprecation of Prebid.js 0.x</b></p>
+      <p>Legacy versions of Prebid.js (0.x) will be deprecated as of <b>September 27, 2018</b>. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.</p>
+    </div>
+    </div>
+
+
+    <hr class="full-rule">
+
     <div class="row benefits">
       <div class="col-sm-4">
         <img src="assets/images/icons/icon-ninja.png" alt="Header bidding no dev" class="img-responsive">
@@ -61,11 +74,13 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>OpenX</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>PubMatic</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Rubicon</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Yieldmo</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Yieldbot</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>AOL</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Index Exchange</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Sovrn</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>SpotX</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>LKQD</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>PulsePoint</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>TripleLift</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>SpringServe</h3></div>
@@ -83,7 +98,6 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>SmartyAds</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Meme Global</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Underdog Media</h3></div>
-    <div class="col-xs-6 col-sm-4"><h3>Centro</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Conversant</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Adblade</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Piximedia</h3></div>
@@ -100,7 +114,7 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Smart AdServer</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>AdButler</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Sharethrough</h3></div>
-    <div class="col-xs-6 col-sm-4"><h3>Mantis Ad Network</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>MANTIS Ad Network</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>AdMixer</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Twenga</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Lifestreet</h3></div>
@@ -119,6 +133,14 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Criteo</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>PubWise</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>REXRTB</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>AdOcean</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Media.net</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Peak226</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Nano Interactive</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Unruly</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>RTB House</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Gamoshi</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>33Across</h3></div>
 
     <!-- END BIDDERS -->
     </div>

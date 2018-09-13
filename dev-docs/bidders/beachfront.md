@@ -8,17 +8,24 @@ hide: true
 biddercode: beachfront
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+media_types: video
+gdpr_supported: true
 ---
-
-### Note:
-
-The Beachfront adapter currently supports video ads only.
 
 ### bid params
 
 {: .table .table-bordered .table-striped }
+| Name       | Scope    | Description                                                                                 | Example                                  | Type     |
+|------------|----------|---------------------------------------------------------------------------------------------|------------------------------------------|----------|
+| `appId`    | required | Beachfront Exchange ID                                                                      | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
+| `bidfloor` | required | Bid floor                                                                                   | `0.01`                                   | `float`  |
+| `video`    | optional | Object with video parameters. See the [video section below](#beachfront-video) for details. |                                          | `object` |
 
-| Name     | Scope    | Description             | Example  |
-| :------- | :------- | :---------------------- | :------  |
-| appId  - | required | Beachfront Exchange ID  | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` |
-| bidfloor | required | Bid floor               | `0.01` |
+<a name="beachfront-video"></a>
+
+### video params
+
+{: .table .table-bordered .table-striped }
+| Name    | Scope    | Description                                    | Example                                   | Type            |
+|---------|----------|------------------------------------------------|-------------------------------------------|-----------------|
+| `mimes` | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` | `Array<string>` |

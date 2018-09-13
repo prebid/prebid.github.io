@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Tremor 
-description: Prebid Tremor Bidder Adaptor
+description: Tremor Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
@@ -14,9 +14,8 @@ This is the `tremor` adapter
 
 ### bid params
 
-{: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                                               | Example                                               |
-|---------------------+----------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------|
+|---------------------|----------|----------------------------------------------------|------------------|
 | `adCode` | required | The Ad Code from Tremor. | `ssp-!demo!-lufip` |
 |`supplyCode` | required | The Supply Code from Tremor. | `ssp-%21demo%21-rm6rh` |
 |`playerWidth` | optional |The width of the video player. Full-screen video fills the width of the device, that is, if the video can play in full screen mode, the player width is the screen width. | `600` |

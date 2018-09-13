@@ -8,6 +8,7 @@ hide: true
 biddercode: sovrn
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
 
@@ -15,7 +16,7 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `tagid` | required | The sovrn Ad Tag ID | "315045" |
-| `sizes` | optional | Override the default prebid size array | [970, 250] |
+| Name       | Scope    | Description          | Example    | Type     |
+|------------|----------|----------------------|------------|----------|
+| `tagid`    | required | The sovrn Ad Tag ID  | `'315045'` | `string` |
+| `bidfloor` | optional | Bid floor in dollars | `'0.04'`   | `string` |
