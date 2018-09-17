@@ -99,7 +99,7 @@ a[href^="https://prebid.org/"]:after {
   color: #f0ad4e;
   color: #ec971f;
   border-color: #cccccc;
-  
+
 }
 
 .btn.btn-outline:hover {
@@ -360,6 +360,11 @@ img {
 }
 
 .bg-warning {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.bg-danger {
   padding: 10px;
   border-radius: 5px;
 }

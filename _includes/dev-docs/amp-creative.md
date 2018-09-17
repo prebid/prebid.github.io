@@ -1,6 +1,6 @@
 {% highlight html %}
 
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.4.0/dist/creative.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@0.4.0/dist/creative.js"></script>
     <script>
     var adId = "%%PATTERN:hb_adid%%";
     var cacheHost = "%%PATTERN:hb_cache_host%%";

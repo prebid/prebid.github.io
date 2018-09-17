@@ -13,6 +13,9 @@ pid: 10
 
 This page has documentation for the public API methods of Prebid.js.
 
+{: .alert.alert-danger :}
+**Note:** As of **September 27, 2018**, versions of Prebid.js prior to 1.0 will be unavailable and no longer supported.
+
 {: .alert.alert-warning :}
 Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{site.baseurl}}/dev-docs/publisher-api-reference-old.html) is available.
 
@@ -147,13 +150,23 @@ This function returns the bid responses at the given moment.
 | `adId`              | String  | The unique identifier of a bid creative. It's used by the line item's creative as in [this example]({{site.github.url}}/adops/send-all-bids-adops.html#step-3-add-a-creative). |                                                     `123` |
 | `width`             | Integer | The width of the returned creative size.                                                                                        |                                                       300 |
 | `height`            | Integer | The height of the returned creative size.                                                                                       |                                                       250 |
+| `size`            | String | The width x height of the returned creative size.                                                                                       |                                                       "300x250" |
 | `cpm`               | Float   | The exact bid price from the bidder                                                                                             |                                                      1.59 |
+| `pbLg`,`pbMg`,`pbHg`,`pbAg`,`pbDg`,`pbCg`  | String  | CPM quantized to a granularity: Low (pbLg), Medium (pbMg), High (pbHg), Auto (pbAg), Dense (pbDg), and Custom (pbCg).    |  "5.00" |
+| `currency`  | String  | Currency of the bid CPM | `"USD"` |
+| `netRevenue`  | Boolean  | True if bid is Net, False if Gross | `true` |
 | `requestTimestamp`  | Integer | The time stamp when the bid request is sent out in milliseconds                                                                 |                                             1444844944106 |
 | `responseTimestamp` | Integer | The time stamp when the bid response is received in milliseconds                                                               |                                             1444844944185 |
 | `timeToRespond`     | Integer | The amount of time for the bidder to respond with the bid                                                                       |                                                        79 |
 | `adUnitCode`        | String  | adUnitCode to get the bid responses for                                                                                         |                               "/9968336/header-bid-tag-0" |
-| `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
+| `creativeId`     | Integer  | Bidder-specific creative ID | 12345678 |
+| `mediaType`  | String  | One of: banner, native, video | `banner` |
 | `dealId`            | String  | (Optional) If the bid is [associated with a Deal]({{site.baseurl}}/adops/deals.html), this field contains the deal ID.          |                                                 "ABC_123" |
+| `adserverTargeting`  | Object  | Contains all the adserver targeting parameters | `{ "hb_bidder": "appnexus", "hb_adid": "7a53a9d3" }` |
+| `native`  | Object  | Contains native key value pairs. | `{ "title": "", "body": "" }` |
+| `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
+| `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
+| `ttl`  | Integer  | How long (in milliseconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
@@ -161,7 +174,7 @@ This function returns the bid responses at the given moment.
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          > Returned Object Example
+          > Response Object Example
         </a>
 
       </h4>
@@ -170,7 +183,7 @@ This function returns the bid responses at the given moment.
       <div class="panel-body" markdown="1">
 
 
-{% highlight js %}
+{% highlight bash %}
 {
   "/9968336/header-bid-tag-0": {
     "bids": [
@@ -285,7 +298,97 @@ This function returns the bid responses at the given moment.
   }
 }
 {% endhighlight %}
+</div>
+</div>
+</div>
+</div>
 
+<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-response-example-2">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#response-example-2" aria-expanded="false" aria-controls="response-example-2">
+          > Response Object Example - Native
+        </a>
+
+      </h4>
+    </div>
+    <div id="response-example-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-response-example-2">
+      <div class="panel-body" markdown="1">
+
+{% highlight bash %}
+{
+           "div-banner-outstream-native" : {
+              "bids" : [
+                 {
+                    "pbMg" : "10.00",
+                    "pbLg" : "5.00",
+                    "width" : 0,
+                    "requestTimestamp" : 1516315716062,
+                    "creativeId" : 81589325,
+                    "pbCg" : "",
+                    "adUnitCode" : "div-banner-outstream-native",
+                    "size" : "0x0",
+                    "bidder" : "appnexus",
+                    "pbAg" : "10.00",
+                    "adId" : "473965c9df19d2",
+                    "adserverTargeting" : {
+                       "hb_native_icon" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                       "hb_native_title" : "This is a Prebid Native Multi-Format Creative",
+                       "hb_native_brand" : "Prebid.org",
+                       "hb_adid" : "473965c9df19d2",
+                       "hb_pb" : "10.00",
+                       "hb_source" : "client",
+                       "hb_bidder" : "appnexus",
+                       "hb_native_image" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                       "hb_size" : "0x0",
+                       "hb_mediatype" : "native",
+                       "hb_native_body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
+                       "hb_native_linkurl" : "http://prebid.org/dev-docs/show-native-ads.html"
+                    },
+                    "native" : {
+                       "icon" : {
+                          "url" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                          "height" : 75,
+                          "width" : 75
+                       },
+                       "body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
+                       "image" : {
+                          "url" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                          "height" : 2250,
+                          "width" : 3000
+                       },
+                       "clickUrl" : "http://prebid.org/dev-docs/show-native-ads.html",
+                       "clickTrackers" : [
+                          "..."
+                       ],
+                       "title" : "This is a Prebid Native Multi-Format Creative",
+                       "impressionTrackers" : [
+                          "..."
+                       ],
+                       "sponsoredBy" : "Prebid.org"
+                    },
+                    "timeToRespond" : 143,
+                    "mediaType" : "native",
+                    "bidderCode" : "appnexus",
+                    "source" : "client",
+                    "auctionId" : "1338a6fb-e514-48fc-8db6-872ddf3babdb",
+                    "responseTimestamp" : 1516315716205,
+                    "netRevenue" : true,
+                    "pbDg" : "10.00",
+                    "pbHg" : "10.00",
+                    "ttl" : 300,
+                    "status" : "targetingSet",
+                    "height" : 0,
+                    "statusMessage" : "Bid available",
+                    "cpm" : 10,
+                    "currency" : "USD"
+                 }
+              ]
+           }
+        }
+{% endhighlight %}
 
 </div>
 </div>
@@ -717,20 +820,12 @@ Some sample scenarios where publishers may wish to alter the default settings:
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Version | Default | Description |
 | --- | --- | --- | --- | --- |
-| alwaysUseBid | adapter-specific | all | false | Useful when working with a prebid partner not returning a cpm value. |
 | adserverTargeting | standard or adapter-specific | all | see below | Define which key/value pairs are sent to the ad server. |
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Could, for example, adjust a bidder's gross-price bid to net price. |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 
-##### 2.1. alwaysUseBid
-
-By default, only the winning bid (with the highest cpm) will be sent to the ad server.
-However, if you're working with a Prebid partner that's not returning a CPM value, it
-won't be able to compete against the other bids. One option is to use [enableSendAllBids()](publisher-api-reference.html#setConfig-Send-All-Bids). But if you want to send the highest CPM
-bid along with all non-CPM bids, just specify this flag and the adapter-specific adserverTargeting object will always be sent to the ad server.
-
-##### 2.2. adserverTargeting
+##### 2.1. adserverTargeting
 
 As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
@@ -761,7 +856,6 @@ There's no need to include the following code if you choose to use the *below de
 
 pbjs.bidderSettings = {
     standard: {
-        alwaysUseBid: false,
         adserverTargeting: [{
             key: "hb_bidder",
             val: function(bidResponse) {
@@ -877,7 +971,7 @@ pbjs.bidderSettings = {
 
 {% endhighlight %}
 
-##### 2.3. bidCpmAdjustment
+##### 2.2. bidCpmAdjustment
 
 Some bidders return gross prices instead of the net prices (what the publisher will actually
 get paid). For example, a publisher's net price might be 15% below the returned gross price.
@@ -902,7 +996,7 @@ pbjs.bidderSettings = {
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
 
-##### 2.4. sendStandardTargeting
+##### 2.3. sendStandardTargeting
 
 This boolean flag minimizes key/value pairs sent to the ad server when
 adapter-specific targeting is specified. By default, the platform will send both adapter-specific adServerTargeting as well as the standard adServerTargeting.
@@ -912,7 +1006,7 @@ suppress the standard targeting for adapters that define their own.
 
 See the [example above](#key-targeting-specific-bidder) for example usage.
 
-##### 2.5. suppressEmptyKeys
+##### 2.4. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
 
@@ -1207,8 +1301,7 @@ pbjs.setConfig({ cookieSyncDelay: 100 )
 
 #### Price Granularity
 
-This config is used to configure which price bucket is used for the `hb_pb` keyword.
-For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
+This configuration defines the price bucket granularity setting that will be used for the `hb_pb` keyword.
 
 {% highlight js %}
 pbjs.setConfig({ priceGranularity: "medium" })
@@ -1327,8 +1420,6 @@ pbjs.setConfig({
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
         syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
-        cookieSet: true,
-        cookieSetUrl: 'https://acdn.adnxs.com/cookieset/cs.js',
     }
 })
 {% endhighlight %}
@@ -1346,7 +1437,7 @@ Additional information of these properties:
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. |
+| `cookieSet` | Optional | Boolean | Defaults to `false`.  If set to `true`, Prebid.js will overwrite all links on page to redirect through a persistent cookie URL and will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies. |
 | `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
 
 *Currently supported vendors are: appnexus & rubicon
