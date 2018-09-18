@@ -210,7 +210,9 @@ When the page asks Prebid.js for bids, your module's `buildRequests` function wi
 * *Ad Unit Params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
 * *Transaction ID*: `bidderRequest.bids[].transactionId` should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
 * *Ad Server Currency*: If your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
-* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. The convention is to do something like this: `referrer: config.getConfig('pageUrl') || utils.getTopWindowUrl()`.
+* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information.
+
+#### Valid Build Requests Array
 
 Sample array entry for `validBidRequests[]`:
 
@@ -231,11 +233,38 @@ Sample array entry for `validBidRequests[]`:
 }]
 {% endhighlight %}
 
+#### bidRequest Parameters
+
 Notes on parameters in the bidRequest object:
 - **Bid ID** is unique across ad units and bidders.
 - **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.
 - **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
 - **Bid Request Count** is the number of times `requestBids` has been called for this ad unit.
+
+#### Referrers
+
+Referrer information is included on the `bidderRequest.refererInfo` property. This property contains the following parameters:
+
+- `referer`: a string containing the detected top-level URL.
+- `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
+- `numIframes`: the number of iFrames.
+- `stack`: a string of comma-separated URLs of all origins.
+
+Your integration of referrer information would look something like this:
+
+{% highlight js %}
+if (bidderRequest && bidderRequest.refererInfo) {
+      let refererinfo = {
+        rd_ref: bidderRequest.refererInfo.referer,
+        rd_top: bidderRequest.refererInfo.reachedTop,
+        rd_ifs: bidderRequest.refererInfo.numIframes,
+        rd_stk: bidderRequest.refererInfo.stack.join(',')
+      }
+      adapterRequest.referrer_detection = refererinfo;
+    }
+{% endhighlight %}
+
+#### ServerRequest Objects
 
 The ServerRequest objects returned from your adapter have this structure:
 
