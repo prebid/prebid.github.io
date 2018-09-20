@@ -13,6 +13,6 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                               | Example                                      |
-|------------+----------+-------------------------------------------+----------------------------------------------|
-| `hashes`   | required | Array of hashes, provided by adlive       | ['1e100887dd614b0909bf6c49ba7f69fdd1360437'] |
+| Name       | Scope    | Description                               | Example                                      | Type |
+|------------+----------+-------------------------------------------+----------------------------------------------|------|
+| `hashes`   | required | Array of hashes, provided by adlive       | ['1e100887dd614b0909bf6c49ba7f69fdd1360437'] | Array of strings |
