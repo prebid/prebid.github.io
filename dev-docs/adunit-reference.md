@@ -94,7 +94,7 @@ The `native` object contains the following properties that correspond to the ass
 | `icon`        | Optional | Object | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#adUnit.mediaTypes.native.icon).                                                                                                   |
 | `image`       | Optional | Object | The image object is to be used for the main image of the native ad.  For properties, see [`native.image`](#adUnit.mediaTypes.native.image).                                                                          |
 | `clickUrl`    | Optional | Object | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                                                                                       |
-| `cta`         | Optional | Object | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#adUnit.mediaTypes.native.cta).                                                                                  |
+| `cta`         | Optional | String | *Call to Action* text, e.g., "Click here for more information".  |
 
 <a name="adUnit.mediaTypes.native.image" />
 
