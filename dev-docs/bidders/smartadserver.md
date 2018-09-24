@@ -10,7 +10,7 @@ hide: true
 
 biddercode: smartadserver
 
-biddercode_longer_than_12: false
+biddercode_longer_than_12: true
 
 prebid_1_0_supported: true
 media_types: video
