@@ -22,7 +22,7 @@ media_types: native, video
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                     | Example                           |
-| :------------ | :------- | :---------------------------------------------- | :--------------------------------- |
-| `placementId` | required | The Placement ID from Audience Network          | "555555555555555\_555555555555555" |
-| `format`      | optional | Format, one of "native", "fullwidth" or "video" | "native"                           |
+| Name          | Scope    | Description                                     | Example                              | Type     |
+|---------------|----------|-------------------------------------------------|--------------------------------------|----------|
+| `placementId` | required | The Placement ID from Audience Network          | `'555555555555555\_555555555555555'` | `string` |
+| `format`      | optional | Format, one of "native", "fullwidth" or "video" | `'native'`                           | `string` |

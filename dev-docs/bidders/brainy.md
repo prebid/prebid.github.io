@@ -13,9 +13,9 @@ prebid_1_0_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `accountID` | required | `accountID of the ad unit` | |
-| `slotID` | required | `slotID of the ad unit` | |
-| `width` | required | `width of ad slot` | |
-| `height`| required | `height of ad slot` | |
+| Name        | Scope    | Description                | Example | Type     |
+|-------------|----------|----------------------------|---------|----------|
+| `accountID` | required | `accountID of the ad unit` |         | `string` |
+| `slotID`    | required | `slotID of the ad unit`    |         | `string` |
+| `width`     | required | `width of ad slot`         |         | `string` |
+| `height`    | required | `height of ad slot`        |         | `string` |

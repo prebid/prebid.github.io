@@ -19,7 +19,7 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `psn` | required | The publisher ID |  |
-| `slot` | required | The slot |  |
+| Name   | Scope    | Description      | Example | Type     |
+|--------|----------|------------------|---------|----------|
+| `psn`  | required | The publisher ID |         | `string` |
+| `slot` | required | The slot         |         | `string` |

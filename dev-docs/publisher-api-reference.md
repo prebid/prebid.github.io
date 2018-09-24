@@ -13,6 +13,9 @@ pid: 10
 
 This page has documentation for the public API methods of Prebid.js.
 
+{: .alert.alert-danger :}
+**Note:** As of **September 27, 2018**, versions of Prebid.js prior to 1.0 will be unavailable and no longer supported.
+
 {: .alert.alert-warning :}
 Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{site.baseurl}}/dev-docs/publisher-api-reference-old.html) is available.
 
@@ -43,6 +46,8 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
+    * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
+    * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [publisherDomain](#setConfig-Publisher-Domain)
@@ -56,6 +61,7 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -144,13 +150,23 @@ This function returns the bid responses at the given moment.
 | `adId`              | String  | The unique identifier of a bid creative. It's used by the line item's creative as in [this example]({{site.github.url}}/adops/send-all-bids-adops.html#step-3-add-a-creative). |                                                     `123` |
 | `width`             | Integer | The width of the returned creative size.                                                                                        |                                                       300 |
 | `height`            | Integer | The height of the returned creative size.                                                                                       |                                                       250 |
+| `size`            | String | The width x height of the returned creative size.                                                                                       |                                                       "300x250" |
 | `cpm`               | Float   | The exact bid price from the bidder                                                                                             |                                                      1.59 |
+| `pbLg`,`pbMg`,`pbHg`,`pbAg`,`pbDg`,`pbCg`  | String  | CPM quantized to a granularity: Low (pbLg), Medium (pbMg), High (pbHg), Auto (pbAg), Dense (pbDg), and Custom (pbCg).    |  "5.00" |
+| `currency`  | String  | Currency of the bid CPM | `"USD"` |
+| `netRevenue`  | Boolean  | True if bid is Net, False if Gross | `true` |
 | `requestTimestamp`  | Integer | The time stamp when the bid request is sent out in milliseconds                                                                 |                                             1444844944106 |
 | `responseTimestamp` | Integer | The time stamp when the bid response is received in milliseconds                                                               |                                             1444844944185 |
 | `timeToRespond`     | Integer | The amount of time for the bidder to respond with the bid                                                                       |                                                        79 |
 | `adUnitCode`        | String  | adUnitCode to get the bid responses for                                                                                         |                               "/9968336/header-bid-tag-0" |
-| `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
+| `creativeId`     | Integer  | Bidder-specific creative ID | 12345678 |
+| `mediaType`  | String  | One of: banner, native, video | `banner` |
 | `dealId`            | String  | (Optional) If the bid is [associated with a Deal]({{site.baseurl}}/adops/deals.html), this field contains the deal ID.          |                                                 "ABC_123" |
+| `adserverTargeting`  | Object  | Contains all the adserver targeting parameters | `{ "hb_bidder": "appnexus", "hb_adid": "7a53a9d3" }` |
+| `native`  | Object  | Contains native key value pairs. | `{ "title": "", "body": "" }` |
+| `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
+| `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
+| `ttl`  | Integer  | How long (in milliseconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
@@ -158,7 +174,7 @@ This function returns the bid responses at the given moment.
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          > Returned Object Example
+          > Response Object Example
         </a>
 
       </h4>
@@ -167,7 +183,7 @@ This function returns the bid responses at the given moment.
       <div class="panel-body" markdown="1">
 
 
-{% highlight js %}
+{% highlight bash %}
 {
   "/9968336/header-bid-tag-0": {
     "bids": [
@@ -282,7 +298,97 @@ This function returns the bid responses at the given moment.
   }
 }
 {% endhighlight %}
+</div>
+</div>
+</div>
+</div>
 
+<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-response-example-2">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#response-example-2" aria-expanded="false" aria-controls="response-example-2">
+          > Response Object Example - Native
+        </a>
+
+      </h4>
+    </div>
+    <div id="response-example-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-response-example-2">
+      <div class="panel-body" markdown="1">
+
+{% highlight bash %}
+{
+           "div-banner-outstream-native" : {
+              "bids" : [
+                 {
+                    "pbMg" : "10.00",
+                    "pbLg" : "5.00",
+                    "width" : 0,
+                    "requestTimestamp" : 1516315716062,
+                    "creativeId" : 81589325,
+                    "pbCg" : "",
+                    "adUnitCode" : "div-banner-outstream-native",
+                    "size" : "0x0",
+                    "bidder" : "appnexus",
+                    "pbAg" : "10.00",
+                    "adId" : "473965c9df19d2",
+                    "adserverTargeting" : {
+                       "hb_native_icon" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                       "hb_native_title" : "This is a Prebid Native Multi-Format Creative",
+                       "hb_native_brand" : "Prebid.org",
+                       "hb_adid" : "473965c9df19d2",
+                       "hb_pb" : "10.00",
+                       "hb_source" : "client",
+                       "hb_bidder" : "appnexus",
+                       "hb_native_image" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                       "hb_size" : "0x0",
+                       "hb_mediatype" : "native",
+                       "hb_native_body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
+                       "hb_native_linkurl" : "http://prebid.org/dev-docs/show-native-ads.html"
+                    },
+                    "native" : {
+                       "icon" : {
+                          "url" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                          "height" : 75,
+                          "width" : 75
+                       },
+                       "body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
+                       "image" : {
+                          "url" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                          "height" : 2250,
+                          "width" : 3000
+                       },
+                       "clickUrl" : "http://prebid.org/dev-docs/show-native-ads.html",
+                       "clickTrackers" : [
+                          "..."
+                       ],
+                       "title" : "This is a Prebid Native Multi-Format Creative",
+                       "impressionTrackers" : [
+                          "..."
+                       ],
+                       "sponsoredBy" : "Prebid.org"
+                    },
+                    "timeToRespond" : 143,
+                    "mediaType" : "native",
+                    "bidderCode" : "appnexus",
+                    "source" : "client",
+                    "auctionId" : "1338a6fb-e514-48fc-8db6-872ddf3babdb",
+                    "responseTimestamp" : 1516315716205,
+                    "netRevenue" : true,
+                    "pbDg" : "10.00",
+                    "pbHg" : "10.00",
+                    "ttl" : 300,
+                    "status" : "targetingSet",
+                    "height" : 0,
+                    "statusMessage" : "Bid available",
+                    "cpm" : 10,
+                    "currency" : "USD"
+                 }
+              ]
+           }
+        }
+{% endhighlight %}
 
 </div>
 </div>
@@ -416,7 +522,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | requestObj.adUnitCodes | Optional | `Array of strings` | adUnit codes to request. Use this or `requestObj.adUnits`. Default to all `adUnitCodes` if empty. |
 | requestObj.adUnits | Optional | `Array of objects` | AdUnitObjects to request. Use this or `requestObj.adUnitCodes`. Default to all `adUnits` if empty. |
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
-| requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. |
+| requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. Callback will be passed two parameters, the bids themselves and `timedOut`, which will be true if any bidders timed out. |
 | requestObj.labels | Optional | `Array of strings` | Defines [labels](#labels) that may be matched on ad unit targeting conditions. |
 
 <hr class="full-rule">
@@ -491,40 +597,42 @@ See the table below for the list of properties in the `mediaTypes` object of the
 For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
 
 ```javascript
-    pbjs.addAdUnits({
-        code: slot.code,
-        mediaTypes: {
-            native: {
-                image: {
-                    required: true,
-                    sizes: [150, 50]
-                },
-                title: {
-                    required: true,
-                    len: 80
-                },
-                sponsoredBy: {
-                    required: true
-                },
-                clickUrl: {
-                    required: true
-                },
-                body: {
-                    required: true
-                },
-                icon: {
-                    required: true,
-                    sizes: [50, 50]
-                }
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
             },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: 13232354
-                }
-            }, ]
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            clickUrl: {
+                required: true
+            },
+            body: {
+                required: true
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            }
         }
-    })
+    },
+    bids: [
+        {
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232354
+            }
+        }
+    ]
+});
 ```
 
 {% include dev-docs/native-image-asset-sizes.md %}
@@ -592,15 +700,17 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         banner: {
-            sizes: [[300, 250], [300, 600]]
-        },
-        bids: [{
+            sizes: [[300, 250]]
+        }
+    },
+    bids: [
+        {
             bidder: 'appnexus',
             params: {
                 placementId: 13144370
             }
-        }, ]
-    }
+        }
+    ]
 })
 ```
 
@@ -710,20 +820,12 @@ Some sample scenarios where publishers may wish to alter the default settings:
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Version | Default | Description |
 | --- | --- | --- | --- | --- |
-| alwaysUseBid | adapter-specific | all | false | Useful when working with a prebid partner not returning a cpm value. |
 | adserverTargeting | standard or adapter-specific | all | see below | Define which key/value pairs are sent to the ad server. |
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Could, for example, adjust a bidder's gross-price bid to net price. |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 
-##### 2.1. alwaysUseBid
-
-By default, only the winning bid (with the highest cpm) will be sent to the ad server.
-However, if you're working with a Prebid partner that's not returning a CPM value, it
-won't be able to compete against the other bids. One option is to use [enableSendAllBids()](publisher-api-reference.html#setConfig-Send-All-Bids). But if you want to send the highest CPM
-bid along with all non-CPM bids, just specify this flag and the adapter-specific adserverTargeting object will always be sent to the ad server.
-
-##### 2.2. adserverTargeting
+##### 2.1. adserverTargeting
 
 As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
@@ -754,7 +856,6 @@ There's no need to include the following code if you choose to use the *below de
 
 pbjs.bidderSettings = {
     standard: {
-        alwaysUseBid: false,
         adserverTargeting: [{
             key: "hb_bidder",
             val: function(bidResponse) {
@@ -870,7 +971,7 @@ pbjs.bidderSettings = {
 
 {% endhighlight %}
 
-##### 2.3. bidCpmAdjustment
+##### 2.2. bidCpmAdjustment
 
 Some bidders return gross prices instead of the net prices (what the publisher will actually
 get paid). For example, a publisher's net price might be 15% below the returned gross price.
@@ -895,7 +996,7 @@ pbjs.bidderSettings = {
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
 
-##### 2.4. sendStandardTargeting
+##### 2.3. sendStandardTargeting
 
 This boolean flag minimizes key/value pairs sent to the ad server when
 adapter-specific targeting is specified. By default, the platform will send both adapter-specific adServerTargeting as well as the standard adServerTargeting.
@@ -905,7 +1006,7 @@ suppress the standard targeting for adapters that define their own.
 
 See the [example above](#key-targeting-specific-bidder) for example usage.
 
-##### 2.5. suppressEmptyKeys
+##### 2.4. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
 
@@ -932,6 +1033,11 @@ this method registers the callback for every `bidWon` event.
 {: .alert.alert-info :}
 Currently, `bidWon` is the only event that accepts the `id` parameter.
 
+Additional data may also be passed to the handler that you have defined
+
+{: .alert.alert-info :}
+Currently, `bidRequest`, `bidResponse`, and `bidWon`, are the only events that pass additional data to the handler
+
 The available events are:
 
 {: .table .table-bordered .table-striped }
@@ -950,7 +1056,22 @@ The available events are:
 | adRenderFailed| Ad rendering failed (added in v1.7)     |
 | bidderDone    | A bidder has signaled they are done responding (added in v1.8)|
 
-The example below shows how to use these methods:
+The examples below show how these methods can be used:
+
+{% highlight js %}
+
+        /* Log when ad units are added to Prebid */
+        pbjs.onEvent('addAdUnits', function() {
+          console.log('Ad units were added to Prebid.')
+          console.log(pbjs.adUnits);
+        });
+
+        /* Log when Prebid wins the ad server auction */
+        pbjs.onEvent('bidWon', function(data) {
+          console.log(data.bidderCode+ ' won the ad server auction for ad unit ' +data.adUnitCode+ ' at ' +data.cpm+ ' CPM');
+        });
+
+{% endhighlight %}
 
 {% highlight js %}
 
@@ -1040,6 +1161,8 @@ See below for usage examples.
 
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
++ [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
++ [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1080,11 +1203,39 @@ Note that it's possible for the timeout to be triggered later than expected, lea
 With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.
 For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
 
-<a name="setConfig-Send-All-Bids" />
+#### Max Requests Per Origin
+
+<a name="setConfig-Max-Requests-Per-Origin" />
+
+Since browsers have a limit of how many requests they will allow to a specific domain before they block, Prebid.js
+will queue auctions that would cause requests to a specific origin to exceed that limit.  The limit is different
+for each browser. Prebid.js defaults to a max of `4` requests per origin.  That value can be configured with
+`maxRequestsPerOrigin`.
+
+{% highlight js %}
+// most browsers allow at least 6 requests, but your results may vary for your user base.  Sometimes using all
+// `6` requests can impact performance negatively for users with poor internet connections.
+pbjs.setConfig({ maxRequestsPerOrigin: 6 });
+
+// to emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set it to `1`.
+pbjs.setConfig({ maxRequestsPerOrigin: 1 });
+{% endhighlight %}
+
+#### Disable Ajax Timeout
+
+<a name="setConfig-Disable-Ajax-Timeout" />
+
+Prebid core adds a timeout on XMLHttpRequest request to terminate the request once auction is timedout. Since Prebid is ignoring all the bids after timeout it does not make sense to continue the request after timeout. However, you have the option to disable this by using `disableAjaxTimeout`.
+
+{% highlight js %}
+pbjs.setConfig({ disableAjaxTimeout: true });
+{% endhighlight %}
 
 #### Send All Bids
 
-Sending all bids is the default, but should you wish to turn it off: 
+<a name="setConfig-Send-All-Bids" />
+
+Sending all bids is the default, but should you wish to turn it off:
 
 {% highlight js %}
 pbjs.setConfig({ enableSendAllBids: false })
@@ -1122,14 +1273,14 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 Set the order in which bidders are called:
 
 {% highlight js %}
-pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" as of 0.27.0 */
+pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
 {% endhighlight %}
 
 <a name="setConfig-Publisher-Domain" />
 
 #### Publisher Domain
 
-Set the publisher's domain where Prebid is running, for cross-domain iFrame communication:
+Set the publisher's domain where Prebid is running, for cross-domain iframe communication:
 
 {% highlight js %}
 pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
@@ -1150,8 +1301,7 @@ pbjs.setConfig({ cookieSyncDelay: 100 )
 
 #### Price Granularity
 
-This config is used to configure which price bucket is used for the `hb_pb` keyword. 
-For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
+This configuration defines the price bucket granularity setting that will be used for the `hb_pb` keyword.
 
 {% highlight js %}
 pbjs.setConfig({ priceGranularity: "medium" })
@@ -1268,10 +1418,8 @@ pbjs.setConfig({
         enabled: true,
         timeout: 1000,
         adapter: 'prebidServer',
-        endpoint: 'https://prebid.adnxs.com/pbs/v1/auction',
+        endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
         syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
-        cookieSet: true,
-        cookieSetUrl: 'https://acdn.adnxs.com/cookieset/cs.js',
     }
 })
 {% endhighlight %}
@@ -1285,11 +1433,11 @@ Additional information of these properties:
 | `bidders` | Required | Array of Strings | Which bidders support auctions on the server side |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.*  Individual properties can be overridden by including them in the config along with this setting. |
 | `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
-| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions |
+| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. |
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. |
+| `cookieSet` | Optional | Boolean | Defaults to `false`.  If set to `true`, Prebid.js will overwrite all links on page to redirect through a persistent cookie URL and will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies. |
 | `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
 
 *Currently supported vendors are: appnexus & rubicon
@@ -1331,11 +1479,9 @@ For descriptions of all the properties that control user syncs, see the table be
 | Attribute        | Type    | Description                                                                                             |
 |------------------+---------+---------------------------------------------------------------------------------------------------------|
 | `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.                                               |
-| `pixelEnabled`   | Boolean | Enable/disable the use of pixels for user syncing.  Default: `true`.                                    |
-| `iframeEnabled`  | Boolean | Enable/disable the use of iFrames for syncing. Default: `false`.                                        |
+| `filterSettings` | Object  | Configure lists of adapters to include or exclude their user syncing based on the pixel type (image/iframe). |
 | `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
 | `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
-| `enabledBidders` | Array   | Trusted adapters which are allowed to do user syncing.                                                  |
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
@@ -1364,28 +1510,62 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-Allow iFrame-based syncs:
+Allow iframe-based syncs (the presence of a valid `filterSettings.iframe` object automatically enables iframe type user-syncing):
 
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        iframeEnabled: true
+        filterSettings: {
+            iframe: {
+                bidders: ['*'],   // '*' means all bidders
+                filter: 'include'
+            }
+        }
     }
 });
 {% endhighlight %}
+_Note - iframe-based syncing is disabled by default.  Image-based syncing is enabled by default; it can be disabled by excluding all/certain bidders via the `filterSettings` object._
 
-Only certain adapters are allowed to sync -- either images or iFrames:
+Only certain bidders are allowed to sync and only certain types of sync pixels:
 
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        enabledBidders: ['abc', 'xyz'], // only these bidders are allowed to sync
-        iframeEnabled: true,
+        filterSettings: {
+            iframe: {
+                bidders: ['def'],  // only this bidder is excluded from syncing iframe pixels, all other bidders are allowed
+                filter: 'exclude'
+            },
+            image: {
+                bidders: ['abc', 'def', 'xyz'],  //only these 3 bidders are allowed to sync image pixels
+                filter: 'include'
+            }
+        },
         syncsPerBidder: 3, // and no more than 3 syncs at a time
         syncDelay: 6000, // 6 seconds after the auction
     }
 });
 {% endhighlight %}
+
+If you want to apply the same bidder inclusion/exlusion rules for both types of sync pixels, you can use the `all` object instead specifying both `image` and `iframe` objects like so:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        /* only these bidders are allowed to sync.  Both iframe and image pixels are permitted. */
+        filterSettings: {
+            all: {
+                bidders: ['abc', 'def', 'xyz'],
+                filter: 'include'
+            }
+        },
+        syncsPerBidder: 3, // and no more than 3 syncs at a time
+        syncDelay: 6000, // 6 seconds after the auction
+    }
+});
+{% endhighlight %}
+
+_Note - the `all` field is mutually exclusive and cannot be combined with the `iframe`/`image` fields in the `userSync` config.  This restriction is to promote clear logic as to how bidders will operate in regards to their `userSync` pixels.  If the fields are used together, this will be considered an invalid config and Prebid will instead use the default `userSync` logic (all image pixels permitted and all iframe pixels are blocked)._
 
 The same bidders can drop sync pixels, but the timing will be controlled by the page:
 
@@ -1393,7 +1573,12 @@ The same bidders can drop sync pixels, but the timing will be controlled by the 
 pbjs.setConfig({
     userSync: {
         /* only these bidders are allowed to sync, and only image pixels */
-        enabledBidders: ['abc', 'xyz'],
+        filterSettings: {
+            image: {
+                bidders: ['abc', 'def', 'xyz'],
+                filter: 'include'
+            }
+        },
         enableOverride: true // publisher will call `pbjs.triggerUserSyncs()`
     }
 });
@@ -1411,8 +1596,8 @@ pbjs.triggerUserSyncs();
 
 The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-User-Syncs) function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:
 
-* Removes undesired sync types. (i.e. enforces the iframeEnabled flag)
-* Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
+* Removes undesired sync types. (i.e. blocks iframe pixels if `filterSettings.iframe` wasn't declared)
+* Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the `filterSettings` object)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
@@ -1702,7 +1887,28 @@ var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
 });
 ```
 
+<a name="module_pbjs.requestBids"></a>
+
 {: .alert.alert-warning :}
 In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.markWinningBidAsUsed"></a>
+
+### pbjs.markWinningBidAsUsed(markBidRequest)
+
+This function can be used to mark the winning bid as used. This is useful when running multiple video advertisements on the page, since these are not automatically marked as “rendered”.
+If you know the adId, then be specific, otherwise Prebid will retrieve the winning bid for the adUnitCode and mark it accordingly.
+
+#### Argument Reference
+
+##### The `markBidRequest` object (use one or both)
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description |
+| --- | --- | --- |
+| adUnitCode | `string` | (Optional) The ad unit code |
+| adId | `string` | (Optional) The id representing the ad we want to mark |
 
 </div>

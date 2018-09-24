@@ -2,7 +2,7 @@
 layout: page
 title: Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice
 description: European Ad Inventory Overview
-pid: 1
+pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 ---

@@ -21,7 +21,7 @@ prebid_1_0_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                                                                                          | Example                                       |
-| :---              | :----    | :----------                                                                                                          | :------                                       |
-| `siteId`      | required | The site ID from Automatad.                                                                           | `12345`                                       |
-| `networkId`       | required | The network ID from Automatad.           | `9969`                                       |
+| Name        | Scope    | Description                    | Example | Type      |
+|-------------|----------|--------------------------------|---------|-----------|
+| `siteId`    | required | The site ID from Automatad.    | `12345` | `integer` |
+| `networkId` | required | The network ID from Automatad. | `9969`  | `integer` |

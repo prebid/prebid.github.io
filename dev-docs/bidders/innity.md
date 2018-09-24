@@ -22,7 +22,7 @@ The Innity bidder adapter requires setup and approval from the Innity Media team
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `pub` | required | The publisher account ID | `267` |
-| `zone` | required | The zone ID | `62546` |
+| Name   | Scope    | Description              | Example | Type      |
+|--------|----------|--------------------------|---------|-----------|
+| `pub`  | required | The publisher account ID | `267`   | `integer` |
+| `zone` | required | The zone ID              | `62546` | `integer` |

@@ -18,6 +18,6 @@ biddercode_longer_than_12: false
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `placementId` | required | The Placement ID from ThoughtLeadr | 01234567-89ab-cdef-0123-456789abcdef |
+| Name          | Scope    | Description                        | Example                                  | Type     |
+|---------------|----------|------------------------------------|------------------------------------------|----------|
+| `placementId` | required | The Placement ID from ThoughtLeadr | `'01234567-89ab-cdef-0123-456789abcdef'` | `string` |

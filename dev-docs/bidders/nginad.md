@@ -18,7 +18,7 @@ biddercode_longer_than_12: false
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `pzoneid` | required | | |
-| `nginadDomain` | required | | |
+| Name           | Scope    | Description | Example | Type     |
+|----------------|----------|-------------|---------|----------|
+| `pzoneid`      | required |             |         | `string` |
+| `nginadDomain` | required |             |         | `string` |
