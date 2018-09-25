@@ -250,19 +250,7 @@ Referrer information is included on the `bidderRequest.refererInfo` property. Th
 - `numIframes`: the number of iFrames.
 - `stack`: a string of comma-separated URLs of all origins.
 
-Your integration of referrer information would look something like this:
-
-{% highlight js %}
-if (bidderRequest && bidderRequest.refererInfo) {
-      let refererinfo = {
-        rd_ref: bidderRequest.refererInfo.referer,
-        rd_top: bidderRequest.refererInfo.reachedTop,
-        rd_ifs: bidderRequest.refererInfo.numIframes,
-        rd_stk: bidderRequest.refererInfo.stack.join(',')
-      }
-      adapterRequest.referrer_detection = refererinfo;
-    }
-{% endhighlight %}
+The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
 #### ServerRequest Objects
 
