@@ -4,7 +4,7 @@ title: Publisher API Reference
 description: Publisher API Reference for Prebid.js Header Bidding
 top_nav_section: dev_docs
 nav_section: reference
-pid: 10
+pid: 1
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -14,10 +14,7 @@ pid: 10
 This page has documentation for the public API methods of Prebid.js.
 
 {: .alert.alert-danger :}
-**Note:** As of **September 27, 2018**, versions of Prebid.js prior to 1.0 will be unavailable and no longer supported.
-
-{: .alert.alert-warning :}
-Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{site.baseurl}}/dev-docs/publisher-api-reference-old.html) is available.
+**Note:** Versions of Prebid.js prior to 1.0 are no longer supported.
 
 <a name="module_pbjs"></a>
 

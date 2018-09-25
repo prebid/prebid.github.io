@@ -49,7 +49,7 @@ Failure to follow any of the above conventions could lead to delays in approving
 Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
 
 {: .alert.alert-danger :}
-**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+Prebid.org does not support any version of Prebid.js prior to version 1.0.
 
 <a name="bidder-adaptor-Required-Files" />
 
