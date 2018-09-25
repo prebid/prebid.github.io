@@ -30,3 +30,4 @@ gdpr_supported: true
 |------------------|----------|------------------------------------------------|-------------------------------------------|-----------------|
 | `mimes`          | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` | `Array<string>` |
 | `playbackmethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play<br/>`4`: Mouse-over | `1` | `integer` |
+| `maxduration`    | optional | Maximum video ad duration in seconds. | `30` | `integer` |
