@@ -50,7 +50,7 @@ For example, the default Prebid "low granularity" bucket is:
 | USD$0.50 increments, capped at USD$5 |
 
 The following config translates the "low granularity" bucket with a conversion rate of
-108 yen to 1 US dollar. It also defines the default conversion rate as being 110 yen to the dollar,
+108 yen to 1 US dollar. It also defines the default conversion rate as being 110 yen to the dollar.
 
 {% highlight js %}
 pbjs.setConfig({
@@ -170,7 +170,7 @@ from USD to JPY is 110.
 ## Page integration
 
 Adding the currency module to a page is done with a call to the setConfig API with one or
-more parameters. The simplest implementation would be:
+more parameters. The simplest recommended implementation would be:
 {% highlight js %}
 pbjs.setConfig({
     "currency": {
@@ -180,9 +180,10 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-This assumes that all bidders are properly reporting their bid currency
-and that the Prebid default rate conversion file
-is in use. A more complicated scenario:
+Note that the `defaultRates` attribute is optional, but recommended in case
+there's an issue loading the currency file.
+
+In this example, the publisher is providing their own `conversionRateFile`:
 {% highlight js %}
 pbjs.setConfig({
 "currency": {
@@ -191,8 +192,6 @@ pbjs.setConfig({
       "granularityMultiplier": 1, // 0.50 increment up to 5 is fine for GBP
       // optionally override the default rate file
       "conversionRateFile": "URL_TO_RATE_FILE",
-      // the system assumes bids are in USD. This can be overridden, for instance:
-      "bidderCurrencyDefault": { "bidderXYZ": "GBP" },
       // optionally provide a default rate in case the file can't be read
       "defaultRates": { "USD": { "GPB": 0.75 }}
    }
@@ -247,7 +246,7 @@ a currency object that may contain several parameters:
 | granularityMultiplier | `decimal` | How much to scale the price granularity calculations. Defaults to 1. | 108 |
 | conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. | `http://example.com/rates.json` |
 | rates | object | This optional argument allows you to specify the rates with a JSON object, subverting the need for the conversionRateFile parameter.  If this argument is specified, the conversion rate file will not be loaded. | { 'USD': { 'CNY': 6.8842, 'GBP': 0.7798, 'JPY': 110.49 } } |
-| defaultRates | `object` | Optionally defines a default rate that can be used if the currency file cannot be loaded. This option isn't used when the `rates` parameter is supplied. | { 'USD': { 'GPB': 0.75 }} |
+| defaultRates | `object` | An optional parameter that defines a default rate that can be used if the currency file cannot be loaded. This option isn't used when the `rates` parameter is supplied. | { 'USD': { 'GPB': 0.75 }} |
 | bidderCurrencyDefault | `object` | This is an optional argument to provide publishers a way to define which currency is used by a particular bidder. This option was provided as a transition until such a time that most bidder adapters define currency on bid response and is kept for legacy 0.x integrations. | { "bidderXYZ": "GBP" } |
 
 ## Currency Rate Conversion File
@@ -308,12 +307,12 @@ Of course, use of Prebid currency feature is optional.
 
 **Why isn't my currency supported in Prebid's file?**
 
-The data in Prebid's hosted currency file comes from a reliable free source that doesn't contain all the countries in the world.
+The data in Prebid's hosted currency file comes from a free source. This source is reliable, but it doesn't contain currencies for all countries of the world.
 
-If there's a currency conversion you need, there are several options:
+If there's a currency conversion you need that's not included, there are several options:
 
 1. Use the 'defaultRates` feature
 1. Build and host a currency conversion file that includes the desired currencies
-1. Find a reliable, free, no-strings source of conversation data that we can integrate into our hosted file and post an issue on the github forum.
+1. Find a reliable, free, no-strings source of conversation data that we can integrate into our hosted file, then post an issue on the github forum.
 
 </div>
