@@ -15,6 +15,8 @@ nav_section: reference
 **Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
 
 This page contains documentation on the specific parameters required by each supported bidder.
+These docs only apply to Prebid.js bidders. For Prebid Server, AMP, or Prebid Mobile, see the
+[Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.
 
 For each bidder listed below, you'll find the following information:
 
@@ -33,7 +35,6 @@ For information about which bidders support video and native demand, see <a href
 - [Bidders](#bidders)
 - [Common Bid Response Parameters](#common-bid-response-parameters)
 - [Bidders with Video and Native Demand](#bidders-with-video-and-native-demand)
-- [Bidders integrated with Prebid Server](#prebid-server-bidders)
 
 ## Bidders
 
@@ -90,22 +91,6 @@ The following parameters in the `bidResponse` object are common across all bidde
 {% endfor %}
 </tbody>
 </table>
-
-<a name="prebid-server-bidders"></a>
-
-## Bidders integrated with Prebid Server
-{: .no_toc }
-
-Demand from the bidders listed below is available via the [Prebid Server integration]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html).
-
-- [appnexus](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L740)
-- [districtm](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L741)
-- [indexExchange](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L742)
-- [pubmatic](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L743)
-- [pulsepoint](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L744)
-- [rubicon](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L745)
-- [lifestreet](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L748)
-- [conversant](https://github.com/prebid/prebid-server/blob/master/pbs_light.go#L749)
 </div>
 
 {% for page in bidder_pages %}
@@ -113,7 +98,7 @@ Demand from the bidders listed below is available via the [Prebid Server integra
 <div class="bs-docs-section" markdown="1">
 <h2><a name="{{ page.biddercode }}" >{{ page.title }}</a></h2>
 
-{% if page.s2s_only == true %}  
+{% if page.s2s_only == true %}
 <h3>Note:</h3> This is a S2S adapter only.
 {% endif %}
 
