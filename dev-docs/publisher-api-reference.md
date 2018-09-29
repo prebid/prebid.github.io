@@ -53,7 +53,6 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
     * [mediaTypePriceGranularity](#setConfig-MediaType-Price-Granularity)
-    * [cookieSyncDelay](#setConfig-Cookie-Sync-Delay)
     * [s2sConfig](#setConfig-Server-to-Server) (server-to-server config)
     * [userSync](#setConfig-Configure-User-Syncing)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
@@ -1285,17 +1284,6 @@ Set the publisher's domain where Prebid is running, for cross-domain iframe comm
 {% highlight js %}
 pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
 {% endhighlight %}
-
-<a name="setConfig-Cookie-Sync-Delay" />
-
-#### Cookie Sync Delay
-
-Set a delay (in milliseconds) for requesting cookie sync to stay out of the critical path of page load:
-
-{% highlight js %}
-pbjs.setConfig({ cookieSyncDelay: 100 )
-{% endhighlight %}
-
 
 <a name="setConfig-Price-Granularity" />
 
