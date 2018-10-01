@@ -66,7 +66,7 @@ function getVersionList() {
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{
-            $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecated</option>');
+            // $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecated</option>');
           }
         }
       });
