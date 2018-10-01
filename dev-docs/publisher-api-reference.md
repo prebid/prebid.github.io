@@ -1159,6 +1159,8 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 
 See below for usage examples.
 
+Core config:
+
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
@@ -1174,8 +1176,12 @@ See below for usage examples.
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
+Module config: these options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
+
++ [Currency module]({{site.baseurl}}/dev-docs/modules/currency.html#currency-config-options)
+
 {: .alert.alert-warning :}
-The `options` param object must be JSON - no JavaScript functions are allowed.
+The `options` param object to `setConfig()` must be JSON - no JavaScript functions are allowed.
 
 <a name="setConfig-Debugging" />
 
