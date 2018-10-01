@@ -2,7 +2,7 @@
 layout: page
 title: Bidders' Params
 description: Documentation on bidders' params
-pid: 21
+pid: 3
 top_nav_section: dev_docs
 nav_section: reference
 ---
@@ -12,7 +12,7 @@ nav_section: reference
 # Bidders' Params
 
 {: .alert.alert-danger :}
-**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+Prebid.org does not support any version of Prebid.js prior to version 1.0.
 
 This page contains documentation on the specific parameters required by each supported bidder.
 
