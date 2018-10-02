@@ -1,0 +1,33 @@
+
+<div>
+	
+	<img src="{{ "/assets/images/prebid_white_icon_200x35.png" | prepend: site.baseurl }}" class="fadeIn logo" style="padding: 25px 0 0 25px; display: block; position: absolute; top: 10px; left: 50px;">
+	
+	<ul style="text-decoration: none; list-style-type: none; margin: 0; padding: 0 0 0 0; overflow: hidden; font: small-caps normal 24px/150% Arial, Helvetica, sans-serif">
+		
+		<li></li>
+		
+		{% assign count = 0 %}
+		
+		{% for tag in page.tags %}
+			{% if count == 0 %}			
+				
+				<li class="fadeIn" style="float: left; padding-left: 335px; padding-right: 80px; padding-top: 35px; color: #fff;">{{tag}}</li>
+				
+			{% else %}
+			
+				<li class="fadeIn" style="float: left; padding-right: 80px; color: #fff; padding-top: 35px">{{tag}}</li>
+			
+			{% endif %}
+			{% assign count = count | plus: 1 %}
+			
+		{% endfor %}
+		
+		
+		
+	</ul>
+	
+	
+</div>
+	
+
