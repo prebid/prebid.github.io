@@ -3,9 +3,10 @@ layout: home
 title: Prebid - Header Bidding Made Easy
 head_title: Prebid - Header Bidding Made Easy
 isHome: true
-description: Free and open source solutions for publishers to quickly implement header bidding.
+description: Header bidding, unwrapped!
 ---
 
+<!--
 <a name="pb-home-live-demo"></a>
 
 <div class="row">
@@ -15,9 +16,12 @@ description: Free and open source solutions for publishers to quickly implement 
 
     </div>
 </div>
+-->
+
 
 <div class="bs-docs-featurette pb-home pb-docs">
 
+    <!--
     <p class="lead">The above header bidding ad is auctioned with Prebid.js. <a href="/overview/intro.html" target="_blank">Learn more about this auction here.</a></p>
 
     <hr class="full-rule">
@@ -31,7 +35,7 @@ description: Free and open source solutions for publishers to quickly implement 
       <p>Legacy versions of Prebid.js (0.x) will be deprecated as of <b>September 27, 2018</b>. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.</p>
     </div>
     </div>
-
+	-->
 
     <hr class="full-rule">
 
@@ -154,3 +158,5 @@ description: Free and open source solutions for publishers to quickly implement 
     <a href="/overview/intro.html" class="btn btn-outline btn-lg">Next: Overview of Prebid.js</a>
 
 </div>
+
+
