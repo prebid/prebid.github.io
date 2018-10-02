@@ -1,7 +1,7 @@
 {% include head.html %}
-{% include main_nav.html %}
+<!--{% include main_nav.html %}-->
 
-<div class="bs-docs-masthead" id="content">
+<!--<div class="bs-docs-masthead" id="content">
     <div class="container">
         <h1 class="home-title">{{site.name}}</h1>
 
@@ -16,9 +16,18 @@
         <div class="prebid-mobile-notice">
             <a type="button" class="btn btn-callout btn-lg" href="{{site.baseurl}}/prebid-mobile" target="_blank">Now with Mobile App Support!</a>
         </div>
-
+        
     </div>
-</div>
+</div>-->
+
+<div style="width:100%; height:100%; display:table; background-color: #3e86c3;
+	position:relative;">
+		
+	<div style="width:100%;  margin-top:10%; text-align:center">
+		<p style="font:bold 36px/48px Arial, Helvetica, sans-serif; color:#fff;">{{page.description}}</p></div>	
+		<img src="{{ "/assets/images/topgraph.png" | prepend: site.baseurl }}" class="fadeIn fill">
+	</div>
+
 
 <div class="container bs-docs-container">
     <div class="row">
