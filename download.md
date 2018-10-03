@@ -207,7 +207,7 @@ Note: If you receive an error during download you most likely selected a configu
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
 {% for page in bidder_pages %}
-  {% if page.s2s_only == true %}  
+  {% if page.s2s_only == true %}
     {% continue %}
   {% endif %}
 <div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
@@ -342,13 +342,21 @@ Note: If you receive an error during download you most likely selected a configu
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+    </label>
+  </div>
+</div>
+
 
 </div>
 <br/>
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
-  {% if page.enable_download == false %}  
+  {% if page.enable_download == false %}
     {% continue %}
   {% endif %}
  <div class="col-md-4">
