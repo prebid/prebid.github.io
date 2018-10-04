@@ -4,6 +4,11 @@ title: Prebid - Header Bidding Made Easy
 head_title: Prebid - Header Bidding Made Easy
 isHome: true
 tags: [Products, Support, Download, About]
+subHeaders:
+  - Maximize Earnings
+  - Use It Everywhere
+  - Get Started Quickly
+  - Join the Community
 description: Header bidding, unwrapped!
 ---
 
