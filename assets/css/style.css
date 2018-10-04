@@ -25,7 +25,7 @@
 
 #top-nav ul { 
 	
-	font: normal 24px/150% Arial, Helvetica, sans-serif;
+	font: normal 24px/150% 'Roboto Condensed', sans-serif;
 	list-style-type: none; 
 	margin: 0;
 	overflow: hidden; 
@@ -39,7 +39,7 @@
 	color: #fff;
 	float: left; 
 	padding-right: 80px;
-	padding-top: 35px
+	padding-top: 40px
 }
 
 #top-nav li.first-item { 
@@ -48,7 +48,7 @@
 	float: left; 
 	padding-left: 335px; 
 	padding-right: 80px; 
-	padding-top: 35px; 
+	padding-top: 40px; 
 	
 }
 
