@@ -25,8 +25,9 @@ There are several analytics adapter plugins available to track header bidding pe
 | Assertive Yield (contact for adapter) | Free to try (Large accounts $0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) | |
 | RealVu                                                           | Free                                                                                | [Website](https://www.realvu.com/rvaa/)                          |               |
 | Vuble                                                            | Contact vendor                                                                      | [Website](https://vuble.tv/us/prebid/)                           |               |
-| YuktaMedia Analytics                                                      | Contact vendor                                                                      | [website](https://yuktamedia.com/publishers/prebid/)                                        | 1.0.0 |
-| Kargo Analytics                                                      | Contact vendor                                                                      | [website](https://kargo.com/)                                        | |
+| YuktaMedia Analytics                                             | Contact vendor                                                                      | [Website](https://yuktamedia.com/publishers/prebid/)                                        | 1.0.0 |
+| Kargo Analytics                                                  | Contact vendor                                                                      | [Website](https://kargo.com/)                                        | |
+| Adagio                                                           | Contact vendor                                                                      | [Website](https://adagio.io)                                        | |
 | Livewrapped Analytics                                            | Contact vendor                                                                      | [website](https://livewrapped.com/)                                        | |
 
 None of these analytics options are endorsed or supported by Prebid.org.

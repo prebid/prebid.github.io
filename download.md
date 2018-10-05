@@ -66,7 +66,7 @@ function getVersionList() {
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{
-            $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecating on September 27, 2018</option>');
+            // $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecated</option>');
           }
         }
       });
@@ -192,7 +192,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign module_pages = site.pages | where: "nav_section", "modules" %}
 
 {: .alert.alert-danger :}
-**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+**Deprecation Notice:** Prebid.org does not support any version of Prebid.js prior to version 1.0.
 
 {: .alert.alert-success :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
@@ -207,7 +207,7 @@ Note: If you receive an error during download you most likely selected a configu
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
 {% for page in bidder_pages %}
-  {% if page.s2s_only == true %}  
+  {% if page.s2s_only == true %}
     {% continue %}
   {% endif %}
 <div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
@@ -345,6 +345,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
     </label>
   </div>
@@ -356,7 +364,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
-  {% if page.enable_download == false %}  
+  {% if page.enable_download == false %}
     {% continue %}
   {% endif %}
  <div class="col-md-4">

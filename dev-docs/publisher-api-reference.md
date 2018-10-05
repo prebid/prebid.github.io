@@ -4,7 +4,7 @@ title: Publisher API Reference
 description: Publisher API Reference for Prebid.js Header Bidding
 top_nav_section: dev_docs
 nav_section: reference
-pid: 10
+pid: 1
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -14,10 +14,7 @@ pid: 10
 This page has documentation for the public API methods of Prebid.js.
 
 {: .alert.alert-danger :}
-**Note:** As of **September 27, 2018**, versions of Prebid.js prior to 1.0 will be unavailable and no longer supported.
-
-{: .alert.alert-warning :}
-Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{site.baseurl}}/dev-docs/publisher-api-reference-old.html) is available.
+**Note:** Versions of Prebid.js prior to 1.0 are no longer supported.
 
 <a name="module_pbjs"></a>
 
@@ -1159,6 +1156,8 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 
 See below for usage examples.
 
+Core config:
+
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
@@ -1174,8 +1173,12 @@ See below for usage examples.
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
+Module config: these options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
+
++ [Currency module]({{site.baseurl}}/dev-docs/modules/currency.html#currency-config-options)
+
 {: .alert.alert-warning :}
-The `options` param object must be JSON - no JavaScript functions are allowed.
+The `options` param object to `setConfig()` must be JSON - no JavaScript functions are allowed.
 
 <a name="setConfig-Debugging" />
 
@@ -1620,7 +1623,7 @@ The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to de
 - The required `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
 - If a label conditional (e.g. `labelAny`) doesn't exist on an ad unit, it is automatically included in all requests for bids.
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
-- The `adUnit.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.sizes`.
+- The `adUnit.mediaTypes.banner.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.mediaTypes.banner.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.mediaTypes.banner.sizes`. (Note: size config will also operate on `adUnit.sizes`, however `adUnit.sizes` is deprecated in favor of `adUnit.mediaTypes`)
 
 <a name="sizeConfig-Example" />
 
