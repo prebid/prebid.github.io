@@ -129,8 +129,8 @@ i {
   position: relative;
   background-color: #3e86c3;
   background-size: cover;
-  margin-top: -20px;
-  padding-top: 200px;
+  margin-top: 0px;
+  padding-top: 40px;
   height:100vh;
   background-attachment: scroll;
   background-position: 0px 0px;
@@ -199,6 +199,12 @@ i {
 	height: 100px;
 }
 
+/* nav bar dropdown */
+
+.subnav { 
+	top: 50px;
+	background-color:#ff0000;
+}
 
 
 @media screen and (max-width: 1024px) { 
@@ -210,7 +216,7 @@ i {
 
 @media (max-width: 768px) {
   #headerwrap {
-    padding-top: 100px;
+    padding-top: 20px;
   }
 
   #headerwrap h1 {
@@ -249,7 +255,100 @@ i {
 	#headerwrap img { 
 	width: 70px;
 	height: 70px;
+	
+	.credits { 
+		font-size: 15px;
+	}
 }
+
+@media (max-width: 411px) {
+	
+	#headerwrap h1 {
+    	margin-top: 60px;
+		font-size: 23px;
+  	}
+  	
+  	#headerwrap h2 {
+    	margin: 30px;
+		font-size: 20px;
+  	}
+  	
+  	#headerwrap .header-links { 
+		position: absolute; 
+		bottom: 120px; 
+		text-align: center;
+		width: 100%; 
+		height: 320px; 
+		color: #fff;
+		padding-bottom: 0;
+	}
+	
+	headerwrap li { 
+	  	font-size: 14px;
+	  	display: block !important;
+	  	padding: 10px 0px;
+	  	text-align: center;
+	  	width: 100%;
+
+	}
+	
+	.credits { 
+		font-size: 15px;
+	}
+	
+
+}
+
+@media (max-width: 375px) {
+	
+	#headerwrap {
+    	padding-top: 20px;
+  	}
+  	
+  	#headerwrap h1 {
+    	margin-top: 60px;
+		font-size: 24px;
+  	}
+  	
+  	#headerwrap h2 {
+    	margin: 30px;
+		font-size: 20px;
+  	}
+  	
+  	#headerwrap .header-links { 
+		position: absolute; 
+		bottom: 60px; 
+		text-align: center;
+		width: 100%; 
+		height: 320px; 
+		color: #fff;
+		padding-bottom: 0;
+	}
+
+  	
+  	#headerwrap li { 
+	  	font-size: 14px;
+	  	display: block !important;
+	  	padding: 10px 0px;
+	  	text-align: center;
+	  	width: 100%;
+
+	}	
+	
+	.credits { 
+		font-size: 15px;
+	}
+
+}
+
+@media (max-width: 360px) { 
+	
+	.credits { 
+		font-size: 15px;
+	}
+	
+}
+
 	
 
 
