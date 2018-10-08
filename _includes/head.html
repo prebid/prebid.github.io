@@ -8,7 +8,6 @@
     <meta name="keywords" content="Header Bidding, Advanced Bidding, Header Bid, Pre-bid">
     <meta name="description" content="{{page.description}}" />
     
-
     <link rel="shortcut icon" type="image/png" href="/favicon.png" /> 
 
     {% if page.head_title %}
@@ -16,14 +15,20 @@
     {% else %}
         <title>{{page.title}} for Header Bidding</title>
     {% endif %}
-
+    
     <link href="{{site.baseurl}}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{site.baseurl}}/assets/css/docs.min.css" rel="stylesheet">
     <link href="{{site.baseurl}}/assets/css/style.css" rel="stylesheet">
-    
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-
-
+    
+    
+	<!-- Favicons -->
+	<link href="images/favicon.png" rel="icon">
+	<link href="images/apple-touch-icon.png" rel="apple-touch-icon">
+	
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+		
     <style>
         #content {
             background:{{site.header.color1}};
@@ -35,6 +40,7 @@
     <script src="{{site.baseurl}}/assets/js/bootstrap.min.js"></script>
     <script src="{{site.baseurl}}/assets/js/bootbox.min.js"></script>
     <script src="{{site.baseurl}}/assets/js/docs.min.js"></script>
+    <script src="{{site.baseurl}}/assets/js/main.js"></script>
     <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
 </head>
 

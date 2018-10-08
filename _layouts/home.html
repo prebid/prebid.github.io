@@ -2,41 +2,214 @@
 
 <!--{% include main_nav.html %}-->
 
-<!--<div class="bs-docs-masthead" id="content">
+<!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <h1 class="home-title">{{site.name}}</h1>
-
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <p class="lead">{{page.description}}</p>
-            </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+       <img src="/assets/images/prebid_white_icon_200x35.png">
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" class="smoothscroll">Products</a></li>
+          <li><a href="#" class="smoothscroll">Support</a></li>
+          <li><a href="#" class="smoothscroll">Download</a></li>
+          <li><a href="#" class="smoothscroll">About</a></li>
+          <li><a href="#" class="smoothscroll"><img src="/assets/images/icons/icnSearch.png" class="navbar-search"></a></li>
+        </ul>
+        
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+  
+  <div id="headerwrap">
+	  <div class="row">
+		  <h1>Header bidding unwrapped</h1>
+		  <h2>Prebid is a transparent, open-source solution that helps publishers earn more from their advertising while providing a fast and responsive user experience. </h2>
+        <div class="col-lg-6">
         </div>
+	    <div>
+		    <!--<images src="images/topgraph.png" class="bg">-->
+		</div>
+	  </div>
+	  
+	  <div class="header-links">
+		  <ul>
+			  <li><img src="/assets/images/icons/icnDevelopers_wh.png"><br>Prebid.JS</li>
+			  <li><img src="/assets/images/icons/icnGetStarted_wh.png"><br>Get Started!</li>
+			  <li><img src="/assets/images/icons/icnAdOps_wh.png"><br>Ad Ops</li>
+		  </ul>
+	  </div>
+  </div>
+  <!-- /headerwrap -->
 
-        <a type="button" href="/overview/intro.html" class="btn btn-default btn-lg">Get Started</a>
 
-        <div class="prebid-mobile-notice">
-            <a type="button" class="btn btn-callout btn-lg" href="{{site.baseurl}}/prebid-mobile" target="_blank">Now with Mobile App Support!</a>
+  <div class="container">
+    <div class="row mt centered">
+      <div class="col-lg-6 col-lg-offset-3">
+        <h1>The Benefits Of Using Prebid.</h1>
+        <h3>Some real good marketing text to lead us into the four benefits we list below!</h3>
+      </div>
+    </div>
+    <!-- /row -->
+
+    <div class="row mt centered">
+      <div class="col-lg-4">
+        <img src="/assets/images/icons/icnMonetization_org.png" width="180" alt="Monetization">
+        <h4>Maximize Earnings</h4>
+        <p>Bring additional advertiser demand into your ad server, ensuring you get the best possible price for your inventory.</p>
+      </div>
+      <!--/col-lg-4 -->
+
+	  
+      <div class="col-lg-4">
+	      <!--
+        <images src="images/ser02.png" width="180" alt="">
+        <h4>2 - Email Campaigns</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+		-->
+      </div>
+      <!--/col-lg-4 -->
+
+      <div class="col-lg-4">
+        <img src="/assets/images/icons/icnMultiPlatform_org.png" width="180" alt="Multi-Platform">
+        <h4>Use it Everywhere</h4>
+        <p>Apply header bidding to the most popular platforms and formats, including web, mobile app, video, native, AMP, and server-to-server.
+</p>
+
+      </div>
+      <!--/col-lg-4 -->
+    </div>
+    <!-- /row -->
+    
+    <div class="row mt centered">
+      <div class="col-lg-4">
+        <img src="/assets/images/icons/icnEasyInstall_org.png" width="180" alt="Easy Install">
+        <h4>Get Started Quickly</h4>
+        <p>Follow simple step-by-step instructions to download, integrate, and configure header bidding with Prebid.
+</p>
+      </div>
+      <!--/col-lg-4 -->
+
+	  
+      <div class="col-lg-4">
+	      <!--
+        <images src="images/ser02.png" width="180" alt="">
+        <h4>2 - Email Campaigns</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+		-->
+      </div>
+      <!--/col-lg-4 -->
+
+      <div class="col-lg-4">
+        <img src="/assets/images/icons/icnOpenSource_org.png" width="180" alt="Open Source">
+        <h4>Join The Community</h4>
+        <p>Become part of our active community of advertising technology experts, where you can quickly resolve issues and contribute to the evolution of the leading header bidding solution. </p>
+
+      </div>
+      <!--/col-lg-4 -->
+    </div>
+    <!-- /row -->
+   <hr>
+  </div>
+  <!-- /container -->
+
+  <div class="container">
+    <div class="row mt centered">
+      <div class="col-lg-6 col-lg-offset-3">
+        <h1>Prebid News.</h1>
+        <h3>Based on the meeting yesterday I thought we might do a carousel of news...</h3>
+      </div>
+    </div>
+    <!-- /row -->
+
+    <div class="row mt centered">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <images src="/assets/images/pb_slide01.png" alt="">
+            </div>
+            <div class="item">
+              <images src="/assets/images/pb_slide02.png" alt="">
+            </div>
+            <div class="item">
+              <images src="/assets/images/pb_slide03.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /col-lg-8 -->
+    </div>
+    <!-- /row -->
+    <hr>
+  </div>
+
+  
+
+  <div id="copyrights">
+    <div class="container">
+	    
+	    <div class="bs-docs-social">
+            <ul class="bs-docs-social-buttons">
+
+                    <li>
+                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=prebid&amp;repo=Prebid.js&amp;type=watch&amp;count=true" width="90" height="20" title="Star on GitHub"></iframe>
+                    </li>
+                    <li>
+                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=prebid&amp;repo=Prebid.js&amp;type=fork&amp;count=true" width="90" height="20" title="Fork on GitHub"></iframe>
+                    </li>
+                 
+
+                
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://prebid.org" data-count="horizontal" data-via="" data-text="Prebid" data-hashtags="prebidjs">Tweet</a>
+                    </li>
+            </ul>
         </div>
         
+        <div class="credits">
+			<p>All demos, instructions, documentation and code included on the Prebid.org website are released under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License</a>.
+		    </p>
+		
+		    <p>
+		        Documentation template by the <a href="http://getbootstrap.com/">Bootstrap team</a>, generated with <a href="https://github.com/mistic100/jekyll-bootstrap-doc">Jekyll Bootstrap Doc</a>.<br>Currently v1.0.0 | <a href="https://github.com/prebid/">Github</a>
+		    </p>
+		   
+        </div>
+      
+      <div class="credits">
+        <!--
+          You are NOT allowed to delete the credit link to TemplateMag with free version.
+          You can delete the credit link only if you bought the pro version.
+          Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/flatty-bootstrap-app-landing-page-template/
+          Licensing information: https://templatemag.com/license/
+        -->
+        Created with Flatty template by <a href="https://templatemag.com/">TemplateMag</a>
+      </div>
     </div>
-</div>-->
+  </div>
+  <!-- / copyrights -->
 
-<div style="width:100%; height:100%; display:table; background-color: #3e86c3;
-	position:relative;">
-		
-		{% include nav.html %}
-		
-	<div style="width:100%;  margin-top:10%; text-align:center">
-		<p style="font:normal 42px/56px Arial, Helvetica, sans-serif; color:#fff;">{{page.description}}</p></div>	
-		<p><img style="width:100%; z-index:1; margin-top:-300px;" class="fadein" src="{{ "/assets/images/topgraph.png" | prepend: site.baseurl }}" class="fadeIn fill"  alt="Prebid Graph Image"></p>
-		<p><ul style="text-decoration: none;list-style-type: none;text-align: center;margin: 0 auto 25px auto;padding:0 0 50px 0;display: table;overflow: hidden;font: small-caps normal 24px/150% Arial, Helvetica, sans-serif">
-			<li style="float: left;margin-left: auto;margin-right: auto;padding-right: 60px;padding-left: 60px;"><img src="{{ "/assets/images/icons/icnGetStarted.png" | prepend: site.baseurl }}"></li>
-			<li style="float: left;margin-left: auto;margin-right: auto;padding-right: 60px;padding-left: 60px;"><img src="{{ "/assets/images/icons/icnDevelopers.png" | prepend: site.baseurl }}"></li>
-			<li style="float: left;margin-left: auto;margin-right: auto;padding-right: 60px;padding-left: 60px;"><img src="{{ "/assets/images/icons/icnAdOps.png" | prepend: site.baseurl }}"></li>		
-		</ul></p>
-	</div>
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/php-mail-form/validate.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
 
-</div>
-
-{% include_relative _layouts/tile.html %}
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
 
