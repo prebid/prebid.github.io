@@ -18,6 +18,7 @@ gdpr_supported: true
 - [Video Object](#appnexus-video-object)
 - [User Object](#appnexus-user-object)
 - [App Object](#appnexus-app-object)
+- [Debug Auction](#appnexus-debug-auction)
 
 <a name="appnexus-bid-params" />
 
@@ -89,3 +90,47 @@ AppNexus supports using prebid within a mobile app's webview. If you are interes
 | `id`              | The App ID.                                                                                                                     | `'B1O2W3M4AN.com.prebid.webview'`                                        | `string`         |
 | `device_id`       | Object that contains the advertising identifiers of the user (`idfa`, `aaid`, `md5udid`, `sha1udid`, or `windowsadid`).         | `{ aaid: "38400000-8cf0-11bd-b23e-10b96e40000d" }`                       | `object`         |
 | `geo`             | Object that contains the latitude (`lat`) and longitude (`lng`) of the user.                                                    | `{ lat: 40.0964439, lng: -75.3009142 }`                                  | `object`         |
+
+<a name="appnexus-debug-auction" />
+
+#### Debug Auction
+
+{: .alert.alert-danger :}
+Enabling the AppNexus Debug Auction feature should only be done for diagnosing the AppNexus auction. Do not enable this feature in a production setting where it may impact users.
+
+To understand what is happening behind the scenes during an auction, you can enable a debug auction by the following methods:
+
+1) By adding a `debug` object in parallel to the bids requested. Example:
+
+{% highlight js %}
+{
+  bidder: 'appnexus',
+  params: { ... },
+  debug: {
+    enabled: true,
+    dongle: 'QWERTY',
+    member_id: 958,
+    debug_timeout: 3000
+  }
+}
+{% endhighlight %}
+
+2) By setting an `apn_prebid_debug` cookie with a JSON string. Example:
+
+{% highlight js %}
+{ "enabled": true, "dongle": "QWERTY", "debug_timeout": 1000, "member_id": 958 }
+{% endhighlight %}
+
+When both of the above are enabled, settings from the browser cookie will prevail.
+
+To view the results of the debug auction, add the `pbjs_debug=true` query string parameter and open your browser's developer console.
+
+Available Debug Parameters:
+
+{: .table .table-bordered .table-striped }
+| Name              | Description                                                     | Example               | Type             |
+|-------------------|-----------------------------------------------------------------|-----------------------|------------------|
+| `enabled`         | Toggle the debug auction to occur                               | `true`                | `boolean`        |
+| `dongle`          | Your account's unique debug password.                           | `QWERTY`              | `string`         |
+| `member_id`       | The ID of the member running the debug auction                  | `958`                 | `integer`        |
+| `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |
