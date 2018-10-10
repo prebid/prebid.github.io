@@ -28,6 +28,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | YuktaMedia Analytics                                             | Contact vendor                                                                      | [Website](https://yuktamedia.com/publishers/prebid/)                                        | 1.0.0 |
 | Kargo Analytics                                                  | Contact vendor                                                                      | [Website](https://kargo.com/)                                        | |
 | Adagio                                                           | Contact vendor                                                                      | [Website](https://adagio.io)                                        | |
+| Livewrapped Analytics                                            | Contact vendor                                                                      | [website](https://livewrapped.com/)                                        | |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
