@@ -17,5 +17,5 @@ prebid_1_0_supported : true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                               | Example    | Type      |
 |---------------|----------|-------------------------------------------|------------|-----------|
-| `placementId` | optional | Your placement ID (provided by undertone) | `13144370` | `integer` |
+| `placementId` | optional | Your placement ID (provided by undertone) | `"13as14d0"` | `string`  |
 | `publisherId` | required | publisher ID (provided by undertone)      | `12345`    | `integer` |
