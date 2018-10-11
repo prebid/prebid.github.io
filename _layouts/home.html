@@ -5,7 +5,8 @@
 <!-- Fixed navbar -->
   
   <!-- Fixed navbar -->
-  <div class="navbar navbar-default navbar-fixed-top">
+<!--
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,9 +18,7 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li>
-          	<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Products</a>
-          </li>
+          <li><a href="#" class="smoothscroll">Products</a></li>
           <li><a href="#" class="smoothscroll">Support</a></li>
           <li><a href="#" class="smoothscroll">Download</a></li>
           <li><a href="#" class="smoothscroll">About</a></li>
@@ -28,14 +27,72 @@
         
       </div>
       <!--/.nav-collapse -->
+<!--
     </div>
   </div>
-  
-  	
-  <div class="subnav">
-		</div>
-  
-  
+-->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+	  
+	  <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="/assets/images/prebid_white_icon_200x35.png"></a>
+    </div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Prebid.js</a></li>
+            <li><a href="#">Prebid Server</a></li>
+            <li><a href="#">Prebid Mobile</a></li>
+            <li><a href="#">Debugging Extension</a></li>
+            <li><a href="#">Formats</a></li>
+          </ul>
+        </li>
+        
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Ad Ops</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </li>
+        
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Prebid.js</a></li>
+            <li><a href="#">Prebid Mobile</a></li>
+          </ul>
+        </li>
+        
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">About Prebid</a></li>
+            <li><a href="#">Project Principles</a></li>
+            <li><a href="#">Contributing</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
   <div id="headerwrap">
 	  <div class="row">
 		  <h1>Header bidding unwrapped</h1>
@@ -208,11 +265,7 @@
   </div>
   <!-- / copyrights -->
 
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/php-mail-form/validate.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
+
 
   <!-- Template Main Javascript File -->
   <script src="/assets/js/main.js"></script>
