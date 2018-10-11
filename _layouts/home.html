@@ -1,36 +1,6 @@
+
 {% include head.html %}
 
-<!--{% include main_nav.html %}-->
-  
-<!-- Fixed navbar -->
-  
-  <!-- Fixed navbar -->
-<!--
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-       <img src="/assets/images/prebid_white_icon_200x35.png">
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" class="smoothscroll">Products</a></li>
-          <li><a href="#" class="smoothscroll">Support</a></li>
-          <li><a href="#" class="smoothscroll">Download</a></li>
-          <li><a href="#" class="smoothscroll">About</a></li>
-          <li><a href="#" class="smoothscroll"><img src="/assets/images/icons/icnSearch.png" class="navbar-search"></a></li>
-        </ul>
-        
-      </div>
-      <!--/.nav-collapse -->
-<!--
-    </div>
-  </div>
--->
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -46,49 +16,104 @@
     </div>
     
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    <ul class="nav navbar-nav navbar-right">
-        
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Prebid.js</a></li>
-            <li><a href="#">Prebid Server</a></li>
-            <li><a href="#">Prebid Mobile</a></li>
-            <li><a href="#">Debugging Extension</a></li>
-            <li><a href="#">Formats</a></li>
-          </ul>
-        </li>
-        
-         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Ad Ops</a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Blog</a></li>
-          </ul>
-        </li>
-        
-         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Prebid.js</a></li>
-            <li><a href="#">Prebid Mobile</a></li>
-          </ul>
-        </li>
-        
-         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">About Prebid</a></li>
-            <li><a href="#">Project Principles</a></li>
-            <li><a href="#">Contributing</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Partners</a></li>
-          </ul>
-        </li>
-      </ul>
+    <div class="navbar-collapse collapse">
+    	<ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Products
+                    <span class="caret" />
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu">
+                        <a href="#">Prebid.js</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Analytics</a></li>
+                            <li><a href="#">Modules</a></li>
+                            <li><a href="#">Plugins</a></li>
+                            <li><a href="#">React-Prebid</a></li>
+                        </ul>
+					</li>
+					<!-- /Prebid.js submenu-->
+			
+			
+                    <li>
+                    	<a href="#">Prebid Server</a></li>
+						
+                    <!--Prebid Mobile Submenu-->
+                    <li class="dropdown-submenu">
+                    	<a href="#">Prebid Mobile</a>
+						<ul class="dropdown-menu">
+                            <li><a href="#">iOS</a></li>
+                            <li><a href="#">Android</a></li>
+                        </ul>
+                    </li>
+                    
+					<li><a href="#">Debugging Extension</a>
+					
+					<li class="dropdown-submenu">
+						<a href="#">Formats</a>
+						<ul class="dropdown-menu">
+                            <li><a href="#">Display</a></li>
+                            <li><a href="#">Video</a></li>
+                            <li><a href="#">Native</a></li>
+                            <li><a href="#">AMP</a></li>
+                            <li><a href="#">Mulit-Format</a></li>
+                        </ul>
+					</li>
+                </ul>
+                
+            </li>
+
+            <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Ad Ops</a></li>
+	            <li class="dropdown-submenu">
+	            	<a href="#">Help</a>
+	            	<ul class="dropdown-menu">
+                        <li><a href="#">Troubleshooting</a></li>
+                        <li><a href="#">Training Videos</a></li>
+                    </ul>
+	            </li>
+	            <li class="dropdown-submenu">
+	            	<a href="#">FAQs</a>
+	            	<ul class="dropdown-menu">
+                        <li><a href="#">Prebid.js</a></li>
+                        <li><a href="#">Prebid Server</a></li>
+                    </ul>
+	            </li>
+	            <li><a href="#">Blog</a></li>
+	          </ul>
+            </li>
+    
+            <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Prebid.js</a></li>
+	            <li class="dropdown-submenu">
+	            	<a href="#">Prebid Mobile</a>
+	            	<ul class="dropdown-menu">
+                        <li><a href="#">iOS</a></li>
+                        <li><a href="#">Android</a></li>
+                    </ul>
+	            </li>
+	          </ul>
+	        </li>
+    
+            <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">About Prebid</a></li>
+	            <li><a href="#">Project Principles</a></li>
+	            <li><a href="#">Contributing</a></li>
+	            <li><a href="#">About Us</a></li>
+	            <li><a href="#">Partners</a></li>
+	          </ul>
+	        </li>       
+        </ul>      	
     </div>
   </div>
 </nav>
@@ -96,7 +121,7 @@
   <div id="headerwrap">
 	  <div class="row">
 		  <h1>Header bidding unwrapped</h1>
-		  <h2>Prebid is a transparent, open-source solution that helps publishers earn more from their advertising while providing a fast and responsive user experience. </h2>
+		  <h2>Earn more from your advertising with Prebid, a transparent, open-source solution that provides a fast and responsive experience.</h2>
         <div class="col-lg-6">
         </div>
 	    <div>
@@ -106,9 +131,9 @@
 	  
 	  <div class="header-links">
 		  <ul>
-			  <li><img src="/assets/images/icons/icnDevelopers_wh.png"><br>Prebid.JS</li>
-			  <li><img src="/assets/images/icons/icnGetStarted_wh.png"><br>Get Started!</li>
-			  <li><img src="/assets/images/icons/icnAdOps_wh.png"><br>Ad Ops</li>
+			  <li><img src="/assets/images/icons/icnDevelopers_wh-sh.png"><br>Developers</li>
+			  <li><img src="/assets/images/icons/icnGetStarted_wh-sh.png"><br>Get Started!</li>
+			  <li><img src="/assets/images/icons/icnAdOps_wh-sh.png"><br>Ad Ops</li>
 		  </ul>
 	  </div>
   </div>
@@ -126,7 +151,7 @@
 
     <div class="row mt centered">
       <div class="col-lg-4">
-        <img src="/assets/images/icons/icnMonetization_org.png" width="180" alt="Monetization">
+        <img src="/assets/images/icons/icnMonetization_org-sh.png" width="180" alt="Monetization">
         <h4>Maximize Earnings</h4>
         <p>Bring additional advertiser demand into your ad server, ensuring you get the best possible price for your inventory.</p>
       </div>
@@ -143,7 +168,7 @@
       <!--/col-lg-4 -->
 
       <div class="col-lg-4">
-        <img src="/assets/images/icons/icnMultiPlatform_org.png" width="180" alt="Multi-Platform">
+        <img src="/assets/images/icons/icnMultiPlatform_org-sh.png" width="180" alt="Multi-Platform">
         <h4>Use it Everywhere</h4>
         <p>Apply header bidding to the most popular platforms and formats, including web, mobile app, video, native, AMP, and server-to-server.
 </p>
@@ -155,7 +180,7 @@
     
     <div class="row mt centered">
       <div class="col-lg-4">
-        <img src="/assets/images/icons/icnEasyInstall_org.png" width="180" alt="Easy Install">
+        <img src="/assets/images/icons/icnEasyInstall_org-sh.png" width="180" alt="Easy Install">
         <h4>Get Started Quickly</h4>
         <p>Follow simple step-by-step instructions to download, integrate, and configure header bidding with Prebid.
 </p>
@@ -173,7 +198,7 @@
       <!--/col-lg-4 -->
 
       <div class="col-lg-4">
-        <img src="/assets/images/icons/icnOpenSource_org.png" width="180" alt="Open Source">
+        <img src="/assets/images/icons/icnOpenSource_org-sh.png" width="180" alt="Open Source">
         <h4>Join The Community</h4>
         <p>Become part of our active community of advertising technology experts, where you can quickly resolve issues and contribute to the evolution of the leading header bidding solution. </p>
 
