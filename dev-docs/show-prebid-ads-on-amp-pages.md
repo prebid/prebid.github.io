@@ -104,7 +104,7 @@ An example Stored Request is given below:
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
 + `data-slot`: Identifies the ad slot for the auction.
-+ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC. 
++ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
     + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js].
     + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
@@ -125,7 +125,38 @@ This is the creative that your Ad Ops team needs to upload to the ad server (it'
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% include dev-docs/amp-creative.md %}
+{: .alert.alert-danger :}
+Replace **MACRO** in the code below with the appropriate macro for the ad server you're using. For example, for DFP replace **MACRO** with **PATTERN**.
+
+{% highlight html %}
+
+    <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+    <script>
+      var ucTagData = {};
+      ucTagData.adServerDomain = "";
+      ucTagData.pubUrl = "%%MACRO:url%%";
+
+      // if DFP, use this param
+      ucTagData.targetingMap = %%MACRO:TARGETINGMAP%%;
+
+      // if not DFP, use these params
+      ucTagData.adId = "%%MACRO:hb_adid%%";
+      ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
+      ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
+      ucTagData.uuid = "%%MACRO:hb_cache_id%%";
+      ucTagData.mediaType = "%%MACRO:hb_format%%";
+      ucTagData.env = "%%MACRO:hb_env%%";
+      ucTagData.size = "%%MACRO:hb_size%%";
+
+      try {
+        ucTag.renderAd(document, ucTagData);
+      } catch (e) {
+        console.log(e);
+      }
+    </script>
+
+{% endhighlight %}
+
 
 ### User Sync
 

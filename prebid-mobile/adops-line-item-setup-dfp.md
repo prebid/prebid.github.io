@@ -21,7 +21,7 @@ This page describes step by step how to set up Prebid Mobile line items for DFP 
 
 In DFP, create a new order with a $0.50 line item.
 
-Enter the inventory size of your mobile ad slots. Make sure to specify all the inventory sizes on your app. 
+Enter the inventory size of your mobile ad slots. Make sure to specify all the inventory sizes on your app.
 
 Because header bidding partners return prices, set the Line Item **Type** to **Price priority** to enable them to compete on price.
 
@@ -75,7 +75,25 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% include dev-docs/amp-creative.md %}
+{% highlight html %}
+
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+    <script>
+      var ucTagData = {};
+      ucTagData.adServerDomain = "";
+      ucTagData.pubUrl = "%%PATTERN:url%%";
+
+      ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+
+      try {
+        ucTag.renderAd(document, ucTagData);
+      } catch (e) {
+        console.log(e);
+      }
+    </script>
+
+{% endhighlight %}
+
 
 Make sure the creative size is set to 1x1. This allows us to set up size override, which allows this creative to serve on all inventory sizes.
 
