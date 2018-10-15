@@ -47,7 +47,7 @@ The steps for using Prebid Mobile are as follows:
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+4. Set the primary adserver for the bid to either DFP, MoPub or Adform. (Primary ad server is necessary to determine the caching mechanism.)
 5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
@@ -136,6 +136,22 @@ try {
     e.printStackTrace();
 }
 ```
+If you're using Adform as your primary ad server, use the API like this:
+```
+/**
+ * Register ad units for prebid.
+ *
+ * Replace "PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
+ *
+ * If you are using a Prebid Server host other than AppNexus, be sure
+ * to replace 'Host.APPNEXUS'.
+ */
+try {
+    Prebid.init(getApplicationContext(), adUnits, "PREBID-SERVER-ACCOUNT-ID", Prebid.AdServer.ADFORM, Host.APPNEXUS);
+} catch (PrebidException e) {
+    e.printStackTrace();
+}
+```
 Note that host should be the prebid server host you're using.
 
 ### Set Ad Server Targeting
@@ -176,6 +192,7 @@ Prebid Mobile will immediately tell your app whether it has a bid or not without
 | DFP               | Interstitial   | `PublisherAdRequest`       | `public void loadAd(PublisherAdRequest adRequest)` |
 | MoPub             | Banner         | `MoPubView`                | `public void loadAd()`                             |
 | MoPub             | Interstitial   | `MoPubInterstitial`        | `public void load()`                               |
+| Adform            | Banner         | `AdInline`                 | `public void loadAd()`                             |
 
 ### Supporting Auto Refreshing Ad Units
 Prebid Mobile Android does not update the bids automatically like iOS implementation. To enable prebid with auto refesh, the following code integration is required.
@@ -224,6 +241,25 @@ if(conditionToStopRefresh) {
     // remove refresh runnable and destroy the banner
     handler.removeCallbacks(refreshRunnable);
     adView.destroy();
+}
+ ```
+
+#### Primary Ad Server is Adform
+For Adform banner, in the banner ad listener implementation, add the following API usage.
+ ```
+ /**
+  * Adform Banner Listener Implementation.
+  *
+  * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
+  * you defined when you registered the ad unit with Prebid Mobile.
+  */
+@Override
+public void onAdLoadSuccess(AdInline adInline) {
+    Prebid.attachBids(adInline, "PREBID-MOBILE-SLOT-ID", Context);
+}
+@Override
+public void onAdLoadFail(AdInline adInline, String s) {
+    Prebid.attachBids(adInline, "PREBID-MOBILE-SLOT-ID", Context);
 }
  ```
 
