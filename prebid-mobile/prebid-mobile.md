@@ -7,13 +7,13 @@ sidebarType: 1
 
 ---
 
-<h2>Prebid Mobile Overview</h2>
+## Prebid Mobile Overview
 
 Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers. Use this library with your ad server's Mobile SDK to communicate with Prebid Server to request and receive bids over RTB. These bids can then compete directly with bids from your primary ad server.
 
 Prebid Mobile libraries are available for iOS and Android.
 
-<h2>Benefits and Features</h2>
+## Benefits and Features
 
 Some of the benefits to using the Prebid Mobile header bidding solution include:
 
@@ -24,7 +24,7 @@ Some of the benefits to using the Prebid Mobile header bidding solution include:
 -   Reduces latency compared to mediation.
 -   Designed to integrate with any deployment of the open-source Prebid Server code. (Vendor must be registered in Prebid Mobile as a Prebid Server host.)
 
-<h2>Requirements</h2>
+## Requirements
 
 -   **Prebid Server Configuration**  
     You *must* have a Prebid Server account in order to use Prebid Mobile. Prebid Server is a server-based host that communicates bid requests and responses between Prebid Mobile and demand partners.  
@@ -37,7 +37,7 @@ Some of the benefits to using the Prebid Mobile header bidding solution include:
 -   **Prebid Mobile SDK**  
     Mobile app developers implement header bidding through the Prebid Mobile SDK integration. SDKs are available for [iOS](https://github.com/prebid/prebid-mobile-ios) and [Android](https://github.com/prebid/prebid-mobile-android).
 
-<h2>How It Works</h2>
+## How It Works
 
 The following diagram shows how the Prebid Mobile header bidding solution works.
 
