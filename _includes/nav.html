@@ -1,34 +1,118 @@
 
-<div id="top-nav">
-	
-	<img src="{{ "/assets/images/prebid_white_icon_200x35.png" | prepend: site.baseurl }}" class="fadeIn logo" >
-	
-	<ul>
-		
-		<li></li>
-		
-		{% assign count = 0 %}
-		
-		{% for tag in page.tags %}
-			{% if count == 0 %}			
-				
-				<li class="fadeIn first-item">{{tag}}</li>
-				
-			{% else %}
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+	  
+	  <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html"><img src="/assets/images/prebid_white_icon_200x35.png"></a>
+    </div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse collapse">
+    	<ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Products
+                    <span class="caret" />
+                </a>
+
+                <ul id="prebidDropDown" class="dropdown-menu">
+                    <li class="dropdown-submenu">
+                        <a href="/prebid/prebidjs.html">Prebid.js</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Analytics</a></li>
+                            <li><a href="#">Modules</a></li>
+                            <li><a href="#">Plugins</a></li>
+                            <li><a href="#">React-Prebid</a></li>
+                        </ul>
+					</li>
+					<!-- /Prebid.js submenu-->
 			
-				<li class="fadeIn">{{tag}}</li>
 			
-			{% endif %}
-			{% assign count = count | plus: 1 %}
-			
-		{% endfor %}
-		
-			<li class="fadeIn"><a href="search.html" style="color:#ffffff;">Search</a></li>
-		
-	</ul>
-	
-		
-	
-</div>
+                    <li>
+                    	<a href="#">Prebid Server</a></li>
+						
+                    <!--Prebid Mobile Submenu-->
+                    <li class="dropdown-submenu">
+                    	<a href="/prebid-mobile/prebid-mobile.html">Prebid Mobile</a>
+						<ul class="dropdown-menu">
+                            <li><a href="#">iOS</a></li>
+                            <li><a href="#">Android</a></li>
+                        </ul>
+                    </li>
+                    
+					<li><a href="#">Debugging Extension</a>
+					
+					<li class="dropdown-submenu">
+						<a href="#">Formats</a>
+						<ul class="dropdown-menu">
+                            <li><a href="#">Display</a></li>
+                            <li><a href="#">Video</a></li>
+                            <li><a href="#">Native</a></li>
+                            <li><a href="#">AMP</a></li>
+                            <li><a href="#">Mulit-Format</a></li>
+                        </ul>
+					</li>
+                </ul>
+                
+            </li>
+
+            <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Ad Ops</a></li>
+	            <li class="dropdown-submenu">
+	            	<a href="#">Help</a>
+	            	<ul class="dropdown-menu">
+                        <li><a href="#">Troubleshooting</a></li>
+                        <li><a href="#">Training Videos</a></li>
+                    </ul>
+	            </li>
+	            <li class="dropdown-submenu">
+	            	<a href="#">FAQs</a>
+	            	<ul class="dropdown-menu">
+                        <li><a href="#">Prebid.js</a></li>
+                        <li><a href="#">Prebid Server</a></li>
+                    </ul>
+	            </li>
+	            <li><a href="#">Blog</a></li>
+	          </ul>
+            </li>
+    
+            <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Prebid.js</a></li>
+	            <li class="dropdown-submenu">
+	            	<a href="#">Prebid Mobile</a>
+	            	<ul class="dropdown-menu">
+                        <li><a href="#">iOS</a></li>
+                        <li><a href="#">Android</a></li>
+                    </ul>
+	            </li>
+	          </ul>
+	        </li>
+    
+            <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">About Prebid</a></li>
+	            <li><a href="#">Project Principles</a></li>
+	            <li><a href="#">Contributing</a></li>
+	            <li><a href="#">About Us</a></li>
+	            <li><a href="#">Partners</a></li>
+	          </ul>
+	        </li>       
+        </ul>      	
+    </div>
+  </div>
+</nav>
 	
 
