@@ -1,0 +1,21 @@
+---
+layout: bidder
+title: Grid
+description: Prebid Grid Bidder Adaptor
+top_nav_section: dev_docs
+nav_section: reference
+hide: true
+biddercode: grid
+biddercode_longer_than_12: false
+prebid_1_0_supported : true
+gdpr_supported: true
+---
+
+
+### bid params
+
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                                                                                                                                                                                                     | Example   | Type      |
+|-------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
+| `uid`       | required | Represents the Grid bidder system Ad Slot ID associated with the respective div id from the site page.                                                                                                          | `1`       | `integer` |
+| `priceType` | optional | Can take the values `gross` or `net`, default value is `net`. Net represents the header bid price with the Grid header bidder margin already extracted. Gross price does contain the Grid bidder margin within. | `'gross'` | `string`  |
