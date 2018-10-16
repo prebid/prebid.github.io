@@ -56,46 +56,46 @@ An example Stored Request is given below:
 
 {% highlight javascript %}
 
-    {
-        "id": "some-request-id",
-        "site": {
-            "page": "prebid.org"
-        },
-        "ext": {
-            "prebid": {
-                "targeting": {
-                    "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
-                        "precision": 2,
-                        "ranges": [{
-                            "max": 20.00,
-                            "increment": 0.10
-                        }]
-                    }
+{
+    "id": "some-request-id",
+    "site": {
+        "page": "prebid.org"
+    },
+    "ext": {
+        "prebid": {
+            "targeting": {
+                "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
+                    "precision": 2,
+                    "ranges": [{
+                        "max": 20.00,
+                        "increment": 0.10
+                    }]
                 }
             }
-        },
-        "imp": [
-            {
-                "id": "some-impression-id",
-                "banner": {
-                    "format": [
-                        {
-                            "w": 300,
-                            "h": 250
-                        }
-                    ]
+        }
+    },
+    "imp": [
+        {
+            "id": "some-impression-id",
+            "banner": {
+                "format": [
+                    {
+                        "w": 300,
+                        "h": 250
+                    }
+                ]
+            },
+            "ext": {
+                "appnexus": {
+                    // Insert parameters here
                 },
-                "ext": {
-                    "appnexus": {
-                        // Insert parameters here
-                    },
-                    "rubicon": {
-                        // Insert parameters here
-                    }
+                "rubicon": {
+                    // Insert parameters here
                 }
             }
-        ]
-    }
+        }
+    ]
+}
 
 {% endhighlight %}
 
@@ -110,11 +110,11 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
 
 {% highlight html %}
 
-    <amp-ad width="300" height="250"
-            type="doubleclick"
-            data-slot="/19968336/universal_creative"
-            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
-    </amp-ad>
+<amp-ad width="300" height="250"
+        type="doubleclick"
+        data-slot="/19968336/universal_creative"
+        rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+</amp-ad>
 
 {% endhighlight %}
 
@@ -182,13 +182,13 @@ The following example includes a transparent image as a placeholder which will a
 
 {% highlight html %}
 
-    <amp-iframe width="1" title="User Sync"
-      height="1"
-      sandbox="allow-scripts"
-      frameborder="0"
-      src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
-      <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
-    </amp-iframe>
+<amp-iframe width="1" title="User Sync"
+  height="1"
+  sandbox="allow-scripts"
+  frameborder="0"
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
+  <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
+</amp-iframe>
 
 {% endhighlight %}
 
