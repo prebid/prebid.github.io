@@ -24,7 +24,7 @@ This app is currently available for download for iOS.
 
 [Download Dr. Prebid for iOS]()
 
-Review the [Prebid.org Dr. Prebid Terms of Use](http://prebid.org/prebid-mobile/dr-prebid-tou.html).
+Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).
 
 ## Enter Test Values
 
