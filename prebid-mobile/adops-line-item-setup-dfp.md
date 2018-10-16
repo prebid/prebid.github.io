@@ -75,22 +75,21 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% highlight html %}
+{% highlight javascript %}
 
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-    <script>
-      var ucTagData = {};
-      ucTagData.adServerDomain = "";
-      ucTagData.pubUrl = "%%PATTERN:url%%";
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%PATTERN:url%%";
+  ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
 
-      ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
-
-      try {
-        ucTag.renderAd(document, ucTagData);
-      } catch (e) {
-        console.log(e);
-      }
-    </script>
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
 
 {% endhighlight %}
 

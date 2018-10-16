@@ -125,38 +125,53 @@ This is the creative that your Ad Ops team needs to upload to the ad server (it'
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{: .alert.alert-danger :}
-Replace **MACRO** in the code below with the appropriate macro for the ad server you're using. For example, for DFP replace **MACRO** with **PATTERN**.
+For DFP:
 
-{% highlight html %}
+{% highlight javascript %}
 
-    <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-    <script>
-      var ucTagData = {};
-      ucTagData.adServerDomain = "";
-      ucTagData.pubUrl = "%%MACRO:url%%";
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%PATTERN:url%%";
+  ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
 
-      // if DFP, use this param
-      ucTagData.targetingMap = %%MACRO:TARGETINGMAP%%;
-
-      // if not DFP, use these params
-      ucTagData.adId = "%%MACRO:hb_adid%%";
-      ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
-      ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
-      ucTagData.uuid = "%%MACRO:hb_cache_id%%";
-      ucTagData.mediaType = "%%MACRO:hb_format%%";
-      ucTagData.env = "%%MACRO:hb_env%%";
-      ucTagData.size = "%%MACRO:hb_size%%";
-
-      try {
-        ucTag.renderAd(document, ucTagData);
-      } catch (e) {
-        console.log(e);
-      }
-    </script>
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
 
 {% endhighlight %}
 
+For Mopub:
+
+{% highlight javascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%KEYWORD:url%%";
+  ucTagData.adId = "%%KEYWORD:hb_adid%%";
+  ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
+  ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
+  ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
+  ucTagData.mediaType = "%%KEYWORD:hb_format%%";
+  ucTagData.env = "%%KEYWORD:hb_env%%";
+  ucTagData.size = "%%KEYWORD:hb_size%%";
+
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+{% endhighlight %}
+
+For all other ad servers, replace `KEYWORD` in the preceding example with the appropriate macro for the ad server.
 
 ### User Sync
 

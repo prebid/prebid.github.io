@@ -49,28 +49,27 @@ The **hb_cache_id** variable stands for the cache id that will load the ad marku
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% highlight html %}
+{% highlight javascript %}
 
-    <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-    <script>
-      var ucTagData = {};
-      ucTagData.adServerDomain = "";
-      ucTagData.pubUrl = "%%KEYWORD:url%%";
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%KEYWORD:url%%";
+  ucTagData.adId = "%%KEYWORD:hb_adid%%";
+  ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
+  ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
+  ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
+  ucTagData.mediaType = "%%KEYWORD:hb_format%%";
+  ucTagData.env = "%%KEYWORD:hb_env%%";
+  ucTagData.size = "%%KEYWORD:hb_size%%";
 
-      ucTagData.adId = "%%KEYWORD:hb_adid%%";
-      ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
-      ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
-      ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
-      ucTagData.mediaType = "%%KEYWORD:hb_format%%";
-      ucTagData.env = "%%KEYWORD:hb_env%%";
-      ucTagData.size = "%%KEYWORD:hb_size%%";
-
-      try {
-        ucTag.renderAd(document, ucTagData);
-      } catch (e) {
-        console.log(e);
-      }
-    </script>
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
 
 {% endhighlight %}
 
