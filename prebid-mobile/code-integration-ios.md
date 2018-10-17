@@ -185,6 +185,7 @@ Use the table below to see which ad objects are supported currently.
 | DFP               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
 | MoPub             | Banner         | `MPAdView`                   | `- (void)loadAd`                            |
 | MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            |
+| Adform            | Banner         | `AFAdInline`                 |` - (void)loadAd`                            |
 
 
 
