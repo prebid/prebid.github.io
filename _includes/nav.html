@@ -15,101 +15,45 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse collapse">
     	<ul class="nav navbar-nav navbar-right">
-
+	    	
+			{% for item in site.data.dropdowns %}
+			
             <li class="dropdown">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Products
+                    {{ item.sectionName }}
                     <span class="caret" />
-                </a>
-
+                </a> 
+                
                 <ul id="prebidDropDown" class="dropdown-menu">
+	                    
+	                {% for submenu in item.submenus %}
+                    
                     <li class="dropdown-submenu">
-                        <a href="/prebid/prebidjs.html">Prebid.js</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Analytics</a></li>
-                            <li><a href="#">Modules</a></li>
-                            <li><a href="#">Plugins</a></li>
-                            <li><a href="#">React-Prebid</a></li>
-                        </ul>
-					</li>
-					<!-- /Prebid.js submenu-->
-			
-			
-                    <li>
-                    	<a href="#">Prebid Server</a></li>
-						
-                    <!--Prebid Mobile Submenu-->
-                    <li class="dropdown-submenu">
-                    	<a href="/prebid-mobile/prebid-mobile.html">Prebid Mobile</a>
-						<ul class="dropdown-menu">
-                            <li><a href="#">iOS</a></li>
-                            <li><a href="#">Android</a></li>
-                        </ul>
+                        <a href="{{submenu.link}}">{{ submenu.title }}</a>
+                        
+                        {% if submenu.hasBubblePopOut == 1 %}
+                        
+                        	<ul class="dropdown-menu">
+	                        	
+	                        	{% for bubblePopOut in submenu.bubble %}
+	                        	
+	                        		<li><a href="{{bubblePopOut.link}}">{{bubblePopOut.title}}</a></li>
+	                        	
+	                        	{% endfor %}
+	                        	
+                        	</ul>
+                        {% endif %}
                     </li>
                     
-					<li><a href="#">Debugging Extension</a>
-					
-					<li class="dropdown-submenu">
-						<a href="#">Formats</a>
-						<ul class="dropdown-menu">
-                            <li><a href="#">Display</a></li>
-                            <li><a href="#">Video</a></li>
-                            <li><a href="#">Native</a></li>
-                            <li><a href="#">AMP</a></li>
-                            <li><a href="#">Mulit-Format</a></li>
-                        </ul>
-					</li>
+                    {% endfor %}
                 </ul>
                 
             </li>
-
-            <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support<span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Ad Ops</a></li>
-	            <li class="dropdown-submenu">
-	            	<a href="#">Help</a>
-	            	<ul class="dropdown-menu">
-                        <li><a href="#">Troubleshooting</a></li>
-                        <li><a href="#">Training Videos</a></li>
-                    </ul>
-	            </li>
-	            <li class="dropdown-submenu">
-	            	<a href="#">FAQs</a>
-	            	<ul class="dropdown-menu">
-                        <li><a href="#">Prebid.js</a></li>
-                        <li><a href="#">Prebid Server</a></li>
-                    </ul>
-	            </li>
-	            <li><a href="#">Blog</a></li>
-	          </ul>
-            </li>
-    
-            <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Prebid.js</a></li>
-	            <li class="dropdown-submenu">
-	            	<a href="#">Prebid Mobile</a>
-	            	<ul class="dropdown-menu">
-                        <li><a href="#">iOS</a></li>
-                        <li><a href="#">Android</a></li>
-                    </ul>
-	            </li>
-	          </ul>
-	        </li>
-    
-            <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">About Prebid</a></li>
-	            <li><a href="#">Project Principles</a></li>
-	            <li><a href="#">Contributing</a></li>
-	            <li><a href="#">About Us</a></li>
-	            <li><a href="#">Partners</a></li>
-	          </ul>
-	        </li>       
+			
+			{% endfor %}
+               	        
+	        <!-- end loop through top level nav-->   
         </ul>      	
     </div>
   </div>

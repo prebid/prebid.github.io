@@ -1,0 +1,255 @@
+- sbSecId: 0
+  title: Developer Quick Start
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 0
+  title: Getting Started
+  link: /dev-docs/getting-started.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: Examples
+  link: /dev-docs/examples/basic-example.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: Troubleshooting
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+ 
+- sbSecId: 0
+  title: Dev Tips
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: Common Issues
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: Prebid.js Troubleshooting Guide
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: Reference
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+ 
+- sbSecId: 0
+  title: Publisher API Reference
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: Ad Unit Reference
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: Bidder's Params
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: FAQ
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+ 
+- sbSecId: 0
+  title: Prebid 1.0 Publisher API Changes
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: Prebid Modules
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: Features
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1 
+ 
+- sbSecId: 0
+  title: Conditional Ad Units
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: Adapters
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: How To Add A New Bidder Adapter 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: Integrate With The Prebid Analytics API
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+ 
+- sbSecId: 0
+  title: External Interfaces
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1 
+ 
+- sbSecId: 0
+  title: Plugins
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 0
+  title: Analytics
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+ 
+- sbSecId: 0
+  title: Analytics For Prebid
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: Prebid Analytics for GA
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0 
+ 
+- sbSecId: 0
+  title: Studies
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+
+  
+
+
+#prebid mobile sidebar items
+ 
+- sbSecId: 1
+  title: Prebid Mobile Overview
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+
+- sbSecId: 1
+  title: Getting Started With Prebid Mobile
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: Prebid Mobile Guide toEuropean Ad Inventory and Providing Notice, Choice and Tranparency
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: For iOS
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1 
+ 
+- sbSecId: 1
+  title: Code Integration
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: Targeting Parameters
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+ 
+- sbSecId: 1
+  title: Logging and Troubleshooting
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: For Android
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1 
+ 
+- sbSecId: 1
+  title: Code Integration
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: Targeting Parameters
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+ 
+- sbSecId: 1
+  title: Logging and Troubleshooting
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: For Ad Ops
+  link:
+  isLastSubSectionItem: 0 
+  isHeader: 1
+ 
+- sbSecId: 1
+  title: Setup Line items For DFP
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: Setup Line Items For MoPub
+  link:
+  isLastSubSectionItem: 0 
+  isHeader: 0
+ 
+- sbSecId: 1
+  title: Price Granularity
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0 
+ 
+- sbSecId: 1
+  title: For Contributors
+  link:
+  isLastSubSectionItem: 0 
+ 
+- sbSecId: 1
+  title: Add An Ad Server Adapter
+  link:
+  isLastSubSectionItem: 0 

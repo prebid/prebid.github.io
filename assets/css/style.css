@@ -139,15 +139,24 @@ hr {
   margin-bottom: 40px;
 }
 
-.form-control {
-  height: 42px;
-  font-size: 18px;
-  width: 280px;
-}
-
 i {
   margin: 8px;
   color: #3498db;
+}
+
+/* 404 error */
+
+.error404 { 
+	background-color: #FF0000;
+	width:100%;
+	height: 100%;
+}
+
+.error404 img { 
+	margin-right: auto;
+	margin-left: auto;
+	width: 50%
+	
 }
 
 /* HeaderWrap */
@@ -242,6 +251,10 @@ i {
 	color: #333333;
 	padding-top: 20px;
 	margin:0;
+}
+
+.col-sm-9 ul { 
+	margin-top:10px;
 }
 
 /* side bar */
@@ -341,7 +354,7 @@ a[href^="https://prebid.org/"]:after {
 
 .bs-docs-container { 
 	margin-top: 100px;
-	background-color: #ff0000;
+	
 }
 
 
@@ -732,6 +745,7 @@ div.pl-doc-entry{
 		font-size: 15px;
 	}
 	
+		
 
 }
 

@@ -9,164 +9,38 @@
 		<div class="row">
 			
 			<div class="col-sm-2 sidebar">
-				{% if page.sidebarType == 0 %}
-			
-					<a href="#" class="list-group-item group-title">
-						<h4 class="list-group-item">Getting Started</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Developer Quick Start</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Examples</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Troubleshooting</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Dev Tips</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Common Issues</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Prebid.js Troubleshooting Guide</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Reference</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Publisher API Reference</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Ad Unit Reference</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Bidders' Params</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">FAQ</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Prebid 1.0 Publisher API Changes</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Prebid Modules</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Features</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Conditional Ad Units</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Adapters</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">How to Add a New Bidder Adapter</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Integrate with the Prebid Analytics API</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">External Interfaces</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Plugins</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Post Bid</h4>
-					<a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Intro to Post-Bid & Get Started</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Analytics</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Analytics for Prebid</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Prebid Analytics with GA</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Studies</h4>
-					</a>
-			
-				{% elsif page.sidebarType == 1 %}
-			
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Prebid Mobile Overview</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Getting Started with Prebid Mobile</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">For iOS</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Code Integration</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Targeting Parameters</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Logging & Troubleshooting</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">For Android</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Code Integration</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Targeting Parameters</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Logging & Troubleshooting</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">For Ad Ops</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Setup Line Items for DFP</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Setup Line Items for MoPub</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Price Granularity</h4>
-					</a>
-					<hr>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">For Contributors</h4>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item">Add an Ad Server Adapter</h4>
-					</a>
+				
+				{% for item in site.data.sidebar %}
+				
+					{% if item.sbSecId == page.sidebarType %}
 					
-				{% else %}
-			
-				{% endif %}		
+					
+						{% if item.isHeader == 1 %}
+						
+							<h4 class="list-group-item-header">{{item.title}}</h4>
+							
+						{% else %}
+				
+							<a href="{{item.link}}" class="list-group-item group-title">
+								<h4 class="list-group-item">{{item.title}}</h4>
+							</a>
+							
+							{% if item.isLastSubSectionItem == 1 %}
+								<hr>
+							{% endif %}
+						
+						
+						{% endif %}
+					
+					{% endif %}
+					
+				{% endfor %}
+				
+				
 			</div>
 			
 			
-			<div class="col-sm-9" markdown="1">
+			<div class="col-sm-9 main-text" markdown="1">
 					{{ content }}
 			</div>
 			

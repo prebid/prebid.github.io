@@ -7,7 +7,7 @@ sidebarType: 0
 
 ---
 
-<h2>What is Prebid.js</h2>
+## What is Prebid.js
 
 <p class="main-text">Prebid is a free open source library and community that helps publishers implement Header Bidding on their websites & apps.</p>
 
@@ -15,7 +15,7 @@ sidebarType: 0
 
 <p class="main-text">The returned bids are then passed into the ad server so they can compete with direct demand and the primary ad server’s exchange on a level playing field.</p>
 
-<h2>A Brief History of Header Bidding</h2>
+## A Brief History of Header Bidding
 
 <p class="main-text">In the early days of Header Bidding were dominated by bad practices, closed proprietary tech, poor standards, and little to no cooperation between competing companies. The result for publishers was headache - having to manually patch together various solutions from different companies and hope their developer didn’t spend 3 weeks coding the wrong thing.</p>
 
