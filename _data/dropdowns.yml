@@ -14,7 +14,7 @@
     bubble:
       - 
         title: Analytics
-        link: /dev-docs/analytcs.html
+        link: /dev-docs/analytics/analytics.html
       - 
         title: Modules
         link: /dev-docs/modules/index.html
@@ -119,6 +119,7 @@
     sectionId: 1
     sectionName: Support
     title: FAQ
+    link: 
     hasBubblePopOut: 1
     bubble: 
     -

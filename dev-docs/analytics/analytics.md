@@ -7,8 +7,8 @@ sidebarType: 0
 
 ---
 
-## Partners
+## Analytics
 
 
 ### Prebid.js
-<p class="main-text">All about the partners!</p>
+<p class="main-text">Prebid Analytics</p>
