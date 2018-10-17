@@ -40,7 +40,6 @@ gdpr_supported: true
 ### banner params
 
 {: .table .table-bordered .table-striped }
-
 | Name       | Scope    | Description                             | Example                                  | Type     |
 |------------|----------|-----------------------------------------|------------------------------------------|----------|
 | `appId`    | optional | Beachfront Exchange ID for banner bids. | `'3b16770b-17af-4d22-daff-9606bdf2c9c3'` | `string` |
