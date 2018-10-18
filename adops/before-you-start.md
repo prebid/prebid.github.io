@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Before You Start
 head_title: Getting Started with Prebid.js for Header Bidding
 description: An overview of Prebid.js, how it works, basic templates and examples, and more.
@@ -8,6 +8,7 @@ is_top_nav: yeah
 permalink: /adops.html
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
 <div class="bs-docs-section" markdown="1">

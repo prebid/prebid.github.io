@@ -148,10 +148,36 @@
   isLastSubSectionItem: 0
   isHeader: 1
   
-
+- sbSecId: 0
+  title: Post-Bid
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
   
-
-
+- sbSecId: 0
+  title: Intro to Post-Bid & Get Started
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 0
+  title: Analytics
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 0
+  title: Analytics for Prebid
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 0
+  title: Prebid Analytics With GA
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
 #prebid mobile sidebar items
  
 - sbSecId: 1
@@ -247,9 +273,176 @@
 - sbSecId: 1
   title: For Contributors
   link:
-  isLastSubSectionItem: 0 
+  isLastSubSectionItem: 0
+  isHeader: 0 
  
 - sbSecId: 1
   title: Add An Ad Server Adapter
   link:
   isLastSubSectionItem: 0 
+  isHeader: 0
+  
+  # overview side nav
+- sbSecId: 2
+  title: Intro
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 2
+  title: What is Prebid?
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 2
+  title: Project Principles
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 2
+  title: Prebid.org IP Policy
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 2
+  title: What is Prebid.org?
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 2
+  title: Prebid.org Membership
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 2
+  title: Prebid Management Committees
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 2
+  title: Prebid.org Header Bidding Wrapper Code of Conduct
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+  #Ad Ops Side Nav
+  
+- sbSecId: 3
+  title: Ad Ops Tutorials
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 3
+  title: Before You Start
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Send Top Bid to Adserver
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Send All Bids to the Ad Server
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid for AMP in DFP
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid Multi-Format in DFP
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid Native in DFP (Alpha)
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid Video in DFP
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid with the AppNexus Publisher Ad Server
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Enable Deals
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Reference
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 3
+  title: Docs by Ad Server
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+    
+- sbSecId: 3
+  title: Studies
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 3
+  title: Optimize Header bidding Setup
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Optimal Header Bidding Setup
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: How To Reduce The Latency of Header Bidding With Prebid.js
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: How to Simplify Line Item Setup
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
