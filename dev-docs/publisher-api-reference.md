@@ -828,6 +828,10 @@ set of ad server targeting that works across bidders. This standard targeting ap
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both scenarios are described below.
 
+{: .alert.alert-warning :}
+Note that once `standard.adserverTargeting` is specified,
+you'll need to fully manage the targeting -- the default `hb_` targeting variables will not be added.
+
 **Keyword targeting for all bidders**
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
