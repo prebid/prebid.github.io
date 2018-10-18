@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Project Principles
 head_title: Project Principles
 description: A set of principles that guide how we develop Prebid
@@ -7,6 +7,7 @@ pid: 0
 is_top_nav: yeah
 top_nav_section: overview
 nav_section: intro
+sidebarType: 2
 ---
 
 <div class="bs-docs-section" markdown="1">

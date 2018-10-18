@@ -24,7 +24,7 @@
         link: 
       - 
         title: React-Prebid
-        link: react-prebid/reactprebid.html
+        link: /react-prebid/reactprebid.html
       
   - 
     id: 1
@@ -197,7 +197,7 @@
     sectionId: 3
     sectionName: About
     title: Contributing
-    link: 
+    link: /contributing/contribute.html
     hasBubblePopOut: 0
     bubble:
   

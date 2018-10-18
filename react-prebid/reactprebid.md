@@ -7,4 +7,7 @@ sidebarType: 0
 
 ---
 
-## React-Prebid Landing Page
+
+## React-Prebid
+
+<p class="main-text">React-Prebid landing page.</p>

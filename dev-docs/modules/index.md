@@ -1,10 +1,11 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Modules
 description: Module Documentation
 pid: 27
 top_nav_section: dev_docs
 nav_section: reference
+sidebarType: 0
 ---
 
 <div class="bs-docs-section" markdown="1">

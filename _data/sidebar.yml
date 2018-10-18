@@ -149,6 +149,12 @@
   isHeader: 1
   
 - sbSecId: 0
+  title: Studies
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 0
   title: Post-Bid
   link:
   isLastSubSectionItem: 0
@@ -160,23 +166,6 @@
   isLastSubSectionItem: 1
   isHeader: 0
   
-- sbSecId: 0
-  title: Analytics
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  
-- sbSecId: 0
-  title: Analytics for Prebid
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 0
-  title: Prebid Analytics With GA
-  link:
-  isLastSubSectionItem: 1
-  isHeader: 0
   
 #prebid mobile sidebar items
  
