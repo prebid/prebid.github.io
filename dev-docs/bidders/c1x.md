@@ -11,6 +11,8 @@ hide: true
 biddercode: c1x
 
 biddercode_longer_than_12: false
+prebid_1_0_supported : true
+gdpr_supported: true
 
 ---
 
@@ -21,10 +23,10 @@ The C1X Header Bidding adaptor requires approval from the C1X team. Please reach
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `siteId` | required | Site ID from which the request is originating | `'999'` |
-| `pixelId` | optional | Publisher's pixel ID | `'12345'` |
-| `floorPriceMap` | optional | Minimum floor prices needed from the DSP's to enter the auction | `{'300x250': 4.00,'300x600': 3.00}` |
-| `dspid` | optional | DSP ID | `'4321'` |
-| `pageurl` | optional | Url of the webpage where the request is originating from | `'4321'` |
+| Name            | Scope    | Description                                                     | Example                             | Type     |
+|-----------------|----------|-----------------------------------------------------------------|-------------------------------------|----------|
+| `siteId`        | required | Site ID from which the request is originating                   | `'999'`                             | `string` |
+| `pixelId`       | optional | Publisher's pixel ID                                            | `'12345'`                           | `string` |
+| `floorPriceMap` | optional | Minimum floor prices needed from the DSP's to enter the auction | `{'300x250': 4.00,'300x600': 3.00}` | `object` |
+| `dspid`         | optional | DSP ID                                                          | `'4321'`                            | `string` |
+| `pageurl`       | optional | Url of the webpage where the request is originating from        | `'4321'`                            | `string` |

@@ -18,7 +18,7 @@ biddercode_longer_than_12: false
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `pbId` | required | The publisher ID from WideOrbit Programmatic Digital | `12345` |
-| `pId` | required | The placement ID from WideOrbit Programmatic Digital  | `67890` |
+| Name   | Scope    | Description                                          | Example | Type      |
+|--------|----------|------------------------------------------------------|---------|-----------|
+| `pbId` | required | The publisher ID from WideOrbit Programmatic Digital | `12345` | `integer` |
+| `pId`  | required | The placement ID from WideOrbit Programmatic Digital | `67890` | `integer` |

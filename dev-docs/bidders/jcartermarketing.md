@@ -13,9 +13,9 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `id` | required | | |
-| `siteID` | required | | |
-| `tier2SiteID` | optional | | |
-| `tier3SiteID` | optional | | |
+| Name          | Scope    | Description | Example | Type     |
+|---------------|----------|-------------|---------|----------|
+| `id`          | required |             |         | `string` |
+| `siteID`      | required |             |         | `string` |
+| `tier2SiteID` | optional |             |         | `string` |
+| `tier3SiteID` | optional |             |         | `string` |

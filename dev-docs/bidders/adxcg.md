@@ -14,8 +14,7 @@ gdpr_supported: true
 
 ### bid params
 
-{: .table .table-bordered .table-striped } 
-
-| Name | Scope    | Description        | Example  |
-| :--- | :----    | :----------        | :------  |
-| adzoneid   | required | adxcg zone id | `"1"` |
+{: .table .table-bordered .table-striped }
+| Name     | Scope    | Description   | Example | Type     |
+|----------|----------|---------------|---------|----------|
+| adzoneid | required | adxcg zone id | `'1'`   | `string` |

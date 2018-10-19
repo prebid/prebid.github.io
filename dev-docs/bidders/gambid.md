@@ -15,10 +15,10 @@ gdpr_supported: true
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                                   | Example              |
-|-------------------+----------+---------------------------------------------------------------+----------------------|
-| `supplyPartnerId` | required | ID of the supply partner you created in the Gambid dashboard. | `"12345"`            |
-| `rtbEndpoint`     | optional | If you have a whitelabel account on Gamoshi, specify it here. | `"rtb.mybidder.com"` |
+| Name              | Scope    | Description                                                   | Example              | Type     |
+|-------------------|----------|---------------------------------------------------------------|----------------------|----------|
+| `supplyPartnerId` | required | ID of the supply partner you created in the Gambid dashboard. | `'12345'`            | `string` |
+| `rtbEndpoint`     | optional | If you have a whitelabel account on Gamoshi, specify it here. | `'rtb.mybidder.com'` | `string` |
 
 This adapter only requires you to provide your supply partner ID, and optionally your RTB endpoint, in order to request
 bids from your Gamoshi Gambid account.

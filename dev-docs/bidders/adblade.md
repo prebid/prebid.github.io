@@ -17,12 +17,12 @@ biddercode_longer_than_12: false
 
 
 ### Note:
-The Adblade Header Bidding adaptor requires setup and approval from the Adblade team. Please go to [the Adblade publisher page](https://www.adblade.com/doc/publisher-solutions) for more details. 
+The Adblade Header Bidding adaptor requires setup and approval from the Adblade team. Please go to [the Adblade publisher page](https://www.adblade.com/doc/publisher-solutions) for more details.
 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `partnerId` | required | Your partner ID (provided by Adblade) | `39875` |
-| `bidfloor` | optional | The bid floor for units returned from Adblade | `0.50` |
+| Name | Scope | Description | Example | Type |
+| :--- | :---- | :---------- | :------ | :----- |
+| `partnerId` | required | Your partner ID (provided by Adblade) | `39875` | `integer` |
+| `bidfloor` | optional | The bid floor for units returned from Adblade | `0.50` | `float` |

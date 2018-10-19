@@ -119,6 +119,7 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Adyoulike</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Criteo</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>PubWise</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>REXRTB</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>AdOcean</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Media.net</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Peak226</h3></div>
@@ -126,6 +127,8 @@ description: Free and open source solutions for publishers to quickly implement 
     <div class="col-xs-6 col-sm-4"><h3>Unruly</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>RTB House</h3></div>
     <div class="col-xs-6 col-sm-4"><h3>Gamoshi</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>33Across</h3></div>
+    <div class="col-xs-6 col-sm-4"><h3>Yield Nexus</h3></div>
 
     <!-- END BIDDERS -->
     </div>

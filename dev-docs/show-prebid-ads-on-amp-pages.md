@@ -131,19 +131,27 @@ You can always get the latest version of the creative code below from [the AMP e
 
 To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
 
-{: .alert.alert-warning :}
-Iframes must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+{: .alert.alert-success :}
+The following example includes a transparent image as a placeholder which will allow you to place this at the top within the `body`. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
 
 {% highlight html %}
 
     <amp-iframe width="1" title="User Sync"
-                            height="1"
-                            sandbox="allow-scripts"
-                            frameborder="0"
-                            src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
+      height="1"
+      sandbox="allow-scripts"
+      frameborder="0"
+      src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
+      <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
     </amp-iframe>
 
 {% endhighlight %}
+
+## Debugging Tips
+To review that Prebid on AMP is working properly the following aspects can be looked at:
++ Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
++ Look for the Prebid server call in the network panel. You can open this URL in a new tab to view additional debugging information relating to the Prebid Server Stored Bid Request. If working properly, Prebid server will display the targeting JSON for AMP to use.
++ Look for the network call from the Ad Server to ensure that key values are being passed. (For DFP these are in the `scp` query string parameter in the network request)
++ Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present. It will sometimes be useful to manually edit the query string of the Prebid Server request to add this parameter.
 
 ## Related Topics
 

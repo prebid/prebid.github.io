@@ -15,6 +15,6 @@ gdpr_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `spaceId` | required | | |
+| Name      | Scope    | Description | Example | Type     |
+|-----------|----------|-------------|---------|----------|
+| `spaceId` | required |             |         | `string` |

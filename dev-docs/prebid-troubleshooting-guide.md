@@ -13,7 +13,10 @@ nav_section: troubleshooting
 # Prebid.js Troubleshooting Guide
 {:.no_toc}
 
-Use this guide to troubleshoot your Prebid.js integration. You can follow this guide sequentially to determine if Prebid.js is working as intended on your website. It takes you through the ad call from start to finish.
+{: .alert.alert-danger :}
+Prebid.org does not support any version of Prebid.js prior to version 1.0.
+
+Use this guide to troubleshoot your Prebid.js integration. You can follow this guide sequentially to determine whether Prebid.js is working as intended on your website. It takes you through the ad call from start to finish.
 
 * TOC
 {:toc}

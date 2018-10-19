@@ -14,7 +14,6 @@ media_types: native
 ### bid params
 
 {: .table .table-bordered .table-striped }
-
-| Name | Scope | Description | Example |
-| :--- | :---- | :----------  | :------  |
-| `ChannelID` | required | The channel ID from Bridgewell. | `CgUxMjMzOBIBNiIFcGVubnkqCQisAhD6ARoBOQ` |
+| Name        | Scope    | Description                     | Example                                    | Type     |
+|-------------|----------|---------------------------------|--------------------------------------------|----------|
+| `ChannelID` | required | The channel ID from Bridgewell. | `'CgUxMjMzOBIBNiIFcGVubnkqCQisAhD6ARoBOQ'` | `string` |

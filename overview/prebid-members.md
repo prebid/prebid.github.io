@@ -30,10 +30,12 @@ Prebid.org was developed to bring together the oversight, guidance, and developm
 
 ## Standard Tier
 
-### [PubMatic](https://pubmatic.com/products/header-bidding/)
 ### [AdLightning](https://www.adlightning.com/)
-### [Marfeel](https://www.marfeel.com/)
 ### [Criteo](https://www.criteo.com/for-publishers/products/criteo-direct-bidder/)
+### [Marfeel](https://www.marfeel.com/)
+### [Oath](https://www.oath.com/advertising/platforms/)
+### [OpenX](https://openx.com/)
+### [PubMatic](https://pubmatic.com/products/header-bidding/)
 ### [Sortable](https://sortable.com/)
 
 
