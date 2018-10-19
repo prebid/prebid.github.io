@@ -217,14 +217,15 @@ pbjs.setConfig({
 Follow the basic build instructions on the Gihub repo's main README. To include the module, an additional option must be added to the the gulp build command:
  
 {% highlight js %}
-gulp build --modules=currency,bidderAdapter1,bidderAdapter2
+gulp build --modules=currency,exampleBidAdapter
 {% endhighlight %}
  
 This command will build the following files:
  
 - build/dist/prebid-core.js - the base Prebid code
 - build/dist/currency.js - additional code for the currency feature
-- build/dist/prebid.js - a combined file with the base Prebid code and the DFP express code
+- build/dist/exampleBidAdapter.js - a specified bidder adapter
+- build/dist/prebid.js - a combined file with the base Prebid core code, bidder adapter code, and the currency module code.
  
 ### Step 2: Publish the package(s) to the CDN
 
