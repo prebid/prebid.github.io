@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Show Native Ads with Prebid.js
 description: Show Native Ads with Prebid.js
 pid: 0
