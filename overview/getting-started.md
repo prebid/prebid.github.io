@@ -1,6 +1,6 @@
 ---
 redirect_from: "/getting-started.html"
-layout: page
+layout: page_v2
 title: Getting Started
 head_title: Getting started with Prebid.js for header bidding
 description: An overview of Prebid, how it works, basic templates and examples, and more.

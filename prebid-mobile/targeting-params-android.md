@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Targeting Parameters
 description: Add Targeting Parameters
 pid: 1

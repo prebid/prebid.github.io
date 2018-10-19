@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Integrate with the Prebid Analytics API
 description: Integrate with the Prebid Analytics API
 pid: 28

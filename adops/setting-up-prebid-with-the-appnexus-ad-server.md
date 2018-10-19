@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid with the AppNexus Publisher Ad Server
 head_title: Setting up Prebid with the AppNexus Publisher Ad Server
 description: Setting up Prebid with the AppNexus Publisher Ad Server

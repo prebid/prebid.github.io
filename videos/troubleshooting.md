@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Header Bidding Videos - Troubleshooting
 description: Header Bidding Videos - Troubleshooting
 pid: 2

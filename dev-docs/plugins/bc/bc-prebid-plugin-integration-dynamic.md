@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Dynamic Plugin Integration With Brightcove Player - On the Page
 description: Ad Unit Reference
 top_nav_section: dev_docs

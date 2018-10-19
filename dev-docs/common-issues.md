@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Common Issues
 description: Common Issues for developers implementing Prebid.js Header Bidding.
 pid: 10

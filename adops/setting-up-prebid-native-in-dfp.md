@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid Native in DFP (Alpha)
 head_title: Setting up Prebid Native in DFP
 description: Setting up Prebid Native in DFP

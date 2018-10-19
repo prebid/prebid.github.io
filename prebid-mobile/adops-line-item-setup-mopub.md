@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setup Line Items for MoPub
 description: Setup line items for MoPub
 pid: 1

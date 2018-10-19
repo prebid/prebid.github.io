@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Module - DigiTrust
 description: Addition of DigiTrust to the Prebid package
 top_nav_section: dev_docs

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Intro to Post-Bid & Get Started
 head_title: What is post-bid and when to use it vs. header bidding.
 

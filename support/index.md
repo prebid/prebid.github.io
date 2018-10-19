@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Support
 description: Header Bidding Support - How to contact the Prebid Organization
 pid: 0

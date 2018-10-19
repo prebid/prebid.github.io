@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Enable Deals
 head_title: Enable Deals in Prebid for Header Bidding
 description: Enable Deals in Prebid for Header Bidding Analysis.

@@ -1,6 +1,6 @@
 ---
 redirect_to: "/overview/analytics.html"
-layout: page
+layout: page_v2
 title: Analytics with GA
 description: Prebid.js Analytics with GA
 pid: 30

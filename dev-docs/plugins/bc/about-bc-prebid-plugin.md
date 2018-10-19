@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player
 description: Overview
 top_nav_section: dev_docs

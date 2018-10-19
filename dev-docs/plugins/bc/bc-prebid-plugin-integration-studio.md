@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Plugin Integration with Brightcove Player Using Brightcove Player Studio
 description: Ad Unit Reference
 top_nav_section: dev_docs

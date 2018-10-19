@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Module - Publisher Common ID
 description: User ID persisted in first party domain
 top_nav_section: dev_docs

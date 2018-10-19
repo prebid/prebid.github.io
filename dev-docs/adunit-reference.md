@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Ad Unit Reference
 description: Ad Unit Reference
 top_nav_section: dev_docs

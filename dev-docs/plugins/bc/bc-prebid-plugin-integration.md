@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: How to Integrate and Configure Prebid Plugin for Brightcove (Videojs) Player
 description: Ad Unit Reference
 top_nav_section: dev_docs

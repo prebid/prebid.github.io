@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Price Granularity
 description: Price granularity
 pid: 2

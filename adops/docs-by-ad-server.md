@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Docs by Ad Server
 head_title: Docs by Ad Server
 description: Prebid implementation docs, broken out by Ad Server

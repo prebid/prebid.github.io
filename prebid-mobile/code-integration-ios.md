@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Code Integration
 description: Code Integration
 pid: 1

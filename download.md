@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Download Prebid.js
 description: Documentation on how to download Prebid.js for header bidding.
 

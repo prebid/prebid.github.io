@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: How to simplify line item setup
 head_title: How to simplify line item setup for header bidding with prebid.js
 

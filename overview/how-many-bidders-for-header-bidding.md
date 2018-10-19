@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Optimize header bidding setup
 head_title: Optimize header bidding setup
 

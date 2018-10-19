@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Getting Started with Prebid Mobile
 description: Getting Started with Prebid Mobile
 pid: 1

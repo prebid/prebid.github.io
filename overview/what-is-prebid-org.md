@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: What is Prebid.org?
 description: An overview of Prebid.org, the organization behind Prebid, and what our goals and missions are.
 pid: 1

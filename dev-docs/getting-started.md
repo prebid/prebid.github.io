@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Getting Started
 description: Dev docs for getting started with Prebid.js for header bidding
 pid: 0

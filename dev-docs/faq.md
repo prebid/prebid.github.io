@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: FAQ
 description: FAQ on Prebid.js for header bidding.
 pid: 40

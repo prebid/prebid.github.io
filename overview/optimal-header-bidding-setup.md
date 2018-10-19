@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Optimal Header Bidding Setup
 description: What is the optimal header bidding setup and some common problems.
 

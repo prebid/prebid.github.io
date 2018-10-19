@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Show Prebid Ads on AMP Pages
 description: Show Prebid Ads using Prebid Server and AMP RTC
 pid: 1

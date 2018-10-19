@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.org Header Bidding Wrapper Code of Conduct
 description: Full text of the Prebid.org Header Bidding Wrapper Code of Conduct
 top_nav_section: overview

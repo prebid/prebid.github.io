@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid 1.0 Publisher API Changes
 description: Description of the changes to the publisher facing API for Prebid 1.0
 top_nav_section: dev_docs

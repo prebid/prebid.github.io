@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Header Bidding Videos - All
 description: Header Bidding Videos - All Videos on One Page
 pid: 0

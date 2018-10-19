@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Conditional Ad Units
 description: Using labels for conditional ad units
 top_nav_section: dev_docs

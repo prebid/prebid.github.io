@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Add an Ad Server Adapter
 description: Add an Ad Server Adapter
 pid: 0

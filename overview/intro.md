@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: What is Prebid?
 description: An overview of Prebid, how it works, basic templates and examples, and more for header bidding.
 pid: 0

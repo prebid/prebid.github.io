@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Send All Bids to the Ad Server
 head_title: Send All Bids to the Ad Server
 description: Send all bids to the ad server for reporting and data analysis.

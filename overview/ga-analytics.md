@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Analytics with GA
 description: Prebid.js Analytics with GA for Header Bidding
 pid: 10

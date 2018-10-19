@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.org  IP Policy
 description: Prebid.org IP Policy 
 pid: 1

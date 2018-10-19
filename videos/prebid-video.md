@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Header Bidding Videos - Prebid Video
 description: Header Bidding Videos - Prebid Video
 pid: 3

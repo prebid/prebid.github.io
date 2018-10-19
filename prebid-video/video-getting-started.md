@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Getting Started with Video for Prebid.js
 description: Prebid Video Getting Started
 pid: 1

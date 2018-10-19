@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Module - Currency
 description: Converts bids to the ad server currency
 top_nav_section: dev_docs

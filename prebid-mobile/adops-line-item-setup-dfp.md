@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setup Line Items for DFP
 description: Setup Line Items for DFP
 pid: 0

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Send Top Bid to Adserver
 head_title: Getting Started with Prebid.js for Header Bidding
 description: An overview of Prebid.js, how it works, basic templates and examples, and more.

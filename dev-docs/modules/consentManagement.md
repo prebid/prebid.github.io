@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Module - GDPR ConsentManagement
 description: Add on module to consume and distribute consent information to bidder adapters
 top_nav_section: dev_docs

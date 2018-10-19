@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid for AMP in DFP
 head_title: Setting up Prebid for AMP in DFP
 description: Setting up Prebid for AMP in DFP

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Header Bidding Videos - Setup
 description: Header Bidding Videos - Setup
 pid: 1

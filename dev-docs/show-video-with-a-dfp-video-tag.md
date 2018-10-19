@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Show Video Ads with DFP
 description:
 pid: 0

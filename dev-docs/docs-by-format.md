@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Docs by Format
 description: Docs, broken out by creative format
 pid: 27

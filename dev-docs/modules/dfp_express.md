@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Module - DFP Express
 description: Simplified installation mechanism for publishers that have DFP in their pages
 top_nav_section: dev_docs

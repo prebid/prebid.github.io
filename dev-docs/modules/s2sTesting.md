@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Module - Server-to-Server Testing
 description: Adds A/B test support to ease analysis of server-side header bidding
 top_nav_section: dev_docs

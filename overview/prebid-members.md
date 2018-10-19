@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.org Membership
 description: Companies involved in Prebid.org
 pid: 2

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Analytics for Prebid
 description: Prebid.js Analytics Overview
 pid: 10

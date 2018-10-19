@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.js for Video Overview
 description: Prebid Video Overview
 pid: 0

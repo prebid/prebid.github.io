@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Management Committees
 description: Committees for the sub-projects of Prebid Org
 pid: 3

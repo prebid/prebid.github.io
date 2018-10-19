@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Plugins
 description: External Plugins
 top_nav_section: dev_docs

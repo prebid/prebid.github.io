@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Bidders' Params
 description: Documentation on bidders' params
 pid: 21

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Publisher API Reference
 description: Publisher API Reference for Prebid.js Header Bidding
 top_nav_section: dev_docs
