@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Setting up prebid.js with Smart Ad Server
-head_title: Setting up prebid.js with Smart Ad Server
-description: Setting up prebid.js with Smart Ad Server
+head_title: Setting up Prebid.js with Smart Ad Server
+description: Setting up Prebid.js with Smart Ad Server
 pid: 3
 hide: false
 top_nav_section: adops
