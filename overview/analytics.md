@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Analytics for Prebid
+title: Analytics for Prebid.js
 description: Prebid.js Analytics Overview
 pid: 10
 top_nav_section: overview
@@ -9,7 +9,7 @@ nav_section: analytics
 
 <div class="bs-docs-section" markdown="1">
 
-# Analytics for Prebid
+# Analytics for Prebid.js
 
 There are several analytics adapter plugins available to track header bidding performance for your site.
 
@@ -23,10 +23,10 @@ There are several analytics adapter plugins available to track header bidding pe
 | PrebidAnalytics by Roxot                                         | Paid, see [pricing](http://prebidanalytics.com/#pricing). | [Website](http://prebidanalytics.com/overview-examples)          |          0.22 |
 | PubWise                                                          | Free & Paid, see [pricing](https://pubwise.io/pricing/)                                    | [Website](https://pubwise.io/pubwise/)                                   |          0.24 |
 | Assertive Yield (contact for adapter) | Free to try (Large accounts $0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) | |
-| RealVu                                                           | Free                                                                                | [Website](https://www.realvu.com/rvaa/)                          |               |
-| Vuble                                                            | Contact vendor                                                                      | [Website](https://vuble.tv/us/prebid/)                           |               |
-| YuktaMedia Analytics                                                      | Contact vendor                                                                      | [website](https://yuktamedia.com/publishers/prebid/)                                        | 1.0.0 |
-| Kargo Analytics                                                      | Contact vendor                                                                      | [website](https://kargo.com/)                                        | |
+| RealVu                                                           | Free                                                                                | [Website](https://www.realvu.com/rvaa/)                          | 1.8 |
+| Vuble                                                            | Contact vendor                                                                      | [Website](https://vuble.tv/us/prebid/)                           |  1.8  |
+| YuktaMedia Analytics                                                      | Contact vendor                                                                      | [website](https://yuktamedia.com/publishers/prebid/)                                        | 1.0 |
+| Kargo Analytics                                                      | Contact vendor                                                                      | [website](https://kargo.com/)                                        | 1.20 |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
