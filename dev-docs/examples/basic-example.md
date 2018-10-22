@@ -5,6 +5,8 @@ left_nav_override: Examples
 description: Basic Prebid.js Example
 top_nav_section: dev_docs
 nav_section: quick-start
+sidebarType: 0
+
 
 about:
 - Asynchronous Prebid.js integration with single DFP ad slot

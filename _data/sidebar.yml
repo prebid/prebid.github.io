@@ -24,73 +24,73 @@
  
 - sbSecId: 0
   title: Dev Tips
-  link:
+  link: /dev-docs/troubleshooting-tips.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 0
   title: Common Issues
-  link:
+  link: /dev-docs/common-issues.html
   isLastSubSectionItem: 0
   isHeader: 0
  
 - sbSecId: 0
   title: Prebid.js Troubleshooting Guide
-  link:
+  link: /dev-docs/prebid-troubleshooting-guide.html
   isLastSubSectionItem: 1
   isHeader: 0
  
 - sbSecId: 0
   title: Reference
-  link:
+  link: /dev-docs/publisher-api-reference.html
   isLastSubSectionItem: 0
   isHeader: 1
  
 - sbSecId: 0
   title: Publisher API Reference
-  link:
+  link: /dev-docs/publisher-api-reference.html
   isLastSubSectionItem: 0
   isHeader: 0
  
 - sbSecId: 0
   title: Ad Unit Reference
-  link:
+  link: /dev-docs/adunit-reference.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 0
   title: Bidder's Params
-  link:
+  link: /dev-docs/bidders.html
   isLastSubSectionItem: 1
   isHeader: 0
  
 - sbSecId: 0
   title: FAQ
-  link:
+  link:/dev-docs/faq.html
   isLastSubSectionItem: 0
   isHeader: 1
  
 - sbSecId: 0
   title: Prebid 1.0 Publisher API Changes
-  link:
+  link: /dev-docs/prebid-1.0-API.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 0
   title: Prebid Modules
-  link:
+  link: /dev-docs/modules/
   isLastSubSectionItem: 1
   isHeader: 0 
  
 - sbSecId: 0
   title: Features
-  link:
+  link: 
   isLastSubSectionItem: 0
   isHeader: 1 
  
 - sbSecId: 0
   title: Conditional Ad Units
-  link:
+  link: /dev-docs/conditional-ad-units.html
   isLastSubSectionItem: 1
   isHeader: 0
  
@@ -102,13 +102,13 @@
  
 - sbSecId: 0
   title: How To Add A New Bidder Adapter 
-  link:
+  link: /dev-docs/bidder-adaptor.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 0
   title: Integrate With The Prebid Analytics API
-  link:
+  link: /dev-docs/integrate-with-the-prebid-analytics-api.html
   isLastSubSectionItem: 1
   isHeader: 0
  
@@ -120,7 +120,7 @@
  
 - sbSecId: 0
   title: Plugins
-  link:
+  link: /dev-docs/plugins/
   isLastSubSectionItem: 1
   isHeader: 0
   
@@ -132,38 +132,38 @@
  
 - sbSecId: 0
   title: Analytics For Prebid
-  link:
+  link: /overview/analytics.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 0
   title: Prebid Analytics for GA
-  link:
+  link: /overview/ga-analytics.html
   isLastSubSectionItem: 1
   isHeader: 0 
  
 - sbSecId: 0
   title: Studies
-  link:
+  link: 
   isLastSubSectionItem: 0
   isHeader: 1
   
 - sbSecId: 0
   title: Studies
-  link:
+  link: /studies/studies.html
   isLastSubSectionItem: 1
   isHeader: 0
   
 - sbSecId: 0
   title: Post-Bid
-  link:
+  link: 
   isLastSubSectionItem: 0
   isHeader: 1
   
 - sbSecId: 0
   title: Intro to Post-Bid & Get Started
-  link:
-  isLastSubSectionItem: 1
+  link: /overview/what-is-post-bid.html
+  isLastSubSectionItem: 0
   isHeader: 0
   
   
@@ -171,19 +171,19 @@
  
 - sbSecId: 1
   title: Prebid Mobile Overview
-  link:
+  link: /prebid-mobile/prebid-mobile.html
   isLastSubSectionItem: 0
   isHeader: 0 
 
 - sbSecId: 1
   title: Getting Started With Prebid Mobile
-  link:
+  link: /prebid-mobile/prebid-mobile-pbs.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 1
   title: Prebid Mobile Guide toEuropean Ad Inventory and Providing Notice, Choice and Tranparency
-  link:
+  link: /prebid-mobile/gdpr.html
   isLastSubSectionItem: 1
   isHeader: 0 
  
@@ -195,19 +195,19 @@
  
 - sbSecId: 1
   title: Code Integration
-  link:
+  link: /prebid-mobile/code-integration-ios.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 1
   title: Targeting Parameters
-  link:
+  link: /prebid-mobile/targeting-params-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
  
 - sbSecId: 1
   title: Logging and Troubleshooting
-  link:
+  link:/prebid-mobile/logging-troubleshooting-ios.html
   isLastSubSectionItem: 1
   isHeader: 0 
  
@@ -219,19 +219,19 @@
  
 - sbSecId: 1
   title: Code Integration
-  link:
+  link:/prebid-mobile/code-integration-android.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 1
   title: Targeting Parameters
-  link:
+  link: /prebid-mobile/targeting-params-android.html
   isLastSubSectionItem: 0
   isHeader: 0
  
 - sbSecId: 1
   title: Logging and Troubleshooting
-  link:
+  link: /prebid-mobile/logging-troubleshooting-android.html
   isLastSubSectionItem: 1
   isHeader: 0 
  
@@ -243,31 +243,31 @@
  
 - sbSecId: 1
   title: Setup Line items For DFP
-  link:
+  link: /prebid-mobile/adops-line-item-setup-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0 
  
 - sbSecId: 1
   title: Setup Line Items For MoPub
-  link:
+  link: /prebid-mobile/adops-line-item-setup-mopub.html
   isLastSubSectionItem: 0 
   isHeader: 0
  
 - sbSecId: 1
   title: Price Granularity
-  link:
+  link: /prebid-mobile/adops-price-granularity.html
   isLastSubSectionItem: 1
   isHeader: 0 
  
 - sbSecId: 1
   title: For Contributors
-  link:
+  link: /prebid-mobile/add-an-ad-server-adapter.html
   isLastSubSectionItem: 0
   isHeader: 1
  
 - sbSecId: 1
   title: Add An Ad Server Adapter
-  link:
+  link: /dev-docs/bidder-adaptor.html
   isLastSubSectionItem: 0 
   isHeader: 0
   
@@ -280,43 +280,43 @@
   
 - sbSecId: 2
   title: What is Prebid?
-  link:
+  link: /overview/intro.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 2
   title: Project Principles
-  link:
+  link: /principles.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 2
   title: Prebid.org IP Policy
-  link:
+  link: /overview/ip-policy.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 2
   title: What is Prebid.org?
-  link:
+  link: /overview/what-is-prebid-org.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 2
   title: Prebid.org Membership
-  link:
+  link: /overview/prebid-members.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 2
   title: Prebid Management Committees
-  link:
+  link: /overview/prebid-management-committees.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 2
   title: Prebid.org Header Bidding Wrapper Code of Conduct
-  link:
+  link: /wrapper_code_of_conduct.html
   isLastSubSectionItem: 1
   isHeader: 0
   
@@ -330,55 +330,61 @@
   
 - sbSecId: 3
   title: Before You Start
-  link:
+  link: /adops.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Send Top Bid to Adserver
-  link:
+  link: /adops/step-by-step.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Send All Bids to the Ad Server
-  link:
+  link: /adops/send-all-bids-adops.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Setting up Prebid for AMP in DFP
-  link:
+  link: /adops/setting-up-prebid-for-amp-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Setting up Prebid Multi-Format in DFP
-  link:
+  link: /adops/setting-up-prebid-multi-format-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Setting up Prebid Native in DFP (Alpha)
-  link:
+  link: /adops/setting-up-prebid-native-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Setting up Prebid Video in DFP
-  link:
+  link: /adops/setting-up-prebid-video-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Setting up Prebid with the AppNexus Publisher Ad Server
-  link:
+  link: /adops/setting-up-prebid-with-the-appnexus-ad-server.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid.js with Smart Ad Server
+  link: /adops/setting-up-prebidjs-with-Smart-Ad-Server.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Enable Deals
-  link:
+  link: /adops/deals.html
   isLastSubSectionItem: 1
   isHeader: 0
   
@@ -390,7 +396,7 @@
   
 - sbSecId: 3
   title: Docs by Ad Server
-  link:
+  link: /adops/docs-by-ad-server.html
   isLastSubSectionItem: 1
   isHeader: 0
     
@@ -402,25 +408,25 @@
   
 - sbSecId: 3
   title: Optimize Header bidding Setup
-  link:
+  link: /overview/how-many-bidders-for-header-bidding.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: Optimal Header Bidding Setup
-  link:
+  link: /overview/optimal-header-bidding-setup.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: How To Reduce The Latency of Header Bidding With Prebid.js
-  link:
+  link: /overview/how-to-reduce-latency-of-header-bidding.html
   isLastSubSectionItem: 0
   isHeader: 0
   
 - sbSecId: 3
   title: How to Simplify Line Item Setup
-  link:
+  link: /overview/how-to-simplify-line-item-setup.html
   isLastSubSectionItem: 1
   isHeader: 0
   

@@ -1,16 +1,42 @@
 {% include head.html %}
-{% include main_nav.html %}
+{% include nav.html %}
 
 <div class="container bs-docs-container">
     
     <div class="row">
 
         <!-- Left nav -->
-        <div class="col-md-3">
-            <div class="docs-sidebar">
-                {% include left_nav.html %}
-            </div>
-        </div>
+        <div class="col-sm-2 sidebar">
+				
+				{% for item in site.data.sidebar %}
+				
+					{% if item.sbSecId == page.sidebarType %}
+					
+					
+						{% if item.isHeader == 1 %}
+						
+							<h4 class="list-group-item-header">{{item.title}}</h4>
+							
+						{% else %}
+				
+							<a href="{{item.link}}" class="list-group-item group-title">
+								<h4 class="list-group-item">{{item.title}}</h4>
+							</a>
+							
+							{% if item.isLastSubSectionItem == 1 %}
+								<hr>
+							{% endif %}
+						
+						
+						{% endif %}
+					
+					{% endif %}
+					
+				{% endfor %}
+				
+				
+			</div>
+
 
         <!-- Example tabs and main content -->
         <div class="col-md-9">
