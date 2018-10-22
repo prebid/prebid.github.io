@@ -5,6 +5,7 @@ description: Prebid Video Overview
 pid: 0
 top_nav_section: pbjs-video
 nav_section: pbjs-video-get-started
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">

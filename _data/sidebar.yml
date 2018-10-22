@@ -98,7 +98,7 @@
   title: Adapters
   link:
   isLastSubSectionItem: 0
-  isHeader: 0 
+  isHeader: 1 
  
 - sbSecId: 0
   title: How To Add A New Bidder Adapter 
@@ -167,7 +167,7 @@
   isHeader: 0
   
   
-#prebid mobile sidebar items
+#prebid mobile 
  
 - sbSecId: 1
   title: Prebid Mobile Overview
@@ -234,7 +234,7 @@
   link: /prebid-mobile/logging-troubleshooting-android.html
   isLastSubSectionItem: 1
   isHeader: 0 
- 
+  
 - sbSecId: 1
   title: For Ad Ops
   link:
@@ -317,7 +317,7 @@
 - sbSecId: 2
   title: Prebid.org Header Bidding Wrapper Code of Conduct
   link: /wrapper_code_of_conduct.html
-  isLastSubSectionItem: 1
+  isLastSubSectionItem: 0
   isHeader: 0
   
   #Ad Ops Side Nav
@@ -429,6 +429,40 @@
   link: /overview/how-to-simplify-line-item-setup.html
   isLastSubSectionItem: 1
   isHeader: 0
+  
+#prebid video 
+
+- sbSecId: 4
+  title: Prebid Video
+  link: 
+  isLastSubSectionItem: 1
+  isHeader: 1
+  
+- sbSecId: 4
+  title: Prebid.js for Video Overview
+  link: /prebid-video/video-overview.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 4
+  title: Getting Started with Video for Prebid.js
+  link: /prebid-video/video-getting-started.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 4
+  title: Examples
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 4
+  title: Prebid.js Video Examples
+  link: /examples/video/
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+
   
   
 

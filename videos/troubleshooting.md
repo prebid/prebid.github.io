@@ -6,6 +6,7 @@ pid: 2
 is_top_nav: yeah
 top_nav_section: videos
 nav_section: videos
+sidebarType: 0
 ---
 
 <div class="bs-docs-section" markdown="1">

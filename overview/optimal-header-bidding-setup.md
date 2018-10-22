@@ -7,6 +7,7 @@ pid: 10
 
 top_nav_section: overview
 nav_section: studies
+sidebarType: 2
 
 ---
 

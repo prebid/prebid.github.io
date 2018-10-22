@@ -265,7 +265,7 @@ i {
 	font-size: 14px;
 	background-color: transparent;
 	margin:0;
-	padding: 3px 0 8px 5px;
+	padding: 3px 0 3px 5px;
 }
 
 a.list-group-item:hover,
@@ -284,7 +284,6 @@ button.list-group-item:focus {
 .sidebar { 
 	margin-top: 30px;
 }
-
 
 
 

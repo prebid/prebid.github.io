@@ -7,6 +7,7 @@ description: An overview of Prebid, how it works, basic templates and examples, 
 pid: 10
 top_nav_section: overview
 nav_section: intro
+sidebarType: 2
 ---
 
 <div class="bs-docs-section" markdown="1">

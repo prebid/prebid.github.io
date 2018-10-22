@@ -9,6 +9,7 @@ pid: 60
 
 top_nav_section: overview
 nav_section: postbid
+sidebarType: 2
 
 ---
 

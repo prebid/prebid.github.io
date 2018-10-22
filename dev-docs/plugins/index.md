@@ -5,6 +5,7 @@ description: External Plugins
 top_nav_section: dev_docs
 nav_section: interfaces
 pid: 28
+sidebarType: 0
 ---
 
 <div class="bs-docs-section" markdown="1">

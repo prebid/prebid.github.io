@@ -5,6 +5,7 @@ description: Using labels for conditional ad units
 top_nav_section: dev_docs
 nav_section: features
 hide: false
+sidebarType: 0
 ---
 
 <div class="bs-docs-section" markdown="1">

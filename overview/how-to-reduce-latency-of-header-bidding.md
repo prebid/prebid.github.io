@@ -6,6 +6,7 @@ description: A walkthrough of why header bidding implementations cause latency. 
 pid: 40
 top_nav_section: overview
 nav_section: studies
+sidebarType: 2
 ---
 
 <div class="bs-docs-section" markdown="1">

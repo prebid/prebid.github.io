@@ -6,6 +6,7 @@ pid: 1
 is_top_nav: yeah
 top_nav_section: pbjs-video
 nav_section: pbjs-video-get-started
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">

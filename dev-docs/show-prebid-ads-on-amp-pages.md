@@ -6,6 +6,7 @@ pid: 1
 is_top_nav: yeah
 top_nav_section: dev_docs
 nav_section: prebid-amp
+sidebarType: 0
 ---
 
 <div class="bs-docs-section" markdown="1">
