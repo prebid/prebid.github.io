@@ -6,6 +6,7 @@ description: An overview of Prebid.js, how it works, basic templates and example
 pid: 1
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
 <div class="bs-docs-section" markdown="1">

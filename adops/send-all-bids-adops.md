@@ -6,6 +6,7 @@ description: Send all bids to the ad server for reporting and data analysis.
 pid: 2
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
 <div class="bs-docs-section" markdown="1">

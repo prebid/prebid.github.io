@@ -6,6 +6,7 @@ description: Prebid implementation docs, broken out by Ad Server
 pid: 0
 top_nav_section: adops
 nav_section: reference
+sidebarType: 3
 ---
 
 <div class="bs-docs-section" markdown="1">

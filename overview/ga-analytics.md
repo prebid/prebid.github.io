@@ -5,7 +5,7 @@ description: Prebid.js Analytics with GA for Header Bidding
 pid: 10
 top_nav_section: overview
 nav_section: analytics
-sidebarType: 2
+sidebarType: 0
 ---
 
 <div class="bs-docs-section" markdown="1">

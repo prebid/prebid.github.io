@@ -7,6 +7,7 @@ pid: 3
 hide: false
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
 <div class="bs-docs-section" markdown="1">

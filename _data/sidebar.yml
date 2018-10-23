@@ -266,8 +266,8 @@
   isHeader: 1
  
 - sbSecId: 1
-  title: Add An Ad Server Adapter
-  link: /dev-docs/bidder-adaptor.html
+  title: Add A Ad Server Adapter
+  link: add-an-ad-server-adapter.html
   isLastSubSectionItem: 0 
   isHeader: 0
   
