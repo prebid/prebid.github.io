@@ -21,34 +21,33 @@ For more information about DFP native ad setup, see the [DFP native ads document
 * TOC
 {:toc}
 
-## 1. Add a native ad unit
+## 1. Create a native ad unit
 
-You can specify a size for the ad unit, or specify the "fluid" size.  In this case we'll go with **Fluid**.
+Under **Display > Native**, select the **HTML & CSS editor** option.
+
+## 2. Define ad settings
+
+For **Ad size** you can specify a specific size for the ad unit or specify the "fluid" size.  In this case we'll go with **Fluid**.
+
+Select **New format** under **Custom format**. (If you've already created an ad unit with the format you want, you can select **Existing format** and select the format to apply to this ad unit.)
+
+Click **Add Variable**. Use the **File** type and create a **ClickthroughURL** variable.
 
 {: .pb-img.pb-md-img :}
-![prebid native adunit]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_adunit.png)
+![native adunit settings]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_settings.png)
 
-## 2. Create a custom native ad format
+## 3. Style your native ad
 
-For Prebid, create a [custom native ad format](https://support.google.com/dfp_sb/answer/6366911?hl=en).
-
-Make sure to remove all variables except **Click-through URL**.
+You can add HTML and CSS to define your native ad template. To allow for native impression trackers and click trackers within a Prebid native creative template, you'll need to include a CDN-hosted script in the HTML, as shown here (see Example HTML below for the full script):
 
 {: .pb-img.pb-md-img :}
-![prebid native format]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid-native-format.png)
-
-## 3. Create new native style
-
-In this example, we're targeting `"prebid_native_adunit"`, so the *Size* is set to **Fluid**.
-
-Add the HTML and CSS that define your native ad template. Note that `%%PATTERN%%` macros can be included in either field, and the HTML can contain JavaScript.  For more information, see the [DFP native styles docs](https://support.google.com/dfp_premium/answer/6366914).
+![native ad styling]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_styling.png)
 
 {: .alert.alert-danger :}
 **Native impression and click tracking requirements**  
-You must include the `postMessage` and `onclick` JavaScript snippets as shown in the example code below so that impression trackers and click trackers will fire.
+Any link that should fire a click tracker needs to include a `data-adid` attribute set to `hb_adid`. This attribute is required because the script needs the bidId/adId, which can be filled in only by the targeting key on the ad server, not from within the script.
 
-{: .pb-img.pb-lg-img :}
-![Native ad content]({{site.github.url}}/assets/images/ad-ops/dfp-native/native-content-ad.png)
+If this creative is served, it will fire impression trackers on load. Clicking the link will fire the click tracker and the link will work as normal, in this case going to the `hb_native_linkurl` destination.
 
 Example HTML and CSS:
 
@@ -57,19 +56,16 @@ Example HTML and CSS:
 <div class="sponsored-post">
   <div class="thumbnail"></div>
   <div class="content">
-    <h1><a href="%%CLICK_URL_UNESC%%%%PATTERN:hb_native_linkurl%%" target="_blank" onclick="window.track('click', '%%PATTERN:hb_adid%%');">%%PATTERN:hb_native_title%%</a></h1>
+    <h1><a href="%%CLICK_URL_UNESC%%%%PATTERN:hb_native_linkurl%%" target="_blank" class="pb-click" pbAdId="%%PATTERN:hb_adid%%">%%PATTERN:hb_native_title%%</a></h1>
     <p>%%PATTERN:hb_native_body%%</p>
     <div class="attribution">%%PATTERN:hb_native_brand%%</div>
   </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-trk.js"></script>
 <script>
-window.track = function (action, adId) {
-	var message = {message: 'Prebid Native', adId: adId};
-	if (action === 'click') { message.action = 'click'; }
-	window.parent.postMessage(JSON.stringify(message), '*');
-}
-window.track('impression', '%%PATTERN:hb_adid%%');
+  	let pbNativeTagData = {};
+  	pbNativeTagData.pubUrl = "%%PATTERN:url%%";
+  	window.pbNativeTag.startTrackers(pbNativeTagData);
 </script>
 
 {% endhighlight %}
