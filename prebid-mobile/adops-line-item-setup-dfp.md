@@ -5,6 +5,7 @@ description: Setup Line Items for DFP
 pid: 0
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
+sidebarType: 1
 ---
 
 <div class="bs-docs-section" markdown="1">

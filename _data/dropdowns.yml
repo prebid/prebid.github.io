@@ -206,7 +206,7 @@
     sectionId: 3
     sectionName: About Prebid
     title: About Prebid Org
-    link: what-is-prebid-org.html
+    link: /overview/what-is-prebid-org.html
     hasBubblePopOut: 0
     bubble:
   

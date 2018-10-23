@@ -4,7 +4,8 @@ title: Add an Ad Server Adapter
 description: Add an Ad Server Adapter
 pid: 0
 top_nav_section: prebid-mobile
-nav_section: prebid-mobile-contributors 
+nav_section: prebid-mobile-contributors
+sidebarType: 1
 ---
 
 <div class="bs-docs-section" markdown="1">

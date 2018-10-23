@@ -5,6 +5,7 @@ description: Logging & Troubleshooting
 pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
+sidebarType: 1
 ---
 
 <div class="bs-docs-section" markdown="1">
