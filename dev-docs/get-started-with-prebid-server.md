@@ -5,6 +5,8 @@ description: Get Started with Prebid Server
 pid: 27
 top_nav_section: dev_docs
 nav_section: prebid-server
+sidebarType: 5
+
 ---
 
 <div class="bs-docs-section" markdown="1">

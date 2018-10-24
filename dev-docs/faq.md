@@ -5,6 +5,7 @@ description: FAQ on Prebid.js for header bidding.
 pid: 7
 top_nav_section: dev_docs
 nav_section: reference
+sidebarType: 0
 ---
 
 <div class="bs-docs-section" markdown="1">

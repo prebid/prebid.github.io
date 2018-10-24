@@ -42,7 +42,7 @@
  
 - sbSecId: 0
   title: Reference
-  link: /dev-docs/publisher-api-reference.html
+  link: 
   isLastSubSectionItem: 0
   isHeader: 1
  
@@ -66,9 +66,15 @@
  
 - sbSecId: 0
   title: FAQ
-  link: /dev-docs/faq.html
+  link: 
   isLastSubSectionItem: 0
   isHeader: 1
+  
+- sbSecId: 0
+  title: General FAQ
+  link: /dev-docs/faq.html
+  isLastSubSectionItem: 0
+  isHeader: 0
  
 - sbSecId: 0
   title: Prebid 1.0 Publisher API Changes
@@ -168,9 +174,15 @@
   
   
 #prebid mobile 
+
+- sbSecId: 1
+  title: Prebid Mobile
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
  
 - sbSecId: 1
-  title: Prebid Mobile Overview
+  title: Overview
   link: /prebid-mobile/prebid-mobile.html
   isLastSubSectionItem: 0
   isHeader: 0 
@@ -261,7 +273,7 @@
  
 - sbSecId: 1
   title: For Contributors
-  link: /prebid-mobile/add-an-ad-server-adapter.html
+  link: 
   isLastSubSectionItem: 0
   isHeader: 1
  
@@ -407,7 +419,7 @@
   isHeader: 1
   
 - sbSecId: 3
-  title: Optimize Header bidding Setup
+  title: Optimize Header Bidding Setup
   link: /overview/how-many-bidders-for-header-bidding.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -464,11 +476,147 @@
   
 #prebid server
 
-- sbSecID: 5
+- sbSecId: 5
   title: Prebid Server
   link: 
   isLastSubSectionItem: 0
-  isHeader: 5
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Bidders  
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+ 
+- sbSecId: 5
+  title: Overview
+  link: 
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Developers  
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+ 
+- sbSecId: 5
+  title: Add A New Analytics Module
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Add A New Bidder
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Automated Tests
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Code Reviews
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Configuration
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Contributing
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Cookie Syncs
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Deployment
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: GDPR
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 5
+  title: Stored Request
+  link: 
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Endpoints  
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 5
+  title: Params
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Starting Cookie Syncs
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Bidders
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Bidder's Name
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: AMP
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Auction
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Set UID
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 5
+  title: Status
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+
+  
+
 
 
   
