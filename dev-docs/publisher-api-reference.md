@@ -15,10 +15,7 @@ sidebarType: 0
 This page has documentation for the public API methods of Prebid.js.
 
 {: .alert.alert-danger :}
-**Note:** As of **September 27, 2018**, versions of Prebid.js prior to 1.0 will be unavailable and no longer supported.
-
-{: .alert.alert-warning :}
-Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{site.baseurl}}/dev-docs/publisher-api-reference-old.html) is available.
+**Note:** Versions of Prebid.js prior to 1.0 are no longer supported.
 
 <a name="module_pbjs"></a>
 
@@ -54,7 +51,6 @@ Some methods were deprecated in Prebid 1.0. [Archived pre-1.0 documentation]({{s
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
     * [mediaTypePriceGranularity](#setConfig-MediaType-Price-Granularity)
-    * [cookieSyncDelay](#setConfig-Cookie-Sync-Delay)
     * [s2sConfig](#setConfig-Server-to-Server) (server-to-server config)
     * [userSync](#setConfig-Configure-User-Syncing)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
@@ -833,18 +829,16 @@ set of ad server targeting that works across bidders. This standard targeting ap
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both scenarios are described below.
 
+{: .alert.alert-warning :}
+Note that once `standard.adserverTargeting` is specified,
+you'll need to fully manage the targeting -- the default `hb_` targeting variables will not be added.
+
 **Keyword targeting for all bidders**
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
 Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
 In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
-
-   {: .alert.alert-warning :}
-   Note that `hb_cache_id` will be the video ad server targeting variable going forward.
-   In previous versions, mobile used `hb_cache_id` and video used `hb_uuid`. There will be a
-   transition period where both of these values are provided to the ad server.
-   Please begin converting video creatives to use `hb_cache_id`.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
 
@@ -1160,6 +1154,8 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 
 See below for usage examples.
 
+Core config:
+
 + [Debugging](#setConfig-Debugging)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
@@ -1175,8 +1171,12 @@ See below for usage examples.
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
+Module config: these options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
+
++ [Currency module]({{site.baseurl}}/dev-docs/modules/currency.html#currency-config-options)
+
 {: .alert.alert-warning :}
-The `options` param object must be JSON - no JavaScript functions are allowed.
+The `options` param object to `setConfig()` must be JSON - no JavaScript functions are allowed.
 
 <a name="setConfig-Debugging" />
 
@@ -1286,17 +1286,6 @@ Set the publisher's domain where Prebid is running, for cross-domain iframe comm
 {% highlight js %}
 pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
 {% endhighlight %}
-
-<a name="setConfig-Cookie-Sync-Delay" />
-
-#### Cookie Sync Delay
-
-Set a delay (in milliseconds) for requesting cookie sync to stay out of the critical path of page load:
-
-{% highlight js %}
-pbjs.setConfig({ cookieSyncDelay: 100 )
-{% endhighlight %}
-
 
 <a name="setConfig-Price-Granularity" />
 
@@ -1438,8 +1427,6 @@ Additional information of these properties:
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Defaults to `false`.  If set to `true`, Prebid.js will overwrite all links on page to redirect through a persistent cookie URL and will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies. |
-| `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
 
 *Currently supported vendors are: appnexus & rubicon
 *Note - When using defaultVendor option, accountId and bidders properties still need to be defined.
@@ -1621,7 +1608,7 @@ The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to de
 - The required `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
 - If a label conditional (e.g. `labelAny`) doesn't exist on an ad unit, it is automatically included in all requests for bids.
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
-- The `adUnit.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.sizes`.
+- The `adUnit.mediaTypes.banner.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.mediaTypes.banner.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.mediaTypes.banner.sizes`. (Note: size config will also operate on `adUnit.sizes`, however `adUnit.sizes` is deprecated in favor of `adUnit.mediaTypes`)
 
 <a name="sizeConfig-Example" />
 

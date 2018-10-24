@@ -41,6 +41,13 @@ Example: Changing ID expiration to 1 year
      });
 {% endhighlight %}
 
+### User Opt-Out
+
+Individual user opt-out is supported by setting the `_pubcid_optout` cookie in the publisher's domain.  When this cookie is set, then Publisher Common ID is neither read nor updated, and it will not be made available to any adapters.
+
+* Opt-In - `_pubcid_output` cookie is not present or set to 0
+* Opt-Out - `_pubcid_output` cookie is set to 1
+
 ### Build the package
  
 #### Step 1: Bundle the module code

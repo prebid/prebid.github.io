@@ -2,7 +2,7 @@
 layout: page_v2
 title: Release Notes
 description: Release Notes
-pid: 40
+pid: 6
 top_nav_section: dev_docs
 nav_section: reference
 ---

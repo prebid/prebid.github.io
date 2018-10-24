@@ -10,18 +10,24 @@ hide: true
 
 biddercode: smartadserver
 
-biddercode_longer_than_12: false
+biddercode_longer_than_12: true
 
 prebid_1_0_supported: true
 media_types: video
 gdpr_supported: true
 
 ---
+### "Send All Bids" Ad Server Keys:
+(truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
+
+`hb_pb_smartadserver`
+`hb_adid_smartadserve`
+`hb_size_smartadserve`
 
 ### Note:
 The Smart bidder adaptor requires setup and approval from the Smart Service team. Please reach out to your account manager for more information and start using it.
 
-### bid params
+### Bid params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                                                                    | Example                                                           | Type      |

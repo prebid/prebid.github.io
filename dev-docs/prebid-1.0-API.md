@@ -20,7 +20,7 @@ This document describes the changes to the Publisher API for Prebid.js version 1
 
 ## Removed Functions and Variables
 
-The following functions and variables will be removed in 1.0:
+The following functions and variables were removed as of 1.0:
 
 - All `pbjs._*` variables, including:
   - `pbjs._winningBids`
@@ -34,16 +34,16 @@ The following functions and variables will be removed in 1.0:
 - `pbjs.buildMasterVideoTagFromAdserverTag` in favor of [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
 - `adUnit.sizeMapping` in favor of [`pbjs.setConfig({sizeConfig:[ ... ]})`]({{site.baseurl}}/dev-docs/prebid-1.0-API.html#size-mapping-changes)
 
-Other methods are being removed as part of the [new `setConfig` API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) - for details, see [the section below describing the new `pbjs.setConfig` API](#pbjs.setConfig).
+Other methods were removed as part of the [new `setConfig` API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) - for details, see [the section below describing the new `pbjs.setConfig` API](#pbjs.setConfig).
 
 {: .alert.alert-success :}
-For a complete list of methods that will be removed, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
+For a complete list of methods that were removed, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
 
 <a name="pbjs.setConfig" />
 
 ## Legacy APIs replaced by `pbjs.setConfig`
 
-For 1.0, the following APIs will be removed in favor of a generic "options" param object passed to [`pbjs.setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig):
+For 1.0, the following APIs were removed in favor of a generic "options" param object passed to [`pbjs.setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig):
 
 - `pbjs.bidderTimeout` - use `pbjs.setConfig({bidderTimeout})` instead
 - `pbjs.logging` - use `pbjs.setConfig({debug})` instead
@@ -81,7 +81,7 @@ pbjs.setConfig({
 
 ## No More Default Endpoints
 
-In Prebid 0.x there were defaults for the Prebid Server endpoints and the video cache URL. With 1.0, these defaults have been removed to be vendor neutral, so all publisher pages must define them via pbjs.setConfig(). The same functionality as 0.x may be achieved as shown below:
+In Prebid 0.x there were defaults for the Prebid Server endpoints and the video cache URL. With 1.0, these defaults have been removed to be vendor neutral, so all publisher pages must define them via `pbjs.setConfig()`. The same functionality as 0.x may be achieved as shown below:
 
 {% highlight js %}
 
@@ -99,7 +99,7 @@ pbjs.setConfig({
 
 ## Size Mapping Changes
 
-The previous [`sizeMapping` functionality]({{site.baseurl}}/dev-docs/examples/size-mapping.html) will be removed and replaced by a `sizeConfig` parameter to the `pbjs.setConfig` method that provides a more powerful way to describe types of devices and
+The previous [`sizeMapping` functionality]({{site.baseurl}}/dev-docs/examples/size-mapping.html) was removed and replaced by a `sizeConfig` parameter to the `pbjs.setConfig` method that provides a more powerful way to describe types of devices and
 screens.
 
 If `sizeConfig` is passed to `pbjs.setConfig`:
@@ -250,7 +250,7 @@ pbjs.requestBids({
 
 ## Ad Unit Changes
 
-The `mediaType` attribute is being removed in favor of a `mediaTypes` object. This will accept multiple properties (i.e. `video`, `banner`, `native` etc) with a optional key-value pair object nested inside, e.g.,
+The `mediaType` attribute has been removed in favor of a `mediaTypes` object. This object accepts multiple properties (i.e. `video`, `banner`, `native` etc) with an optional key-value pair object nested inside, e.g.:
 
 {% highlight js %}
 

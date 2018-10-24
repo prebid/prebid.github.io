@@ -47,22 +47,10 @@ Be sure to duplicate your line item and video creative for each Prebid price buc
 
 2\. In the dialog that appears, set the **creative set type** to **"Redirect"**
 
-3\. Set the **VAST tag URL** to the cache location. Note that each bidder may have a different cache location URL.
+3\. Set the **VAST tag URL** to the cache location. Note that each bidder, e.g. Rubicon Project, may have a different cache location URL.
 
-Prebid.js versions 1.6+, 0.34.6+:
-{% highlight html %}
-   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_cache_id%%
-or
-   https://prebid-server.rubiconproject.com/cache?uuid=%%PATTERN:hb_cache_id%%
-or
-   [other bidder cache location]
-{% endhighlight %}
-
-Prebid.js versions 1.0-1.5, 0.x-0.34.5:
 {% highlight html %}
    https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
-or
-   https://prebid-server.rubiconproject.com/cache?uuid=%%PATTERN:hb_uuid%%
 or
    [other bidder cache location]
 {% endhighlight %}

@@ -2,7 +2,7 @@
 layout: page_v2
 title: FAQ
 description: FAQ on Prebid.js for header bidding.
-pid: 40
+pid: 7
 top_nav_section: dev_docs
 nav_section: reference
 ---
@@ -136,7 +136,7 @@ See [the github release schedule](https://github.com/prebid/Prebid.js/blob/maste
 
 ## When do I have to upgrade my version of Prebid.js?
 
-Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+Prebid.org does not support any version of Prebid.js prior to version 1.0. If you want continued support through updates and documentation you should upgrade to a newer version.
 
 ## How can I change the price granularity for different ad units?
 
