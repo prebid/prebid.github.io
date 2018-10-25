@@ -513,37 +513,7 @@
   isHeader: 0
   
 - sbSecId: 5
-  title: Automated Tests
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Code Reviews
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Configuration
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Contributing
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
   title: Cookie Syncs
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Deployment
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -560,59 +530,6 @@
   isLastSubSectionItem: 1
   isHeader: 0
   
-- sbSecId: 5
-  title: Endpoints  
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 1
-  
-- sbSecId: 5
-  title: Params
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Starting Cookie Syncs
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Bidders
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Bidder's Name
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: AMP
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Auction
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Set UID
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Status
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
   
 
   

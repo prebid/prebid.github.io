@@ -70,6 +70,20 @@ a:before, a:after {
   transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
+/* external links have an icon after them*/
+
+a[href^="http://"]:after,
+a[href^="https://"]:after {
+  content: url(/assets/images/Icon_External_Link.png);
+  margin: 0 0 0 5px;
+}
+
+a[href^="http://prebid.org/"]:after,
+a[href^="https://prebid.org/"]:after {
+  content: '';
+  margin: 0;
+}
+
 hr {
   display: block;
   height: 1px;
@@ -237,6 +251,13 @@ i {
 
 /* page layout */
 
+.bs-docs-container { 
+	margin-top:50px; 
+	left:0px; 
+	width:100%; 
+	padding:50px 50px;
+}
+
 .col-sm-9 h2 { 
 	
 	font-size: 36px;
@@ -246,11 +267,24 @@ i {
 	font-weight: normal;
 }
 
+.col-sm-9 h4 { 
+	
+	font-size: 20px;
+	color: #3e86c3;
+	padding-top: 10px;
+	margin:0;
+	font-weight: normal;
+}
+
 .col-sm-9 p.main-text { 
 	font-size: 20px;
 	color: #333333;
 	padding-top: 20px;
 	margin:0;
+}
+
+.col-sm-9 p.main-text a { 
+	font-size: 20px;
 }
 
 .col-sm-9 ul { 
@@ -266,6 +300,12 @@ i {
 	background-color: transparent;
 	margin:0;
 	padding: 3px 0 3px 5px;
+}
+
+/* example page layout */
+
+.col-md-9 { 
+	
 }
 
 a.list-group-item:hover,
