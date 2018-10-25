@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid.js with Smart Ad Server
 head_title: Setting up Prebid.js with Smart Ad Server
 description: Setting up Prebid.js with Smart Ad Server
@@ -7,6 +7,8 @@ pid: 3
 hide: false
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
+
 ---
 
 <div class="bs-docs-section" markdown="1">
