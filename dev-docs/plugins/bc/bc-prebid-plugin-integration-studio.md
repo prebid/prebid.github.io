@@ -238,7 +238,7 @@ In Brightcove Studio:
         - Prebid plugin CSS file
     - Under `Name, Options` section
         - enter the following plugin name:  `bcPrebidVastPlugin`
-        - enter a JSON object containing all the prebid and render options you want to use.
+        - enter a JSON object containing all the prebid and render options you want to use. (A sample set of configuration options are provided [below](#sample-config).)
 5. Click the `SAVE` button.
 6. Click the `PUBLISH` button. You should then see the Preview Player for your updated instance. NOTE: You should see your ad playing in the preview.
 7. To retrieve the player embed code to put on your publisher page, click the `EMBED CODE & URL` button at the top of the page. Select `PUBLISHED PLAYER` from the options provided.
@@ -247,6 +247,130 @@ In Brightcove Studio:
 #### Code To Add to Your Publisher Page:
 
 None
+
+<a name="sample-config"></a>
+#### Sample Plugin Configuration in Brightcove Studio
+
+```
+{
+    "prebidPath": "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    "bidderAliases": [
+        {
+            "name": "alias1",
+            "bidderName": "appnexus"
+        }
+    ],
+    "biddersSpec": {
+        "code": "my-video-tag",
+        "sizes": [640,480],
+        "mediaTypes": {
+            "video": {
+                "context": "instream",
+                "mimes": ["video/mp4","application/javascript"],
+                "protocols": [1,2,3,4,5,6,7,8],
+                "playbackmethod": [1,2],
+                "api": [1,2 ]
+            }
+        },
+        "bids": [{
+            "bidder": "appnexus",
+            "params": {
+                "placementId": 8845778,
+                "video": {"skippable": true,
+                "playback_method":
+                    ["auto_play_sound_off"]
+                }
+            }
+        },
+        {
+            "bidder": "alias1",
+            "params": {
+                "placementId": 12531984,
+                "video": {"skippable": true,
+                "playback_method":
+                    ["auto_play_sound_off"]
+                }
+            }
+        }]
+    },
+    "bidderSettings": {
+        "standard": {
+            "adserverTargeting": [
+                {
+                    "key": "hb_bidder",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.bidderCode;",
+                        "}"
+                    ]
+                },
+                {
+                    "key": "hb_adid",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.adId;",
+                        "}"
+                    ]
+                },
+                {
+                    "key": "hb_pb",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.pbMg;",
+                        "}"
+                    ]
+                },
+                {
+                    "key": "hb_size",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.size;",
+                        "}"
+                    ]
+                }
+            ]
+        },
+        "appnexus": {
+            "adserverTargeting": [
+                {
+                    "key": "hb_size",
+                    "val": "640x480"
+                }
+            ]
+        },
+        "alias1": {
+            "adserverTargeting": [
+                {
+                    "key": "hb_pb",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.pbHg;",
+                        "}"
+                    ]
+                }
+            ]
+        }
+    },
+    "prebidConfigOptions": {
+        "cache": {
+            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+        },
+        "enableSendAllBids": true
+    },
+    "skippable": {
+        "enabled": true,
+        "videoThreshold": 16,
+        "videoOffset": 5
+    },
+    "prebidTimeout": 700,
+    "enablePrebidCache": true
+}
+```
 
 #### What Your Page Would Look Like
 
