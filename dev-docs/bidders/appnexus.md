@@ -18,6 +18,7 @@ gdpr_supported: true
 - [Video Object](#appnexus-video-object)
 - [User Object](#appnexus-user-object)
 - [App Object](#appnexus-app-object)
+- [Custom Targeting keys](#custom-targeting-keys)
 
 <a name="appnexus-bid-params" />
 
@@ -89,3 +90,35 @@ AppNexus supports using prebid within a mobile app's webview. If you are interes
 | `id`              | The App ID.                                                                                                                     | `'B1O2W3M4AN.com.prebid.webview'`                                        | `string`         |
 | `device_id`       | Object that contains the advertising identifiers of the user (`idfa`, `aaid`, `md5udid`, `sha1udid`, or `windowsadid`).         | `{ aaid: "38400000-8cf0-11bd-b23e-10b96e40000d" }`                       | `object`         |
 | `geo`             | Object that contains the latitude (`lat`) and longitude (`lng`) of the user.                                                    | `{ lat: 40.0964439, lng: -75.3009142 }`                                  | `object`         |
+
+<a name="custom-targeting-keys" />
+
+#### Custom Targeting keys
+
+Appnexus returns custom keys `buyerMemberId, dealPriority, dealCode` which can be additionally sent to adserver using bidderSettings. You can use following snippet to add these key value pairs.
+
+```
+pbjs.bidderSettings = {
+  appnexus: {
+    adserverTargeting: [
+      {
+        key: "apn_buyer_memberid", // Use key configured in your adserver
+        val: function(bidResponse) {
+          return bidResponse.appnexus.buyerMemberId;
+        }
+      },
+      {
+        key: "apn_prio", // Use key configured in your adserver
+        val: function(bidResponse) {
+          return bidResponse.appnexus.dealPriority;
+        }
+      }, {
+        key: "apn_dealcode", // Use key configured in your adserver
+        val: function(bidResponse) {
+          return bidResponse.appnexus.dealCode;
+        }
+      }
+    ]
+  }
+}
+```
