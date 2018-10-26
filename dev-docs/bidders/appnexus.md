@@ -95,7 +95,7 @@ AppNexus supports using prebid within a mobile app's webview. If you are interes
 
 #### Custom Targeting keys
 
-Appnexus returns custom keys `buyerMemberId, dealPriority, dealCode` which can be additionally sent to adserver using bidderSettings. You can use following snippet to add these key value pairs.
+AppNexus returns custom keys that can be sent to the adserver through bidderSettings: buyerMemberId, dealPriority, and dealCode. The following snippet demonstrates how to add these custom keys as key-value pairs.
 
 ```
 pbjs.bidderSettings = {
