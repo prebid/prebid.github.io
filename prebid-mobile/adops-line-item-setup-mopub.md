@@ -43,16 +43,38 @@ Banner creatives must be HTML banners with the **Format** set to **Banner** that
 {: .pb-med-img :}
   ![MoPub Creative Setup]({{site.github.url}}/assets/images/prebid-mobile/adops-line-item-setup-mopub/mopub3.png "Example MoPub Creative")
 
-The **hb_cache_id** variable stands for the cache id that will load the ad markup from the bid from Prebid Cache. Within each line item, for each ad unit size there should be one creative with this content. 
+The **hb_cache_id** variable stands for the cache id that will load the ad markup from the bid from Prebid Cache. Within each line item, for each ad unit size there should be one creative with this content.
 
 
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% include dev-docs/amp-creative.md %}
+{% highlight javascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%KEYWORD:url%%";
+  ucTagData.adId = "%%KEYWORD:hb_adid%%";
+  ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
+  ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
+  ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
+  ucTagData.mediaType = "%%KEYWORD:hb_format%%";
+  ucTagData.env = "%%KEYWORD:hb_env%%";
+  ucTagData.size = "%%KEYWORD:hb_size%%";
+
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+{% endhighlight %}
 
 ## Step 3. Duplicate line items
 
-Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting. 
+Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting.
 
 </div>
