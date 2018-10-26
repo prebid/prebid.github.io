@@ -21,9 +21,17 @@ For more information about DFP native ad setup, see the [DFP native ads document
 * TOC
 {:toc}
 
-## 1. Create a native ad unit
+## 1. Create a native ad
 
-Under **Display > Native**, select the **HTML & CSS editor** option.
+From Google Ad Manager, select **Delivery > Native**. Click **Create Native Ad**.
+
+{: .pb-img.pb-md-img :}
+![native delivery]({{site.github.url}}/assets/images/ad-ops/dfp-native/create_prebid_native.png)
+
+Select the **HTML & CSS editor** option.
+
+{: .pb-img.pb-md-img :}
+![HTML editor option]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_html_option.png)
 
 ## 2. Define ad settings
 
