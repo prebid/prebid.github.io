@@ -39,8 +39,6 @@ For **Ad size** you can specify a specific size for the ad unit or specify the "
 
 Select **New format** under **Custom format**. (If you've already created an ad unit with the format you want, you can select **Existing format** and select the format to apply to this ad unit.)
 
-Click **Add Variable**. Use the **File** type and create a **ClickthroughURL** variable.
-
 {: .pb-img.pb-md-img :}
 ![native adunit settings]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_settings.png)
 
@@ -53,7 +51,7 @@ You can add HTML and CSS to define your native ad template. To allow for native 
 
 {: .alert.alert-danger :}
 **Native impression and click tracking requirements**  
-Any link that should fire a click tracker needs to include a `data-adid` attribute set to `hb_adid`. This attribute is required because the script needs the bidId/adId, which can be filled in only by the targeting key on the ad server, not from within the script.
+Any link that should fire a click tracker needs to include a `pbAdId` attribute set to `hb_adid`. This attribute is required because the script needs the bidId/adId, which can be filled in only by the targeting key on the ad server, not from within the script.
 
 If this creative is served, it will fire impression trackers on load. Clicking the link will fire the click tracker and the link will work as normal, in this case going to the `hb_native_linkurl` destination.
 
