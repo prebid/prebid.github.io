@@ -42,6 +42,11 @@
 			
 			<div class="col-sm-9 main-text" markdown="1">
 					{{ content }}
+					
+					{% if page.description == "Partners" %}
+					
+						{% include partners.html %}
+					{% endif %}
 			</div>
 			
 	</div>

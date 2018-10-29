@@ -146,6 +146,48 @@ hr {
   margin-left: 10px;
 }
 
+/* Partners */
+
+.partners { 
+	text-align: center;
+}
+
+.partners div.title { 
+	width:100%;
+	padding-top: 30px;
+}
+
+
+.partners h3 { 
+	
+	margin:0;
+	padding: 0;
+	font-size:large;
+}
+
+.partners img.founders { 
+	
+	width: 100px;
+}
+
+.partners img.standard { 
+	
+	width: 75px;
+}
+
+.partners ul { 
+	
+	list-style-type: none;
+    display: table;
+	width: 100%;
+    
+}
+
+.partners li { 
+	display: table-cell;
+	text-align: center;
+}
+
 /* Helpers */
 
 .mt {

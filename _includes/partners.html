@@ -1,0 +1,34 @@
+
+<div class="partners">
+	
+	<div class="title"><h3>Founders Tier</h3></div>
+	<ul>
+	
+	{% for item in site.data.partners %}
+	
+		{% if item.type == 0 %}
+		
+			<li><a href="item.link"><img src='{{item.imgURL}}' class="founders"></li>
+		
+		{% endif %}
+		
+	{% endfor %}
+	
+	</ul>
+	
+	<div class="title"><h3>Standard Tier</h3></div>
+	<ul>
+	
+	{% for item in site.data.partners %}
+	
+		{% if item.type == 1 %}
+		
+			<li><a href="item.link"><img src='{{item.imgURL}}' class="standard"></li>
+		
+		{% endif %}
+		
+	{% endfor %}
+	
+	</ul>
+	
+</div>
