@@ -21,4 +21,4 @@ Please reach out to your account team or y1s@platform-one.co.jp for more informa
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description      | Example | Type     |
 |---------------|----------|------------------|---------|----------|
-| `placementId` | required | The placement ID | `36891` | `string` |
+| `placementId` | required | The placement ID | `'36891'` | `string` |
