@@ -530,6 +530,54 @@
   isLastSubSectionItem: 1
   isHeader: 0
   
+- sbSecId: 6
+  title: Examples
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 6
+  title: Basic Example
+  link: /dev-docs/examples/basic-example.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 6
+  title: Multi-Format Ads
+  link: /dev-docs/examples/multi-format-example.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 6
+  title: Individual Ad Unit Refresh/Infinite Scroll
+  link: /dev-docs/examples/adunit-refresh.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 6
+  title: Using Prebid.js with AppNexus Publisher Ad Server
+  link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 6
+  title: Postbid Example
+  link: /dev-docs/examples/postbid.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 6
+  title: Custom Price Granularity Buckets
+  link: /dev-docs/examples/custom-price-buckets.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 6
+  title: Filter Sizes Dynamically with Labels
+  link: /dev-docs/examples/size-mapping.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
   
 
   

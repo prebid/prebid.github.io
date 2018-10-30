@@ -20,4 +20,5 @@ jsfiddle_link: jsfiddle.net/prebid_org/ob1kn504/embedded/html,result
 code_height: 1450
 
 pid: 30
+sidebarType: 6
 ---

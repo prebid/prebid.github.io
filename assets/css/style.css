@@ -157,6 +157,12 @@ hr {
 	padding-top: 30px;
 }
 
+.partners div.tableTitle { 
+	width:100%;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
 
 .partners h3 { 
 	
@@ -187,6 +193,11 @@ hr {
 	display: table-cell;
 	text-align: center;
 }
+
+.partners a[href^="http://"]:after,
+    a[href^="https://"]:after {
+      content: "";
+    }
 
 /* Helpers */
 

@@ -58,6 +58,10 @@ facebook:
 # Build settings
 markdown: kramdown
 
+# Collections
+collections:
+  - bidders
+
 
 port: 8080
 

@@ -16,4 +16,5 @@ jsfiddle_link: jsfiddle.net/Prebid_Examples/cjzezwk9/77/embedded/html,result
 code_height: 2400
 
 pid: 102
+sidebarType: 6
 ---

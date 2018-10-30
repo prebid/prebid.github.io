@@ -5,6 +5,7 @@ description: Individual Ad Unit Refresh / Infinite Scroll
 top_nav_section: dev_docs
 nav_section: quick-start
 hide: true
+sidebarType: 6
 
 about:
 - Ability to <strong>refresh individual ad units</strong> - useful for infinite scrolling ad slots

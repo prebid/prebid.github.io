@@ -8,7 +8,7 @@
 	
 		{% if item.type == 0 %}
 		
-			<li><a href="item.link"><img src='{{item.imgURL}}' class="founders"></li>
+			<li><a href="{{item.link}}" target="_blank"><img src='{{item.imgURL}}' class="founders"></a></li>
 		
 		{% endif %}
 		
@@ -23,7 +23,7 @@
 	
 		{% if item.type == 1 %}
 		
-			<li><a href="item.link"><img src='{{item.imgURL}}' class="standard"></li>
+			<li><a href="{{item.link}}" target="_blank"><img src='{{item.imgURL}}' class="standard"></a></li>
 		
 		{% endif %}
 		
@@ -31,4 +31,35 @@
 	
 	</ul>
 	
+	<div class="tableTitle"><h3>Partners</h3></div>
+				
+	<div id="container">
+		
+		<table class="table">
+			
+			{% assign bidderCount = site.bidders | size | divided_by: 4.0 %}
+			{% for i in (1..49) %}
+				
+			<tr>
+				
+				{% for c in (1..4) %}
+					
+					{% if i == 1 %}
+						{% assign modifier = c | minus: 1 %}
+						{% assign idx = i | plus:  modifier %}
+					{% else %}
+						{% assign x = c | minus: 1 %}
+						{% assign modifier = i | minus: 1 | times: 3 | plus:x%}
+						{% assign idx = i | plus: modifier  %}
+					{% endif %}
+				
+				<td><span>{{site.bidders[idx].title}}</span></td>
+				
+				{% endfor %}
+
+			</tr>
+			{% endfor %}
+		</table>
+	</div>	
 </div>
+

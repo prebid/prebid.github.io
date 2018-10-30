@@ -13,4 +13,5 @@ about:
 
 jsfiddle_link: jsfiddle.net/prebid_org/7hc1gm8h/embedded/html,result
 code_height: 2404
+sidebarType: 6
 ---
