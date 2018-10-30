@@ -33,7 +33,7 @@ See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 
 + From the ad ops side, you may choose to set up one order per bidder, so that each order can have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon]({{site.baseurl}}/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
 
-{% include send-all-bids-keyword-targeting.md %} 
+{% include send-all-bids-keyword-targeting.md %}
 
 {: .bg-info :}
 In this example we will use DFP setup to illustrate, but the steps are basically the same for any ad server.
@@ -90,26 +90,47 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
 
 Choose the same advertiser we've assigned the line item to.
 
-Note that this has to be a **Third party** creative. The **"Serve in Safeframe"** box has to be **UNCHECKED** (there are plans to make the below creative safeframe compatible).
+Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid Universal Creatve is SafeFrame compatible).
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
-Edit the `hb_adid_BIDDERCODE` to replace `BIDDERCODE` with the name of the bidder that will serve into this creative, e.g., `hb_adid_rubicon`.
-
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
-    var w = window;
-    for (i = 0; i < 10; i++) {
-      w = w.parent;
-      if (w.pbjs) {
-        try {
-          w.pbjs.renderAd(document, '%%PATTERN:hb_adid_BIDDERCODE%%');
-          break;
-        } catch (e) {
-          continue;
-        }
+      var ucTagData = {};
+      ucTagData.adServerDomain = "";
+      ucTagData.pubUrl = "%%PATTERN:url%%";
+      ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+
+      try {
+        ucTag.renderAd(document, ucTagData);
+      } catch (e) {
+        console.log(e);
       }
-    }
     </script>
+
+Note: If you're working an ad server other than DFP, your code snippet will look like this:
+
+    <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+    <script>
+      var ucTagData = {};
+      ucTagData.adServerDomain = "";
+      ucTagData.pubUrl = "%%KEYWORD:url%%";
+      ucTagData.adId = "%%KEYWORD:hb_adid%%";
+      ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
+      ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
+      ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
+      ucTagData.mediaType = "%%KEYWORD:hb_format%%";
+      ucTagData.env = "%%KEYWORD:hb_env%%";
+      ucTagData.size = "%%KEYWORD:hb_size%%";
+
+      try {
+        ucTag.renderAd(document, ucTagData);
+      } catch (e) {
+        console.log(e);
+      }
+    </script>
+
+The `KEYWORD` macro is for use with Mopub. For all other ad servers, replace `KEYWORD` with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 
 {: .pb-img.pb-lg-img :}
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png)

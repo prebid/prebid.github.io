@@ -171,7 +171,7 @@ For Mopub:
 
 {% endhighlight %}
 
-For all other ad servers, replace `KEYWORD` in the preceding example with the appropriate macro for the ad server.
+For all other ad servers, replace `KEYWORD` in the preceding example with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 
 ### User Sync
 
