@@ -119,10 +119,6 @@ hr {
 
 /* dropdown*/
 
-#prebidDropDown { 
-	
-}
-
 .dropdown-submenu {
   position: relative;
 }
@@ -214,16 +210,15 @@ i {
 /* 404 error */
 
 .error404 { 
-	background-color: #FF0000;
 	width:100%;
 	height: 100%;
+	text-align: center;
 }
 
-.error404 img { 
-	margin-right: auto;
-	margin-left: auto;
-	width: 50%
-	
+.error404 h1 { 
+	color: #FF0000;
+	font-size: 60px;
+	font-weight: bold;
 }
 
 /* HeaderWrap */
@@ -377,7 +372,6 @@ button.list-group-item:focus {
 .sidebar { 
 	margin-top: 30px;
 }
-
 
 
 /* responsive */
