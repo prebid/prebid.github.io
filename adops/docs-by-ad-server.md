@@ -15,7 +15,7 @@ nav_section: reference
 
 This page has all of our Ad Ops setup docs, broken out by ad server.
 
-For code samples and other on-page implementation docs, see [our docs for developers]({{site.github.url}}/dev-docs/getting-started.html).
+For code samples and other on-page implementation docs, see [our docs for developers]({{site.baseurl}}/dev-docs/getting-started.html).
 
 * TOC
 {:toc}
@@ -23,11 +23,12 @@ For code samples and other on-page implementation docs, see [our docs for develo
 {: .table .table-bordered .table-striped }
 | Server       | Page                                                                                                                                    |
 |--------------+-----------------------------------------------------------------------------------------------------------------------------------------|
-| **DFP**      | [Step by step guide to DFP setup]({{site.github.url}}/adops/step-by-step.html)                                                          |
-|              | [Send all bids to the ad server]({{site.github.url}}/adops/send-all-bids-adops.html)                                                    |
-|              | [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)                                     |
-|              | [Setting up Prebid Video in DFP]({{site.github.url}}/adops/setting-up-prebid-video-in-dfp.html)                                         |
-|              | [Setting up Prebid Native in DFP]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html)                                       |
-| **AppNexus** | [Setting up Prebid with the AppNexus Publisher Ad Server]({{site.github.url}}/adops/setting-up-prebid-with-the-appnexus-ad-server.html) |
+| **DFP**      | [Step by step guide to DFP setup]({{site.baseurl}}/adops/step-by-step.html)                                                          |
+|              | [Send all bids to the ad server]({{site.baseurl}}/adops/send-all-bids-adops.html)                                                    |
+|              | [Setting up Prebid for AMP in DFP]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)                                     |
+|              | [Setting up Prebid Video in DFP]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)                                         |
+|              | [Setting up Prebid Native in DFP]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html)                                       |
+| **AppNexus** | [Setting up Prebid with the AppNexus Publisher Ad Server]({{site.baseurl}}/adops/setting-up-prebid-with-the-appnexus-ad-server.html) |
+| **Smart Ad Server** | [Setting up Prebid.js with Smart Ad Server]({{site.baseurl}}/adops/setting-up-prebidjs-with-Smart-Ad-Server.html) |
 
 </div>

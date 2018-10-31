@@ -79,6 +79,8 @@ Embed the ad unit registration in a try-catch block to catch all the exceptions 
 #import "PrebidMobile/PBTargetingParams.h"
 #import "PrebidMobile/PrebidMobile.h"
 
+// See http://prebid.org/prebid-mobile/logging-troubleshooting-ios.html for information on log level settings.
+
 [PBLogManager setPBLogLevel:PBLogLevelAll];
 
 /**

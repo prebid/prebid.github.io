@@ -48,6 +48,9 @@ Failure to follow any of the above conventions could lead to delays in approving
 {: .alert.alert-danger :}
 Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
 
+{: .alert.alert-danger :}
+Prebid.org does not support any version of Prebid.js prior to version 1.0.
+
 <a name="bidder-adaptor-Required-Files" />
 
 ### Required Files
@@ -207,7 +210,9 @@ When the page asks Prebid.js for bids, your module's `buildRequests` function wi
 * *Ad Unit Params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
 * *Transaction ID*: `bidderRequest.bids[].transactionId` should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
 * *Ad Server Currency*: If your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
-* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. The convention is to do something like this: `referrer: config.getConfig('pageUrl') || utils.getTopWindowUrl()`.
+* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information.
+
+#### Valid Build Requests Array
 
 Sample array entry for `validBidRequests[]`:
 
@@ -223,15 +228,31 @@ Sample array entry for `validBidRequests[]`:
   "transactionId": "d7b773de-ceaa-484d-89ca-d9f51b8d61ec",
   "sizes": [[320,50],[300,250],[300,600]],
   "bidderRequestId": "418b37f85e772c",
-  "auctionId": "18fd8b8b0bd757"
+  "auctionId": "18fd8b8b0bd757",
+  "bidRequestsCount": 1
 }]
 {% endhighlight %}
 
-{: .alert.alert-success :}
-There are several IDs present in the bidRequest object:
+#### bidRequest Parameters
+
+Notes on parameters in the bidRequest object:
 - **Bid ID** is unique across ad units and bidders.
 - **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.
 - **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
+- **Bid Request Count** is the number of times `requestBids` has been called for this ad unit.
+
+#### Referrers
+
+Referrer information is included on the `bidderRequest.refererInfo` property. This property contains the following parameters:
+
+- `referer`: a string containing the detected top-level URL.
+- `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
+- `numIframes`: the number of iFrames.
+- `stack`: a string of comma-separated URLs of all origins.
+
+The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
+
+#### ServerRequest Objects
 
 The ServerRequest objects returned from your adapter have this structure:
 
@@ -297,7 +318,7 @@ The parameters of the `bidObject` are:
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid.                                                                                 | 360                                  |
+| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
@@ -341,14 +362,14 @@ See below for an example implementation.  For more examples, search for `getUser
 
 <a name="bidder-adaptor-Registering-on-Timout" />
 
-### Registering on Timeout 
+### Registering on Timeout
 
-The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end. 
+The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end.
 
 Sample data received to this function:
 
 {% highlight js %}
-{ 
+{
   "bidder": "example",
   "bidId": "51ef8751f9aead",
   "params": {

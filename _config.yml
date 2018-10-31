@@ -146,9 +146,9 @@ nav_sections:
   - top_nav: prebid-mobile
     code: prebid-mobile
     name: PREBID MOBILE
-  - top_nav: prebid-mobile
-    code: prebid-mobile-pbs
-    name: PREBID SERVER
+  #- top_nav: prebid-mobile
+    #code: prebid-mobile-pbs
+    #name: PREBID SERVER
   - top_nav: prebid-mobile
     code: prebid-mobile-ios
     name: FOR IOS
@@ -162,6 +162,12 @@ nav_sections:
     code: prebid-mobile-contributors
     name: FOR CONTRIBUTORS
 
+  - top_nav: pbjs-video
+    code: pbjs-video-get-started
+    name: GETTING STARTED WITH VIDEO
+  - top_nav: pbjs-video
+    code: pbjs-video-examples
+    name: EXAMPLES
 
 port: 8080
 

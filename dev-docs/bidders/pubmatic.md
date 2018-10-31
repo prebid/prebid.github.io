@@ -39,12 +39,28 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 
 PubMatic recommends the UserSync configuration below.  Without it, the PubMatic adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
 
+For Prebid.js v1.15.0 and later:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: '*',      // '*' represents all bidders
+        filter: 'include'
+      }
+    }
+  }
+});
+```
+
+For Prebid.js v1.14.0 and before:
+
 ```javascript
 pbjs.setConfig({
    userSync: {
     iframeEnabled: true,
-    enabledBidders: ['pubmatic'],
-    syncDelay: 6000
+    enabledBidders: ['pubmatic']
  }});
 ```
 
@@ -107,7 +123,7 @@ var videoAdUnits = [
 ```
 
 
-### Configuration for video 
+### Configuration for video
 For Video ads, prebid cache needs to be enabled for PubMatic adapter.
 ```
 pbjs.setConfig({

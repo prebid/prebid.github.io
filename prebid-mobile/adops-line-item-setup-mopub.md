@@ -15,7 +15,7 @@ nav_section: prebid-mobile-adops
 * TOC
 {:toc }
 
-This page describes step by step how to set up Prebid Mobile line items for MoPub.
+This page describes step by step how to set up Prebid Mobile line items for MoPub to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 ## Step 1. Add a line item
 
@@ -34,6 +34,8 @@ For each level of pricing granularity you need, you will have to set up one line
 
 Line items must be set up to target custom keywords that include bid price information. The bid price keywords tell you how much the buyer bid on the impression.
 
+By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
+
 ## Step 2. Add creatives to your line item
 
 Banner creatives must be HTML banners with the **Format** set to **Banner** that include the code shown below.
@@ -41,19 +43,38 @@ Banner creatives must be HTML banners with the **Format** set to **Banner** that
 {: .pb-med-img :}
   ![MoPub Creative Setup]({{site.github.url}}/assets/images/prebid-mobile/adops-line-item-setup-mopub/mopub3.png "Example MoPub Creative")
 
-The **hb_cache_id** variable stands for the cache id that will load the ad markup from the bid from Prebid Cache. Within each line item, for each ad unit size there should be one creative with this content. 
+The **hb_cache_id** variable stands for the cache id that will load the ad markup from the bid from Prebid Cache. Within each line item, for each ad unit size there should be one creative with this content.
 
-```
-<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
-<script type="text/javascript">
-    pbm.showAdFromCacheId({
-        admCacheID: '%%KEYWORD:hb_cache_id%%'  
-    });
+
+{: .alert.alert-success :}
+You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+
+{% highlight javascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%KEYWORD:url%%";
+  ucTagData.adId = "%%KEYWORD:hb_adid%%";
+  ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
+  ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
+  ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
+  ucTagData.mediaType = "%%KEYWORD:hb_format%%";
+  ucTagData.env = "%%KEYWORD:hb_env%%";
+  ucTagData.size = "%%KEYWORD:hb_size%%";
+
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
 </script>
-```
+
+{% endhighlight %}
 
 ## Step 3. Duplicate line items
 
-Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting. 
+Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting.
 
 </div>

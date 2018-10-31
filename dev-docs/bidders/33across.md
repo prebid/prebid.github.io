@@ -8,6 +8,7 @@ hide: true
 biddercode: 33across
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
 
@@ -17,4 +18,4 @@ prebid_1_0_supported : true
 | Name        | Scope    | Description                                                                                                                    | Example    | Type     |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
 | `siteId`    | required | Publisher  GUID from 33Across                                                                                                  | `'examplePub123'` | `string` |
-| `productId` | required | 33Across Product ID that the Publisher has registered for (use only 'siab' for the present since others are not supported yet) | `'siab'`   | `string` |
+| `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for standard supply and `'inview'` for renderer) | `'siab'`   | `string` |
