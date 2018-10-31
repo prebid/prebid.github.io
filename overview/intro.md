@@ -9,7 +9,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+<div class="main-text" markdown="1">
 
 # What is Prebid?
 {:.no_toc}
@@ -55,7 +55,7 @@ At a high level, header bidding involves just a few steps:
 
 4. If the ad server decides Prebid wins, the ad server returns a signal to Prebid telling the library to write the winning creative to the page. All finished!
 
-![Ad Ops Diagram]({{ site.github.url }}/assets/images/adops-intro.png)
+![Ad Ops Diagram]({{ site.github.url }}/assets/images/adops-intro.png){: .pb-lg-img}
 
 The Prebid library is composed of two pieces: the Core wrapper code and the Adapters a publisher wants to work with.
 

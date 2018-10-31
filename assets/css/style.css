@@ -221,8 +221,33 @@ i {
 	font-weight: bold;
 }
 
+/* images */
+
+.pb-sm-img {
+
+	padding-top:5px;
+	padding-bottom: 5px;
+  	max-width: 50%;
+}
+
+.pb-lg-img {
+	
+	padding-top:5px;
+	padding-bottom: 5px;
+  	max-width: 100%;
+  	
+}
+
+.pb-md-img {
+	
+	padding-top:5px;
+	padding-bottom: 5px;
+    max-width: 75%;
+}
+
+
 /* HeaderWrap */
-/*#3e86c3;*/
+
 #headerwrap {
   background: url(../images/topgraph.png) no-repeat center top; 
   position: relative;
@@ -306,11 +331,23 @@ i {
 	padding:50px 50px;
 }
 
+.col-sm-9 { 
+	padding-top: 20px;
+	margin:0;
+	font-size: 24px;
+}
+
+.main-text { 
+	font-size:24px;
+	font-color: #FF0000;
+}
+
 .col-sm-9 h2 { 
 	
 	font-size: 36px;
 	color: #3e86c3;
 	padding-top: 20px;
+	padding-top: 10px;
 	margin:0;
 	font-weight: normal;
 }
@@ -324,19 +361,16 @@ i {
 	font-weight: normal;
 }
 
-.col-sm-9 p.main-text { 
-	font-size: 20px;
-	color: #333333;
-	padding-top: 20px;
-	margin:0;
-}
-
-.col-sm-9 p.main-text a { 
+.col-sm-9 a { 
 	font-size: 20px;
 }
 
 .col-sm-9 ul { 
 	margin-top:10px;
+}
+
+.col-sm-9 li { 
+	font-size: 20px;
 }
 
 /* side bar */
@@ -352,9 +386,6 @@ i {
 
 /* example page layout */
 
-.col-md-9 { 
-	
-}
 
 a.list-group-item:hover,
 button.list-group-item:hover,
