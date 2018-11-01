@@ -496,48 +496,6 @@
   isHeader: 0
   
 - sbSecId: 5
-  title: Developers  
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 1
- 
-- sbSecId: 5
-  title: Add A New Analytics Module
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Add A New Bidder
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Cookie Syncs
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: GDPR
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-
-- sbSecId: 5
-  title: Stored Request
-  link: 
-  isLastSubSectionItem: 1
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Bidder
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 1
-  
-- sbSecId: 5
   title: Appnexus
   link: /prebid-server/bidders/appnexus.html
   isLastSubSectionItem: 0
