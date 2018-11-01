@@ -1,3 +1,9 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Developers | Cookie Sync Technical Details
+
+---
 # Cookie Sync Technical Details
 
 This document describes the mechancis of a Prebid Server cookie sync.

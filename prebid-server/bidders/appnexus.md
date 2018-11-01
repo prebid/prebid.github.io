@@ -1,3 +1,9 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Bidders | Appnexus
+
+---
 # Appnexus Bidder
 
 ## Using Keywords

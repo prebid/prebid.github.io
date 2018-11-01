@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Developers | Adding A New Bidder
+
+---
+
 # Adding a New Bidder
 
 This document describes how to add a new Bidder to Prebid Server. Bidders are responsible for reaching out to your Server to fetch Bids.

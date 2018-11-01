@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Developers | Stored Requests
+
+---
+
 # Stored Requests
 
 This document gives a technical overview of the Stored Requests feature.

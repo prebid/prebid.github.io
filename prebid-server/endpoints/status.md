@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Endpoints | Status
+
+---
+
 ## `GET /status`
 
 This endpoint will return a 2xx response whenever Prebid Server is ready to serve requests.
