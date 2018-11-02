@@ -9,7 +9,7 @@
     sectionId: 0
     sectionName: Product
     title: Prebid.js
-    link: /overview/intro.html
+    link: /prebid/prebidjs.html
     hasBubblePopOut: 1
     bubble:
       - 
@@ -18,14 +18,9 @@
       - 
         title: Modules
         link: /dev-docs/modules/index.html
-      
       - 
         title: Plugins
         link: /dev-docs/plugins/index.html
-      - 
-        title: React-Prebid
-        link: /react-prebid/reactprebid.html
-      
   - 
     id: 1
     sectionId: 0
@@ -218,16 +213,3 @@
     link: /partners/partners.html
     hasBubblePopOut: 0
     bubble:
-  
-
-        
-
- 
-
-    
-
-  
-    
-
-  
-  

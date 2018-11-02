@@ -284,7 +284,7 @@
   isLastSubSectionItem: 0 
   isHeader: 0
   
-  #--------------Overview--------------|
+#--------------Overview--------------|
 - sbSecId: 2
   title: Intro
   link:
@@ -481,7 +481,7 @@
   title: Prebid Server
   link: 
   isLastSubSectionItem: 0
-  isHeader: 0
+  isHeader: 1
   
 - sbSecId: 5
   title: Bidders  
@@ -617,6 +617,7 @@
 
   
 #--------------Examples--------------|
+
 - sbSecId: 6
   title: Examples
   link: 
@@ -664,22 +665,3 @@
   link: /dev-docs/examples/size-mapping.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
-  
-
-  
-
-
-
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
