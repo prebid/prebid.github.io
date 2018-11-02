@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Endpoints | Auction
+
+---
+
 # Prebid Server Auction Endpoint
 
 This document describes the behavior of the Prebid Server auction endpoint, including:

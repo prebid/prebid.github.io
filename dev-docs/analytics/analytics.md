@@ -1,8 +1,8 @@
 ---
 
 layout: page_v2
-title: Partners | Prebid
-description: Partners
+title: Analytics | Prebid
+description: Analytics
 sidebarType: 0
 
 ---

@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Bidders | Audience Network
+
+---
+
 # Audience Network Bidder
 
 ## Mobile Bids

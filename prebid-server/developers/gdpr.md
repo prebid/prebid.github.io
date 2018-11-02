@@ -1,3 +1,9 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Developers | GDPR Mechanics
+
+---
 # GDPR Mechanics
 
 Within the framework of [GDPR](https://www.gdpreu.org/), Prebid Server behaves like a [data processor](https://www.gdpreu.org/the-regulation/key-concepts/data-controllers-and-processors/).

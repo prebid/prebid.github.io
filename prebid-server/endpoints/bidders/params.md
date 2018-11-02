@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Endpoints | Params
+
+---
+
 ## GET /bidders/params
 
 This endpoint gets information about all the custom bidders params that Prebid Server supports.

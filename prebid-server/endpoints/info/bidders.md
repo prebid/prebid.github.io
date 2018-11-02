@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Endpoints | Get/info/bidders
+
+---
+
 # Prebid Server Bidder List
 
 ## `GET /info/bidders`

@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Developers | Adding a New Analytics Module
+
+---
+
 # Adding a New Analytics Module
 
 This document describes how to add a new Analytics module to Prebid Server.

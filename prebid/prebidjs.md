@@ -20,7 +20,7 @@ At a high level, header bidding with Prebid.js involves just a few steps:
 1. The ad server has line items targeting those bid parameters.
 1. If the ad server decides Prebid wins, the ad server returns a signal to Prebid.js telling the library to write the winning creative to the page. All finished!
 
-![Ad Ops Diagram]({{ site.github.url }}/assets/images/adops-intro.png)
+![Ad Ops Diagram](/assets/images/adops-intro.png){: pb-sm-img}
 
 The Prebid.js library is composed of these pieces:
 

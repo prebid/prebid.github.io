@@ -1,3 +1,10 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Endpoints | Starting Cookie Syncs
+
+---
+
 # Starting Cookie Syncs
 
 This endpoint is used during cookie syncs. For technical details, see the
