@@ -90,7 +90,7 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
 
 Choose the same advertiser we've assigned the line item to.
 
-Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid Universal Creatve is SafeFrame compatible).
+Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
@@ -108,20 +108,44 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       }
     </script>
 
-Note: If you're working an ad server other than DFP, your code snippet will look like this:
+{: .pb-img.pb-lg-img :}
+![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png)
+
+Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.
+
+**Prebid universal creative code for other ad servers**
+
+If you're using an ad server other than DFP, your code snippet will look similar to one of the following:
+
+For Mopub:
+
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+    <script>
+      var ucTagData = {};
+      ucTagData.adServerDomain = "";
+      ucTagData.pubUrl = "%%KEYWORD:url%%";
+      ucTagData.targetingKeywords = "%%KEYWORDS%%";
+       try {
+        ucTag.renderAd(document, ucTagData);
+      } catch (e) {
+        console.log(e);
+      }
+    </script>
+
+For other ad servers:
 
     <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
       var ucTagData = {};
       ucTagData.adServerDomain = "";
-      ucTagData.pubUrl = "%%KEYWORD:url%%";
-      ucTagData.adId = "%%KEYWORD:hb_adid%%";
-      ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
-      ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
-      ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
-      ucTagData.mediaType = "%%KEYWORD:hb_format%%";
-      ucTagData.env = "%%KEYWORD:hb_env%%";
-      ucTagData.size = "%%KEYWORD:hb_size%%";
+      ucTagData.pubUrl = "%%MACRO:url%%";
+      ucTagData.adId = "%%MACRO:hb_adid%%";
+      ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
+      ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
+      ucTagData.uuid = "%%MACRO:hb_cache_id%%";
+      ucTagData.mediaType = "%%MACRO:hb_format%%";
+      ucTagData.env = "%%MACRO:hb_env%%";
+      ucTagData.size = "%%MACRO:hb_size%%";
 
       try {
         ucTag.renderAd(document, ucTagData);
@@ -130,12 +154,7 @@ Note: If you're working an ad server other than DFP, your code snippet will look
       }
     </script>
 
-The `KEYWORD` macro is for use with Mopub. For all other ad servers, replace `KEYWORD` with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
-
-{: .pb-img.pb-lg-img :}
-![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png)
-
-Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.
+Replace `MACRO` with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 
 ## Step 4. Attach the Creative to the Line Item
 

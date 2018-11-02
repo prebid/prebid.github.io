@@ -149,18 +149,37 @@ For Mopub:
 
 {% highlight javascript %}
 
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%KEYWORD:url%%";
-  ucTagData.adId = "%%KEYWORD:hb_adid%%";
-  ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
-  ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
-  ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
-  ucTagData.mediaType = "%%KEYWORD:hb_format%%";
-  ucTagData.env = "%%KEYWORD:hb_env%%";
-  ucTagData.size = "%%KEYWORD:hb_size%%";
+  ucTagData.targetingKeywords = "%%KEYWORDS%%";
+   try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+{% endhighlight %}
+
+For all other ad servers:
+
+{% highlight javascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%MACRO:url%%";
+  ucTagData.adId = "%%MACRO:hb_adid%%";
+  ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
+  ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
+  ucTagData.uuid = "%%MACRO:hb_cache_id%%";
+  ucTagData.mediaType = "%%MACRO:hb_format%%";
+  ucTagData.env = "%%MACRO:hb_env%%";
+  ucTagData.size = "%%MACRO:hb_size%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
@@ -171,7 +190,7 @@ For Mopub:
 
 {% endhighlight %}
 
-For all other ad servers, replace `KEYWORD` in the preceding example with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
+Replace `MACRO` in the preceding example with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 
 ### User Sync
 

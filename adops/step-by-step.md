@@ -72,7 +72,7 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
 
 Choose the same advertiser we've assigned the line item to.
 
-Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid Universal Creatve is SafeFrame compatible).
+Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creatve is SafeFrame compatible).
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 

@@ -51,20 +51,13 @@ You can always get the latest version of the creative code below from [the Mobil
 
 {% highlight javascript %}
 
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%KEYWORD:url%%";
-  ucTagData.adId = "%%KEYWORD:hb_adid%%";
-  ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
-  ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
-  ucTagData.uuid = "%%KEYWORD:hb_cache_id%%";
-  ucTagData.mediaType = "%%KEYWORD:hb_format%%";
-  ucTagData.env = "%%KEYWORD:hb_env%%";
-  ucTagData.size = "%%KEYWORD:hb_size%%";
-
-  try {
+  ucTagData.targetingKeywords = "%%KEYWORDS%%";
+   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
     console.log(e);
