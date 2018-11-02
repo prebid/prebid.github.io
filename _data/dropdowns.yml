@@ -18,14 +18,9 @@
       - 
         title: Modules
         link: /dev-docs/modules/index.html
-      
       - 
         title: Plugins
         link: /dev-docs/plugins/index.html
-      - 
-        title: React-Prebid
-        link: /react-prebid/reactprebid.html
-      
   - 
     id: 1
     sectionId: 0
