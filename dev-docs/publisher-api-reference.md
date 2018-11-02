@@ -45,6 +45,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
     * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
     * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
+    * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [publisherDomain](#setConfig-Publisher-Domain)
@@ -1159,6 +1160,7 @@ Core config:
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
++ [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1229,6 +1231,16 @@ Prebid core adds a timeout on XMLHttpRequest request to terminate the request on
 
 {% highlight js %}
 pbjs.setConfig({ disableAjaxTimeout: true });
+{% endhighlight %}
+
+#### Set Timeout Buffer
+
+<a name="setConfig-timeoutBuffer" />
+
+Prebid core adds a timeout buffer to extend the time that bidders have to return a bid after the auction closes. It's used to offset the "time slippage" of the setTimeout behavior in browsers. Prebid.js defaults this value to 400ms. However, you have the option to update using below snippet.
+
+{% highlight js %}
+pbjs.setConfig({ timeoutBuffer: 300 });
 {% endhighlight %}
 
 #### Send All Bids
