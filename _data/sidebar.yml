@@ -1,3 +1,5 @@
+# Prebid.js developer
+
 - sbSecId: 0
   title: Developer Quick Start
   link: 
@@ -283,7 +285,8 @@
   isLastSubSectionItem: 0 
   isHeader: 0
   
-  # overview side nav
+ # overview side nav
+
 - sbSecId: 2
   title: Intro
   link:
@@ -332,7 +335,7 @@
   isLastSubSectionItem: 0
   isHeader: 0
   
-  #Ad Ops Side Nav
+  # Ad Ops Nav
   
 - sbSecId: 3
   title: Ad Ops Tutorials
@@ -474,13 +477,13 @@
   isLastSubSectionItem: 0
   isHeader: 0
   
-#prebid server
+# Prebid server nav
 
 - sbSecId: 5
   title: Prebid Server
   link: 
   isLastSubSectionItem: 0
-  isHeader: 0
+  isHeader: 1
   
 - sbSecId: 5
   title: Bidders  
@@ -529,7 +532,9 @@
   link: 
   isLastSubSectionItem: 1
   isHeader: 0
-  
+
+# examples nav
+
 - sbSecId: 6
   title: Examples
   link: 
@@ -577,22 +582,3 @@
   link: /dev-docs/examples/size-mapping.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
-  
-
-  
-
-
-
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
