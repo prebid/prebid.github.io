@@ -1,665 +1,635 @@
 #--------------Prebid.js--------------|
 - sbSecId: 0
   title: Developer Quick Start
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 0
   title: Getting Started
   link: /dev-docs/getting-started.html
   isLastSubSectionItem: 0
   isHeader: 0
- 
+
 - sbSecId: 0
   title: Examples
   link: /dev-docs/examples/basic-example.html
   isLastSubSectionItem: 1
   isHeader: 0
- 
+
 - sbSecId: 0
   title: Troubleshooting
   link:
   isLastSubSectionItem: 0
   isHeader: 1
- 
+
 - sbSecId: 0
   title: Dev Tips
   link: /dev-docs/troubleshooting-tips.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 0
   title: Common Issues
   link: /dev-docs/common-issues.html
   isLastSubSectionItem: 0
   isHeader: 0
- 
+
 - sbSecId: 0
   title: Prebid.js Troubleshooting Guide
   link: /dev-docs/prebid-troubleshooting-guide.html
   isLastSubSectionItem: 1
   isHeader: 0
- 
+
 - sbSecId: 0
   title: Reference
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
- 
+
 - sbSecId: 0
   title: Publisher API Reference
   link: /dev-docs/publisher-api-reference.html
   isLastSubSectionItem: 0
   isHeader: 0
- 
+
 - sbSecId: 0
   title: Ad Unit Reference
   link: /dev-docs/adunit-reference.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 0
   title: Bidder's Params
   link: /dev-docs/bidders.html
   isLastSubSectionItem: 1
   isHeader: 0
- 
+
 - sbSecId: 0
   title: FAQ
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 0
   title: General FAQ
   link: /dev-docs/faq.html
   isLastSubSectionItem: 0
   isHeader: 0
- 
+
 - sbSecId: 0
   title: Prebid 1.0 Publisher API Changes
   link: /dev-docs/prebid-1.0-API.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 0
   title: Prebid Modules
   link: /dev-docs/modules/
   isLastSubSectionItem: 1
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 0
   title: Features
-  link: 
+  link:
   isLastSubSectionItem: 0
-  isHeader: 1 
- 
+  isHeader: 1
+
 - sbSecId: 0
   title: Conditional Ad Units
   link: /dev-docs/conditional-ad-units.html
   isLastSubSectionItem: 1
   isHeader: 0
- 
+
 - sbSecId: 0
   title: Adapters
   link:
   isLastSubSectionItem: 0
-  isHeader: 1 
- 
+  isHeader: 1
+
 - sbSecId: 0
-  title: How To Add A New Bidder Adapter 
+  title: How To Add A New Bidder Adapter
   link: /dev-docs/bidder-adaptor.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 0
   title: Integrate With The Prebid Analytics API
   link: /dev-docs/integrate-with-the-prebid-analytics-api.html
   isLastSubSectionItem: 1
   isHeader: 0
- 
+
 - sbSecId: 0
   title: External Interfaces
   link:
   isLastSubSectionItem: 0
-  isHeader: 1 
- 
+  isHeader: 1
+
 - sbSecId: 0
   title: Plugins
   link: /dev-docs/plugins/
   isLastSubSectionItem: 1
   isHeader: 0
-  
+
 - sbSecId: 0
   title: Analytics
   link:
   isLastSubSectionItem: 0
   isHeader: 1
- 
+
 - sbSecId: 0
   title: Analytics For Prebid
   link: /overview/analytics.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 0
   title: Prebid Analytics for GA
   link: /overview/ga-analytics.html
   isLastSubSectionItem: 1
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 0
   title: Studies
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 0
   title: Studies
   link: /studies/studies.html
   isLastSubSectionItem: 1
   isHeader: 0
-  
+
 - sbSecId: 0
   title: Post-Bid
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 0
   title: Intro to Post-Bid & Get Started
   link: /overview/what-is-post-bid.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
-  
+
+
 #--------------Prebid Mobile--------------|
 
 - sbSecId: 1
   title: Prebid Mobile
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
- 
+
 - sbSecId: 1
   title: Overview
   link: /prebid-mobile/prebid-mobile.html
   isLastSubSectionItem: 0
-  isHeader: 0 
+  isHeader: 0
 
 - sbSecId: 1
   title: Getting Started With Prebid Mobile
   link: /prebid-mobile/prebid-mobile-pbs.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 1
   title: Prebid Mobile Guide toEuropean Ad Inventory and Providing Notice, Choice and Tranparency
   link: /prebid-mobile/gdpr.html
   isLastSubSectionItem: 1
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 1
   title: For iOS
   link:
   isLastSubSectionItem: 0
-  isHeader: 1 
- 
+  isHeader: 1
+
 - sbSecId: 1
   title: Code Integration
   link: /prebid-mobile/code-integration-ios.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 1
   title: Targeting Parameters
   link: /prebid-mobile/targeting-params-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
- 
+
 - sbSecId: 1
   title: Logging and Troubleshooting
   link: /prebid-mobile/logging-troubleshooting-ios.html
   isLastSubSectionItem: 1
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 1
   title: For Android
   link:
   isLastSubSectionItem: 0
-  isHeader: 1 
- 
+  isHeader: 1
+
 - sbSecId: 1
   title: Code Integration
   link: /prebid-mobile/code-integration-android.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 1
   title: Targeting Parameters
   link: /prebid-mobile/targeting-params-android.html
   isLastSubSectionItem: 0
   isHeader: 0
- 
+
 - sbSecId: 1
   title: Logging and Troubleshooting
   link: /prebid-mobile/logging-troubleshooting-android.html
   isLastSubSectionItem: 1
-  isHeader: 0 
-  
+  isHeader: 0
+
 - sbSecId: 1
   title: For Ad Ops
   link:
-  isLastSubSectionItem: 0 
+  isLastSubSectionItem: 0
   isHeader: 1
- 
+
 - sbSecId: 1
   title: Setup Line items For DFP
   link: /prebid-mobile/adops-line-item-setup-dfp.html
   isLastSubSectionItem: 0
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 1
   title: Setup Line Items For MoPub
   link: /prebid-mobile/adops-line-item-setup-mopub.html
-  isLastSubSectionItem: 0 
+  isLastSubSectionItem: 0
   isHeader: 0
- 
+
 - sbSecId: 1
   title: Price Granularity
   link: /prebid-mobile/adops-price-granularity.html
   isLastSubSectionItem: 1
-  isHeader: 0 
- 
+  isHeader: 0
+
 - sbSecId: 1
   title: For Contributors
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
- 
+
 - sbSecId: 1
   title: Add A Ad Server Adapter
   link: add-an-ad-server-adapter.html
-  isLastSubSectionItem: 0 
+  isLastSubSectionItem: 0
   isHeader: 0
-  
+
 #--------------Overview--------------|
 - sbSecId: 2
   title: Intro
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 2
   title: What is Prebid?
   link: /overview/intro.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 2
   title: Project Principles
   link: /principles.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 2
   title: Prebid.org IP Policy
   link: /overview/ip-policy.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 2
   title: What is Prebid.org?
   link: /overview/what-is-prebid-org.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 2
   title: Prebid.org Membership
   link: /overview/prebid-members.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 2
   title: Prebid Management Committees
   link: /overview/prebid-management-committees.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 2
   title: Prebid.org Header Bidding Wrapper Code of Conduct
   link: /wrapper_code_of_conduct.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 #--------------Ad Ops--------------|
-  
+
 - sbSecId: 3
   title: Ad Ops Tutorials
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 3
   title: Before You Start
   link: /adops.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Send Top Bid to Adserver
   link: /adops/step-by-step.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Send All Bids to the Ad Server
   link: /adops/send-all-bids-adops.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Setting up Prebid for AMP in DFP
   link: /adops/setting-up-prebid-for-amp-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Setting up Prebid Multi-Format in DFP
   link: /adops/setting-up-prebid-multi-format-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Setting up Prebid Native in DFP (Alpha)
   link: /adops/setting-up-prebid-native-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Setting up Prebid Video in DFP
   link: /adops/setting-up-prebid-video-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Setting up Prebid with the AppNexus Publisher Ad Server
   link: /adops/setting-up-prebid-with-the-appnexus-ad-server.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Setting up Prebid.js with Smart Ad Server
   link: /adops/setting-up-prebidjs-with-Smart-Ad-Server.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Enable Deals
   link: /adops/deals.html
   isLastSubSectionItem: 1
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Reference
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 3
   title: Docs by Ad Server
   link: /adops/docs-by-ad-server.html
   isLastSubSectionItem: 1
   isHeader: 0
-    
+
 - sbSecId: 3
   title: Studies
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 3
   title: Optimize Header Bidding Setup
   link: /overview/how-many-bidders-for-header-bidding.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: Optimal Header Bidding Setup
   link: /overview/optimal-header-bidding-setup.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: How To Reduce The Latency of Header Bidding With Prebid.js
   link: /overview/how-to-reduce-latency-of-header-bidding.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 3
   title: How to Simplify Line Item Setup
   link: /overview/how-to-simplify-line-item-setup.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 #--------------Prebid Video--------------|
 
 - sbSecId: 4
   title: Prebid Video
-  link: 
+  link:
   isLastSubSectionItem: 1
   isHeader: 1
-  
+
 - sbSecId: 4
   title: Prebid.js for Video Overview
   link: /prebid-video/video-overview.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 4
   title: Getting Started with Video for Prebid.js
   link: /prebid-video/video-getting-started.html
   isLastSubSectionItem: 1
   isHeader: 0
-  
+
 - sbSecId: 4
   title: Examples
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 4
   title: Prebid.js Video Examples
   link: /examples/video/
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 #--------------Prebid Server--------------|
 
 - sbSecId: 5
   title: Prebid Server
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
-- sbSecId: 5
-  title: Bidders  
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 1
- 
+
 - sbSecId: 5
   title: Overview
-  link: 
+  link: /prebid-server/prebid-server-overview
   isLastSubSectionItem: 1
   isHeader: 0
-  
-- sbSecId: 5
-  title: Appnexus
-  link: /prebid-server/bidders/appnexus.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Audience Network
-  link: /prebid-server/bidders/audienceNetwork.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Beachfront
-  link: /prebid-server/bidders/beachfront.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Rubicon
-  link: /prebid-server/bidders/rubicon.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  
-- sbSecId: 5
-  title: Sovrn
-  link: /prebid-server/bidders/sovrn.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  
+
 - sbSecId: 5
   title: Developers
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 5
   title: Add A New Analytics Module
   link: /prebid-server/developers/add-new-analytics-module.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Add A Bidder
   link: /prebid-server/developers/add-new-bidder.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
+- sbSecId: 5
+  title: Prebid Server Bidders - Additional Info
+  link: /prebid-server/developers/pbs-bidder-info.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
 - sbSecId: 5
   title: Cookie Sync Technical Details
   link: /prebid-server/developers/cookie-syncs.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: GDPR Mechanics
   link: /prebid-server/developers/gdpr.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Stored Requests
   link: /prebid-server/developers/stored-requests.html
   isLastSubSectionItem: 1
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Endpoints
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 5
   title: Info - Bidders
   link: /prebid-server/endpoints/info/bidders.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Info - Bidder Name
   link: /prebid-server/endpoints/info/bidders/bidderName.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Bidders - Params
   link: /prebid-server/endpoints/bidders/params.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Starting Cookie Sync
   link: /prebid-server/endpoints/cookieSync.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Prebid Server AMP
   link: /prebid-server/endpoints/openrtb2/amp.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Prebid Server Auction
   link: /prebid-server/endpoints/openrtb2/auction.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Saving User Syncs
   link: /prebid-server/endpoints/setuid.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 5
   title: Get Status
   link: /prebid-server/endpoints/status.html
   isLastSubSectionItem: 0
   isHeader: 0
 
-  
+
 #--------------Examples--------------|
 
 - sbSecId: 6
   title: Examples
-  link: 
+  link:
   isLastSubSectionItem: 0
   isHeader: 1
-  
+
 - sbSecId: 6
   title: Basic Example
   link: /dev-docs/examples/basic-example.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 6
   title: Multi-Format Ads
   link: /dev-docs/examples/multi-format-example.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 6
   title: Individual Ad Unit Refresh/Infinite Scroll
   link: /dev-docs/examples/adunit-refresh.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 6
   title: Using Prebid.js with AppNexus Publisher Ad Server
   link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 6
   title: Postbid Example
   link: /dev-docs/examples/postbid.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 6
   title: Custom Price Granularity Buckets
   link: /dev-docs/examples/custom-price-buckets.html
   isLastSubSectionItem: 0
   isHeader: 0
-  
+
 - sbSecId: 6
   title: Filter Sizes Dynamically with Labels
   link: /dev-docs/examples/size-mapping.html

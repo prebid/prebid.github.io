@@ -2,9 +2,9 @@
 -
   sectionId: 0
   sectionName: Product
-  link: 
+  link:
   submenus:
-  - 
+  -
     id: 0
     sectionId: 0
     sectionName: Product
@@ -12,25 +12,25 @@
     link: /prebid/prebidjs.html
     hasBubblePopOut: 1
     bubble:
-      - 
+      -
         title: Analytics
         link: /dev-docs/analytics/analytics.html
-      - 
+      -
         title: Modules
         link: /dev-docs/modules/index.html
-      - 
+      -
         title: Plugins
         link: /dev-docs/plugins/index.html
-  - 
+  -
     id: 1
     sectionId: 0
     sectionName: Product
     title: Prebid Server
-    link: /dev-docs/get-started-with-prebid-server.html
+    link: /prebid-server/prebid-server-overview.html
     hasBubblePopOut: 0
     bubble:
-  
-  - 
+
+  -
     id: 2
     sectionId: 0
     sectionName: Product
@@ -38,14 +38,14 @@
     link: /prebid-mobile/prebid-mobile.html
     hasBubblePopOut: 1
     bubble:
-      - 
+      -
         title: iOS
         link: /prebid-mobile/code-integration-ios.html
-      - 
+      -
         title: Android
         link: /prebid-mobile/code-integration-android.html
-      
-  - 
+
+  -
     id: 3
     sectionId: 0
     sectionName: Product
@@ -53,8 +53,8 @@
     link: /debugging/debugging.html
     hasBubblePopOut: 0
     bubble:
-  
-  - 
+
+  -
     id: 4
     sectionId: 0
     sectionName: Product
@@ -62,29 +62,29 @@
     link: /formats/formats.html
     hasBubblePopOut: 1
     bubble:
-      - 
+      -
         title: Display
         link: /formats/display.html
-      - 
+      -
         title: Video
         link: /prebid-video/video-overview.html
-      - 
+      -
         title: Native
         link: /dev-docs/show-native-ads.html
-      - 
+      -
         title: AMP
         link: /formats/amp.html
-      - 
+      -
         title: Multi-Format
         link: /dev-docs/show-multi-format-ads.html
-            
+
 #Support Subnav
 -
   sectionId: 1
   sectionName: Support
   link:
   submenus:
-  - 
+  -
     id: 5
     sectionId: 1
     sectionName: Support
@@ -104,27 +104,27 @@
       -
         title: Troubleshooting
         link: /troubleshooting/troubleshooting.html
-      
-      - 
+
+      -
         title: Training Videos
         link: /videos/index.html
-  
-  - 
+
+  -
     id: 7
     sectionId: 1
     sectionName: Support
     title: FAQ
-    link: /faq/faq.html	
+    link: /faq/faq.html
     hasBubblePopOut: 1
-    bubble: 
+    bubble:
     -
-      title: Prebid.js 
+      title: Prebid.js
       link: /dev-docs/faq.html
     -
       title: Prebid Server
       link: /faq/prebid-server-faq.html
-      
-  - 
+
+  -
     id: 8
     sectionId: 1
     sectionName: Support
@@ -132,7 +132,7 @@
     link: /blog.html
     hasBubblePopOut: 0
     bubble:
-  
+
 #Download SubNav
 -
   sectionId: 2
@@ -147,7 +147,7 @@
     link: /download.html
     hasBubblePopOut: 0
     bubble:
-  
+
   -
     id: 10
     sectionId: 2
@@ -155,14 +155,14 @@
     title: Prebid Mobile
     link: /prebid-mobile/prebid-mobile-download.html
     hasBubblePopOut: 1
-    bubble: 
+    bubble:
     -
       title: iOS
       link:
     -
       title: Android
-      link: 
-  
+      link:
+
 #About Subnav
 -
   sectionId: 2
@@ -177,7 +177,7 @@
     link: /overview/intro.html
     hasBubblePopOut: 0
     bubble:
-  
+
   -
     id: 12
     sectionId: 3
@@ -186,7 +186,7 @@
     link: /principles.html
     hasBubblePopOut: 0
     bubble:
-  
+
   -
     id: 13
     sectionId: 3
@@ -195,7 +195,7 @@
     link: /contributing/contribute.html
     hasBubblePopOut: 0
     bubble:
-  
+
   -
     id: 14
     sectionId: 3
@@ -204,7 +204,7 @@
     link: /overview/what-is-prebid-org.html
     hasBubblePopOut: 0
     bubble:
-  
+
   -
     id: 15
     sectionId: 3
