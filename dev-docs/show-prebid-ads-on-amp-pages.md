@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Show Prebid Ads on AMP Pages
+title: Prebid AMP Implementation Guide
 description: Show Prebid Ads using Prebid Server and AMP RTC
 pid: 1
 is_top_nav: yeah
@@ -11,7 +11,7 @@ sidebarType: 0
 
 <div class="bs-docs-section" markdown="1">
 
-# Show Prebid Ads on AMP Pages
+# Prebid AMP Implementation Guide
 {: .no_toc}
 
 This page has instructions for showing ads on AMP pages using Prebid.js.
