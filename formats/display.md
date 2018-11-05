@@ -3,7 +3,7 @@
 layout: page_v2
 title: Display | Prebid
 description: Display Format
-sidebarType: 0
+sidebarType: 7
 
 ---
 
