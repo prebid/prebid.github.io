@@ -635,3 +635,41 @@
   link: /dev-docs/examples/size-mapping.html
   isLastSubSectionItem: 0
   isHeader: 0
+
+#--------------Formats--------------|
+
+- sbSecId: 7
+  title: Formats
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+
+- sbSecId: 7
+  title: Display
+  link: /formats/display.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 7
+  title: Video
+  link: /prebid-video/video-overview.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 7
+  title: Native
+  link: /dev-docs/show-native-ads.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 7
+  title: AMP
+  link: /formats/amp.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 7
+  title: Multi-Format
+  link: /dev-docs/show-multi-format-ads.html
+  isLastSubSectionItem: 0
+  isHeader: 0
