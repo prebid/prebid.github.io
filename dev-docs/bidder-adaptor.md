@@ -697,7 +697,7 @@ registerBidder(spec);
 Within a few days, the code pull request will be assigned to a developer for review.
 Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
 
-The Prebid.org [download page](http://prebid.org/download.html) will automatically be updated with your adapter once everything's been merged.
+The Prebid.org [download page]({{site.baseurl}}/download.html) will automatically be updated with your adapter once everything's been merged.
 
 ## Further Reading
 

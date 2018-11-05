@@ -1,7 +1,7 @@
 # Prebid Server AMP Endpoint
 
 This document describes the behavior of the Prebid Server AMP endpoint in detail.
-For a User's Guide, see the [AMP feature docs](http://prebid.org/dev-docs/show-prebid-ads-on-amp-pages.html).
+For a User's Guide, see the [AMP feature docs]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html).
 
 ## `GET /openrtb2/amp?tag_id={ID}`
 
@@ -84,7 +84,7 @@ A sample response payload looks like this:
 }
 ```
 
-In [the typical AMP setup](http://prebid.org/dev-docs/show-prebid-ads-on-amp-pages.html),
+In [the typical AMP setup]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html),
 these targeting params will be sent to DFP.
 
 Note that "errors" will only appear if there were any errors generated. They are identical to the "errors" field in the response.ext of the OpenRTB endpoint.

@@ -14,9 +14,6 @@ sidebarType: 0
 # Integrate with the Prebid Analytics API
 {:.no_toc}
 
-{: .alert.alert-warning :}
-This page has been updated for Prebid 1.0. It adds the requirement for a markdown file containing the maintainer's contact info. Note also that there are a couple of new bidResponse attributes that may be of interest to analytics providers: bid currency and bid gross-vs-net.
-
 The Prebid Analytics API provides a way to get analytics data from `Prebid.js` and send it to the analytics provider of your choice, such as Google Analytics.  Because it's an open source API, you can write an adapter to send analytics data to any provider you like.  Integrating with the Prebid Analytics API has the following benefits:
 
 + It decouples your analytics from the `Prebid.js` library so you can choose the analytics provider you like, based on your needs.
@@ -119,13 +116,6 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 {% endhighlight %}
 
 #### Step 2: Add analytics source code
-
-{: .alert.alert-danger :}
-**Breaking changes for Prebid 1.0**  
-There are two breaking changes to the data emitted from analytic events for Prebid 1.0:  
-1. Events that previously emitted a `requestId` property now emit that data as the `auctionId` property  
-2. The `BID_TIMEOUT` event that previously emitted an array of bidder code strings now emits an array of objects containing `bidId`, `bidder`, `adUnitCode`, and `auctionId` for timed out bids  
-
 
 1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.js`
 

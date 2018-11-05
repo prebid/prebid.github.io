@@ -8,12 +8,13 @@ title: Prebid Server | Endpoints | AMP
 # Prebid Server AMP Endpoint
 
 This document describes the behavior of the Prebid Server AMP endpoint in detail.
-For a User's Guide, see the [AMP feature docs](http://prebid.org/dev-docs/show-prebid-ads-on-amp-pages.html).
+For a more general reference, see the [Prebid AMP Implementation Guide
+]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html).
 
 ## `GET /openrtb2/amp?tag_id={ID}`
 
-The `tag_id` ID must reference a [Stored BidRequest](../../developers/stored-requests.md#stored-bidrequests).
-For a thorough description of BidRequest JSON, see the [/openrtb2/auction](./auction.md) docs.
+The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/developers/stored-requests.html).
+For a thorough description of BidRequest JSON, see the [/openrtb2/auction](./auction.html) docs.
 
 To be compatible with AMP, this endpoint behaves slightly different from normal `/openrtb2/auction` requests.
 
@@ -91,7 +92,7 @@ A sample response payload looks like this:
 }
 ```
 
-In [the typical AMP setup](http://prebid.org/dev-docs/show-prebid-ads-on-amp-pages.html),
+In [the typical AMP setup]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html),
 these targeting params will be sent to DFP.
 
 Note that "errors" will only appear if there were any errors generated. They are identical to the "errors" field in the response.ext of the OpenRTB endpoint.
@@ -116,7 +117,7 @@ If present, these will override parts of your Stored Request.
 
 1. `ow`, `oh`, `w`, `h`, and/or `ms` will be used to set `request.imp[0].banner.format` if `request.imp[0].banner` is present.
 2. `curl` will be used to set `request.site.page`
-3. `timeout` will generally be used to set `request.tmax`. However, the Prebid Server host can [configure](../../developers/configuration.md) their deploy to reduce this timeout for technical reasons.
+3. `timeout` will generally be used to set `request.tmax`. However, the Prebid Server host can [configure](../../developers/configuration.html) their deploy to reduce this timeout for technical reasons.
 4. `debug` will be used to set `request.test`, causing the `response.debug` to have extra debugging info in it.
 
 ### Resolving Sizes

@@ -21,7 +21,7 @@ This endpoint runs an auction with the given OpenRTB 2.5 bid request.
 
 ### Sample request
 
-The [Prebid sample ad](http://prebid.org/examples/pbjs_demo.html) can be loaded with the request sample [here](../../../endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json).
+The [Prebid sample ad]({{site.baseurl}}/examples/pbjs_demo.html) can be loaded with the request sample [here](../../../endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json).
 
 Other examples can be found in [endpoints/openrtb2/sample-requests/valid-whole/exemplary](../../../endpoints/openrtb2/sample-requests/valid-whole/exemplary).
 
@@ -106,7 +106,7 @@ This may also be useful for publishers who want to account for different discrep
 #### Targeting
 
 Targeting refers to strings which are sent to the adserver to
-[make header bidding possible](http://prebid.org/overview/intro.html#how-does-prebid-work).
+[make header bidding possible]({{site.baseurl}}/overview/intro.html#how-does-prebid-work).
 
 `request.ext.prebid.targeting` is an optional property which causes Prebid Server
 to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.targeting`.
@@ -130,7 +130,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 ```
 The list of price granularity ranges must be given in order of increasing `max` values. If `precision` is omitted, it will default to `2`. The minimum of a range will be 0 or the previous `max`. Any cmp above the largest `max` will go in the `max` pricebucket.
 
-For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](http://prebid.org/prebid-mobile/adops-price-granularity.html)
+For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions]({{site.baseurl}}/prebid-mobile/adops-price-granularity.html)
 
 One of "includewinners" or "includebidderkeys" must be true (both default to true if unset). If both were false, then no targeting keys would be set, which is better configured by omitting targeting altogether.
 

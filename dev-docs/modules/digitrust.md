@@ -26,7 +26,7 @@ At some point the DigiTrust module will be made available as part of the Prebid.
 The standard options:
 
 - Build from a locally-cloned git repo
-- Receive the email package from the Prebid [Download](http://prebid.org/download.html) page
+- Receive the email package from the Prebid [Download]({{site.baseurl}}/download.html) page
  
 ### Step 2: Download the DigiTrust code:
 
