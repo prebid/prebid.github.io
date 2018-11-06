@@ -127,6 +127,13 @@ hr {
 	max-height: 35px;
 }
 
+.navbar-brand{
+	float:left;
+	height:50px;
+	padding:10px 15px;
+	font-size:18px;
+	line-height:20px}
+
 /* dropdown*/
 
 .dropdown-submenu {
