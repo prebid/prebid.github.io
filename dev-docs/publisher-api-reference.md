@@ -1504,7 +1504,7 @@ pbjs.setConfig({
     userSync: {
         filterSettings: {
             iframe: {
-                bidders: ['*'],   // '*' means all bidders
+                bidders: '*',   // '*' means all bidders
                 filter: 'include'
             }
         }
