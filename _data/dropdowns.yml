@@ -158,10 +158,10 @@
     bubble:
     -
       title: iOS
-      link:
+      link: https://github.com/prebid/prebid-mobile-ios
     -
       title: Android
-      link:
+      link: https://github.com/prebid/prebid-mobile-android
 
 #About Subnav
 -
