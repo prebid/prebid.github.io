@@ -7,6 +7,8 @@ nav_section: modules
 module_code : currency
 display_name : Currency
 enable_download : true
+sidebarType : 8
+
 ---
 
 <div class="bs-docs-section" markdown="1">
