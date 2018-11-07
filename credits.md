@@ -4,7 +4,7 @@ description: Links to attributions for building the Prebid site.
 layout: page_v2
 ---
 
-## Credits  
+### Credits  
 
 Documentation template by the <a href="http://getbootstrap.com/">Bootstrap team</a>, generated with <a href="https://github.com/mistic100/jekyll-bootstrap-doc">Jekyll Bootstrap Doc</a>.
 
