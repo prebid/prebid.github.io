@@ -54,7 +54,10 @@
 	</div>
 </div>
 
-{% include footer.html %}
+
+{% if page.title != "Credits" %}
+	{% include footer.html %}
+{% endif %}
 
 
 
