@@ -9,7 +9,7 @@ nav_section: quick-start
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Getting Started for Developers
 {: .no_toc }
@@ -30,4 +30,4 @@ The easiest way to get started with Prebid.js is to use the example code below.
 1. Set up your ad server using the [corresponding Ad Ops setup instructions]({{site.baseurl}}/adops/send-all-bids-adops.html)
 2. Once you're comfortable with the basic setup, check out [the examples showing other use cases]({{site.baseurl}}/dev-docs/examples/basic-example.html)
 
-</div>
+

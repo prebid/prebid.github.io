@@ -8,12 +8,12 @@ sidebarType: 2
 ## Troubleshooting
 
 ### Prebid.js
-<p class="main-text">
-The most important tip is to add `?pbjs_debug=true` to the end of the page's URL -- you'll get a bunch of javascript console trace messages that will help pin down the issue.
-</p>
-<p class="main-text">
+
+The most important tip is to add ```?pbjs_debug=true``` to the end of the page's URL -- you'll get a bunch of javascript console trace messages that will help pin down the issue.
+
+
 Other references:
-</p>
+
 <br/>
 AdOps
 
@@ -27,14 +27,14 @@ Developers
 <hr>
 
 ### Prebid Server
-<p class="main-text">
+
 The best way to get debug info for Prebid Server is to add `&debug=1` to the end of the URL. A 'url_override' parameter is also available. e.g.
-</p>
+
 <br/>
 {% highlight bash %}
 https://prebid-server.rubiconproject.com/auction?url_override=rubiconproject.com&debug=1
 {% endhighlight %}
 
-<p class="main-text">
+
 Additional debugging references are under construction.
-</p>
+

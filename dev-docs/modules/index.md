@@ -5,7 +5,7 @@ description: Module Documentation
 pid: 27
 top_nav_section: dev_docs
 nav_section: reference
-sidebarType: 0
+sidebarType: 8
 ---
 
 <div class="bs-docs-section" markdown="1">

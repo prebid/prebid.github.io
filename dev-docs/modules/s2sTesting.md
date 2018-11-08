@@ -7,6 +7,7 @@ nav_section: modules
 module_code : s2sTesting
 display_name : Server-to-Server Testing
 enable_download : true
+sidebarType : 8
 ---
 
 <div class="bs-docs-section" markdown="1">

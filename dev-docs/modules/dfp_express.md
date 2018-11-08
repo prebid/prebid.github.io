@@ -7,6 +7,7 @@ nav_section: modules
 module_code : express
 display_name : DFP Express
 enable_download : true
+sidebarType : 8
 ---
 
 <div class="bs-docs-section" markdown="1">

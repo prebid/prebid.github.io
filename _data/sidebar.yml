@@ -635,6 +635,8 @@
   link: /dev-docs/examples/size-mapping.html
   isLastSubSectionItem: 0
   isHeader: 0
+  
+
 
 #--------------Formats--------------|
 
@@ -671,5 +673,61 @@
 - sbSecId: 7
   title: Multi-Format
   link: /dev-docs/show-multi-format-ads.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+ #--------------Modules--------------|
+  
+- sbSecId: 8
+  title: Modules
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 8
+  title: Getting Started
+  link: /dev-docs/modules/index.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 8
+  title: Currency
+  link: /dev-docs/modules/currency.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 8
+  title: DFP Express
+  link: /dev-docs/modules/dfp_express.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 8
+  title: DigiTrust
+  link: /dev-docs/modules/digitrust.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 8
+  title: Server To Server Testing
+  link: /dev-docs/modules/s2sTesting.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 8
+  title: DFP Video
+  link: /dev-docs/modules/dfp_video.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 8
+  title: Publisher Common ID
+  link: /dev-docs/modules/pubCommonId.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 8
+  title: GPDR Consent Management
+  link: /dev-docs/modules/consentManagement.html
   isLastSubSectionItem: 0
   isHeader: 0

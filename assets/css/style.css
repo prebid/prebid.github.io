@@ -16,9 +16,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   color: #333;
+  padding-bottom: 5px;
 }
 
 h1 {
+  color: #95a5a6;
   font-size: 40px;
 }
 
@@ -38,7 +40,7 @@ h4 {
 p {
   line-height: 28px;
   margin-bottom: 25px;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .centered {
@@ -99,7 +101,6 @@ hr {
 .navbar { 
 	z-index:100
 	font-family: 'Dosis', sans-serif;
-	text-transform: uppercase;
 }
 
 .navbar-default {
@@ -128,11 +129,17 @@ hr {
 	max-height: 35px;
 }
 
+.navbar-brand{
+	float:left;
+	height:50px;
+	padding:10px 15px;
+	font-size:18px;
+	line-height:20px}
+
 /* dropdown*/
 
 .dropdown-submenu {
   position: relative;
-  text-transform: uppercase;
 }
 .dropdown-submenu > .dropdown-menu {
   top: 0;
@@ -433,12 +440,6 @@ i {
 .col-sm-9 { 
 	padding-top: 20px;
 	margin:0;
-	font-size: 24px;
-}
-
-.main-text { 
-	font-size:24px;
-	font-color: #FF0000;
 }
 
 .col-sm-9 h2 { 
@@ -453,7 +454,7 @@ i {
 
 .col-sm-9 h4 { 
 	
-	font-size: 20px;
+	font-size: 24px;
 	color: #3e86c3;
 	padding-top: 10px;
 	margin:0;
@@ -881,6 +882,7 @@ img {
 .bg-warning {
   padding: 10px;
   border-radius: 5px;
+  margin-bottom: 5px;
 }
 
 .bg-danger {

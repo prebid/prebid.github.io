@@ -40,8 +40,8 @@
 			</div>
 			
 			
-			<div class="col-sm-9 main-text" markdown="1">
-					
+			<div class="col-sm-9" markdown="1">
+									
 					{{ content }}
 					
 					{% if page.description == "Partners" %}
@@ -49,12 +49,16 @@
 						{% include partners.html %}
 						
 					{% endif %}
+				
 			</div>
 			
 	</div>
 </div>
 
-{% include footer.html %}
+
+{% if page.title != "Credits" %}
+	{% include footer.html %}
+{% endif %}
 
 
 

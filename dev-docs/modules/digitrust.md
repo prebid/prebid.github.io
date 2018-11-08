@@ -7,6 +7,7 @@ nav_section: modules
 module_code : digitTrust
 display_name : DigiTrust
 enable_download : false
+sidebarType : 8
 ---
 
 <div class="bs-docs-section" markdown="1">
