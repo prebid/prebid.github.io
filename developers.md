@@ -6,6 +6,8 @@ description: Developers Landing Page
 
 ---
 
+<a name="publisher_developers"/>
+
 # Publisher Developers
 
 Key links for publisher developers.
@@ -29,6 +31,8 @@ Key links for publisher developers.
 + [Getting started with Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile-pbs.html)
 + [Android code integration]({{site.baseurl}}/prebid-mobile/code-integration-ios.html)
 + [iOS code integration]({{site.baseurl}}/prebid-mobile/code-integration-android.html)
+
+<a name="demand_developers"/>
 
 # Demand Developers
 

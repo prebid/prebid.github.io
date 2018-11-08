@@ -13,23 +13,43 @@ sidebarType: 2
 
 # Project Management Committees
 
-Project Management Committees are established by resolution of the Board, to be responsible for the active management of one or more projects, which are also identified by resolution of the Board. All fully formed projects and their respectful PMCs are listed below.
+Project Management Committees are established by resolution of the Board, to be responsible for the active management of one or more Github repositories, which are also identified by resolution of the Board.
 
 ## Prebid.js
 
-**Scope:** All matters related to the Prebid.js repository, which controls all of the run-time header bidding activity for any browser-based environment.
+**Scope:** Prebid.js and related repositories
 
-**GitHub Repository:** https://github.com/prebid/prebid.js
+**GitHub Repositories:**
+
++ https://github.com/prebid/prebid.js
++ https://github.com/prebid/prebid-universal-creative
++ https://github.com/prebid/currency-file-generator
 
 **PMC Chair:** Matt Kendall (AppNexus)
 
-**PMC Members:**
+## Prebid Mobile
 
-* Bret Gorsline (Rubicon)
-* Eric Harper (Rubicon)
-* Rich Snapp (Rubicon)
-* Jaimin Panchal (AppNexus)
-* Mike Chowla (PubMatic)
+**Scope:** Prebid Mobile SDK
+
+**GitHub Repositories:**
+
++ https://github.com/prebid/prebid-server
++ https://github.com/prebid/prebid-cache
+
+**PMC Chair:** Bret Gorsline (Rubicon Project)
+
+## Prebid Server
+
+**Scope:** Prebid Server and Prebid Cache
+
+**GitHub Repositories:**
+
++ https://github.com/prebid/prebid-server
++ https://github.com/prebid/prebid-cache
++ https://github.com/rubicon-project/prebid-server-java
++ https://github.com/rubicon-project/prebid-cache-java
+
+**PMC Chair:** Bret Gorsline (Rubicon Project)
 
 
 ## Further Reading
