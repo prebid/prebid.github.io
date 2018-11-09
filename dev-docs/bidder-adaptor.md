@@ -249,6 +249,7 @@ Referrer information is included on the `bidderRequest.refererInfo` property. Th
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
 - `stack`: a string of comma-separated URLs of all origins.
+- `canonicalUrl`: a string containing the canonical (search engine friendly) URL defined in top-most window.
 
 The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
