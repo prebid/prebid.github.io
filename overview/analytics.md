@@ -30,6 +30,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Adagio                                                           | Contact vendor                                                                      | [Website](https://adagio.io)                                        | |
 | Livewrapped Analytics                                            | Contact vendor                                                                      | [website](https://livewrapped.com/)                                        | |
 | Rivr Analytics                                                   | Contact vendor                                                                      | [website](https://www.rivr.ai/)                                        | |
+| OpenX | Contact vendor | [website](https://www.openx.com/publishers/header-bidding/) | |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
