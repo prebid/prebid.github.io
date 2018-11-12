@@ -1,7 +1,7 @@
 
 
 body {
-  background-color: #f2f2f2;
+  background-color: #FFFFFF;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 16px;
@@ -136,7 +136,7 @@ hr {
 	font-size:18px;
 	line-height:20px}
 
-/* dropdown*/
+/* DropDown*/
 
 .dropdown-submenu {
   position: relative;
@@ -161,7 +161,13 @@ hr {
   margin-left: 10px;
 }
 
+/*Homepage*/
+
 /* Home Page */
+
+.orangeBG { 
+	background-color: #d7731b;
+}
 
 .pb_homewrapper {
 	float left;
@@ -201,43 +207,40 @@ hr {
 }
 
 .header-links { 
-	position: relative; 
-    width: 100%; 
-    height: 160px; 
-    color: #fff;
-    padding-top: 70px;
-    margin-left: auto;
-    margin-right: auto;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+	text-align:center;
+	}
+
+
+.header-links-item {
+	float: left; 
+	width: 33%;
+	text-align:center;
 }
 
-.header-links img { 
-	width: 100%;
-	height: 100%;
+.header-links-item img { 
+	width: 55%;
+	height: 55%;
+	margin-left:auto;
+	margin-right:auto
 }
 
-.pb_homewrapper ul { 
-	text-decoration: none;
-	list-style-type: none; 
-	margin: 0;
-	overflow: hidden; 
-	
-}
-
-.pb_homewrapper li { 
-	float: left;
-	padding-left: 15%;
+.header-links-item p { 
 	font-family: 'Dosis', sans-serif;
 	font-size:35px;
+	color: #FFFFFF;
 }
 
-.pb_homewrapper li.smallFont { 
-	font-size:24px;
-}
 
 .pb_home_belowfold {
+	margin-top: 300px;
 	position: relative;
 	float left;
 	width: 100%;
+	
 }
 
 .pb_home_belowfold img { 
@@ -252,6 +255,11 @@ hr {
 	width: 100%;
 	height: 100%;
 	text-align: center;
+
+}
+
+.highlight { 
+	background-color: fuchsia;
 }
 
 .pb_home_belowfold_contentbox { 
@@ -262,6 +270,7 @@ hr {
 	opacity: .80;
 	overflow: hidden;
 	padding-bottom: 80px;
+	padding-top: 40px;
 	
 }
 
@@ -312,16 +321,49 @@ hr {
 	float: right;
 }
 
-.pb_home_belowfold_carousel { 
-	margin-top: 100px;
-}
-
 .pb_home_belowfold_carousel h2 { 
 	font-family: 'Roboto', sans-serif; 
 	font-size: 54px;
 	font-weight: 500;
 	color: #FFFFFF;
 	margin-bottom: 5px;
+	width: 100%;
+	margin-top:100px;
+}
+
+.carousel { 
+	
+	width: 100%;
+	height: 200px;
+	border-radius: 12px;
+	background-color: #FFFFFF;
+	
+}
+
+.carousel-inner > .item { 
+	width: 75%
+	text-align: center;
+}
+
+.carousel h2 {
+	background-color: #47547c;
+	font-size: 30px;
+	margin-top:0px;
+	padding-top: 10px;	
+	height: 50px;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+} 
+
+.carousel h4 {
+	padding-top: 20px;
+	font-size: 24px;
+	width: 75%;
+	margin: auto;
+}
+
+.pb_carousel_indicators { 
+	margin-top: 100px;
 }
 
 /* Partners */
@@ -375,18 +417,218 @@ hr {
 .partners a[href^="http://"]:after,
     a[href^="https://"]:after {
       content: "";
-    }
-
-/* Helpers */
-
-.mt {
-  margin-top: 40px;
-  margin-bottom: 40px;
 }
 
-i {
-  margin: 8px;
-  color: #3498db;
+
+/* 
+	Responsive
+	There are 3 trigger levels, 1024, 768 and 480
+	
+*/
+
+@media screen and (max-width: 1024px) {
+	
+	.pb_homewrapper_content h1 {
+		font-size: 55px;
+		
+	}
+	
+	.header-links img { 
+		width: 65%;
+		height: 65%;
+	}
+	
+	.pb_homewrapper li { 
+		padding-left: 0;
+		font-size:28px;
+	}
+	
+	
+	.pb_homewrapper_content h2 { 
+		
+		font-size:30px;
+		width: 75%;
+	}
+	
+	.pb_home_belowfold {
+		margin-top: 150px;
+	}
+
+	.pb_home_belowfold_contentbox { 
+		margin-top: 50px;
+	}
+	
+	.pb_home_belowfold_contentbox h2 { 
+		font-size: 39px;
+		font-weight:400;
+	}
+	
+	.pb_home_belowfold_panel h3 { 
+		font-size: 25px;
+		font-weight: 300;
+		padding:0;
+		margin:0;
+	}
+
+	.pb_home_belowfold_panel span { 
+		font-size: 15px;
+	}
+
+	.pb_home_belowfold_panel img { 
+		width: 100%;
+		height: 100%;
+	}
+	
+	.carousel { 
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.carousel-inner > .item { 
+		width: 100%;
+	}
+
+	.carousel h2 {
+		font-size: 25px;
+		width: 100%;
+	} 
+
+	.carousel h4 {
+		font-size: 20px;
+	}
+
+	.carousel-indicators { 
+		margin-top: 50px;
+	}
+
+}
+
+@media screen and (max-width: 768px) {
+	
+	.header-links { 
+		text-align: center;
+		display: flex;
+	}
+	
+	.pb_homewrapper_content h1 { 
+		font-size:34px;
+	}
+
+	.pb_homewrapper_content h2 { 
+		font-size:20px;
+		width: 75%;
+	}
+	
+	.pb_homewrapper ul { 
+		text-align: center;
+		padding: 0;
+		margin: auto;
+	}
+	
+	.pb_homewrapper li { 
+		padding-left: 12%;
+		font-size:24px;
+	}
+		
+	.header-links img { 
+		width: 45%;
+		height: 45%;
+	}
+	
+	.header-links p { 
+		font-size: 24px;
+	}
+	
+	.pb_home_belowfold { 
+		margin-top: 70px;
+	}
+	
+	.pb_home_belowfold_contentbox { 
+		margin-top: 20px;
+	}
+	
+	.pb_home_belowfold_panel h3 { 
+		font-size: 18px;
+		font-weight: 300;
+	}
+	
+	.pb_home_belowfold_panel span { 
+		font-size: 14px;
+		font-weight: 100;
+	}
+
+	.pb_home_belowfold_panel img { 
+		width: 60%;
+		height: 60%;
+		padding-left: 4px;
+		padding-top: 4px;
+	}
+	
+	.pb_home_belowfold_contentbox h2 { 
+		font-size: 34px;
+		font-weight: 300;
+		margin-bottom: 2px;
+	}
+	
+	.panel_right { 
+		float: left;
+	}
+	
+	.pb_home_belowfold_carousel { 
+		margin-top: -15px;
+	}
+	
+	.pb_home_belowfold_carousel h2 { 
+		font-size: 34px;
+		font-weight: 400;
+		margin-bottom: 5px;
+		width: 100%;
+		margin-top:50px;
+	}
+	
+	.carousel h2 {
+		font-size: 25px;
+		width: 100%;
+		margin-top: 0px;
+	}
+	
+	.carousel h4 {
+		font-size: 18px;
+	}
+
+
+}
+
+@media screen and (max-width: 480px) {
+	
+	.pb_homewrapper_content { 
+		margin-top: 0px;
+	}
+	
+	.pb_homewrapper_content h1 { 
+		font-size:20px;
+	}
+
+	.pb_homewrapper_content h2 { 
+		font-size:14px;
+		width: 75%;
+	}
+	
+	.header-links img { 
+		width: 30%;
+		height: 30%;
+	}
+	
+	.header-links { 
+		margin-top: 10px;
+	}
+	
+	.header-links p { 
+		font-size: 18px;
+	}
+
+	
 }
 
 /* 404 error */
@@ -486,7 +728,6 @@ i {
 
 /* examples page layout */
 
-
 a.list-group-item:hover,
 button.list-group-item:hover,
 a.list-group-item:focus,
@@ -505,61 +746,6 @@ button.list-group-item:focus {
 }
 
 
-/* responsive */
-@media screen and (max-width: 1024px) { 
-  img.bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
-}
-
-@media (max-width: 768px) {
-  #headerwrap {
-    padding-top: 20px;
-  }
-
-  #headerwrap h1 {
-    margin-top: 60px;
-    font-size: 40px;
-	
-  }
-  
-  #headerwrap h2 {
-    margin: 30px 50px 15px 50px;
-    font-size: 20px;
-      }
-  
-  #headerwrap .header-links { 
-	position: absolute; 
-    bottom: 100px; 
-    text-align: center;
-    width: 100%; 
-    height: 320px; 
-    color: #fff;
-    padding-bottom: 50px;
-}
-
-  #headerwrap ul { 
-	padding-left: 0;
-  }
-  
-  	#headerwrap li { 
-	  	font-size: 18px;
-	  	display: block !important;
-	  	padding: 20px 0px;
-	  	text-align: center;
-	  	width: 100%;
-
-	}	
-	
-	#headerwrap img { 
-	width: 70px;
-	height: 70px;
-	
-	.credits { 
-		font-size: 15px;
-	}
-}
 
 /* External links should have an icon denoting them */
 
@@ -579,7 +765,6 @@ a[href^="https://prebid.org/"]:after {
 	margin-top: 100px;
 	
 }
-
 
 
 /*content design */
@@ -1030,10 +1215,13 @@ div.pl-doc-entry{
 
 .pb_footer { 
 	display: block;
+	width: 75%;
 	font-family: 'Dosis', sans-serif;
 	font-weight: 200;
 	font-size:smaller;
 	padding-top: 30px 0;
-	margin-top: 100px;
-	margin-bottom: 100px;s
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	
 }
