@@ -76,24 +76,36 @@ Paste in the following code using Control-V (or Command-V on Mac), and give the 
 
 ```javascript
 (function() {
-  var responses = pbjs.getBidResponses();
+  function forEach(responses, cb) {
+    Object.keys(responses).forEach(function(adUnitCode) {
+      var response = responses[adUnitCode];
+      response.bids.forEach(function(bid) {
+        cb(adUnitCode, bid);
+      });
+    });
+  }
   var winners = pbjs.getAllWinningBids();
   var output = [];
-  Object.keys(responses).forEach(function(adUnitCode) {
-    var response = responses[adUnitCode];
-    response.bids.forEach(function(bid) {
-      output.push({
-        bid: bid,
-        adunit: adUnitCode,
-        adId: bid.adId,
-        bidder: bid.bidder,
-        time: bid.timeToRespond,
-        cpm: bid.cpm,
-        msg: bid.statusMessage,
-        rendered: !!winners.find(function(winner) {
-          return winner.adId==bid.adId;
-        })
-      });
+  forEach(pbjs.getBidResponses(), function(code, bid) {
+    output.push({
+      bid: bid,
+      adunit: code,
+      adId: bid.adId,
+      bidder: bid.bidder,
+      time: bid.timeToRespond,
+      cpm: bid.cpm,
+      msg: bid.statusMessage,
+      rendered: !!winners.find(function(winner) {
+        return winner.adId==bid.adId;
+      })
+    });
+  });
+  forEach(pbjs.getNoBids && pbjs.getNoBids() || {}, function(code, bid) {
+    output.push({
+      msg: "no bid",
+      adunit: code,
+      adId: bid.bidId,
+      bidder: bid.bidder
     });
   });
   if (output.length) {
