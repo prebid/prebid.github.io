@@ -5,12 +5,12 @@ description: Prebid.js Analytics Overview
 pid: 10
 top_nav_section: overview
 nav_section: analytics
-sidebarType: 0
+sidebarType: 9
 ---
 
 <div class="bs-docs-section" markdown="1">
 
-# Analytics for Prebid.js
+# Prebid.js Analytics
 
 There are several analytics adapter plugins available to track header bidding performance for your site.
 

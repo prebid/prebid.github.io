@@ -14,7 +14,7 @@
     bubble:
       -
         title: Analytics
-        link: /dev-docs/analytics/analytics.html
+        link: /overview/analytics.html
       -
         title: Modules
         link: /dev-docs/modules/index.html

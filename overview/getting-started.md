@@ -7,12 +7,12 @@ description: An overview of Prebid, how it works, basic templates and examples, 
 pid: 10
 top_nav_section: overview
 nav_section: intro
-sidebarType: 2
+sidebarType: 9
 ---
 
 <div class="bs-docs-section" markdown="1">
 
-# Getting Started
+# Prebid.js Overview
 {:.no_toc}
 
 This page has high-level instructions for getting started with Prebid.js.
