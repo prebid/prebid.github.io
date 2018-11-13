@@ -6,6 +6,7 @@ pid: 0
 is_top_nav: yeah
 top_nav_section: support
 nav_section: intro
+sidebarType: 2
 ---
 
 <div class="bs-docs-section" markdown="1">

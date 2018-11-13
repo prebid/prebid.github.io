@@ -10,6 +10,7 @@
 			
 			<div class="col-sm-2 sidebar">
 				
+				
 				{% for item in site.data.sidebar %}
 				
 					{% if item.sbSecId == page.sidebarType %}
@@ -40,7 +41,7 @@
 			</div>
 			
 			
-			<div class="col-sm-9" markdown="1">
+			<div class="col-sm-9 pb-content" markdown="1">
 									
 					{{ content }}
 					
@@ -55,6 +56,8 @@
 	</div>
 </div>
 
+<p></p>
+<hr>
 
 {% if page.title != "Credits" %}
 	{% include footer.html %}

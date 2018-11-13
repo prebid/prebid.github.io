@@ -23,12 +23,12 @@ If you're working with Prebid Mobile you *must* implement header bidding server-
 
 Your simplest route to working with Prebid Server is to sign up with a Prebid Server host, such as AppNexus or Rubicon.
 
-- **AppNexus**
+### AppNexus
   - Go to the [Prebid Server sign-up page](https://prebid.adnxs.com/) and click the Apply button to sign up.
   - Fill out the form details, including your email address.
-  - If approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid.js or Prebid Mobile to use Prebid Server.
+  - If approved, you will receive an email with your assigned **accountId**. You will need this for configuring Prebid.js or Prebid Mobile to use Prebid Server.
 
-- **Rubicon Project**
+### Rubicon Project
   - Send an email to [prebidserver@rubiconproject.com](mailto:prebidserver@rubiconproject.com).
 
 ## On Your Own
@@ -45,7 +45,7 @@ You can also find [additional information]({{site.baseurl}}/prebid-server/pbs-bi
 
 Full documentation is available for all Prebid Server endpoints:
 
-- [Bidder List]({{site.baseurl}}/prebid-server/endpoints/info/bidders.html)
+- [Bidder List](/prebid-server/endpoints/info/bidders.html)
 - [Bidder Info - BidderName]({{site.baseurl}}/prebid-server/endpoints/info/bidders/biddername)
 - [Bidder Params]({{site.baseurl}}/prebid-server/endpoints/bidders/params.html)
 - [Starting Cookie Sync]({{site.baseurl}}/prebid-server/endpoints/cookiesync)
