@@ -91,7 +91,7 @@ Exceptions are made for DigiTrust and GDPR, so that we define `ext` according to
 
 #### Bid Adjustments
 
-Bidders [are encouraged](../../developers/add-new-bidder.md) to make Net bids. However, there's no way for Prebid to enforce this.
+Bidders [are encouraged](../../developers/add-new-bidder.html) to make Net bids. However, there's no way for Prebid to enforce this.
 If you find that some bidders use Gross bids, publishers can adjust for it with `request.ext.prebid.bidadjustmentfactors`:
 
 ```
@@ -292,7 +292,7 @@ This contains the request after the resolution of stored requests and implicit i
 
 #### Stored Requests
 
-`request.imp[i].ext.prebid.storedrequest` incorporates a [Stored Request](../../developers/stored-requests.md) from the server.
+`request.imp[i].ext.prebid.storedrequest` incorporates a [Stored Request](../../developers/stored-requests.html) from the server.
 
 A typical `storedrequest` value looks like this:
 
@@ -302,7 +302,7 @@ A typical `storedrequest` value looks like this:
 }
 ```
 
-For more information, see the docs for [Stored Requests](../../developers/stored-requests.md).
+For more information, see the docs for [Stored Requests](../../developers/stored-requests.html).
 
 #### Cache bids
 

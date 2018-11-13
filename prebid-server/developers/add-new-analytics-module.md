@@ -11,7 +11,7 @@ This document describes how to add a new Analytics module to Prebid Server.
 
 ### 1. Define config params
 
-Analytics modules are enabled through the [Configuration](./configuration.md).
+Analytics modules are enabled through the [Configuration](./configuration.html).
 You'll need to define any properties in [config/config.go](../../config/config.go)
 which are required for your module.
 

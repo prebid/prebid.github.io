@@ -10,7 +10,7 @@ title: Prebid Server | Endpoints | Bidder Name
 ## `GET /info/bidders/{bidderName}`
 
 This endpoint returns some metadata about the Bidder whose name is `{bidderName}`.
-Legal values for `{bidderName}` can be retrieved from the [/info/bidders](../bidders.md) endpoint.
+Legal values for `{bidderName}` can be retrieved from the [/info/bidders](../bidders.html) endpoint.
 
 ### Sample Response
 

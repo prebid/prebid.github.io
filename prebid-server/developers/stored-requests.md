@@ -54,7 +54,7 @@ go build .
 ./prebid-server
 ```
 
-And then `POST` to [`/openrtb2/auction`](../endpoints/openrtb2/auction.md) with your chosen ID.
+And then `POST` to [`/openrtb2/auction`](../endpoints/openrtb2/auction.html) with your chosen ID.
 
 ```json
 {
@@ -195,7 +195,7 @@ then the data for those Stored Imps not be resolved.
 ## Alternate backends
 
 Stored Requests do not need to be saved to files. [Other backends](../../stored_requests/backends) are supported
-with different [configuration options](configuration.md). For example:
+with different [configuration options](configuration.html). For example:
 
 ```yaml
 stored_requests:
@@ -215,7 +215,7 @@ stored_requests:
 
 ```
 
-If you need support for a backend that you don't see, please [contribute it](contributing.md).
+If you need support for a backend that you don't see, please [contribute it](contributing.html).
 
 ## Caches and Event-based updating
 

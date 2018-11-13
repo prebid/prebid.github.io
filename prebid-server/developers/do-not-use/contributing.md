@@ -32,7 +32,7 @@ Bugfixes should include a regression test which prevents that bug from being re-
 Documentation for the project is stored in the [docs](..) directory. If your feature requires docs updates,
 those updates must be submitted in the same Pull Request as the code changes.
 
-- [docs/endpoints](../endpoints) describes the Prebid Server API. For example, the endpoint `host:port/openrtb2/auction` is described by [docs/endpoints/openrtb2/auction.md](../endpoints/openrtb2/auction.md)
+- [docs/endpoints](../endpoints) describes the Prebid Server API. For example, the endpoint `host:port/openrtb2/auction` is described by [docs/endpoints/openrtb2/auction.html](../endpoints/openrtb2/auction.html)
 - [docs/developers](../developers) contains docs intended for Developers. These assume that the reader is technical, and describe the mechanics of features.
 
 ## Open a Pull Request
