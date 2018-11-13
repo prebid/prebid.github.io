@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: Publisher API Reference
@@ -1631,6 +1632,15 @@ To set size configuration rules, pass in `sizeConfig` as follows:
 
 pbjs.setConfig({
     sizeConfig: [{
+        'mediaQuery': '(min-width: 1600px)',
+        'sizesSupported': [
+            [1000, 300],
+            [970, 90],
+            [728, 90],
+            [300, 250]
+        ],
+        'labels': ['desktop-hd']
+    }, {
         'mediaQuery': '(min-width: 1200px)',
         'sizesSupported': [
             [970, 90],
@@ -1691,6 +1701,9 @@ Only one conditional may be specified on a given AdUnit or bid -- if both `label
 
 {: .alert.alert-warning :}
 If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`.
+
+{: .alert.alert-warning :}
+It is important to note that labels do not act as filters for sizeConfig. Using a screen of 1600px wide, the example above and `labelAll:["desktop"]` will *not* filter out sizes defined in the `desktop-hd` sizeConfig.
 
 Label targeting on the ad unit looks like the following:
 
