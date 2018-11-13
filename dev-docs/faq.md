@@ -1,16 +1,16 @@
 ---
 layout: page_v2
-title: FAQ
+title: Prebid.js FAQ
 description: FAQ on Prebid.js for header bidding.
 pid: 7
 top_nav_section: dev_docs
 nav_section: reference
-sidebarType: 0
+sidebarType: 9
 ---
 
 <div class="bs-docs-section" markdown="1">
 
-# FAQ
+# Prebid.js FAQ
 {:.no_toc}
 
 This page has answers to some frequently asked questions.  If you don't find what you're looking for here, see the [issues with the 'question' tag on the Prebid.js repo](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20).

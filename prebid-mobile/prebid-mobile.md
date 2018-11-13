@@ -7,8 +7,6 @@ sidebarType: 1
 
 ---
 
-<div class="main-text" markdown="1">
-
 ## Prebid Mobile Overview
 
 Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers. Use this library with your ad server's Mobile SDK to communicate with Prebid Server to request and receive bids over RTB. These bids can then compete directly with bids from your primary ad server.
@@ -60,4 +58,9 @@ The following diagram shows how the Prebid Mobile header bidding solution works.
 
 7.  The Prebid Mobile creative JavaScript will fetch and render the corresponding creative con
 
-</div>
+## Mobile Analytics
+
+Currently Prebid Mobile SDK doesn't offer direct analytics capabilities. While we build out analytics in Prebid Server to support the SDK, some options are:
+
+- Generate analytics from the ad server, as key metrics are available there if the line items are broken out by bidder.
+- Integrate an analytics package directly into the app. You may have one already that can accomodate header bidding metrics.
