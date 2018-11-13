@@ -91,12 +91,12 @@ If you're using DFP, you can verify this by using the [Google Publisher Console]
 To make sure your ad server is set up correctly, answer the following questions:
 
 + **How many ads have been fetched for an ad unit?** Ideally, only 1 ad will be requested on page load. If not, check for unnecessary extra calls to the ad server in your page's source code.  
-  {: .pb-med-img :}
-  ![Google Publisher Console Ad fetch count]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-1.png "Google Publisher Console Ad fetch count")
+
+  ![Google Publisher Console Ad fetch count]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-1.png "Google Publisher Console Ad fetch count"){: .pb-sm-img :}
 
 + **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.  
-  {: .pb-lg-img :}
-  ![DFP Delivery Troubleshooting]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting")
+
+  ![DFP Delivery Troubleshooting]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting"){: .pb-lg-img :}
 
 + **Has the ad server order been activated?** If not, you'll have to activate the order to see Prebid-delivered ads.
 
