@@ -3,7 +3,7 @@
 layout: page_v2
 title: About Prebid.js
 description: An overview of Prebid.js
-sidebarType: 0
+sidebarType: 9
 
 ---
 
@@ -62,6 +62,4 @@ in the Core that not every publisher needs. Example modules:
 
 ## Further Reading
 
-+ [Getting Started]({{site.github.url}}/overview/getting-started.html)
-
-</div>
++ [Getting Started With Prebid.js]({{site.github.url}}/overview/getting-started.html)

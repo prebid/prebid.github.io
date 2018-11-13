@@ -195,7 +195,7 @@
   isHeader: 0
 
 - sbSecId: 1
-  title: Prebid Mobile Guide toEuropean Ad Inventory and Providing Notice, Choice and Tranparency
+  title: GDPR
   link: /prebid-mobile/gdpr.html
   isLastSubSectionItem: 1
   isHeader: 0
@@ -731,3 +731,54 @@
   link: /dev-docs/modules/consentManagement.html
   isLastSubSectionItem: 0
   isHeader: 0
+
+ #--------------Prebid.js High Level --------------|
+  
+- sbSecId: 9
+  title: Ad Ops References
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 9
+  title: Getting Started
+  link: /adops.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  
+- sbSecId: 9
+  title: Developer References
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+
+- sbSecId: 9
+  title: Getting Started
+  link: /dev-docs/getting-started.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 9
+  title: Publisher API Reference
+  link: /dev-docs/publisher-api-reference.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 9
+  title: Bidder's Params
+  link: /dev-docs/bidders.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+
+- sbSecId: 9
+  title: FAQ
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+
+- sbSecId: 9
+  title: Prebid.js FAQ
+  link: /dev-docs/faq.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
