@@ -81,12 +81,11 @@ The following parameters in the `bidResponse` object are common across all bidde
 <thead><tr>
 <th>Bidder</th>
 <th>Supported Media Types</th>
-<th> Prebid 1.0 Support?</th>
 </tr></thead>
 <tbody>
 {% for page in bidder_pages %}
-{% if page.media_types %}
-<tr><td> {{page.biddercode}} </td><td> {% if page.media_types contains 'video' and page.media_types contains 'native' %} video, native {% elsif page.media_types contains 'native' %} native {% elsif page.media_types contains 'video' %} video {% endif %} </td><td> {% if page.prebid_1_0_supported %}X{% endif %} </td></tr>
+{% if page.media_types and page.prebid_1_0_supported and (page.media_types contains "video") or page.media_types contains "native")) %}
+<tr><td> {{page.biddercode}} </td><td> {% if page.media_types contains 'video' and page.media_types contains 'native' %} video, native {% elsif page.media_types contains 'native' %} native {% elsif page.media_types contains 'video' %} video {% endif %} </td></tr>
 {% endif %}
 {% endfor %}
 </tbody>

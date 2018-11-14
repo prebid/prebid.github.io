@@ -45,6 +45,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
     * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
     * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
+    * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [publisherDomain](#setConfig-Publisher-Domain)
@@ -828,18 +829,16 @@ set of ad server targeting that works across bidders. This standard targeting ap
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both scenarios are described below.
 
+{: .alert.alert-warning :}
+Note that once `standard.adserverTargeting` is specified,
+you'll need to fully manage the targeting -- the default `hb_` targeting variables will not be added.
+
 **Keyword targeting for all bidders**
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
 Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
 In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
-
-   {: .alert.alert-warning :}
-   Note that `hb_cache_id` will be the video ad server targeting variable going forward.
-   In previous versions, mobile used `hb_cache_id` and video used `hb_uuid`. There will be a
-   transition period where both of these values are provided to the ad server.
-   Please begin converting video creatives to use `hb_cache_id`.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
 
@@ -1161,6 +1160,7 @@ Core config:
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
++ [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1231,6 +1231,16 @@ Prebid core adds a timeout on XMLHttpRequest request to terminate the request on
 
 {% highlight js %}
 pbjs.setConfig({ disableAjaxTimeout: true });
+{% endhighlight %}
+
+#### Set Timeout Buffer
+
+<a name="setConfig-timeoutBuffer" />
+
+Prebid core adds a timeout buffer to extend the time that bidders have to return a bid after the auction closes. This buffer is used to offset the "time slippage" of the setTimeout behavior in browsers. Prebid.js sets the default value to 400ms. You can change this value by setting `timeoutBuffer` to the amount of time you want to use. The following example sets the buffer to 300ms.
+
+{% highlight js %}
+pbjs.setConfig({ timeoutBuffer: 300 });
 {% endhighlight %}
 
 #### Send All Bids
@@ -1428,8 +1438,6 @@ Additional information of these properties:
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Defaults to `false`.  If set to `true`, Prebid.js will overwrite all links on page to redirect through a persistent cookie URL and will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies. |
-| `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
 
 *Currently supported vendors are: appnexus & rubicon
 *Note - When using defaultVendor option, accountId and bidders properties still need to be defined.
@@ -1508,7 +1516,7 @@ pbjs.setConfig({
     userSync: {
         filterSettings: {
             iframe: {
-                bidders: ['*'],   // '*' means all bidders
+                bidders: '*',   // '*' means all bidders
                 filter: 'include'
             }
         }
