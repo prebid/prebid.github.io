@@ -1703,7 +1703,7 @@ Only one conditional may be specified on a given AdUnit or bid -- if both `label
 If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`.
 
 {: .alert.alert-warning :}
-It is important to note that labels do not act as filters for sizeConfig. Using a screen of 1600px wide, the example above and `labelAll:["desktop"]` will *not* filter out sizes defined in the `desktop-hd` sizeConfig.
+It is important to note that labels do not act as filters for sizeConfig. In the example above, using a screen of 1600px wide and `labelAll:["desktop"]` will *not* filter out sizes defined in the `desktop-hd` sizeConfig. Labels in sizeConfig are only used for selecting or de-selecting AdUnits and AdUnit.bids.
 
 Label targeting on the ad unit looks like the following:
 
