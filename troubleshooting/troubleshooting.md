@@ -5,7 +5,7 @@ description: Troubleshooting Overview
 sidebarType: 2
 ---
 
-## Troubleshooting
+# Troubleshooting
 
 ### Prebid.js
 
