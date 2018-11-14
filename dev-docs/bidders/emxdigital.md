@@ -1,13 +1,16 @@
 ---
 layout: bidder
-title: EMX Digital (formally bRealTime)
-description: Prebid EMX Digital Bidder Adapter
+title: EMX Digital
+description: Prebid EMX Digital Bidder Adaptor
+
 top_nav_section: dev_docs
 nav_section: reference
+
 hide: true
-biddercode: emxdigital
-aliasCode : appnexus
+biddercode: emx_digital
 biddercode_longer_than_12: false
+bidder_supports_deals: false
+media_types: native
 prebid_1_0_supported : true
 gdpr_supported: true
 ---
@@ -16,8 +19,7 @@ gdpr_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                     | Example     | Type     |
-|---------------|----------|---------------------------------|-------------|----------|
-| `placementId` | required | The placement ID from EMX Digital | `'1234567'` | `string` |
-
-EMX Digital is an aliased bidder for AppNexus
+| Name              | Scope    | Description                                                                                                          | Example                                       | Type       |
+|-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
+| `tagid`           | required | The Tag ID from EMX Digital.                                                                                         | `test1`                                       | `string`   |
+| `bidfloor`        | optional | The CPM bid floor                                                                                                    | `0.25`                                        | `string`   |

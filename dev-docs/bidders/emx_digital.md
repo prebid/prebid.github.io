@@ -10,7 +10,7 @@ hide: true
 biddercode: emx_digital
 biddercode_longer_than_12: false
 bidder_supports_deals: false
-media_types: native
+media_types: banner
 prebid_1_0_supported : true
 gdpr_supported: true
 ---
