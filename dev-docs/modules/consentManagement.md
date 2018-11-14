@@ -10,7 +10,7 @@ enable_download : true
 sidebarType : 8
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # GDPR ConsentManagement Module
 {: .no_toc }
@@ -333,4 +333,4 @@ Below is a list of Adapters that currently support GDPR:
 {% endfor %}
 </div>
 
-</div>
+

@@ -10,7 +10,7 @@ enable_download : true
 sidebarType : 8
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid JS Module: Server-to-Server Testing
 
@@ -198,4 +198,4 @@ The test KVP hb_source_rubicon on this page will always sent with the value "cli
 
 + [Prebid Server](http://prebid.org/dev-docs/get-started-with-prebid-server.html)
 
-</div>
+

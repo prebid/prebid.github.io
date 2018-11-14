@@ -10,7 +10,7 @@ enable_download : true
 sidebarType : 8
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # DFP Video
 {:.no_toc}
@@ -31,5 +31,3 @@ The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev
 ## Further Reading
 
 + [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
-
-</div>

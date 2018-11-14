@@ -8,7 +8,7 @@ nav_section: analytics
 sidebarType: 9
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.js Analytics
 
@@ -62,4 +62,4 @@ pbjs.que.push(function() {
 
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
 
-</div>
+

@@ -11,7 +11,7 @@ sidebarType : 8
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Currency Module
 {:.no_toc}
@@ -318,4 +318,4 @@ If there's a currency conversion you need that's not included, there are several
 1. Build and host a currency conversion file that includes the desired currencies
 1. Find a reliable, free, no-strings source of conversation data that we can integrate into our hosted file, then post an issue on the github forum.
 
-</div>
+

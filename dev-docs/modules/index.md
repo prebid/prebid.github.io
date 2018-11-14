@@ -8,7 +8,7 @@ nav_section: reference
 sidebarType: 8
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.js Modules
 {:.no_toc}
@@ -47,4 +47,4 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 + [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
 + [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html)
 
-</div>
+

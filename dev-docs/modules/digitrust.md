@@ -10,7 +10,7 @@ enable_download : false
 sidebarType : 8
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # DigiTrust Module
 {:.no_toc}
@@ -79,4 +79,4 @@ The combined Prebid/DigiTrust file is now ready to follow your normal acceptance
 
 + [DigiTrust integration guide](https://github.com/digi-trust/dt-cdn/wiki/Integration-Guide)
 
-</div>
+

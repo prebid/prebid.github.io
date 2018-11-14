@@ -10,7 +10,7 @@ enable_download : true
 sidebarType : 8
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # GAM/DFP Express Module
 {:.no_toc}
@@ -184,4 +184,3 @@ The practice of intercepting GPT ad calls has precedence in the industry, but ma
 
 + More about [Google Publisher Tags](https://developers.google.com/doubleclick-gpt/reference)
 
-</div>

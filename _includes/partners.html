@@ -37,8 +37,8 @@
 		
 		<table class="table">
 			
-			{% assign bidderCount = site.bidders | size | divided_by: 4.0 %}
-			{% for i in (1..49) %}
+			{% assign bidderCount = site.bidders | size | divided_by: 4.0 | round %}
+			{% for i in (1..bidderCount) %}
 				
 			<tr>
 				

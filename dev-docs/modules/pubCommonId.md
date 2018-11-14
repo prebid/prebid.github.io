@@ -10,7 +10,7 @@ enable_download : true
 sidebarType : 8
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Publisher Common ID Module
 {:.no_toc}
@@ -96,4 +96,4 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
 - This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the cookie, updates the expiration time, and decorates the adUnits objects.  A new cookie will be created if one doesn't exist already.
 - Beware that if prebid.js is included in an ad server frame, then the ID would have ad server domain instead.
 
-</div>
+
