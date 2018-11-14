@@ -9,7 +9,7 @@ sidebarType: 1
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Code Integration for iOS
 
@@ -190,4 +190,4 @@ Use the table below to see which ad objects are supported currently.
 
 
 
-</div>
+

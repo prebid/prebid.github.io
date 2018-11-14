@@ -9,7 +9,7 @@ sidebarType: 4
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Video Examples
 

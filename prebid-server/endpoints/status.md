@@ -5,7 +5,9 @@ title: Prebid Server | Endpoints | Status
 
 ---
 
-## `GET /status`
+# Get Status Endpoint
+
+ `GET /status`
 
 This endpoint will return a 2xx response whenever Prebid Server is ready to serve requests.
 Its exact response can be [configured](../developers/configuration.html) with the `status_response`

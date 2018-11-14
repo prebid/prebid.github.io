@@ -9,7 +9,7 @@ nav_section: prebid-multi-format
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Show Multi-Format Ads with Prebid.js
 {: .no_toc }
@@ -134,4 +134,4 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 + [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
 
-</div>
+

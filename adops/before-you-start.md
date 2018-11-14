@@ -11,7 +11,7 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Before You Start
 {: .no_toc }
@@ -95,4 +95,4 @@ Implementing header bidding requires much more collaboration with your dev team 
 + [Docs by Ad Server]({{site.baseurl}}/adops/docs-by-ad-server.html): Ad ops docs arranged by ad server.
 + [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
 
-</div>
+

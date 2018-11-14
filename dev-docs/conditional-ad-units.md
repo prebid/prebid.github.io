@@ -8,7 +8,7 @@ hide: false
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Conditional Ad Units
 {:.no_toc}
@@ -229,4 +229,4 @@ labels:
 + [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
 
 
-</div>
+

@@ -9,7 +9,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 
 # INTELLECTUAL PROPERTY POLICY
@@ -42,4 +42,3 @@ patent ownership. Contributors and members will not be required as a condition o
 any patent rights, except as required by the Apache 2.0 license or contribution agreements described in
 Section 3 above.
 
-</div>

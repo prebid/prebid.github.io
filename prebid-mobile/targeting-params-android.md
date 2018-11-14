@@ -9,8 +9,6 @@ sidebarType: 1
 ---
 
 
-<div class="bs-docs-section" markdown="1">
-
 # Targeting Parameters
 
 ## User location
@@ -82,4 +80,4 @@ Prebid mobile also checks if the values are present in the [SharedPreferences](h
 For more information about the TargetingParams, please check the source code in [Coding Integration for Android]({{site.github.url}}/prebid-mobile/code-integration-android).
 
 
-</div>
+

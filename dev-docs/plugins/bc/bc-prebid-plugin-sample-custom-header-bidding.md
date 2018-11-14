@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad
 
@@ -78,4 +78,4 @@ The following is a sample Brightcove Prebid Plugin integration that invokes to t
 </html>
 ```
 
-</div>
+

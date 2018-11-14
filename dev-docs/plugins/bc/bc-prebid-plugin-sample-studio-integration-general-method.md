@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Brightcove Prebid Plugin - Sample Integration Using General Method via Brightcove Studio
 
@@ -100,4 +100,4 @@ This page presents a sample publisher page using the General Integration Method 
 </html>
 ```
 
-</div>
+

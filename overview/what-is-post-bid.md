@@ -13,7 +13,7 @@ sidebarType: 0
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # What is post-bid?
 
@@ -80,5 +80,3 @@ Yes. Check out the [example](/dev-docs/examples/postbid.html).
 
 ### Please refer to the [example](/dev-docs/examples/postbid.html).
 
-
-</div>

@@ -8,7 +8,7 @@ nav_section: prebid-mobile-contributors
 sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Add an Ad Server Adapter
 {:.no_toc}
@@ -26,4 +26,4 @@ Contributors should visit Github to learn how to contribute to Prebid Mobile.
 [The Android source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-mobile-android)
 
 
-</div>
+

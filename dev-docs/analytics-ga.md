@@ -9,7 +9,7 @@ nav_section: reference
 hide: true
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Analytics with GA
 {: .no_toc}
@@ -173,4 +173,4 @@ In your local copy, go to the **Report Configuration** tab, update the GA profil
 {: .pb-lg-img :}
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-schedule-report.png)
 
-</div>
+

@@ -7,7 +7,7 @@ nav_section: pugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Plugin Integration with Brightcove Player Using Brightcove Player Studio
 
@@ -286,4 +286,4 @@ Information about the plugin API can be found at **[Prebid Plugin for Brightcove
 
 Details about the options supported by the Brightcove Prebid Plugin can be found at:   **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html)**
 
-</div>
+

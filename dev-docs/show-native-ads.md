@@ -9,7 +9,7 @@ nav_section: prebid-native
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Show Native Ads with Prebid.js
 {: .no_toc }
@@ -213,4 +213,4 @@ const adUnits = [{
 
 + [Setting up Prebid Native in DFP]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
 
-</div>
+

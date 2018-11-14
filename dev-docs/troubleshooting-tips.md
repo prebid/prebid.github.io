@@ -11,7 +11,7 @@ sidebarType: 0
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Tips for Troubleshooting
 {:.no_toc}
@@ -223,4 +223,4 @@ javascript console> pbjs.setConfig({
 + [Prebid FAQ]({{site.github.url}}/dev-docs/faq.html)
 + [Prebid Common Issues]({{site.github.url}}/dev-docs/common-issues.html)
 
-</div>
+

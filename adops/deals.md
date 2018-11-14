@@ -12,7 +12,7 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Enable Deals in Prebid
 {:.no_toc}
@@ -113,4 +113,4 @@ There are two ways to target deal IDs using *Key-values* targeting:
 
 For instructions on attaching creatives to the line item, see [Add a Creative](/adops/step-by-step.html#step-2-add-a-creative).
 
-</div>
+

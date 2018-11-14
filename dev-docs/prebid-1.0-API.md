@@ -8,7 +8,7 @@ hide: false
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid 1.0 Publisher API Changes
 {:.no_toc}

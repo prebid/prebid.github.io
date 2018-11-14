@@ -9,7 +9,7 @@ sidebarType: 1
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Step by Step Line Item Setup for MoPub
 
@@ -56,4 +56,4 @@ You can always get the latest version of the creative code below from [the Mobil
 
 Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting. 
 
-</div>
+

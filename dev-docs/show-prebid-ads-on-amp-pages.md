@@ -9,7 +9,7 @@ nav_section: prebid-amp
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid AMP Implementation Guide
 {: .no_toc}

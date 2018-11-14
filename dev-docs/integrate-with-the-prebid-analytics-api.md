@@ -9,7 +9,7 @@ hide: false
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Integrate with the Prebid Analytics API
 {:.no_toc}
@@ -178,4 +178,4 @@ gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
 - [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
 
-</div>
+

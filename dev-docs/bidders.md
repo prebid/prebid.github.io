@@ -8,7 +8,7 @@ nav_section: reference
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Bidders' Params
 

@@ -10,7 +10,7 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
     
 # Setting up Prebid with the AppNexus Publisher Ad Server
 {: .no_toc}
@@ -147,4 +147,4 @@ It will also make it easy to turn the targeting on and off for a given placement
 
 + [Using Prebid.js with AppNexus as your Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)
 
-</div>
+

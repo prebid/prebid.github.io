@@ -9,7 +9,7 @@ nav_section: prebid-mobile
 sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Getting Started with Prebid Mobile
 {:.no_toc}
@@ -115,4 +115,4 @@ For specific implementation details, see the "GDPR Consent" section here:
 -   [iOS - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)
 -   [Android - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)
 
-</div>
+

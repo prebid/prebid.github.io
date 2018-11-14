@@ -9,7 +9,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.org Membership
 
@@ -45,4 +45,4 @@ Prebid.org was developed to bring together the oversight, guidance, and developm
 * [What is Prebid.org?]({{site.baseurl}}/overview/what-is-prebid-org.html)
 * [Project Management Committees]({{site.baseurl}}/overview/prebid-management-committees.html)
 
-</div>
+

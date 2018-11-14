@@ -13,7 +13,7 @@ sidebarType: 3
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to simplify line item setup
 
@@ -115,8 +115,3 @@ Note that because Prebid.js only sends in the highest price bid, DFP does not se
 Enjoy the much more simplified line items, creatives, and targeting setup!
 
 
-
-
-
-
-</div>

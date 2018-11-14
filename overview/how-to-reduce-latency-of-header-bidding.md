@@ -9,7 +9,7 @@ nav_section: studies
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to reduce the latency of header bidding with Prebid.js
 {:.no_toc}
@@ -64,4 +64,4 @@ The final scenario shows how header bidding is accelerated by Prebid.js.
 
 + [Getting Started]({{site.baseurl}}/overview/getting-started.html)
 
-</div>
+

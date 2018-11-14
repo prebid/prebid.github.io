@@ -10,7 +10,7 @@ sidebarType: 0
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Common Issues
 {:.no_toc}
@@ -41,4 +41,4 @@ Check the bid prices. If they are low and are getting reduced to $0 due to price
 + [Prebid FAQ]({{site.github.url}}/dev-docs/faq.html)
 + [Prebid Tips for Troubleshooting]({{site.github.url}}/dev-docs/troubleshooting-tips.html)
 
-</div>
+

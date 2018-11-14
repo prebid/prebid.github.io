@@ -10,7 +10,7 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Setting up Prebid Native in DFP (Alpha)
 {: .no_toc}
@@ -153,4 +153,4 @@ p {
 + [Step by Step Guide to DFP Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
 + [Send all bids to the ad server]({{site.github.url}}/adops/send-all-bids-adops.html)
 
-</div>
+

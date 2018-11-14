@@ -13,7 +13,7 @@ sidebarType: 3
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to optimize header bidding setup
 
@@ -119,4 +119,4 @@ Note that the above data is collected by pages that run true header bidding auct
 
 If your page does not run a true header bidding auction, the above analysis may not apply.
 
-</div>
+

@@ -8,7 +8,7 @@ nav_section: prebid-mobile-ios
 sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Logging & Troubleshooting
 {:.no_toc}
@@ -37,4 +37,4 @@ Setting any log level other than `PBLogLevelAll` or `PBLogLevelOff` will enable 
 
 **A:** Prebid Mobile does not support fluid size.
 
-</div>
+

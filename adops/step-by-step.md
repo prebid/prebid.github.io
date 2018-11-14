@@ -9,7 +9,7 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Step by step guide to DFP setup
 
@@ -92,7 +92,7 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
     }
     </script>
 
-{: .pb-img.pb-lg-img :}
+{: .pb-img.pb-sm-img :}
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png)
 
 Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.

@@ -7,7 +7,7 @@ nav_section: adapters
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to Add a New Bidder Adapter
 {:.no_toc}
@@ -703,4 +703,4 @@ The Prebid.org [download page]({{site.baseurl}}/download.html) will automaticall
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
 
-</div>
+

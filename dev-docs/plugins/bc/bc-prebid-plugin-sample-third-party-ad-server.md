@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server
 
@@ -194,4 +194,4 @@ The following is a sample Brightcove Prebid Plugin integration that invokes preb
 </html>
 ```
 
-</div>
+

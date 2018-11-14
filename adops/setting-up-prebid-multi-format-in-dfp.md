@@ -10,7 +10,7 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Setting up Prebid Multi-Format in DFP
 {: .no_toc}
@@ -77,7 +77,7 @@ Follow the instructions for creating line items, creatives, custom native format
 + [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multi-format-ads.html) (Engineering setup)
 + [Multi-Format Example]({{site.baseurl}}/dev-docs/examples/multi-format-example.html) (Example code)
 
-</div>
+
 
 <!-- Reference Links -->
 

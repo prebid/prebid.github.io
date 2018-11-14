@@ -7,7 +7,7 @@ top_nav_section: prebid-mobile
 nav_section: prebid-mobile-android
 sidebarType: 1
 ---
-<div class="bs-docs-section" markdown="1">
+
 
 # Code Integration for Android
 
@@ -249,4 +249,4 @@ To avoid PrebidServerAdapter class being obfuscated and prebid not working, add 
 }
 ```
 
-</div>
+

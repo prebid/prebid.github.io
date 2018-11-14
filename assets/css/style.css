@@ -535,6 +535,27 @@ button.list-group-item:focus {
 	font-weight: 300;
 }
 
+.pb-img {
+  -webkit-box-shadow: 2px 2px 8px -2px rgba(0,0,0,0.35);
+  -moz-box-shadow: 2px 2px 8px -2px rgba(0,0,0,0.35);
+  box-shadow: 2px 2px 8px -2px rgba(0,0,0,0.35);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pb-sm-img {
+  max-width: 200px;
+}
+
+.pb-lg-img {
+  max-width: 650px;
+}
+
+.pb-md-img {
+    max-width: 450px;
+}
+
+
 /*************
 	Footer
 ******************/

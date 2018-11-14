@@ -8,8 +8,6 @@ pid: 10
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
-
 # Ad Unit Reference
 {:.no_toc}
 
@@ -410,7 +408,7 @@ pbjs.addAdUnits([{
 + [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
 + [Prebid.org Native Examples]({{site.baseurl}}/examples/native/)
 
-</div>
+
 
 <!-- Reference Links -->
 

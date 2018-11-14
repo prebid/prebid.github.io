@@ -8,7 +8,7 @@ nav_section: prebid-mobile-adops
 sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Price Granularity
 
@@ -65,4 +65,3 @@ The below screenshot is taken from the Prebid Server account page where you can 
 {: .pb-img.pb-md-img :}
 ![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-price-granularity/pg-setting.png)
 
-</div>

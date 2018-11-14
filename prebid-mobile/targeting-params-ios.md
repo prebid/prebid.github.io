@@ -9,7 +9,7 @@ sidebarType: 1
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Targeting Parameters
 
@@ -105,4 +105,3 @@ Enable publishers to set the consent string.
 Prebid mobile also checks if the values are present in the [NSUserDefaults](https://developer.apple.com/documentation/foundation/nsuserdefaults#1664798?language=objc) keys specified by the IAB. If the values are also set in these objects they will be passed in the OpenRTB request object.
 
 
-</div>

@@ -9,7 +9,7 @@ nav_section: pbjs-video-get-started
 sidebarType: 4
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Getting Started with Video for Prebid.js
 {: .no_toc }

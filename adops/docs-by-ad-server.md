@@ -9,7 +9,7 @@ nav_section: reference
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Docs by Ad Server
 {:.no_toc}
@@ -32,4 +32,4 @@ For code samples and other on-page implementation docs, see [our docs for develo
 | **AppNexus** | [Setting up Prebid with the AppNexus Publisher Ad Server]({{site.baseurl}}/adops/setting-up-prebid-with-the-appnexus-ad-server.html) |
 | **Smart Ad Server** | [Setting up Prebid.js with Smart Ad Server]({{site.baseurl}}/adops/setting-up-prebidjs-with-Smart-Ad-Server.html) |
 
-</div>
+

@@ -11,7 +11,7 @@ sidebarType: 3
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Optimal Header Bidding Setup
 
@@ -148,7 +148,7 @@ Add the Plugin [Headerbid Expert](https://chrome.google.com/webstore/detail/head
 </div>
 
 
-</div>
+
 
 
 

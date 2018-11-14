@@ -9,7 +9,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Need Help?
 {:.no_toc}
@@ -72,4 +72,4 @@ Join the [Ad Ops Reddit Slack](https://redditadops.slack.com/messages/C0HVALS8P/
 - Get the latest release updates
 - Get the latest published studies
 
-</div>
+

@@ -7,7 +7,7 @@ sidebarType: 0
 
 ---
 
-## Debugging Chrome Extension
+# Debugging Chrome Extension
 
 Prebid.Org supports the Chrome extension [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop). Web publishers can use this tool to understand how their Prebid.js header bidding partners are doing:
 1. What's the latency from each header bidding partner?

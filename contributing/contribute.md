@@ -7,9 +7,9 @@ sidebarType: 2
 
 ---
 
-## Contribute
+# Contribute
 
-### Contributing To Prebid
+## Contributing To Prebid
 
 There are several ways to contribute to the Prebid project. The easiest way is to fork one of our Github repositories and add to our existing code base. Once you commit your changes, open a pull request against the master branch.
 
@@ -18,7 +18,7 @@ Pull requests must satisfy certain conditions before being considered for merge.
 + 80% unit test code coverage
 + any necessary documentation
 
-#### Repositories
+## Repositories
 
 * [Prebid.js](https://github.com/prebid/Prebid.js)
     * [Additional Pull Request requirements](https://github.com/prebid/Prebid.js/blob/master/PR_REVIEW.md)
@@ -29,6 +29,6 @@ Pull requests must satisfy certain conditions before being considered for merge.
 * [Prebid Android SDK](https://github.com/prebid/prebid-mobile-android)
 
 
-#### Reporting An Issue
+## Reporting An Issue
 
 This website contains information on <a href="/dev-docs/common-issues.html" title="Common Issues">common issues</a>. If you cannot find the issue you are reporting there, check on the appropriate Github repo's issue page ([Prebid.js](https://github.com/prebid/Prebid.js/issues), [Android SDK](https://github.com/prebid/prebid-mobile-android/issues), [iOS SDK](https://github.com/prebid/prebid-mobile-ios/issues). If you are unable to find the issue there then <a href="https://github.com/prebid/Prebid.js/issues/new" title="Report a new issue">submit a new issue </a>.

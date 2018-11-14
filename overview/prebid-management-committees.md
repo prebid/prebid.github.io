@@ -9,7 +9,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Project Management Committees
 
@@ -57,4 +57,4 @@ Project Management Committees are established by resolution of the Board, to be 
 * [What is Prebid.org?]({{site.baseurl}}/overview/what-is-prebid-org.html)
 * [Prebid Org Membership]({{site.baseurl}}/overview/prebid-members.html)
 
-</div>
+

@@ -10,7 +10,7 @@ nav_section: intro
 sidebarType: 9
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.js Overview
 {:.no_toc}
@@ -58,4 +58,4 @@ For more information, check out the following:
 + [Docs by Ad Server]({{site.baseurl}}/adops/docs-by-ad-server.html): Ad ops docs arranged by ad server.
 + [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
 
-</div>
+

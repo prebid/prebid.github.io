@@ -8,7 +8,7 @@ pid: 20
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.org Header Bidding Wrapper Code of Conduct
 {:.no_toc}
@@ -63,4 +63,3 @@ This Wrapper Code of Conduct establishes the principles by which we believe head
 + [Project Principles]({{site.baseurl}}/principles.html)
 + [Getting Started]({{site.baseurl}}/overview/getting-started.html)
 
-</div>

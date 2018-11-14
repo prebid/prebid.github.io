@@ -9,7 +9,7 @@ nav_section: troubleshooting
 sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.js Troubleshooting Guide
 {:.no_toc}
@@ -125,4 +125,4 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
 
-</div>
+

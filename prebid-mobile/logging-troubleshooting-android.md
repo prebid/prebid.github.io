@@ -8,7 +8,7 @@ nav_section: prebid-mobile-android
 sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Logging & Troubleshooting
 {:.no_toc}
@@ -22,10 +22,10 @@ Troubleshoot your Prebid Mobile integration by following these steps to check yo
 
 3. In the logcat tab, set the Log Level to Verbose and search for "PrebidMobile". You should see a list of logs.
 
-# FAQs
+## FAQs
 
 **Q:** I've defined a banner size as fluid in DFP SDK (`AdSize(-3,-4)`), why am I receiving an empty response?
 
 **A:** Prebid Mobile does not support fluid size.
 
-</div>
+

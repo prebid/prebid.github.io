@@ -8,7 +8,7 @@ pid: 28
 sidebarType: 9
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # External Plugins
 
@@ -38,4 +38,3 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Brightcove Prebid Plugin - Sample Integration Using Configured Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method.html)
     -   [Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)
 
-</div>

@@ -9,7 +9,7 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Send all bids to the ad server - Ad Ops setup
 {: .no_toc }
@@ -179,4 +179,4 @@ Repeat for your other line items until you have the pricing granularity level yo
 
 Once you've created line items for `BIDDERCODE` targeting all the price buckets you want, start creating orders for each of your remaining bidder partners using the steps above.
 
-</div>
+

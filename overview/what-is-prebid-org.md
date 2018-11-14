@@ -9,7 +9,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # What is Prebid.org?
 
@@ -28,4 +28,3 @@ Read more here:
 * [Q&A about Prebid.org](http://blog.appnexus.com/2017/prebid-org-explained-interview-michael-richardson/)
 * [Current members of Prebid.org]({{site.baseurl}}/partners/partners.html)
 
-</div>

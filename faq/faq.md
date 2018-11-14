@@ -8,7 +8,7 @@ sidebarType: 0
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # FAQ
 {:.no_toc}
@@ -158,4 +158,4 @@ The handling of this scenario will be improved in a future release.
 + [Prebid Common Issues]({{site.baseurl}}/dev-docs/common-issues.html)
 + [Prebid.js issues tagged 'question'](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)
 
-</div>
+

@@ -10,7 +10,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Project Principles
 
@@ -29,4 +29,4 @@ Prebid.org uses the following principles to guide how we develop [Prebid.js]({{s
 + [Getting Started]({{site.baseurl}}/overview/getting-started.html)
 + [Header Bidding Wrapper Code of Conduct]({{site.baseurl}}/wrapper_code_of_conduct.html)
 
-</div>
+

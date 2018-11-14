@@ -9,7 +9,7 @@ nav_section: intro
 sidebarType: 2
 ---
 
-<div class="main-text" markdown="1">
+
 
 # What is Prebid?
 {:.no_toc}
@@ -65,4 +65,3 @@ At a high level, header bidding involves just a few steps:
 + [Prebid SDK]({{site.baseurl}}/prebid-mobile/prebid-mobile.html)
 + [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html)
 
-</div>

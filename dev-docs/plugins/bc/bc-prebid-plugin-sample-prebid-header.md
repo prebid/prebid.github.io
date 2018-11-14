@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Sample Brightcove Player Prebid Plugin Integration - Prebid in Header
 
@@ -115,4 +115,4 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
 </html>
 ```
 
-</div>
+

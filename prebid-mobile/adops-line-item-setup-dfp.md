@@ -8,7 +8,7 @@ nav_section: prebid-mobile-adops
 sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Step by Step Line Item Setup for DFP
 {: .no_toc}
@@ -129,4 +129,4 @@ Let's go into each of them to update some settings.  For each duplicated line it
 Repeat for your other line items until you have the pricing granularity level you want.
 
 
-</div>
+
