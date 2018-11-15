@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: Publisher API Reference
@@ -16,7 +15,7 @@ This page has documentation for the public API methods of Prebid.js.
 
 {: .alert.alert-danger :}
 **Note:** Versions of Prebid.js prior to 1.0 are no longer supported.
-
+ 
 <a name="module_pbjs"></a>
 
 ## pbjs
@@ -46,7 +45,6 @@ This page has documentation for the public API methods of Prebid.js.
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
     * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
     * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
-    * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [publisherDomain](#setConfig-Publisher-Domain)
@@ -1161,7 +1159,6 @@ Core config:
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
-+ [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1232,16 +1229,6 @@ Prebid core adds a timeout on XMLHttpRequest request to terminate the request on
 
 {% highlight js %}
 pbjs.setConfig({ disableAjaxTimeout: true });
-{% endhighlight %}
-
-#### Set Timeout Buffer
-
-<a name="setConfig-timeoutBuffer" />
-
-Prebid core adds a timeout buffer to extend the time that bidders have to return a bid after the auction closes. This buffer is used to offset the "time slippage" of the setTimeout behavior in browsers. Prebid.js sets the default value to 400ms. You can change this value by setting `timeoutBuffer` to the amount of time you want to use. The following example sets the buffer to 300ms.
-
-{% highlight js %}
-pbjs.setConfig({ timeoutBuffer: 300 });
 {% endhighlight %}
 
 #### Send All Bids
@@ -1517,7 +1504,7 @@ pbjs.setConfig({
     userSync: {
         filterSettings: {
             iframe: {
-                bidders: '*',   // '*' means all bidders
+                bidders: ['*'],   // '*' means all bidders
                 filter: 'include'
             }
         }
@@ -1632,15 +1619,6 @@ To set size configuration rules, pass in `sizeConfig` as follows:
 
 pbjs.setConfig({
     sizeConfig: [{
-        'mediaQuery': '(min-width: 1600px)',
-        'sizesSupported': [
-            [1000, 300],
-            [970, 90],
-            [728, 90],
-            [300, 250]
-        ],
-        'labels': ['desktop-hd']
-    }, {
         'mediaQuery': '(min-width: 1200px)',
         'sizesSupported': [
             [970, 90],
@@ -1701,9 +1679,6 @@ Only one conditional may be specified on a given AdUnit or bid -- if both `label
 
 {: .alert.alert-warning :}
 If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`.
-
-{: .alert.alert-warning :}
-It is important to note that labels do not act as filters for sizeConfig. In the example above, using a screen of 1600px wide and `labelAll:["desktop"]` will *not* filter out sizes defined in the `desktop-hd` sizeConfig. Labels in sizeConfig are only used for selecting or de-selecting AdUnits and AdUnit.bids.
 
 Label targeting on the ad unit looks like the following:
 
