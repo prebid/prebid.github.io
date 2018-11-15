@@ -2,7 +2,7 @@
 layout: page
 title: Prebid Modules
 description: Module Documentation
-pid: 27
+pid: 7
 top_nav_section: dev_docs
 nav_section: reference
 ---
