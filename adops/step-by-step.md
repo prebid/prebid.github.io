@@ -72,23 +72,22 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
 
 Choose the same advertiser we've assigned the line item to.
 
-Note that this has to be a **Third party** creative. The **"Serve in Safeframe"** box has to be **UNCHECKED** (there are plans to make the below creative safeframe compatible).
+Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creatve is SafeFrame compatible).
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
-    var w = window;
-    for (i = 0; i < 10; i++) {
-      w = w.parent;
-      if (w.pbjs) {
-        try {
-          w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%');
-          break;
-        } catch (e) {
-          continue;
-        }
+      var ucTagData = {};
+      ucTagData.adServerDomain = "";
+      ucTagData.pubUrl = "%%PATTERN:url%%";
+      ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+
+      try {
+        ucTag.renderAd(document, ucTagData);
+      } catch (e) {
+        console.log(e);
       }
-    }
     </script>
 
 
@@ -100,7 +99,7 @@ Make sure the creative size is set to 1x1.  This allows us to set up size overri
 
 Next, let's attach the creative to the $0.50 line item you just created.  Click into the Line Item, then the **Creatives** tab.
 
-There will be yellow box showing each ad spot that you haven't uploaded creatives for yet.  Since you've already made the creatives, click the **use existing creatives** next to each size.
+There will be yellow box showing each ad spot that you haven't uploaded creatives for yet.  Since you've already made the creatives, click **use existing creatives** next to each size.
 
 ![Use existing creatives list]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-01.png){: .pb-lg-img :}
 

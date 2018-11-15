@@ -2,7 +2,7 @@
 layout: page_v2
 title: Prebid.js FAQ
 description: FAQ on Prebid.js for header bidding.
-pid: 7
+pid: 5
 top_nav_section: dev_docs
 nav_section: reference
 sidebarType: 9

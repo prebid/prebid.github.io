@@ -23,3 +23,4 @@ prebid_1_0_supported : true
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'`    | `string` |
 | `region`      | required | Assigned region     | `'prebid-eu'` | `string` |
+| `bidfloor`    | optional | Minimal CPM value   | `0.01`        | `float`  |
