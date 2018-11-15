@@ -487,6 +487,23 @@ button.list-group-item:focus {
       content: "";
 }
 
+.pb-sm-img {
+	width: 50%;
+    height: 50%;
+}
+
+
+.pb-md-img {
+    width: 60%;
+    height: 60%;
+}
+
+.pb-lg-img {
+	width: 70%;
+    height: 70%;
+}
+
+
 /********************************
 	Content Pages
 *********************************/
@@ -541,18 +558,6 @@ button.list-group-item:focus {
   box-shadow: 2px 2px 8px -2px rgba(0,0,0,0.35);
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-.pb-sm-img {
-  max-width: 200px;
-}
-
-.pb-lg-img {
-  max-width: 650px;
-}
-
-.pb-md-img {
-    max-width: 450px;
 }
 
 
@@ -770,12 +775,14 @@ button.list-group-item:focus {
 	
 		font-size: 15px;
 		font-weight: 100;
+		width: 85%;
 	}
 	
 	.pb-content p { 
 		font-size: 15px;
 		font-weight: 100;
 		line-height: inherit;
+		width: 85%;
 	}
 	
 	.pb-content li { 
@@ -831,18 +838,7 @@ button.list-group-item:focus {
   		margin-bottom: 10px;
 	}
 
-	.pb-sm-img {
-		max-width: 200px;
-	}
-
-	.pb-lg-img {
-		max-width: 650px;
-	}
-
-	.pb-md-img {
-    	max-width: 450px;
-	}
-
+	
 	.blog-related-posts {
 		color: #aaa;
 		margin-top: 40px;
@@ -963,6 +959,16 @@ button.list-group-item:focus {
 	.prebid-mobile-notice {
     	margin-top: 2em;
 	}
+	
+	.pb-lg-img {
+		width: 85%;
+		height: 85%;
+	}
+	
+	.pb-md-img {
+    	width: 60%;
+    	height: 60%;
+	}
 
 
 }
@@ -1036,6 +1042,27 @@ button.list-group-item:focus {
 	.carousel h4 {
 		font-size: 12px;
 	}
+	
+	.pb-content { 
+		width: 75%;
+	}
+	
+	.pb-content p { 
+		font-size: 15px;
+		font-weight: 100;
+		line-height: inherit;
+		width: 85%;
+	}
+	
+	.pb-lg-img {
+		width: 65%;
+		height: 65%;
+	}
+	
+	.pb-md-img {
+    	width: 45%;
+    	height: 45%;
+	}
 
 	
 	.pb_footer { 
@@ -1057,34 +1084,6 @@ button.list-group-item:focus {
 	font-size: 60px;
 	font-weight: bold;
 }
-
-/* images */
-
-.pb-sm-img {
-
-	padding-top:5px;
-	padding-bottom: 5px;
-  	max-width: 50%;
-}
-
-.pb-lg-img {
-	
-	padding-top:5px;
-	padding-bottom: 5px;
-  	max-width: 100%;
-  	
-}
-
-.pb-md-img {
-	
-	padding-top:5px;
-	padding-bottom: 5px;
-    max-width: 75%;
-}
-
-
-
-
 
 
 
@@ -1183,17 +1182,6 @@ button.list-group-item:focus {
   margin-bottom: 10px;
 }
 
-.pb-sm-img {
-  max-width: 200px;
-}
-
-.pb-lg-img {
-  max-width: 650px;
-}
-
-.pb-md-img {
-    max-width: 450px;
-}
 
 .blog-related-posts {
   color: #aaa;

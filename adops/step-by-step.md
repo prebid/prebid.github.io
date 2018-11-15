@@ -30,20 +30,19 @@ In DFP, create a new order with a $0.50 line item.
 
 Enter all of the inventory sizes that your website has.
 
-{: .pb-img.pb-md-img :}
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/inventory-sizes.png)
+
+![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/inventory-sizes.png){: .pb-md-img :}
 
 Because header bidding partners return prices, set the Line Item **Type** to **Price priority** to enable them to compete on price.
 
-{: .pb-img.pb-sm-img :}
-![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png)
+![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png){: .pb-sm-img :}
 
 <br>
 
 Set the **Rate** to $0.50 so that this line item will compete with your other demand sources at $0.50 ECPM.
 
-{: .pb-img.pb-sm-img :}
-![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png)
+
+![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png){: .pb-sm-img :}
 
 <br>
 
@@ -51,8 +50,8 @@ Set **Display Creatives** to *One or More* since we'll have one or more creative
 
 Set **Rotate Creatives** to *Evenly*.
 
-{: .pb-img.pb-md-img :}
-![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png)
+
+![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png){: .pb-sm-img :}
 
 Choose the inventory that you want to run header bidding on.
 
@@ -62,8 +61,8 @@ This line item will capture the bids in the range from $0.50 to $1 by targeting 
 
 **You must enter the value to two decimal places, e.g., `1.50`.  If you don't use two decimal places, header bidding will not work.**
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png)
+
+![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png){: .pb-lg-img :}
 
 <br>
 
@@ -92,8 +91,8 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
     }
     </script>
 
-{: .pb-img.pb-sm-img :}
-![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png)
+
+![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
 Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.
 
@@ -103,11 +102,11 @@ Next, let's attach the creative to the $0.50 line item you just created.  Click 
 
 There will be yellow box showing each ad spot that you haven't uploaded creatives for yet.  Since you've already made the creatives, click the **use existing creatives** next to each size.
 
-![Use existing creatives list]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-01.png)
+![Use existing creatives list]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-01.png){: .pb-lg-img :}
 
 In the pop-up dialog that appears, click **Show All** to remove the default size filters and see the 1x1 creatives. Include the prebid creative and click **Save**.
 
-![Use existing creatives dialog]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-02.png)
+![Use existing creatives dialog]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-02.png){: .pb-lg-img :}
 
 Back in the line item, go into the **Creatives** tab again, and click into the creative you just added.
 

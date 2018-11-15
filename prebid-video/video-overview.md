@@ -22,8 +22,8 @@ Prebid.js provides tools that allow header bidding video demand to compete with 
 
 Here’s a high-level overview of the steps required to start using Prebid.js for video demand.
 
-{: .pb-img.pb-lg-img :}
-![Video Overview]({{site.baseurl}}/assets/images/prebid-video/video-overview.png)
+
+![Video Overview]({{site.baseurl}}/assets/images/prebid-video/video-overview.png){:class="pb-lg-img"}
 
 For implementation details, see [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html).
 
@@ -33,8 +33,8 @@ For implementation details, see [Getting Started with Video for Prebid.js]({{sit
 
 Here’s a high-level diagram showing how video header bidding works for instream video (with more details outlined in the steps below):
 
-{: .pb-img.pb-lg-img :}
-![Instream Video Diagram]({{site.baseurl}}/assets/images/prebid-video/instream-video.png)
+
+![Instream Video Diagram]({{site.baseurl}}/assets/images/prebid-video/instream-video.png){: .pb-img.pb-lg-img :}
 
 
 1.	**Prebid sends bid requests.**
@@ -63,8 +63,8 @@ The video player loads the master video ad server tag URL, which makes a call to
 
 Outstream video is displayed in banner ad slots using video renderers that are provided either by the demand partner with the bid response or by a renderer that the publisher has associated with the ad unit. This is a high-level diagram showing how header bidding works with outstream video:
 
-{: .pb-img.pb-lg-img :}
-![Outstream Video Diagram]({{site.baseurl}}/assets/images/prebid-video/outstream-video.png)
+
+![Outstream Video Diagram]({{site.baseurl}}/assets/images/prebid-video/outstream-video.png){: .pb-img.pb-lg-img :}
 
 1.	**Prebid sends request to demand partners.**
 Prebid.js code loads within the page header and sends a bid request to each video demand partner included on a given Prebid video ad unit.
