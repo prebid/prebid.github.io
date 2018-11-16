@@ -1439,8 +1439,11 @@ Additional information of these properties:
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 
-*Currently supported vendors are: appnexus & rubicon
-*Note - When using defaultVendor option, accountId and bidders properties still need to be defined.
+**Additional Notes on s2sConfig properties**
+
+- Currently supported vendors are: appnexus & rubicon
+- When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
+- If `timeout` is larger than Prebid.js timeout, this timeout will be automatically adjusted to a proportionally smaller value to have it fit in the auction process.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
