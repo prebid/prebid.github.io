@@ -20,7 +20,7 @@ Dr. Prebid is a validation and troubleshooting app for publishers implementing P
 
 ## Get the App
 
-** Coming Soon!** This app will be available for download for iOS.
+**Coming Soon!** This app will be available for download for iOS.
 
 Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).
 
