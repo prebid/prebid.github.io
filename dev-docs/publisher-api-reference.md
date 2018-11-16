@@ -1432,9 +1432,9 @@ Additional information of these properties:
 |------------+---------+---------+---------------------------------------------------------------|
 | `accountId` | Required | String | Your Prebid Server account ID |
 | `bidders` | Required | Array of Strings | Which bidders support auctions on the server side |
-| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.*  Individual properties can be overridden by including them in the config along with this setting. |
+| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
-| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. |
+| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
@@ -1443,7 +1443,7 @@ Additional information of these properties:
 
 - Currently supported vendors are: appnexus & rubicon
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
-- If `timeout` is larger than Prebid.js timeout, this timeout will be automatically adjusted to 75% of the Prebid.js's timeout in order to have it fit within the auction process.
+- If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
