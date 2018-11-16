@@ -1443,7 +1443,7 @@ Additional information of these properties:
 
 - Currently supported vendors are: appnexus & rubicon
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
-- If `timeout` is larger than Prebid.js timeout, this timeout will be automatically adjusted to a proportionally smaller value to have it fit in the auction process.
+- If `timeout` is larger than Prebid.js timeout, this timeout will be automatically adjusted to 75% of the Prebid.js's timeout in order to have it fit within the auction process.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
