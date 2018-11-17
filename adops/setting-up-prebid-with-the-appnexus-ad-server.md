@@ -143,7 +143,7 @@ It will also make it easy to turn the targeting on and off for a given placement
 
 ## Related Topics
 
-+ [Getting Started with Prebid.js for Header Bidding]({{site.github.url}}/adops.html)
++ [Getting Started with Prebid.js for Header Bidding]({{site.github.url}}/overview/getting-started.html)
 
 + [Using Prebid.js with AppNexus as your Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)
 

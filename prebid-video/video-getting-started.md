@@ -28,7 +28,7 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 
 ### Ad Server Setup
 
-Start by reading [AdOps Getting Started]({{site.github.url}}/adops.html). This will give you a general overview of setting up your price buckets and line items on your ad server.
+Start by reading [AdOps Getting Started]({{site.github.url}}/overview/getting-started.html). This will give you a general overview of setting up your price buckets and line items on your ad server.
 
 One thing to keep in mind as you set up your line items is price granularity. Be sure to communicate your price granularity requirements to your developers, as they might need to define custom configuration settings, depending on your granularity.
 

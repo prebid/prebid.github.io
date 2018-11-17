@@ -15,7 +15,7 @@ Prebid supports header bidding for many ad formats. This page outlines the avail
 
 Standard display, or banner, is an available format for all Prebid products. Learn more with the following resources:
 
-- [Adops Getting Started]({{site.baseurl}}/adops.html)
+- [Adops Getting Started]({{site.baseurl}}/adops/before-you-start.html)
 - [Developer Getting Started]({{site.baseurl}}/dev-docs/getting-started.html)
 - [Basic Prebid.js Example]({{site.baseurl}}/dev-docs/examples/basic-example.html)
 - [Ad Unit Refresh/Infinite Scroll Example]({{site.baseurl}}/dev-docs/examples/adunit-refresh.html)

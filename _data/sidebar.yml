@@ -343,7 +343,7 @@
 
 - sbSecId: 3
   title: Before You Start
-  link: /adops.html
+  link: /adops/before-you-start.html
   isLastSubSectionItem: 0
   isHeader: 0
 
@@ -742,7 +742,7 @@
   
 - sbSecId: 9
   title: Getting Started
-  link: /adops.html
+  link: /adops/before-you-start.html
   isLastSubSectionItem: 1
   isHeader: 0
   
