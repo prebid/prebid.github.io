@@ -22,6 +22,7 @@ Prebid is:
 
 Sometimes when folks talk about our flagship "Prebid.js", they abbreviate it to "Prebid" for short, and this is fine, but we'd prefer that people remember we have other products too.
 
+
 # What is Header Bidding?
 
 Header Bidding is a technique that involves running SSP & Ad Exchange code directly on page so publishers can receive bids on their inventory that may be unavailable through their primary ad server and exchange.
@@ -64,4 +65,4 @@ At a high level, header bidding involves just a few steps:
 + [Prebid.js]({{site.baseurl}}/prebid/prebidjs.html)
 + [Prebid SDK]({{site.baseurl}}/prebid-mobile/prebid-mobile.html)
 + [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html)
-
++ [Managed Prebid Solutions](/prebid/managed.html)

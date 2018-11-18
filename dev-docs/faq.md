@@ -13,7 +13,7 @@ sidebarType: 9
 # Prebid.js FAQ
 {:.no_toc}
 
-This page has answers to some frequently asked questions.  If you don't find what you're looking for here, see the [issues with the 'question' tag on the Prebid.js repo](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20).
+This page has answers to some frequently asked questions about Prebid.js.  If you don't find what you're looking for here, there are other ways to [get help](/support/index.html).
 
 * TOC
 {:toc}
@@ -109,28 +109,6 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 (Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)
 
-## How can I use Prebid Server in a mobile app post-bid scenario?
-
-Just schedule a [post-bid creative]({{site.baseurl}}/dev-docs/examples/postbid.html) in the ad server.
-
-1. Load the production Prebid JS package
-1. Set up the AdUnit
-1. Set the app and device objects with setConfig(). e.g.
-
-```
-pbjs.setConfig({
-    s2sConfig: {
-    ...
-    },
-    app: {
-        bundle: "com.test.app"
-    },
-    device: {
-         ifa: "6D92078A-8246-4BA4-AE5B-76104861E7DC"
-    }
-});
-```
-
 ## How often is Prebid.js updated?
 
 See [the github release schedule](https://github.com/prebid/Prebid.js/blob/master/README.md) for more details.
@@ -154,8 +132,6 @@ The handling of this scenario will be improved in a future release.
 
 ## Related Reading
 
-+ [Prebid Dev Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
-+ [Prebid Common Issues]({{site.baseurl}}/dev-docs/common-issues.html)
++ [Prebid.js Dev Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
++ [Prebid.js Common Issues]({{site.baseurl}}/dev-docs/common-issues.html)
 + [Prebid.js issues tagged 'question'](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)
-
-

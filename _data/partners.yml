@@ -1,10 +1,10 @@
 - company: AppNexus
-  link: https://www.appnexus.com/
+  link: https://www.appnexus.com/en/publishers/header-bidding
   imgURL: /assets/images/partners/founders/appnexus.png
   type: 0
   
 - company: Rubicon 
-  link: https://rubiconproject.com/
+  link: http://rubiconproject.com/headerbidding
   imgURL: /assets/images/partners/founders/rubicon.png
   type: 0
   
@@ -14,7 +14,7 @@
   type: 1
   
 - company: Criteo 
-  link: https://www.criteo.com/
+  link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/standard/criteo.png
   type: 1
   
@@ -24,7 +24,7 @@
   type: 1
   
 - company: Oath 
-  link: https://www.oath.com/
+  link: https://www.oath.com/advertising/platforms/
   imgURL: /assets/images/partners/standard/oath.png
   type: 1
   
@@ -34,7 +34,7 @@
   type: 1
   
 - company: Pubmatic 
-  link: https://www.pubmatic.com/
+  link: https://pubmatic.com/products/header-bidding/
   imgURL: /assets/images/partners/standard/pubmatic.png
   type: 1
   

@@ -72,7 +72,7 @@
   isHeader: 1
 
 - sbSecId: 0
-  title: General FAQ
+  title: Prebid.js FAQ
   link: /dev-docs/faq.html
   isLastSubSectionItem: 0
   isHeader: 0
