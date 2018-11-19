@@ -16,20 +16,37 @@
 	
 	</ul>
 	
-	<div class="title"><h3>Prebid.org Standard Members</h3></div>
-	<ul>
 	
+	{% capture arrStandardLinks %}
 	{% for item in site.data.partners %}
-	
 		{% if item.type == 1 %}
-		
-			<li><a href="{{item.link}}" target="_blank"><img src='{{item.imgURL}}' class="standard"></a></li>
-		
+			{{item.link}}
 		{% endif %}
-		
 	{% endfor %}
+	{% endcapture %}
 	
-	</ul>
+	{% capture arrStandardImages %}
+	{% for item in site.data.partners %}
+		{% if item.type == 1 %}
+			{{item.imgURL}}
+		{% endif %}
+	{% endfor %}
+	{% endcapture %}
+	
+	
+	<div class="title"><h3>Prebid.org Standard Members</h3></div>
+	
+	<div id="container">
+		<table class="table"s>
+			<tr>
+			
+				{% for item in arrStandardLinks %}
+				{% assign idx = forloop %}
+					<td>{{item}}</td>
+				{% endfor %}
+			</tr>
+		</table>
+	</div>	
 	
 	<div class="tableTitle"><h3>Other Partners</h3></div>
 				
