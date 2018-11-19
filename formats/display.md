@@ -8,7 +8,7 @@ sidebarType: 7
 
 ---
 
-# Prebid Formats - Display
+# Prebid Display Ads
 {:.no_toc}
 
 Display (banner) ads are supported by Prebid.js and Prebid Mobile. The [IAB](https://www.iab.com/) has created a set of [standards](https://www.iab.com/newadportfolio/) for the different types of display ads.
