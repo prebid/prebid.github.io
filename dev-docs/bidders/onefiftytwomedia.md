@@ -12,6 +12,14 @@ prebid_1_0_supported : true
 media_types: banner, video
 ---
 
+#### send-all-bids ad server keys
+
+(Truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
+
+`hb_pb_onefiftytwomed`
+`hb_adid_onefiftytwom`
+`hb_size_onefiftytwom`
+
 ### Bid params
 
 {: .table .table-bordered .table-striped }
