@@ -4,7 +4,6 @@ title: Project Principles
 head_title: Project Principles
 description: A set of principles that guide how we develop Prebid
 pid: 0
-is_top_nav: yeah
 top_nav_section: overview
 nav_section: intro
 sidebarType: 2
@@ -26,7 +25,7 @@ Prebid.org uses the following principles to guide how we develop [Prebid.js]({{s
 
 ## Further Reading
 
-+ [Getting Started]({{site.baseurl}}/overview/getting-started.html)
++ [What is Prebid?](/overview/intro.html)
 + [Header Bidding Wrapper Code of Conduct]({{site.baseurl}}/wrapper_code_of_conduct.html)
 
 

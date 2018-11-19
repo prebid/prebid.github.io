@@ -11,7 +11,7 @@ sidebarType: 2
 
 
 
-# What is Prebid.org?
+# About Prebid.org
 
 Header bidding has seen incredible adoption across the industry, and Prebid.js has been an incredible part of that. While AppNexus created Prebid.js, it's too important to be owned by any one company. Thus, Prebid.org was created.
 

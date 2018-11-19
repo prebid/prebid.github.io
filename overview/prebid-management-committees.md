@@ -17,39 +17,50 @@ Project Management Committees are established by resolution of the Board, to be 
 
 ## Prebid.js
 
-**Scope:** Prebid.js and related repositories
+Scope: Prebid.js and related repositories
 
-**GitHub Repositories:**
+GitHub Repositories:
 
 + https://github.com/prebid/prebid.js
++ https://github.com/prebid/Prebid.js-packager
 + https://github.com/prebid/prebid-universal-creative
 + https://github.com/prebid/currency-file-generator
 
-**PMC Chair:** Matt Kendall (AppNexus)
+PMC Chair: Matt Kendall (AppNexus)
 
 ## Prebid Mobile
 
-**Scope:** Prebid Mobile SDK
+Scope: Prebid Mobile SDK
 
-**GitHub Repositories:**
+GitHub Repositories:
 
-+ https://github.com/prebid/prebid-server
-+ https://github.com/prebid/prebid-cache
++ https://github.com/prebid/prebid-mobile-ios
++ https://github.com/prebid/prebid-mobile-android
 
-**PMC Chair:** Bret Gorsline (Rubicon Project)
+PMC Chair: Lila Hunt (Sortable)
 
 ## Prebid Server
 
-**Scope:** Prebid Server and Prebid Cache
+Scope: Prebid Server and Prebid Cache
 
-**GitHub Repositories:**
+GitHub Repositories:
 
 + https://github.com/prebid/prebid-server
 + https://github.com/prebid/prebid-cache
 + https://github.com/rubicon-project/prebid-server-java
 + https://github.com/rubicon-project/prebid-cache-java
 
-**PMC Chair:** Bret Gorsline (Rubicon Project)
+PMC Chair: Bret Gorsline (Rubicon Project)
+
+## Prebid Tools
+
+Scope: Misc. Tools
+
+GitHub Repositories:
+
++ https://github.com/prebid/header-bidder-expert
+
+PMC Chair: Philip Meyer (Rubicon Project)
 
 
 ## Further Reading

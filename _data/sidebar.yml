@@ -304,14 +304,26 @@
   isHeader: 0
 
 - sbSecId: 2
+  title: Contributing
+  link: /contributing/contribute.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 2
   title: Prebid.org IP Policy
   link: /overview/ip-policy.html
   isLastSubSectionItem: 0
   isHeader: 0
 
 - sbSecId: 2
-  title: What is Prebid.org?
+  title: About Prebid.org
   link: /overview/what-is-prebid-org.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 2
+  title: Members and Partners
+  link: /partners/partners.html
   isLastSubSectionItem: 0
   isHeader: 0
 
@@ -685,7 +697,7 @@
   isHeader: 1
   
 - sbSecId: 8
-  title: Getting Started
+  title: About Modules
   link: /dev-docs/modules/index.html
   isLastSubSectionItem: 0
   isHeader: 0

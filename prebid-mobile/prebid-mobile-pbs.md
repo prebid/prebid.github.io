@@ -3,7 +3,6 @@ layout: page_v2
 title: Getting Started with Prebid Mobile
 description: Getting Started with Prebid Mobile
 pid: 1
-is_top_nav: yeah
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 1
@@ -17,33 +16,23 @@ sidebarType: 1
 This page gives an overview of steps you need to take, either as an ad ops user or as a developer, to start using Prebid Mobile.
 
 {: .alert.alert-info :}
-If this is your first time working with header bidding, we recommend that you read [What is Prebid?]({{site.github.url}}/overview/intro.html) before diving into Prebid Mobile.
+If this is your first time working with header bidding, we recommend that you read [What is Prebid?](/overview/intro.html) before diving into Prebid Mobile.
 
 * TOC
 {:toc}
 
 ## Set Up Prebid Server
 
-Before you begin using Prebid Mobile in your apps, you need to prepare your end-to-end system. The first step is to set up your Prebid Server host. Prebid Mobile works in conjunction with Prebid Server to request and receive bids. At this time you have three options when selecting your Prebid Server host:
+Before you begin using Prebid Mobile in your apps, you need to prepare your end-to-end system. The first step is to set up your Prebid Server host. Prebid Mobile works in conjunction with Prebid Server to request and receive bids. Here are the options:
 
--   Register with AppNexus
--   Register with Rubicon Project
+-   Register with a [Prebid.org member that hosts Prebid Server](/prebid-server/hosted-servers.html). While you're waiting for your account, you can continue with the steps below.
 -   Set up your own Prebid Server host
-
-### Register with AppNexus
-
--   Go to the [Prebid Server application page](https://prebid.adnxs.com) and click **Apply**.
--   You'll receive an email notifying you as to whether you've been granted access to the AppNexus-hosted Prebid Server implementation. If you receive access you'll be provided with an account ID and will be able to set up server-side bidder configurations.
-
-### Register with Rubicon Project
-
-Send an email to prebidserver@rubiconproject.com. While you wait for a verification email, you can continue with the steps below.
 
 ### Implement Your Own Prebid Server Host
 
-Prebid Server is an open source project. This allows you to host your own implementation of Prebid Server. The source code is available under the [Prebid organization on Github](https://github.com/prebid/prebid-server).
+Prebid Server is an open source project. This allows you to host your own implementation of Prebid Server, though it's not as easy as downloading Prebid.js, because it needs to be hosted. The source code is available under the [Prebid organization on Github](https://github.com/prebid/prebid-server). There's also a [Java version of Prebid Server](https://github.com/rubicon-project/prebid-server-java).
 
-See the [Prebid Server docs on Github](https://github.com/prebid/prebid-server/tree/master/docs) for more information on setting up your own server host.
+See the [Prebid Server docs on Github](https://github.com/prebid/prebid-server/tree/master/docs/developers) for more information on setting up your own server host.
 
 ## Configure Prebid Server
 

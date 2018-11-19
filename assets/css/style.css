@@ -104,6 +104,10 @@ a[href^="https://prebid.org/"]:after {
     hyphens: auto;
 }
 
+.cellpadding td {
+    padding: 10px;
+}
+
 hr {
   display: block;
   height: 1px;

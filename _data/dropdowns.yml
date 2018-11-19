@@ -173,7 +173,7 @@
     id: 11
     sectionId: 3
     sectionName: About
-    title: About Prebid
+    title: What is Prebid?
     link: /overview/intro.html
     hasBubblePopOut: 0
     bubble:
@@ -209,7 +209,7 @@
     id: 15
     sectionId: 3
     sectionName: About
-    title: Partners
+    title: Members and Partners
     link: /partners/partners.html
     hasBubblePopOut: 0
     bubble:
