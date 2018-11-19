@@ -232,7 +232,7 @@ javascript console> pbjs.setConfig({
 
 ## Related Reading
 
-+ [Prebid FAQ]({{site.github.url}}/dev-docs/faq.html)
-+ [Prebid Common Issues]({{site.github.url}}/dev-docs/common-issues.html)
++ [Prebid.js FAQ](/dev-docs/faq.html)
++ [Prebid.js Common Issues](/dev-docs/common-issues.html)
 
 

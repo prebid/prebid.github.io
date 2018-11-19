@@ -67,10 +67,10 @@
         link: /formats/display.html
       -
         title: Video
-        link: /prebid-video/video-overview.html
+        link: /formats/video.html
       -
         title: Native
-        link: /dev-docs/show-native-ads.html
+        link: /formats/native.html
       -
         title: AMP
         link: /formats/amp.html
@@ -89,7 +89,7 @@
     sectionId: 1
     sectionName: Support
     title: Ad Ops
-    link: /adops.html
+    link: /adops/before-you-start.html
     hasBubblePopOut: 0
     bubble:
 
@@ -120,6 +120,9 @@
     -
       title: Prebid.js
       link: /dev-docs/faq.html
+    -
+      title: Prebid Server
+      link: /faq/prebid-server-faq.html
 
   -
     id: 8

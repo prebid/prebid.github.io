@@ -11,8 +11,7 @@ sidebarType: 0
 ---
 
 
-
-# Common Issues
+# Common Issues with Prebid.js
 {:.no_toc}
 
 This page lists some common issues publishers run into when setting up Prebid.
@@ -38,7 +37,7 @@ Check the bid prices. If they are low and are getting reduced to $0 due to price
 ## Related Reading
 {:toc}
 
-+ [Prebid FAQ]({{site.github.url}}/dev-docs/faq.html)
++ [Prebid.js FAQ](/dev-docs/faq.html)
 + [Prebid Tips for Troubleshooting]({{site.github.url}}/dev-docs/troubleshooting-tips.html)
 
 

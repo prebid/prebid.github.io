@@ -85,5 +85,5 @@ Prebid retrieves the winning outstream video bid and renderer from the ad ID (hb
 
 -   [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html)
 -   [What is Prebid?]({{site.github.url}}/overview/intro.html)
--   [AdOps - Before You Start]({{site.github.url}}/adops.html)
+-   [AdOps - Before You Start]({{site.github.url}}/overview/getting-started.html)
 -   [Getting Started for Developers]({{site.github.url}}/dev-docs/getting-started.html)

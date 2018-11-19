@@ -72,7 +72,7 @@
   isHeader: 1
 
 - sbSecId: 0
-  title: General FAQ
+  title: Prebid.js FAQ
   link: /dev-docs/faq.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -343,7 +343,7 @@
 
 - sbSecId: 3
   title: Before You Start
-  link: /adops.html
+  link: /adops/before-you-start.html
   isLastSubSectionItem: 0
   isHeader: 0
 
@@ -679,7 +679,7 @@
  #--------------Modules--------------|
   
 - sbSecId: 8
-  title: Modules
+  title: Prebid.js Modules
   link: 
   isLastSubSectionItem: 0
   isHeader: 1
@@ -742,7 +742,7 @@
   
 - sbSecId: 9
   title: Getting Started
-  link: /adops.html
+  link: /adops/before-you-start.html
   isLastSubSectionItem: 1
   isHeader: 0
   

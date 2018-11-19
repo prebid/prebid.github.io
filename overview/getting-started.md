@@ -12,7 +12,7 @@ sidebarType: 9
 
 
 
-# Prebid.js Overview
+# Getting Started with Prebid.js
 {:.no_toc}
 
 This page has high-level instructions for getting started with Prebid.js.
@@ -54,7 +54,7 @@ To see how it works, follow the instructions in [Send all bids to the ad server 
 
 For more information, check out the following:
 
-+ [Before You Start]({{site.baseurl}}/adops.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
++ [Before You Start]({{site.baseurl}}/overview/getting-started.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
 + [Docs by Ad Server]({{site.baseurl}}/adops/docs-by-ad-server.html): Ad ops docs arranged by ad server.
 + [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
 

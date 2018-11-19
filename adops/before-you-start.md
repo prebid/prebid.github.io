@@ -1,11 +1,8 @@
 ---
 layout: page_v2
-title: Before You Start
-head_title: Getting Started with Prebid.js for Header Bidding
-description: An overview of Prebid.js, how it works, basic templates and examples, and more.
+title: Ad Operations View of Prebid
+head_title: Getting Started with Prebid for Header Bidding
 pid: 0
-is_top_nav: yeah
-permalink: /adops.html
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3
@@ -13,15 +10,15 @@ sidebarType: 3
 
 
 
-# Before You Start
+# Ad Operations View of Prebid
 {: .no_toc }
 
-There are a number of things you need to understand and to decide before implementing Prebid.js.
+There are a number of things you need to understand and to decide before implementing Prebid.
 
-This page has information about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
+This page has information about considerations of your Prebid setup such as price granularity, line item configuration, and more.
 
 {: .alert.alert-info :}
-This page assumes you have read [Getting Started]({{site.baseurl}}/overview/getting-started.html).
+This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
 
 * TOC
 {: toc }
@@ -90,7 +87,7 @@ Implementing header bidding requires much more collaboration with your dev team 
 
 ## Related Topics
 
-- [Getting Started]({{site.baseurl}}/overview/getting-started.html): How Prebid works at a high level, and how to get started on your implementation.
+- [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html): How Prebid.js works at a high level.
 - [What is Prebid?]({{site.baseurl}}/overview/intro.html): Overview and history of header bidding and Prebid.js.
 + [Docs by Ad Server]({{site.baseurl}}/adops/docs-by-ad-server.html): Ad ops docs arranged by ad server.
 + [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).

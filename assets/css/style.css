@@ -1286,6 +1286,10 @@ table.jsfiddle-line-number .line-number {
   padding-left:10px;
 }
 
+.cellpadding td {
+  padding:20px
+}
+
 #example-tab li {
   margin-bottom: 6px;
 }

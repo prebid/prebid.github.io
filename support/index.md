@@ -1,9 +1,8 @@
 ---
 layout: page_v2
 title: Support
-description: Header Bidding Support - How to contact the Prebid Organization
+description: Header Bidding Support
 pid: 0
-is_top_nav: yeah
 top_nav_section: support
 nav_section: intro
 sidebarType: 2
@@ -28,13 +27,13 @@ For questions about how an adapter works, it's best to reach out to the company 
 For Prebid news or general questions, we recommend the Ad Ops Slack Channel, Quora, or Twitter.
 
 {: .alert.alert-success :}
-There are consulting and service companies that will install & maintain Prebid on a publisher's behalf.  
-We're working on getting a comprehensive list of these providers to share here.  
-If you're one of these companies, please email us at [support@prebid.org](mailto:support@prebid.org).
+There are serveral Prebid.org members that will install & maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](/prebid/managed.html).
 
 ## Github
 
-[Submit a Github issue](https://github.com/prebid/Prebid.js/issues) if:
+Sometimes people have already gotten answers on the GitHub forums. See [issues with the 'question' tag on the Prebid.js repo](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)
+
+Submit a Github issue for [Prebid.js](https://github.com/prebid/Prebid.js/issues), [Prebid SDK iOS](https://github.com/prebid/prebid-mobile-ios/issues), [Prebid Mobile Android](https://github.com/prebid/prebid-mobile-android/issues) or [Prebid Server](https://github.com/prebid/prebid-server/issues) if:
 
 - You have a feature request to the code base.
 - You have found a bug in the code.

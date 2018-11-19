@@ -13,23 +13,12 @@ sidebarType: 5
 
 Prebid Server is an open-source solution for server-to-server header bidding with Prebid.js and Prebid Mobile. By running your header bidding auction server-side you can improve your page’s load time, thereby improving performance.
 
-{: .alert.alert-info :}
-If you're working with Prebid Mobile you *must* implement header bidding server-side through Prebid Server.
-
 * TOC
 {:toc}
 
 ## Hosted Solution
 
-Your simplest route to working with Prebid Server is to sign up with a Prebid Server host, such as AppNexus or Rubicon.
-
-### AppNexus
-  - Go to the [Prebid Server sign-up page](https://prebid.adnxs.com/) and click the Apply button to sign up.
-  - Fill out the form details, including your email address.
-  - If approved, you will receive an email with your assigned **accountId**. You will need this for configuring Prebid.js or Prebid Mobile to use Prebid Server.
-
-### Rubicon Project
-  - Send an email to [prebidserver@rubiconproject.com](mailto:prebidserver@rubiconproject.com).
+Your simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members host](/prebid-server/hosted-servers.html) up-to-date server software with a global footprint, and provide tools to manage stored requests.
 
 ## On Your Own
 

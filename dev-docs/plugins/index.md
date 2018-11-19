@@ -10,7 +10,7 @@ sidebarType: 9
 
 
 
-# External Plugins
+# Preid.js External Plugins
 
 Plugins are software components (that can consist of multiple modules) that allow you to extend the functionality of an application. Plugins can be used to enable an application, such as a video player, to work with Prebid.js to implement a pre-bidding solution.
 

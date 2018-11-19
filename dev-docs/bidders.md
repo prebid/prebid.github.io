@@ -12,9 +12,6 @@ sidebarType: 0
 
 # Bidders' Params
 
-{: .alert.alert-danger :}
-Prebid.org does not support any version of Prebid.js prior to version 1.0.
-
 This page contains documentation on the specific parameters required by each supported bidder.
 These docs only apply to Prebid.js bidders. For Prebid Server, AMP, or Prebid Mobile, see the
 [Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.

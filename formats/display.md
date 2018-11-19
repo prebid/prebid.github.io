@@ -11,7 +11,7 @@ sidebarType: 7
 # Prebid Formats - Display
 {:.no_toc}
 
-Display, or banner, is a supported ad format on Prebid.js and Prebid Mobile. The [IAB](https://www.iab.com/) has created a set of [standards](https://www.iab.com/newadportfolio/) for the different types of display ads.
+Display (banner) ads are supported by Prebid.js and Prebid Mobile. The [IAB](https://www.iab.com/) has created a set of [standards](https://www.iab.com/newadportfolio/) for the different types of display ads.
 
 Here are some resources to help you work with the display ad format in Prebid.
 
@@ -21,7 +21,7 @@ Here are some resources to help you work with the display ad format in Prebid.
 
 ### Adops
 
-- [Adops Getting Started]({{site.baseurl}}/adops.html)
+- [Adops Getting Started]({{site.baseurl}}/overview/getting-started.html)
 
 ### Developer
 
