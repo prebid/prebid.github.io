@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: OTM Bidder Adapter
+title: OTM
 description: OTM Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
