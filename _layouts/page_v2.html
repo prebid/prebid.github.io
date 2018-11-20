@@ -10,35 +10,15 @@
 			
 			<div class="col-sm-2 sidebar" id="sidebar">
 				
-				{% case page.sidebarType %}
-				{% when 0 %}
-					<h3>Prebid.js</h3>
-				{% when 1 %}
-					<h3>Prebid Mobile</h3>
-				{% when 2 %}
-					<h3>Overview</h3>
-				{% when 3 %}
-					<h3>Ad Ops</h3>
-				{% when 4 %}
-					<h3>Prebid Video</h3>
-				{% when 5 %}
-					<h3>Prebid Server</h3>
-				{% when 6 %}
-					<h3>Examples</h3>
-				{% when 7 %}
-					<h3>Formats</h3>
-				{% when 8 %}
-					<h3>Modules</h3>
-				{% when 9 %}
-					<h3>Prebid.js Overview</h3>
-				{% endcase %}
-					
-								
-				
 				{% for item in site.data.sidebar %}
 				
 					{% if item.sbSecId == page.sidebarType %}
 					
+						{% if item.isSectionHeader == 1 %}
+							
+							<h3>{{item.sectionTitle}}</h3>
+						
+						{% endif %}
 					
 						{% if item.isHeader == 1 %}
 						

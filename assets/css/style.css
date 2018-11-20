@@ -190,8 +190,8 @@ hr {
 /* side bar */
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 300px;
+    max-width: 300px;
     color: #fff;
     transition: all 0.3s;
 }
@@ -207,12 +207,12 @@ hr {
 	padding-bottom: 10px;
 	padding-right:70px;
 	margin-left: -110px;
-	width: 250px;
+	width: 300px;
 	font-family: 'Dosis', sans-serif;
 }
 
 .sidebar h3 { 
-	font-size:24px;
+	font-size:23px;
 	font-family: 'Roboto', sans-serif;
 	color: #333333;
 	padding-bottom: 10px;
@@ -598,18 +598,18 @@ button.list-group-item:focus {
 	
 	font-family: 'Doris', sans-serif;
 	color: #000000;
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: 100;
 }
 
 .pb-content h1 { 
 	
 	display: table;
-	background-color: #EA9622;
+	background-color: #eb9823;
 	padding: 3px 8px;
 	font-family: 'Roboto', sans-serif;
 	color: #ffffff;
-	font-size: 30px;
+	font-size: 34px;
 	font-weight: 400;
 }
 
@@ -828,7 +828,7 @@ button.list-group-item:focus {
 	}
 	
 	#sidebar {
-        margin-left: -250px;
+        margin-left: -300px;
     }
     
     #sidebar.active {
@@ -837,7 +837,7 @@ button.list-group-item:focus {
 			
 	.sidebar { 
 		display: block;
-		width: 250px;
+		width: 300px;
 		padding-left: 15px;
 		padding-top: 10px;
 		padding-bottom: 5px;
