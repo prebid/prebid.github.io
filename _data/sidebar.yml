@@ -279,7 +279,7 @@
   isHeader: 1
 
 - sbSecId: 1
-  title: Add A Ad Server Adapter
+  title: Add an Ad Server Adapter
   link: add-an-ad-server-adapter.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -794,5 +794,41 @@
   isLastSubSectionItem: 0
   isHeader: 0
   
+ #-------------- Support --------------|
   
-
+- sbSecId: 10
+  title: Support
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  
+- sbSecId: 10
+  title: Help
+  link: /support/index.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 10
+  title: Troubleshooting
+  link: /troubleshooting/troubleshooting.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 10
+  title: Training Videos
+  link: /videos/index.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 10
+  title: FAQs
+  link: /faq/faq.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  
+- sbSecId: 10
+  title: Blog
+  link: /blog.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  

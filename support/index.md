@@ -5,9 +5,8 @@ description: Header Bidding Support
 pid: 0
 top_nav_section: support
 nav_section: intro
-sidebarType: 2
+sidebarType: 10
 ---
-
 
 
 # Need Help?
