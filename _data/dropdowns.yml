@@ -93,8 +93,16 @@
     hasBubblePopOut: 0
     bubble:
 
+  - id: 6
+    sectionId: 1
+    sectionName: Support
+    title: Developers
+    link: /developers.html
+    hasBubblePopOut: 0
+    bubble:
+
   -
-    id: 6
+    id: 7
     sectionId: 1
     sectionName: Support
     title: Help
@@ -110,7 +118,7 @@
         link: /videos/index.html
 
   -
-    id: 7
+    id: 8
     sectionId: 1
     sectionName: Support
     title: FAQ
@@ -125,7 +133,7 @@
       link: /faq/prebid-server-faq.html
 
   -
-    id: 8
+    id: 9
     sectionId: 1
     sectionName: Support
     title: Blog

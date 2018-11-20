@@ -13,7 +13,7 @@ sidebarType: 3
 # Ad Operations View of Prebid
 {: .no_toc }
 
-There are a number of things you need to understand and to decide before implementing Prebid.
+There are a number of things you need to understand and to decide before implementing any flavor of Prebid.
 
 This page has information about considerations of your Prebid setup such as price granularity, line item configuration, and more.
 

@@ -24,6 +24,12 @@
   isHeader: 1
 
 - sbSecId: 0
+  title: Prebid.js FAQ
+  link: /dev-docs/faq.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 0
   title: Dev Tips
   link: /dev-docs/troubleshooting-tips.html
   isLastSubSectionItem: 0
@@ -62,18 +68,6 @@
 - sbSecId: 0
   title: Bidder's Params
   link: /dev-docs/bidders.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-
-- sbSecId: 0
-  title: FAQ
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-
-- sbSecId: 0
-  title: Prebid.js FAQ
-  link: /dev-docs/faq.html
   isLastSubSectionItem: 0
   isHeader: 0
 
@@ -86,18 +80,6 @@
 - sbSecId: 0
   title: Prebid Modules
   link: /dev-docs/modules/
-  isLastSubSectionItem: 1
-  isHeader: 0
-
-- sbSecId: 0
-  title: Features
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-
-- sbSecId: 0
-  title: Conditional Ad Units
-  link: /dev-docs/conditional-ad-units.html
   isLastSubSectionItem: 1
   isHeader: 0
 
@@ -150,27 +132,21 @@
   isHeader: 0
 
 - sbSecId: 0
-  title: Studies
+  title: Features
   link:
   isLastSubSectionItem: 0
   isHeader: 1
 
 - sbSecId: 0
-  title: Studies
-  link: /studies/studies.html
-  isLastSubSectionItem: 1
+  title: Conditional Ad Units
+  link: /dev-docs/conditional-ad-units.html
+  isLastSubSectionItem: 0
   isHeader: 0
 
 - sbSecId: 0
   title: Post-Bid
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-
-- sbSecId: 0
-  title: Intro to Post-Bid & Get Started
   link: /overview/what-is-post-bid.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
 
 

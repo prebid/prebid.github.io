@@ -3,7 +3,7 @@
 layout: page_v2
 title: Prebid for Developers
 description: Developers Landing Page
-
+sidebarType: 10
 ---
 
 <a name="publisher_developers"/>
