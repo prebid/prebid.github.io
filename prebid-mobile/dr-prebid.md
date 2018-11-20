@@ -29,8 +29,7 @@ Enter your test values on the Dr. Prebid Setup screen.
 
 **Dr. Prebid Setup Screen**
 
-{: .pb-img.pb-lg-img :}
-![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-setup.png)
+![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-setup.png){: .pb-sm-img :}
 
 The following are descriptions of the fields available in Dr. Prebid. Tap on a field to change its value. All fields are required.
 
@@ -122,8 +121,7 @@ After you’ve entered all the values on the **Setup** screen, tap **Run Tests**
 
 **Validation Test Summary Screen**
 
-{: .pb-img.pb-lg-img :}
-![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-summary.png)
+![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-summary.png){: .pb-sm-img :}
 
 Three validation tests are performed: Ad Server Setup, Real-Time Demand, and End-to-End SDK Configuration. Each test will be displayed with either a green check mark (passed) or a red X (failed).
 

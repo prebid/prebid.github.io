@@ -429,12 +429,18 @@
   sectionTitle:
 
 - sbSecId: 2
-  title: Prebid.org Header Bidding Wrapper Code of Conduct
+  title: Header Bidding Wrapper Code of Conduct
   link: /wrapper_code_of_conduct.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+
+- sbSecId: 2
+  title: Community Code of Conduct
+  link: /overview/community-code-of-conduct.html
+  isLastSubSectionItem: 0
+  isHeader: 0
 
 #--------------Ad Ops--------------|
 
