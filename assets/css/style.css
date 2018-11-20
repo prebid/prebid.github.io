@@ -828,7 +828,7 @@ button.list-group-item:focus {
 	}
 	
 	#sidebar {
-        margin-left: -200px;
+        margin-left: -250px;
     }
     
     #sidebar.active {
@@ -837,7 +837,7 @@ button.list-group-item:focus {
 			
 	.sidebar { 
 		display: block;
-		width: 200px;
+		width: 250px;
 		padding-left: 15px;
 		padding-top: 10px;
 		padding-bottom: 5px;
