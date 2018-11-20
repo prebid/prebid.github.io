@@ -1,13 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Dr. Prebid App
 description: How to Use the Dr. Prebid App
 pid: 4
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
+sidebarType: 1
 ---
-
-<div class="bs-docs-section" markdown="1">
 
 # Dr. Prebid
 
@@ -259,7 +258,6 @@ Here are some more specific things to look for and actions to take based on whic
 
 ## Further Reading
 
-- [Prebid Mobile Overview]({{site.github.url}}/prebid-mobile/prebid-mobile.html)
-- [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html)
-- [Code Integration for iOS]({{site.github.url}}/prebid-mobile/code-integration-ios.html)
-- [AdOps – Before You Start]({{site.github.url}}/adops.html)
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html)
+- [AdOps – Before You Start](/adops.html)

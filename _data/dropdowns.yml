@@ -9,7 +9,7 @@
     sectionId: 0
     sectionName: Product
     title: Prebid.js
-    link: 
+    link: /prebid/prebidjs.html
     hasBubblePopOut: 1
     bubble:
     
@@ -39,7 +39,7 @@
     sectionId: 0
     sectionName: Product
     title: Prebid Mobile
-    link: 
+    link: /prebid-mobile/prebid-mobile.html
     hasBubblePopOut: 1
     bubble:
     
@@ -68,7 +68,7 @@
     sectionId: 0
     sectionName: Product
     title: Formats
-    link: 
+    link: /formats/formats.html
     hasBubblePopOut: 1
     bubble:
     
@@ -119,7 +119,7 @@
     sectionId: 1
     sectionName: Support
     title: Help
-    link: 
+    link: /support/index.html
     hasBubblePopOut: 1
     bubble:
     

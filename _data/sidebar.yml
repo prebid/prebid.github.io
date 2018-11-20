@@ -245,8 +245,15 @@
 - sbSecId: 1
   title: Price Granularity
   link: /prebid-mobile/adops-price-granularity.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+
+- sbSecId: 1
+  title: Validation App
+  link: /prebid-mobile/dr-prebid.html
   isLastSubSectionItem: 1
   isHeader: 0
+
 
 - sbSecId: 1
   title: For Contributors
