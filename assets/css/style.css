@@ -460,7 +460,7 @@ button.list-group-item:focus {
 .slide { 
 	background-color: #ffffff;
 	width: 70%;
-	height:200px;
+	height:250px;
 	margin-left: auto;
 	margin-right: auto;
 	border-top-left-radius: 12px;
@@ -1144,7 +1144,6 @@ button.list-group-item:focus {
 	
 	.pb_carousel_indicators { 
 		margin-top: 150px;
-			border:1px solid red;
 	}
 	
 	
