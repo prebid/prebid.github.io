@@ -6,9 +6,9 @@
 <div class="container bs-docs-container">
 	
 	<div container>
-		<div class="row">
+		<div class="row wrapper">
 			
-			<div class="col-sm-2 sidebar">
+			<div class="col-sm-2 sidebar" id="sidebar">
 				
 				{% case page.sidebarType %}
 				{% when 0 %}
@@ -66,6 +66,10 @@
 			
 			
 			<div class="col-sm-9 pb-content" markdown="1">
+				
+					<button type="button" id="sidebarCollapse" class="btn btn-info pb_menu_btn">
+                        <span>Menu</span>
+                    </button>
 									
 					{{ content }}
 					
@@ -86,6 +90,15 @@
 {% if page.title != "Credits" %}
 	{% include footer.html %}
 {% endif %}
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $('#sidebarCollapse').on('click', function () {
+		   	$('#sidebar').toggleClass('active');
+	    });
+	});
+</script>
 
 
  
