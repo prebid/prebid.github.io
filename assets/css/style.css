@@ -200,6 +200,13 @@ hr {
 	font-family: 'Dosis', sans-serif;
 }
 
+.sidebar h3 { 
+	font-size:24px;
+	font-family: 'Roboto', sans-serif;
+	color: #333333;
+	padding-bottom: 10px;
+}
+
 .list-group-item-header { 
 	
 	color: #333333;
@@ -336,7 +343,7 @@ button.list-group-item:focus {
 	
 .pb_benefits_title h2 { 
 	font-family: 'Roboto', sans-serif; 
-	font-size: 54px;
+	font-size: 44px;
 	font-weight: 500;
 	color: #47547c;
 	margin-bottom: 5px;
@@ -423,7 +430,7 @@ button.list-group-item:focus {
 	font-weight: 500;
 	color: #ffffff;
 	margin-bottom: 5px;
-	padding-top: 10px;
+	padding-top: 35px;
 	padding-bottom: 10px;
 	
 }
@@ -476,6 +483,7 @@ button.list-group-item:focus {
 }
 
 .carousel-indicators { 
+	
 }
 
 /************ Partners ****************/
@@ -573,7 +581,7 @@ button.list-group-item:focus {
 .pb-content { 
 	
 	font-family: 'Doris', sans-serif;
-	color: #999999;
+	color: #000000;
 	font-size: 20px;
 	font-weight: 100;
 }
@@ -798,7 +806,7 @@ button.list-group-item:focus {
 		padding-left: 15px;
 		padding-top: 10px;
 		padding-bottom: 5px;
-		padding-right:5px;
+		padding-right:15px;
 	}
 	
 	.col-sm-9 { 
@@ -1143,7 +1151,12 @@ button.list-group-item:focus {
 	}
 	
 	.pb_carousel_indicators { 
-		margin-top: 150px;
+		margin-top: 10px;
+		height: 10px;
+	}
+	
+	.carousel-indicators { 
+		
 	}
 	
 	
@@ -1173,6 +1186,39 @@ button.list-group-item:focus {
 		display: block;
 		font-size:10px;
 	}	
+}
+
+@media screen and (max-width: 375px) {
+	
+	.pb_benefits_title > h2 { 
+		font-size: 16px;
+	}
+	
+	.pb_benefits_content > span { 
+		font-size: 10px;
+		line-height: 80%;
+	}
+	
+	.carousel-inner h4 {
+		padding-top: 0px;
+		font-size: 8px;
+	}
+		
+	.slide { 
+		height:75px;
+	}
+	
+	.pb_carousel_indicators { 
+		margin-top: 0px;
+		height: 22px;
+	}
+	
+	.carousel-indicators { 
+		padding-top: 140px;
+	}
+	
+	
+	
 }
 
 /* 404 error */

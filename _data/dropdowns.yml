@@ -9,9 +9,13 @@
     sectionId: 0
     sectionName: Product
     title: Prebid.js
-    link: /prebid/prebidjs.html
+    link: 
     hasBubblePopOut: 1
     bubble:
+    
+      -
+        title: Prebdid.js
+        link: /prebid/prebidjs.html
       -
         title: Analytics
         link: /overview/analytics.html
@@ -35,9 +39,14 @@
     sectionId: 0
     sectionName: Product
     title: Prebid Mobile
-    link: /prebid-mobile/prebid-mobile.html
+    link: 
     hasBubblePopOut: 1
     bubble:
+    
+      -
+        title: Prebid Mobile
+        link: /prebid-mobile/prebid-mobile.html
+
       -
         title: iOS
         link: /prebid-mobile/code-integration-ios.html
@@ -59,9 +68,13 @@
     sectionId: 0
     sectionName: Product
     title: Formats
-    link: /formats/formats.html
+    link: 
     hasBubblePopOut: 1
     bubble:
+    
+      -
+        title: Formats
+        link: /formats/formats.html
       -
         title: Display
         link: /formats/display.html
@@ -106,9 +119,14 @@
     sectionId: 1
     sectionName: Support
     title: Help
-    link: /support/index.html
+    link: 
     hasBubblePopOut: 1
     bubble:
+    
+      -
+        title: Help
+        link: /support/index.html
+        
       -
         title: Troubleshooting
         link: /troubleshooting/troubleshooting.html
@@ -125,6 +143,11 @@
     link: /faq/faq.html
     hasBubblePopOut: 1
     bubble:
+    
+    -
+      title: FAQ
+      link: /faq/faq.html 
+      
     -
       title: Prebid.js
       link: /dev-docs/faq.html
@@ -161,9 +184,14 @@
     sectionId: 2
     sectionName: Download
     title: Prebid Mobile
-    link: /prebid-mobile/download.html
+    link: 
     hasBubblePopOut: 1
     bubble:
+    
+    -
+      title: Prebid Mobile
+      link: /prebid-mobile/download.html
+      
     -
       title: iOS
       link: https://github.com/prebid/prebid-mobile-ios

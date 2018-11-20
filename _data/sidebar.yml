@@ -153,7 +153,7 @@
 #--------------Prebid Mobile--------------|
 
 - sbSecId: 1
-  title: Prebid Mobile
+  title: 
   link:
   isLastSubSectionItem: 0
   isHeader: 1
@@ -434,7 +434,7 @@
 #--------------Prebid Video--------------|
 
 - sbSecId: 4
-  title: Prebid Video
+  title: Overview
   link:
   isLastSubSectionItem: 1
   isHeader: 1
@@ -466,7 +466,7 @@
 #--------------Prebid Server--------------|
 
 - sbSecId: 5
-  title: Prebid Server
+  title: 
   link:
   isLastSubSectionItem: 0
   isHeader: 1
@@ -577,7 +577,7 @@
 #--------------Examples--------------|
 
 - sbSecId: 6
-  title: Examples
+  title: Overview
   link:
   isLastSubSectionItem: 0
   isHeader: 1
@@ -629,7 +629,7 @@
 #--------------Formats--------------|
 
 - sbSecId: 7
-  title: Formats
+  title: Overview
   link:
   isLastSubSectionItem: 0
   isHeader: 1
@@ -773,7 +773,7 @@
  #-------------- Support --------------|
   
 - sbSecId: 10
-  title: Support
+  title: Overview
   link: 
   isLastSubSectionItem: 0
   isHeader: 1
