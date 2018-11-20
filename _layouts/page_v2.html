@@ -3,12 +3,12 @@
 {% include nav.html %}
 
 
-<div class="container bs-docs-container">
+<div class="container bs-docs-container" id="wrapper">
 	
 	<div container>
 		<div class="row">
 			
-			<div class="col-sm-2 sidebar">
+			<div class="col-sm-2 sidebar" id="sidebar-wrapper">
 				
 				{% case page.sidebarType %}
 				{% when 0 %}
@@ -66,6 +66,8 @@
 			
 			
 			<div class="col-sm-9 pb-content" markdown="1">
+				
+					<a href="#menu-toggle" class="btn btn-default pb_menu_btn" id="menu-toggle">Menu</a>
 									
 					{{ content }}
 					
@@ -86,6 +88,14 @@
 {% if page.title != "Credits" %}
 	{% include footer.html %}
 {% endif %}
+
+
+ <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 
     
 
