@@ -14,26 +14,48 @@
 		
 		<div id="navbar" class="navbar-collapse collapse">
 		    <ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product</a>
+			    
+			    {% for item in site.data.dropdowns %}
+			    
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					
+					{{ item.sectionName }}
+	                <span class="caret" />
+	                
+					</a>
+					
 					<ul class="dropdown-menu">
-						<li class="dropdown dropdown-submenu">
-							<a href="#">Level 2</a>
-							
-							<ul class="dropdown-menu">
-								<li><a href="#">Level 3</a></li>
-							</ul>
-						</li>
-						<li class="dropdown dropdown-submenu">
-							<a href="#">Level 2</a>
-						</li>
-						<li class="dropdown dropdown-submenu">
-							<a href="#">Level 2</a>
-						</li>
-					</ul>
-				</li>
-	      		<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support</a></li>
-	      		<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download</a></li>
-	      		<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About</a></li>
+		                    
+		                {% for submenu in item.submenus %}
+	                    
+	                    <li class="dropdown dropdown-submenu">
+	                        <a href="{{submenu.link}}">{{ submenu.title }}
+		                        
+		                        {% if submenu.hasBubblePopOut == 1 %}
+		                       		<span class="caret" />
+		                       	{% endif %}
+	                        </a>
+	                        
+	                        {% if submenu.hasBubblePopOut == 1 %}
+	                        
+	                        	<ul class="dropdown-menu">
+		                        	
+		                        	{% for bubblePopOut in submenu.bubble %}
+		                        	
+		                        		<li><a href="{{bubblePopOut.link}}">{{bubblePopOut.title}}</a></li>
+		                        	
+		                        	{% endfor %}
+		                        	
+	                        	</ul>
+	                        {% endif %}
+	                    </li>
+	                    
+	                    {% endfor %}
+	                </ul>
+
+	      		
+		  		{% endfor %}
 	    	</ul>
 		</div>
   	</div>

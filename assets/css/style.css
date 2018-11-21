@@ -140,6 +140,7 @@ hr {
   font-weight: 500;
   font-size: 24px;
   font-family: 'Roboto', sans-serif;
+  font-weight: 100;
   
 }
 
@@ -163,6 +164,7 @@ hr {
 
 .dropdown { 
    font-family: 'Roboto', sans-serif;
+   font-weight: 100;
 }
 
 .dropdown-submenu {
@@ -175,6 +177,7 @@ hr {
   margin-top: -6px;
   margin-left: -1px;
   font-family: 'Roboto', sans-serif;
+  font-weight: 100;
 }
 
 .dropdown-submenu:hover > .dropdown-menu {
@@ -632,7 +635,6 @@ button.list-group-item:focus {
   height: 20px;
   background: transparent no-repeat center center;
   background-size: 100% 100%;
-  border:1px solid red;
   padding:-50;
   margin: 0;
 }
