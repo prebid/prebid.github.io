@@ -480,6 +480,14 @@ button.list-group-item:focus {
 	padding-right: 20px;
 }
 
+.carousel-control-next,
+.carousel-control-prev { 
+	width: 20px;
+	height: 20px;
+	padding-top: 15px;
+}
+
+
 .slide { 
 	background-color: #ffffff;
 	width: 70%;
