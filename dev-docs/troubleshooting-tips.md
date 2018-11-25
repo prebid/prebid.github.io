@@ -59,13 +59,13 @@ To print information about all of the bids that come in to the Console on any pa
 
 Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
 
-![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-md-img :}
+![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
 
 <br />
 
 Right-click to add a **New** snippet:
 
-![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png) {: .pb-md-img :} 
+![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :} 
 
 <br />
 
@@ -123,13 +123,13 @@ Paste in the following code using Control-V (or Command-V on Mac), and give the 
 
 Right-click the snippet and choose **Run**:
 
-![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-md-img :}
+![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
 
 <br />
 
 Check the output in Console to see the bids:
 
-![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-lg-img :}
+![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
 
 ## See all winning bids in the console
 
@@ -137,13 +137,13 @@ To print information about all of the winning bids that come in to the Console o
 
 Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
 
-![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-md-img :}
+![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
 
 <br />
 
 Right-click to add a **New** snippet:
 
-![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-md-img :}
+![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
 
 <br />
 
@@ -176,13 +176,13 @@ if (output.length) {
 
 Right-click the snippet and choose **Run**:
 
-![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-md-img :}
+![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
 
 <br />
 
 Check the output in Console to see the bids (note that this screenshot shows the output from "see all bids" but they're very similar):
 
-![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-lg-img :}
+![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
 
 ## Modify bid responses for testing
 

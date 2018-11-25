@@ -588,6 +588,10 @@ button.list-group-item:focus {
     height: 70%;
 }
 
+.pb-xlg-img {
+    width: 100%;
+}
+
 
 /********************************
 	Content Pages
@@ -1060,6 +1064,10 @@ button.list-group-item:focus {
 		width: 85%;
 		height: 85%;
 	}
+
+	.pb-xlg-img {
+                width: 100%;
+        }
 	
 	.pb-md-img {
     	width: 60%;
@@ -1261,6 +1269,10 @@ button.list-group-item:focus {
 		width: 65%;
 		height: 65%;
 	}
+
+	.pb-xlg-img {
+                width: 100%;
+        }
 	
 	.pb-md-img {
     	width: 45%;

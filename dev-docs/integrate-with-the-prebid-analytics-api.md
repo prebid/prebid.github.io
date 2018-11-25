@@ -33,8 +33,7 @@ The analytics adapter listens to events and may call out directly to the analyti
 
 For instructions on integrating an analytics provider, see the next section.
 
-{: .pb-img.pb-md-img :}
-![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png)
+![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png){: .pb-md-img :}
 
 ## Integrate an Analytics Provider
 

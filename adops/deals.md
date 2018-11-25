@@ -61,8 +61,7 @@ For each header bidding partner you work with, create a keyword in the format of
 
 <br>
 
-{: .pb-img.pb-lg-img :}
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/key-val.png)
+![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/key-val.png){: .pb-lg-img :}
 
 <br>
 
@@ -72,15 +71,13 @@ In DFP, create a new line item.
 
 Enter all the **Inventory sizes** for your deal (or deals):
 
-{: .pb-img.pb-md-img :}
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/inventory-sizes.png)
+![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/inventory-sizes.png){: .pb-md-img :}
 
 <br />
 
 Set the **priority** to the level you prefer.
 
-{: .pb-img.pb-lg-img :}
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/deal-priority.png)
+![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/deal-priority.png){: .pb-lg-img :}
 
 <br>
 
@@ -88,8 +85,7 @@ Set **Display Creatives** to *One or More* since we'll have one or more creative
 
 Set **Rotate Creatives** to *Evenly*.
 
-{: .pb-img.pb-md-img :}
-![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png)
+![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png){: .pb-md-img :}
 
 <br>
 
@@ -104,8 +100,7 @@ There are two ways to target deal IDs using *Key-values* targeting:
 1. If you would like the deals to have the same priority and target the same inventory, you can include multiple deal IDs (as shown below).
 2. Otherwise, you must create a separate line item for each deal ID you want to target.
 
-{: .pb-img.pb-lg-img :}
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/targeting.png)
+![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/targeting.png){: .pb-lg-img :}
 
 <br>
 

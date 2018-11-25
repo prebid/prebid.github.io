@@ -50,8 +50,7 @@ Some of the benefits to using the Prebid Mobile header bidding solution include:
 
 The following diagram shows how the Prebid Mobile header bidding solution works.
 
-{: .pb-img.pb-lg-img :}
-![How Prebid Mobile Works - Diagram]({{site.baseurl}}/assets/images/prebid-mobile/pbm-overview-flow.png)
+![How Prebid Mobile Works - Diagram]({{site.baseurl}}/assets/images/prebid-mobile/pbm-overview-flow.png){: .pb-lg-img :}
 
 1.  Prebid Mobile sends a request to Prebid Server. This request consists of the Prebid Server account ID and config ID for each tag included in the request.
 

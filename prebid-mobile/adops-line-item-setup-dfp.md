@@ -26,15 +26,13 @@ Enter the inventory size of your mobile ad slots. Make sure to specify all the i
 
 Because header bidding partners return prices, set the Line Item **Type** to **Price priority** to enable them to compete on price.
 
-{: .pb-img.pb-sm-img :}
-![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png)
+![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png){: .pb-sm-img :}
 
 <br>
 
 Set the **Rate** to $0.50 so that this line item will compete with your other demand sources at $0.50 ECPM.
 
-{: .pb-img.pb-sm-img :}
-![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png)
+![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png){: .pb-sm-img :}
 
 <br>
 
@@ -42,8 +40,7 @@ Set **Display Creatives** to *One or More* since we'll have one or more creative
 
 Set **Rotate Creatives** to *Evenly*.
 
-{: .pb-img.pb-md-img :}
-![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png)
+![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png){: .pb-md-img :}
 
 Choose the inventory that you want to run header bidding on.
 
@@ -53,13 +50,11 @@ You'll need to coordinate with your development team on what key-values you want
 
 For instance, this line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png)
+![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png){: .pb-md-img :}
 
 **You must enter the value to two decimal places, e.g., `1.50`.  If you don't use two decimal places, header bidding will not work.**
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png)
+![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png){: .pb-md-img :}
 
 <br>
 

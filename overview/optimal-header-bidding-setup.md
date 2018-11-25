@@ -21,8 +21,7 @@ sidebarType: 3
 <div class="row">
 <div class="col-sm-6" markdown="1">
 
-{: .pb-md-img :}
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/ideal.png)
+![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/ideal.png){: .pb-xlg-img :}
 
 </div>
 
@@ -53,8 +52,7 @@ The ad server sees the impression and header bidding info immediately after all 
 <div class="row">
 <div class="col-sm-6" markdown="1">
 
-{: .pb-md-img :}
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/loaded-too-late.png)
+![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/loaded-too-late.png){: .pb-xlg-img :}
 
 </div>
 
@@ -75,8 +73,7 @@ The ad server sees the impression and header bidding info immediately after all 
 <div class="row">
 <div class="col-sm-6" markdown="1">
 
-{: .pb-md-img :}
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/adserver-too-early.png)
+![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/adserver-too-early.png){: .pb-xlg-img :}
 
 </div>
 
@@ -98,8 +95,7 @@ The ad server sees the impression and header bidding info immediately after all 
 <div class="row">
 <div class="col-sm-6" markdown="1">
 
-{: .pb-md-img :}
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/adserver-too-late.png)
+![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/adserver-too-late.png){: .pb-xlg-img :}
 
 </div>
 
@@ -120,8 +116,7 @@ The ad server sees the impression and header bidding info immediately after all 
 <div class="row">
 <div class="col-sm-6" markdown="1">
 
-{: .pb-md-img :}
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/bidder-delay-adserver.png)
+![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/bidder-delay-adserver.png){: .pb-xlg-img :}
 
 </div>
 
@@ -142,8 +137,8 @@ The ad server sees the impression and header bidding info immediately after all 
 
 Add the Plugin [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop) to your browser.
 
-<div class="pb-md-img">
-<a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop" target="_blank"><img src="/assets/images/hb-expert/headerbid-expert-logo.png" alt="headerbid-expert-logo" style="cursor:pointer">
+<div class="pb-sm-img">
+<a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop" target="_blank"><img src="/assets/images/hb-expert/headerbid-expert-logo.png" alt="headerbid-expert-logo" width="50%" style="cursor:pointer">
 </a>
 </div>
 
