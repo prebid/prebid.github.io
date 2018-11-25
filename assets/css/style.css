@@ -137,10 +137,9 @@ hr {
 
 .navbar-default .navbar-nav>li>a {
   color: #3498db;
-  font-weight: 500;
   font-size: 24px;
   font-family: 'Roboto', sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   
 }
 
@@ -164,7 +163,15 @@ hr {
 
 .dropdown { 
    font-family: 'Roboto', sans-serif;
-   font-weight: 100;
+   font-weight: 300;
+}
+
+.dropdown-toggle { 
+	font-weight: 100;
+}
+
+.dropdown-menu>li>a { 
+	font-weight: 300;
 }
 
 .dropdown-submenu {
@@ -177,7 +184,7 @@ hr {
   margin-top: -6px;
   margin-left: -1px;
   font-family: 'Roboto', sans-serif;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .dropdown-submenu:hover > .dropdown-menu {
@@ -354,11 +361,11 @@ button.list-group-item:focus {
 	background-color: #ffffff; 
 	width: 80%; 
 	height:800px; 
-	padding-bottom: 
-	40px; margin-left: 
-	auto; margin-right: auto;
+	padding-bottom: 40px; 
+	margin-left: auto; 
+	margin-right: auto;
 	opacity:.80;
-	margin-top:230px;
+	margin-top:370px;
 	
 }
 	
@@ -366,7 +373,8 @@ button.list-group-item:focus {
 	
 	width:100%; 
 	height: 15%; 
-	padding-top: 10px; 
+	padding-top: 20px;
+	padding-bottom: 15px; 
 	text-align: center; 
 	
 }
@@ -374,10 +382,9 @@ button.list-group-item:focus {
 .pb_benefits_title h2 { 
 	font-family: 'Roboto', sans-serif; 
 	font-size: 44px;
-	font-weight: 500;
+	font-weight: 400;
 	color: #47547c;
 	margin-bottom: 5px;
-	padding-top: 10px;
 }
 	
 	
@@ -386,6 +393,10 @@ button.list-group-item:focus {
 	height: 42%; 
 	margin-left: auto; 
 	margin-right: auto;
+}
+
+.pb_first_row { 
+	margin-top: 20px;
 }
 	
 .pb_benefits_panel { 
@@ -425,13 +436,14 @@ button.list-group-item:focus {
 	width:75%;
 	height: 100%;
 	float:right; 
-	text-align: center;
+	font-weight: 100;
+	text-align: left;
 	padding-right: 4px;
 }
 	
 .pb_benefits_content > h3 { 
 	
-	font-family: 'Roboto', sans-serif; 
+	font-family: 'Open Sans Condensed', sans-serif; 
 	font-size: 35px;
 	font-weight: 400;
 	color: #47547c;
@@ -853,7 +865,7 @@ button.list-group-item:focus {
 
 .pb-content p { 
 	
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Lato', sans-serif;
 	color: #000000;
 	font-size: 20px;
 	font-weight: 100;
@@ -864,7 +876,7 @@ button.list-group-item:focus {
 	display: table;
 	background-color: #eb9823;
 	padding: 3px 8px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Lato', sans-serif;
 	color: #ffffff;
 	font-size: 34px;
 	font-weight: 400;
@@ -872,7 +884,7 @@ button.list-group-item:focus {
 
 .pb-content h2 { 
 	
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Lato', sans-serif;
 	color: #000000;
 	font-size: 29px;
 	font-weight: 400;
@@ -880,14 +892,14 @@ button.list-group-item:focus {
 
 .pb-content h3 { 
 	
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Lato', sans-serif;
 	color: #EA9622;
 	font-size: 24px;
 	font-weight: 300;
 }
 
 .pb-content ul, ol, li { 
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Lato', sans-serif;
 	font-size: 18px;
 }
 
