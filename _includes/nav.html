@@ -11,21 +11,21 @@
 	      </button>
 		  <a class="navbar-brand" href="/index.html"><img src="/assets/images/logos/prebid_final.png"></a>
     	</div>
-    
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div id="navbar" class="navbar-collapse collapse">
-	    	<ul class="nav navbar-nav navbar-right">
-		    	
-				{% for item in site.data.dropdowns %}
-				
-	            <li class="dropdown">
-	
-	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-	                    {{ item.sectionName }}
-	                    <span class="caret" />
-	                </a> 
+		
+		<div id="navbar" class="navbar-collapse collapse">
+		    <ul class="nav navbar-nav navbar-right">
+			    
+			    {% for item in site.data.dropdowns %}
+			    
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					
+					{{ item.sectionName }}
+	                <span class="caret" />
 	                
-	                <ul class="dropdown-menu">
+					</a>
+					
+					<ul class="dropdown-menu">
 		                    
 		                {% for submenu in item.submenus %}
 	                    
@@ -53,16 +53,11 @@
 	                    
 	                    {% endfor %}
 	                </ul>
-	                
-	            </li>
-				
-				{% endfor %}
-	               	        
-		        <!-- end loop through top level nav-->   
-	        </ul>
-	        <!--end top level menu items-->     	
-	    </div>
-	    <!--end navbar-->
+
+	      		
+		  		{% endfor %}
+	    	</ul>
+		</div>
   	</div>
   	<!--end container-->
 </nav>	
