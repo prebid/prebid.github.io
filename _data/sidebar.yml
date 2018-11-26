@@ -976,6 +976,7 @@
   isHeader: 1
   isSectionHeader: 1
   sectionTitle: Prebid.js Overview
+  sbUUID: 9.0
   
 - sbSecId: 9
   title: Getting Started
@@ -984,6 +985,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 9.1
   
 - sbSecId: 9
   title: Developer References
@@ -992,6 +994,7 @@
   isHeader: 1
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 9.2
 
 - sbSecId: 9
   title: Getting Started
@@ -1000,6 +1003,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 9.3
 
 - sbSecId: 9
   title: Publisher API Reference
@@ -1008,6 +1012,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 9.4
 
 - sbSecId: 9
   title: Bidder's Params
@@ -1016,6 +1021,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 9.5
 
 - sbSecId: 9
   title: FAQ
@@ -1024,6 +1030,7 @@
   isHeader: 1
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 9.6
 
 - sbSecId: 9
   title: Prebid.js FAQ
@@ -1032,6 +1039,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 9.7
   
  #-------------- Support --------------|
   

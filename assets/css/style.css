@@ -215,6 +215,10 @@ hr {
     max-width: 300px;
     color: #fff;
     transition: all 0.3s;
+    position:fixed;
+    top:10;
+    margin-top: 20px;
+    z-index:1000;
 }
 
 #sidebar.active {
@@ -236,7 +240,8 @@ hr {
 	font-size:23px;
 	font-family: 'Roboto', sans-serif;
 	color: #333333;
-	padding-bottom: 10px;
+	padding-bottom: 10px;    
+
 }
 
 .list-group-item-header { 
@@ -258,6 +263,11 @@ hr {
 	background-color: transparent;
 }
 
+.bold-item { 
+	font-weight: 700;
+	color: #3498db;
+}
+
 a.list-group-item:hover,
 button.list-group-item:hover,
 a.list-group-item:focus,
@@ -270,6 +280,8 @@ button.list-group-item:focus {
 .pb_menu_btn { 
 	display: none;
 	margin-bottom: 5px;
+	float:right;
+	
 }
 
 /*Homepage*/
@@ -346,7 +358,6 @@ button.list-group-item:focus {
 	margin-right:auto;
 	margin-top: -50px;
 }
-
 
 .header-links-item p { 
 	font-family: 'Dosis', sans-serif;
@@ -742,7 +753,7 @@ button.list-group-item:focus {
 .carousel-inner h4 {
 	padding-top: 25px;
 	font-family: 'Dosis', sans-serif;
-	color: #cccccc;
+	color: #333333;
 	font-size: 27px;
 	text-align:center;
 	font-weight: 100;
@@ -863,6 +874,12 @@ button.list-group-item:focus {
 	margin:0;
 }
 
+.pb-content { 
+	margin-left: 200px;
+	width: 90%;
+	padding-left: 70px;
+}
+
 .pb-content p { 
 	
 	font-family: 'Lato', sans-serif;
@@ -874,7 +891,7 @@ button.list-group-item:focus {
 .pb-content h1 { 
 	
 	display: table;
-	background-color: #eb9823;
+	background-color: #EA9622;
 	padding: 3px 8px;
 	font-family: 'Lato', sans-serif;
 	color: #ffffff;
@@ -893,10 +910,28 @@ button.list-group-item:focus {
 .pb-content h3 { 
 	
 	font-family: 'Lato', sans-serif;
-	color: #EA9622;
+	color: #333333;
 	font-size: 24px;
 	font-weight: 300;
 }
+
+.pb-content h4 { 
+	
+	font-family: 'Lato', sans-serif;
+	color: #333333;
+	font-size: 20px;
+	font-weight: 300;
+}
+
+
+.pb-content h5 { 
+	
+	font-family: 'Lato', sans-serif;
+	color: #333333;
+	font-size: 18px;
+	font-weight: 300;
+}
+
 
 .pb-content ul, ol, li { 
 	font-family: 'Lato', sans-serif;
@@ -1127,6 +1162,8 @@ button.list-group-item:focus {
 		font-size: 15px;
 		font-weight: 100;
 		width: 85%;
+		margin-left: 0px;
+		
 	}
 	
 	.pb-content p { 
@@ -1502,7 +1539,8 @@ button.list-group-item:focus {
 	
 	
 	.pb-content { 
-		width: 75%;
+		width: 85%;
+		margin-left: -20px;
 	}
 	
 	.pb-content p { 

@@ -5,7 +5,8 @@
 
 <div class="container bs-docs-container">
 	
-	<div container>
+	<div>
+		
 		<div class="row wrapper">
 			
 			<div class="col-sm-2 sidebar" id="sidebar">
@@ -27,7 +28,12 @@
 						{% else %}
 				
 							<a href="{{item.link}}" class="list-group-item group-title">
+								
+								{% if item.sbUUID == page.sbUUID %}
+								<h4 class="list-group-item bold_item">{{item.title}}</h4>
+								{% else %}
 								<h4 class="list-group-item">{{item.title}}</h4>
+								{% endif %}
 							</a>
 							
 							{% if item.isLastSubSectionItem == 1 %}
@@ -61,6 +67,8 @@
 					{% endif %}
 				
 			</div>
+			
+		</div>
 			
 	</div>
 </div>
