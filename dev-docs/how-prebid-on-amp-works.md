@@ -22,8 +22,7 @@ The diagram below shows how the pieces of an AMP+Prebid solution fit together:
 1. AMP Network constructs ad request URL and Prebid creative is served.
 1. Creative content is retrieved from cache and renders.
 
-{: .pb-img :}
-![Prebid AMP Overview Diagram]({{site.baseurl}}/assets/images/dev-docs/amp-rtc.png){:.pb-lg-img}
+![Prebid AMP Overview Diagram]({{site.baseurl}}/assets/images/dev-docs/amp-rtc.png){: .pb-lg-img }
 
 ## Related Topics
 

@@ -75,8 +75,7 @@ Follow the creative setup instructions in [Add Creatives](https://console.appnex
 
 - Paste the code snippet shown below into the code box.
 
-{: .pb-img.pb-lg-img :}
-![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png)
+![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png) {: .pb-lg-img :}
 
 {% highlight html %}
 <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>

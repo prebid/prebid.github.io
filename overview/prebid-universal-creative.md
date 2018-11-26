@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Universal Creative
 description: An overview of Prebid Universal Creative
 pid: 9

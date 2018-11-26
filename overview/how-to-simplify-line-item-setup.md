@@ -43,8 +43,7 @@ In this section, we'll learn how to remove the creative size dimension for heade
 
 Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In DFP, this looks like:
 
-{: .pb-md-img :}
-![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png)
+![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png){: .pb-md-img :}
 
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.

@@ -31,8 +31,7 @@ For engineering setup instructions, see
 
 - In the **Master** text area, add your video player size(s).
 
-{: .pb-img.pb-md-img :}
-![DFP New Line Item]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-03.png)
+![DFP New Line Item]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-03.png){: .pb-md-img :}
 
 Other line item settings and key/value targeting are the same as [those recommended for Prebid display]({{site.baseurl}}/adops/step-by-step.html#step-1-add-a-line-item), with one exception:
 
@@ -75,8 +74,7 @@ or
 
 The resulting creative should look something like the following:
 
-{: .pb-img.pb-md-img :}
-![DFP Video Creative Setup]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-04.png)
+![DFP Video Creative Setup]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-04.png){: .pb-md-img :}
 
 That's it as far as Prebid setup is concerned.  At this point you can add any other options you would normally use, e.g., labels or tracking URLs.
 

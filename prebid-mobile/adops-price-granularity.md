@@ -62,6 +62,5 @@ Example:
 
 The below screenshot is taken from the Prebid Server account page where you can choose your price granularity setting from the options.
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-price-granularity/pg-setting.png)
+![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-price-granularity/pg-setting.png){: .pb-md-img :}
 

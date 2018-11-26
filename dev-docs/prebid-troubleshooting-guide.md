@@ -48,8 +48,7 @@ Make sure the ad units configured for Prebid.js match up with the ad units that 
 
 You can review what ad units have been configured for Prebid by opening your browser console and typing `pbjs.getBidResponses();`. This will show a list of what div IDs are present:
 
-{: .pb-lg-img :}
-![pbjs.getBidResponses() showing ad units in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-units.png "pbjs.getBidResponses() showing ad units in browser console")
+![pbjs.getBidResponses() showing ad units in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-units.png "pbjs.getBidResponses() showing ad units in browser console"){: .pb-lg-img :}
 
 ## List your Bids and Bidders
 
@@ -63,8 +62,7 @@ Keep in mind that any bid responses that come back after [the timeout you config
 {: .alert.alert-success :}
 You can also [print this data to the console in table format]({{site.baseurl}}/dev-docs/troubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
 
-{: .pb-lg-img :}
-![pbjs.getBidResponses() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()")
+![pbjs.getBidResponses() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()"){: .pb-lg-img :}
 
 ## Verify your Ad Server Targeting
 
@@ -72,8 +70,7 @@ After the auction on page has occurred, Prebid.js will set key-value targeting f
 
 To see what values Prebid.js intends to send to the ad server, open your browser console and type `pbjs.getAdserverTargeting();` as shown below:
 
-{: .pb-lg-img :}
-![pbjs.getAdserverTargeting() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-target.png "pbjs.getAdserverTargeting()")
+![pbjs.getAdserverTargeting() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-target.png "pbjs.getAdserverTargeting()"){: .pb-lg-img :}
 
 {: .alert.alert-danger :}
 Note that if no bids are returned, no key-values will be set. You may need to increase your timeout setting or reach out to your bidder partners to determine why no bid responses are being sent.
@@ -116,8 +113,7 @@ When a prebid line item wins the ad server's auction, a `renderAd` event will be
 
 When this event is logged, it shows that Prebid.js has requested to render the ad from the winning bidder partner, and that this partner's bid has won both the Prebid and ad server auctions.
 
-{: .pb-lg-img :}
-![renderAd event in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/render-ad.png "renderAd event in browser console")
+![renderAd event in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/render-ad.png "renderAd event in browser console"){: .pb-lg-img :}
 
 ## Related Topics
 
