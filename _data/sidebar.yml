@@ -451,6 +451,7 @@
   isHeader: 1
   isSectionHeader: 1
   sectionTitle: Ad Ops
+  sbUUID: 3.1
 
 - sbSecId: 3
   title: Before You Start
@@ -459,6 +460,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.2
 
 - sbSecId: 3
   title: Send Top Bid to Adserver
@@ -467,6 +469,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.3
 
 - sbSecId: 3
   title: Send All Bids to the Ad Server
@@ -475,6 +478,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.4
 
 - sbSecId: 3
   title: Setting up Prebid for AMP in DFP
@@ -483,6 +487,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.5
 
 - sbSecId: 3
   title: Setting up Prebid Multi-Format in DFP
@@ -491,6 +496,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.6
 
 - sbSecId: 3
   title: Setting up Prebid Native in DFP (Alpha)
@@ -499,6 +505,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.7
 
 - sbSecId: 3
   title: Setting up Prebid Video in DFP
@@ -507,6 +514,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.8
 
 - sbSecId: 3
   title: Setting up Prebid with the AppNexus Publisher Ad Server
@@ -515,6 +523,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.9
 
 - sbSecId: 3
   title: Setting up Prebid.js with Smart Ad Server
@@ -523,6 +532,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.10
 
 - sbSecId: 3
   title: Enable Deals
@@ -531,6 +541,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.11
 
 - sbSecId: 3
   title: Reference
@@ -539,6 +550,7 @@
   isHeader: 1
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.12
 
 - sbSecId: 3
   title: Docs by Ad Server
@@ -547,6 +559,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.13
 
 - sbSecId: 3
   title: Studies
@@ -555,6 +568,7 @@
   isHeader: 1
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.14
 
 - sbSecId: 3
   title: Optimize Header Bidding Setup
@@ -563,6 +577,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.15
 
 - sbSecId: 3
   title: Optimal Header Bidding Setup
@@ -571,6 +586,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.16
 
 - sbSecId: 3
   title: How To Reduce The Latency of Header Bidding With Prebid.js
@@ -579,6 +595,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.17
 
 - sbSecId: 3
   title: How to Simplify Line Item Setup
@@ -587,6 +604,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  sbUUID: 3.18
 
 #--------------Prebid Video--------------|
 

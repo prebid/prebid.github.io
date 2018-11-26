@@ -1,0 +1,257 @@
+{% include head.html %}
+
+{% include nav.html %}
+
+<style>
+	
+	.pb-testsb { 
+		margin-left: 40px;
+		margin-top: 70px;
+		margin-bottom: 15px;
+		width: 250px;
+	}
+	
+	.pb-sidebar-section { 
+		
+		display: inline-block;
+		font-family: sans-serif;
+		font-size: 24px;
+		color: #EA9622;
+		font-weight: 500;
+		padding-bottom: 0px;
+		padding-top: 8px;
+			}
+	
+	.pb-sidebar-subsection { 
+		margin-inline-start: 10px;
+		padding-top: 8px;
+	}
+	
+	.pb-nav-rule { 
+		margin-top: 0;
+		margin-bottom: 5px;
+	}
+	
+	.pb-sidebar-subsection > span { 
+		
+		font-family: sans-serif;
+		font-size: 20px;
+		color: #333333;
+		font-weight: 300;
+						
+	}
+	
+	.pb-nav-item {
+		
+		font-family: sans-serif;
+		font-size: 18px;
+		color: #333333;
+		font-weight: 300;
+		margin-inline-start: 10px;
+		
+	}
+	
+</style>
+
+<!-- Bootstrap row -->
+<div class="row" id="body-row">
+    <!-- Sidebar -->
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block pb-testsb"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+        <!-- Bootstrap List Group -->
+        <ul class="list-group">
+            <!-- Prebid js -->
+            <a href="#prebidjs" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
+                    <span class="menu-collapsed pb-sidebar-section"><h2>Prebid.js</h2></span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+            <!-- Submenu content -->
+            <div id='prebidjs' class="collapse sidebar-submenu">
+	            
+	            
+	            <!--Ad Ops-->
+	            <div class="pb-sidebar-subsection">
+		            <span class="menu-collapsed">Ad Ops References</span>
+		            <hr class="pb-nav-rule">
+	            </div>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Getting Started</span>
+                </a>
+                
+                <!--Developers Reference-->
+                <div class="pb-sidebar-subsection">
+	                <span class="menu-collapsed">Developer References</span>
+		            <hr class="pb-nav-rule">
+                </div>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Getting Started</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Publisher API Reference</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Bidder's Params</span>
+                </a>
+                
+                <!--FAQ-->
+                <div class="pb-sidebar-subsection">
+	                <span class="menu-collapsed">FAQ</span>
+		            <hr class="pb-nav-rule">
+                </div>
+	            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Prebid.js FAQ</span>
+                </a>
+
+            </div>
+            
+             <!-- Modules -->
+            <a href="#modules" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
+                    <span class="menu-collapsed pb-sidebar-section"><h2>Modules</h2></span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+            <!-- Submenu content -->
+            <div id='modules' class="collapse sidebar-submenu">
+	            
+	            <!--Ad Ops-->
+	            <div class="pb-sidebar-subsection">
+		            <span class="menu-collapsed">Prebid.js Modules</span>
+		            <hr class="pb-nav-rule">
+	            </div>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">About Modules</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Currency</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">DFP Express</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">DigiTrust</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Server To Server Testing</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">DFP Video</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">Publisher Common ID</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed pb-nav-item">GPDR Consent Management</span>
+                </a>
+                
+            </div>
+            
+            <!-- Ad Ops -->
+            <a href="#adops" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
+                    <span class="menu-collapsed pb-sidebar-section"><h2>Ad Ops</h2></span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+            <!-- Submenu content -->
+            <div id='adops' class="collapse sidebar-submenu">
+	            
+	            <a href="#adopstutorials" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center pb-sidebar-subsection">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
+                    <span class="menu-collapsed">Adops Tutorials</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            	</a>
+            	
+	            	<!--tutorials-->
+	            	<div id="adopstutorials" class="collapse sidebar-submenu">
+		            
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Before You Start</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Send Top Bid to Adserver</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Send All Bids to the Ad Server</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid for AMP in DFP</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid Multi-Format in DFP</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid Native in DFP (Alpha)</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid Video in DFP</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid with the AppNexus Publisher Ad Server</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid.js with Smart Ad Server</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed pb-nav-item">Enable Deals</span>
+		                </a>
+		                
+	            	</div>
+	            	
+	            	<!--reference-->
+	                <a href="#reference" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+	                <div class="d-flex w-100 justify-content-start align-items-center">
+	                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
+	                    <span class="menu-collapsed">References</span>
+	                    <span class="submenu-icon ml-auto"></span>
+	                </div>
+	            	</a>
+	            	
+	            	<div id="reference" class="collapse sidebar-submenu">
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed">Docs By Ad Server</span>
+		                </a>
+	            	</div>
+	            	
+	            	<!--studies-->
+	            	<a href="#studies" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+	                <div class="d-flex w-100 justify-content-start align-items-center">
+	                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
+	                    <span class="menu-collapsed">Studies</span>
+	                    <span class="submenu-icon ml-auto"></span>
+	                </div>
+	            	</a>
+	            	
+	            	<div id="studies" class="collapse sidebar-submenu">
+                
+			            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed">Optimal Header Bidding Setup</span>
+		                </a>
+		
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed">Optimal Header Bidding Setup</span>
+		                </a>
+		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed">How To Reduce The Latency of Header Bidding With Prebid.js</span>
+		                </a>
+		                 <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+		                    <span class="menu-collapsed">How to Simplify Line Item Setup</span>
+		                </a>
+		                
+	            	</div>
+                
+            </div>
+
+
+            
+        </ul><!-- List Group END-->
+    </div><!-- sidebar-container END -->
+    
+    
+</div><!-- body-row END -->
