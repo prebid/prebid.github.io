@@ -5,72 +5,69 @@
 
 <div class="container bs-docs-container">
 	
-	<div>
+	<div class="row wrapper">
 		
-		<div class="row wrapper">
+		<div class="col-sm-2 sidebar" id="sidebar">
 			
-			<div class="col-sm-2 sidebar" id="sidebar">
+			{% for item in site.data.sidebar %}
+			
+				{% if item.sbSecId == page.sidebarType %}
 				
-				{% for item in site.data.sidebar %}
-				
-					{% if item.sbSecId == page.sidebarType %}
-					
-						{% if item.isSectionHeader == 1 %}
-							
-							<h3>{{item.sectionTitle}}</h3>
+					{% if item.isSectionHeader == 1 %}
 						
-						{% endif %}
+						<h3>{{item.sectionTitle}}</h3>
 					
-						{% if item.isHeader == 1 %}
-						
-							<h4 class="list-group-item-header">{{item.title}}</h4>
-							
-						{% else %}
+					{% endif %}
 				
-							<a href="{{item.link}}" class="list-group-item group-title">
-								
-								{% if item.sbUUID == page.sbUUID %}
-								<h4 class="list-group-item indicator">{{item.title}}</h4>
-								{% else %}
-								<h4 class="list-group-item">{{item.title}}</h4>
-								{% endif %}
-							</a>
+					{% if item.isHeader == 1 %}
+					
+						<h4 class="list-group-item-header">{{item.title}}</h4>
+						
+					{% else %}
+			
+						<a href="{{item.link}}" class="list-group-item group-title">
 							
-							{% if item.isLastSubSectionItem == 1 %}
-								<hr>
+							{% if item.sbUUID == page.sbUUID %}
+							<h4 class="list-group-item indicator">{{item.title}}</h4>
+							{% else %}
+							<h4 class="list-group-item">{{item.title}}</h4>
 							{% endif %}
+						</a>
 						
-						
+						{% if item.isLastSubSectionItem == 1 %}
+							<hr>
 						{% endif %}
 					
-					{% endif %}
 					
-				{% endfor %}
-				
-				
-			</div>
-			
-			
-			<div class="col-sm-9 pb-content" markdown="1">
-				
-					<button type="button" id="sidebarCollapse" class="btn btn-info pb_menu_btn">
-						<i class="fas fa-align-left"></i>
-                        <span>Menu</span>
-                    </button>
-									
-					{{ content }}
-					
-					{% if page.description == "Partners" %}
-					
-						{% include partners.html %}
-						
 					{% endif %}
 				
-			</div>
+				{% endif %}
+				
+			{% endfor %}
+			
 			
 		</div>
+		
+		
+		<div class="col-sm-9 pb-content" markdown="1">
 			
+				<button type="button" id="sidebarCollapse" class="btn btn-info pb_menu_btn">
+					<i class="fas fa-align-left"></i>
+                    <span>Menu</span>
+                </button>
+								
+				{{ content }}
+				
+				{% if page.description == "Partners" %}
+				
+					{% include partners.html %}
+					
+				{% endif %}
+			
+		</div>
+		
 	</div>
+			
 </div>
 
 <p></p>

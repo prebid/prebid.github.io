@@ -215,10 +215,7 @@ hr {
     max-width: 300px;
     color: #fff;
     transition: all 0.3s;
-    position:fixed;
-    top:10;
     margin-top: 20px;
-    z-index:1000;
 }
 
 #sidebar.active {
@@ -230,10 +227,11 @@ hr {
 	padding-left: 50px;
 	padding-top: 20px;
 	padding-bottom: 10px;
-	padding-right:70px;
-	margin-left: -110px;
+	padding-right:30px;
+	margin-left: 0px;
 	width: 300px;
 	font-family: 'Dosis', sans-serif;
+	float: left;
 }
 
 .sidebar h3 { 
@@ -869,6 +867,7 @@ button.list-group-item:focus {
 
 .bs-docs-container { 
 	margin-top: 70px;
+	margin-left:0;
 }
 
 .col-sm-9 { 
@@ -877,9 +876,8 @@ button.list-group-item:focus {
 }
 
 .pb-content { 
-	margin-left: 200px;
-	width: 90%;
-	padding-left: 70px;
+	padding-top: 20px;
+	float:left;
 }
 
 .pb-content p { 
