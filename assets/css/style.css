@@ -234,6 +234,10 @@ hr {
 	float: left;
 }
 
+.sidebar ul { 
+	color: #333333;
+}
+
 .sidebar h3 { 
 	font-size:23px;
 	font-family: 'Roboto', sans-serif;

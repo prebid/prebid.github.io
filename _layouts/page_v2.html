@@ -2,49 +2,109 @@
 
 {% include nav.html %}
 
-
 <div class="container bs-docs-container">
 	
 	<div class="row wrapper">
 		
-		<div class="col-sm-2 sidebar" id="sidebar">
+		<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
 			
-			{% for item in site.data.sidebar %}
-			
-				{% if item.sbSecId == page.sidebarType %}
+			<ul class="list-group">
 				
-					{% if item.isSectionHeader == 1 %}
-						
-						<h3>{{item.sectionTitle}}</h3>
-					
-					{% endif %}
+				<!--get all sections-->
 				
-					{% if item.isHeader == 1 %}
+				{% assign arrSideBarSections = site.data.sidebar | where: "isSectionHeader",  "1" %}
+				
+				<!-- begin loop-->
+				{% for sectionHeader in arrSideBarSections %}
 					
-						<h4 class="list-group-item-header">{{item.title}}</h4>
-						
-					{% else %}
-			
-						<a href="{{item.link}}" class="list-group-item group-title">
+					<!--get section items and display section header 
+						Note # in anchor == id of next div
+					-->
+					{% assign sectionIdx = forloop.index0 %}
+					{% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
+					
+					<!--get all sub section headers-->
+            		{% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
+            							
+						<a href="#{{sectionHeader.sectionId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+							<div class="d-flex w-100 justify-content-start align-items-center">
+								<span class="fa fa-dashboard fa-fw mr-3"></span> 
+								<span class="menu-collapsed pb-sidebar-section"><h2>{{sectionHeader.sectionTitle}}</h2></span>
+								<span class="submenu-icon ml-auto"></span>
+                			</div>
+            			</a>
+	            			
+	            		{% if arrSectionHeaders.size == 1 %}
+	            		
+		            		<!--this is collapsed-->
+	            			<div id={{sectionHeader.sectionId}} class="collapse sidebar-submenu">
+		            			
+			            		<!--go through each section-->
+		            			{% for sectionItem in arrSectionItems %}
+		            				
+		            				<!--display subsection headers-->
+		            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 1 %}
+		            					<div class="pb-sidebar-subsection">
+											<span class="menu-collapsed">{{sectionItem.title}}</span>
+											<hr class="pb-nav-rule">
+			            				</div>
+			            				
+			            			{% else %}
+			            				
+			            				<!-display subsection items with links-->
+			            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+											<span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
+		                				</a>
+		                				
+		            				{% endif %}
+		            			
+		            			{% endfor %}
+		            			
+							</div>
 							
-							{% if item.sbUUID == page.sbUUID %}
-							<h4 class="list-group-item indicator">{{item.title}}</h4>
-							{% else %}
-							<h4 class="list-group-item">{{item.title}}</h4>
-							{% endif %}
-						</a>
+						{% else %}
 						
-						{% if item.isLastSubSectionItem == 1 %}
-							<hr>
-						{% endif %}
-					
-					
-					{% endif %}
+							<!--this is collapsed-->
+	            			<div id={{sectionHeader.sectionId}} class="collapse sidebar-submenu">
+		            			
+	            				<!--go through each section-->
+								{% for thisSectionHeader in arrSectionHeaders %}
+								
+								<a href="#{{thisSectionHeader.headerId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+									<div class="d-flex w-100 justify-content-start align-items-center">
+										<span class="fa fa-dashboard fa-fw mr-3"></span> 
+										<span class="menu-collapsed pb-sidebar-section"><h4>{{thisSectionHeader.title}}</h4></span>
+										<span class="submenu-icon ml-auto"></span>
+		                			</div>
+		            			</a>
+								
+								{% assign arrSubItems = arrSectionItems | where: "subgroup", thisSectionHeader.subgroup | where: "isHeader", "0" %}
+									
+								<!--this is collapsed-->
+								<div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu">
+
+									{% for thisSubItem in arrSubItems %}
+									
+										<!-display subsection items with links-->
+			            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+											<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+		                				</a>
+									
+									{% endfor %}						
+									
+									
+								</div>
+		            			
+		            			{% endfor %}
+		            			
+							</div>
+	            			
+            			{% endif %}
 				
-				{% endif %}
+				{% endfor %}
 				
-			{% endfor %}
-			
+			</ul>
+						
 			
 		</div>
 		

@@ -1,11 +1,25 @@
 #--------------Prebid.js--------------|
+
+- sbSecId: 0
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid.js
+  sectionId: prebidjs
+  subgroup: 1000
+  
 - sbSecId: 0
   title: Developer Quick Start
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
-  sectionTitle: Prebid.js
+  headerId: devquickstart
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
+
 
 - sbSecId: 0
   title: Getting Started
@@ -13,7 +27,9 @@
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
-  sectionTitle: 
+  sectionTitle:
+  subgroup: 0
+ 
 
 - sbSecId: 0
   title: Examples
@@ -22,14 +38,18 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
+
 
 - sbSecId: 0
   title: Troubleshooting
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: troubleshooting
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 0
   title: Prebid.js FAQ
@@ -38,6 +58,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 0
   title: Dev Tips
@@ -46,6 +67,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 0
   title: Common Issues
@@ -54,6 +76,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 0
   title: Prebid.js Troubleshooting Guide
@@ -62,14 +85,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 0
   title: Reference
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: reference
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: Publisher API Reference
@@ -78,6 +104,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: Ad Unit Reference
@@ -86,6 +113,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: Bidder's Params
@@ -94,6 +122,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: Prebid 1.0 Publisher API Changes
@@ -102,6 +131,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: Prebid Modules
@@ -110,14 +140,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: Adapters
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: adapters
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: How To Add A New Bidder Adapter
@@ -126,6 +159,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: Integrate With The Prebid Analytics API
@@ -134,14 +168,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 0
   title: External Interfaces
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: external
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 0
   title: Plugins
@@ -150,14 +187,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 0
   title: Analytics
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: analytics
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 0
   title: Analytics For Prebid
@@ -166,6 +206,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 0
   title: Prebid Analytics for GA
@@ -174,14 +215,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 0
   title: Features
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: features
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 4
 
 - sbSecId: 0
   title: Conditional Ad Units
@@ -190,6 +234,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 4
 
 - sbSecId: 0
   title: Post-Bid
@@ -198,6 +243,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 4
 
 
 #--------------Prebid Mobile--------------|
@@ -206,9 +252,11 @@
   title: 
   link:
   isLastSubSectionItem: 0
-  isHeader: 1
+  isHeader: 0
   isSectionHeader: 1
   sectionTitle: Prebid Mobile
+  sectionId: prebid-mobile
+  subgroup: 1000
 
 - sbSecId: 1
   title: Overview
@@ -217,6 +265,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 1
   title: Getting Started With Prebid Mobile
@@ -225,6 +274,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 1
   title: GDPR
@@ -233,14 +283,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 1
   title: For iOS
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: ios
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Code Integration
@@ -249,6 +302,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Targeting Parameters
@@ -257,6 +311,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Logging and Troubleshooting
@@ -265,14 +320,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: For Android
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: android
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 1
   title: Code Integration
@@ -281,6 +339,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 1
   title: Targeting Parameters
@@ -289,6 +348,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 1
   title: Logging and Troubleshooting
@@ -297,14 +357,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 1
   title: For Ad Ops
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: foradops
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 1
   title: Setup Line items For DFP
@@ -313,6 +376,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 1
   title: Setup Line Items For MoPub
@@ -321,6 +385,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 1
   title: Price Granularity
@@ -329,6 +394,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 - sbSecId: 1
   title: Validation App
@@ -337,6 +403,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 3
 
 
 - sbSecId: 1
@@ -344,8 +411,10 @@
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: forcontributors
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 4
 
 - sbSecId: 1
   title: Add an Ad Server Adapter
@@ -354,15 +423,29 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 4
 
 #--------------Overview--------------|
+
+- sbSecId: 2
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Overview
+  sectionId: overview
+  subgroup: 1000
+  
 - sbSecId: 2
   title: General
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
+  headerId: general
+  isSectionHeader: 0
   sectionTitle: Overview
+  subgroup: 0
 
 - sbSecId: 2
   title: What is Prebid?
@@ -371,6 +454,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Project Principles
@@ -379,6 +463,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Contributing
@@ -387,6 +472,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Prebid.org IP Policy
@@ -395,6 +481,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: About Prebid.org
@@ -403,6 +490,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Members and Partners
@@ -411,6 +499,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Prebid.org Membership
@@ -419,6 +508,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Prebid Management Committees
@@ -427,6 +517,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Header Bidding Wrapper Code of Conduct
@@ -435,24 +526,37 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Community Code of Conduct
   link: /overview/community-code-of-conduct.html
   isLastSubSectionItem: 0
   isHeader: 0
+  subgroup: 0
 
 #--------------Ad Ops--------------|
+
+- sbSecId: 3
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Ad Ops
+  sectionId: ad-ops
+  subgroup: 1000
 
 - sbSecId: 3
   title: Ad Ops Tutorials
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
+  headerId: adopstuts
+  isSectionHeader: 0
   sectionTitle: Ad Ops
-  sbUUID: 3.1
-
+  subgroup: 0
+  
 - sbSecId: 3
   title: Before You Start
   link: /adops/before-you-start.html
@@ -460,7 +564,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.2
+  subgroup: 0
 
 - sbSecId: 3
   title: Send Top Bid to Adserver
@@ -469,7 +573,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.3
+  subgroup: 0
 
 - sbSecId: 3
   title: Send All Bids to the Ad Server
@@ -478,7 +582,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.4
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid for AMP in DFP
@@ -487,7 +591,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.5
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid Multi-Format in DFP
@@ -496,7 +600,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.6
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid Native in DFP (Alpha)
@@ -505,7 +609,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.7
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid Video in DFP
@@ -514,7 +618,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.8
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid with the AppNexus Publisher Ad Server
@@ -523,7 +627,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.9
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid.js with Smart Ad Server
@@ -532,7 +636,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.10
+  subgroup: 0
 
 - sbSecId: 3
   title: Enable Deals
@@ -541,16 +645,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.11
+  subgroup: 0
 
 - sbSecId: 3
   title: Reference
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: reference3
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.12
+  subgroup: 1
 
 - sbSecId: 3
   title: Docs by Ad Server
@@ -559,16 +664,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.13
+  subgroup: 1
 
 - sbSecId: 3
   title: Studies
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: studies
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.14
+  subgroup: 2
 
 - sbSecId: 3
   title: Optimize Header Bidding Setup
@@ -577,7 +683,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.15
+  subgroup: 2
 
 - sbSecId: 3
   title: Optimal Header Bidding Setup
@@ -586,7 +692,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.16
+  subgroup: 2
 
 - sbSecId: 3
   title: How To Reduce The Latency of Header Bidding With Prebid.js
@@ -595,7 +701,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.17
+  subgroup: 2
 
 - sbSecId: 3
   title: How to Simplify Line Item Setup
@@ -604,17 +710,29 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 3.18
+  subgroup: 2
 
 #--------------Prebid Video--------------|
 
+- sbSecId: 4
+  title: 
+  link:
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Video
+  sectionId: prebid-video
+  subgroup: 1000
+  
 - sbSecId: 4
   title: Overview
   link:
   isLastSubSectionItem: 1
   isHeader: 1
-  isSectionHeader: 1
-  sectionTitle: Prebid Video
+  headerId: vidoverview
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
 
 - sbSecId: 4
   title: Prebid.js for Video Overview
@@ -623,6 +741,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 4
   title: Getting Started with Video for Prebid.js
@@ -631,14 +750,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 4
   title: Examples
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: videxamples
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 4
   title: Prebid.js Video Examples
@@ -647,6 +769,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 #--------------Prebid Server--------------|
 
@@ -654,25 +777,40 @@
   title: 
   link:
   isLastSubSectionItem: 0
-  isHeader: 1
+  isHeader: 0
   isSectionHeader: 1
   sectionTitle: Prebid Server
+  sectionId: prebid-server
+  subgroup: 1000
+  
+- sbSecId: 5
+  title: Prebid Server Overview
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: serveroverview
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
 
 - sbSecId: 5
   title: Overview
   link: /prebid-server/prebid-server-overview
   isLastSubSectionItem: 1
+  isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  isHeader: 0
+  subgroup: 0
 
 - sbSecId: 5
   title: Developers
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: serverdevelopers
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: Add A New Analytics Module
@@ -681,6 +819,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: Add A Bidder
@@ -689,6 +828,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: Prebid Server Bidders - Additional Info
@@ -697,6 +837,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: Cookie Sync Technical Details
@@ -705,6 +846,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: GDPR Mechanics
@@ -713,6 +855,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: Stored Requests
@@ -721,14 +864,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: Endpoints
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: endpoints
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Info - Bidders
@@ -737,6 +883,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Info - Bidder Name
@@ -745,6 +892,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Bidders - Params
@@ -753,6 +901,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Starting Cookie Sync
@@ -761,6 +910,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Prebid Server AMP
@@ -769,6 +919,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Prebid Server Auction
@@ -777,6 +928,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Saving User Syncs
@@ -785,6 +937,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Get Status
@@ -793,23 +946,39 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 2
 
 
 #--------------Examples--------------|
 
 - sbSecId: 6
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Examples
+  sectionId: examples
+  subgroup: 1000
+  
+- sbSecId: 6
   title: Overview
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
-  sectionTitle: Examples
+  headerId: examplesoverview
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
 
 - sbSecId: 6
   title: Basic Example
   link: /dev-docs/examples/basic-example.html
   isLastSubSectionItem: 0
   isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
 
 - sbSecId: 6
   title: Multi-Format Ads
@@ -818,6 +987,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 6
   title: Individual Ad Unit Refresh/Infinite Scroll
@@ -826,6 +996,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 6
   title: Using Prebid.js with AppNexus Publisher Ad Server
@@ -834,6 +1005,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 6
   title: Postbid Example
@@ -842,6 +1014,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 6
   title: Custom Price Granularity Buckets
@@ -850,6 +1023,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
 - sbSecId: 6
   title: Filter Sizes Dynamically with Labels
@@ -858,18 +1032,31 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 
 
 #--------------Formats--------------|
 
 - sbSecId: 7
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Formats
+  sectionId: formats
+  subgroup: 1000
+  
+- sbSecId: 7
   title: Overview
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
-  sectionTitle: Formats
+  headerId: formatsoverview
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0 
 
 - sbSecId: 7
   title: Display
@@ -878,6 +1065,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0 
 
 - sbSecId: 7
   title: Video
@@ -886,6 +1074,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0 
 
 - sbSecId: 7
   title: Native
@@ -894,6 +1083,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0 
 
 - sbSecId: 7
   title: AMP
@@ -902,6 +1092,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0 
 
 - sbSecId: 7
   title: Multi-Format
@@ -910,16 +1101,29 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0 
   
  #--------------Modules--------------|
+  
+- sbSecId: 8
+  title: 
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Modules
+  sectionId: modules
+  subgroup: 1000
   
 - sbSecId: 8
   title: Prebid.js Modules
   link: 
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
-  sectionTitle: Modules
+  headerId: prebidmodules
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
   
 - sbSecId: 8
   title: About Modules
@@ -928,6 +1132,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 8
   title: Currency
@@ -936,6 +1141,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 8
   title: DFP Express
@@ -944,6 +1150,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 8
   title: DigiTrust
@@ -952,6 +1159,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 8
   title: Server To Server Testing
@@ -960,6 +1168,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 8
   title: DFP Video
@@ -968,6 +1177,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 8
   title: Publisher Common ID
@@ -976,6 +1186,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 8
   title: GPDR Consent Management
@@ -984,17 +1195,29 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
 
  #--------------Prebid.js High Level --------------|
+  
+- sbSecId: 9
+  title: 
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid.js Overview
+  sectionId: prebid-overview
+  subgroup: 1000
   
 - sbSecId: 9
   title: Ad Ops References
   link: 
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
-  sectionTitle: Prebid.js Overview
-  sbUUID: 9.0
+  headerId: prebidadops
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
   
 - sbSecId: 9
   title: Getting Started
@@ -1003,16 +1226,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 9.1
+  subgroup: 0
   
 - sbSecId: 9
   title: Developer References
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: prebiddeveloper
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 9.2
+  subgroup: 1
 
 - sbSecId: 9
   title: Getting Started
@@ -1021,7 +1245,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 9.3
+  subgroup: 1
 
 - sbSecId: 9
   title: Publisher API Reference
@@ -1030,7 +1254,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 9.4
+  subgroup: 1
 
 - sbSecId: 9
   title: Bidder's Params
@@ -1039,16 +1263,17 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 9.5
+  subgroup: 1
 
 - sbSecId: 9
   title: FAQ
   link:
   isLastSubSectionItem: 0
   isHeader: 1
+  headerId: prebidfaq
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 9.6
+  subgroup: 2
 
 - sbSecId: 9
   title: Prebid.js FAQ
@@ -1057,17 +1282,29 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  sbUUID: 9.7
+  subgroup: 2
   
  #-------------- Support --------------|
+  
+- sbSecId: 10
+  title: 
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Support
+  sectionId: support
+  subgroup: 1000
   
 - sbSecId: 10
   title: Overview
   link: 
   isLastSubSectionItem: 0
   isHeader: 1
-  isSectionHeader: 1
-  sectionTitle: Support
+  headerId: supportoverview
+  isSectionHeader: 
+  sectionTitle: 
+  subgroup: 0
   
 - sbSecId: 10
   title: Help
@@ -1076,6 +1313,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 10
   title: Troubleshooting
@@ -1084,6 +1322,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 10
   title: Training Videos
@@ -1092,6 +1331,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 10
   title: FAQs
@@ -1100,6 +1340,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
 - sbSecId: 10
   title: Blog
@@ -1108,4 +1349,5 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
+  subgroup: 0
   
