@@ -41,11 +41,11 @@
 		            			
 			            		<!--go through each section-->
 		            			{% for sectionItem in arrSectionItems %}
-		            				
+		            					            				
 		            				<!--display subsection headers-->
 		            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 1 %}
 		            					<div class="pb-sidebar-subsection">
-											<span class="menu-collapsed">{{sectionItem.title}}</span>
+											<span class="menu-collapsed pb-nav-subhead">{{sectionItem.title}}</span>
 											<hr class="pb-nav-rule">
 			            				</div>
 			            				
@@ -73,7 +73,7 @@
 								<a href="#{{thisSectionHeader.headerId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 									<div class="d-flex w-100 justify-content-start align-items-center">
 										<span class="fa fa-dashboard fa-fw mr-3"></span> 
-										<span class="menu-collapsed pb-sidebar-section">{{thisSectionHeader.title}}&nbsp;&nbsp;<img src="/assets/images/downarrow.png"></span>
+										<span class="menu-collapsed pb-sidebar-section pb-section-title">{{thisSectionHeader.title}}&nbsp;&nbsp;<img src="/assets/images/downarrow.png"></span>
 										<span class="submenu-icon ml-auto"></span>
 		                			</div>
 		            			</a>
@@ -86,14 +86,31 @@
 
 									{% for thisSubItem in arrSubItems %}
 									
-										<!-display subsection items with links-->
-			            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-											<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
-		                				</a>
+			            				{% assign subsectionIdx = forloop.index0 %}
+			            				{% assign lastIdx = arrSubItems.size | minus: 1 %}
+			            				
+			            				
+			            				<!-display subsection items with links-->
+			            				{% if subsectionIdx == 0 %}
+				            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+												<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
+			                				</a>
+			            				{% elsif subsectionIdx == lastIdx %}
+				            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+												<span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
+			                				</a>
+			                		
+			                			{% else %}
+			                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+												<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+		                					</a>
+			            				{% endif %}
+									
+			            				
 									
 									{% endfor %}						
 									
-									
+								<hr>	
 								</div>
 		            			
 		            			{% endfor %}
