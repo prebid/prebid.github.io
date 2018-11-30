@@ -29,7 +29,7 @@
 						<a href="#{{sectionHeader.sectionId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 							<div class="d-flex w-100 justify-content-start align-items-center">
 								<span class="fa fa-dashboard fa-fw mr-3"></span> 
-								<span class="menu-collapsed pb-sidebar-section"><h2>{{sectionHeader.sectionTitle}}</h2></span>
+								<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
 								<span class="submenu-icon ml-auto"></span>
                 			</div>
             			</a>
@@ -45,8 +45,7 @@
 		            				<!--display subsection headers-->
 		            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 1 %}
 		            					<div class="pb-sidebar-subsection">
-											<span class="menu-collapsed pb-nav-subhead">{{sectionItem.title}}</span>
-											<hr class="pb-nav-rule">
+											<span class="menu-collapsed pb-section-subtitle">{{sectionItem.title}}</span>
 			            				</div>
 			            				
 			            			{% else %}
@@ -73,7 +72,7 @@
 								<a href="#{{thisSectionHeader.headerId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 									<div class="d-flex w-100 justify-content-start align-items-center">
 										<span class="fa fa-dashboard fa-fw mr-3"></span> 
-										<span class="menu-collapsed pb-sidebar-section pb-section-title">{{thisSectionHeader.title}}&nbsp;&nbsp;<img src="/assets/images/downarrow.png"></span>
+										<span class="menu-collapsed pb-sidebar-section pb-section-subtitle">{{thisSectionHeader.title}}&nbsp;<img src="/assets/images/downarrow.png"></span>
 										<span class="submenu-icon ml-auto"></span>
 		                			</div>
 		            			</a>
