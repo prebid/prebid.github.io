@@ -27,7 +27,7 @@ The Brightcove Prebid Plugin supports the following features:
     - Header bidding is conducted outside of the plugin
 
 - Video ad playback within a Brightcove player:
-    - Single Ad Playback via VAST XML
+    - Single Ad Playback via VAST XML at one or more ad break positions within a video. (For example, you can specify options for a preroll and a postroll ad in a single call to the plugin.)
     - Versions up thru VAST 3.0
     - Both Video and VPAID creatives
     - If the AppNexus Viewability Wrapper is delivered:
@@ -50,7 +50,7 @@ The plugin will support the following UI features:
 
 - Standard click-through support
 
-The plugin supports:
+The plugin supports one or more of the following ad slot locations in a single video and/or in a player configured for playlisting:
 
 - Preroll
 -  Midroll
@@ -148,7 +148,10 @@ In addition, the publisher can run its own prebid code outside the of the plugin
 
 ## How It Works
 
+For each ad break that will be shown in a video:
+
 - The plugin will use the parameters passed to it to invoke prebid.
+- If a primary ad server is being used to make the final decision, the prebid bidding results will be passed to the desired ad server.
 - The response should provide a URL to a VAST creative or a VAST XML document that defines an ad to play.
 - Upon completion of the prebid, the winning ad can then be played by the plugin at the specified time.
 - By default, the prebid plugin implicitly invokes the default MailOnline plugin to render the ad.
@@ -258,6 +261,9 @@ Configuration options are passed into the plugin via a JSON structure. This stru
     - Skippable behavior
     - Custom translations for UI components such as the Ad Indicator, the Skip button and the countdown text
 
+{: .alert.alert-info :}
+NOTE:  If you are requesting prebid for more than one ad break in a video, you need to define an array of configuration options, one for each ad break.  The configuration should include the `timeOffset` option to identify when the ad break should occur.  See [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html) for more details.
+
 Details about the options supported by the Brightcove Prebid Plugin can be found in [Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html).
 
 ## Sample Implementations
@@ -271,5 +277,7 @@ Sample implementations are provided at:
 - **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
 
 - **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
+
+- **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>

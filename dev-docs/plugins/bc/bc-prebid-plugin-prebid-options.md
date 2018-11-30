@@ -13,14 +13,16 @@ pid: 10
 
 ## Overview
 
-Configuration options are passed into the plugin in a JSON object structure.  These options can include:
+Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html) for more details.) These options can include:
 
 - Prebid options, which configure how the prebid process should be executed.
 - Rendering options, which customize the ad playback.
 
 ## Plugin Prebid Options
 
-These options are used to configure how the plugin should execute the prebid process.  They are included in the same JSON structure where the rendering options are also provided.
+These options are used to configure how the plugin should execute the prebid process for a single ad break.  They are included in the same JSON structure where the rendering options are also provided for the ad break.
+
+When configuring prebid options for more than one ad break, create an array of Prebid and rendering options for each ad break.
 
 - [prebidPath](#prebidPath)
 - [biddersSpec](#biddersSpec)
@@ -31,6 +33,8 @@ These options are used to configure how the plugin should execute the prebid pro
 - [adServerCallback](#adServerCallback)
 - [prebidTimeout](#prebidTimeout)
 - [enablePrebidCache](#enablePrebidCache)
+- [label](#labeloption)
+- [scriptLoadTimeout](#scriptLoadTimeout)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -407,6 +411,9 @@ No
 
 700
 
+{: .alert.alert-info :}
+NOTE:  You may need to increase the `prebidTimeout` value when running on mobile platforms, especially when the ad is scheduled as a late midroll or postroll.
+
 **Example:**
 
 `options.prebidTimeout = 900;`
@@ -433,6 +440,53 @@ true
 **Example:**
 
 `options.enablePrebidCache = false;`
+
+<a name="labeloption"></a>
+### label
+
+**Description:**
+
+User-defined text that identifies a set of prebid/rendering options.  This string is particularly useful when defining configuration options for more than one ad break.  Use this option to make it easier to manage all the sets of configuration options.
+
+**Acceptable Values:**
+
+String that uniquely identifies a set of prebid options.  Your label should be logically correct.  For example, do not use a label of "preroll ad" if the ad is going to be used in the midroll position.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+None
+
+**Example:**
+
+`options1.label = 'midroll-at-5-minutes';`
+
+<a name="scriptLoadTimeout"></a>
+### scriptLoadTimeout
+
+**Description:**
+
+Maximum time in milliseconds that the plugin will wait for a script file to load.  For example, this value controls how long the plugin will wait for Prebid.js to load.
+
+**Acceptable Values:**
+
+Any positive integer
+
+**Required?**
+
+No
+
+**Default Value:**
+
+3000
+
+**Example:**
+
+`options1.scriptLoadTimeout = 5000;`
+
 
 <a name="set-up-params">
 ### Setting Up Prebid Parameters
@@ -468,5 +522,7 @@ Sample implementations are provided at:
 - **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
 
 - **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
+
+- **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>
