@@ -13,7 +13,7 @@ prebid_1_0_supported : true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope      | Description                                                    | Example            |
-| :-----------   | :--------- | :------------                                                  | :----------------- |
-| `placementId` | required   | Placement Id will be generated on Advenue Platform. | 0                        |
-| `traffic`      | optional   | Type traffic                                             | 'banner'                 |
+| Name           | Scope      | Description                                                    | Example            |type|
+| :-----------   | :--------- | :------------                                                  | :----------------- |:---|
+| `placementId` | required   | Placement Id will be generated on Advenue Platform. | 0                        |integer|
+| `traffic`      | optional   | Type traffic                                             | 'banner'                 |string|
