@@ -14,6 +14,6 @@ The imonomy bidder adaptor requires setup and approval from the imonomy Service 
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope    | Description        | Example  |
-| :--- | :----    | :----------        | :------  |
-| `publisher_id`   | required | imonomy publisher id    | `'1234567890'` |
+| Name           | Scope    | Description          | Example        | Type     |
+|----------------|----------|----------------------|----------------|----------|
+| `publisher_id` | required | imonomy publisher id | `'1234567890'` | `string` |

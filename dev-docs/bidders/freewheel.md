@@ -12,6 +12,7 @@ biddercode: freewheel-ssp
 
 biddercode_longer_than_12: true
 prebid_1_0_supported : true
+gdpr_supported: true
 media_types: video
 
 ---
@@ -19,6 +20,6 @@ media_types: video
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `zoneId` | required | | |
+| Name     | Scope    | Description | Example | Type     |
+|----------|----------|-------------|---------|----------|
+| `zoneId` | required |             |         | `string` |

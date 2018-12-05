@@ -18,9 +18,9 @@ biddercode_longer_than_12: false
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                                                                                                                 | Example                    |
-| :---          | :----    | :----------                                                                                                                                 | :------                    |
-| `placementId` | required | The placement ID from RealVu.              | `"9339508"`                 |
-| `partnerId`   | required | The member ID  from RealVu.                | `"1Y"`                      |
+| Name          | Scope    | Description                   | Example     | Type     |
+|---------------|----------|-------------------------------|-------------|----------|
+| `placementId` | required | The placement ID from RealVu. | `'9339508'` | `string` |
+| `partnerId`   | required | The member ID  from RealVu.   | `'1Y'`      | `string` |
 
 (Sizes set in `adUnit` object will also apply to the RealVu bid requests.)

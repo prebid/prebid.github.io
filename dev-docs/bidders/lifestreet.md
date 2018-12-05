@@ -16,8 +16,8 @@ gdpr_supported: true
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Description                          | Example                                   |
-|:----------------|:---------|:-------------------------------------|:------------------------------------------|
-| `slot`          | required | Ad Slot                              | `'slot166704'`                            |
-| `adkey`         | required | Ad Key                               | `'78c'`                                   |
-| `ad_size`       | required | Ad Size                              | `'160x600'`                               |
+| Name      | Scope    | Description | Example        | Type     |
+|-----------|----------|-------------|----------------|----------|
+| `slot`    | required | Ad Slot     | `'slot166704'` | `string` |
+| `adkey`   | required | Ad Key      | `'78c'`        | `string` |
+| `ad_size` | required | Ad Size     | `'160x600'`    | `string` |

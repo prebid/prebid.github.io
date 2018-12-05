@@ -25,15 +25,17 @@ Prebid.org was developed to bring together the oversight, guidance, and developm
 
 ### [Rubicon Project](http://rubiconproject.com/headerbidding)
 
-* Pieter de Zwart, President and Director, pdezwart@prebid.org
+* Bret Gorsline, President and Director, bgorsline@prebid.org
 * Tom Kershaw, Director
 
 ## Standard Tier
 
-### [PubMatic](https://pubmatic.com/products/header-bidding/)
 ### [AdLightning](https://www.adlightning.com/)
-### [Marfeel](https://www.marfeel.com/)
 ### [Criteo](https://www.criteo.com/for-publishers/products/criteo-direct-bidder/)
+### [Marfeel](https://www.marfeel.com/)
+### [Oath](https://www.oath.com/advertising/platforms/)
+### [OpenX](https://openx.com/)
+### [PubMatic](https://pubmatic.com/products/header-bidding/)
 ### [Sortable](https://sortable.com/)
 
 

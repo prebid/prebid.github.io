@@ -56,46 +56,46 @@ An example Stored Request is given below:
 
 {% highlight javascript %}
 
-    {
-        "id": "some-request-id",
-        "site": {
-            "page": "prebid.org"
-        },
-        "ext": {
-            "prebid": {
-                "targeting": {
-                    "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
-                        "precision": 2,
-                        "ranges": [{
-                            "max": 20.00,
-                            "increment": 0.10
-                        }]
-                    }
+{
+    "id": "some-request-id",
+    "site": {
+        "page": "prebid.org"
+    },
+    "ext": {
+        "prebid": {
+            "targeting": {
+                "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
+                    "precision": 2,
+                    "ranges": [{
+                        "max": 20.00,
+                        "increment": 0.10
+                    }]
                 }
             }
-        },
-        "imp": [
-            {
-                "id": "some-impression-id",
-                "banner": {
-                    "format": [
-                        {
-                            "w": 300,
-                            "h": 250
-                        }
-                    ]
+        }
+    },
+    "imp": [
+        {
+            "id": "some-impression-id",
+            "banner": {
+                "format": [
+                    {
+                        "w": 300,
+                        "h": 250
+                    }
+                ]
+            },
+            "ext": {
+                "appnexus": {
+                    // Insert parameters here
                 },
-                "ext": {
-                    "appnexus": {
-                        // Insert parameters here
-                    },
-                    "rubicon": {
-                        // Insert parameters here
-                    }
+                "rubicon": {
+                    // Insert parameters here
                 }
             }
-        ]
-    }
+        }
+    ]
+}
 
 {% endhighlight %}
 
@@ -104,17 +104,17 @@ An example Stored Request is given below:
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
 + `data-slot`: Identifies the ad slot for the auction.
-+ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC. 
++ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
     + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js].
     + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
 {% highlight html %}
 
-    <amp-ad width="300" height="250"
-            type="doubleclick"
-            data-slot="/19968336/universal_creative"
-            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
-    </amp-ad>
+<amp-ad width="300" height="250"
+        type="doubleclick"
+        data-slot="/19968336/universal_creative"
+        rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+</amp-ad>
 
 {% endhighlight %}
 
@@ -125,25 +125,98 @@ This is the creative that your Ad Ops team needs to upload to the ad server (it'
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% include dev-docs/amp-creative.md %}
+For DFP:
+
+{% highlight javascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%PATTERN:url%%";
+  ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+{% endhighlight %}
+
+For Mopub:
+
+{% highlight javascript %}
+
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%KEYWORD:url%%";
+  ucTagData.targetingKeywords = "%%KEYWORDS%%";
+   try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+{% endhighlight %}
+
+For all other ad servers:
+
+{% highlight javascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%MACRO:url%%";
+  ucTagData.adId = "%%MACRO:hb_adid%%";
+  ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
+  ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
+  ucTagData.uuid = "%%MACRO:hb_cache_id%%";
+  ucTagData.mediaType = "%%MACRO:hb_format%%";
+  ucTagData.env = "%%MACRO:hb_env%%";
+  ucTagData.size = "%%MACRO:hb_size%%";
+
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+{% endhighlight %}
+
+Replace `MACRO` in the preceding example with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 
 ### User Sync
 
 To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
 
-{: .alert.alert-warning :}
-Iframes must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+{: .alert.alert-success :}
+The following example includes a transparent image as a placeholder which will allow you to place this at the top within the `body`. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
 
 {% highlight html %}
 
-    <amp-iframe width="1" title="User Sync"
-                            height="1"
-                            sandbox="allow-scripts"
-                            frameborder="0"
-                            src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
-    </amp-iframe>
+<amp-iframe width="1" title="User Sync"
+  height="1"
+  sandbox="allow-scripts"
+  frameborder="0"
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
+  <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
+</amp-iframe>
 
 {% endhighlight %}
+
+## Debugging Tips
+To review that Prebid on AMP is working properly the following aspects can be looked at:
++ Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
++ Look for the Prebid server call in the network panel. You can open this URL in a new tab to view additional debugging information relating to the Prebid Server Stored Bid Request. If working properly, Prebid server will display the targeting JSON for AMP to use.
++ Look for the network call from the Ad Server to ensure that key values are being passed. (For DFP these are in the `scp` query string parameter in the network request)
++ Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present. It will sometimes be useful to manually edit the query string of the Prebid Server request to add this parameter.
 
 ## Related Topics
 
