@@ -1,10 +1,5 @@
 jQuery(document).ready(function( $ ) {
 	
-    var collapseItem = localStorage.getItem('collapseItem'); 
-    if (collapseItem) {
-       $(collapseItem).collapse('show')
-    }
-	
   // Smooth scroll for the menu and links with .scrollto classes
   $('.smoothscroll').on('click', function(e) {
     e.preventDefault();
@@ -26,20 +21,17 @@ jQuery(document).ready(function( $ ) {
   
   $('a.pb-menu-click').click(function(event) {
 	  	
-/*
 	  	//close any open menus
 	  	var arrOpenedDivs= document.querySelectorAll(".show");
 	  	for (i = 0; i < arrOpenedDivs.length; i++) {
 	  		arrOpenedDivs[i].classList.remove('show');
 		}	
-*/
-	
 	  
        let selectedMenu = $(this).data('prebidclickid');
        let thisMenuDiv = document.getElementById(selectedMenu);
        $(thisMenuDiv).addClass('show')
        
-       localStorage.setItem('collapseItem', $(thisMenuDiv));
+       
        
   });
 

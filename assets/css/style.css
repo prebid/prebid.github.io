@@ -1504,7 +1504,7 @@ button.list-group-item:focus {
 	}
 	
 	.pb_benefits_title { 
-		margin: 0;
+		margin-top: 20px;
 		padding: 0;
 		height: 10%;
 	}
