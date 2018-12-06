@@ -15,47 +15,53 @@
 		<div id="navbar" class="navbar-collapse collapse">
 		    <ul class="nav navbar-nav navbar-right">
 			    
-			    {% for item in site.data.dropdowns %}
+			    <!--get all the sections and subsections -->
+			    {% assign arrSections = site.data.dropdown_v2 | where: "isHeader", "1" %}
 			    
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-					
-					{{ item.sectionName }}
-	                <span class="caret" />
-	                
+			    {% for item in arrSections %}
+			    
+			    <li class="dropdown">
+					<a href="#" class="dropdown-toggle pb-menu-click" data-prebidclickid="{{item.sectionId}}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						{{ item.sectionName }}
+		                <span class="caret" />
 					</a>
-					
-					<ul class="dropdown-menu">
-		                    
-		                {% for submenu in item.submenus %}
-	                    
-	                    <li class="dropdown-submenu pull-left">
-	                        <a href="{{submenu.link}}">{{ submenu.title }}
-		                        
-		                        {% if submenu.hasBubblePopOut == 1 %}
-		                       		<span class="caret" />
-		                       	{% endif %}
-	                        </a>
-	                        
-	                        {% if submenu.hasBubblePopOut == 1 %}
-	                        
-	                        	<ul class="dropdown-menu">
-		                        	
-		                        	{% for bubblePopOut in submenu.bubble %}
-		                        	
-		                        		<li><a href="{{bubblePopOut.link}}">{{bubblePopOut.title}}</a></li>
-		                        	
-		                        	{% endfor %}
-		                        	
-	                        	</ul>
-	                        {% endif %}
-	                    </li>
-	                    
-	                    {% endfor %}
-	                </ul>
+				
+			    	
+			    	<!-- if there are submenus - should be true each time-->
+			    	{% if item.hasSubMenus == 1 %}
+			    		<ul class="dropdown-menu">
+			    		
+			    		<!--get how many subsections-->
+			    		{% assign arrSubSections = item.submenus | where: "isSubSectionStart", "1" %}
+			    		
+			    		{% for subSection in arrSubSections %}
+			    			
+			    			<!--get the items in each subsection-->
+			    			{% assign idx = forloop.index0 %}
+			    			{% assign arrSubItems = item.submenus | where: "subsectionId", idx %}
+			    			
+							<!--display subitem-->
+			    			{% for subItem in arrSubItems %}
+			    			
+			    				<li><a href="{{subItem.link}}" class="pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a></li>
+			    				
+			    				{% if subItem.needsDivider == 1 %}
+			    					<hr>
+			    				{% endif %}
+			    				
+			    			{% endfor %}
+			    			
+			    			
+			    		{% endfor %}
+			    		
+			    		</ul>
 
-	      		
-		  		{% endfor %}
+			    	{% endif %}
+			    	
+			    
+			    {% endfor %}
+			    
+			    </li>
 	    	</ul>
 		</div>
   	</div>

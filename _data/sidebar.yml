@@ -9,6 +9,7 @@
   sectionTitle: Prebid.js
   sectionId: prebidjs
   subgroup: 1000
+  sbCollapseId: prebidjs
   
 - sbSecId: 0
   title: Developer Quick Start
@@ -19,6 +20,7 @@
   isSectionHeader: 0
   sectionTitle: 
   subgroup: 0
+  sbCollapseId: 1
 
 
 - sbSecId: 0
@@ -29,6 +31,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+  
  
 
 - sbSecId: 0
@@ -257,6 +260,7 @@
   sectionTitle: Prebid Mobile
   sectionId: prebid-mobile
   subgroup: 1000
+  sbCollapseId: prebid-mobile
 
 - sbSecId: 1
   title: Overview
@@ -436,6 +440,8 @@
   sectionTitle: Overview
   sectionId: overview
   subgroup: 1000
+  sbCollapseId: overview
+  
   
 - sbSecId: 2
   title: General
@@ -546,6 +552,7 @@
   sectionTitle: Ad Ops
   sectionId: ad-ops
   subgroup: 1000
+  sbCollapseId: ad-ops
 
 - sbSecId: 3
   title: Ad Ops Tutorials
@@ -723,6 +730,7 @@
   sectionTitle: Prebid Video
   sectionId: prebid-video
   subgroup: 1000
+  sbCollapseId: prebid-video
   
 - sbSecId: 4
   title: Overview
@@ -782,6 +790,7 @@
   sectionTitle: Prebid Server
   sectionId: prebid-server
   subgroup: 1000
+  sbCollapseId: prebid-server
   
 - sbSecId: 5
   title: Prebid Server Overview
@@ -960,6 +969,7 @@
   sectionTitle: Examples
   sectionId: examples
   subgroup: 1000
+  sbCollapseId: examples
   
 - sbSecId: 6
   title: Overview
@@ -1047,6 +1057,7 @@
   sectionTitle: Formats
   sectionId: formats
   subgroup: 1000
+  sbCollapseId: formats
   
 - sbSecId: 7
   title: Overview
@@ -1114,6 +1125,7 @@
   sectionTitle: Modules
   sectionId: modules
   subgroup: 1000
+  sbCollapseId: modules
   
 - sbSecId: 8
   title: Prebid.js Modules
@@ -1208,6 +1220,7 @@
   sectionTitle: Prebid.js Overview
   sectionId: prebid-overview
   subgroup: 1000
+  sbCollapseId: prebid-overview
   
 - sbSecId: 9
   title: Ad Ops References
@@ -1295,6 +1308,7 @@
   sectionTitle: Support
   sectionId: support
   subgroup: 1000
+  sbCollapseId: support
   
 - sbSecId: 10
   title: Overview

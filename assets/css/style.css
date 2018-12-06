@@ -49,8 +49,9 @@ p {
 }
 
 /* Links */
+/*#3498db*/
 a {
-  color: #3498db;
+  color: #0000FF;
   word-wrap: break-word;
   -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
   -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -320,7 +321,7 @@ button.list-group-item:focus {
 .pb_homewrapper_content { 
 	left: 0;
 	top: 0;
-	padding-top: 100px;
+	padding-top: 130px;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -331,7 +332,8 @@ button.list-group-item:focus {
 .pb_homewrapper_content h1 { 
 	color: #FFFFFF;
 	font-size:69px;
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Verdana', sans-serif;
+	font-weight:500;
 }
 
 .pb_homewrapper_content h2 { 
@@ -374,7 +376,7 @@ button.list-group-item:focus {
 }
 
 .header-links-item p { 
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Verdana', sans-serif;
 	font-size:35px;
 	color: #FFFFFF;
 }
@@ -407,7 +409,7 @@ button.list-group-item:focus {
 .pb_benefits_title h2 { 
 	font-family: 'Roboto', sans-serif; 
 	font-size: 44px;
-	font-weight: 400;
+	font-weight: 500;
 	color: #47547c;
 	margin-bottom: 5px;
 }
@@ -900,7 +902,7 @@ button.list-group-item:focus {
 
 .pb-content p { 
 	
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Lato', sans-serif;
 	color: #000000;
 	font-size: 20px;
 	font-weight: 100;
@@ -911,7 +913,7 @@ button.list-group-item:focus {
 	display: table;
 	background-color: #EA9622;
 	padding: 3px 8px;
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Verdana', sans-serif;
 	color: #ffffff;
 	font-size: 34px;
 	font-weight: 400;
@@ -919,7 +921,7 @@ button.list-group-item:focus {
 
 .pb-content h2 { 
 	
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Verdana', sans-serif;
 	color: #000000;
 	font-size: 29px;
 	font-weight: 400;
@@ -927,7 +929,7 @@ button.list-group-item:focus {
 
 .pb-content h3 { 
 	
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Verdana', sans-serif;
 	color: #333333;
 	font-size: 24px;
 	font-weight: 300;
@@ -935,7 +937,7 @@ button.list-group-item:focus {
 
 .pb-content h4 { 
 	
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Verdana', sans-serif;
 	color: #333333;
 	font-size: 20px;
 	font-weight: 300;
@@ -944,7 +946,7 @@ button.list-group-item:focus {
 
 .pb-content h5 { 
 	
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Verdana', sans-serif;
 	color: #333333;
 	font-size: 18px;
 	font-weight: 300;
@@ -1509,6 +1511,10 @@ button.list-group-item:focus {
 	
 	.pb_benefits_title > h2 { 
 		font-size: 18px;
+	}
+	
+	.pb_first_row {
+   	 	margin-top: 0px;
 	}
 	
 	.pb_benefits_content { 
