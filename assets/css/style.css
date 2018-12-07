@@ -51,7 +51,7 @@ p {
 /* Links */
 /*#3498db*/
 a {
-  color: #0000FF;
+  color: #3498db;
   word-wrap: break-word;
   -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
   -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -245,6 +245,7 @@ hr {
 	padding-bottom: 10px;
 	margin-top:5px;
 	margin-bottom: 5px; 
+	color: #3498db;
 }
 
 .pb-section-subtitle {

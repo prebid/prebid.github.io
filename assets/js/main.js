@@ -19,21 +19,7 @@ jQuery(document).ready(function( $ ) {
     $(".navbar-collapse.collapse").removeClass('in');
   });
   
-  $('a.pb-menu-click').click(function(event) {
-	  	
-	  	//close any open menus
-	  	var arrOpenedDivs= document.querySelectorAll(".show");
-	  	for (i = 0; i < arrOpenedDivs.length; i++) {
-	  		arrOpenedDivs[i].classList.remove('show');
-		}	
-	  
-       let selectedMenu = $(this).data('prebidclickid');
-       let thisMenuDiv = document.getElementById(selectedMenu);
-       $(thisMenuDiv).addClass('show')
-       
-       
-       
-  });
+  
 
  
 });

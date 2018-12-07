@@ -14,57 +14,50 @@
 				
 				{% assign arrSideBarSections = site.data.sidebar | where: "isSectionHeader",  "1" %}
 				
-				<!-- begin loop-->
 				{% for sectionHeader in arrSideBarSections %}
-					
-					<!--get section items and display section header 
-						Note # in anchor == id of next div
-					-->
-					{% assign sectionIdx = forloop.index0 %}
+				
+					<a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+						<div class="d-flex w-100 justify-content-start align-items-center">
+							<span class="fa fa-dashboard fa-fw mr-3"></span> 
+							<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
+							<span class="submenu-icon ml-auto"></span>
+            			</div>
+        			</a>
+        			
+        			{% assign sectionIdx = forloop.index0 %}
 					{% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
 					
 					<!--get all sub section headers-->
             		{% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
-            							
-						<a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-							<div class="d-flex w-100 justify-content-start align-items-center">
-								<span class="fa fa-dashboard fa-fw mr-3"></span> 
-								<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
-								<span class="submenu-icon ml-auto"></span>
-                			</div>
-            			</a>
-	            			
+            		
+            		
+            			<!--parent collapse div - open if matches sidebartype-->
+            			{% if page.sidebarType == sectionHeader.sbSecId %}
+	            		<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu in">
+		            	{% else %}
+            			<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu">
+	            		{% endif %}
+	            		
 	            		{% if arrSectionHeaders.size == 1 %}
 	            		
-		            		<!--this is collapsed-->
-	            			<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu">
-		            			
-			            		<!--go through each section-->
-		            			{% for sectionItem in arrSectionItems %}
-		            					            				
-		            				<!--display subsection headers-->
-		            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 1 %}
-		            					<div class="pb-sidebar-subsection">
-											<span class="menu-collapsed pb-section-subtitle">{{sectionItem.title}}</span>
-			            				</div>
-			            				
-			            			{% else %}
-			            				
-			            				<!-display subsection items with links-->
-			            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-											<span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
-		                				</a>
-		                				
-		            				{% endif %}
-		            			
-		            			{% endfor %}
-		            			
-							</div>
-							
-						{% else %}
-						
-							<!--this is collapsed-->
-	            			<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu">
+		            		<!--go through each section-->
+	            			{% for sectionItem in arrSectionItems %}
+	            					            				
+	            				<!--display subsection headers-->
+	            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 0 %}
+	            							            				
+		            				<!-display subsection items with links-->
+		            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+										<span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
+	                				</a>
+	                				
+	            				{% endif %}
+	            			
+	            			{% endfor %}
+	            			
+	            		{% else %}
+	            		
+	            			
 		            			
 	            				<!--go through each section-->
 								{% for thisSectionHeader in arrSectionHeaders %}
@@ -114,12 +107,13 @@
 		            			
 		            			{% endfor %}
 		            			
-							</div>
-	            			
+            			
             			{% endif %}
-				
+	            		
+            		</div>
+
 				{% endfor %}
-				
+							
 			</ul>
 						
 			
