@@ -217,7 +217,6 @@ hr {
     color: #fff;
     transition: all 0.3s;
     margin-top: 20px;
-    border:1px dashed blue;
 }
 
 #sidebar.active {
@@ -235,7 +234,6 @@ hr {
 	padding-right:30px;
 	margin-left: 0px;
 	font-family: 'Verdana', sans-serif;
-	border:1px dashed red;
 }
 
 .sidebar ul { 
@@ -897,7 +895,6 @@ button.list-group-item:focus {
 .col-sm-9 { 
 	padding-top: 20px;
 	margin:0;
-	border:1px dashed orange;
 }
 
 .pb-content { 
