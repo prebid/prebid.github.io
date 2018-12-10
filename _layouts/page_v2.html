@@ -117,35 +117,31 @@
 			</ul>
 						
 			
-		</div>
+		</div>	
 		
+		<button type="button" id="sidebarCollapse" class="btn btn-info pb_menu_btn">
+			<i class="fas fa-align-left"></i>
+            <span>Menu</span>
+        </button>
 		
 		<div class="col-sm-9 pb-content" markdown="1">
-			
-				<button type="button" id="sidebarCollapse" class="btn btn-info pb_menu_btn">
-					<i class="fas fa-align-left"></i>
-                    <span>Menu</span>
-                </button>
-								
-				{{ content }}
-				
-				{% if page.description == "Partners" %}
-				
-					{% include partners.html %}
-					
-				{% endif %}
-			
-		</div>
+		{{ content }}
 		
-	</div>
-			
+		{% if page.layout == "home" %}
+		{% endif %}
+
+		</div>	
+		
+	</div>		
 </div>
 
 <p></p>
 <hr>
 
 {% if page.title != "Credits" %}
-	{% include footer.html %}
+	{% if page.layout != "home" %}
+		{% include footer.html %}
+	{% endif %}
 {% endif %}
 
 

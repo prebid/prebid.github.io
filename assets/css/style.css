@@ -217,22 +217,25 @@ hr {
     color: #fff;
     transition: all 0.3s;
     margin-top: 20px;
+    border:1px dashed blue;
 }
 
 #sidebar.active {
     margin-left: -250px;
 }
 
+
+
 .sidebar { 
+	width: 300px;
 	background-color: #f6f8fa;
 	padding-left: 50px;
 	padding-top: 20px;
 	padding-bottom: 10px;
 	padding-right:30px;
 	margin-left: 0px;
-	width: 300px;
 	font-family: 'Verdana', sans-serif;
-	float: left;
+	border:1px dashed red;
 }
 
 .sidebar ul { 
@@ -894,11 +897,12 @@ button.list-group-item:focus {
 .col-sm-9 { 
 	padding-top: 20px;
 	margin:0;
+	border:1px dashed orange;
 }
 
 .pb-content { 
 	padding-top: 20px;
-	float:left;
+	vertical-align: top;
 }
 
 .pb-content p { 
@@ -993,6 +997,7 @@ button.list-group-item:focus {
 	
 */
 
+
 @media screen and (max-width: 1024px) {
 	
 	.pb_homewrapper_content h1 {
@@ -1059,7 +1064,11 @@ button.list-group-item:focus {
 	}
 	
 	.pb_benefits_content > span { 
-			font-size: 20px;
+		font-size: 20px;
+	}
+	
+	.carousel-inner h3 { 
+		font-size: 30px;
 	}
 	
 	.carousel-inner h4 {
@@ -1070,6 +1079,7 @@ button.list-group-item:focus {
 	.pb_carousel_indicators { 
 		margin-top: 100px;
 	}
+	
 		
 }
 
@@ -1111,14 +1121,14 @@ button.list-group-item:focus {
 		margin-top: -25px;
 	}
 	
-	.header-links p { 
+	.header-links-item p { 
 		margin-top: 0px;
 		font-size: 24px;
 	}
 	
 	.pb_benefits {
 		margin-top: 0px;
-		height: 650px;
+		height: 620px;
 	}
 	
 	.pb_benefits_img_wrapper {
@@ -1209,6 +1219,11 @@ button.list-group-item:focus {
 
 	.pb-content h3 { 
 		font-size: 18px;
+	}
+	
+	.carousel-inner h4 {
+		padding-top: 20px;
+		font-size: 20px;
 	}
 	
 	.pb_footer { 
@@ -1395,8 +1410,11 @@ button.list-group-item:focus {
 		font-size: 35px;
 	
 	}
-
 	
+	.slide { 
+		height:200px;
+	}
+
 	.carousel-inner h3 { 
 		height: 30px;
 		font-size: 25px;
@@ -1415,7 +1433,7 @@ button.list-group-item:focus {
 
 @media screen and (max-width: 414px) {
 	
-	#wrapper {
+#wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -1445,10 +1463,9 @@ button.list-group-item:focus {
 #wrapper.toggled #sidebar-wrapper {
   width: 250px;
 }
-
 	
 	.pb_homewrapper_content { 
-		margin-top: -20px;
+		margin-top: -40px;
 	}
 	
 	.pb_homewrapper_content h1 { 
@@ -1465,6 +1482,10 @@ button.list-group-item:focus {
 		margin-top: 5px;
 	}
 	
+	.header-links { 
+		margin-top: 10px;
+	}
+	
 	.header-links-item img { 
 		width: 40%;
 		height: 40%;
@@ -1477,18 +1498,14 @@ button.list-group-item:focus {
 		margin-top: -20px;
 	}
 	
-	.header-links { 
-		margin-top: 10px;
-	}
-	
-	.header-links p { 
+	.header-links-item p { 
 		font-size: 13px;
 		padding: 0;
 		margin-top: -10px;	
 	}
 	
 	.pb_benefits {
-		margin-top: -20px;
+		margin-top: -30px;
 		height: 330px;
 	}
 	
@@ -1505,13 +1522,13 @@ button.list-group-item:focus {
 	}
 	
 	.pb_benefits_title { 
-		margin-top: 20px;
 		padding: 0;
 		height: 10%;
 	}
 	
 	.pb_benefits_title > h2 { 
 		font-size: 18px;
+		padding-top: 10px;
 	}
 	
 	.pb_first_row {
@@ -1532,7 +1549,7 @@ button.list-group-item:focus {
 	}
 		
 	.pb_home_belowfold_carousel { 
-		margin-top: -15px;
+		margin-top: 10px;
 	}
 	
 	.pb_home_belowfold_carousel h1 { 
@@ -1601,6 +1618,7 @@ button.list-group-item:focus {
 }
 
 @media screen and (max-width: 375px) {
+
 	
 	.pb_benefits_title > h2 { 
 		font-size: 16px;
@@ -1627,9 +1645,77 @@ button.list-group-item:focus {
 	
 	.carousel-indicators { 
 		padding-top: 140px;
+	}	
+	
+}
+
+@media screen and (max-width: 360px) {
+	
+	.pb_homewrapper_content { 
+		margin-top: -50px;
 	}
 	
+	.pb_homewrapper_content h1 { 
+		font-size:13px;
+		margin:0;
+		padding:0;
+		font-weight: 500;
+	}
+
+	.pb_homewrapper_content h2 { 
+		font-size:9px;
+		width: 75%;
+		font-weight: 100;
+		margin-top: 5px;
+	}
 	
+	.header-links-item p { 
+		font-size: 10px;
+		padding: 0;
+		margin-top: -10px;	
+	}
+
+	
+	.pb_benefits {
+    	margin-top: -30px;
+		height: 250px;
+	}
+	
+	.pb_benefits_title > h2 { 
+		font-size: 14px;
+	}
+	
+	.pb_benefits_content > h3 {
+	    font-size: 8px;
+	}
+	
+	.pb_benefits_content > span { 
+		font-size: 7px;
+		line-height: 80%;
+	}
+	
+	.pb_home_belowfold_carousel { 
+		margin-top: 10px;
+	}
+	
+	.pb_home_belowfold_carousel h1 { 
+		font-size: 16px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	
+	}
+	
+	.carousel-inner h3 { 
+		height: 20px;
+		font-size: 13px;
+		padding-top: 3px;
+	}
+
+	.carousel-inner h4 {
+		font-size: 9px;
+		margin-top:5px;
+	}
+
 	
 }
 

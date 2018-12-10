@@ -42,8 +42,13 @@
 			    			
 							<!--display subitem-->
 			    			{% for subItem in arrSubItems %}
-			    			
-			    				<li><a href="{{subItem.link}}" class="pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a></li>
+			    				
+			    				{% if subItem.isSubSectionStart == 1 %}
+			    					<li><a href="{{subItem.link}}" class="pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a></li>
+			    				{% else %}
+			    					<li><a href="{{subItem.link}}" class="pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">&nbsp;&nbsp;{{subItem.title}}</a></li>
+			    				{% endif %}
+			    				
 			    				
 			    				{% if subItem.needsDivider == 1 %}
 			    					<hr>

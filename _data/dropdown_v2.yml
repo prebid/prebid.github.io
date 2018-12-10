@@ -14,6 +14,7 @@
     link: /prebid/prebidjs.html
     needsDivider: 0
     isHeader: 0
+    isSubHeader: 1
     isSubSectionStart: 1
     nbCollapseId: prebidjs
         
@@ -24,6 +25,7 @@
     link: /overview/analytics.html
     needsDivider: 0
     isHeader: 0
+    isSubHeader: 0
     isSubSectionStart: 0
     
   - subsectionId: 0
@@ -33,6 +35,7 @@
     link: /dev-docs/modules/index.html
     needsDivider: 0
     isHeader: 0
+    isSubHeader: 0
     isSubSectionStart: 0
     
   - subsectionId: 0
@@ -42,6 +45,7 @@
     link: /dev-docs/plugins/index.html
     needsDivider: 1
     isHeader: 0
+    isSubHeader: 0
     isSubSectionStart: 0
     
   - subsectionId: 1

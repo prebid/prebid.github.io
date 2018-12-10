@@ -2,256 +2,134 @@
 
 {% include nav.html %}
 
-<style>
-	
-	.pb-testsb { 
-		margin-left: 40px;
-		margin-top: 70px;
-		margin-bottom: 15px;
-		width: 250px;
-	}
-	
-	.pb-sidebar-section { 
-		
-		display: inline-block;
-		font-family: sans-serif;
-		font-size: 24px;
-		color: #EA9622;
-		font-weight: 500;
-		padding-bottom: 0px;
-		padding-top: 8px;
-			}
-	
-	.pb-sidebar-subsection { 
-		margin-inline-start: 10px;
-		padding-top: 8px;
-	}
-	
-	.pb-nav-rule { 
-		margin-top: 0;
-		margin-bottom: 5px;
-	}
-	
-	.pb-sidebar-subsection > span { 
-		
-		font-family: sans-serif;
-		font-size: 20px;
-		color: #333333;
-		font-weight: 300;
-						
-	}
-	
-	.pb-nav-item {
-		
-		font-family: sans-serif;
-		font-size: 18px;
-		color: #333333;
-		font-weight: 300;
-		margin-inline-start: 10px;
-		
-	}
-	
-</style>
-
-<!-- Bootstrap row -->
-<div class="row" id="body-row">
-    <!-- Sidebar -->
-    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block pb-testsb"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
-        <!-- Bootstrap List Group -->
-        <ul class="list-group">
-            <!-- Prebid js -->
-            <a href="#prebidjs" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
-                    <span class="menu-collapsed pb-sidebar-section"><h2>Prebid.js</h2></span>
-                    <span class="submenu-icon ml-auto"></span>
-                </div>
-            </a>
-            <!-- Submenu content -->
-            <div id='prebidjs' class="collapse sidebar-submenu">
-	            
-	            
-	            <!--Ad Ops-->
-	            <div class="pb-sidebar-subsection">
-		            <span class="menu-collapsed">Ad Ops References</span>
-		            <hr class="pb-nav-rule">
-	            </div>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Getting Started</span>
-                </a>
-                
-                <!--Developers Reference-->
-                <div class="pb-sidebar-subsection">
-	                <span class="menu-collapsed">Developer References</span>
-		            <hr class="pb-nav-rule">
-                </div>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Getting Started</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Publisher API Reference</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Bidder's Params</span>
-                </a>
-                
-                <!--FAQ-->
-                <div class="pb-sidebar-subsection">
-	                <span class="menu-collapsed">FAQ</span>
-		            <hr class="pb-nav-rule">
-                </div>
-	            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Prebid.js FAQ</span>
-                </a>
-
-            </div>
-            
-             <!-- Modules -->
-            <a href="#modules" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
-                    <span class="menu-collapsed pb-sidebar-section"><h2>Modules</h2></span>
-                    <span class="submenu-icon ml-auto"></span>
-                </div>
-            </a>
-            <!-- Submenu content -->
-            <div id='modules' class="collapse sidebar-submenu">
-	            
-	            <!--Ad Ops-->
-	            <div class="pb-sidebar-subsection">
-		            <span class="menu-collapsed">Prebid.js Modules</span>
-		            <hr class="pb-nav-rule">
-	            </div>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">About Modules</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Currency</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">DFP Express</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">DigiTrust</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Server To Server Testing</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">DFP Video</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">Publisher Common ID</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed pb-nav-item">GPDR Consent Management</span>
-                </a>
-                
-            </div>
-            
-            <!-- Ad Ops -->
-            <a href="#adops" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
-                    <span class="menu-collapsed pb-sidebar-section"><h2>Ad Ops</h2></span>
-                    <span class="submenu-icon ml-auto"></span>
-                </div>
-            </a>
-            <!-- Submenu content -->
-            <div id='adops' class="collapse sidebar-submenu">
-	            
-	            <a href="#adopstutorials" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center pb-sidebar-subsection">
-                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
-                    <span class="menu-collapsed">Adops Tutorials</span>
-                    <span class="submenu-icon ml-auto"></span>
-                </div>
-            	</a>
-            	
-	            	<!--tutorials-->
-	            	<div id="adopstutorials" class="collapse sidebar-submenu">
-		            
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Before You Start</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Send Top Bid to Adserver</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Send All Bids to the Ad Server</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid for AMP in DFP</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid Multi-Format in DFP</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid Native in DFP (Alpha)</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid Video in DFP</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid with the AppNexus Publisher Ad Server</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Setting Up Prebid.js with Smart Ad Server</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed pb-nav-item">Enable Deals</span>
-		                </a>
-		                
-	            	</div>
-	            	
-	            	<!--reference-->
-	                <a href="#reference" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-	                <div class="d-flex w-100 justify-content-start align-items-center">
-	                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
-	                    <span class="menu-collapsed">References</span>
-	                    <span class="submenu-icon ml-auto"></span>
-	                </div>
-	            	</a>
-	            	
-	            	<div id="reference" class="collapse sidebar-submenu">
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed">Docs By Ad Server</span>
-		                </a>
-	            	</div>
-	            	
-	            	<!--studies-->
-	            	<a href="#studies" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-	                <div class="d-flex w-100 justify-content-start align-items-center">
-	                    <span class="fa fa-dashboard fa-fw mr-3"></span> 
-	                    <span class="menu-collapsed">Studies</span>
-	                    <span class="submenu-icon ml-auto"></span>
-	                </div>
-	            	</a>
-	            	
-	            	<div id="studies" class="collapse sidebar-submenu">
-                
-			            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed">Optimal Header Bidding Setup</span>
-		                </a>
-		
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed">Optimal Header Bidding Setup</span>
-		                </a>
-		                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed">How To Reduce The Latency of Header Bidding With Prebid.js</span>
-		                </a>
-		                 <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-		                    <span class="menu-collapsed">How to Simplify Line Item Setup</span>
-		                </a>
-		                
-	            	</div>
-                
-            </div>
 
 
-            
-        </ul><!-- List Group END-->
-    </div><!-- sidebar-container END -->
-    
-    
-</div><!-- body-row END -->
+<div class="container-fluid bs-docs-container">
+	
+	<div class="row">
+		
+		<div style="width:100%;">
+		
+			<div id="sidebar" class="sidebar">
+				
+				<ul class="list-group">
+				
+				<!--get all sections-->
+				
+				{% assign arrSideBarSections = site.data.sidebar | where: "isSectionHeader",  "1" %}
+				
+				{% for sectionHeader in arrSideBarSections %}
+				
+					<a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+						<div class="d-flex w-100 justify-content-start align-items-center">
+							<span class="fa fa-dashboard fa-fw mr-3"></span> 
+							<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
+							<span class="submenu-icon ml-auto"></span>
+            			</div>
+        			</a>
+        			
+        			{% assign sectionIdx = forloop.index0 %}
+					{% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
+					
+					<!--get all sub section headers-->
+            		{% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
+            		
+            		
+            			<!--parent collapse div - open if matches sidebartype-->
+            			{% if page.sidebarType == sectionHeader.sbSecId %}
+	            		<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu in">
+		            	{% else %}
+            			<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu">
+	            		{% endif %}
+	            		
+	            		{% if arrSectionHeaders.size == 1 %}
+	            		
+		            		<!--go through each section-->
+	            			{% for sectionItem in arrSectionItems %}
+	            					            				
+	            				<!--display subsection headers-->
+	            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 0 %}
+	            							            				
+		            				<!-display subsection items with links-->
+		            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+										<span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
+	                				</a>
+	                				
+	            				{% endif %}
+	            			
+	            			{% endfor %}
+	            			
+	            		{% else %}
+	            		
+	            			
+		            			
+	            				<!--go through each section-->
+								{% for thisSectionHeader in arrSectionHeaders %}
+								
+								<a href="#{{thisSectionHeader.headerId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+									<div class="d-flex w-100 justify-content-start align-items-center">
+										<span class="fa fa-dashboard fa-fw mr-3"></span> 
+										<span class="menu-collapsed pb-sidebar-section pb-section-subtitle">{{thisSectionHeader.title}}&nbsp;<img src="/assets/images/downarrow.png"></span>
+										<span class="submenu-icon ml-auto"></span>
+		                			</div>
+		            			</a>
+		            			
+								
+								{% assign arrSubItems = arrSectionItems | where: "subgroup", thisSectionHeader.subgroup | where: "isHeader", "0" %}
+									
+								<!--this is collapsed-->
+								<div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu">
+
+									{% for thisSubItem in arrSubItems %}
+									
+			            				{% assign subsectionIdx = forloop.index0 %}
+			            				{% assign lastIdx = arrSubItems.size | minus: 1 %}
+			            				
+			            				
+			            				<!-display subsection items with links-->
+			            				{% if subsectionIdx == 0 %}
+				            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+												<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
+			                				</a>
+			            				{% elsif subsectionIdx == lastIdx %}
+				            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+												<span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
+			                				</a>
+			                		
+			                			{% else %}
+			                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+												<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+		                					</a>
+			            				{% endif %}
+									
+			            				
+									
+									{% endfor %}						
+									
+								<hr>	
+								</div>
+		            			
+		            			{% endfor %}
+		            			
+            			
+            			{% endif %}
+	            		
+            		</div>
+
+				{% endfor %}
+							
+			</ul>
+
+			</div>
+				
+			<div style="width:100%" class="col-sm-9">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+	      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			</div>
+		
+		</div>
+		
+		
+	</div>
+	
+</div>
