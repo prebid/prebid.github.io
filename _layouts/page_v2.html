@@ -55,9 +55,7 @@
 	            			
 	            			{% endfor %}
 	            			
-	            		{% else %}
-	            		
-	            			
+	            		{% else %}	            			
 		            			
 	            				<!--go through each section-->
 								{% for thisSectionHeader in arrSectionHeaders %}
@@ -72,9 +70,20 @@
 		            			
 								
 								{% assign arrSubItems = arrSectionItems | where: "subgroup", thisSectionHeader.subgroup | where: "isHeader", "0" %}
+								{% assign isOpen = 0 %}
+								{% for thisSubItem in arrSubItems %}
+									{% if thisSubItem.link == page.url %}
+										{% assign isOpen = 1 %}
+									{% endif %}
+								{% endfor %}
+								
 									
-								<!--this is collapsed-->
+								<!--this is collapsed if not matching url of page-->
+								{% if isOpen == 1 %}
+								<div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu in">
+								{% else %}
 								<div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu">
+								{% endif %}
 
 									{% for thisSubItem in arrSubItems %}
 									
@@ -125,6 +134,7 @@
         </button>
 		
 		<div class="col-sm-9 pb-content" markdown="1">
+			{{page.url}}
 		{{ content }}
 		
 		{% if page.layout == "home" %}
