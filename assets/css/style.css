@@ -158,7 +158,16 @@ hr {
 	height:50px;
 	padding:10px 15px;
 	font-size:18px;
-	line-height:20px}
+	line-height:20px
+	
+}
+
+.pb_menu_btn {
+	display: none;
+	float:left;
+	margin-right: 5px;
+	margin-top: 10px;
+}
 
 /* DropDown*/
 
@@ -292,13 +301,6 @@ button.list-group-item:focus {
   color: #555;
   text-decoration: none;
   background-color: #cccccc;
-}
-
-.pb_menu_btn { 
-	display: none;
-	margin-bottom: 5px;
-	float:right;
-	
 }
 
 /*Homepage*/
