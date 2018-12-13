@@ -20,7 +20,7 @@ This page describes step by step how to set up Prebid Mobile line items for Adfo
 
 ## Step 1. Create a Campaign
 
-- Create a client under which you would like to run in-app header bidding campaign (1)
+- Create a client under which you would like to run in-app Header Bidding campaign (1)
 - Select the longest possible period (2).
 - Set goal to **Unlimited** (3).
 
@@ -87,7 +87,7 @@ pbm.showAdFromCacheId({ admCacheID : '%%ADX:hb_cache_id%%' });
 ```
 
 - Select what size ads this 3rd party banner will let through (3).
-- Enter URL of the website on which header bidding is being implemented (4). It will be used as a default setting.
+- Enter URL of the website on which Header Bidding is being implemented (4). It will be used as a default setting.
 
 {: .pb-med-img :}
   ![Adform Create a Banner]({{site.github.url}}/assets/images/prebid-mobile/adops-line-item-setup-adform/adform7.png "Example Create a Banner")
