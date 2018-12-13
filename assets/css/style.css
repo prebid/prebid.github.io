@@ -118,6 +118,12 @@ hr {
   padding: 0;
 }
 
+.wrapper {
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
 
 /* NavBar */
 
@@ -235,7 +241,7 @@ hr {
 
 
 .sidebar { 
-	width: 300px;
+	min-width: 300px;
 	background-color: #f6f8fa;
 	padding-left: 50px;
 	padding-top: 20px;
@@ -396,7 +402,7 @@ button.list-group-item:focus {
 	margin-left: auto; 
 	margin-right: auto;
 	opacity:.80;
-	margin-top:370px;
+	margin-top:300px;
 	
 }
 	
@@ -494,6 +500,7 @@ button.list-group-item:focus {
 .pb_home_belowfold_carousel { 
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
+	padding-top: 60px;
 }
 
 .pb_home_belowfold_carousel h1 { 
@@ -503,7 +510,6 @@ button.list-group-item:focus {
 	font-weight: 500;
 	color: #ffffff;
 	margin-bottom: 5px;
-	padding-top: 35px;
 	padding-bottom: 10px;
 	
 }
@@ -899,9 +905,9 @@ button.list-group-item:focus {
 	margin:0;
 }
 
-.pb-content { 
-	padding-top: 20px;
-	vertical-align: top;
+.pb-content {
+	padding: 20px; 
+	margin-left: 20px;
 }
 
 .pb-content p { 
@@ -1154,11 +1160,7 @@ button.list-group-item:focus {
 			font-size: 18px;
 	}
 	
-	.wrapper {
-    	display: flex;
-		width: 100%;
-		align-items: stretch;
-	}
+
 	
 	#sidebar {
         margin-left: -300px;

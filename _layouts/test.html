@@ -2,134 +2,52 @@
 
 {% include nav.html %}
 
-
+<style>
+	
+	.sidebar { 
+		background-color:#EEEEEE; 
+		min-width: 300px;
+	}
+		
+	.wrapper { 
+		display: flex; 
+		height: 100vh; 
+		align-items: stretch;
+	}
+	
+	.pb-content { 
+		color: white; 
+		background-color: black; 
+		padding: 20px; 
+		margin-left: 20px;
+	}
+		
+		
+</style>
 
 <div class="container-fluid bs-docs-container">
 	
 	<div class="row">
 		
-		<div style="width:100%;">
+		<div class="wrapper">
 		
-			<div id="sidebar" class="sidebar">
-				
-				<ul class="list-group">
-				
-				<!--get all sections-->
-				
-				{% assign arrSideBarSections = site.data.sidebar | where: "isSectionHeader",  "1" %}
-				
-				{% for sectionHeader in arrSideBarSections %}
-				
-					<a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-						<div class="d-flex w-100 justify-content-start align-items-center">
-							<span class="fa fa-dashboard fa-fw mr-3"></span> 
-							<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
-							<span class="submenu-icon ml-auto"></span>
-            			</div>
-        			</a>
-        			
-        			{% assign sectionIdx = forloop.index0 %}
-					{% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
-					
-					<!--get all sub section headers-->
-            		{% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
-            		
-            		
-            			<!--parent collapse div - open if matches sidebartype-->
-            			{% if page.sidebarType == sectionHeader.sbSecId %}
-	            		<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu in">
-		            	{% else %}
-            			<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu">
-	            		{% endif %}
-	            		
-	            		{% if arrSectionHeaders.size == 1 %}
-	            		
-		            		<!--go through each section-->
-	            			{% for sectionItem in arrSectionItems %}
-	            					            				
-	            				<!--display subsection headers-->
-	            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 0 %}
-	            							            				
-		            				<!-display subsection items with links-->
-		            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-										<span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
-	                				</a>
-	                				
-	            				{% endif %}
-	            			
-	            			{% endfor %}
-	            			
-	            		{% else %}
-	            		
-	            			
-		            			
-	            				<!--go through each section-->
-								{% for thisSectionHeader in arrSectionHeaders %}
-								
-								<a href="#{{thisSectionHeader.headerId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-									<div class="d-flex w-100 justify-content-start align-items-center">
-										<span class="fa fa-dashboard fa-fw mr-3"></span> 
-										<span class="menu-collapsed pb-sidebar-section pb-section-subtitle">{{thisSectionHeader.title}}&nbsp;<img src="/assets/images/downarrow.png"></span>
-										<span class="submenu-icon ml-auto"></span>
-		                			</div>
-		            			</a>
-		            			
-								
-								{% assign arrSubItems = arrSectionItems | where: "subgroup", thisSectionHeader.subgroup | where: "isHeader", "0" %}
-									
-								<!--this is collapsed-->
-								<div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu">
-
-									{% for thisSubItem in arrSubItems %}
-									
-			            				{% assign subsectionIdx = forloop.index0 %}
-			            				{% assign lastIdx = arrSubItems.size | minus: 1 %}
-			            				
-			            				
-			            				<!-display subsection items with links-->
-			            				{% if subsectionIdx == 0 %}
-				            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-												<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
-			                				</a>
-			            				{% elsif subsectionIdx == lastIdx %}
-				            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-												<span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
-			                				</a>
-			                		
-			                			{% else %}
-			                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-												<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
-		                					</a>
-			            				{% endif %}
-									
-			            				
-									
-									{% endfor %}						
-									
-								<hr>	
-								</div>
-		            			
-		            			{% endfor %}
-		            			
-            			
-            			{% endif %}
-	            		
-            		</div>
-
-				{% endfor %}
-							
-			</ul>
-
-			</div>
-				
-			<div style="width:100%" class="col-sm-9">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
-	      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			</div>
+			<div class="sidebar">This is the side bar</div>
 		
+		
+			<div style="color: white; background-color: black; padding: 20px; margin-left: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempus imperdiet nulla malesuada pellentesque elit eget. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Justo nec ultrices dui sapien eget. Aliquam sem fringilla ut morbi. Ut sem nulla pharetra diam sit amet. Massa eget egestas purus viverra accumsan in nisl. Nulla facilisi nullam vehicula ipsum a. Ridiculus mus mauris vitae ultricies leo integer malesuada. Risus sed vulputate odio ut enim blandit volutpat maecenas. Fusce id velit ut tortor pretium viverra.
+
+Faucibus purus in massa tempor nec feugiat nisl. Amet commodo nulla facilisi nullam vehicula ipsum. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Pellentesque habitant morbi tristique senectus. Tellus in metus vulputate eu scelerisque felis imperdiet proin fermentum. Pulvinar etiam non quam lacus suspendisse faucibus. Est sit amet facilisis magna etiam. Adipiscing bibendum est ultricies integer quis auctor. Enim eu turpis egestas pretium aenean pharetra magna. Risus sed vulputate odio ut.
+
+Sit amet commodo nulla facilisi nullam vehicula. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Mauris in aliquam sem fringilla ut morbi tincidunt augue. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Venenatis urna cursus eget nunc. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Amet dictum sit amet justo donec enim diam vulputate ut. Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Amet purus gravida quis blandit. Integer enim neque volutpat ac tincidunt vitae semper quis. Iaculis at erat pellentesque adipiscing commodo elit. Habitant morbi tristique senectus et netus et malesuada fames ac. Consequat nisl vel pretium lectus. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus.
+
+Tellus mauris a diam maecenas sed enim. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam. Faucibus in ornare quam viverra orci sagittis eu. Volutpat diam ut venenatis tellus in. Turpis in eu mi bibendum neque egestas congue. Eget mi proin sed libero enim sed. Euismod quis viverra nibh cras. At in tellus integer feugiat scelerisque varius morbi enim. Sed viverra ipsum nunc aliquet bibendum enim. Viverra orci sagittis eu volutpat odio facilisis mauris. Tempus iaculis urna id volutpat lacus laoreet non curabitur. Malesuada proin libero nunc consequat interdum varius sit amet mattis. Eget mauris pharetra et ultrices neque. Amet nulla facilisi morbi tempus. Libero volutpat sed cras ornare arcu dui. Diam ut venenatis tellus in.
+
+Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Nibh mauris cursus mattis molestie. Hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Nec dui nunc mattis enim ut tellus elementum sagittis vitae. Condimentum id venenatis a condimentum vitae sapien. Viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat. Magna sit amet purus gravida quis blandit turpis cursus. Bibendum ut tristique et egestas quis ipsum. Viverra nibh cras pulvinar mattis. Sed augue lacus viverra vitae congue eu consequat ac. Aliquam purus sit amet luctus. Habitant morbi tristique senectus et netus et malesuada fames. Tortor posuere ac ut consequat semper viverra nam libero justo.</div>
+
 		</div>
-		
-		
 	</div>
 	
 </div>
+
+
+
