@@ -91,11 +91,6 @@ function submit_download() {
 
     var alertStatus = $('#download-status');
 
-    if (!(form_data['email'] && form_data['company'])) {
-      alertStatus.html('Email and Company fields are required.');
-      alertStatus.removeClass('hide');
-      return;
-    }
     alertStatus.addClass('hide');
 
     $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
@@ -162,8 +157,6 @@ function get_form_data() {
     }
 
     var form_data = {};
-    form_data['email'] = $('#input-email').val();
-    form_data['company'] = $('#input-company').val();
     form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
 
@@ -394,7 +387,7 @@ Note: If you receive an error during download you most likely selected a configu
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Prebid.js! </button>
+  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
 
 </div>
 
@@ -418,17 +411,7 @@ Note: If you receive an error during download you most likely selected a configu
       <div class="modal-body">
 
         <div class="lead">
-          Enter your information below to generate the download file.
-        </div>
-
-
-        <div class="form-group col-md-6">
-            <label for="input-email">Email address</label>
-            <input type="email" class="form-control" id="input-email" placeholder="Email" name="email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="input-company">Company Name</label>
-            <input type="text" class="form-control" id="input-company" placeholder="Your Company" name="company_email">
+          Downloading Prebid.js...
         </div>
 
         <div class="form-group">
