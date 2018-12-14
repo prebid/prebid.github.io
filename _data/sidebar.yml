@@ -153,7 +153,7 @@
   headerId: adapters
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 0
   title: How To Add A New Bidder Adapter
@@ -162,7 +162,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 0
   title: Integrate With The Prebid Analytics API
@@ -171,7 +171,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 0
   title: External Interfaces
@@ -181,16 +181,16 @@
   headerId: external
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 4
 
 - sbSecId: 0
   title: Plugins
-  link: /dev-docs/plugins/
+  link: /dev-docs/plugins/index.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 4
 
 - sbSecId: 0
   title: Analytics
@@ -200,7 +200,7 @@
   headerId: analytics
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 5
 
 - sbSecId: 0
   title: Analytics For Prebid
@@ -209,7 +209,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 5
 
 - sbSecId: 0
   title: Prebid Analytics for GA
@@ -218,7 +218,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 5
 
 - sbSecId: 0
   title: Features
@@ -228,7 +228,7 @@
   headerId: features
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 4
+  subgroup: 6
 
 - sbSecId: 0
   title: Conditional Ad Units
@@ -237,7 +237,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 4
+  subgroup: 6
 
 - sbSecId: 0
   title: Post-Bid
@@ -246,7 +246,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 4
+  subgroup: 6
 
 
 #--------------Prebid Mobile--------------|
