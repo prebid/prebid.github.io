@@ -2,10 +2,7 @@
 layout: page_v2
 title: Plugins
 description: External Plugins
-top_nav_section: dev_docs
-nav_section: interfaces
-pid: 28
-sidebarType: 9
+sidebarType: 0
 ---
 
 

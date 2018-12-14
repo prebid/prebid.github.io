@@ -4,10 +4,7 @@ layout: page_v2
 title: Getting Started
 head_title: Getting started with Prebid.js for header bidding
 description: An overview of Prebid, how it works, basic templates and examples, and more.
-pid: 10
-top_nav_section: overview
-nav_section: intro
-sidebarType: 9
+sidebarType: 0
 ---
 
 

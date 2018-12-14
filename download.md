@@ -2,10 +2,7 @@
 layout: page_v2
 title: Download Prebid.js
 description: Documentation on how to download Prebid.js for header bidding.
-pid: 0
-top_nav_section: download
-nav_section: download
-sidebarType: 9
+sidebarType: 0
 ---
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>

@@ -3,7 +3,7 @@
 layout: page_v2
 title: About Prebid.js
 description: An overview of Prebid.js
-sidebarType: 9
+sidebarType: 0
 
 ---
 

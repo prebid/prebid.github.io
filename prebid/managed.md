@@ -2,8 +2,7 @@
 layout: page_v2
 title: Managed Prebid
 description: Managed Prebid
-pid: 0
-sidebarType: 9
+sidebarType: 0
 ---
 
 # Managed Prebid Solutions
