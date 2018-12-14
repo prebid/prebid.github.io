@@ -43,7 +43,7 @@ The following is a sample JSON definition of the plugin configuration defining c
 [
 {
 	"label" : "preroll-ad",
-    "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    "prebidPath" : "//files.prebid.org/prebid-org.js",
     "scriptLoadTimeout": 3000,
 	"biddersSpec" : {
         "code" : "my-video-tag",
@@ -143,7 +143,7 @@ The following is a sample JSON definition of the plugin configuration defining c
 },
 {
 	"label" : "postroll-ad",
-	"prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+	"prebidPath" : "//files.prebid.org/prebid-org.js",
 	"biddersSpec" : {
         "code" : "my-video-tag",
         "sizes" : [640, 480],
@@ -251,7 +251,7 @@ The following is a sample JSON definition of the plugin configuration defining c
 [
 {
 	"label" : "preroll-ad",
-    "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    "prebidPath" : "//files.prebid.org/prebid-org.js",
     "scriptLoadTimeout": 3000,
 	"biddersSpec" : {
         "code" : "my-video-tag",
@@ -351,7 +351,7 @@ The following is a sample JSON definition of the plugin configuration defining c
 },
 {
 	"label" : "midroll-5",
-	"prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+	"prebidPath" : "//files.prebid.org/prebid-org.js",
 	"biddersSpec" : {
         "code" : "my-video-tag",
         "sizes" : [640, 480],
@@ -450,7 +450,7 @@ The following is a sample JSON definition of the plugin configuration defining c
 },
 {
 	"label" : "midroll-15",
-	"prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+	"prebidPath" : "//files.prebid.org/prebid-org.js",
 	"biddersSpec" : {
         "code" : "my-video-tag",
         "sizes" : [640, 480],
