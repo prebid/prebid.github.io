@@ -91,21 +91,36 @@
 										
 				            				{% assign subsectionIdx = forloop.index0 %}
 				            				{% assign lastIdx = arrSubItems.size | minus: 1 %}
-				            				
+				            				{% assign isPage = 0 %}
+				            				{% if thisSubItem.link == page.url %}
+												{% assign isPage = 1 %}
+											{% endif %}
 				            				
 				            				<!-display subsection items with links-->
 				            				{% if subsectionIdx == 0 %}
 					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-													<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
+						            				{% if isPage == 1 %}
+						            					<span class="menu-collapsed pb-nav-item pb-first-item" style="background-color:#cccccc">{{thisSubItem.title}}</span>
+						            				{% else %}
+														<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}{{isPage}}</span>
+													{% endif %}
 				                				</a>
 				            				{% elsif subsectionIdx == lastIdx %}
 					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-													<span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
+						            				{% if isPage == 1 %}
+						            					<span class="menu-collapsed pb-nav-item pb-last-item" style="background-color:#cccccc">{{thisSubItem.title}}</span>
+						            				{% else %}
+														<span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
+													{% endif %}	
 				                				</a>
 				                		
 				                			{% else %}
 				                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-													<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+					                				{% if isPage == 1 %}
+					                					<span class="menu-collapsed pb-nav-item bg-secondary" style="background-color:#cccccc">{{thisSubItem.title}}</span>
+					                				{% else %}
+															<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+													{% endif %}
 			                					</a>
 				            				{% endif %}
 										
