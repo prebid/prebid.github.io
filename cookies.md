@@ -7,4 +7,8 @@ sidebarType: 0
 
 # Cookie Declaration
 
-<script id="CookieDeclaration" src="https://consent.cookiebot.com/8074f0b9-4a2f-485b-815a-da2819a048eb/cd.js" type="text/javascript" async></script>
+<!--script id="CookieDeclaration" src="https://consent.cookiebot.com/8074f0b9-4a2f-485b-815a-da2819a048eb/cd.js" type="text/javascript" async></script-->
+
+<!-- OneTrust Cookies List start -->
+<div id="optanon-cookie-policy"></div>
+<!-- OneTrust Cookies List end -->
