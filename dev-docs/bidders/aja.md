@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: AJA Inc.
-description: Prebid AJA Inc. Bidder Adaptor
+title: AJA
+description: Prebid AJA Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
