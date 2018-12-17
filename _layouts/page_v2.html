@@ -147,7 +147,13 @@
 		
 		
 			<div class="col-sm-9 pb-content" markdown="1">
+			
 			{{ content }}
+			
+			{% if page.description == "Partners" %}
+				{% include partners.html %}
+			{% endif %}
+			
 			</div>
 				
 		</div>
