@@ -45,9 +45,10 @@ For Prebid.js v1.14.0 and before:
 
 ```javascript
 pbjs.setConfig({
-   userSync: {
+  userSync: {
     iframeEnabled: true,
     enabledBidders: ['aja']
- }});
+  }
+});
 ```
 
