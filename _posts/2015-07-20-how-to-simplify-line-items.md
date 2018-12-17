@@ -9,7 +9,7 @@ permalink: /blog/how-to-simplify-line-item-setup
 
 ---
 
-#### Let's do the math:
+## Let's do the math:
 
 * Per bidder per size: $0.01 increment, capped at $10 => 1000 line items
 * 10 creative sizes
@@ -19,7 +19,7 @@ permalink: /blog/how-to-simplify-line-item-setup
 
 <br>
 
-#### How to reduce the number of line items for header bidding?
+## How to reduce the number of line items for header bidding?
 
 > Prebid.js helps you use 1 set of line items for all bidders and all creatives.
 

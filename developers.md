@@ -8,7 +8,10 @@ sidebarType: 10
 
 <a name="publisher_developers"/>
 
-# Publisher Developers
+
+# Developers:
+
+## Publisher Developers
 
 Key links for publisher developers.
 
@@ -32,9 +35,11 @@ Key links for publisher developers.
 + [Android code integration]({{site.baseurl}}/prebid-mobile/code-integration-ios.html)
 + [iOS code integration]({{site.baseurl}}/prebid-mobile/code-integration-android.html)
 
+---
+
 <a name="demand_developers"/>
 
-# Demand Developers
+## Demand Developers
 
 Key links for integrating into the Prebid ecosystem.
 
