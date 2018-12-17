@@ -2,10 +2,7 @@
 layout: page_v2
 title: Analytics for Prebid.js
 description: Prebid.js Analytics Overview
-pid: 10
-top_nav_section: overview
-nav_section: analytics
-sidebarType: 9
+sidebarType: 0
 ---
 
 

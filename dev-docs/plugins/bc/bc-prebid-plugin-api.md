@@ -110,7 +110,7 @@ If the results of the prebid process is being determined outside of the plugin, 
     …
     // define prebid options
     var options =
-    {"prebidPath": "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    {"prebidPath": "//files.prebid.org/prebid-org.js",
     "biddersSpec": {
         ”code": "my-video-tag",
         "sizes": [640,480],
