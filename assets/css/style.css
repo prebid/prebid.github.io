@@ -1870,10 +1870,28 @@ div.pl-doc-entry{
 	  	width: 100%;
 
 	}	
-	
-
 
 }
+
+@media all and (min-width: 50px)   {  .pb_benefits_content > span  { font-size:0.2em;  } }
+@media all and (min-width: 100px)  {  .pb_benefits_content > span  { font-size:0.3em;  } }
+@media all and (min-width: 200px)  {  .pb_benefits_content > span  { font-size:0.4em;  } }
+@media all and (min-width: 300px)  {  .pb_benefits_content > span  { font-size:0.5em;  } }
+@media all and (min-width: 400px)  {  .pb_benefits_content > span  { font-size:0.6em;  } }
+@media all and (min-width: 500px)  {  .pb_benefits_content > span  { font-size:0.7em;  } }
+@media all and (min-width: 600px)  {  .pb_benefits_content > span  { font-size:0.8em;  } }
+@media all and (min-width: 700px)  {  .pb_benefits_content > span  { font-size:0.9em;  } }
+@media all and (min-width: 800px)  {  .pb_benefits_content > span  { font-size:1.0em;  } }
+@media all and (min-width: 900px)  {  .pb_benefits_content > span  { font-size:1.1em;  } }
+@media all and (min-width: 1000px) {  .pb_benefits_content > span  { font-size:1.2em;  } }
+@media all and (min-width: 1100px) {  .pb_benefits_content > span  { font-size:1.3em;  } }
+@media all and (min-width: 1200px) {  .pb_benefits_content > span  { font-size:1.4em;  } }
+@media all and (min-width: 1300px) {  .pb_benefits_content > span  { font-size:1.5em;  } }
+@media all and (min-width: 1400px) {  .pb_benefits_content > span  { font-size:1.6em;  } }
+@media all and (min-width: 1500px) {  .pb_benefits_content > span  { font-size:1.7em;  } }
+@media all and (min-width: 1500px) {  .pb_benefits_content > span  { font-size:1.8em;  } }
+@media all and (min-width: 1600px) {  .pb_benefits_content > span  { font-size:1.9em;  } }
+@media all and (min-width: 1700px) {  .pb_benefits_content > span  { font-size:2.0em;  } }
 
 
 	
