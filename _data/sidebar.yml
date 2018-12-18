@@ -1211,7 +1211,7 @@
 
  #-------------- Support --------------|
   
-- sbSecId: 10
+- sbSecId: 9
   title: 
   link: 
   isLastSubSectionItem: 0
@@ -1222,7 +1222,7 @@
   subgroup: 1000
   sbCollapseId: support
   
-- sbSecId: 10
+- sbSecId: 9
   title: Overview
   link: 
   isLastSubSectionItem: 0
@@ -1232,7 +1232,7 @@
   sectionTitle: 
   subgroup: 0
   
-- sbSecId: 10
+- sbSecId: 9
   title: Help
   link: /support/index.html
   isLastSubSectionItem: 0
@@ -1241,7 +1241,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 10
+- sbSecId: 9
   title: Troubleshooting
   link: /troubleshooting/troubleshooting.html
   isLastSubSectionItem: 0
@@ -1250,7 +1250,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 10
+- sbSecId: 9
   title: Training Videos
   link: /videos/index.html
   isLastSubSectionItem: 0
@@ -1259,7 +1259,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 10
+- sbSecId: 9
   title: FAQs
   link: /faq/faq.html
   isLastSubSectionItem: 0
@@ -1268,7 +1268,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 10
+- sbSecId: 9
   title: Blog
   link: /blog.html
   isLastSubSectionItem: 0

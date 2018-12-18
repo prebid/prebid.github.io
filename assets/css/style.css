@@ -570,6 +570,13 @@ button.list-group-item:focus {
   left: -15%;
 }
 
+.carousel-control .icon-prev,
+.carousel-control .glyphicon-chevron-left {
+  left: 50%;
+  margin-left: -10px;
+}
+
+
 .carousel-control-next {
   right: -15%;
 }
