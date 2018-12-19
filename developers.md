@@ -9,7 +9,7 @@ sidebarType: 10
 <a name="publisher_developers"/>
 
 
-# Developers:
+# Developers
 
 ## Publisher Developers
 
