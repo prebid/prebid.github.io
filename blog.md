@@ -5,6 +5,7 @@ head_title: Prebid.org - Blog for Header Bidding
 description: All about Prebid and header bidding
 pid: 6
 hide: true
+sidebarType: 9
 ---
 
 {% for post in site.posts %}

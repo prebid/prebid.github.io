@@ -43,14 +43,26 @@
 		            		{% if arrSectionHeaders.size == 1 %}
 		            		
 			            		<!--go through each section-->
+			            		
 		            			{% for sectionItem in arrSectionItems %}
 		            					            				
 		            				<!--display subsection headers-->
 		            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 0 %}
-		            							            				
+		            							
+		            					<!-- check to see if we are on this page-->            				
 			            				<!-display subsection items with links-->
+										{% assign isPage = 0 %}
+				            				{% if sectionItem.link == page.url %}
+												{% assign isPage = 1 %}
+											{% endif %}
+			            				
+			            				
 			            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+				            				{% if isPage == 1 %}
+											<span class="menu-collapsed pb-nav-item" style="background-color:#cccccc;">{{sectionItem.title}}</span>
+											{% else %}
 											<span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
+											{% endif %}
 		                				</a>
 		                				
 		            				{% endif %}
@@ -100,7 +112,7 @@
 				            				{% if subsectionIdx == 0 %}
 					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
 						            				{% if isPage == 1 %}
-						            					<span class="menu-collapsed pb-nav-item pb-first-item" style="background-color:#cccccc">{{thisSubItem.title}}</span>
+						            					<span class="menu-collapsed pb-nav-item pb-first-item" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
 						            				{% else %}
 														<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
 													{% endif %}
@@ -108,7 +120,7 @@
 				            				{% elsif subsectionIdx == lastIdx %}
 					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
 						            				{% if isPage == 1 %}
-						            					<span class="menu-collapsed pb-nav-item pb-last-item" style="background-color:#cccccc">{{thisSubItem.title}}</span>
+						            					<span class="menu-collapsed pb-nav-item pb-last-item" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
 						            				{% else %}
 														<span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
 													{% endif %}	
@@ -117,7 +129,7 @@
 				                			{% else %}
 				                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
 					                				{% if isPage == 1 %}
-					                					<span class="menu-collapsed pb-nav-item bg-secondary" style="background-color:#cccccc">{{thisSubItem.title}}</span>
+					                					<span class="menu-collapsed pb-nav-item bg-secondary" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
 					                				{% else %}
 															<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
 													{% endif %}
