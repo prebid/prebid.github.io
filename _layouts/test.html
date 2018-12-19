@@ -4,58 +4,155 @@
 
 <style>
 	
-	.sidebar { 
-		background-color:#EEEEEE; 
-		min-width: 300px;
-	}
-		
-	.wrapper { 
-		display: flex; 
-		height: 100vh; 
-		align-items: stretch;
+	.pb-home-links { 
+		margin-left:auto;
+		margin-right: auto;
+		width: 75%;
+		height: 240px;
 	}
 	
-	.pb-content { 
-		color: white; 
-		background-color: clear; 
-		padding: 20px; 
-		margin-left: 20px;
+	.pb-home-links-panel { 
+		float:left;
+		margin-left:auto;
+		margin-right: auto;
+		width: 33%;
+		height: 300px;
 	}
 	
-	.picture {
-    	
-		background-image: url('/assets/images/icons/icnGetStarted_wh-sh.png');
-		background-repeat:no-repeat;
-		background-size: contain;
-		width: 10%;
-		height: 20%;
-		padding-top: 66.64%;
-		border:1px solid red;
-		
+	.pb-home-links-outer-panel { 
+		float:left;
+		margin-top:100px;
+		margin-left:auto;
+		margin-right: auto;
+		width: 33%;
+		height: 300px;
+	}
+	
+	.hovereffect {
+	  width: 100%;
+	  height: 100%;
+	  float: left;
+	  overflow: hidden;
+	  position: relative;
+	  text-align: center;
+	  cursor: default;
 	}
 
-	.picture:hover {
-    	background-image: url('/assets/images/icons/icnGetStarted_wh-sh_on.png');
+	.hovereffect .overlay {
+	  width: 100%;
+	  height: 100%;
+	  position: absolute;
+	  overflow: hidden;
+	  top: 0;
+	  left: 0;
+	  padding: 50px 20px;
 	}
-		
+	
+	.hovereffect img.pb-large-img {
+	  display: block;
+	  position: relative;
+	  max-width: none;
+	  margin-left:auto;
+	  margin-right:auto;
+	  margin-top:-20px;
+	  width: calc(60% + 20px);
+	  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	  transition: opacity 0.35s, transform 0.35s;
+	  -webkit-transform: translate3d(-10px,0,0);
+	  transform: translate3d(-10px,0,0);
+	  -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	}
+
+	
+	.hovereffect img {
+	  display: block;
+	  position: relative;
+	  max-width: none;
+	  margin-left:auto;
+	  margin-right:auto;
+	  margin-top:-20px;
+	  width: calc(50% + 20px);
+	  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	  transition: opacity 0.35s, transform 0.35s;
+	  -webkit-transform: translate3d(-10px,0,0);
+	  transform: translate3d(-10px,0,0);
+	  -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	}
+	
+	.hovereffect:hover img {
+	  opacity: 0.4;
+	  filter: alpha(opacity=40);
+	  -webkit-transform: translate3d(0,0,0);
+	  transform: translate3d(0,0,0);
+	}	
+	
+	.hovereffect a, .hovereffect p {
+	  color: #000;
+	  opacity: 0;
+	  filter: alpha(opacity=0);
+	  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	  transition: opacity 0.35s, transform 0.35s;
+	  -webkit-transform: translate3d(100%,0,0);
+	  transform: translate3d(100%,0,0);
+	}
+	
+	.hovereffect:hover a, .hovereffect:hover p {
+	  opacity: 1;
+	  filter: alpha(opacity=100);
+	  -webkit-transform: translate3d(0,0,0);
+	  transform: translate3d(0,0,0);
+	}
+	
+	.hovereffect p { 
+		margin-top: 30px;
+		background-color: orange;
+	}	
+	
+	.pb-home-links-panel p { 
+		margin-top:60px;
+	}
 		
 </style>
 
 <div class="container-fluid bs-docs-container">
 	
 	<div class="row">
-		
-		<div class="wrapper">
-		
-			<div class="sidebar">This is the side bar</div>
-		
-		
-			<div class="picture pb-content">
-				
-				
-				
+		<div class="pb-home-links">
+			<div class="pb-home-links-outer-panel">
+				<div class="hovereffect">
+					<img src="/assets/images/svg/icn_developers.svg" alt="Developers!">
+					<div class="overlay">
+						<p>
+							<a href="/developers.html">Developers, dive right in and start coding!</a>
+						</p>
+	            	</div>
+				</div>
 			</div>
-
+			
+			<div class="pb-home-links-panel">
+				<div class="hovereffect">
+					<img src="/assets/images/svg/icn_getstarted.svg" class="pb-large-img" alt="Get Started!">
+					<div class="overlay">
+						<p>
+							<a href="/prebid/prebidjs.html">Let's Get Started!</a>
+						</p>
+		            </div>
+				</div>
+			</div>
+			
+			<div class="pb-home-links-outer-panel">
+				<div class="hovereffect">
+					<img src="/assets/images/svg/icn_adops.svg" alt="Ad Ops!">
+					<div class="overlay">
+						<p>
+							<a href="/adops/before-you-start.html">Learn how Prebid works seamlessly with Ad Ops!</a>
+						</p>
+		            </div>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	
