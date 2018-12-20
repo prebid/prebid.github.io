@@ -48,6 +48,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
+    * [useBidCache](#setConfig-Use-Bid-Cache)
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
     * [mediaTypePriceGranularity](#setConfig-MediaType-Price-Granularity)
@@ -1162,6 +1163,7 @@ Core config:
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
++ [Disable the bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
 + [Set a delay before requesting cookie sync](#setConfig-Cookie-Sync-Delay)
@@ -1279,6 +1281,19 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 {% endhighlight %}
 
 <a name="setConfig-Bidder-Order" />
+
+#### Use Bid Cache
+
+<a name="setConfig-Use-Bid-Cache" />
+
+Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](http://prebid.org/dev-docs/faq.html#does-prebidjs-cache-bids).
+However, if you'd like, you can disable this feature and prevent Prebid.js from using anything but the latest bids for
+a given auction.
+
+{% highlight js %}
+pbjs.setConfig({ useBidCache: false })
+{% endhighlight %}
+
 
 #### Bidder Order
 
