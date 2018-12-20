@@ -26,7 +26,7 @@ gdpr_supported: true
 
 | Name      | Scope    | Description               | Example    | Type     |
 |-----------|----------|---------------------------|------------|----------|
-| `hzid`    | required | The zone ID from Appier.  | `WhM5WIOp` | `string` |
+| `hzid`    | required | The zone ID from Appier.  | `"WhM5WIOp"` | `string` |
 
 
 <a name="appier-custom-settings" />
