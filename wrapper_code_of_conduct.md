@@ -5,7 +5,7 @@ description: Full text of the Prebid.org Header Bidding Wrapper Code of Conduct
 top_nav_section: overview
 nav_section: intro
 pid: 20
-sidebarType: 2
+sidebarType: 0
 ---
 
 

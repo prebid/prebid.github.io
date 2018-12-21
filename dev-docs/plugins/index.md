@@ -2,7 +2,7 @@
 layout: page_v2
 title: Plugins
 description: External Plugins
-sidebarType: 0
+sidebarType: 1
 ---
 
 

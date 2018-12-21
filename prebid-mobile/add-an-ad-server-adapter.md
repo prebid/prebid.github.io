@@ -5,7 +5,7 @@ description: Add an Ad Server Adapter
 pid: 0
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-contributors
-sidebarType: 1
+sidebarType: 2
 ---
 
 

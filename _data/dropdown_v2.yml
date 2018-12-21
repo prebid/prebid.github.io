@@ -1,7 +1,7 @@
-#----------Product SubNav------------
+#-----------About---------------
 
 - sectionId: 0
-  sectionName: Product
+  sectionName: About
   link:
   isHeader: 1
   hasSubMenus: 1
@@ -9,6 +9,60 @@
   
   - subsectionId: 0
     sectionId: 0
+    sectionName: About
+    title: What is Prebid?
+    link:  /overview/intro.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+    
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: About
+    title: Project Principles
+    link:  /principles.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+    
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: About
+    title: Contributing
+    link:  /contributing/contribute.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+    
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: About
+    title: About Prebid
+    link:  /overview/what-is-prebid-org.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+    
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: About
+    title: Members and Partners
+    link:  /partners/partners.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+    
+#----------Product SubNav------------
+
+- sectionId: 1
+  sectionName: Product
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  submenus:
+  
+  - subsectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Prebid.js
     link: /prebid/prebidjs.html
@@ -19,7 +73,7 @@
     nbCollapseId: prebidjs
         
   - subsectionId: 0
-    sectionId: 0
+    sectionId: 1
     sectionName: Product   
     title: Analytics
     link: /overview/analytics.html
@@ -29,7 +83,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 0
-    sectionId: 0
+    sectionId: 1
     sectionName: Product   
     title: Modules
     link: /dev-docs/modules/index.html
@@ -39,7 +93,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 0
-    sectionId: 0
+    sectionId: 1
     sectionName: Product   
     title: Plugins
     link: /dev-docs/plugins/index.html
@@ -49,7 +103,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 1
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Prebid Server
     link: /prebid-server/prebid-server-overview.html
@@ -58,7 +112,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 2
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Prebid Mobile
     link: /prebid-mobile/prebid-mobile.html
@@ -67,7 +121,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 2
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: iOS
     link: /prebid-mobile/code-integration-ios.html
@@ -76,7 +130,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 2
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Android
     link: /prebid-mobile/code-integration-android.html
@@ -85,7 +139,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 3
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Debugging Extension
     link: /debugging/debugging.html
@@ -94,7 +148,7 @@
     isSubSectionStart: 1
 
   - subsectionId: 4
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Formats
     link: /formats/formats.html
@@ -103,7 +157,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 4
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Display
     link: /formats/display.html
@@ -112,7 +166,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 4
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Video
     link: /formats/video.html
@@ -121,7 +175,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 4
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: Native
     link: /formats/native.html
@@ -130,7 +184,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 4
-    sectionId: 0
+    sectionId: 1
     sectionName: Product
     title: AMP
     link: /formats/amp.html
@@ -149,7 +203,7 @@
     
 #-------------_Support Section---------------
 
-- sectionId: 1
+- sectionId: 2
   sectionName: Support
   link:
   isHeader: 1
@@ -157,7 +211,7 @@
   submenus:
   
   - subsectionId: 0
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Ad Ops
     link: /adops/before-you-start.html
@@ -166,7 +220,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 1
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Developers
     link: /developers.html
@@ -175,7 +229,7 @@
     isSubSectionStart: 1
    
   - subsectionId: 2
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Help
     link: /support/index.html
@@ -184,7 +238,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 2
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Troubleshooting
     link: /troubleshooting/troubleshooting.html
@@ -193,7 +247,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 2
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Training Videos
     link: /videos/index.html
@@ -202,7 +256,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 3
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: FAQ
     link: /faq/faq.html 
@@ -211,7 +265,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 3
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Prebid.js
     link: /dev-docs/faq.html
@@ -220,7 +274,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 3
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Prebid Server
     link: /faq/prebid-server-faq.html
@@ -229,7 +283,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 4
-    sectionId: 1
+    sectionId: 2
     sectionName: Support
     title: Blog
     link:  /blog.html
@@ -239,7 +293,7 @@
     
 #-----------_Downloads---------------
 
-- sectionId: 2
+- sectionId: 3
   sectionName: Download
   link:
   isHeader: 1
@@ -247,7 +301,7 @@
   submenus:
   
   - subsectionId: 0
-    sectionId: 2
+    sectionId: 3
     sectionName: Download
     title: Prebid.js
     link:  /download.html
@@ -256,7 +310,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 1
-    sectionId: 2
+    sectionId: 3
     sectionName: Download
     title: Prebid Mobile
     link:  /prebid-mobile/download.html
@@ -265,7 +319,7 @@
     isSubSectionStart: 1
     
   - subsectionId: 1
-    sectionId: 2
+    sectionId: 3
     sectionName: Download
     title: iOS
     link:  https://github.com/prebid/prebid-mobile-ios
@@ -274,7 +328,7 @@
     isSubSectionStart: 0
     
   - subsectionId: 1
-    sectionId: 2
+    sectionId: 3
     sectionName: Download
     title: Android
     link:  https://github.com/prebid/prebid-mobile-android
@@ -282,59 +336,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-#-----------About---------------
 
-- sectionId: 3
-  sectionName: About
-  link:
-  isHeader: 1
-  hasSubMenus: 1
-  submenus:
-  
-  - subsectionId: 0
-    sectionId: 3
-    sectionName: About
-    title: What is Prebid?
-    link:  /overview/intro.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 1
-    
-  - subsectionId: 0
-    sectionId: 3
-    sectionName: About
-    title: Project Principles
-    link:  /principles.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
-    
-  - subsectionId: 0
-    sectionId: 3
-    sectionName: About
-    title: Contributing
-    link:  /contributing/contribute.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
-    
-  - subsectionId: 0
-    sectionId: 3
-    sectionName: About
-    title: About Prebid
-    link:  /overview/what-is-prebid-org.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
-    
-  - subsectionId: 0
-    sectionId: 3
-    sectionName: About
-    title: Members and Partners
-    link:  /partners/partners.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
 
 
 

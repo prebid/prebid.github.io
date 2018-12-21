@@ -3,7 +3,7 @@
 layout: page_v2
 title: Contributing | Prebid
 description: Contributing to Prebid.js
-sidebarType: 2
+sidebarType: 0
 
 ---
 

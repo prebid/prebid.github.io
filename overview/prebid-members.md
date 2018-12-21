@@ -6,7 +6,7 @@ pid: 2
 is_top_nav: yeah
 top_nav_section: overview
 nav_section: intro
-sidebarType: 2
+sidebarType: 0
 ---
 
 

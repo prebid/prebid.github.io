@@ -6,7 +6,7 @@ description: A set of principles that guide how we develop Prebid
 pid: 0
 top_nav_section: overview
 nav_section: intro
-sidebarType: 2
+sidebarType: 0
 ---
 
 
