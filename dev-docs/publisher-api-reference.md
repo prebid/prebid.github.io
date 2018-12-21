@@ -5,7 +5,7 @@ description: Publisher API Reference for Prebid.js Header Bidding
 top_nav_section: dev_docs
 nav_section: reference
 pid: 10
-sidebarType: 0
+sidebarType: 1
 ---
 
 

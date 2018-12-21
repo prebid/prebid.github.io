@@ -2,7 +2,7 @@
 layout: page_v2
 title: Prebid.js FAQ
 description: FAQ on Prebid.js for header bidding.
-sidebarType: 0
+sidebarType: 1
 ---
 
 

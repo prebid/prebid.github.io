@@ -4,7 +4,7 @@ title: How to Add a New Bidder Adapter
 description: Documentation on how to add a new bidder adapter
 top_nav_section: dev_docs
 nav_section: adapters
-sidebarType: 0
+sidebarType: 1
 ---
 
 

@@ -7,7 +7,7 @@ pid: 0
 top_nav_section: dev_docs
 nav_section: troubleshooting
 redirect_from: "/dev-docs/toubleshooting-tips.html"
-sidebarType: 0
+sidebarType: 1
 
 ---
 
