@@ -15,6 +15,5 @@ prebid_1_0_supported : true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                            | Example     | Type     |
 |---------------|----------|----------------------------------------|-------------|----------|
-| `pid`         | required | Publisher id                           | `'1'`       | `string` |
-| `tid`         | required | A tag id (should have low cardinality) | `'demo'`    | `string` |
+| `tid`         | required | A tag id                               | `'99'`      | `string` |
 | `bidfloor`    | optional | Floor price                            | `20`        | `integer`|
