@@ -123,7 +123,7 @@ var videoAdUnits = [
 ```
 
 
-### AdUnit Format for Video
+### AdUnit Format for Native
 ```javascript
 var adUnits = [
 {
