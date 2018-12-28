@@ -1069,6 +1069,15 @@ button.list-group-item:focus {
 
 @media screen and (max-width: 768px) {
 	
+	.pb-main-nav { 
+		display:none;
+	}
+		
+	.pb-mobile-nav  { 
+		display: block;
+	}
+
+	
 	.header-links { 
 		text-align: center;
 		display: flex;
