@@ -12,10 +12,6 @@
 			
 		  <a class="navbar-brand" href="/index.html"><img src="/assets/images/logos/prebid_final.png"></a>
 		  
-		  <button type="button" id="sidebarCollapse" class="btn btn-secondary pb_menu_btn">
-			<i class="fas fa-align-left"></i>
-            <span>Menu</span>
-		  </button>
     	</div>
 		
 		<div id="navbar" class="navbar-collapse collapse">
@@ -40,10 +36,14 @@
 						
 						{% for subSection in arrSubSections %}
 						
-							{% if subSection.isHeader == "1" %}
-							<li><p class="pb-mobile-dropdown-header">{{subSection.title}}</p></li>
-							{% else %}
-							<li><a href="{{subSection.link}}" class="pb-mobile-dropdown-item" data-prebidclickid="{{subSection.nbCollapseId}}">&nbsp;&nbsp;{{subSection.title}}</a></li>
+							{% if subSection.isSectionHeader == 0 %}
+						
+								{% if subSection.isHeader == 1 %}
+									<li><span class="pb-mobile-dropdown-header">&nbsp;&nbsp;{{subSection.title}}</span></li>
+								{% else %}
+									<li><a href="{{subSection.link}}" class="pb-mobile-dropdown-item" data-prebidclickid="{{subSection.nbCollapseId}}">&nbsp;&nbsp;{{subSection.title}}</a></li>
+								{% endif %}
+							
 							{% endif %}
 						
 						{% endfor %}
@@ -73,10 +73,6 @@
 			
 		  <a class="navbar-brand" href="/index.html"><img src="/assets/images/logos/prebid_final.png"></a>
 		  
-		  <button type="button" id="sidebarCollapse" class="btn btn-secondary pb_menu_btn">
-			<i class="fas fa-align-left"></i>
-            <span>Menu</span>
-		  </button>
     	</div>
 		
 		<div id="navbar" class="navbar-collapse collapse">
