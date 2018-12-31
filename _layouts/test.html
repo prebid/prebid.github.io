@@ -5,19 +5,544 @@
 
 <style>
 	
-	.pb-homepage { 
+	.pb-homepage {
+		position: relative;
+		margin-top:70px;
+		width:100%;
+		height: 90%;
+	}
+	
+	.pb-homepage-container { 
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+	}
+	
+	.pb-homepage-image { 
+		z-index:1;
+		width: 100%;
+		height:100%;
+	}
+	
+	.pb-obj-fit-fill { 
+		object-fit:cover;
+		width:100%;
+	}
+	
+	
+	.pb-homepage-content { 
+		z-index:2;
+		color: #ffffff;
+	}
+	
+	.pb-top-text { 
+		text-align: center;
+	}
+	
+	.pb-top-text h1 { 
+		color: #FFFFFF;
+		font-size:69px;
+		font-family: 'Verdana', sans-serif;
+		font-weight:500;
+	}
+	
+	.pb-top-text h2 { 
+		color: #FFFFFF;
+		font-size:34px;
+		font-family: 'Roboto', sans-serif;
+		width: 66%;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	
+	.pb-panel-title { 
+		display: block;
+		font-size:35px;
+		font-weight: 700;
+		color: #ffffff;
+	}
+	
+	.pb-outer-title { 
+		margin-top: 5px;
+	}
+	
+	.pb-center-title { 
+		margin-top: 0px;
+	}
+	
+	/*benefits*/
+	
+	.pb_benefits { 
+		background-color: #ffffff; 
+		width: 80%; 
+		padding-bottom: 40px; 
+		margin-top:400px;
+		margin-left: auto; 
+		margin-right: auto;
+		opacity:.80;
+		overflow:hidden;
+	}
+	
+	.pb-benefits-title  { 
+		text-align: center;
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+	
+	.pb-benefits-title > h2 { 
+		font-family: 'Roboto', sans-serif;
+		color: #47547c;
+		font-size:3.5vw;
+		font-weight: 200;
+	}
+	
+	.pb-benefits-container { 
+		width: 100%;
+		height: 100%;
+	}
+	
+	.pb-benefits-row {
+		width:100%; 
+		height: 42%;
+	}
+	
+	.pb-benefits-panel { 
+		width:100%;
+		height:100%;
 		margin-top:100px;
 	}
+	
+	.pb-benefits-panel-left { 
+		float:left;
+		width:50%;
+	}
+	
+	.pb-benefits-panel-right { 
+		float:right;
+		width:50%;
+		padding-right: 5%;
+	}
+	
+	.pb-benefits-panel-img { 
+		float: left;
+		height: 100%;
+		width:30%;
+		text-align:right;
+		padding-right:10px;
+	}
+		
+	.pb-benefits-panel-img > img { 
+		max-width:60%;
+		max-height:60%;
+	}
+	
+	.pb-benefits-panel-content { 
+		float:right;
+		height: 100%;
+		width:70%;
+	}
+	
+	.pb-benefits-panel-content-title { 
+		font-family: 'Roboto', sans-serif;
+		color: #47547c;
+		font-size:2.5vw;
+		font-weight: 200;
+	}
+	
+	.pb-benefits-panel-content-text { 
+		font-family: 'Lato', sans-serif;
+		color: #47547c;
+		font-size:2.0vw;
+		font-weight: 100;
+	}
+	
+	/*Carousel*/
+	
+	.pb_home_belowfold_carousel { 
+		border-top-left-radius: 12px;
+		border-top-right-radius: 12px;
+		padding-top: 20px;
+		text-align:center;
+	}
+	
+	.pb_carousel_title { 
+		margin-top:100px;
+		margin-bottom:50px;
+		margin-left:auto;
+		margin-right:auto;
+		padding-bottom: 10px;
+		color: #ffffff;
+		font-family: 'Roboto', sans-serif; 
+		font-size: 5vw;
+		font-weight: 700;
+		color: #ffffff;
+	}
+		
+	.carousel-item > h3 { 
+		font-family: 'Roboto', sans-serif; 
+		font-size: 2.4vw;
+		padding-top: 5px;
+		padding-bottom:3px;
+	}
+	
+	.carousel-item > h4 { 
+		font-family: 'Lato', sans-serif;
+		font-size: 1.5vw;
+	}
+	
+	.slide { 
+		background-color: #ffffff;
+		width: 70%;
+		height:250px;
+		margin-left: auto;
+		margin-right: auto;
+		border-top-left-radius: 12px;
+		border-top-right-radius: 12px;
+	}
+
+
+	
+	.pb-footer { 
+		position:absolute;
+		bottom: 0;
+		z-index:1000;
+		background-color: white;
+		margin-top: auto;
+		text-align:center;
+		margin-top:40px;
+	}
+	
+	/*small browsers*/
+	@media screen and (max-width: 1300px) { 
+		
+		.pb-top-text h1 { 
+			font-size:60px;
+		}
+		
+		.pb-top-text h2 {
+			font-size:30px;
+		}
+		
+		.pb-panel-title { 
+			font-size:33px;
+		}
+		
+		.slide { 
+			height: 200px;
+		}
+		
+		
+	} 
+	
+	/*iPad Pro*/
+	@media screen and (max-width: 1024px) { 
+		
+		.pb_benefits { 
+			margin-top: 200px;
+		}
+		
+		.pb-benefits-panel { 
+			margin-top:0px;
+			
+		.slide { 
+			height: 200px;
+		}
+	}
+	
+	/*iPad */
+	@media screen and (max-width: 768px) { 
+		
+		.pb-top-text h1 { 
+			font-size:40px;
+		}
+		
+		.pb-top-text h2 {
+			font-size:20px;
+		}
+		
+		.pb-panel-title { 
+			font-size:30px;
+		}
+		
+		.pb_benefits { 
+			margin-top: 160px;
+		}
+		
+		.pb_carousel_title { 
+			margin-top:50px;
+			margin-bottom:10px;
+		}
+
+		.slide { 
+			height: 150px;
+		}
+		
+	}
+	
+	/*iPhone Plus */
+	@media screen and (max-width: 414px) { 
+		
+		.pb-top-text h1 { 
+			font-size:20px;
+		}
+		
+		.pb-top-text h2 {
+			font-size:12px;
+		}
+		
+		.pb-home-links { 
+			margin-top:-10px;
+		}
+		
+		.pb-home-links-outer-panel { 
+			margin-top:20px;
+		}
+		
+		.pb-panel-title { 
+			font-size:14px;
+		}
+		
+		.pb_benefits { 
+			margin-top: 60px;
+		}
+		
+		.pb_carousel_title { 
+			margin-top:0px;
+			margin-bottom:20px;
+		}
+
+		.slide { 
+			height: 90px;
+		}
+		
+	}
+	
+	/* iPhone X*/
+	@media screen and (max-width: 375px) {
+		
+		.pb-top-text h1 { 
+			font-size:22px;
+		}
+		
+		.pb-top-text h2 {
+			font-size:11px;
+		}
+		
+		.pb-panel-title { 
+			font-size:12px;
+		}
+		
+		.pb_benefits { 
+			margin-top: 40px;
+		}
+		
+		.pb_carousel_title { 
+			margin-top:-20px;
+			margin-bottom:0px;
+		}
+
+		.slide { 
+			height: 80px;
+		}
+	}
+	
+	/* iPhone 6, 7, 8*/
+	@media screen and (max-width: 360px) { 
+		
+		.pb-top-text h1 { 
+			font-size:18px;
+		}
+		
+		.pb-top-text h2 {
+			font-size:9px;
+		}
+		
+		.pb-home-links-outer-panel { 
+			margin-top:10px;
+		}
+		
+		.pb-panel-title { 
+			font-size:10px;
+		}
+		
+		.pb_benefits { 
+			margin-top: 20px;
+		}	
+		
+	}
+	
+	/*iPhone 5*/
+	@media screen and (max-width: 320px) {
+		
+		.pb-home-links-outer-panel { 
+			margin-top:3px;
+		}
+		
+	}
+	
 
 </style>	
 		
 	<div class="pb-homepage">
 		
-		<div class="pb-homepage-container" style="background-color:red">image box</div>
+		<div class="pb-homepage-container pb-homepage-image">
+			<img src="/assets/images/homepage/pbhp_bg2.png" class="pb-obj-fit-fill">
+			<p><div>{% include footer.html %}</div></p>
+		</div>
 		
-		<div class="pb-homepage-container">Contents Box</div>
+		<div class="pb-homepage-container pb-homepage-content">
+			
+			<div class="row">
+				<div class="col-lg-12 pb-top-text">
+					<h1>Header bidding unwrapped</h1>
+					<h2>Earn more from your advertising with Prebid, a transparent, open-source solution that increases advertiser demand while maintaining a fast and responsive user experience.</h2>
+        		</div>
+			</div>
+			
+			<!--start links-->
+			<div class="row">
+				<div class="pb-home-links">
+					<div class="pb-outer">
+						<div class="pb-inner">
+							<div class="pb-home-links-outer-panel">
+								<div class="pb-home-link-container">
+									<div class="pb-home-link-visible"><a href="/developers.html"><img src="/assets/images/svg/icn_developers_2.svg" class="pb_md-homelink" /></a></div>
+									<div class="pb-home-link-hidden"><a href="/developers.html"><img src="/assets/images/svg/icn_developers_2_on.svg" class="pb_md-homelink" /></a></div>
+								</div>
+								<p class="pb-panel-title pb-outer-title">Developers</p>
+							</div>
+							
+							<!--<img src="/assets/images/svg/icn_getstarted.svg" class="pb-large-img" alt="Get Started!">-->
+							<div class="pb-home-links-panel">
+								<div class="pb-home-link-container">
+									<div class="pb-home-link-visible"><a href="/prebid/prebidjs.html"><img src="/assets/images/svg/icn_getStarted.svg" class="pb_lg-homelink" /></a></div>
+									<div class="pb-home-link-hidden"><a href="/prebid/prebidjs.html"><img src="/assets/images/svg/icn_getStarted_on.svg" class="pb_lg-homelink" /></a></div>
+								</div>
+								<p class="pb-panel-title pb-center-title"><span>Get Started</p>
+							</div>
+							
+							<div class="pb-home-links-outer-panel">
+								<div class="pb-home-link-container">
+									<div class="pb-home-link-visible"><a href="/adops/before-you-start.html"><img src="/assets/images/svg/icn_adops_2.svg" class="pb_md-homelink" /></a></div>
+									<div class="pb-home-link-hidden"><a href="/adops/before-you-start.html"><img src="/assets/images/svg/icn_adops_2_on.svg" class="pb_md-homelink" /></a></div>
+								</div>
+								<p class="pb-panel-title pb-outer-title">Ad Ops</p>
+							</div>
+	
+						</div>
+					</div>
+				</div>
+				
+				<!--start benefits-->
+				<div class="pb_benefits">
+					
+					<div class="pb-benefits-title"><h2>The Benefits Of Using Prebid</h2></div>
+					
+					<div class="pb-benefits-container">
+						<div class="pb-benefits-row">
+							<div class="pb-benefits-panel pb-benefits-panel-left">
+								<div class="pb-benefits-panel-img">
+									<img src="/assets/images/icons/icnMonetization.png">
+								</div>
+								<div class="pb-benefits-panel-content">
+									<div class="pb-benefits-panel-content-title">Maximize Earnings</div>
+									<div class="pb-benefits-panel-content-text">Bring additional advertiser demand into your ad server, ensuring you get the best possible price for your inventory.</div>
+								</div>
+							</div>
+							<div class="pb-benefits-panel pb-benefits-panel-right">
+								<div class="pb-benefits-panel-img">
+									<img src="/assets/images/icons/icnMultiPlatform.png">
+								</div>
+								<div class="pb-benefits-panel-content">
+									<div class="pb-benefits-panel-content-title">Use it Everywhere</div>
+									<div class="pb-benefits-panel-content-text">Apply header bidding to the most popular platforms and formats, including web, mobile app, video, native, AMP, and server-to-server.</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="pb-benefits-row">
+							<div class="pb-benefits-panel pb-benefits-panel-left">
+								<div class="pb-benefits-panel-img">
+									<img src="/assets/images/icons/icnGetStarted.png">
+								</div>
+								<div class="pb-benefits-panel-content">
+									<div class="pb-benefits-panel-content-title">Get Started Quickly</div>
+									<div class="pb-benefits-panel-content-text">Follow simple step-by-step instructions to download, integrate, and configure header bidding with Prebid.</div>
+								</div>
+							</div>
+							<div class="pb-benefits-panel pb-benefits-panel-right">
+								<div class="pb-benefits-panel-img">
+									<img src="/assets/images/icons/icnOpenSource.png">
+								</div>
+								<div class="pb-benefits-panel-content">
+									<div class="pb-benefits-panel-content-title">Join The Community</div>
+									<div class="pb-benefits-panel-content-text">Become part of our active community of advertising technology experts, where you can quickly resolve issues and contribute to the evolution of the leading header.</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+														
+				</div>
+				<!--end benefits-->
+				
+				<!--start carousel-->
+				<div class="pb_home_belowfold_carousel">
+					<h1 class="pb_carousel_title">Product Highlights</h1>
+					
+					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+												  
+					  <div class="carousel-inner">
+					  
+					    <div class="carousel-item active">
+					      <h3>Prebid.js</h3>
+					      <h4>A feature-rich header bidding platform for the web, including more than 150 demand sources and 15 analytics adapters. Supports currency conversion, GDPR, common ID systems, and multiple ad servers.</h4>
+					    </div>
+					    <div class="carousel-item">
+					      <h3>Prebid Mobile</h3>
+					      <h4>Header bidding for your iOS and Android apps. Combine Prebid SDK and Prebid Server for a great user experience and easy management.</h4>
+					    </div>
+					    <div class="carousel-item">
+					      <h3>Prebid Server</h3>
+					      <h4>A server-side header bidding solution with more than 20 demand sources. Hosted by a number of companies in highly available and geo-distributed clusters, Prebid Server lightens the load on browsers, while also enabling mobile app and AMP.</h4>
+					    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>
+						
+				</div>
+				<!--end carousel-->
+				
+			</div>
+			<!--end links-->
+			
+		</div>
+		<!--end content-->
+		
+		<!--footer-->
+		<div class="pb-footer">
+			This is the footer!
+		</div>
 	
 	</div>
+	<!--end homepage-->
+	
+
+  <!-- Template Main Javascript File -->
+  <script src="/assets/js/main.js"></script>
+  
+  
+  
+ </body>
 		
 		
 
