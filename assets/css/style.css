@@ -421,8 +421,8 @@ button.list-group-item:focus {
 
 .pb-home-links-panel img { 
 	display: inline-block;
-	width: 70%;
-	height: 70%;
+	width: 60%;
+	height: 60%;
 }
 
 .pb-home-links-outer-panel { 
@@ -438,8 +438,8 @@ button.list-group-item:focus {
 
 .pb-home-links-outer-panel img { 
 	display: inline-block;
-	width: 60%;
-	height: 60%;
+	width: 50%;
+	height: 50%;
 }
 
 .pb-home-links-panel p { 
@@ -486,126 +486,11 @@ button.list-group-item:focus {
 
 /*===========Benefits===================*/
 
-.pb_benefits { 
-					
-	background-color: #ffffff; 
-	width: 80%; 
-	height:800px; 
-	padding-bottom: 40px; 
-	margin-left: auto; 
-	margin-right: auto;
-	opacity:.80;
-	margin-top:400px;
-	
-}
-	
-.pb_benefits_title {
-	
-	width:100%; 
-	height: 15%; 
-	padding-top: 20px;
-	padding-bottom: 15px; 
-	text-align: center; 
-	
-}
-	
-.pb_benefits_title h2 { 
-	font-family: 'Roboto', sans-serif; 
-	font-size: 44px;
-	font-weight: 500;
-	color: #47547c;
-	margin-bottom: 5px;
-}
-	
-	
-.pb_benefits_row { 
-	width: 100%; 
-	height: 42%; 
-	margin-left: auto; 
-	margin-right: auto;
-}
 
-.pb_first_row { 
-	margin-top: 20px;
-}
-	
-.pb_benefits_panel { 
-	height:100%; 
-	float: left;
-}
-	
-.pb_benefits_panel_left { 
-	float:left;
-	width: 45%;
-}
-	
-.pb_benefits_panel_right { 
-	float:right;
-	width: 55%;
-	padding-right: 5%;
-}
-	
-.pb_benefits_img_wrapper {
-	height: 100%;
-	width: 25%;
-	float: left;
-	text-align: right;
-	padding-left: 70px;
-}
-	
-.pb_benefits_img_wrapper > img {
-	width: 70%;
-	height: 70%;
-	object-fit: contain;
-	margin-top: -40px;
-	
-}
-	
-.pb_benefits_content {
-	
-	width:75%;
-	height: 100%;
-	float:right; 
-	font-weight: 100;
-	text-align: left;
-	padding-right: 4px;
-}
-	
-.pb_benefits_content > h3 { 
-	
-	font-family: 'Open Sans Condensed', sans-serif; 
-	font-size: 35px;
-	font-weight: 400;
-	color: #47547c;
-}
-	
-.pb_benefits_content > span { 
-	
-	font-family: 'Roboto', sans-serif; 
-	font-size: 31px;
-	font-weight: 100;
-	color: #47547c;
-}
 
 /************ Carousel ****************/
 
 
-.pb_home_belowfold_carousel { 
-	border-top-left-radius: 12px;
-	border-top-right-radius: 12px;
-	padding-top: 20px;
-}
-
-.pb_home_belowfold_carousel h1 { 
-	
-	font-family: 'Roboto', sans-serif; 
-	font-size: 54px;
-	font-weight: 500;
-	color: #ffffff;
-	margin-bottom: 15px;
-	padding-bottom: 10px;
-	
-}
 
 /*********************************/
 
@@ -704,15 +589,6 @@ button.list-group-item:focus {
 }
 
 
-.slide { 
-	background-color: #ffffff;
-	width: 70%;
-	height:250px;
-	margin-left: auto;
-	margin-right: auto;
-	border-top-left-radius: 12px;
-	border-top-right-radius: 12px;
-}
 
 .item { 
 	text-align: center;
@@ -1008,13 +884,7 @@ button.list-group-item:focus {
 
 @media screen and (max-width: 768px) {
 	
-	.pb-main-nav { 
-		display:none;
-	}
-		
-	.pb-mobile-nav  { 
-		display: block;
-	}
+	
 
 	
 	.header-links { 
@@ -1361,6 +1231,14 @@ button.list-group-item:focus {
 
 @media screen and (max-width: 414px) {
 	
+	.pb-main-nav { 
+		display:none;
+	}
+		
+	.pb-mobile-nav  { 
+		display: block;
+	}
+	
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -1416,10 +1294,6 @@ button.list-group-item:focus {
 		width: 75%;
 		font-weight: 100;
 		margin-top: 5px;
-	}
-	
-	.pb-home-links { 
-		margin-top: 10px;
 	}
 	
 	.pb-home-links img { 
@@ -1483,28 +1357,7 @@ button.list-group-item:focus {
 		margin-top: 10px;
 	}
 	
-	.pb_home_belowfold_carousel h1 { 
-		font-size: 18px;
-		margin-top: 20px;
-		margin-bottom: 10px;
-	
-	}
-	
-	.carousel-inner h3 { 
-		height: 27px;
-		font-size: 15px;
-	}
-
-	.carousel-inner h4 {
-		padding-top: 5px;
-		font-size: 10px;
-	}
-	
-	.slide { 
-		height:100px;
-	
-	}
-	
+		
 	.pb_carousel_indicators { 
 		margin-top: 10px;
 		height: 10px;
@@ -1955,45 +1808,7 @@ div.pl-doc-entry{
 
 }
 
-@media all and (min-width: 50px)   {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3 { font-size:0.5em;  } }
-@media all and (min-width: 100px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.6em;  } }
-@media all and (min-width: 200px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.7em;  } }
-@media all and (min-width: 300px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.8em;  } }
-@media all and (min-width: 400px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.8em;  } }
-@media all and (min-width: 500px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.8em;  } }
-@media all and (min-width: 600px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.2em;  } }
-@media all and (min-width: 700px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.2em;  } }
-@media all and (min-width: 800px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
-@media all and (min-width: 900px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
-@media all and (min-width: 1000px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
-@media all and (min-width: 1100px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
-@media all and (min-width: 1200px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
-@media all and (min-width: 1300px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
-@media all and (min-width: 1400px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
-@media all and (min-width: 1500px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
-@media all and (min-width: 1500px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
-@media all and (min-width: 1600px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
-@media all and (min-width: 1700px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
 
-@media all and (min-width: 50px)   {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:0.7em;  } }
-@media all and (min-width: 100px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:0.8em;  } }
-@media all and (min-width: 200px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:0.9em;  } }
-@media all and (min-width: 300px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.0em;  } }
-@media all and (min-width: 400px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.1em;  } }
-@media all and (min-width: 500px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.2em;  } }
-@media all and (min-width: 600px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.3em;  } }
-@media all and (min-width: 700px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.4em;  } }
-@media all and (min-width: 800px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.5em;  } }
-@media all and (min-width: 900px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.6em;  } }
-@media all and (min-width: 1000px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.7em;  } }
-@media all and (min-width: 1100px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.8em;  } }
-@media all and (min-width: 1200px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.9em;  } }
-@media all and (min-width: 1300px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.0em;  } }
-@media all and (min-width: 1400px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.1em;  } }
-@media all and (min-width: 1500px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.2em;  } }
-@media all and (min-width: 1500px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.3em;  } }
-@media all and (min-width: 1600px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.4em;  } }
-@media all and (min-width: 1700px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.5em;  } }
 
 
 
