@@ -5,7 +5,7 @@ description: Ad Unit Reference
 top_nav_section: dev_docs
 nav_section: reference
 pid: 10
-sidebarType: 0
+sidebarType: 1
 ---
 
 # Ad Unit Reference

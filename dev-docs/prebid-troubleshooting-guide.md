@@ -6,7 +6,7 @@ description: How to troubleshoot Prebid.js from the perspective of an ad call fr
 pid: 10
 top_nav_section: dev_docs
 nav_section: troubleshooting
-sidebarType: 0
+sidebarType: 1
 ---
 
 

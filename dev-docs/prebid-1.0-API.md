@@ -5,7 +5,7 @@ description: Description of the changes to the publisher facing API for Prebid 1
 top_nav_section: dev_docs
 nav_section: reference
 hide: false
-sidebarType: 0
+sidebarType: 1
 ---
 
 

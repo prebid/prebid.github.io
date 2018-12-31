@@ -5,7 +5,7 @@ description: Code Integration
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-android
-sidebarType: 1
+sidebarType: 2
 ---
 
 

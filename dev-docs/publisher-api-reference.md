@@ -5,7 +5,7 @@ description: Publisher API Reference for Prebid.js Header Bidding
 top_nav_section: dev_docs
 nav_section: reference
 pid: 10
-sidebarType: 0
+sidebarType: 1
 ---
 
 
@@ -30,6 +30,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
+  * [.getNoBids()](#module_pbjs.getNoBids)
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
@@ -440,6 +441,16 @@ Use this method to get all of the bids that have won their respective auctions a
 Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html).
 
 + `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getNoBids"></a>
+
+### pbjs.getNoBids() ⇒ `Array`
+
+Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](http://prebid.org/dev-docs/troubleshooting-tips.html).
+
++ `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
 
 <hr class="full-rule">
 
@@ -1439,6 +1450,7 @@ Additional information of these properties:
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
+| `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
 
 **Additional Notes on s2sConfig properties**
 

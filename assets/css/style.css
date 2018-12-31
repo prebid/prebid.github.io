@@ -168,6 +168,29 @@ hr {
 	
 }
 
+.pb-mobile-nav { 
+	display: none;
+}
+
+.pb-mobile-dropdown-header { 
+	font-size: 13px;
+	font-weight: 500;
+	color: #3498db;
+}
+
+.pb-mobile-dropdown-item { 
+	font-size: 13px;
+	font-weight: 200;
+}
+
+.navbar-default .navbar-nav > li > a.pb-mobile-dropdown  { 
+	font-size:13px;
+	margin:0;
+	padding-left:5px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
 .pb_menu_btn {
 	display: none;
 	float:left;
@@ -331,7 +354,7 @@ button.list-group-item:focus {
 .pb_homewrapper_content { 
 	left: 0;
 	top: 0;
-	padding-top: 130px;
+	padding-top: 150px;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -355,15 +378,36 @@ button.list-group-item:focus {
 	margin-left: auto;
 }
 
+/**********Container****************/
+
+.pb-container { 
+	width:75%; 
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+.pb-outer { 
+	width:100%; 
+	padding-top:25%; 
+	position:relative
+}
+
+.pb-inner { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+}
+
 
 /*************Hover Effect***************/
 
 .pb-home-links { 
-	margin-left:auto;
-	margin-right: auto;
 	width: 75%;
-	height: 340px;
 	font-family: 'Verdana', sans-serif;
+	margin-left:auto; 
+	margin-right:auto;
 }
 
 .pb-home-links-panel { 
@@ -372,6 +416,13 @@ button.list-group-item:focus {
 	margin-right: auto;
 	width: 33%;
 	height: 100%;
+	text-align: center;
+}
+
+.pb-home-links-panel img { 
+	display: inline-block;
+	width: 70%;
+	height: 70%;
 }
 
 .pb-home-links-outer-panel { 
@@ -381,115 +432,57 @@ button.list-group-item:focus {
 	margin-right: auto;
 	width: 33%;
 	height: 100%;
+	text-align: center;
+
 }
 
-.hovereffect {
-  width: 100%;
-  height: 100%;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  cursor: default;
+.pb-home-links-outer-panel img { 
+	display: inline-block;
+	width: 60%;
+	height: 60%;
 }
-
-.hovereffect .overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  padding: 50px 20px;
-}
-
-.hovereffect img.pb-large-img {
-  display: block;
-  position: relative;
-  max-width: none;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:-20px;
-  width: calc(50% + 20px);
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  -webkit-transform: translate3d(-10px,0,0);
-  transform: translate3d(-10px,0,0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-
-.hovereffect img {
-  display: block;
-  position: relative;
-  max-width: none;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:-20px;
-  width: calc(40% + 20px);
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  -webkit-transform: translate3d(-10px,0,0);
-  transform: translate3d(-10px,0,0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.hovereffect:hover img {
-  opacity: 0.4;
-  filter: alpha(opacity=40);
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
-}	
-
-.hovereffect a, .hovereffect p {
-  color: #000;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  -webkit-transform: translate3d(100%,0,0);
-  transform: translate3d(100%,0,0);
-}
-
-.hovereffect:hover a, .hovereffect:hover p {
-  opacity: 1;
-  filter: alpha(opacity=100);
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
-}
-
-.hovereffect p { 
-	margin-top: 30px;
-	background-color: orange;
-}	
 
 .pb-home-links-panel p { 
-	margin-top:60px;
+	margin-top:0px;
 }
 
-.pb-home-links span { 
-	display: inline-block;
+.pb-panel-title { 
+	display: block;
 	font-size:35px;
-	color: #FFFFFF;
-	margin-top:-40px;
-}
-
-/***********Messages*******************/
-
-.pb-messagebox {
-	margin-left:auto;
-	margin-right:auto;
+	color: #ffffff;
 	margin-top: 30px;
-	padding:20px;
-	width: 65%;
-	font-size:35px;
-	color: #FFFFFF;
-	background-color: #EA9622;
-	opacity:.95
 }
-		
+
+.pb-center-title { 
+	font-size:35px;
+	color: #ffffff;
+	margin-top: 20px;
+}
+
+.pb-home-link-container:hover .pb-home-link-visible { 
+	 display: none;
+}
+
+.pb-home-link-container:hover .pb-home-link-hidden { 
+	 display: block;
+}
+
+
+.pb-home-link-hidden { 
+	display:none;
+}
+
+.pb-lg-homelink { 
+	width: 40%;
+	height: 40%;
+}
+
+.pb-md-honelink { 
+	width:30%;
+	height:3	0%;
+}
+
+	
 
 /*===========Benefits===================*/
 
@@ -502,7 +495,7 @@ button.list-group-item:focus {
 	margin-left: auto; 
 	margin-right: auto;
 	opacity:.80;
-	margin-top:200px;
+	margin-top:400px;
 	
 }
 	
@@ -600,7 +593,7 @@ button.list-group-item:focus {
 .pb_home_belowfold_carousel { 
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
-	padding-top: 60px;
+	padding-top: 20px;
 }
 
 .pb_home_belowfold_carousel h1 { 
@@ -609,7 +602,7 @@ button.list-group-item:focus {
 	font-size: 54px;
 	font-weight: 500;
 	color: #ffffff;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 	padding-bottom: 10px;
 	
 }
@@ -692,18 +685,18 @@ button.list-group-item:focus {
 	background-color: #47547c;
 	color: #ffffff;
 	font-family: 'Roboto', sans-serif;
-	font-size: 33px;
+	font-size: 32px;
 	margin:0;
-	padding-top:2px;
+	padding-top:7px;
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
 }
 
 .carousel-inner h4 {
 	padding-top: 25px;
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Lato', sans-serif;
 	color: #333333;
-	font-size: 27px;
+	font-size: 22px;
 	text-align:center;
 	font-weight: 100;
 	padding-left: 20px;
@@ -1014,6 +1007,15 @@ button.list-group-item:focus {
 }
 
 @media screen and (max-width: 768px) {
+	
+	.pb-main-nav { 
+		display:none;
+	}
+		
+	.pb-mobile-nav  { 
+		display: block;
+	}
+
 	
 	.header-links { 
 		text-align: center;
@@ -1389,6 +1391,14 @@ button.list-group-item:focus {
 #wrapper.toggled #sidebar-wrapper {
   width: 250px;
 }
+
+	.pb-main-nav { 
+		display:none;
+	}
+		
+	.pb-mobile-nav  { 
+		display: block;
+	}
 	
 	.pb_homewrapper_content { 
 		margin-top: -40px;
@@ -1408,20 +1418,14 @@ button.list-group-item:focus {
 		margin-top: 5px;
 	}
 	
-	.header-links { 
+	.pb-home-links { 
 		margin-top: 10px;
 	}
 	
-	.header-links-item img { 
+	.pb-home-links img { 
 		width: 40%;
 		height: 40%;
 	
-	}
-
-	.header-links-item img.large { 
-		width: 50%;
-		height: 50%;
-		margin-top: -20px;
 	}
 	
 	.header-links-item p { 
@@ -1430,6 +1434,7 @@ button.list-group-item:focus {
 		margin-top: -10px;	
 	}
 	
+		
 	.pb_benefits {
 		margin-top: -30px;
 		height: 330px;
@@ -1503,10 +1508,6 @@ button.list-group-item:focus {
 	.pb_carousel_indicators { 
 		margin-top: 10px;
 		height: 10px;
-	}
-	
-	.carousel-indicators { 
-		
 	}
 	
 	
@@ -1954,45 +1955,51 @@ div.pl-doc-entry{
 
 }
 
-@media all and (min-width: 50px)   {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.2em;  } }
-@media all and (min-width: 100px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.3em;  } }
-@media all and (min-width: 200px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.4em;  } }
-@media all and (min-width: 300px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.5em;  } }
-@media all and (min-width: 400px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.6em;  } }
-@media all and (min-width: 500px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.7em;  } }
-@media all and (min-width: 600px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.8em;  } }
-@media all and (min-width: 700px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:0.9em;  } }
-@media all and (min-width: 800px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.0em;  } }
-@media all and (min-width: 900px)  {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.1em;  } }
-@media all and (min-width: 1000px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.2em;  } }
-@media all and (min-width: 1100px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.3em;  } }
-@media all and (min-width: 1200px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.4em;  } }
-@media all and (min-width: 1300px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.5em;  } }
-@media all and (min-width: 1400px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.6em;  } }
-@media all and (min-width: 1500px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.7em;  } }
-@media all and (min-width: 1500px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.8em;  } }
-@media all and (min-width: 1600px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:1.9em;  } }
-@media all and (min-width: 1700px) {  .pb_benefits_content > span, .pb-home-links span  { font-size:2.0em;  } }
+@media all and (min-width: 50px)   {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3 { font-size:0.5em;  } }
+@media all and (min-width: 100px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.6em;  } }
+@media all and (min-width: 200px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.7em;  } }
+@media all and (min-width: 300px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.8em;  } }
+@media all and (min-width: 400px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.8em;  } }
+@media all and (min-width: 500px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:0.8em;  } }
+@media all and (min-width: 600px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.2em;  } }
+@media all and (min-width: 700px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.2em;  } }
+@media all and (min-width: 800px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
+@media all and (min-width: 900px)  {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
+@media all and (min-width: 1000px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
+@media all and (min-width: 1100px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
+@media all and (min-width: 1200px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:1.5em;  } }
+@media all and (min-width: 1300px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
+@media all and (min-width: 1400px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
+@media all and (min-width: 1500px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
+@media all and (min-width: 1500px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
+@media all and (min-width: 1600px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
+@media all and (min-width: 1700px) {  .pb_benefits_content > span, .pb-panel-title, .pb-center-title, .pb_homewrapper_content h2, .pb_homewrapper_content h1, .pb_benefits_content > h3, .carousel-inner h4, .carousel-inner h3  { font-size:2.0em;  } }
 
-@media all and (min-width: 50px)   {  .pb-home-links  { height:160px;  } }
-@media all and (min-width: 100px)  {  .pb-home-links  { height:170px;  } }
-@media all and (min-width: 200px)  {  .pb-home-links  { height:180px;  } }
-@media all and (min-width: 300px)  {  .pb-home-links  { height:190px;  } }
-@media all and (min-width: 400px)  {  .pb-home-links  { height:200px;  } }
-@media all and (min-width: 500px)  {  .pb-home-links  { height:210px;  } }
-@media all and (min-width: 600px)  {  .pb-home-links  { height:220px;  } }
-@media all and (min-width: 700px)  {  .pb-home-links  { height:230px;  } }
-@media all and (min-width: 800px)  {  .pb-home-links  { height:240px;  } }
-@media all and (min-width: 900px)  {  .pb-home-links  { height:250px;  } }
-@media all and (min-width: 1000px) {  .pb-home-links  { height:260px;  } }
-@media all and (min-width: 1100px) {  .pb-home-links  { height:270px;  } }
-@media all and (min-width: 1200px) {  .pb-home-links  { height:280px;  } }
-@media all and (min-width: 1300px) {  .pb-home-links  { height:290px;  } }
-@media all and (min-width: 1400px) {  .pb-home-links  { height:300px;  } }
-@media all and (min-width: 1500px) {  .pb-home-links  { height:310px;  } }
-@media all and (min-width: 1500px) {  .pb-home-links  { height:320px;  } }
-@media all and (min-width: 1600px) {  .pb-home-links  { height:330px;  } }
-@media all and (min-width: 1700px) {  .pb-home-links  { height:340px;  } }
+@media all and (min-width: 50px)   {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:0.7em;  } }
+@media all and (min-width: 100px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:0.8em;  } }
+@media all and (min-width: 200px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:0.9em;  } }
+@media all and (min-width: 300px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.0em;  } }
+@media all and (min-width: 400px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.1em;  } }
+@media all and (min-width: 500px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.2em;  } }
+@media all and (min-width: 600px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.3em;  } }
+@media all and (min-width: 700px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.4em;  } }
+@media all and (min-width: 800px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.5em;  } }
+@media all and (min-width: 900px)  {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.6em;  } }
+@media all and (min-width: 1000px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.7em;  } }
+@media all and (min-width: 1100px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.8em;  } }
+@media all and (min-width: 1200px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:1.9em;  } }
+@media all and (min-width: 1300px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.0em;  } }
+@media all and (min-width: 1400px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.1em;  } }
+@media all and (min-width: 1500px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.2em;  } }
+@media all and (min-width: 1500px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.3em;  } }
+@media all and (min-width: 1600px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.4em;  } }
+@media all and (min-width: 1700px) {  .pb_benefits_title h2, .pb_home_belowfold_carousel h1   { font-size:2.5em;  } }
+
+
+
+
+
+
 
 
 	

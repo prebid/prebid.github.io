@@ -2,7 +2,7 @@
 layout: page_v2
 title: Prebid Mobile
 description: What is Prebid.js
-sidebarType: 1
+sidebarType: 2
 ---
 
 # Downloading Prebid Mobile SDK

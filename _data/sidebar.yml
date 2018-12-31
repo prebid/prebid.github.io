@@ -1,437 +1,6 @@
-#--------------Prebid.js--------------|
-
-- sbSecId: 0
-  title: 
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 1
-  sectionTitle: Prebid.js
-  sectionId: prebidjs
-  subgroup: 1000
-  sbCollapseId: prebidjs
-  
-- sbSecId: 0
-  title: Developer Quick Start
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: devquickstart
-  isSectionHeader: 0
-  sectionTitle: 
-  subgroup: 0
-  sbCollapseId: 1
-
-
-- sbSecId: 0
-  title: Getting Started
-  link: /dev-docs/getting-started.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
- 
-
-- sbSecId: 0
-  title: Examples
-  link: /dev-docs/examples/basic-example.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-
-- sbSecId: 0
-  title: Troubleshooting
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: troubleshooting
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 0
-  title: Prebid.js FAQ
-  link: /dev-docs/faq.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 0
-  title: Dev Tips
-  link: /dev-docs/troubleshooting-tips.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 0
-  title: Common Issues
-  link: /dev-docs/common-issues.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 0
-  title: Prebid.js Troubleshooting Guide
-  link: /dev-docs/prebid-troubleshooting-guide.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 0
-  title: Reference
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: reference
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 0
-  title: Publisher API Reference
-  link: /dev-docs/publisher-api-reference.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 0
-  title: Ad Unit Reference
-  link: /dev-docs/adunit-reference.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 0
-  title: Bidder's Params
-  link: /dev-docs/bidders.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 0
-  title: Prebid 1.0 Publisher API Changes
-  link: /dev-docs/prebid-1.0-API.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 0
-  title: Prebid Modules
-  link: /dev-docs/modules/
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 0
-  title: Adapters
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: adapters
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 0
-  title: How To Add A New Bidder Adapter
-  link: /dev-docs/bidder-adaptor.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 0
-  title: Integrate With The Prebid Analytics API
-  link: /dev-docs/integrate-with-the-prebid-analytics-api.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 0
-  title: External Interfaces
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: external
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 0
-  title: Plugins
-  link: /dev-docs/plugins/index.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 0
-  title: Analytics
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: analytics
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 0
-  title: Analytics For Prebid
-  link: /overview/analytics.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 0
-  title: Prebid Analytics for GA
-  link: /overview/ga-analytics.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 0
-  title: Features
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: features
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-- sbSecId: 0
-  title: Conditional Ad Units
-  link: /dev-docs/conditional-ad-units.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-- sbSecId: 0
-  title: Post-Bid
-  link: /overview/what-is-post-bid.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-
-#--------------Prebid Mobile--------------|
-
-- sbSecId: 1
-  title: 
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 1
-  sectionTitle: Prebid Mobile
-  sectionId: prebid-mobile
-  subgroup: 1000
-  sbCollapseId: prebid-mobile
-
-- sbSecId: 1
-  title: Overview
-  link: /prebid-mobile/prebid-mobile.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 1
-  title: Getting Started With Prebid Mobile
-  link: /prebid-mobile/prebid-mobile-pbs.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 1
-  title: GDPR
-  link: /prebid-mobile/gdpr.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 1
-  title: For iOS
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: ios
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 1
-  title: Code Integration
-  link: /prebid-mobile/code-integration-ios.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 1
-  title: Targeting Parameters
-  link: /prebid-mobile/targeting-params-ios.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 1
-  title: Logging and Troubleshooting
-  link: /prebid-mobile/logging-troubleshooting-ios.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 1
-  title: For Android
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: android
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 1
-  title: Code Integration
-  link: /prebid-mobile/code-integration-android.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 1
-  title: Targeting Parameters
-  link: /prebid-mobile/targeting-params-android.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 1
-  title: Logging and Troubleshooting
-  link: /prebid-mobile/logging-troubleshooting-android.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 1
-  title: For Ad Ops
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: foradops
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 1
-  title: Setup Line items For DFP
-  link: /prebid-mobile/adops-line-item-setup-dfp.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 1
-  title: Setup Line Items For MoPub
-  link: /prebid-mobile/adops-line-item-setup-mopub.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 1
-  title: Price Granularity
-  link: /prebid-mobile/adops-price-granularity.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 1
-  title: Validation App
-  link: /prebid-mobile/dr-prebid.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-
-- sbSecId: 1
-  title: For Contributors
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: forcontributors
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 1
-  title: Add an Ad Server Adapter
-  link: add-an-ad-server-adapter.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
 #--------------Overview--------------|
 
-- sbSecId: 2
+- sbSecId: 0
   title: 
   link:
   isLastSubSectionItem: 0
@@ -443,17 +12,17 @@
   sbCollapseId: overview
   
   
-- sbSecId: 2
+- sbSecId: 0
   title: General
   link:
   isLastSubSectionItem: 0
   isHeader: 1
   headerId: general
   isSectionHeader: 0
-  sectionTitle: Overview
+  sectionTitle: 
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: What is Prebid?
   link: /overview/intro.html
   isLastSubSectionItem: 0
@@ -462,7 +31,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Project Principles
   link: /principles.html
   isLastSubSectionItem: 0
@@ -471,7 +40,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Contributing
   link: /contributing/contribute.html
   isLastSubSectionItem: 0
@@ -480,7 +49,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Prebid.org IP Policy
   link: /overview/ip-policy.html
   isLastSubSectionItem: 0
@@ -489,7 +58,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: About Prebid.org
   link: /overview/what-is-prebid-org.html
   isLastSubSectionItem: 0
@@ -498,7 +67,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Members and Partners
   link: /partners/partners.html
   isLastSubSectionItem: 0
@@ -507,7 +76,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Prebid.org Membership
   link: /overview/prebid-members.html
   isLastSubSectionItem: 0
@@ -516,7 +85,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Prebid Management Committees
   link: /overview/prebid-management-committees.html
   isLastSubSectionItem: 0
@@ -525,7 +94,7 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Header Bidding Wrapper Code of Conduct
   link: /wrapper_code_of_conduct.html
   isLastSubSectionItem: 0
@@ -534,19 +103,451 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Community Code of Conduct
   link: /overview/community-code-of-conduct.html
   isLastSubSectionItem: 0
   isHeader: 0
   subgroup: 0
 
-- sbSecId: 2
+- sbSecId: 0
   title: Developers
   link: /developers.html
   isLastSubSectionItem: 0
   isHeader: 0
   subgroup: 0
+
+#--------------Prebid.js--------------|
+
+- sbSecId: 1
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid.js
+  sectionId: prebidjs
+  subgroup: 1000
+  sbCollapseId: prebidjs
+  
+- sbSecId: 1
+  title: Developer Quick Start
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: devquickstart
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
+  sbCollapseId: 1
+
+
+- sbSecId: 1
+  title: Getting Started
+  link: /dev-docs/getting-started.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+ 
+
+- sbSecId: 1
+  title: Examples
+  link: /dev-docs/examples/basic-example.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+
+- sbSecId: 1
+  title: Troubleshooting
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: troubleshooting
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Prebid.js FAQ
+  link: /dev-docs/faq.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Dev Tips
+  link: /dev-docs/troubleshooting-tips.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Common Issues
+  link: /dev-docs/common-issues.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Prebid.js Troubleshooting Guide
+  link: /dev-docs/prebid-troubleshooting-guide.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Reference
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: reference
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Publisher API Reference
+  link: /dev-docs/publisher-api-reference.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Ad Unit Reference
+  link: /dev-docs/adunit-reference.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Bidder's Params
+  link: /dev-docs/bidders.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Prebid 1.0 Publisher API Changes
+  link: /dev-docs/prebid-1.0-API.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Prebid Modules
+  link: /dev-docs/modules/
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Adapters
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: adapters
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
+  title: How To Add A New Bidder Adapter
+  link: /dev-docs/bidder-adaptor.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
+  title: Integrate With The Prebid Analytics API
+  link: /dev-docs/integrate-with-the-prebid-analytics-api.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
+  title: External Interfaces
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: external
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: Plugins
+  link: /dev-docs/plugins/index.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: Analytics
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: analytics
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Analytics For Prebid
+  link: /overview/analytics.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Prebid Analytics for GA
+  link: /overview/ga-analytics.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Features
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: features
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 1
+  title: Conditional Ad Units
+  link: /dev-docs/conditional-ad-units.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 1
+  title: Post-Bid
+  link: /overview/what-is-post-bid.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+
+#--------------Prebid Mobile--------------|
+
+- sbSecId: 2
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Mobile
+  sectionId: prebid-mobile
+  subgroup: 1000
+  sbCollapseId: prebid-mobile
+
+- sbSecId: 2
+  title: Overview
+  link: /prebid-mobile/prebid-mobile.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 2
+  title: Getting Started With Prebid Mobile
+  link: /prebid-mobile/prebid-mobile-pbs.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 2
+  title: GDPR
+  link: /prebid-mobile/gdpr.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 2
+  title: For iOS
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: ios
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Code Integration
+  link: /prebid-mobile/code-integration-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Targeting Parameters
+  link: /prebid-mobile/targeting-params-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Logging and Troubleshooting
+  link: /prebid-mobile/logging-troubleshooting-ios.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: For Android
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: android
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Code Integration
+  link: /prebid-mobile/code-integration-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Targeting Parameters
+  link: /prebid-mobile/targeting-params-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Logging and Troubleshooting
+  link: /prebid-mobile/logging-troubleshooting-android.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: For Ad Ops
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: foradops
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Setup Line items For DFP
+  link: /prebid-mobile/adops-line-item-setup-dfp.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Setup Line Items For MoPub
+  link: /prebid-mobile/adops-line-item-setup-mopub.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Price Granularity
+  link: /prebid-mobile/adops-price-granularity.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Validation App
+  link: /prebid-mobile/dr-prebid.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+
+- sbSecId: 2
+  title: For Contributors
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: forcontributors
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 2
+  title: Add an Ad Server Adapter
+  link: add-an-ad-server-adapter.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
 
 #--------------Ad Ops--------------|
 

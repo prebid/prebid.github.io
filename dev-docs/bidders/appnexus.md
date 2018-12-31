@@ -20,6 +20,7 @@ gdpr_supported: true
 - [App Object](#appnexus-app-object)
 - [Custom Targeting keys](#custom-targeting-keys)
 - [Passing Keys Without Values](#appnexus-no-value)
+- [Debug Auction](#appnexus-debug-auction)
 
 <a name="appnexus-bid-params" />
 
@@ -148,3 +149,26 @@ keywords: {
   otherKeyword: ['']
 }
 ```
+
+<a name="appnexus-debug-auction" />
+
+#### Debug Auction
+
+{: .alert.alert-danger :}
+Enabling the AppNexus Debug Auction feature should only be done for diagnosing the AppNexus auction. Do not enable this feature in a production setting where it may impact users.
+
+To understand what is happening behind the scenes during an auction, you can enable a debug auction by adding an `apn_prebid_debug` cookie with a JSON string. For example:
+
+{% highlight js %}
+{ "enabled": true, "dongle": "QWERTY", "debug_timeout": 1000, "member_id": 958 }
+{% endhighlight %}
+
+To view the results of the debug auction, add the `pbjs_debug=true` query string parameter and open your browser's developer console.
+
+{: .table .table-bordered .table-striped }
+| Name              | Description                                                     | Example               | Type             |
+|-------------------|-----------------------------------------------------------------|-----------------------|------------------|
+| `enabled`         | Toggle the debug auction to occur                               | `true`                | `boolean`        |
+| `dongle`          | Your account's unique debug password.                           | `QWERTY`              | `string`         |
+| `member_id`       | The ID of the member running the debug auction                  | `958`                 | `integer`        |
+| `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |

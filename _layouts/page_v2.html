@@ -21,7 +21,7 @@
 						<a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 							<div class="d-flex w-100 justify-content-start align-items-center">
 								<span class="fa fa-dashboard fa-fw mr-3"></span> 
-								<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}xxx</span>
+								<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
 								<span class="submenu-icon ml-auto"></span>
 	            			</div>
 	        			</a>
@@ -57,7 +57,7 @@
 											{% endif %}
 			            				
 			            				
-			            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">{{sectionItem.link}}
+			            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
 				            				{% if isPage == 1 %}
 											<span class="menu-collapsed pb-nav-item" style="background-color:#cccccc;">{{sectionItem.title}}</span>
 											{% else %}
@@ -184,6 +184,7 @@
 {% endif %}
 
 
+<!--
 <script type="text/javascript">
 	$(document).ready(function () {
 	    $('#sidebarCollapse').on('click', function () {
@@ -191,6 +192,8 @@
 	    });
 	});
 </script>
+
+-->
 
 
  

@@ -2,7 +2,7 @@
 layout: page_v2
 title: Getting Started
 description: Dev docs for getting started with Prebid.js for header bidding
-sidebarType: 0
+sidebarType: 1
 ---
 
 
