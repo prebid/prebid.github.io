@@ -3,9 +3,6 @@ layout: page_v2
 title: Send Top Bid to Adserver
 head_title: Getting Started with Prebid.js for Header Bidding
 description: An overview of Prebid.js, how it works, basic templates and examples, and more.
-pid: 1
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
 
@@ -13,7 +10,14 @@ sidebarType: 3
 
 # Step by step guide to DFP setup
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/-bfI24_hwZ0?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+<div id="youtube">
+<h2>(Sorry, YouTube videos aren't available with your cookie privacy settings.)</h2>
+<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+</div>
+
+<script type="text/javascript">
+Optanon.InsertHtml('<iframe width="853" height="480" src="https://www.youtube.com/embed/-bfI24_hwZ0?rel=0" frameborder="0" allowfullscreen="true"></iframe>', 'youtube', null, {deleteSelectorContent: true}, 3);
+</script>
 
 <div class="alert alert-danger" role="alert">
   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
