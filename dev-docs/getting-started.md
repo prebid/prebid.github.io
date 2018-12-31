@@ -2,10 +2,6 @@
 layout: page_v2
 title: Getting Started
 description: Dev docs for getting started with Prebid.js for header bidding
-pid: 0
-is_top_nav: yeah
-top_nav_section: dev_docs
-nav_section: quick-start
 sidebarType: 0
 ---
 
@@ -23,7 +19,14 @@ The easiest way to get started with Prebid.js is to use the example code below.
 
 {% include dev-docs/build-from-source-warning.md %}
 
-<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/rq7qhcgq/266/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<div id="jsfiddle">
+<h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
+<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+</div>
+
+<script type="text/javascript">
+Optanon.InsertHtml('<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/rq7qhcgq/266/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
+</script>
 
 ### Next Steps
 
