@@ -1431,7 +1431,11 @@ pbjs.setConfig({
         timeout: 1000,
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+        adapterOptions: {
+            rubicon: { key: 'value' },
+            appnexus: { key: 'value' }
+        }
     }
 })
 {% endhighlight %}
