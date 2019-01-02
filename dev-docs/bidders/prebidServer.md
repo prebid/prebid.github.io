@@ -46,4 +46,4 @@ Configuration options
 | `syncEndpoint` | String     |           | Configures the user-sync endpoint. Highly recommended.                    |
 | `adapter`    | String        |           | Adapter code; default: `"prebidServer"`.                                  |
 | `secure`     | Integer       |           | Override Prebid Server's determination of whether the request needs secure assets. Set to `1` to force secure assets on the response, or `0` for non-secure assets. |
-| `adapterOptions` | Object       |           | adds arguments to resulting OpenRTB payload to Prebid Server. |
+| `adapterOptions` | Object       |           | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
