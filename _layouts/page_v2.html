@@ -21,7 +21,7 @@
 						<a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 							<div class="d-flex w-100 justify-content-start align-items-center">
 								<span class="fa fa-dashboard fa-fw mr-3"></span> 
-								<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
+								<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}&nbsp;<img src="/assets/images/downarrow.png"></span>
 								<span class="submenu-icon ml-auto"></span>
 	            			</div>
 	        			</a>
@@ -30,7 +30,7 @@
 						{% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
 						
 						<!--get all sub section headers-->
-	            		{% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
+	            			{% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
 	            		
 	            		
 	            			<!--parent collapse div - open if matches sidebartype-->
@@ -51,10 +51,10 @@
 		            							
 		            					<!-- check to see if we are on this page-->            				
 			            				<!-display subsection items with links-->
-										{% assign isPage = 0 %}
+									{% assign isPage = 0 %}
 				            				{% if sectionItem.link == page.url %}
-												{% assign isPage = 1 %}
-											{% endif %}
+										{% assign isPage = 1 %}
+									{% endif %}
 			            				
 			            				
 			            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
@@ -140,7 +140,6 @@
 										
 										{% endfor %}						
 										
-									<hr>	
 									</div>
 			            			
 			            			{% endfor %}
