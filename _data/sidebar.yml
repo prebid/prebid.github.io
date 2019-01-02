@@ -50,15 +50,6 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: Prebid.org IP Policy
-  link: /overview/ip-policy.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
   title: About Prebid.org
   link: /overview/what-is-prebid-org.html
   isLastSubSectionItem: 0
@@ -108,6 +99,7 @@
   link: /overview/community-code-of-conduct.html
   isLastSubSectionItem: 0
   isHeader: 0
+  isSectionHeader: 0
   subgroup: 0
 
 - sbSecId: 0
@@ -115,6 +107,33 @@
   link: /developers.html
   isLastSubSectionItem: 0
   isHeader: 0
+  isSectionHeader: 0
+  subgroup: 0
+
+- sbSecId: 0
+  title: Prebid.org IP Policy
+  link: /overview/ip-policy.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
+  title: Privacy Policy
+  link: /privacy.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
+  title: Cookies
+  link: /cookies.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
   subgroup: 0
 
 #--------------Prebid.js--------------|
