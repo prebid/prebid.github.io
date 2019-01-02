@@ -2,7 +2,7 @@
 layout: page_v2
 title: Cookies Used on Prebid.org
 description: Cookies Used on Prebid.org
-sidebarType: 2
+sidebarType: 0
 ---
 
 # Cookie Declaration
