@@ -2,9 +2,6 @@
 layout: page_v2
 title: Support
 description: Header Bidding Support
-pid: 0
-top_nav_section: support
-nav_section: intro
 sidebarType: 9
 ---
 
@@ -62,12 +59,3 @@ Join the [Ad Ops Reddit Slack](https://redditadops.slack.com/messages/C0HVALS8P/
 [Post on Quora](https://www.quora.com/topic/Prebid-js) (Please tag the question with "Prebid.js") if:
 
 - You have high level questions, e.g. the best strategy to host unbiased header bidding auctions.
-
-## Twitter
-
-[Follow us on Twitter](https://twitter.com/prebidjs) to:
-
-- Get the latest release updates
-- Get the latest published studies
-
-
