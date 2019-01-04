@@ -159,8 +159,16 @@
   sectionTitle: 
   subgroup: 0
   sbCollapseId: 1
-
-
+  
+- sbSecId: 1
+  title: What is Prebid.js
+  link: /prebid/prebidjs.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
 - sbSecId: 1
   title: Getting Started
   link: /dev-docs/getting-started.html
@@ -170,8 +178,6 @@
   sectionTitle:
   subgroup: 0
   
- 
-
 - sbSecId: 1
   title: Examples
   link: /dev-docs/examples/basic-example.html
@@ -431,6 +437,15 @@
 - sbSecId: 2
   title: GDPR
   link: /prebid-mobile/gdpr.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 2
+  title: Download
+  link: /prebid-mobile/download.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -841,7 +856,7 @@
 
 - sbSecId: 5
   title: Overview
-  link: /prebid-server/prebid-server-overview
+  link: /prebid-server/prebid-server-overview.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -1105,6 +1120,16 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0 
+  
+- sbSecId: 7
+  title: Overview
+  link: /formats/formats.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  headerId: formatsoverview
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0 
 
 - sbSecId: 7
   title: Display
@@ -1176,7 +1201,7 @@
   
 - sbSecId: 8
   title: About Modules
-  link: /dev-docs/modules/index.html
+  link: /dev-docs/modules/
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -1271,7 +1296,7 @@
   
 - sbSecId: 9
   title: Help
-  link: /support/index.html
+  link: /support/
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
