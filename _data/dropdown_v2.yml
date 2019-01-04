@@ -1,7 +1,7 @@
-#-----------About---------------
+#-----------Overview---------------
 
 - sectionId: 0
-  sectionName: About
+  sectionName: Overview
   link:
   isHeader: 1
   hasSubMenus: 1
@@ -9,7 +9,7 @@
   
   - subsectionId: 0
     sectionId: 0
-    sectionName: About
+    sectionName: Overview
     title: What is Prebid?
     link:  /overview/intro.html
     needsDivider: 0
@@ -18,7 +18,7 @@
     
   - subsectionId: 0
     sectionId: 0
-    sectionName: About
+    sectionName: Overview
     title: Project Principles
     link:  /principles.html
     needsDivider: 0
@@ -27,7 +27,7 @@
     
   - subsectionId: 0
     sectionId: 0
-    sectionName: About
+    sectionName: Overview
     title: Contributing
     link:  /contributing/contribute.html
     needsDivider: 0
@@ -36,8 +36,8 @@
     
   - subsectionId: 0
     sectionId: 0
-    sectionName: About
-    title: About Prebid
+    sectionName: Overview
+    title: About Prebid.Org
     link:  /overview/what-is-prebid-org.html
     needsDivider: 0
     isHeader: 0
@@ -45,7 +45,7 @@
     
   - subsectionId: 0
     sectionId: 0
-    sectionName: About
+    sectionName: Overview
     title: Members and Partners
     link:  /partners/partners.html
     needsDivider: 0
@@ -54,7 +54,7 @@
     
   - subsectionId: 0
     sectionId: 0
-    sectionName: About
+    sectionName: Overview
     title: Privacy Policy
     link:  /privacy.html
     needsDivider: 0

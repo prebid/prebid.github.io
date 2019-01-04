@@ -401,6 +401,16 @@
   sbCollapseId: prebid-mobile
 
 - sbSecId: 2
+  title: General
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: general
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
+
+- sbSecId: 2
   title: Overview
   link: /prebid-mobile/prebid-mobile.html
   isLastSubSectionItem: 0
@@ -539,7 +549,7 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Validation App
+  title: Dr. Prebid Validation App
   link: /prebid-mobile/dr-prebid.html
   isLastSubSectionItem: 1
   isHeader: 0
