@@ -435,6 +435,11 @@ button.list-group-item:focus {
 	margin-right:auto;
 }
 
+.pb-benefits-row { 
+	border:1px dotted black;
+	display: inline-block;
+}
+
 .pb-home-links-panel { 
 	float:left;
 	margin-left:auto;
@@ -560,6 +565,7 @@ button.list-group-item:focus {
 	float:right;
 	width:50%;
 	padding-right: 5%;
+	border:1px dashed red;
 }
 
 .pb-benefits-panel-img { 
