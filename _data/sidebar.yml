@@ -180,6 +180,15 @@
 - sbSecId: 1
   title: Getting Started
   link: /dev-docs/getting-started.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 1
+  title: Prebid.js Training Videos
+  link: /videos/setup.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -308,6 +317,15 @@
 - sbSecId: 1
   title: Browser Extension for Debugging
   link: /debugging/debugging.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Prebid.js Troubleshooting Training Videos
+  link: /videos/troubleshooting.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -400,7 +418,7 @@
 
 - sbSecId: 1
   title: Module Overview
-  link: /dev-docs/modules/index.html
+  link: /dev-docs/modules/
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -482,7 +500,7 @@
 
 - sbSecId: 1
   title: Plugins
-  link: /dev-docs/plugins/index.html
+  link: /dev-docs/plugins/
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -1004,6 +1022,15 @@
 - sbSecId: 4
   title: Outstream Video Ads
   link: /dev-docs/show-outstream-video-ads.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 4
+  title: Training Videos
+  link: /videos/prebid-video.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -1327,7 +1354,7 @@
   
 - sbSecId: 7
   title: Training Videos
-  link: /videos/index.html
+  link: /videos/
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
