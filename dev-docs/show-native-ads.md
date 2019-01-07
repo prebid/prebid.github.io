@@ -92,18 +92,16 @@ Specific bidders may not support all of the fields listed below or may return di
 | `icon`        | The brand icon that will appear with the ad.                                         | `hb_native_icon`      |
 | `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `hb_native_image`     |
 | `clickUrl`    | Where the user will end up if they click the ad.                                     | `hb_native_linkurl`   |
-| `clickLabel`  | Text that can be displayed instead of the raw click URL. e.g, "Example.com/Specials" | `hb_native_linklabel` |
+| `displayUrl`  | Text that can be displayed instead of the raw click URL. e.g, "Example.com/Specials" | `hb_native_displayUrl`|
 | `privacyUrl`  | Link to the Privacy Policy of the Buyer, e.g. http://example.com/privacy             | `hb_native_privacy`   |
 | `cta`         | *Call to Action* text, e.g., "Click here for more information".                      | `hb_native_cta`       |
 | `rating`      | Rating information, e.g., "4" out of 5.                                              | `hb_native_rating`    |
 | `downloads`   | The total downloads of the advertised application/product                            | `hb_native_downloads` |
 | `likes`       | The total number of individuals who like the advertised application/product          | `hb_native_likes`     |
 | `price`       | The non-sale price of the advertised application/product                             | `hb_native_price`     |
-| `sale`        | The sale price of the advertised application/product                                 | `hb_native_sale`      |
+| `salePrice`   | The sale price of the advertised application/product                                 | `hb_native_saleprice` |
 | `address`     | Address of the Buyer/Store. e.g, "123 Main Street, Anywhere USA"                     | `hb_native_address`   |
 | `phone`       | Phone Number of the Buyer/Store. e.g, "(123) 456-7890"                               | `hb_native_phone`     |
-| `video`       | A raw video asset, such as VAST. Note: you will need to be able ingest the video asset into your video player without the assistance of prebid.js. Your Ad Server may also have limits on key value sizes which may prevent use of this parameter | `hb_native_video` |
-
 
 
 Each key's value is an object with several fields.  Most important is the `required` field, which says whether that asset should be filled in by the bid response.  Specifically, bids that do not have all of the native assets marked as required will be dropped from the auction and will not be sent to the ad server.
