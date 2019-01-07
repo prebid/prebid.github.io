@@ -352,7 +352,7 @@
   subgroup: 3
 
 - sbSecId: 1
-  title: Bidder's Params
+  title: Bidder Params
   link: /dev-docs/bidders.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -774,7 +774,7 @@
 
 - sbSecId: 2
   title: Add an Ad Server Adapter
-  link: add-an-ad-server-adapter.html
+  link: /prebid-mobile/add-an-ad-server-adapter.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
