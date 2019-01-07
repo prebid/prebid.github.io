@@ -83,7 +83,7 @@ The following resources are available for further information on working with Pr
 -   [Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)  
     Learn about the parameters available in the iOS Prebid Mobile SDK.
 
--   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-and-troubleshooting-ios)  
+-   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-troubleshooting-ios.html)  
     Instructions on troubleshooting issues you might encounter.
 
 **Android**
@@ -91,7 +91,7 @@ The following resources are available for further information on working with Pr
 -   [Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)  
     Learn about the parameters available in the Android Prebid Mobile SDK.
 
--   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-and-troubleshooting-android)  
+-   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-troubleshooting-android)  
     Instructions on troubleshooting issues you might encounter.
 
 ### GDPR

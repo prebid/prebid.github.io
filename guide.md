@@ -91,4 +91,58 @@ There are several Javascript files, both expanded and minified versions of JQuer
 
 **_dropdown_v2**
 
-The dropdown_v2 file is used to construct the dropdown menu at the top of the page. 
+The dropdown_v2 yml file is used to construct the top nav when the site is viewed on desktops and tablets. The yml is divided into menu sections. Menu sections are commented when they begin, for example; 
+
+#----------Product SubNav------------
+
+Each menu item is represented in the yml map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example: 
+
+```Markdown
+#-----------Overview---------------
+
+- sectionId: 0
+  sectionName: Overview
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  submenus:
+  
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: Overview
+    title: What is Prebid?
+    link:  /overview/intro.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+```
+
+the collection with the title property "What Is Prebid?" is a child of the collection directly above it with the sectionName "Overview"
+
+**Top Nav Menu Properties**  
+*Note: A collection does not have to contain all properties.*
+
+| Key | Type | Example | Use |
+| --- | --- | --- | --- | --- |
+sectionId |  int | 0  | Indicates the menu section of an item.
+sectionName |  string | Overview  | The display name of the section. 
+link |  string | /overview/intro.html  | The relative link that the menu item should open. 
+isHeader | bool | 1 | Indicates if this item is a section header. 
+hasSubMenus | bool | 1 | Indicates if this item has submenus. 
+submenus | collection | | If the item has submenus they will be contained in a collection of collections. 
+subsectionId | int | 0 | Indicates the subsection of an item. 
+needsDivider | bool | 0 | Indicates if the subsection item is the last item in the section and requires a divider. **Deprecated**
+isSubsectionStart | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated**
+
+**Code Use**  
+This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
+
+
+
+
+
+
+
+
+
+

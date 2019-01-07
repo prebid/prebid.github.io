@@ -1005,7 +1005,7 @@ button.list-group-item:focus {
 	}
 	
 	/*iPad */
-	@media screen and (max-width: 768px) { 
+	@media screen and (max-width: 768px) {		
 		
 		.pb-top-text h1 { 
 			font-size:40px;
@@ -1040,6 +1040,11 @@ button.list-group-item:focus {
 	
 	/*iPhone Plus */
 	@media screen and (max-width: 414px) { 
+		
+		/* hide side nav on phone devices*/
+		#sidebar { 
+			display: none;
+		} 
 		
 		.pb-top-text h1 { 
 			font-size:20px;
@@ -1155,8 +1160,13 @@ button.list-group-item:focus {
 			
 	}
 	
-	/* iPhone 6, 7, 8*/
+	/* iPhone 6, 7, 8 Galaxy S5 (different width) */
 	@media screen and (max-width: 360px) { 
+		
+		.pb-top-text { 
+			margin-top: 0;
+			
+		}
 		
 		.pb-top-text h1 { 
 			font-size:18px;
@@ -1164,6 +1174,7 @@ button.list-group-item:focus {
 		
 		.pb-top-text h2 {
 			font-size:9px;
+			margin-top: -5px;
 		}
 		
 		.pb-home-links-outer-panel { 
@@ -1171,7 +1182,7 @@ button.list-group-item:focus {
 		}
 		
 		.pb_benefits { 
-			margin-top: 20px;
+			margin-top: 70px;
 		}
 		
 	}
@@ -1181,6 +1192,10 @@ button.list-group-item:focus {
 		
 		.pb-home-links-outer-panel { 
 			margin-top:3px;
+		}
+		
+		.pb_benefits { 
+			margin-top: 50px;
 		}
 		
 	}
