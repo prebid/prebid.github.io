@@ -2,12 +2,10 @@
 layout: page_v2
 title: Module - Currency
 description: Converts bids to the ad server currency
-top_nav_section: dev_docs
-nav_section: modules
 module_code : currency
 display_name : Currency
 enable_download : true
-sidebarType : 8
+sidebarType : 1
 
 ---
 

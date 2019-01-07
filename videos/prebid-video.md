@@ -2,11 +2,7 @@
 layout: page_v2
 title: Header Bidding Videos - Prebid Video
 description: Header Bidding Videos - Prebid Video
-pid: 3
-is_top_nav: yeah
-top_nav_section: videos
-nav_section: videos
-sidebarType: 0
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">

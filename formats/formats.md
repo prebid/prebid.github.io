@@ -2,8 +2,7 @@
 layout: page_v2
 title: Prebid Formats
 description: Prebid Formats
-pid: 0
-sidebarType: 7
+sidebarType: 6
 ---
 
 # Prebid Formats

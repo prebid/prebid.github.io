@@ -2,7 +2,7 @@
 layout: page_v2
 title: Support
 description: Header Bidding Support
-sidebarType: 9
+sidebarType: 7
 ---
 
 

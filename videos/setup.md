@@ -2,7 +2,7 @@
 layout: page_v2
 title: Header Bidding Videos - Setup
 description: Header Bidding Videos - Setup
-sidebarType: 0
+sidebarType: 1
 ---
 
 <div class="bs-docs-section" markdown="1">

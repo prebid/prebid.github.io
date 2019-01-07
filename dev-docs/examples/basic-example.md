@@ -3,9 +3,7 @@ layout: example
 title: Basic Example
 left_nav_override: Examples
 description: Basic Prebid.js Example
-top_nav_section: dev_docs
-nav_section: quick-start
-sidebarType: 6
+sidebarType: 1
 
 
 about:

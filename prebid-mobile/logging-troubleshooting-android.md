@@ -1,16 +1,13 @@
 ---
 layout: page_v2
-title: Logging & Troubleshooting
-description: Logging & Troubleshooting
-pid: 2
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-android
+title: Android Logging & Troubleshooting
+description: Android Logging & Troubleshooting
 sidebarType: 2
 ---
 
 
 
-# Logging & Troubleshooting
+# Android Logging & Troubleshooting
 {:.no_toc}
 
 Troubleshoot your Prebid Mobile integration by following these steps to check your application logs.

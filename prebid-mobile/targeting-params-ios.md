@@ -1,17 +1,11 @@
 ---
 layout: page_v2
-title: Targeting Parameters
-description: Add Targeting Parameters
-pid: 1
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-ios
+title: iOS Targeting Parameters
+description: Add iOS Targeting Parameters
 sidebarType: 2
 ---
 
-
-
-
-# Targeting Parameters
+# iOS Targeting Parameters
 
 ## User location
 

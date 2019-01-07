@@ -1,10 +1,8 @@
 ---
-
 layout: page_v2
 title: FAQ | Prebid
 description: FAQ
-sidebarType: 9
-
+sidebarType: 7
 ---
 
 # Frequently Asked Questions

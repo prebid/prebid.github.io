@@ -2,7 +2,7 @@
 layout: page_v2
 title: Troubleshooting Overview
 description: Troubleshooting Overview
-sidebarType: 9
+sidebarType: 7
 ---
 
 # Troubleshooting
@@ -23,6 +23,7 @@ Developers
 
 + [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html)
 + [Developer Troubleshooting Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
++ [Debug Extension](/debugging/debugging.html)
 
 <hr>
 

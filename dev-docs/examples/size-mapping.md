@@ -2,8 +2,7 @@
 layout: example
 title: Filter Sizes Dynamically with Labels
 description: Filter Sizes Dynamically with Labels
-top_nav_section: dev_docs
-nav_section: quick-start
+sidebarType: 1
 
 hide: true
 
@@ -15,6 +14,4 @@ jsfiddle_link: jsfiddle.net/Prebid_Examples/cjzezwk9/77/embedded/html,result
 
 code_height: 2400
 
-pid: 102
-sidebarType: 6
 ---

@@ -2,12 +2,10 @@
 layout: page_v2
 title: Module - DigiTrust
 description: Addition of DigiTrust to the Prebid package
-top_nav_section: dev_docs
-nav_section: modules
 module_code : digitTrust
 display_name : DigiTrust
 enable_download : false
-sidebarType : 8
+sidebarType : 1
 ---
 
 

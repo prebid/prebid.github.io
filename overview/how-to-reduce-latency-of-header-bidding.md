@@ -3,9 +3,6 @@ layout: page_v2
 title: How to reduce the latency of header bidding with Prebid.js
 head_title: How to reduce the latency of header bidding with Prebid.js
 description: A walkthrough of why header bidding implementations cause latency. An overview of how to use Prebid.js to reduce it.
-pid: 40
-top_nav_section: overview
-nav_section: studies
 sidebarType: 3
 ---
 

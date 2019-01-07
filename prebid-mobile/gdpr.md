@@ -5,7 +5,7 @@ description: European Ad Inventory Overview
 pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
-sidebarType: 1
+sidebarType: 2
 ---
 
 

@@ -1,15 +1,12 @@
 ---
 layout: page_v2
-title: Targeting Parameters
-description: Add Targeting Parameters
-pid: 1
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-android
+title: Android Targeting Parameters
+description: Add Android Targeting Parameters
 sidebarType: 2
 ---
 
 
-# Targeting Parameters
+# Android Targeting Parameters
 
 ## User location
 

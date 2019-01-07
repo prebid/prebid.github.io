@@ -1,11 +1,8 @@
 ---
-
 layout: page_v2
 title: Prebid Multi-Format
 description: Prebid Multi-Format
-pid: 1
-sidebarType: 7
-
+sidebarType: 6
 ---
 
 # Prebid Multi-Format

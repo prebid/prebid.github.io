@@ -1,11 +1,9 @@
 ---
-
 layout: page_v2
 title: Prebid Display
 description: Prebid Display
 pid: 1
-sidebarType: 7
-
+sidebarType: 6
 ---
 
 # Prebid Display Ads

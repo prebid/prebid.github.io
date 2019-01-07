@@ -6,7 +6,7 @@ pid: 0
 is_top_nav: yeah
 top_nav_section: dev_docs
 nav_section: prebid-native
-sidebarType: 0
+sidebarType: 1
 ---
 
 

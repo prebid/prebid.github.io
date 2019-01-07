@@ -1,11 +1,8 @@
 ---
-
 layout: page_v2
 title: Prebid Video
 description: Prebid Video
-pid: 1
-sidebarType: 7
-
+sidebarType: 6
 ---
 
 # Prebid Video Ads
