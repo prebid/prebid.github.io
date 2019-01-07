@@ -1209,7 +1209,7 @@
 
 #--------------Formats--------------|
 
-- sbSecId: 7
+- sbSecId: 6
   title: 
   link:
   isLastSubSectionItem: 0
@@ -1220,7 +1220,7 @@
   subgroup: 1000
   sbCollapseId: formats
   
-- sbSecId: 7
+- sbSecId: 6
   title: General
   link:
   isLastSubSectionItem: 0
@@ -1230,17 +1230,16 @@
   sectionTitle:
   subgroup: 0 
 
-- sbSecId: 7
+- sbSecId: 6
   title: Overview
   link: /formats/formats.html
   isLastSubSectionItem: 0
   isHeader: 0
-  headerId: formatsoverview
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0 
 
-- sbSecId: 7
+- sbSecId: 6
   title: Display
   link: /formats/display.html
   isLastSubSectionItem: 0
@@ -1249,7 +1248,7 @@
   sectionTitle:
   subgroup: 0 
 
-- sbSecId: 7
+- sbSecId: 6
   title: Video
   link: /prebid-video/video-overview.html
   isLastSubSectionItem: 0
@@ -1258,7 +1257,7 @@
   sectionTitle:
   subgroup: 0 
 
-- sbSecId: 7
+- sbSecId: 6
   title: Native
   link: /dev-docs/show-native-ads.html
   isLastSubSectionItem: 0
@@ -1267,7 +1266,7 @@
   sectionTitle:
   subgroup: 0 
 
-- sbSecId: 7
+- sbSecId: 6
   title: AMP
   link: /formats/amp.html
   isLastSubSectionItem: 0
@@ -1276,10 +1275,10 @@
   sectionTitle:
   subgroup: 0 
 
-- sbSecId: 7
+- sbSecId: 6
   title: Multi-Format
   link: /dev-docs/show-multi-format-ads.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1287,7 +1286,7 @@
   
  #-------------- Support --------------|
   
-- sbSecId: 9
+- sbSecId: 7
   title: 
   link: 
   isLastSubSectionItem: 0
@@ -1298,7 +1297,7 @@
   subgroup: 1000
   sbCollapseId: support
   
-- sbSecId: 9
+- sbSecId: 7
   title: Overview
   link: 
   isLastSubSectionItem: 0
@@ -1308,7 +1307,7 @@
   sectionTitle: 
   subgroup: 0
   
-- sbSecId: 9
+- sbSecId: 7
   title: Help
   link: /support/
   isLastSubSectionItem: 0
@@ -1317,7 +1316,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 9
+- sbSecId: 7
   title: Troubleshooting
   link: /troubleshooting/troubleshooting.html
   isLastSubSectionItem: 0
@@ -1326,7 +1325,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 9
+- sbSecId: 7
   title: Training Videos
   link: /videos/index.html
   isLastSubSectionItem: 0
@@ -1335,7 +1334,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 9
+- sbSecId: 7
   title: FAQs
   link: /faq/faq.html
   isLastSubSectionItem: 0
@@ -1344,7 +1343,7 @@
   sectionTitle:
   subgroup: 0
   
-- sbSecId: 9
+- sbSecId: 7
   title: Blog
   link: /blog.html
   isLastSubSectionItem: 0

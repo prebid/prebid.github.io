@@ -2,7 +2,7 @@
 layout: page_v2
 title: Troubleshooting Overview
 description: Troubleshooting Overview
-sidebarType: 9
+sidebarType: 7
 ---
 
 # Troubleshooting

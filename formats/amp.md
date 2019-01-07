@@ -1,10 +1,8 @@
 ---
-
 layout: page_v2
 title: AMP | Prebid
 description: AMP Format
-sidebarType: 7
-
+sidebarType: 6
 ---
 
 
