@@ -68,15 +68,6 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: Prebid.org Membership
-  link: /overview/prebid-members.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
   title: Prebid Management Committees
   link: /overview/prebid-management-committees.html
   isLastSubSectionItem: 0
@@ -815,7 +806,7 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: Before You Start
+  title: AdOps View of Prebid
   link: /adops/before-you-start.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -824,7 +815,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Send Top Bid to Adserver
+  title: Guide to DFP Setup
   link: /adops/step-by-step.html
   isLastSubSectionItem: 0
   isHeader: 0

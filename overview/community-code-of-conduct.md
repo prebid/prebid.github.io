@@ -54,7 +54,7 @@ If you believe someone is violating the code of conduct, we ask that you report 
     + Repeated harassment of others. In general, if someone asks you to stop, then stop.
 + Be understanding. When we disagree, try to understand why. Disagreements, both social and technical, happen all the time. It is important that we resolve disagreements and differing views constructively. Remember that we’re all different. The strength of an open source project comes from its varied community, people from a wide range of backgrounds. Different people have different perspectives on issues. Being unable to understand why someone holds a viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human to err and blaming each other doesn’t get us anywhere. Instead, focus on helping to resolve issues and learning from mistakes.
 
-<font size="-1">(Text in the section above based on the [Django Code of Conduct](https://www.djangoproject.com/conduct/).)</font>
+<font size="-1">(Text in the section above based on the <a href="https://www.djangoproject.com/conduct/">Django Code of Conduct</a>)</font>
 
 ## Prebid Conduct Reporting Guide
 
@@ -105,7 +105,7 @@ Finally, the working group will make a report on the situation to the Prebid.org
 
 Any of the parties directly involved or affected can request reconsideration of the committee’s decision. To make such a request, contact the Prebid.org Board at board@prebid.org with your request and motivation and the board will review the case.
 
-<font size="-1">(Text in the section above based on the [Django Code of Conduct Reporting Guide](https://www.djangoproject.com/conduct/reporting/).)</font>
+<font size="-1">(Text in the section above based on the <a href="https://www.djangoproject.com/conduct/reporting/">Django Code of Conduct Reporting Guide</a>)</font>
 
 ## Further Reading
 

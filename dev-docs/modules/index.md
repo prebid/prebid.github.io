@@ -6,8 +6,7 @@ sidebarType: 1
 ---
 
 
-
-# Prebid.js Modules
+# Prebid.js Module Overview
 {:.no_toc}
 
 The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on or that covers a special case is being moved out into modules.  Examples of this kind of code include:

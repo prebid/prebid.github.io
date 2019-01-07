@@ -1,16 +1,11 @@
 ---
 layout: page_v2
-title: Logging & Troubleshooting
-description: Logging & Troubleshooting
-pid: 2
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-ios
+title: iOS Logging & Troubleshooting
+description: iOS Logging & Troubleshooting
 sidebarType: 2
 ---
 
-
-
-# Logging & Troubleshooting
+# iOS Logging & Troubleshooting
 {:.no_toc}
 
 To add Prebid Mobile logs for troubleshooting or to see successful bids simply import `PBLogging.h` and add the following code:

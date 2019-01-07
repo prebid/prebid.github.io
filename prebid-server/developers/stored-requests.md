@@ -7,7 +7,7 @@ title: Prebid Server | Developers | Stored Requests
 
 # Stored Requests
 
-This document gives a technical overview of the Stored Requests feature.
+This document gives a technical overview of the Prebid Server Stored Requests feature.
 
 Docs outlining the motivation and uses will be added sometime in the future.
 
