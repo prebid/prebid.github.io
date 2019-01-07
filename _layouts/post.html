@@ -20,8 +20,9 @@
                 <h2>{{page.title}}</h2> 
                 {{content}}
 
+		<hr>
                 <div class="blog-related-posts">
-                    <h4>You may also enjoy:</h4>
+                    <h4>Other blog posts:</h4>
                     <ul>
                         {% for p in site.posts %}
                             {% if p.id == page.id %}
@@ -31,31 +32,8 @@
                         {% endfor %}
                     </ul>
                 </div>
-
-            </div>
-
-            {% include disqus_addon.html %}
-
-        </div>
-
-        <div class="col-md-3">
-            <div class="bs-docs-sidebar hidden-print">
-
-                <h5>Related Posts</h5>
-                <ul class="nav bs-docs-sidenav">
-
-                    {% for p in site.posts %} 
-                        {% if p.id == page.id %} 
-                            {% continue %} 
-                        {% endif %}
-                        <li><a href="{{ p.url }}">{{ p.title }}</a></li>
-                    {% endfor %}
-
-                </ul>
-
             </div>
         </div>
     </div>
-
 </div>
 {% include footer.html %}
