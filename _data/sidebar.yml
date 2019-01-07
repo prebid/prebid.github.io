@@ -136,6 +136,14 @@
   isSectionHeader: 0
   subgroup: 0
 
+- sbSecId: 0
+  title: Managed Services
+  link: /prebid/managed.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 0
+
 #--------------Prebid.js--------------|
 
 - sbSecId: 1
@@ -172,7 +180,7 @@
 - sbSecId: 1
   title: Getting Started
   link: /dev-docs/getting-started.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -180,13 +188,76 @@
   
 - sbSecId: 1
   title: Examples
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: pbjsexamples
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Basic Example
   link: /dev-docs/examples/basic-example.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+
+- sbSecId: 1
+  title: Multi-Format Ads
+  link: /dev-docs/examples/multi-format-example.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Individual Ad Unit Refresh/Infinite Scroll
+  link: /dev-docs/examples/adunit-refresh.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Using Prebid.js with AppNexus Publisher Ad Server
+  link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Postbid Example
+  link: /dev-docs/examples/postbid.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Custom Price Granularity Buckets
+  link: /dev-docs/examples/custom-price-buckets.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Filter Sizes Dynamically with Labels
+  link: /dev-docs/examples/size-mapping.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
+  subgroup: 1
 
 - sbSecId: 1
   title: Troubleshooting
@@ -196,7 +267,7 @@
   headerId: troubleshooting
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 1
   title: Prebid.js FAQ
@@ -205,7 +276,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 1
   title: Dev Tips
@@ -214,7 +285,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 1
   title: Common Issues
@@ -223,16 +294,25 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 1
   title: Prebid.js Troubleshooting Guide
   link: /dev-docs/prebid-troubleshooting-guide.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 1
+  title: Browser Extension for Debugging
+  link: /debugging/debugging.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 1
   title: Reference
@@ -242,7 +322,7 @@
   headerId: reference
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 1
   title: Publisher API Reference
@@ -251,7 +331,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 1
   title: Ad Unit Reference
@@ -260,7 +340,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 1
   title: Bidder's Params
@@ -269,25 +349,16 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 1
   title: Prebid 1.0 Publisher API Changes
   link: /dev-docs/prebid-1.0-API.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 1
-  title: Prebid Modules
-  link: /dev-docs/modules/
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 1
   title: Adapters
@@ -297,7 +368,7 @@
   headerId: adapters
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 4
 
 - sbSecId: 1
   title: How To Add A New Bidder Adapter
@@ -306,7 +377,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 4
 
 - sbSecId: 1
   title: Integrate With The Prebid Analytics API
@@ -315,7 +386,89 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 3
+  subgroup: 4
+
+- sbSecId: 1
+  title: Prebid Modules
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: pbjsmodules
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Module Overview
+  link: /dev-docs/modules/index.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Currency
+  link: /dev-docs/modules/currency.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: DFP Express
+  link: /dev-docs/modules/dfp_express.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: DigiTrust
+  link: /dev-docs/modules/digitrust.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Server To Server Testing
+  link: /dev-docs/modules/s2sTesting.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: DFP Video
+  link: /dev-docs/modules/dfp_video.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Publisher Common ID
+  link: /dev-docs/modules/pubCommonId.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: GPDR Consent Management
+  link: /dev-docs/modules/consentManagement.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
 
 - sbSecId: 1
   title: External Interfaces
@@ -325,7 +478,7 @@
   headerId: external
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 4
+  subgroup: 6
 
 - sbSecId: 1
   title: Plugins
@@ -334,7 +487,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 4
+  subgroup: 6
 
 - sbSecId: 1
   title: Analytics
@@ -344,7 +497,7 @@
   headerId: analytics
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 5
+  subgroup: 7
 
 - sbSecId: 1
   title: Analytics For Prebid
@@ -353,7 +506,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 5
+  subgroup: 7
 
 - sbSecId: 1
   title: Prebid Analytics for GA
@@ -362,7 +515,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 5
+  subgroup: 7
 
 - sbSecId: 1
   title: Features
@@ -372,7 +525,25 @@
   headerId: features
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 6
+  subgroup: 8
+
+- sbSecId: 1
+  title: Native Ads
+  link: /dev-docs/show-native-ads.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: Multi-Format Ads
+  link: /dev-docs/show-multi-format-ads.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
 
 - sbSecId: 1
   title: Conditional Ad Units
@@ -381,7 +552,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 6
+  subgroup: 8
 
 - sbSecId: 1
   title: Post-Bid
@@ -390,7 +561,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 6
+  subgroup: 8
 
 
 #--------------Prebid Mobile--------------|
@@ -435,7 +606,16 @@
   subgroup: 0
 
 - sbSecId: 2
-  title: GDPR
+  title: Prebid AMP
+  link: /dev-docs/show-prebid-ads-on-amp-pages.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 2
+  title: GDPR and Mobile
   link: /prebid-mobile/gdpr.html
   isLastSubSectionItem: 1
   isHeader: 0
@@ -813,6 +993,24 @@
   subgroup: 0
 
 - sbSecId: 4
+  title: Show Video Ads with DFP
+  link: /dev-docs/show-video-with-a-dfp-video-tag.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 4
+  title: Outstream Video Ads
+  link: /dev-docs/show-outstream-video-ads.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 4
   title: Examples
   link:
   isLastSubSectionItem: 0
@@ -1009,95 +1207,6 @@
   sectionTitle:
   subgroup: 2
 
-
-#--------------Examples--------------|
-
-- sbSecId: 6
-  title: 
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 1
-  sectionTitle: Examples
-  sectionId: examples
-  subgroup: 1000
-  sbCollapseId: examples
-  
-- sbSecId: 6
-  title: Overview
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: examplesoverview
-  isSectionHeader: 0
-  sectionTitle: 
-  subgroup: 0
-
-- sbSecId: 6
-  title: Basic Example
-  link: /dev-docs/examples/basic-example.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle: 
-  subgroup: 0
-
-- sbSecId: 6
-  title: Multi-Format Ads
-  link: /dev-docs/examples/multi-format-example.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 6
-  title: Individual Ad Unit Refresh/Infinite Scroll
-  link: /dev-docs/examples/adunit-refresh.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 6
-  title: Using Prebid.js with AppNexus Publisher Ad Server
-  link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 6
-  title: Postbid Example
-  link: /dev-docs/examples/postbid.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 6
-  title: Custom Price Granularity Buckets
-  link: /dev-docs/examples/custom-price-buckets.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 6
-  title: Filter Sizes Dynamically with Labels
-  link: /dev-docs/examples/size-mapping.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-
-
 #--------------Formats--------------|
 
 - sbSecId: 7
@@ -1112,15 +1221,15 @@
   sbCollapseId: formats
   
 - sbSecId: 7
-  title: Overview
+  title: General
   link:
   isLastSubSectionItem: 0
   isHeader: 1
-  headerId: formatsoverview
+  headerId: general
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0 
-  
+
 - sbSecId: 7
   title: Overview
   link: /formats/formats.html
@@ -1176,101 +1285,6 @@
   sectionTitle:
   subgroup: 0 
   
- #--------------Modules--------------|
-  
-- sbSecId: 8
-  title: 
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 1
-  sectionTitle: Modules
-  sectionId: modules
-  subgroup: 1000
-  sbCollapseId: modules
-  
-- sbSecId: 8
-  title: Prebid.js Modules
-  link: 
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: prebidmodules
-  isSectionHeader: 0
-  sectionTitle: 
-  subgroup: 0
-  
-- sbSecId: 8
-  title: About Modules
-  link: /dev-docs/modules/
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-- sbSecId: 8
-  title: Currency
-  link: /dev-docs/modules/currency.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-- sbSecId: 8
-  title: DFP Express
-  link: /dev-docs/modules/dfp_express.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-- sbSecId: 8
-  title: DigiTrust
-  link: /dev-docs/modules/digitrust.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-- sbSecId: 8
-  title: Server To Server Testing
-  link: /dev-docs/modules/s2sTesting.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-- sbSecId: 8
-  title: DFP Video
-  link: /dev-docs/modules/dfp_video.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-- sbSecId: 8
-  title: Publisher Common ID
-  link: /dev-docs/modules/pubCommonId.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-  
-- sbSecId: 8
-  title: GPDR Consent Management
-  link: /dev-docs/modules/consentManagement.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
  #-------------- Support --------------|
   
 - sbSecId: 9

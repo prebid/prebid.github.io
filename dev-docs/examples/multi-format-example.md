@@ -2,9 +2,8 @@
 layout: example
 title: Multi-Format Ad Units
 description: Multi-Format Ad Units
-top_nav_section: dev_docs
-nav_section: quick-start
 hide: true
+sidebarType: 1
 
 about:
 - A multi-format ad unit allows you receive any combination of banner, video, or native demand
@@ -17,6 +16,4 @@ jsfiddle_link: jsfiddle.net/Prebid_Examples/u999cwtL/36/embedded/html,result
 
 code_height: 3050
 
-pid: 11
-sidebarType: 6
 ---

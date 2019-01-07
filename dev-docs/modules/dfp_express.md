@@ -2,12 +2,10 @@
 layout: page_v2
 title: Module - DFP Express
 description: Simplified installation mechanism for publishers that have GAM/DFP in their pages
-top_nav_section: dev_docs
-nav_section: modules
 module_code : express
 display_name : DFP Express
 enable_download : true
-sidebarType : 8
+sidebarType : 1
 ---
 
 

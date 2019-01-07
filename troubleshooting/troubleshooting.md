@@ -23,6 +23,7 @@ Developers
 
 + [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html)
 + [Developer Troubleshooting Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
++ [Debug Extension](/debugging/debugging.html)
 
 <hr>
 

@@ -2,12 +2,10 @@
 layout: page_v2
 title: Module - DFP Video
 description: Addition of DFP Video to the Prebid package
-top_nav_section: dev_docs
-nav_section: modules
 module_code : dfpAdServerVideo
 display_name : DFP Video
 enable_download : true
-sidebarType : 8
+sidebarType : 1
 ---
 
 

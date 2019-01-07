@@ -3,7 +3,7 @@ layout: page_v2
 title: Publisher API Reference - DEPRECATED
 description: Publisher API Reference for Prebid.js Header Bidding - DEPRECATED
 pid: 10
-sidebarType: 0
+sidebarType: 1
 ---
 
 <div class="bs-docs-section" markdown="1">
