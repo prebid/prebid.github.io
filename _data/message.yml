@@ -1,15 +1,5 @@
 #-------------Message----------------
 
-- messageId: 0
-  messageText: This is a test message
-  messageCreateDt: 01_08_2019
-  
 - messageId: 1
-  messageText: This is the second test message
+  messageText: Prebid.org has a new look! See the <a href="/blog/updated-website">blog entry</a> for more info.
   messageCreateDt: 01_08_2019
-  
-- messageId: 2
-  messageText: This is the third test message, it should be really long, you can add a < br ><br> tag to it to wrap it at a set point. 
-  messageCreateDt: 01_08_2019
- 
-  
