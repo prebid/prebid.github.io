@@ -87,11 +87,15 @@ There are several Javascript files, both expanded and minified versions of JQuer
 
 ***
 
-## Data Structures
+## Data Models
 
-**_dropdown_v2**
+The data files are stored in the __data directory. 
 
-The dropdown_v2 yml file is used to construct the top nav when the site is viewed on desktops and tablets. The yml is divided into menu sections. Menu sections are commented when they begin, for example; 
+### _dropdown_v2
+
+The dropdown_v2 yml file is used to construct the top nav when the site is viewed on desktops and tablets. 
+
+The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example; 
 
 #----------Product SubNav------------
 
@@ -119,7 +123,7 @@ Each menu item is represented in the yml map as a collection of key value pairs 
 
 the collection with the title property "What Is Prebid?" is a child of the collection directly above it with the sectionName "Overview"
 
-**Top Nav Menu Properties**  
+**Top Nav Menu Collection Properties**  
 *Note: A collection does not have to contain all properties.*
 
 | Key | Type | Example | Use |
@@ -136,6 +140,62 @@ isSubsectionStart | bool | 0 | Indicates if the item is the start of a subsectio
 
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
+
+### sidebar
+
+The sidebar yml file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when views on phones. 
+
+The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example; 
+
+#--------------Overview--------------|
+
+Each menu item is represented in the yml map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example:
+
+```Markdown
+#--------------Overview--------------|
+
+- sbSecId: 0
+  title: 
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Overview
+  sectionId: overview
+  subgroup: 1000
+  sbCollapseId: overview
+  
+  
+- sbSecId: 0
+  title: General
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: general
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 0
+  ```
+
+**Side Nav Menu Collection Properties**  
+*Note: A collection does not have to contain all properties.*
+
+| Key | Type | Example | Use |
+| --- | --- | --- | --- | --- |
+sbSecId |  int | 0  | Indicates the menu section of an item.
+title  |  string | General  | The text displayed for the menu section.
+link |  string | /overview/intro.html  | The relative link that the menu item opens.
+isLastSubSectionItem |  int | 0  | Indicates if the menu item is the last item in a sub section.
+isHeader |  int | 0  | Indicates if the menu item is a sub section header.
+headerId |  string | general  | Required if isHeader = 1. Used to identify which div object is being toggled.
+isSectionHeader |  int | 0  | Indicates if the menu item is a section header.
+sectionTitle |  string | Overview  | Text displayed for the section.
+sectionId |  string | overview  | Required if isHeader = 1. Used to identify which div object is being toggled. 
+subgroup |  int | 0  | Indicates the subgroup that contains this item. 
+sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled.
+
+
+
 
 
 

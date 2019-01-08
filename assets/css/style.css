@@ -509,7 +509,45 @@ button.list-group-item:focus {
 	height:3	0%;
 }
 
-	
+/**********Message****************/
+
+.pb-message-container { 
+	margin-top: 140px;
+	width:75%; 
+	margin-left:auto; 
+	margin-right:auto;
+	text-align: center;
+}
+
+.pb-message {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	background-color: white;
+	opacity: .8;
+	text-align: center;
+	padding: 5px;
+}
+
+.pb--empty-message { 
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	opacity: .8;
+	text-align: center;
+	padding: 5px;
+}
+
+.pb-message > h3 { 
+	color: #333333;
+	font-size:1.7vw;
+	font-family: 'Roboto', sans-serif;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 
 /*===========Benefits===================*/
 
@@ -517,7 +555,7 @@ button.list-group-item:focus {
 	background-color: #ffffff; 
 	width: 80%; 
 	padding-bottom: 40px; 
-	margin-top:440px;
+	margin-top:260px;
 	margin-left: auto; 
 	margin-right: auto;
 	opacity:.80;
@@ -947,23 +985,23 @@ button.list-group-item:focus {
 */
 
 /*small browsers*/
-	@media screen and (max-width: 1300px) { 
-		
-		.pb-top-text h1 { 
-			font-size:60px;
-		}
-		
-		.pb-top-text h2 {
-			font-size:30px;
-		}
-		
-		.pb-panel-title { 
-			font-size:33px;
-		}
-		
-		.slide { 
-			height: 140px;
-		}
+@media screen and (max-width: 1300px) { 
+	
+	.pb-top-text h1 { 
+		font-size:60px;
+	}
+	
+	.pb-top-text h2 {
+		font-size:30px;
+	}
+	
+	.pb-panel-title { 
+		font-size:33px;
+	}
+	
+	.slide { 
+		height: 140px;
+	}
 		
 		
 	} 
@@ -971,8 +1009,12 @@ button.list-group-item:focus {
 	/*iPad Pro*/
 	@media screen and (max-width: 1024px) { 
 		
+		.pb-message-container { 
+			margin-top: 100px;
+		}
+		
 		.pb_benefits { 
-			margin-top: 200px;
+			margin-top: 50px;
 		}
 		
 		.pb-benefits-panel { 
@@ -1023,7 +1065,7 @@ button.list-group-item:focus {
 		}
 		
 		.pb_benefits { 
-			margin-top: 160px;
+			margin-top: 50px;
 		}
 		
 		.pb_carousel_title { 
@@ -1057,14 +1099,13 @@ button.list-group-item:focus {
 			font-size:12px;
 		}
 		
+		.pb-home-links-panel { 
+			margin-top: -10px;
+		}
+		
 		.pb-outer-title { 
 			margin-top: 5px;
 		}
-
-		.pb-center-title { 
-			margin-top: 0px;
-		}
-
 		
 		.pb-home-links { 
 			margin-top:-10px;
@@ -1078,12 +1119,16 @@ button.list-group-item:focus {
 			font-size:14px;
 		}
 		
+		.pb-message-container { 
+			margin-top: 50px;
+		}
+				
 		.pb_benefits { 
-			margin-top: 60px;
+			margin-top: 20px;
 		}
 		
 		.pb_carousel_title { 
-			margin-top:0px;
+			margin-top:-10px;
 			margin-bottom:20px;
 		}
 
@@ -1134,6 +1179,10 @@ button.list-group-item:focus {
 			font-size:12px;
 		}
 		
+		.pb-home-links-panel { 
+			margin-top: -15px;
+		}
+		
 		.pb_benefits { 
 			margin-top: 40px;
 		}
@@ -1166,18 +1215,14 @@ button.list-group-item:focus {
 	/* iPhone 6, 7, 8 Galaxy S5 (different width) */
 	@media screen and (max-width: 360px) { 
 		
-		.pb-top-text { 
-			margin-top: 0;
-			
-		}
-		
 		.pb-top-text h1 { 
 			font-size:18px;
 		}
 		
-		.pb-top-text h2 {
+		.pb-top-text > h2 {
 			font-size:9px;
-			margin-top: -5px;
+			margin-top: 0px;
+			color: red;
 		}
 		
 		.pb-home-links-outer-panel { 

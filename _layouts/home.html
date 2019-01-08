@@ -52,6 +52,24 @@
 					</div>
 				</div>
 				
+				{% assign arrMsgs = site.data.message %}
+					
+				<div class="pb-message-container">
+					
+					{% if arrMsgs.size > 0 %}
+					<div class="pb-message">
+						
+						{% assign lastMsg = arrMsgs.last %}
+						<h3>{{lastMsg.messageText}}</h3>
+						
+					</div>
+					{% else %}
+					<div class="pb--empty-message">
+						
+					</div>
+					{% endif %}
+				</div>
+				
 				<!--start benefits-->
 				<div class="pb_benefits">
 					
