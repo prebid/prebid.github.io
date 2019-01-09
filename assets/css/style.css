@@ -1175,6 +1175,7 @@ button.list-group-item:focus {
 		
 		.pb-top-text h2 {
 			font-size:11px;
+			margin-top: 0px;
 		}
 		
 		.pb-panel-title { 
@@ -1224,7 +1225,6 @@ button.list-group-item:focus {
 		.pb-top-text > h2 {
 			font-size:9px;
 			margin-top: 0px;
-			color: red;
 		}
 		
 		.pb-home-links-outer-panel { 
