@@ -1,7 +1,7 @@
 # Prebid Website Maintenance Guide
 
 v 1.0  
-November 26, 2018
+Janurary 7, 2019
 
 ***
 
@@ -37,19 +37,18 @@ The _config.yml file (note underscore prefix) sets the base configuration for th
 
 ## Directory Structure
 
-Jekyll requires adherence to a certain directory structure in order to generate the site. Directories prefixed with an underscore contain files used to construct the site. For the Prebid site the following directories are used for its construction: 
+Jekyll requires adherence to a certain directory structure to generate the site. Directories prefixed with an underscore contain files used to construct the html files of the site. For the Prebid site the following directories are used: 
 
 **_data**  
-
 Jekyll designed specifically for blogging and not as a dynamic, data driven site. The data directory provides some ability to mimic a database struture. Files in this directory can be saved in either *json*, *yml* or *csv* format. For Prebid they have been saved in *yml*. 
 
 Learn more about YML [here](https://yaml.org/start.html)
 
-There are three yml files in the Prebid _data directory
+There are three YML files in the Prebid _data directory
 
-- dropdown_v2
-- sidebar
-- partners
+- [dropdown_v2](#Dropdown)
+- [sidebar](#Sidebar)
+- [messages](#Messages)
 
 The contents of these files are used in the Prebid site as key/value collections. 
 
@@ -71,6 +70,8 @@ The posts directory contains the files that are the content of the blog section 
 
 The bidders directory is a special use directory specifically for the Prebid site. In the _config.yml file there is a collections key, the value for this key represents directories whose contents are automatically generated into a key/value collection. It is similar to the data directory except each file represents one entry in the collection.
 
+The files in this directory are used to construct the table of partners on the partners.html page. 
+
 **_sites**
 
 The sites directory is created by Jekyll. It contains the live site generated from the collected files and data listed above, combined with the CSS, JS and image assets and the Markdown files for individual pages. 
@@ -81,9 +82,69 @@ The sites directory is created by Jekyll. It contains the live site generated fr
 
 The assets directory contains the CSS, Javascript, images and other assets used to create the site. 
 
-The base CSS file used is Bootstrap (version 3.7.1) Custome CSS and modifications to Bootstrap classes are contained in the style.css file. 
+The base CSS file used is Bootstrap (version 3.7.1) Custom CSS and modifications to Bootstrap classes are contained in the style.css file. 
 
-There are several Javascript files, both expanded and minified versions of JQuery and Bootstrap JS files are included in the assets directory, though the site only includes the minified versions in the header. 
+There are several Javascript files, both expanded and minified versions of JQuery and Bootstrap JS files are included in the assets directory, though the site only includes the minified versions in the header.
+
+### CSS
+
+**style.css**
+
+This file contains custom CSS classes and modifications to Bootstrap classes. The file is broken up into the various sections relating to navigaton, homepage and content pages.
+
+*Navbar*  
+The navbar class is a Bootstrap class. It controls the formatting of the top level navigation. Portions of it has been modified here specifically for Prebid formatting. 
+
+*Dropdown*  
+The dropdown class is a Boostrap class. It controls the formatting and functionality of the dropdown items of the top navigation. Portions of it has been modified here specifically for Prebid formatting.
+
+*Sidebar*  
+The sidebar class is a Boostrap class. It controls the formatting and functionality of the dropdown items of the top navigation. Portions of it has been modified here specifically for Prebid formatting. Additional custom classes have been created for specific formatting or functionality required by Prebid. 
+
+*Homepage*  
+The classes in the homepage secton are custom classes created to format the top portion of the Prebid website homepage. 
+
+*Container*  
+A custom container class created for the Prebid website. 
+
+*Hover Effect*  
+A custom series of classes created to control the formatting the functionalty of the icon buttons on the Prebid website homepage. 
+
+*Message*
+A custom series of classes created to control the formatting of the message box on the Prebid website homepage. 
+
+*Benfits*
+A custom series of classes created to control the formatting of the benefits section of the Prebid website homepage. 
+
+*Carousel*  
+The carousel class is a Bootstrap class. It controls the formatting and functionality of the carousel displayed on the homepage. Portions of it has been modified here specifically for Prebid formatting. Additional custom classes have been created for specific formatting or functionality required by Prebid. 
+
+*Partners*  
+A custom series of classes created to control the formatting of the partners page. 
+
+*Blog*  
+A custom series of classes created to control the formatting of the blog pages.
+
+*Content Pages*  
+A custom series of classes created to control the formatting of the content on the interior pages.
+
+*Footer*  
+A custom series of classes created to control the formatting of the footer.
+
+**Responsivenes**
+
+The CSS file has multiple @media sections that handle the formatting of the website pages at specific screen widths. Those widths (in pixels) are:
+
+| Width | Device | 
+| --- | --- | 
+| 1300 | Small browsers |
+| 1024 | Large tablets e.g. iPadPro |
+| 768 | Regular tablets e.g. iPads |
+| 414 | Large phones e.g. iPhone 8 Plus |
+| 375 | Newer phones e.g. iPhone X |
+| 360 | Older phones e.g. Galaxy S5 |
+| 320 | Very old phones e.g. iPhone 5 |
+
 
 ***
 
@@ -91,15 +152,15 @@ There are several Javascript files, both expanded and minified versions of JQuer
 
 The data files are stored in the __data directory. 
 
-### _dropdown_v2
+### Dropdown
 
-The dropdown_v2 yml file is used to construct the top nav when the site is viewed on desktops and tablets. 
+The dropdown_v2 YML file is used to construct the top nav when the site is viewed on desktops and tablets. 
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example; 
 
 #----------Product SubNav------------
 
-Each menu item is represented in the yml map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example: 
+Each menu item is represented in the YML map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example: 
 
 ```Markdown
 #-----------Overview---------------
@@ -141,15 +202,15 @@ isSubsectionStart | bool | 0 | Indicates if the item is the start of a subsectio
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
 
-### sidebar
+### Sidebar
 
-The sidebar yml file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when views on phones. 
+The sidebar YML file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when views on phones. 
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example; 
 
 #--------------Overview--------------|
 
-Each menu item is represented in the yml map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example:
+Each menu item is represented in the YML map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example:
 
 ```Markdown
 #--------------Overview--------------|
@@ -194,6 +255,26 @@ sectionId |  string | overview  | Required if isHeader = 1. Used to identify whi
 subgroup |  int | 0  | Indicates the subgroup that contains this item. 
 sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled.
 
+**Code Use**  
+This data file is read in the page_v2.html file using Liquid. (__layouts/page_v2.html).
+
+### Messages
+
+The messsages YML file is used to construct the message displayed on the Prebid homepage. Each message is represented in the YML map as a collection of key value pairs, each collection is prefixed with a dash (-). 
+
+```Markdown
+- messageId: 1
+  messageText: Prebid.org has a new look! See the <a href="/blog/updated-website">blog entry</a> for more info.
+  messageCreateDt: 01_08_2019
+  ```
+| Key | Type | Example | Use |
+| --- | --- | --- | --- | --- |
+| messageId | int | 0 | A unique identifier for each message |
+| messageText | string | A message | The displayed text |
+| messageCreateDt | string | 01_08_2019 | Date the message was created, for historical purposes. 
+
+**Code Use**  
+This data file is read in the home.html file using Liquid. (__layouts/home.html). 
 
 
 
