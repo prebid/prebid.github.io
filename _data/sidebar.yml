@@ -380,7 +380,7 @@
   subgroup: 4
 
 - sbSecId: 1
-  title: How To Add A New Bidder Adapter
+  title: How to Add a Bidder Adapter
   link: /dev-docs/bidder-adaptor.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -389,7 +389,7 @@
   subgroup: 4
 
 - sbSecId: 1
-  title: How To Add an Analytics Adapter
+  title: How to Add an Analytics Adapter
   link: /dev-docs/integrate-with-the-prebid-analytics-api.html
   isLastSubSectionItem: 1
   isHeader: 0
