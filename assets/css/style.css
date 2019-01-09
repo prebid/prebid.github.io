@@ -386,6 +386,8 @@ button.list-group-item:focus {
 	width: 66%;
 	margin-right: auto;
 	margin-left: auto;
+	-webkit-text-fill-color: rgba(255, 255, 255, 1); 
+   	-webkit-opacity: 1; 
 }
 
 .pb-panel-title { 
