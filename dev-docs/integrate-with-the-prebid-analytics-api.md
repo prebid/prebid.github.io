@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Integrate with the Prebid Analytics API
-description: Integrate with the Prebid Analytics API
+title: How to Add an Analytics Adapter
+description: How to add an analytics adapter
 pid: 28
 top_nav_section: dev_docs
 nav_section: adapters
@@ -11,7 +11,7 @@ sidebarType: 1
 
 
 
-# Integrate with the Prebid Analytics API
+# How to Add an Analytics Adapter
 {:.no_toc}
 
 The Prebid Analytics API provides a way to get analytics data from `Prebid.js` and send it to the analytics provider of your choice, such as Google Analytics.  Because it's an open source API, you can write an adapter to send analytics data to any provider you like.  Integrating with the Prebid Analytics API has the following benefits:

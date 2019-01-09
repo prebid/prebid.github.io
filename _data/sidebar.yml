@@ -389,7 +389,7 @@
   subgroup: 4
 
 - sbSecId: 1
-  title: Integrate With The Prebid Analytics API
+  title: How To Add an Analytics Adapter
   link: /dev-docs/integrate-with-the-prebid-analytics-api.html
   isLastSubSectionItem: 1
   isHeader: 0
