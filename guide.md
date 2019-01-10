@@ -1,3 +1,14 @@
+---
+layout: page_v2
+title: About Prebid.js
+description: How prebid.js was started and what is it about
+pid: 60
+isNew: false
+hide: true
+isNavParent: true
+sidebarType: 0
+---
+
 # Prebid Website Maintenance Guide
 
 v 1.0  
@@ -50,9 +61,8 @@ There are three YML files in the Prebid _data directory
 - [sidebar](#Sidebar)
 - [messages](#Messages)
 
-The contents of these files are used in the Prebid site as key/value collections. 
+The contents of these files are used throughout the Prebid site for dynamically creating the navigation and displaying messages. 
 
-See the **Data Structure** section for a review on how the data is structured and sample code. 
 
 **_layouts**  
 
@@ -197,7 +207,7 @@ hasSubMenus | bool | 1 | Indicates if this item has submenus.
 submenus | collection | | If the item has submenus they will be contained in a collection of collections. 
 subsectionId | int | 0 | Indicates the subsection of an item. 
 needsDivider | bool | 0 | Indicates if the subsection item is the last item in the section and requires a divider. **Deprecated**
-isSubsectionStart | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated**
+isSubsectionStart  | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated**
 
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
