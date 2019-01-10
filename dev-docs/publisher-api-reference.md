@@ -1431,7 +1431,11 @@ pbjs.setConfig({
         timeout: 1000,
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+        adapterOptions: {
+            rubicon: { key: 'value' },
+            appnexus: { key: 'value' }
+        }
     }
 })
 {% endhighlight %}
@@ -1450,6 +1454,7 @@ Additional information of these properties:
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
+| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
 
 **Additional Notes on s2sConfig properties**
 
