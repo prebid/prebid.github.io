@@ -29,6 +29,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
+  * [.getNoBids()](#module_pbjs.getNoBids)
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
@@ -163,7 +164,7 @@ This function returns the bid responses at the given moment.
 | `native`  | Object  | Contains native key value pairs. | `{ "title": "", "body": "" }` |
 | `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
 | `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
-| `ttl`  | Integer  | How long (in milliseconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
+| `ttl`  | Integer  | How long (in seconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
@@ -442,6 +443,16 @@ Use this method to get all of the bids that have won their respective auctions b
 
 <hr class="full-rule">
 
+<a name="module_pbjs.getNoBids"></a>
+
+### pbjs.getNoBids() ⇒ `Array`
+
+Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](http://prebid.org/dev-docs/troubleshooting-tips.html).
+
++ `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
+
+<hr class="full-rule">
+
 <a name="module_pbjs.setTargetingForGPTAsync"></a>
 
 ### pbjs.setTargetingForGPTAsync([codeArr])
@@ -462,7 +473,7 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 
 ### pbjs.setTargetingForAst()
 
-Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/JAUIBQ)) ad units.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
+Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad units.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -1420,7 +1431,11 @@ pbjs.setConfig({
         timeout: 1000,
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+        adapterOptions: {
+            rubicon: { key: 'value' },
+            appnexus: { key: 'value' }
+        }
     }
 })
 {% endhighlight %}
@@ -1432,15 +1447,20 @@ Additional information of these properties:
 |------------+---------+---------+---------------------------------------------------------------|
 | `accountId` | Required | String | Your Prebid Server account ID |
 | `bidders` | Required | Array of Strings | Which bidders support auctions on the server side |
-| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.*  Individual properties can be overridden by including them in the config along with this setting. |
+| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
-| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. |
+| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
+| `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
+| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
 
-*Currently supported vendors are: appnexus & rubicon
-*Note - When using defaultVendor option, accountId and bidders properties still need to be defined.
+**Additional Notes on s2sConfig properties**
+
+- Currently supported vendors are: appnexus & rubicon
+- When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
+- If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
@@ -1599,7 +1619,7 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 * Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the `filterSettings` object)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
-When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
+When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
@@ -1631,6 +1651,15 @@ To set size configuration rules, pass in `sizeConfig` as follows:
 
 pbjs.setConfig({
     sizeConfig: [{
+        'mediaQuery': '(min-width: 1600px)',
+        'sizesSupported': [
+            [1000, 300],
+            [970, 90],
+            [728, 90],
+            [300, 250]
+        ],
+        'labels': ['desktop-hd']
+    }, {
         'mediaQuery': '(min-width: 1200px)',
         'sizesSupported': [
             [970, 90],
@@ -1691,6 +1720,9 @@ Only one conditional may be specified on a given AdUnit or bid -- if both `label
 
 {: .alert.alert-warning :}
 If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`.
+
+{: .alert.alert-warning :}
+It is important to note that labels do not act as filters for sizeConfig. In the example above, using a screen of 1600px wide and `labelAll:["desktop"]` will *not* filter out sizes defined in the `desktop-hd` sizeConfig. Labels in sizeConfig are only used for selecting or de-selecting AdUnits and AdUnit.bids.
 
 Label targeting on the ad unit looks like the following:
 

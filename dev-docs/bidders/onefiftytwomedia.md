@@ -1,30 +1,32 @@
 ---
 layout: bidder
-title: Adtelligent
-description: Prebid Adtelligent Bidder Adaptor
+title: 152 Media 3.0
+description: Prebid 152 Media RTB Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 hide: true
-biddercode: adtelligent
-biddercode_longer_than_12: false
+biddercode: onefiftytwomedia
+aliasCode: adtelligent
+biddercode_longer_than_12: true
 prebid_1_0_supported : true
-gdpr_supported: true
-media_types: video
+media_types: banner, video
 ---
+
+#### send-all-bids ad server keys
+
+(Truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
+
+`hb_pb_onefiftytwomed`
+`hb_adid_onefiftytwom`
+`hb_size_onefiftytwom`
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
+| `aid` | required | The source ID | `350975` | `integer` |
 
-
-### Description
-Get access to multiple demand partners across Adtelligent AdExchange and maximize your yield with Adtelligent header bidding adapter.
-
-Adtelligent header bidding adapter connects with Adtelligent demand sources in order to fetch bids.
-This adapter provides a solution for accessing Video demand and display demand
 
 ### Test Parameters
 ```
@@ -40,7 +42,7 @@ This adapter provides a solution for accessing Video demand and display demand
           }
         },
         bids: [{
-          bidder: 'adtelligent',
+          bidder: 'onefiftytwomedia',
           params: {
             aid: 331133
           }
@@ -57,7 +59,7 @@ This adapter provides a solution for accessing Video demand and display demand
           }
         },
         bids: [{
-          bidder: 'adtelligent',
+          bidder: 'onefiftytwomedia',
           params: {
             aid: 331133
           }
@@ -69,7 +71,7 @@ This adapter provides a solution for accessing Video demand and display demand
         code: 'div-test-div',
         sizes: [[300, 250]],
         bids: [{
-          bidder: 'adtelligent',
+          bidder: 'onefiftytwomedia',
           params: {
             aid: 350975
           }

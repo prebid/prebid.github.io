@@ -205,7 +205,7 @@ The following example includes a transparent image as a placeholder which will a
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
+  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 
