@@ -12,11 +12,6 @@ media_types: banner
 gdpr_supported: false
 
 ---
-### "Send All Bids" Ad Server Keys:
-
-`hb_pb_synacormedia`
-`hb_adid_synacormedia`
-`hb_size_synacormedia`
 
 ### Note:
 
