@@ -1432,7 +1432,11 @@ pbjs.setConfig({
         timeout: 1000,
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+        adapterOptions: {
+            rubicon: { key: 'value' },
+            appnexus: { key: 'value' }
+        }
     }
 })
 {% endhighlight %}
@@ -1451,6 +1455,7 @@ Additional information of these properties:
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
+| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
 
 **Additional Notes on s2sConfig properties**
 
@@ -1615,7 +1620,7 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 * Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the `filterSettings` object)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
-When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
+When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
