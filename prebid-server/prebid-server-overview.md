@@ -28,7 +28,7 @@ If you decide to implement your own Prebid Server solution, you can [download th
 
 Prebid.org provides a full list of [Prebid Server bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html), including various details about parameters and open issues.
 
-You can also find [additional information]({{site.baseurl}}/prebid-server/pbs-bidder-info.html) for some of the Prebid Server bidders that will help you with your implementation.
+You can also find [additional information]({{site.baseurl}}/prebid-server/developers/pbs-bidder-info.html) for some of the Prebid Server bidders that will help you with your implementation.
 
 ## Endpoints
 
