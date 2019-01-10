@@ -29,7 +29,7 @@ A [new UI](/download.html) to customize Prebid.js with the adaptor you choose:
 
 <br>
 
-![Prebid.js Customize Download UI]({{ site.github.url }}/assets/images/blog/prebid-download-ui.png)
+![Prebid.js Customize Download UI]({{ site.github.url }}/assets/images/blog/prebid-download-ui.png){: .pb-lg-img }
 
 <br>
 

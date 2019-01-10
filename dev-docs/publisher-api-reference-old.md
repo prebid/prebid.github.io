@@ -1,8 +1,9 @@
 ---
-layout: page
+layout: page_v2
 title: Publisher API Reference - DEPRECATED
 description: Publisher API Reference for Prebid.js Header Bidding - DEPRECATED
 pid: 10
+sidebarType: 1
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -878,7 +879,7 @@ bid along with all non-CPM bids, just specify this flag and the adapter-specific
 
 ##### 2.2. adserverTargeting
 
-As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
+As described in the [AdOps documentation]({{site.baseurl}}/overview/getting-started.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both scenarios are described below.
@@ -896,7 +897,7 @@ The key value pair targeting is applied to the bid's corresponding ad unit. Your
    transition period where both of these values are provided to the ad server.
    Please begin converting video creatives to use `hb_cache_id`.
 
-If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
+If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/overview/getting-started.html) documentation for more information.
 
 <a name="bidderSettingsDefault"></a>
 <a name="default-keywords">

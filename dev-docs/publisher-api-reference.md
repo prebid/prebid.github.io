@@ -1,13 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Publisher API Reference
 description: Publisher API Reference for Prebid.js Header Bidding
 top_nav_section: dev_docs
 nav_section: reference
-pid: 1
+pid: 10
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Publisher API Reference
 
@@ -427,7 +428,7 @@ Use this method to retrieve an array of winning bids.
 
 ### pbjs.getAllWinningBids() ⇒ `Array`
 
-Use this method to get all of the bids that have won their respective auctions and also rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+Use this method to get all of the bids that have won their respective auctions and also rendered on the page.  Useful for [troubleshooting your integration]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html).
 
 + `pbjs.getAllWinningBids()`: returns an array of bid objects that have won their respective auctions and also rendered on the page.
 
@@ -437,7 +438,7 @@ Use this method to get all of the bids that have won their respective auctions a
 
 ### pbjs.getAllPrebidWinningBids() ⇒ `Array`
 
-Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html).
 
 + `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
 
@@ -835,7 +836,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 
 ##### 2.1. adserverTargeting
 
-As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
+As described in the [AdOps documentation]({{site.baseurl}}/adops/before-you-start.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both scenarios are described below.
@@ -851,7 +852,7 @@ Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_sourc
 In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
 
-If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
+If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
 
 <a name="bidderSettingsDefault"></a>
 <a name="default-keywords">
@@ -1942,4 +1943,4 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
 
-</div>
+

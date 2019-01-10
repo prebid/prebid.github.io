@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Plugin Integration with Brightcove Player Using Brightcove Player Studio
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: pugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Plugin Integration with Brightcove Player Using Brightcove Player Studio
 
@@ -131,7 +131,7 @@ Example:
     ```
     // create the options object
     var adOptions =
-    {"prebidPath": "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    {"prebidPath": "//files.prebid.org/prebid-org.js",
         "biddersSpec": {
             ”code": "my-video-tag",
             "sizes": [640,480],
@@ -253,7 +253,7 @@ None
 
 ```
 {
-    "prebidPath": "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    "prebidPath": "//files.prebid.org/prebid-org.js",
     "bidderAliases": [
         {
             "name": "alias1",
@@ -410,4 +410,4 @@ Information about the plugin API can be found at **[Prebid Plugin for Brightcove
 
 Details about the options supported by the Brightcove Prebid Plugin can be found at:   **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html)**
 
-</div>
+

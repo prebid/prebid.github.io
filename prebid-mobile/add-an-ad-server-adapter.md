@@ -1,13 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Add an Ad Server Adapter
 description: Add an Ad Server Adapter
 pid: 0
 top_nav_section: prebid-mobile
-nav_section: prebid-mobile-contributors 
+nav_section: prebid-mobile-contributors
+sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Add an Ad Server Adapter
 {:.no_toc}
@@ -25,4 +26,4 @@ Contributors should visit Github to learn how to contribute to Prebid Mobile.
 [The Android source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-mobile-android)
 
 
-</div>
+

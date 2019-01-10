@@ -1,10 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Get Started with Prebid Server
 description: Get Started with Prebid Server
 pid: 27
 top_nav_section: dev_docs
 nav_section: prebid-server
+sidebarType: 5
+
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -124,7 +126,7 @@ If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, s
 
 {: .alert.alert-info :}
 **Aliasing Prebid Server only bidders**
-If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
+If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
 
 <a name="prebid-server-video-openrtb" />
 

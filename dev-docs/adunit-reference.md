@@ -1,13 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Ad Unit Reference
 description: Ad Unit Reference
 top_nav_section: dev_docs
 nav_section: reference
-pid: 2
+pid: 10
+sidebarType: 1
 ---
-
-<div class="bs-docs-section" markdown="1">
 
 # Ad Unit Reference
 {:.no_toc}
@@ -409,7 +408,7 @@ pbjs.addAdUnits([{
 + [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
 + [Prebid.org Native Examples]({{site.baseurl}}/examples/native/)
 
-</div>
+
 
 <!-- Reference Links -->
 

@@ -1,16 +1,11 @@
 ---
-layout: page
-title: Targeting Parameters
-description: Add Targeting Parameters
-pid: 1
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-ios
+layout: page_v2
+title: iOS Targeting Parameters
+description: Add iOS Targeting Parameters
+sidebarType: 2
 ---
 
-
-<div class="bs-docs-section" markdown="1">
-
-# Targeting Parameters
+# iOS Targeting Parameters
 
 ## User location
 
@@ -104,4 +99,3 @@ Enable publishers to set the consent string.
 Prebid mobile also checks if the values are present in the [NSUserDefaults](https://developer.apple.com/documentation/foundation/nsuserdefaults#1664798?language=objc) keys specified by the IAB. If the values are also set in these objects they will be passed in the OpenRTB request object.
 
 
-</div>

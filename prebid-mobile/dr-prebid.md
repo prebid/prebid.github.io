@@ -1,13 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Dr. Prebid App
 description: How to Use the Dr. Prebid App
 pid: 4
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
+sidebarType: 2
 ---
-
-<div class="bs-docs-section" markdown="1">
 
 # Dr. Prebid
 
@@ -30,8 +29,7 @@ Enter your test values on the Dr. Prebid Setup screen.
 
 **Dr. Prebid Setup Screen**
 
-{: .pb-img.pb-lg-img :}
-![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-setup.png)
+![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-setup.png){: .pb-sm-img :}
 
 The following are descriptions of the fields available in Dr. Prebid. Tap on a field to change its value. All fields are required.
 
@@ -123,8 +121,7 @@ After you’ve entered all the values on the **Setup** screen, tap **Run Tests**
 
 **Validation Test Summary Screen**
 
-{: .pb-img.pb-lg-img :}
-![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-summary.png)
+![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-summary.png){: .pb-sm-img :}
 
 Three validation tests are performed: Ad Server Setup, Real-Time Demand, and End-to-End SDK Configuration. Each test will be displayed with either a green check mark (passed) or a red X (failed).
 
@@ -259,7 +256,6 @@ Here are some more specific things to look for and actions to take based on whic
 
 ## Further Reading
 
-- [Prebid Mobile Overview]({{site.github.url}}/prebid-mobile/prebid-mobile.html)
-- [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html)
-- [Code Integration for iOS]({{site.github.url}}/prebid-mobile/code-integration-ios.html)
-- [AdOps – Before You Start]({{site.github.url}}/adops.html)
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html)
+- [AdOps – Before You Start](/adops.html)

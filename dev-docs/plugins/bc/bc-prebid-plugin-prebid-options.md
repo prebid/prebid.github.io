@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Options Supported by the Brightcove Prebid Plugin
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Options Supported by the Brightcove Prebid Plugin
 
@@ -526,3 +526,4 @@ Sample implementations are provided at:
 - **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>
+

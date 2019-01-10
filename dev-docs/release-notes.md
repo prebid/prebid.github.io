@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Release Notes
 description: Release Notes
 pid: 6

@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice
 description: European Ad Inventory Overview
 pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
+sidebarType: 2
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice
 
@@ -45,4 +46,3 @@ All vendor SDKs (including mediation SDKs) are responsible for looking up approv
 -   [iOS API Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios.html)
 
 
-</div>

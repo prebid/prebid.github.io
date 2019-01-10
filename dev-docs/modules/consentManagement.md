@@ -1,15 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Module - GDPR ConsentManagement
 description: Add on module to consume and distribute consent information to bidder adapters
-top_nav_section: dev_docs
-nav_section: modules
 module_code : consentManagement
 display_name : GDPR ConsentManagement
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # GDPR ConsentManagement Module
 {: .no_toc }
@@ -332,4 +331,4 @@ Below is a list of Adapters that currently support GDPR:
 {% endfor %}
 </div>
 
-</div>
+

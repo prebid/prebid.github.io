@@ -1,12 +1,8 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Management Committees
 description: Committees for the sub-projects of Prebid Org
-sidebarType: 2
-pid: 3
-is_top_nav: yeah
-top_nav_section: overview
-nav_section: intro
+sidebarType: 0
 ---
 
 # Project Management Committees

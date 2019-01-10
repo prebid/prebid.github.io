@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player
 description: Overview
 top_nav_section: dev_docs
@@ -8,7 +8,7 @@ is_top_nav: yeah
 pid: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Plugin for Brightcove (Videojs) Player
 
@@ -281,3 +281,4 @@ Sample implementations are provided at:
 - **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>
+

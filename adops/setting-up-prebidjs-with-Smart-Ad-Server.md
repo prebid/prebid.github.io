@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid.js with Smart Ad Server
 head_title: Setting up Prebid.js with Smart Ad Server
 description: Setting up Prebid.js with Smart Ad Server
@@ -7,9 +7,11 @@ pid: 3
 hide: false
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
+
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 # Setting up Prebid.js with Smart Ad Server
 ## Introduction
 This article describes the basic steps to set up Prebid.js with Smart Ad Server.
@@ -61,4 +63,3 @@ For more details, read [here](https://support.smartadserver.com/s/article/Holist
 Read these articles to learn more about the available header bidding reporting:
 - [Holistic Dashboard](https://support.smartadserver.com/s/article/Holistic-dashboard) - provides a fast and easy overview of basic metrics by delivery channel and RTB product.
 - [Big Data Reports](https://support.smartadserver.com/s/article/Holistic-Setup#bdr) - provides full, in-depth reporting with header bidding related dimensions and metrics.
-</div>

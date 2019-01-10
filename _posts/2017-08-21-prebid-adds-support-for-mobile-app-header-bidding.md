@@ -8,8 +8,7 @@ permalink: /blog/prebid-adds-support-for-mobile-app-header-bidding
 
 Last week, the [prebid-mobile-android](https://github.com/prebid/prebid-mobile-android) and [prebid-mobile-ios](https://github.com/prebid/prebid-mobile-ios) repositories were open-sourced under the Prebid GitHub project. The addition of these libraries marks another milestone for Prebid, representing its first formal steps towards providing an end-to-end open-source header bidding solution for mobile app publishers.
 
-{: .pb-img.pb-md-img :}
-![Prebid Mobile - Banner and Interstitial Ads running on iOS]({{site.baseurl}}/assets/images/blog/prebid-mobile-ios-banner-and-interstitial.png)
+![Prebid Mobile - Banner and Interstitial Ads running on iOS]({{site.baseurl}}/assets/images/blog/prebid-mobile-ios-banner-and-interstitial.png){: .pb-md-img :}
 
 ## Why Should I Be Interested in Prebid Mobile?
 
@@ -25,8 +24,7 @@ Major benefits include:
 
 ## How Prebid Mobile Works
 
-{: .pb-img.pb-lg-img :}
-![How Prebid Mobile Works]({{site.baseurl}}/assets/images/blog/prebid-mobile-how-it-works.png)
+![How Prebid Mobile Works]({{site.baseurl}}/assets/images/blog/prebid-mobile-how-it-works.png){: .pb-lg-img :}
 
 ### Initial Setup
 
@@ -34,8 +32,7 @@ Mobile developers register each ad unit with the Prebid Mobile framework (ideall
 
 In parallel, the publisher ad ops team will configure Prebid Mobile line items and creatives in the primary ad server targeted to Prebid key/values. This ad ops setup is nearly identical to Prebid.js for web and should be familiar for publishers that have integrated.
 
-{: .pb-img.pb-lg-img :}
-![Prebid Server Config Page]({{site.baseurl}}/assets/images/blog/prebid-server-config-page.png)
+![Prebid Server Config Page]({{site.baseurl}}/assets/images/blog/prebid-server-config-page.png){: .pb-lg-img :}
 
 ### In the App
 

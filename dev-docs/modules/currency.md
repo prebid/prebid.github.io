@@ -1,22 +1,22 @@
 ---
-layout: page
+layout: page_v2
 title: Module - Currency
 description: Converts bids to the ad server currency
-top_nav_section: dev_docs
-nav_section: modules
 module_code : currency
 display_name : Currency
 enable_download : true
+sidebarType : 1
+
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Currency Module
 {:.no_toc}
 
 This module supports the conversion of multiple bidder currencies into a single currency
 used by the publisher's ad server. In previous versions of Prebid, this was accomplished
-by using [BidderSettings.bidCpmAdjustment](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings), but that's a static value not changed except when
+by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings), but that's a static value not changed except when
 the web development team makes a manual update.
 
 Publishers may continue to use the bidCpmAdjustment approach, or may begin using this optional module, gaining automatic updates as currency exchange rates fluctuate. Here's how it works at a high level:
@@ -33,7 +33,7 @@ be provided in the page.
 
 The numbered circles in this diagram are explained below.
 
-![Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png)
+![Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png){:class="pb-lg-img"}
 
 
 ### 1. Line Item Creation
@@ -317,4 +317,4 @@ If there's a currency conversion you need that's not included, there are several
 1. Build and host a currency conversion file that includes the desired currencies
 1. Find a reliable, free, no-strings source of conversation data that we can integrate into our hosted file, then post an issue on the github forum.
 
-</div>
+
