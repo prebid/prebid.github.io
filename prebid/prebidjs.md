@@ -55,9 +55,9 @@ Analytics adapters are relatively new, but offer the ability to learn more about
 Prebid.js Modules also plug into the Prebid.js Core. They add functionality not present
 in the Core that not every publisher needs. Example modules:
 
-+ GDPR support (the [consentManagement]({{site.baseurl}}/dev-docs/modules/consentmanagement.html) module)
++ GDPR support (the [consentManagement]({{site.baseurl}}/dev-docs/modules/consentManagement.html) module)
 + currency conversion (the [currency]({{site.baseurl}}/dev-docs/modules/currency.html) module)
-+ Server-to-server testing (the [s2sTest]({{site.baseurl}}/dev-docs/modules/s2stesting.html) module)
++ Server-to-server testing (the [s2sTest]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) module)
 + ... others
 
 ## Further Reading

@@ -11,7 +11,7 @@ prebid_1_0_supported : true
 ---
 
 ### Note:
-For more information about [LKQD Ad Serving and Management](http://www.lkqd.com/ad-serving-and-management/), please contact [info@lkqd.com](info@lkqd.com).
+For more information about [LKQD Ad Serving and Management](http://www.lkqd.com/ad-serving-and-management/), please contact info@lkqd.com.
 
 ### bid params
 
