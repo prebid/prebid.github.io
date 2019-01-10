@@ -1,14 +1,14 @@
 ---
 layout: bidder
-title: Clean Media
-description: Prebid CleanMedia Bidder Adaptor
+title: Gambid
+description: Prebid Gambid Bidder Adaptor
 
 top_nav_section: dev_docs
 nav_section: reference
 
 hide: true
 
-biddercode: cleanmedia
+biddercode: gambid
 
 biddercode_longer_than_12: false
 ---
@@ -20,4 +20,5 @@ biddercode_longer_than_12: false
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
 
-CleanMedia is an aliased bidder for Gamoshi
+Gambid is an aliased bidder for Gamoshi
+
