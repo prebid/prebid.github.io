@@ -21,4 +21,4 @@ benefit from implementation improvements.
 Further Reading
 
 + [Prebid.js Troubleshooting Guide]({{site.github.url}}/dev-docs/prebid-troubleshooting-guide.html)
-+ [Prebid.js Troubleshooting Tips]({{site.github.url}}/dev-docs/prebid-troubleshooting-tips.html)
++ [Prebid.js Troubleshooting Tips]({{site.github.url}}/dev-docs/troubleshooting-tips.html)

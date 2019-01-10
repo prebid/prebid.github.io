@@ -73,6 +73,6 @@ Chair: Roy Firestone
 ## Further Reading
 
 * [What is Prebid.org?]({{site.baseurl}}/overview/what-is-prebid-org.html)
-* [Prebid Org Membership]({{site.baseurl}}/overview/prebid-members.html)
+* [Prebid Org Members and Partners]({{site.baseurl}}/partners/partners.html)
 
 

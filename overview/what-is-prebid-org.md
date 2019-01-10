@@ -23,9 +23,8 @@ To obtain more information about becoming a member of Prebid.org, email membersh
 
 Read more here:
 
-* [Prebid.org Members](/overview/prebid-members.html)
+* [Prebid.org Members and Partners](/partners/partners.html)
 * [Prebid.org press release](https://www.appnexus.com/en/company/news-and-events/press-releases/news-2017-0911)
 * [The Drum reporting on Prebid.org](http://www.thedrum.com/news/2017/09/11/appnexus-and-rubicon-project-launch-prebidorg-hailing-open-source-approach-header)
-* [Q&A about Prebid.org](http://blog.appnexus.com/2017/prebid-org-explained-interview-michael-richardson/)
 * [Current members of Prebid.org]({{site.baseurl}}/partners/partners.html)
 
