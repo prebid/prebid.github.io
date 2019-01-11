@@ -45,7 +45,7 @@ Full documentation is available for all Prebid Server endpoints:
 
 ## Additional Developer Information
 
-- [Add a New Analytics Module]({{site.baseurl}}/prebid-server/developers/add-a-new-analytics-module.html)  
+- [Add a New Analytics Module]({{site.baseurl}}/prebid-server/developers/add-new-analytics-module.html)  
   Description, including and example, of how to add an analytics module to Prebid Server.
 
 - [Add a New Bidder]({{site.baseurl}}/prebid-server/developers/add-new-bidder.html)  
