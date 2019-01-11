@@ -1,5 +1,6 @@
 ---
 layout: page_v2
+page_type: module
 title: Module - Server-to-Server Testing
 description: Adds A/B test support to ease analysis of server-side header bidding
 module_code : s2sTesting
