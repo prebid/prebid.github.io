@@ -20,10 +20,10 @@ The Adhese bid adapter may require an additional setup from the Adhese team, eve
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
-| `account`     | required | Adhese account name   | `'supermedia'`            | `string` |
-| `location`    | required | Adhese location name  | `'_supersite_homepage_'`  | `string` |
-| `format`      | required | Adhese format name    | `'TopLarge'`              | `string` |
-| `data`        | optional | Custom target data    | `{ 'ci': [9000, 9050] }` | `object` |
+| `account`     | required | Adhese account name   | `'demo'`                  | `string` |
+| `location`    | required | Adhese location name  | `'_adhese_prebid_demo_'`  | `string` |
+| `format`      | required | Adhese format name    | `'leaderboard'`           | `string` |
+| `data`        | optional | Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
 
 ### Configuration
 
