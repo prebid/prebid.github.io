@@ -1,5 +1,6 @@
 ---
 layout: page_v2
+page_type: module
 title: Module - DFP Express
 description: Simplified installation mechanism for publishers that have GAM/DFP in their pages
 module_code : express

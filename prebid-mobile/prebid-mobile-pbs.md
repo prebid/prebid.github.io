@@ -2,9 +2,6 @@
 layout: page_v2
 title: Getting Started with Prebid Mobile
 description: Getting Started with Prebid Mobile
-pid: 1
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile
 sidebarType: 2
 ---
 
@@ -73,25 +70,25 @@ The following resources are available for further information on working with Pr
 
 ### Ad Ops
 
--   [Price Granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity)  
+-   [Price Granularity](/prebid-mobile/adops-price-granularity.html)  
     Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
 
 ### Mobile Developers
 
 **iOS**
 
--   [Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)  
+-   [Targeting Parameters](/prebid-mobile/targeting-params-ios.html)  
     Learn about the parameters available in the iOS Prebid Mobile SDK.
 
--   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-troubleshooting-ios.html)  
+-   [Logging and Troubleshooting](/prebid-mobile/logging-troubleshooting-ios.html)  
     Instructions on troubleshooting issues you might encounter.
 
 **Android**
 
--   [Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)  
+-   [Targeting Parameters](/prebid-mobile/targeting-params-android.html)  
     Learn about the parameters available in the Android Prebid Mobile SDK.
 
--   [Logging and Troubleshooting]({{site.github.url}}/prebid-mobile/logging-troubleshooting-android)  
+-   [Logging and Troubleshooting](/prebid-mobile/logging-troubleshooting-android.html)  
     Instructions on troubleshooting issues you might encounter.
 
 ### GDPR
@@ -101,7 +98,7 @@ Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Tra
 For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
 
 For specific implementation details, see the "GDPR Consent" section here:
--   [iOS - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios)
--   [Android - Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android)
+-   [iOS - Targeting Parameters](/prebid-mobile/targeting-params-ios.html)
+-   [Android - Targeting Parameters](/prebid-mobile/targeting-params-android.html)
 
 

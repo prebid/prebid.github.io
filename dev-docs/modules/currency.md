@@ -1,5 +1,6 @@
 ---
 layout: page_v2
+page_type: module
 title: Module - Currency
 description: Converts bids to the ad server currency
 module_code : currency

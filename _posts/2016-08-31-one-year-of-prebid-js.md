@@ -6,8 +6,6 @@ description: Looking back on the first year of Prebid.js development
 permalink: /blog/happy-birthday-prebid-js
 ---
 
-(_This post originally appeared on the [AppNexus blog](http://blog.appnexus.com/2016/prebid-js-a-year-in-the-life-of-an-open-sourced-ad-tech-project/).  It has been edited slightly for clarity._)
-
 ## The Beginning
 
 About a year ago, the publisher engineering team at AppNexus began noticing a common problem with some of our forward-looking publishers: many of their websites were taking a long time to load.

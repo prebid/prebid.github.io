@@ -54,7 +54,7 @@ A multi-format ad unit supports at least two of the following types: banner, nat
 - [Overview]({{site.baseurl}}/dev-docs/show-multi-format-ads.html#how-multi-format-ads-work)
 - [Show Multi-Format Ads]({{site.baseurl}}/dev-docs/show-multi-format-ads.html)
 - [Setting Up Your Ad Server for Multi-Format]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
-- [Example]({{site.baseurl}}/dev-docs/multi-format-example.html)
+- [Example]({{site.baseurl}}/dev-docs/examples/multi-format-example.html)
 
 ## Interstitial
 

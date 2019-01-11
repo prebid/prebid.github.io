@@ -20,7 +20,7 @@ Some Prebid Server bidders require additional information for integration. For b
 
 ### Using Keywords
 
-The `keywords` [bidder param](../../static/bidder-params/appnexus.json) will only work if
+The `keywords` bidder param (`../../static/bidder-params/appnexus.json`) will only work if
 it's enabled for your Account with AppNexus.
 
 **This permission is _distinct_ from the keywords feature used by Prebid.js.**
@@ -35,11 +35,11 @@ Audience Network will not bid on requests made from device simulators. When test
 
 ## Beachfront
 
-To use the beachfront bidder you will need an appId from an exchange account on [https://platform.beachfront.io](platform.beachfront.io). For further information, please contact [adops@beachfront.com](mailto:adops@beachfront.com).
+To use the beachfront bidder you will need an appId from an exchange account on [https://platform.beachfront.io](https://platform.beachfront.io). For further information, please contact [adops@beachfront.com](mailto:adops@beachfront.com).
 
 ## Rubicon
 
-Please contact [Rubicon Project](../../static/bidder-info/rubicon.yaml) to get set up with a login and cookie-sync URL to run your own Prebid Server.
+Contact your Rubicon Project account manager to get set up with a login and cookie-sync URL to run your own Prebid Server.
 
 You will be given instructions, including the available endpoints.
 

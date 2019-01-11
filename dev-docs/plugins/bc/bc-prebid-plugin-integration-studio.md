@@ -50,7 +50,7 @@ There are two ways to register the Brightcove Prebid Plugin in Brightcove Studio
 
 - **General Integration**
     - Adds the plugin to the Brightcove Player when the player is embedded on the page, without calling prebid
-    - Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-Plugin-API.html)**.
+    - Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-api.html)**.
     - Publisher may use this method when they want to use a third-party ad server other than DFP as their primary ad server
 
 - **Configured Integration**
@@ -374,7 +374,7 @@ None
 
 #### What Your Page Would Look Like
 
-Visit **[sample publisher page after using the Configured Integration Method]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integraton-configured-method.html)** for details.
+Visit **[sample publisher page after using the Configured Integration Method]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method.html)** for details.
 
 ## How To Use Other Plugin API Methods When Registering Plugin in Brightcove Studio
 
