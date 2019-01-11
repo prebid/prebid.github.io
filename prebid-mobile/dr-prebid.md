@@ -258,4 +258,4 @@ Here are some more specific things to look for and actions to take based on whic
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
 - [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html)
-- [AdOps – Before You Start](/adops.html)
+- [AdOps – Before You Start](/adops/before-you-start.html)
