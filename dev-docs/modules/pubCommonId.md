@@ -1,5 +1,6 @@
 ---
 layout: page_v2
+page_type: module
 title: Module - Publisher Common ID
 description: User ID persisted in first party domain
 module_code : pubCommonId
