@@ -6,10 +6,6 @@ description: This week, we're pleased to announce the formation of Prebid.org, a
 permalink: /blog/announcing-prebid-org
 ---
 
-(_This post originally appeared on the
-[AppNexus blog](http://blog.appnexus.com/2017/prebid-org-explained-interview-michael-richardson/).
-It has been lightly edited for clarity._)
-
 This week, we're pleased to announce the formation of
 [Prebid.org](http://prebid.org/overview/what-is-prebid-org.html): an
 independent organization dedicated to open source tools that drive
