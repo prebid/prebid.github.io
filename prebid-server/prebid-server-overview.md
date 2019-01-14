@@ -35,9 +35,9 @@ You can also find [additional information]({{site.baseurl}}/prebid-server/develo
 Full documentation is available for all Prebid Server endpoints:
 
 - [Bidder List](/prebid-server/endpoints/info/bidders.html)
-- [Bidder Info - BidderName]({{site.baseurl}}/prebid-server/endpoints/info/bidders/biddername)
+- [Bidder Info - BidderName]({{site.baseurl}}/prebid-server/endpoints/info/bidders/bidderName.html)
 - [Bidder Params]({{site.baseurl}}/prebid-server/endpoints/bidders/params.html)
-- [Starting Cookie Sync]({{site.baseurl}}/prebid-server/endpoints/cookiesync)
+- [Starting Cookie Sync]({{site.baseurl}}/prebid-server/endpoints/cookieSync.html)
 - [Prebid Server AMP]({{site.baseurl}}/prebid-server/endpoints/openrtb2/amp.html)
 - [Prebid Server Auction]({{site.baseurl}}/prebid-server/endpoints/openrtb2/auction.html)
 - [Saving User Syncs]({{site.baseurl}}/prebid-server/endpoints/setuid.html)
@@ -45,17 +45,17 @@ Full documentation is available for all Prebid Server endpoints:
 
 ## Additional Developer Information
 
-- [Add a New Analytics Module]({{site.baseurl}}/prebid-server/add-a-new-analytics-module.html)  
+- [Add a New Analytics Module]({{site.baseurl}}/prebid-server/developers/add-new-analytics-module.html)  
   Description, including and example, of how to add an analytics module to Prebid Server.
 
-- [Add a New Bidder]({{site.baseurl}}/prebid-server/.html)  
+- [Add a New Bidder]({{site.baseurl}}/prebid-server/developers/add-new-bidder.html)  
   Learn how to define and test a new bidder, then add the bidder to theExchange.
 
-- [Cookie Syncs]({{site.baseurl}}/prebid-server/.html)  
+- [Cookie Syncs]({{site.baseurl}}/prebid-server/developers/cookie-syncs.html)  
   Describes the mechanics of a Prebid Server cookie sync.
 
-- [GDPR]({{site.baseurl}}/prebid-server/.html)  
+- [GDPR]({{site.baseurl}}/prebid-server/developers/gdpr.html)  
   Explore the way in which Prebid Server supports GDPR regulations.
 
-- [Stored Request]({{site.baseurl}}/prebid-server/.html)  
+- [Stored Request]({{site.baseurl}}/prebid-server/developers/stored-requests.html)  
   Learn about the Prebid Server Stored Requests feature.

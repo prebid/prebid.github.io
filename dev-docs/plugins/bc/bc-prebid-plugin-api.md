@@ -214,7 +214,7 @@ None
 ## Plugin Options
 
 Details about the options supported by the Brightcove Prebid Plugin can be found at:
-**[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-pptions.html)**
+**[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html)**
 
 ## Sample Implementations
 

@@ -1,5 +1,6 @@
 ---
 layout: page_v2
+page_type: module
 title: Module - DFP Video
 description: Addition of DFP Video to the Prebid package
 module_code : dfpAdServerVideo

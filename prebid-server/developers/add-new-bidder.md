@@ -14,7 +14,7 @@ Publishers can correct for Gross bids anyway by setting [Bid Adjustments](../end
 
 ## Choose a Bidder Name
 
-This name must be unique. Existing BidderNames can be found [here](../../openrtb_ext/bidders.go).
+This name must be unique. Existing BidderNames can be found in `../../openrtb_ext/bidders.go`.
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
@@ -31,9 +31,9 @@ your bidder will access them at `request.imp[i].ext.bidder`--regardless of what 
 
 Bidder implementations are scattered throughout several files.
 
-- `adapters/{bidder}/{bidder}.go`: contains an implementation of [the Bidder interface](../../adapters/bidder.go).
+- `adapters/{bidder}/{bidder}.go`: contains an implementation of the Bidder interface (`../../adapters/bidder.go`).
 - `openrtb_ext/imp_{bidder}.go`: contract classes for your Bidder's params.
-- `usersync/usersyncers/{bidder}.go`: A [Usersyncer](../../usersync/usersync.go) which returns cookie sync info for your bidder.
+- `usersync/usersyncers/{bidder}.go`: A Usersyncer (`../../usersync/usersync.go`) which returns cookie sync info for your bidder.
 - `usersync/usersyncers/{bidder}_test.go`: Unit tests for your Usersyncer
 - `static/bidder-params/{bidder}.json`: A [draft-4 json-schema](https://spacetelescope.github.io/understanding-json-schema/) which [validates your Bidder's params](https://www.jsonschemavalidator.net/).
 - `static/bidder-info/{bidder}.yaml`: contains metadata (e.g. contact email, platform & media type support) about the adapter
@@ -50,7 +50,7 @@ Bidder tests live in two files:
 - `adapters/{bidder}/params_test.go`: contains unit tests for your Bidder's JSON Schema params.
 
 Since most Bidders communicate through HTTP using JSON bodies, you should
-use the [JSON-test utilities](../../adapters/adapterstest/test_json.go).
+use the JSON-test utilities (`../../adapters/adapterstest/test_json.go`).
 This comes with several benefits, which are described in the source code docs.
 
 If your HTTP requests don't use JSON, you'll need to write your tests in the code.
@@ -81,13 +81,13 @@ The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidd
 
 ## Add your Bidder to the Exchange
 
-Add a new [BidderName constant](../../openrtb_ext/bidders.go) for your {bidder}.
-Update the [newAdapterMap function](../../exchange/adapter_map.go) to make your Bidder available in [auctions](../endpoints/openrtb2/auction).
-Update the [NewSyncerMap function](../../usersync/usersync.go) to make your Bidder available for [usersyncs](../endpoints/setuid.html).
+Add a new BidderName constant (`../../openrtb_ext/bidders.go`) for your {bidder}.
+Update the newAdapterMap function (`../../exchange/adapter_map.go`) to make your Bidder available in [auctions](../endpoints/openrtb2/auction).
+Update the NewSyncerMap function (`../../usersync/usersync.go`) to make your Bidder available for [usersyncs](../endpoints/setuid.html).
 
 ## Contribute
 
-Finally, [Contribute](contributing.html) your Bidder to the project.
+Finally, [Contribute](https://github.com/prebid/prebid-server/blob/master/docs/developers/contributing.md) your Bidder to the project.
 
 ## Server requirements
 
