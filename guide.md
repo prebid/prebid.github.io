@@ -254,21 +254,21 @@ Each menu item is represented in the YML map as a collection of key value pairs 
   ```
 
 **Side Nav Menu Collection Properties**  
-*Note: A collection does not have to contain all properties. For Bools 1 = true, 0 = false**
+*Note: A collection does not have to contain all properties. For bools 1 = true, 0 = false**
 
 | Key | Type | Example | Use |
 | --- | --- | --- | --- | --- |
-sbSecId |  int | 3  | Indicates the menu section of an item.
-title  |  string | General  | The text displayed for the menu section.
-link |  string | /overview/intro.html  | The relative link that the menu item opens.
-isLastSubSectionItem |  bool | 0  | Indicates if the menu item is the last item in a sub section.
-isHeader |  bool | 0  | Indicates if the menu item is a sub section header.
-headerId |  string | general  | Required if isHeader = 1. Used to identify which div object is being toggled.
-isSectionHeader |  bool | 0  | Indicates if the menu item is a section header.
-sectionTitle |  string | Overview  | Text displayed for the section.
-sectionId |  string | overview  | Required if isHeader = 1. Used to identify which div object is being toggled. 
-subgroup |  int | 3  | Indicates the subgroup that contains this item. 
-sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled.
+| sbSecId |  int | 3  | Indicates the menu section of an item. |
+| title  |  string | General  | The text displayed for the menu section. |
+| link |  string | /overview/intro.html  | The relative link that the menu item opens. |
+| isLastSubSectionItem  |  bool | 0  | Indicates if the menu item is the last item in a subsection. |
+| isHeader |  bool | 0  | Indicates if the menu item is a sub section header. |
+| headerId |  string | general  | Required if isHeader = 1. Used to identify which div object is being toggled. |
+| isSectionHeader |  bool | 0  | Indicates if the menu item is a section header. |
+| sectionTitle |  string | Overview  | Text displayed for the section. |
+| sectionId |  string | overview  | Required if isHeader = 1. Used to identify which div object is being toggled. |
+| subgroup |  int | 3  | Indicates the subgroup that contains this item. |
+| sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled. |
 
 **Code Use**  
 This data file is read in the page_v2.html file using Liquid.
@@ -281,12 +281,12 @@ The messsages YML file is used to construct the message displayed on the Prebid 
 - messageId: 1
   messageText: Prebid.org has a new look! See the <a href="/blog/updated-website">blog entry</a> for more info.
   messageCreateDt: 01_08_2019
-  ```
+```
 | Key | Type | Example | Use |
 | --- | --- | --- | --- | --- |
 | messageId | int | 0 | A unique identifier for each message |
 | messageText | string | A message | The displayed text. (Use HTML formatting for links.)  |
-| messageCreateDt | string | 01_08_2019 | Date the message was created, for historical purposes. 
+| messageCreateDt | string | 01_08_2019 | Date the message was created, for historical purposes. | 
 
 **Code Use**  
 This data file is read in the home.html file using Liquid.
