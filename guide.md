@@ -203,6 +203,14 @@ The collection with the title property "What Is Prebid?" is a child of the colle
 | Key | Type | Example | Use |
 | ------ | ------ | ------ | ------ |
 | sectionId| Int | 3 | Indicates the menu section of an item. |
+| sectionName |  string | Overview  | The display name of the section. |
+| link |  string | /overview/intro.html  | The relative link that the menu item should open. |
+| isHeader | bool | 1 | Indicates if this item is a section header. |
+| hasSubMenus | bool | 1 | Indicates if this item has submenus. |
+| submenus | collection | | If the item has submenus they will be contained in a collection of collections. |
+| subsectionId | int | 3 | Indicates the subsection of an item. | 
+| needsDivider | bool | 0 | Indicates if the subsection item is the last item in the section and requires a divider. **Deprecated** |
+| isSubsectionStart  | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated** |
 
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
