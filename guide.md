@@ -201,16 +201,8 @@ The collection with the title property "What Is Prebid?" is a child of the colle
 *Note: A collection does not have to contain all properties. For Bools 1 = true, 0 = false*
 
 | Key | Type | Example | Use |
-| --- | --- | --- | --- | --- |
-sectionId |  int | 3  | Indicates the menu section of an item.
-sectionName |  string | Overview  | The display name of the section. 
-link |  string | /overview/intro.html  | The relative link that the menu item should open. 
-isHeader | bool | 1 | Indicates if this item is a section header. 
-hasSubMenus | bool | 1 | Indicates if this item has submenus. 
-submenus | collection | | If the item has submenus they will be contained in a collection of collections. 
-subsectionId | int | 3 | Indicates the subsection of an item. 
-needsDivider | bool | 0 | Indicates if the subsection item is the last item in the section and requires a divider. **Deprecated**
-isSubsectionStart  | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated**
+| ------ | ------ | ------ | ------ |
+| Test| Test | Test | Test |
 
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
@@ -257,7 +249,7 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 *Note: A collection does not have to contain all properties. For bools 1 = true, 0 = false**
 
 | Key | Type | Example | Use |
-| --- | --- | --- | --- | --- |
+| ----- | ----- | ----- | ----- |
 | sbSecId |  int | 3  | Indicates the menu section of an item. |
 | title  |  string | General  | The text displayed for the menu section. |
 | link |  string | /overview/intro.html  | The relative link that the menu item opens. |
@@ -281,9 +273,10 @@ The messsages YML file is used to construct the message displayed on the Prebid 
 - messageId: 1
   messageText: Prebid.org has a new look! See the <a href="/blog/updated-website">blog entry</a> for more info.
   messageCreateDt: 01_08_2019
-```
+```  
+
 | Key | Type | Example | Use |
-| --- | --- | --- | --- | --- |
+| ----- | ------ | ------ | ------ |
 | messageId | int | 0 | A unique identifier for each message |
 | messageText | string | A message | The displayed text. (Use HTML formatting for links.)  |
 | messageCreateDt | string | 01_08_2019 | Date the message was created, for historical purposes. | 
