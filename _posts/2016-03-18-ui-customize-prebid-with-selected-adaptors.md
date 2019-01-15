@@ -9,7 +9,7 @@ permalink: /blog/ui-customize-prebid-with-selected-adaptors
 
 ### Background 
 
-Since we introduced Prebid.js 8 months ago with only 4 adaptors, more than 15 SSPs have started contributing and maintaining their adaptors through Github. The number of demand adaptors Prebid.js supports has now grown to 17! (more are coming)
+Since we introduced Prebid.js 8 months ago with only 4 adaptors, more than 15 SSPs have started contributing and maintaining their adaptors through GitHub. The number of demand adaptors Prebid.js supports has now grown to 17! (more are coming)
 
 The average number of adaptors publishers use are between 3 to 8. It makes more sense now for publishers to choose and pick the adaptors they would like prebid.js to include. 
 

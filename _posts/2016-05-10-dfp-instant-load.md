@@ -57,4 +57,4 @@ Please follow the line by line code example [documented here](/dev-docs/examples
 
 #### Credits
 
-Credits to [Bart Van Bragt](https://github.com/BartVB) in the [Github suggestion](https://github.com/prebid/Prebid.js/issues/276).
+Credits to [Bart Van Bragt](https://github.com/BartVB) in the [GitHub suggestion](https://github.com/prebid/Prebid.js/issues/276).
