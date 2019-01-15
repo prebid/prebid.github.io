@@ -15,7 +15,7 @@ Several Prebid.org members will configure and host your Prebid implementations, 
 <td>Offers a full set of managed solutions. Get started at <a href="https://www.appnexus.com/en/publishers/header-bidding">https://www.appnexus.com/en/publishers/header-bidding</a></td>
 </tr>
 <tr><td><a href="https://rubiconproject.com/headerbidding"><img src="/assets/images/partners/founders/rubicon.png" width="100"></a></td>
-<td>Offers a full set of managed solutions. Get started at <a href="https://rubiconproject.com/headerbidding">https://rubiconproject.com/headerbidding</a></td>
+<td>Demand Manager is a full service header bidding wrapper built on Prebid. Demand Manager’s technology and services allow streamlined implementation and wrapper management without custom development. Analytics and UI controls allow publishers and app developers to maximize Prebid’s performance. Demand Manager supports banner and video ads in web and mobile app environments. Get started at <a href="https://rubiconproject.com/headerbidding">https://rubiconproject.com/headerbidding</a> or reach out to your Account Manager for more.</td>
 </tr>
 <tr><td><a href="https://pubmatic.com/products/header-bidding/"><img src="/assets/images/partners/standard/PubMatic_Logo.svg" width="100"></a></td><td>OpenWrap provides a transparent enterprise wrapper solution for Prebid.js and Prebid Server. Manage demand partners and push updates via a cloud-based UI without development resources or code changes. Access powerful reporting and analytics tools for data driven business decisions and dedicated account optimization and technical support teams. <a href="https://pubmatic.com/products/header-bidding/">https://pubmatic.com/products/header-bidding/</a>
 </td></tr>
