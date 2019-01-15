@@ -202,7 +202,7 @@ The collection with the title property "What Is Prebid?" is a child of the colle
 
 | Key | Type | Example | Use |
 | ------ | ------ | ------ | ------ |
-| Test| Test | Test | Test |
+| sectionId| Int | 3 | Indicates the menu section of an item. |
 
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
