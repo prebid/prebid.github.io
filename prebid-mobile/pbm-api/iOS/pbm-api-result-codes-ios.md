@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Prebid Mobile API - iOS
-description: Prebid Mobile API - iOS
+title: Prebid Mobile API Result Codes
+description: Prebid Mobile API Result Codes
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2

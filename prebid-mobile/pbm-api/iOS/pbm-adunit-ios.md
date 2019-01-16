@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: BannerAdUnit - iOS
-description: BannerAdUnit - iOS
+title: AdUnit - iOS
+description: AdUnit - iOS
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2
