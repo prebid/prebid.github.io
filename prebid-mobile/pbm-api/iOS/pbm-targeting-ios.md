@@ -17,97 +17,195 @@ Prebid Mobile supports the following global targeting parameters. These targetin
 
 ## Global User Targeting
 
+### Gender
+
+```Swift
+var gender:Gender 
+```
+
+gender is an enum with the following values: 
+
+```Swift
+
+public enum Gender: String { 
+    case unknown
+    case male
+    case female
+}
+```
+
+You can retrieve and set the gender for targeting:
+
+```Swift
+let gender = Targeting.shared.gender 
+
+//do something with gender
+```
+
+```Swift
+Targeting.shared.gender = .unknown;
+```
+
 ### Year of Birth
+
+```Swift
+public var yearofbirth:Int? 
+```
 
 You can retrieve and set the year of birth for targeting:
 
-```
-yob = TargetingParams.getYearOfBirth();
-```
+```Swift
+if let yob = Targeting.shared.yearofbirth { 
+    //do something with yob
+};
 
-```
-TargetingParams.setYearOfBirth(1990);
-```
+guard let yob = Targeting.shared.yearofbirth else { 
+    print("There was an error retrieving year of birth)
+    return 
+}
 
-### Gender
-
-You can retrieve and set the following values for gender:
-
-- `FEMALE`
-- `MALE`
-- `UNKNOWN`
-
-```
-gender = TargetingParams.getGender();
+//do something with yob
 ```
 
-```
-TargetingParams.setGender(FEMALE);
-```
-
-## Global Application Targeting
-
-### Bundle ID
-
-Use the following code to retrieve the platform-specific bundle/package name:
-
-```
-bundleName = TargetingParams.getBundleName();
+```Swift
+Targeting.shared.yearofbirth = 1990;
 ```
 
-Pass in the platform-specific identifier - the bundle/package name - to set the bundle ID:
+### itunes ID
+
+```Swift
+public var itunesID:String?
+```
+You can retrieve and set the itunesID for targeting:
+
+```Swift
+if let itunesID = Targeting.shared.itunesID { 
+    //do something with itunesID
+};
+
+guard let itunesID = Targeting.shared.itunesID else { 
+    print("There was an error retrieving itunesID)
+    return 
+}
+
+//do something with itunesID
 
 ```
-TargetingParams.setBundleName(bundleName);
+
+```Swift
+Targeting.shared.ituneID = "abcdefgh123456";
 ```
 
-### Domain
+### Location
 
-Retrieve and set the domain of your app with the following commands:
-
-```
-domain = TargetingParams.getDomain();
+```Swift
+public var location:CLLocation?
 ```
 
+```Swift
+public var location:CLLocation?
 ```
-TargetingParams.setDomain(domain);
+You can retrieve and set the location for targeting:
+
+```Swift
+if let location = Targeting.shared.location { 
+    //do something with location
+};
+
+guard let location = Targeting.shared.location else { 
+    print("There was an error retrieving location)
+    return 
+}
+
+//do something with location
+
 ```
 
-### Store URL
-
-Retrieve and set your app's store URL:
-
-```
-storeUrl = TargetingParams.getStoreUrl();
+```Swift
+Targeting.shared.location = CLLocation(latitude: 40.7418968, longitude: -73.9909143);
 ```
 
-```
-TargetingParams.etStoreUrl(storeUrl);
+### Location Precision
+
+```Swift
+public var locationPrecision:Int?
 ```
 
-## Global GDPR Targeting
+You can retrieve and set the locationPrecision for targeting:
+
+```Swift
+if let locationPrecision = Targeting.shared.locationPrecision { 
+    //do something with locationPrecision
+};
+
+guard let locationPrecision = Targeting.shared.locationPrecision else { 
+    print("There was an error retrieving locationPrecision)
+    return 
+}
+
+//do something with locationPrecision
+
+```
+
+```Swift
+Targeting.shared.locationPrecision = 5
+```
+
+## GPDR
 
 Prebid Mobile supports the [IAB GDPR recommendations](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.github.url}}/prebid-mobile/gdpr.html)
 
-Enable (true) or disable (false) the ability to provide consent.
+### Subject To GPDR
 
-```
-TargetingParams.setSubjectToGDPR(context, true);
-```
-
-Retrieve the consent string.
-
-```
-context = TargetingParams.getGDPRConsentString();
+```Swift
+public var subjectToGDPR:Bool?
 ```
 
-Enable publishers to set the consent string.
+You can retrieve and set the subjectToGDPR for targeting:
+
+```Swift
+if let subjectToGDPR = Targeting.shared.subjectToGDPR { 
+    //do something with subjectToGDPR
+};
+
+guard let subjectToGDPR = Targeting.shared.subjectToGDPR else { 
+    print("There was an error retrieving subjectToGDPR)
+    return 
+}
+
+//do something with subjectToGDPR
 
 ```
-TargetingParams.setGDPRConsentString(context, "consent_string");
+
+```Swift
+Targeting.shared.subjectToGDPR = false
 ```
 
-Prebid mobile also checks if the values are present in the [SharedPreferences](https://developer.android.com/training/data-storage/shared-preferences) keys specified by the IAB. If the values are also set in these objects they will be passed in the OpenRTB request object.
+### GDPR Consent String
+
+```Swift
+public var gdprConsentString?
+```
+
+You can retrieve and set the subjectToGDPR for targeting:
+
+```Swift
+if let gdprConsentString = Targeting.shared.gdprConsentString { 
+    //do something with gdprConsentString
+};
+
+guard let gdprConsentString = Targeting.shared.gdprConsentString else { 
+    print("There was an error retrieving gdprConsentString)
+    return 
+}
+
+//do something with gdprConsentString
+
+```
+
+```Swift
+Targeting.shared.gdprConsentString = "A String"
+```
 
 ## Further Reading
 
