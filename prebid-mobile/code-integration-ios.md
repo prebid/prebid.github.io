@@ -37,8 +37,13 @@ Build Prebid Mobile from source code. After cloning the repo, from the root dire
 
 to output the PrebidMobile.framework.
 
+## Further Reading
 
-## Ad Unit Setup for iOS
+- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/api/pbm-api-android.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/api/pbm-api-ios.html)
+
+
+<!-- ## Ad Unit Setup for iOS
 {:.no_toc}
 
 Register Prebid Mobile ad units as early as possible in the application's lifecycle.  
@@ -185,7 +190,7 @@ Use the table below to see which ad objects are supported currently.
 | DFP               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
 | DFP               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
 | MoPub             | Banner         | `MPAdView`                   | `- (void)loadAd`                            |
-| MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            |
+| MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            | -->
 
 
 

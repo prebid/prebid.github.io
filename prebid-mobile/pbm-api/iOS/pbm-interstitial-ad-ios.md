@@ -11,7 +11,7 @@ sidebarType: 2
 
 The InterstitialAdUnit is a subclass of the AdUnit class. Use the InterstitialAdUnit object to create and configure a interstitial ad unit in your app. 
 
-*TOC
+* TOC
  {:toc}
 
 ## Object

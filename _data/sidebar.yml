@@ -659,19 +659,73 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-
+# 
+# - sbSecId: 2
+#   title: Targeting Parameters
+#   link: /prebid-mobile/targeting-params-ios.html
+#   isLastSubSectionItem: 0
+#   isHeader: 0
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 1
+# 
+# - sbSecId: 2
+#   title: Logging and Troubleshooting
+#   link: /prebid-mobile/logging-troubleshooting-ios.html
+#   isLastSubSectionItem: 0
+#   isHeader: 0
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 1
+  
 - sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/targeting-params-ios.html
+  title: iOS Mobile API
+  link: /prebid-mobile/pbm-api/iOS/pbm-api-iOS.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-
+  
 - sbSecId: 2
-  title: Logging and Troubleshooting
-  link: /prebid-mobile/logging-troubleshooting-ios.html
+  title: Ad Unit
+  link: /prebid-mobile/pbm-api/iOS/pbm-adunit-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Banner Ad Unit
+  link: /prebid-mobile/pbm-api/iOS/pbm-bannerad-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/iOS/pbm-interstitial-ad-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Targeting Parameters
+  link: /prebid-mobile/pbm-api/iOS/pbm-targeting-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Result Codes
+  link: /prebid-mobile/pbm-api/iOS/pbm-api-result-codes-ios.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -697,18 +751,81 @@
   sectionTitle:
   subgroup: 2
 
+# - sbSecId: 2
+#   title: Targeting Parameters
+#   link: /prebid-mobile/targeting-params-android.html
+#   isLastSubSectionItem: 0
+#   isHeader: 0
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 2
+# 
+# - sbSecId: 2
+#   title: Logging and Troubleshooting
+#   link: /prebid-mobile/logging-troubleshooting-android.html
+#   isLastSubSectionItem: 1
+#   isHeader: 0
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 2
+  
 - sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/targeting-params-android.html
+  title: Android Mobile API
+  link: /prebid-mobile/pbm-api/android/pbm-api-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 2
-  title: Logging and Troubleshooting
-  link: /prebid-mobile/logging-troubleshooting-android.html
+  title: Ad Unit
+  link: /prebid-mobile/pbm-api/android/adunit-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: Banner Ad Unit
+  link: /prebid-mobile/pbm-api/android/banneradunit-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/android/interstitialadunit-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: Targeting Parameters
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Result Codes
+  link: /prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: Prebid Mobile Object
+  link: /prebid-mobile/pbm-api/android/prebidmobile-object-android.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
