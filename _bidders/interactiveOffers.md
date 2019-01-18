@@ -21,7 +21,7 @@ Module that connects to interactiveOffers demand sources. Param pubId is require
 | Name     | Scope    | Description                                                          | Example                           | Type      |
 |----------|----------|----------------------------------------------------------------------|-----------------------------------|-----------|
 | `pubId`  | required | The placement ID (site channel ID)                                   | `4`                               | `integer` |
-| `tmax`   | optional | Max timeout for response                                             | `150`                             | `integet` |
+| `tmax`   | optional | Max timeout for response                                             | `150`                             | `integer` |
 
 Example:
 ```javascript

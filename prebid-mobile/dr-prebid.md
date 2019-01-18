@@ -19,9 +19,13 @@ Dr. Prebid is a validation and troubleshooting app for publishers implementing P
 
 ## Get the App
 
-**Coming Soon!** This app will be available for download for iOS.
+This app is available for [download for iOS](https://itunes.apple.com/us/app/dr-prebid/id1442614692?mt=8).
 
-Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).
+System Requirements: Requires iOS 12.0 or later. Compatible with iPhone, iPad, and iPod touch.
+
+Dr. Prebid is an open source app. You can [find the source on the Prebid GitHub site](https://github.com/prebid/prebid-mobile-ios/tree/master/tools/PrebidValidator).
+
+**Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).**
 
 ## Enter Test Values
 
