@@ -19,14 +19,14 @@ Use the Prebid Mobile API 1.0 for iOS to implement header bidding in your mobile
 
 The Prebid Mobile API supports the following objects: 
 
-- [Global Settings]({{site.baseurl}}/prebid-mobile/api/pbm-object-ios.html) 
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/api/pbm-bannerad-ios.html) 
-- [Interstitial Ad Unit]({{site.baseurl}}/prebid-mobile/api/pbm-interstitial-ad-ios.html) 
+- [Global Settings]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-object-ios.html) 
+- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) 
+- [Interstitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html) 
 
 ## Result Codes
 
-For a list of possible result codes, see [Result Codes](). 
+For a list of possible result codes, see [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html). 
 
 ## Global Targeting 
 
-For general targeting information, see [Global Targeting]({{site.baseurl}}/prebid-mobile/api/pbm-targeting-ios.html) Parameters. 
+For general targeting information, see [Global Targeting]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html) Parameters. 

@@ -7,7 +7,7 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-#BannerAdUnit AdUnit
+# BannerAdUnit AdUnit
 {: .notoc}
 
 The BannerAdUnit is a subclass of the AdUnit class. Use the BannerAdUnit object to create and configure a banner ad unit in your app. 
@@ -105,10 +105,10 @@ func loadMoPubBanner(bannerUnit: AdUnit){
 
 ## Related Topics 
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/api/pbm-api-iOS.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/api/pbm-bannerad-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/api/pbm-interstitial-ad-ios.html)
-- [Result Codes]({{site.baseurl}}/prebid-mobile/api/pbm-api-result-codes-ios.html)
-- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/api/pbm-targeting-ios.html)
-- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/api/prebidmobile-object-android.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/api/pbm-api-android.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+- [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
+- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
+- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

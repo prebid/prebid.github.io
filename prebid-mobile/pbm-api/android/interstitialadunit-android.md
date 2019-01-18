@@ -27,7 +27,7 @@ Create a new Interstitial Ad Unit associated with a Prebid Server configuration 
 
 ## Methods
 
-`InterstitialAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/api/adunit-android.html) object.
+`InterstitialAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html) object.
 
 ## Example
 
@@ -44,10 +44,10 @@ interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
 
 ## Related Topics
 
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/api/pbm-api-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/api/banneradunit-android.html)
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/api/adunit-android.html)
-- [Result Codes]({{site.baseurl}}/prebid-mobile/api/pbm-api-result-codes-android.html)
-- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/api/pbm-targeting-params-android.html)
-- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/api/prebidmobile-object-android.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/api/pbm-api-ios.html)
+- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
+- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+- [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
+- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
+- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)

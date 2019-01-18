@@ -20,7 +20,7 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 
 **Return Code**: NO_SIZE_FOR_BANNER  
 **Description**: Attempted to fetch demand on a banner ad unit without at least one valid size. Size is required for banner ad units.  
-**More Information**: [BannerAdUnit]() 
+**More Information**: [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) 
 
 ## Invalid account ID 
 
@@ -34,14 +34,14 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 **Description**: Prebid Server did not recognize the configuration ID that was passed in on your banner or interstitial ad unit object. Be sure you've passed in a non-empty configuration ID and that the ID is correct.  
 **More Information**: 
 
-  [BannerAdUnit]()  
+  [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
   [InterstitialAdUnit]() 
 
 ## Invalid size 
 
 **Return Code**: INVALID_SIZE  
 **Description**: Attempted to add an invalid size to a banner ad unit. This error usually occurs if you've attempted to add multiple sizes on a request to Mopub; Mopub allows only a single size.  
-**More Information**: [BannerAdUnit]() 
+**More Information**: [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
 
 ## Network error 
 
@@ -64,3 +64,13 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 **Description**: Attempted to define a custom Prebid Server host without providing a host URL. 
 
 More Information: [PrebidMobileObject]()
+
+## Related Topics
+
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+- [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
+- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
+- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
