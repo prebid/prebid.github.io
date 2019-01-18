@@ -10,9 +10,9 @@ sidebarType: 2
 # BannerAdUnit AdUnit
 {: .notoc}
 
-The BannerAdUnit is a subclass of the AdUnit class. Use the BannerAdUnit object to create and configure a banner ad unit in your app. 
+The BannerAdUnit is a subclass of the AdUnit class. Use the BannerAdUnit object to create and configure a banner ad unit in your app.  '
 
-*TOC
+- TOC
  {:toc}
 
 ## Object

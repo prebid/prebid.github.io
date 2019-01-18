@@ -13,40 +13,39 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 
 ## Success 
 
-**Return Code:** SUCCESS   
-**Description:** Prebid Mobile received at least one valid bid from Prebid Server and successfully associated Prebid key-values with the appropriate ad server request. 
+- **Return Code:** SUCCESS   
+- **Description:** Prebid Mobile received at least one valid bid from Prebid Server and successfully associated Prebid key-values with the appropriate ad server request. 
 
 ## No banner size provided 
 
-**Return Code**: NO_SIZE_FOR_BANNER  
-**Description**: Attempted to fetch demand on a banner ad unit without at least one valid size. Size is required for banner ad units.  
-**More Information**: [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) 
+- **Return Code**: NO_SIZE_FOR_BANNER  
+- **Description**: Attempted to fetch demand on a banner ad unit without at least one valid size. Size is required for banner ad units.  
+- **More Information**: [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) 
 
 ## Invalid account ID 
 
-**Return Code**: INVALID_ACCOUNT_ID \
-**Description**: Prebid Server did not recognize the account ID. Make sure you included an account ID and that the account ID you've set on the PrebidMobileObject is correct. 
-**More Information**: [PrebidMobileObject]() 
+- **Return Code**: INVALID_ACCOUNT_ID  
+- **Description**: Prebid Server did not recognize the account ID. Make sure you included an account ID and that the account ID you've set on the PrebidMobileObject is correct.   
+- **More Information**: [PrebidMobileObject]() 
 
 ## Invalid configuration ID 
 
-**Return Code**: INVALID_CONFIG_ID  
-**Description**: Prebid Server did not recognize the configuration ID that was passed in on your banner or interstitial ad unit object. Be sure you've passed in a non-empty configuration ID and that the ID is correct.  
-**More Information**: 
-
-  [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
-  [InterstitialAdUnit]() 
+- **Return Code**: INVALID_CONFIG_ID  
+- **Description**: Prebid Server did not recognize the configuration ID that was passed in on your banner or interstitial ad unit object. Be sure you've passed in a non-empty configuration ID and that the ID is correct.  
+- **More Information**:  
+  - [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
+  - [InterstitialAdUnit]() 
 
 ## Invalid size 
 
-**Return Code**: INVALID_SIZE  
-**Description**: Attempted to add an invalid size to a banner ad unit. This error usually occurs if you've attempted to add multiple sizes on a request to Mopub; Mopub allows only a single size.  
-**More Information**: [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
+- **Return Code**: INVALID_SIZE  
+- **Description**: Attempted to add an invalid size to a banner ad unit. This error usually occurs if you've attempted to add multiple sizes on a request to Mopub; Mopub allows only a single size.  
+- **More Information**: [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
 
 ## Network error 
 
-**Return Code**: NETWORK_ERROR  
-**Description**: A network error occurred during the request to Prebid Server. 
+- **Return Code**: NETWORK_ERROR  
+- **Description**: A network error occurred during the request to Prebid Server. 
 
 ## Timeout 
 
@@ -55,15 +54,14 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 
 ## No bids 
 
-**Return Code**: NO_BIDS   
-**Description**: Prebid Server responded without returning any valid bids. 
+- **Return Code**: NO_BIDS   
+- **Description**: Prebid Server responded without returning any valid bids. 
 
 ## Empty host URL 
 
-**Return Code**: INVALID_HOST_URL   
-**Description**: Attempted to define a custom Prebid Server host without providing a host URL. 
-
-More Information: [PrebidMobileObject]()
+- **Return Code**: INVALID_HOST_URL   
+- **Description**: Attempted to define a custom Prebid Server host without providing a host URL. 
+- **More Information**: [PrebidMobileObject]()
 
 ## Related Topics
 

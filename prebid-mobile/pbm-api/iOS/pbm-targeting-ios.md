@@ -20,7 +20,7 @@ Prebid Mobile supports the following global targeting parameters. These targetin
 ### Gender
 
 ```Swift
-var gender:Gender 
+public var gender:Gender 
 ```
 
 gender is an enum with the following values: 
@@ -102,9 +102,6 @@ Targeting.shared.ituneID = "abcdefgh123456";
 public var location:CLLocation?
 ```
 
-```Swift
-public var location:CLLocation?
-```
 You can retrieve and set the location for targeting:
 
 ```Swift

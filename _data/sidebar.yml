@@ -659,24 +659,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-# 
-# - sbSecId: 2
-#   title: Targeting Parameters
-#   link: /prebid-mobile/targeting-params-ios.html
-#   isLastSubSectionItem: 0
-#   isHeader: 0
-#   isSectionHeader: 0
-#   sectionTitle:
-#   subgroup: 1
-# 
-# - sbSecId: 2
-#   title: Logging and Troubleshooting
-#   link: /prebid-mobile/logging-troubleshooting-ios.html
-#   isLastSubSectionItem: 0
-#   isHeader: 0
-#   isSectionHeader: 0
-#   sectionTitle:
-#   subgroup: 1
   
 - sbSecId: 2
   title: iOS Mobile API
@@ -731,6 +713,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 2
+  title: Prebid Mobile Object
+  link: /prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 2
   title: For Android
@@ -751,23 +742,7 @@
   sectionTitle:
   subgroup: 2
 
-# - sbSecId: 2
-#   title: Targeting Parameters
-#   link: /prebid-mobile/targeting-params-android.html
-#   isLastSubSectionItem: 0
-#   isHeader: 0
-#   isSectionHeader: 0
-#   sectionTitle:
-#   subgroup: 2
-# 
-# - sbSecId: 2
-#   title: Logging and Troubleshooting
-#   link: /prebid-mobile/logging-troubleshooting-android.html
-#   isLastSubSectionItem: 1
-#   isHeader: 0
-#   isSectionHeader: 0
-#   sectionTitle:
-#   subgroup: 2
+
   
 - sbSecId: 2
   title: Android Mobile API
@@ -812,7 +787,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
   
 - sbSecId: 2
   title: Result Codes
@@ -897,7 +872,52 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 4
-
+  
+- sbSecId: 2
+  title: Legacy API
+  link:
+  isLastSubSectionItem: 0
+  isHeader: 1
+  headerId: legacyapi
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+ 
+- sbSecId: 2
+  title: Targeting Parameters - iOS
+  link: /prebid-mobile/targeting-params-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+ 
+- sbSecId: 2
+  title: Logging and Troubleshooting - iOS
+  link: /prebid-mobile/logging-troubleshooting-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 2
+  title: Targeting Parameters - Android
+  link: /prebid-mobile/targeting-params-android.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+ 
+- sbSecId: 2
+  title: Logging and Troubleshooting - Android
+  link: /prebid-mobile/logging-troubleshooting-android.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
 
 #--------------Ad Ops--------------|
 

@@ -54,7 +54,7 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 `adObject`: Object to be passed to `validateAndAttachKeywords` method
 
-`completion`: Closure which receives one argument, the enum ResultCode, there is no return. 
+`completion`: Closure which receives one argument, the enum ResultCode, there is no return value. 
 
 ### validateAndAttachKeywords
 
