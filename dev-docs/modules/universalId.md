@@ -13,21 +13,23 @@ sidebarType : 1
 # Universal User ID Module
 {:.no_toc}
 
+* TOC
+{:toc}
+
 ## Overview
 
-The Universal User ID module supports multiple ways of establishing IDs for users. None of these methods are specific to a single demand source. So instead of having several exchanges sync IDs with hundreds of demand sources, a publisher can choose to integrate with one of these ID schemes:
+The Universal User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. TradeDesk). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 
-Here’s how it works:
+## How It Works
 
 1. Prebid.js is built with the Universal ID module
 1. The page defines universal ID configuration in `pbjs.setConfig()`
-1. When `setConfig()` is called, and if user has consented to storing IDs locally, the module is invoked to call the URL if needed
-   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format and injects the resulting ID into bidRequest.universalID
-1. bidRequest.universalID is made available to Prebid.js adapters
-1. bidRequest.universalID is made available to Prebid Server S2S adapters
+1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
+   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.universalID.
+1. An object containing one or more IDs (bidRequest.universalID) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 
 Note that universal IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
 
@@ -195,6 +197,34 @@ of sub-objects. See the examples above for specific use cases.
 {% endif %}
 {% endfor %}
 </table>
+
+## Implementation Details
+
+For bidders that want to support one or more of these ID systems, and for publishers who want to understand their options, here are the specific details.
+
+{: .table .table-bordered .table-striped }
+| ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
+| --- | --- | --- | --- | --- | --- |
+| PubCommon ID | n/a | bidRequest.universalIds.pubcid | user.exp.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
+| Unified ID | Tradedesk | bidRequest.universalIds.ttid | user.exp.tpid[].source="tdid" | |
+
+The OpenRTB request location of these IDs:
+{% highlight bash %}
+{
+  "user": {
+    "ext": {
+      "tpid": [{
+        "source": "tdid",
+        "uid": "19cfaea8-a429-48fc-9537-8a19a8eb4f0c"
+      },
+      {
+        "source": "pubcid",
+        "uid": "29cfaea8-a429-48fc-9537-8a19a8eb4f0d"
+      }]
+    }
+  }
+}
+{% endhighlight %}
 
 ## Further Reading
 
