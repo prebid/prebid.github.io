@@ -17,4 +17,4 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                            | Example                 | Type    |
 |-------------------+----------+--------------------------------------------------------+-------------------------+---------|
-| `spid` | required | The supply account's ID in your Clean Media dashboard.             | `"1253"`, `"1254"`, etc |  string |
+| `supplyPartnerId` | required | The supply account's ID in your Clean Media dashboard.             | `"1253"`, `"1254"`, etc |  string |
