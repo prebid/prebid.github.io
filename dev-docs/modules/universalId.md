@@ -205,8 +205,8 @@ For bidders that want to support one or more of these ID systems, and for publis
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
 | --- | --- | --- | --- | --- | --- |
-| PubCommon ID | n/a | bidRequest.universalIds.pubcid | user.exp.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
-| Unified ID | Tradedesk | bidRequest.universalIds.ttid | user.exp.tpid[].source="tdid" | |
+| PubCommon ID | n/a | bidRequest.universalIds.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
+| Unified ID | Tradedesk | bidRequest.universalIds.ttid | user.ext.tpid[].source="tdid" | |
 
 The OpenRTB request location of these IDs:
 {% highlight bash %}
