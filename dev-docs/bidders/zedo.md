@@ -16,5 +16,6 @@ prebid_1_0_supported : true
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                                            | Example                     | Type      |
 |-----------------|----------|----------------------------------------------------------------------------------------|-----------------------------|-----------|
-| `channelCode`   | required | Publisher code associated with ZEDO                                                    | `123456`                    | `integer` |
-| `dimId`         | required | ZEDO dimension Id associated the adunit                                                | `9`                         | `integer` |
+| `channelCode`   | required | Publisher code associated with ZEDO                                                    | `2264004118`                    | `integer` |
+| `dimId`         | required | ZEDO dimension Id associated with the adunit                                                | `9`                         | `integer` |
+| `pubId`         | optional | ZEDO Publisher Id associated with the adunit                                                | `0`                         | `integer` |
