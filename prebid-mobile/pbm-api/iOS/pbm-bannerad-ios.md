@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: BannerAdUnit - iOS
-description: BannerAdUnit - iOS
+title: BannerAdUnit Object
+description: BannerAdUnit Object
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2
@@ -10,7 +10,7 @@ sidebarType: 2
 # BannerAdUnit AdUnit
 {: .notoc}
 
-The BannerAdUnit is a subclass of the AdUnit class. Use the BannerAdUnit object to create and configure a banner ad unit in your app.  '
+The BannerAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the BannerAdUnit object to create and configure a banner ad unit in your app.  '
 
 - TOC
  {:toc}
@@ -37,7 +37,7 @@ Add additional banner sizes to the Prebid Mobile ad unit. Banner ad units must b
 
 `sizes (Array<CGSize>)`: Array of ad sizes (width and height)
 
-See AdUnit for addtional parameters and methods. 
+See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for addtional parameters and methods. 
 
 ---
 
@@ -56,7 +56,7 @@ Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and di
 
 **Google Mobile Ads**
 
-Import the GoogleMobileAds from the google-mobile-sdk into the UIViewController displaying the BannerAdUnit
+Import the GoogleMobileAds from the [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the BannerAdUnit
 
 ```Swift
 func loadDFPBanner(bannerUnit : AdUnit){
@@ -75,9 +75,9 @@ func loadDFPBanner(bannerUnit : AdUnit){
     }
 ```
 
-**MoPubs**
+**MoPub**
 
-Import MoPubs from the mopub-ios-sdk into the UIViewController displaying the BannerAdUnit
+Import MoPubs from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) into the UIViewController displaying the BannerAdUnit
 
 ```Swift
 func loadMoPubBanner(bannerUnit: AdUnit){
@@ -106,7 +106,7 @@ func loadMoPubBanner(bannerUnit: AdUnit){
 ## Related Topics 
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
+- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
 - [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)

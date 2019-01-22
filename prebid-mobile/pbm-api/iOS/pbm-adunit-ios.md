@@ -10,7 +10,7 @@ sidebarType: 2
 # AdUnit: NSObject
 {: .notoc}
 
-The AdUnit class is the superclass of the [BannerAdUnit]({site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) and [InterstitialAdUnit]({site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html) classes. 
+The AdUnit class is the superclass of the [BannerAdUnit](/prebid-mobile/pbm-api/iOS/pbm-bannerad-ios.html) and [InterstitialAdUnit](/prebid-mobile/pbm-api/iOS/pbm-interstitial-ad-ios.html) classes. 
 
 - TOC
  {:toc}
@@ -52,9 +52,9 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 **Parameters**
 
-`adObject`: Object to be passed to `validateAndAttachKeywords` method
+`adObject`: Object to be passed to `validateAndAttachKeywords` method.
 
-`completion`: Closure which receives one argument, the enum ResultCode, there is no return value. 
+`completion`: Closure which receives one argument, the enum ResultCode. There is no return value. 
 
 ### validateAndAttachKeywords
 
