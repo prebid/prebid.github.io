@@ -25,7 +25,7 @@ The Universal User ID module supports multiple ways of establishing pseudonymous
 
 ## How It Works
 
-1. Prebid.js is built with the Universal ID module
+1. The publisher builds Prebid.js with the optional Universal ID module
 1. The page defines universal ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.universalID.
