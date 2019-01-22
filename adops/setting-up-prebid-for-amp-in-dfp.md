@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid for AMP in DFP
 head_title: Setting up Prebid for AMP in DFP
 description: Setting up Prebid for AMP in DFP
@@ -7,9 +7,10 @@ pid: 3
 hide: false
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Setting up Prebid for AMP in DFP
 {: .no_toc}
@@ -49,14 +50,31 @@ Enter the below code snippet in the **Code snippet** text area.
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% include dev-docs/amp-creative.md %}
+{% highlight javascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%PATTERN:url%%";
+  ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+{% endhighlight %}
+
 
 ## Further Reading
 
 + [Show Prebid Ads on AMP Pages]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html)
 + [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
 
-</div>
+
 
 <!-- Reference Links -->
 

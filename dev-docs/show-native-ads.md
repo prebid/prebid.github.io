@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Show Native Ads with Prebid.js
 description: Show Native Ads with Prebid.js
 pid: 0
 is_top_nav: yeah
 top_nav_section: dev_docs
 nav_section: prebid-native
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Show Native Ads with Prebid.js
 {: .no_toc }
@@ -212,4 +213,4 @@ const adUnits = [{
 
 + [Setting up Prebid Native in DFP]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
 
-</div>
+
