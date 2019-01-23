@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Prebid Mobile API Result Codes
-description: Prebid Mobile API Result Codes
+title: Prebid Mobile Object
+description: Prebid Mobile Object
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2

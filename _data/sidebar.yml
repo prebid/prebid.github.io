@@ -708,7 +708,7 @@
 - sbSecId: 2
   title: Result Codes
   link: /prebid-mobile/pbm-api/iOS/pbm-api-result-codes-ios.html
-  isLastSubSectionItem: 1
+  isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -716,7 +716,7 @@
   
 - sbSecId: 2
   title: Prebid Mobile Object
-  link: /prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html
+  link: /prebid-mobile/pbm-api/iOS/prebidmobile-object-ios.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -741,8 +741,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
-
   
 - sbSecId: 2
   title: Android Mobile API
