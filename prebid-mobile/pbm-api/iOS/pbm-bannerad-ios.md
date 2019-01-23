@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: BannerAdUnit Object
-description: BannerAdUnit Object
+title: BannerAdUnit AdUnit
+description: BannerAdUnit AdUnit
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2
@@ -77,7 +77,7 @@ func loadDFPBanner(bannerUnit : AdUnit){
 
 **MoPub**
 
-Import MoPubs from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) into the UIViewController displaying the BannerAdUnit
+Import MoPub from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) into the UIViewController displaying the BannerAdUnit
 
 ```Swift
 func loadMoPubBanner(bannerUnit: AdUnit){

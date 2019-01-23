@@ -7,12 +7,8 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 # InterstitialAdUnit
-{: .notoc}
 
 The InterstitialAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the InterstitialAdUnit object to create and configure a interstitial ad unit in your app. 
-
-* TOC
- {:toc}
 
 ## Object
 
