@@ -12,7 +12,7 @@ media_types: banner, native, video
 
 ---
 
-### bid params Prebid 0.34      s
+### bid params Prebid 0.34
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description | Example | Type     |
