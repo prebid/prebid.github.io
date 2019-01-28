@@ -18,18 +18,18 @@ There are several ways to ask for help or get involved with Prebid.  See below f
 
 For technical & feature requests or questions, it's best to use the GitHub or Stack Overflow forums. Prebid is worked on full-time by engineering teams from AppNexus and Rubicon Project.  There are also many publishers using and contributing to the project.
 
-For questions about how an adapter works, it's best to reach out to the company directly, or ask on Github. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
+For questions about how an adapter works, it's best to reach out to the company directly, or ask on GitHub. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
 
 For Prebid news or general questions, we recommend the Ad Ops Slack Channel, Quora, or Twitter.
 
 {: .alert.alert-success :}
 There are serveral Prebid.org members that will install & maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](/prebid/managed.html).
 
-## Github
+## GitHub
 
 Sometimes people have already gotten answers on the GitHub forums. See [issues with the 'question' tag on the Prebid.js repo](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)
 
-Submit a Github issue for [Prebid.js](https://github.com/prebid/Prebid.js/issues), [Prebid SDK iOS](https://github.com/prebid/prebid-mobile-ios/issues), [Prebid Mobile Android](https://github.com/prebid/prebid-mobile-android/issues) or [Prebid Server](https://github.com/prebid/prebid-server/issues) if:
+Submit a GitHub issue for [Prebid.js](https://github.com/prebid/Prebid.js/issues), [Prebid SDK iOS](https://github.com/prebid/prebid-mobile-ios/issues), [Prebid Mobile Android](https://github.com/prebid/prebid-mobile-android/issues) or [Prebid Server](https://github.com/prebid/prebid-server/issues) if:
 
 - You have a feature request to the code base.
 - You have found a bug in the code.

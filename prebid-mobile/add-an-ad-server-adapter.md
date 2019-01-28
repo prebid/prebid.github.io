@@ -15,15 +15,15 @@ sidebarType: 2
 
 We are looking for contributors to add ad server adapters so that Prebid Mobile can be used with more ad server SDKs.
 
-Contributors should visit Github to learn how to contribute to Prebid Mobile.
+Contributors should visit GitHub to learn how to contribute to Prebid Mobile.
 
 ### For iOS
 
-[The iOS source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-mobile-ios)
+[The iOS source code is hosted under the Prebid organization on GitHub](https://github.com/prebid/prebid-mobile-ios)
 
 ### For Android
 
-[The Android source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-mobile-android)
+[The Android source code is hosted under the Prebid organization on GitHub](https://github.com/prebid/prebid-mobile-android)
 
 
 
