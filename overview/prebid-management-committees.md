@@ -7,7 +7,7 @@ sidebarType: 0
 
 # Project Management Committees
 
-Project Management Committees are responsible for the active management of one or more Github repositories, which are also identified by resolution of the Board.
+Project Management Committees are responsible for the active management of one or more GitHub repositories, which are also identified by resolution of the Board.
 
 They meet periodically to:
 

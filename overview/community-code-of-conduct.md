@@ -35,7 +35,7 @@ Like the technical community as a whole, the Prebid team and community is made u
 
 Diversity is one of our strengths, but it can also lead to communication issues and unhappiness. To that end, we have a few ground rules that we ask people to adhere to. This code applies equally to founders, mentors, contributors, and anyone seeking help and guidance. This isn’t an exhaustive list of guidelines. Rather, take it in the spirit in which it’s intended - a guide to make it easier to enrich all of us and the technical communities in which we participate.
 
-This code of conduct applies to all spaces managed by Prebid.org. This includes Github, Slack, mailing lists, events, and any other avenues of communication created by the project team for the community. Violations of this code outside these spaces may affect a person's ability to participate within them.
+This code of conduct applies to all spaces managed by Prebid.org. This includes GitHub, Slack, mailing lists, events, and any other avenues of communication created by the project team for the community. Violations of this code outside these spaces may affect a person's ability to participate within them.
 
 If you believe someone is violating the code of conduct, we ask that you report it by emailing conduct@prebid.org. For more details please see the Reporting Guidelines below. 
 

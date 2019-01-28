@@ -22,7 +22,7 @@ Your simplest route to working with Prebid Server is to sign up for a hosted sol
 
 ## On Your Own
 
-If you decide to implement your own Prebid Server solution, you can [download the source code from Github](https://github.com/prebid/prebid-server). The Github site has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation.
+If you decide to implement your own Prebid Server solution, you can [download the source code from GitHub](https://github.com/prebid/prebid-server). The GitHub site has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation.
 
 ## Bidders
 

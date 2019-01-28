@@ -8,7 +8,7 @@ permalink: /blog/enable-deals
 
 ---
 
-Prebid is making it easier for publishers to run deals in header bidding! 
+Prebid is making it easier for publishers to run deals in header bidding!
 
 <br>
 
@@ -26,6 +26,6 @@ In order to enable deals for prebid, the ad ops setup are slightly different fro
 
 + From the ad ops side, you'll create separate orders and line items that target the deal ID key-values. These line items will be at different priorities than your standard header bidding line items. Follow the step by step [Deals Ad Ops Guide](/adops/deals.html) to implement.
 
-+ From the dev side, if your page is using the standard prebid.js key-values, no change is required. 
++ From the dev side, if your page is using the standard prebid.js key-values, no change is required.
 
-Note that the initial list of bidders that support deals are: Pubmatic, TripleLift, AppNexus, bRealTime. More bidder adaptors are implementing deals currently. If you'd like to check progress on a bidder, create a [Github issue](https://github.com/prebid/Prebid.js/issues). 
+Note that the initial list of bidders that support deals are: Pubmatic, TripleLift, AppNexus, bRealTime. More bidder adaptors are implementing deals currently. If you'd like to check progress on a bidder, create a [GitHub issue](https://github.com/prebid/Prebid.js/issues).
