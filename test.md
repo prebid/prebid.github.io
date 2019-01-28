@@ -1,6 +1,5 @@
 ---
 
-description: Page to test features of the site.  
 layout: test
 sidebarType: 3
 title: DistrictMTest
