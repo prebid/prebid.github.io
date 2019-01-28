@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: tim
+title: Tim media prebid Adapater
 description: Prebid tim Bidder Adaptor
 
 top_nav_section: dev_docs
