@@ -8,7 +8,7 @@ biddercode_longer_than_12: false
 prebid_1_0_supported : true
 gdpr_supported: true
 media_types: video
-universalIds: unifiedId/tradedesk
+userIds: unifiedId/tradedesk
 ---
 
 

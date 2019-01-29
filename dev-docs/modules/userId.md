@@ -1,16 +1,16 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - Universal ID
+title: Module - User ID
 description: Supports multiple cross-vendor user IDs
-module_code : universalId
-display_name : universalId
+module_code : userId
+display_name : User ID
 enable_download : true
 sidebarType : 1
 
 ---
 
-# Universal User ID Module
+# User ID Module
 {:.no_toc}
 
 * TOC
@@ -18,20 +18,20 @@ sidebarType : 1
 
 ## Overview
 
-The Universal User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
+The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. TradeDesk). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 
 ## How It Works
 
-1. The publisher builds Prebid.js with the optional Universal ID module
-1. The page defines universal ID configuration in `pbjs.setConfig()`
+1. The publisher builds Prebid.js with the optional User ID module
+1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
-   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.universalID.
-1. An object containing one or more IDs (bidRequest.universalID) is made available to Prebid.js adapters and Prebid Server S2S adapters.
+   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userIds.
+1. An object containing one or more IDs (bidRequest.userIds) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 
-Note that universal IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
+Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
 
 Also note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
 
@@ -40,7 +40,7 @@ While the Unified ID approach is open to other cookie vendors, the
 only one currently supporting Prebid.js is The Tradedesk. Prebid.org
 welcomes other ID vendors - create a PR or email support@prebid.org.
 
-## Universal User ID and GDPR
+## User ID and GDPR
 
 When paired with the `CookieConsent` module, privacy rules are enforced:
 
@@ -56,7 +56,7 @@ When paired with the `CookieConsent` module, privacy rules are enforced:
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
-        universalIds: [{
+        userIds: [{
             name: "unifiedId",
             storage: {
                 type: "cookie",  
@@ -74,7 +74,7 @@ pbjs.setConfig({
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
-        universalIds: [{
+        userIds: [{
             name: "unifiedId",
             params: {
                 partner: "myTtlPid"
@@ -95,7 +95,7 @@ pbjs.setConfig({
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
-        universalIds: [{
+        userIds: [{
             name: "unifiedId",
             params: {
                 url: "URL_TO_UNIFIED_ID_SERVER"
@@ -116,7 +116,7 @@ pbjs.setConfig({
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
-        universalIds: [{
+        userIds: [{
             name: "unifiedId",
             value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3", 
                      "appnexus_id": "1234"}
@@ -130,7 +130,7 @@ pbjs.setConfig({
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
-        universalIds: [{
+        userIds: [{
             name: "pubCommonId",
             storage: {
                 type: "cookie",  
@@ -147,7 +147,7 @@ pbjs.setConfig({
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
-        universalIds: [{
+        userIds: [{
             name: "unifiedId",
             storage: {
                 type: "cookie",  
@@ -168,11 +168,11 @@ pbjs.setConfig({
 ## Configuration
 
 By including this module, the following options become available in `setConfig()`,
-all of them under the `usersync` object as attributes of the `universalIds` array
+all of them under the `usersync` object as attributes of the `userIds` array
 of sub-objects. See the examples above for specific use cases.
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.universalIds[] | Scope | Type | Description | Example |
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"` or `"pubCommonId"` | `"unifiedId"` |
 | params | Optional | Object | Details for unifiedId. Defaults to use the Tradedesk URL and a partner code of "prebid". | |
@@ -185,15 +185,15 @@ of sub-objects. See the examples above for specific use cases.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
 | maxDelayToAuction | Optional | Integer | The presence of this attribute will cause Prebid.js to delay the auction for specified number of milliseconds. | `300` |
 
-## Adapters Supporting the Universal ID Module
+## Adapters Supporting the User ID Module
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 
 <table class="pbTable">
 <tr class="pbTr"><th class="pbTh">Bidder</th><th class="pbTh">IDs Supported</th></tr>
 {% for item in bidder_pages %}
-{% if item.universalIds != nil %}
-<tr class="pbTr"><td class="pbTd">{{item.biddercode}}</td><td class="pbTd">{{item.universalIds}}</td></tr>
+{% if item.userIds != nil %}
+<tr class="pbTr"><td class="pbTd">{{item.biddercode}}</td><td class="pbTd">{{item.userIds}}</td></tr>
 {% endif %}
 {% endfor %}
 </table>
@@ -205,8 +205,8 @@ For bidders that want to support one or more of these ID systems, and for publis
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
 | --- | --- | --- | --- | --- | --- |
-| PubCommon ID | n/a | bidRequest.universalIds.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
-| Unified ID | Tradedesk | bidRequest.universalIds.ttid | user.ext.tpid[].source="tdid" | |
+| PubCommon ID | n/a | bidRequest.userIds.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
+| Unified ID | Tradedesk | bidRequest.userIds.ttid | user.ext.tpid[].source="tdid" | |
 
 The OpenRTB request location of these IDs:
 {% highlight bash %}
