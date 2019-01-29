@@ -21,6 +21,8 @@ The BannerAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pb
 
 Create a new Banner Ad Unit associated with a Prebid Server configuration ID and a banner size. 
 
+See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods. 
+
 **Parameters**
 
 `configId (String)`: Prebid Server configuration ID.
@@ -44,12 +46,12 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 ## Examples
 
 **Create a BannerAdUnit**
-```Swift        
+```        
 let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
 ```
 **Add additional ad sizes**
 
-```Swift
+```
 bannerUnit.addAdditionalSizes(sizes: [CGSize(width: 320, height: 50)])
 ```
 Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and display creatives.
@@ -58,7 +60,7 @@ Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and di
 
 Import the GoogleMobileAds from the [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the BannerAdUnit
 
-```Swift
+```
 func loadDFPBanner(bannerUnit : AdUnit){
         let dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
         dfpBanner.adUnitID = "/19968336/PriceCheck_300x250"
@@ -79,7 +81,7 @@ func loadDFPBanner(bannerUnit : AdUnit){
 
 Import MoPub from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) into the UIViewController displaying the BannerAdUnit
 
-```Swift
+```
 func loadMoPubBanner(bannerUnit: AdUnit){
         
         let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "a935eac11acd416f92640411234fbba6")

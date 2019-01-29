@@ -19,13 +19,13 @@ Prebid Mobile supports the following global targeting parameters. These targetin
 
 ### Gender
 
-```Swift
+```
 public var gender:Gender 
 ```
 
 gender is an enum with the following values: 
 
-```Swift
+```
 
 public enum Gender: String { 
     case unknown
@@ -36,25 +36,25 @@ public enum Gender: String {
 
 You can retrieve and set the gender for targeting:
 
-```Swift
+```
 let gender = Targeting.shared.gender 
 
 //do something with gender
 ```
 
-```Swift
+```
 Targeting.shared.gender = .unknown;
 ```
 
 ### Year of Birth
 
-```Swift
+```
 public var yearofbirth:Int? 
 ```
 
 You can retrieve and set the year of birth for targeting:
 
-```Swift
+```
 if let yob = Targeting.shared.yearofbirth { 
     //do something with yob
 };
@@ -67,18 +67,18 @@ guard let yob = Targeting.shared.yearofbirth else {
 //do something with yob
 ```
 
-```Swift
+```
 Targeting.shared.yearofbirth = 1990;
 ```
-
+ 
 ### itunes ID
 
-```Swift
+```
 public var itunesID:String?
 ```
 You can retrieve and set the itunesID for targeting:
 
-```Swift
+```
 if let itunesID = Targeting.shared.itunesID { 
     //do something with itunesID
 };
@@ -92,19 +92,19 @@ guard let itunesID = Targeting.shared.itunesID else {
 
 ```
 
-```Swift
+```
 Targeting.shared.ituneID = "abcdefgh123456";
 ```
-
+<!--
 ### Location
 
-```Swift
+```
 public var location:CLLocation?
 ```
 
 You can retrieve and set the location for targeting:
 
-```Swift
+```
 if let location = Targeting.shared.location { 
     //do something with location
 };
@@ -118,19 +118,19 @@ guard let location = Targeting.shared.location else {
 
 ```
 
-```Swift
+```
 Targeting.shared.location = CLLocation(latitude: 40.7418968, longitude: -73.9909143);
 ```
 
 ### Location Precision
 
-```Swift
+```
 public var locationPrecision:Int?
 ```
 
 You can retrieve and set the locationPrecision for targeting:
 
-```Swift
+```
 if let locationPrecision = Targeting.shared.locationPrecision { 
     //do something with locationPrecision
 };
@@ -144,9 +144,30 @@ guard let locationPrecision = Targeting.shared.locationPrecision else {
 
 ```
 
-```Swift
-Targeting.shared.locationPrecision = 5
 ```
+Targeting.shared.locationPrecision = 5
+``` -->
+
+### Bundle ID
+
+Use the following code to retrieve the platform-specific bundle/package name:
+
+```
+Targeting.shared.bundleName
+```
+
+### Domain 
+
+Retrieve and set the domain of your app with the following commands:
+
+```
+Targeting.shared.domain
+```
+
+```
+Targeting.shared.domain = domain
+```
+
 
 ## GPDR
 
@@ -154,13 +175,13 @@ Prebid Mobile supports the [IAB GDPR recommendations](https://github.com/Interac
 
 ### Subject To GPDR
 
-```Swift
+```
 public var subjectToGDPR:Bool?
 ```
 
 You can retrieve and set the subjectToGDPR for targeting:
 
-```Swift
+```
 if let subjectToGDPR = Targeting.shared.subjectToGDPR { 
     //do something with subjectToGDPR
 };
@@ -174,19 +195,19 @@ guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
 
 ```
 
-```Swift
+```
 Targeting.shared.subjectToGDPR = false
 ```
 
 ### GDPR Consent String
 
-```Swift
+```
 public var gdprConsentString?
 ```
 
 You can retrieve and set the subjectToGDPR for targeting:
 
-```Swift
+```
 if let gdprConsentString = Targeting.shared.gdprConsentString { 
     //do something with gdprConsentString
 };
@@ -200,7 +221,7 @@ guard let gdprConsentString = Targeting.shared.gdprConsentString else {
 
 ```
 
-```Swift
+```
 Targeting.shared.gdprConsentString = "A String"
 ```
 

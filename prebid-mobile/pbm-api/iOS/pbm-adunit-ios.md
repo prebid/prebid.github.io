@@ -41,6 +41,8 @@ Create a new Banner Ad Unit or Interstitial Ad Unit with a Prebid Server configu
 
 `userKeywords`: Computed property that returns the customerKeywords.
 
+`refreshTime`: A Double Optional used to set the auto refresh time in milliseconds. 
+
 ---
 
 ## Methods
@@ -76,20 +78,6 @@ Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If 
 
 `value`: A String to be appended to the customKeywords property.
 
-### addUserKeywords
-
-Obtains the user keyword and values set for user targeting of a Prebid Mobile ad unit. If the passed in key already exist, the values will be replaced with the new set of values. If the key does not exists the key and values will be appended to customKeywords.
-
-**Parameters**
-
-`key`: A string containing the key whose values will be replaced or appended to customKeywords. 
-
-`value`: A string containing the value that will replace existing values or be appended to customKeywords.
-
-### removeUserKeywords
-
-Remove all customKeywords values from a given Prebid Mobile ad unit. 
-
 ### removeUserKeyword
 Remove a key and all its associated values from customKeywords of a given Prebid Mobile ad unit. 
 
@@ -97,13 +85,20 @@ Remove a key and all its associated values from customKeywords of a given Prebid
 
 `forKey`: A string containing the key to remove from customKeywords.
 
----
+### clearUserKeywords
+Remove all keys and all values from a given Prebid Mobile ad unit.
+
+### setAutoRefreshMillis
+If set on a given Prebid Mobile ad unit, the fetchDemand function will be called every periodMillis until stopAutoRefresh is called. Each call to fetchDemand will invoke the onComplete function.
+
+### stopAutoRefresh
+Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, stopAutoRefresh will be ignored.
 
 ## Examples
 
 **fetchDemand**
 
-```Swift
+```
 let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
 
 if(adServerName == "DFP"){
@@ -128,27 +123,31 @@ if(adServerName == "DFP"){
 ```
 **addKeyword**
 
-```Swift
-    bannerUnit.addKeyword(key:"Sample", value:"Value to add")
 ```
-
-**addUserKeywords**
-
-```Swift
-    let arrValues = ["value1", "value2", "value3"]
-    bannerUnit.addUserKeywords(key: "Sample", value:arrValues)
-```
-
-**removeUserKeywords**
-
-```Swift
-    bannerUnit.removeUserKeywords()
+bannerUnit.addKeyword(key:"Sample", value:"Value to add")
 ```
 
 **removeUserKeyword**
 
-```Swift
+```
 bannerUnit.removeUserKeyword(forKey:"sample")
+```
+
+**clearUserKeywords**
+
+```
+bannerUnit.clearUserKeywords()
+```
+
+**setAutoRefreshMillis**
+
+```
+bannerUnit.setAutoRefreshMillis(time:Double)
+```
+**stopAutoRefresh**
+
+```
+bannerUnit.stopAutoRefresh()
 ```
 
 

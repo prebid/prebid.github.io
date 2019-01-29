@@ -25,7 +25,7 @@ The Prebid class is a singleton that enables the user to apply global settings.
 
 `accountId`: Optional String containing the Prebid Server account ID.
 
-```Swift
+```
 
 if let myAccountId = Prebid.shared.accountId { 
     //do something with myAccountId
@@ -40,15 +40,15 @@ guard let myAccountId = Prebid.shared.accountId else {
 
 ```
 
-```Swift
-let Prebid.shaered.accountId = "1234ABC"
+```
+let Prebid.shared.accountId = "1234ABC"
 ```
 
 &nbsp;
 
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false. 
 
-```Swift
+```
 if let shareGeoLocation = Prebid.shared.shareGeoLocation { 
     //do something with shareGeoLocation
 }
@@ -62,14 +62,14 @@ guard let shareGeoLocation = Prebid.shared.shareGeoLocation else {
 
 ```
 
-```Swift
-let Prebid.shaered.shareGeoLocation = true
+```
+let Prebid.shared.shareGeoLocation = true
 ```
 
 &nbsp;
 `serverHost`: Optional PrebidHost, an enum that defines the url of the Prebid server. 
 
-```Swift 
+``` 
 
 public enum PrebidHost: String { 
     case Appnexus = "https://prebid.adnxs.com/pbs/v1/openrtb2/auction"
@@ -80,7 +80,7 @@ public enum PrebidHost: String {
 
 Custom defaults to an empty string. 
 
-```Swift
+```
 if let serverHost = Prebid.shared.serverHost { 
     //do something with shareGeoLocation
 }
@@ -93,6 +93,10 @@ guard let serverHost = Prebid.shared.serverHost else {
 //do something with serverHost
 
 ```
+
+
+
+
 
 ## Related Topics
 

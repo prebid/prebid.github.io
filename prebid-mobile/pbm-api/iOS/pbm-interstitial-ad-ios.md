@@ -16,8 +16,22 @@ The InterstitialAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mob
 
 Create a new Interstitial Ad Unit associated with a Prebid Server configuration ID. 
 
-See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for parameters and methods. 
+See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods. 
 
+## Examples
+
+**Create an InterstitialAdUnit**
+```    
+let dfpInterstitialView = DFPInterstitial(adUnitID: "/12345/foo")
+dfpInterstitialView.delegate = self
+ 
+let interstitialAdUnit = InterstitialAdUnit(configId: "PREBID_SERVER_CONFIGURATION_ID")
+interstitialAdUnit.addUserKeyword(key: "my_key", value: "my_value")
+interstitialAdUnit.fetchDemand(adObject: dfpInterstitialView) { (resultCode) in
+         //Load the dfp request
+        interstitialAdUnit.load(GADRequest())
+}
+```
 ## Related Topics 
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
