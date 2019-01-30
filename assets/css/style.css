@@ -769,6 +769,31 @@ button.list-group-item:focus {
 }
 
 
+/************ pbTable ****************/
+
+.pbtable {
+  border: 1px solid black;
+}
+
+.pbTr {
+  border: 1px solid black;
+}
+
+.pbTr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+.pbTh {
+  padding: 10px;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.pbTd {
+  padding: 10px;
+  border: 1px solid black;
+}
+
 /************ Partners ****************/
 
 .partners { 
