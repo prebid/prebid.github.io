@@ -1303,10 +1303,11 @@ However, if you'd like, you can disable this feature and prevent Prebid.js from 
 a given auction.
 
 {: .alert.alert-warning :}
-This option is scheduled to become false-by-default within a couple of releases, meaning the limited bid caching will be active only when turned on.
+This option is available in version 1.39 as true-by-default and became false-by-default as of Prebid.js 2.0. If you want to use this
+feature in 2.0 and later, you'll need to set the value to true.
 
 {% highlight js %}
-pbjs.setConfig({ useBidCache: false })
+pbjs.setConfig({ useBidCache: true })
 {% endhighlight %}
 
 

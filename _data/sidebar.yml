@@ -1124,6 +1124,24 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 5
+  title: Currency Converter
+  link: /prebid-server/developers/currency-converter.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 5
+  title: Default Request
+  link: /prebid-server/developers/default-request.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 5
   title: GDPR Mechanics
