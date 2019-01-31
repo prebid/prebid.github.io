@@ -128,7 +128,7 @@ If the Stored Request and the HTTP request have conflicting properties,
 they will be resolved with a [JSON Merge Patch](https://tools.ietf.org/html/rfc7386).
 HTTP request properties will overwrite the Stored Request ones.
 
-## Interstitial Ads
+## Interstitial Ads  
 
 Prebid Server supports interstitial ad type requests. These requests are enabled through the addition of the interstitial key to device.ext.prebid. This key has two fields, minwidthperc and minheightperc. The values are integers that represent the minimum allowed size for the ad, as a percentage of the base side. For example, a `width` of 600 and `minwidthperc` of 60 would allow ad widths of 360 (600 * .60) to 600. 
 
