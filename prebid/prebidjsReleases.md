@@ -8,10 +8,10 @@ sidebarType: 1
 
 ## Prebid.js Releases
 
-Not every Prebid.js release contains noteworthy core features. Many releases
-contain new adapters and maintenance updates on existing adapters. They're all good releases for someone, but the [GitHub releases page](https://github.com/prebid/Prebid.js/releases) can be hard to search for when a given core change was made.
+Not every Prebid.js release contains noteworthy core features, and
+the [GitHub releases page](https://github.com/prebid/Prebid.js/releases) can be hard to search for when a given change or bugfix was made.
 
-This page is a summary of feature changes.
+The table below is a summary of feature changes and important bug fixes in core Prebid.js.
 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
