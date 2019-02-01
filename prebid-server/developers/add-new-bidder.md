@@ -87,7 +87,7 @@ Update the [NewSyncerMap function](https://github.com/prebid/prebid-server/blob/
 
 ## Contribute
 
-Finally, [Contribute](contributing.html) your Bidder to the project.
+Finally, [Contribute](https://github.com/prebid/prebid-server/blob/master/docs/developers/contributing.md) your Bidder to the project.
 
 ## Server requirements
 
