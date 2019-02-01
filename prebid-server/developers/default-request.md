@@ -22,7 +22,7 @@ default_request:
     alias_info     : false
 ```
 
-The `filename` option is the path/filename of a JSON file containing the default stored request JSON as documented in the [openrtb2 docs](../endpoints/openrtb2/auction.md) and [stored request docs](stored-request.md)
+The `filename` option is the path/filename of a JSON file containing the default stored request JSON as documented in the [openrtb2 docs](../endpoints/openrtb2/auction.html) and [stored request docs](stored-requests.html)
 ```
 {
     "tmax": "<auction_timeouts_ms.default>",
