@@ -103,9 +103,7 @@ pbjs.setConfig({
             storage: {
                 type: "html5",
                 name: "pbjs-unifiedid"    // set localstorage with this name
-            },
-            maxDelayToAuction: 250   // wait up to 250ms before starting auction
-				     // implies syncDelay of 0
+            }
         }]
     }
 });
@@ -183,7 +181,6 @@ of sub-objects. See the examples above for specific use cases.
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for unifiedId and 1825 for PubCommonID | `365` |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
-| maxDelayToAuction | Optional | Integer | The presence of this attribute will cause Prebid.js to delay the auction for specified number of milliseconds. | `300` |
 
 ## Adapters Supporting the User ID Module
 
