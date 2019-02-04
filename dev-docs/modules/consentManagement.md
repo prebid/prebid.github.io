@@ -1,15 +1,15 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - GDPR ConsentManagement
 description: Add on module to consume and distribute consent information to bidder adapters
-top_nav_section: dev_docs
-nav_section: modules
 module_code : consentManagement
 display_name : GDPR ConsentManagement
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # GDPR ConsentManagement Module
 {: .no_toc }
@@ -113,7 +113,7 @@ window.__cmp('getVendorConsents', null, function(result ) { });
 
 #### Step 1: Bundle the module code
 
-Follow the basic build instructions on the Github repo's main README. To include the module, an additional option must be added to the the gulp build command:
+Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
 
 {% highlight bash %}
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
@@ -332,4 +332,4 @@ Below is a list of Adapters that currently support GDPR:
 {% endfor %}
 </div>
 
-</div>
+

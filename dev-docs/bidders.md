@@ -1,18 +1,11 @@
 ---
-layout: page
-title: Bidders' Params
+layout: page_v2
+title: Bidder Params
 description: Documentation on bidders' params
-pid: 3
-top_nav_section: dev_docs
-nav_section: reference
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
-
-# Bidders' Params
-
-{: .alert.alert-danger :}
-Prebid.org does not support any version of Prebid.js prior to version 1.0.
+# Bidder Params
 
 This page contains documentation on the specific parameters required by each supported bidder.
 These docs only apply to Prebid.js bidders. For Prebid Server, AMP, or Prebid Mobile, see the

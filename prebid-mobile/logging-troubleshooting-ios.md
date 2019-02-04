@@ -1,15 +1,11 @@
 ---
-layout: page
-title: Logging & Troubleshooting
-description: Logging & Troubleshooting
-pid: 2
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-ios
+layout: page_v2
+title: iOS Logging & Troubleshooting
+description: iOS Logging & Troubleshooting
+sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
-
-# Logging & Troubleshooting
+# iOS Logging & Troubleshooting
 {:.no_toc}
 
 To add Prebid Mobile logs for troubleshooting or to see successful bids simply import `PBLogging.h` and add the following code:
@@ -36,4 +32,4 @@ Setting any log level other than `PBLogLevelAll` or `PBLogLevelOff` will enable 
 
 **A:** Prebid Mobile does not support fluid size.
 
-</div>
+

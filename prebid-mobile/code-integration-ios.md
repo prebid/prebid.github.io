@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Code Integration
 description: Code Integration
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
+sidebarType: 2
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Code Integration for iOS
 
@@ -189,4 +190,4 @@ Use the table below to see which ad objects are supported currently.
 
 
 
-</div>
+

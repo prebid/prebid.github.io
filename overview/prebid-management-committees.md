@@ -1,17 +1,13 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Management Committees
 description: Committees for the sub-projects of Prebid Org
-sidebarType: 2
-pid: 3
-is_top_nav: yeah
-top_nav_section: overview
-nav_section: intro
+sidebarType: 0
 ---
 
 # Project Management Committees
 
-Project Management Committees are responsible for the active management of one or more Github repositories, which are also identified by resolution of the Board.
+Project Management Committees are responsible for the active management of one or more GitHub repositories, which are also identified by resolution of the Board.
 
 They meet periodically to:
 
@@ -77,6 +73,6 @@ Chair: Roy Firestone
 ## Further Reading
 
 * [What is Prebid.org?]({{site.baseurl}}/overview/what-is-prebid-org.html)
-* [Prebid Org Membership]({{site.baseurl}}/overview/prebid-members.html)
+* [Prebid Org Members and Partners]({{site.baseurl}}/partners/partners.html)
 
 

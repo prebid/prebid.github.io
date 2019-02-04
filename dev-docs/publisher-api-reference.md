@@ -1,13 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Publisher API Reference
 description: Publisher API Reference for Prebid.js Header Bidding
 top_nav_section: dev_docs
 nav_section: reference
-pid: 1
+pid: 10
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Publisher API Reference
 
@@ -49,6 +50,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
+    * [useBidCache](#setConfig-Use-Bid-Cache)
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
     * [mediaTypePriceGranularity](#setConfig-MediaType-Price-Granularity)
@@ -427,7 +429,7 @@ Use this method to retrieve an array of winning bids.
 
 ### pbjs.getAllWinningBids() ⇒ `Array`
 
-Use this method to get all of the bids that have won their respective auctions and also rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+Use this method to get all of the bids that have won their respective auctions and also rendered on the page.  Useful for [troubleshooting your integration]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html).
 
 + `pbjs.getAllWinningBids()`: returns an array of bid objects that have won their respective auctions and also rendered on the page.
 
@@ -437,7 +439,7 @@ Use this method to get all of the bids that have won their respective auctions a
 
 ### pbjs.getAllPrebidWinningBids() ⇒ `Array`
 
-Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration](http://prebid.org/dev-docs/prebid-troubleshooting-guide.html).
+Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html).
 
 + `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
 
@@ -835,7 +837,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 
 ##### 2.1. adserverTargeting
 
-As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
+As described in the [AdOps documentation]({{site.baseurl}}/adops/before-you-start.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both scenarios are described below.
@@ -851,7 +853,7 @@ Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_sourc
 In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
 
-If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
+If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
 
 <a name="bidderSettingsDefault"></a>
 <a name="default-keywords">
@@ -1173,6 +1175,7 @@ Core config:
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
++ [Bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
 + [Set a delay before requesting cookie sync](#setConfig-Cookie-Sync-Delay)
@@ -1290,6 +1293,23 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 {% endhighlight %}
 
 <a name="setConfig-Bidder-Order" />
+
+#### Use Bid Cache
+
+<a name="setConfig-Use-Bid-Cache" />
+
+Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](http://prebid.org/dev-docs/faq.html#does-prebidjs-cache-bids).
+However, if you'd like, you can disable this feature and prevent Prebid.js from using anything but the latest bids for
+a given auction.
+
+{: .alert.alert-warning :}
+This option is available in version 1.39 as true-by-default and became false-by-default as of Prebid.js 2.0. If you want to use this
+feature in 2.0 and later, you'll need to set the value to true.
+
+{% highlight js %}
+pbjs.setConfig({ useBidCache: true })
+{% endhighlight %}
+
 
 #### Bidder Order
 
@@ -1431,7 +1451,11 @@ pbjs.setConfig({
         timeout: 1000,
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
+        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+        adapterOptions: {
+            rubicon: { key: 'value' },
+            appnexus: { key: 'value' }
+        }
     }
 })
 {% endhighlight %}
@@ -1450,6 +1474,7 @@ Additional information of these properties:
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
+| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
 
 **Additional Notes on s2sConfig properties**
 
@@ -1614,7 +1639,7 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 * Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the `filterSettings` object)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
-When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
+When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
@@ -1937,4 +1962,4 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
 
-</div>
+

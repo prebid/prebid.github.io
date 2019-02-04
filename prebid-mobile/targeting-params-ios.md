@@ -1,16 +1,11 @@
 ---
-layout: page
-title: Targeting Parameters
-description: Add Targeting Parameters
-pid: 1
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-ios
+layout: page_v2
+title: iOS Targeting Parameters
+description: Add iOS Targeting Parameters
+sidebarType: 2
 ---
 
-
-<div class="bs-docs-section" markdown="1">
-
-# Targeting Parameters
+# iOS Targeting Parameters
 
 ## User location
 
@@ -89,7 +84,7 @@ keywords = "foo=bar,foo=baz,foo=bay,foo=bee";
 
 ## GDPR Consent
 
-Prebid Mobile supports the [IAB GDPR recommendations](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.github.url}}/prebid-mobile/gdpr.html)
+Prebid Mobile supports the [IAB GDPR recommendations](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Final.md). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.github.url}}/prebid-mobile/gdpr.html)
 
 Enable (true) or disable (false) the ability to provide consent.
 ```
@@ -104,4 +99,3 @@ Enable publishers to set the consent string.
 Prebid mobile also checks if the values are present in the [NSUserDefaults](https://developer.apple.com/documentation/foundation/nsuserdefaults#1664798?language=objc) keys specified by the IAB. If the values are also set in these objects they will be passed in the OpenRTB request object.
 
 
-</div>

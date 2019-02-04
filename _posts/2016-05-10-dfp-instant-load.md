@@ -26,7 +26,7 @@ Prebid is introducing a new way of loading GPT and sending GPT requests. Compare
 
 GPT Instant Load (right) sends GPT ad requests about 100ms faster than the previous method (left):
 
-![Prebid Instant Load Benefits]({{ site.github.url }}/assets/images/blog/instant-load/prebid-instant-load.png)
+![Prebid Instant Load Benefits](/assets/images/blog/instant-load/prebid-instant-load.png){: .pb-lg-img }
 
 <br>
 
@@ -57,4 +57,4 @@ Please follow the line by line code example [documented here](/dev-docs/examples
 
 #### Credits
 
-Credits to [Bart Van Bragt](https://github.com/BartVB) in the [Github suggestion](https://github.com/prebid/Prebid.js/issues/276).
+Credits to [Bart Van Bragt](https://github.com/BartVB) in the [GitHub suggestion](https://github.com/prebid/Prebid.js/issues/276).

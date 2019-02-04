@@ -1,24 +1,22 @@
 ---
-layout: page
-title: Analytics for Prebid
+layout: page_v2
+title: Analytics for Prebid.js
 description: Prebid.js Analytics Overview
-pid: 10
-top_nav_section: overview
-nav_section: analytics
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Analytics for Prebid
+
+# Prebid.js Analytics
 
 There are several analytics adapter plugins available to track header bidding performance for your site.
 
 {: .table .table-bordered .table-striped }
 | Analytics Adapter                                                | Cost                                                                                | Contact                                                          | Version Added |
 | -------------                                                    | -------------                                                                       | -----------                                                      |  ------------ |
-| [Google Analytics](http://prebid.org/overview/ga-analytics.html) | Free up to a certain volume. See [terms](https://www.google.com/analytics/terms/).  | [Website](https://www.google.com/analytics)                      |               |
+| [Google Analytics]({{site.baseurl}}/overview/ga-analytics.html) | Free up to a certain volume. See [terms](https://www.google.com/analytics/terms/).  | [Website](https://www.google.com/analytics)                      |               |
 | AppNexus                                                         | Contact vendor                                                                      | [Website](https://www.appnexus.com/en/publishers/header-bidding) |               |
-| PulsePoint                                                       | Contact vendor                                                                      | [Website](https://www.pulsepoint.com/header-bidding.html)        |               |
+| PulsePoint                                                       | Contact vendor                                                                      | [Website](https://www.pulsepoint.com/)        |               |
 | ShareThrough                                                     | Contact vendor                                                                      |                                                                  |               |
 | PrebidAnalytics by Roxot                                         | Paid, see [pricing](http://prebidanalytics.com/#pricing). | [Website](http://prebidanalytics.com/overview-examples)          |          0.22 |
 | PubWise                                                          | Free & Paid, see [pricing](https://pubwise.io/pricing/)                                    | [Website](https://pubwise.io/pubwise/)                                   |          0.24 |
@@ -63,4 +61,4 @@ pbjs.que.push(function() {
 
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
 
-</div>
+

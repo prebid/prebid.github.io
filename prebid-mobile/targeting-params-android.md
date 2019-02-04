@@ -1,16 +1,12 @@
 ---
-layout: page
-title: Targeting Parameters
-description: Add Targeting Parameters
-pid: 1
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile-android
+layout: page_v2
+title: Android Targeting Parameters
+description: Add Android Targeting Parameters
+sidebarType: 2
 ---
 
 
-<div class="bs-docs-section" markdown="1">
-
-# Targeting Parameters
+# Android Targeting Parameters
 
 ## User location
 
@@ -81,4 +77,4 @@ Prebid mobile also checks if the values are present in the [SharedPreferences](h
 For more information about the TargetingParams, please check the source code in [Coding Integration for Android]({{site.github.url}}/prebid-mobile/code-integration-android).
 
 
-</div>
+

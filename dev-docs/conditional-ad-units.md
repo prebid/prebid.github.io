@@ -1,13 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Conditional Ad Units
 description: Using labels for conditional ad units
 top_nav_section: dev_docs
 nav_section: features
 hide: false
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Conditional Ad Units
 {:.no_toc}
@@ -228,4 +229,4 @@ labels:
 + [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
 
 
-</div>
+

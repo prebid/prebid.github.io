@@ -1,11 +1,8 @@
 ---
-layout: page
+layout: page_v2
 title: Show Video Ads with DFP
-description:
-pid: 0
-is_top_nav: yeah
-top_nav_section: dev_docs
-nav_section: prebid-video
+description: Show Video Ads with DFP
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">

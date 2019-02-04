@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Options Supported by the Brightcove Prebid Plugin
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Options Supported by the Brightcove Prebid Plugin
 
@@ -35,6 +35,7 @@ When configuring prebid options for more than one ad break, create an array of P
 - [enablePrebidCache](#enablePrebidCache)
 - [label](#labeloption)
 - [scriptLoadTimeout](#scriptLoadTimeout)
+- [prebidPluginPath](#prebidPluginPath)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -486,6 +487,37 @@ No
 **Example:**
 
 `options1.scriptLoadTimeout = 5000;`
+
+<a name="prebidPluginPath"></a>
+### prebidPluginPath
+
+**Description:**
+
+Allows the user to specify a custom path used to load the Prebid plugin script.  This option could be used when you are building custom or test versions of the plugin that you want to try out.
+
+In version 0.4, the original plugin was split into a loader and the main plugin.  The loader is the file that you specify when embedding the plugin into the player.  The loader will then load the main plugin itself at runtime.  This separation simplifies the process of debugging the plugin, especially when the plugin is embedded directly into the player in Brightcove Studio.  It also means that when updates are published for the plugin, publishers will be able to pick up the updates without having to re-publish their players.
+
+When registering the plugin to the Brightcove Player, you should continue to use the original path to the plugin.  This is now the path to the loader.  By default, this path is: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js`.
+
+Also, by default, the loader will load in the plugin from: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`.
+
+However, if you are trying to run custom or trial versions of the plugin, you can specify the path to this trial version using this new option: `prebidPluginPath`.
+
+**Acceptable Values:**
+
+String that represents the full path to a version of the custom or trial Prebid plugin.
+
+**Required?**
+
+No.
+
+**Default Value:**
+
+http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
+
+**Example:**
+
+`options1.prebidPluginPath = 'https://your-path/bc_prebid_vast_plugin.js';`
 
 
 <a name="set-up-params">

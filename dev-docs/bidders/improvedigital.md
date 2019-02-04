@@ -9,6 +9,7 @@ biddercode_longer_than_12: true
 hide: true
 prebid_1_0_supported : true
 gdpr_supported: true
+media_types: native
 ---
 
 ### Send All Bids Ad Server Keys:
@@ -31,6 +32,19 @@ Depending on your setup in our system, your placements will either have a global
 | `placementKey` | optional | The placement key for your placement.  Must be used with `publisherId`.                                                    | `'myMainBannerPlacement300x200'`                                       | `string`  |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
 | `size`         | optional | Size filter.  Where a placement supports multiple sizes, this forces the response to featur only one of the multiple sizes | `{ w:300, h:250 }`                                                     | `object`  |
+
+### Configuration
+
+#### Single-Request
+
+By default, the adapter sends one request for each ad unit to Improve Digital's ad server. For example, if there are 4 Prebid ad units defined on the page, you'll see 4 calls out to ad.360yield.com/hb.
+
+The Improve Digital adapter supports `Single Request` mode, where all ad unit requests are made in a single call to ad.360yield.com/hb. To turn this feature on, call `setConfig`:
+```
+pbjs.setConfig({
+   improvedigital: {singleRequest: true}
+});
+```
 
 <a name="improvedigital-examples" />
 

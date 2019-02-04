@@ -1,18 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Modules
 description: Module Documentation
-pid: 7
-top_nav_section: dev_docs
-nav_section: reference
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Prebid Modules
+# Prebid.js Module Overview
 {:.no_toc}
 
-Part of the [vision for Prebid.js version 1.0](https://github.com/prebid/Prebid.js/issues/891) is that the core of Prebid.js will contain only the foundational code needed for header bidding.  Any functionality that could be considered an add-on or that covers a special case is being moved out into modules.  Examples of this kind of code include:
+The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on or that covers a special case is being moved out into modules.  Examples of this kind of code include:
 
 - Bidder adapters
 - Special auction logic
@@ -43,8 +40,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 
 ## Further Reading
 
-+ [Prebid.js 1.0.0 Proposal - Intent to Implement](https://github.com/prebid/Prebid.js/issues/891)
 + [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
 + [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html)
 
-</div>
+

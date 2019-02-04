@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player
 description: Overview
 top_nav_section: dev_docs
@@ -8,7 +8,7 @@ is_top_nav: yeah
 pid: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Plugin for Brightcove (Videojs) Player
 
@@ -68,12 +68,18 @@ The plugin supports one or more of the following ad slot locations in a single v
 BcPrebidVast is supported by the following components:
 
 - **bc_prebid_vast**
+- **bc_prebid_vast_plugin**
 - **MailOnline Plugin**
 - **CSS files**
 
 ### bc_prebid_vast
 
-`bc_prebid_vast` is the Brightcove plugin itself, which invokes the prebid process and renders the selected video ad.
+`bc_prebid_vast` is a loader script that loads in the full Prebid plugin.  The loader was added to:
+
+- make it easier to debug the plugin, particularly when the plugin is directly embedded into the Brightcove Player in the Studio
+- remove the necessity to have to re-publish a Brightcove Player instance every time the code in the main plugin has been modified.  The only time a player instance would need to be re-published is when the code in the loader itself changes.
+
+You can think of the “plugin” as being a combination of the loader and the plugin code itself. However, when registering the Prebid plugin, either on page or in the Brightcove Studio, the URL to the loader should be used.  This loader will then load in the main plugin script, either from the default location or from a custom location that may be specified in the Prebid options passed via the plugin configuration.
 
 #### Minified Version
 
@@ -86,6 +92,22 @@ BcPrebidVast is supported by the following components:
 - Default location:  `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.js`
 - Repository location:  `https://github.com/prebid/prebid-js-plugin-brightcove.git`
    - after building: `./prebid-js-plugin-brightcove/dist/bc_prebid_vast.js`
+
+### bc_prebid_vast_plugin
+
+`bc_prebid_vast_plugin` is the main Brightcove plugin itself, which invokes the Prebid process and renders the selected video ad.  This script is loaded by the Prebid plugin loader described above.
+
+#### Minified Version
+
+- Default location: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`
+- Repository location:  `https://github.com/prebid/prebid-js-plugin-brightcove.git`
+    - after building: `./prebid-js-plugin-brightcove/dist/bc_prebid_vast_plugin.min.js`
+
+#### Non-Minified Version
+
+- Default location: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.js`
+- Repository location:  `https://github.com/prebid/prebid-js-plugin-brightcove.git`
+    - after building: `./prebid-js-plugin-brightcove/dist/bc_prebid_vast_plugin.js`
 
 ### MailOnline Plugin
 

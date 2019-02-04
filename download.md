@@ -1,16 +1,8 @@
 ---
-layout: page
+layout: page_v2
 title: Download Prebid.js
 description: Documentation on how to download Prebid.js for header bidding.
-
-pid: 0
-
-is_top_nav: yeah
-
-top_nav_section: download
-nav_section: download
-
-
+sidebarType: 0
 ---
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
@@ -182,7 +174,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 ### Option 1: Customize your download here
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% assign module_pages = site.pages | where: "nav_section", "modules" %}
+{% assign module_pages = site.pages | where: "page_type", "module" %}
 
 {: .alert.alert-danger :}
 **Deprecation Notice:** Prebid.org does not support any version of Prebid.js prior to version 1.0.
