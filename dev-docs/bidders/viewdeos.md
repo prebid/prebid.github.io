@@ -1,14 +1,14 @@
 ---
 layout: bidder
-title: Viewdeo
-description: Prebid Viewdeo Bidder Adaptor
+title: Viewdeos
+description: Prebid Viewdeos Bidder Adaptor
 
 top_nav_section: dev_docs
 nav_section: reference
 
 hide: true
 
-biddercode: viewdeo
+biddercode: viewdeos
 
 biddercode_longer_than_12: false
 ---
@@ -20,4 +20,4 @@ biddercode_longer_than_12: false
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
 
-Viewdeo is an aliased bidder for Gamoshi
+Viewdeos is an aliased bidder for Gamoshi
