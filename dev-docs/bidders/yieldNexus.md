@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Yield Nexus
-description: Yield Nexus Bidder Adaptor
+description: Yield Nexus Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 biddercode: yieldnexus
