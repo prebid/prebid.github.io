@@ -35,6 +35,7 @@ Warning: do not use this API reference for new Prebid.js implementations. This d
   * [.setPriceGranularity(granularity)](#module_pbjs.setPriceGranularity) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
+  * [.removeAllAdUnits()](#module_pbjs.removeAllAdUnits)
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array\|Object)](#module_pbjs.addAdUnits)
   * [.addBidResponse(adUnitCode, bid)](#module_pbjs.addBidResponse) <strong style="background-color:#fcf8f2;border-color:#f0ad4e">Deprecated; will be removed in 1.0</strong>
@@ -530,6 +531,15 @@ Remove adUnit from the pbjs configuration
 | --- | --- | --- | --- |
 | adUnitCode | Required | `String` | the adUnitCode to remove |
 
+<hr class="full-rule">
+
+<a name="module_pbjs.removeAllAdUnits"></a>
+
+### pbjs.removeAllAdUnits()
+
+Removes all adUnits from the pbjs configuration
+
+**Kind**: static method of [pbjs](#module_pbjs)
 
 <hr class="full-rule">
 
