@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Clean Media
-description: Clean Media Bidder Adaptor
+description: Clean Media Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 biddercode: cleanmedianet
