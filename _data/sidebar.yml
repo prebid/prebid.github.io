@@ -361,6 +361,15 @@
   subgroup: 3
 
 - sbSecId: 1
+  title: Prebid.js Releases
+  link: /prebid/prebidjsReleases.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
   title: Prebid 1.0 Publisher API Changes
   link: /dev-docs/prebid-1.0-API.html
   isLastSubSectionItem: 1

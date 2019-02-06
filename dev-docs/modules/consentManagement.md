@@ -113,7 +113,7 @@ window.__cmp('getVendorConsents', null, function(result ) { });
 
 #### Step 1: Bundle the module code
 
-Follow the basic build instructions on the Github repo's main README. To include the module, an additional option must be added to the the gulp build command:
+Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
 
 {% highlight bash %}
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2

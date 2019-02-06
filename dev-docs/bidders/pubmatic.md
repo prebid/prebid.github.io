@@ -123,6 +123,40 @@ var videoAdUnits = [
 ```
 
 
+### AdUnit Format for Native
+```javascript
+var adUnits = [
+{
+    code: 'test-div',    
+    mediaTypes: {
+       native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            body: {
+                required: true
+            }
+        }
+    },
+    bids: [{
+      bidder: 'pubmatic',
+      params: {
+        publisherId: '156295',               // required
+        adSlot: 'pubmatic_test2@1x1',       // required
+      }
+    }]
+}];
+```
+
+
 ### Configuration for video
 For Video ads, prebid cache needs to be enabled for PubMatic adapter.
 ```

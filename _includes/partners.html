@@ -23,8 +23,9 @@
 	<script type="text/javascript">
 	    var partnerData=[];
 	    idx=0;
-				
-	    {% for item in site.bidders %}
+		
+		{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+	    {% for item in bidder_pages %}
 		partnerData[idx]={};
 		partnerData[idx].href="/dev-docs/bidders.html#{{item.biddercode}}";
 		partnerData[idx].text="{{item.title}}";

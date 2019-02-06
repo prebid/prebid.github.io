@@ -1,5 +1,5 @@
 #-------------Message----------------
 
 - messageId: 1
-  messageText: Prebid.org has a new look! See the <a href="/blog/updated-website">blog entry</a> for more info.
-  messageCreateDt: 01_08_2019
+  messageText: <a href="/blog/pbjs-2">Prebid.js 2.0 is released</a>. It's not as big as you might think.
+  messageCreateDt: 01_31_2019
