@@ -47,4 +47,4 @@ gdpr_supported: true
 | `custom_override`       | optional | Object of script tag attributes to override from the list here: [EASI Attributes](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/README.md#common-javascript-attributes)
 NOTES:
 * exclude 'data-spotx_' from attribute name.
-* channel_id, vast_url, content_page_url, and ad_unit overrides are ignored | `{content_height: 300, ontent_width: 400}` | `object` |
+* channel_id, vast_url, content_page_url, and ad_unit overrides are ignored | `{content_height: 300, content_width: 400}` | `object` |
