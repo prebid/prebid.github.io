@@ -482,6 +482,15 @@
 - sbSecId: 1
   title: GPDR Consent Management
   link: /dev-docs/modules/consentManagement.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: IAB Subcategory Translation
+  link: /dev-docs/modules/iabCatalogTranslation.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
