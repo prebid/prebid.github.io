@@ -54,7 +54,7 @@ function getVersionList() {
           $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
         }
         else{
-          if(version.match(/1\.\d+\.\d+/i)){
+          if(version.match(/\d\.\d+\.\d+/i)){
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{

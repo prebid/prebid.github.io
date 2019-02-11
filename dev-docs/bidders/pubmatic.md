@@ -8,7 +8,7 @@ hide: true
 biddercode: pubmatic
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
-media_types: video
+media_types: banner, video, native
 gdpr_supported: true
 ---
 
