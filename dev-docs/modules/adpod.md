@@ -10,3 +10,7 @@ sidebarType : 1
 ---
 
 # Adpod Module
+
+The adpod module provides functions to validate, cache, and modify long-form video bids. 
+
+## How to use the module:
