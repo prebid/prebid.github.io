@@ -153,11 +153,11 @@
     sectionName: Product
     title: Android
     link: /prebid-mobile/code-integration-android.html
-    needsDivider: 0
+    needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: Formats
@@ -166,7 +166,7 @@
     isHeader: 0
     isSubSectionStart: 1
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: Display
@@ -175,7 +175,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: Video
@@ -184,7 +184,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: Native
@@ -193,7 +193,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: AMP
@@ -202,7 +202,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 0
     sectionName: Product
     title: Multi-Format
