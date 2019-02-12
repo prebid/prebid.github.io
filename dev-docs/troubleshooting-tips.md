@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Dev Tips
 description: Troubleshooting tips for developers implementing Prebid.js Header Bidding.
 pid: 0
@@ -7,10 +7,11 @@ pid: 0
 top_nav_section: dev_docs
 nav_section: troubleshooting
 redirect_from: "/dev-docs/toubleshooting-tips.html"
+sidebarType: 1
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Tips for Troubleshooting
 {:.no_toc}
@@ -29,8 +30,7 @@ Add `pbjs_debug=true` to the end of your page's URL. For example: <a href="{{ si
 
 <br>
 
-{: .pb-md-img :}
-![Prebid.js Debug Console]({{ site.github.url }}/assets/images/dev-docs/pbjs_debug-console-log.png)
+![Prebid.js Debug Console]({{ site.github.url }}/assets/images/dev-docs/pbjs_debug-console-log.png){: .pb-sm-img :}
 
 <br>
 
@@ -49,8 +49,7 @@ The ad server's developer console usually provide information such as targeting,
 
 <br>
 
-{: .pb-md-img :}
-![Prebid.js Debug Console]({{ site.github.url }}/assets/images/dev-docs/googfc.png)
+![Prebid.js Debug Console]({{ site.github.url }}/assets/images/dev-docs/googfc.png){: .pb-md-img :}
 
 <br>
 
@@ -60,15 +59,13 @@ To print information about all of the bids that come in to the Console on any pa
 
 Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
 
-{: .pb-img.pb-md-img :}
-![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png)
+![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
 
 <br />
 
 Right-click to add a **New** snippet:
 
-{: .pb-img.pb-md-img :}
-![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png)
+![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :} 
 
 <br />
 
@@ -76,24 +73,36 @@ Paste in the following code using Control-V (or Command-V on Mac), and give the 
 
 ```javascript
 (function() {
-  var responses = pbjs.getBidResponses();
+  function forEach(responses, cb) {
+    Object.keys(responses).forEach(function(adUnitCode) {
+      var response = responses[adUnitCode];
+      response.bids.forEach(function(bid) {
+        cb(adUnitCode, bid);
+      });
+    });
+  }
   var winners = pbjs.getAllWinningBids();
   var output = [];
-  Object.keys(responses).forEach(function(adUnitCode) {
-    var response = responses[adUnitCode];
-    response.bids.forEach(function(bid) {
-      output.push({
-        bid: bid,
-        adunit: adUnitCode,
-        adId: bid.adId,
-        bidder: bid.bidder,
-        time: bid.timeToRespond,
-        cpm: bid.cpm,
-        msg: bid.statusMessage,
-        rendered: !!winners.find(function(winner) {
-          return winner.adId==bid.adId;
-        })
-      });
+  forEach(pbjs.getBidResponses(), function(code, bid) {
+    output.push({
+      bid: bid,
+      adunit: code,
+      adId: bid.adId,
+      bidder: bid.bidder,
+      time: bid.timeToRespond,
+      cpm: bid.cpm,
+      msg: bid.statusMessage,
+      rendered: !!winners.find(function(winner) {
+        return winner.adId==bid.adId;
+      })
+    });
+  });
+  forEach(pbjs.getNoBids && pbjs.getNoBids() || {}, function(code, bid) {
+    output.push({
+      msg: "no bid",
+      adunit: code,
+      adId: bid.bidId,
+      bidder: bid.bidder
     });
   });
   if (output.length) {
@@ -114,15 +123,13 @@ Paste in the following code using Control-V (or Command-V on Mac), and give the 
 
 Right-click the snippet and choose **Run**:
 
-{: .pb-img.pb-md-img :}
-![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png)
+![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
 
 <br />
 
 Check the output in Console to see the bids:
 
-{: .pb-img.pb-lg-img :}
-![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png)
+![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
 
 ## See all winning bids in the console
 
@@ -130,15 +137,13 @@ To print information about all of the winning bids that come in to the Console o
 
 Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
 
-{: .pb-img.pb-md-img :}
-![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png)
+![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
 
 <br />
 
 Right-click to add a **New** snippet:
 
-{: .pb-img.pb-md-img :}
-![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png)
+![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
 
 <br />
 
@@ -171,15 +176,13 @@ if (output.length) {
 
 Right-click the snippet and choose **Run**:
 
-{: .pb-img.pb-md-img :}
-![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png)
+![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
 
 <br />
 
 Check the output in Console to see the bids (note that this screenshot shows the output from "see all bids" but they're very similar):
 
-{: .pb-img.pb-lg-img :}
-![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png)
+![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
 
 ## Modify bid responses for testing
 
@@ -229,7 +232,7 @@ javascript console> pbjs.setConfig({
 
 ## Related Reading
 
-+ [Prebid FAQ]({{site.github.url}}/dev-docs/faq.html)
-+ [Prebid Common Issues]({{site.github.url}}/dev-docs/common-issues.html)
++ [Prebid.js FAQ](/dev-docs/faq.html)
++ [Prebid.js Common Issues](/dev-docs/common-issues.html)
 
-</div>
+

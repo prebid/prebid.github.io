@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Getting Started with Video for Prebid.js
 description: Prebid Video Getting Started
 pid: 1
 is_top_nav: yeah
 top_nav_section: pbjs-video
 nav_section: pbjs-video-get-started
+sidebarType: 4
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Getting Started with Video for Prebid.js
 {: .no_toc }
@@ -27,7 +28,7 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 
 ### Ad Server Setup
 
-Start by reading [AdOps Getting Started]({{site.github.url}}/adops.html). This will give you a general overview of setting up your price buckets and line items on your ad server.
+Start by reading [AdOps Getting Started]({{site.github.url}}/overview/getting-started.html). This will give you a general overview of setting up your price buckets and line items on your ad server.
 
 One thing to keep in mind as you set up your line items is price granularity. Be sure to communicate your price granularity requirements to your developers, as they might need to define custom configuration settings, depending on your granularity.
 

@@ -1,12 +1,13 @@
 ---
-layout: page
+layout: page_v2
 title: How to Add a New Bidder Adapter
 description: Documentation on how to add a new bidder adapter
 top_nav_section: dev_docs
 nav_section: adapters
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to Add a New Bidder Adapter
 {:.no_toc}
@@ -16,7 +17,7 @@ At a high level, a bidder adapter is responsible for:
 1. Creating the bid requests for the bidder's server.
 2. Parsing and registering the bid responses.
 
-This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the Github repo](https://github.com/prebid/Prebid.js/tree/master/modules) for reference.
+This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the GitHub repo](https://github.com/prebid/Prebid.js/tree/master/modules) for reference.
 
 * TOC
 {:toc}
@@ -195,7 +196,8 @@ export const spec = {
     interpretResponse: function(serverResponse, request) {},
     getUserSyncs: function(syncOptions, serverResponses) {},
     onTimeout: function(timeoutData) {},
-    onBidWon: function(bid) {}
+    onBidWon: function(bid) {},
+    onSetTargeting: function(bid) {}
 }
 registerBidder(spec);
 
@@ -249,6 +251,7 @@ Referrer information is included on the `bidderRequest.refererInfo` property. Th
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
 - `stack`: a string of comma-separated URLs of all origins.
+- `canonicalUrl`: a string containing the canonical (search engine friendly) URL defined in top-most window.
 
 The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
@@ -318,7 +321,7 @@ The parameters of the `bidObject` are:
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
+| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
@@ -395,6 +398,33 @@ Sample data received by this function:
   "adId": "330a22bdea4cac",
   "mediaType": "banner",
   "cpm": 0.28
+  "ad": "...",
+  "requestId": "418b37f85e772c",
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "size": "350x250",
+  "adserverTargeting": {
+    "hb_bidder": "example",
+    "hb_adid": "330a22bdea4cac",
+    "hb_pb": "0.20",
+    "hb_size": "350x250"
+  }
+}
+{% endhighlight %}
+
+### Registering on Set Targeting
+
+The `onSetTargeting` function will be called when the adserver targeting has been set for a bid from the adapter.
+
+Sample data received by this function:
+
+{% highlight js %}
+{
+  "bidder": "example",
+  "width": 300,
+  "height": 250,
+  "adId": "330a22bdea4cac",
+  "mediaType": "banner",
+  "cpm": 0.28,
   "ad": "...",
   "requestId": "418b37f85e772c",
   "adUnitCode": "div-gpt-ad-1460505748561-0",
@@ -679,6 +709,14 @@ export const spec = {
     onBidWon: function(bid) {
         // Bidder specific code
     }
+
+    /**
+     * Register bidder specific code, which will execute when the adserver targeting has been set for a bid from this bidder
+     * @param {Bid} The bid of which the targeting has been set
+     */
+    onSetTargeting: function(bid) {
+        // Bidder specific code
+    }
 }
 registerBidder(spec);
 
@@ -696,10 +734,10 @@ registerBidder(spec);
 Within a few days, the code pull request will be assigned to a developer for review.
 Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
 
-The Prebid.org [download page](http://prebid.org/download.html) will automatically be updated with your adapter once everything's been merged.
+The Prebid.org [download page]({{site.baseurl}}/download.html) will automatically be updated with your adapter once everything's been merged.
 
 ## Further Reading
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
 
-</div>
+

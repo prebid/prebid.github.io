@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: How to Integrate and Configure Prebid Plugin for Brightcove (Videojs) Player
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to Integrate and Configure Prebid Plugin for Brightcove (Videojs) Player
 
@@ -65,4 +65,4 @@ Visit [Brightcove Prebid Plugin - Integration via Brightcove Studio]({{site.base
 
 **[Options Supported by Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html)**
 
-</div>
+

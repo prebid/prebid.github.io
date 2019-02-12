@@ -2,9 +2,8 @@
 layout: example
 title: Custom Price Granularity Buckets
 description: Custom Price Granularity Buckets
-top_nav_section: dev_docs
-nav_section: quick-start
 hide: true
+sidebarType: 1
 
 about:
 - Custom price granularity buckets using <code>pbjs.setConfig()</code>
@@ -14,5 +13,4 @@ jsfiddle_link: jsfiddle.net/Prebid_Examples/5eurjwu1/9/embedded/html,result
 
 code_height: 2152
 
-pid: 101
 ---

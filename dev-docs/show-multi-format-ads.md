@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Show Multi-Format Ads with Prebid.js
 description: Show Multi-Format Ads with Prebid.js
 pid: 0
 is_top_nav: yeah
 top_nav_section: dev_docs
 nav_section: prebid-multi-format
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Show Multi-Format Ads with Prebid.js
 {: .no_toc }
@@ -133,4 +134,4 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 + [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
 
-</div>
+

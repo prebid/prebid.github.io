@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.js Video Examples
 description: Prebid.js Video Examples
 pid: 1
 top_nav_section: pbjs-video
 nav_section: pbjs-video-examples
+sidebarType: 4
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Video Examples
 

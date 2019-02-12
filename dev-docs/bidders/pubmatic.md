@@ -8,7 +8,7 @@ hide: true
 biddercode: pubmatic
 biddercode_longer_than_12: false
 prebid_1_0_supported : true
-media_types: video
+media_types: banner, video, native
 gdpr_supported: true
 ---
 
@@ -32,8 +32,8 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `gender`      | optional | Gender                | `'M'`                     | `string` |
 | `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |
 | `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
-| `currency`    | optional | Bid currency    	   | `'AUD'` 				   | `string` |
-| `dctr`		| optional | Deal Custom Targeting | `'key1=123|key2=345'` 	   | `string` |
+| `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. < br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
+| `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. < br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
 
 ### Configuration
 
@@ -120,6 +120,40 @@ var videoAdUnits = [
       }
     }]
 }]
+```
+
+
+### AdUnit Format for Native
+```javascript
+var adUnits = [
+{
+    code: 'test-div',    
+    mediaTypes: {
+       native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            body: {
+                required: true
+            }
+        }
+    },
+    bids: [{
+      bidder: 'pubmatic',
+      params: {
+        publisherId: '156295',               // required
+        adSlot: 'pubmatic_test2@1x1',       // required
+      }
+    }]
+}];
 ```
 
 

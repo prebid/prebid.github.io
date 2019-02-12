@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Plugin Integration with Brightcove Player Using Brightcove Player Studio
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: pugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Plugin Integration with Brightcove Player Using Brightcove Player Studio
 
@@ -50,7 +50,7 @@ There are two ways to register the Brightcove Prebid Plugin in Brightcove Studio
 
 - **General Integration**
     - Adds the plugin to the Brightcove Player when the player is embedded on the page, without calling prebid
-    - Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-Plugin-API.html)**.
+    - Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-api.html)**.
     - Publisher may use this method when they want to use a third-party ad server other than DFP as their primary ad server
 
 - **Configured Integration**
@@ -131,7 +131,7 @@ Example:
     ```
     // create the options object
     var adOptions =
-    {"prebidPath": "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    {"prebidPath": "//files.prebid.org/prebid-org.js",
         "biddersSpec": {
             ”code": "my-video-tag",
             "sizes": [640,480],
@@ -238,7 +238,7 @@ In Brightcove Studio:
         - Prebid plugin CSS file
     - Under `Name, Options` section
         - enter the following plugin name:  `bcPrebidVastPlugin`
-        - enter a JSON object containing all the prebid and render options you want to use.
+        - enter a JSON object containing all the prebid and render options you want to use. (A sample set of configuration options are provided [below](#sample-config).)
 5. Click the `SAVE` button.
 6. Click the `PUBLISH` button. You should then see the Preview Player for your updated instance. NOTE: You should see your ad playing in the preview.
 7. To retrieve the player embed code to put on your publisher page, click the `EMBED CODE & URL` button at the top of the page. Select `PUBLISHED PLAYER` from the options provided.
@@ -248,9 +248,133 @@ In Brightcove Studio:
 
 None
 
+<a name="sample-config"></a>
+#### Sample Plugin Configuration in Brightcove Studio
+
+```
+{
+    "prebidPath": "//files.prebid.org/prebid-org.js",
+    "bidderAliases": [
+        {
+            "name": "alias1",
+            "bidderName": "appnexus"
+        }
+    ],
+    "biddersSpec": {
+        "code": "my-video-tag",
+        "sizes": [640,480],
+        "mediaTypes": {
+            "video": {
+                "context": "instream",
+                "mimes": ["video/mp4","application/javascript"],
+                "protocols": [1,2,3,4,5,6,7,8],
+                "playbackmethod": [1,2],
+                "api": [1,2 ]
+            }
+        },
+        "bids": [{
+            "bidder": "appnexus",
+            "params": {
+                "placementId": 8845778,
+                "video": {"skippable": true,
+                "playback_method":
+                    ["auto_play_sound_off"]
+                }
+            }
+        },
+        {
+            "bidder": "alias1",
+            "params": {
+                "placementId": 12531984,
+                "video": {"skippable": true,
+                "playback_method":
+                    ["auto_play_sound_off"]
+                }
+            }
+        }]
+    },
+    "bidderSettings": {
+        "standard": {
+            "adserverTargeting": [
+                {
+                    "key": "hb_bidder",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.bidderCode;",
+                        "}"
+                    ]
+                },
+                {
+                    "key": "hb_adid",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.adId;",
+                        "}"
+                    ]
+                },
+                {
+                    "key": "hb_pb",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.pbMg;",
+                        "}"
+                    ]
+                },
+                {
+                    "key": "hb_size",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.size;",
+                        "}"
+                    ]
+                }
+            ]
+        },
+        "appnexus": {
+            "adserverTargeting": [
+                {
+                    "key": "hb_size",
+                    "val": "640x480"
+                }
+            ]
+        },
+        "alias1": {
+            "adserverTargeting": [
+                {
+                    "key": "hb_pb",
+                    "val": [
+                        "valueIsFunction",
+                        "function (bidResponse) {",
+                        "  return bidResponse.pbHg;",
+                        "}"
+                    ]
+                }
+            ]
+        }
+    },
+    "prebidConfigOptions": {
+        "cache": {
+            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+        },
+        "enableSendAllBids": true
+    },
+    "skippable": {
+        "enabled": true,
+        "videoThreshold": 16,
+        "videoOffset": 5
+    },
+    "prebidTimeout": 700,
+    "enablePrebidCache": true
+}
+```
+
 #### What Your Page Would Look Like
 
-Visit **[sample publisher page after using the Configured Integration Method]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integraton-configured-method.html)** for details.
+Visit **[sample publisher page after using the Configured Integration Method]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method.html)** for details.
 
 ## How To Use Other Plugin API Methods When Registering Plugin in Brightcove Studio
 
@@ -286,4 +410,4 @@ Information about the plugin API can be found at **[Prebid Plugin for Brightcove
 
 Details about the options supported by the Brightcove Prebid Plugin can be found at:   **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html)**
 
-</div>
+

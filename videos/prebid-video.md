@@ -1,11 +1,8 @@
 ---
-layout: page
+layout: page_v2
 title: Header Bidding Videos - Prebid Video
 description: Header Bidding Videos - Prebid Video
-pid: 3
-is_top_nav: yeah
-top_nav_section: videos
-nav_section: videos
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -18,14 +15,34 @@ nav_section: videos
 
 ## Prebid Video
 
-<iframe src="https://player.vimeo.com/video/244653652" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div id="vimeo1">
+<h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
+<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+</div>
+
+<script type="text/javascript">
+Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/244653652" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo1', null, {deleteSelectorContent: true}, 3);
+</script>
 
 ## Prebid Video: Instream
 
-<iframe src="https://player.vimeo.com/video/251652605" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div id="vimeo2">
+<h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
+<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+</div>
+
+<script type="text/javascript">
+Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/251652605" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo2', null, {deleteSelectorContent: true}, 3);
+</script>
 
 ## Prebid Video: Outstream
 
-<iframe src="https://player.vimeo.com/video/252596747" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div id="vimeo3">
+<h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
+<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+</div>
 
+<script type="text/javascript">
+Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/252596747" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo3', null, {deleteSelectorContent: true}, 3);
+</script>
 </div>
