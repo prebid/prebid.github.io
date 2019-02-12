@@ -39,7 +39,7 @@ Ad Unit Code
 
 pbjs.adServers.freewheel.getTargeting({codes:['adUnitCode-1']});
 ```
-The values sent to `getTargeting` are concatenation of CPM, industy code, and video duration. Freewheel SDK will then send to Freewheel Ad Server the following query: 
+The values sent to `getTargeting` are concatenation of CPM, industy code, and video duration. Freewheel SDK will send those values to Freewheel Ad Server within the following query: 
 
 ```
 http://[customerId].v.fwmrm.net/ad/g/1[globalParams];hb_pb_cat_dur=10.00_400_15s&hb_pb_cat_dur=15.00_402_30s&hb_uuid=123;[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];
