@@ -35,7 +35,6 @@ This page has documentation for the public API methods of Prebid.js.
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
-  * [.removeAllAdUnits()](#module_pbjs.removeAllAdUnits)
   * [.requestBids(requestObj)](#module_pbjs.requestBids)
   * [.addAdUnits(Array\|Object)](#module_pbjs.addAdUnits)
   * [.bidderSettings](#module_pbjs.bidderSettings)
@@ -504,7 +503,7 @@ This function will render the ad (based on params) in the given iframe document 
 
 ### pbjs.removeAdUnit(adUnitCode)
 
-Remove adUnit from the pbjs configuration
+Remove adUnit(s) from the pbjs configuration, If adUnit is not given then it will remove all adUnits
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -512,17 +511,8 @@ Remove adUnit from the pbjs configuration
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| adUnitCode | Required | `String` | the adUnitCode to remove |
+| adUnitCode | Optional | `String or Array of strings` | the adUnitCode(s) to remove, if empty it removes all |
 
-<hr class="full-rule">
-
-<a name="module_pbjs.removeAllAdUnits"></a>
-
-### pbjs.removeAllAdUnits()
-
-Removes all adUnits from the pbjs configuration
-
-**Kind**: static method of [pbjs](#module_pbjs)
 
 <hr class="full-rule">
 
