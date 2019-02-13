@@ -70,83 +70,7 @@ guard let yob = Targeting.shared.yearofbirth else {
 ```
 Targeting.shared.yearofbirth = 1990;
 ```
- 
-### itunes ID
-
-```
-public var itunesID:String?
-```
-You can retrieve and set the itunesID for targeting:
-
-```
-if let itunesID = Targeting.shared.itunesID { 
-    //do something with itunesID
-};
-
-guard let itunesID = Targeting.shared.itunesID else { 
-    print("There was an error retrieving itunesID)
-    return 
-}
-
-//do something with itunesID
-
-```
-
-```
-Targeting.shared.ituneID = "abcdefgh123456";
-```
-<!--
-### Location
-
-```
-public var location:CLLocation?
-```
-
-You can retrieve and set the location for targeting:
-
-```
-if let location = Targeting.shared.location { 
-    //do something with location
-};
-
-guard let location = Targeting.shared.location else { 
-    print("There was an error retrieving location)
-    return 
-}
-
-//do something with location
-
-```
-
-```
-Targeting.shared.location = CLLocation(latitude: 40.7418968, longitude: -73.9909143);
-```
-
-### Location Precision
-
-```
-public var locationPrecision:Int?
-```
-
-You can retrieve and set the locationPrecision for targeting:
-
-```
-if let locationPrecision = Targeting.shared.locationPrecision { 
-    //do something with locationPrecision
-};
-
-guard let locationPrecision = Targeting.shared.locationPrecision else { 
-    print("There was an error retrieving locationPrecision)
-    return 
-}
-
-//do something with locationPrecision
-
-```
-
-```
-Targeting.shared.locationPrecision = 5
-``` -->
+## Global Application Targeting
 
 ### Bundle ID
 
@@ -167,7 +91,17 @@ Targeting.shared.domain
 ```
 Targeting.shared.domain = domain
 ```
+### Store URL
 
+Retrieve and set the domain of your store URL with the following commands: 
+
+```
+Targeting.shared.storeUrl
+```
+
+```
+Targeting.shared.storeUrl = storeUrl
+```
 
 ## GPDR
 

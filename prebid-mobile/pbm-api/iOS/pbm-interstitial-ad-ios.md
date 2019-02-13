@@ -18,6 +18,7 @@ Create a new Interstitial Ad Unit associated with a Prebid Server configuration 
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods. 
 
+
 ## Examples
 
 **Create an InterstitialAdUnit**

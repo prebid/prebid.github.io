@@ -31,13 +31,13 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 ## Methods
 
-### addAdditionalSizes
+### addAdditionalSize
 
-Add additional banner sizes to the Prebid Mobile ad unit. Banner ad units must be associated with one or more sizes. 
+* Add an additional banner size to the Prebid Mobile ad unit.  Banner ad units must be associated with one or more sizes. 
 
 **Parameters**
 
-`sizes (Array<CGSize>)`: Array of ad sizes (width and height)
+`sizes (CGSize)`: The width and height of the banner ad. 
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for addtional parameters and methods. 
 
@@ -52,7 +52,7 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 **Add additional ad sizes**
 
 ```
-bannerUnit.addAdditionalSizes(sizes: [CGSize(width: 320, height: 50)])
+bannerUnit.addAdditionalSizes(sizes: CGSize(width: 320, height: 50))
 ```
 Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and display creatives.
 

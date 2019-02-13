@@ -16,11 +16,10 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 - **Return Code:** SUCCESS   
 - **Description:** Prebid Mobile received at least one valid bid from Prebid Server and successfully associated Prebid key-values with the appropriate ad server request. 
 
-## No banner size provided 
+## Prebid Server Error 
 
-- **Return Code**: NO_SIZE_FOR_BANNER  
-- **Description**: Attempted to fetch demand on a banner ad unit without at least one valid size. Size is required for banner ad units.  
-- **More Information**: [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) 
+- **Return Code**: PREBID_SERVER_ERROR  
+- **Description**: * General result code for an unknown error returned from Prebid Server.  The actual Prebid Server error message will be exposed to the developer.  
 
 ## Invalid account ID 
 

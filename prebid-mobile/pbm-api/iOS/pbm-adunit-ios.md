@@ -58,16 +58,6 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 `completion`: Closure which receives one argument, the enum ResultCode. There is no return value. 
 
-### validateAndAttachKeywords
-
-Validate the bidResponse and attach keywords.
-
-**Parameters**
-
-`adObject (AnyObject)`: 
-
-`bidResponse`: BidResponse object
-
 ### addUserKeyword
 
 Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If the key already exists the value will be appended to the customKeywords property. No duplicates will be added.
