@@ -91,7 +91,7 @@ An array of numbers indicating the height and width of the video player size tha
 `video.adPodDurationSec`  
 A number indicating how long the ad pod should run.   
 
-`video.durationRangeSec`
+`video.durationRangeSec`  
 A number indicating how long the creatives of an ad pod should run. 
 
 #### Optional Parameters
@@ -99,22 +99,22 @@ A number indicating how long the creatives of an ad pod should run.
 `video.requireExactDuration`  
 A boolean indicating if the returned creatives running time must match the value of `adPodDurationSec`
 
-`video.tvSeriesName`
+`video.tvSeriesName`  
 A string representing the name of the television series the adpod will appear in. 
 
-`video.tvEpisodeName`
+`video.tvEpisodeName`  
 A string representing the episode name of the television series the adpod will appear in.
 
-`video.tvSeasonNumber`
+`video.tvSeasonNumber`  
 A number representing the season number of the television series the adpod will appear in.
 
-`video.tvEpisodeNumber`
+`video.tvEpisodeNumber`  
 A number representing the episode number of the television series the adpod will appear in.
 
-`video.contentLengthSec`
+`video.contentLengthSec`  
 A number representing the length of the content the adpod will appear in. 
 
-`video.contentMode` 
+`video.contentMode`   
 A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`. 
 
 <div class="alert alert-info">
