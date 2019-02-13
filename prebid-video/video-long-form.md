@@ -9,7 +9,7 @@ nav_section: pbjs-video-get-started
 sidebarType: 4
 ---
 
-# Getting Started with Long-Form Video for Prebid.js
+# Getting Started with Long-Form Video
 {: .no_toc }
 
 If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js
@@ -23,6 +23,15 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 {:toc}
 
 ## Ad Ops
+
+### Ad Server Setup
+
+Start by reading [AdOps Getting Started]({{site.github.url}}/overview/getting-started.html). This will give you a general overview of setting up your price buckets and line items on your ad server.
+
+One thing to keep in mind as you set up your line items is price granularity. Be sure to communicate your price granularity requirements to your developers, as they might need to define custom configuration settings, depending on your granularity.
+
+<span style="color:#ff0000">ANYTHING SPECIAL REQUIRED FOR LONG-FORM Video?</span>
+
 
 ## Developers
 
@@ -39,7 +48,9 @@ Before downloading, select the adapters you want to include. (You can add more a
 
 ### Define Prebid Ad Units
 
-As with instream and outstream videos, you set the video context for long-form ad units, this will be set to `adpod` for ling . There are also some addtional required and optional parameters. As with all ad unit types you must include a list of bidders. The parameters differ depending on which bidder you’re including. For a list of parameters for each bidder, see [Bidders’ Params]({site.github.url}}/dev-docs/bidders.html).  
+As with instream and outstream videos, you set the video context for long-form ad units. The context setting for long-form video is `adpod` . There are also some addtional required and optional parameters (see list below).  
+
+ As with all ad unit types you must include a list of bidders. The parameters differ depending on which bidder you’re including. For a list of parameters for each bidder, see [Bidders’ Params]({site.github.url}}/dev-docs/bidders.html).  
 
 ```
 var longFormatAdUnit = {
@@ -71,11 +82,17 @@ var longFormatAdUnit = {
  
 #### Required Parameters
 
+`video.context` 
+A string indicating the ad unit type. 
+
+`video.playerSize`  
+An array of numbers indicating the height and width of the video player size that will be passed to the demand partners. 
+
 `video.adPodDurationSec`  
-An number indicating how long the ad pod should run.   
+A number indicating how long the ad pod should run.   
 
 `video.durationRangeSec`
-An number indicating how long the creatives of an ad pod should run. 
+A number indicating how long the creatives of an ad pod should run. 
 
 #### Optional Parameters
 
@@ -89,13 +106,13 @@ A string representing the name of the television series the adpod will appear in
 A string representing the episode name of the television series the adpod will appear in.
 
 `video.tvSeasonNumber`
-An number representing the season number of the television series the adpod will appear in.
+A number representing the season number of the television series the adpod will appear in.
 
 `video.tvEpisodeNumber`
-An number representing the episode number of the television series the adpod will appear in.
+A number representing the episode number of the television series the adpod will appear in.
 
 `video.contentLengthSec`
-An number representing the length of the content the adpod will appear in. 
+A number representing the length of the content the adpod will appear in. 
 
 `video.contentMode` 
 A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`. 

@@ -52,6 +52,8 @@ If you already have a Prebid integration for banner, you don’t need to do anyt
 {: .alert.alert-info :}
 **Prebid Server** If you’ve decided to conduct your header bidding auctions server-side rather than on the client, you need to have a Prebid Server account. See [Get Started with Prebid Server]({{site.github.url}}/dev-docs/get-started-with-prebid-server.html) to begin your integration. After you’ve created an account, you’ll need to pass along the account ID to your developers.
 
+
+
 ## Developers
 
 ### Download Prebid.js
