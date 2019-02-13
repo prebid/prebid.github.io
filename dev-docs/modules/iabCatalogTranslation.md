@@ -13,7 +13,7 @@ sidebarType : 1
 
 {:.no_toc}
 
-This module supports the mapping between ad agency brand categories and IAB subcategories and conversion of IAB subcategories to Freewheel industry group identifiers to ensure competitve separation, (the process of ensuring ads from the same industry do not appear consecutively in the same ad pod).  
+This module supports the mapping between ad agency brand categories and IAB subcategories and conversion of IAB subcategories to Freewheel industry group identifiers. 
 
 Each bid request must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories).
 
@@ -25,13 +25,13 @@ The module provides the following:
 
 ## How to use the module:
 
-1. A Prebid.js package is built that contains the this module and the [Freewheel]({site.github.url}}/dev-docs/module/freewheel.md) module.  
+1. A Prebid.js package is built that contains this module and the [Freewheel]({site.github.url}}/dev-docs/module/freewheel.html) module.  
 2. The inclusion of this module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file. 
 3. At runtime, brand category translation happens as needed. 
 
 
 ## Using A Custom Map File
-The IAB Category Translation module uses a default mapping file to convert IAB sub categories to adserver categories. If a publisher prefers to use their own mapping file they will need to set the URL location. They can do so by adding the following to their Prebid.js configuration: 
+The IAB Category Translation module uses a default mapping file to convert IAB sub categories to adserver categories. If a publisher prefers to use their own mapping file they will need to set the URL location of that file. They can do so by adding the following to their Prebid.js configuration: 
 
 ```
 pbjs.setConfig({
@@ -45,7 +45,7 @@ This file will be stored locally to expedite the conversion process. If a publis
 ## Adapter Integration
 
 Adapters need to return IAB subcategories in their repsonses. For adapters who do not have that capability they will provide a mapping file in JSON format that will convert their proprietary brand categories to IAB subcategories. 
-```j
+```
 getMappingFileInfo: function() { 
 	return { 
 		//mapping file json url
@@ -62,8 +62,9 @@ getMappingFileInfo: function() {
 ```
 ## Further Reading
 
-    [Prebid.js](http://prebid.org/dev-docs/getting-started.html)
-    [Prebid Video](http://prebid.org/prebid-video/video-overview.html)
+[Prebid.js](http://prebid.org/dev-docs/getting-started.html) 
+[Prebid Video](http://prebid.org/prebid-video/video-overview.html)
+[Freewheel Module](/dev-docs/modules/freewheel.html)
 
 
 
