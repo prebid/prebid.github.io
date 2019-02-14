@@ -212,7 +212,10 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
 ## Examples
 
 + [Banner](#adUnit-banner-example)
-+ [Video](#adUnit-video-example)
++ [Video](#adUnit-video-example)  
+  - [Instream](#adUnit-video-example-instream)  
+  - [Outstream](#adUnit-video-example-outstream)  
+  - [Adpod (Long-Form)](#adUnit-video-example-adpod)
 + [Native](#adUnit-native-example)
 + [Multi-Format](#adUnit-multi-format-example)
 
@@ -245,6 +248,9 @@ pbjs.addAdUnits({
 
 ### Video
 
+<a name="adUnit-video-example-instream">
+#### Instream
+
 For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
 ```javascript
@@ -269,6 +275,9 @@ pbjs.addAdUnits({
 });
 ```
 
+<a name="adUnit-video-example-outstream">
+#### Outstream
+
 For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
 
 ```javascript
@@ -292,6 +301,9 @@ pbjs.addAdUnits({
     ...
 });
 ```
+<a name="adUnit-video-example-adpod">
+#### Adpod (Long-Form)
+
 For an example of an adpod video ad unit, see below.  For more detailed instructions, see [Show Long-View Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
 
 ```

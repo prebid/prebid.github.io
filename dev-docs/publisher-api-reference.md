@@ -452,6 +452,8 @@ Use this method to get all of the bids that have won their respective auctions b
 
 Use this method to return data on the IAB subcategories mapping files. Data returned includes file URL, refresh rate (in days), and a key identifier. 
 
+<hr class="full-rule">
+
 <a name="module_pbjs.getNoBids"></a>
 
 ### pbjs.getNoBids() ⇒ `Array`
