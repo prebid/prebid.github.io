@@ -30,6 +30,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
+  * [.getMappingFileInfo()](#module_pbjs.getMappingFileInfo)
   * [.getNoBids()](#module_pbjs.getNoBids)
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
@@ -444,6 +445,12 @@ Use this method to get all of the bids that have won their respective auctions b
 + `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
 
 <hr class="full-rule">
+
+<a name="module_pbjs.getMappingFileInfo"></a>
+
+### pbjs.adserver.freewheel.getMappingFileInfo() ⇒ Object
+
+Use this method to return data on the IAB subcategories mapping files. Data returned includes file URL, refresh rate (in days), and a key identifier. 
 
 <a name="module_pbjs.getNoBids"></a>
 

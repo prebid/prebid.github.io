@@ -494,7 +494,7 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 
 #### Long-Form Video Content
 
-To support long-form videos it is the responsibility of the adapter to convert their categories into IAB accepted subcategories (link: https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories).
+To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories).
 
 If the demand partner is going to use Prebid API for this process their adapter will need to include the following function in their spec file: 
 
@@ -514,23 +514,25 @@ getMappingFileInfo: function() {
 },
 ```
 
-The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod(link to definition?) each adapter could have 20-30 bids. Local storage will prevent HTTP calls for each category conversion. 
+The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
 
 To get the subcategory to use, call this function: 
 
 ```
 getIabSubCategory(key, pCategory)
 ```
-**params**
 
-`key (string)` -  key returned from `getMappingFileInfo`
+**Params**
+
+`key (string)` -  key returned from `getMappingFileInfo`  
+
 `pCategory (string)` - proprietary category returned in bid response
 
-**returns**
+**Returns**
 
 `iabSubCatId (string)`
 
-**example**
+**Example**
 
 ```
 var iabSubCatId = utils.getIabSubCategory(‘key’, pCategory)
