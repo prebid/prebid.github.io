@@ -494,7 +494,7 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 
 #### Long-Form Video Content
 
-To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories).
+To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories). Each bid request must return one IAB subcategory.
 
 If the demand partner is going to use Prebid API for this process their adapter will need to include the following function in their spec file: 
 

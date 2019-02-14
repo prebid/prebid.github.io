@@ -13,7 +13,7 @@ sidebarType : 1
 
 {:.no_toc}
 
-This module supports the mapping between ad agency brand categories and IAB subcategories and conversion of IAB subcategories to Freewheel industry group identifiers. 
+This module supports the mapping between ad agency brand categories and IAB subcategories and conversion of IAB subcategories to Freewheel industry group identifiers. The Freewheel identifiers ensure competitve separation of industries and products. 
 
 Each bid request must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories).
 
@@ -31,7 +31,7 @@ The module provides the following:
 
 
 ## Using A Custom Map File
-The IAB Category Translation module uses a default mapping file to convert IAB sub categories to adserver categories. If a publisher prefers to use their own mapping file they will need to set the URL location of that file. They can do so by adding the following to their Prebid.js configuration: 
+The IAB Category Translation module uses a default mapping file to convert adserver categories to IAB sub categories . If a publisher prefers to use their own mapping file they will need to set the URL location of that file. They can do so by adding the following to their Prebid.js configuration: 
 
 ```
 pbjs.setConfig({
