@@ -1,13 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Ad Unit Reference
 description: Ad Unit Reference
 top_nav_section: dev_docs
 nav_section: reference
 pid: 10
+sidebarType: 1
 ---
-
-<div class="bs-docs-section" markdown="1">
 
 # Ad Unit Reference
 {:.no_toc}
@@ -94,7 +93,7 @@ The `native` object contains the following properties that correspond to the ass
 | `icon`        | Optional | Object | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#adUnit.mediaTypes.native.icon).                                                                                                   |
 | `image`       | Optional | Object | The image object is to be used for the main image of the native ad.  For properties, see [`native.image`](#adUnit.mediaTypes.native.image).                                                                          |
 | `clickUrl`    | Optional | Object | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                                                                                       |
-| `cta`         | Optional | Object | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#adUnit.mediaTypes.native.cta).                                                                                  |
+| `cta`         | Optional | String | *Call to Action* text, e.g., "Click here for more information".  |
 
 <a name="adUnit.mediaTypes.native.image" />
 
@@ -185,11 +184,12 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Optional    | String                 | The video context, either `'instream'` or `'outstream'`.  Example: `context: 'outstream'`                                                                           |
-| `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                             |
-| `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                |
-| `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                           |
-| `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**. |
+| `context`        | Optional    | String                 | The video context, either `'instream'` or `'outstream'`.  Example: `context: 'outstream'`                                                                                           |
+| `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
+| `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].                                                  |
+| `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
+| `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                            |
+| `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                     |
 
 <a name="adUnit-examples" />
 
@@ -408,7 +408,7 @@ pbjs.addAdUnits([{
 + [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
 + [Prebid.org Native Examples]({{site.baseurl}}/examples/native/)
 
-</div>
+
 
 <!-- Reference Links -->
 

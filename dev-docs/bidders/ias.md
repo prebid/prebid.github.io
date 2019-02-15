@@ -2,18 +2,9 @@
 layout: bidder
 title: Integral Ad Science (IAS)
 description: Prebid Integral Ad Science Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
-
 biddercode: ias
-
 biddercode_longer_than_12: false
-
-prebid_1_0_supported : true
-
 ---
 
 ### Note:
@@ -24,8 +15,7 @@ information.
 ### bid params
 
 {: .table .table-bordered .table-striped }
-
-| Name       | Scope    | Description | Example          |
-|:-----------|:---------|:------------|:-----------------|
-| `pubId` | required | Publisher client ID, provided by IAS | `'1234'` |
-| `adUnitPath`   | required | Ad unit path. The same one you use for GPT      | `'/1234567/sports'`              |
+| Name         | Scope    | Description                                | Example             | Type     |
+|--------------|----------|--------------------------------------------|---------------------|----------|
+| `pubId`      | required | Publisher client ID, provided by IAS       | `'1234'`            | `string` |
+| `adUnitPath` | required | Ad unit path. The same one you use for GPT | `'/1234567/sports'` | `string` |

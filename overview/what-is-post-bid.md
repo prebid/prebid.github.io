@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Intro to Post-Bid & Get Started
 head_title: What is post-bid and when to use it vs. header bidding.
 
@@ -9,10 +9,11 @@ pid: 60
 
 top_nav_section: overview
 nav_section: postbid
+sidebarType: 1
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # What is post-bid?
 
@@ -21,8 +22,7 @@ nav_section: postbid
 
 In post-bid, the competition among your mediated demand sources compete AFTER your ad server has chosen the winning line item (vs. in header bidding, demand sources compete BEFORE your ad server has seen the impression). In post-bid, your mediated demand sources no longer run daisy chain; they all compete in one single line item based on price.
 
-{: .pb-lg-img :}
-![Add Creative to Line Item]({{ site.github.url }}/assets/images/blog/postbid-diagram.png)
+![Add Creative to Line Item]({{ site.github.url }}/assets/images/blog/postbid-diagram.png){: .pb-lg-img :}
 
 Steps:
 
@@ -79,5 +79,3 @@ Yes. Check out the [example](/dev-docs/examples/postbid.html).
 
 ### Please refer to the [example](/dev-docs/examples/postbid.html).
 
-
-</div>

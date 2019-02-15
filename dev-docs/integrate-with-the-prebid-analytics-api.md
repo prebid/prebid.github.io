@@ -1,20 +1,18 @@
 ---
-layout: page
-title: Integrate with the Prebid Analytics API
-description: Integrate with the Prebid Analytics API
+layout: page_v2
+title: How to Add an Analytics Adapter
+description: How to add an analytics adapter
 pid: 28
 top_nav_section: dev_docs
 nav_section: adapters
 hide: false
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Integrate with the Prebid Analytics API
+
+# How to Add an Analytics Adapter
 {:.no_toc}
-
-{: .alert.alert-warning :}
-This page has been updated for Prebid 1.0. It adds the requirement for a markdown file containing the maintainer's contact info. Note also that there are a couple of new bidResponse attributes that may be of interest to analytics providers: bid currency and bid gross-vs-net.
 
 The Prebid Analytics API provides a way to get analytics data from `Prebid.js` and send it to the analytics provider of your choice, such as Google Analytics.  Because it's an open source API, you can write an adapter to send analytics data to any provider you like.  Integrating with the Prebid Analytics API has the following benefits:
 
@@ -35,8 +33,7 @@ The analytics adapter listens to events and may call out directly to the analyti
 
 For instructions on integrating an analytics provider, see the next section.
 
-{: .pb-img.pb-md-img :}
-![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png)
+![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png){: .pb-md-img :}
 
 ## Integrate an Analytics Provider
 
@@ -119,21 +116,13 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 #### Step 2: Add analytics source code
 
-{: .alert.alert-danger :}
-**Breaking changes for Prebid 1.0**  
-There are two breaking changes to the data emitted from analytic events for Prebid 1.0:  
-1. Events that previously emitted a `requestId` property now emit that data as the `auctionId` property  
-2. The `BID_TIMEOUT` event that previously emitted an array of bidder code strings now emits an array of objects containing `bidId`, `bidder`, `adUnitCode`, and `auctionId` for timed out bids  
-
-
 1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.js`
 
 2. Create an analytics adapter to listen for Prebid events and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
-3. There are several types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'library' and 'bundle' types.
+3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'bundle' type.
 
     * endpoint - Calls the specified URL on analytics events. Doesn't require a global context.
-    * library - The URL is considered to be a library to load. Expects a global context.
     * bundle - An advanced option expecting a global context.
 
 4. In order to get access to the configuration passed in from the page, the analytics
@@ -188,4 +177,4 @@ gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
 - [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
 
-</div>
+

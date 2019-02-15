@@ -1,15 +1,15 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - GDPR ConsentManagement
 description: Add on module to consume and distribute consent information to bidder adapters
-top_nav_section: dev_docs
-nav_section: modules
 module_code : consentManagement
 display_name : GDPR ConsentManagement
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # GDPR ConsentManagement Module
 {: .no_toc }
@@ -50,9 +50,10 @@ Once the CMP is implemented, simply include the module in your build and add a `
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
-| cmpApi | `string` | The ID for the CMP in use on the page.  Default is `'iab'` | `'iab'` |
+| cmpApi | `string` | The ID for the CMP in use on the page.  Default is `'iab'` | `'iab', 'static'` |
 | timeout | `integer` | Length of time (in milliseconds) to allow the CMP to perform its tasks before aborting the process. Default is `10000` | `10000` |
 | allowAuctionWithoutConsent | `boolean` | A setting to determine what will happen when obtaining consent information from the CMP fails; either allow the auction to proceed (**true**) or cancel the auction (**false**). Default is `true` | `true` or `false` |
+| consentData | `Object` | A Object representing the consentData being passed directly, only in used when cmpApi is 'static'. Default is `undefined`. Example see the tests for consentManagement. | |
 
 Example: IAB CMP using the custom timeout and cancel auction options.
 
@@ -71,16 +72,53 @@ Example: IAB CMP using the custom timeout and cancel auction options.
      });
 {% endhighlight %}
 
+Example: Static CMP using custom data passing.
+
+{% highlight js %}
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            cmpApi: 'static',
+            allowAuctionWithoutConsent: false,
+            consentData: {
+              getConsentData: {
+                'gdprApplies': true,
+                'hasGlobalScope': false,
+                'consentData': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA'
+              },
+              getVendorConsents: {
+                'metadata': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA',
+              ...
+              ...
+              ...
+              }
+            }
+          }
+        });
+        pbjs.addAdUnits(adUnits);
+     });
+{% endhighlight %}
+
+The consentData object can be retrieved by a existing CMP by calling
+
+{% highlight js %}
+window.__cmp('getConsentData', null, function(result ) { });
+window.__cmp('getVendorConsents', null, function(result ) { });
+{% endhighlight %}
+
+
 ## Build the package
- 
+
 #### Step 1: Bundle the module code
 
-Follow the basic build instructions on the Github repo's main README. To include the module, an additional option must be added to the the gulp build command:
- 
+Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
+
 {% highlight bash %}
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
 {% endhighlight %}
- 
+
 #### Step 2: Publish the package(s) to the CDN
 
 After testing, get your javascript file(s) out to your Content Delivery Network (CDN) as normal.
@@ -93,7 +131,7 @@ _Note - for any adapters submitting changes to make themselves compliant, please
 
 ### BuildRequests Integration
 
-To find the GDPR consent information to pass along to your system, adapters should look for the `bidderRequest.gdprConsent` field in their buildRequests() method. 
+To find the GDPR consent information to pass along to your system, adapters should look for the `bidderRequest.gdprConsent` field in their buildRequests() method.
 Below is a sample of how the data is structured in the `bidderRequest` object:
 
 {% highlight js %}
@@ -188,6 +226,101 @@ $(function(){
 });
 </script>
 
+## Publishers not using an IAB-Compliant CMP
+
+Prebid.js and much of the ad industry rely on the IAB CMP standard for GDPR support, but there are some publishers who may have
+implemented different approach to meeting the privacy rules. Those publishers may utilize Prebid.js and the whole header bidding ecosystem if they build a translation layer between their consent method and the IAB method.
+
+At a high level this looks like:
+- build a window.__cmp() function which will be seen by Prebid
+- build a message receiver function if safeframes are in use
+- format consent data in a string according to the [IAB standard](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework)
+
+Below is sample code for implementing the stub functions. Sample code for formatting the consent string may be obtained [here](https://github.com/appnexus/cmp).
+
+{% highlight js %}
+var iabConsentData;  // build the IAB consent string
+var gdprApplies;     // true if gdpr Applies to the user, else false
+var hasGlobalScope;  // true if consent data was retrieved globally
+var responseCode;    // false if there was an error, else true
+var cmpLoaded;       // true if iabConsentData was loaded and processed
+(function(window, document) {
+    function addFrame() {
+        if (window.frames['__cmpLocator'])
+            return;
+        if ( document.body ) {
+            var body = document.body,
+                iframe = document.createElement('iframe');
+            iframe.name = '__cmpLocator';
+            iframe.style.display = 'none';
+            body.appendChild(iframe);
+        } else {
+            setTimeout(addFrame, 5);
+        }
+    }
+    addFrame();
+    function cmpMsgHandler(event) {
+        try {
+            var json = event.data;
+            var msgIsString = typeof json === "string";
+            if ( msgIsString ) {
+                json = JSON.parse(json);
+            }
+            var call = json.__cmpCall;
+            if (call) {
+                window.__cmp(call.command, call.parameter, function(retValue, success) {
+                    var returnMsg = {
+                        __cmpReturn: {
+                            returnValue: retValue, success: success, callId: call.callId
+                        }
+                    };
+                    event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*');
+                });
+            }
+        } catch (e) {}  // do nothing
+    }
+    var cmpFunc = function(command, version, callback) {
+        if (command === 'ping') {
+            callback({gdprAppliesGlobally: gdprApplies, cmpLoaded: cmpLoaded}, responseCode);
+        } else if (command === 'getConsentData') {
+            callback({consentData: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
+        } else if (command === 'getVendorConsents') {
+            callback({metadata: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
+        } else {
+            callback(undefined, false);
+        }
+    };
+    if ( typeof (__cmp) !== 'function' ) {
+        window.__cmp = cmpFunc;
+        window.__cmp.msgHandler = cmpMsgHandler;
+        if ( window.addEventListener ) {
+            window.addEventListener('message', cmpMsgHandler, false);
+        } else {
+            window.attachEvent('onmessage', cmpMsgHandler);
+        }
+    }
+})(window, document);
+{% endhighlight %}
+
+### Explanation of Parameters
+**iabConsentData**
+For how to generate the IAB consent string see the [IAB CMP 1.1 Spec](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework) and [IAB Consent String SDK](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/tree/master/Consent%20String%20SDK).
+
+**gdprApplies**
+How to generate the gdprApplies field:
+- True if the current user is in the European Economic Area (EEA) OR if the publisher wants to have all traffic considered in-scope for GDPR
+- False if it's known that the user is outside the EEA
+- Leave the attribute unspecified if user's location is unknown
+
+**hasGlobalScope**
+This should be set as true if consent data was retrieved from global "euconsent" cookie, or was it publisher-specific. For general purpose, set this to false.
+
+**responseCode**
+This should be false if there was some error in the consent data, true otherwise. False is the same as calling the callback with no parameters.
+
+**cmpLoaded**
+This should be be set to true once parameters above are processed.
+
 ## List of GDPR compliant Adapters
 
 Below is a list of Adapters that currently support GDPR:
@@ -199,4 +332,4 @@ Below is a list of Adapters that currently support GDPR:
 {% endfor %}
 </div>
 
-</div>
+

@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.org  IP Policy
 description: Prebid.org IP Policy 
 pid: 1
 is_top_nav: yeah
 top_nav_section: overview
 nav_section: intro
+sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 
 # INTELLECTUAL PROPERTY POLICY
@@ -41,4 +42,3 @@ patent ownership. Contributors and members will not be required as a condition o
 any patent rights, except as required by the Apache 2.0 license or contribution agreements described in
 Section 3 above.
 
-</div>

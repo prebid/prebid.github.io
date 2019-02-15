@@ -1,10 +1,11 @@
 ---
-layout: page
+layout: page_v2
 title: Show Outstream Video Ads
 description: Show Outstream Video Ads with Prebid.js
 pid: 10
 top_nav_section: dev_docs
 nav_section: prebid-video
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">
