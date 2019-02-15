@@ -1,21 +1,10 @@
 ---
 layout: bidder
-title: Tim media prebid Adapater
-description: Prebid tim Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
+title: Tim Media
+description: Prebid Tim Bidder Adaptor
 hide: true
-
 biddercode: tim
-
 biddercode_longer_than_12: false
-
-prebid_1_0_supported : true
-
-
-
 ---
 
 ### bid params

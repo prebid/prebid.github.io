@@ -2,12 +2,9 @@
 layout: bidder
 title: Adagio
 description: Prebid Adagio Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: adagio
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: banner
 gdpr_supported: true
 ---

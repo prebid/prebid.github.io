@@ -5,7 +5,6 @@ description: Rubicon Project Prebid Bidder Adaptor
 hide: true
 biddercode: rubicon
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 gdpr_supported: true
 media_types: video
 userIds: unifiedId/tradedesk

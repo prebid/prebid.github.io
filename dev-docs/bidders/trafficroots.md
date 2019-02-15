@@ -2,12 +2,9 @@
 layout: bidder
 title: Trafficroots
 description: Prebid Trafficroots Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: trafficroots
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 gdpr_supported: true
 ---
 

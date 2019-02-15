@@ -2,13 +2,10 @@
 layout: bidder
 title: 152 Media 3.0
 description: Prebid 152 Media RTB Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: onefiftytwomedia
 aliasCode: adtelligent
 biddercode_longer_than_12: true
-prebid_1_0_supported : true
 media_types: banner, video
 ---
 

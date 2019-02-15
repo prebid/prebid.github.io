@@ -1,18 +1,10 @@
 ---
 layout: bidder
-title: Rich Audience Bidder Adapter
-description: Prebid Rich Audience Bidder Adapter
-
-top_nav_section: dev_docs
-nav_section: reference
-
+title: Rich Audience
+description: Prebid Rich Audience
 hide: true
-
 biddercode: richaudience
-
 biddercode_longer_than_12: false
-
-prebid_1_0_supported: true
 media_types: banner, video
 gdpr_supported: true
 ---
