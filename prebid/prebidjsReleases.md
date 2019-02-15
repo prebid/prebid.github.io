@@ -16,7 +16,8 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
-| 2.0 | The [limited bid caching](/dev-docs/faq.html#does-prebidjs-cache-bids) feature turned off by default. |
+| 2.0 | Refined the bid.adId and bidRequest.bidId. See [PR 3340](https://github.com/prebid/Prebid.js/pull/3440) |
+| 2.0 | The [limited bid caching](/dev-docs/faq.html#does-prebidjs-cache-bids) feature now turned off by default. |
 | 1.39 | (1) The [limited bid caching](/dev-docs/faq.html#does-prebidjs-cache-bids) feature can be optionally turned off. (2) Bug fix in the [currency module](/dev-docs/modules/currency.html) introduced with 1.37 where it wasn't calling for the currency conversion file when defaultRates are specified. |
 | 1.37 | The default location of the [currency](/dev-docs/modules/currency.html) conversion file changed. |
 | 1.36 | New NO_BID event makes a "no bids" response available to analytics adapters. |

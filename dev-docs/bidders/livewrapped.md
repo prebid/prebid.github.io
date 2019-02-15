@@ -7,6 +7,7 @@ biddercode_longer_than_12: false
 hide: true
 media_types: banner
 gdpr_supported: true
+userIds: pubcommon
 ---
 
 ### Note:
