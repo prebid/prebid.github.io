@@ -2,18 +2,9 @@
 layout: bidder
 title: Integral Ad Science (IAS)
 description: Prebid Integral Ad Science Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
-
 biddercode: ias
-
 biddercode_longer_than_12: false
-
-prebid_1_0_supported : true
-
 ---
 
 ### Note:

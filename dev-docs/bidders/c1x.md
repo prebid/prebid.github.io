@@ -2,18 +2,10 @@
 layout: bidder
 title: C1X
 description: Prebid C1X Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
-
 biddercode: c1x
-
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 gdpr_supported: true
-
 ---
 
 ### Note:
