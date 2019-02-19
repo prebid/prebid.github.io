@@ -22,15 +22,83 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 ## Examples
 
 **Create an InterstitialAdUnit**
+
+**Google Mobile Ads**
+
+**Swift**
 ```    
-let dfpInterstitialView = DFPInterstitial(adUnitID: "/12345/foo")
-dfpInterstitialView.delegate = self
- 
-let interstitialAdUnit = InterstitialAdUnit(configId: "PREBID_SERVER_CONFIGURATION_ID")
-interstitialAdUnit.addUserKeyword(key: "my_key", value: "my_value")
-interstitialAdUnit.fetchDemand(adObject: dfpInterstitialView) { (resultCode) in
-         //Load the dfp request
-        interstitialAdUnit.load(GADRequest())
+func loadDFPInterstitial(adUnit : AdUnit){
+        print("Google Mobile Ads SDK version: \(DFPRequest.sdkVersion())")
+        
+        dfpInterstitial = DFPInterstitial(adUnitID: "/19968336/PrebidMobileValidator_Interstitial")
+        dfpInterstitial.delegate = self
+        request.testDevices = [ kGADSimulatorID]
+        adUnit.fetchDemand(adObject:self.request) { (ResultCode) in
+            print("Prebid demand fetch for DFP \(ResultCode)")
+            self.dfpInterstitial!.load(self.request)
+        }
+    }
+```
+
+**ObjectiveC**
+
+```
+-(void) loadDFPInterstitial {
+    
+    self.interstitialUnit = [[InterstitialAdUnit alloc] initWithConfigId:@"625c6125-f19e-4d5b-95c5-55501526b2a4"];
+    self.dfpInterstitial = [[DFPInterstitial alloc] initWithAdUnitID:@"/19968336/PrebidMobileValidator_Interstitial"];
+    self.dfpInterstitial.delegate = self;
+    self.request = [[DFPRequest alloc] init];
+    self.request.testDevices = @[kDFPSimulatorID];
+    [self.interstitialUnit fetchDemandWithAdObject:self.request completion:^(enum ResultCode result) {
+        NSLog(@"Prebid demand result %ld", (long)result);
+        [self.dfpInterstitial loadRequest:self.request];
+    }];
+}
+```
+---
+**MoPub**
+
+**Swift**
+
+```func loadMoPubInterstitial(adUnit: AdUnit){
+        
+        let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "2829868d308643edbec0795977f17437")
+        sdkConfig.globalMediationSettings = []
+        
+        MoPub.sharedInstance().initializeSdk(with: sdkConfig) {
+            
+        }
+        
+        self.mopubInterstitial = MPInterstitialAdController(forAdUnitId: "2829868d308643edbec0795977f17437")
+        self.mopubInterstitial.delegate = self
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        adUnit.fetchDemand(adObject: mopubInterstitial!){ (ResultCode) in
+            print("Prebid demand fetch for mopub \(ResultCode)")
+
+            self.mopubInterstitial.loadAd()
+        }
+        
+    }
+```
+
+**ObjectiveC**
+
+```
+-(void) loadMoPubInterstitial {
+    
+    self.interstitialUnit = [[InterstitialAdUnit alloc] initWithConfigId:@"625c6125-f19e-4d5b-95c5-55501526b2a4"];
+    MPMoPubConfiguration *configuration = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"2829868d308643edbec0795977f17437"];
+    [[MoPub sharedInstance] initializeSdkWithConfiguration:configuration completion:nil];
+    self.mopubInterstitial = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"2829868d308643edbec0795977f17437"];
+    self.mopubInterstitial.delegate = self;
+    [self.interstitialUnit fetchDemandWithAdObject:self.mopubInterstitial completion:^(enum ResultCode result) {
+        NSLog(@"Prebid demand result %ld", (long)result);
+        [self.mopubInterstitial loadAd];
+    }];
+    
+    
 }
 ```
 ## Related Topics 

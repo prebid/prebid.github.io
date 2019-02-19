@@ -60,27 +60,55 @@ Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and di
 
 Import the GoogleMobileAds from the [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the BannerAdUnit
 
+**Swift**
 ```
 func loadDFPBanner(bannerUnit : AdUnit){
-        let dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
-        dfpBanner.adUnitID = "/19968336/PriceCheck_300x250"
+        print("Google Mobile Ads SDK version: \(DFPRequest.sdkVersion())")
+        dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
+        dfpBanner.adUnitID = "/19968336/PrebidMobileValidator_Banner_All_Sizes"
         dfpBanner.rootViewController = self
-        
-        bannerView.addSubview(dfpBanner)
-        request.testDevices = [ kGADSimulatorID ]
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        bannerUnit.fetchDemand(adObject: self.request) { (ResultCode) in
-            print("DFP banner bids fetch successfull")
-            dfpBanner.load(self.request)
+        dfpBanner.delegate = self
+        dfpBanner.backgroundColor = .red
+        appBannerView.addSubview(dfpBanner)
+        request.testDevices = [ kGADSimulatorID,"cc7ca766f86b43ab6cdc92bed424069b"]
+    
+        bannerUnit.fetchDemand(adObject:self.request) { (ResultCode) in
+            print("Prebid demand fetch for DFP \(ResultCode.name())")
+            self.dfpBanner!.load(self.request)
         }
     }
 ```
+**ObjectiveC**
+
+```
+-(void) loadDFPBanner {
+    
+    self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
+    [self.bannerUnit setAutoRefreshMillisWithTime:35000];
+    self.dfpView = [[DFPBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
+    self.dfpView.rootViewController = self;
+    self.dfpView.adUnitID = @"/19968336/PrebidMobileValidator_Banner_All_Sizes";
+    self.dfpView.delegate = self;
+    [self.bannerView addSubview:self.dfpView];
+    self.dfpView.backgroundColor = [UIColor redColor];
+    self.request = [[DFPRequest alloc] init];
+    self.request.testDevices = @[kDFPSimulatorID];
+    
+    [self.bannerUnit fetchDemandWithAdObject:self.request completion:^(enum ResultCode result) {
+        NSLog(@"Prebid demand result %ld", (long)result);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dfpView loadRequest:self.request];
+        });
+    }];
+}
+```
+
 
 **MoPub**
 
 Import MoPub from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) into the UIViewController displaying the BannerAdUnit
 
+**Swift**
 ```
 func loadMoPubBanner(bannerUnit: AdUnit){
         
@@ -91,18 +119,43 @@ func loadMoPubBanner(bannerUnit: AdUnit){
             
         }
         
-        let mopubBanner = MPAdView(adUnitId: "a935eac11acd416f92640411234fbba6", size: CGSize(width: 300, height: 250))
-        mopubBanner?.delegate = self
+        mopubBanner = MPAdView(adUnitId: "a935eac11acd416f92640411234fbba6", size: CGSize(width: 300, height: 250))
+        mopubBanner!.delegate = self
         
-        bannerView.addSubview(mopubBanner!)
+        appBannerView.addSubview(mopubBanner!)
         
         // Do any additional setup after loading the view, typically from a nib.
-        bannerUnit.fetchDemand(adObject: mopubBanner!) { (ResultCode) in
-            print("MoPub banner bids fetch successfull")
-            mopubBanner?.loadAd()
+        bannerUnit.fetchDemand(adObject: mopubBanner!){ (ResultCode) in
+            print("Prebid demand fetch for mopub \(ResultCode)")
+            
+            self.mopubBanner!.loadAd()
         }
         
     }
+```
+
+**ObjectiveC**
+
+```
+-(void) loadMoPubBanner {
+    
+    MPMoPubConfiguration *configuration = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"a935eac11acd416f92640411234fbba6"];
+    
+    [[MoPub sharedInstance] initializeSdkWithConfiguration:configuration completion:^{
+        
+    }];
+    self.mopubAdView = [[MPAdView alloc] initWithAdUnitId:@"a935eac11acd416f92640411234fbba6" size:CGSizeMake(300, 250)];
+    self.mopubAdView.delegate = self;
+    
+    [self.bannerView addSubview:self.mopubAdView];
+    
+    self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
+    // Do any additional setup after loading the view, typically from a nib.
+    [self.bannerUnit fetchDemandWithAdObject:self.mopubAdView completion:^(enum ResultCode result) {         
+        NSLog(@"Prebid demand result %ld", (long)result);
+        [self.mopubAdView loadAd];
+    }];
+}
 ```
 
 ## Related Topics 

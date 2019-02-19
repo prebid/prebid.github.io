@@ -37,11 +37,19 @@ Create a new Banner Ad Unit or Interstitial Ad Unit with a Prebid Server configu
 
 `identifier`: A String Optional, if not nil contains a unique identifier for the AdUnit.
 
-`customKeywords`: A Dictionary with each item containing an Array of Strings.
-
 `userKeywords`: Computed property that returns the customerKeywords.
 
 `refreshTime`: A Double Optional used to set the auto refresh time in milliseconds. 
+
+`didReceiveResponse`: A Boolean indicating if the Prebid response was received within the specified time. 
+
+`timeOutSignalSent`: A Boolean to determine if delegate call needs to be made after timeout delegate is sent
+
+`customKeywords <private>`: A Dictionary with each item containing an Array of Strings.
+
+`isInitialCallMade <private>`: A Boolean indicating if a refresh needs to be made even though fetchDemand has not been initialized. 
+
+`adServerObject <private>`: An AnyObject Optional. 
 
 ---
 
@@ -88,6 +96,7 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 
 **fetchDemand**
 
+**Swift**
 ```
 let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
 
@@ -111,6 +120,9 @@ if(adServerName == "DFP"){
     }
 }
 ```
+**Objective C**
+
+---
 **addKeyword**
 
 ```
