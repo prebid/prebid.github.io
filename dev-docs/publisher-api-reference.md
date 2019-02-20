@@ -14,9 +14,6 @@ sidebarType: 1
 
 This page has documentation for the public API methods of Prebid.js.
 
-{: .alert.alert-danger :}
-**Note:** Versions of Prebid.js prior to 1.0 are no longer supported.
-
 <a name="module_pbjs"></a>
 
 ## pbjs
@@ -1447,13 +1444,9 @@ pbjs.setConfig({
         accountId: '1',
         bidders: ['appnexus', 'pubmatic'],
         defaultVendor: 'appnexus',
-        enabled: true,
         timeout: 1000,
-        adapter: 'prebidServer',
-        endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
         adapterOptions: {
-            rubicon: { key: 'value' },
+            pubmatic: { key: 'value' },
             appnexus: { key: 'value' }
         }
     }
@@ -1474,13 +1467,37 @@ Additional information of these properties:
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
-| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
+| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.BIDDER. See the example above. |
+| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in ext.prebid. See video-related example below. |
 
-**Additional Notes on s2sConfig properties**
+**Notes on s2sConfig properties**
 
 - Currently supported vendors are: appnexus & rubicon
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
+
+** Video via s2sConfig **
+
+Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid`. e.g.
+
+{% highlight js %}
+pbjs.setConfig({
+    s2sConfig: {
+        accountId: '1001',
+        bidders: ['rubicon', 'pubmatic'],
+        defaultVendor: 'rubicon',
+        timeout: 250,
+        extPrebid: {
+            cache: {
+                vastxml: { returnCreative: false }
+            },
+            targeting: {
+                pricegranularity: {"ranges": [{"max":40.00,"increment":1.00}]}
+            }
+        }
+    }
+})
+{% endhighlight %}
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
