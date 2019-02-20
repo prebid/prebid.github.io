@@ -8,7 +8,7 @@ nav_section: reference
 
 hide: true
 
-biddercode: richaudience
+biddercode: richAudience
 
 biddercode_longer_than_12: false
 
