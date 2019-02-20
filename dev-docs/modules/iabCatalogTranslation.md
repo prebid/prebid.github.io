@@ -38,6 +38,7 @@ pbjs.setConfig({
     }
 });
 ```
+
 This file will be stored locally to expedite the conversion process. If a publisher opts to not provide a conversion mapping file Prebid will use its default conversion mapping file. 
 
 

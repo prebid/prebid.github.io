@@ -498,25 +498,34 @@ To support long-form videos it is the responsibility of the adapter to convert t
 
 If the demand partner is going to use Prebid API for this process their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
 
+**Params**  
+
+`url (string)`:   The URL to the mapping file. 
+
+`refreshInDays (number)`: A number representing the number of days before the mapping values are updated. This is an optional parameter. 
+
+`localStorageKey`: A unique key to store the mapping file in localstorage. 
+
+
+**Example**
+
 ```
 getMappingFileInfo: function() { 
 	return { 
-		//mapping file json url
+		
 		url: mappingFileURL
 
-        //since prebid stores mapping data in localstorage you can return how many days until those values are updated.
         refreshInDays: 7
 
-        // some unique key to store your mapping json in localstorage
         localStorageKey: `${spec.code}MappingFile`
 
-}
+    }
 },
 ```
 
 The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
 
-To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`: 
+To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
 
 ```
 getIabSubCategory(bidderCode, pCategory)
@@ -524,9 +533,9 @@ getIabSubCategory(bidderCode, pCategory)
 
 **Params**
 
-`key (string)` -  key returned from `getMappingFileInfo`  
+`bidderCode (string)`: Value returned from`localStorageKey` of `getMappingFileInfo`.  
 
-`pCategory (string)` - proprietary category returned in bid response
+`pCategory (string)`:  Proprietary category returned in bid response.
 
 **Returns**
 
