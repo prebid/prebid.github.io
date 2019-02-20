@@ -72,13 +72,6 @@ Targeting.shared.yearofbirth = 1990;
 ```
 ## Global Application Targeting
 
-### Bundle ID
-
-Use the following code to retrieve the platform-specific bundle/package name:
-
-```
-Targeting.shared.bundleName
-```
 
 ### Domain 
 
@@ -87,7 +80,6 @@ Retrieve and set the domain of your app with the following commands:
 ```
 Targeting.shared.domain
 ```
-
 ```
 Targeting.shared.domain = domain
 ```
@@ -96,11 +88,11 @@ Targeting.shared.domain = domain
 Retrieve and set the domain of your store URL with the following commands: 
 
 ```
-Targeting.shared.storeUrl
+Targeting.shared.itunesID
 ```
 
 ```
-Targeting.shared.storeUrl = storeUrl
+Targeting.shared.itunesID = itunesID
 ```
 
 ## GPDR
