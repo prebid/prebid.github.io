@@ -1476,7 +1476,7 @@ Additional information of these properties:
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
 
-** Video via s2sConfig **
+**Video via s2sConfig**
 
 Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid`. e.g.
 
