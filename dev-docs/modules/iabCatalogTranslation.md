@@ -19,9 +19,9 @@ Each bid request must return one [IAB subcategory](https://support.aerserv.com/h
 
 The module provides the following: 
 
-1. Provides an API that converts the demand providers own ad categories into IAB subcategories. If a demand provider elects to use Prebid API for this process, they must include a path to a local mapping file that converts the ad server categories to IAB subcatgories. 
+- Provides an API that converts the demand providers own ad categories into IAB subcategories. If a demand provider elects to use Prebid API for this process, they must include a path to a local mapping file that converts the ad server categories to IAB subcatgories. 
 
-2. Convert IAB subcategories to a Freewheel industry group identifier.
+- Convert IAB subcategories to a Freewheel industry group identifier.
 
 ## How to use the module:
 
