@@ -13,7 +13,7 @@ sidebarType : 1
 
 {:.no_toc}
 
-This module passes key value targeting pairs to the Freewheel SDK. 
+This module returns the targeting key value pairs for the Freewheel ad server.
 
 ## How to use the module:
 
@@ -22,17 +22,18 @@ Send ad unit codes to the getTargeting method of this module.
 #### Example:
 
 Ad Unit Code
+
 ```
 {
   'adUnitCode-1: [
     {
-      'hb_pb_cat_dur': '10.00_400_15'
+      'hb_pb_cat_dur': '10.00_400_15s'
     },
     {
-      'hb_pb_cat_dur': '15.00_402_30'
+      'hb_pb_cat_dur': '15.00_402_30s'
     },
     {
-      'hb_uuid': '123'
+      'hb_cache_id': '123'
     }
   ]
 }

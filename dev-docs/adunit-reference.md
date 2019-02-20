@@ -184,7 +184,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Optional    | String                 | The video context, either `'instream'`, `'outstream'`, or '`adpod`' (for long-form videos).  Example: `context: 'outstream'`                                                                                           |
+| `context`        | Optional    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`                                                                                           |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
 | `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].                                                  |
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
@@ -197,7 +197,7 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `adPodDurationSec`        | Required    | Number                 | The length of the adpod in seconds. Example: `adPodDurationSec = 120` |
-| `durationRangeSec`        | Required    | Number                 | A number indicating how long the creatives of an ad pod should run. Example: `durationRangeSec = 30` |
+| `durationRangeSec`        | Required    | Array[Number]                 | An array of  numbers represents a list of the potential/accepted duration values that the creatives can be in the adpod block. Example: `durationRangeSec = [30, 60. 90]` |
 | `requireExactDuration`        | Optional    | Boolean                 | Whether the returned creatives running time must match the value of `adPodDurationSec`. Example: `requireExactDuration = true` |
 | `tvSeriesName`        | Optional    | String                 | The name of the television series video the adpod will appear in. Example: `tvSeriesName = 'Once Upon A Time'` |
 | `tvEpisodeName`        | Optional    | String                 | The name of the episode of the television series video the adpod will appear in. Example: `tvEpisodeName = 'Pilot'` |
@@ -248,7 +248,8 @@ pbjs.addAdUnits({
 
 ### Video
 
-<a name="adUnit-video-example-instream">
+<a name="adUnit-video-example-instream"> 
+
 #### Instream
 
 For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
@@ -276,6 +277,7 @@ pbjs.addAdUnits({
 ```
 
 <a name="adUnit-video-example-outstream">
+
 #### Outstream
 
 For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
@@ -302,6 +304,7 @@ pbjs.addAdUnits({
 });
 ```
 <a name="adUnit-video-example-adpod">
+
 #### Adpod (Long-Form)
 
 For an example of an adpod video ad unit, see below.  For more detailed instructions, see [Show Long-View Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).

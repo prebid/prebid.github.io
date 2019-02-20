@@ -494,9 +494,9 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 
 #### Long-Form Video Content
 
-To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories). Each bid request must return one IAB subcategory.
+To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file). Each bid request must return one IAB subcategory.
 
-If the demand partner is going to use Prebid API for this process their adapter will need to include the following function in their spec file: 
+If the demand partner is going to use Prebid API for this process their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
 
 ```
 getMappingFileInfo: function() { 
@@ -508,7 +508,7 @@ getMappingFileInfo: function() {
         refreshInDays: 7
 
         // some unique key to store your mapping json in localstorage
-        key: `${spec.code}MappingFile`
+        localStorageKey: `${spec.code}MappingFile`
 
 }
 },
@@ -516,10 +516,10 @@ getMappingFileInfo: function() {
 
 The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
 
-To get the subcategory to use, call this function: 
+To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`: 
 
 ```
-getIabSubCategory(key, pCategory)
+getIabSubCategory(bidderCode, pCategory)
 ```
 
 **Params**
@@ -535,7 +535,8 @@ getIabSubCategory(key, pCategory)
 **Example**
 
 ```
-var iabSubCatId = utils.getIabSubCategory(‘key’, pCategory)
+import {getIabSubCategory} from '../src/adapters/bidderFactory';
+var iabSubCatId = getIabSubCategory(bidderCode, pCategory)
 ```
 
 

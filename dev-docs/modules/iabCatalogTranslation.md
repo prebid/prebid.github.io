@@ -13,15 +13,13 @@ sidebarType : 1
 
 {:.no_toc}
 
-This module supports the mapping between ad agency brand categories and IAB subcategories and conversion of IAB subcategories to Freewheel industry group identifiers. The Freewheel identifiers ensure competitve separation of industries and products. 
+This module converts the IAB sub category to Freewheel industry group identifiers. The Freewheel identifiers ensure competitve separation of industries and products. 
 
 Each bid request must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories).
 
 The module provides the following: 
 
-- Provides an API that converts the demand providers own ad categories into IAB subcategories. If a demand provider elects to use Prebid API for this process, they must include a path to a local mapping file that converts the ad server categories to IAB subcatgories. 
-
-- Convert IAB subcategories to a Freewheel industry group identifier.
+- Converts IAB subcategories to a Freewheel industry group identifier.
 
 ## How to use the module:
 
@@ -42,29 +40,13 @@ pbjs.setConfig({
 ```
 This file will be stored locally to expedite the conversion process. If a publisher opts to not provide a conversion mapping file Prebid will use its default conversion mapping file. 
 
-## Adapter Integration
 
-Adapters need to return IAB subcategories in their repsonses. For adapters who do not have that capability they will provide a mapping file in JSON format that will convert their proprietary brand categories to IAB subcategories. 
-```
-getMappingFileInfo: function() { 
-	return { 
-		//mapping file json url
-		url: mappingFileURL
-           
-        //since prebid stores mapping data in localstorage you can return how many days until those values are updated.
-        refreshInDays: 7
-
-        // some unique key to store your mapping json in localstorage
-        key: `${spec.code}MappingFile`
-
-    }
-},
-```
 ## Further Reading
 
 [Prebid.js](http://prebid.org/dev-docs/getting-started.html)   
 [Prebid Video](http://prebid.org/prebid-video/video-overview.html)  
-[Freewheel Module](/dev-docs/modules/freewheel.html)
+[Freewheel Module](/dev-docs/modules/freewheel.html)  
+[Adapter Integration](/dev-docs/bidder-adaptor.html)
 
 
 
