@@ -450,7 +450,9 @@ Use this method to get all of the bids that have won their respective auctions b
 
 ### pbjs.adserver.freewheel.getTargeting() ⇒ Object
 
-Use this method to return data on the IAB subcategories mapping files. Data returned includes file URL, refresh rate (in days), and a key identifier. 
+Use this method to return data on the IAB subcategories mapping files. Data returned includes file URL and optional values refresh rate (in days), and a key identifier. Useful for [building the video url](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl). 
+
++ `pbjs.adserver.freewheel.getTargeting()`: returns data on the IAB subcategory mapping files. 
 
 <hr class="full-rule">
 
