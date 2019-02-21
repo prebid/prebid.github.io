@@ -48,7 +48,7 @@ Before downloading, select the adapters you want to include. (You can add more a
 
 ### Define Prebid Ad Units
 
-As with instream and outstream videos, you set the video context for long-form ad units. The context setting for long-form video is `adpod` . There are also some addtional required and optional parameters (see list below).  
+As with instream and outstream videos, you must set the video context for long-form ad units. The context setting for long-form video is `adpod` . There are also some addtional required and optional parameters (see list below).  
 
  As with all ad unit types you must include a list of bidders. The parameters differ depending on which bidder you’re including. For a list of parameters for each bidder, see [Bidders’ Params]({site.github.url}}/dev-docs/bidders.html).  
 
@@ -124,7 +124,7 @@ A string indicating the type of content being displayed in the video player. The
   <pre>
         mediaTypes: {
             video: {
-                context: 'instream', // or 'outstream'
+                context: 'apod', // or 'instream', 'outstream'
                 playerSize: [640, 480],
                 mimes: ['video/mp4'],
   </pre>
