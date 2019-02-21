@@ -1,7 +1,7 @@
 body {
   background-color: #FFFFFF;
   font-family: 'Lato', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
   color: #555;
   -webkit-font-smoothing: antialiased;
@@ -768,6 +768,31 @@ button.list-group-item:focus {
   right: -15%;
 }
 
+
+/************ pbTable ****************/
+
+.pbtable {
+  border: 1px solid black;
+}
+
+.pbTr {
+  border: 1px solid black;
+}
+
+.pbTr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+.pbTh {
+  padding: 10px;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.pbTd {
+  padding: 10px;
+  border: 1px solid black;
+}
 
 /************ Partners ****************/
 

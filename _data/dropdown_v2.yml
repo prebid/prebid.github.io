@@ -104,8 +104,18 @@
   - subsectionId: 0
     sectionId: 1
     sectionName: Product   
-    title: Plugins
-    link: /dev-docs/plugins/index.html
+    title: Publisher API
+    link: /dev-docs/publisher-api-reference.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+    
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product   
+    title: Bidder Params
+    link: /dev-docs/bidders.html
     needsDivider: 1
     isHeader: 0
     isSubHeader: 0
@@ -143,20 +153,11 @@
     sectionName: Product
     title: Android
     link: /prebid-mobile/code-integration-android.html
-    needsDivider: 0
+    needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0
     
   - subsectionId: 3
-    sectionId: 1
-    sectionName: Product
-    title: Debugging Extension
-    link: /debugging/debugging.html
-    needsDivider: 1
-    isHeader: 0
-    isSubSectionStart: 1
-
-  - subsectionId: 4
     sectionId: 1
     sectionName: Product
     title: Formats
@@ -165,7 +166,7 @@
     isHeader: 0
     isSubSectionStart: 1
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: Display
@@ -174,7 +175,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: Video
@@ -183,7 +184,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: Native
@@ -192,7 +193,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 1
     sectionName: Product
     title: AMP
@@ -201,7 +202,7 @@
     isHeader: 0
     isSubSectionStart: 0
     
-  - subsectionId: 4
+  - subsectionId: 3
     sectionId: 0
     sectionName: Product
     title: Multi-Format
@@ -260,10 +261,19 @@
     sectionName: Support
     title: Training Videos
     link: /videos/index.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 2
+    sectionId: 2
+    sectionName: Support
+    title: Debugging Extension
+    link: /debugging/debugging.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 3
     sectionId: 2
     sectionName: Support
