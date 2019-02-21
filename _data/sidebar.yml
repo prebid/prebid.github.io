@@ -500,6 +500,15 @@
 - sbSecId: 1
   title: Freewheel Module
   link: /dev-docs/modules/freewheel.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Ad Pod Module
+  link: /dev-docs/modules/adpod.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
