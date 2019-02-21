@@ -42,7 +42,7 @@ Integrating **MoPub** with your application
 1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/) . 
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
-Integrating **Google ** with your application   
+Integrating **Google** with your application   
 
 Go to Google's developer site and follow the instructions for integrating their [Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/quick-start) into your app.
 
@@ -50,7 +50,7 @@ Go to Google's developer site and follow the instructions for integrating their 
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/pbm-targeting-ios.html)
+View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 
 ### Create Ad Units
 Banner and interstitial ad units can be created: 
@@ -60,8 +60,8 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 ```
 For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them: 
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/pbm-bannerad-ios.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/pbm-interstitial-ad-ios.html)
+[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
+[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
 
 ### Add Custom Keywords
 
@@ -70,7 +70,7 @@ Once an ad unit has been instantiated, custom keywords can be added to it to imp
 ```
 bannerUnit.addKeyword(key:"Sample", value:"Value to add")
 ```
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/pbm-adunit-ios.html)
+For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
 
 ## Further Reading
 

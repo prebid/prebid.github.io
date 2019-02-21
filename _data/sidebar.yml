@@ -662,7 +662,7 @@
 
 - sbSecId: 2
   title: Code Integration
-  link: /prebid-mobile/pbm-api/code-integration-ios.html
+  link: /prebid-mobile/pbm-api/iOS/code-integration-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -744,7 +744,7 @@
 
 - sbSecId: 2
   title: Code Integration
-  link: /prebid-mobile/pbm-api/code-integration-android.html
+  link: /prebid-mobile/pbm-api/android/code-integration-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
