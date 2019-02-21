@@ -662,7 +662,7 @@
 
 - sbSecId: 2
   title: Code Integration
-  link: /prebid-mobile/code-integration-ios.html
+  link: /prebid-mobile/pbm-api/code-integration-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -744,7 +744,7 @@
 
 - sbSecId: 2
   title: Code Integration
-  link: /prebid-mobile/code-integration-android.html
+  link: /prebid-mobile/pbm-api/code-integration-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -759,7 +759,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-  
+ 
 - sbSecId: 2
   title: Ad Unit
   link: /prebid-mobile/pbm-api/android/adunit-android.html
@@ -813,7 +813,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 2
   title: For Ad Ops
   link:
@@ -889,6 +889,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
+  
+- sbSecId: 2
+  title: Code Integration - iOS
+  link: /prebid-mobile/code-integration-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
  
 - sbSecId: 2
   title: Targeting Parameters - iOS
@@ -902,6 +911,15 @@
 - sbSecId: 2
   title: Logging and Troubleshooting - iOS
   link: /prebid-mobile/logging-troubleshooting-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 2
+  title: Code Integration - Android
+  link: /prebid-mobile/code-integration-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
