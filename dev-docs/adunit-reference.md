@@ -197,7 +197,7 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `adPodDurationSec`        | Required    | Number                 | The length of the adpod in seconds. Example: `adPodDurationSec = 120` |
-| `durationRangeSec`        | Required    | Array[Number]                 | An array of  numbers represents a list of the potential/accepted duration values that the creatives can be in the adpod block. Example: `durationRangeSec = [30, 60. 90]` |
+| `durationRangeSec`        | Required    | Array[Number]                 | An array of  numbers represents a list of the potential/accepted duration values that the creatives can be in the adpod block. Example: `durationRangeSec = [30, 60, 90]` |
 | `requireExactDuration`        | Optional    | Boolean                 | Whether the returned creatives running time must match the value of `adPodDurationSec`. Example: `requireExactDuration = true` |
 | `tvSeriesName`        | Optional    | String                 | The name of the television series video the adpod will appear in. Example: `tvSeriesName = 'Once Upon A Time'` |
 | `tvEpisodeName`        | Optional    | String                 | The name of the episode of the television series video the adpod will appear in. Example: `tvEpisodeName = 'Pilot'` |
