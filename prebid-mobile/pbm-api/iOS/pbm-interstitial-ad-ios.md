@@ -30,10 +30,11 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 func loadDFPInterstitial(adUnit : AdUnit){
         print("Google Mobile Ads SDK version: \(DFPRequest.sdkVersion())")
         
+        let interstitialUnit = InterstitialAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45")
         dfpInterstitial = DFPInterstitial(adUnitID: "/19968336/PrebidMobileValidator_Interstitial")
         dfpInterstitial.delegate = self
         request.testDevices = [ kGADSimulatorID]
-        adUnit.fetchDemand(adObject:self.request) { (ResultCode) in
+        interstitialUnit.fetchDemand(adObject:self.request) { (ResultCode) in
             print("Prebid demand fetch for DFP \(ResultCode)")
             self.dfpInterstitial!.load(self.request)
         }
