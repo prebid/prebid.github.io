@@ -307,9 +307,9 @@ pbjs.addAdUnits({
 
 #### Adpod (Long-Form)
 
-For an example of an adpod video ad unit, see below.  For more detailed instructions, see [Show Long-View Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
+For an example of an adpod video ad unit, see below.  For more detailed instructions, see [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
 
-```
+```javascript
 var longFormatAdUnit = {
     video: {
        // required params

@@ -23,7 +23,7 @@ Send ad unit codes to the getTargeting method of this module.
 
 Ad Unit Code
 
-```
+```javascript
 {
   'adUnitCode-1: [
     {

@@ -15,7 +15,7 @@ The adpod module enables developers to add support for a new adserver that handl
 
 ## How to use the module:
 
-In the users equivalent `<name>AdServerVideo` module, import the `initAdpodHooks` function and call it from within their module. 
+In the user's equivalent `<name>AdServerVideo` module, import the `initAdpodHooks` function and call it from within their module. Executing the init function will initialize several key functions from the module that are designed to handle `adpod` objects (ie. adUnits, bids, etc.) as the auction proceeds. These functions will only affect `adpod` objects, other `mediaTypes` will be handled by the base Prebid code. 
 
 ```
 initAdpodHooks();
