@@ -11,6 +11,12 @@ sidebarType: 2
 
 Use the Prebid Mobile API 1.0 for Android to implement header bidding in your mobile apps. The elements in the API will allow you to participate in a header bidding auction and communicate with your ad server to display a creative. The API supports banner and interstitial creatives.
 
+## Key Features
+
+- The Publisher knows if the keywords are attached to the adUnit.  
+- Implements and supports its own auto refresh, no longer supporting adServer refresh.   
+- Clear result codes that details the response of the Prebid demand fetch request. 
+
 ## Objects
 
 The Prebid Mobile API supports instantiation of the following objects:

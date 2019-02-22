@@ -44,6 +44,24 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 - `adObj`: bid request object
 - `onCompleteListener`: listener object
 
+### setUserKeyword
+
+Set a single key-value pair.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `value`: String containing the value.
+
+### setUserKeywords
+
+Define multiple values for a single key.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `values`: String array containing the list of values for the key.
+
 ### removeUserKeyword
 
 Remove a key and all its associated values from a given Prebid Mobile ad unit.
@@ -62,29 +80,15 @@ none
 
 ### setAutoRefreshPeriodMillis
 
-If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function.
+If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off. 
 
 **Parameters**
 
 - `periodMillis`: Integer defining the refresh time in milliseconds.
 
-### setUserKeyword
+### startAutoRefresh
 
-Set a single key-value pair.
-
-**Parameters**
-
-- `key`: String containing the key.
-- `value`: String containing the value.
-
-### setUserKeywords
-
-Define multiple values for a single key.
-
-**Parameters**
-
-- `key`: String containing the key.
-- `values`: String array containing the list of values for the key.
+Starts the auto-refresh behavior for a given Prebid Mobile ad unit.
 
 ### stopAutoRefresh
 

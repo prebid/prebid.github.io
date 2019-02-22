@@ -36,6 +36,27 @@ Build Prebid Mobile from source code. After cloning the repo, from the root dire
 ```
 to output the PrebidMobile.framework.
 
+### Setup Prebid Server Account
+
+In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers: 
+
+1. The simplest option is to sign up for a hosted solution. Several [Prebid.org members](/prebid-server/hosted-servers.html) provide hosting packages. 
+
+2. Implement your own Prebid Server solution. You will need to [download](https://github.com/prebid/prebid-server) the source code from Github. The repository has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation. 
+
+Once you have a Prebid Server account, you will need to add your account credentials to the app. 
+
+```
+Prebid.shared.prebidServerAccountId = @"YOUR_ACCOUNT_ID";
+Prebid.shared.prebidServerHost = PrebidHostAppnexus;
+```
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. 
+
+```
+Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
+```
+
+
 ### Integrate Ad Servers With Your App
 
 Integrating **MoPub** with your application

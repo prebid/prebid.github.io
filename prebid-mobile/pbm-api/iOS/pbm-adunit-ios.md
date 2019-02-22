@@ -35,22 +35,6 @@ Create a new Banner Ad Unit or Interstitial Ad Unit with a Prebid Server configu
 
 `adSizes`: An Array of CGSizes to be used for AdUnit sizes.
 
-`identifier`: A String Optional, if not nil contains a unique identifier for the AdUnit.
-
-`userKeywords`: Computed property that returns the customerKeywords.
-
-`refreshTime`: A Double Optional used to set the auto refresh time in milliseconds. 
-
-`didReceiveResponse`: A Boolean indicating if the Prebid response was received within the specified time. 
-
-`timeOutSignalSent`: A Boolean to determine if delegate call needs to be made after timeout delegate is sent
-
-`customKeywords <private>`: A Dictionary with each item containing an Array of Strings.
-
-`isInitialCallMade <private>`: A Boolean indicating if a refresh needs to be made even though fetchDemand has not been initialized. 
-
-`adServerObject <private>`: An AnyObject Optional. 
-
 ---
 
 ## Methods
@@ -62,35 +46,39 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 **Parameters**
 
-`adObject`: Object to be passed to `validateAndAttachKeywords` method.
+`adObject`: adServer object to which the Prebid keys need to be attached.
 
-`completion`: Closure which receives one argument, the enum ResultCode. There is no return value. 
+`completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value. 
 
 ### addUserKeyword
 
-Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If the key already exists the value will be appended to the customKeywords property. No duplicates will be added.
+Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If the key already exists the value will be appended to the `customKeywords` property. No duplicates will be added.
 
 **Parameters**
 
-`key`: A String to be used to check if an existing value exists in the customKeywords property. 
+`key`: A String to be used to check if an existing value exists in the `customKeywords` property. 
 
-`value`: A String to be appended to the customKeywords property.
+`value`: A String to be appended to the `customKeywords` property.
 
 ### removeUserKeyword
-Remove a key and all its associated values from customKeywords of a given Prebid Mobile ad unit. 
+Remove a key and all its associated values from `customKeywords` of a given Prebid Mobile ad unit. 
 
 **Parameters**
 
-`forKey`: A string containing the key to remove from customKeywords.
+`forKey`: A string containing the key to remove from `customKeywords`.
 
 ### clearUserKeywords
 Remove all keys and all values from a given Prebid Mobile ad unit.
 
 ### setAutoRefreshMillis
-If set on a given Prebid Mobile ad unit, the fetchDemand function will be called every periodMillis until stopAutoRefresh is called. Each call to fetchDemand will invoke the onComplete function.
+If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off. 
+
+### startAutoRefresh
+
+Starts the auto-refresh behavior for a given Prebid Mobile ad unit.
 
 ### stopAutoRefresh
-Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, stopAutoRefresh will be ignored.
+Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, `stopAutoRefresh` will be ignored.
 
 ## Examples
 
@@ -98,14 +86,12 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 
 **Swift**
 ```
-let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
 
-if(adServerName == "DFP"){
-    print("entered \(adServerName) loop" )
-    loadDFPBanner(bannerUnit: bannerUnit)
- }
 
  func loadDFPBanner(bannerUnit : AdUnit){
+
+     let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
+
     let dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
     dfpBanner.adUnitID = "/19968336/PriceCheck_300x250"
     dfpBanner.rootViewController = self
@@ -122,6 +108,28 @@ if(adServerName == "DFP"){
 ```
 **Objective C**
 
+```
+-(void) loadDFPBanner {
+    
+    self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
+    [self.bannerUnit setAutoRefreshMillisWithTime:35000];
+    self.dfpView = [[DFPBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
+    self.dfpView.rootViewController = self;
+    self.dfpView.adUnitID = @"/19968336/PrebidMobileValidator_Banner_All_Sizes";
+    self.dfpView.delegate = self;
+    [self.bannerView addSubview:self.dfpView];
+    self.dfpView.backgroundColor = [UIColor redColor];
+    self.request = [[DFPRequest alloc] init];
+    self.request.testDevices = @[kDFPSimulatorID];
+    
+    [self.bannerUnit fetchDemandWithAdObject:self.request completion:^(enum ResultCode result) {
+        NSLog(@"Prebid demand result %ld", (long)result);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dfpView loadRequest:self.request];
+        });
+    }];
+}
+```
 ---
 **addKeyword**
 
