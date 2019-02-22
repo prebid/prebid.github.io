@@ -143,7 +143,7 @@
     sectionId: 1
     sectionName: Product
     title: iOS
-    link: /prebid-mobile/code-integration-ios.html
+    link: /prebid-mobile/pbm-api/iOS/code-integration-ios.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
@@ -152,7 +152,7 @@
     sectionId: 1
     sectionName: Product
     title: Android
-    link: /prebid-mobile/code-integration-android.html
+    link: /prebid-mobile/pbm-api/android/code-integration-android.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0

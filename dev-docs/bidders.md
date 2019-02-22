@@ -39,7 +39,7 @@ For information about which bidders support video and native demand, see <a href
 {% endfor %}
 </ul>
 
-</div>
+
 
 <div class="bs-docs-section" markdown="1">
 
