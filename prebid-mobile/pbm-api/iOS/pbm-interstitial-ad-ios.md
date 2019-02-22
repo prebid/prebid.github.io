@@ -61,7 +61,8 @@ func loadDFPInterstitial(adUnit : AdUnit){
 
 **Swift**
 
-```func loadMoPubInterstitial(adUnit: AdUnit){
+```
+    func loadMoPubInterstitial(adUnit: AdUnit){
         
         let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "2829868d308643edbec0795977f17437")
         sdkConfig.globalMediationSettings = []
