@@ -31,7 +31,7 @@ var dynamicTableContents=[];
 {% assign nativeBidders = "" %}
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for page in bidder_pages %}
-{% if page.media_types contains 'native' and page.prebid_1_0_supported %}
+{% if page.media_types contains 'native' %}
    dynamicTableContents[{{numNative}}]={};
    dynamicTableContents[{{numNative}}].href="/dev-docs/bidders.html#{{page.biddercode}}";
    dynamicTableContents[{{numNative}}].text="{{page.title}}";
