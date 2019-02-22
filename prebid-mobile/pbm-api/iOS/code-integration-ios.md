@@ -71,7 +71,7 @@ Go to Google's developer site and follow the instructions for integrating their 
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/iOS/pbm-targeting-ios.html)
+View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 
 ### Create Ad Units
 Banner and interstitial ad units can be created: 
@@ -81,8 +81,8 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 ```
 For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them: 
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/iOS/pbm-bannerad-ios.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/iOS/pbm-interstitial-ad-ios.html)
+[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
+[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
 
 ### Add Custom Keywords
 

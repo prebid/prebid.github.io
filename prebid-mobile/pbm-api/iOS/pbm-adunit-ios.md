@@ -10,7 +10,7 @@ sidebarType: 2
 # AdUnit: NSObject
 {: .notoc}
 
-The AdUnit class is the superclass of the [BannerAdUnit](/prebid-mobile/pbm-api/iOS/pbm-bannerad-ios.html) and [InterstitialAdUnit](/prebid-mobile/pbm-api/iOS/pbm-interstitial-ad-ios.html) classes. 
+The AdUnit class is the superclass of the [BannerAdUnit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) and [InterstitialAdUnit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html) classes. 
 
 - TOC
  {:toc}

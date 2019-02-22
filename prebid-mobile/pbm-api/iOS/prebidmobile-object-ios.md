@@ -23,28 +23,8 @@ The Prebid class is a singleton that enables the user to apply global settings.
 
 **Properties**
 
-`accountId`: Optional String containing the Prebid Server account ID.
 
-```
 
-if let myAccountId = Prebid.shared.accountId { 
-    //do something with myAccountId
-}
-
-guard let myAccountId = Prebid.shared.accountId else { 
-    print("Error retrieving accountId")
-    return
-}
-
-//do something with myAccountId
-
-```
-
-```
-let Prebid.shared.accountId = "1234ABC"
-```
-
-&nbsp;
 
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false. 
 
@@ -65,37 +45,6 @@ guard let shareGeoLocation = Prebid.shared.shareGeoLocation else {
 ```
 let Prebid.shared.shareGeoLocation = true
 ```
-
-&nbsp;
-`serverHost`: Optional PrebidHost, an enum that defines the url of the Prebid server. 
-
-``` 
-
-public enum PrebidHost: String { 
-    case Appnexus = "https://prebid.adnxs.com/pbs/v1/openrtb2/auction"
-    case Rubicon = "https://prebid-server.rubiconproject.com/openrtb2/auction"
-    case Custom
-}
-```
-
-Custom defaults to an empty string. 
-
-```
-if let serverHost = Prebid.shared.serverHost { 
-    //do something with shareGeoLocation
-}
-
-guard let serverHost = Prebid.shared.serverHost else { 
-    print("Error retrieving serverHost")
-    return
-}
-
-//do something with serverHost
-
-```
-
-
-
 
 
 ## Related Topics
