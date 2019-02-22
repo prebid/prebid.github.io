@@ -60,7 +60,7 @@ Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
 ### Integrate Ad Servers With Your App
 
 Integrating **MoPub** with your application
-1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/) . 
+1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/). 
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
 Integrating **Google** with your application   

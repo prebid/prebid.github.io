@@ -64,6 +64,8 @@ func loadDFPInterstitial(adUnit : AdUnit){
 
 ```
     func loadMoPubInterstitial(adUnit: AdUnit){
+
+        let interstitialUnit = InterstitialAdUnit(configId: "625c6125-f19e-4d5b-95c5-55501526b2a4")
         
         let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "2829868d308643edbec0795977f17437")
         sdkConfig.globalMediationSettings = []
@@ -76,7 +78,7 @@ func loadDFPInterstitial(adUnit : AdUnit){
         self.mopubInterstitial.delegate = self
         
         // Do any additional setup after loading the view, typically from a nib.
-        adUnit.fetchDemand(adObject: mopubInterstitial!){ (ResultCode) in
+        interstitialUnit.fetchDemand(adObject: mopubInterstitial!){ (ResultCode) in
             print("Prebid demand fetch for mopub \(ResultCode)")
 
             self.mopubInterstitial.loadAd()
