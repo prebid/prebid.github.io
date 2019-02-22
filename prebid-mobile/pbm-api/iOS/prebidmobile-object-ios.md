@@ -24,8 +24,6 @@ The Prebid class is a singleton that enables the user to apply global settings.
 **Properties**
 
 
-
-
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false. 
 
 ```
@@ -45,6 +43,7 @@ guard let shareGeoLocation = Prebid.shared.shareGeoLocation else {
 ```
 let Prebid.shared.shareGeoLocation = true
 ```
+
 
 
 ## Related Topics
