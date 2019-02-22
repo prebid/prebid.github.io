@@ -30,10 +30,12 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 func loadDFPInterstitial(adUnit : AdUnit){
         print("Google Mobile Ads SDK version: \(DFPRequest.sdkVersion())")
         
+        let interstitialUnit = InterstitialAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45")
         dfpInterstitial = DFPInterstitial(adUnitID: "/19968336/PrebidMobileValidator_Interstitial")
         dfpInterstitial.delegate = self
         request.testDevices = [ kGADSimulatorID]
-        adUnit.fetchDemand(adObject:self.request) { (ResultCode) in
+        interstitialUnit.fetchDemand(adObject:self.request) { (ResultCode) in
+
             print("Prebid demand fetch for DFP \(ResultCode)")
             self.dfpInterstitial!.load(self.request)
         }
@@ -61,7 +63,11 @@ func loadDFPInterstitial(adUnit : AdUnit){
 
 **Swift**
 
-```func loadMoPubInterstitial(adUnit: AdUnit){
+
+```
+    func loadMoPubInterstitial(adUnit: AdUnit){
+
+        let interstitialUnit = InterstitialAdUnit(configId: "625c6125-f19e-4d5b-95c5-55501526b2a4")
         
         let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "2829868d308643edbec0795977f17437")
         sdkConfig.globalMediationSettings = []
@@ -74,7 +80,7 @@ func loadDFPInterstitial(adUnit : AdUnit){
         self.mopubInterstitial.delegate = self
         
         // Do any additional setup after loading the view, typically from a nib.
-        adUnit.fetchDemand(adObject: mopubInterstitial!){ (ResultCode) in
+        interstitialUnit.fetchDemand(adObject: mopubInterstitial!){ (ResultCode) in
             print("Prebid demand fetch for mopub \(ResultCode)")
 
             self.mopubInterstitial.loadAd()
