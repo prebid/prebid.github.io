@@ -1468,7 +1468,7 @@ Additional information of these properties:
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.BIDDER. See the example above. |
-| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in ext.prebid. See video-related example below. |
+| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See video-related example below. |
 
 **Notes on s2sConfig properties**
 
@@ -1478,7 +1478,7 @@ Additional information of these properties:
 
 **Video via s2sConfig**
 
-Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid`. e.g.
+Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid` object. e.g.
 
 {% highlight js %}
 pbjs.setConfig({
