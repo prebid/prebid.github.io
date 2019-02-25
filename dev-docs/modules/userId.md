@@ -7,7 +7,6 @@ module_code : userId
 display_name : User ID
 enable_download : true
 sidebarType : 1
-
 ---
 
 # User ID Module
@@ -20,7 +19,7 @@ sidebarType : 1
 
 The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
-* **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. TradeDesk). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
+* **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 
 ## How It Works
@@ -49,27 +48,16 @@ When paired with the `CookieConsent` module, privacy rules are enforced:
   * Calls to an external user ID vendor are not made.
   * Nothing is stored to cookies or HTML5 local storage.
 
+## Registering for Unified ID
+
+You can get set up for Unified ID in one of these ways:
+
+- Register with The TradeDesk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
+- Utilize a [managed services](/prebid/managed.html) company who can do this for you.
+
 ## Examples
 
-1) Publisher supports the default Tradedesk-based Unified ID and first party domain cookie storage:
-
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "unifiedId",
-            storage: {
-                type: "cookie",  
-                name: "pbjs-unifiedid",       // create a cookie with this name
-                expires: 60                   // cookie can last for 60 days
-            }
-        }],
-        syncDelay: 5000              // 5 seconds after the first bidRequest()
-    }
-});
-{% endhighlight %}
-
-2) Publisher has a custom partner ID with Tradedesk Unified ID:
+1) Publisher has a partner ID with The TradeDesk, and is using the default endpoint for Unified ID.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -77,7 +65,7 @@ pbjs.setConfig({
         userIds: [{
             name: "unifiedId",
             params: {
-                partner: "myTtlPid"
+                partner: "myTtdPid"
             },
             storage: {
                 type: "cookie",  
@@ -90,7 +78,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-3) Publisher supports UnifiedID with a non-Tradedesk vendor, HTML5 local storage, and wants to delay the auction up to 250ms to obtain the user ID:
+2) Publisher supports UnifiedID with a vendor other than Tradedesk, HTML5 local storage, and wants to delay the auction up to 250ms to obtain the user ID:
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -109,7 +97,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-4) Publisher has integrated with unifiedID on their own and wants to pass the unifiedID directly through to Prebid.js
+3) Publisher has integrated with unifiedID on their own and wants to pass the unifiedID directly through to Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -123,7 +111,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-5) Publisher supports PubCommonID and first party domain cookie storage
+4) Publisher supports PubCommonID and first party domain cookie storage
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -140,13 +128,16 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-6) Publisher supports both unifiedID and PubCommonID and first party domain cookie storage
+5) Publisher supports both unifiedID and PubCommonID and first party domain cookie storage
 
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
         userIds: [{
             name: "unifiedId",
+            params: {
+                partner: "myTtdPid"
+            },
             storage: {
                 type: "cookie",  
                 name: "pbjs-unifiedid"       // create a cookie with this name
@@ -173,9 +164,9 @@ of sub-objects. See the examples above for specific use cases.
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"` or `"pubCommonId"` | `"unifiedId"` |
-| params | Optional | Object | Details for unifiedId. Defaults to use the Tradedesk URL and a partner code of "prebid". | |
-| params.partner | Optional | String | If specified for unifiedId, overrides the "prebid" default value. This is useful for Tradedesk attribution and reporting. | `"myTTlPid"` |
-| params.url | Optional | String | If specified for unifiedId, overrides the default Tradedesk URL. | "https://unifiedid.org/somepath?args" |
+| params | Required for unifiedId | Object | Details for unifiedId. | |
+| params.partner | Required if using Tradedesk | String | This is the partner ID value obtained from registering with The TradeDesk. | `"myTtdPid"` |
+| params.url | Required if not using TradeDesk | String | If specified for unifiedId, overrides the default Tradedesk URL. | "https://unifiedid.org/somepath?args" |
 | storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
@@ -205,7 +196,13 @@ For bidders that want to support one or more of these ID systems, and for publis
 | PubCommon ID | n/a | bidRequest.userIds.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
 | Unified ID | Tradedesk | bidRequest.userIds.ttid | user.ext.tpid[].source="tdid" | |
 
-The OpenRTB request location of these IDs:
+If you're an ID provider that want to get on this list, feel free to submit a PR or an [Issue](https://github.com/prebid/Prebid.js/issues).
+
+If you're bidder that wants to support the User ID module in Prebid.js, you'll need to update your bidder adapter to read the indicated bidRequest attributes.
+
+If you're bidder that wants to support the User ID module in Prebid Server, you'll n
+eed to update your server-side bid adapter to read the indicated OpenRTB attributes. For example:
+
 {% highlight bash %}
 {
   "user": {
