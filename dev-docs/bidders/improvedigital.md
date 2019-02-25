@@ -115,6 +115,3 @@ pbjs.setConfig({
             }
         ]
     }];
-
-{: .alert.alert-info :}
-Sizes set in the `adUnit` object will not be used since sizes are already defined as part of the placement setup.
