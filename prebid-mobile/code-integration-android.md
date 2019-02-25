@@ -1,12 +1,13 @@
 ---
-layout: page
+layout: page_v2
 title: Code Integration
 description: Code Integration
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-android
+sidebarType: 2
 ---
-<div class="bs-docs-section" markdown="1">
+
 
 # Code Integration for Android
 
@@ -248,4 +249,4 @@ To avoid PrebidServerAdapter class being obfuscated and prebid not working, add 
 }
 ```
 
-</div>
+

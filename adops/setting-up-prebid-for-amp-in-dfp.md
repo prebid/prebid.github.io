@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid for AMP in DFP
 head_title: Setting up Prebid for AMP in DFP
 description: Setting up Prebid for AMP in DFP
@@ -7,9 +7,10 @@ pid: 3
 hide: false
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Setting up Prebid for AMP in DFP
 {: .no_toc}
@@ -73,7 +74,7 @@ You can always get the latest version of the creative code below from [the AMP e
 + [Show Prebid Ads on AMP Pages]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html)
 + [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
 
-</div>
+
 
 <!-- Reference Links -->
 

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Docs by Format
 description: Docs, broken out by creative format
 pid: 4
@@ -14,7 +14,7 @@ nav_section: reference
 
 This page has a list of developer docs broken out by creative format.
 
-For ad ops and other ad server-related information, see [our Ad Ops documentation]({{site.github.url}}/adops.html).
+For ad ops and other ad server-related information, see [our Ad Ops documentation]({{site.github.url}}/adops/before-you-start.html).
 
 * TOC
 {:toc}

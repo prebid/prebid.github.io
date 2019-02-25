@@ -2,19 +2,10 @@
 layout: bidder
 title: Archon Warp
 description: Prebid Archon Warp Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
-
 biddercode: archon
-
 aliasCode: serverbid
-
 biddercode_longer_than_12: false
-prebid_1_0_supported: true
-
 ---
 
 

@@ -2,12 +2,9 @@
 layout: bidder
 title: Prebid Server
 description: Prebid Server S2S Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: prebidServer
 biddercode_longer_than_12: true
 hide: true
-prebid_1_0_supported : true
 media_types: video
 gdpr_supported: true
 ---
@@ -46,3 +43,4 @@ Configuration options
 | `syncEndpoint` | String     |           | Configures the user-sync endpoint. Highly recommended.                    |
 | `adapter`    | String        |           | Adapter code; default: `"prebidServer"`.                                  |
 | `secure`     | Integer       |           | Override Prebid Server's determination of whether the request needs secure assets. Set to `1` to force secure assets on the response, or `0` for non-secure assets. |
+| `adapterOptions` | Object       |           | Arguments will be added to resulting OpenRTB payload to Prebid Server. |

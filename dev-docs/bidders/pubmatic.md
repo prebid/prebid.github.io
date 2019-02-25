@@ -2,13 +2,10 @@
 layout: bidder
 title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: pubmatic
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
-media_types: video
+media_types: banner, video, native
 gdpr_supported: true
 ---
 
@@ -120,6 +117,40 @@ var videoAdUnits = [
       }
     }]
 }]
+```
+
+
+### AdUnit Format for Native
+```javascript
+var adUnits = [
+{
+    code: 'test-div',    
+    mediaTypes: {
+       native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            body: {
+                required: true
+            }
+        }
+    },
+    bids: [{
+      bidder: 'pubmatic',
+      params: {
+        publisherId: '156295',               // required
+        adSlot: 'pubmatic_test2@1x1',       // required
+      }
+    }]
+}];
 ```
 
 

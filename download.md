@@ -1,16 +1,8 @@
 ---
-layout: page
+layout: page_v2
 title: Download Prebid.js
 description: Documentation on how to download Prebid.js for header bidding.
-
-pid: 0
-
-is_top_nav: yeah
-
-top_nav_section: download
-nav_section: download
-
-
+sidebarType: 0
 ---
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
@@ -29,19 +21,8 @@ $(function(){
     return;
   });
 
-  $( ".selectpicker" ).change(function() {
-    if(this.value.match(/1\.\d+\.\d+/i)) {
-      $('.adapters .col-md-4').hide();
-      $('.prebid_1_0').show();
-    }
-    else{
-       $('.adapters .col-md-4').show();
-    }
-  });
-
-  //default to 1.x adapters:
-  $('.adapters .col-md-4').hide();
-  $('.prebid_1_0').show();
+  // show all adapters
+  $('.adapters .col-md-4').show();
 });
 
 function getVersionList() {
@@ -62,7 +43,7 @@ function getVersionList() {
           $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
         }
         else{
-          if(version.match(/1\.\d+\.\d+/i)){
+          if(version.match(/\d\.\d+\.\d+/i)){
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{
@@ -91,11 +72,6 @@ function submit_download() {
 
     var alertStatus = $('#download-status');
 
-    if (!(form_data['email'] && form_data['company'])) {
-      alertStatus.html('Email and Company fields are required.');
-      alertStatus.removeClass('hide');
-      return;
-    }
     alertStatus.addClass('hide');
 
     $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
@@ -162,8 +138,6 @@ function get_form_data() {
     }
 
     var form_data = {};
-    form_data['email'] = $('#input-email').val();
-    form_data['company'] = $('#input-company').val();
     form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
 
@@ -189,10 +163,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 ### Option 1: Customize your download here
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% assign module_pages = site.pages | where: "nav_section", "modules" %}
-
-{: .alert.alert-danger :}
-**Deprecation Notice:** Prebid.org does not support any version of Prebid.js prior to version 1.0.
+{% assign module_pages = site.pages | where: "page_type", "module" %}
 
 {: .alert.alert-success :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
@@ -210,7 +181,7 @@ Note: If you receive an error during download you most likely selected a configu
   {% if page.s2s_only == true %}
     {% continue %}
   {% endif %}
-<div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
+<div class="col-md-4">
  <div class="checkbox">
   <label>
   {% if page.aliasCode %}
@@ -394,7 +365,7 @@ Note: If you receive an error during download you most likely selected a configu
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Prebid.js! </button>
+  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
 
 </div>
 
@@ -418,17 +389,7 @@ Note: If you receive an error during download you most likely selected a configu
       <div class="modal-body">
 
         <div class="lead">
-          Enter your information below to generate the download file.
-        </div>
-
-
-        <div class="form-group col-md-6">
-            <label for="input-email">Email address</label>
-            <input type="email" class="form-control" id="input-email" placeholder="Email" name="email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="input-company">Company Name</label>
-            <input type="text" class="form-control" id="input-company" placeholder="Your Company" name="company_email">
+          Downloading Prebid.js...
         </div>
 
         <div class="form-group">

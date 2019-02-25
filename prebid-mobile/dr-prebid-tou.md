@@ -1,10 +1,11 @@
 ---
-layout: page
+layout: page_v2
 title: Dr. Prebid Terms of Use
 description: Dr. Prebid Terms of Use
 pid: 5
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
+sidebarType: 2
 ---
 
 <div class="bs-docs-section" markdown="1">

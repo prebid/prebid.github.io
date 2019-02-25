@@ -115,3 +115,5 @@ function newCompany(company_type, name, logo, email, intro) {
 
 
 
+
+

@@ -1,19 +1,13 @@
 ---
-layout: page
-title: Prebid Mobile Overview
-description: Prebid Mobile Overview
-pid: 0
-is_top_nav: yeah
-top_nav_section: prebid-mobile
-nav_section: prebid-mobile
+
+layout: page_v2
+title: Prebid Mobile
+description: What is Prebid.js
+sidebarType: 2
+
 ---
 
-<div class="bs-docs-section" markdown="1">
-
 # Prebid Mobile Overview
-
-* TOC
-{:toc }
 
 Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers. Use this library with your ad server's Mobile SDK to communicate with Prebid Server to request and receive bids over RTB. These bids can then compete directly with bids from your primary ad server.
 
@@ -32,23 +26,25 @@ Some of the benefits to using the Prebid Mobile header bidding solution include:
 
 ## Requirements
 
--   **Prebid Server Configuration**  
-    You *must* have a Prebid Server account in order to use Prebid Mobile. Prebid Server is a server-based host that communicates bid requests and responses between Prebid Mobile and demand partners.  
+-   Prebid Server Configuration
+
+    You must have a Prebid Server account in order to use Prebid Mobile. Prebid Server is a server-based host that communicates bid requests and responses between Prebid Mobile and demand partners.  
 
     To set up your Prebid Server account for Prebid Mobile, refer to [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
 
--   **Primary Ad Server Setup**  
+-   Primary Ad Server Setup
+
     Prebid Mobile enables you to retrieve bids simultaneously from multiple demand partners outside of a single ad server. This header bidding process does not determine a final winning bid. Ad ops users need to set up line items associated with each ad unit on a primary ad server. Prebid Mobile will send bids (via the primary ad server SDK) to the primary ad server. This ad server will include the bids from the header bidding process in determining a winning bid. (See "How It Works" below.)
 
--   **Prebid Mobile SDK**  
+-   Prebid Mobile SDK
+
     Mobile app developers implement header bidding through the Prebid Mobile SDK integration. SDKs are available for [iOS](https://github.com/prebid/prebid-mobile-ios) and [Android](https://github.com/prebid/prebid-mobile-android).
 
 ## How It Works
 
 The following diagram shows how the Prebid Mobile header bidding solution works.
 
-{: .pb-img.pb-lg-img :}
-![How Prebid Mobile Works - Diagram]({{site.baseurl}}/assets/images/prebid-mobile/pbm-overview-flow.png)
+![How Prebid Mobile Works - Diagram]({{site.baseurl}}/assets/images/prebid-mobile/pbm-overview-flow.png){: .pb-lg-img :}
 
 1.  Prebid Mobile sends a request to Prebid Server. This request consists of the Prebid Server account ID and config ID for each tag included in the request.
 
@@ -62,6 +58,11 @@ The following diagram shows how the Prebid Mobile header bidding solution works.
 
 6.  If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JavaScript to the ad server's SDK.
 
-7.  The Prebid Mobile creative JavaScript will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
+7.  The Prebid Mobile creative JavaScript will fetch and render the corresponding creative con
 
-</div>
+## Mobile Analytics
+
+Currently Prebid Mobile SDK doesn't offer direct analytics capabilities. While we build out analytics in Prebid Server to support the SDK, some options are:
+
+- Generate analytics from the ad server, as key metrics are available there if the line items are broken out by bidder.
+- Integrate an analytics package directly into the app. You may have one already that can accomodate header bidding metrics.

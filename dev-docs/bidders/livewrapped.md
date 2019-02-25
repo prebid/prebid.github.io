@@ -2,14 +2,12 @@
 layout: bidder
 title: Livewrapped
 description: Prebid Livewrapped Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: livewrapped
 biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 media_types: banner
 gdpr_supported: true
+userIds: pubcommon
 ---
 
 ### Note:

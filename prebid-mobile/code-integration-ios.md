@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Code Integration
 description: Code Integration
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
+sidebarType: 2
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Code Integration for iOS
 
@@ -19,7 +20,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 Easily include the Prebid Mobile SDK for your primary ad server in your Podfile.
 
 ```
-platform :ios, '8.0'
+platform :ios, '11.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
@@ -189,4 +190,3 @@ Use the table below to see which ad objects are supported currently.
 
 
 
-</div>

@@ -2,11 +2,8 @@
 layout: bidder
 title: Widespace
 description: Prebid Widespace Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: widespace
-prebid_1_0_supported : true
 biddercode_longer_than_12: false
 gdpr_supported: true
 ---

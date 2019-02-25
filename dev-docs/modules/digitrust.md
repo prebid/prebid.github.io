@@ -1,15 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Module - DigiTrust
 description: Addition of DigiTrust to the Prebid package
-top_nav_section: dev_docs
-nav_section: modules
 module_code : digitTrust
 display_name : DigiTrust
 enable_download : false
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # DigiTrust Module
 {:.no_toc}
@@ -26,7 +25,7 @@ At some point the DigiTrust module will be made available as part of the Prebid.
 The standard options:
 
 - Build from a locally-cloned git repo
-- Receive the email package from the Prebid [Download](http://prebid.org/download.html) page
+- Receive the email package from the Prebid [Download]({{site.baseurl}}/download.html) page
  
 ### Step 2: Download the DigiTrust code:
 
@@ -78,4 +77,4 @@ The combined Prebid/DigiTrust file is now ready to follow your normal acceptance
 
 + [DigiTrust integration guide](https://github.com/digi-trust/dt-cdn/wiki/Integration-Guide)
 
-</div>
+

@@ -1,19 +1,16 @@
 ---
-layout: page
-title: Show Prebid Ads on AMP Pages
+layout: page_v2
+title: Prebid AMP Implementation Guide
 description: Show Prebid Ads using Prebid Server and AMP RTC
-pid: 1
-is_top_nav: yeah
-top_nav_section: dev_docs
-nav_section: prebid-amp
+sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Show Prebid Ads on AMP Pages
+
+# Prebid AMP Implementation Guide
 {: .no_toc}
 
-This page has instructions for showing ads on AMP pages using Prebid.js.
+This page has instructions for showing ads on Accelerated Mobile Pages (AMP) using Prebid.js.
 
 Through this implementation, [Prebid Server][PBS] fetches demand and returns key-value targeting to the AMP runtime using the [AMP Real Time Config (RTC)][RTC-Overview] protocol.
 
@@ -205,7 +202,7 @@ The following example includes a transparent image as a placeholder which will a
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
+  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 
