@@ -29,6 +29,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Livewrapped Analytics                                            | Contact vendor                                                                      | [website](https://livewrapped.com/)                                        | |
 | Rivr Analytics                                                   | Contact vendor                                                                      | [website](https://www.rivr.ai/)                                        | |
 | OpenX | Contact vendor | [website](https://www.openx.com/publishers/header-bidding/) | |
+| LiveYield | Contact vendor | [website](https://www.pubocean.com/liveyield) | |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 

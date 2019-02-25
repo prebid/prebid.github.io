@@ -2,12 +2,9 @@
 layout: bidder
 title: Index Exchange
 description: Prebid Index Exchange Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: ix
 biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 gdpr_supported: true
 ---
 

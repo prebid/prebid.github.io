@@ -2,12 +2,9 @@
 layout: bidder
 title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: improvedigital
 biddercode_longer_than_12: true
 hide: true
-prebid_1_0_supported : true
 gdpr_supported: true
 media_types: native
 ---

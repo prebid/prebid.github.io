@@ -141,6 +141,32 @@ The practice of intercepting GPT ad calls has precedence in the industry, but ma
 
 ## Minimal Example
 
+1) Build a version of your prebid.js file
+
+2) Append the following lines to the file:
+
+```
+var adUnits = [
+  {
+    code: '/111111/slot-name',
+    mediaTypes: {
+      banner: {
+        sizes: [[300,250]]
+      }
+    },
+    bids: [
+    {
+      bidder: 'rubicon',
+      params: { account: 1001, siteId: 113932, zoneId: 535510 }
+    }
+  }];
+pbjs.express(adUnits);
+```
+
+3) Two things to note: first, the AdUnit.code field must match an actual GPT slot name. Second, the call to `pbjs.express(adUnits)` is what kicks off header bidding.
+
+4) Integrate your Prebid.js file into the page
+
 ```
 <meta charset="UTF8">
 <html>
@@ -148,8 +174,8 @@ The practice of intercepting GPT ad calls has precedence in the industry, but ma
     // prebid.js needs to be loaded synchronously to make sure GPT doesn't fire before header bidding takes place
     <script src="http://some.hosting.domain/path/myprebid.js"></script>
     // it's assumed that the above myprebid.js file contains:
-    // - a definition for a prebid.js adunit with a `code` of 'div-name' or 'slot-name'
-    // - a call to pbjs.express()
+    // - a definition for a prebid.js adunit with a `code` of 'slot-name' or 'div-name'
+    // - a call to pbjs.express(adUnits)
 
     <script type="text/javascript" src="http://www.googletagservices.com/tag/js/gpt.js" async="true"></script>
     <script type ="text/javascript">
