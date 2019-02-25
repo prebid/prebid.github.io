@@ -9,7 +9,7 @@ nav_section: pbjs-video-get-started
 sidebarType: 4
 ---
 
-# Getting Started with Long-Form Video
+# Getting Started with Long Form Video
 {: .no_toc }
 
 If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js
@@ -22,16 +22,9 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 * TOC
 {:toc}
 
-## Ad Ops
+## Ad Server Setup
 
-### Ad Server Setup
-
-Start by reading [AdOps Getting Started]({{site.github.url}}/overview/getting-started.html). This will give you a general overview of setting up your price buckets and line items on your ad server.
-
-One thing to keep in mind as you set up your line items is price granularity. Be sure to communicate your price granularity requirements to your developers, as they might need to define custom configuration settings, depending on your granularity.
-
-<span style="color:#ff0000">ANYTHING SPECIAL REQUIRED FOR LONG-FORM Video?</span>
-
+Prebid uses Freewheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in Freewheel]() for an Ad Ops getting started guide. 
 
 ## Developers
 
@@ -136,8 +129,6 @@ A string indicating the type of content being displayed in the video player. The
 ### Configuration
 
 After you’ve defined your ad units, you can continue with the rest of your configuration.
-
-<span style="color:#ff0000">ANYTHING SPECIAL REQUIRED FOR LONG-FORM Video?</span>
 
 ### Examples
 

@@ -25,7 +25,7 @@ Ad Unit Code
 
 ```javascript
 {
-  'adUnitCode-1: [
+  adUnitCode-1: [
     {
       'hb_pb_cat_dur': '10.00_400_15s'
     },
