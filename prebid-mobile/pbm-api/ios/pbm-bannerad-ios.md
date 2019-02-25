@@ -19,9 +19,9 @@ The BannerAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pb
 
 ### BannerAdUnit
 
-Create a new Banner Ad Unit associated with a Prebid Server configuration ID and a banner size. 
+Create a new Banner Ad Unit associated with a Prebid Server configuration ID and a banner size.
 
-See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods. 
+See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
 **Parameters**
 
@@ -33,13 +33,13 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 ### addAdditionalSize
 
-* Add an additional banner size to the Prebid Mobile ad unit.  Banner ad units must be associated with one or more sizes. 
+* Add an additional banner size to the Prebid Mobile ad unit.  Banner ad units must be associated with one or more sizes.
 
 **Parameters**
 
-`sizes (CGSize)`: The width and height of the banner ad. 
+`sizes (CGSize)`: The width and height of the banner ad.
 
-See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for addtional parameters and methods. 
+See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for addtional parameters and methods.
 
 ---
 
@@ -71,18 +71,18 @@ func loadDFPBanner(bannerUnit : AdUnit){
         dfpBanner.backgroundColor = .red
         appBannerView.addSubview(dfpBanner)
         request.testDevices = [ kGADSimulatorID,"cc7ca766f86b43ab6cdc92bed424069b"]
-    
+
         bannerUnit.fetchDemand(adObject:self.request) { (ResultCode) in
             print("Prebid demand fetch for DFP \(ResultCode.name())")
             self.dfpBanner!.load(self.request)
         }
     }
 ```
-**ObjectiveC**
+**Objective-C**
 
 ```
 -(void) loadDFPBanner {
-    
+
     self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
     [self.bannerUnit setAutoRefreshMillisWithTime:35000];
     self.dfpView = [[DFPBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
@@ -93,7 +93,7 @@ func loadDFPBanner(bannerUnit : AdUnit){
     self.dfpView.backgroundColor = [UIColor redColor];
     self.request = [[DFPRequest alloc] init];
     self.request.testDevices = @[kDFPSimulatorID];
-    
+
     [self.bannerUnit fetchDemandWithAdObject:self.request completion:^(enum ResultCode result) {
         NSLog(@"Prebid demand result %ld", (long)result);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -111,44 +111,44 @@ Import MoPub from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) in
 **Swift**
 ```
 func loadMoPubBanner(bannerUnit: AdUnit){
-        
+
         let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "a935eac11acd416f92640411234fbba6")
         sdkConfig.globalMediationSettings = []
-        
+
         MoPub.sharedInstance().initializeSdk(with: sdkConfig) {
-            
+
         }
-        
+
         mopubBanner = MPAdView(adUnitId: "a935eac11acd416f92640411234fbba6", size: CGSize(width: 300, height: 250))
         mopubBanner!.delegate = self
-        
+
         appBannerView.addSubview(mopubBanner!)
-        
+
         // Do any additional setup after loading the view, typically from a nib.
         bannerUnit.fetchDemand(adObject: mopubBanner!){ (ResultCode) in
             print("Prebid demand fetch for mopub \(ResultCode)")
-            
+
             self.mopubBanner!.loadAd()
         }
-        
+
     }
 ```
 
-**ObjectiveC**
+**Objective-C**
 
 ```
 -(void) loadMoPubBanner {
-    
+
     MPMoPubConfiguration *configuration = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"a935eac11acd416f92640411234fbba6"];
-    
+
     [[MoPub sharedInstance] initializeSdkWithConfiguration:configuration completion:^{
-        
+
     }];
     self.mopubAdView = [[MPAdView alloc] initWithAdUnitId:@"a935eac11acd416f92640411234fbba6" size:CGSizeMake(300, 250)];
     self.mopubAdView.delegate = self;
-    
+
     [self.bannerView addSubview:self.mopubAdView];
-    
+
     self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
     // Do any additional setup after loading the view, typically from a nib.
     [self.bannerUnit fetchDemandWithAdObject:self.mopubAdView completion:^(enum ResultCode result) {         
@@ -158,7 +158,7 @@ func loadMoPubBanner(bannerUnit: AdUnit){
 }
 ```
 
-## Related Topics 
+## Related Topics
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)

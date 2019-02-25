@@ -11,15 +11,15 @@ sidebarType: 2
 {: .notoc}
 
 
-The AdUnit class is the superclass of the [BannerAdUnit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) and [InterstitialAdUnit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html) classes. 
+The AdUnit class is the superclass of the [BannerAdUnit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) and [InterstitialAdUnit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html) classes.
 
 
 - TOC
  {:toc}
 
---- 
+---
 
-## Object 
+## Object
 
 ### AdUnit
 
@@ -44,13 +44,13 @@ Create a new Banner Ad Unit or Interstitial Ad Unit with a Prebid Server configu
 
 ### fetchDemand
 
-Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit. 
+Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit.
 
 **Parameters**
 
 `adObject`: adServer object to which the Prebid keys need to be attached.
 
-`completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value. 
+`completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value.
 
 ### addUserKeyword
 
@@ -58,12 +58,12 @@ Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If 
 
 **Parameters**
 
-`key`: A String to be used to check if an existing value exists in the `customKeywords` property. 
+`key`: A String to be used to check if an existing value exists in the `customKeywords` property.
 
 `value`: A String to be appended to the `customKeywords` property.
 
 ### removeUserKeyword
-Remove a key and all its associated values from `customKeywords` of a given Prebid Mobile ad unit. 
+Remove a key and all its associated values from `customKeywords` of a given Prebid Mobile ad unit.
 
 **Parameters**
 
@@ -73,7 +73,7 @@ Remove a key and all its associated values from `customKeywords` of a given Preb
 Remove all keys and all values from a given Prebid Mobile ad unit.
 
 ### setAutoRefreshMillis
-If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off. 
+If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
 
 ### startAutoRefresh
 
@@ -97,10 +97,10 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
     let dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
     dfpBanner.adUnitID = "/19968336/PriceCheck_300x250"
     dfpBanner.rootViewController = self
-    
+
     bannerView.addSubview(dfpBanner)
     request.testDevices = [ kGADSimulatorID ]
-    
+
     // Do any additional setup after loading the view, typically from a nib.
     bannerUnit.fetchDemand(adObject: self.request) { (ResultCode) in
         print("DFP banner bids fetch successfull")
@@ -108,11 +108,11 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
     }
 }
 ```
-**Objective C**
+**Objective-C**
 
 ```
 -(void) loadDFPBanner {
-    
+
     self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
     [self.bannerUnit setAutoRefreshMillisWithTime:35000];
     self.dfpView = [[DFPBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
@@ -123,7 +123,7 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
     self.dfpView.backgroundColor = [UIColor redColor];
     self.request = [[DFPRequest alloc] init];
     self.request.testDevices = @[kDFPSimulatorID];
-    
+
     [self.bannerUnit fetchDemandWithAdObject:self.request completion:^(enum ResultCode result) {
         NSLog(@"Prebid demand result %ld", (long)result);
         dispatch_async(dispatch_get_main_queue(), ^{
