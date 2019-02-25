@@ -5,7 +5,6 @@ description: Prebid Smart Bidder Adaptor
 hide: true
 biddercode: smartadserver
 biddercode_longer_than_12: true
-media_types: video
 gdpr_supported: true
 ---
 ### "Send All Bids" Ad Server Keys:
