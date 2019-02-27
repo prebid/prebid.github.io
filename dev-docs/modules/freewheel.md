@@ -38,8 +38,13 @@ Ad Unit Code
   ]
 }
 
-pbjs.adServers.freewheel.getTargeting({codes:['adUnitCode-1']});
-```
+pbjs.adservers.freewheel.getTargeting({
+    codes: [adUnitCode1],
+    callback: function(err, targeting) { 
+        //pass targeting to player api 
+    }
+});
+
 The values sent to `getTargeting` are concatenation of CPM, industy code, and video duration. Freewheel SDK will send those values to Freewheel Ad Server within the following query: 
 
 ```

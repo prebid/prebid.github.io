@@ -15,7 +15,7 @@ sidebarType: 4
 If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js
 
 -	[What Is Prebid?]({{site.github.url}}/overview/intro.html)
--	[Getting Start with Prebid]({{site.github.url}}/overview/getting-started.html)
+-	[Getting Started with Prebid]({{site.github.url}}/overview/getting-started.html)
 
 See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.html) for a general description and high-level overview of working with video demand in Prebid.js.
 
@@ -24,7 +24,7 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 
 ## Ad Server Setup
 
-Prebid uses Freewheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in Freewheel]() for an Ad Ops getting started guide. 
+Prebid uses Freewheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in Freewheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
 
 ## Developers
 

@@ -1031,16 +1031,26 @@
 - sbSecId: 4
   title: Getting Started with Video for Prebid.js
   link: /prebid-video/video-getting-started.html
-  isLastSubSectionItem: 1
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 4
+  title: Getting Started with Long Form Video for Prebid.js
+  link: /prebid-video/video-long-form.html
+  isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
+
 - sbSecId: 4
   title: Show Video Ads with DFP
   link: /dev-docs/show-video-with-a-dfp-video-tag.html
-  isLastSubSectionItem: 1
+  isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

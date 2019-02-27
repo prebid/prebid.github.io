@@ -30,7 +30,6 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
-  * [.adserver.freewheel.getTargeting()](#module_pbjs.getTargeting)
   * [.getNoBids()](#module_pbjs.getNoBids)
   * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
@@ -62,6 +61,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
+  * [.adserver.freewheel.getTargeting()](#module_pbjs.getTargeting)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
@@ -450,9 +450,24 @@ Use this method to get all of the bids that have won their respective auctions b
 
 ### pbjs.adserver.freewheel.getTargeting() ⇒ Object
 
-Use this method to return data on the IAB subcategories mapping files. Data returned includes file URL and optional values refresh rate (in days), and a key identifier. Useful for [building the video url](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl). 
+Use this method to get targeting key-value pairs to be sent to the ad server. 
 
-+ `pbjs.adserver.freewheel.getTargeting()`: returns data on the IAB subcategory mapping files. 
++ `pbjs.adserver.freewheel.getTargeting()`: returns key-value pair from the ad server. 
+
+```Javascript
+
+pbjs.adservers.freewheel.getTargeting({
+    codes: [adUnitCode1],
+    callback: function(err, targeting) { 
+        //pass targeting to player api 
+    }
+});
+```
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| code | Optional | `Array` |  [`adUnitCode1`] |
+| callback | Required | `Function` |  Callback function to execute when targeting data is back. |
 
 <hr class="full-rule">
 

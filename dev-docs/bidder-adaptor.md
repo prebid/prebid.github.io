@@ -512,13 +512,9 @@ If the demand partner is going to use Prebid API for this process their adapter 
 ```
 getMappingFileInfo: function() { 
 	return { 
-		
 		url: mappingFileURL
-
         refreshInDays: 7
-
         localStorageKey: `${spec.code}MappingFile`
-
     }
 },
 ```
@@ -547,7 +543,6 @@ getIabSubCategory(bidderCode, pCategory)
 import {getIabSubCategory} from '../src/adapters/bidderFactory';
 var iabSubCatId = getIabSubCategory(bidderCode, pCategory)
 ```
-
 
 #### Outstream Video Renderers
 
