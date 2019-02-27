@@ -1,19 +1,40 @@
-# Overview
+---
+layout: bidder
+title: Mgid
+description: Prebid Mgid Bidder Adaptor.
+hide: true
+biddercode: mgid
+biddercode_longer_than_12: false
+media_types: banner
+gdpr_supported: true
+---
 
-```
-Module Name: Mgid Bidder Adapter
-Module Type: Bidder Adapter
-Maintainer: prebid@mgid.com
-```
+### Table of Contents
 
-# Description
+- [Bid Params](#mgid-bid-params)
+- [Test Params](#mgid-test-params)
+- [Adunit setup](#mgid-ad-unit-setup)
+
+### Description
 
 One of the easiest way to gain access to MGID demand sources  - MGID header bidding adapter.
 
 MGID header bidding adapter connects with MGID demand sources to fetch bids for display placements
 
-# Test Parameters
+<a name="mgid-bid-params" />
 
+### Bid params
+
+{: .table .table-bordered .table-striped }
+| Name         | Scope    | Description                 | Example    | Type     |
+|--------------|----------|-----------------------------|------------|----------|
+| `accountId`  | required | The account ID from Mgid    | `'123'`    | `string` |
+| `placementId`| required | The placement ID from Mgid  | `'123456'` | `string` |
+
+
+<a name="mgid-test-params" />
+
+### Test Parameters
 
 300x600 banner test
 ```
@@ -55,16 +76,9 @@ var adUnits = [{
 }];
 ```
 
-# Bid Parameters
-## Banner
+<a name="mgid-ad-unit-setup" />
 
-| Name | Scope | Type | Description | Example
-| ---- | ----- | ---- | ----------- | -------
-| `accountId` | required | String | The account ID from Mgid  | "123"
-| `placementId` | required | String | The placement ID from Mgid  | "123456"
-
-
-# Ad Unit and page Setup:
+### Ad Unit and page Setup:
 
 ```html
  <!-- Prebid Config section -->
