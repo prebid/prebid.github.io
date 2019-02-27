@@ -11,15 +11,18 @@ gdpr_supported: true
 
 ### Table of Contents
 
+- [Description](#mgid-bid-desc)
 - [Bid Params](#mgid-bid-params)
 - [Test Params](#mgid-test-params)
 - [Adunit setup](#mgid-ad-unit-setup)
+
+<a name="mgid-bid-desc" />
 
 ### Description
 
 One of the easiest way to gain access to MGID demand sources  - MGID header bidding adapter.
 
-MGID header bidding adapter connects with MGID demand sources to fetch bids for display placements
+MGID header bidding adapter connects with MGID demand sources to fetch bids for display placements. Please reach out to <prebid@mgid.com> for more details.
 
 <a name="mgid-bid-params" />
 
