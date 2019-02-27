@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Mgid
-description: Prebid Mgid Bidder Adaptor.
+description: Prebid Mgid Bidder Adapter.
 hide: true
 biddercode: mgid
 biddercode_longer_than_12: false
@@ -22,7 +22,7 @@ gdpr_supported: true
 
 One of the easiest way to gain access to MGID demand sources  - MGID header bidding adapter.
 
-MGID header bidding adapter connects with MGID demand sources to fetch bids for display placements. Please reach out to <prebid@mgid.com> for more details.
+MGID header bidding adapter connects with MGID demand sources to fetch bids for display placements. Please reach out to your account manager or <prebid@mgid.com> for more information.
 
 <a name="mgid-bid-params" />
 
