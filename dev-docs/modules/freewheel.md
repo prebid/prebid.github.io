@@ -44,6 +44,7 @@ pbjs.adservers.freewheel.getTargeting({
         //pass targeting to player api 
     }
 });
+```
 
 The values sent to `getTargeting` are concatenation of CPM, industy code, and video duration. Freewheel SDK will send those values to Freewheel Ad Server within the following query: 
 

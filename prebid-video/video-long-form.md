@@ -67,7 +67,7 @@ var longFormatAdUnit = {
     bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: '123456789',
+                placementId: 123456789,
             }
         }]
 }
