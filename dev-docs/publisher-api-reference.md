@@ -61,7 +61,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
-  * [.adserver.freewheel.getTargeting()](#module_pbjs.getTargeting)
+  * [.adserver.freewheel.getTargeting(options)](#module_pbjs.getTargeting)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
@@ -448,11 +448,11 @@ Use this method to get all of the bids that have won their respective auctions b
 
 <a name="module_pbjs.getTargeting"></a>
 
-### pbjs.adserver.freewheel.getTargeting() ⇒ Object
+### pbjs.adserver.freewheel.getTargeting(options) ⇒ Object
 
 Use this method to get targeting key-value pairs to be sent to the ad server. 
 
-+ `pbjs.adserver.freewheel.getTargeting()`: returns key-value pair from the ad server. 
++ `pbjs.adserver.freewheel.getTargeting(options)`: returns key-value pair from the ad server. 
 
 ```Javascript
 
@@ -463,6 +463,10 @@ pbjs.adservers.freewheel.getTargeting({
     }
 });
 ```
+#### Argument Reference
+
+The options object
+
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |

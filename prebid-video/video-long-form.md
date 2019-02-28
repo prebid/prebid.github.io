@@ -40,7 +40,7 @@ Before downloading, select the adapters you want to include. (You can add more a
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
 
 ### Ensuring Competitve Separation
- You will need to configure Prebid to ensure competitive separation, the process of preventing two ads from the same industry appearing within the ad pod. After you have instantiated a Prebid instance call the setConfig method and add the following key-values.  
+ You will need to configure Prebid to ensure competitive separation, the process of preventing two ads from the same industry appearing within an ad pod. After you have instantiated a Prebid instance call the setConfig method and add the following key-values.  
 
 ```
 pbjs.setConfig({
