@@ -41,6 +41,20 @@ pbjs.setConfig({
 
 This file will be stored locally to expedite the conversion process. If a publisher opts to not provide a conversion mapping file Prebid will use its default conversion mapping file. 
 
+Publishers should ensure that the JSON returned from their custom file is valid for Prebid by adhering to the following structure: 
+
+{
+    “mapping”: {
+        “<your-iab-sub-category>“: {
+            “id”: “<industry/group/category id>“,
+            “name”: “<industry/group/category name>”
+        },
+   ....
+   }
+}
+
+Refer to Prebid Github repository for a [custom file reference](https://github.com/prebid/category-mapping-file).
+
 
 ## Further Reading
 
