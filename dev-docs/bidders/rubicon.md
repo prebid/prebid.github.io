@@ -14,7 +14,7 @@ userIds: unifiedId/tradedesk
 ### Note:
 The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
@@ -46,6 +46,54 @@ The following video parameters are supported:
 | `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, infers from mediaTypes.video.context | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
+{: .alert.alert-warning :}
+For Prebid.js 2.5 and later, the Rubicon Project adapter for video requires more parameters in the AdUnit's `mediaTypes.video` definition than required for version 2.4 and earlier. 
+We are requiring these parameters for publishers to fully declare their video inventory to be transparent to bidders, getting the best chance at a high value and technically compatible bid.
+Specifically, we're requiring: `mimes`, `protocols`, `maxduration`, `linearity`, and `api`. See the example below.
+
+Here's a video example for Prebid.js 2.5 or later:
+
+```
+var videoAdUnit = {
+    code: 'myVideoAdUnit',
+    mediaTypes: {
+        video: {
+            context: 'instream',
+            playerSize: [640, 480],
+            mimes: ['video/mp4', 'video/x-ms-wmv']
+            protocols: 2,5
+            maxduration:30
+            linearity: 1
+            api:2 
+        }
+    },
+    bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: '7780',
+            siteId: '87184',
+            zoneId: '413290',
+            video: {
+                language: 'en',
+                }
+            }
+        }
+    }]
+};
+```
+
+Lists of protocol, api, and linearity values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation.
+
+The adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols, maxduration, linearity, and api are not required.
+
+We recommend discussing video demand with your Rubicon Project account representative.
+
+#### Outstream Video
+
+Rubicon Project supports outstream video with these restrictions:
+
+* The publisher must [provide their own renderer](/dev-docs/show-outstream-video-ads.html#renderers).
+* Rubicon Project does not make concurrent banner and video requests. The Rubicon adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
 ### Configuration
 
