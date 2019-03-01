@@ -42,7 +42,7 @@ Select **New format** under **Custom format**. (If you've already created an ad 
 
 ## 3. Style your native ad
 
-You can add HTML and CSS to define your native ad template. To allow for native impression trackers and click trackers within a Prebid native creative template, you'll need to include a CDN-hosted script in the HTML, as shown here (see Example HTML below for the full script):
+You can add HTML and CSS to define your native ad template. To allow for native impression trackers, click trackers, and [automatic placeholder value replacement]({{site.github.url}}/dev-docs/show-native-ads.html#sending-asset-placeholders) within a Prebid native creative template, you'll need to include a CDN-hosted script in the HTML, as shown here (see Example HTML below for the full script):
 
 ![native ad styling]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_styling.png){: .pb-md-img :}
 
