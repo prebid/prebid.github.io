@@ -21,7 +21,8 @@ Module that connects to interactiveOffers demand sources. Param pubId is require
 | `tmax`   | optional | Max timeout for response                                             | `150`                             | `integer` |
 
 Example:
-```javascript
+
+``` bash
 {
     bidder: "interactiveOffers",
     params: {
