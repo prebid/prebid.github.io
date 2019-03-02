@@ -16,7 +16,7 @@ gdpr_supported: false
 
 | Name          | Scope    | Description                                                                | Example                | Type            |
 |---------------|----------|----------------------------------------------------------------------------|------------------------|-----------------|
-| `placement`   | required | Placement ID from dspx.                                                    | `101`                  | `string`        |
-| `pfilter`     | optional | Selection filter. See [here](https://github.com/prebid/Prebid.js/blob/master/modules/dspxBidAdapter.md) for more details.                            | `{floorprice: 1000000}`| `object`        |
-| `bcat`        | optional | List of  Blocked Categories (IAB) - comma separated.                       | `IAB2,IAB4`            | `string`        |
-| `dvt`         | optional | DeVice Type of `[desktop,smartphone,tv,tablet]` (autodetect if not exists). | `desktop`              | `string`        |
+| `placement`   | required | Placement ID from dspx.                                                    | `'101'`                  | `string`        |
+| `pfilter`     | optional | Selection filter. See [here](https://github.com/prebid/Prebid.js/blob/master/modules/dspxBidAdapter.md) for more details.                            | `{"floorprice": 1000000}`| `object`        |
+| `bcat`        | optional | List of  Blocked Categories (IAB) - comma separated.                       | `'IAB2,IAB4'`            | `string`        |
+| `dvt`         | optional | DeVice Type of `[desktop,smartphone,tv,tablet]` (autodetect if not exists). | `'desktop'`              | `string`        |

@@ -12,4 +12,4 @@ biddercode_longer_than_12: false
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| ``         | optional | no params required     | `''`    | ``       |
+| (none)         | optional | no params required     | `''`    | n/a       |
