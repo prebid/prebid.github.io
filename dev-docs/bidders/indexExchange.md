@@ -8,8 +8,7 @@ hide: true
 gdpr_supported: true
 ---
 
-Overview
-========
+## Overview
 
 ```
 Module Name: Index Exchange Adapter
@@ -17,8 +16,7 @@ Module Type: Bidder Adapter
 Maintainer: prebid.support@indexexchange.com
 ```
 
-Description
-===========
+## Description
 
 This module connects publishers to Index Exchange's (IX) network of demand
 sources through Prebid.js. This module is GDPR compliant.
@@ -68,13 +66,14 @@ var adUnits = [{
 
 ### Supported Media Types
 
-| Type | Support
-| --- | ---
-| Banner | Fully supported for all IX approved sizes.
-| Video  | Not supported.
-| Native | Not supported.
+{: .table .table-bordered .table-striped }
+| Type | Support |
+| --- | --- |
+| Banner | Fully supported for all IX approved sizes. |
+| Video  | Not supported. |
+| Native | Not supported. |
 
-# Bid Parameters
+## Bid Parameters
 
 Each of the IX-specific parameters provided under the `adUnits[].bids[].params`
 object are detailed here.
@@ -88,8 +87,7 @@ object are detailed here.
 | `size`        | required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.                                                                                                                                                                              | `[300, 250]` | `Array<integer>` |
 
 
-Setup Guide
-===========
+## Setup Guide
 
 Follow these steps to configure and add the IX module to your Prebid.js
 integration.
@@ -130,6 +128,7 @@ Set `params.siteId` and `params.size` in each bid object to the values provided
 by your IX representative.
 
 **Example**
+
 ```javascript
 var adUnits = [{
     code: 'banner-div-a',
@@ -185,8 +184,7 @@ And then build.
 gulp build --modules=bidderModules.json
 ```
 
-Setting First Party Data (FPD)
-==============================
+## Setting First Party Data (FPD)
 
 FPD allows you to specify key-value pairs which will be passed as part of the
 query string to IX for use in Private Marketplace Deals which rely on query
@@ -215,8 +213,7 @@ pbjs.setConfig({
 The values can be updated at any time by calling `pbjs.setConfig` again. The
 changes will be reflected in any proceeding bid requests.
 
-Setting a Server Side Timeout
-=============================
+## Setting a Server Side Timeout
 
 Setting a server-side timeout allows you to control the max length of time the
 servers will wait on DSPs to respond before generating the final bid response
@@ -239,8 +236,7 @@ pbjs.setConfig({
 
 The timeout value must be a positive whole number in milliseconds.
 
-Additional Information
-======================
+## Additional Information
 
 ### Bid Request Limit
 
@@ -261,8 +257,7 @@ invalid.
 If an invalid bid wins, and its associated ad is rendered, it will not count
 towards total impressions on IX's side.
 
-FAQs
-====
+## FAQs
 
 ### Why do I have to input size in `adUnits[].bids[].params` for IX when the size is already in the ad unit?
 
