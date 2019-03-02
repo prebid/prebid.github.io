@@ -2,12 +2,9 @@
 layout: bidder
 title: SARA
 description: SARA Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: sara
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 ---
 
 ### bid params

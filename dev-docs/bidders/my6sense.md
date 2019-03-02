@@ -1,14 +1,11 @@
 ---
 layout: bidder
-title: my6Sense
-description: Prebid Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
+title: My6Sense
+description: My6Sense Prebid Bidder Adapter
 media_type: native
-biddercode: my6Sense
+biddercode: my6sense
 biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 gdpr_supported: true
 ---
 

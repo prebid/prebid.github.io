@@ -32,7 +32,7 @@ var dynamicTableContents=[];
 {% assign numVideo = 0 %}
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for page in bidder_pages %}
-{% if page.media_types contains 'video' and page.prebid_1_0_supported %}
+{% if page.media_types contains 'video' %}
    dynamicTableContents[{{numVideo}}]={};
    dynamicTableContents[{{numVideo}}].href="/dev-docs/bidders.html#{{page.biddercode}}";
    dynamicTableContents[{{numVideo}}].text="{{page.title}}";

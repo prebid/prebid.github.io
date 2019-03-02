@@ -21,19 +21,8 @@ $(function(){
     return;
   });
 
-  $( ".selectpicker" ).change(function() {
-    if(this.value.match(/1\.\d+\.\d+/i)) {
-      $('.adapters .col-md-4').hide();
-      $('.prebid_1_0').show();
-    }
-    else{
-       $('.adapters .col-md-4').show();
-    }
-  });
-
-  //default to 1.x adapters:
-  $('.adapters .col-md-4').hide();
-  $('.prebid_1_0').show();
+  // show all adapters
+  $('.adapters .col-md-4').show();
 });
 
 function getVersionList() {
@@ -176,9 +165,6 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
 
-{: .alert.alert-danger :}
-**Deprecation Notice:** Prebid.org does not support any version of Prebid.js prior to version 1.0.
-
 {: .alert.alert-success :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
@@ -195,7 +181,7 @@ Note: If you receive an error during download you most likely selected a configu
   {% if page.s2s_only == true %}
     {% continue %}
   {% endif %}
-<div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
+<div class="col-md-4">
  <div class="checkbox">
   <label>
   {% if page.aliasCode %}

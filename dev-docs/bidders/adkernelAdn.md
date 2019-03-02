@@ -2,12 +2,9 @@
 layout: bidder
 title: AdKernelAdn
 description: Prebid AdKernel Ad Delivery Network Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: adkernelAdn
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: video
 gdpr_supported: true
 ---
