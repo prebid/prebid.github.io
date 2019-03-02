@@ -66,11 +66,12 @@ var adUnits = [{
 
 ### Supported Media Types
 
-| Type | Support
-| --- | ---
-| Banner | Fully supported for all IX approved sizes.
-| Video  | Not supported.
-| Native | Not supported.
+{: .table .table-bordered .table-striped }
+| Type | Support |
+| --- | --- |
+| Banner | Fully supported for all IX approved sizes. |
+| Video  | Not supported. |
+| Native | Not supported. |
 
 ## Bid Parameters
 
@@ -127,6 +128,7 @@ Set `params.siteId` and `params.size` in each bid object to the values provided
 by your IX representative.
 
 **Example**
+
 ```javascript
 var adUnits = [{
     code: 'banner-div-a',
