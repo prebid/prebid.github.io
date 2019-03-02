@@ -14,7 +14,6 @@ gdpr_supported: true
 - [Description](#mgid-bid-desc)
 - [Bid Params](#mgid-bid-params)
 - [Test Params](#mgid-test-params)
-- [Adunit setup](#mgid-ad-unit-setup)
 
 <a name="mgid-bid-desc" />
 
@@ -77,27 +76,4 @@ var adUnits = [{
     }
   }]
 }];
-```
-
-<a name="mgid-ad-unit-setup" />
-
-### Ad Unit and page Setup:
-
-```html
- <!-- Prebid Config section -->
- <script>
-     var PREBID_TIMEOUT = 2000;
-     var adUnits = [{
-         code: 'placement_div_id',
-         sizes: [[300, 250]],
-         bids: [{
-            bidder: 'mgid'
-            accountId : "PUT_YOUR_mgid_accountId",
-            placementId : "PUT_YOUR_mgid_placementId",
-         }]
-     }]; 
-    var pbjs = pbjs || {};
-    pbjs.que = pbjs.que || [];
-</script>
-<!-- End Prebid Config section -->
 ```
