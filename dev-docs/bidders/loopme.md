@@ -9,9 +9,9 @@ gdpr_supported: true
 media_types: banner
 ---
 
-### bid params
+### Bid params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description              | Example      | Type     |
 |---------------|----------|--------------------------|--------------|----------|
-| `ak`          | required | `LoopMe Application Key` | `cc885e3acc` | `string` |
+| `ak`          | required | LoopMe Application Key | `'cc885e3acc'` | `string` |
