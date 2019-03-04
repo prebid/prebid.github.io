@@ -5,6 +5,8 @@ description: iOS Logging & Troubleshooting
 sidebarType: 2
 ---
 
+{% include /alerts/warning.html content= "This document describes a pre-release version of the Prebid Mobile API that has been deprecated." %}
+
 # iOS Logging & Troubleshooting
 {:.no_toc}
 
