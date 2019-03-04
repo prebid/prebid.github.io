@@ -61,10 +61,10 @@ var videoAdUnit = {
             context: 'instream',
             playerSize: [640, 480],
             mimes: ['video/mp4', 'video/x-ms-wmv']
-            protocols: 2,5
-            maxduration:30
-            linearity: 1
-            api:2 
+            protocols: [2,5],
+            maxduration:30,
+            linearity: 1,
+            api: [2]
         }
     },
     bids: [{
@@ -74,19 +74,44 @@ var videoAdUnit = {
             siteId: '87184',
             zoneId: '413290',
             video: {
-                language: 'en',
-                }
+                language: 'en'
             }
         }
     }]
 };
 ```
 
-Lists of protocol, api, and linearity values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation.
-
-The adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols, maxduration, linearity, and api are not required.
+This example adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols, maxduration, linearity, and api are not required.
 
 We recommend discussing video demand with your Rubicon Project account representative.
+
+Lists of api, protocol, and linearity values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation, copied here for convenience:
+
+##### api
+
++ `1` : VPAID 1.0
++ `2` : VPAID 2.0
++ `3` : MRAID 1.0
++ `4` : ORMMA
++ `5` : MRAID 2.0
++ `6` : MRAID 3.0
+
+##### linearity
++ `1` : Linear / In-Stream
++ `2` : Non-Linear / Overlay
+
+##### protocols
++ `1` : VAST 1.0
++ `2` : VAST 2.0
++ `3` : VAST 3.0
++ `4` : VAST 1.0 Wrapper
++ `5` : VAST 2.0 Wrapper
++ `6` : VAST 3.0 Wrapper
++ `7` : VAST 4.0
++ `8` : VAST 4.0 Wrapper
++ `9` : DAAST 1.0
++ `10` : DAAST 1.0 Wrapper
+
 
 #### Outstream Video
 
