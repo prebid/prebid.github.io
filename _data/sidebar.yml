@@ -482,6 +482,33 @@
 - sbSecId: 1
   title: GPDR Consent Management
   link: /dev-docs/modules/consentManagement.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: IAB Subcategory Translation
+  link: /dev-docs/modules/iabCatagoryTranslation.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Freewheel Module
+  link: /dev-docs/modules/freewheel.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Ad Pod Module
+  link: /dev-docs/modules/adpod.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -1029,6 +1056,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid Long-Form Video in FreeWheel
+  link: /adops/setting-up-prebid-video-in-freewheel.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid with the AppNexus Publisher Ad Server
@@ -1157,16 +1193,26 @@
 - sbSecId: 4
   title: Getting Started with Video for Prebid.js
   link: /prebid-video/video-getting-started.html
-  isLastSubSectionItem: 1
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 4
+  title: Getting Started with Long Form Video for Prebid.js
+  link: /prebid-video/video-long-form.html
+  isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
+
 - sbSecId: 4
   title: Show Video Ads with DFP
   link: /dev-docs/show-video-with-a-dfp-video-tag.html
-  isLastSubSectionItem: 1
+  isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
