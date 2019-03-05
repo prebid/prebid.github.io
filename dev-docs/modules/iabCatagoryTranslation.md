@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - IAB Category Translation
 description: Converts between ad agency brand categories and IAB brand categories.
-module_code : CategoryTranslation
+module_code : categoryTranslation
 display_name : CategoryTranslation
 enable_download : true
 sidebarType : 1
