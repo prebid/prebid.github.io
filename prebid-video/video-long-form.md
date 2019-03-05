@@ -24,7 +24,7 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 
 ## Ad Server Setup
 
-Prebid uses FreeWheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
+Prebid uses FreeWheel for the distrubtion of Creatives. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
 
 ## Developers
 
