@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - Adpod
 description: Adds functions to validate, cache, and modify long-form video bids.
-module_code : Adpod
+module_code : adpod
 display_name : Adpod
 enable_download : true
 sidebarType : 1

@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - Freewheel
 description: Returns targeting kev/value pairs for adpod mediaType adUnits.
-module_code : Freewheel
+module_code : freeWheelAdserverVideo
 display_name : Freewheel
 enable_download : true
 sidebarType : 1
