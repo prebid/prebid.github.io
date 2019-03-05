@@ -1,6 +1,6 @@
 ---
 redirect_to: https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md
-layout: page
+layout: page_v2
 title: Testing Prebid.js
 description: How to write tests for the Prebid.js library
 pid: 199

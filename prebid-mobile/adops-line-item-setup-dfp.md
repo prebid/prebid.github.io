@@ -1,15 +1,19 @@
 ---
-layout: page
+layout: page_v2
 title: Setup Line Items for DFP
 description: Setup Line Items for DFP
 pid: 0
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
+sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Step by Step Line Item Setup for DFP
+{: .no_toc}
+
+This page describes step by step how to set up Prebid Mobile line items for DFP to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 * TOC
 {:toc }
@@ -18,19 +22,17 @@ nav_section: prebid-mobile-adops
 
 In DFP, create a new order with a $0.50 line item.
 
-Enter the inventory size of your mobile ad slots. Make sure to specify all the inventory sizes on your app. 
+Enter the inventory size of your mobile ad slots. Make sure to specify all the inventory sizes on your app.
 
 Because header bidding partners return prices, set the Line Item **Type** to **Price priority** to enable them to compete on price.
 
-{: .pb-img.pb-sm-img :}
-![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png)
+![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png){: .pb-sm-img :}
 
 <br>
 
 Set the **Rate** to $0.50 so that this line item will compete with your other demand sources at $0.50 ECPM.
 
-{: .pb-img.pb-sm-img :}
-![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png)
+![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png){: .pb-sm-img :}
 
 <br>
 
@@ -38,22 +40,21 @@ Set **Display Creatives** to *One or More* since we'll have one or more creative
 
 Set **Rotate Creatives** to *Evenly*.
 
-{: .pb-img.pb-md-img :}
-![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png)
+![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png){: .pb-md-img :}
 
 Choose the inventory that you want to run header bidding on.
 
-By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb`.
+By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
 
-This line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
+You'll need to coordinate with your development team on what key-values you want to target.
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png)
+For instance, this line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
+
+![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png){: .pb-md-img :}
 
 **You must enter the value to two decimal places, e.g., `1.50`.  If you don't use two decimal places, header bidding will not work.**
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png)
+![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png){: .pb-md-img :}
 
 <br>
 
@@ -63,18 +64,31 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
 
 Choose the same advertiser we've assigned the line item to.
 
-Note that this has to be a **Third party** creative. The **"Serve in Safeframe"** box has to be **UNCHECKED** (there are plans to make the below creative safeframe compatible).
+Note that this has to be a **Third party** creative. The **"Serve in Safeframe"** box has to be **UNCHECKED** or **CHECKED** (the Prebid Universal Creatve is safeframe compatible).
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
-```
-<script type="text/javascript" src = "//acdn.adnxs.com/mobile/prebid/pbm.js"></script>
-<script type="text/javascript">
-    pbm.showAdFromCacheId({
-        admCacheID : '%%PATTERN:hb_cache_id%%'
-    });
+{: .alert.alert-success :}
+You can always get the latest version of the creative code below from [the Mobile example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+
+{% highlight javascript %}
+
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%PATTERN:url%%";
+  ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
 </script>
-```
+
+{% endhighlight %}
+
 
 Make sure the creative size is set to 1x1. This allows us to set up size override, which allows this creative to serve on all inventory sizes.
 
@@ -127,4 +141,4 @@ Let's go into each of them to update some settings.  For each duplicated line it
 Repeat for your other line items until you have the pricing granularity level you want.
 
 
-</div>
+

@@ -2,23 +2,19 @@
 layout: bidder
 title: Adtelligent
 description: Prebid Adtelligent Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: adtelligent
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
+gdpr_supported: true
 media_types: video
 ---
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
-
-| Name | Scope    | Description                   | Example  |
-| :--- | :----    | :----------                   | :------  |
-| `aid`| required | The source ID from Adtelligent.| 350975   | 
+| Name  | Scope    | Description                     | Example  | Type      |
+|-------|----------|---------------------------------|----------|-----------|
+| `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
 
 
 ### Description

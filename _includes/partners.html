@@ -1,0 +1,39 @@
+
+<div class="partners">
+	
+	<div class="tableTitle"><h3>Prebid.org Members</h3></div>
+	<script type="text/javascript">
+	var memberData=[];
+	var idx=0;
+	
+	{% for item in site.data.partners %}
+		{% if item.type == 0 or item.type == 1 %}
+			memberData[idx]={};
+			memberData[idx].href="{{item.link}}";
+			memberData[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+
+	<div id="memberTable"></div>
+	<script src="/assets/js/dynamicTable.js" data-div="memberTable" data-array="memberData" data-sort="rowFirst" type="text/javascript"></script>
+	
+	<div class="tableTitle"><h3>Prebid.js Bidding Partners</h3></div>
+	<script type="text/javascript">
+	    var partnerData=[];
+	    idx=0;
+		
+		{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+	    {% for item in bidder_pages %}
+		partnerData[idx]={};
+		partnerData[idx].href="/dev-docs/bidders.html#{{item.biddercode}}";
+		partnerData[idx].text="{{item.title}}";
+		idx++;
+	    {% endfor %}
+        </script>
+
+	<div id="partnerTable"></div>
+	<script src="/assets/js/dynamicTable.js" data-div="partnerTable" data-array="partnerData" type="text/javascript"></script>
+</div>
+

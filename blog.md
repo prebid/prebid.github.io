@@ -3,8 +3,8 @@ layout: blog
 title: Blog
 head_title: Prebid.org - Blog for Header Bidding
 description: All about Prebid and header bidding
-pid: 6
 hide: true
+sidebarType: 7
 ---
 
 {% for post in site.posts %}

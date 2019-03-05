@@ -1,15 +1,15 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - Publisher Common ID
 description: User ID persisted in first party domain
-top_nav_section: dev_docs
-nav_section: modules
 module_code : pubCommonId
 display_name : Publisher Common ID
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Publisher Common ID Module
 {:.no_toc}
@@ -41,11 +41,19 @@ Example: Changing ID expiration to 1 year
      });
 {% endhighlight %}
 
+### User Opt-Out
+
+Users must be allowed to opt out of targeted advertising. When implementing this module, you are required to place a link in your privacy policy or elsewhere on your website which allows the user to implement this opt-out. User opt-out is supported by setting the `_pubcid_optout` cookie in the publisher’s domain. When this cookie is set, then Publisher Common ID is neither read nor updated, and it will not be made available to any adapters. The opt-out must also delete the Publisher Common ID cookie (shown in [example](../../examples/modules/pub_common_id_optout.html)).
+
+* Opt-In - `_pubcid_optout` cookie is not present or set to 0
+* Opt-Out - `_pubcid_optout` cookie is set to 1
+
+
 ### Build the package
  
 #### Step 1: Bundle the module code
 
-Follow the basic build instructions on the Github repo's main README. To include the module, an additional option must be added to the the gulp build command:
+Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
  
 {% highlight bash %}
 gulp build --modules=pubCommonId,bidAdapter1,bidAdapter2
@@ -88,4 +96,4 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
 - This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the cookie, updates the expiration time, and decorates the adUnits objects.  A new cookie will be created if one doesn't exist already.
 - Beware that if prebid.js is included in an ad server frame, then the ID would have ad server domain instead.
 
-</div>
+
