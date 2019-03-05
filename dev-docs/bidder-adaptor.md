@@ -493,6 +493,58 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 }
 ```
 
+#### Long-Form Video Content
+
+To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file). Each bid request must return one IAB subcategory.
+
+If the demand partner is going to use Prebid API for this process their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
+
+**Params**  
+
+`url (string)`:   The URL to the mapping file. 
+
+`refreshInDays (number)`: A number representing the number of days before the mapping values are updated. This is an optional parameter. 
+
+`localStorageKey`: A unique key to store the mapping file in localstorage. 
+
+
+**Example**
+
+```
+getMappingFileInfo: function() { 
+	return { 
+		url: mappingFileURL
+        refreshInDays: 7
+        localStorageKey: ${spec.code}MappingFile
+    }
+},
+```
+
+The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
+
+To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
+
+```
+getIabSubCategory(bidderCode, pCategory)
+```
+
+**Params**
+
+`bidderCode (string)`: Value returned from`localStorageKey` of `getMappingFileInfo`.  
+
+`pCategory (string)`:  Proprietary category returned in bid response.
+
+**Returns**
+
+`iabSubCatId (string)`
+
+**Example**
+
+```
+import {getIabSubCategory} from '../src/adapters/bidderFactory';
+var iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+```
+
 #### Outstream Video Renderers
 
 As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), for an ad unit to play outstream ads, a "renderer" is required.  A renderer is the client-side code (usually a combination of JavaScript, HTML, and CSS) responsible for displaying a creative on a page.  A renderer must provide a player environment capable of playing a video creative (most commonly an XML document).

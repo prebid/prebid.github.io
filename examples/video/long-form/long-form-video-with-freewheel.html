@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <title>Prebid Freewheel Integration Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/slate/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"/>
+    <script type="text/javascript" src="//adm.fwmrm.net/p/vitest-js/AdManager.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+    <script src="http://jpanchal.devnxs.net:4002/sahara/lib/prebid.js" async=true></script>
+    <style type="text/css">
+    	#videoPlayer {
+    		height: 480px;
+    		width: 100%;
+    		background-color: #000;
+    	}
+    </style>
+    <script>
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
+
+      var videoAdUnit = [{
+        code: 'preroll_1',
+        sizes: [640,480],
+        mediaTypes: {
+          video: {
+            context: 'adpod', // new value
+            playerSize: [640, 480], // existing param
+            adPodDurationSec: 120,
+            durationRangeSec: [15, 30],
+            requireExactDuration: true
+          }
+        },
+        bids: [
+          {
+            bidder: 'appnexus',
+            params: {
+              placementId: 14542875,
+              video: {
+                skippable: true,
+                playback_method: ['auto_play_sound_off']
+              }
+            }
+          }
+        ]
+      }];
+
+      pbjs.que.push(function(){
+        pbjs.addAdUnits(videoAdUnit);
+        pbjs.setConfig({ 
+          debug: true,
+          cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+          },
+          usePrebidCache: true
+        });
+
+        pbjs.requestBids({
+            bidsBackHandler: function(bids) {
+              let targeting = pbjs.adServers.freewheel.getTargeting();
+              console.log(targeting);
+              var player = new tv.freewheel.DemoPlayer();
+              player.requestAds(targeting);
+              $('#start').bind('click', function(evt){
+                player.play();
+              });
+            }
+        });
+      });
+    </script>
+    <script type="text/javascript">
+    function toggleControls() {
+      var player = document.getElementById('videoPlayer');
+      if (player.controls) {
+        player.controls = false;
+      } else {
+        player.controls = true;
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <h1 style="margin:20px">Prebid Freewheel Integration Demo</h1>
+    <div style="margin: 20px">
+      <button onclick="toggleControls();">Toggle Video Controls</button>
+    </div>
+    <div style="margin: 20px">
+        <div class="row">
+        	<div class="col-lg-6" id="leftPanel">
+        		<div id="displayBase">
+	        		<video id="videoPlayer">
+						    <source src="https://media.xiph.org/tearsofsteel/tears_of_steel_1080p.webm"/>
+	        		</video>
+	        	</div>
+                <div>
+                    <button id="start" class="btn btn-info" style="width: 100%;" disabled>Play</button>
+                </div>
+        	</div> <!-- col-lg-6 -->
+        	<div class="col-lg-6">
+        	</div>
+        </div>
+    </div>
+  </body>
+</html>

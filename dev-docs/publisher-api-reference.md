@@ -58,6 +58,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
+  * [.adserver.freewheel.getTargeting(options)](#module_pbjs.getTargeting)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
@@ -439,6 +440,35 @@ Use this method to get all of the bids that have won their respective auctions a
 Use this method to get all of the bids that have won their respective auctions but not rendered on the page.  Useful for [troubleshooting your integration]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html).
 
 + `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getTargeting"></a>
+
+### pbjs.adserver.freewheel.getTargeting(options) ⇒ Object
+
+Use this method to get targeting key-value pairs to be sent to the ad server. 
+
++ `pbjs.adserver.freewheel.getTargeting(options)`: returns key-value pair from the ad server. 
+
+```Javascript
+
+pbjs.adservers.freewheel.getTargeting({
+    codes: [adUnitCode1],
+    callback: function(err, targeting) { 
+        //pass targeting to player api 
+    }
+});
+```
+#### Argument Reference
+
+The options object
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| codes | Optional | `Array` |  [`adUnitCode1`] |
+| callback | Required | `Function` |  Callback function to execute when targeting data is back. |
 
 <hr class="full-rule">
 
