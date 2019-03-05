@@ -17,7 +17,8 @@ biddercode_longer_than_12: true
 | `adUnitId` | required | The ad unit id | `'5-4587544'` | `string` |
 
 Example:
-```javascript
+
+``` bash
 {
     bidder: 'oneplanetonly',
     params: {

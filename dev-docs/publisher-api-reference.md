@@ -530,7 +530,7 @@ This function will render the ad (based on params) in the given iframe document 
 
 ### pbjs.removeAdUnit(adUnitCode)
 
-Remove adUnit from the pbjs configuration
+Remove adUnit(s) from the pbjs configuration, If adUnit is not given then it will remove all adUnits
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -538,7 +538,7 @@ Remove adUnit from the pbjs configuration
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| adUnitCode | Required | `String` | the adUnitCode to remove |
+| adUnitCode | Optional | `String or Array of strings` | the adUnitCode(s) to remove, if empty it removes all |
 
 
 <hr class="full-rule">

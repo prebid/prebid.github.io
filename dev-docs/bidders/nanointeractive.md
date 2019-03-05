@@ -9,11 +9,9 @@ media_types: banner
 gdpr_supported: true
 ---
 
-<br>
 ### Requirements:
 To be able to get identification key (`pid`), please contact us at <br>
 `https://www.nanointeractive.com/publishers` <br>
-<br><br><br>
 
 #### Send All Bids Ad Server Keys:
 (truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
