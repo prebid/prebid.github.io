@@ -32,6 +32,6 @@ This variable equates to `hb_cache_id`.
 
 ## Further Reading
 
-[Prebid.js](http://prebid.org/dev-docs/getting-started.html)   
-[Prebid Video](http://prebid.org/prebid-video/video-overview.html)  
+[Prebid.js](/dev-docs/getting-started.html)   
+[Prebid Video](/prebid-video/video-overview.html)  
 [Freewheel Module](/dev-docs/modules/freewheel.html)

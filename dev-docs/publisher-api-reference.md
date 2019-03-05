@@ -470,7 +470,7 @@ The options object
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| code | Optional | `Array` |  [`adUnitCode1`] |
+| codes | Optional | `Array` |  [`adUnitCode1`] |
 | callback | Required | `Function` |  Callback function to execute when targeting data is back. |
 
 <hr class="full-rule">

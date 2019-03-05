@@ -85,6 +85,10 @@ Prebid retrieves the winning outstream video bid and renderer from the ad ID (hb
 
 ### Long-form Video 
 
+Here’s a high-level diagram showing how long-form video header bidding works for adpod video (with more details outlined in the steps below):
+
+![Instream Video Diagram]({{site.baseurl}}/assets/images/prebid-video/instream-video.png){: .pb-img.pb-lg-img :}
+
 1.	**Prebid sends request to demand partners.**  
 Prebid.js code loads within the page header and sends a bid request to each video demand partner included on a given Prebid video ad unit.
 
@@ -94,7 +98,7 @@ As with instream videos, each response includes the bid price and the video crea
       Additionally each response is required to return an IAB subcategory. A module is provided that converts adserver categories to IAB sub categories. If a publisher prefers to use their own mapping file they will need to set the URL location of that file.  
 
 3.	**Prebid.js caches video bids.**  
-Each video bid is cached server-side and mapped to a unique cache ID which will be passed to the Freewheel ad server via key-value targeting.  The [Prebid.js video creative]({{site.github.url}}/adops/setting-up-prebid-video-in-dfp.html#creative-setup) configured in the ad server contains a macro that references this cache ID. (Note: Some bidders will cache before responding to Prebid.js. In those cases, the bidder will provide a `bidResponse.videoCacheKey` and this step will be skipped. See [Notes on Prebid Cache]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html#notes-on-prebid-cache) for details.) 
+Each video bid is cached server-side and mapped to a unique cache ID which will be passed to the FreeWheel ad server via key-value targeting.  The [Prebid.js video creative]({{site.github.url}}/adops/setting-up-prebid-video-in-dfp.html#creative-setup) configured in the ad server contains a macro that references this cache ID. (Note: Some bidders will cache before responding to Prebid.js. In those cases, the bidder will provide a `bidResponse.videoCacheKey` and this step will be skipped. See [Notes on Prebid Cache]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html#notes-on-prebid-cache) for details.) 
 
 4.	**Prebid creates new master video ad server tag URL.**  
 Prebid combines an existing video ad server tag with Prebid key-value targeting pairs to create a new master video ad server tag URL.  This URL will be passed into the video player.
@@ -105,13 +109,14 @@ The video player loads the master video ad server tag URL, which makes a call to
 6.	**Ad server matches Prebid.js key-value pairs to a pre-configured line item.**
 
 7.	**Video player renders the video from the winning bidder.**  
-  a.	The master video ad server tag URL returns a VAST XML wrapper containing the Prebid.js video creative.
-  b.	The Prebid.js video creative returns a VAST XML document containing the cached video bid, which was returned by the Prebid demand partner in its bid response.
+  a.	The master video ad server tag URL returns a VAST XML wrapper containing the Prebid.js video creative.  
+  b.	The Prebid.js video creative returns a VAST XML document containing the cached video bid, which was returned by the Prebid demand partner in its bid response.  
   c.	The demand partner’s VAST tag URL is rendered in the video player.
 
 ## Further Reading
 
 -   [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html)
+-   [Getting Started with Long-Form Video for Prebid.js]({{site.github.url}}/prebid-video/video-long-form.html)
 -   [What is Prebid?]({{site.github.url}}/overview/intro.html)
 -   [AdOps - Before You Start]({{site.github.url}}/overview/getting-started.html)
 -   [Getting Started for Developers]({{site.github.url}}/dev-docs/getting-started.html)

@@ -13,7 +13,7 @@ sidebarType : 1
 
 {:.no_toc}
 
-This module returns the targeting key value pairs for the Freewheel ad server.
+This module returns the targeting key value pairs for the FreeWheel ad server.
 
 ## How to use the module:
 
@@ -46,7 +46,7 @@ pbjs.adservers.freewheel.getTargeting({
 });
 ```
 
-The values sent to `getTargeting` are concatenation of CPM, industy code, and video duration. Freewheel SDK will send those values to Freewheel Ad Server within the following query: 
+The values sent to `getTargeting` are concatenation of CPM, industy code, and video duration. FreeWheel SDK will send those values to FreeWheel Ad Server within the following query: 
 
 ```
 http://[customerId].v.fwmrm.net/ad/g/1[globalParams];hb_pb_cat_dur=10.00_400_15s&hb_pb_cat_dur=15.00_402_30s&hb_cacheid=123;[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];
@@ -57,4 +57,4 @@ http://[customerId].v.fwmrm.net/ad/g/1[globalParams];hb_pb_cat_dur=10.00_400_15s
 
 [Prebid.js](http://prebid.org/dev-docs/getting-started.html)  
 [Prebid Video](http://prebid.org/prebid-video/video-overview.html)  
-[IAB Category Translation](/dev-docs/modules/iabCatalogTranslation.html)
+[IAB Category Translation](/dev-docs/modules/iabCatagoryTranslation.html)

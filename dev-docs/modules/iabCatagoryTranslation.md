@@ -13,17 +13,17 @@ sidebarType : 1
 
 {:.no_toc}
 
-This module converts the IAB sub category to Freewheel industry group identifiers. The Freewheel identifiers ensure competitve separation of industries and products. 
+This module converts the IAB sub category to FreeWheel industry group identifiers. The FreeWheel identifiers ensure competitve separation of industries and products. 
 
 Each bid request must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories).
 
 The module provides the following: 
 
-- Converts IAB subcategories to a Freewheel industry group identifier.
+- Converts IAB subcategories to a FreewWheel industry group identifier.
 
 ## How to use the module:
 
-1. A Prebid.js package is built that contains this module and the [Freewheel]({site.github.url}}/dev-docs/module/freewheel.html) module.  
+1. A Prebid.js package is built that contains this module and the [FreeWheel](/dev-docs/modules/freewheel.html) module.  
 2. The inclusion of this module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file. 
 3. At runtime, brand category translation happens as needed. 
 
@@ -43,6 +43,7 @@ This file will be stored locally to expedite the conversion process. If a publis
 
 Publishers should ensure that the JSON returned from their custom file is valid for Prebid by adhering to the following structure: 
 
+```JSON
 {
     “mapping”: {
         “<your-iab-sub-category>“: {
@@ -52,15 +53,16 @@ Publishers should ensure that the JSON returned from their custom file is valid 
    ....
    }
 }
+```
 
 Refer to Prebid Github repository for a [custom file reference](https://github.com/prebid/category-mapping-file).
 
 
 ## Further Reading
 
-[Prebid.js](http://prebid.org/dev-docs/getting-started.html)   
-[Prebid Video](http://prebid.org/prebid-video/video-overview.html)  
-[Freewheel Module](/dev-docs/modules/freewheel.html)  
+[Prebid.js](/dev-docs/getting-started.html)   
+[Prebid Video](/prebid-video/video-overview.html)  
+[FreeWheel Module](/dev-docs/modules/freewheel.html)  
 [Adapter Integration](/dev-docs/bidder-adaptor.html)
 
 

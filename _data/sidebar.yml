@@ -490,7 +490,7 @@
   
 - sbSecId: 1
   title: IAB Subcategory Translation
-  link: /dev-docs/modules/iabCatalogTranslation.html
+  link: /dev-docs/modules/iabCatagoryTranslation.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -898,6 +898,15 @@
 - sbSecId: 3
   title: Setting up Prebid Video in DFP
   link: /adops/setting-up-prebid-video-in-dfp.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid Long-Form Video in FreeWheel
+  link: /adops/setting-up-prebid-video-in-freewheel.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0

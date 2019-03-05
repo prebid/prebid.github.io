@@ -514,7 +514,7 @@ getMappingFileInfo: function() {
 	return { 
 		url: mappingFileURL
         refreshInDays: 7
-        localStorageKey: `${spec.code}MappingFile`
+        localStorageKey: ${spec.code}MappingFile
     }
 },
 ```

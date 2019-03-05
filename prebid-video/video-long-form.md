@@ -9,10 +9,10 @@ nav_section: pbjs-video-get-started
 sidebarType: 4
 ---
 
-# Getting Started with Long Form Video
+# Getting Started with Long-Form Video
 {: .no_toc }
 
-If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js
+If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js.
 
 -	[What Is Prebid?]({{site.github.url}}/overview/intro.html)
 -	[Getting Started with Prebid]({{site.github.url}}/overview/getting-started.html)
@@ -24,19 +24,19 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 
 ## Ad Server Setup
 
-Prebid uses Freewheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in Freewheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
+Prebid uses FreeWheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
 
 ## Developers
 
 ### Download Prebid.js
 
-To implement header bidding for long-form video start by [downloading Prebid.js]({{site.github.url}}/download.html)
+To implement header bidding for long-form video start by [downloading Prebid.js]({{site.github.url}}/download.html).
 
 Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
 - Include at least one video adapter. Find a list of available video adapters [here]({{site.github.url}}/dev-docs/bidders.html#bidder-video-native).
-- Include the [Freewheel]({site.github.url}}/dev-docs/module/freewheel.html) Ad Server module. 
-- Include the [IAB Subcategory Translation]({site.github.url}}/dev-docs/module/iabCatalogTranslation.html) module.  
+- Include the [FreeWheel](/dev-docs/modules/freewheel.html) Ad Server module. 
+- Include the [IAB Subcategory Translation](/dev-docs/modules/iabCatagoryTranslation.html) module.  
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
 
 ### Ensuring Competitve Separation
@@ -54,7 +54,7 @@ pbjs.setConfig({
 
 As with instream and outstream videos, you must set the video context for long-form ad units. The context setting for long-form video is `adpod` . There are also some addtional required and optional parameters (see list below).  
 
- As with all ad unit types you must include a list of bidders. The parameters differ depending on which bidder you’re including. For a list of parameters for each bidder, see [Bidders’ Params]({site.github.url}}/dev-docs/bidders.html).  
+ As with all ad unit types you must include a list of bidders. The parameters differ depending on which bidder you’re including. For a list of parameters for each bidder, see [Bidders’ Params](/dev-docs/bidders.html).  
 
 ```
 var longFormatAdUnit = {
@@ -143,4 +143,7 @@ After you’ve defined your ad units, you can continue with the rest of your con
 
 ### Examples
 
-See [Prebid Video Examples]() for examples of long-form video ads. 
+See [Prebid Video Examples](/examples/video/long-form/long-form-video-with-freewheel.html) for examples of long-form video ads. 
+
+
+
