@@ -8,7 +8,7 @@ permalink: /blog/marfeel-event-2019
 
 <br>
 
-(Originally [posted on Marfeel's site](https://www.marfeel.com/blog/prebid-leadership-summit-2019/))
+(Originally [posted on Marfeel's site](https://www.marfeel.com/blog/prebid-leadership-summit-2019/), slightly edited for clarity.)
 
 ![Barcelona Summit](/assets/images/blog/2019-03-05-marfeel-event-1.jpg){: .pb-lg-img :}
 
@@ -28,7 +28,7 @@ Client-side header bidding was always supposed to be a temporary phenomenon befo
 
 But, there are still limitations that prevent server-side from being rolled out across advertisers. One of the main challenges for adoption is user identification. When you add an additional step for cookie matching, match rates can go down and in turn, impact monetization. Buyers only bid high when they know who the user is, so losing match rates can severely impact monetization for many. Until universal ID solutions come to fruition, the industry is hindered.
 
-Whatsmore, web publishers already have working systems for display. There is not currently enough incentive to apply wholesale changes to their approach. They don’t want to spend time and money shifting to a system that will be more advanced and more rigorously industry-tested in a year or so.
+Whats more, web publishers already have working systems for display. There is not currently enough incentive to apply wholesale changes to their approach. They don’t want to spend time and money shifting to a system that will be more advanced and more rigorously industry-tested in a year or so.
 
 Publishers are waiting for companies and organizations such as Marfeel and Prebid to solve these issues before fully committing to server-side.
 
@@ -36,9 +36,9 @@ To bridge this gap, Marfeel has a dedicated team that has built our own header b
 
 ## 2. Mobile will be the driving force for mass-adoption
 
-Most major publishers operate with a hybrid solution, across their formats, such as web, mobile, app, and video. But, running different ad logic for every format is costly and difficult. Furthermore, relying on SDKs for in-app ads will not allow for the scalability that publishers require.
+Most major publishers operate with a hybrid solution, across their formats, such as web, mobile, app, and video. But, running different ad logic for every format is costly and difficult, as is running many SDKs.
 
-However, mass-adoption of server-side header bidding will require a catalyst that proves its value and utility. For publishers, this revolution will start with mobile, since the Prebid SDK works hand in hand with Prebid Server. Since Prebid Mobile relies on Prebid Server, publishers will begin to adopt it and consider its use-case for web traffic as well. As more and more publishers adopt, the community will dedicate more time and energy to its development.
+However, mass-adoption of server-side header bidding will require a catalyst that proves its value and utility. For publishers, this revolution will start with mobile, since the Prebid Mobile SDK works hand in hand with Prebid Server. Since Prebid Mobile relies on Prebid Server, publishers will begin to adopt it and consider its use-case for web traffic as well. As more and more publishers adopt, the community will dedicate more time and energy to its development.
 
 Once mobile proves the market for server-side header bidding, publishers will start to migrate towards it, making Prebid Server become a unified header bidding solution across all formats and devices.
 
