@@ -501,23 +501,24 @@ If the demand partner is going to use Prebid API for this process their adapter 
 
 **Params**  
 
-`url (string)`:   The URL to the mapping file. 
-
-`refreshInDays (number)`: A number representing the number of days before the mapping values are updated. This is an optional parameter. 
-
-`localStorageKey`: A unique key to store the mapping file in localstorage. 
+{: .table .table-bordered .table-striped }
+| Key             | Scope    | Description                                                                                        | Example                    |
+|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
+| url             | Required | The URL to the mapping file.                                                                       | //example.com/mapping.json |
+| refreshInDays   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | 7                          |
+| localStorageKey | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | uniqueKey                  |
 
 
 **Example**
 
 ```
 getMappingFileInfo: function() { 
-	return { 
-		url: mappingFileURL
-        refreshInDays: 7
-        localStorageKey: ${spec.code}MappingFile
-    }
-},
+  return { 
+    url: '<mappingFileURL>',
+    refreshInDays: 7
+    localStorageKey: '<uniqueCode>'
+  }
+}
 ```
 
 The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
@@ -530,20 +531,18 @@ getIabSubCategory(bidderCode, pCategory)
 
 **Params**
 
-`bidderCode (string)`: Value returned from`localStorageKey` of `getMappingFileInfo`.  
+`bidderCode (string)`: BIDDER_CODE  
 
 `pCategory (string)`:  Proprietary category returned in bid response.
 
-**Returns**
-
-`iabSubCatId (string)`
-
 **Example**
 
-```
-import {getIabSubCategory} from '../src/adapters/bidderFactory';
-var iabSubCatId = getIabSubCategory(bidderCode, pCategory)
-```
+{% highlight js %}
+
+import { getIabSubCategory } from '../src/adapters/bidderFactory';
+let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+
+{% endhighlight %}
 
 #### Outstream Video Renderers
 
