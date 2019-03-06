@@ -445,7 +445,7 @@ Use this method to get all of the bids that have won their respective auctions b
 
 <a name="module_pbjs.getTargeting"></a>
 
-### pbjs.adserver.freewheel.getTargeting(options) ⇒ Object
+### pbjs.adServers.freewheel.getTargeting(options) ⇒ Object
 
 {: .alert.alert-info :}
 The FreeWheel implementation of this function requires including the `freeWheelAdserverVideo` module in your Prebid.js build.

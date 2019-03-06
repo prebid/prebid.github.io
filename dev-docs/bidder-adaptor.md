@@ -504,9 +504,9 @@ If the demand partner is going to use Prebid API for this process their adapter 
 {: .table .table-bordered .table-striped }
 | Key             | Scope    | Description                                                                                        | Example                    |
 |-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| url             | Required | The URL to the mapping file.                                                                       | //example.com/mapping.json |
-| refreshInDays   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | 7                          |
-| localStorageKey | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | uniqueKey                  |
+| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
+| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
 
 
 **Example**
@@ -531,9 +531,11 @@ getIabSubCategory(bidderCode, pCategory)
 
 **Params**
 
-`bidderCode (string)`: BIDDER_CODE  
-
-`pCategory (string)`:  Proprietary category returned in bid response.
+{: .table .table-bordered .table-striped }
+| Key          | Scope    | Description                                   | Example               |
+|--------------|----------|-----------------------------------------------|-----------------------|
+| `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
+| `pCategory`  | Required | Proprietary category returned in bid response | `"sample-category"`   |
 
 **Example**
 
