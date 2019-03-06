@@ -476,5 +476,5 @@ pbjs.addAdUnits([{
 [conditionalAds]: {{site.baseurl}}/dev-docs/conditional-ad-units.html
 [setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig
 [configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads
-[openRTB]: https://www.iab.com/wp-content/uploads/2015/05/OpenRTB_API_Specification_Version_2_3_1.pdf
+[openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
