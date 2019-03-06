@@ -4,4 +4,4 @@ Please contact [Rubicon Project](../../static/bidder-info/rubicon.yaml) to get s
 
 You will be given instructions, including the available endpoints.
 
-**Note:** Rubicon is disabled by default. Please enable it in the app config if you wish to use it. Make sure you provide the correct cookie-sync URL in order for cookie-syncs to work properly.
+**Note:** Rubicon is disabled by default. Please reach out to your account team or globalsupport@rubiconproject.com for more information. Once you're set up with appropriate credentials, you can enable it in the config.
