@@ -13,9 +13,9 @@ sidebarType : 1
 
 {:.no_toc}
 
-This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitve separation of industries and products. 
+This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitive separation of industries and products. 
 
-Each bidder must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories) if they want to ensure creative exclusivity.
+Each bidder must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories) if they want to do competitive separation.
 
 The module provides the following: 
 
@@ -24,7 +24,7 @@ The module provides the following:
 ## How to use the module:
 
 1. A Prebid.js package is built that contains this module and the Ad server module. Prebid supports [FreeWheel](/dev-docs/modules/freewheel.html) ad server module. 
-2. The inclusion of this module and long form ad server module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file. 
+2. The inclusion of this module and long-form ad server module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file. 
 3. At runtime, brand category translation happens as needed. 
 
 

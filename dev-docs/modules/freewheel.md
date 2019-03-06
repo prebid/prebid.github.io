@@ -17,7 +17,7 @@ This module returns the targeting key value pairs for the FreeWheel ad server.
 
 ## How to use the module:
 
-If you are using FreeWheel as your ad server for long form header bidding than include this module while creating Prebid.js build. Use the exposed getTargeting method to get targeting key value pairs.
+If you are using FreeWheel as your ad server for long-form header bidding then include this module while creating Prebid.js build. Use the exposed getTargeting method to get targeting key value pairs.
 
 #### Example:
 
