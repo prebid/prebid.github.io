@@ -495,9 +495,74 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 
 #### Long-Form Video Content
 
-To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file). Each bid request must return one IAB subcategory.
+{: .alert.alert-info :}
+Following is Prebid's way to setup bid request for long-form. Apadters are free to choose their own approach.
 
-If the demand partner is going to use Prebid API for this process their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
+Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how you send back bid responses. Prebid's recommendation is that you expand an adpod placement into a set of request objects according to total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement. 
+
+Use case 1
+```
+AdUnit config
+{
+  adPodDuration: 300,
+  durationRangeSec: [15, 30]
+}
+
+Algorithm
+# of placements = adPodDuration / MIN_VALUE(durationRangeSec)
+
+Each placement:
+placement.video.maxduration = MAX_VALUE(durationRangeSec)
+
+Example:
+# of placements : 300 / 15 = 20.
+placement.video.maxduration = 30 (all placements the same)
+
+Your endpoint responds with:
+10 bids with 30seconds duration
+10 bids with 15seconds duration
+```
+
+Use case 2
+```
+AdUnit config
+{
+  adPodDuration: 300,
+  durationRangeSec: [15, 30],
+  requireExactDuration: true
+}
+
+Algorithm
+# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length) 
+
+Each placement:
+placement.video.minduration = durationRangeSec[i]
+placement.video.maxduration = durationRangeSec[i]
+
+Example:
+# of placements : MAX_VALUE( (300 / 15 = 20), 2) == 20
+
+20 / 2 = 10 placements: 
+placement.video.minduration = 15
+placement.video.maxduration = 15
+
+20 / 2 = 10 placements: 
+placement.video.minduration = 30
+placement.video.maxduration = 30
+
+Your endpoint responds with:
+10 bids with 30seconds duration
+10 bids with 15seconds duration
+```
+
+In Use case 1, adapter is requesting bid responses for 20 placements in one single http request. You can split these into chunks depending on your endpoint's capacity.
+
+Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
+
+
+Adapter must return one [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
+
+If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
 
 **Params**  
 
