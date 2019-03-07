@@ -5,7 +5,6 @@ description: Prebid AOL Bidder Adaptor
 hide: true
 biddercode: aol
 biddercode_longer_than_12: false
-media_types: video
 gdpr_supported: true
 ---
 
