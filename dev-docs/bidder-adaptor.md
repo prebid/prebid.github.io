@@ -470,7 +470,7 @@ For examples of video parameters accepted by different adapters, see [the list o
 
 #### Ingesting the Video Context
 
-Video ad units have a publisher-defined video context, which can be either `'instream'` or `'outstream'`.  Video demand partners can choose to ingest this signal for targeting purposes.  For example, the ad unit shown below has the outstream video context:
+Video ad units have a publisher-defined video context, which can be either `'instream'` or `'outstream'` or `'adpod'`.  Video demand partners can choose to ingest this signal for targeting purposes.  For example, the ad unit shown below has the outstream video context:
 
 ```javascript
 ...
@@ -504,14 +504,16 @@ Use case 1
 ```
 AdUnit config
 {
+  ...
   adPodDuration: 300,
   durationRangeSec: [15, 30]
+  ...
 }
 
 Algorithm
 # of placements = adPodDuration / MIN_VALUE(durationRangeSec)
 
-Each placement:
+Each placement set max duration:
 placement.video.maxduration = MAX_VALUE(durationRangeSec)
 
 Example:
@@ -519,17 +521,27 @@ Example:
 placement.video.maxduration = 30 (all placements the same)
 
 Your endpoint responds with:
-10 bids with 30seconds duration
-10 bids with 15seconds duration
+10 bids with 30 seconds duration
+10 bids with 15 seconds duration
 ```
+
+In Use case 1, you are asking endpoint to respond with 20 bids between min duration 0 and max duration 30 seconds. If you get bids with duration which does not match duration in `durationRangeSec` array, Prebid will modify the duration and use new value to send bids to Ad server.
+
+Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
+  - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer, that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
+  - reject bid if the bid is above the range of the listed durations (and outside the buffer)
+  
+Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
 
 Use case 2
 ```
 AdUnit config
 {
+  ...
   adPodDuration: 300,
   durationRangeSec: [15, 30],
   requireExactDuration: true
+  ...
 }
 
 Algorithm
@@ -551,14 +563,30 @@ placement.video.minduration = 30
 placement.video.maxduration = 30
 
 Your endpoint responds with:
-10 bids with 30seconds duration
-10 bids with 15seconds duration
+10 bids with 30 seconds duration
+10 bids with 15 seconds duration
 ```
 
-In Use case 1, adapter is requesting bid responses for 20 placements in one single http request. You can split these into chunks depending on your endpoint's capacity.
+In Use case 2 `requireExactDuration` is set to true and hence Prebid will only select bids that exactly match duration in `durationRangeSec` (don't round at all).
+
+In both use cases, adapter is requesting bid responses for 20 placements in one single http request. You can split these into chunks depending on your endpoint's capacity.
+
+Adapter must add following new properties to bid response
+
+{% highlight js %}
+{
+  meta: {
+    iabSubCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
+  },
+  video: {
+    context: 'adpod',
+    durationSeconds: 30
+  }
+}
+{% endhighlight %}
+
 
 Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
-
 
 Adapter must return one [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
