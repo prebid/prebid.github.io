@@ -5,9 +5,6 @@ description: Add Android Targeting Parameters
 sidebarType: 2
 ---
 
-{% capture warning_note %} This document describes a pre-release version of the Prebid Mobile API that has been deprecated. See our new [Targeting Parameters document](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) for information on working with the current version of Prebid Mobile. {% endcapture %}
-{% include /alerts/warning.html content= warning_note %}
-
 
 # Android Targeting Parameters
 
