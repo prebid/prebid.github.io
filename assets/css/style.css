@@ -124,6 +124,38 @@ hr {
 	align-items: stretch;
 }
 
+/* alerts */
+.pb-alert { 
+	
+	padding:10px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.pb-alert-note { 
+	background-color: #deecf7;
+	color: #4b6f8d;
+	border: 1px solid #4b6f8d;
+}
+
+.pb-alert-warning { 
+	background-color: #ecdcdd;
+	color: #944644;
+	border: 1px solid #944644;
+}
+
+.pb-alert-important { 
+	background-color: #ecdcdd;
+	color: #464646;
+	border: 1px solid #464646;
+}
+
+.pb-alert-tip { 
+	background-color: #e3efd8;
+	color: #527542;
+	border: 1px solid #527542;
+}
+
 
 /* NavBar */
 
