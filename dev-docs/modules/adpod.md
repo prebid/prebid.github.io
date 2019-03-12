@@ -11,11 +11,11 @@ sidebarType : 1
 
 # Adpod Module
 
-The adpod module enables developers to add support for a new adserver that handles `adpod` (long-form) videos, like Freewheel. The  module provides functions to validate, cache, and modify long-form video bids. 
+The adpod module enables developers to add support for a new adserver that handles `adpod` (long-form) videos, like Freewheel.  Specifically, the module provides functions to validate, cache, and modify long-form video bids. 
 
 ## How to use the module as a publisher:
 
-There is a flag available to a publisher to influence how this module behaves.  This setting can be set by adding the following to the Prebid.js configuration:
+There is a flag available for publishers to influence how this module behaves.  This field can be set by adding the following to the Prebid.js configuration:
 
 ```
 pbjs.setConfig({
@@ -25,14 +25,14 @@ pbjs.setConfig({
 });
 ```
 
-When this setting is enabled, it requires the bidder to include a brand category id on the incoming adpod bids (otherwise the bid is rejected).  Additionally, this category is used in the bid caching process and in the winning bid's targeting keys that get sent to the adserver.
+When this setting is enabled, it requires the bidder to include a brand category id on the incoming adpod bids (otherwise the bid is rejected).  The bid's brand category will be processed and transformed to the corresponding brand category used by the publisher's adserver (see the [Category Translation](/dev-docs/modules/categoryTranslation.html) module page for more details).   The transformed brand category is then used in the bid caching process and as well as targeting keys that get sent to the adserver for the winning bid(s).
 
-Below is an example of the targeting keys with the setting enabled (where `123` is the category id):
+Below is an example of the targeting key's value with the setting enabled (where `123` is the category id):
 ```
-hb_pb_cat_dur = '10.00_123_10s'
+'10.00_123_10s'
 ```
 
-When the setting is disabled (which is the default state), bidder's don't have to supply a brand category on the adpod bids.  The bids are cached using a combination of the cpm, the duration and a unique string that's generated once per auction.
+When the setting is disabled (which is the default state), bidder's don't have to supply a brand category on the adpod bids.  Subsequently, the category part of the bid caching is not included, neither is it included in the generated targeting keys.
 
 Below is an example of the targeting keys with the setting not enabled:
 ```
@@ -48,7 +48,7 @@ In the user's equivalent `<name>AdServerVideo` module, import the `initAdpodHook
 initAdpodHooks();
 ```
 
-## Optional Values for Developers
+## Optional values for developers
 In addition to the `initAdpodHooks` function, users can import values from the Adpod module that contain the adpod specific targeting keys (as strings). These values can be used to generate the correct output (ie. targeting keys) to send to the adserver.  
 
 `TARGETING_KEY_PB_CAT_DUR`  
