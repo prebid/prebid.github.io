@@ -35,7 +35,7 @@ end
 
 ### Build framework from source
 
-Build Prebid Mobile from source code. After [cloning the repo,](https://github.com/prebid/prebid-mobile-ios) use Terminal or another command line tool, change to the root directory and run:
+Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:
 
 ```
 ./scripts/buildPrebidMobile.sh
