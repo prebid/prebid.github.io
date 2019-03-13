@@ -5,6 +5,7 @@ description: Prebid Trustx Bidder Adaptor
 hide: true
 biddercode: trustx
 biddercode_longer_than_12: false
+media_types: banner, video
 gdpr_supported: true
 ---
 
