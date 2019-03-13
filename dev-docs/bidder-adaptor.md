@@ -496,11 +496,11 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 #### Long-Form Video Content
 
 {: .alert.alert-info :}
-Following is Prebid's way to setup bid request for long-form. Apadters are free to choose their own approach.
+Following is Prebid's way to setup bid request for long-form, apadters are free to choose their own approach.
 
-Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how you send back bid responses. Prebid's recommendation is that you expand an adpod placement into a set of request objects according to total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement. 
+Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement. 
 
-Use case 1
+#### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
 ```
 AdUnit config
 {
@@ -525,15 +525,15 @@ Your endpoint responds with:
 10 bids with 15 seconds duration
 ```
 
-In Use case 1, you are asking endpoint to respond with 20 bids between min duration 0 and max duration 30 seconds. If you get bids with duration which does not match duration in `durationRangeSec` array, Prebid will modify the duration and use new value to send bids to Ad server.
+In Use case 1, you are asking endpoint to respond with 20 bids between min duration 0 and max duration 30 seconds. If you get bids with duration which does not match duration in `durationRangeSec` array, Prebid will evaluate the bid's duration and will match into the appropriate duration bucket by using a rounding-type logic. This new duration will be used in sending bids to Ad server.
 
 Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
-  - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer, that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
+  - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
   - reject bid if the bid is above the range of the listed durations (and outside the buffer)
   
 Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
 
-Use case 2
+#### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
 ```
 AdUnit config
 {
