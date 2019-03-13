@@ -99,6 +99,9 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
 
 Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.
 
+{: .alert.alert-warning :}
+Note that safeframes don't work with older versions of Prebid.js (v1.23 and before) in combination with recent versions of [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative).
+
 ## Step 3. Attach the Creative to the Line Item
 
 Next, let's attach the creative to the $0.50 line item you just created.  Click into the Line Item, then the **Creatives** tab.

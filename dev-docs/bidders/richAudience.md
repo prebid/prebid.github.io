@@ -1,17 +1,15 @@
 ---
 layout: bidder
 title: Rich Audience
-description: Prebid Rich Audience
+description: Prebid Rich Audience Bidder Adapter
 hide: true
-biddercode: richaudience
+biddercode: richAudience
 biddercode_longer_than_12: false
 media_types: banner, video
 gdpr_supported: true
 ---
 
 ### bid params
-
-#### Rich Audience
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                          | Example                                                   | Type      |

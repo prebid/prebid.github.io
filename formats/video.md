@@ -22,7 +22,7 @@ Video ads are supported by Prebid.js. Prebid Server support is coming soon.
 - [Getting started with video](/prebid-video/video-getting-started.html)
 - [Outstream video ads](/dev-docs/show-outstream-video-ads.html)
 
-### Prebid.js bid adapters that support video ads
+### Prebid.js bid adapters that support instream and outstream video ads
 
 <div id="dynamicTable"></div>
 
@@ -32,7 +32,7 @@ var dynamicTableContents=[];
 {% assign numVideo = 0 %}
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for page in bidder_pages %}
-{% if page.media_types contains 'video' and page.prebid_1_0_supported %}
+{% if page.media_types contains 'video' %}
    dynamicTableContents[{{numVideo}}]={};
    dynamicTableContents[{{numVideo}}].href="/dev-docs/bidders.html#{{page.biddercode}}";
    dynamicTableContents[{{numVideo}}].text="{{page.title}}";
@@ -41,3 +41,23 @@ var dynamicTableContents=[];
 {% endfor %}
 </script>
 <script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable" data-array="dynamicTableContents"></script>
+
+
+### Prebid.js bid adapters that support only outstream video ads
+
+<div id="dynamicTable-outstream"></div>
+<script type="text/javascript">
+var outstreamTableContents=[];
+
+{% assign numOutstream = 0 %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+{% for page in bidder_pages %}
+{% if page.media_types contains 'outstream' %}
+   outstreamTableContents[{{numOutstream}}]={};
+   outstreamTableContents[{{numOutstream}}].href="/dev-docs/bidders.html#{{page.biddercode}}";
+   outstreamTableContents[{{numOutstream}}].text="{{page.title}}";
+   {% assign numOutstream = numOutstream | plus: 1 %}
+{% endif %}
+{% endfor %}
+</script>
+<script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable-outstream" data-array="outstreamTableContents"></script>

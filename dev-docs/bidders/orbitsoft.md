@@ -16,10 +16,11 @@ biddercode_longer_than_12: false
 | `placementId`  | required | The placement ID (site channel ID)                                   | `142`                               | `integer` |
 | `requestUrl`   | required | Url to perform search request                                        | `'http://adserver.com/ads/show/hb'` | `string`  |
 | `style`        | optional | Creative styles. Actual only for text ads                            |                                     | `string`  |
-| `customParams` | optional | Permits passing any publisher key-value pairing into the bid request | `{ macro_name: 'macro_value' }`     | `object`  |
+| `customParams` | optional | Permits passing any publisher key-value pairing into the bid request | `{"macro_name": "macro_value" }`     | `object`  |
 
 Example:
-```javascript
+
+``` bash
 {
     bidder: "orbitsoft",
     params: {

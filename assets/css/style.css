@@ -12,7 +12,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   color: #333;
   padding-bottom: 5px;
 }
@@ -24,12 +24,12 @@ h1 {
 }
 
 h3 {
-  color: #95a5a6;
+  color: #555555;
   font-weight: 400;
 }
 
 h4 {
-  color: #95a5a6;
+  color: #555555;
   font-weight: 400;
   font-size: 20px;
 }
@@ -42,7 +42,7 @@ p {
 	font-family: 'Lato', sans-serif;
 	color: #222222;
 	font-size: 18px;
-	font-weight: 100;}
+	font-weight: 400;}
 
 .centered {
   text-align: center;
@@ -146,7 +146,7 @@ hr {
   color: #3498db;
   font-size: 24px;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   
 }
 
@@ -180,7 +180,7 @@ hr {
 
 .pb-mobile-dropdown-item { 
 	font-size: 13px;
-	font-weight: 200;
+	font-weight: 400;
 }
 
 .navbar-default .navbar-nav > li > a.pb-mobile-dropdown  { 
@@ -202,15 +202,15 @@ hr {
 
 .dropdown { 
    font-family: 'Roboto', sans-serif;
-   font-weight: 300;
+   font-weight: 400;
 }
 
 .dropdown-toggle { 
-	font-weight: 100;
+	font-weight: 400;
 }
 
 .dropdown-menu>li>a { 
-	font-weight: 300;
+	font-weight: 400;
 }
 
 .dropdown-submenu {
@@ -223,7 +223,7 @@ hr {
   margin-top: -6px;
   margin-left: -1px;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .dropdown-submenu:hover > .dropdown-menu {
@@ -314,7 +314,7 @@ hr {
 }
 
 .list-group-item { 
-	font-weight: 200;
+	font-weight: 400;
 	margin:0;
 	padding: 3px 0 3px 5px;
 	border-width:0;
@@ -574,7 +574,7 @@ button.list-group-item:focus {
 	font-family: 'Roboto', sans-serif;
 	color: #47547c;
 	font-size:3.5vw;
-	font-weight: 200;
+	font-weight: 400;
 }
 
 .pb-benefits-container { 
@@ -628,14 +628,14 @@ button.list-group-item:focus {
 	font-family: 'Roboto', sans-serif;
 	color: #47547c;
 	font-size:2.5vw;
-	font-weight: 200;
+	font-weight: 400;
 }
 
 .pb-benefits-panel-content-text { 
 	font-family: 'Lato', sans-serif;
 	color: #47547c;
 	font-size:1.7vw;
-	font-weight: 100;
+	font-weight: 400;
 }
 
 
@@ -924,7 +924,7 @@ button.list-group-item:focus {
 	font-family: 'Lato', sans-serif;
 	color: #222222;
 	font-size: 16px;
-	font-weight: 100;
+	font-weight: 400;
 }
 
 .pb-content h1 { 
@@ -951,7 +951,7 @@ button.list-group-item:focus {
 	font-family: 'Verdana', sans-serif;
 	color: #333333;
 	font-size: 24px;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 .pb-content, .pb-blog h4 { 
@@ -959,7 +959,7 @@ button.list-group-item:focus {
 	font-family: 'Verdana', sans-serif;
 	color: #333333;
 	font-size: 20px;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 
@@ -968,7 +968,7 @@ button.list-group-item:focus {
 	font-family: 'Verdana', sans-serif;
 	color: #333333;
 	font-size: 18px;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 
@@ -994,7 +994,7 @@ button.list-group-item:focus {
 	display: block;
 	width: 75%;
 	font-family: 'Dosis', sans-serif;
-	font-weight: 200;
+	font-weight: 400;
 	font-size:21px;
 	padding-top: 30px 0;
 	margin-left: auto;
@@ -1184,7 +1184,7 @@ button.list-group-item:focus {
 		
 		.pb-content p { 
 			font-size: 15px;
-			font-weight: 100;
+			font-weight: 400;
 			line-height: inherit;
 			width: 85%;
 		}
@@ -1286,7 +1286,7 @@ button.list-group-item:focus {
 	.pb-content { 
 	
 		font-size: 15px;
-		font-weight: 100;
+		font-weight: 400;
 		width: 85%;
 		margin-left: 0px;
 		
@@ -1294,14 +1294,14 @@ button.list-group-item:focus {
 	
 	.pb-content p { 
 		font-size: 15px;
-		font-weight: 100;
+		font-weight: 400;
 		line-height: inherit;
 		width: 85%;
 	}
 	
 	.pb-content li { 
 		font-size: 15px;
-		font-weight: 100;
+		font-weight: 400;
 	}
 
 	.pb-content h1 { 
@@ -1632,7 +1632,7 @@ button.list-group-item:focus {
   /*color: #2ABBB0;*/
   color: #3b88c3;
   /*font-size: 25px;*/
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .pb-img {

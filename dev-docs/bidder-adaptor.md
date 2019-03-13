@@ -41,6 +41,7 @@ In order to provide a fast and safe header bidding environment for publishers, t
 * *Bid responses may not use JSONP*: All requests must be AJAX with JSON responses.
 * *All user-sync activity must be registered via the provided functions*: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
 * *Adapters may not use the `$$PREBID_GLOBAL$$` variable*: Instead, they must load any necessary functions and call them directly.
+* *Adapters may not modify ad slots directly*: e.g. Accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
 * *Adapters may not override standard ad server targeting*: Do not override, or set default values for any of the standard targeting variables: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
 
 {: .alert.alert-danger :}
@@ -491,6 +492,59 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
     /* Do something here. */
 }
 ```
+
+#### Long-Form Video Content
+
+To support long-form videos it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories]( http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file). Each bid request must return one IAB subcategory.
+
+If the demand partner is going to use Prebid API for this process their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
+
+**Params**  
+
+{: .table .table-bordered .table-striped }
+| Key             | Scope    | Description                                                                                        | Example                    |
+|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
+| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
+| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+
+
+**Example**
+
+```
+getMappingFileInfo: function() { 
+  return { 
+    url: '<mappingFileURL>',
+    refreshInDays: 7
+    localStorageKey: '<uniqueCode>'
+  }
+}
+```
+
+The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
+
+To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
+
+```
+getIabSubCategory(bidderCode, pCategory)
+```
+
+**Params**
+
+{: .table .table-bordered .table-striped }
+| Key          | Scope    | Description                                   | Example               |
+|--------------|----------|-----------------------------------------------|-----------------------|
+| `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
+| `pCategory`  | Required | Proprietary category returned in bid response | `"sample-category"`   |
+
+**Example**
+
+{% highlight js %}
+
+import { getIabSubCategory } from '../src/adapters/bidderFactory';
+let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+
+{% endhighlight %}
 
 #### Outstream Video Renderers
 

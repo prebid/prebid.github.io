@@ -10,8 +10,6 @@ gdpr_supported: true
 userIds: pubcommon
 ---
 
-
-
 ### Bid Parameters
 #### Banner
 
@@ -35,7 +33,7 @@ userIds: pubcommon
 | `openrtb` | optional | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }` | Object | 
 
 
-# Example
+## Example
 ```javascript
 var adUnits = [
   {
@@ -105,7 +103,7 @@ pbjs.setConfig({
 });
 ```
 
-# Additional Details
+## Additional Details
 [Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html)
 
 [Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html)
