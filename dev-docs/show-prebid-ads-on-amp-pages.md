@@ -40,10 +40,10 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 ## Implementation
 
-+ [Prebid Server Stored Request](#pbs-stored-request): This is the Prebid Server Stored Bid Request.
++ [Prebid Server Stored Request](#pbs-server-stored-request): This is the Prebid Server Stored Bid Request.
 + [AMP content page](#amp-content-page): This is where your content lives.
 + [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
-+ [User Sync in AMP](#user-sync-in-amp): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
++ [User Sync in AMP](#user-sync): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
 
 ### Prebid Server Stored Request
 

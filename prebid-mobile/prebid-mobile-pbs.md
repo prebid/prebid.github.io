@@ -84,16 +84,11 @@ The following resources are available for further information on working with Pr
 -   [Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)  
     Learn about the parameters available in the iOS Prebid Mobile SDK.
 
--   [Logging and Troubleshooting](/prebid-mobile/logging-troubleshooting-ios.html)  
-    Instructions on troubleshooting issues you might encounter.
 
 **Android**
 
 -   [Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)  
     Learn about the parameters available in the Android Prebid Mobile SDK.
-
--   [Logging and Troubleshooting](/prebid-mobile/logging-troubleshooting-android.html)  
-    Instructions on troubleshooting issues you might encounter.
 
 ### GDPR
 
