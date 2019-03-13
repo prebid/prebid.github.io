@@ -74,7 +74,7 @@ a:before, a:after {
   transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
-/* external links have an icon after them*/
+/* external links have an icon after them
 
 a[href^="http://"]:after,
 a[href^="https://"]:after {
@@ -82,11 +82,13 @@ a[href^="https://"]:after {
   margin: 0 0 0 5px;
 }
 
+
 a[href^="http://prebid.org/"]:after,
 a[href^="https://prebid.org/"]:after {
   content: '';
   margin: 0;
 }
+*/
 
 
 

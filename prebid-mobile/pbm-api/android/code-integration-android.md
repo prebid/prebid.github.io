@@ -14,7 +14,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 
 ### Include with Maven
 
-If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html). 
+If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
 
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies:
 
@@ -35,7 +35,7 @@ to output the PrebidMobile framework for Android.
 ### Integrate Ad Servers With Your App
 
 Integrating **MoPub** with your application
-1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/) . 
+1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/). 
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
 Integrating **Google** with your application   
@@ -46,7 +46,7 @@ Go to Google's developer site and follow the instructions for integrating their 
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
+View the full list of [targeting parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).
 
 ### Create Ad Units
 Banner and interstitial ad units can be created: 
