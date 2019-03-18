@@ -3,7 +3,7 @@ layout: bidder
 title: Advangelists
 description: Prebid Advangelists Bidder Adapter
 hide: true
-biddercode: avng
+biddercode: advangelists
 biddercode_longer_than_12: false
 ---
 
