@@ -39,3 +39,9 @@ sidebarType: 4
 
 -   [Video with DFP](outstream/outstream-dfp.html)
 -   [Outstream Video without an Ad Server](outstream/outstream-no-adserver.html)
+
+
+## Long-Form Video   
+
+-   [Long-Form Video Using Freewheel](long-form/long-form-video-with-freewheel.html)
+

@@ -2,11 +2,8 @@
 layout: bidder
 title: Gamma
 description: Prebid Gamma Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: gamma
-prebid_1_0_supported : true
 media_types: video
 ---
 
