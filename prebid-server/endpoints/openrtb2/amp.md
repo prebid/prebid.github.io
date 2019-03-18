@@ -111,9 +111,22 @@ See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.h
 
 | Task  | Code |  Message | Action  |
 |---|---|---|---|
-|  Returning auction data | 3  | Critical error.  | status set to `StatusInternalServerError` and return  |
-|  Extracting the targeting parameters from the response | 3  | Critical error while unpacking AMP targets.  | status set to `StatusInternalServerError` and return  |
-|  Extract error from response | 999  | AMP response: failed to unpack OpenRTB response.ext, debug info cannot be forwarded.  | Error is logged  |
+|  Returning auction data. | 3  | Critical error.  | status set to `StatusInternalServerError`.  |
+|  Extracting the targeting parameters from the response. | 3  | Critical error while unpacking AMP targets.  | status set to `StatusInternalServerError`.  |
+|  Extract error from response. | 999  | AMP response: failed to unpack OpenRTB response.ext, debug info cannot be forwarded.  | Error is logged.  |
+|  Adding debug information. | 999  | Test set on request but debug not present in response.  | Error is logged.  |
+|  Encoding the response. | 999  | `/openrtb2/amp` failed to send response.  | Error is logged.  |
+|   |   |   |   |
+
+The following errors can occur when loading a stored OpenRTB request for an incoming AMP request.
+
+| Task  | Code |  Message | Action  |
+|---|---|---|---|
+|  Query check for tag_id. | 999  | AMP requests require an AMP tag_id.  | Error is returned.  |
+|  Checking stored request for match against tag_id. | 999  | No AMP config found for tag_id `%s`.  | Error is returned.  |
+|  Checking if imp exists. | 999  | Data for tag_id=`'%s'` does not define the required imp array.  | Error is returned.  |
+|  Checking if imp count is greater than one. | 999  | Data for tag_id `'%s'` includes `%d` imp elements. Only one is allowed.  | Error is returned.  |
+|  Checking if request.app exists. | 999  | `r`equest.app` must not exist in AMP stored requests.  | Error is returned.  |
 |   |   |   |   |
 
 
