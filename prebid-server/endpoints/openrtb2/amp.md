@@ -11,16 +11,22 @@ This document describes the behavior of the Prebid Server AMP endpoint in detail
 For a more general reference, see the [Prebid AMP Implementation Guide
 ]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html).
 
-## `GET /openrtb2/amp?tag_id={ID}`
+## AMP Endpoint
 
-The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/developers/stored-requests.html).
-For a thorough description of BidRequest JSON, see the [/openrtb2/auction](./auction.html) docs.
+ `GET /openrtb2/amp?tag_id={ID}`
+
+ **Parameters**
+
+ {: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| tag_id | Required | `String` |  The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/developers/stored-requests.html). For a thorough description of BidRequest JSON, see the [/openrtb2/auction](./auction.html) docs. |
 
 To be compatible with AMP, this endpoint behaves slightly different from normal `/openrtb2/auction` requests.
 
 1. The Stored `request.imp` data must have exactly one element.
 2. `request.imp[0].secure` will be always be set to `1`, because AMP requires all content to be `https`.
-3. AMP query params will overwrite parts of your Stored Request. For details, see the Query Params section.
+3. AMP query params will overwrite parts of your Stored Request. For details, see the [Query Params](#query_params) section.
 
 ### Request
 
@@ -109,6 +115,7 @@ If any errors were generated they will appear  within `response.ext.errors.{bidd
 
 See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.html) for a description of some common openRTB errors. The following is a list of AMP specific errors that could be returned: 
 
+{: .table .table-bordered .table-striped }
 | Task  | Code |  Message | Action  |
 |---|---|---|---|
 |  Returning auction data. | 3  | Critical error.  | status set to `StatusInternalServerError`.  |
@@ -120,6 +127,7 @@ See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.h
 
 The following errors can occur when loading a stored OpenRTB request for an incoming AMP request.
 
+{: .table .table-bordered .table-striped }
 | Task  | Code |  Message | Action  |
 |---|---|---|---|
 |  Query check for tag_id. | 999  | AMP requests require an AMP tag_id.  | Error is returned.  |
@@ -129,7 +137,7 @@ The following errors can occur when loading a stored OpenRTB request for an inco
 |  Checking if request.app exists. | 999  | `r`equest.app` must not exist in AMP stored requests.  | Error is returned.  |
 |   |   |   |   |
 
-
+<a name="query_params"></a>
 ### Query Parameters
 
 This endpoint supports the following query parameters:
