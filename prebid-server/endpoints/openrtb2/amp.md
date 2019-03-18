@@ -95,7 +95,27 @@ A sample response payload looks like this:
 In [the typical AMP setup]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html),
 these targeting params will be sent to DFP.
 
-Note that "errors" will only appear if there were any errors generated. They are identical to the "errors" field in the response.ext of the OpenRTB endpoint.
+### Error Messages
+
+If any errors were generated they will appear  within `response.ext.errors.{bidderName}`. There are five error codes that could be returned: 
+
+```
+0   NoErrorCode
+1   TimeoutCode
+2   BadInputCode
+3   BadServerResponseCode
+999 UnknownErrorCode
+```
+
+See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.html) for a description of some common openRTB errors. The following is a list of AMP specific errors that could be returned: 
+
+| Task  | Code |  Message | Action  |
+|---|---|---|---|
+|  Returning auction data | 3  | Critical error.  | status set to `StatusInternalServerError` and return  |
+|  Extracting the targeting parameters from the response | 3  | Critical error while unpacking AMP targets.  | status set to `StatusInternalServerError` and return  |
+|  Extract error from response | 999  | AMP response: failed to unpack OpenRTB response.ext, debug info cannot be forwarded.  | Error is logged  |
+|   |   |   |   |
+
 
 ### Query Parameters
 
