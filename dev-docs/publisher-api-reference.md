@@ -14,9 +14,6 @@ sidebarType: 1
 
 This page has documentation for the public API methods of Prebid.js.
 
-{: .alert.alert-danger :}
-**Note:** Versions of Prebid.js prior to 1.0 are no longer supported.
-
 <a name="module_pbjs"></a>
 
 ## pbjs
@@ -61,6 +58,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
+  * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
@@ -445,6 +443,39 @@ Use this method to get all of the bids that have won their respective auctions b
 
 <hr class="full-rule">
 
+<a name="module_pbjs.getTargeting"></a>
+
+### pbjs.adServers.freewheel.getTargeting(options) ⇒ Object
+
+{: .alert.alert-info :}
+The FreeWheel implementation of this function requires including the `freeWheelAdserverVideo` module in your Prebid.js build.
+
+Use this method to get targeting key-value pairs to be sent to the ad server. 
+
++ `pbjs.adServers.freewheel.getTargeting(options)`: returns key-value pair from the ad server. 
+
+```javascript
+
+pbjs.adServers.freewheel.getTargeting({
+    codes: [adUnitCode1],
+    callback: function(err, targeting) { 
+        //pass targeting to player api 
+    }
+});
+```
+
+#### Argument Reference
+
+##### The `options` object
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| codes | Optional | `Array` |  [`adUnitCode1`] |
+| callback | Required | `Function` |  Callback function to execute when targeting data is back. |
+
+<hr class="full-rule">
+
 <a name="module_pbjs.getNoBids"></a>
 
 ### pbjs.getNoBids() ⇒ `Array`
@@ -503,7 +534,7 @@ This function will render the ad (based on params) in the given iframe document 
 
 ### pbjs.removeAdUnit(adUnitCode)
 
-Remove adUnit from the pbjs configuration
+Remove adUnit(s) from the pbjs configuration, If adUnit is not given then it will remove all adUnits
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -511,7 +542,7 @@ Remove adUnit from the pbjs configuration
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| adUnitCode | Required | `String` | the adUnitCode to remove |
+| adUnitCode | Optional | `String or Array of strings` | the adUnitCode(s) to remove, if empty it removes all |
 
 
 <hr class="full-rule">
@@ -1303,10 +1334,11 @@ However, if you'd like, you can disable this feature and prevent Prebid.js from 
 a given auction.
 
 {: .alert.alert-warning :}
-This option is scheduled to become false-by-default within a couple of releases, meaning the limited bid caching will be active only when turned on.
+This option is available in version 1.39 as true-by-default and became false-by-default as of Prebid.js 2.0. If you want to use this
+feature in 2.0 and later, you'll need to set the value to true.
 
 {% highlight js %}
-pbjs.setConfig({ useBidCache: false })
+pbjs.setConfig({ useBidCache: true })
 {% endhighlight %}
 
 
@@ -1446,13 +1478,9 @@ pbjs.setConfig({
         accountId: '1',
         bidders: ['appnexus', 'pubmatic'],
         defaultVendor: 'appnexus',
-        enabled: true,
         timeout: 1000,
-        adapter: 'prebidServer',
-        endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-        syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
         adapterOptions: {
-            rubicon: { key: 'value' },
+            pubmatic: { key: 'value' },
             appnexus: { key: 'value' }
         }
     }
@@ -1473,13 +1501,37 @@ Additional information of these properties:
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
-| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
+| `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.BIDDER. See the example above. |
+| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See video-related example below. |
 
-**Additional Notes on s2sConfig properties**
+**Notes on s2sConfig properties**
 
 - Currently supported vendors are: appnexus & rubicon
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
+
+**Video via s2sConfig**
+
+Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid` object. e.g.
+
+{% highlight js %}
+pbjs.setConfig({
+    s2sConfig: {
+        accountId: '1001',
+        bidders: ['rubicon', 'pubmatic'],
+        defaultVendor: 'rubicon',
+        timeout: 250,
+        extPrebid: {
+            cache: {
+                vastxml: { returnCreative: false }
+            },
+            targeting: {
+                pricegranularity: {"ranges": [{"max":40.00,"increment":1.00}]}
+            }
+        }
+    }
+})
+{% endhighlight %}
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 

@@ -2,12 +2,9 @@
 layout: bidder
 title: Sortable
 description: Prebid Sortable Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: sortable
 biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 media_types: banner
 gdpr_supported: true
 ---
@@ -46,18 +43,18 @@ Sortable supports the banner features described in:
 
 The Sortable site ID should be set globally in order to improve user sync. How to do so:
 
-```javascript
+``` javascript
 pbjs.setConfig({
    sortable: {
      siteId: "example.com"
    }
 });
- ```
+```
 
 The Sortable adapter has the ability to initiate user-sync requests that will improve DSP user ID match rate,
 with the aim of generating higher bid prices. By default, Sortable sync requests are off. Setting the Sortable site ID globally as described above is required for user-sync requests. 
 
-```javascript
+``` javascript
 pbjs.setConfig({
    userSync: {
     enabledBidders: ['sortable'],

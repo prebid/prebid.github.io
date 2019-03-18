@@ -2,12 +2,9 @@
 layout: bidder
 title: Adhese 
 description: Prebid Adhese Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: adhese
 biddercode_longer_than_12: false
-prebid_1_0_supported: true
 media_types: banner, video 
 gdpr_supported: true
 ---

@@ -2,11 +2,8 @@
 layout: bidder
 title: AdSpirit
 description: Prebid AdSpirit Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: adspirit
-prebid_1_0_supported: true
 biddercode_longer_than_12: false
 ---
 

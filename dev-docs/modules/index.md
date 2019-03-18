@@ -37,6 +37,9 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**DFP Video**]({{site.baseurl}}/dev-docs/modules/dfp_video.html) | Required for serving instream video through DFP. |
 | [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | Adds a persisted user ID in the publisher's domain. |
 | [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
+| [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/iabCatalogTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
+| [**Freewheel**]({{site.baseurl}}/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
+| [**Ad Pod**]({{site.baseurl}}/dev-docs/modules/adpod.html) | Enables developers to add support for a new adserver that handles ad pod (long-form) videos |
 
 ## Further Reading
 

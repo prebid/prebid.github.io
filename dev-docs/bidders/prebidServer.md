@@ -2,12 +2,9 @@
 layout: bidder
 title: Prebid Server
 description: Prebid Server S2S Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: prebidServer
 biddercode_longer_than_12: true
 hide: true
-prebid_1_0_supported : true
 media_types: video
 gdpr_supported: true
 ---
