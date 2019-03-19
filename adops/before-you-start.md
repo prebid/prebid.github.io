@@ -23,10 +23,8 @@ This page has information about considerations of your Prebid setup such as pric
 This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
 {% endcapture %}
 
-{% include alerts/alert_info.html content=infoNote %}
+{% include alerts/alert_note.html content=infoNote %}
 
-{: .alert.alert-info :}
-This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
 
 * TOC
 {: toc }
