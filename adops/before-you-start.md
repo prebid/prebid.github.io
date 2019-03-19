@@ -40,8 +40,6 @@ Our recommendation is to start with $1 or 10 cent granularity until you're more 
 
 Note that DFP has an order [object limits](https://support.google.com/dfp_premium/answer/1628457?hl=en#Trafficking) of containing up to 450 line items (including archived line items). If you are designing your own granularity setup, make sure you do not exceed that amount. Or, you can find the recommended pre-configured granularities in our API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity).
 
-{: .alert.alert-success :}
-**Action Item:** See the [Publisher API Reference](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) for more detail.
 
 ### Step 2. One set of line items for all bidders vs. a set of line items for each bidder
 
@@ -73,7 +71,7 @@ Choose one set of line items for each bidder if you:
 - Require bid landscape data for header bidding partners
     - With one set of line items for all bidders, Prebid.js sends the bidder information (Which bidder has the highest price) via a keyword `bidder=bidder_name`. To run a report to attribute winning bids to bidders, you will need to rely on your ad server's keyword reports. DFP supports this, but some ad servers do not. DFP does not support running reports for more than 2 keywords. Therefore, if you have existing reports that already rely on keywords, and you want to add a winning bid by bidder dimension, use one set of line items for each bidder.
 
-- Requires setting more keyword targeting within your ad server. The table below lists the required and optional key for targeting with each of your header bidder partners.
+- Requires setting more keyword targeting within your ad server. The table below lists the required and optional keys for targeting with each of your header bidder partners.
 
 {% include send-all-bids-keyword-targeting.md %} 
 
