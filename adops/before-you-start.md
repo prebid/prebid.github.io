@@ -26,7 +26,7 @@ This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}
 * TOC
 {: toc }
 
-### Step 1. Decide on price bucket granularity
+### Decide on price bucket granularity
 
 With pre-bid, you'll need to setup line items to tell your ad server how much money the “bidder” demand is worth to you. This process is done via key-values.
 
@@ -43,7 +43,7 @@ Our recommendation is to start with $1 or 10 cent granularity until you're more 
 Note that DFP has an order [object limits](https://support.google.com/dfp_premium/answer/1628457?hl=en#Trafficking) of containing up to 450 line items (including archived line items). If you are designing your own granularity setup, make sure you do not exceed that amount. Or, you can find the recommended pre-configured granularities in our API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity).
 
 
-### Step 2. One set of line items for all bidders vs. a set of line items for each bidder
+### One set of line items for all bidders vs. a set of line items for each bidder
 
 + <a href="#all-bidders">A. One set of line items for all bidders</a>
 + <a href="#per-bidder">B. One set of line items per bidder</a>
@@ -58,8 +58,13 @@ One set of line items for all bidders is the recommended way of setting up your 
 
 {% include default-keyword-targeting.md %} 
 
-{: .alert.alert-success :}
-**Action Item:** For instructions on setting up pre-bid with one set of line items for all bidders, see [Send Top Bid to Ad Server - Step by Step guide to DFP setup](/adops/step-by-step.html).
+
+{% capture successNote %}
+For instructions on setting up pre-bid with one set of line items for all bidders, see [Send Top Bid to Ad Server - Step by Step guide to DFP setup](/adops/step-by-step.html).
+{% endcapture %}
+
+{% include alerts/alert_tip.html content=successNote %}
+
 
 #### One set of line items for each bidder <a name="per-bidder"/>
 
@@ -75,10 +80,13 @@ Choose one set of line items for each bidder if you:
 
 {% include send-all-bids-keyword-targeting.md %} 
 
-{: .alert.alert-success :}
-**Action Item:** For instructions on setting up pre-bid with one set of line items for each bidder, see [Send all bids to the ad server - Ad Ops setup](/adops/send-all-bids-adops.html).
+{% capture successNote %}
+For instructions on setting up pre-bid with one set of line items for each bidder, see [Send all bids to the ad server - Ad Ops setup](/adops/send-all-bids-adops.html).
+{% endcapture %}
 
-### Step 3. Work together with your dev team
+{% include alerts/alert_tip.html content=successNote %}
+
+### Work together with your dev team
 
 Implementing header bidding requires much more collaboration with your dev team than normal Ad Ops setup. For example:
 
