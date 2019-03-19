@@ -18,6 +18,13 @@ There are a number of things you need to understand and to decide before impleme
 
 This page has information about considerations of your Prebid setup such as price granularity, line item configuration, and more.
 
+
+{% capture infoNote %}
+This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
+{% endcapture %}
+
+{% include alerts/alert_info.html content=infoNote %}
+
 {: .alert.alert-info :}
 This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
 
