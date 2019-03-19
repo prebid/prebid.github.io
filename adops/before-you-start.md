@@ -51,9 +51,7 @@ Note that DFP has an order [object limits](https://support.google.com/dfp_premiu
 One set of line items for all bidders is the recommended way of setting up your line items.  Choose this option if you prefer an easier, low-maintenance setup:
 
 - It's quicker and easier to setup, because you only have to create one set of line items.
-
 - It's easier to maintain because adding more bidders requires no change to your line item setup.
-
 - It's less error-prone because you only need to maintain 3 keywords:
 
 {% include default-keyword-targeting.md %} 
