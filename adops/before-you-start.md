@@ -11,12 +11,10 @@ sbUUID: 3.2
 
 
 
-# Ad Operations View of Prebid
+# Ad Ops and Prebid
 {: .no_toc }
 
-There are a number of things you need to understand and to decide before implementing any flavor of Prebid.
-
-This page has information about considerations of your Prebid setup such as price granularity, line item configuration, and more.
+Prior to implementing Prebid, whether that is Prebid.js, Prebid Server or Prebid Mobile, a publisher will need to set up their price granularity and line item configurations. 
 
 
 {% capture infoNote %}
@@ -24,7 +22,6 @@ This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
-
 
 * TOC
 {: toc }
