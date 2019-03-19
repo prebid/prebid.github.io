@@ -16,6 +16,9 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 2.5 | Fix event firing on native click. See [PR 3589](https://github.com/prebid/Prebid.js/pull/3589) |
+| 2.4 | (1) [Long Form video](http://prebid.org/prebid-video/video-long-form.html) (2) Bug fix for hb_uuid/hb_cache_id. See [PR 3568](https://github.com/prebid/Prebid.js/pull/3568) |
+| 2.3 | Bug fix for Firefox for some ads that use document.write See [PR 3524](https://github.com/prebid/Prebid.js/pull/3524) |
 | 2.1 | Refined the bid.adId and bidRequest.bidId. See [PR 3340](https://github.com/prebid/Prebid.js/pull/3440) |
 | 2.0 | The [limited bid caching](/dev-docs/faq.html#does-prebidjs-cache-bids) feature now turned off by default. |
 | 1.39 | (1) The [limited bid caching](/dev-docs/faq.html#does-prebidjs-cache-bids) feature can be optionally turned off. (2) Bug fix in the [currency module](/dev-docs/modules/currency.html) introduced with 1.37 where it wasn't calling for the currency conversion file when defaultRates are specified. |
