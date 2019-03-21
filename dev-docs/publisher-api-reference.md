@@ -1511,7 +1511,7 @@ Additional information of these properties:
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.BIDDER. See the example above. |
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See video-related example below. |
-| `syncUrlModifier` | Optional | Object | Function allow bidder to modify the sync url before the actual call to the sync endpoint, enable bidder to add custom params  |
+| `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
 
 **Notes on s2sConfig properties**
 
