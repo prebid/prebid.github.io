@@ -24,7 +24,7 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 
 ## Ad Server Setup
 
-Prebid uses FreeWheel for the distrubtion of Creatives. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
+Prebid uses FreeWheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
 
 ## Developers
 
@@ -36,7 +36,7 @@ Before downloading, select the adapters you want to include. (You can add more a
 
 - Include at least one video adapter. Find a list of available video adapters [here]({{site.github.url}}/dev-docs/bidders.html#bidder-video-native).
 - Include the [FreeWheel](/dev-docs/modules/freewheel.html) Ad Server module. 
-- Include the [IAB Subcategory Translation](/dev-docs/modules/iabCatagoryTranslation.html) module.  
+- Include the [Category Translation](/dev-docs/modules/categoryTranslation.html) module.  
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
 
 ### Ensuring Competitve Separation

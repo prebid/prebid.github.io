@@ -13,6 +13,6 @@ biddercode_longer_than_12: false
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `id`          | required |             |         | `string` |
-| `siteID`      | required |             |         | `string` |
+| `siteId`      | required |             |         | `string` |
 | `tier2SiteID` | optional |             |         | `string` |
 | `tier3SiteID` | optional |             |         | `string` |

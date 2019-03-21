@@ -35,14 +35,17 @@ At a high level, Prebid.js' support for native ads works like this:
 1. Prebid.js requests native demand from bidder adapters
 2. It sends the received assets to a native template defined in your ad server using key-value targeting
 
-The native ad responses get placed on specific keys that are sent into your ad server:
+The native ad responses get placed on specific keys that are sent into your ad server. For example:
 
 + `hb_native_title`
 + `hb_native_body`
++ `hb_native_body2`
 + `hb_native_brand`
 + `hb_native_image`
 + `hb_native_icon`
 + `hb_native_linkurl`
++ `hb_native_privacy`
++ `hb_native_rating`
 + `hb_native_cta`
 
 Note that these keys correspond directly to the `mediaTypes.native` object you define in your ad unit (which is [described in more detail below](#native-ad-keys)).
@@ -77,16 +80,30 @@ const slot = {
 
 The native object (shown [below](#native-object)) contains the following keys that correspond to the assets of the native ad:
 
+{: .alert.alert-danger :}
+Specific bidders may not support all of the fields listed below or may return differing responses for the assets that are requested.
+
 {: .table .table-bordered .table-striped }
-| Key           | Description                                                                 |
-|---------------+-----------------------------------------------------------------------------|
-| `title`       | The title of the ad, usually a call to action or a brand name.              |
-| `body`        | Text of the ad copy.                                                        |
-| `sponsoredBy` | The name of the brand associated with the ad.                               |
-| `icon`        | The brand icon that will appear with the ad.                                |
-| `image`       | A picture that is associated with the brand, or grabs the user's attention. |
-| `clickUrl`    | Where the user will end up if they click the ad.                            |
-| `cta`         | *Call to Action* text, e.g., "Click here for more information".               |
+| Key           | Description                                                                          | Ad Server Key Value   |
+|---------------+--------------------------------------------------------------------------------------|-----------------------|
+| `title`       | The title of the ad, usually a call to action or a brand name.                       | `hb_native_title`     |
+| `body`        | Text of the ad copy.                                                                 | `hb_native_body`      |
+| `body2`       | Additional Text of the ad copy.                                                      | `hb_native_body2`     | 
+| `sponsoredBy` | The name of the brand associated with the ad.                                        | `hb_native_brand`     |
+| `icon`        | The brand icon that will appear with the ad.                                         | `hb_native_icon`      |
+| `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `hb_native_image`     |
+| `clickUrl`    | Where the user will end up if they click the ad.                                     | `hb_native_linkurl`   |
+| `displayUrl`  | Text that can be displayed instead of the raw click URL. e.g, "Example.com/Specials" | `hb_native_displayUrl`|
+| `privacyUrl`  | Link to the Privacy Policy of the Buyer, e.g. http://example.com/privacy             | `hb_native_privacy`   |
+| `cta`         | *Call to Action* text, e.g., "Click here for more information".                      | `hb_native_cta`       |
+| `rating`      | Rating information, e.g., "4" out of 5.                                              | `hb_native_rating`    |
+| `downloads`   | The total downloads of the advertised application/product                            | `hb_native_downloads` |
+| `likes`       | The total number of individuals who like the advertised application/product          | `hb_native_likes`     |
+| `price`       | The non-sale price of the advertised application/product                             | `hb_native_price`     |
+| `salePrice`   | The sale price of the advertised application/product                                 | `hb_native_saleprice` |
+| `address`     | Address of the Buyer/Store. e.g, "123 Main Street, Anywhere USA"                     | `hb_native_address`   |
+| `phone`       | Phone Number of the Buyer/Store. e.g, "(123) 456-7890"                               | `hb_native_phone`     |
+
 
 Each key's value is an object with several fields.  Most important is the `required` field, which says whether that asset should be filled in by the bid response.  Specifically, bids that do not have all of the native assets marked as required will be dropped from the auction and will not be sent to the ad server.
 
@@ -96,7 +113,7 @@ Each key's value is an object with several fields.  Most important is the `requi
    Prebid.js validates the assets on native bid responses like so:
   <ul>
       <li>
-       If the asset is marked as "required", it checks the bid response to ensure the asset is part of the response
+       If the asset is marked as "required: true", it checks the bid response to ensure the asset is part of the response. If the asset is marked as "required: false" it will be requested but may not have a value returned.
       </li>
       <li>
        However, Prebid.js does not do any additional checking of a required asset beyond ensuring that it's included in the response; for example, it doesn't validate that the asset has a certain length or file size, just that that key exists in the response JSON
@@ -129,6 +146,9 @@ pbjs.addAdUnits({
             },
             clickUrl: {
                 required: true
+            },
+            privacyUrl: {
+                required: false
             },
             body: {
                 required: true

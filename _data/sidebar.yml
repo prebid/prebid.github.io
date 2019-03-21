@@ -489,8 +489,8 @@
   subgroup: 5
   
 - sbSecId: 1
-  title: IAB Subcategory Translation
-  link: /dev-docs/modules/iabCatagoryTranslation.html
+  title: Category Translation
+  link: /dev-docs/modules/categoryTranslation.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
