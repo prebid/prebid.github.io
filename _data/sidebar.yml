@@ -1002,6 +1002,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+  
+- sbSecId: 3
+  title: Prebid Universal Creative
+  link: /overview/prebid-universal-creative.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
 
 - sbSecId: 3
   title: Guide to DFP Setup
