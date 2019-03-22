@@ -20,7 +20,7 @@ For a more general reference, see the [Prebid AMP Implementation Guide
  {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| tag_id | Required | `String` |  The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/developers/stored-requests.html). For a thorough description of BidRequest JSON, see the [/openrtb2/auction](./auction.html) docs. |
+| tag_id | Required | `String` |  The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/developers/stored-requests.html). For a thorough description of bid request JSON, see the [/openrtb2/auction](./auction.html) docs. |
 
 To be compatible with AMP, this endpoint behaves slightly different from normal `/openrtb2/auction` requests.
 
@@ -34,7 +34,7 @@ Valid Stored Requests for AMP pages must contain an `imp` array with exactly one
 
 An example Stored Request is given below:
 
-```
+```javascript
 {
     "id": "some-request-id",
     "site": {
@@ -56,7 +56,7 @@ An example Stored Request is given below:
     "imp": [
         {
             "id": "some-impression-id",
-            "banner": {}, // The sizes are defined is set by your AMP tag query params
+            "banner": {}, // The sizes are defined by your AMP tag query params settings
             "ext": {
                 "appnexus": {
                     // Insert parameters here
@@ -74,7 +74,7 @@ An example Stored Request is given below:
 
 A sample response payload looks like this:
 
-```
+```javascript
 {
     "targeting": {
         "hb_bidder": "appnexus",
@@ -123,7 +123,7 @@ See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.h
 |  Extract error from response. | 999  | AMP response: failed to unpack OpenRTB response.ext, debug info cannot be forwarded.  | Error is logged.  |
 |  Adding debug information. | 999  | Test set on request but debug not present in response.  | Error is logged.  |
 |  Encoding the response. | 999  | `/openrtb2/amp` failed to send response.  | Error is logged.  |
-|   |   |   |   |
+
 
 The following errors can occur when loading a stored OpenRTB request for an incoming AMP request.
 
@@ -134,8 +134,8 @@ The following errors can occur when loading a stored OpenRTB request for an inco
 |  Checking stored request for match against tag_id. | 999  | No AMP config found for tag_id `%s`.  | Error is returned.  |
 |  Checking if imp exists. | 999  | Data for tag_id=`'%s'` does not define the required imp array.  | Error is returned.  |
 |  Checking if imp count is greater than one. | 999  | Data for tag_id `'%s'` includes `%d` imp elements. Only one is allowed.  | Error is returned.  |
-|  Checking if request.app exists. | 999  | `r`equest.app` must not exist in AMP stored requests.  | Error is returned.  |
-|   |   |   |   |
+|  Checking if request.app exists. | 999  | `request.app` must not exist in AMP stored requests.  | Error is returned.  |
+
 
 <a name="query_params"></a>
 ### Query Parameters
@@ -152,9 +152,24 @@ This endpoint supports the following query parameters:
    - A configuration option `amp_timeout_adjustment_ms` may be set to account for estimated latency so that Prebid Server can handle timeouts from adapters and respond to the AMP RTC request before it times out.
 8. `debug` - When set to `1`, the respones will contain extra info for debugging.
 
-For information on how these get from AMP into this endpoint, see [this pull request adding the query params to the Prebid callout](https://github.com/ampproject/amphtml/pull/14155) and [this issue adding support for network-level RTC macros](https://github.com/ampproject/amphtml/issues/12374).
+Ensure that the amp-ad component was imported in the header. 
 
-If present, these will override parts of your Stored Request.
+```html
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+ ```
+
+This script provides code libraries that will convert the `<amp-ad>` properties to the endpoint query parameters. In the most basic usage pass `width` and `height` as well as `type` and a `rtc-config`.  The `type` value is the ad network you will be using. The `rtc-config` is used to pass JSON configuration to the Prebid Server, which handles the communication with [AMP RTC](https://medium.com/ampfuel/better-than-header-bidding-amp-rtc-fc54e80f3999). Vendors is an object that defines any vendors that will be receiving the RTC callout. In this example, the required parameter `tag_id` will receive the `PLACEMENT_ID` value.
+
+```html
+<amp-ad  
+    width="300" 
+    height="250" 
+    type="a9">
+    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "ef8299d0-cc32-46cf-abcd-41cebe8b4b85"}}, "timeoutMillis": 500}'
+</amp-ad>
+```
+
+If any of the enpoint parameters are present, they will override parts of your Stored Request.
 
 1. `ow`, `oh`, `w`, `h`, and/or `ms` will be used to set `request.imp[0].banner.format` if `request.imp[0].banner` is present.
 2. `curl` will be used to set `request.site.page`
