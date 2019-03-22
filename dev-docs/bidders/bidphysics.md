@@ -19,4 +19,4 @@ The BidPhysics Header Bidding adaptor requires approval from the BidPhysics team
 | Name | Scope    | Description        | Example     | Type      |
 |------|----------|--------------------|-------------|-----------|
 | `unitId` | optional | Unit identifier | `'13000'` | `string`  |
-| `networkId` | optional | Network Id       | `2300000`     | `string` |
+| `networkId` | optional | Network Id       | `'2300000'`     | `string` |
