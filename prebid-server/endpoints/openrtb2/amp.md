@@ -26,7 +26,7 @@ To be compatible with AMP, this endpoint behaves slightly different from normal 
 
 1. The Stored `request.imp` data must have exactly one element.
 2. `request.imp[0].secure` will be always be set to `1`, because AMP requires all content to be `https`.
-3. AMP query params will overwrite parts of your Stored Request. For details, see the [Query Params](#query_params) section.
+3. AMP query params will overwrite parts of your Stored Request. For details, see the [Query Parameters](#query_params) section.
 
 ### Request
 
@@ -113,7 +113,7 @@ If any errors were generated they will appear  within `response.ext.errors.{bidd
 999 UnknownErrorCode
 ```
 
-See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.html) for a description of some common openRTB errors. The following is a list of AMP specific errors that could be returned: 
+See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.html) for a description of some common OpenRTB errors. The following is a list of AMP specific errors that could be returned: 
 
 {: .table .table-bordered .table-striped }
 | Task  | Code |  Message | Action  |
@@ -168,6 +168,12 @@ This script provides code libraries that will convert the `<amp-ad>` properties 
     rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "ef8299d0-cc32-46cf-abcd-41cebe8b4b85"}}, "timeoutMillis": 500}'
 </amp-ad>
 ```
+The endpoint is rewritten as: 
+
+```
+/openrtb2/amp?tag_id='ef8299d0-cc32-46cf-abcd-41cebe8b4b85'&w=300&h=250&timeout=500
+```
+
 
 If any of the enpoint parameters are present, they will override parts of your Stored Request.
 
