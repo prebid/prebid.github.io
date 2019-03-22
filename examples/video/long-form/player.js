@@ -20,7 +20,6 @@ tv.freewheel.DemoPlayer = function () {
   // be resumed.
 
   this.originalSource = this.videoEl.currentSrc;
-
   this.prerollSlots = [];
   this.postrollSlots = [];
   this.midrollSlots = [];
