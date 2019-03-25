@@ -180,6 +180,9 @@ Compared to previous versions of Prebid, the new `BaseAdapter` model saves the a
 * `interpretResponse` - Parse the response and generate one or more bid objects.
 * `getUserSyncs` - If the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.  For more information, see [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs) below.
 * `onTimeout` - If the adapter timed out for an auction, the platform will call this function and the adapter may register timeout.  For more information, see [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs) below.
+* `onBidWon` - Will execute if a bid from this bidder won the auction
+* `onSetTargeting` - Will execute when the adserver targeting has been set for a bid from this bidder.
+* `onRenderFail` - If an ad failed to render, the platform will call this function.
 
 A high level example of the structure:
 
@@ -862,6 +865,14 @@ export const spec = {
      * @param {Bid} The bid of which the targeting has been set
      */
     onSetTargeting: function(bid) {
+        // Bidder specific code
+    }
+
+    /**
+     * Register bidder specific code, which will execute when an ad render fails
+     * @param {Bid} The bid for which the render failed.
+     */
+    onRenderFail: function(bid) {
         // Bidder specific code
     }
 }
