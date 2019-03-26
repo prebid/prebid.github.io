@@ -70,6 +70,53 @@ guard let yob = Targeting.shared.yearofbirth else {
 ```
 Targeting.shared.yearofbirth = 1990;
 ```
+
+## Custom User Keywords
+
+Custom keywords are used to attach arbitrary key/value pairs to the ad call. Use key/value pairs to add Users segments, as shown here:
+
+```
+Targeting.shared.addUserKeyword(key: "testUserKey", value: "testUserValue")
+Targeting.shared.addUserKeywords(key: "testUserKeyArray", value: ["testUserValue1, testUserValue2"])
+```
+This will result in the following request JSON body construct:
+
+```
+"user" : {
+    "keywords": "testUserKey=testUserValue,testUserKeyArray=testUserValue1, testUserValue2"
+}
+```
+
+### addUserKeyword
+
+Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If the key already exists the value will be appended to the `customKeywords` property. No duplicates will be added.
+
+**Parameters**
+
+`key`: A String to be used to check if an existing value exists in the `customKeywords` property.
+
+`value`: A String to be appended to the `customKeywords` property.
+
+### addUserKeywords
+
+Define multiple values for a single key.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `values`: String array containing the list of values for the key.
+
+### removeUserKeyword
+Remove a key and all its associated values from `customKeywords` of a given Prebid Mobile ad unit.
+
+**Parameters**
+
+`forKey`: A string containing the key to remove from `customKeywords`.
+
+### clearUserKeywords
+Remove all keys and all values from a given Prebid Mobile ad unit.
+
+
 ## Global Application Targeting
 
 
@@ -94,6 +141,51 @@ Targeting.shared.itunesID
 ```
 Targeting.shared.itunesID = itunesID
 ```
+
+## Custom Inventory Keywords
+
+Custom keywords are used to attach arbitrary key/value pairs to the ad call. Use key/value pairs to add Inventory segments, as shown here:
+
+```
+Targeting.shared.addInvKeyword(key: "testInvKey", value: "testInvValue")
+Targeting.shared.addInvKeywords(key: "testInvKeyArray", value: ["testInvValue1, testInvValue2"])
+```
+This will result in the following request JSON body construct:
+
+```
+"user" : {
+    "keywords": "testInvKey=testInvValue,testInvKeyArray=testInvValue1, testInvValue2"
+}
+```
+
+### addInvKeyword
+
+Obtains the inventory keyword and value for targeting of a Prebid Mobile ad unit. If the key already exists the value will be appended to the `customKeywords` property. No duplicates will be added.
+
+**Parameters**
+
+`key`: A String to be used to check if an existing value exists in the `customKeywords` property.
+
+`value`: A String to be appended to the `customKeywords` property.
+
+### addUInvKeywords
+
+Define multiple values for a single key.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `values`: String array containing the list of values for the key.
+
+### removeInvKeyword
+Remove a key and all its associated values from `customKeywords` of a given Prebid Mobile ad unit.
+
+**Parameters**
+
+`forKey`: A string containing the key to remove from `customKeywords`.
+
+### clearInvKeywords
+Remove all keys and all values from a given Prebid Mobile ad unit.
 
 ## GPDR
 

@@ -13,7 +13,7 @@ Use the Prebid Mobile API 1.0 for Android to implement header bidding in your mo
 
 ## Key Features
 
-- The Publisher knows if the keywords are attached to the `adUnit`.  
+- The Publisher knows if the keywords are attached to the `request`.  
 - Implements and supports its own auto refresh, no longer supporting `adServer` refresh.   
 - Clear result codes that details the response of the Prebid demand fetch request. 
 

@@ -79,6 +79,17 @@ Targeting parameters enable you to define the target audience for the bid reques
 
 View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 
+### Add Custom Keywords
+
+Custom keywords can be added to it to improve its targeting.  
+
+```
+Targeting.shared.addUserKeyword(key:"Sample_user", value:"Value to add user")
+Targeting.shared.addInvKeyword(key:"Sample_inv", value:"Value to add inv")
+```
+
+For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+
 ### Create Ad Units
 
 Banner and interstitial ad units can be created:
@@ -93,16 +104,6 @@ For details on creating the specific ad units and additional parameters and meth
 [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
 
-
-### Add Custom Keywords
-
-Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
-
-```
-bannerUnit.addKeyword(key:"Sample", value:"Value to add")
-```
-
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
 
 ## Further Reading
 

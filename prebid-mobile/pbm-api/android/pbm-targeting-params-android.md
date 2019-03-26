@@ -45,6 +45,57 @@ gender = TargetingParams.getGender();
 TargetingParams.setGender(FEMALE);
 ```
 
+## Custom User Keywords
+
+Custom keywords are used to attach arbitrary key/value pairs to the ad call. Use key/value pairs to add Users segments, as shown here:
+
+```
+TargetingParams.addUserKeyword(key: "testUserKey", value: "testUserValue")
+TargetingParams.addUserKeywords(key: "testUserKeyArray", value: ["testUserValue1, testUserValue2"])
+```
+This will result in the following request JSON body construct:
+
+```
+"user" : {
+	"keywords": "testUserKey=testUserValue,testUserKeyArray=testUserValue1, testUserValue2"
+}
+```
+
+### addUserKeyword
+
+Set a single key-value pair.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `value`: String containing the value.
+
+### addUserKeywords
+
+Define multiple values for a single key.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `values`: String array containing the list of values for the key.
+
+### removeUserKeyword
+
+Remove a key and all its associated values from a given Prebid Mobile ad unit.
+
+**Parameters**
+
+- `key`: String containing the key you want to remove.
+
+### clearUserKeywords
+
+Clear all key-value combinations from the Prebid Mobile ad unit.
+
+**Parameters**
+
+none
+
+
 ## Global Application Targeting
 
 ### Bundle ID
@@ -84,6 +135,56 @@ storeUrl = TargetingParams.getStoreUrl();
 ```
 TargetingParams.etStoreUrl(storeUrl);
 ```
+
+## Custom Inventory Keywords
+
+Custom keywords are used to attach arbitrary key/value pairs to the ad call. Use key/value pairs to add Inventory segments, as shown here:
+
+```
+TargetingParams.addInvKeyword(key: "testInvKey", value: "testInvValue")
+TargetingParams.addInvKeywords(key: "testInvKeyArray", value: ["testInvValue1, testInvValue2"])
+```
+This will result in the following request JSON body construct:
+
+```
+"user" : {
+	"keywords": "testInvKey=testInvValue,testInvKeyArray=testInvValue1, testInvValue2"
+}
+```
+
+### addInvKeyword
+
+Set a single key-value pair.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `value`: String containing the value.
+
+### addInvKeywords
+
+Define multiple values for a single key.
+
+**Parameters**
+
+- `key`: String containing the key.
+- `values`: String array containing the list of values for the key.
+
+### removeInvKeyword
+
+Remove a key and all its associated values from a given Prebid Mobile ad unit.
+
+**Parameters**
+
+- `key`: String containing the key you want to remove.
+
+### clearInvKeywords
+
+Clear all key-value combinations from the Prebid Mobile ad unit.
+
+**Parameters**
+
+none
 
 ## Global GDPR Targeting
 

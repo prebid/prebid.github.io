@@ -235,12 +235,12 @@ Prebid Mobile continuously pre-caches creatives in the background, so that right
 
 **Objective-C**
  ```
- [self.bannerAdUnit addUserKeyword:(NSString*)key:(NSString*)value];
+ [[Targeting sharedInstance] addUserKeyword:(NSString*)key:(NSString*)value];
 ```
 
 **Swift**
 ```
-self.bannerAdUnit.addUserKeyword(key: string, value: string)
+Targeting.shared.addUserKeyword(key: string, value: string)
 ```
 
 

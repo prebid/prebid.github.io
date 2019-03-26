@@ -58,7 +58,6 @@ final PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
 final PublisherAdRequest request = builder.build();
 
 BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 300, 250);
-bannerAdUnit.setUserKeyword("my_key", "my_value");
 bannerAdUnit.fetchDemand(request, new onCompleteListener() {
     @Override
     public void onComplete(ResultCode resultCode) {

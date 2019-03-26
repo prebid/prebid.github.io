@@ -52,25 +52,6 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 `completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value.
 
-### addUserKeyword
-
-Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If the key already exists the value will be appended to the `customKeywords` property. No duplicates will be added.
-
-**Parameters**
-
-`key`: A String to be used to check if an existing value exists in the `customKeywords` property.
-
-`value`: A String to be appended to the `customKeywords` property.
-
-### removeUserKeyword
-Remove a key and all its associated values from `customKeywords` of a given Prebid Mobile ad unit.
-
-**Parameters**
-
-`forKey`: A string containing the key to remove from `customKeywords`.
-
-### clearUserKeywords
-Remove all keys and all values from a given Prebid Mobile ad unit.
 
 ### setAutoRefreshMillis
 If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
@@ -133,24 +114,6 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 }
 ```
 ---
-**addKeyword**
-
-```
-bannerUnit.addKeyword(key:"Sample", value:"Value to add")
-```
-
-**removeUserKeyword**
-
-```
-bannerUnit.removeUserKeyword(forKey:"sample")
-```
-
-**clearUserKeywords**
-
-```
-bannerUnit.clearUserKeywords()
-```
-
 **setAutoRefreshMillis**
 
 ```
