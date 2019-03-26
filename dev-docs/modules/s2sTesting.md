@@ -1,15 +1,15 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - Server-to-Server Testing
 description: Adds A/B test support to ease analysis of server-side header bidding
-top_nav_section: dev_docs
-nav_section: modules
 module_code : s2sTesting
 display_name : Server-to-Server Testing
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid JS Module: Server-to-Server Testing
 
@@ -197,4 +197,4 @@ The test KVP hb_source_rubicon on this page will always sent with the value "cli
 
 + [Prebid Server](http://prebid.org/dev-docs/get-started-with-prebid-server.html)
 
-</div>
+

@@ -1,13 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Conditional Ad Units
 description: Using labels for conditional ad units
 top_nav_section: dev_docs
 nav_section: features
 hide: false
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Conditional Ad Units
 {:.no_toc}
@@ -60,7 +61,11 @@ conditional ad unit logic. Now you need to label your AdUnits to match. For exam
 
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90], [468,60], [320,50]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90], [468,60], [320,50]]
+        }
+    },
     bids: [
         {
             bidder: "bidderA",
@@ -107,7 +112,11 @@ or more of the strings in the array matches a defined label.
 
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90], [468,60], [320,50]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90], [468,60], [320,50]]
+        }
+    },
     bids: [
         {
             bidder: "bidderA",
@@ -144,7 +153,11 @@ on phones. To suppress the ad unit for mobile users, we can apply conditional lo
 
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90]]
+        }
+    },
     labelAny: ["display", "tablet"], // skip the ad unit entirely for phones
     bids: [
         {
@@ -186,7 +199,11 @@ Then this label can be applied to conditions in the AdUnit just like labels that
 {% highlight js %}
 var AdUnits = [{
     code: "ad-slot-1",
-    sizes: [[768,90], [468,60], [320,50]], 
+    mediaTypes: {
+        banner: {
+            sizes: [[768,90], [468,60], [320,50]]      
+        }
+    },
     bids: [
        {
             bidder: "euroMobileBidder",
@@ -212,4 +229,4 @@ labels:
 + [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
 
 
-</div>
+

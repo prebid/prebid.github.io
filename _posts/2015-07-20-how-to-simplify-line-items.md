@@ -9,7 +9,7 @@ permalink: /blog/how-to-simplify-line-item-setup
 
 ---
 
-#### Let's do the math:
+## Let's do the math:
 
 * Per bidder per size: $0.01 increment, capped at $10 => 1000 line items
 * 10 creative sizes
@@ -19,7 +19,7 @@ permalink: /blog/how-to-simplify-line-item-setup
 
 <br>
 
-#### How to reduce the number of line items for header bidding?
+## How to reduce the number of line items for header bidding?
 
 > Prebid.js helps you use 1 set of line items for all bidders and all creatives.
 
@@ -35,8 +35,7 @@ In this section, we'll learn how to remove the creative size dimension for heade
 
 Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In DFP, this looks like:
 
-{: .pb-md-img :}
-![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png)
+![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png){: .pb-md-img :}
 
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.

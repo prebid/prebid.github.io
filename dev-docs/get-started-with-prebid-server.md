@@ -1,10 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Get Started with Prebid Server
 description: Get Started with Prebid Server
 pid: 27
 top_nav_section: dev_docs
 nav_section: prebid-server
+sidebarType: 5
+
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -20,7 +22,7 @@ the [Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**
-Prebid Server is an open source project.  [The source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-server).
+Prebid Server is an open source project.  [The source code is hosted under the Prebid organization on GitHub](https://github.com/prebid/prebid-server).
 
 * TOC
 {:toc}
@@ -35,7 +37,7 @@ Prebid Server is an open source project.  [The source code is hosted under the P
   - When approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid.js to use Prebid Server.
 
 - **Rubicon Project**
-  - Please send an email to prebidserver@rubiconproject.com and proceed to **Step 2** below. You do not have to wait for a verification email to get started.
+  - Reach out to your Rubicon Project account manager and proceed to **Step 2** below. You do not have to wait for a verification email to get started.
 
 
 ## Step 2. Download Prebid.js with Prebid Server enabled
@@ -77,9 +79,7 @@ pbjs.que.push(function() {
             timeout: 1000,
             adapter: 'prebidServer',
             endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync',
-            cookieSet: true,
-            cookiesetUrl: 'https://acdn.adnxs.com/cookieset/cs.js'
+            syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
         }
     });
 
@@ -126,13 +126,7 @@ If your `s2sConfig.endpoint` points to a url containing the path `/openrtb2/`, s
 
 {: .alert.alert-info :}
 **Aliasing Prebid Server only bidders**
-If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
-
-{: .alert.alert-info :}
-**Additional `cookieSet` details**
-If set to `true`:
-&bull; Prebid.js will overwrite all links on page to redirect through a persistent cookie URL
-&bull; Prebid.js will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies
+If you wish to set/use an alias for a Prebid Server only bidder, simply list the alias in your `s2sConfig.bidders` field and call the [`pbjs.aliasBidder` method]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) in your prebid code (prior to the `pbjs.requestBids`) to register the alias.
 
 <a name="prebid-server-video-openrtb" />
 

@@ -2,12 +2,9 @@
 layout: bidder
 title: Audience Network
 description: Prebid Audience Network Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: audienceNetwork
 biddercode_longer_than_12: true
-prebid_1_0_supported : true
 media_types: native, video
 ---
 
@@ -22,7 +19,7 @@ media_types: native, video
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                     | Example                           |
-| :------------ | :------- | :---------------------------------------------- | :--------------------------------- |
-| `placementId` | required | The Placement ID from Audience Network          | "555555555555555\_555555555555555" |
-| `format`      | optional | Format, one of "native", "fullwidth" or "video" | "native"                           |
+| Name          | Scope    | Description                                     | Example                              | Type     |
+|---------------|----------|-------------------------------------------------|--------------------------------------|----------|
+| `placementId` | required | The Placement ID from Audience Network          | `'555555555555555\_555555555555555'` | `string` |
+| `format`      | optional | Format, one of "native", "fullwidth" or "video" | `'native'`                           | `string` |

@@ -2,17 +2,13 @@
 layout: bidder
 title: Index Exchange
 description: Prebid Index Exchange Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: ix
 biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 gdpr_supported: true
 ---
 
-Overview
-========
+## Overview
 
 ```
 Module Name: Index Exchange Adapter
@@ -20,8 +16,7 @@ Module Type: Bidder Adapter
 Maintainer: prebid.support@indexexchange.com
 ```
 
-Description
-===========
+## Description
 
 This module connects publishers to Index Exchange's (IX) network of demand
 sources through Prebid.js. This module is GDPR compliant.
@@ -41,8 +36,6 @@ Here are examples of both formats.
 ```javascript
 var adUnits = [{
     // ...
-
-    mediaType: 'banner',
 
     sizes: [
         [300, 250],
@@ -73,33 +66,28 @@ var adUnits = [{
 
 ### Supported Media Types
 
-| Type | Support
-| --- | ---
-| Banner | Fully supported for all IX approved sizes.
-| Video  | Not supported.
-| Native | Not supported.
+{: .table .table-bordered .table-striped }
+| Type | Support |
+| --- | --- |
+| Banner | Fully supported for all IX approved sizes. |
+| Video  | Not supported. |
+| Native | Not supported. |
 
-# Bid Parameters
+## Bid Parameters
 
 Each of the IX-specific parameters provided under the `adUnits[].bids[].params`
 object are detailed here.
 
 ### Banner
 
-| Key | Scope | Type | Description
-| --- | --- | --- | ---
-| siteId | Required | String | <p>An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have.</p><p>Examples:<ul><li>`'3723'`</li><li>`'6482'`</li><li>`'3639'`</li></ul></p>
-| size | Required | Number[] | <p>The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.</p><p>Examples:<ul><li>`[300, 250]`</li><li>`[300, 600]`</li><li>`[728, 90]`</li></ul></p>
-| bidFloor | Optional<sup>1</sup> | Number | <p>The minimum bid required to participate in an auction for this ad unit. Assuming the bid floor currency that is set has a main unit (e.g. dollars, pounds) and a sub-unit (e.g. cents, pence), the bid floor should be in decimal-point format. If the currency only has main a unit (e.g. JPY), then the bid floor should be a whole number.</p><p>Examples:<ul><li>10.26 USD => `bidFloor: 10.26`</li><li>13.41 GBP => `bidFloor: 13.41`</li><li>600 JPY => `bidFloor: 600`</li></ul></p> | N/A
-| bidFloorCur | Optional<sup>1</sup> | String | <p>The currency of the bid floor.</p><p>Examples:<ul><li>`'USD'`</li><li>`'GBP'`</li><li>`'JPY'`</li></ul></p>
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description                                                                                                                                                                                                                                                                                                                                   | Example      | Type             |
+|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------|
+| `siteId`      | required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have.                                                                                                                                                                           | `'3723'`     | `string`         |
+| `size`        | required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.                                                                                                                                                                              | `[300, 250]` | `Array<integer>` |
 
-<p>
-    <sup>1</sup> <code>bidFloor</code> and <code>bidFloorCur</code> <b>must</b>
-    both be set when a bid floor is being configured.
-</p>
 
-Setup Guide
-===========
+## Setup Guide
 
 Follow these steps to configure and add the IX module to your Prebid.js
 integration.
@@ -140,6 +128,7 @@ Set `params.siteId` and `params.size` in each bid object to the values provided
 by your IX representative.
 
 **Example**
+
 ```javascript
 var adUnits = [{
     code: 'banner-div-a',
@@ -167,7 +156,8 @@ var adUnits = [{
 }];
 ```
 
-Please note that you can re-use the existing `siteId` within the same flex position.
+Please note that you can re-use the existing `siteId` within the same flex
+position.
 
 ##### 2. Include `ixBidAdapter` in your build process
 
@@ -194,8 +184,7 @@ And then build.
 gulp build --modules=bidderModules.json
 ```
 
-Setting First Party Data (FPD)
-==============================
+## Setting First Party Data (FPD)
 
 FPD allows you to specify key-value pairs which will be passed as part of the
 query string to IX for use in Private Marketplace Deals which rely on query
@@ -224,8 +213,7 @@ pbjs.setConfig({
 The values can be updated at any time by calling `pbjs.setConfig` again. The
 changes will be reflected in any proceeding bid requests.
 
-Setting a Server Side Timeout
-=============================
+## Setting a Server Side Timeout
 
 Setting a server-side timeout allows you to control the max length of time the
 servers will wait on DSPs to respond before generating the final bid response
@@ -248,8 +236,7 @@ pbjs.setConfig({
 
 The timeout value must be a positive whole number in milliseconds.
 
-Additional Information
-======================
+## Additional Information
 
 ### Bid Request Limit
 
@@ -264,14 +251,13 @@ to `'ix'` across all ad units that bids are being requested for does not exceed
 
 ### Time-To-Live (TTL)
 
-All bids received from IX have a TTL of 60 seconds, after which time they become
+All bids received from IX have a TTL of 35 seconds, after which time they become
 invalid.
 
 If an invalid bid wins, and its associated ad is rendered, it will not count
 towards total impressions on IX's side.
 
-FAQs
-====
+## FAQs
 
 ### Why do I have to input size in `adUnits[].bids[].params` for IX when the size is already in the ad unit?
 

@@ -1,19 +1,23 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.js Troubleshooting Guide
 head_title: Prebid.js Troubleshooting Guide
 description: How to troubleshoot Prebid.js from the perspective of an ad call from start to finish.
 pid: 10
 top_nav_section: dev_docs
 nav_section: troubleshooting
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.js Troubleshooting Guide
 {:.no_toc}
 
-Use this guide to troubleshoot your Prebid.js integration. You can follow this guide sequentially to determine if Prebid.js is working as intended on your website. It takes you through the ad call from start to finish.
+{: .alert.alert-danger :}
+Prebid.org does not support any version of Prebid.js prior to version 1.0.
+
+Use this guide to troubleshoot your Prebid.js integration. You can follow this guide sequentially to determine whether Prebid.js is working as intended on your website. It takes you through the ad call from start to finish.
 
 * TOC
 {:toc}
@@ -44,8 +48,7 @@ Make sure the ad units configured for Prebid.js match up with the ad units that 
 
 You can review what ad units have been configured for Prebid by opening your browser console and typing `pbjs.getBidResponses();`. This will show a list of what div IDs are present:
 
-{: .pb-lg-img :}
-![pbjs.getBidResponses() showing ad units in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-units.png "pbjs.getBidResponses() showing ad units in browser console")
+![pbjs.getBidResponses() showing ad units in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-units.png "pbjs.getBidResponses() showing ad units in browser console"){: .pb-lg-img :}
 
 ## List your Bids and Bidders
 
@@ -57,10 +60,9 @@ To see all of the winning bids, open your browser console and type [`pbjs.getAll
 Keep in mind that any bid responses that come back after [the timeout you configured during setup]({{site.github.url}}/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
 
 {: .alert.alert-success :}
-You can also [print this data to the console in table format](http://prebid.org/dev-docs/troubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
+You can also [print this data to the console in table format]({{site.baseurl}}/dev-docs/troubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
 
-{: .pb-lg-img :}
-![pbjs.getBidResponses() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()")
+![pbjs.getBidResponses() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()"){: .pb-lg-img :}
 
 ## Verify your Ad Server Targeting
 
@@ -68,8 +70,7 @@ After the auction on page has occurred, Prebid.js will set key-value targeting f
 
 To see what values Prebid.js intends to send to the ad server, open your browser console and type `pbjs.getAdserverTargeting();` as shown below:
 
-{: .pb-lg-img :}
-![pbjs.getAdserverTargeting() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-target.png "pbjs.getAdserverTargeting()")
+![pbjs.getAdserverTargeting() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-target.png "pbjs.getAdserverTargeting()"){: .pb-lg-img :}
 
 {: .alert.alert-danger :}
 Note that if no bids are returned, no key-values will be set. You may need to increase your timeout setting or reach out to your bidder partners to determine why no bid responses are being sent.
@@ -87,12 +88,12 @@ If you're using DFP, you can verify this by using the [Google Publisher Console]
 To make sure your ad server is set up correctly, answer the following questions:
 
 + **How many ads have been fetched for an ad unit?** Ideally, only 1 ad will be requested on page load. If not, check for unnecessary extra calls to the ad server in your page's source code.  
-  {: .pb-med-img :}
-  ![Google Publisher Console Ad fetch count]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-1.png "Google Publisher Console Ad fetch count")
+
+  ![Google Publisher Console Ad fetch count]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-1.png "Google Publisher Console Ad fetch count"){: .pb-sm-img :}
 
 + **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.  
-  {: .pb-lg-img :}
-  ![DFP Delivery Troubleshooting]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting")
+
+  ![DFP Delivery Troubleshooting]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting"){: .pb-lg-img :}
 
 + **Has the ad server order been activated?** If not, you'll have to activate the order to see Prebid-delivered ads.
 
@@ -112,8 +113,7 @@ When a prebid line item wins the ad server's auction, a `renderAd` event will be
 
 When this event is logged, it shows that Prebid.js has requested to render the ad from the winning bidder partner, and that this partner's bid has won both the Prebid and ad server auctions.
 
-{: .pb-lg-img :}
-![renderAd event in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/render-ad.png "renderAd event in browser console")
+![renderAd event in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/render-ad.png "renderAd event in browser console"){: .pb-lg-img :}
 
 ## Related Topics
 
@@ -121,4 +121,4 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
 
-</div>
+

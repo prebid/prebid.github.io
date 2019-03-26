@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice
 description: European Ad Inventory Overview
-pid: 1
+pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
+sidebarType: 2
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice
 
@@ -32,12 +33,12 @@ Prebid Mobile provides two APIs for app publishers to use the Framework. These A
 -   Define whether European privacy regulations should apply
 -   Set the [IAB Europe](https://www.iabeurope.eu/) (IAB) consent string
 
-This information will be persisted by Prebid Mobile and will be added to each ad call. Publishers/Consent Management Platforms (CMPs) are free to store these values in an NSUserDefaults/SharedPreferences interface (as defined by [Mobile In-App CMP API v1.0: Transparency & Consent Framework](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md)) instead of passing them via the new APIs, and Prebid Mobile will read the values as a fallback.
+This information will be persisted by Prebid Mobile and will be added to each ad call. Publishers/Consent Management Platforms (CMPs) are free to store these values in an NSUserDefaults/SharedPreferences interface (as defined by [Mobile In-App CMP API v1.0: Transparency & Consent Framework](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Final.md)) instead of passing them via the new APIs, and Prebid Mobile will read the values as a fallback.
 
 Publishers are responsible for providing notice, transparency and choice and collecting consent from their users in accordance with [the Framework policies](http://advertisingconsent.eu/), either using their own CMP or working with a vendor.
 
 -   [Register your own CMP](https://register.consensu.org/CMP)
--   [List of registered CMPs](http://advertisingconsent.eu/iab-europe-transparency-consent-framework-list-of-registered-cmps/)
+-   [List of registered CMPs](https://advertisingconsent.eu/cmp-list/)
 
 All vendor SDKs (including mediation SDKs) are responsible for looking up approved vendor and consent information on their own.
 
@@ -45,4 +46,3 @@ All vendor SDKs (including mediation SDKs) are responsible for looking up approv
 -   [iOS API Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios.html)
 
 
-</div>

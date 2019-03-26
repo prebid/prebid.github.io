@@ -1,73 +1,138 @@
 ---
 layout: bidder
-title: Rubicon
-description: Prebid Rubicon Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
+title: Rubicon Project
+description: Rubicon Project Prebid Bidder Adaptor
 hide: true
 biddercode: rubicon
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 gdpr_supported: true
 media_types: video
+userIds: unifiedId/tradedesk
 ---
 
 
 ### Note:
 The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Parameter | Version | Scope | Description | Example |
-| :--- | :------ | :---- | :---------- | :------ |
-| `accountId` | 0.6.0 | required | The publisher account ID | `"4934"` |
-| `siteId` | 0.6.0 | required | The site ID | `"13945"` |
-| `zoneId` | 0.6.0 | required | The zone ID | `"23948"` |
-| `sizes` | 0.6.0 | optional | Array of Rubicon Project size IDs. If not specified, the system will try to convert from bid.sizes. | `[15]` |
-| `keywords` | 0.6.0 | optional | Array of page-specific keywords. May be referenced in Rubicon Project reports. | `["travel", "tourism"]` |
-| `inventory` | 0.6.0 | optional | An object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}` |
-| `visitor` | 0.6.0 | optional | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}` |
-| `position` | 0.6.0 | optional | Set the page position. Valid values are "atf" and "btf". | `"atf"` |
-| `userId` | 0.6.0 | optional | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `"12345abc"` |
-| `floor` | 0.19.0 | optional | Sets the global floor -- no bids will be made under this value. | `0.50` |
-| `latLong` | 1.10.0 | optional | Sets the latitude and longitude for the visitor | `[40.7608, 111.8910]` |
-| `video` | 0.19.0 | required for video | Video targeting parameters. See the [video section below](#rubicon-video). | `{"language": "en", "playerHeight": "360", "playerWidth": "640", "size_id": "201"}` |
+| Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
+|-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
+| `accountId`    | required           | The publisher account ID                                                                                                    | `'4934'`                                                                            | `string`         |
+| `siteId`       | required           | The site ID                                                                                                                 | `'13945'`                                                                           | `string`         |
+| `zoneId`       | required           | The zone ID                                                                                                                 | `'23948'`                                                                           | `string`         |
+| `sizes`        | optional           | Array of Rubicon Project size IDs. If not specified, the system will try to convert from the AdUnit's mediaTypes.banner.sizes.        | `[15]`                                                                              | `Array<integer>` |
+| `keywords`     | optional           | Array of page-specific keywords. May be referenced in Rubicon Project reports.                                              | `['travel', 'tourism']`                                                             | `Array<string>`  |
+| `inventory`   | optional           | An object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
+| `visitor`      | optional           | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays.        | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
+| `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
+| `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
+| `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
+| `latLong`     | optional           | Sets the latitude and longitude for the visitor (avail since PBJS 1.10)                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
+| `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
 
 <a name="rubicon-video"></a>
 
 #### Video
 
-The following video parameters are supported as of 0.19.0:
+The following video parameters are supported:
 
 {: .table .table-bordered .table-striped }
-| Video Parameter | Scope | Description | Example |
-| :-------------- | :---- | :---------- | :------ |
-| `playerWidth` | required for video | Video player width in pixels | `"playerWidth": "640"` |
-| `playerHeight` | required for video | Video player height in pixels | `"playerHeight": "360"` |
-| `size_id` | required for video | Integer indicating the video ad format ID:<br/><br/>201: Pre-Roll<br/>202: Interstitial <br/>204: Mid-Roll <br/>205: Post-Roll <br/>207: Vertical Video | `"size_id": "201"` |
-| `language` | required for video | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `"language": "en"` |
-| aeParams | optional | Optional parameter that enables overriding of pre-defined video options in account setup. Some common samples are shown below. Additional options are available by contacting your account team. | |
-| `aeParams.p_aso.video.ext.skip` | optional | Defines whether the user can skip the ad. Defaults to non-skippable. Set to 1 to indicate skippable. | `"aeParams": {"p_aso.video.ext.skip": "1"}` |
-| `aeParams.p_aso.video.ext.skipdelay` | optional | If the ad is skippable, this is an integer duration (in seconds) after which the user has the option to skip the ad. Default is 0. | `"aeParams": {"p_aso.video.ext.skipdelay": "15"}` |
-| `aeParams.p_aso.video.ext.maxbitrate` | optional | Integer indicating maximum bitrate of video ad in kbps. | `"aeParams": {"p_aso.video.ext.maxbitrate": "1200"}` |
-| `aeParams.p_aso.video.ext.minbitrate` | optional | Integer indicating minimum bitrate of video ad in kbps. | `"aeParams": {"p_aso.video.ext.minbitrate": "400"}` |
-| `aeParams.p_aso.video.ext.boxingallowed` | optional | Integer indicating whether the seller permits letterboxing. The default is "1", -- letterboxing is permitted. "0" indicates it is not permitted. | `"aeParams": {"p_aso.video.ext.boxingallowed": "1"}` |
+| Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
+|----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
+| `playerWidth`  | optional | Video player width in pixels. If not specified, takes width set in mediaTypes.video.playerSize                                                                                                                                                                             | `'640'` | `string`  |
+| `playerHeight` | optional | Video player height in pixels. If not specified, takes height set in mediaTypes.video.playerSize                                                                                                                                                                            | `'360'` | `string`  |
+| `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, infers from mediaTypes.video.context | `201`   | `integer` |
+| `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
+
+{: .alert.alert-warning :}
+For Prebid.js 2.5 and later, the Rubicon Project adapter for video requires more parameters in the AdUnit's `mediaTypes.video` definition than required for version 2.4 and earlier. 
+We are requiring these parameters for publishers to fully declare their video inventory to be transparent to bidders, getting the best chance at a high value and technically compatible bid.
+Specifically, we're requiring: `mimes`, `protocols`, `maxduration`, `linearity`, and `api`. See the example below.
+
+Here's a video example for Prebid.js 2.5 or later:
+
+```
+var videoAdUnit = {
+    code: 'myVideoAdUnit',
+    mediaTypes: {
+        video: {
+            context: 'instream',
+            playerSize: [640, 480],
+            mimes: ['video/mp4', 'video/x-ms-wmv']
+            protocols: [2,5],
+            maxduration:30,
+            linearity: 1,
+            api: [2]
+        }
+    },
+    bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: '7780',
+            siteId: '87184',
+            zoneId: '413290',
+            video: {
+                language: 'en'
+            }
+        }
+    }]
+};
+```
+
+This example adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols, maxduration, linearity, and api are not required.
+
+We recommend discussing video demand with your Rubicon Project account representative.
+
+Lists of api, protocol, and linearity values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation, copied here for convenience:
+
+##### api
+
++ `1` : VPAID 1.0
++ `2` : VPAID 2.0
++ `3` : MRAID 1.0
++ `4` : ORMMA
++ `5` : MRAID 2.0
++ `6` : MRAID 3.0
+
+##### linearity
++ `1` : Linear / In-Stream
++ `2` : Non-Linear / Overlay
+
+##### protocols
++ `1` : VAST 1.0
++ `2` : VAST 2.0
++ `3` : VAST 3.0
++ `4` : VAST 1.0 Wrapper
++ `5` : VAST 2.0 Wrapper
++ `6` : VAST 3.0 Wrapper
++ `7` : VAST 4.0
++ `8` : VAST 4.0 Wrapper
++ `9` : DAAST 1.0
++ `10` : DAAST 1.0 Wrapper
+
+
+#### Outstream Video
+
+Rubicon Project supports outstream video with these restrictions:
+
+* The publisher must [provide their own renderer](/dev-docs/show-outstream-video-ads.html#renderers).
+* Rubicon Project does not make concurrent banner and video requests. The Rubicon adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
 ### Configuration
 
-The Rubicon adapter has the ability to initiate user-sync requests that will improve DSP user ID match rate,
-with the aim of generating higher bid prices. By default, Rubicon Project sync requests are off. To improve monetization, we recommend firing user syncs 5 seconds after the auction is complete with a call to setConfig().
+#### Single-Request
 
-```javascript
-$$PREBID_GLOBAL$$.setConfig({ 
-   userSync: {
-    enabledBidders: ['rubicon'],
-    iframeEnabled: true
- }});
+By default, the Rubicon Project adapter sends one request to rubiconproject.com for each AdUnit. For example, if there are 4 PBJS AdUnits defined on the page, you'll see 4 calls out to rubiconproject.com/fastlane.json.
+
+As of PBJS 1.12, the Rubicon Project adapter supports `Single Request` mode, where all AdUnit requests are made in a single call to rubiconproject.com. To turn this feature on, call `setConfig`:
 ```
-Note: this config should be combined with any other UserSync config calls, as subsequent calls to setConfig for the same attribute overwrite each other.
+pbjs.setConfig({
+   rubicon: {singleRequest: true}
+});
+```
 
 ### Notes
 
-There can only be one siteId and zoneId in an AdUnit. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.

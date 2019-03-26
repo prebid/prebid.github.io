@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: How to simplify line item setup
 head_title: How to simplify line item setup for header bidding with prebid.js
 
@@ -9,10 +9,11 @@ pid: 50
 
 top_nav_section: overview
 nav_section: studies
+sidebarType: 3
 
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to simplify line item setup
 
@@ -42,8 +43,7 @@ In this section, we'll learn how to remove the creative size dimension for heade
 
 Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In DFP, this looks like:
 
-{: .pb-md-img :}
-![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png)
+![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png){: .pb-md-img :}
 
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.
@@ -114,8 +114,3 @@ Note that because Prebid.js only sends in the highest price bid, DFP does not se
 Enjoy the much more simplified line items, creatives, and targeting setup!
 
 
-
-
-
-
-</div>

@@ -1,21 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Download Prebid.js
 description: Documentation on how to download Prebid.js for header bidding.
-
-pid: 0
-
-is_top_nav: yeah
-
-top_nav_section: download
-nav_section: download
-
-
+sidebarType: 0
 ---
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
 <script>
+
+  getVersionList();
 
 $(function(){
   $('#myModal').on('show.bs.modal', function (e) {
@@ -27,31 +21,57 @@ $(function(){
     return;
   });
 
-  $( ".selectpicker" ).change(function() {
-    if(this.value.match(/1\.\d+\.\d+/i)) {
-      $('.adapters .col-md-4').hide();
-      $('.prebid_1_0').show();
-    }
-    else{
-       $('.adapters .col-md-4').show();
-    }
-  });
-
-  //default to 1.x adapters:
-  $('.adapters .col-md-4').hide();
-  $('.prebid_1_0').show();
+  // show all adapters
+  $('.adapters .col-md-4').show();
 });
+
+function getVersionList() {
+  $.ajax({
+      type: "GET",
+      url: "http://js-download.prebid.org/versions",
+  })
+  .success(function(data) {
+    try{
+      data = JSON.parse(data);
+      var versions = data.versions;
+      if(!versions || versions.length === 0) {
+        showError();
+        return;
+      }
+      versions.forEach(function(version, index){
+        if(index === 0) {
+          $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
+        }
+        else{
+          if(version.match(/\d\.\d+\.\d+/i)){
+            $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
+          }
+          else{
+            // $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecated</option>');
+          }
+        }
+      });
+    }
+    catch(e) {
+      console.log(e);
+      showError();
+    }
+
+  })
+  .fail(function(e) {
+    console.log(e);
+    showError();
+  });
+  function showError(){
+     $('.selectpicker').append('<option value="error">Error generating version list. Please try again later</option>');
+  }
+}
 
 function submit_download() {
     var form_data = get_form_data();
 
     var alertStatus = $('#download-status');
 
-    if (!(form_data['email'] && form_data['company'])) {
-      alertStatus.html('Email and Company fields are required.');
-      alertStatus.removeClass('hide');
-      return;
-    }
     alertStatus.addClass('hide');
 
     $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
@@ -70,7 +90,7 @@ function submit_download() {
       alertStatus.addClass('hide');
       // Try to find out the filename from the content disposition `filename` value
       var filename = "prebid" + form_data['version'] + ".js";
-      // this doens't work in our current jquery version. 
+      // this doens't work in our current jquery version.
       var disposition = jqXHR.getResponseHeader('Content-Disposition');
       if (disposition && disposition.indexOf('attachment') !== -1) {
           var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
@@ -92,7 +112,7 @@ function submit_download() {
       var buttn = $('#download-button');
       buttn.html('<i class="glyphicon glyphicon-envelope"></i> Receive Prebid.js');
       buttn.removeClass('disabled');
-      alert('Ran into an issue.'); 
+      alert('Ran into an issue.');
     });
 }
 
@@ -118,8 +138,6 @@ function get_form_data() {
     }
 
     var form_data = {};
-    form_data['email'] = $('#input-email').val();
-    form_data['company'] = $('#input-company').val();
     form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
 
@@ -137,7 +155,7 @@ function get_form_data() {
 
 <div class="bs-docs-section" markdown="1">
 
-# Customize and Download Prebid.js <span class="label label-warning" style="font-size:14px">Beta</span>
+# Customize and Download Prebid.js
 
 {: .lead :}
 To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
@@ -145,39 +163,33 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 ### Option 1: Customize your download here
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% assign module_pages = site.pages | where: "nav_section", "modules" %}
+{% assign module_pages = site.pages | where: "page_type", "module" %}
 
 {: .alert.alert-success :}
-Note if you receive an email with a broken link you most likely selected a configuration that is not supported. Verify that each bidder / module is supported in the selected version. 
+Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
 <form>
 <div class="row">
 <h4>Select Prebid Version</h4>
-<select class="selectpicker">
-  <!-- empty value indicates legacy --> 
-  <option value="1.15.0">1.15.0 - latest</option>
-  <option value="1.14.0">1.14.0</option>
-  <option value="1.13.0">1.13.0</option>
-  <option value="1.12.0">1.12.0</option>
-  <option value="0.34.15">0.34.15 - legacy not recommended</option>
+<select id="version_selector" class="selectpicker">
 </select>
 
 
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
 {% for page in bidder_pages %}
-  {% if page.s2s_only == true %}  
+  {% if page.s2s_only == true %}
     {% continue %}
   {% endif %}
-<div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
+<div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %} 
+  {% if page.aliasCode %}
     <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% else %}
     <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% endif %}
-      
+
     </label>
 </div>
 </div>
@@ -301,13 +313,44 @@ Note if you receive an email with a broken link you most likely selected a confi
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
+    </label>
+  </div>
+</div>
 
 </div>
 <br/>
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
-  {% if page.enable_download == false %}  
+  {% if page.enable_download == false %}
     {% continue %}
   {% endif %}
  <div class="col-md-4">
@@ -322,7 +365,7 @@ Note if you receive an email with a broken link you most likely selected a confi
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Prebid.js! </button>
+  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
 
 </div>
 
@@ -346,17 +389,7 @@ Note if you receive an email with a broken link you most likely selected a confi
       <div class="modal-body">
 
         <div class="lead">
-          Enter your information below to generate the download file. 
-        </div>
-
-
-        <div class="form-group col-md-6">
-            <label for="input-email">Email address</label>
-            <input type="email" class="form-control" id="input-email" placeholder="Email" name="email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="input-company">Company Name</label>
-            <input type="text" class="form-control" id="input-company" placeholder="Your Company" name="company_email">
+          Downloading Prebid.js...
         </div>
 
         <div class="form-group">

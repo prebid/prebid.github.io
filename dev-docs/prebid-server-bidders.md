@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Server Bidders
 description: Get Started with Prebid Server
 pid: 28
