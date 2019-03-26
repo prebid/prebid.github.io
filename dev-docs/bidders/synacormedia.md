@@ -39,4 +39,6 @@ pbjs.setConfig({
 | ---- | ----- | ----------- | ------- | ---- |
 | `seatId` | required | The seat ID from Synacor Media. This will be the same for all ad units. | `'prebid'` | `string` |
 | `placementId` | required | The placement ID from Synacor Media. | `'demo1'` | `string` |
+| `bidfloor` | optional | The floor price for the request. | `0.1` | `float` |
+| `pos` | optional | The position of the placement on the page, see Open RTB spec v2.5. | `0` | `int` |
 
