@@ -17,6 +17,6 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example            | Type     |
 |---------------|----------|-------------|--------------------|----------|
-| `accountId`   | required |             | someAccount        | `string` |
-| `placementId` | required |             | somePlacement      | `string` |
+| `accountId`   | required |             | "someAccount"        | `string` |
+| `placementId` | required |             | "somePlacement"      | `string` |
 | `keyValues`   | optional |             | { "key": "value" } | `object` |
