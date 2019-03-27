@@ -150,9 +150,9 @@ For DFP:
 
 For Mopub:
 
-```html 
+```html
 
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -169,7 +169,7 @@ For Mopub:
 
 For all other ad servers:
 
-```javascript
+```html
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
