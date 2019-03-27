@@ -28,7 +28,7 @@ Depending on your setup in our system, your placements will either have a global
 | `publisherId`  | optional | Your publisher ID.  This is only required when using a placementKey                                                        | `950`                                                                  | `integer` |
 | `placementKey` | optional | The placement key for your placement.  Must be used with `publisherId`.                                                    | `'myMainBannerPlacement300x200'`                                       | `string`  |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
-| `size`         | optional | Size filter.  Where a placement supports multiple sizes, this forces the response to featur only one of the multiple sizes | `{ w:300, h:250 }`                                                     | `object`  |
+| `size`         | optional | Single size filter.  Where a placement supports multiple sizes, this forces the response to feature only one of the multiple sizes. This parameter is ignored when `usePrebidSizes` is enabled (see `Sizes` section below) | `{ w:300, h:250 }`                                                     | `object`  |
 
 ### Configuration
 
@@ -40,6 +40,15 @@ The Improve Digital adapter supports `Single Request` mode, where all ad unit re
 ```
 pbjs.setConfig({
    improvedigital: {singleRequest: true}
+});
+```
+
+#### Sizes
+
+By default, the adapter doesn't send Prebid ad unit sizes to Improve Digital's ad server and the sizes defined for each placement in the Polaris platform will be used. If the ad server should only respond with creative sizes as defined in Prebid ad unit configuration, turn on `usePrebidSizes` adapter parameter like this:
+```
+pbjs.setConfig({
+   improvedigital: {usePrebidSizes: true}
 });
 ```
 
@@ -115,6 +124,3 @@ pbjs.setConfig({
             }
         ]
     }];
-
-{: .alert.alert-info :}
-Sizes set in the `adUnit` object will not be used since sizes are already defined as part of the placement setup.
