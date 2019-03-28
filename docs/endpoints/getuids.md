@@ -1,10 +1,10 @@
 # Getting the existing user syncs
 
-This endpoint is used to get the existing user syncs.
+This endpoint is used to get the existing user syncs of an user.
 
 ## `GET /getuids`
 
-This endpoint parses the PBS cookie and returns the existing UserIDs for each bidder.
+This endpoint parses the PBS cookie and returns the existing UserIDs for each bidder. This information can be used by publishers in server to server requests where the originating server doesn't have access to the PBS cookie.
 
 ### Sample Response
 
@@ -25,3 +25,5 @@ It returns JSON like:
   }
 }
 ```
+
+**Note:** If there doesn't exist a cookie then this endpoint will return an empty JSON response.
