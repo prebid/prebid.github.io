@@ -288,8 +288,8 @@ it will respond to that request with the actual asset values for that `adId` in 
 
 A script within the native template can listen for this response and replace the placeholder values with their actual values.
 
-The `native-trk.js` script available as part of `prebid-universal-creative`, if used in a template that sets any link with a `pbAdId` to `hb_adid`, will replace any placeholder values with their actual values automatically (note: this works for placeholders located within HTML native templates but not CSS native templates). See [Style your native ad]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html#3-style-your-native-ad)
-for more on how to set this up in a native template.
+{: .alert.alert-success :}
+The `native-trk.js` script from `prebid-universal-creative` can replace native placeholder values with their actual values. If a native template includes a link with a `pbAdId` attribute set to the targeting key `hb_adid`, and a `class` attribute set to `"pb-click"`, the function `pbNativeTag.startTrackers` will replace any placeholders found within the HTML template (but not CSS template) with their actual values automatically. For more on how to set this up in a native template, see [Style your native ad]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html#3-style-your-native-ad)
 
 ## Working Examples
 
