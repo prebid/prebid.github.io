@@ -95,7 +95,13 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       var ucTagData = {};
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%PATTERN:url%%";
-      ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+      ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";
+      ucTagData.cacheHost = "%%PATTERN:hb_cache_host%%";
+      ucTagData.cachePath = "%%PATTERN:hb_cache_path%%";
+      ucTagData.uuid = "%%PATTERN:hb_cache_id_BIDDERCODE%%";
+      ucTagData.mediaType = "%%PATTERN:hb_format_BIDDERCODE%%";
+      ucTagData.env = "%%PATTERN:hb_env%%";
+      ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
 
       try {
         ucTag.renderAd(document, ucTagData);
@@ -103,6 +109,8 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
         console.log(e);
       }
     </script>
+
+**NOTE** Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line-item is targeting.  For example, if you were targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`
 
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
@@ -119,13 +127,21 @@ For Mopub:
       var ucTagData = {};
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%KEYWORD:url%%";
-      ucTagData.targetingKeywords = "%%KEYWORDS%%";
+      ucTagData.adId = "%%KEYWORD:hb_adid_BIDDERCODE%%";
+      ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
+      ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
+      ucTagData.uuid = "%%KEYWORD:hb_cache_id_BIDDERCODE%%";
+      ucTagData.mediaType = "%%KEYWORD:hb_format_BIDDERCODE%%";
+      ucTagData.env = "%%KEYWORD:hb_env%%";
+      ucTagData.size = "%%KEYWORD:hb_size_BIDDERCODE%%";
        try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
         console.log(e);
       }
     </script>
+
+**NOTE** See earlier note above in regards to replacing *BIDDERCODE* placeholders.
 
 For other ad servers:
 
@@ -134,13 +150,13 @@ For other ad servers:
       var ucTagData = {};
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%MACRO:url%%";
-      ucTagData.adId = "%%MACRO:hb_adid%%";
+      ucTagData.adId = "%%MACRO:hb_adid_BIDDERCODE%%";
       ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
       ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
-      ucTagData.uuid = "%%MACRO:hb_cache_id%%";
-      ucTagData.mediaType = "%%MACRO:hb_format%%";
+      ucTagData.uuid = "%%MACRO:hb_cache_id_BIDDERCODE%%";
+      ucTagData.mediaType = "%%MACRO:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%MACRO:hb_env%%";
-      ucTagData.size = "%%MACRO:hb_size%%";
+      ucTagData.size = "%%MACRO:hb_size_BIDDERCODE%%";
 
       try {
         ucTag.renderAd(document, ucTagData);
@@ -150,6 +166,8 @@ For other ad servers:
     </script>
 
 Replace `MACRO` with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
+
+**NOTE** See earlier note above in regards to replacing *BIDDERCODE* placeholders.
 
 ## Step 4. Attach the Creative to the Line Item
 
