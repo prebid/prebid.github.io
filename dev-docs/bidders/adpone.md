@@ -3,7 +3,7 @@ layout: bidder
 title: Adpone
 description: Prebid Adpone Bidder Adaptor
 hide: true
-biddercode: Adpone
+biddercode: adpone
 bidder_supports_deals: false
 biddercode_longer_than_12: false
 media_types: banner
