@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Render Options Supported by the Brightcove Prebid Plugin
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,13 +7,13 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Render Options Supported by the Brightcove Prebid Plugin
 
 ## Overview
 
-Options to configure the Plugin are passed into the plugin in a JSON object structure.  These options can include:
+Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html) for more details.) These options can include:
 
 - Prebid options, which configure how the prebid process should be executed.
 - Rendering options, which customize the ad playback.
@@ -21,7 +21,9 @@ Options to configure the Plugin are passed into the plugin in a JSON object stru
 
 ## Plugin Rendering Options
 
-These options are used to customize the ad playback characteristics.  The options are included in same JSON structure where the prebid options are also provided.
+These options are used to configure how the plugin should execute the prebid process for a single ad break. They are included in the same JSON structure where the rendering options are also provided for the ad break.
+
+When configuring prebid options for more than one ad break, create an array of prebid and rendering options for each ad break.
 
 - [skippable](#skippable)
 - [skippable.enabled](#enabled)
@@ -32,6 +34,9 @@ These options are used to customize the ad playback characteristics.  The option
 - [adStartTimeout](#adStartTimeout)
 - [timeOffset](#timeOffset)
 - [adText](#adText)
+- [wrapperLimit](#wrapperLimit)
+- [frequencyRules](#frequencyRules)
+- [label](#labeloption)
 
 <a name="skippable"></a>
 ### skippable
@@ -220,7 +225,8 @@ String that can be one of the following:
 
 **Required?**
 
-No
+- If specifying a single ad break:  No
+- If specifying more than one ad break: Yes, for each set of configuration settings for each ad break. Each `timeOffset` value should be unique.
 
 **Default Value:**
 
@@ -259,6 +265,90 @@ No
 
 `options.adText = 'Publicité'`
 
+<a name="wrapperLimit"></a>
+### wrapperLimit
+
+**Description:**
+
+Specifies the maximum number of XML redirects that are allowed to be considered when attempting to play an ad.
+
+**Acceptable Values:**
+
+Integer
+
+The number of XML documents being parsed in a wrapper chain to obtain the media file to play. This includes the number of wrapper XML documents and the inline XML.
+
+If the number of steps in the XML chain equals or exceeds this limit, no ad will play.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+5
+
+**Example:**
+
+`wrapperLimit: 3`
+
+<a name="frequencyRules"></a>
+### frequencyRules
+
+**Description:**
+
+Specifies rules controlling how frequently the plugin should attempt to play an ad.
+
+**Acceptable Values:**
+
+JSON Object
+
+playlistClips = integer that specifies how often an ad should be shown for videos within a single playlist
+  - playlistClips = 1: the plugin will attempt to play an ad for every video in the playlist
+  - playlistClips = 2: the plugin will attempt to play an ad for every other video in the playlist, starting at video #1
+  - playlistClips = 3: the plugin will attempt to play an ad every third video in the playlist, start at video #1
+
+For example, if playlistClips = 2 and there 6 videos in the playlist, the plugin will attempt to play an ad for video #1, video #3, and video #5.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+playlistClips = 1
+
+**Example:**
+
+```
+frequencyRules
+  {
+    playlistClips : 2
+  }
+```
+
+<a name="labeloption"></a>
+### label
+
+**Description:**
+
+User-defined text that identifies a set of prebid/rendering options.  This string is particularly useful when defining configuration options for more than one ad break.  Use this option to make it easier to manage all the sets of configuration options.
+
+**Acceptable Values:**
+
+String that uniquely identifies a set of prebid options.  Your label should be logically correct.  For example, do not use a label of "preroll ad" if the ad is going to be used in the midroll position.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+None
+
+**Example:**
+
+`options1.label = 'midroll-at-5-minutes'`
 
 ## Links
 
@@ -281,4 +371,7 @@ Sample implementations are provided at:
 
 - **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
 
+- **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
+
 </div>
+

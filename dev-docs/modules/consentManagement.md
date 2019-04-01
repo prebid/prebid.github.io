@@ -1,15 +1,15 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - GDPR ConsentManagement
 description: Add on module to consume and distribute consent information to bidder adapters
-top_nav_section: dev_docs
-nav_section: modules
 module_code : consentManagement
 display_name : GDPR ConsentManagement
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # GDPR ConsentManagement Module
 {: .no_toc }
@@ -50,9 +50,10 @@ Once the CMP is implemented, simply include the module in your build and add a `
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
-| cmpApi | `string` | The ID for the CMP in use on the page.  Default is `'iab'` | `'iab'` |
+| cmpApi | `string` | The ID for the CMP in use on the page.  Default is `'iab'` | `'iab', 'static'` |
 | timeout | `integer` | Length of time (in milliseconds) to allow the CMP to perform its tasks before aborting the process. Default is `10000` | `10000` |
 | allowAuctionWithoutConsent | `boolean` | A setting to determine what will happen when obtaining consent information from the CMP fails; either allow the auction to proceed (**true**) or cancel the auction (**false**). Default is `true` | `true` or `false` |
+| consentData | `Object` | A Object representing the consentData being passed directly, only in used when cmpApi is 'static'. Default is `undefined`. Example see the tests for consentManagement. | |
 
 Example: IAB CMP using the custom timeout and cancel auction options.
 
@@ -71,16 +72,53 @@ Example: IAB CMP using the custom timeout and cancel auction options.
      });
 {% endhighlight %}
 
+Example: Static CMP using custom data passing.
+
+{% highlight js %}
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            cmpApi: 'static',
+            allowAuctionWithoutConsent: false,
+            consentData: {
+              getConsentData: {
+                'gdprApplies': true,
+                'hasGlobalScope': false,
+                'consentData': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA'
+              },
+              getVendorConsents: {
+                'metadata': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA',
+              ...
+              ...
+              ...
+              }
+            }
+          }
+        });
+        pbjs.addAdUnits(adUnits);
+     });
+{% endhighlight %}
+
+The consentData object can be retrieved by a existing CMP by calling
+
+{% highlight js %}
+window.__cmp('getConsentData', null, function(result ) { });
+window.__cmp('getVendorConsents', null, function(result ) { });
+{% endhighlight %}
+
+
 ## Build the package
- 
+
 #### Step 1: Bundle the module code
 
-Follow the basic build instructions on the Github repo's main README. To include the module, an additional option must be added to the the gulp build command:
- 
+Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
+
 {% highlight bash %}
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
 {% endhighlight %}
- 
+
 #### Step 2: Publish the package(s) to the CDN
 
 After testing, get your javascript file(s) out to your Content Delivery Network (CDN) as normal.
@@ -93,7 +131,7 @@ _Note - for any adapters submitting changes to make themselves compliant, please
 
 ### BuildRequests Integration
 
-To find the GDPR consent information to pass along to your system, adapters should look for the `bidderRequest.gdprConsent` field in their buildRequests() method. 
+To find the GDPR consent information to pass along to your system, adapters should look for the `bidderRequest.gdprConsent` field in their buildRequests() method.
 Below is a sample of how the data is structured in the `bidderRequest` object:
 
 {% highlight js %}
@@ -294,4 +332,4 @@ Below is a list of Adapters that currently support GDPR:
 {% endfor %}
 </div>
 
-</div>
+

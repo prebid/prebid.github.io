@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player API
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Sample Brightcove Player Prebid Plugin Integration - Prebid in Header
 
@@ -40,12 +40,12 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
     <meta charset="utf-8">
     <title>Brightcove Player Prebid Plugin - Prebid in Header</title>
 
-    <link href="https://acdn.adnxs.com/video/plugins/bc/vmap/bc_vpaid_vast_mo.css" rel="stylesheet">
+    <link href="https://acdn.adnxs.com/video/plugins/css/mol/bc_vpaid_vast_mo.css" rel="stylesheet">
     <link href="https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_vjs.css" rel="stylesheet">
     <script>
         // define the prebid options variable
         // NOTE:  you MUST use this variable name
-        window.plugin_prebid_options = {};
+        window.bc_plugin_pbjs = { plugin_prebid_options: {} };
 
         // specify prebid parameters as the value of biddersSpec
         // the set of bidders here shows how to specify the AppNexus video bidder:  appnexus
@@ -66,7 +66,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
                 }
             ]
         };
-        window.plugin_prebid_options.biddersSpec = params;
+        window.bc_plugin_pbjs.plugin_prebid_options.biddersSpec = params;
 
         // set the DFP Parameters
         var dfpParams = {
@@ -76,7 +76,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
             }
         };
 
-        window.plugin_prebid_options.dfpParameters = dfpParams;
+        window.bc_plugin_pbjs.plugin_prebid_options.dfpParameters = dfpParams;
     </script>
 
     <script type="text/javascript" src="https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js"></script>
@@ -115,4 +115,4 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
 </html>
 ```
 
-</div>
+

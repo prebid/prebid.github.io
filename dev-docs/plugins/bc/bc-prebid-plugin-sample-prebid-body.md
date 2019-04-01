@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player API
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded
 
@@ -40,7 +40,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
     <meta charset="utf-8">
     <title>Brightcove Player Prebid Plugin - Prebid in Body</title>
 
-    <link href="https://acdn.adnxs.com/video/plugins/bc/vmap/bc_vpaid_vast_mo.css" rel="stylesheet">
+    <link href="https://acdn.adnxs.com/video/plugins/css/mol/bc_vpaid_vast_mo.css" rel="stylesheet">
     <link href="https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_vjs.css" rel="stylesheet">
 </head>
 
@@ -116,4 +116,4 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
 
 ```
 
-</div>
+

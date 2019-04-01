@@ -2,12 +2,9 @@
 layout: bidder
 title: VIS.X
 description: Prebid VIS.X Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: visx
 biddercode_longer_than_12: false
-prebid_1_0_supported : true
 gdpr_supported: true
 ---
 
@@ -20,7 +17,6 @@ The YOC VIS.X adaptor requires setup and approval from your YOC account manager 
 | Name        | Scope    | Description                                                                                                                                                                                                                                 | Example    | Type     |
 |-------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|----------|
 | `uid`       | required | The publisher's ad unit ID in VIS.X                                                                                                                                                                                                         | `'903536'` | `string` |
-| `priceType` | optional | The price type for received bids. Valid values are `'net'` or `'gross'`. Defaults to `'net'`. Net represents the header bid price with the header bidder margin already extracted. Gross price does contain the VIS.X bidder margin within. | `'net'`    | `string` |
 
 ### Configuration
 

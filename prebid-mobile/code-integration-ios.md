@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Code Integration
 description: Code Integration
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
+sidebarType: 2
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Code Integration for iOS
 
@@ -19,7 +20,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 Easily include the Prebid Mobile SDK for your primary ad server in your Podfile.
 
 ```
-platform :ios, '8.0'
+platform :ios, '11.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
@@ -47,6 +48,9 @@ When registering a Prebid Mobile ad unit, you must replace `@"PREBID-MOBILE-SLOT
 We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDelegate.m` using the following steps, as shown in the code sample below:
 
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
+
+   NOTE: The [fluid ad size](https://developers.google.com/mobile-ads-sdk/docs/dfp/ios/api/reference/Constants#/c:@kGADAdSizeFluid) (used in DFP) is not supported.
+
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
 4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
@@ -76,36 +80,38 @@ Embed the ad unit registration in a try-catch block to catch all the exceptions 
 #import "PrebidMobile/PBTargetingParams.h"
 #import "PrebidMobile/PrebidMobile.h"
 
+// See http://prebid.org/prebid-mobile/logging-troubleshooting-ios.html for information on log level settings.
+
 [PBLogManager setPBLogLevel:PBLogLevelAll];
 
 /**
  * 1. Create the ad units and add sizes for banner ad units.
  *
  * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
- * you defined when you registered the ad unit with Prebid Mobile. 
+ * you defined when you registered the ad unit with Prebid Mobile.
  *
- * Replace @"PREBID-SERVER-CONFIGURATION-ID" with the ID of 
+ * Replace @"PREBID-SERVER-CONFIGURATION-ID" with the ID of
  * your Prebid Server demand partner configuration.
- */ 
+ */
 PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdentifier:@"PREBID-MOBILE-SLOT-ID" andConfigId:@"PREBID-SERVER-CONFIGURATION-ID"];
 [adUnit1 addSize:CGSizeMake(300, 250)];
 
 /**
  * 2. Set targeting parameters for the ad units (Optional).
- */ 
+ */
 [[PBTargetingParams sharedInstance] setAge:25];
 [[PBTargetingParams sharedInstance] setGender:PBTargetingParamsGenderFemale];
 
 /**
  * 3. Register the ad units with Prebid Mobile to start bid fetching process.
- * 
+ *
  * DFP Example
  *
  * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
- * 
+ *
  * If you are using a Prebid Server host other than AppNexus, be sure
  * to replace 'PBServerHostAppNexus'.
- */ 
+ */
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
           		withAccountId:@"PREBID-SERVER-ACCOUNT-ID"
                		 withHost:PBServerHostAppNexus
@@ -116,14 +122,14 @@ If you are using MoPub as your ad server, modify step 3 above to use `PBPrimaryA
 ```
 /**
  * 3. Register the ad units with Prebid Mobile to start bid fetching process.
- * 
+ *
  * MoPub Example
  *
  * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
- * 
+ *
  * If you are using a Prebid Server host other than AppNexus, be sure
  * to replace 'PBServerHostAppNexus'.
- */ 
+ */
 [PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
           		withAccountId:@"PREBID-SERVER-ACCOUNT-ID"
                		 withHost:PBServerHostAppNexus
@@ -144,9 +150,9 @@ Prebid Mobile continuously pre-caches creatives in the background, so that right
  * Replace @"PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
  * you defined when you registered the ad unit with Prebid Mobile.
  *
- * Replace AD-SERVER-AD-VIEW-INSTANCE with the ad view instance 
+ * Replace AD-SERVER-AD-VIEW-INSTANCE with the ad view instance
  * from your ad server (defined in the table below).
- */ 
+ */
 [PrebidMobile setBidKeywordsOnAdObject:AD-SERVER-AD-VIEW-INSTANCE withAdUnitId:@"PREBID-MOBILE-SLOT-ID"];
 ```
 
@@ -163,9 +169,9 @@ Alternatively, if you want to set the bid keywords on your adObject shortly afte
  * Replace AD-SERVER-AD-VIEW-INSTANCE with the ad view instance
  * from your ad server (defined in the table below).
  *
- * Replace AD-SERVER-AD-LOAD-METHOD with the ad server's method 
+ * Replace AD-SERVER-AD-LOAD-METHOD with the ad server's method
  * to load this ad type (defined in the table below).
- */ 
+ */
 [PrebidMobile setBidKeywordsOnAdObject:AD-SERVER-AD-VIEW-INSTANCE withAdUnitId:@"PREBID-MOBILE-SLOT-ID" withTimeout:600 completionHandler:^{
     [AD-SERVER-AD-VIEW-INSTANCE AD-SERVER-AD-LOAD-METHOD];
 }];
@@ -184,4 +190,3 @@ Use the table below to see which ad objects are supported currently.
 
 
 
-</div>

@@ -1,18 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.org Header Bidding Wrapper Code of Conduct
 description: Full text of the Prebid.org Header Bidding Wrapper Code of Conduct
-top_nav_section: overview
-nav_section: intro
-pid: 20
+sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid.org Header Bidding Wrapper Code of Conduct
 {:.no_toc}
-
-*This is a living document. Last revision: September 5th, 2017.*
 
 This Wrapper Code of Conduct establishes the principles by which we believe header bidding wrappers should operate.
 
@@ -62,4 +58,3 @@ This Wrapper Code of Conduct establishes the principles by which we believe head
 + [Project Principles]({{site.baseurl}}/principles.html)
 + [Getting Started]({{site.baseurl}}/overview/getting-started.html)
 
-</div>

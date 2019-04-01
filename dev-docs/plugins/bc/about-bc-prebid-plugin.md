@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player
 description: Overview
 top_nav_section: dev_docs
@@ -8,7 +8,7 @@ is_top_nav: yeah
 pid: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Plugin for Brightcove (Videojs) Player
 
@@ -27,7 +27,7 @@ The Brightcove Prebid Plugin supports the following features:
     - Header bidding is conducted outside of the plugin
 
 - Video ad playback within a Brightcove player:
-    - Single Ad Playback via VAST XML
+    - Single Ad Playback via VAST XML at one or more ad break positions within a video. (For example, you can specify options for a preroll and a postroll ad in a single call to the plugin.)
     - Versions up thru VAST 3.0
     - Both Video and VPAID creatives
     - If the AppNexus Viewability Wrapper is delivered:
@@ -50,25 +50,36 @@ The plugin will support the following UI features:
 
 - Standard click-through support
 
-The plugin supports:
+The plugin supports one or more of the following ad slot locations in a single video and/or in a player configured for playlisting:
 
 - Preroll
 -  Midroll
     - by time
     - by percentage
 - Postroll
+- Ad Icons
+-	Playlisting Players
+    - This feature includes the ability to customize how often, by video clips, you want to display an ad during a playlist.
+    - Be default, the plugin will attempt to play an ad for every video in the playlist.
+
 
 ## Components
 
 BcPrebidVast is supported by the following components:
 
 - **bc_prebid_vast**
+- **bc_prebid_vast_plugin**
 - **MailOnline Plugin**
 - **CSS files**
 
 ### bc_prebid_vast
 
-`bc_prebid_vast` is the Brightcove plugin itself, which invokes the prebid process and renders the selected video ad.
+`bc_prebid_vast` is a loader script that loads in the full Prebid plugin.  The loader was added to:
+
+- make it easier to debug the plugin, particularly when the plugin is directly embedded into the Brightcove Player in the Studio
+- remove the necessity to have to re-publish a Brightcove Player instance every time the code in the main plugin has been modified.  The only time a player instance would need to be re-published is when the code in the loader itself changes.
+
+You can think of the “plugin” as being a combination of the loader and the plugin code itself. However, when registering the Prebid plugin, either on page or in the Brightcove Studio, the URL to the loader should be used.  This loader will then load in the main plugin script, either from the default location or from a custom location that may be specified in the Prebid options passed via the plugin configuration.
 
 #### Minified Version
 
@@ -81,6 +92,22 @@ BcPrebidVast is supported by the following components:
 - Default location:  `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.js`
 - Repository location:  `https://github.com/prebid/prebid-js-plugin-brightcove.git`
    - after building: `./prebid-js-plugin-brightcove/dist/bc_prebid_vast.js`
+
+### bc_prebid_vast_plugin
+
+`bc_prebid_vast_plugin` is the main Brightcove plugin itself, which invokes the Prebid process and renders the selected video ad.  This script is loaded by the Prebid plugin loader described above.
+
+#### Minified Version
+
+- Default location: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`
+- Repository location:  `https://github.com/prebid/prebid-js-plugin-brightcove.git`
+    - after building: `./prebid-js-plugin-brightcove/dist/bc_prebid_vast_plugin.min.js`
+
+#### Non-Minified Version
+
+- Default location: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.js`
+- Repository location:  `https://github.com/prebid/prebid-js-plugin-brightcove.git`
+    - after building: `./prebid-js-plugin-brightcove/dist/bc_prebid_vast_plugin.js`
 
 ### MailOnline Plugin
 
@@ -143,7 +170,10 @@ In addition, the publisher can run its own prebid code outside the of the plugin
 
 ## How It Works
 
+For each ad break that will be shown in a video:
+
 - The plugin will use the parameters passed to it to invoke prebid.
+- If a primary ad server is being used to make the final decision, the prebid bidding results will be passed to the desired ad server.
 - The response should provide a URL to a VAST creative or a VAST XML document that defines an ad to play.
 - Upon completion of the prebid, the winning ad can then be played by the plugin at the specified time.
 - By default, the prebid plugin implicitly invokes the default MailOnline plugin to render the ad.
@@ -253,6 +283,9 @@ Configuration options are passed into the plugin via a JSON structure. This stru
     - Skippable behavior
     - Custom translations for UI components such as the Ad Indicator, the Skip button and the countdown text
 
+{: .alert.alert-info :}
+NOTE:  If you are requesting prebid for more than one ad break in a video, you need to define an array of configuration options, one for each ad break.  The configuration should include the `timeOffset` option to identify when the ad break should occur.  See [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html) for more details.
+
 Details about the options supported by the Brightcove Prebid Plugin can be found in [Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html).
 
 ## Sample Implementations
@@ -266,5 +299,7 @@ Sample implementations are provided at:
 - **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
 
 - **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
+
+- **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>
