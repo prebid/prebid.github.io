@@ -7,7 +7,7 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# BannerAdUnit AdUnit
+# BannerAdUnit: AdUnit
 {: .notoc}
 
 The BannerAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the BannerAdUnit object to create and configure a banner ad unit in your app.  '

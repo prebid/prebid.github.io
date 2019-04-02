@@ -12,11 +12,11 @@ This document describes the mechancis of a Prebid Server cookie sync.
 
 Many Bidders track users through Cookies. Since Bidders will generally serve ads from a different domain
 than where Prebid Server is hosted, those cookies must be consolidated under the Prebid Server domain so
-that they can be sent to each demand source in [/openrtb2/auction](../endpoints/openrtb2/auction.html) calls.
+that they can be sent to each demand source in [/openrtb2/auction](../endpoints/openrtb2/auction.md) calls.
 
 ## How to do it?
 
-Start by calling [cookie_sync](../endpoints/cookieSync.html). For each element of `response.bidder_status`,
+Start by calling [`/cookie_sync`](../endpoints/cookieSync.md). For each element of `response.bidder_status`,
 call `GET element.usersync.url`. That endpoint should respond with a redirect which will complete the cookie sync.
 
 ## Mechanics

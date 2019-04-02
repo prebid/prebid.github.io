@@ -5,7 +5,7 @@ title: Prebid Server | Endpoints | Params
 
 ---
 
-# GET /bidders/params
+## GET /bidders/params
 
 This endpoint gets information about all the custom bidders params that Prebid Server supports.
 
@@ -23,7 +23,7 @@ For example:
 }
 ```
 
-The exact contents of the json-schema values can be found [here](https://github.com/prebid/prebid-server/tree/master/static/bidder-params).
+The exact contents of the json-schema values can be found [here](../../../static/bidder-params).
 
 ### See also
 
