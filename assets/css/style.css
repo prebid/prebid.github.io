@@ -963,11 +963,11 @@ button.list-group-item:focus {
 
 .pb-content h1 { 
 	
+	/*background-color: #EA9622;*/
 	display: table;
-	background-color: #EA9622;
-	padding: 3px 8px;
+	padding: 3px 0px;
 	font-family: 'Verdana', sans-serif;
-	color: #ffffff;
+	color: #EA9622;
 	font-size: 34px;
 	font-weight: 400;
 }
