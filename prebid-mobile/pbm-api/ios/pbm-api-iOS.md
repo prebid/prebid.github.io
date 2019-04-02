@@ -15,7 +15,7 @@ Use the Prebid Mobile API 1.0 for iOS to implement header bidding in your mobile
 
 - The Publisher knows if the keywords are attached to the `adUnit`.  
 - Implements and supports its own auto refresh, no longer supporting `adServer` refresh.   
-- Clear result codes that details the response of the Prebid demand fetch request. 
+- Clear [result codes](/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html) that details the response of the Prebid demand fetch request. 
 
 ## Objects 
 
