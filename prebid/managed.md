@@ -16,7 +16,7 @@ Several Prebid.org members will configure and host your Prebid implementations, 
 </tr>
 <tr><td><a href="https://pubmatic.com/products/header-bidding/"><img src="/assets/images/partners/standard/PubMatic_Logo.svg" width="100"></a></td><td>OpenWrap provides a transparent enterprise wrapper solution for Prebid.js and Prebid Server. Manage demand partners and push updates via a cloud-based UI without development resources or code changes. Access powerful reporting and analytics tools for data driven business decisions and dedicated account optimization and technical support teams. <a href="https://pubmatic.com/products/header-bidding/">https://pubmatic.com/products/header-bidding/</a>
 </td></tr>
-<tr><td><a href="https://rubiconproject.com/headerbidding"><img src="/assets/images/partners/founders/rubicon.png" width="100"></a></td>
+<tr><td><a href="https://rubiconproject.com/header-bidding-for-publishers/"><img src="/assets/images/partners/founders/rubicon.png" width="100"></a></td>
 <td>Rubicon Project's Prebid-as-a-service solution makes it easy for large publishers to deploy and control custom header bidding implementations without writing code. The combination of an intuitive UI and on-demand support from our Prebid and yield management experts enables publishers to make faster decisions and potentially capture more revenue. This solution supports display and video ads across desktop and mobile app environments via Prebid.js, Prebid SDK and Prebid Server.  Contact <a href="mailto: sales@rubiconproject.com">sales@rubiconproject.com</a> for more information.</td></tr>
 </table>
 
