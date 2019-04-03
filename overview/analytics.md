@@ -25,10 +25,11 @@ There are several analytics adapter plugins available to track header bidding pe
 | YuktaMedia Analytics                                             | Contact vendor                                                                      | [Website](https://yuktamedia.com/publishers/prebid/)                                        | 1.0.0 |
 | Kargo Analytics                                                  | Contact vendor                                                                      | [Website](https://kargo.com/)                                        | |
 | Adagio                                                           | Contact vendor                                                                      | [Website](https://adagio.io)                                        | |
-| Livewrapped Analytics                                            | Contact vendor                                                                      | [website](https://livewrapped.com/)                                        | |
-| Rivr Analytics                                                   | Contact vendor                                                                      | [website](https://www.rivr.ai/)                                        | |
-| OpenX | Contact vendor | [website](https://www.openx.com/publishers/header-bidding/) | |
-| LiveYield | Contact vendor | [website](https://www.pubocean.com/liveyield) | |
+| Livewrapped Analytics                                            | Contact vendor                                                                      | [Website](https://livewrapped.com/)                                        | |
+| Rivr Analytics                                                   | Contact vendor                                                                      | [Website](https://www.rivr.ai/)                                        | |
+| OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) | |
+| LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) | |
+| Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) | |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
