@@ -1425,6 +1425,15 @@
   subgroup: 2
 
 - sbSecId: 5
+  title: Prebid Server Auction
+  link: /prebid-server/endpoints/openrtb2/auction.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 5
   title: Prebid Server AMP
   link: /prebid-server/endpoints/openrtb2/amp.html
   isLastSubSectionItem: 0
@@ -1432,10 +1441,10 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 5
-  title: Prebid Server Auction
-  link: /prebid-server/endpoints/openrtb2/auction.html
+  title: Prebid Server Video
+  link: /prebid-server/endpoints/openrtb2/video.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
