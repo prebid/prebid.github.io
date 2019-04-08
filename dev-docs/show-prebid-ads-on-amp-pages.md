@@ -26,7 +26,7 @@ For more information about AMP RTC, see:
 For ad ops setup instructions, see [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html).
 {% endcapture %}
 
-{% include alerts/alert_tip.html content=tipNote %}
+{% include alerts/alert_note.html content=tipNote %}
 
 * TOC
 {:toc }
@@ -203,7 +203,7 @@ To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below shoul
 The following example includes a transparent image as a placeholder which will allow you to place this at the top within the `body`. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
 {% endcapture %}
 
-{% include alerts/alert_tip.html content=tipNote %}
+{% include alerts/alert_warning.html content=tipNote %}
 
 ```html
 
