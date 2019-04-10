@@ -7,6 +7,7 @@ biddercode: beachfront
 biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
+userIds: unifiedId/tradedesk
 ---
 
 ### bid params
