@@ -35,7 +35,8 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**DigiTrust**]({{site.baseurl}}/dev-docs/modules/digitrust.html) | A method of including the standard cross-domain ID in a DigiTrust package. |
 | [**Server-to-Server Testing**]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) | Adds A/B test support for easing into server-side header bidding. |
 | [**DFP Video**]({{site.baseurl}}/dev-docs/modules/dfp_video.html) | Required for serving instream video through DFP. |
-| [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | Adds a persisted user ID in the publisher's domain. |
+| [**User ID**]({{site.baseurl}}/dev-docs/modules/userId.html) | Supports Unified ID and PubCommon ID. |
+| [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | (Deprecated - please use User ID module) Adds a persisted user ID in the publisher's domain. |
 | [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
 | [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/iabCatalogTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
 | [**Freewheel**]({{site.baseurl}}/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
