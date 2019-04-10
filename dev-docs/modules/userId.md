@@ -202,8 +202,8 @@ For bidders that want to support one or more of these ID systems, and for publis
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
 | --- | --- | --- | --- | --- | --- |
-| PubCommon ID | n/a | bidRequest.userIds.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
-| Unified ID | Trade Desk | bidRequest.userIds.ttid | user.ext.tpid[].source="tdid" | |
+| PubCommon ID | n/a | bidRequest.userId.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
+| Unified ID | Trade Desk | bidRequest.userId.tdid | user.ext.tpid[].source="tdid" | |
 
 If you're an ID provider that want to get on this list, feel free to submit a PR or an [Issue](https://github.com/prebid/Prebid.js/issues).
 
