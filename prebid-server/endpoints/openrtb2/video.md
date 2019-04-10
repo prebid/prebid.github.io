@@ -6,17 +6,22 @@ title: Prebid Server | Endpoints | Video
 ---
 
 # Prebid Server Video Endpoint
-
+{: .no_toc }
 This document describes the behavior of the Prebid Server `video` endpoint in detail.
+
+* TOC
+{:toc}
 
 ## Video Endpoint
  `POST /openrtb2/video`
 
+
+
 ## Overview
 
-Prebid Server (PBS) supports competitve separation for ad pod display from primary ad servers such as Freewheel and DFP.  PBS, on receiving this endpoint, will pass default settings and `stored_request` parameters to one or more OpenRTB request, which will then be sent to the appropriate SSPs. 
+Prebid Server (PBS) supports competitve separation for ad pod display from primary ad servers such as Freewheel and DFP.  PBS, on receiving this endpoint, will pass default settings and `stored_request` parameters to one or more OpenRTB requests, which will then be sent to the appropriate SSPs. 
 
-The process is similar to [PrebidJS client side](/prebid-video/video-long-form.html) support for this feature.
+The process is similar to [Prebid.js client side](/prebid-video/video-long-form.html) support for this feature.
 
 ### Process
 
@@ -24,17 +29,19 @@ The process is similar to [PrebidJS client side](/prebid-video/video-long-form.h
 2. An SSAI Server sends an OpenRTB request to PBS.
 3. PBS sends a request for bids to selected demand partners by sending the OpenRTB request to them. 
 4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache. 
-5. PBS generates key-value pairs that are comprised of price, industry and duration values, `hb_pb_industry_duration = 1200_399_30s`. These key-values are returned to the SSAI server as part of the OpenRTB response. 
+5. PBS generates key-value pairs that are comprised of price, industry and duration values. The key is `hb_pb_industry_duration` and each component of the key after the `hb` represents a related value.    
+The `-pb` represents the price bucket, `industry` indicates the industry code that is derived from the category translation and `duration` is the length of the bid response. A PBS generated key-value of  `hb_pb_industry_duration = 1200_399_30s` would indicate a price bucket of $12.00 (or a local currency) for industry id 399 with a duration of 30 seconds. These key-values are returned to the SSAI server as part of the OpenRTB response. 
 6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request. 
 7. The ad server returns the optimized pod. 
-8. The SSAI server requests the creatives from prebid cache. Once the creatives are received it stitches the content and ads together. 
-9. The stitched stream is returned to the application. 
+8. The SSAI server requests the creatives from prebid cache.  
+9. The SSAI server requests the content from the content host and stitches the creatives and content together. 
+10. The stitched stream is returned to the application. 
 
 <br>
 <img src="/assets/images/flowcharts/pb-lfv-serverside.png">
 <br>
 
- **Parameters**
+ **Parameters**<a name="parameters"></a>
 
   {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
@@ -142,31 +149,31 @@ To indicate which protocol or protocols you wish to use for content management, 
 ### Buyer UIDs
 The `user.buyeruids` is an optional, but recommended parameter. It is an object that contains all the SSP UserIDs to send to the SSPs endpoint. They are passed as key-value pairs: `{bidder_name:bidder_specific_userid}`. 
 
-In the following list are the supported (registered) bidder names.  
-- "beachfront"
-- "gumgum"
+These are the supported (registered) bidder names.  
+
 - "33across"
 - "adform"
-- "grid"
-- "rubicon"
+- "adkernelAdn"
 - "adtelligent"  
+- "appnexus" 
+- "audienceNetwork"  
+- "beachfront"
 - "brightroll"
 - "conversant"
+- "eplanning"
+- "grid"
+- "gumgum"
 - "ix"
 - "lifestreet"
+- "openx" 
+- "pubmatic"  
 - "pulsepoint"
 - "rhythmone"
-- "sonobi"  
-- "adkernelAdn"  
-- "audienceNetwork"  
-- "yieldmo"  
-- "openx"  
-- "pubmatic"  
+- "rubicon"
 - "somoaudience"  
-- "sovrn"  
-- "appnexus"  
-- "eplanning"
-
+- "sonobi" 
+- "sovrn"
+- "yieldmo" 
 
 ### GDPR
 
@@ -179,7 +186,7 @@ The `user` object has a `gdpr` subobject that contains data about the user's GDP
 | --- | --- | --- | --- |
 | user.gdpr | Optional | `Object` |  Container object describing user GDPR preferences. |
 | gdpr.consentrequired | Optional | `Boolean` |  Indicates whether GDPR is in effect. |
-| gdpr.consentstring | Optional | `String` |  String that contains the data structure developed by the GDPR Consent Working Group under the auspices of IAB Europes. |
+| gdpr.consentstring | Optional | `String` |  String that contains the data structure developed by the GDPR Consent Working Group under the auspices of IAB Europe. |
 
 ### Price Range
 
@@ -264,7 +271,7 @@ The `pricegranularity` subobject `range` describes the maximum price point for t
 
 ### Post Response
 
-The POST response contains an array of `adpod` objects which represents the `adpods` in the request. Each value of the `adpod ` object (`podid:1`, `podid:2`, etc) contain the key-value targeting for those bids and optionally any errors encountered. 
+The POST response contains an array of `adPod` objects which represents the `adPods` in the request. Each value of the `adPod ` object (`podid:1`, `podid:2`, etc) contain the key-value targeting for those bids and optionally any errors encountered. 
 
 ```javascript
 {
@@ -336,12 +343,12 @@ The SSAI should take the key-values from the response `adPods.[].targeting.[]${k
 | 3  | Config not defined. |  Add missing config into backend database. |
 | 4  | Bidder Timeout. |  Add missing config into backend database. |
 
-Further Reading: 
+## Further Reading: 
 
 [Prebid Server overview](/prebid-server/prebid-server-overview.html)  
 [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/auction.html)  
 [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
-[Freewheel module](dev-docs/modules/freewheel.html)  
+[Freewheel module](/dev-docs/modules/freewheel.html)  
 [Ad Pod module](/dev-docs/modules/adpod.html)  
 
 
