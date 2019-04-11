@@ -7,7 +7,7 @@ biddercode: sonobi
 biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
-userIds: pubCommon
+userIds: pubCommon, unifiedId/tradedesk
 ---
 
 ### Note:
