@@ -96,8 +96,8 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%PATTERN:url%%";
       ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";
-      ucTagData.cacheHost = "%%PATTERN:hb_cache_host%%";
-      ucTagData.cachePath = "%%PATTERN:hb_cache_path%%";
+      ucTagData.cacheHost = "%%PATTERN:hb_cache_host_BIDDERCODE%%";
+      ucTagData.cachePath = "%%PATTERN:hb_cache_path_BIDDERCODE%%";
       ucTagData.uuid = "%%PATTERN:hb_cache_id_BIDDERCODE%%";
       ucTagData.mediaType = "%%PATTERN:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%PATTERN:hb_env%%";
@@ -128,8 +128,8 @@ For Mopub:
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%KEYWORD:url%%";
       ucTagData.adId = "%%KEYWORD:hb_adid_BIDDERCODE%%";
-      ucTagData.cacheHost = "%%KEYWORD:hb_cache_host%%";
-      ucTagData.cachePath = "%%KEYWORD:hb_cache_path%%";
+      ucTagData.cacheHost = "%%KEYWORD:hb_cache_host_BIDDERCODE%%";
+      ucTagData.cachePath = "%%KEYWORD:hb_cache_path_BIDDERCODE%%";
       ucTagData.uuid = "%%KEYWORD:hb_cache_id_BIDDERCODE%%";
       ucTagData.mediaType = "%%KEYWORD:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%KEYWORD:hb_env%%";
@@ -151,8 +151,8 @@ For other ad servers:
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%MACRO:url%%";
       ucTagData.adId = "%%MACRO:hb_adid_BIDDERCODE%%";
-      ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
-      ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
+      ucTagData.cacheHost = "%%MACRO:hb_cache_host_BIDDERCODE%%";
+      ucTagData.cachePath = "%%MACRO:hb_cache_path_BIDDERCODE%%";
       ucTagData.uuid = "%%MACRO:hb_cache_id_BIDDERCODE%%";
       ucTagData.mediaType = "%%MACRO:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%MACRO:hb_env%%";
