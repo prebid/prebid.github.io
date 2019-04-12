@@ -38,7 +38,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**User ID**]({{site.baseurl}}/dev-docs/modules/userId.html) | Supports Unified ID and PubCommon ID. |
 | [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | (Deprecated - please use User ID module) Adds a persisted user ID in the publisher's domain. |
 | [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
-| [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/iabCatalogTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
+| [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
 | [**Freewheel**]({{site.baseurl}}/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
 | [**Ad Pod**]({{site.baseurl}}/dev-docs/modules/adpod.html) | Enables developers to add support for a new adserver that handles ad pod (long-form) videos |
 
