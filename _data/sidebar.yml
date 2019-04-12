@@ -471,6 +471,15 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: User ID
+  link: /dev-docs/modules/userId.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: Publisher Common ID
   link: /dev-docs/modules/pubCommonId.html
   isLastSubSectionItem: 0

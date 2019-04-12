@@ -21,9 +21,7 @@ This endpoint runs an auction with the given OpenRTB 2.5 bid request.
 
 ### Sample request
 
-The [Prebid sample ad]({{site.baseurl}}/examples/pbjs_demo.html) can be loaded with the request sample at `../../../endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json`).
-
-Other examples can be found in `../../../endpoints/openrtb2/sample-requests/valid-whole/exemplary`.
+The [Prebid sample ad]({{site.baseurl}}/examples/pbjs_demo.html) can be loaded from the JSON found in the [prebid-test-ad.json](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json) file on the Prebid Server Github page.  Other examples can be found in the [exemplary directory](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary) in the same Github repo. 
 
 ### Sample Response
 
