@@ -16,5 +16,5 @@ gdpr_supported: false
 | Name          | Scope    | Description                                                                | Example                | Type            |
 |---------------|----------|----------------------------------------------------------------------------|------------------------|-----------------|
 | `placement`   | required | Placement ID from stv.                                                    | `'prer0-0%3D4137'`                  | `string`        |
-| `pfilter`     | optional | Selection filter. See [here](https://github.com/prebid/Prebid.js/blob/master/modules/stvBidAdapter.md) for more details.                            | {`min_duration:1`} | `object`
-| `noskip`      | optional | Noklip flag: 0 - false, 1 - true | `1`  | `int`
+| `pfilter`     | optional | Selection filter. See [here](https://github.com/prebid/Prebid.js/blob/master/modules/stvBidAdapter.md) for more details.                            | {`min_duration:1`} | `object` |
+| `noskip`      | optional | No skip flag: 0 - false, 1 - true | `1`  | `integer` |
