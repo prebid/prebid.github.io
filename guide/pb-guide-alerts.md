@@ -100,7 +100,7 @@ A tip helps the user do something.
 Important alerts provide critical information to the user, such as to use caution when using an element in certain situations or that an API feature is scheduled to be deprecated and will not be available in future releases. 
 
 {% capture importantAlert %}
-A caution alert provides crititcal information to the user. 
+An important alert provides crititcal information to the user. 
 {% endcapture %}
 
 {% include alerts/alert_important.html content=importantAlert %}
