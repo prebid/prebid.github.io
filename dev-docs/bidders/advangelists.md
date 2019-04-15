@@ -9,7 +9,7 @@ biddercode: advangelists
 ### Note:
 For more information about [Advangelists https://advangelists.com], please contact lokesh@advangelists.com
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description      | Example                                  | Type              |

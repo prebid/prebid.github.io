@@ -12,7 +12,7 @@ media_types: banner
 ### Note:
 The UOL Project adapter requires setup and approval from the UOL Project team, even for existing UOL Project publishers. Please reach out to your account team or l-prebid@uolinc.com for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                      | Example                |

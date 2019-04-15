@@ -11,7 +11,7 @@ biddercode: eplanning
 ### Note:
 The E-Planning Header Bidding adaptor requires setup and approval from the E-Planning team. Please go to [E-Planning website](http://www.e-planning.net) for more details.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                                   | Example                   | Type      |

@@ -7,7 +7,7 @@ gdpr_supported: true
 biddercode: triplelift
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

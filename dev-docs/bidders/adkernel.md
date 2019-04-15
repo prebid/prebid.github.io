@@ -12,7 +12,7 @@ gdpr_supported: true
 
 The Adkernel Bidding adaptor requires setup and approval before beginning. Please reach out to <prebid@adkernel.com> for more details
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |

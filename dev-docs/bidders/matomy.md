@@ -7,7 +7,7 @@ biddercode: matomy
 aliasCode : appnexus
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |

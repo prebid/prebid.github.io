@@ -7,7 +7,7 @@ biddercode: audienceNetwork
 media_types: native, video
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                     | Example                              | Type     |

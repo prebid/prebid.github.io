@@ -11,7 +11,7 @@ media_types: banner
 ### Note:
 Module that connects to interactiveOffers demand sources. Param pubId is required.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description                                                          | Example                           | Type      |

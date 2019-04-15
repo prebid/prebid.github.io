@@ -9,7 +9,7 @@ gdpr_supported: true
 userIds: unifiedId/tradedesk
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                                                 | Example                                  | Type     |

@@ -9,7 +9,7 @@ gdpr_supported: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

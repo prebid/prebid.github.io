@@ -10,7 +10,7 @@ biddercode: vertoz
 
 The Vertoz adapter currently doesn't support multiple sizes per ad placement and will favour the first one if multiple sizes exists.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description         | Example       | Type     |

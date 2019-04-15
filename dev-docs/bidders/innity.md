@@ -9,7 +9,7 @@ biddercode: innity
 ### Note:
 The Innity bidder adapter requires setup and approval from the Innity Media team, even for existing Innity Network publishers. Please reach out to your account manager for more information and to enable using this adapter.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description              | Example | Type      |
