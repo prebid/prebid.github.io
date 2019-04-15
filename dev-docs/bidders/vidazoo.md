@@ -3,7 +3,6 @@ layout: bidder
 title: Vidazoo
 description: Prebid Vidazoo Bidder Adaptor
 biddercode: vidazoo
-biddercode_longer_than_12: false
 hide: true
 gdpr_supported: true
 ---

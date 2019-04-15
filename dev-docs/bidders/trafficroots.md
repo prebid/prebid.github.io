@@ -4,7 +4,6 @@ title: Trafficroots
 description: Prebid Trafficroots Bidder Adapter
 hide: true
 biddercode: trafficroots
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

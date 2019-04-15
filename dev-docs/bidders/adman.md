@@ -4,7 +4,6 @@ title: ADman Media
 description: Prebid Adman Bidder Adapter
 hide: true
 biddercode: adman
-biddercode_longer_than_12: false
 gdpr_supported: true
 media_types: banner, video
 ---

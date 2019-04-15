@@ -4,7 +4,6 @@ title: ReadPeak
 description: ReadPeak Bidder Adaptor
 hide: true
 biddercode: readpeak
-biddercode_longer_than_12: false
 media_types: native
 ---
 

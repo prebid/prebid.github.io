@@ -4,7 +4,6 @@ title: Tim Media
 description: Prebid Tim Bidder Adaptor
 hide: true
 biddercode: tim
-biddercode_longer_than_12: false
 ---
 
 ### bid params

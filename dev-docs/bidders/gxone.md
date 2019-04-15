@@ -4,7 +4,6 @@ title: GXOne
 description: GXOne Bidder Adapter
 hide: true
 biddercode: gxone
-biddercode_longer_than_12: false
 ---
 
 

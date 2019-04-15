@@ -4,7 +4,6 @@ title: myTarget
 description: Prebid myTarget Bidder Adapter
 hide: true
 biddercode: mytarget
-biddercode_longer_than_12: false
 ---
 
 

@@ -4,7 +4,6 @@ title: vi
 description: vi bid adapter
 hide: true
 biddercode: vi
-biddercode_longer_than_12: false
 ---
 
 ### bid params

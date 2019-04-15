@@ -5,7 +5,6 @@ description: Prebid DistrictmDMX Bidder Adaptor
 hide: true
 biddercode: districtmDMX
 gdpr_supported: true
-biddercode_longer_than_12: false
 ---
 
 

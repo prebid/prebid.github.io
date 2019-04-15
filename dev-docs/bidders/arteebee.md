@@ -4,7 +4,6 @@ title: Arteebee
 description: Prebid Arteebee Bidder Adaptor
 hide: true
 biddercode: arteebee
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

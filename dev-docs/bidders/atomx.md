@@ -4,7 +4,6 @@ title: Atomx
 description: Prebid Atomx Bidder Adaptor
 hide: true
 biddercode: atomx
-biddercode_longer_than_12: false
 ---
 
 ### bid params

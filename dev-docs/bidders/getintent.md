@@ -4,7 +4,6 @@ title: GetIntent
 description: Prebid GetIntent Bidder Adaptor
 hide: true
 biddercode: getintent
-biddercode_longer_than_12: false
 media_types: video
 ---
 

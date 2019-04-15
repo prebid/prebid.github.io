@@ -4,7 +4,6 @@ title: Consumable
 description: Prebid Consumable Bidder Adaptor
 hide: true
 biddercode: consumable
-biddercode_longer_than_12: false
 ---
 
 ### Note:

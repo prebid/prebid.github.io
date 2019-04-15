@@ -4,7 +4,6 @@ title: A4G
 description: Prebid A4G Bidder Adaptor
 hide: true
 biddercode: a4g
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

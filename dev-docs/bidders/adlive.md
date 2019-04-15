@@ -4,7 +4,6 @@ title: Adlive
 description: adlive bid adapter
 hide: true
 biddercode: adlive
-biddercode_longer_than_12: false
 ---
 
 ### bid params

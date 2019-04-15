@@ -4,7 +4,6 @@ title: Yieldbot
 description: Prebid Yieldbot Bidder Adaptor
 hide: true
 biddercode: yieldbot
-biddercode_longer_than_12: false
 ---
 
 

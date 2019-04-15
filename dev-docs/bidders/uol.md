@@ -4,7 +4,6 @@ title: UOL
 description: Prebid UOL Bidder Adaptor
 hide: true
 biddercode: uol
-biddercode_longer_than_12: false
 gdpr_supported: false
 media_types: banner
 ---

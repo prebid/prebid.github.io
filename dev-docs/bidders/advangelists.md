@@ -4,7 +4,6 @@ title: Advangelists
 description: Prebid Advangelists Bidder Adapter
 hide: true
 biddercode: advangelists
-biddercode_longer_than_12: false
 ---
 
 ### Note:

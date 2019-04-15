@@ -4,7 +4,6 @@ title: GumGum
 description: Prebid GumGum Bidder Adaptor
 hide: true
 biddercode: gumgum
-biddercode_longer_than_12: false
 media_types: native
 gdpr_supported: true
 ---

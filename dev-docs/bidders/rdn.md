@@ -4,7 +4,6 @@ title: RDN
 description: Prebid RDN Bidder Adaptor
 hide: true
 biddercode: rdn
-biddercode_longer_than_12: false
 ---
 
 

@@ -4,7 +4,6 @@ title: Madvertise
 description: Prebid Madvertise Bidder Adaptor
 hide: true
 biddercode: madvertise
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

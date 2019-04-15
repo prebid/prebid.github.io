@@ -4,7 +4,6 @@ title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
 hide: true
 biddercode: pubmatic
-biddercode_longer_than_12: false
 media_types: banner, video, native
 gdpr_supported: true
 ---

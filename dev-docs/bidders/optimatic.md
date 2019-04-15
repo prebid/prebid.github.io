@@ -4,7 +4,6 @@ title: Optimatic
 description: Prebid Optimatic Bidder Adaptor
 hide: true
 biddercode: optimatic
-biddercode_longer_than_12: false
 media_types: video
 ---
 

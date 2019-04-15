@@ -4,7 +4,6 @@ title: Adhese
 description: Prebid Adhese Bidder Adaptor
 hide: true
 biddercode: adhese
-biddercode_longer_than_12: false
 media_types: banner, video 
 gdpr_supported: true
 ---

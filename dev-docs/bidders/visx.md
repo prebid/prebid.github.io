@@ -4,7 +4,6 @@ title: VIS.X
 description: Prebid VIS.X Bidder Adaptor
 hide: true
 biddercode: visx
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

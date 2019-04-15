@@ -4,7 +4,6 @@ title: Aardvark
 description: Prebid Aardvark Bidder Adaptor
 hide: true
 biddercode: aardvark
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

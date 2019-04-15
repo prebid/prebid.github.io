@@ -4,7 +4,6 @@ title: ZEDO
 description: Prebid ZEDO Bidder Adapter
 hide: true
 biddercode: zedo
-biddercode_longer_than_12: false
 ---
 
 

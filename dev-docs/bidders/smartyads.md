@@ -4,7 +4,6 @@ title: SmartyAds
 description: Prebid SmartyAds Bidder Adaptor
 hide: true
 biddercode: smartyads
-biddercode_longer_than_12: false
 media_types: native
 ---
 

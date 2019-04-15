@@ -4,7 +4,6 @@ title: andbeyond
 description: Prebid andbeyond Bidder Adaptor
 hide: true
 biddercode: andbeyond
-biddercode_longer_than_12: false
 ---
 
 ### Note:

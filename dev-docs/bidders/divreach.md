@@ -5,7 +5,6 @@ description: Prebid DivReach Bidder Adaptor
 hide: true
 biddercode: divreach
 aliasCode: adbutler
-biddercode_longer_than_12: false
 media_types: banner
 ---
 

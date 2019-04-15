@@ -4,7 +4,6 @@ title: Content Ignite
 description: Prebid Contnent Ignite Adaptor
 hide: true
 biddercode: contentignite
-biddercode_longer_than_12: true
 ---
 
 

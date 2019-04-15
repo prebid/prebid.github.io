@@ -4,7 +4,6 @@ title: Cox
 description: Prebid Cox Bidder Adaptor
 hide: true
 biddercode: cox
-biddercode_longer_than_12: false
 ---
 
 ### bid params

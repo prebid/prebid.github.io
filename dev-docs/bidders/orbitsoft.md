@@ -4,7 +4,6 @@ title: Orbitsoft
 description: Prebid Orbitsoft Bidder Adaptor
 hide: true
 biddercode: orbitsoft
-biddercode_longer_than_12: false
 ---
 
 

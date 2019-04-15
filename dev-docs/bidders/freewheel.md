@@ -4,7 +4,6 @@ title: FreeWheel-ssp
 description: Freewheel Bidder Adaptor
 hide: true
 biddercode: freewheel-ssp
-biddercode_longer_than_12: true
 gdpr_supported: true
 media_types: video
 ---

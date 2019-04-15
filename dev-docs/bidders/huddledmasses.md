@@ -4,7 +4,6 @@ title: Huddled Masses
 description: Prebid Huddled Masses Bidder Adaptor
 hide: true
 biddercode: huddledmasses
-biddercode_longer_than_12: false
 ---
 
 ### bid params

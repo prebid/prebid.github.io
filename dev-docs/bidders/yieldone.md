@@ -4,7 +4,6 @@ title: YIELDONE
 description: Prebid YIELDONE Bidder Adaptor
 hide: true
 biddercode: yieldone
-biddercode_longer_than_12: false
 media_types: banner, video
 ---
 

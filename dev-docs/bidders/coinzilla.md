@@ -4,7 +4,6 @@ title: Coinzilla
 description: Prebid Coinzilla Bidder Adaptor
 hide: true
 biddercode: coinzilla
-biddercode_longer_than_12: false
 ---
 
 

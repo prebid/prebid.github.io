@@ -4,7 +4,6 @@ title: SpotX
 description: Prebid SpotX Bidder Adaptor
 hide: true
 biddercode: spotx
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---

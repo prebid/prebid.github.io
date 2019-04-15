@@ -4,7 +4,6 @@ title: VMG
 description: Connects DFP to the VMG Predict engine.
 hide: true
 biddercode: vmg
-biddercode_longer_than_12: false
 ---
 
 ### bid params

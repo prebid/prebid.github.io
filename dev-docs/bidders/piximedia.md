@@ -4,7 +4,6 @@ title: Piximedia
 description: Piximedia Bidder Adaptor
 hide: true
 biddercode: piximedia
-biddercode_longer_than_12: false
 media_types: banner
 ---
 

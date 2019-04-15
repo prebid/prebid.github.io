@@ -4,7 +4,6 @@ title: TapHype
 description: Prebid TapHype Bidder Adaptor
 hide: true
 biddercode: taphype
-biddercode_longer_than_12: false
 ---
 
 ### Note:

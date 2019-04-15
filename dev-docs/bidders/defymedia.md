@@ -5,7 +5,6 @@ description: Prebid Defy Media Bidder Adaptor
 hide: true
 biddercode: defymedia
 aliasCode : appnexus
-biddercode_longer_than_12: false
 ---
 
 ### bid params

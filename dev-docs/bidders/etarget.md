@@ -4,7 +4,6 @@ title: Etarget
 description: Prebid Etarget Bidder Adaptor 
 hide: true
 biddercode: etarget
-biddercode_longer_than_12: false
 media_types: banner, video
 gdpr_supported: true
 ---

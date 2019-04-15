@@ -4,7 +4,6 @@ title: Komoona
 description: Prebid Komoona Bidder Adaptor
 hide: true
 biddercode: komoona
-biddercode_longer_than_12: false
 ---
 
 

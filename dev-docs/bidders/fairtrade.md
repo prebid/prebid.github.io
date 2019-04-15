@@ -4,7 +4,6 @@ title: FairTrade
 description: FairTrade Bidder Adapter
 hide: true
 biddercode: fairtrade
-biddercode_longer_than_12: false
 ---
 
 

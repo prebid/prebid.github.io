@@ -4,7 +4,6 @@ title: PubNX
 description: Prebid PubNX Bidder Adaptor
 hide: true
 biddercode: pubnx
-biddercode_longer_than_12: false
 ---
 
 

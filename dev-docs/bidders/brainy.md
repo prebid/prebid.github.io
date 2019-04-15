@@ -4,7 +4,6 @@ title: brainy
 description: Prebid brainy Bidder Adaptor
 hide: true
 biddercode: brainy
-biddercode_longer_than_12: false
 ---
 
 ### bid params

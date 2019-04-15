@@ -5,7 +5,6 @@ description: Prebid Archon Warp Bidder Adaptor
 hide: true
 biddercode: archon
 aliasCode: serverbid
-biddercode_longer_than_12: false
 ---
 
 

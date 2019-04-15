@@ -4,7 +4,6 @@ title: Kargo
 description: Prebid Kargo Bidder Adaptor
 hide: true
 biddercode: kargo
-biddercode_longer_than_12: false
 ---
 
 ### Note:

@@ -5,7 +5,6 @@ description: Prebid Serverbid Bidder Adaptor
 hide: true
 biddercode: connectad
 aliasCode: serverbid
-biddercode_longer_than_12: false
 ---
 
 
