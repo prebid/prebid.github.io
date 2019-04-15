@@ -30,6 +30,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) | |
 | LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) | |
 | Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) | |
+| Finteza Analytics | <a href="mailto: support@finteza.com">Contact vendor</a> | [Website](https://www.finteza.com/) | |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
