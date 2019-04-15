@@ -4,12 +4,11 @@ title: MANTIS Ad Network
 description: Prebid Mantis Bidder Adaptor
 hide: true
 biddercode: mantis
-biddercode_longer_than_12: false
 media_types: native, video
 
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                   | Example                      | Type     |

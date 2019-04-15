@@ -4,14 +4,13 @@ title: Yieldlab
 description: Prebid Yieldlab Bidder Adapter
 hide: true
 biddercode: yieldlab
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                           | Example                                  | Type     |

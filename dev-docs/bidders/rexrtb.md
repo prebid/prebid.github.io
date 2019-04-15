@@ -6,7 +6,7 @@ hide: true
 biddercode: rexrtb
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

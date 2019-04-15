@@ -4,7 +4,6 @@ title: Synacor Media
 description: Prebid Synacor Media Bidder Adapter
 hide: true
 biddercode: synacormedia
-biddercode_longer_than_12: false
 media_types: banner
 gdpr_supported: false
 ---

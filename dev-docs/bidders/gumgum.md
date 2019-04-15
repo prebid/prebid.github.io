@@ -4,7 +4,6 @@ title: GumGum
 description: Prebid GumGum Bidder Adaptor
 hide: true
 biddercode: gumgum
-biddercode_longer_than_12: false
 media_types: native
 gdpr_supported: true
 ---
@@ -15,7 +14,7 @@ The GumGum Header Bidding adaptor requires setup and approval from the GumGum
 team. Please reach out to your account manager or <support@gumgum.com> for more
 information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description | Example      | Type      |

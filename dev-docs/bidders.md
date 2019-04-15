@@ -98,21 +98,20 @@ The following parameters in the `bidResponse` object are common across all bidde
 
 <code>{{ page.biddercode }}</code>
 
-{% if page.biddercode_longer_than_12 != true %}
-
 <h3>"Send All Bids" Ad Server Keys</h3>
 
-<code>hb_pb_{{ page.biddercode }}</code>
-<code>hb_adid_{{ page.biddercode }}</code>
-<code>hb_size_{{ page.biddercode }}</code>
+<font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>
 
-{% endif %}
+{: .table .table-bordered .table-striped }
+| <code>{{ "hb_pb_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_bidder_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_adid_" | append: page.biddercode | slice: 0,20 }}</code> |
+| <code>{{ "hb_size_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_source_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_format_" | append: page.biddercode | slice: 0,20 }}</code> |
+| <code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code> |
 
 {% if page.bidder_supports_deals != false %}
 
-<h3>"Default Deal ID" Ad Server Key</h3>
+<h3>"Deal ID" Ad Server Key</h3>
 
-<code>hb_deal_{{ page.biddercode }}</code>
+<code>{{ "hb_deal_" | append: page.biddercode | slice: 0,20 }}</code>
 
 {% endif %}
 

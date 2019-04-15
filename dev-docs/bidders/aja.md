@@ -4,7 +4,6 @@ title: AJA
 description: Prebid AJA Bidder Adaptor
 hide: true
 biddercode: aja
-biddercode_longer_than_12: false
 media_types: video, native
 ---
 
@@ -12,7 +11,7 @@ media_types: video, native
 
 The AJA Bidding adaptor requires setup and approval before beginning. Please reach out to <ssp_support@aja-kk.co.jp> for more details
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description         | Example    | Type     |

@@ -3,19 +3,10 @@ layout: bidder
 title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
-biddercode_longer_than_12: true
 hide: true
 gdpr_supported: true
 media_types: native
 ---
-
-### Send All Bids Ad Server Keys:
-(truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
-
-`hb_bidder_improvedig`
-`hb_pb_improvedigital`
-`hb_adid_improvedigit`
-`hb_size_improvedigit`
 
 ### Bid params
 

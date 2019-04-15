@@ -4,13 +4,12 @@ title: Adagio
 description: Prebid Adagio Bidder Adaptor
 hide: true
 biddercode: adagio
-biddercode_longer_than_12: false
 media_types: banner
 gdpr_supported: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
