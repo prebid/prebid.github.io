@@ -4,13 +4,12 @@ title: Stv
 description: Prebid Stv Bidder Adaptor
 hide: true
 biddercode: stv
-biddercode_longer_than_12: false
 media_types: banner,video
 gdpr_supported: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
