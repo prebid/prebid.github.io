@@ -12,7 +12,7 @@ biddercode: nasmediaAdmixer
 The Nasmedia Admixer Bidder Adapter requires setup and approval from the Nasmedia Admixer team.
 Please reach out to <prebid@nasmedia.co.kr> for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description                                | Example      | Type     |

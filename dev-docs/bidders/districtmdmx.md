@@ -9,7 +9,7 @@ gdpr_supported: true
 
 
 
-### bid params
+### Bid Params
 
 ##### Prebid version 1.0 and above.
 

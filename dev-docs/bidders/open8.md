@@ -7,7 +7,7 @@ biddercode: open8
 media_types: video, banner
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name      | Scope    | Description         | Example      | Type     |

@@ -12,7 +12,7 @@ media_types: banner, video
 
 The Teads Bidding adapter requires setup before beginning. Please contact us on https://teads.tv/teads-contact/
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |

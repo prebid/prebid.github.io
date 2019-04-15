@@ -11,7 +11,7 @@ gdpr_supported: true
 ### Note:
 For more information about [Aniview Ad Server](http://www.aniview.com/), please contact info@aniview.com.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description      | Example                      | Type     |

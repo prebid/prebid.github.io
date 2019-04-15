@@ -12,7 +12,7 @@ gdpr_supported: true
 To be able to get identification key (`pid`), please contact us at <br>
 `https://www.nanointeractive.com/publishers` <br>
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                      | Example                      | Type     |
