@@ -4,7 +4,6 @@ title: LKQD
 description: Prebid LKQD Bidder Adaptor
 hide: true
 biddercode: lkqd
-biddercode_longer_than_12: false
 ---
 
 ### Note:

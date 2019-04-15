@@ -4,7 +4,6 @@ title: Justpremium
 description: Prebid Justpremium Bidder Adaptor
 hide: true
 biddercode: justpremium
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

@@ -4,7 +4,6 @@ title: Fyber
 description: Prebid Fyber Bidder Adaptor
 hide: true
 biddercode: fyber
-biddercode_longer_than_12: false
 media_types: banner
 ---
 

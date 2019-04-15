@@ -4,7 +4,6 @@ title: DecenterAds
 description: Prebid DecenterAds Bidder Adaptor
 hide: true
 biddercode: decenterads
-biddercode_longer_than_12: false
 media_types: banner, native, video
 
 ---

@@ -4,7 +4,6 @@ title: Quantcast
 description: Prebid Quantcast Bidder Adaptor
 hide: true
 biddercode: quantcast
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---

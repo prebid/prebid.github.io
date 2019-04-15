@@ -5,7 +5,6 @@ description: Prebid TripleLift Bidder Adapter
 hide: true
 gdpr_supported: true
 biddercode: triplelift
-biddercode_longer_than_12: false
 ---
 
 ### bid params

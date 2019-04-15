@@ -4,7 +4,6 @@ title: TheAdx
 description: Prebid TheAdx Bidder Adapter
 hide: true
 biddercode: theadx
-biddercode_longer_than_12: false
 gdpr_supported: false
 ---
 

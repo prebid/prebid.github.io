@@ -4,7 +4,6 @@ title: MobFox
 description: Prebid MobFox Bidder Adaptor
 hide: true
 biddercode: mobfox
-biddercode_longer_than_12: false
 media_types: video
 ---
 

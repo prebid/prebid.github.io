@@ -4,7 +4,6 @@ title: Pollux Network
 description: Prebid Pollux Network Bidder Adaptor
 hide: true
 biddercode: pollux
-biddercode_longer_than_12: false
 ---
 
 

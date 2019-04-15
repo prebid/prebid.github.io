@@ -4,7 +4,6 @@ title: Adform
 description: Prebid Adform Bidder Adaptor
 hide: true
 biddercode: adform
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---

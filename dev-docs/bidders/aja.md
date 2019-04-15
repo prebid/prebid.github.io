@@ -4,7 +4,6 @@ title: AJA
 description: Prebid AJA Bidder Adaptor
 hide: true
 biddercode: aja
-biddercode_longer_than_12: false
 media_types: video, native
 ---
 

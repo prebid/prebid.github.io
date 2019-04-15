@@ -4,7 +4,6 @@ title: Serverbid
 description: Prebid Serverbid Bidder Adaptor
 hide: true
 biddercode: serverbid
-biddercode_longer_than_12: false
 ---
 
 

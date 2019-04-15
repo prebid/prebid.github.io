@@ -4,7 +4,6 @@ title: Sharethrough
 description: Prebid Sharethrough Adaptor
 hide: true
 biddercode: sharethrough
-biddercode_longer_than_12: false
 media_types: native
 gdpr_supported: true
 ---

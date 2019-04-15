@@ -4,7 +4,6 @@ title: BidPhysics
 description: Prebid BidPhysics Bidder Adaptor
 hide: true
 biddercode: bidphysics
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

@@ -4,7 +4,6 @@ title: Invibes
 description: Prebid Invibes Bidder Adaptor
 hide: true
 biddercode: invibes
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

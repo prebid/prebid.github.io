@@ -5,7 +5,6 @@ description: Prebid Matomy Bidder Adaptor
 hide: true
 biddercode: matomy
 aliasCode : appnexus
-biddercode_longer_than_12: false
 ---
 
 ### bid params

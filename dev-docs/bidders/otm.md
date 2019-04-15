@@ -4,7 +4,6 @@ title: OTM
 description: OTM Bidder Adapter
 hide: true
 biddercode: otm
-biddercode_longer_than_12: false
 ---
 
 ### bid params

@@ -4,7 +4,6 @@ title: AdSpirit
 description: Prebid AdSpirit Bidder Adapter
 hide: true
 biddercode: adspirit
-biddercode_longer_than_12: false
 ---
 
 ### bid params

@@ -4,7 +4,6 @@ title: E-Planning
 description: Prebid E-Planning Bidder Adapter
 hide: true
 biddercode: eplanning
-biddercode_longer_than_12: false
 ---
 
 

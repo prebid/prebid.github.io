@@ -4,7 +4,6 @@ title: Teads
 description: Prebid Teads Bidder Adapter
 hide: true
 biddercode: teads
-biddercode_longer_than_12: false
 gdpr_supported: true
 media_types: banner, video
 ---

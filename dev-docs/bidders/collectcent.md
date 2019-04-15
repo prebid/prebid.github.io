@@ -4,7 +4,6 @@ title: Collectcent
 description: Prebid Collectcent Bidder Adaptor
 hide: true
 biddercode: collectcent
-biddercode_longer_than_12: false
 ---
 
 ### bid params

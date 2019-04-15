@@ -10,7 +10,6 @@ hide: true
 
 biddercode: marsmedia
 
-biddercode_longer_than_12: false
 
 ---
 

@@ -4,7 +4,6 @@ title: Inskin
 description: Inskin Media Bidder Adaptor
 hide: true
 biddercode: inskin
-biddercode_longer_than_12: false
 ---
 
 ### Note:

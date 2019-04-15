@@ -4,7 +4,6 @@ title: 33Across
 description: Prebid 33Across Bidder Adapter
 hide: true
 biddercode: 33across
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

@@ -4,7 +4,6 @@ title: Bidfluence
 description: Bidfluence Adaptor for Prebidjs
 hide: true
 biddercode: bidfluence
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

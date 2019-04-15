@@ -4,7 +4,6 @@ title: ANIVIEW
 description: Prebid ANIVIEW Bidder Adaptor
 hide: true
 biddercode: aniview
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---

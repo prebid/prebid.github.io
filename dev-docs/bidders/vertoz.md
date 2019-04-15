@@ -4,7 +4,6 @@ title: Vertoz
 description: Prebid Vertoz Bidder Adaptor
 hide: true
 biddercode: vertoz
-biddercode_longer_than_12: false
 ---
 
 ### Note:

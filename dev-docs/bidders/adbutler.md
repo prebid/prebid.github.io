@@ -4,7 +4,6 @@ title: AdButler
 description: Prebid AdButler Bidder Adaptor
 hide: true
 biddercode: adbutler
-biddercode_longer_than_12: false
 ---
 
 

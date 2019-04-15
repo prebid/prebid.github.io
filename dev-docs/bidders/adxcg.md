@@ -4,7 +4,6 @@ title: adxcg
 description: Prebid adxcg bidder adaptor
 hide: true
 biddercode: adxcg
-biddercode_longer_than_12: false
 media_types: native, video
 gdpr_supported: true
 ---

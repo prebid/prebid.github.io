@@ -4,7 +4,6 @@ title: Rtbdemandadk
 description: Prebid RtbdemandAdk Bidder Adaptor
 hide: true
 biddercode: rtbdemandadk
-biddercode_longer_than_12: false
 ---
 
 ### Note:

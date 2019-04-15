@@ -4,7 +4,6 @@ title: AdKernel
 description: Prebid AdKernel Bidder Adaptor
 hide: true
 biddercode: adkernel
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---

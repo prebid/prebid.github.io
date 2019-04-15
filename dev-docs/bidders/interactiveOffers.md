@@ -4,7 +4,6 @@ title: InteractiveOffers
 description: Prebid InteractiveOffers.com Bidder Adaptor
 hide: true
 biddercode: interactiveOffers
-biddercode_longer_than_12: true
 gdpr_supported: false
 media_types: banner
 ---

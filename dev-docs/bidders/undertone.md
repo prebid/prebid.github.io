@@ -4,7 +4,6 @@ title: Undertone
 description: Prebid undertone Bidder Adaptor
 hide: true
 biddercode: undertone
-biddercode_longer_than_12: false
 ---
 
 

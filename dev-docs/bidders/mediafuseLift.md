@@ -7,7 +7,6 @@ nav_section: reference
 hide: true
 biddercode: mediafuseLift
 aliasCode : orbitsoft
-biddercode_longer_than_12: false
 ---
 
 

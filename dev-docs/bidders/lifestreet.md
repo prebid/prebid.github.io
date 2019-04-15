@@ -4,7 +4,6 @@ title: Lifestreet
 description: Prebid Lifestreet Bidder Adaptor
 hide: true
 biddercode: lifestreet
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---

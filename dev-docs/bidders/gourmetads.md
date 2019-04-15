@@ -5,7 +5,6 @@ description: Prebid Gourmet Ads Bidder Adaptor
 hide: true
 biddercode: gourmetads
 aliasCode : appnexus
-biddercode_longer_than_12: false
 ---
 
 ### bid params

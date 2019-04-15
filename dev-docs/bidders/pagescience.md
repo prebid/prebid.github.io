@@ -5,7 +5,6 @@ description: Prebid Page Science Bidder Adaptor
 hide: true
 biddercode: pagescience
 aliasCode : appnexus
-biddercode_longer_than_12: false
 ---
 
 ### bid params

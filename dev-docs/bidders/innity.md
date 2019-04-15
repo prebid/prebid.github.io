@@ -4,7 +4,6 @@ title: Innity
 description: Prebid Innity Bidder Adapter
 hide: true
 biddercode: innity
-biddercode_longer_than_12: false
 ---
 
 ### Note:

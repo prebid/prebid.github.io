@@ -4,7 +4,6 @@ title: Quantum
 description: Prebid Quantum Bidder Adaptor
 hide: true
 biddercode: quantum
-biddercode_longer_than_12: false
 media_types: native
 ---
 

@@ -4,7 +4,6 @@ title: OPEN8
 description: Prebid OPEN8 Bidder Adaptor
 hide: true
 biddercode: open8
-biddercode_longer_than_12: false
 media_types: video, banner
 ---
 

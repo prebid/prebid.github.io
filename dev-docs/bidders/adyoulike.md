@@ -4,7 +4,6 @@ title: Adyoulike
 description: Prebid Adyoulike Bidder Adaptor
 hide: true
 biddercode: adyoulike
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

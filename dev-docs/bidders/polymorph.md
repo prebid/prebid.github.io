@@ -4,7 +4,6 @@ title: Polymorph
 description: Polymorph Prebid Adaptor
 hide: true
 biddercode: polymorph
-biddercode_longer_than_12: false
 media_types: native, video, banner
 ---
 

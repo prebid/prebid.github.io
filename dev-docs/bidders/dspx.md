@@ -4,7 +4,6 @@ title: Dspx
 description: Prebid Dspx Bidder Adaptor
 hide: true
 biddercode: dspx
-biddercode_longer_than_12: false
 media_types: banner
 gdpr_supported: false
 ---

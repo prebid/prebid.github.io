@@ -4,7 +4,6 @@ title: BetweenDigital
 description: between bid adapter
 hide: true
 biddercode: between
-biddercode_longer_than_12: false
 ---
 
 ### bid params

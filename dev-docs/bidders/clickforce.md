@@ -4,7 +4,6 @@ title: Clickforce
 description: Prebid Clickforce Bidder Adaptor
 hide: true
 biddercode: clickforce
-biddercode_longer_than_12: false
 media_types: native
 ---
 

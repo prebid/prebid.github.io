@@ -4,7 +4,6 @@ title: AOL
 description: Prebid AOL Bidder Adaptor
 hide: true
 biddercode: aol
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 
