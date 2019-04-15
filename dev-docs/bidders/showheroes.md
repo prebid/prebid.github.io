@@ -4,7 +4,6 @@ title: ShowHeroes
 description: Prebid ShowHeroes Bidder Adapter
 hide: true
 biddercode: showheroes-bs
-biddercode_longer_than_12: true
 media_types: video, banner
 gdpr_supported: true
 ---
