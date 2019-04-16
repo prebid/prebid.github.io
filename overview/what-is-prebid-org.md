@@ -2,10 +2,6 @@
 layout: page_v2
 title: What is Prebid.org?
 description: An overview of Prebid.org, the organization behind Prebid, and what our goals and missions are.
-pid: 1
-is_top_nav: yeah
-top_nav_section: overview
-nav_section: intro
 sidebarType: 0
 ---
 
