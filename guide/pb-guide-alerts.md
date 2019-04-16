@@ -37,14 +37,14 @@ Follow the Prebid.org style guide to ensure all your documentation is consistent
 
 ### Displaying an alert
 
-To display an alert, use the Liquid `include` command` to include one of the alert HTML files and pass the 'captured' content to it. The include files provide the HTML and CSS references to correctly format the alert. There are four include files: 
+To display an alert, use the Liquid `include` command to include one of the alert HTML files and pass the 'captured' content to it. The include files provide the HTML and CSS references to correctly format the alert. There are four include files: 
 
 - alert_note.html
 - alert_tip.html
 - alert_important.html
 - alert_warning.html
 
-In the example below we are including the tip alert, `alert_tip.html` and passing the value of `tipAlert` to the pages `content` variable. 
+In the example below we are including the tip alert, `alert_tip.html` and passing the value of `tipAlert` to the page's `content` variable. 
 
 ```
 { % include alerts/alert_tip.html content=tipAlert % }
@@ -99,11 +99,15 @@ A tip helps the user do something.
 
 Important alerts provide critical information to the user, such as to use caution when using an element in certain situations or that an API feature is scheduled to be deprecated and will not be available in future releases. 
 
+*Example*
+
 {% capture importantAlert %}
 An important alert provides crititcal information to the user. 
 {% endcapture %}
 
 {% include alerts/alert_important.html content=importantAlert %}
+
+*Example*
 
 ### Warning
 
