@@ -5,11 +5,13 @@ description: An overview of Prebid org and products
 sidebarType: 0
 ---
 
-
-
 # What is Prebid?
 {:.no_toc}
 
+* TOC
+{:toc}
+
+## Prebid Products, Community and Organization
 - A free and open source suite of software products designed to enable publishers to implement header bidding on their websites and from within their apps. Our product line includes:  
    - Prebid.js: The core of our codebase. Prebid.js provides a simple and easy to implement code set to improve header bidding for display and video ads on a publisher's website and within OOT applications.  
    - Prebid Server: Provides a hosted or custom server-side solution for header bidding. Utilizing Prebid Serve can reduce latency between bid request and ad selection and speed the presentation of your site and ads.  
@@ -18,6 +20,8 @@ sidebarType: 0
 - An organization that promotes our products and works with the ad tech community to expand the solutions our products can provide and encourages the development of the platform. 
 
 {% include alerts/alert_note.html content="Our flagship product, Prebid.js, is sometimes referred to as simply *Prebid*, but it is important to note that the Prebid product line supports header bidding for display, video and mobile on both client and server side." %} 
+
+
 
 ## Header bidding
 
