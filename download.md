@@ -284,6 +284,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
     </label>
   </div>
@@ -357,14 +365,6 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
     </label>
   </div>
 </div>
