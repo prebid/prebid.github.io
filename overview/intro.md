@@ -82,19 +82,39 @@ Several Prebid.org members provide hosted solutions, enabling publishers to rece
 
 If a publisher would prefer to implement their own solution, source code as well as detailed instructions for configuring, deploying and testing your implementation are available from our Github site. 
 
-Prebid Server provides multiple endpoints for auctions as well as data retrieval and supports AMP (accelerated mobile pages) format. The primary endpoint is `/openrtb2/auction` and the process follows these steps: 
+Prebid Server provides multiple endpoints for auctions as well as data retrieval and supports the AMP (accelerated mobile pages) format. The primary endpoint is `/openrtb2/auction` and the process follows these steps: 
 
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
+1. An OpenRTB request is sent to Prebid Server. 
+2. Prebid Server conducts auction with selected SSPs and ad exchanges. 
+3. PBS collects the bids and creatives and stores them in Prebid cache. 
+4. PBS passes the winning bid parameters to the ad server. 
+5. The ad server takes the passed in key-values and finds a matching line item and then compares to  other line items that bid on this impression. 
+6. If the ad server determines Prebid wins the auction - **need to check with server devs on this step of the process - how ad server communicates to PBS the winning bid**
+7. **Also need to check with devs on how PBS returns winning bid and creative to page.**
 
-
+![Prebid Server Flowchart](/assets/images/flowcharts/pb-server-display.png) 
 
 ### Prebid Mobile
 
+For mobile apps, Prebid provides Prebid Mobile (PBM), an end-to-end header bidding solution for both iOS and Android. Working in conjunction with Prebid Server, PBM reduces latency and enables access to more mobile buyers, 
+
+PBM provides options for bannr and interstitial ad formats and enables user to set global targeting values for the bid request. The PBM header bidding process follows these steps: 
+
+1. Prebid Mobile sends a request to Prebid Server. This request consists of the Prebid Server account ID and config ID for each tag included in the request.
+
+2. Prebid Server constructs an OpenRTB bid request and passes it to the demand partners.
+
+3. Each demand partner returns a bid response to Prebid Server. The bid response includes the bid price and the creative content.
+
+4. Prebid Server sends the bid responses to Prebid Mobile.
+
+5. Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK. This targeting will activate one or more of Prebid line items that were previously configured in the primary ad server.
+
+6. If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JavaScript to the ad server’s SDK.
+
+7. The Prebid Mobile creative JavaScript will fetch and render the corresponding creative con *<----This is from the existing mobile overview, it just stops at con...I am going to follow up with Punnaghai to correct this*
+
+![Prebid ServMobileer Flowchart](/assets/images/flowcharts/pb-mobile.png) 
 
 
 ## Further Reading
