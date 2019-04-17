@@ -353,6 +353,14 @@ Note: If you receive an error during download you most likely selected a configu
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
+    </label>
+  </div>
+</div>
+
 </div>
 <br/>
 <div class="row">
