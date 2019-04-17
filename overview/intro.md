@@ -53,7 +53,17 @@ The Prebid product suite offers publishers multiple benefits designed to foster 
 
 ### Prebid.js
 
-Prebid.js is the core product of the Prebid suite. Implemented on multiple formats to include display, video and native, it provides a simple process for header bidding that can be ramped up to fit the complexity of your needs. A basic flow of the Prebid.js process is as follows:  
+Prebid.js is the core product of the Prebid suite. Implemented on multiple formats to include display, video and native, it provides a simple process for header bidding that can be ramped up to fit the complexity of your needs. 
+
+#### Reducing Latency
+
+One of the main problems publishers experienced with other header bidding solutions was the delay between the bid requests being sent and the responses being returned. Many solutions use synchronous calls, meaning each SSP or ad exchange had to receive the request and return a response before the next SSP was called. This could lead to long delay from the web page being called to it loading. 
+
+Prebid resolves this issue by concurrently calling the selected SSPs and ad exchanges within the set timeout. That setting is respected by Prebid.js and any bidder not returning a result within the timeout duration is excluded from the auction. This dramatically increases the page load time, providing a better user experience. 
+
+#### Prebid.js process
+
+ A simple Prebid.js process follows these steps:  
 
 1. The ad servers tag is paused by a timer while Prebid.js sends out bid requests to selected SSPs and ad exchanges. 
 2. Creatives and bids are returned from the SSPs and ad exchanges. 
@@ -65,6 +75,23 @@ Prebid.js is the core product of the Prebid suite. Implemented on multiple forma
 ![Prebid.js Simple Flowchart](/assets/images/flowcharts/pb-js-simple.png) 
 
 ### Prebid Server
+
+Prebid Server provides a server side solution to header bidding. Build on the same core principles of Prebid.js, our server solution can reduce latency and improve page load time.
+
+Several Prebid.org members provide hosted solutions, enabling publishers to receive the benefits of server side header bidding without the need to implement and manage the process themselves. 
+
+If a publisher would prefer to implement their own solution, source code as well as detailed instructions for configuring, deploying and testing your implementation are available from our Github site. 
+
+Prebid Server provides multiple endpoints for auctions as well as data retrieval and supports AMP (accelerated mobile pages) format. The primary endpoint is `/openrtb2/auction` and the process follows these steps: 
+
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+
+
 
 ### Prebid Mobile
 
