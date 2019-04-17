@@ -4,7 +4,6 @@ title: OneVideo
 description: Prebid One Video Bidder Adaptor
 hide: true
 biddercode: oneVideo
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---
@@ -13,7 +12,7 @@ gdpr_supported: true
 
 One Video adapter only supports video ads.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name    | Scope    | Description  | Example  | Type     |

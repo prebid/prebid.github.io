@@ -4,13 +4,12 @@ title: PulsePoint
 description: Prebid PulsePoint Bidder Adaptor
 hide: true
 biddercode: pulsepoint
-biddercode_longer_than_12: false
 gdpr_supported: true
 media_types: native
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description        | Example     | Type      |

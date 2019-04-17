@@ -4,7 +4,6 @@ title: Emoteev
 description: Prebid Emoteev Bidder Adaptor
 hide: true
 biddercode: emoteev
-biddercode_longer_than_12: false
 ---
 
 ### Bid params

@@ -3,7 +3,6 @@ layout: bidder
 title: Ozone Project
 description: Prebid Ozone Project Bidder Adaptor
 biddercode: ozone 
-biddercode_longer_than_12: false
 hide: true
 media_types: banner
 gdpr_supported: true

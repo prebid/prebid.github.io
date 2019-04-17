@@ -4,7 +4,6 @@ title: OpenX
 description: Prebid OpenX Bidder Adaptor
 hide: true
 biddercode: openx
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 userIds: pubcommon

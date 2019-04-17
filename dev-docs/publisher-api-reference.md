@@ -1211,12 +1211,13 @@ Core config:
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
-Module config: these options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
+Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
-+ [Currency module]({{site.baseurl}}/dev-docs/modules/currency.html#currency-config-options)
-
-{: .alert.alert-warning :}
-The `options` param object to `setConfig()` must be JSON - no JavaScript functions are allowed.
++ [Currency module](dev-docs/modules/currency.html#currency-config-options)
++ [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
++ [User ID module](/dev-docs/modules/userId.html#configuration)
++ [Adpod](/dev-docs/modules/adpod.html)
++ [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
 <a name="setConfig-Debugging" />
 

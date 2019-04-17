@@ -10,7 +10,6 @@ hide: true
 
 biddercode: gambid
 
-biddercode_longer_than_12: false
 ---
 
 ### Bid params

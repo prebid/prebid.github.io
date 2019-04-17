@@ -4,7 +4,6 @@ title: Viewdeos
 description: Prebid Viewdeos Bidder Adaptor
 hide: true
 biddercode: viewdeos
-biddercode_longer_than_12: false
 ---
 
 ### Bid params

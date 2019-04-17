@@ -4,7 +4,6 @@ title: Conversant
 description: Prebid Conversant Bidder Adaptor
 hide: true
 biddercode: conversant
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 userIds: pubCommon
@@ -12,7 +11,7 @@ userIds: pubCommon
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

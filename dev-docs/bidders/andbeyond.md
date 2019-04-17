@@ -4,14 +4,13 @@ title: andbeyond
 description: Prebid andbeyond Bidder Adaptor
 hide: true
 biddercode: andbeyond
-biddercode_longer_than_12: false
 ---
 
 ### Note:
 
 The andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |

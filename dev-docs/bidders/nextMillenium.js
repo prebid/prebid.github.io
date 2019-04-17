@@ -4,7 +4,6 @@ title: NextMillenium
 description: NextMillenium bid adapter
 hide: true
 biddercode: nextMillenium
-biddercode_longer_than_12: true
 ---
 
 ### bid params
