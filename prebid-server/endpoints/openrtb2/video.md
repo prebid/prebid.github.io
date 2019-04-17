@@ -29,8 +29,20 @@ The process is similar to [Prebid.js client side](/prebid-video/video-long-form.
 2. An SSAI Server sends an OpenRTB request to PBS.
 3. PBS sends a request for bids to selected demand partners by sending the OpenRTB request to them. 
 4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache. 
-5. PBS generates key-value pairs that are comprised of price, industry and duration values. The key is `hb_pb_cat_dur` and each component of the key after the `hb` represents a related value.    
-The `-pb` represents the price bucket, `industry` indicates the industry code that is derived from the category translation and `duration` is the length of the bid response. A PBS generated key-value of  `hb_pb_industry_duration = 1200_399_30s` would indicate a price bucket of $12.00 (or a local currency) for industry id 399 with a duration of 30 seconds. These key-values are returned to the SSAI server as part of the OpenRTB response. 
+5. PBS generates key-value pairs that are comprised of price, industry, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.   
+&nbsp;&nbsp;&nbsp;&nbsp; `_cat` indicates the industry code that is derived from the  [category translation](/dev-docs/modules/categoryTranslation.html).   
+&nbsp;&nbsp;&nbsp;&nbsp; `_dur` is the length of the bid response in seconds.  
+&nbsp;&nbsp;&nbsp;&nbsp;   
+A PBS generated key-value of  `hb_pb_cat_dur = 1200_399_30s` would indicate:  
+&nbsp;&nbsp;&nbsp;&nbsp;   
+&nbsp;&nbsp;&nbsp;&nbsp; A price bucket of $12.00 (or the local currency).     
+&nbsp;&nbsp;&nbsp;&nbsp; The industry represented by id 399.  
+&nbsp;&nbsp;&nbsp;&nbsp;  A duration of 30 seconds.  
+&nbsp;&nbsp;&nbsp;&nbsp;   
+These key-values are returned to the SSAI server as part of the OpenRTB response.   
+
 6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request. 
 7. The ad server returns the optimized pod. 
 8. The SSAI server requests the creatives from prebid cache.  
