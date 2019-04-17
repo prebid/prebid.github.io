@@ -14,4 +14,4 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                           | Example   | Type     |
 |---------------|----------|-------------------------------------------------------|-----------|----------|
-| `TagId`       | required | Video Reach Tag Id - provided by your account manager | `ABCDE`   | `string` |
+| `TagId`       | required | Video Reach Tag Id - provided by your account manager | `'ABCDE'`   | `string` |
