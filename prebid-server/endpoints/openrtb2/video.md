@@ -29,7 +29,7 @@ The process is similar to [Prebid.js client side](/prebid-video/video-long-form.
 2. An SSAI Server sends an OpenRTB request to PBS.
 3. PBS sends a request for bids to selected demand partners by sending the OpenRTB request to them. 
 4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache. 
-5. PBS generates key-value pairs that are comprised of price, industry and duration values. The key is `hb_pb_industry_duration` and each component of the key after the `hb` represents a related value.    
+5. PBS generates key-value pairs that are comprised of price, industry and duration values. The key is `hb_pb_cat_dur` and each component of the key after the `hb` represents a related value.    
 The `-pb` represents the price bucket, `industry` indicates the industry code that is derived from the category translation and `duration` is the length of the bid response. A PBS generated key-value of  `hb_pb_industry_duration = 1200_399_30s` would indicate a price bucket of $12.00 (or a local currency) for industry id 399 with a duration of 30 seconds. These key-values are returned to the SSAI server as part of the OpenRTB response. 
 6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request. 
 7. The ad server returns the optimized pod. 
@@ -65,7 +65,7 @@ The `-pb` represents the price bucket, `industry` indicates the industry code th
 | video.protocols | Required | `Integer[]` |  Array of supported [video protocols](#video-protocols). |
 | includebrandcategory | Optional | `Object` |  Container Object for passing Category inputs. |
 | includebrandcategory.primaryadserver | Optional | `Integer` |  The ad server used by the publisher. Supported Values 1- Freewheel , 2- DFP. |
-| includebrandcategory.publisher | Optional | `Integer` |  Identifier for the Publisher. |
+| includebrandcategory.publisher | Optional | `String` |  Identifier for the Publisher. |
 | content | Optional | `Object` | Miscellaneous content meta data that can be used for targeting the adPod(s) |
 | content.episode | Optional | `Integer` | The episode number. |
 | content.title | Optional | `String` | The episode name. |
@@ -341,7 +341,7 @@ The SSAI should take the key-values from the response `adPods.[].targeting.[]${k
 | 1  | Syntax error. |  Fix syntax in request. |
 | 2  | Required param missing. |  Add missing param(s) to request. |
 | 3  | Config not defined. |  Add missing config into backend database. |
-| 4  | Bidder Timeout. |  Add missing config into backend database. |
+| 4  | Bidder Timeout. |  Increase bidder timeout. |
 
 ## Further Reading: 
 
