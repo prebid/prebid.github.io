@@ -2,9 +2,6 @@
 layout: page_v2
 title: Ad Operations View of Prebid
 head_title: Getting Started with Prebid for Header Bidding
-pid: 0
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 sbUUID: 3.2
 ---
@@ -14,8 +11,7 @@ sbUUID: 3.2
 # Ad Ops and Prebid
 {: .no_toc }
 
-Prior to implementing Prebid, whether that is Prebid.js, Prebid Server or Prebid Mobile, a publisher will need to set up their price granularity and line item configurations. 
-
+The Prebid products are designed to integrate with the ad ops configuration on the selected ad server. By passing the bid targeting parameters through a query string, the ad server can match the bid passed in to the line item configurations. These configurations to include price granualrity and line items need to be set up prior to implementing Prebid, whether that is Prebid.js, Prebid Server or Prebid Mobile
 
 {% capture infoNote %}
 This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
