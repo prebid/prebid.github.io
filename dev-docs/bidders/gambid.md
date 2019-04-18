@@ -9,6 +9,7 @@ nav_section: reference
 hide: true
 
 biddercode: gambid
+aliasCode: gamoshi
 
 ---
 

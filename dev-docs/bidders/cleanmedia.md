@@ -9,7 +9,7 @@ nav_section: reference
 hide: true
 
 biddercode: cleanmedia
-
+aliasCode: gamoshi
 ---
 
 ### Bid params
