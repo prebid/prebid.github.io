@@ -11,7 +11,7 @@ sbUUID: 3.2
 # Ad Ops and Prebid
 {: .no_toc }
 
-The Prebid products are designed to integrate with the ad ops line item configuration on the publisher's selected ad server. Whether using Prebid.js, Prebid Server or Prebid Mobile,  bid targeting parameters are passed through a query string or POST to the ad server. The ad server then attempts to  match the targeting parameters to a preset line item. If successful, that line item is compared to other line items and if the Prebid bid wins the auction the creative is returned to the web page or app for display. 
+Prebid products are designed to integrate with the ad ops line item configuration on the publisher's selected ad server. Whether using Prebid.js, Prebid Server or Prebid Mobile, bid targeting parameters are passed to the ad server. The ad server then attempts to  match the targeting parameters to a preset line item. If successful, that line item is compared to other line items and if the Prebid bid wins the auction, the creative is returned to the web page or app for display. 
 
 {% capture importantNote %}
 This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
@@ -24,7 +24,7 @@ This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}
 
 ## Supported ad servers
 
-The table below lists all the ad servers supported by Prebid and provides links to step by step documentation for the configurations those ad servers support. 
+The table below lists ad servers supported by Prebid and provides links to step by step documentation for the configurations those ad servers support. 
 
 {: .table .table-bordered .table-striped }  
 | Server       | Page                                                                                                                                    |
