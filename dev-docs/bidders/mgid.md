@@ -27,10 +27,12 @@ MGID header bidding adapter connects with MGID demand sources to fetch bids for 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name         | Scope    | Description                 | Example    | Type     |
-|--------------|----------|-----------------------------|------------|----------|
-| `accountId`  | required | The account ID from Mgid    | `'123'`    | `string` |
-| `placementId`| required | The placement ID from Mgid  | `'123456'` | `string` |
+| Name         | Scope    | Description                        | Example    | Type     |
+|--------------|----------|------------------------------------|------------|----------|
+| `accountId`  | required | The account ID from Mgid           | `'123'`    | `string` |
+| `placementId`| required | The placement ID from Mgid         | `'123456'` | `string` |
+| `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
+| `currency`   | optional | Currency of request and response   | `'GBP'`    | `string` |
 
 
 <a name="mgid-test-params" />
@@ -72,6 +74,35 @@ var adUnits = [{
     params : {
       accountId : "219", //test accountId, please replace after test
       placementId : "331748" // 300x250 test placementId, please replace after test
+    }
+  }]
+}];
+```
+
+native test
+```
+var adUnits = [{
+  code: 'div-prebid',
+  mediaTypes: {
+    image: {
+        sendId: true,
+        required: true,
+        sizes: [80, 80]
+    },
+    title: {
+        required: true,
+        len: 80
+    },
+    sponsored: {
+        required: false
+    }
+  },
+  // Replace this object to test a new Adapter!
+  bids: [{
+    bidder: 'mgid',
+    params : {
+        accountId : "219", //test accountId, please replace after test
+        placementId : "350971" // 300x250 test placementId, please replace after test
     }
   }]
 }];
