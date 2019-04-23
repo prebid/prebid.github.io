@@ -84,21 +84,23 @@ native test
 var adUnits = [{
   code: 'div-prebid',
   mediaTypes: {
-    image: {
-        sendId: true,
-        required: true,
-        sizes: [80, 80]
-    },
-    clickUrl: {
-        sendId: true,
-        required: false
-    },
-    title: {
-        required: true,
-        len: 80
-    },
-    sponsored: {
-        required: false
+    native: {
+        image: {
+            sendId: true,
+            required: true,
+            sizes: [80, 80]
+        },
+        clickUrl: {
+            sendId: true,
+            required: false
+        },
+        title: {
+            required: true,
+            len: 80
+        },
+        sponsored: {
+            required: false
+        }
     }
   },
   // Replace this object to test a new Adapter!
