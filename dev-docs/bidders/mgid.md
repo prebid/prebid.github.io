@@ -89,6 +89,10 @@ var adUnits = [{
         required: true,
         sizes: [80, 80]
     },
+    clickUrl: {
+        sendId: true,
+        required: false
+    },
     title: {
         required: true,
         len: 80
