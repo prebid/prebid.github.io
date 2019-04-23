@@ -149,7 +149,7 @@ If your page includes more than one Brightcove Player within the same HTML docum
 
 ### CSS
 
-The plugin relies on one of two CSS files to control the ad playback, depending on which plugin is used to render the ad:
+The plugin relies on one or two CSS files to control the ad playback, depending on which plugin is used to render the ad:
 
 - Prebid plugin CSS: `bc_prebid_vast_vjs.css`
 - MailOnline plugin CSS: `bc_vpaid_vast_mo.css`

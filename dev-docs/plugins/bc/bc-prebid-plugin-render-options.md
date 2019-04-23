@@ -76,7 +76,7 @@ One of the following strings:
 
 - `‘ima’`: The Brightcove IMA plugin will be used to render the ad(s) regardless of whether DFP has been identified as the primary ad server for Prebid.
 - `‘mailonline’`: The MailOnline plugin will be used to render the ad(s) regardless of whether DFP has been identified as the primary ad server for Prebid.
-- `‘custom’`: A custom ad renderer is being provided by the publisher.  This can be either a custom build of MailOnline or a custom renderer altogether.  If this value is specified for `adRenderer`, then the plugin will not attempt to load either of the default ad renderers.  The plugin will simply use the renderer as specified in the custom build of the plugin.  See the ReadMe file for more information on specifying a custom renderer.
+- `‘custom’`: A custom ad renderer is being provided by the publisher.  This can be either a custom build of MailOnline or a custom renderer altogether.  If this value is specified for `adRenderer`, then the plugin will not attempt to use either of the default ad renderers.  The plugin will simply use the renderer as specified in the custom build of the plugin.  See the ReadMe file for more information on specifying a custom renderer.
 
 **Required**
 
