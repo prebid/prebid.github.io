@@ -26,10 +26,10 @@ The process is similar to [Prebid.js client side](/prebid-video/video-long-form.
 ### Process
 
 1. Application makes request for a video stream. 
-2. An SSAI Server sends an OpenRTB request to PBS.
-3. PBS sends a request for bids to selected demand partners by sending the OpenRTB request to them. 
+2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
+3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them. 
 4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache. 
-5. PBS generates key-value pairs that are comprised of price, industry, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
+5. PBS generates key-value pairs that are comprised of price, category, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
 &nbsp;&nbsp;&nbsp;&nbsp;  
 &nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.   
 &nbsp;&nbsp;&nbsp;&nbsp; `_cat` indicates the industry code that is derived from the  [category translation](/dev-docs/modules/categoryTranslation.html).   
@@ -41,7 +41,7 @@ A PBS generated key-value of  `hb_pb_cat_dur = 1200_399_30s` would indicate:
 &nbsp;&nbsp;&nbsp;&nbsp; The industry represented by id 399.  
 &nbsp;&nbsp;&nbsp;&nbsp;  A duration of 30 seconds.  
 &nbsp;&nbsp;&nbsp;&nbsp;   
-These key-values are returned to the SSAI server as part of the OpenRTB response.   
+These key-values are returned to the SSAI server as part of the video response.   
 
 6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request. 
 7. The ad server returns the optimized pod. 
@@ -343,17 +343,6 @@ The POST response contains an array of `adPod` objects which represents the `adP
 ## SSAI processing of the response
 The SSAI should take the key-values from the response `adPods.[].targeting.[]${key}` and pass it to the primary ad server as keywords. Because `adPods` do not have specific targeting, an `adPod` can target any bid as long as the bid duration matches that of the `adPod`. 
 
-
-
-## Error Codes
-
-{: .table .table-bordered .table-striped }
-| Id | Description  | Resolution |
-| --- | --- | --- |
-| 1  | Syntax error. |  Fix syntax in request. |
-| 2  | Required param missing. |  Add missing param(s) to request. |
-| 3  | Config not defined. |  Add missing config into backend database. |
-| 4  | Bidder Timeout. |  Increase bidder timeout. |
 
 ## Further Reading: 
 
