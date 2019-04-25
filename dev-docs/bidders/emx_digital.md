@@ -5,7 +5,7 @@ description: Prebid EMX Digital Bidder Adaptor
 hide: true
 biddercode: emx_digital
 bidder_supports_deals: false
-media_types: banner
+media_types: banner, video
 gdpr_supported: true
 ---
 
