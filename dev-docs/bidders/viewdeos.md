@@ -4,6 +4,7 @@ title: Viewdeos
 description: Prebid Viewdeos Bidder Adaptor
 hide: true
 biddercode: viewdeos
+aliasCode: gamoshi
 ---
 
 ### Bid params
