@@ -83,8 +83,8 @@ Prebid Server provides multiple endpoints for auctions as well as data retrieval
 3. PBS collects the bids and creatives and stores them in Prebid cache. 
 4. PBS passes the winning bid parameters to the ad server. 
 5. The ad server takes the passed in key-values and finds a matching line item and then compares to  other line items that bid on this impression. 
-6. If the ad server determines Prebid wins the auction - **need to check with server devs on this step of the process - how ad server communicates to PBS the winning bid**
-7. **Also need to check with devs on how PBS returns winning bid and creative to page.**  
+6. If the ad server determines Prebid wins the auction it returns a reference to the winning creative to Prebid. 
+7. Prebid retrieves the winning creative and displays it in the correct ad slot. 
 
 ![Prebid Server Flowchart](/assets/images/flowcharts/pb-server-display.png) 
 
