@@ -13,6 +13,16 @@ This page has answers to some frequently asked questions about Prebid Server. If
 * TOC
 {:toc}
 
+## Do we need to be a member of Prebid.org to submit a bidder adapter?
+
+Nope. The only approval process is a code review. There are separate instructions for:
+
+- [Prebid Server - Go](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)
+- [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
+
+As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+but it's not necessary for contributing code as a community member.
+
 ## How can I debug Prebid Server requests?
 
 + When invoking Prebid Server through Prebid.js, this can be done just by adding `?pbjs_debug=true` to the page URL.

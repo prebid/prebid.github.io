@@ -1112,25 +1112,6 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Reference
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: reference3
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 3
-  title: Docs by Ad Server
-  link: /adops/docs-by-ad-server.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 3
   title: Studies
   link:
   isLastSubSectionItem: 0
@@ -1434,6 +1415,15 @@
   subgroup: 2
 
 - sbSecId: 5
+  title: Prebid Server Auction
+  link: /prebid-server/endpoints/openrtb2/auction.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 5
   title: Prebid Server AMP
   link: /prebid-server/endpoints/openrtb2/amp.html
   isLastSubSectionItem: 0
@@ -1441,10 +1431,10 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 5
-  title: Prebid Server Auction
-  link: /prebid-server/endpoints/openrtb2/auction.html
+  title: Prebid Server Video
+  link: /prebid-server/endpoints/openrtb2/video.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0

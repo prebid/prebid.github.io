@@ -141,15 +141,16 @@ hr {
 }
 
 .pb-alert-warning { 
-	background-color: #ecdcdd;
-	color: #944644;
-	border: 1px solid #944644;
+	background-color: #f3ddde;
+	color: #a94443;
+	border: 1px solid #a94443;
 }
 
 .pb-alert-important { 
-	background-color: #ecdcdd;
-	color: #464646;
-	border: 1px solid #464646;
+	background-color: #ede5ba;
+	color: #85720f;
+	border: 1px solid #85720f;
+
 }
 
 .pb-alert-tip { 
