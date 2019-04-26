@@ -70,6 +70,12 @@ If your page includes more than one Brightcove Player within the same HTML docum
 
 {% include alerts/alert_note.html content=infoNote %}
 
+{% capture infoNote %}
+If you will be using the Brightcove IMA plugin as the ad renderer, either because DFP is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
 **Acceptable Values**
 
 One of the following strings:
