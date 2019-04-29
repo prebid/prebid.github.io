@@ -103,6 +103,11 @@ Follow the creative setup instructions in [Add Creatives](https://console.appnex
 **Creative Expiration**  
 Note that creatives are automatically marked as inactive by the AppNexus systems after 45 days of inactivity.  This may happen to Prebid creatives since they are loaded relatively infrequently compared to other use cases.  For help with mitigating this issue, please contact your AppNexus representative.
 
+{: .alert.alert-warning :}
+**SafeFrame**
+If you want your creative to serve into a SafeFrame, this will need to be enabled on the site-side of the Prebid.js implementation rather than as a setting in the adserver.  There are details on this [page]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) that the publisher's developers can reference to enabled this setting.
+
+
 ## Step 3. Set up Line Items
 
 You'll need to create one line item for every price bucket you intend to serve.
