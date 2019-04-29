@@ -1545,7 +1545,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 #### Mobile App Post-Bid
 
 To support [post-bid](/overview/what-is-post-bid.html) scenarios on mobile apps, the
-prebidServerBidAdapter recognizes the `app` config object to
+prebidServerBidAdapter module recognizes the `app` config object to
 forward details through the server:
 
 {% highlight js %}
