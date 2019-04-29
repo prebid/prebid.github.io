@@ -78,7 +78,7 @@ Prebid.js v2.9.0 and later:
 
 Both formats are supported.  Without Size is the recommended unless you are using Prebid Server, in which case, With Size is required.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
-Prebid.js v1.1.18 to v2.0.8:
+Prebid.js v1.1.18 to v2.8.0:
 
 Both formats are supported.  Without Size is the recommended unless you are using Prebid Server, in which case, With Size is required.   Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
 
