@@ -4,8 +4,8 @@ title: Telaria
 description: Telaria Bidder Adaptor
 hide: true
 biddercode: telaria
-biddercode_longer_than_12: false
 media_types: video
+gdpr_supported: true
 ---
 
 ### Overview

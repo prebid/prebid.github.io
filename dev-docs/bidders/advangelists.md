@@ -4,13 +4,12 @@ title: Advangelists
 description: Prebid Advangelists Bidder Adapter
 hide: true
 biddercode: advangelists
-biddercode_longer_than_12: false
 ---
 
 ### Note:
 For more information about [Advangelists https://advangelists.com], please contact lokesh@advangelists.com
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description      | Example                                  | Type              |

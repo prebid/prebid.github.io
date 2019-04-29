@@ -4,11 +4,10 @@ title: Piximedia
 description: Piximedia Bidder Adaptor
 hide: true
 biddercode: piximedia
-biddercode_longer_than_12: false
 media_types: banner
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example       | Type     |

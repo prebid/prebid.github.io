@@ -4,7 +4,6 @@ title: E-Planning
 description: Prebid E-Planning Bidder Adapter
 hide: true
 biddercode: eplanning
-biddercode_longer_than_12: false
 ---
 
 
@@ -12,7 +11,7 @@ biddercode_longer_than_12: false
 ### Note:
 The E-Planning Header Bidding adaptor requires setup and approval from the E-Planning team. Please go to [E-Planning website](http://www.e-planning.net) for more details.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                                   | Example                   | Type      |

@@ -471,6 +471,15 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: User ID
+  link: /dev-docs/modules/userId.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: Publisher Common ID
   link: /dev-docs/modules/pubCommonId.html
   isLastSubSectionItem: 0
@@ -919,7 +928,7 @@
 
 - sbSecId: 2
   title: Code Integration - iOS
-  link: /prebid-mobile/code-integration-ios.html
+  link: /prebid-mobile/legacy/ios/code-integration-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -928,7 +937,7 @@
 
 - sbSecId: 2
   title: Targeting Parameters - iOS
-  link: /prebid-mobile/targeting-params-ios.html
+  link: /prebid-mobile/legacy/ios/targeting-params-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -937,7 +946,7 @@
 
 - sbSecId: 2
   title: Logging and Troubleshooting - iOS
-  link: /prebid-mobile/logging-troubleshooting-ios.html
+  link: /prebid-mobile/legacy/ios/logging-troubleshooting-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -946,7 +955,7 @@
 
 - sbSecId: 2
   title: Code Integration - Android
-  link: /prebid-mobile/code-integration-android.html
+  link: /prebid-mobile/legacy/android/code-integration-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -955,7 +964,7 @@
 
 - sbSecId: 2
   title: Targeting Parameters - Android
-  link: /prebid-mobile/targeting-params-android.html
+  link: /prebid-mobile/legacy/android/targeting-params-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -964,7 +973,7 @@
 
 - sbSecId: 2
   title: Logging and Troubleshooting - Android
-  link: /prebid-mobile/logging-troubleshooting-android.html
+  link: /prebid-mobile/legacy/android/logging-troubleshooting-android.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -997,6 +1006,15 @@
 - sbSecId: 3
   title: AdOps View of Prebid
   link: /adops/before-you-start.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 3
+  title: Prebid Universal Creative
+  link: /overview/prebid-universal-creative.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -1092,25 +1110,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
-- sbSecId: 3
-  title: Reference
-  link:
-  isLastSubSectionItem: 0
-  isHeader: 1
-  headerId: reference3
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 3
-  title: Docs by Ad Server
-  link: /adops/docs-by-ad-server.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
 
 - sbSecId: 3
   title: Studies
@@ -1416,6 +1415,15 @@
   subgroup: 2
 
 - sbSecId: 5
+  title: Prebid Server Auction
+  link: /prebid-server/endpoints/openrtb2/auction.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 5
   title: Prebid Server AMP
   link: /prebid-server/endpoints/openrtb2/amp.html
   isLastSubSectionItem: 0
@@ -1423,10 +1431,10 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 5
-  title: Prebid Server Auction
-  link: /prebid-server/endpoints/openrtb2/auction.html
+  title: Prebid Server Video
+  link: /prebid-server/endpoints/openrtb2/video.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0

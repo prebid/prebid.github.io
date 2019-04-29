@@ -4,7 +4,7 @@
   type: 0
   
 - company: Rubicon 
-  link: http://rubiconproject.com/headerbidding
+  link: https://rubiconproject.com/header-bidding-for-publishers/
   imgURL: /assets/images/partners/founders/rubicon.png
   type: 0
   
@@ -48,3 +48,7 @@
   imgURL: /assets/images/partners/standard/cafemedia.png
   type: 1
 
+- company: PubNative 
+  link: https://pubnative.net/
+  imgURL: /assets/images/partners/standard/Pubnative-RGB-Logo.png
+  type: 1

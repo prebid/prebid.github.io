@@ -16,7 +16,7 @@ sidebarType: 0
 
 Prebid is:
 
-+ A set of free and open source software products that help publishers implement Header Bidding on their websites & apps. Check out or [GitHub repositories](https://github.com/prebid).
++ A set of free and open source software products that help publishers implement Header Bidding on their websites & apps. Check out our [GitHub repositories](https://github.com/prebid).
 + The community of developers that maintains and improves them.
 + An organization that hosts events and encourages the development of the platform. See more about the [Prebid.org organization]({{site.baseurl}}/overview/what-is-prebid-org.html).
 

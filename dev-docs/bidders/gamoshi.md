@@ -3,7 +3,6 @@ layout: bidder
 title: Gamoshi
 description: Prebid Gamoshi Bidder Adaptor
 biddercode: gamoshi
-biddercode_longer_than_12: false
 hide: true
 media_types: banner, video
 gdpr_supported: true

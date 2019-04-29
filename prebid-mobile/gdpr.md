@@ -13,18 +13,17 @@ sidebarType: 2
 
 # Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice
 
-<div class="alert alert-danger" role="alert">
-  <strong>Notice</strong>
-  <p>
-  In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports <a href="http:///advertisingconsent.eu/">the IAB Europe Transparency & Consent Framework</a> (the "Framework").  
-  </p>
-  <p>
+{% capture infoNote %}
+
+  In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports the [IAB Europe Transparency & Consent Framework](http:///advertisingconsent.eu/) (the "Framework").  
+  
   This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in the EEA and signal approved vendors and, where necessary, pass consent, to demand sources and their vendors.  
-  </p>
-  <p>
+  
   This resource should not be construed as legal advice and Prebid.org make no guarantees about compliance with any law or regulation.  Please note that because every company and its collection, use, and storage of personal data is different, you should also seek independent legal advice relating to obligations under European regulations, including the GDPR and the existing ePrivacy Directive. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.  
-  </p>      
-</div>
+    
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
 
 ## Framework APIs
 
@@ -42,7 +41,7 @@ Publishers are responsible for providing notice, transparency and choice and col
 
 All vendor SDKs (including mediation SDKs) are responsible for looking up approved vendor and consent information on their own.
 
--   [Android API Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-android.html)
--   [iOS API Targeting Parameters]({{site.github.url}}/prebid-mobile/targeting-params-ios.html)
+-   [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+-   [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 
 

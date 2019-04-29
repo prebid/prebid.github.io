@@ -3,7 +3,6 @@ layout: bidder
 title: EngageBDR
 description: Prebid EngageBDR Bidder Adaptor
 biddercode: ebdr
-biddercode_longer_than_12: false
 hide: true
 media_types: video
 ---

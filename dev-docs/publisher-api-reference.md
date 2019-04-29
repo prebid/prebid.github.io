@@ -565,6 +565,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
 | requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. Callback will be passed two parameters, the bids themselves and `timedOut`, which will be true if any bidders timed out. |
 | requestObj.labels | Optional | `Array of strings` | Defines [labels](#labels) that may be matched on ad unit targeting conditions. |
+| requestObj.auctionId | Optional | `String` | Defines an auction ID to be used rather than having the system generate one. This can be useful if there are multiple wrappers on a page and a single auction ID is desired to tie them together in analytics. |
 
 <hr class="full-rule">
 
@@ -881,7 +882,7 @@ you'll need to fully manage the targeting -- the default `hb_` targeting variabl
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
 Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
-In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
+In addition, video will receive additional keys: `hb_cache_id`, `hb_uuid`, and `hb_cache_host`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
@@ -925,21 +926,14 @@ pbjs.bidderSettings = {
             val: function (bidResponse) {
                 return bidResponse.mediaType;
             }
-        }, {
-            key: 'hb_cache_id',
-            val: function (bidResponse) {
-                return bidResponse.videoCacheKey;
-            }
-        }, {
-            key: 'hb_uuid',
-            val: function (bidResponse) {
-                return bidResponse.videoCacheKey;
-            }
         }]
     }
 }
 
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, hb_source, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
 
 <a name="key-targeting-specific-bidder"></a>
 **Keyword targeting for a specific bidder**
@@ -1217,12 +1211,13 @@ Core config:
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
-Module config: these options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
+Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
-+ [Currency module]({{site.baseurl}}/dev-docs/modules/currency.html#currency-config-options)
-
-{: .alert.alert-warning :}
-The `options` param object to `setConfig()` must be JSON - no JavaScript functions are allowed.
++ [Currency module](dev-docs/modules/currency.html#currency-config-options)
++ [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
++ [User ID module](/dev-docs/modules/userId.html#configuration)
++ [Adpod](/dev-docs/modules/adpod.html)
++ [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
 <a name="setConfig-Debugging" />
 
@@ -1482,6 +1477,14 @@ pbjs.setConfig({
         adapterOptions: {
             pubmatic: { key: 'value' },
             appnexus: { key: 'value' }
+        },
+        syncUrlModifier: {
+            'openx': function(type, url, bidder) {
+            const publisherId = '00000123231231'
+            url += `&ri=${publisherId}`;
+
+            return url
+            }
         }
     }
 })
@@ -1503,6 +1506,7 @@ Additional information of these properties:
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.BIDDER. See the example above. |
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See video-related example below. |
+| `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
 
 **Notes on s2sConfig properties**
 

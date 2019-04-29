@@ -8,7 +8,11 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
+{% capture warningNote %}
+This document describes a pre-release version of the Prebid Mobile API that has been deprecated. See our updated [code Integration document](/prebid-mobile/pbm-api/ios/code-integration-ios.html) for information on working with the current version of Prebid Mobile.
+{% endcapture %}
 
+{% include alerts/alert_warning.html content=warningNote %}
 
 
 # Code Integration for iOS

@@ -4,12 +4,12 @@ title: Beachfront
 description: Prebid Beachfront Bidder Adaptor
 hide: true
 biddercode: beachfront
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
+userIds: unifiedId/tradedesk
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                                                 | Example                                  | Type     |

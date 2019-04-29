@@ -4,7 +4,6 @@ title: Vuble
 description: Prebid Vuble Bidder Adaptor
 hide: true
 biddercode: vuble
-biddercode_longer_than_12: false
 media_types: video
 ---
 

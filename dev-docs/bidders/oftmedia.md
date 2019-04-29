@@ -5,10 +5,9 @@ description: Prebid One Fifty Two Media Bidder Adaptor
 hide: true
 biddercode: oftmedia
 aliasCode : appnexus
-biddercode_longer_than_12: false
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
