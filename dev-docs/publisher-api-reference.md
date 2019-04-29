@@ -52,6 +52,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [priceGranularity](#setConfig-Price-Granularity)
     * [mediaTypePriceGranularity](#setConfig-MediaType-Price-Granularity)
     * [s2sConfig](#setConfig-Server-to-Server) (server-to-server config)
+    * [app](#setConfig-app) (mobile app post-bid)
     * [userSync](#setConfig-Configure-User-Syncing)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [Generic Configuration](#setConfig-Generic-Configuration)
@@ -1539,6 +1540,21 @@ pbjs.setConfig({
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
+<a name="setConfig-app" />
+
+#### Mobile App Post-Bid
+
+To support [post-bid](/overview/what-is-post-bid.html) scenarios on mobile apps, the
+prebidServerBidAdapter recognizes the `app` config object to
+forward details through the server:
+
+{% highlight js %}
+pbjs.setConfig({
+   app: {
+      bundle: "org.prebid.mobile.demoapp",
+      domain: "prebid.org"
+   }
+{% endhighlight %}
 
 <a name="setConfig-Configure-User-Syncing" />
 
@@ -1858,6 +1874,7 @@ pbjs.addAdUnits([{
 See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
 <a name="setConfig-Generic-Configuration" />
+
 
 #### Generic setConfig Configuration
 
