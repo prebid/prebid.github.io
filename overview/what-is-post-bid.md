@@ -11,7 +11,7 @@ sidebarType: 1
 > Post-bid allows a publisher’s demand sources to compete in one auction based on price after the ad server has declined to choose a direct-sold or exchange-based line item.
 
 `Post-bid` is the configuration scenario where a publisher loads and runs Prebid.js
-in a winning line item's creative. In a post-bid setup, competition among 
+in a winning line item's creative. In a post-bid setup, 
 demand sources compete _after_ the ad server has chosen the post-bid line item. Compare this to:
 
 - header bidding, where demand sources compete _before_ the ad server has seen
@@ -26,7 +26,7 @@ This diagram summarizes the post-bid scenario:
 Steps:
 
 1. The webpage sends an impression to the ad server.
-2. The ad server chooses a winning line item among 'class 1' (direct-sold ads), exchanges, and the post-bid line items. In this case, the post-bid line item wins because the eCPM on the line item is high (based on historical price) and the higher priority line items have all exhausted their spend.
+2. The ad server chooses a winning line item among 'class 1' (direct-sold ads), exchanges, and the post-bid line items. In the case shown here, the post-bid line item wins.
 3. The post-bid line item’s creative is served to the page. The creative runs an auction for the bidders using prebid.js, which then displays the highest price creative in that creative’s ad slot.
 
 
@@ -46,7 +46,7 @@ Additionally, post-bid does not need as many line items, so initial setup is eas
 
 ### Disadvantages of Post-Bid
 
-We’ve listed the advantages of post-bid over header bidding in the previous section. The disadvantages:
+We’ve listed the advantages of post-bid over header bidding in the previous section. The disadvantages include:
 
 #### 1. No dynamic allocation across all demand sources.
 
@@ -83,7 +83,7 @@ In the ad server's post-bid line item report, you’d only get an aggregated rep
 
 Yes. Check out the [example](/dev-docs/examples/postbid.html).
 
-#### 2. Can post-bid be uses for mobile apps?
+#### 2. Can post-bid be used for mobile apps?
 
 Yes, it works the same as for browsers. When utilizing a server-to-server architecture, the [app](/dev-docs/publisher-api-reference.html#setConfig-app) config option can be used to forward the mobile app details.
 
