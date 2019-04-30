@@ -65,10 +65,12 @@ These key-values are returned to the SSAI server as part of the video response.
 | podconfig.pods | Required | `Object[]` |  Container object for describing the adPod(s) to be requested.  |
 | site | Required | `Object` |  Container object for the URL of the impression to be shown. Can be excluded if app is included.  |
 | site.page | Required | `String` | URL of the page where the impression will be shown.  |
+| site.publisher.id | Required | `String` | Appnexus member ID.  |
 | app | Required | `Object` |  Container object for app information where the impression is to be shown. Can be excluded if site is included.  |
+| app.bundle | Optional | `String` |  A platform-specific application identifier intended to be unique to the app and independent of the exchange. On Android, this should be a bundle or package name (e.g., com.foo.mygame). On iOS, it is typically a numeric ID. |
 | app.domain | Required | `String` |  The domain of the app. |
 | app.name | Optional | `String` |  The name of the app. |
-| app.bundle | Optional | `String` |  A platform-specific application identifier intended to be unique to the app and independent of the exchange. On Android, this should be a bundle or package name (e.g., com.foo.mygame). On iOS, it is typically a numeric ID. |
+| app.publisher.id | Required | `String` |  Appnexus member ID. |
 | app.storeurl | Optional | `String` |  App store URL for an installed app. |
 | video | Required | `Object` |  Container object for video player data. |
 | video.w | Optional | `Integer` |  Width of the video player in device independent pixels. |

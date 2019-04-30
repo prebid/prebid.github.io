@@ -9,7 +9,6 @@ pid: 1
 ---
 
 
-
 # Prebid Plugin for Brightcove (Videojs) Player
 
 ## Overview
@@ -34,21 +33,24 @@ The Brightcove Prebid Plugin supports the following features:
         - AppNexus viewability measurement
         - AppNexus domain detection
 
-- Includes no Google IMA code by default
+- The plugin supports more than one ad renderer by default.
+  - If DFP is detected as the primary ad server (indicated by the presence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the Brightcove IMA Plugin will be used to render the ad.
+  - If DFP is NOT detected as the primary ad server (indicated by the absence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the MailOnline Plugin will be used to render the ad.
+  - Publishers can override this default behavior using the `adRenderer` option.  Publishers can define this option only once in the set of Prebid config options.  Additional specifications for this option will be ignored.
 
 - Open source project
 
-The plugin will support the following UI features:
+If the MailOnline plugin is used to render the ads, the plugin will support the following UI features:
 
 - Standard ad controls used for single ads:
-    - Ad Indicator with configurable text
-    - Optional skip button including countdown text with configurable text
-    - Ad pause and resume
-    - Fullscreen support
-
+  - Ad Indicator with configurable text
+  - Optional skip button including countdown text with configurable text
+  - Ad pause and resume
+  - Fullscreen support
 - Disabled scrubbing during ad playback
-
 - Standard click-through support
+
+If the Brightcove IMA Plugin is used to render the ad, then the UI features of the ad will be governed by the standard behavior of Google IMA.
 
 The plugin supports one or more of the following ad slot locations in a single video and/or in a player configured for playlisting:
 
@@ -70,6 +72,7 @@ BcPrebidVast is supported by the following components:
 - **bc_prebid_vast**
 - **bc_prebid_vast_plugin**
 - **MailOnline Plugin**
+- **Brightcove IMA Plugin**
 - **CSS files**
 
 ### bc_prebid_vast
@@ -111,7 +114,15 @@ You can think of the “plugin” as being a combination of the loader and the p
 
 ### MailOnline Plugin
 
-The MailOnline plugin is used by the prebid plugin to render the ad. This plugin includes modifications to the plugin that can be found in the MailOnline repository. These modifications were made to improve its behavior when rendering ads. If you have your own modified version of the MailOnline plugin, you can replace this link with a link to your own build if you build your own version of this plugin. You may also replace this plugin with your own custom video ad renderer.
+The MailOnline plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options do not identify DFP as the primary ad server, then the MailOnline Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that MailOnline is used to render the ad, regardless of the presence of the DFP parameters.
+
+{% capture infoNote %}
+If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include DFP parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
+This plugin includes modifications that can be found in the MailOnline repository. These modifications were made to improve the plugin's behavior when rendering ads. If you have your own modified version of the MailOnline plugin, you can replace this link with a link to your own build. You may also replace this plugin with your own custom video ad renderer.
 
 #### Minified Version
 
@@ -126,9 +137,25 @@ The MailOnline plugin is used by the prebid plugin to render the ad. This plugin
 - Repository location:  `https://github.com/prebid/videojs-mailonline-plugin.git`
    - after building: `./videojs-mailonline-plugin/dist/videojs_5.vast.vpaid.js`
 
+### Brightcove IMA Plugin
+
+The Brightcove IMA plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options identifies DFP as the primary ad server, then the Brightcove IMA Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that the IMA plugin is used to render the ad, regardless of the presence of the DFP parameters.
+
+{% capture infoNote %}
+If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include DFP parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
+{% capture infoNote %}
+If you will be using the Brightcove IMA plugin as the ad renderer, either because DFP is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
 ### CSS
 
-The plugin relies on two CSS files to control the ad playback:
+The plugin relies on one or two CSS files to control the ad playback, depending on which plugin is used to render the ad:
 
 - Prebid plugin CSS: `bc_prebid_vast_vjs.css`
 - MailOnline plugin CSS: `bc_vpaid_vast_mo.css`
@@ -142,7 +169,7 @@ Defines CSS styles that are used directly by the plugin.
 
 #### MailOnline Plugin CSS
 
-Defines CSS styles that are used by the MailOnline Plugin. If you are using another renderer, you might need to include your own CSS file for that renderer.
+Defines CSS styles that are used by the MailOnline Plugin. If you are using another renderer, you might need to include your own CSS file for that renderer. Also, if the Brightcove IMA Plugin is used to render the ad, then this CSS file is not used.
 
 - Default location: `http://acdn.adnxs.com/video/plugins/css/mol/bc_vpaid_vast_mo.css`
 - After building:  `./videojs-mailonline-plugin/bin/bc_vpaid_vast_mo.css`
