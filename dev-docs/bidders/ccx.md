@@ -8,7 +8,7 @@ media_types: video
 ---
 
 
-### bid params
+### Bid Params
 
 #### Common params (banner, video)
 

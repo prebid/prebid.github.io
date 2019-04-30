@@ -24,7 +24,7 @@ call `GET element.usersync.url`. That endpoint should respond with a redirect wh
 Bidders who support cookie syncs must implement an endpoint under their domain which accepts
 an encoded URI for redirects. For example:
 
-> GET some-bidder-domain.com/usersync-url?redirectUri=www.prebid-domain.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3D%24UID
+> GET some-bidder-domain.com/usersync-url?redirectUri=www.prebid-domain.com/setuid?bidder=somebidder&uid=$UID
 
 This example endpoint would URL-decode the `redirectUri` param to get `www.prebid-domain.com/setuid?bidder=somebidder&uid=$UID`.
 It would then replace the `$UID` macro with the user's ID from their cookie. Supposing this user's ID was "132",

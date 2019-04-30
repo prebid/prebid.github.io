@@ -12,7 +12,7 @@ media_types: banner, video
 
 The Adman Bidding adapter requires setup before beginning. Please contact us at prebid@admanmedia.com
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |

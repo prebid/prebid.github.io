@@ -9,7 +9,7 @@ biddercode: taphype
 ### Note:
 The TapHype adaptor requires setup and approval from your TapHype account manager. Please reach out to your account manager to enable Prebid.js for your account.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                        | Example | Type      |

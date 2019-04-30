@@ -10,7 +10,7 @@ gdpr_supported: true
 ### Note:
 The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoulike team. Please reach out to your account manager or prebid@adyoulike.com for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                      | Example                              | Type     |

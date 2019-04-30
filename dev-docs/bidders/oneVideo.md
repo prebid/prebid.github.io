@@ -12,7 +12,7 @@ gdpr_supported: true
 
 One Video adapter only supports video ads.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name    | Scope    | Description  | Example  | Type     |

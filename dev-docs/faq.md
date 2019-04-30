@@ -15,6 +15,16 @@ This page has answers to some frequently asked questions about Prebid.js.  If yo
 * TOC
 {:toc}
 
+## Do we need to be a member of Prebid.org to submit a bidder adapter or analytics adapter?
+
+Nope. The only approval process is a code review. There are separate instructions for:
+
+- [adding a bidder in Prebid.js](/dev-docs/bidder-adaptor.html)
+- [adding an analytics adapter in Prebid.js](/dev-docs/integrate-with-the-prebid-analytics-api.html)
+
+As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+but it's not necessary for contributing code as a community member.
+
 ## When starting out, what should my timeouts be?
 
 Below is a set of recommended best practice starting points for your timeout settings:

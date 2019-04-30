@@ -11,7 +11,7 @@ gdpr_supported: true
 ### Note:
 The Sharethrough bidder adapter requires additional setup and approval from the Sharethrough Integrations team. Please reach out to your account manager for more information to start using it.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                                                                                                                                                      | Example                      | Type             |

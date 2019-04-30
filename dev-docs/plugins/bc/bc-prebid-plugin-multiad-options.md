@@ -32,6 +32,7 @@ Therefore, for the following configuration options, the plugin will use the valu
 - `prebidPath`: url used to load `prebid.js`
 - `scriptLoadTimeout`: used to specify the maximum time in milliseconds that the plugin will wait for a script file to load
 - `frequencyRules`: used to express control of ad frequency in a playlist
+- `adRenderer`: used to override the default behavior of selecting the plugin used to render the ad
 
 ## Sample Code
 

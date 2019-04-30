@@ -12,7 +12,7 @@ gdpr_supported: true
 The BidPhysics Header Bidding adaptor requires approval from the BidPhysics team. Please reach out to  <info@bidphysics.com> for more information.
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description        | Example     | Type      |

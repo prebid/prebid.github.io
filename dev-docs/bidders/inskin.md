@@ -9,7 +9,7 @@ biddercode: inskin
 ### Note:
 The Inskin bidder adapter requires additional setup and approval from the Inskin Media Integrations team. Please reach out to your account manager for more information and to start using it.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                    | Example | Type      |

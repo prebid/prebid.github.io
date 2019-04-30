@@ -9,7 +9,7 @@ biddercode: lkqd
 ### Note:
 For more information about [LKQD Ad Serving and Management](http://www.lkqd.com/ad-serving-and-management/), please contact info@lkqd.com.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description      | Example        | Type |
