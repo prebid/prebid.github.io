@@ -10,19 +10,22 @@ sidebarType: 0
 * TOC
 {:toc}
 
-## Prebid Products, Community and Organization
+## Overview
 
-- A free and open source suite of software products designed to enable publishers to implement header bidding on their websites and from within their apps. Our product line includes:  
-   - Prebid.js: The core of our codebase. Prebid.js provides a simple and easy to implement code set to improve header bidding for display and video ads on a publisher's website and within OOT applications.  
-   - Prebid Server: Provides a hosted or custom server-side solution for header bidding. Utilizing Prebid Server can reduce latency between bid request and ad selection and speed the presentation of your site and ads.  
-   - Prebid Mobile: Our native iOS and Android solutions to enable header bidding within a mobile app.
-- The community of developers that maintains and improves our products.  
-- An organization that promotes our products and works with the ad tech community to expand the solutions our products can provide and encourages the development of the platform. 
+Prebid is more than a product; it's a product suite, a community and an organization. 
+
+- **Product Suite:** A free and open source suite of software products designed to enable publishers to implement header bidding on their websites and from within their apps. Our product line includes:  
+   - <span style="color:#EA9622">**Prebid.js:**</span> The core of our codebase. Prebid.js provides a simple and easy to implement code set to improve header bidding for display and video ads on a publisher's website and within OTT applications.  
+   - <span style="color:#EA9622">**Prebid Server:**</span> Provides a hosted or custom server-side solution for header bidding. Utilizing Prebid Server can reduce latency between bid request and ad selection and speed the presentation of your site and ads.  
+   - <span style="color:#EA9622">**Prebid Mobile:**</span> Our native iOS and Android solutions to enable header bidding within a mobile app.
+- **Community:** The developers that maintain and improve our products.  
+- **Organization:**  A collection of leaders within the ad tech industry that promotes our products, works with the ad tech community to expand the solutions our products can provide, and encourages the development of the platform.  
+
 {% include alerts/alert_note.html content="Our flagship product, Prebid.js, is sometimes referred to as simply *Prebid*, but please be aware that the Prebid product line supports header bidding for web, AMP, and mobile apps, using both client and server side project components." %} 
 
-## Header bidding
+## Header Bidding
 
-### What is header bidding
+### What is header bidding?
 
 Header bidding is a response to a fragmented and highly inefficient process for digital ad display. It is an alternative to the "waterfall" method, the process of offering impressions in one sales channel and if that does not succeed moving to less valuable channels. Header bidding is sometimes referred to as advance bidding or pre-bidding. 
 When the page loads, header bidding enables publishers to have simultaneous auctions with all SSPs and ad exchanges. Publishers can receive bids on their inventory that may be unavailable through their primary ad server and exchange.
@@ -35,14 +38,14 @@ Prebid.js launched in 2015 to make header bidding easy for publishers by bringin
 Today, Prebid.js is the most widely used header bidding "container" or "wrapper" on the web. The ecosystem supports more thabn 150 demand partners, over fifteen analytics providers, and numerous publishers.
 ## Benefits of Prebid Products
 
-The Prebid product suite offers publishers multiple benefits designed to foster a better header bidding experience:
-1. Free and open source, enabling anyone to contribute or review code.
-2. The largest repository of working header bidding adapters.
-3. Asynchronous and single time-out to provide a better user experience.
-4. Prebid Server to run faster auctions with more partners.
-5. Tools and analytics to optimize your setup.
-6. Multiple options on formats (display, video, native) and channels (mobile, web).
-7. A well established and helpful community which can advise on best practices and if needed provide professional setup and services.  
+The Prebid product suite offers publishers multiple benefits designed to foster a better header bidding experience:  
+- Free and open source, enabling anyone to contribute or review code.  
+- The largest repository of working header bidding adapters.  
+- Asynchronous and single time-out to provide a better user experience.  
+- Prebid Server to run faster auctions with more partners.  
+- Tools and analytics to optimize your setup.  
+- Multiple options on formats (display, video, native) and channels (mobile, web).  
+- A well established and helpful community which can advise on best practices and if needed provide professional setup and services.  
 
 ## Prebid Products
 
@@ -53,7 +56,7 @@ Prebid.js is the core product of the Prebid suite. Implemented on multiple forma
 **Reducing Latency**
 
 One of the main problems publishers experienced with other header bidding solutions was the delay between the bid requests being sent and the responses being returned. Many solutions use synchronous calls, meaning each SSP or ad exchange had to receive the request and return a response before the next SSP was called. This could lead to long delay from the web page being called to it loading. 
-Prebid resolves this issue by concurrently calling the selected SSPs and ad exchanges within the set timeout. That setting is respected by Prebid.js and any bidder not returning a result within the timeout duration is excluded from the auction. This dramatically decreases the page load time, providing a better user experience. 
+Prebid resolves this issue by concurrently calling the selected SSPs and ad exchanges within the set timeout. That setting is respected by Prebid.js, and any bidder not returning a result within the timeout duration is excluded from the auction. This dramatically decreases the page load time, providing a better user experience. 
 
 **Prebid.js process**
 
@@ -72,7 +75,7 @@ Prebid resolves this issue by concurrently calling the selected SSPs and ad exch
 Prebid Server provides a server side solution to header bidding. Built on the same core principles of Prebid.js, our server solution can reduce latency and improve page load time.
 Several Prebid.org members provide hosted solutions, enabling publishers to receive the benefits of server side header bidding without the need to implement and manage the process themselves. 
 
-If a publisher would prefer to implement their own solution, [source code](https://github.com/prebid/prebid-server) is available from our Github page and detailed instructions for configuring, deploying and testing your implementation can be found in the [Prebid Server section](/prebid-server/prebid-server-overview.html) of thi site.  
+If a publisher would prefer to implement their own solution, [source code](https://github.com/prebid/prebid-server) is available from our Github page and detailed instructions for configuring, deploying and testing your implementation can be found in the [Prebid Server section](/prebid-server/prebid-server-overview.html) of this site.  
 
 **Prebid Server process**
 
@@ -90,8 +93,7 @@ Prebid Server provides multiple endpoints for auctions as well as data retrieval
 
 ### Prebid Mobile
 
-For mobile apps, Prebid provides Prebid Mobile (PBM), an end-to-end header bidding solution for both iOS and Android. Working in conjunction with Prebid Server, PBM reduces latency and enables access to more mobile buyers, 
-PBM provides options for banner and interstitial ad formats and enables user to set global targeting values for the bid request. 
+For mobile apps, Prebid provides Prebid Mobile (PBM), an end-to-end header bidding solution for both iOS and Android. Working in conjunction with Prebid Server, PBM reduces latency and enables access to more mobile buyers, provides options for banner and interstitial ad formats, and enables user to set global targeting values for the bid request. 
 
 **Prebid Mobile process**
 
@@ -103,7 +105,7 @@ The PBM header bidding process follows these steps:
 4. Prebid Server sends the bid responses to Prebid Mobile.
 5. Prebid Mobile sets key-value targeting for each ad slot through the primary ad server mobile SDK. This targeting will activate one or more of Prebid line items that were previously configured in the primary ad server.
 6. If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JavaScript to the ad server’s SDK.
-7. The Prebid Mobile creative JavaScript will fetch and render the corresponding creative con *<----This is from the existing mobile overview, it just stops at con...I am going to follow up with Punnaghai to correct this*
+7. The Prebid Mobile creative JavaScript will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
 
 ![Prebid Mobile Flowchart](/assets/images/flowcharts/pb-mobile.png) 
 
