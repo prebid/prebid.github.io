@@ -16,7 +16,7 @@ sidebarType : 1
 {:toc}
 
 {: .alert.alert-info :}
-The User ID module will be available with Prebid.js 2.10.0, launching with support for two ID systems: Unified ID and PubCommonID.
+The User ID module will be available with Prebid.js 2.10.0, launching with support for three ID systems: Unified ID, PubCommonID, and DigiTrust ID.
 
 ## Overview
 
@@ -24,6 +24,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
+* **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 
 ## How It Works
 
@@ -62,6 +63,12 @@ You can set up Unified ID in one of these ways:
 
 - Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
 - Utilize a [managed services](/prebid/managed.html) company who can do this for you.
+
+## Registering for DigiTrust ID
+
+In order to utilize DigiTrust a publisher must register and be approved for membership. You may register online at the below address:
+
+- http://www.digitru.st/signup/
 
 ## Examples
 
@@ -163,6 +170,51 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+
+6) Publisher is a DigiTrust member and supports both PubCommonID and DigiTrust ID integrated with Prebid
+
+{% highlight javascript %}
+&lt;script src=&quot;https://cdn.digitru.st/prod/1/digitrust.min.js&quot; &gt; &lt;/script&gt;
+
+&lt;script &gt;
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",  
+                name: "_pubCommonId",       // create a cookie with this name
+                expires: 1825               // expires in 5 years
+            },
+			{
+				name: "digitrust",
+				params: {
+					init: {
+						member: 'example_member_id',
+						site: 'example_site_id'
+					},
+					callback: function (digiTrustResult) {
+						if (digiTrustResult.success) {
+							console.log('Success in Digitrust init', digiTrustResult.identity.id);
+						}
+						else {
+							console.error('Digitrust init failed');
+						}
+					}
+				},
+				storage: {
+					type: "html5",
+					name: "pbjsdigitrust",
+					expires: 60
+				}
+			}
+        }]
+    }
+});
+&lt;/script &gt;
+{% endhighlight %}
+
+
 ## Configuration
 
 By including this module, the following options become available in `setConfig()`,
@@ -172,8 +224,8 @@ of sub-objects. See the examples above for specific use cases.
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"` or `"pubCommonId"` | `"unifiedId"` |
-| params | Required for UnifiedId | Object | Details for UnifiedId. | |
+| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`,  or `"digitrust"` | `"unifiedId"` |
+| params | Required for UnifiedId and DigiTrust | Object | Details for UnifiedId or DigiTrust initialization. | |
 | params.partner | Required if using Trade Desk | String | This is the partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. | `"myTtdPid"` |
 | params.url | Required if not using Trade Desk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
 | storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
@@ -181,6 +233,10 @@ of sub-objects. See the examples above for specific use cases.
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the Unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
+
+Please consult the [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html) page for details on
+DigiTrust parameters and usage. For more complete instructions please review the 
+[Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
 
 ## Adapters Supporting the User ID Module
 
@@ -233,3 +289,5 @@ eed to update your server-side bid adapter to read the indicated OpenRTB attribu
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
 * [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
+* [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html)
+* [Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
