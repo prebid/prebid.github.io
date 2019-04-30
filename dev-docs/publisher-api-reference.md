@@ -841,10 +841,10 @@ pbjs.bidderSettings = {
          [...]
     },
     ix: {
-         [...]
+        [...]
     },
     rubicon: {
-         [...]
+        [...]
     },
 }
 
@@ -972,17 +972,16 @@ Note that sendStandardTargeting is set to false so that the standard Prebid targ
 
 **Price Buckets**
 
-Now let's say you would like to define you own price bucket function rather than use the ones available by default in prebid.js. You can overwrite the bidder settings as the below example shows:
+Now let's say you would like to define a bidder-specific price bucket function rather than use the ones available by default in prebid.js. Even the [priceGranularity config](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) option applies to all bidders -- with this approach you can overwrite price buckets.
 
 *Note: this will only impact the price bucket sent to the ad server for targeting. It won't actually impact the cpm value used for ordering the bids.*
-
 
 {% highlight js %}
 
 pbjs.bidderSettings = {
     standard: {
         [...]
-        {
+        adserverTargeting: [{
             key: "hb_pb",
             val: function(bidResponse) {
                 // define your own function to assign price bucket
@@ -998,11 +997,10 @@ pbjs.bidderSettings = {
                     return "pb5"; // all bids less than $6 are assigned to price bucket 'pb5'
                 return "pb6"; // all bids $6 and above are assigned to price bucket 'pb6'
             }
-        }
+        }]
 	[...]
     }
 }
-
 {% endhighlight %}
 
 ##### 2.2. bidCpmAdjustment
