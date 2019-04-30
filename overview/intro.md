@@ -35,7 +35,7 @@ The returned bids are then passed into the ad server so they can compete with di
 
 The early days of header bidding were dominated by bad practices, closed proprietary tech, poor standards, and little to no cooperation between competing companies. Publishers were presented with a confusing and time consuming process of having to manually patch together various solutions from different companies and processes.
 Prebid.js launched in 2015 to make header bidding easy for publishers by bringing conformity and simplictity to the header bidding process. By creating a simple, open tech layer upon which companies could add their code to a standard but optimized foundation, Prebid.js made it easier to implement header bidding, and offered the largest repository of working adapters.
-Today, Prebid.js is the most widely used header bidding "container" or "wrapper" on the web. The ecosystem supports more thabn 150 demand partners, over fifteen analytics providers, and numerous publishers.
+Today, Prebid.js is the most widely used header bidding "container" or "wrapper" on the web. The ecosystem supports more than 150 demand partners, over fifteen analytics providers, and numerous publishers.
 ## Benefits of Prebid Products
 
 The Prebid product suite offers publishers multiple benefits designed to foster a better header bidding experience:  
