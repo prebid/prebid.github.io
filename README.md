@@ -152,7 +152,6 @@ In alphabetical order:
 + Mordhak <adrien.desmoules@gmail.com>
 + Nate Guisinger <ncozi@appnexus.com>
 + Niksok <belnamtar@mail.ru>
-+ Paul <heranyang@gmail.com>
 + Paul Yang <heranyang@gmail.com>
 + Paul Young <heranyang+prebid@gmail.com>
 + Pavlos Kalogiannidis <pkalogiannidis@wideorbit.com>
@@ -184,4 +183,4 @@ In alphabetical order:
 + ronenst <stern.ronen@gmail.com>
 + sberry <sberry@appnexus.com>
 + studnicky <astudnicky@sonobi.com>
-# SuranieWiki
+
