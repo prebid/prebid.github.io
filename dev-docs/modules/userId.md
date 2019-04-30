@@ -70,6 +70,9 @@ In order to utilize DigiTrust a publisher must register and be approved for memb
 
 - http://www.digitru.st/signup/
 
+In addition to general usage and configuration of the User Id module, follow the additional instructions for configuring and deploying
+DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html).
+
 ## Examples
 
 1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
