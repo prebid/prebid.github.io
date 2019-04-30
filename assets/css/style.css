@@ -160,6 +160,15 @@ hr {
 }
 
 
+/* API */
+
+.categoryBox { 
+	background-color: #f3ddde;
+	color: #a94443;
+	border: 1px solid #a94443;
+}
+
+
 /* NavBar */
 
 .navbar { 
@@ -1797,6 +1806,63 @@ div.pl-doc-entry{
 
 .prebid-mobile-notice {
     margin-top: 2em;
+}
+
+/*******************
+	API 
+
+
+
+.categoryBox { 
+	
+	display:block; 
+	float: left; 
+	margin-right:10px; 
+	line-height:40px; 
+	height: 40px; 
+	padding-left: 15px; 
+	padding-right: 15px; 
+	background-color:#f6f8fa; 
+	text-align:center;
+	
+}
+
+*/
+
+
+
+.boxShadow {
+  position: relative;
+}
+
+.boxShadow:before, .boxShadow:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.boxShadow:after {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
 }
 
 
