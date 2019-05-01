@@ -20,7 +20,7 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `publisherId` | required | Publisher ID          | `'32572'`                 | `string` |
-| `adSlot`      | required | Ad Slot Name (see below)| `'38519891'`      | `string` |
+| `adSlot`      | optional | Ad Slot Name (see below)| `'38519891'`            | `string` |
 | `pmzoneid`    | optional | Zone ID               | `'zone1,zone2'`           | `string` |
 | `lat`         | optional | Latitude              | `'40.712775'`             | `string` |
 | `lon`         | optional | Longitude             | `'-74.005973'`            | `string` |
