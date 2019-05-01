@@ -30,6 +30,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) |
 | ShareThrough                                                     | Contact vendor | |
 | Sortable | Contact vendor | [Website](https://www.sortable.com) |
+| Sovrn | <a href="https://www.sovrn.com/contact/">Contact vendor</a> | [Website](https://www.sovrn.com/analytics/)|
 | Vuble                                                            | Contact vendor | [Website](https://vuble.tv/us/prebid/) |
 | YuktaMedia Analytics                                             | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) | 
 
