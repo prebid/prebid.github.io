@@ -1,27 +1,38 @@
 ---
-layout: page
-title: Analytics for Prebid
+layout: page_v2
+title: Analytics for Prebid.js
 description: Prebid.js Analytics Overview
-pid: 10
-top_nav_section: overview
-nav_section: analytics
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Analytics for Prebid
+
+# Prebid.js Analytics
 
 There are several analytics adapter plugins available to track header bidding performance for your site.
 
 {: .table .table-bordered .table-striped }
-| Analytics Adapter                                                | Cost                                                                                | Contact                                                          | Version Added |
-| -------------                                                    | -------------                                                                       | -----------                                                      |  ------------ |
-| [Google Analytics](http://prebid.org/overview/ga-analytics.html) | Free up to a certain volume. See [terms](https://www.google.com/analytics/terms/).  | [Website](https://www.google.com/analytics)                      |               |
-| AppNexus                                                         | Contact vendor                                                                      | [Website](https://www.appnexus.com/en/publishers/header-bidding) |               |
-| PulsePoint                                                       | Contact vendor                                                                      | [Website](https://www.pulsepoint.com/header-bidding.html)        |               |
-| ShareThrough                                                     | Contact vendor                                                                      |                                                                  |               |
-| PrebidAnalytics by Roxot                                         | Paid, see [pricing](http://prebidanalytics.com/#pricing). | [Website](http://prebidanalytics.com/overview-examples)          |          0.22 |
-| PubWise                                                          | Free & Paid, see [pricing](https://pubwise.io/pricing/)                                    | [Website](https://pubwise.io/pubwise/)                                   |          0.24 |
+| Analytics Adapter                                                | Cost | Contact |
+| -------------                                                    | ------------- | ----------- |
+| Adagio                                                           | Contact vendor| [Website](https://adagio.io)|
+| Assertive Yield (contact for adapter) | Free to try (Large accounts $0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) |
+| Finteza Analytics | <a href="mailto: support@finteza.com">Contact vendor</a> | [Website](https://www.finteza.com/) |
+| [Google Analytics]({{site.baseurl}}/overview/ga-analytics.html) | Free up to a certain volume. See [terms](https://www.google.com/analytics/terms/)  | [Website](https://www.google.com/analytics) |
+| Kargo Analytics                                                  | Contact vendor | [Website](https://kargo.com/) |
+| Livewrapped Analytics                                            | Contact vendor | [Website](https://livewrapped.com/) |
+| LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
+| OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) |
+| PrebidAnalytics by Roxot                                         | Paid, see [pricing](http://prebidanalytics.com/#pricing). | [Website](http://prebidanalytics.com/overview-examples) |
+| PubWise                                                          | Free & Paid, see [pricing](https://pubwise.io/pricing/)  | [Website](https://pubwise.io/pubwise/) |
+| PulsePoint                                                       | Contact vendor | [Website](https://www.pulsepoint.com/) |
+| RealVu                                                           | Free  | [Website](https://www.realvu.com/rvaa/) |
+| Rivr Analytics                                                   | Contact vendor | [Website](https://www.rivr.ai/)|
+| Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) |
+| ShareThrough                                                     | Contact vendor | |
+| Sortable | Contact vendor | [Website](https://www.sortable.com) |
+| Sovrn | <a href="https://www.sovrn.com/contact/">Contact vendor</a> | [Website](https://www.sovrn.com/analytics/)|
+| Vuble                                                            | Contact vendor | [Website](https://vuble.tv/us/prebid/) |
+| YuktaMedia Analytics                                             | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) | 
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
@@ -54,4 +65,4 @@ pbjs.que.push(function() {
 
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
 
-</div>
+

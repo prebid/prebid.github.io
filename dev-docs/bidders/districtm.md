@@ -2,23 +2,20 @@
 layout: bidder
 title: DistrictM
 description: Prebid DistrictM Bidder Adaptor
-
 top_nav_section: dev_docs
 nav_section: reference
-
 hide: true
-
 biddercode: districtm
-
-biddercode_longer_than_12: false
-
+aliasCode : appnexus
 s2s_only: true
+sidebarType: 1
+isBidder: true
 
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `placementId` | required | | |
+| Name          | Scope    | Description | Example | Type     |
+|---------------|----------|-------------|---------|----------|
+| `placementId` | required |             |         | `string` |

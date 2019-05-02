@@ -6,8 +6,6 @@ description: Looking back on the first year of Prebid.js development
 permalink: /blog/happy-birthday-prebid-js
 ---
 
-(_This post originally appeared on the [AppNexus blog](http://blog.appnexus.com/2016/prebid-js-a-year-in-the-life-of-an-open-sourced-ad-tech-project/).  It has been edited slightly for clarity._)
-
 ## The Beginning
 
 About a year ago, the publisher engineering team at AppNexus began noticing a common problem with some of our forward-looking publishers: many of their websites were taking a long time to load.
@@ -30,11 +28,11 @@ And - gulp! - we sent our baby out into the world.
 
 ## The Response
 
-The first week after the launch of [Prebid.js](https://github.com/prebid/Prebid.js) we started receiving Github responses from publishers. The responses were positive - several key metrics were telling us publishers were deeply engaged with this product, even from day 1 with the minimum viable product. For example, users on average spent over 5 minutes on the site, and over 35% of the users came back to the [Prebid.org](http://prebid.org) site almost every day during the week - a sign suggesting they were reading and implementing [Prebid.js](https://github.com/prebid/Prebid.js).
+The first week after the launch of [Prebid.js](https://github.com/prebid/Prebid.js) we started receiving GitHub responses from publishers. The responses were positive - several key metrics were telling us publishers were deeply engaged with this product, even from day 1 with the minimum viable product. For example, users on average spent over 5 minutes on the site, and over 35% of the users came back to the [Prebid.org](http://prebid.org) site almost every day during the week - a sign suggesting they were reading and implementing [Prebid.js](https://github.com/prebid/Prebid.js).
 
-And the power of open source started kicking in. On Github, publishers started posting comments, fixing bugs, and contributing code, big chunks of code! For example, our first version of [Prebid.js](https://github.com/prebid/Prebid.js) didn't have a popular header bidding partner implemented. Within a week, we received 3 versions of it, submitted by 3 different publishers!
+And the power of open source started kicking in. On GitHub, publishers started posting comments, fixing bugs, and contributing code, big chunks of code! For example, our first version of [Prebid.js](https://github.com/prebid/Prebid.js) didn't have a popular header bidding partner implemented. Within a week, we received 3 versions of it, submitted by 3 different publishers!
 
-To date, [our Github repo](https://github.com/prebid/Prebid.js) has received over 485 tickets (we closed 452 of them), 1600 comments, 237 pull requests, 173 forks, and 59 contributors. Over 25 companies have submitted their header bidding adaptors, making [Prebid.js](https://github.com/prebid/Prebid.js) one of the most collaborative ad tech projects. Over 2100 people have given us their emails to stay up to date with the latest news on [Prebid.js](https://github.com/prebid/Prebid.js). In June 2016 alone, we've had over 350 downloads of the custom built version of [Prebid.js](https://github.com/prebid/Prebid.js)!
+To date, [our GitHub repo](https://github.com/prebid/Prebid.js) has received over 485 tickets (we closed 452 of them), 1600 comments, 237 pull requests, 173 forks, and 59 contributors. Over 25 companies have submitted their header bidding adaptors, making [Prebid.js](https://github.com/prebid/Prebid.js) one of the most collaborative ad tech projects. Over 2100 people have given us their emails to stay up to date with the latest news on [Prebid.js](https://github.com/prebid/Prebid.js). In June 2016 alone, we've had over 350 downloads of the custom built version of [Prebid.js](https://github.com/prebid/Prebid.js)!
 
 We are also happy to see the fast growing adoption of [Prebid.js](https://github.com/prebid/Prebid.js) on publisher pages. According to the third party analytics provider [Builtwith](http://trends.builtwith.com/ads/Prebid), [Prebid.js](https://github.com/prebid/Prebid.js) saw exponential growth in the past year, and has been installed on over 12,000 sites!
 
