@@ -159,6 +159,38 @@ hr {
 	border: 1px solid #527542;
 }
 
+/* API */
+
+.pb-category-box { 
+	position: relative;
+	float: left;
+	margin-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #f6f8fa;
+	height: 40px;
+	line-height: 40px;
+	border:1px solid #cbcccd;
+}
+
+.pb-category-box a:active { 
+	color: #000000;
+}
+
+.api-doc { 
+	margin-top: 40px;
+}
+
+.api-on { 
+	display: block;
+}
+
+.api-off {
+	display: none;
+}
+
+
+
 
 /* NavBar */
 

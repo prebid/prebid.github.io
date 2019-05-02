@@ -1,0 +1,108 @@
+
+<!--javascript to read querystring key apiDocTarget and use value to display proper content-->
+<script type="text/javascript">
+	
+	$( document ).ready(function() {
+		
+		var queryItems = getUrlVars()
+		var apiDocCategory = queryItems[0][1];
+		
+		var arrDivIds = ["instructions", "configuration", "bids", "server", "targeting", "adunit"];
+		for (var i = 0; i < arrDivIds.length; i++) { 
+			
+			var elementId = arrDivIds[i];
+			
+			var element = document.getElementById(elementId);
+			
+			if (arrDivIds[i] == apiDocCategory.toLowerCase()) { 
+				console.log("match")
+				element.classList.remove("api-off");
+				element.classList.add("api-on");
+			} else { 
+				element.classList.add("api-off");
+				element.classList.remove("api-on");
+			}
+			
+		}
+				
+		
+	});
+	
+	function getUrlVars() {
+	    var qsParams = [];
+	    var arrParams = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < arrParams.length; i++) {
+	        qsParams.push(arrParams[i].split("="));
+	    }
+    	return qsParams;
+	}
+	
+		
+</script>
+
+<!--category list-->
+<div class="container api-files">&nbsp;&nbsp;
+
+		
+		{% assign arrCategories = site.data.pb-api | where: "isFirst", 1 %}
+		
+		<ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden;">
+		{% for thisCat in arrCategories %}
+		
+			<li class="pb-category-box effect2"><a href="{{page.url}}?apiDocTarget={{thisCat.catName}}">{{thisCat.catName}}</a></li>
+		
+		{% endfor %}
+		</ul>
+	
+</div>
+
+
+
+
+<!--content display-->
+<div class="container" id="apiDocumentation">
+	
+	<div class="api-doc api-on" id="instructions"><h4>Select a category to see API endpoints related to that category.</h4></div>
+	
+	<div class="api-doc api-off" id="configuration">
+		<h4>Configuration</h4>
+		<p>
+		<ul>
+			<li>.setConfig(options)
+				<ul>
+					<li>debugging</li>
+					<li>bidderTimeout</li>
+					<li>maxRequestsPerOrigin</li>
+					<li>disableAjaxTimeout</li>
+					<li>timeoutBuffer</li>
+					<li>bidderOrder</li>
+					<li>enableSendAllBids</li>
+					<li>useBidCache</li>
+					<li>publisherDomain</li>
+					<li>priceGranularity</li>
+					<li>mediaTypePriceGranularity</li>
+					<li>s2sConfig (server-to-server config)</li>
+					<li>userSync</li>
+					<li>sizeConfig and labels (responsive ads)</li>
+					<li>Generic Configuration</li>
+					<li>Troubleshooting your config</li>
+				</ul>
+			</li>
+			<li>.getConfig([string])</li>
+		</ul>
+	</div>
+	
+<!--
+	<div class="api-doc api-off" id="bids"><h4>Bid APIs</h4></div>
+
+	<div class="api-doc api-off" id="server"><h4>Server APIs</h4></div>
+	
+	<div class="api-doc api-off" id="targeting"><h4>Targeting APIs</h4></div>
+	
+	<div class="api-doc api-off" id="adunit"><h4>Ad Unit APIs</h4></div>
+-->
+	
+	
+</div>
+	
+ 
