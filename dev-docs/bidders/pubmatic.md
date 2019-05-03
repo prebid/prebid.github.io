@@ -75,13 +75,16 @@ The adSlot parameter supports two different formats:
 
 Support and behavior differs by Prebid.js version
 
-Prebid.js v2.9.0 and later:
+Prebid.js v2.13.0 and later:
+asSlot parameter now optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  All options will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
-Both formats are supported.  Without Size is the recommended unless you are using Prebid Server, in which case, With Size is required.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
+Prebid.js v2.9.0 to v2.12.0:
+
+Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
 Prebid.js v1.1.18 to v2.8.0:
 
-Both formats are supported.  Without Size is the recommended unless you are using Prebid Server, in which case, With Size is required.   Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
+Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.   Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
 
 Prebid.js v1.1.17 and earlier:
 
