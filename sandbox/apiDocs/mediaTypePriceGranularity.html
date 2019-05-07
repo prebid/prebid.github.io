@@ -1,0 +1,26 @@
+<div class="api-header"><h4>Media Type Granularity</h4></div>
+
+<p>The default <a href="/priceGranularity.html#standard">Prebid price granularities</a> cap out at $20, which isn’t always convenient for video ads, which can command more than $20. One solution is to just set up a <code>custom price granularity</code> as described above. As of PBJS 1.12, another approach is that the <code>mediaTypePriceGranularity</code> config may be set to define granularities for each of the three media types: banner, video, and native. e.g.</p>
+
+<div>
+	<pre>
+		<code class="javascript">
+			const customPriceGranularity = {
+	            'buckets': [
+	              { 'precision': 2, 'min': 0, 'max': 5, 'increment': 0.25 },
+	              { 'precision': 2, 'min': 6, 'max': 20, 'increment': 0.5 },
+	              { 'precision': 2, 'min': 21, 'max': 100, 'increment': 1 }
+	            ]
+			};
+	
+			pbjs.setConfig({'mediaTypePriceGranularity': {
+	          'video': customPriceGranularity,
+	          'banner': 'medium',
+	          'native': 'medium'
+	        }
+			});
+		</code>
+	</pre>
+</div>
+
+<p>Any <code>mediaTypePriceGranularity</code> setting takes precedence over <code>priceGranularity.</code></p>

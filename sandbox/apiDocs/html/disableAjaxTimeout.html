@@ -1,0 +1,5 @@
+<div class="api-header"><h4>Display AJAX Timeout</h4></div>
+
+<p>Prebid core adds a timeout on XMLHttpRequest request to terminate the request once auction is timed out. Since Prebid is ignoring all the bids after timeout it does not make sense to continue the request after timeout. However, you have the option to disable this by using <code>disableAjaxTimeout</code>.</p>
+
+<div class="api-code"><pre class="prettyprint">pbjs.setConfig({ disableAjaxTimeout: true });</pre></div>

@@ -32,7 +32,15 @@ function OptanonWrapper() { }
     <link href="{{site.baseurl}}/assets/css/docs.min.css" rel="stylesheet">
     <link href="{{site.baseurl}}/assets/css/style.css" rel="stylesheet">
     
-    
+    <!--for code highlighting-->
+    <link rel="stylesheet" href="/assets/css/tomorrow.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" type="text/javascript" charset="UTF-8"></script>
+	<script type="text/javascript" charset="UTF-8">hljs.initHighlightingOnLoad();</script>
+	
+	<!--Markdown to HTML-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.4.0/showdown.min.js"></script>
+
+	    
 	<!-- Favicons -->
 	<link href="{{site.baseurl}}/assets/images/favicon.png" rel="icon">
 	<link href="{{site.baseurl}}/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
@@ -59,6 +67,7 @@ function OptanonWrapper() { }
     <script src="{{site.baseurl}}/assets/js/easing.min.js"></script>
     <script src="{{site.baseurl}}/assets/js/main.js"></script>
     <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
+    
 
 </head>
 

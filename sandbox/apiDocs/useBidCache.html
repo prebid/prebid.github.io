@@ -1,0 +1,14 @@
+<div class="api-header"><h4>User Bid Cache</h4></div>
+
+<p>Prebid.js currently allows for caching and reusing bids in a very narrowly defined scope. However, if you’d like, you can disable this feature and prevent Prebid.js from using anything but the latest bids for a given auction.</p>
+
+<div class="pb-alert-important pb-alert">This option is available in version 1.39 as true-by-default and became false-by-default as of Prebid.js 2.0. If you want to use this feature in 2.0 and later, you’ll need to set the value to true.</div>
+
+<div>
+	<pre>
+		<code class="javascript">pbjs.setConfig({ useBidCache: true });</code>
+	</pre>
+</div>
+
+
+

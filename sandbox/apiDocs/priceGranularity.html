@@ -1,0 +1,138 @@
+<div class="api-header"><h4>Price Granularity</h4></div>
+
+<p>This configuration defines the price bucket granularity setting that will be used for the <code>hb_pb keyword</code>.</p>
+
+<div>
+	<pre>
+		<code class="javascript">pbjs.setConfig({ priceGranularity: "medium" });</code>
+	</pre>
+</div>
+
+<a name="#standard"></a>
+<p class="api-params">Standard values:</p>
+
+<ul>
+	<li><code>"low":</code> $0.50 increments, capped at $5 CPM</li>
+	<li><code>"medium":</code> $0.10 increments, capped at $20 CPM (the default)</li>
+	<li><code>"high":</code> $0.01 increments, capped at $20 CPM</li>
+	<li><code>"auto":</code> Applies a sliding scale to determine granularity as shown in the Auto Granularity table below.</li>
+	<li><code>"dense":</code> Like "auto", but the bid price granularity uses smaller increments, especially at lower CPMs. For details, see the Dense Granularity table below.</li>
+	<li><code>customConfigObject:</code> If you pass in a custom config object (as shown in the Custom CPM Bucket Sizing example below), you can have much finer control over CPM bucket sizes, precision, and caps.</li>
+</ul>
+
+<p class="api-params">Auto Granularity</p>	
+<table class="table api-table table-striped table-bordered">
+	<thead class="thead-dark">
+		<tr>
+			<th>CPM</th>
+			<th>Granularity</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<td>CPM <= $5</td>
+			<td>$0.05 increments</td>
+			<td>$1.87 floored to $1.85</td>
+		</tr>
+		
+		<tr>
+			<td>CPM <= $10 and > $5	</td>
+			<td>$0.10 increments</td>
+			<td>$5.09 floored to $5.00</td>
+		</tr>
+		
+		<tr>
+			<td>CPM <= $20 and > $10</td>
+			<td>$0.50 increments</td>
+			<td>$14.26 floored to $14.00</td>
+		</tr>
+		
+		<tr>
+			<td>CPM > $20</td>
+			<td>Caps the price bucket at $20</td>
+			<td>$24.82 floored to $20.00</td>
+		</tr>
+		
+	</tbody>
+</table>
+
+<p class="api-params">Dense Granularity</p>	
+<table class="table api-table table-striped table-bordered">
+	<thead class="thead-dark">
+		<tr>
+			<th>CPM</th>
+			<th>Granularity</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<td>CPM <= $3</td>
+			<td>$0.05 increments</td>
+			<td>$1.87 floored to $1.85</td>
+		</tr>
+		
+		<tr>
+			<td>CPM <= $8 and >$3</td>
+			<td>$0.05 increments</td>
+			<td>$5.09 floored to $5.05</td>
+		</tr>
+		
+		<tr>
+			<td>CPM <= $20 and >$8</td>
+			<td>$0.50 increments</td>
+			<td>$14.26 floored to $14.00</td>
+		</tr>
+		
+		<tr>
+			<td>CPM > $20</td>
+			<td>Caps the price bucket at $20</td>
+			<td>$24.82 floored to $20.00</td>
+		</tr>
+		
+	</tbody>
+</table>
+
+<p class="api-params">Custom CPM Bucket Sizing</p>
+
+<p>To set up your own custom CPM buckets, create an object like the following, and pass it into <code>setConfig:</code></p>
+
+<div>
+	<pre>
+		<code class="javascript">
+			const customConfigObject = {
+			  "buckets" : [{
+			      "precision": 2,  //default is 2 if omitted - means 2.1234 rounded to 2 decimal places = 2.12
+			      "min" : 0,
+			      "max" : 5,
+			      "increment" : 0.01  // from $0 to $5, 1-cent increments
+			    },
+			    {
+			      "precision": 2,
+			      "min" : 5,
+			      "max" : 8,
+			      "increment" : 0.05  // from $5 to $8, round down to the previous 5-cent increment
+			    },
+			    {
+			      "precision": 2,
+			      "min" : 8,
+			      "max" : 40,
+			      "increment" : 0.5   // from $8 to $40, round down to the previous 50-cent increment
+			    }]
+			};
+			
+			//set custom config object
+			pbjs.setConfig({
+			    priceGranularity: customConfigObject
+			})
+		</code>
+	</pre>
+</div>
+
+
+
+
+
