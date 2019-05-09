@@ -17,7 +17,10 @@ sidebarType : 1
 user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default. See the [DigiTrust integration guide](https://github.com/digi-trust/dt-cdn/wiki/Integration-Guide) for more details.
 
 DigiTrust is now integrated as an optional module in the Prebid ecosystem. DigiTrust ties in to the new UserId module. 
-In order to use DigiTrust ID you must sign up as a member publisher at: http://www.digitru.st/signup/
+In order to use DigiTrust ID you must sign up as a member publisher at: http://www.digitru.st/signup/. When utilizing the
+integrated DigiTrust ID support with Prebid, your site will be able to access your users' DigiTrust ID values through the official
+DigiTrust ID first party cookie. Supporting bidder-adpters will also have access to the encrypted DigiTrust ID value.
+Approved bidder systems will need to [decrypt the ID as per official DigiTrust documentation](https://github.com/digi-trust/dt-cdn/wiki/ID-encryption).
 
 ## Building Prebid with DigiTrust Support
 Your Prebid build must include the modules for both **userId** and **digitrustIdLoader**. Follow the build instructions for Prebid as
@@ -39,6 +42,41 @@ ex: $ gulp build --modules=userId,digitrustIdLoader
 
 ## Deploying Prebid with DigiTrust ID support
 **Precondition:** You must be a DigiTrust member and have registered through the [DigiTrust Signup Process](http://www.digitru.st/signup/).
+Your assigned publisher ID will be required in the configuration settings for all deployment scenarios.
+
+There are three supported approaches to deploying the Prebid-integrated DigiTrust package:
+
+* "Bare bones" deployment using only the integrated DigiTrust module code.
+* Full DigiTrust with CDN referenced DigiTrust.js library.
+* Full DigiTrust packaged with Prebid or site js.
+
+### Bare Bones Deployment
+
+This deployment results in the smallest Javascript package and is the simplest deployment. 
+It is appropriate for testing or deployments where simplicity is key. This approach
+utilizes the REST API for ID generation. While there is less Javascript in use,
+the user may experience more network requests than the scenarios that include the full
+DigiTrust library.
+
+1. Build your Prebid package as above, skipping step 4.
+2. Add the DigiTrust initializer section to your Prebid initialization object as below, 
+   using your Member ID and Site ID.
+3. Add a reference to your Prebid package and the initialization code on all pages you wish
+   to utilize Prebid with integrated DigiTrust ID.
+
+
+
+
+### Full DigiTrust with CDN referenced DigiTrust library
+
+Both "Full DigiTrust" deployments will result in a larger initial Javascript payload.
+The end user may experience fewer overall network requests as the encrypted and anonymous
+DigiTrust ID can often be generated fully in client-side code. Utilizing the CDN reference
+to the official DigiTrust distribution insures you will be running the latest version of the library.
+
+The Full DigiTrust deployment is designed to work with both new DigiTrust with Prebid deployments, and with
+Prebid deployments by existing DigiTrust members. This allows you to migrate your code more slowly
+without losing DigiTrust support in the process.
 
 1. Deploy your built copy of `prebid.js` to your CDN.
 2. On each page reference both your `prebid.js` and a copy of the **DigiTrust** library. 
@@ -46,10 +84,21 @@ ex: $ gulp build --modules=userId,digitrustIdLoader
    or directly referenced from the URL https://cdn.digitru.st/prod/1/digitrust.min.js. These may be added to the page in any order.
 3. Add a configuration section for Prebid that includes the `usersync` settings and the `digitrust` settings.
 
+### Full DigiTrust packaged with Prebid
+
+
+1. Deploy your built copy of `prebid.js` to your CDN. Be sure to perform *Step 4* of the build to concatenate or 
+   integrate the full DigiTrust library code with your Prebid package.
+2. On each page reference your `prebid.js`
+3. Add a configuration section for Prebid that includes the `usersync` settings and the `digitrust` settings. 
+   This code may also be appended to your Prebid package or placed in other initialization methods.
+
+
+## Example Configuration Object ##
+
 In the below example, replace the value **example_member_id** with your assigned DigiTrust Publisher Id and **example_site_id**
 with the Id for your website. The `callback` function allows error handling from the DigiTrust initialization method. 
 The Prebid UserId system handles passing the DigiTrust ID to (supporting) bidders adapters.
-
 
 ```javascript
 pbjs.que.push(function() {
@@ -117,4 +166,5 @@ The below parameters apply only to the DigiTrust ID integration.
 
 + [DigiTrust integration guide](https://github.com/digi-trust/dt-cdn/wiki/Integration-Guide)
 
++ [DigiTrust ID Encryption](https://github.com/digi-trust/dt-cdn/wiki/ID-encryption)
 
