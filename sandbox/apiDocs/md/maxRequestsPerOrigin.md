@@ -5,13 +5,13 @@ will queue auctions that would cause requests to a specific origin to exceed tha
 for each browser. Prebid.js defaults to a max of `4` requests per origin.  That value can be configured with
 `maxRequestsPerOrigin`.
 
-{% include alerts/alert_warning.html content=Most browsers allow at least 6 requests, but your results may vary for your user base.  Sometimes using all six requests can impact performance negatively for users with poor internet connections. %}
-
 ```javascript
 pbjs.setConfig({ maxRequestsPerOrigin: 6 });
 ```
-{% include alerts/alert_note.html content=To emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set it to one. %}
+<div class="pb-alert pb-alert-important">Most browsers allow at least six requests, but your results may vary for your user base.  Sometimes using all six requests can impact performance negatively for users with poor internet connections.</div>
 
 ```javascript
 pbjs.setConfig({ maxRequestsPerOrigin: 1 });
 ```
+<div class="pb-alert pb-alert-note">To emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set <code>maxRequestToOrigin</code> to one.</div>
+

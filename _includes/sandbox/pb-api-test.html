@@ -1,13 +1,9 @@
 
-<!--javascript to read querystring key apiDocTarget and use value to display proper content-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
 <script type="text/javascript">
 	
 	
-	document.addEventListener('DOMContentLoaded', (event) => {
-		document.querySelectorAll('pre code').forEach((block) => {
-			hljs.highlightBlock(block);
-  		});
-	});
+	converter = new showdown.Converter({tables: true});
 	
 	$( document ).ready(function() {
 		
@@ -32,7 +28,7 @@
 			}
 			
 			//displayFile(apiDefinition + ".html", "apiDocs", "api-definition-display");
-			convertMDToHTML(apiDefinition + ".md", "apiDocs", "api-definition-display");
+			displayFile("/html/" + apiDefinition + ".html", "apiDocs", "api-definition-display");
 			
 			//move to anchor point
 			location.hash = "#apiDocs";
@@ -42,10 +38,9 @@
 		
 	});
 	
-	function convertMDToHTML(srcFile, srcDir, divName) { 
-		
-		var convertor = new showdown.Converter();
-		
+	/*
+	function convertMDToHTML(converter, srcFile, srcDir, divName) { 
+				
 		//set up the file path
 		let src = "/sandbox/" + srcDir + "/" + srcFile;
 		
@@ -61,7 +56,8 @@
 			success: function (data){
 				
 				//convert markdown to html and display
-				element.innerHTML = convertor.makeHtml(data);
+				element.innerHTML = converter.makeHtml(data);
+				
     		}
   		});
 		
@@ -70,6 +66,7 @@
 		element.classList.add("api-on");
 		
 	}
+	*/
 	
 	function displayFile(srcFile, srcDir, divName) { 
 		
@@ -81,10 +78,8 @@
 		//clear out existing html
 		element.innerHTML = "";
 		
-		
 		//load code from file
 		$(element).load(src);
-		
 		
 		//set the classes
 		element.classList.remove("api-off");
@@ -100,6 +95,12 @@
 	    }
     	return qsParams;
 	}
+	
+		
+
+	
+	
+
 	
 		
 </script>
@@ -129,7 +130,7 @@
 	
 	<hr>
 	<a name="apiDocs"></a>
-	<div class="api-off api-definition" id="api-definition-display">&nbsp;</div>
+	<div class="api-off api-definition" id="api-definition-display" markdown="1">&nbsp;</div>
 	
 </div>
 	

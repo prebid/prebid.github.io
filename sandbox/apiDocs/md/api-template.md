@@ -44,7 +44,16 @@ See the [Prebid Alert guide](guide/pb-guide-alerts.html) for the various alerts 
 3. Follow the API publishing instructions to display documentation on Prebid.org.
 4. Bask in glory. 
 
-Use an unordered list when discussing any non-sequential process or 
+Use an unordered list when discussing any non-sequential process or topic, such as benefits of using the endpoint you are documenting. 
+
+*Benefits of this endpoint*
+
+- Faster than the other endpoint.
+- Easier to implement.
+- Compatible with everything ever made. 
+
+
+
 
 
 

@@ -186,7 +186,7 @@ hr {
 }
 
 
-.api-header { 
+.api-header h4 { 
 	color: #EA9622;
 	font-family: 'Verdana', sans-serif;
 	font-size: 20px;
@@ -205,8 +205,9 @@ hr {
 	margin-top:20px;
 }
 
-
-
+.api-list ul { 
+	list-style: none;
+}
 
 /* NavBar */
 
