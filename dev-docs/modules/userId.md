@@ -16,7 +16,7 @@ sidebarType : 1
 {:toc}
 
 {: .alert.alert-info :}
-The User ID module will be available with Prebid.js 2.10.0, launching with support for two ID systems: Unified ID and PubCommonID.
+The User ID module has been available since Prebid.js 2.10.0.
 
 ## Overview
 
@@ -67,13 +67,17 @@ You can set up Unified ID in one of these ways:
 
 1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
 
+{: .alert.alert-warning :}
+Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
+the 'partner' parameter, it's best to supply the Trade Desk URL.
+
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
         userIds: [{
             name: "unifiedId",
             params: {
-                partner: "myTtdPid"
+                url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
             },
             storage: {
                 type: "cookie",  
@@ -174,8 +178,8 @@ of sub-objects. See the examples above for specific use cases.
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"` or `"pubCommonId"` | `"unifiedId"` |
 | params | Required for UnifiedId | Object | Details for UnifiedId. | |
-| params.partner | Required if using Trade Desk | String | This is the partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. | `"myTtdPid"` |
-| params.url | Required if not using Trade Desk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
+| params.partner | Either this or url required for UnifiedId | String | This is the Trade Desk partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. Note that the default URL is HTTP-only in Prebid.js 2.10-2.14. If your site is HTTPS, supply the override as shown in example 1 above. | `"myTtdPid"` |
+| params.url | Either this or partner required for UnifiedId | String | If specified, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
 | storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
