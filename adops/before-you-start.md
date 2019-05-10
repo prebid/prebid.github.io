@@ -41,8 +41,6 @@ The table below lists ad servers supported by Prebid and provides links to step 
 
 On a publisher's selected server the ad ops team will need to setup line items. These line items provide targeting information for the ad server, to include the CPM per impression. Prebid will pass in a bid's targeting parameters via key-values. The ad server will read these incoming targeting parameters and search through the line items for a match. 
 
-*<span style="color: #ff0000">Old text: With pre-bid, you'll need to setup line items to tell your ad server how much money the “bidder” demand is worth to you. This process is done via key-values.</span>*
-
 Example:
 
 * Prebid.js is going to call your bidders for their price, then pass it into your ad server on the query-string. You want to target this bid price with a line item that earns you the same amount if it serves.
