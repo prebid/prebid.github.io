@@ -175,6 +175,20 @@ hr {
 
 .pb-api-endpoint code { 
 	color: red;
+	font-weight: 700; 
+}
+
+.pb-api-endpoint ul { 
+	list-style-type: none;
+}
+
+.pb-api-endpoint li { 
+	border-bottom: 1px solid #cccccc;
+	border-bottom-width: 75%;
+}
+
+.pb-api-lastitem { 
+	border:0;
 }
 
 
@@ -193,12 +207,13 @@ hr {
 	font-size: 18px;
 	font-weight: 400;
 	margin-bottom: 10px;
+	margin-top: 5px;
 	
 }
 
 .pb-api-example { 
 	margin: 10px 0;
-	background-color: #F7FAFC;
+	background-color: #f5f5f5;;
 }
 
 .pb-api-example-title-bar { 
@@ -211,19 +226,12 @@ hr {
 .pb-api-example-title-bar p {
 	
 	color: #444444;
-	font-size: 18px;
+	font-size: 17px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-}
-
-.pb-api-example-title-bar pre { 
-	padding: 0;
-	background-color: #F7FAFC;
-}
-
-.pb-api-example-title-bar code { 
-	padding: 0;
-	background-color: #F7FAFC;
+	font-variant: small-caps;
+	margin-bottom: 0;
+	margin-left: 5px;
 }
 
 .pb-api-ep-description, .api-code-text  { 
