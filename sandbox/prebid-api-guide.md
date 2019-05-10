@@ -5,4 +5,4 @@ title: Prebid API
 ---
 # API Reference
  
-{% include /sandbox/pb-api-test.html %}
+{% include /api/pb-api-test.html %}

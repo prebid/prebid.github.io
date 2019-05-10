@@ -1,24 +1,18 @@
 
 - catId: 0
-  catName: Configuration
-  isFirst: 1
-  
-- catId: 0
-  endpoint: api
-  endpointId: 0
-    
+  catName: About
+
 - catId: 1
-  catName: Bids
-  isFirst: 1
+  catName: Configuration
   
 - catId: 2
-  catName: Server
-  isFirst: 1
+  catName: Bids
   
 - catId: 3
-  catName: Targeting
-  isFirst: 1
+  catName: Server
   
 - catId: 4
-  catName: Ad Unit
-  isFirst: 1
+  catName: Targeting
+  
+- catId: 5
+  catName: AdUnit

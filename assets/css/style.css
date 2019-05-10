@@ -161,21 +161,9 @@ hr {
 	border: 1px solid #527542;
 }
 
-/* API */
-
-.pb-category-box { 
-	float: left; 
-	margin-right: 15px;
-	background-color: #eeeeee;
-	border: 1px solid #cccccc;
-	padding-left: 15px;
-	padding-right: 15px;
-	height: 30px;
-}
-
-.api-doc { 
-	margin-top: 40px;
-}
+/**********************
+	 API 
+*********************/
 
 .api-on { 
 	display: block;
@@ -185,8 +173,12 @@ hr {
 	display: none;
 }
 
+.pb-api-endpoint code { 
+	color: red;
+}
 
-.api-header h4 { 
+
+.pb-api-ep-title { 
 	color: #EA9622;
 	font-family: 'Verdana', sans-serif;
 	font-size: 20px;
@@ -194,20 +186,50 @@ hr {
 	margin-bottom: 10px;
 }
 
-.api-table { 
-	width: 60%;
-	margin-left: 20px;
+.pb-api-title { 
+	
+	color: #3498db;
+	font-family: 'Verdana', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	
 }
 
-.api-params { 
-	font-weight: 700;
-	margin-bottom: 20px;
-	margin-top:20px;
+.pb-api-example { 
+	margin: 10px 0;
+	background-color: #F7FAFC;
 }
 
-.api-list ul { 
-	list-style: none;
+.pb-api-example-title-bar { 
+	background-color: #E4E8ED; 
+	text-align: left;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
+
+.pb-api-example-title-bar p {
+	
+	color: #444444;
+	font-size: 18px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
+.pb-api-example-title-bar pre { 
+	padding: 0;
+	background-color: #F7FAFC;
+}
+
+.pb-api-example-title-bar code { 
+	padding: 0;
+	background-color: #F7FAFC;
+}
+
+.pb-api-ep-description, .api-code-text  { 
+	margin-bottom: 15px;
+}
+
 
 /* NavBar */
 
@@ -231,7 +253,6 @@ hr {
   font-size: 24px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  
 }
 
 .navbar-toggle {

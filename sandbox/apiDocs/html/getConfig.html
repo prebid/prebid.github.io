@@ -1,0 +1,52 @@
+<div class="api-header"><h4>Get Config</h4></div>
+
+<p>The <code>getConfig</code> function is for retrieving the current configuration object or subscribing to configuration updates. When called with no parameters, the entire config object is returned. When called with a string parameter, a single configuration property matching that parameter is returned.
+</p>
+
+<p class="api-code-title">Get config object</p>
+
+<div>
+	<pre>
+		<code class="javascript">config.getConfig()
+	</pre>
+</div>
+
+<p class="api-code-title">Get config debug</p>
+
+
+<div>
+	<pre>
+		<code class="javascript">config.getConfig('debug')</code>
+	</pre>
+</div>
+
+<p>The <code>getConfig</code> function also contains a ‘subscribe’ ability that adds a callback function to a set of listeners that are invoked whenever <code>setConfig</code> is called. The subscribed function will be passed the options object that was used in the <code>setConfig</code> call. Individual topics can be subscribed to by passing a string as the first parameter and a callback function as the second. For example:
+
+<p class="api-code-title">Subscribe to all configuration changes<p>
+
+<div>
+	<pre>
+		<code class="javascript">getConfig((config) => console.log('config set:', config));
+</code>
+	</pre>
+</div>
+
+<p class="api-code-title">Subscribe to only 'logging' changes<p>
+
+<div>
+	<pre>
+		<code class="javascript">getConfig('logging', (config) => console.log('logging set:', config));
+</code>
+	</pre>
+</div>
+
+<p class="api-code-title">Unsubscribe<p>
+
+<div>
+	<pre>
+		<code class="javascript">const unsubscribe = getConfig(...);
+unsubscribe(); // no longer listening
+</code>
+	</pre>
+</div>
+
