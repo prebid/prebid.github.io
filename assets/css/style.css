@@ -165,34 +165,77 @@ hr {
 	 API 
 *********************/
 
-.api-on { 
+.pb-api-on { 
 	display: block;
 }
 
-.api-off {
+.pb-api-off {
 	display: none;
 }
 
-.pb-api-endpoint code { 
-	color: red;
-	font-weight: 700; 
-}
-
-.pb-api-endpoint ul { 
+.pb-api-list ul { 
 	list-style-type: none;
+	margin: 0; 
+	padding: 0; 
+	overflow: hidden;
 }
 
-.pb-api-endpoint li { 
-	border-bottom: 1px solid #cccccc;
-	border-bottom-width: 75%;
+.pb-api-categories { 
+	margin-top:15px;
 }
 
-.pb-api-lastitem { 
-	border:0;
+.pb-api-categories li { 
+	float: left;
+	margin-right: 15px;
+	background-color: #eeeeee;
 }
 
+.pb-api-categories a { 
+	color: #333333;
+	font-family: 'Verdana', sans-serif;
+	font-size: 17px;
+	font-weight: 400;
+	padding: 4px 10px;
+}
 
-.pb-api-ep-title { 
+.pb-api-categories a:hover { 
+	color: #3498db;
+}
+
+.pb-api-title { 
+	
+	color: #EA9622;
+	font-family: 'Verdana', sans-serif;
+	font-size: 22px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 15px;
+	
+}
+
+.pb-api-code {
+	margin: 20px 0 20px 20px;
+}
+
+.pb-api-code-wrapper { 
+	margin-left: 20px;
+	
+}
+
+.pb-api-code-display {
+	margin: 20px 0 0 20px;
+	width: 70%;
+}
+
+.pb-api-code-block { 
+	width: 70%;
+}
+
+.pb-api-block { 
+	margin: 20px 0 20px 20px;
+}
+
+.pb-api-doc-title { 
 	color: #EA9622;
 	font-family: 'Verdana', sans-serif;
 	font-size: 20px;
@@ -200,46 +243,73 @@ hr {
 	margin-bottom: 10px;
 }
 
-.pb-api-title { 
-	
-	color: #3498db;
-	font-family: 'Verdana', sans-serif;
-	font-size: 18px;
+.pb-api-doc-description { 
+	color: #222222;
+	font-size: 17px;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-	margin-bottom: 10px;
-	margin-top: 5px;
-	
 }
 
-.pb-api-example { 
-	margin: 10px 0;
-	background-color: #f5f5f5;;
-}
-
-.pb-api-example-title-bar { 
+.pb-api-code-title-bar { 
 	background-color: #E4E8ED; 
 	text-align: left;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+	padding-left: 5px;
+	margin-left: 20px;
+	margin-top: 10px;
 }
 
-.pb-api-example-title-bar p {
-	
-	color: #444444;
+.pb-api-doc-sub-title { 
+	color: #EA9622;
+	font-family: 'Verdana', sans-serif;
 	font-size: 17px;
-	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-	font-variant: small-caps;
-	margin-bottom: 0;
-	margin-left: 5px;
+	margin-bottom: 10px;
 }
 
-.pb-api-ep-description, .api-code-text  { 
-	margin-bottom: 15px;
+.pb-api-doc-item-list li { 
+	border-bottom: 1px solid #cccccc;
+	border-bottom-width: 75%;
+	background-color:transparent;
+	margin-bottom: 10px;
 }
 
 
-/* NavBar */
+/* Animation Effects */
+/*Created by Ian Lunn*/
+/*Used with permission under MIT License*/
+
+/* Overline From Center */
+.hvr-overline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-overline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 51%;
+  right: 51%;
+  top: 0;
+  background: #2098D1;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-overline-from-center:hover:before, .hvr-overline-from-center:focus:before, .hvr-overline-from-center:active:before {
+  left: 0;
+  right: 0;
+}/* NavBar */
 
 .navbar { 
 	z-index:100

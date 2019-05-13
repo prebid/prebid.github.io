@@ -1,16 +1,14 @@
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
+
 <script type="text/javascript">
-	
-	
-	converter = new showdown.Converter({tables: true});
 	
 	$( document ).ready(function() {
 		
 		//get the category
 		var queryItems = getUrlVars()
 		var apiDocCategory = queryItems[0][1];
-				
+		
+		console.log(apiDocCategory);
 		//display the category
 		displayFile(apiDocCategory + ".html", "apiCatgories", "api-endpoints");
 				
@@ -34,39 +32,10 @@
 			location.hash = "#apiDocs";
 
 		}
-					
+			
 		
 	});
 	
-	/*
-	function convertMDToHTML(converter, srcFile, srcDir, divName) { 
-				
-		//set up the file path
-		let src = "/sandbox/" + srcDir + "/" + srcFile;
-		
-		//set up destination
-		var element = document.getElementById(divName);
-		
-		//clear out existing html
-		element.innerHTML = "";
-		
-		//read text from file
-		$.ajax({
-			url:src,
-			success: function (data){
-				
-				//convert markdown to html and display
-				element.innerHTML = converter.makeHtml(data);
-				
-    		}
-  		});
-		
-		//set the classes
-		element.classList.remove("api-off");
-		element.classList.add("api-on");
-		
-	}
-	*/
 	
 	function displayFile(srcFile, srcDir, divName) { 
 		
@@ -81,9 +50,15 @@
 		//load code from file
 		$(element).load(src);
 		
-		//set the classes
+		//display the api documentation
 		element.classList.remove("api-off");
 		element.classList.add("api-on");
+		
+		//reload the highlighting (need to do this when you dynamically load content)
+		$('#pb-api-code-display').each(function(i, e) {
+			console.log(e);
+			hljs.highlightBlock(e)
+		});
 		
 	}
 	
@@ -95,25 +70,18 @@
 	    }
     	return qsParams;
 	}
-	
-		
-
-	
-	
-
-	
-		
+			
 </script>
 
-<!--category list-->
-<div class="container api-files">&nbsp;&nbsp;
 
-		{% assign arrCategories = site.data.pb-api | where: "isFirst", 1 %}
+<div class="container pb-api-categories pb-api-list">
+
+		{% assign arrCategories = site.data.pb-api %}
 		
-		<ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden;">
+		<ul style="">
 		{% for thisCat in arrCategories %}
 		
-			<li class="pb-category-box effect2"><a href="{{page.url}}?apiDocTarget={{thisCat.catName}}">{{thisCat.catName}}</a></li>
+			<li><a href="{{page.url}}?apiDocTarget={{thisCat.catName}}" class="hvr-overline-from-center">{{thisCat.catName}}</a></li>
 		
 		{% endfor %}
 		</ul>
@@ -121,16 +89,15 @@
 </div>
 
 
-<!--content display-->
 <div class="container">
 	
 	<div>
-		<div class="api-doc api-on" id="api-endpoints"><h4>Select a category to see API endpoints related to that category.</h4></div>
+		<div class="api-doc api-on pb-api-list" id="api-endpoints"><h4>Select a category to see API endpoints related to that category.</h4></div>
 	</div>
 	
 	<hr>
 	<a name="apiDocs"></a>
-	<div class="api-off api-definition" id="api-definition-display" markdown="1">&nbsp;</div>
+	<div class="api-off api-definition" id="api-definition-display"></div>
 	
 </div>
 	
