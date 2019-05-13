@@ -105,17 +105,25 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
 
 + `data-slot`: Identifies the ad slot for the auction.
 + `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
-    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js].
+    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js]. We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
     + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
+e.g. for the AppNexus cluster of Prebid Servers:
 ```html
-
 <amp-ad width="300" height="250"
-        type="doubleclick"
-        data-slot="/19968336/universal_creative"
-        rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+    type="doubleclick"
+    data-slot="/19968336/universal_creative"
+    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
+```
 
+e.g. for Rubicon Project's cluster of Prebid Servers:
+```html
+<amp-ad width="300" height="250"
+    type="doubleclick"
+    data-slot="/19968336/universal_creative"
+    rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "1234-amp-pub-300x250"}}, "timeoutMillis": 500}'>
+</amp-ad>
 ```
 
 ### HTML Creative
