@@ -3,7 +3,7 @@ layout: bidder
 title: Rich Audience
 description: Prebid Rich Audience Bidder Adapter
 hide: true
-biddercode: richAudience
+biddercode: richaudience
 media_types: banner, video
 gdpr_supported: true
 ---
