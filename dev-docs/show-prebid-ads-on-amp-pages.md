@@ -219,7 +219,7 @@ If you're using AppNexus' Prebid Server cluster:
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=appnexus">
+  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=appnexus&max_sync_count=5">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
@@ -232,10 +232,21 @@ the ID provided by your Rubicon Project account team.
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=rubicon&args=account:RUBICON_ACCOUNT_ID">
+  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=rubicon&max_sync_count=6&args=account:RUBICON_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
+
+Available arguments for the `load-cookie.html` query string:
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Values | Description |
+| --- | --- | --- | --- |
+| endpoint | recommended | appnexus or rubicon | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
+| max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
+| args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie-sync call. Both attr and val will be quoted. |
+| gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
+| gdpr_consent | optional | String | IAB CMP-formatted consent string | 
 
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:
