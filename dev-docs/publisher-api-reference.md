@@ -54,6 +54,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [s2sConfig](#setConfig-Server-to-Server) (server-to-server config)
     * [app](#setConfig-app) (mobile app post-bid)
     * [userSync](#setConfig-Configure-User-Syncing)
+    * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
@@ -1206,6 +1207,7 @@ Core config:
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
++ [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
@@ -1717,6 +1719,48 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
+
+<a name="setConfig-targetingControls" />
+
+#### Configure Targeting Controls
+
+The `targetingControls` object passed to `pbjs.setConfig` provides some options to influence how an auction's targeting keys are generated and managed.
+
+Below is an example config with the `targetingControls` object:
+
+```javascript
+pbjs.setConfig({
+  targetingControls: {
+    auctionKeyCharacterThreshold: 5000
+  }
+});
+```
+
+##### Details on the auctionKeyCharacterThreshold setting
+When this property is setup, the `auctionKeyCharacterThreshold` setting creates an effective ceiling for the number auction targeting keys that are passed to an ad server.  This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.  When there is such a limit, query characters that exceed the threshold are normally just dropped and/or ignored - which can cause potential issues with the delivery or rendering of the ad.
+
+Specifically, Prebid will go through the following steps with this feature:
+
+* Collect all the available targeting keys that were generated naturally by the auction.  The keys are grouped by each of the adUnits that participated in the auction.
+* Prioritize these groups of targeting keys based on the following factors:
+  * Bids with deals are prioritized before bids without deals.
+  * Bids with higher CPM are ranked before lower CPM bids.  
+  **Note** - The sorting follows this order specifically, so a bid with a deal that had a $10 CPM would be sorted before a bid with no deal that had a $15 CPM.
+* Convert the keys for each group into the format that they are passed to the ad server (ie an encoded query string) and count the number of characters that are used.
+* If the count is below the running threshold set in the setConfig, that set of targeting keys will be passed along.  If the keys exceed the limit, then they are excluded.
+
+Details about which sets of keys are passed/rejected can be found in the Prebid console debug log if you want to review the particulars.  
+
+##### Finding the right value
+Given the varying nature of how sites are setup for advertising and the varying mechanics and data-points needed by ad servers, providing a generic threshold setting is tricky.  If you plan to enable this setting, it's recommended you review your own setup to determine the ideal value.  The following steps provide some idea of a way you can start this process: 
+
+* Setup a test page that uses the typical setup for your site (in terms of the number of ad slots, etc) using Prebid.
+* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.  
+  * You can do this by enabling the Prebid debug mode, enabling this setting in your `setConfig` with a high value, and then open the browser's console and review the Console Logs section.
+* Also in the browser console, find your ad server's ad URL in the Network tab and review the details of the request to obtain information about the query data (specifically the number of characters used).
+  * You can copy the data to another tool to count the number of characters that are present.
+
+Between these two values (Prebid's targeting key count and the overall ad URL query character count), you will find the average number of characters that are used by your ad server.  It's likely that these ad server values will remain consistent given that type of setup.  So if you know your ad server has a particular character limit, you can assume that these ad server characters will be reserved and the difference is what you could allot to Prebid.
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
