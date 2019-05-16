@@ -1,15 +1,14 @@
-
+	
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Generic setConfig Configuration</div>
-		<div class="pb-api-doc-description">Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:</div>
+		<div class="pb-api-doc-title">Set Targeting for GPT Async</div>
+		<div class="pb-api-doc-description">Set query string targeting on all GPT ad units. The logic for deciding query strings is described in the section Configure AdServer Targeting. Note that this function has to be called after all ad units on page are defined.</div>
 		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({ key: value });</code></pre></div>
+			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setTargetingForGPTAsync([codeArr]);</code></pre></div>
 		</div>
 		
-				
 		<!--Important: If there are no arguments make sure this div has pb-api-off class-->
-		<div class="pb-api-doc-arguments pb-api-off">
+		<div class="pb-api-doc-arguments pb-api-on">
 			<div class="pb-api-doc-sub-title">Arguments:</div>
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
@@ -21,11 +20,13 @@
 						<table class="table tabled-bordered table-striped pb-api-table">
 							<thead>
 								<tr>
-									<th colspan="2" class="pb-api-table-title">Accepted Values</th>
+									<th colspan="4" class="pb-api-table-title">Accepted Values</th>
 								</tr>
 								
 								<tr>
-									<th class="pb-api-table-text-bold">Parm</th>
+									<th class="pb-api-table-text-bold">Field</th>
+									<th class="pb-api-table-text-bold">Scope</th>
+									<th class="pb-api-table-text-bold">Typw</th>
 									<th class="pb-api-table-text-bold">Description</th>
 								</tr>
 
@@ -33,14 +34,12 @@
 							
 							<tbody class="pb-api-table-text">
 								<tr>
-									<td>Fixed</td>
-									<td></td>
+									<td><code>[codeArr]</code></td>
+									<td>Optional</td>
+									<td>Array</td>
+									<td>An array of adUnitCodes to set targeting for.</td>
 								</tr>
-								
-								<tr>
-									<td>Random</td>
-									<td>There is no order to the bidders. This is the default setting.</td>
-								</tr>
+							</tbody>
 						</table>
 					</li>
 				</ul>
@@ -52,11 +51,6 @@
 		<div class="pb-api-doc-response pb-api-off">
 			
 			<div class="pb-api-doc-sub-title">Response</div>
-			<div class="pb-api-doc-description">Response Description</div>
-			<div class="pb-api-code-block">
-				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
-				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
-			</div>
 			
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
@@ -71,7 +65,14 @@
 					</li>
 				</ul>
 			</div>
+			
+			<div class="pb-api-doc-description">Response Description</div>
+			<div class="pb-api-code-block">
+				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
+				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
+			</div>
 		</div>
 		
 
 </div>
+

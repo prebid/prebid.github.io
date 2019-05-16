@@ -1,13 +1,12 @@
-
+	
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Generic setConfig Configuration</div>
-		<div class="pb-api-doc-description">Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:</div>
+		<div class="pb-api-doc-title">Get Ad Server Targeting for Ad Unit URL</div>
+		<div class="pb-api-doc-description">This function returns the query string targeting parameters available at this moment for a given ad unit. For full documentation see function <a href="#">pbjs.getAdserverTargeting()</a>.</div>
 		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({ key: value });</code></pre></div>
+			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.getAdserverTargetingForAdUnitCode([adunitCode]);</code></pre></div>
 		</div>
 		
-				
 		<!--Important: If there are no arguments make sure this div has pb-api-off class-->
 		<div class="pb-api-doc-arguments pb-api-off">
 			<div class="pb-api-doc-sub-title">Arguments:</div>
@@ -49,29 +48,30 @@
 		
 		
 		<!--Important: If there is no response make sure this div has pb-api-off class-->
-		<div class="pb-api-doc-response pb-api-off">
+		<div class="pb-api-doc-response pb-api-on">
 			
 			<div class="pb-api-doc-sub-title">Response</div>
-			<div class="pb-api-doc-description">Response Description</div>
-			<div class="pb-api-code-block">
-				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
-				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
-			</div>
 			
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
 					<li>
-						<code>param1</code>: <i>string</i>
-						<p>String indicating some value that has to be passed as a string type.</p> 
-					</li>
-					<li>
-						<code>param2</code>: <i>number</i>
-						<p>Number indicating some value that has to be passed as a number type.</p>
-						<div class="pb-alert pb-alert-note">Note: This number should be between 0 and infinity.</div>
+						<code>Object</code>: <i>object</i>
+						<p>Object containing return bids for the <code>adUnit</code> url.</p> 
 					</li>
 				</ul>
 			</div>
+			
+			<div class="pb-api-doc-section-title">Response Example</div>
+			
+			<div class="pb-api-code-block">
+				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>
+{
+  "hb_bidder": "rubicon",
+  "hb_adid": "13f44b0d3c",
+  "hb_pb": "0.50"
+}				</code></pr
 		</div>
 		
 
 </div>
+

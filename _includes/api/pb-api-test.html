@@ -4,6 +4,7 @@
 	
 	$( document ).ready(function() {
 		
+		
 		//get the category
 		var queryItems = getUrlVars()
 		var apiDocCategory = queryItems[0][1];
@@ -24,7 +25,7 @@
 				var arrApiDefinition = apiDefinition.split("#");
 				apiDefinition = arrApiDefinition[0];
 			}
-			
+			console.log(apiDefinition);
 			//displayFile(apiDefinition + ".html", "apiDocs", "api-definition-display");
 			displayFile("/html/" + apiDefinition + ".html", "apiDocs", "api-definition-display");
 			
@@ -32,9 +33,36 @@
 			location.hash = "#apiDocs";
 
 		}
-			
 		
 	});
+	
+	
+	function showBidResponse() { 
+		var element = document.getElementById("bidResponseDetails");
+		var button = document.getElementById("btnBidResponse");
+		
+		
+		//check to see if it is on or off
+		if (element.classList.contains("api-off")) {
+			
+			//swap classes 
+			element.classList.remove("api-off");
+			element.classList.add("api-on");
+			
+			//change button text
+			button.innerHTML = "Hide Attribute Details";
+			
+		} else { 
+			
+			//swap classes 
+			element.classList.add("api-off");
+			element.classList.remove("api-on");
+			
+			//change button text
+			button.innerHTML = "Show Attribute Details";
+		}
+		
+	}
 	
 	
 	function displayFile(srcFile, srcDir, divName) { 

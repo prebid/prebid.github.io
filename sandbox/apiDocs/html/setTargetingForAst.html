@@ -1,13 +1,12 @@
-
+	
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Generic setConfig Configuration</div>
-		<div class="pb-api-doc-description">Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:</div>
+		<div class="pb-api-doc-title">Set Targeting For AST</div>
+		<div class="pb-api-doc-description">Set query string targeting on all <a href="https://wiki.appnexus.com/display/sdk/AppNexus+Seller+Tag">AST (AppNexus Seller Tag)</a> ad units. Note that this function has to be called after all ad units on page are defined. For working example code, see <a href="http://prebid.org/dev-docs/examples/use-prebid-with-appnexus-ad-server.html">Using Prebid.js with AppNexus Publisher Ad Server.</a></div>
 		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({ key: value });</code></pre></div>
+			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setTargetingForAst();</code></pre></div>
 		</div>
 		
-				
 		<!--Important: If there are no arguments make sure this div has pb-api-off class-->
 		<div class="pb-api-doc-arguments pb-api-off">
 			<div class="pb-api-doc-sub-title">Arguments:</div>
@@ -41,6 +40,7 @@
 									<td>Random</td>
 									<td>There is no order to the bidders. This is the default setting.</td>
 								</tr>
+							</tbody>
 						</table>
 					</li>
 				</ul>
@@ -52,11 +52,6 @@
 		<div class="pb-api-doc-response pb-api-off">
 			
 			<div class="pb-api-doc-sub-title">Response</div>
-			<div class="pb-api-doc-description">Response Description</div>
-			<div class="pb-api-code-block">
-				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
-				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
-			</div>
 			
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
@@ -71,7 +66,14 @@
 					</li>
 				</ul>
 			</div>
+			
+			<div class="pb-api-doc-description">Response Description</div>
+			<div class="pb-api-code-block">
+				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
+				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
+			</div>
 		</div>
 		
 
 </div>
+

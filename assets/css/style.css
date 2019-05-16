@@ -131,7 +131,7 @@ hr {
 	
 	padding:10px;
 	width: 100%;
-	margin-bottom: 10px;
+	margin: 10px 0;
 
 }
 
@@ -178,6 +178,18 @@ hr {
 	margin: 0; 
 	padding: 0; 
 	overflow: hidden;
+}
+
+.pb-api-list-item li { 
+	border-bottom: 1px solid #cccccc;
+	border-bottom-width: 75%;
+	background-color:transparent;
+	margin-bottom: 10px;
+}
+
+.pb-api-list-item-sans-border li { 
+	background-color:transparent;
+	margin-bottom: 10px;
 }
 
 .pb-api-categories { 
@@ -245,9 +257,14 @@ hr {
 
 .pb-api-doc-description { 
 	color: #222222;
-	font-size: 17px;
+	font-size: 15px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
+	margin-bottom:10px;
+}
+
+.pb-api-doc-description ul, ol { 
+	font-size: 15px;
 }
 
 .pb-api-code-title-bar { 
@@ -265,14 +282,61 @@ hr {
 	font-family: 'Verdana', sans-serif;
 	font-size: 17px;
 	font-weight: 400;
-	margin-bottom: 10px;
+	margin: 15px 0;
 }
 
-.pb-api-doc-item-list li { 
-	border-bottom: 1px solid #cccccc;
-	border-bottom-width: 75%;
-	background-color:transparent;
-	margin-bottom: 10px;
+.pb-api-doc-section-title {
+	font-size: 17px;
+	font-weight: 400;
+	color: #333333;
+	margin:15px 0;
+}
+
+.pb-api-list-item-description { 
+	margin-top 5px;
+	font-size:17px;
+}
+
+.pb-api-table { 
+	margin-top: 20px;
+	width:70%;
+}
+
+.pb-api-table-title { 
+	color: #333333;
+	font-family: 'Verdana', sans-serif;
+	font-size: 17px;
+	font-weight: 400;
+	text-align: center;
+	background-color: #aaaaaa;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.pb-api-table-text { 
+	color: #333333;
+	font-family: 'Verdana', sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.pb-api-spacing { 
+	margin-top: 25px;
+}
+
+.pb-api-alert { 
+	font-size:15px;
+}
+
+.pb-api-button { 
+	width: 120px;
+	height: 30px;
+	background-color: #cccccc;
+	border: 1px solid #333333;
+	color: #33333;
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
 }
 
 
@@ -309,7 +373,9 @@ hr {
 .hvr-overline-from-center:hover:before, .hvr-overline-from-center:focus:before, .hvr-overline-from-center:active:before {
   left: 0;
   right: 0;
-}/* NavBar */
+}
+
+/* NavBar */
 
 .navbar { 
 	z-index:100

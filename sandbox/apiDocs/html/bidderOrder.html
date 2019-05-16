@@ -1,7 +1,7 @@
 <div class="pb-api-doc">
 	
 		<div class="pb-api-doc-title">Bidder Order</div>
-		<div class="pb-api-doc-description">Set the order in which bidders are called.</div>
+		<div class="pb-api-doc-description">The order in which bidders are called.</div>
 		<div class="pb-api-code-block">
 			<!--<div class="pb-api-code-title-bar">setConfig.debug</div>-->
 			<div class="pb-api-code" id="pb-api-code-display"><pre style="border:0;"><code class="javascript">pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */</code></pre></div>
@@ -9,11 +9,36 @@
 		
 		<div class="pb-api-doc-arguments pb-api-on">
 			<div class="pb-api-doc-sub-title">Arguments:</div>
-			<div class="pb-api-list pb-api-doc-item-list">
+			<div class="pb-api-list pb-api-list-item">
 				<ul>
 					<li>
-						<code>debug</code>: <i>boolean</i>
-						<p>Boolean to indicate if debugging is turned on or off.</p> 
+						<code>bidderSequence</code>: <i>string</i>
+						<p style="font-size:15px;">String indicating the bidder sequence type.</p>
+						
+						<table class="table tabled-bordered table-striped pb-api-table">
+							<thead>
+								<tr>
+									<th colspan="2" class="pb-api-table-title">Accepted Values</th>
+								</tr>
+								
+								<tr>
+									<th class="pb-api-table-text-bold">Value</th>
+									<th class="pb-api-table-text-bold">Description</th>
+								</tr>
+							</thead>
+							
+							<tbody class="pb-api-table-text">
+								<tr>
+									<td>fixed</td>
+									<td>Order defined in <code>adUnit.bids</code> array on page</td>
+								</tr>
+								
+								<tr>
+									<td>random</td>
+									<td>There is no order to the bidders. This is the default setting.</td>
+								</tr>
+								
+						</table>
 					</li>
 				</ul>
 			</div>
@@ -28,7 +53,7 @@
 				<div class="pb-api-code" id="pb-api-code-display"><pre style="border:0;"><code class="javascript">{ response: example }</code></pre></div>
 			</div>
 			
-			<div class="pb-api-list pb-api-doc-item-list">
+			<div class="pb-api-list pb-api-list-itemw">
 				<ul>
 					<li>
 						<code>param1</code>: <i>string</i>

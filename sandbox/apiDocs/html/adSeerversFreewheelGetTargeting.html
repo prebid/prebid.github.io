@@ -1,45 +1,52 @@
-
+	
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Generic setConfig Configuration</div>
-		<div class="pb-api-doc-description">Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:</div>
+		<div class="pb-api-doc-title">Freewheel Get Targeting</div>
+		<div class="pb-api-doc-description">This method gets targeting key-value pairs to be sent to the ad server.</div>
 		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({ key: value });</code></pre></div>
+			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.adServers.freewheel.getTargeting(options);</code></pre></div>
 		</div>
 		
-				
+		<div class="pb-alert pb-alert-note pb-api-alert">The FreeWheel implementation of this function requires including the <code>freeWheelAdserverVideo</code> module in your Prebid.js build.</div>
+		
 		<!--Important: If there are no arguments make sure this div has pb-api-off class-->
-		<div class="pb-api-doc-arguments pb-api-off">
+		<div class="pb-api-doc-arguments pb-api-on">
 			<div class="pb-api-doc-sub-title">Arguments:</div>
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
 					<li>
-						<code>debug</code>: <i>boolean</i>
-						<p style="font-size:15px;">Boolean to indicate if debugging is turned on or off.</p>
+						<code>Object</code>: <i>object</i>
+						<p style="font-size:15px;">Object to be passed.</p>
 						
-						<!--if the argument can only have one value delete this table-->
 						<table class="table tabled-bordered table-striped pb-api-table">
 							<thead>
 								<tr>
-									<th colspan="2" class="pb-api-table-title">Accepted Values</th>
+									<th colspan="4" class="pb-api-table-title">Option Object Parameters</th>
 								</tr>
 								
 								<tr>
-									<th class="pb-api-table-text-bold">Parm</th>
+									<th class="pb-api-table-text-bold">Field</th>
+									<th class="pb-api-table-text-bold">Scope</th>
+									<th class="pb-api-table-text-bold">Type</th>
 									<th class="pb-api-table-text-bold">Description</th>
 								</tr>
 
 							</thead>
+
 							
 							<tbody class="pb-api-table-text">
 								<tr>
-									<td>Fixed</td>
-									<td></td>
+									<td><code>codes</code></td>
+									<td>Optional</td>
+									<td>Array</td>
+									<td>An array of adUnitCodes.</td>
 								</tr>
 								
 								<tr>
-									<td>Random</td>
-									<td>There is no order to the bidders. This is the default setting.</td>
+									<td><code>callback</code></td>
+									<td>Required</td>
+									<td>Function</td>
+									<td>Callback function to execute when targeting data is back.</td>
 								</tr>
 						</table>
 					</li>
@@ -75,3 +82,4 @@
 		
 
 </div>
+

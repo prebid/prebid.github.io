@@ -1,10 +1,10 @@
 
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Enable Send All Bids</div>
-		<div class="pb-api-doc-description">Sends keyword-value pairs from all returned bids to the ad server.</div>
+		<div class="pb-api-doc-title">Mark Winning Bid As Used</div>
+		<div class="pb-api-doc-description">This function can be used to mark the winning bid as used. This is useful when running multiple video advertisements on the page, since these are not automatically marked as “rendered”. If you know the adId, then be specific, otherwise Prebid will retrieve the winning bid for the adUnitCode and mark it accordingly.</div>
 		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({ enableSendAllBids: false });</code></pre></div>
+			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.markWinningBidAsUsed(markBidRequest);</code></pre></div>
 		</div>
 		
 		<!--Important: If there are no arguments make sure this div has pb-api-off class-->
@@ -13,17 +13,18 @@
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
 					<li>
-						<code>enableSendAllBids</code>: <i>boolean</i>
-						<p style="font-size:15px;">Boolean to indicate if Prebid.js will send all bids to the ad server.</p>
+						<code>adUnitCode</code>: <i>string (optional)</i>
+						<p style="font-size:15px;">String representing the ad unit code for the bid to be marked.</p>
+					</li>
+					
+					<li>
+						<code>adId</code>: <i>string (optional)</i>
+						<p style="font-size:15px;">The id representing the ad to be marked.</p>
 					</li>
 				</ul>
-				
 			</div>
 		</div>
 		
-		<div class="pb-alert-note pb-alert">Note: <code>pbjs.getAdserverTargeting()</code> determines which bid key-value pairs will be delivered to the ad server based on <code>enableSendAllBids</code> configuration.</div>
-		<div class="pb-api-spacer">&nbsp;</div>
-		<div class="pb-alert-warning pb-alert">Warning: This config must be set before <code>pbjs.setTargetingForGPTAsync()</code> or <code>pbjs.getAdserverTargeting()</code> are called.</div>
 		
 		<!--Important: If there is no response make sure this div has pb-api-off class-->
 		<div class="pb-api-doc-response pb-api-off">
@@ -32,7 +33,7 @@
 			<div class="pb-api-doc-description">Response Description</div>
 			<div class="pb-api-code-block">
 				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
-				<div class="pb-api-code" id="pb-api-code-display"><pre style="border:0;"><code>{ response: example }</code></pre></div>
+				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
 			</div>
 			
 			<div class="pb-api-list pb-api-list-item">
@@ -52,8 +53,4 @@
 		
 
 </div>
-
-
-
-
 

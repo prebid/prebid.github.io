@@ -1,31 +1,32 @@
-
+	
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Generic setConfig Configuration</div>
-		<div class="pb-api-doc-description">Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:</div>
+		<div class="pb-api-doc-title">Remove Ad Unit</div>
+		<div class="pb-api-doc-description">Remove adUnit(s) from the pbjs configuration, If adUnit is not given then it will remove all adUnits.</div>
 		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({ key: value });</code></pre></div>
+			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.removeAdUnit(adUnitCode);</code></pre></div>
 		</div>
 		
-				
 		<!--Important: If there are no arguments make sure this div has pb-api-off class-->
-		<div class="pb-api-doc-arguments pb-api-off">
+		<div class="pb-api-doc-arguments pb-api-on">
 			<div class="pb-api-doc-sub-title">Arguments:</div>
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
 					<li>
-						<code>debug</code>: <i>boolean</i>
-						<p style="font-size:15px;">Boolean to indicate if debugging is turned on or off.</p>
+						adUnitCode: <i>string or array of string</i>
+						<p style="font-size:15px;"><code>adUnits</code> to be removed.</p>
 						
 						<!--if the argument can only have one value delete this table-->
 						<table class="table tabled-bordered table-striped pb-api-table">
 							<thead>
 								<tr>
-									<th colspan="2" class="pb-api-table-title">Accepted Values</th>
+									<th colspan="4" class="pb-api-table-title">Accepted Values</th>
 								</tr>
 								
 								<tr>
-									<th class="pb-api-table-text-bold">Parm</th>
+									<th class="pb-api-table-text-bold">Field</th>
+									<th class="pb-api-table-text-bold">Scope</th>
+									<th class="pb-api-table-text-bold">Type</th>
 									<th class="pb-api-table-text-bold">Description</th>
 								</tr>
 
@@ -33,14 +34,12 @@
 							
 							<tbody class="pb-api-table-text">
 								<tr>
-									<td>Fixed</td>
-									<td></td>
+									<td><code>adUnitCode</code></td>
+									<td>Optional</td>
+									<td>String or Array of strings</td>
+									<td>The adUnitCode(s) to remove, if empty it removes all</td>
 								</tr>
-								
-								<tr>
-									<td>Random</td>
-									<td>There is no order to the bidders. This is the default setting.</td>
-								</tr>
+							</tbody>
 						</table>
 					</li>
 				</ul>
@@ -52,11 +51,6 @@
 		<div class="pb-api-doc-response pb-api-off">
 			
 			<div class="pb-api-doc-sub-title">Response</div>
-			<div class="pb-api-doc-description">Response Description</div>
-			<div class="pb-api-code-block">
-				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
-				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
-			</div>
 			
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
@@ -71,7 +65,14 @@
 					</li>
 				</ul>
 			</div>
+			
+			<div class="pb-api-doc-description">Response Description</div>
+			<div class="pb-api-code-block">
+				<!--<div class="pb-api-code-title-bar"><p>endpoint response</p></div>-->
+				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>{ response: example }</code></pre></div>
+			</div>
 		</div>
 		
 
 </div>
+
