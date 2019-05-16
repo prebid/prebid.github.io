@@ -20,7 +20,7 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `publisherId` | required | Publisher ID          | `'32572'`                 | `string` |
-| `adSlot`      | required | Ad Slot Name (see below)| `'38519891'`      | `string` |
+| `adSlot`      | optional | Ad Slot Name (see below)| `'38519891'`            | `string` |
 | `pmzoneid`    | optional | Zone ID               | `'zone1,zone2'`           | `string` |
 | `lat`         | optional | Latitude              | `'40.712775'`             | `string` |
 | `lon`         | optional | Longitude             | `'-74.005973'`            | `string` |
@@ -30,6 +30,7 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
 | `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
 | `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
+| `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
 
 ### Configuration
 
