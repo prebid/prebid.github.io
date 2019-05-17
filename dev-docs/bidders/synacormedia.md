@@ -4,7 +4,7 @@ title: Synacor Media
 description: Prebid Synacor Media Bidder Adapter
 hide: true
 biddercode: synacormedia
-media_types: banner
+media_types: banner, video
 gdpr_supported: false
 ---
 
@@ -49,10 +49,45 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm
 | `pos` | optional | The position of the placement on the page, see Open RTB spec v2.5. | `0` | `int` |
 | `video` | optional | Optional properties specific to video, see next table | `{ }` | Object |
 
-## Video Parameters
+### Example Ad Unit
+```javascript
+var adUnits = [{
+    "code": "test-div",
+    "mediaTypes": {
+        "video": {
+            "playerSize": [300, 250],
+            "context": "instream"
+        }
+    },
+    "bids": [{
+        "bidder": "synacormedia",
+        "params": {
+            "seatId": "prebid",
+            "placementId": "demo1",
+            "bidfloor": 0.20,
+            "pos": 1,
+            "video": {
+                "minduration": 15,
+                "maxduration": 30,
+                "startdelay": 1,
+                "linearity": 1
+            }
+        }
+    }]
+}]
+```
+
+### Video Parameters (see openrtb 2.5 spec)
+
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Default | Type |
 | ---- | ----- | ----------- | ------- | ---- |
-| `minduration` | optional | Minimum ad duration in seconds | `15` | int |
-| `maxduration` | optional | Maximum ad duration in seconds | `30` | int |
+| `minduration` | optional | Minimum ad duration in seconds | `2` | `int` |
+| `maxduration` | optional | Maximum ad duration in seconds | `60` | `int` |
+| `startdelay` | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.  | `0` | `int` |
+| `placement` | optional | Placement type for the impression. | `null` | `int` |
+| `linearity` | optional | Indicates if the impression must be linear, nonlinear, etc. | `1` | `int` |
+| `mimes` | optional | Content MIME types supported. | `["video/mp4", "application/javascript"]` | Array(`String`) |
+| `protocols` | optional | Array of supported video protocols. | `[1,2,3,4,5,6,7]` | Array(`int`) |
+| `api` | optional | List of supported API frameworks for this impression. | `[1,2]` | Array(`int`) |
 
