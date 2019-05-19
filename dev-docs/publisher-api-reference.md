@@ -452,16 +452,16 @@ Use this method to get all of the bids that have won their respective auctions b
 {: .alert.alert-info :}
 The FreeWheel implementation of this function requires including the `freeWheelAdserverVideo` module in your Prebid.js build.
 
-Use this method to get targeting key-value pairs to be sent to the ad server. 
+Use this method to get targeting key-value pairs to be sent to the ad server.
 
-+ `pbjs.adServers.freewheel.getTargeting(options)`: returns key-value pair from the ad server. 
++ `pbjs.adServers.freewheel.getTargeting(options)`: returns key-value pair from the ad server.
 
 ```javascript
 
 pbjs.adServers.freewheel.getTargeting({
     codes: [adUnitCode1],
-    callback: function(err, targeting) { 
-        //pass targeting to player api 
+    callback: function(err, targeting) {
+        //pass targeting to player api
     }
 });
 ```
@@ -1737,7 +1737,8 @@ pbjs.setConfig({
 ```
 
 ##### Details on the auctionKeyCharacterThreshold setting
-When this property is setup, the `auctionKeyCharacterThreshold` setting creates an effective ceiling for the number auction targeting keys that are passed to an ad server.  This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.  When there is such a limit, query characters that exceed the threshold are normally just dropped and/or ignored - which can cause potential issues with the delivery or rendering of the ad.
+
+When this property is set up, the `auctionKeyCharacterThreshold` setting creates an effective ceiling for the number of auction targeting keys that are passed to an ad server.  This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.  When there is such a limit, query characters that exceed the threshold are normally just dropped and/or ignored, which can cause potential issues with the delivery or rendering of the ad.
 
 Specifically, Prebid will go through the following steps with this feature:
 
@@ -1746,17 +1747,18 @@ Specifically, Prebid will go through the following steps with this feature:
   * Bids with deals are prioritized before bids without deals.
   * Bids with higher CPM are ranked before lower CPM bids.  
   **Note** - The sorting follows this order specifically, so a bid with a deal that had a $10 CPM would be sorted before a bid with no deal that had a $15 CPM.
-* Convert the keys for each group into the format that they are passed to the ad server (ie an encoded query string) and count the number of characters that are used.
-* If the count is below the running threshold set in the setConfig, that set of targeting keys will be passed along.  If the keys exceed the limit, then they are excluded.
+* Convert the keys for each group into the format that they are passed to the ad server (i.e., an encoded query string) and count the number of characters that are used.
+* If the count is below the running threshold set in the `setConfig` call, that set of targeting keys will be passed along.  If the keys exceed the limit, then they are excluded.
 
-Details about which sets of keys are passed/rejected can be found in the Prebid console debug log if you want to review the particulars.  
+ If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.  
 
 ##### Finding the right value
-Given the varying nature of how sites are setup for advertising and the varying mechanics and data-points needed by ad servers, providing a generic threshold setting is tricky.  If you plan to enable this setting, it's recommended you review your own setup to determine the ideal value.  The following steps provide some idea of a way you can start this process: 
 
-* Setup a test page that uses the typical setup for your site (in terms of the number of ad slots, etc) using Prebid.
+Given the varying nature of how sites are set up for advertising and the varying mechanics and data-points needed by ad servers, providing a generic threshold setting is tricky.  If you plan to enable this setting, it's recommended you review your own setup to determine the ideal value.  The following steps provide some guidance on how to start this process:
+
+* Use Prebid to set up a test page that uses the typical setup for your site (in terms of the number of ad slots, etc.).
 * Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.  
-  * You can do this by enabling the Prebid debug mode, enabling this setting in your `setConfig` with a high value, and then open the browser's console and review the Console Logs section.
+  * You can do this by enabling the Prebid debug mode, enabling this setting in your `setConfig` with a high value, and then opening the browser's console to review the Console Logs section.
 * Also in the browser console, find your ad server's ad URL in the Network tab and review the details of the request to obtain information about the query data (specifically the number of characters used).
   * You can copy the data to another tool to count the number of characters that are present.
 
@@ -2083,5 +2085,3 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | --- | --- | --- |
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
-
-
