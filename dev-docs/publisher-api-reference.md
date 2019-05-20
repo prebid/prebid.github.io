@@ -1439,6 +1439,14 @@ pbjs.setConfig({
 })
 ```
 
+Here are the rules for CPM intervals:
+
+- The attributes `min`, `max`, and `increment` must all be specified
+- `precision` is optional and defaults to 2
+- `min` must be less than `max`
+- The ranges [(min1,max1),(min2,max2),(minN,maxN)] should not overlap or the behavior is not guaranteed.
+
+
 <a name="setConfig-MediaType-Price-Granularity" />
 
 #### Media Type Price Granularity
