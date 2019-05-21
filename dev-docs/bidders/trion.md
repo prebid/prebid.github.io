@@ -4,12 +4,11 @@ title: Trion Interactive
 description: Prebid Trion Interactive Bidder Adaptor
 hide: true
 biddercode: trion
-biddercode_longer_than_12: false
 ---
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                | Example                             | Type     |

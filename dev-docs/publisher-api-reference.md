@@ -52,6 +52,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [priceGranularity](#setConfig-Price-Granularity)
     * [mediaTypePriceGranularity](#setConfig-MediaType-Price-Granularity)
     * [s2sConfig](#setConfig-Server-to-Server) (server-to-server config)
+    * [app](#setConfig-app) (mobile app post-bid)
     * [userSync](#setConfig-Configure-User-Syncing)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [Generic Configuration](#setConfig-Generic-Configuration)
@@ -565,6 +566,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
 | requestObj.bidsBackHandler | Optional | `function` | Callback to execute when all the bid responses are back or the timeout hits. Callback will be passed two parameters, the bids themselves and `timedOut`, which will be true if any bidders timed out. |
 | requestObj.labels | Optional | `Array of strings` | Defines [labels](#labels) that may be matched on ad unit targeting conditions. |
+| requestObj.auctionId | Optional | `String` | Defines an auction ID to be used rather than having the system generate one. This can be useful if there are multiple wrappers on a page and a single auction ID is desired to tie them together in analytics. |
 
 <hr class="full-rule">
 
@@ -839,10 +841,10 @@ pbjs.bidderSettings = {
          [...]
     },
     ix: {
-         [...]
+        [...]
     },
     rubicon: {
-         [...]
+        [...]
     },
 }
 
@@ -881,7 +883,7 @@ you'll need to fully manage the targeting -- the default `hb_` targeting variabl
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
 Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
-In addition, video will receive two additional keys: `hb_cache_id` and `hb_uuid`.
+In addition, video will receive additional keys: `hb_cache_id`, `hb_uuid`, and `hb_cache_host`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
@@ -925,21 +927,14 @@ pbjs.bidderSettings = {
             val: function (bidResponse) {
                 return bidResponse.mediaType;
             }
-        }, {
-            key: 'hb_cache_id',
-            val: function (bidResponse) {
-                return bidResponse.videoCacheKey;
-            }
-        }, {
-            key: 'hb_uuid',
-            val: function (bidResponse) {
-                return bidResponse.videoCacheKey;
-            }
         }]
     }
 }
 
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, hb_source, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
 
 <a name="key-targeting-specific-bidder"></a>
 **Keyword targeting for a specific bidder**
@@ -977,17 +972,16 @@ Note that sendStandardTargeting is set to false so that the standard Prebid targ
 
 **Price Buckets**
 
-Now let's say you would like to define you own price bucket function rather than use the ones available by default in prebid.js. You can overwrite the bidder settings as the below example shows:
+Now let's say you would like to define a bidder-specific price bucket function rather than use the ones available by default in prebid.js. Even the [priceGranularity config](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) option applies to all bidders -- with this approach you can overwrite price buckets.
 
 *Note: this will only impact the price bucket sent to the ad server for targeting. It won't actually impact the cpm value used for ordering the bids.*
-
 
 {% highlight js %}
 
 pbjs.bidderSettings = {
     standard: {
         [...]
-        {
+        adserverTargeting: [{
             key: "hb_pb",
             val: function(bidResponse) {
                 // define your own function to assign price bucket
@@ -1003,11 +997,10 @@ pbjs.bidderSettings = {
                     return "pb5"; // all bids less than $6 are assigned to price bucket 'pb5'
                 return "pb6"; // all bids $6 and above are assigned to price bucket 'pb6'
             }
-        }
+        }]
 	[...]
     }
 }
-
 {% endhighlight %}
 
 ##### 2.2. bidCpmAdjustment
@@ -1217,22 +1210,31 @@ Core config:
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
-Module config: these options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
+Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
-+ [Currency module]({{site.baseurl}}/dev-docs/modules/currency.html#currency-config-options)
-
-{: .alert.alert-warning :}
-The `options` param object to `setConfig()` must be JSON - no JavaScript functions are allowed.
++ [Currency module](dev-docs/modules/currency.html#currency-config-options)
++ [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
++ [User ID module](/dev-docs/modules/userId.html#configuration)
++ [Adpod](/dev-docs/modules/adpod.html)
++ [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
 <a name="setConfig-Debugging" />
 
 #### Debugging
 
-Turn on debugging:
+Debug mode can be enabled permanently in a page if desired. In debug mode,
+Prebid.js will post additional messages to the browser console and cause Prebid Server to
+return additional information in its response. If not specified, debug is off.
+Note that debugging can be specified for a specific page view by adding
+`pbjs_debug=true` to the URL's query string. e.g. <a href="{{ site.github.url }}/examples/pbjs_demo.html?pbjs_debug=true" class="btn btn-default btn-sm" target="_blank">/pbjs_demo.html?pbjs_debug=true</a> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
 
+Turn on debugging permanently in the page:
 {% highlight js %}
 pbjs.setConfig({ debug: true });
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
 
 <a name="setConfig-Bidder-Timeouts" />
 
@@ -1437,6 +1439,14 @@ pbjs.setConfig({
 })
 ```
 
+Here are the rules for CPM intervals:
+
+- The attributes `min`, `max`, and `increment` must all be specified
+- `precision` is optional and defaults to 2
+- `min` must be less than `max`
+- The ranges [(min1,max1),(min2,max2),(minN,maxN)] should not overlap or the behavior is not guaranteed.
+
+
 <a name="setConfig-MediaType-Price-Granularity" />
 
 #### Media Type Price Granularity
@@ -1544,6 +1554,21 @@ pbjs.setConfig({
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
+<a name="setConfig-app" />
+
+#### Mobile App Post-Bid
+
+To support [post-bid](/overview/what-is-post-bid.html) scenarios on mobile apps, the
+prebidServerBidAdapter module recognizes the `app` config object to
+forward details through the server:
+
+{% highlight js %}
+pbjs.setConfig({
+   app: {
+      bundle: "org.prebid.mobile.demoapp",
+      domain: "prebid.org"
+   }
+{% endhighlight %}
 
 <a name="setConfig-Configure-User-Syncing" />
 
@@ -1863,6 +1888,7 @@ pbjs.addAdUnits([{
 See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
 <a name="setConfig-Generic-Configuration" />
+
 
 #### Generic setConfig Configuration
 

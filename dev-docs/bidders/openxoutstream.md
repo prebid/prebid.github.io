@@ -4,13 +4,12 @@ title: OpenX Outstream
 description: Prebid OpenX Outstream Bidder Adaptor
 hide: true
 biddercode: openxoutstream
-biddercode_longer_than_12: true
 media_types: native
 
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description          | Example                   | Type     |

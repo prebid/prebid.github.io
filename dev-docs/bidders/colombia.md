@@ -4,11 +4,10 @@ title: COLOMBIA
 description: Prebid COLOMBIA Bidder Adaptor
 hide: true
 biddercode: colombia
-biddercode_longer_than_12: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description      | Example | Type     |

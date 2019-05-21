@@ -4,10 +4,9 @@ title: Weborama
 description: Prebid Weborama Bidder Adaptor
 hide: true
 biddercode: weborama
-biddercode_longer_than_12: false
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope      | Description                                                    | Example            |

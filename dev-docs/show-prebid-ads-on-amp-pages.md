@@ -22,8 +22,11 @@ For more information about AMP RTC, see:
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
-{: .alert.alert-success :}
+{% capture tipNote %}
 For ad ops setup instructions, see [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html).
+{% endcapture %}
+
+{% include alerts/alert_note.html content=tipNote %}
 
 * TOC
 {:toc }
@@ -40,10 +43,10 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 ## Implementation
 
-+ [Prebid Server Stored Request](#pbs-stored-request): This is the Prebid Server Stored Bid Request.
++ [Prebid Server Stored Request](#prebid-server-stored-request): This is the Prebid Server Stored Bid Request.
 + [AMP content page](#amp-content-page): This is where your content lives.
 + [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
-+ [User Sync in AMP](#user-sync-in-amp): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
++ [User Sync in AMP](#user-sync): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
 
 ### Prebid Server Stored Request
 
@@ -51,7 +54,7 @@ You will have to create at least one Stored Request for Prebid Server.  Valid St
 
 An example Stored Request is given below:
 
-{% highlight javascript %}
+```html
 
 {
     "id": "some-request-id",
@@ -94,7 +97,7 @@ An example Stored Request is given below:
     ]
 }
 
-{% endhighlight %}
+```
 
 ### AMP content page
 
@@ -102,29 +105,40 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
 
 + `data-slot`: Identifies the ad slot for the auction.
 + `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
-    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js].
+    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js]. We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
     + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
-{% highlight html %}
-
+e.g. for the AppNexus cluster of Prebid Servers:
+```html
 <amp-ad width="300" height="250"
-        type="doubleclick"
-        data-slot="/19968336/universal_creative"
-        rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+    type="doubleclick"
+    data-slot="/19968336/universal_creative"
+    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
+```
 
-{% endhighlight %}
+e.g. for Rubicon Project's cluster of Prebid Servers:
+```html
+<amp-ad width="300" height="250"
+    type="doubleclick"
+    data-slot="/19968336/universal_creative"
+    rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "1234-amp-pub-300x250"}}, "timeoutMillis": 500}'>
+</amp-ad>
+```
 
 ### HTML Creative
 
 This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)).
 
-{: .alert.alert-success :}
+{% capture tipNote %}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+{% endcapture %}
+
+{% include alerts/alert_tip.html content=tipNote %}
 
 For DFP:
 
-{% highlight javascript %}
+```html 
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -140,13 +154,13 @@ For DFP:
   }
 </script>
 
-{% endhighlight %}
+```
 
 For Mopub:
 
-{% highlight javascript %}
+```html
 
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -159,11 +173,11 @@ For Mopub:
   }
 </script>
 
-{% endhighlight %}
+```
 
 For all other ad servers:
 
-{% highlight javascript %}
+```html
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -185,7 +199,7 @@ For all other ad servers:
   }
 </script>
 
-{% endhighlight %}
+```
 
 Replace `MACRO` in the preceding example with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 
@@ -193,10 +207,13 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 
 To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
 
-{: .alert.alert-success :}
+{% capture tipNote %}
 The following example includes a transparent image as a placeholder which will allow you to place this at the top within the `body`. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+{% endcapture %}
 
-{% highlight html %}
+{% include alerts/alert_warning.html content=tipNote %}
+
+```html
 
 <amp-iframe width="1" title="User Sync"
   height="1"
@@ -206,7 +223,7 @@ The following example includes a transparent image as a placeholder which will a
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 
-{% endhighlight %}
+```
 
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:

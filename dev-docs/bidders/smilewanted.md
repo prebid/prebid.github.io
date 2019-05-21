@@ -4,7 +4,6 @@ title: SmileWanted
 description: SmileWanted Bidder Adaptor
 hide: true
 biddercode: smilewanted
-biddercode_longer_than_12: false
 gdpr_supported: true
 
 ---

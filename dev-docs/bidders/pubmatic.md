@@ -4,7 +4,6 @@ title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
 hide: true
 biddercode: pubmatic
-biddercode_longer_than_12: false
 media_types: banner, video, native
 gdpr_supported: true
 ---
@@ -15,13 +14,13 @@ Before configuring the PubMatic adapter as S2S, you must reach out to the PubMat
 ### Prebid 1.0 Upgrade Note:
 If you upgrading from a Prebid version prior to 1.0, please reach out to your PubMatic Customer Success Manager prior to your upgrade.  Publisher accounts need new settings to function correctly with the PubMatic Prebid 1.0 adapter and your Customer Success Manager will ensure your account is setup correctly.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `publisherId` | required | Publisher ID          | `'32572'`                 | `string` |
-| `adSlot`      | required | Ad Unit ID            | `'38519891@300x250'`      | `string` |
+| `adSlot`      | optional | Ad Slot Name (see below)| `'38519891'`            | `string` |
 | `pmzoneid`    | optional | Zone ID               | `'zone1,zone2'`           | `string` |
 | `lat`         | optional | Latitude              | `'40.712775'`             | `string` |
 | `lon`         | optional | Longitude             | `'-74.005973'`            | `string` |
@@ -29,8 +28,9 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `gender`      | optional | Gender                | `'M'`                     | `string` |
 | `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |
 | `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
-| `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. < br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
-| `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. < br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
+| `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
+| `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
+| `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
 
 ### Configuration
 
@@ -62,6 +62,34 @@ pbjs.setConfig({
 ```
 
 Note: Combine the above the configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
+
+### adSlot Specification and Multi-Size Ad Units
+
+The adSlot parameter supports two different formats:
+
+{: .table .table-bordered .table-striped }
+| Format         | Example              |
+|----------------|----------------------|
+| Without Size   | `'38519891'`         |
+| With Size      | `'38519891@300x205'` |
+
+Support and behavior differs by Prebid.js version
+
+Prebid.js v2.13.0 and later:
+
+adSlot parameter is now optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  All options will send the ad request with all sizes specified in the Prebid ad unit configuration.
+
+Prebid.js v2.9.0 to v2.12.0:
+
+Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
+
+Prebid.js v1.1.18 to v2.8.0:
+
+Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.   Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
+
+Prebid.js v1.1.17 and earlier:
+
+Only With Size is supported.  To support multi-size ad units, list the PubMatic bidder entry multiple times, once for each size.  Mutli-sized ad units are not supported when using Prebid Server.
 
 ### video parameters
 The PubMatic adapter supports video as of Prebid 1.16.0

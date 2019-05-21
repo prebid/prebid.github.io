@@ -13,7 +13,7 @@ gdpr_supported: true
 
 Sign up for account on [prebid.adnxs.com](https://prebid.adnxs.com)
 
-### bid params
+### Bid Params
 
 Bid params are sourced from the adapter configurations set for client side. These do not need to change for Prebid Server.
 

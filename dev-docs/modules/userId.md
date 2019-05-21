@@ -15,6 +15,9 @@ sidebarType : 1
 * TOC
 {:toc}
 
+{: .alert.alert-info :}
+The User ID module has been available since Prebid.js 2.10.0.
+
 ## Overview
 
 The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
@@ -36,10 +39,10 @@ Also note that not all bidder adapters support all forms of user ID. See the tab
 
 {: .alert.alert-success :}
 While the Unified ID approach is open to other cookie vendors, the
-only one currently supporting Prebid.js is The Tradedesk. Prebid.org
+only one currently supporting Prebid.js is The Trade Desk. Prebid.org
 welcomes other ID vendors - create a PR or email support@prebid.org.
 
-## User ID and GDPR
+## User ID, GDPR, and Opt-Out
 
 When paired with the `CookieConsent` module, privacy rules are enforced:
 
@@ -48,16 +51,25 @@ When paired with the `CookieConsent` module, privacy rules are enforced:
   * Calls to an external user ID vendor are not made.
   * Nothing is stored to cookies or HTML5 local storage.
 
+In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
+
+* `_pbjs_id_optout` cookie or HTML5 local storage
+* `_pubcid_optout` cookie or HTML5 local storage (for backwards compatibility with the PubCommonID module.
+
 ## Registering for Unified ID
 
-You can get set up for Unified ID in one of these ways:
+You can set up Unified ID in one of these ways:
 
-- Register with The TradeDesk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
+- Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
 - Utilize a [managed services](/prebid/managed.html) company who can do this for you.
 
 ## Examples
 
-1) Publisher has a partner ID with The TradeDesk, and is using the default endpoint for Unified ID.
+1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
+
+{: .alert.alert-warning :}
+Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
+the 'partner' parameter, it's best to supply the Trade Desk URL.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -65,7 +77,7 @@ pbjs.setConfig({
         userIds: [{
             name: "unifiedId",
             params: {
-                partner: "myTtdPid"
+                url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
             },
             storage: {
                 type: "cookie",  
@@ -78,7 +90,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-2) Publisher supports UnifiedID with a vendor other than Tradedesk, HTML5 local storage, and wants to delay the auction up to 250ms to obtain the user ID:
+2) Publisher supports UnifiedID with a vendor other than Trade Desk, HTML5 local storage, and wants to delay the auction up to 250ms to obtain the user ID:
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -92,12 +104,13 @@ pbjs.setConfig({
                 type: "html5",
                 name: "pbjs-unifiedid"    // set localstorage with this name
             }
-        }]
+        }],
+        syncDelay: 250
     }
 });
 {% endhighlight %}
 
-3) Publisher has integrated with unifiedID on their own and wants to pass the unifiedID directly through to Prebid.js
+3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -128,7 +141,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-5) Publisher supports both unifiedID and PubCommonID and first party domain cookie storage
+5) Publisher supports both UnifiedID and PubCommonID and first party domain cookie storage
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -164,14 +177,14 @@ of sub-objects. See the examples above for specific use cases.
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"` or `"pubCommonId"` | `"unifiedId"` |
-| params | Required for unifiedId | Object | Details for unifiedId. | |
-| params.partner | Required if using Tradedesk | String | This is the partner ID value obtained from registering with The TradeDesk. | `"myTtdPid"` |
-| params.url | Required if not using TradeDesk | String | If specified for unifiedId, overrides the default Tradedesk URL. | "https://unifiedid.org/somepath?args" |
+| params | Required for UnifiedId | Object | Details for UnifiedId. | |
+| params.partner | Either this or url required for UnifiedId | String | This is the Trade Desk partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. Note that the default URL is HTTP-only in Prebid.js 2.10-2.14. If your site is HTTPS, supply the override as shown in example 1 above. | `"myTtdPid"` |
+| params.url | Either this or partner required for UnifiedId | String | If specified, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
 | storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
-| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for unifiedId and 1825 for PubCommonID | `365` |
-| value | Optional | Object | Used only if the page has a separate mechanism for storing the unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing the Unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
 
 ## Adapters Supporting the User ID Module
 
@@ -193,8 +206,8 @@ For bidders that want to support one or more of these ID systems, and for publis
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
 | --- | --- | --- | --- | --- | --- |
-| PubCommon ID | n/a | bidRequest.userIds.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
-| Unified ID | Tradedesk | bidRequest.userIds.ttid | user.ext.tpid[].source="tdid" | |
+| PubCommon ID | n/a | bidRequest.userId.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
+| Unified ID | Trade Desk | bidRequest.userId.tdid | user.ext.tpid[].source="tdid" | |
 
 If you're an ID provider that want to get on this list, feel free to submit a PR or an [Issue](https://github.com/prebid/Prebid.js/issues).
 

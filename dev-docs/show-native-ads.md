@@ -45,6 +45,7 @@ The native ad responses get placed on specific keys that are sent into your ad s
 + `hb_native_icon`
 + `hb_native_linkurl`
 + `hb_native_privacy`
++ `hb_native_privicon`
 + `hb_native_rating`
 + `hb_native_cta`
 
@@ -94,7 +95,8 @@ Specific bidders may not support all of the fields listed below or may return di
 | `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `hb_native_image`     |
 | `clickUrl`    | Where the user will end up if they click the ad.                                     | `hb_native_linkurl`   |
 | `displayUrl`  | Text that can be displayed instead of the raw click URL. e.g, "Example.com/Specials" | `hb_native_displayUrl`|
-| `privacyUrl`  | Link to the Privacy Policy of the Buyer, e.g. http://example.com/privacy             | `hb_native_privacy`   |
+| `privacyLink` | Link to the Privacy Policy of the Buyer, e.g. http://example.com/privacy             | `hb_native_privacy`   |
+| `privacyIcon` | Icon to display for the privacy link, e.g. http://example.com/privacy_icon.png       | `hb_native_privicon`  |
 | `cta`         | *Call to Action* text, e.g., "Click here for more information".                      | `hb_native_cta`       |
 | `rating`      | Rating information, e.g., "4" out of 5.                                              | `hb_native_rating`    |
 | `downloads`   | The total downloads of the advertised application/product                            | `hb_native_downloads` |
@@ -147,7 +149,7 @@ pbjs.addAdUnits({
             clickUrl: {
                 required: true
             },
-            privacyUrl: {
+            privacyLink: {
                 required: false
             },
             body: {

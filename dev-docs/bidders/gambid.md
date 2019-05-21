@@ -9,8 +9,8 @@ nav_section: reference
 hide: true
 
 biddercode: gambid
+aliasCode: gamoshi
 
-biddercode_longer_than_12: false
 ---
 
 ### Bid params

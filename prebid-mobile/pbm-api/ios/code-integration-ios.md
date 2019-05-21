@@ -8,16 +8,22 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
-
-
-
 # Code Integration for iOS
+{: .notoc}
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Cocoapods or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK. 
 
-### Use Cocoapods?
+- TOC
+ {:toc}
 
-Easily include the Prebid Mobile SDK for your primary ad server in your Podfile.
+### Include with Cocoapods
+
+If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following: 
+
+{% capture warning_note %}  
+• Ensure that you set the platform to :ios, '11.0', setting the the platform to an earlier version might return unexpected results.  
+• Replace MyAmazingApp with your application's name. {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 ```
 platform :ios, '11.0'
@@ -29,15 +35,14 @@ end
 
 ### Build framework from source
 
-Build Prebid Mobile from source code. After cloning the repo, from the root directory run
+Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:
 
 ```
 ./scripts/buildPrebidMobile.sh
 ```
-to output the PrebidMobile.framework.
+This will output the PrebidMobile.framework.
 
 ### Setup Prebid Server Account
-
 
 In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers:
 
@@ -65,7 +70,7 @@ Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
 
 Integrating **MoPub** with your application
 
-1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/) .
+1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
 
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
@@ -77,7 +82,7 @@ Go to Google's developer site and follow the instructions for integrating their 
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html).
 
 ### Create Ad Units
 
@@ -102,7 +107,7 @@ Once an ad unit has been instantiated, custom keywords can be added to it to imp
 bannerUnit.addKeyword(key:"Sample", value:"Value to add")
 ```
 
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
+For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html).
 
 ## Further Reading
 
