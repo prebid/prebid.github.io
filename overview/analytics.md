@@ -29,6 +29,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | RealVu                                                           | Free  | [Website](https://www.realvu.com/rvaa/) |
 | Rivr Analytics                                                   | Contact vendor | [Website](https://www.rivr.ai/)|
 | Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) |
+| Scaleable.ai Analytics                                           | Free & Paid | [Website](https://scaleable.ai) |
 | ShareThrough                                                     | Contact vendor | |
 | Sortable | Contact vendor | [Website](https://www.sortable.com) |
 | Sovrn | <a href="https://www.sovrn.com/contact/">Contact vendor</a> | [Website](https://www.sovrn.com/analytics/)|
