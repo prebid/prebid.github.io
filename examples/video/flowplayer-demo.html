@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+    <meta charset="utf-8" />
+    <title>Prebid.js Cloud-Hosted Flowplayer Example</title>
+    <link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/stable/style/flowplayer.css">
+    <script src="//cdn.flowplayer.com/releases/native/stable/flowplayer.min.js"></script>
+    <script src="//cdn.flowplayer.com/releases/native/stable/plugins/ads.min.js"></script>
+    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <style>
+        #player {
+            max-width: 40em;
+            width: 100%;
+            float: left;
+        }
+
+        #controls {
+            float: left;
+            padding: 1em;
+        }
+    </style>
+    <script>
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
+
+      // The ad tag in Flowplayer can be actual ad tag or promise to an ad tag.
+      // We return the ad tag if it is available before the player is ready to play
+      // Otherwise the player waits for 2 secs for tag to be available.
+      var adtag = null
+      var timeout = 2000
+      var asyncTag = function() {
+        if (adtag) return Promise.resolve(vastTag)
+
+        return new Promise(function (resolve) {
+          setTimeout(function() {
+            resolve(adtag)
+          }, timeout)
+        })
+      }
+
+      /*
+       Prebid Video adUnit
+       */
+
+      var videoAdUnit = {
+        code: 'video1',
+        sizes: [640,480],
+        mediaTypes: {
+          video: {
+            context: "instream"
+          }
+        },
+        bids: [
+          {
+            bidder: 'appnexusAst',
+            params: {
+              placementId: '9333431', // Add your own placement id here
+              video: {
+                skipppable: true,
+                playback_method: ['auto_play_sound_off']
+              }
+            }
+          }
+        ]
+      };
+
+      pbjs.que.push(function(){
+        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
+
+        pbjs.setConfig({
+          usePrebidCache: true
+        });
+
+        pbjs.requestBids({
+          bidsBackHandler: function(bids) {
+            var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+              adUnit: videoAdUnit,
+              params: {
+                iu: '/19968336/prebid_cache_video_adunit',
+                cust_params: {
+                  section: "blog",
+                  anotherKey: "anotherValue"
+                },
+                output: "vast"
+              }
+            });
+            adtag = videoUrl;
+          }
+        });
+      });
+
+      pbjs.bidderSettings =
+        {
+          standard: {
+            adserverTargeting: [
+              {
+                key: "hb_bidder",
+                val: function (bidResponse) {
+                  return bidResponse.bidderCode;
+                }
+              }, {
+                key: "hb_adid",
+                val: function (bidResponse) {
+                  return bidResponse.adId;
+                }
+              }, {
+                key: "hb_pb",
+                val: function (bidResponse) {
+                  return "10.00";
+                }
+              }, {
+                key: "hb_size",
+                val: function (bidResponse) {
+                  return bidResponse.size;
+
+                }
+              }
+            ]
+          }
+        };
+
+    </script>
+</head>
+
+<body>
+
+<h1>Prebid.js Cloud-Hosted Flowplayer Example</h1>
+<br>
+<br>
+
+<div id="player"></div>
+<div id="controls">
+    <button id="ad-toggle" disabled>
+        Toggle ad playback
+    </button>
+    <p>The button will be enabled only during ads</p>
+</div>
+
+<script type="text/javascript">
+  var player = flowplayer('#player', {
+    src: "//edge.flowplayer.org/drive.mp4",
+    title: "Flowplayer demo",
+    description: "Demo showing ads",
+    autoplay: true,
+    ima: {
+      ads: [
+        {"time":0,"adTag":asyncTag}
+      ]
+    },
+    token:"eyJraWQiOiJ0QTB3ZXhqODhrUHciLCJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjIjoie1wiYWNsXCI6NixcImlkXCI6XCJ0QTB3ZXhqODhrUHdcIixcImRvbWFpblwiOltcInMuY29kZXBlbi5pb1wiXX0iLCJpc3MiOiJGbG93cGxheWVyIn0.PB25ufW_Kuuf7otErbIK50Q8N73TbP5F8qeCBUbJNqiq81yxjbLUgYkdkyNSRosGRAlkbTmtEUGp8KykRIXzig"
+  })
+  
+  var btn = document.querySelector('#ad-toggle');
+
+  btn.addEventListener('click', function() {
+    if (player.ads.adPlaying) player.ads.pause();
+    else player.ads.resume();
+  })
+
+  function toggleDisabled(disabled) {
+    return function() { btn.disabled = disabled }
+  }
+
+  player.ads.on(flowplayer.AdEvents.AD_STARTED, toggleDisabled(false));
+  player.ads.on(flowplayer.AdEvents.AD_COMPLETED, toggleDisabled(true));
+  player.ads.on(flowplayer.AdEvents.AD_SKIPPED, toggleDisabled(true));
+
+</script>
+
+</body>
+</html>
