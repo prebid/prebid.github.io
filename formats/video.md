@@ -5,6 +5,8 @@ description: Prebid Video
 sidebarType: 6
 ---
 
+<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
+
 # Prebid Video Ads
 {:.no_toc}
 
@@ -40,7 +42,9 @@ var dynamicTableContents=[];
 {% endif %}
 {% endfor %}
 </script>
-<script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable" data-array="dynamicTableContents"></script>
+<script>
+  writeDynamicTable({div: "dynamicTable", data:"dynamicTableContents"});
+</script>
 
 
 ### Prebid.js bid adapters that support only outstream video ads
@@ -60,4 +64,6 @@ var outstreamTableContents=[];
 {% endif %}
 {% endfor %}
 </script>
-<script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable-outstream" data-array="outstreamTableContents"></script>
+<script>
+  writeDynamicTable({div: "dynamicTable-outstream", data:"outstreamTableContents"});
+</script>
