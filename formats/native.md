@@ -5,6 +5,8 @@ description: Prebid Native
 sidebarType: 6
 ---
 
+<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
+
 # Prebid Native Ads
 {:.no_toc}
 
@@ -39,4 +41,6 @@ var dynamicTableContents=[];
 {% endif %}
 {% endfor %}
 </script>
-<script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable" data-array="dynamicTableContents"></script>
+<script>
+  writeDynamicTable({div:"dynamicTable", data:"dynamicTableContents"});
+</script>
