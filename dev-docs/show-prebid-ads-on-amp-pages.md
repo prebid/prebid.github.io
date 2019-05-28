@@ -146,7 +146,8 @@ For DFP:
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
-
+  ucTagData.hbPb = "%%PATTERN:hb_pb%%";
+  
   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -166,6 +167,8 @@ For Mopub:
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%KEYWORD:url%%";
   ucTagData.targetingKeywords = "%%KEYWORDS%%";
+  ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
+  
    try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -191,7 +194,7 @@ For all other ad servers:
   ucTagData.mediaType = "%%MACRO:hb_format%%";
   ucTagData.env = "%%MACRO:hb_env%%";
   ucTagData.size = "%%MACRO:hb_size%%";
-
+  ucTagData.hbPb = "%%MACRO:hb_pb%%";
   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
