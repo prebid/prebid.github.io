@@ -2,7 +2,7 @@
 <div class="pb-api-doc">
 	
 		<div class="pb-api-doc-title">Debugging</div>
-		<div class="pb-api-doc-description">Pass true to the <code>debug</code> parameter to turn on debugging.</div>
+		<div class="pb-api-doc-description">Debug mode can be enabled permanently in a page if desired. In debug mode, Prebid.js will post additional messages to the browser console and cause Prebid Server to return additional information in its response. If not specified, debug is off. Note that debugging can be specified for a specific page view by adding <code>pbjs_debug=true</code> to the URL’s query string. e.g.  See <a href="http://prebid.org/dev-docs/troubleshooting-tips.html">Prebid.js troubleshooting tips</a> for more information.</div>
 		<div class="pb-api-code-block">
 			<!--<div class="pb-api-code-title-bar">setConfig.debug</div>-->
 			<div class="pb-api-code" id="pb-api-code-display"><pre style="border:0;"><code>pbjs.setConfig({ debug: true });</code></pre></div>
@@ -19,6 +19,8 @@
 				</ul>
 			</div>
 		</div>
+		
+		<div class="pb-alert pb-alert-important pb-api-alert">Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won’t count on reports.</div>
 		
 		<div class="pb-api-doc-response pb-api-off">
 			

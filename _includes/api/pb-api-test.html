@@ -2,8 +2,8 @@
 
 <script type="text/javascript">
 	
-	$( document ).ready(function() {
 		
+	$( document ).ready(function() {
 		
 		//get the category
 		var queryItems = getUrlVars()
@@ -25,12 +25,15 @@
 				var arrApiDefinition = apiDefinition.split("#");
 				apiDefinition = arrApiDefinition[0];
 			}
-			console.log(apiDefinition);
+			
 			//displayFile(apiDefinition + ".html", "apiDocs", "api-definition-display");
 			displayFile("/html/" + apiDefinition + ".html", "apiDocs", "api-definition-display");
 			
 			//move to anchor point
 			location.hash = "#apiDocs";
+			
+			// Rerun Prism syntax highlighting on the current page
+			Prism.highlightAll();
 
 		}
 		
@@ -81,12 +84,6 @@
 		//display the api documentation
 		element.classList.remove("api-off");
 		element.classList.add("api-on");
-		
-		//reload the highlighting (need to do this when you dynamically load content)
-		$('#pb-api-code-display').each(function(i, e) {
-			console.log(e);
-			hljs.highlightBlock(e)
-		});
 		
 	}
 	
