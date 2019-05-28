@@ -1739,14 +1739,14 @@ Below is an example config with the `targetingControls` object:
 ```javascript
 pbjs.setConfig({
   targetingControls: {
-    auctionKeyCharacterThreshold: 5000
+    auctionKeyMaxChars: 5000
   }
 });
 ```
 
-##### Details on the auctionKeyCharacterThreshold setting
+##### Details on the auctionKeyMaxChars setting
 
-When this property is set up, the `auctionKeyCharacterThreshold` setting creates an effective ceiling for the number of auction targeting keys that are passed to an ad server.  This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.  When there is such a limit, query characters that exceed the threshold are normally just dropped and/or ignored, which can cause potential issues with the delivery or rendering of the ad.
+When this property is set up, the `auctionKeyMaxChars` setting creates an effective ceiling for the number of auction targeting keys that are passed to an ad server.  This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.  When there is such a limit, query characters that exceed the threshold are normally just dropped and/or ignored, which can cause potential issues with the delivery or rendering of the ad.
 
 Specifically, Prebid will go through the following steps with this feature:
 
