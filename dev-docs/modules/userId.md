@@ -16,7 +16,7 @@ sidebarType : 1
 {:toc}
 
 {: .alert.alert-info :}
-The User ID module will be available with Prebid.js 2.10.0, launching with support for two ID systems: Unified ID and PubCommonID.
+The User ID module has been available since Prebid.js 2.10.0.
 
 ## Overview
 
@@ -27,7 +27,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 ## How It Works
 
-1. The publisher builds Prebid.js with the optional User ID module
+1. The publisher builds Prebid.js with the optional User ID module and the specific ID sub-module they would like to include. e.g. "gulp build --modules=userId,pubCommonIdSystem"
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userIds.
@@ -67,13 +67,17 @@ You can set up Unified ID in one of these ways:
 
 1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
 
+{: .alert.alert-warning :}
+Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
+the 'partner' parameter, it's best to supply the Trade Desk URL.
+
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
         userIds: [{
             name: "unifiedId",
             params: {
-                partner: "myTtdPid"
+                url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
             },
             storage: {
                 type: "cookie",  
@@ -174,8 +178,8 @@ of sub-objects. See the examples above for specific use cases.
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"` or `"pubCommonId"` | `"unifiedId"` |
 | params | Required for UnifiedId | Object | Details for UnifiedId. | |
-| params.partner | Required if using Trade Desk | String | This is the partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. | `"myTtdPid"` |
-| params.url | Required if not using Trade Desk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
+| params.partner | Either this or url required for UnifiedId | String | This is the Trade Desk partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. Note that the default URL is HTTP-only in Prebid.js 2.10-2.14. If your site is HTTPS, supply the override as shown in example 1 above. | `"myTtdPid"` |
+| params.url | Either this or partner required for UnifiedId | String | If specified, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
 | storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
@@ -197,7 +201,7 @@ of sub-objects. See the examples above for specific use cases.
 
 ## Implementation Details
 
-For bidders that want to support one or more of these ID systems, and for publishers who want to understand their options, here are the specific details.
+For bidders that want to support one or more of these ID systems here are the specific details.
 
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
@@ -205,12 +209,9 @@ For bidders that want to support one or more of these ID systems, and for publis
 | PubCommon ID | n/a | bidRequest.userId.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | user.ext.tpid[].source="tdid" | |
 
-If you're an ID provider that want to get on this list, feel free to submit a PR or an [Issue](https://github.com/prebid/Prebid.js/issues).
+Bidders that want to support the User ID module in **Prebid.js**, need to update their bidder adapter to read the indicated bidRequest attributes.
 
-If you're bidder that wants to support the User ID module in Prebid.js, you'll need to update your bidder adapter to read the indicated bidRequest attributes.
-
-If you're bidder that wants to support the User ID module in Prebid Server, you'll n
-eed to update your server-side bid adapter to read the indicated OpenRTB attributes. For example:
+Bidders that want to support the User ID module in **Prebid Server**, need to update their server-side bid adapter to read the indicated OpenRTB attributes. For example:
 
 {% highlight bash %}
 {
@@ -228,6 +229,16 @@ eed to update your server-side bid adapter to read the indicated OpenRTB attribu
   }
 }
 {% endhighlight %}
+
+### ID Providers
+
+If you're an ID provider that wants to get on the list:
+
+- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
+- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
+
 
 ## Further Reading
 

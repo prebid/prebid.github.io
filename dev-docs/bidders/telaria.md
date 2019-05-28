@@ -35,9 +35,10 @@ var adUnit = {
         }
     }]
 }
-```
+``` 
+[Telaria Prebid Example](https://console.telaria.com/examples/hb/headerbidding.jsp)
 
-### delivery
+### Delivery
 
 + `1` : In-Stream: Played before, during or after the streaming video content that the consumer has requested (e.g., Pre-roll, Mid-roll, Post-roll).
 + `2` : In-Banner: Exists within a web banner that leverages the banner space to deliver a video experience as opposed to another static or rich media format. The format relies on the existence of display ad inventory on the page for its delivery.
@@ -45,7 +46,7 @@ var adUnit = {
 + `4` : In-Feed: Found in content, social, or product feeds.
 + `5` : Interstitial/Slider/Floating: Covers the entire or a portion of screen area, but is always on screen while displayed (i.e. cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be distinguished from a floating/slider unit by the imp.instl field.
 
-### placement
+### Placement
 
 + `1` : Streaming
 + `2` : Progressive

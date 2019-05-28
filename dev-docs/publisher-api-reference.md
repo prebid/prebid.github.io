@@ -1222,11 +1222,19 @@ Module config: other options to `setConfig()` are available if the relevant modu
 
 #### Debugging
 
-Turn on debugging:
+Debug mode can be enabled permanently in a page if desired. In debug mode,
+Prebid.js will post additional messages to the browser console and cause Prebid Server to
+return additional information in its response. If not specified, debug is off.
+Note that debugging can be specified for a specific page view by adding
+`pbjs_debug=true` to the URL's query string. e.g. <a href="{{ site.github.url }}/examples/pbjs_demo.html?pbjs_debug=true" class="btn btn-default btn-sm" target="_blank">/pbjs_demo.html?pbjs_debug=true</a> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
 
+Turn on debugging permanently in the page:
 {% highlight js %}
 pbjs.setConfig({ debug: true });
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
 
 <a name="setConfig-Bidder-Timeouts" />
 
@@ -1430,6 +1438,14 @@ pbjs.setConfig({
     priceGranularity: customConfigObject
 })
 ```
+
+Here are the rules for CPM intervals:
+
+- The attributes `min`, `max`, and `increment` must all be specified
+- `precision` is optional and defaults to 2
+- `min` must be less than `max`
+- The ranges [(min1,max1),(min2,max2),(minN,maxN)] should not overlap or the behavior is not guaranteed.
+
 
 <a name="setConfig-MediaType-Price-Granularity" />
 
