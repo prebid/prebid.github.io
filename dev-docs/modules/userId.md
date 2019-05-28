@@ -27,7 +27,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 ## How It Works
 
-1. The publisher builds Prebid.js with the optional User ID module
+1. The publisher builds Prebid.js with the optional User ID module and the specific ID sub-module they would like to include. e.g. "gulp build --modules=userId,pubCommonIdSystem"
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userIds.
@@ -201,7 +201,7 @@ of sub-objects. See the examples above for specific use cases.
 
 ## Implementation Details
 
-For bidders that want to support one or more of these ID systems, and for publishers who want to understand their options, here are the specific details.
+For bidders that want to support one or more of these ID systems here are the specific details.
 
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
@@ -209,12 +209,9 @@ For bidders that want to support one or more of these ID systems, and for publis
 | PubCommon ID | n/a | bidRequest.userId.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | user.ext.tpid[].source="tdid" | |
 
-If you're an ID provider that want to get on this list, feel free to submit a PR or an [Issue](https://github.com/prebid/Prebid.js/issues).
+Bidders that want to support the User ID module in **Prebid.js**, need to update their bidder adapter to read the indicated bidRequest attributes.
 
-If you're bidder that wants to support the User ID module in Prebid.js, you'll need to update your bidder adapter to read the indicated bidRequest attributes.
-
-If you're bidder that wants to support the User ID module in Prebid Server, you'll n
-eed to update your server-side bid adapter to read the indicated OpenRTB attributes. For example:
+Bidders that want to support the User ID module in **Prebid Server**, need to update their server-side bid adapter to read the indicated OpenRTB attributes. For example:
 
 {% highlight bash %}
 {
@@ -232,6 +229,16 @@ eed to update your server-side bid adapter to read the indicated OpenRTB attribu
   }
 }
 {% endhighlight %}
+
+### ID Providers
+
+If you're an ID provider that wants to get on the list:
+
+- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
+- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
+
 
 ## Further Reading
 

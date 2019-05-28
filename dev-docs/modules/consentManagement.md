@@ -36,6 +36,8 @@ When either this timeout occurs or if an error from the CMP is thrown, one of tw
 
 Though these options are mutually exclusive, they are configurable by the publisher via the site's implementation of the prebid code (see further below for details) so that they can be used in the proper scenarios for that site/audience.
 
+{: .alert.alert-warning :}
+Any Prebid functionality created to address regulatory requirements (e.g. the GDPR) does not replace each party's independent responsibility to determine its own legal obligations and comply with all applicable laws.
 
 ## Page integration
 
@@ -127,7 +129,7 @@ Note that there are more dynamic ways of combining these components for publishe
 
 ## Adapter Integration
 
-_Note - for any adapters submitting changes to make themselves compliant, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add a `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  This will have your adapter's name automatically appear on the list of GDPR compliant adapters (at the bottom of this page)._
+_Note - for any adapters submitting changes to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add a `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  This will have your adapter's name automatically appear on the list of adapters supporting GDPR (at the bottom of this page)._
 
 ### BuildRequests Integration
 
@@ -321,7 +323,7 @@ This should be false if there was some error in the consent data, true otherwise
 **cmpLoaded**
 This should be be set to true once parameters above are processed.
 
-## List of GDPR compliant Adapters
+## List of Adapters That Currently Support GDPR
 
 Below is a list of Adapters that currently support GDPR:
 <div class="adapters">
