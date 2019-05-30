@@ -2,7 +2,7 @@
 
 ## `GET /info/bidders/all`
 
-This endpoint return details about all the bidders supported by prebid-server.
+This endpoint return details about all the bidders supported by prebid-server. The response is similar to `/info/biders/{bidderName}` but for all bidders rather than the one specified.
 
 ### Sample Response
 
