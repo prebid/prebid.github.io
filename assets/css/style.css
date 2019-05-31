@@ -214,6 +214,11 @@ hr {
 	color: #3498db;
 }
 
+.pb-api-search { 
+	float:right;
+	margin-right: 30px;
+}
+
 .pb-api-title { 
 	
 	color: #EA9622;
