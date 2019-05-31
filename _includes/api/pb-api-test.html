@@ -5,6 +5,20 @@
 		
 	$( document ).ready(function() {
 		
+		$('#apiSearch').click(function (e) {
+
+			e.preventDefault();
+			var searchTerm = $("input:first").val();
+			
+			if (!!searchTerm.trim()) { 
+		    	window.location.href = '/sandbox/prebid-api-search.html?searchTerm=' + searchTerm;
+	    	} else { 
+		    	alert("You did not enter any search terms.");
+	    	}
+			
+		});
+		
+		
 		//get the category
 		var queryItems = getUrlVars()
 		var apiDocCategory = queryItems[0][1];
@@ -100,7 +114,8 @@
 
 
 <div class="container pb-api-categories pb-api-list">
-
+	
+		<div>
 		{% assign arrCategories = site.data.pb-api %}
 		
 		<ul style="">
@@ -110,6 +125,14 @@
 		
 		{% endfor %}
 		</ul>
+		</div>
+		
+		<div class="pb-api-search">
+			<form>
+				<input type="text" name="pb-api-search-term">
+				<button id="apiSearch" type="button" value="send" class="btn btn-primary">Search</button>
+			</form>
+		</div>
 	
 </div>
 

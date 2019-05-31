@@ -1,7 +1,7 @@
 
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Max Request Per Origin</div>
+		<div class="pb-api-doc-title" data-apiDpcType="configuration">Max Request Per Origin</div>
 		<div class="pb-api-doc-description">Sets the number of requests made to a specific domain. Each browser sets a limit of how many requests will be allowed to a specific domain before that domain is blocked. Prebid.js queues auctions that would cause the  number of requests to a specific domain to exceed that limit. The default Prebid.js setting is a max of <b>4</b> requests per domain. <code>maxRequestsPerOrigin</code> enables the user to configure the Prebid.js value.<br><br>
 
 			<div class="pb-alert-note pb-alert">Most browsers allow at least six requests, but results may vary for your user base.  Using all six requests may impact performance for users with poor internet connections.<br><hr>To emulate pre version 1.x behavior and have all auctions queue (no concurrent auctions), you can set <code>maxRequestsPerOrigin</code> to one.</div>

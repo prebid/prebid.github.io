@@ -214,6 +214,11 @@ hr {
 	color: #3498db;
 }
 
+.pb-api-search { 
+	float:right;
+	margin-right: 30px;
+}
+
 .pb-api-title { 
 	
 	color: #EA9622;
@@ -260,7 +265,7 @@ hr {
 	color: #222222;
 	font-size: 15px;
 	font-family: 'Roboto', sans-serif;
-	font-weight: 400;
+	font-weight: 200;
 	margin-bottom:10px;
 }
 

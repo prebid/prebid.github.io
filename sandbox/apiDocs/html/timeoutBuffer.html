@@ -1,7 +1,7 @@
 
 <div class="pb-api-doc comntainer">
 	
-		<div class="pb-api-doc-title">Timeout Buffer</div>
+		<div class="pb-api-doc-title" data-apiDpcType="configuration">Timeout Buffer</div>
 		<div class="pb-api-doc-description">Prebid core adds a timeout buffer to extend the time that bidders have to return a bid after the auction closes. This buffer is used to offset the “time slippage” of the <code>setTimeout</code> behavior in browsers. Prebid.js sets the default value to 400ms. You can change this value by setting <code>timeoutBuffer</code> to the amount of time you want to use. The following example sets the buffer to 300ms.</div>
 		<div class="pb-api-code-block">
 			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({ timeoutBuffer: 300 });</code></pre></div>
