@@ -1,6 +1,5 @@
 
 
-
 <script type="text/javascript">
 	
 	
@@ -11,7 +10,7 @@
 		
 		var queryItems = getUrlVars()
 		var searchTerm = queryItems[0][1];
-		var strDisplay = "<div class=\"pb-api-doc-title\">Search results for: " + searchTerm + "</div><hr>";
+		var strDisplay = "<div class=\"pb-api-doc-title\">Search results for: " + searchTerm + "</div><div style="float:right"><a href="/sandbox/prebid-api-guide.html">Return to API</a></div><hr>";
 		var arrAPIFiles = [];
 		
 		var itemsProcessed = 0;
@@ -60,17 +59,25 @@
 		//get title
 		var strTitle = getTitle(fileContents);
 		var strDescription = getDescription(fileContents);
+		var strAPIDocTarget = getAPIDocTarget(fileContents);
+		var strAPIDefinition = fileName.replace(/\.[^/.]+$/, "")
 		
-		var strAPIPage =  "<div class=\"pb-api-doc-sub-title\"><a href=\"/sandbox/apiDocs/html/" + fileName + "\">" + getTitle(fileContents) + "</a></div><div class=\"pb-api-doc-description\">" + getDescription(fileContents) + "</div></div><div class=\"pb-api-doc-description\"><hr>";
+		///sandbox/prebid-api-guide.html?apiDocTarget=configuration&apiDefinition=bidderOrder
+		
+		var strAPIPage =  "<div class=\"pb-api-doc-sub-title\"><a href=\"/sandbox//prebid-api-guide.html?apiDocTarget=" + strAPIDocTarget + "&apiDefinition=" + strAPIDefinition + "\">" + getTitle(fileContents) + "</a></div><div class=\"pb-api-doc-description\">" + getDescription(fileContents) + "</div></div><div class=\"pb-api-doc-description\"><hr>";
 		return strAPIPage;
 		
 	}
+
 	
 	function getTitle(fileContents) { 
 		
-		var titleStart = fileContents.split("<div class=\"pb-api-doc-title\">");
-		var titleEnd = titleStart[1].split("</div>");
-		return titleEnd[0];
+		var titleStart = fileContents.split("<div class=\"pb-api-doc-title\" data-apiDpcType=");
+		var titleClose = titleStart[1].split(">");
+		var titleEnd = titleClose[1].split("</div>");
+		var title = titleClose[1].split("</div");
+		console.log(title[0]);
+		return title[0];
 	}
 	
 	function getDescription(fileContents) { 
@@ -79,6 +86,14 @@
 		return descriptionEnd[0];
 	}
 	
+	function getAPIDocTarget(fileContents) { 
+		
+		var arrDataSplit = fileContents.split("data-apiDpcType=\"")
+		var arrDocType = arrDataSplit[1].split("\"");
+		return arrDocType[0];
+		
+	}
+		
 	function getUrlVars() {
 	    var qsParams = [];
 	    var arrParams = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -95,5 +110,14 @@
 	
 </script>
 
+<div class="pb-api-container">
+	<div class="pb-api-sub-title" id="pb-api-search-results">Searching...</div>
+</div>
 
-<div class="pb-api-sub-title" id="pb-api-search-results">Searching...</div>
+
+
+
+
+
+
+
