@@ -89,7 +89,9 @@ pbjs.addAdUnit({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        options: { 
+            url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js'
+        },
         render: function (bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
