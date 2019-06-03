@@ -4,7 +4,7 @@
 		<div class="pb-api-doc-title" data-apiDpcType="server">Freewheel Get Targeting</div>
 		<div class="pb-api-doc-description">This method gets targeting key-value pairs to be sent to the ad server.</div>
 		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.adServers.freewheel.getTargeting(options);</code></pre></div>
+			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.adServers.freewheel.getTargeting({options});</code></pre></div>
 		</div>
 		
 		<div class="pb-alert pb-alert-note pb-api-alert">The FreeWheel implementation of this function requires including the <code>freeWheelAdserverVideo</code> module in your Prebid.js build.</div>
@@ -15,13 +15,13 @@
 			<div class="pb-api-list pb-api-list-item">
 				<ul>
 					<li>
-						<code>Object</code>: <i>object</i>
-						<p style="font-size:15px;">Object to be passed.</p>
+						<code>Options</code>: <i>object</i>
+						<p style="font-size:15px;">Object to be passed containing codes and the callback function.</p>
 						
 						<table class="table tabled-bordered table-striped pb-api-table">
 							<thead>
 								<tr>
-									<th colspan="4" class="pb-api-table-title">Option Object Parameters</th>
+									<th colspan="4" class="pb-api-table-title">Options Object Parameters</th>
 								</tr>
 								
 								<tr>

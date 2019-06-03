@@ -2,10 +2,10 @@
 <div class="pb-api-doc comntainer">
 	
 		<div class="pb-api-doc-title" data-apiDpcType="configuration">Media Type Price Granularity</div>
-		<div class="pb-api-doc-description" >Set the price granularity for each of the three media types, banner, video and native.<br><br>The default Prebid price granularities cap out at $20. This may be insufficient for video ads, which can command a CPM higher than $20. Publishers have two options:<br><br>
+		<div class="pb-api-doc-description" >Set the price granularity for each of the three media types: banner, video and native.<br><br>The default Prebid price granularities cap out at $20. This may be insufficient for video ads, which can command a CPM higher than $20. Publishers have two options:<br><br>
 			<ul>
-				<li style="font-size:15px">Set up a custom price granularity, as described in the <a href="/sandbox/prebid-api-guide.html?apiDocTarget=configuration&apiDefinition=priceGranularity">price granualrity API documentation</a>. This would enable a publisher to increase the CPM limit for all media types.</li>
-				<li style="font-size:15px">Define a price granularity for a specific media type, banner, video, and native, using <code>mediaTypePriceGranularity</code>.</li>
+				<li style="font-size:15px">Set up a custom price granularity, as described in the <a href="/sandbox/prebid-api-guide.html?apiDocTarget=configurationandapiDefinition=priceGranularity">price granualrity API documentation</a>. This would enable a publisher to increase the CPM limit for all media types.</li>
+				<li style="font-size:15px">Define a price granularity for a specific media type (banner, video, and native) using <code>mediaTypePriceGranularity</code>.</li>
 			</ul>
 			
 			<div class="pb-alert pb-alert-note pb-api-spacing">Note: <code>mediaTypePriceGranularity</code> is available in Prebid.js version 1.12 and greater.</div>		 
@@ -76,12 +76,12 @@ pbjs.setConfig({'mediaTypePriceGranularity': {
 								
 								<tr>
 									<td>banner</td>
-									<td>The banner price granularity.</td>
+									<td>The banner <a href="/sandbox/prebid-api-guide.html?apiDocTarget=configuration&apiDefinition=priceGranularity#apiDocs">price granularity.</a></td>
 								</tr>
 								
 								<tr>
 									<td>native</td>
-									<td>The native price granularity.</td>
+									<td>The native <a href="/sandbox/prebid-api-guide.html?apiDocTarget=configuration&apiDefinition=priceGranularity#apiDocs">price granularity.</a></td>
 								</tr>
 						</table>
 					</li>

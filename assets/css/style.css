@@ -263,9 +263,9 @@ hr {
 
 .pb-api-doc-description { 
 	color: #222222;
-	font-size: 15px;
+	font-size: 16px;
 	font-family: 'Roboto', sans-serif;
-	font-weight: 200;
+	font-weight: 300;
 	margin-bottom:10px;
 }
 
@@ -320,10 +320,11 @@ hr {
 }
 
 .pb-api-table-text { 
-	color: #333333;
-	font-family: 'Verdana', sans-serif;
-	font-size: 15px;
-	font-weight: 400;
+	color: #222222;
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+
 }
 
 .pb-api-spacing { 

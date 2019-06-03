@@ -23,7 +23,7 @@
 		var queryItems = getUrlVars()
 		var apiDocCategory = queryItems[0][1];
 		
-		console.log(apiDocCategory);
+		
 		//display the category
 		displayFile(apiDocCategory + ".html", "apiCatgories", "api-endpoints");
 				
@@ -89,12 +89,13 @@
 		
 		//display the file
 		var element = document.getElementById(divName);
+		
 		//clear out existing html
 		element.innerHTML = "";
 		
 		//load code from file
 		$(element).load(src);
-		
+				
 		//display the api documentation
 		element.classList.remove("api-off");
 		element.classList.add("api-on");
