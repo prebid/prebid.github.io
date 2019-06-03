@@ -66,7 +66,7 @@
 						
 						<div class="pb-alert pb-alert-warning pb-api-alert">One or both of <code>options.params</code> and <code>options.url</code> is required. In other words, you may pass in one, the other, or both, but not neither.</div>
 					
-						<div class="pb-api-doc-sub-title">The <code>optiona.params</code> object</div>
+						<div class="pb-api-doc-sub-title">The <code>optional.params</code> object</div>
 						<div>
 							<table class="table tabled-bordered table-striped pb-api-table">
 								<thead>
@@ -152,9 +152,9 @@ pbjs.requestBids({
 			<div class="pb-api-code-block">
 				<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>
 var adserverTag = 'https://pubads.g.doubleclick.net/gampad/ads?'
-+ 'sz=640x480&iu=/19968336/prebid_cache_video_adunit&impl=s&gdfp_req=1'
-+ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=http://www.example.com'
-+ '&cust_params=section%3Dblog%26anotherKey%3DanotherValue';
++ 'sz=640x480andiu=/19968336/prebid_cache_video_adunitandimpl=sandgdfp_req=1'
++ 'andenv=vpandoutput=xml_vast2andunviewed_position_start=1andhl=enandurl=http://www.example.com'
++ 'andcust_params=section%3Dblog%26anotherKey%3DanotherValue';
 
 var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
     adUnit: videoAdUnit,

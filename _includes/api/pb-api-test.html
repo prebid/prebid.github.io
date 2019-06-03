@@ -22,7 +22,7 @@
 		var queryItems = getUrlVars()
 		var apiDocCategory = queryItems[0][1];
 		
-		console.log(apiDocCategory);
+		
 		//display the category
 		displayFile(apiDocCategory + ".html", "apiCatgories", "api-endpoints");
 				
@@ -38,7 +38,7 @@
 				var arrApiDefinition = apiDefinition.split("#");
 				apiDefinition = arrApiDefinition[0];
 			}
-			console.log(apiDefinition);
+			
 			//displayFile(apiDefinition + ".html", "apiDocs", "api-definition-display");
 			displayFile("/html/" + apiDefinition + ".html", "apiDocs", "api-definition-display");
 			
@@ -85,21 +85,18 @@
 		
 		//display the file
 		var element = document.getElementById(divName);
+		
 		//clear out existing html
 		element.innerHTML = "";
 		
 		//load code from file
 		$(element).load(src);
-		
+				
 		//display the api documentation
 		element.classList.remove("api-off");
 		element.classList.add("api-on");
 		
-		//reload the highlighting (need to do this when you dynamically load content)
-		$('#pb-api-code-display').each(function(i, e) {
-			console.log(e);
-			hljs.highlightBlock(e)
-		});
+		console.log(element.innerHTML);
 		
 	}
 	

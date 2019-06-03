@@ -184,9 +184,9 @@
 			<div class="pb-api-doc-sub-title">How user syncing works</div>
 			<div class="pb-api-doc-description">The <a href="/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-User-Syncs">userSync.registerSync()</a> function called by the adapter keeps a queue of valid userSync requests. It prevents unwanted sync entries from being placed on the queue:<p>
 				<ul>
-					<li style="font-size:15px;">Removes undesired sync types. (i.e. blocks iframe pixels if filterSettings.iframe wasn’t declared).</li>
-					<li style="font-size:15px;">Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the <code>filterSettings</code> object).</li>
-					<li style="font-size:15px;">Makes sure there’s not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder).</li>
+					<li style="font-size:16px;">Removes undesired sync types. (i.e. blocks iframe pixels if filterSettings.iframe wasn’t declared).</li>
+					<li style="font-size:16px;">Removes undesired adapter registrations. (i.e. enforces the configured filtering logic from the <code>filterSettings</code> object).</li>
+					<li style="font-size:16px;">Makes sure there’s not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder).</li>
 				</ul>
 				
 				When user syncs are run, regardless of whether they are invoked by the platform or by the page calling <code>pbjs.triggerUserSyncs()</code>, the queue entries are randomized and appended to the bottom of the HTML tag.

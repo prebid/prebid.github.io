@@ -20,7 +20,7 @@ pbjs.setConfig({
         syncUrlModifier: {
             'openx': function(type, url, bidder) {
             const publisherId = '00000123231231'
-            url += `&ri=${publisherId}`;
+            url += `andri=${publisherId}`;
 
             return url
             }
@@ -69,7 +69,7 @@ pbjs.setConfig({
 									<td><code>bidders</code></td>
 									<td>Required</td>
 									<td>Array of Strings</td>
-									<td>An array of string representing the selected server side bidders.</td>
+									<td>An array of strings representing the selected server side bidders.</td>
 								</tr>
 								
 								<tr>
@@ -146,10 +146,14 @@ pbjs.setConfig({
 					</li>
 				</ul>
 			</div>	
-				
-			<div class="pb-alert pb-alert-note">
-				Note:<br>Currently <a href="http://localhost:8080/prebid-server/hosted-servers.html">supported vendors</a> are Appnexus and Rubicon.<br><hr>When using <code>defaultVendor</code> option, <code>accountId</code> and <code>bidders</code> properties still need to be defined.<br>
+			
+			<div class="pb-api-doc-sub-title">Default Vendors</div>
+			<div class="pb-api-doc-description">Currently <a href="http://localhost:8080/prebid-server/hosted-servers.html">supported vendors</a> are Appnexus and Rubicon.</div>
+			<div class="pb-alert pb-alert-important">
+				When using <code>defaultVendor</code> option, <code>accountId</code> and <code>bidders</code> properties still need to be defined.
 			</div>
+			
+			<div class="pb-api-doc-sub-title">Timeout</div>
 			<div class="pb-alert pb-alert-important">If the <code>s2sConfig</code> timeout is greater than the Prebid.js timeout, the <code>s2sConfig</code> timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.</div>
 			
 			<div class="pb-api-doc-sub-title">Video via s2sConfig</div>
