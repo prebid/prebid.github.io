@@ -29,9 +29,10 @@
 		$.get("/sandbox/apiDocs/html/" + apiFile, function(data) {
 			
 			if (data.search(searchTerm) != -1) {
+				console.log("Match for\n/sandbox/apiDocs/html/" + apiFile);
 				arrData.push(getSearchResults(apiFile, data, searchTerm));
 			} else { 
-				console.log("/sandbox/apiDocs/html/" + apiFile);
+				console.log("No match for\n/sandbox/apiDocs/html/" + apiFile);
 			}
 			
 			if(idx == fileCount) { 
