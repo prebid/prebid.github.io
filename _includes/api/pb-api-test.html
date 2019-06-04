@@ -11,6 +11,7 @@
 			var searchTerm = $("input:first").val();
 			
 			if (!!searchTerm.trim()) { 
+				alert(searchTerm);
 		    	window.location.href = '/sandbox/prebid-api-search.html?searchTerm=' + searchTerm;
 	    	} else { 
 		    	alert("You did not enter any search terms.");
