@@ -1,6 +1,6 @@
 addAdUnits.html
-adSeerversDFPBuildVideoUrl.html
-adSeerversFreewheelGetTargeting.html
+adServersDFPBuildVideoUrl.html
+adServersFreewheelGetTargeting.html
 aliasBidder.html
 app.html
 bidderOrder.html
@@ -14,7 +14,6 @@ getAdserverTargeting.html
 getAdserverTargetingForAdUnitCode.html
 getAllPrebidWinningBids.html
 getAllWinningBids.html
-getBidReponses.html
 getBidResponses.html
 getBidResponsesForAdUnitCode.html
 getConfig.html

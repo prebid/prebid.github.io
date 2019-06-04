@@ -18,6 +18,8 @@
 		});
 		
 		
+		
+		
 		//get the category
 		var queryItems = getUrlVars()
 		var apiDocCategory = queryItems[0][1];
@@ -39,6 +41,9 @@
 				apiDefinition = arrApiDefinition[0];
 			}
 			
+			//check if we need to display a bid response example
+			var needsBidResponse = checkForBidResponse("/html/" + apiDefinition + ".html", "apiDocs"); 
+			
 			//displayFile(apiDefinition + ".html", "apiDocs", "api-definition-display");
 			displayFile("/html/" + apiDefinition + ".html", "apiDocs", "api-definition-display");
 			
@@ -48,34 +53,6 @@
 		}
 		
 	});
-	
-	
-	function showBidResponse() { 
-		var element = document.getElementById("bidResponseDetails");
-		var button = document.getElementById("btnBidResponse");
-		
-		
-		//check to see if it is on or off
-		if (element.classList.contains("api-off")) {
-			
-			//swap classes 
-			element.classList.remove("api-off");
-			element.classList.add("api-on");
-			
-			//change button text
-			button.innerHTML = "Hide Attribute Details";
-			
-		} else { 
-			
-			//swap classes 
-			element.classList.add("api-off");
-			element.classList.remove("api-on");
-			
-			//change button text
-			button.innerHTML = "Show Attribute Details";
-		}
-		
-	}
 	
 	
 	function displayFile(srcFile, srcDir, divName) { 
@@ -96,8 +73,35 @@
 		element.classList.remove("api-off");
 		element.classList.add("api-on");
 		
-		console.log(element.innerHTML);
+	}
+	
+	function checkForBidResponse(srcFile, srcDir) { 
 		
+		//set up the file path
+		let src = "/sandbox/" + srcDir + "/" + srcFile;
+		let codeSrc = "/sandbox/apiDocs/html/bidResponseSample.html";
+		let tableSrc = "/sandbox/apiDocs/html/bidResponseParams.html";
+		
+		$.ajax({
+			url:src,
+			success: function (data){
+				var arrFileObjs = data.split("data-hasBidResponse=");
+				var arrSubObjs = arrFileObjs[1].split(">");
+				var needsBidResponse = (arrSubObjs[0].replace(/['"]+/g, '') === 'true');
+				
+				if (needsBidResponse) { 
+					var codeElementWrapper = document.getElementById("pb-api-bid-response-display");
+					codeElementWrapper.classList.remove("pb-api-off");
+					codeElementWrapper.classList.add("pb-api-on");
+					
+					var codeElement = document.getElementById("pb-api-bid-response-code");
+					$(codeElement).load(codeSrc);
+					
+					var tableElement = document.getElementById("pb-api-bid-response-table");
+					$(tableElement).load(tableSrc);
+				}
+    		}
+  		});
 	}
 	
 	function getUrlVars() {
@@ -146,6 +150,18 @@
 	<a name="apiDocs"></a>
 	<div class="api-off api-definition" id="api-definition-display"></div>
 	
+	<div id="pb-api-bid-response-display" class="pb-api-off">
+		<div class="pb-api-bid-response">
+			<div class="pb-api-doc-sub-title">Sample Bid Response</div>
+			<div id="pb-api-bid-response-code"></div>
+		</div>
+		
+		<div id="pb-api-response-params">
+			<div class="pb-api-doc-sub-title">Bid Response Parameters</div>
+			<div id="pb-api-bid-response-table"></div>
+		</div>
+	</div>
+
 </div>
 	
  
