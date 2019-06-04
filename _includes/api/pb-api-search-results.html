@@ -27,6 +27,7 @@
 	
 	function getFileContents(apiFile, searchTerm, strDisplay, idx, fileCount) {
 		$.get("/sandbox/apiDocs/html/" + apiFile, function(data) {
+			console.log(data);
 			if (data.search(searchTerm) != -1) {
 				arrData.push(getSearchResults(apiFile, data, searchTerm));
 			}
