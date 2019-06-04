@@ -9,7 +9,7 @@ gdpr_supported: true
 ---
 
 ### Overview
-This documentation covers the parameters for the **SlimCut** bidder adapter. And is intended to be referenced by publishers using prebid 1.x.
+This documentation covers the parameters for the **SlimCut** bidder adapter. And is intended to be referenced by publishers using prebid 1.0 and later.
 
 
 ### Bid Params
