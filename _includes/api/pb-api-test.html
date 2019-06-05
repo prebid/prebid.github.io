@@ -8,6 +8,7 @@
 		$('#apiSearch').click(function (e) {
 
 			e.preventDefault();
+			console.log($(":input"));
 			var searchTerm = $("input:first").val();
 			
 			if (!!searchTerm.trim()) { 
