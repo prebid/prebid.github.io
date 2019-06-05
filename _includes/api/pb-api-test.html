@@ -8,8 +8,11 @@
 		$('#apiSearch').click(function (e) {
 
 			e.preventDefault();
-			alert($(":input;first").val());
-			var searchTerm = $("input:first").val();
+			
+			//alert(document.getElementById("pb-api-search-term").value);
+			
+			//var searchTerm = $("input:first").val();
+			var searchTerm = document.getElementById("pb-api-search-term").value
 			
 			if (!!searchTerm.trim()) { 
 		    	window.location.href = '/sandbox/prebid-api-search.html?searchTerm=' + searchTerm;
@@ -18,8 +21,6 @@
 	    	}
 			
 		});
-		
-		
 		
 		
 		//get the category
@@ -137,7 +138,7 @@
 		
 		<div class="pb-api-search">
 			<form>
-				<input type="text" name="pb-api-search-term">
+				<input type="text" name="pb-api-search-term" id="pb-api-search-term">
 				<button id="apiSearch" type="button" value="send" class="btn btn-primary">Search</button>
 			</form>
 		</div>
