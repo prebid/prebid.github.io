@@ -6,6 +6,7 @@ hide: true
 biddercode: sharethrough
 media_types: native
 gdpr_supported: true
+userIds: unifiedId/tradedesk
 ---
 
 ### Note:
