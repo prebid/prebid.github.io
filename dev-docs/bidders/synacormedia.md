@@ -77,17 +77,17 @@ var adUnits = [{
 }]
 ```
 
-### Video Parameters (see openrtb 2.5 spec, all are optional)
+### Video Parameters (see OpenRTB 2.5 spec, all are optional)
 
 {: .table .table-bordered .table-striped }
-| Name | Description | Default | Type |
-| ---- | ----------- | ------- | ---- |
-| `minduration` | Minimum ad duration in seconds | `2` | `int` |
-| `maxduration` | Maximum ad duration in seconds | `60` | `int` |
-| `startdelay` | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.  | `0` | `int` |
-| `placement` | Placement type for the impression. | `null` | `int` |
-| `linearity` | Indicates if the impression must be linear, nonlinear, etc. | `1` | `int` |
-| `mimes` | Content MIME types supported. | `["video/mp4", "application/javascript"]` | Array(`String`) |
-| `protocols` | Array of supported video protocols. | `[1,2,3,4,5,6,7]` | Array(`int`) |
-| `api` |  List of supported API frameworks for this impression. | `[1,2]` | Array(`int`) |
+| Name | Scope | Description | Default | Type |
+| ---- | ------ | ----------- | ------- | ---- |
+| `minduration` | optional | Minimum ad duration in seconds | `2` | `int` |
+| `maxduration` | optional | Maximum ad duration in seconds | `60` | `int` |
+| `startdelay` | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.  | `0` | `int` |
+| `placement` | optional | Placement type for the impression. | `null` | `int` |
+| `linearity` | optional | Indicates if the impression must be linear, nonlinear, etc. | `1` | `int` |
+| `mimes` | optional | Content MIME types supported. | `["video/mp4", "application/javascript"]` | Array(`String`) |
+| `protocols` | optional | Array of supported video protocols. | `[1,2,3,4,5,6,7]` | Array(`int`) |
+| `api` | optional | List of supported API frameworks for this impression. | `[1,2]` | Array(`int`) |
 
