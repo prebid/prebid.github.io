@@ -90,7 +90,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-2) Publisher supports UnifiedID with a vendor other than Trade Desk, HTML5 local storage, and wants to delay the auction up to 250ms to obtain the user ID:
+2) Publisher supports UnifiedID with a vendor other than Trade Desk and HTML5 local storage.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -105,7 +105,7 @@ pbjs.setConfig({
                 name: "pbjs-unifiedid"    // set localstorage with this name
             }
         }],
-        syncDelay: 250
+        syncDelay: 5000
     }
 });
 {% endhighlight %}
