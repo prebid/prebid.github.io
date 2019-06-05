@@ -1,9 +1,9 @@
 ---
 layout: bidder
-title: NextMillenium
-description: NextMillenium bid adapter
+title: NextMillennium
+description: NextMillennium bid adapter
 hide: true
-biddercode: nextMillenium
+biddercode: nextMillennium
 ---
 
 ### bid params
@@ -11,4 +11,4 @@ biddercode: nextMillenium
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                             | Example | Type    |
 |----------------+----------+-----------------------------------------+---------|---------|
-| `placement_id` | required | Placement ID, provided by nextMillenium | 12345   | Integer |
+| `placement_id` | required | Placement ID, provided by nextMillennium | 12345   | Integer |
