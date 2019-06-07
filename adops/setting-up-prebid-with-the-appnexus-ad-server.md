@@ -90,7 +90,7 @@ Follow the creative setup instructions in [Add Creatives](https://console.appnex
   ucTagData.mediaType = "#{HB_FORMAT}";
   ucTagData.env = "";
   ucTagData.size = "#{HB_SIZE}";
-
+  ucTagData.hbPb = "#{HB_PB}";
   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
