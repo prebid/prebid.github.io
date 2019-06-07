@@ -6,6 +6,7 @@ hide: true
 biddercode: adxcg
 media_types: native, video
 gdpr_supported: true
+userIds: pubCommon, unifiedId/tradedesk
 ---
 
 ### Bid Params
