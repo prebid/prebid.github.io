@@ -100,6 +100,7 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.mediaType = "%%PATTERN:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%PATTERN:hb_env%%";
       ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
+      ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
 
       try {
         ucTag.renderAd(document, ucTagData);
@@ -136,6 +137,7 @@ For Mopub:
       ucTagData.mediaType = "%%KEYWORD:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%KEYWORD:hb_env%%";
       ucTagData.size = "%%KEYWORD:hb_size_BIDDERCODE%%";
+      ucTagData.hbPb = "%%KEYWORD:hb_pb_BIDDERCODE%%";
        try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
@@ -163,7 +165,7 @@ For other ad servers:
       ucTagData.mediaType = "%%MACRO:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%MACRO:hb_env%%";
       ucTagData.size = "%%MACRO:hb_size_BIDDERCODE%%";
-
+      ucTagData.hbPb = "%%MACRO:hb_pb_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
