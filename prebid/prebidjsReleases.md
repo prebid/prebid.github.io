@@ -16,6 +16,9 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 2.18 | Currency Module: always adding originalCpm and originalCurrency to bid object |
+| 2.17 | Ability to limit the size of keys sent to ad server via [targeting controls](http://prebid.org/dev-docs/publisher-api-reference.html#setConfig-targetingControls) |
+| 2.16 | [User ID module](/dev-docs/modules/userId.html) refactored to support external sub-modules |
 | 2.10 | [User ID module](/dev-docs/modules/userId.html) |
 | 2.10 | A bidder which responded in time is now considered a timely bidder, even if it responded with no bids. See [PR 3696](https://github.com/prebid/Prebid.js/pull/3696) |
 | 2.9 | Add 'hb_cache_host' targeting for video bids when cache is set to support upcoming video cache redirector |

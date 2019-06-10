@@ -78,8 +78,6 @@ This line item will target the bids in the range from $0.50 to $1.00 from the bi
 
 ![Key-values]({{ site.github.url }}/assets/images/demo-setup/send-all-bids/key-values.png){: .pb-md-img :}
 
-<br>
-
 ## Step 3. Add a Creative
 
 Next, add a creative to this $0.50 line item; we will duplicate the creative later.
@@ -95,7 +93,14 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       var ucTagData = {};
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%PATTERN:url%%";
-      ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+      ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";
+      ucTagData.cacheHost = "%%PATTERN:hb_cache_host_BIDDERCODE%%";
+      ucTagData.cachePath = "%%PATTERN:hb_cache_path_BIDDERCODE%%";
+      ucTagData.uuid = "%%PATTERN:hb_cache_id_BIDDERCODE%%";
+      ucTagData.mediaType = "%%PATTERN:hb_format_BIDDERCODE%%";
+      ucTagData.env = "%%PATTERN:hb_env%%";
+      ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
+      ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
 
       try {
         ucTag.renderAd(document, ucTagData);
@@ -104,9 +109,15 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       }
     </script>
 
+{% capture noteAlert %}
+Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
-Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.
+Make sure the creative size is set to 1x1.  This allows Prebid to set up size override, which enables this creative to serve on all inventory sizes.
 
 **Prebid universal creative code for other ad servers**
 
@@ -119,13 +130,26 @@ For Mopub:
       var ucTagData = {};
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%KEYWORD:url%%";
-      ucTagData.targetingKeywords = "%%KEYWORDS%%";
+      ucTagData.adId = "%%KEYWORD:hb_adid_BIDDERCODE%%";
+      ucTagData.cacheHost = "%%KEYWORD:hb_cache_host_BIDDERCODE%%";
+      ucTagData.cachePath = "%%KEYWORD:hb_cache_path_BIDDERCODE%%";
+      ucTagData.uuid = "%%KEYWORD:hb_cache_id_BIDDERCODE%%";
+      ucTagData.mediaType = "%%KEYWORD:hb_format_BIDDERCODE%%";
+      ucTagData.env = "%%KEYWORD:hb_env%%";
+      ucTagData.size = "%%KEYWORD:hb_size_BIDDERCODE%%";
+      ucTagData.hbPb = "%%KEYWORD:hb_pb_BIDDERCODE%%";
        try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
         console.log(e);
       }
     </script>
+
+{% capture noteAlert %}
+See note above in regards to replacing *BIDDERCODE* placeholders.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
 
 For other ad servers:
 
@@ -134,14 +158,14 @@ For other ad servers:
       var ucTagData = {};
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%MACRO:url%%";
-      ucTagData.adId = "%%MACRO:hb_adid%%";
-      ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
-      ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
-      ucTagData.uuid = "%%MACRO:hb_cache_id%%";
-      ucTagData.mediaType = "%%MACRO:hb_format%%";
+      ucTagData.adId = "%%MACRO:hb_adid_BIDDERCODE%%";
+      ucTagData.cacheHost = "%%MACRO:hb_cache_host_BIDDERCODE%%";
+      ucTagData.cachePath = "%%MACRO:hb_cache_path_BIDDERCODE%%";
+      ucTagData.uuid = "%%MACRO:hb_cache_id_BIDDERCODE%%";
+      ucTagData.mediaType = "%%MACRO:hb_format_BIDDERCODE%%";
       ucTagData.env = "%%MACRO:hb_env%%";
-      ucTagData.size = "%%MACRO:hb_size%%";
-
+      ucTagData.size = "%%MACRO:hb_size_BIDDERCODE%%";
+      ucTagData.hbPb = "%%MACRO:hb_pb_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
@@ -150,6 +174,12 @@ For other ad servers:
     </script>
 
 Replace `MACRO` with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
+
+{% capture noteAlert %}
+See note above in regards to replacing *BIDDERCODE* placeholders.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
 
 ## Step 4. Attach the Creative to the Line Item
 
@@ -169,8 +199,6 @@ Then, in the creative's **Settings** tab, override all sizes in the **Size overr
 
 Save the creative and go back to the line item.
 
-<br>
-
 ## Step 5. Duplicate Creatives
 
 DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
@@ -180,8 +208,6 @@ Let's say your page has 4 ad units.  We need to have at least 4 creatives attach
 Therefore, we need to duplicate our Prebid creative 4 times.
 
 Once that's done, we have a fully functioning line item with 4 creatives attached.
-
-<br>
 
 ## Step 6. Duplicate Line Items
 
@@ -212,5 +238,3 @@ Repeat for your other line items until you have the pricing granularity level yo
 ## Step 7. Create Orders for your other bidder partners
 
 Once you've created line items for `BIDDERCODE` targeting all the price buckets you want, start creating orders for each of your remaining bidder partners using the steps above.
-
-
