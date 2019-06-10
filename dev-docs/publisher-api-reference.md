@@ -26,9 +26,9 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
-  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
+  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids
   * [.getNoBids()](#module_pbjs.getNoBids)
-  * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
+  * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
@@ -490,17 +490,40 @@ Use this method to get all of the bid requests that resulted in a NO_BID.  These
 
 <a name="module_pbjs.setTargetingForGPTAsync"></a>
 
-### pbjs.setTargetingForGPTAsync([codeArr])
+### pbjs.setTargetingForGPTAsync([codeArr], customSlotMatching)
 
 Set query string targeting on all GPT ad units. The logic for deciding query strings is described in the section Configure AdServer Targeting. Note that this function has to be called after all ad units on page are defined.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
-
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | -- |
 | [codeArr] | Optional | `array` | an array of adUnitCodes to set targeting for. |
+| customSlotMatching | Optional | `function` | gets a GoogleTag slot and returns a filter function for adUnitCode. |
+
+The `customSlotMatching` parameter allows flexibility in deciding which div id
+the ad results should render into. Instead of setting the timeout of auctions 
+short to make sure they get good viewability, the logic can find an appropriate placement for the auction
+result depending on where the user is once the auction completes.
+
+```
+// returns a filter function that matches either with the slot or the adUnitCode
+// this filter function is being invoked after the auction has completed
+// this means that it can be used in order to place this within viewport instead of a static div naming 
+// which regular classic setup allows (by default the its looking for a div id named same as the adUnitCode)
+
+// slot is in view according to the divInView() function
+function pickInViewDiv(slot) {
+   return function(adUnitCode) {
+        return adUnitCode === slot.getAdUnitPath() &&
+                    divInView(slot.getSlotElementId()); }
+};
+
+// make sure we render the results from the auction in a div that is visible in the viewport (example infinite scrolling, instead of rendering a ad in the top of the list that will never be visible (made up example))
+
+setTargetingForGPTAsync(adUnit, pickInViewDiv);
+```
 
 <hr class="full-rule">
 
