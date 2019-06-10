@@ -19,8 +19,15 @@ If you are not familar with using Maven for build management visit the [Maven we
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies:
 
 ```
-compile 'org.prebid:prebid-mobile-sdk:[0,1)'
+implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
+
+If you wish to explicitly state the lastest stable release, please use the following:
+
+```
+implementation 'org.prebid:prebid-mobile-sdk:1.1'
+```
+
 
 ### Build framework from source
 
