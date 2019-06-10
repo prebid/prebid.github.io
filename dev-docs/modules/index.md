@@ -1,18 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Modules
 description: Module Documentation
-pid: 27
-top_nav_section: dev_docs
-nav_section: reference
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Prebid Modules
+# Prebid.js Module Overview
 {:.no_toc}
 
-Part of the [vision for Prebid.js version 1.0](https://github.com/prebid/Prebid.js/issues/891) is that the core of Prebid.js will contain only the foundational code needed for header bidding.  Any functionality that could be considered an add-on or that covers a special case is being moved out into modules.  Examples of this kind of code include:
+The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on or that covers a special case is being moved out into modules.  Examples of this kind of code include:
 
 - Bidder adapters
 - Special auction logic
@@ -38,13 +35,16 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**DigiTrust**]({{site.baseurl}}/dev-docs/modules/digitrust.html) | A method of including the standard cross-domain ID in a DigiTrust package. |
 | [**Server-to-Server Testing**]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) | Adds A/B test support for easing into server-side header bidding. |
 | [**DFP Video**]({{site.baseurl}}/dev-docs/modules/dfp_video.html) | Required for serving instream video through DFP. |
-| [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | Adds a persisted user ID in the publisher's domain. |
+| [**User ID**]({{site.baseurl}}/dev-docs/modules/userId.html) | Supports Unified ID and PubCommon ID. |
+| [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | (Deprecated - please use User ID module) Adds a persisted user ID in the publisher's domain. |
 | [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
+| [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
+| [**Freewheel**]({{site.baseurl}}/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
+| [**Ad Pod**]({{site.baseurl}}/dev-docs/modules/adpod.html) | Enables developers to add support for a new adserver that handles ad pod (long-form) videos |
 
 ## Further Reading
 
-+ [Prebid.js 1.0.0 Proposal - Intent to Implement](https://github.com/prebid/Prebid.js/issues/891)
 + [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
 + [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html)
 
-</div>
+

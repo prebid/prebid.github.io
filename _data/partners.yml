@@ -1,0 +1,59 @@
+- company: AppNexus
+  link: https://www.appnexus.com/en/publishers/header-bidding
+  imgURL: /assets/images/partners/founders/appnexus.png
+  type: founder
+  
+- company: Rubicon 
+  link: https://rubiconproject.com/header-bidding-for-publishers/
+  imgURL: /assets/images/partners/founders/rubicon.png
+  type: founder
+  
+- company: AdLighning 
+  link: https://www.adlightning.com/
+  imgURL: /assets/images/partners/standard/adlightening.png
+  type: standard
+  
+- company: Criteo 
+  link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
+  imgURL: /assets/images/partners/standard/criteo.png
+  type: standard
+  
+- company: Marfeel 
+  link: https://www.marfeel.com/
+  imgURL: /assets/images/partners/standard/marfeel.png
+  type: standard
+  
+- company: Oath 
+  link: https://www.oath.com/advertising/platforms/
+  imgURL: /assets/images/partners/standard/oath.png
+  type: standard
+  
+- company: OpenX 
+  link: https://www.openx.com/
+  imgURL: /assets/images/partners/standard/openx.png
+  type: standard
+  
+- company: Pubmatic 
+  link: https://pubmatic.com/products/header-bidding/
+  imgURL: /assets/images/partners/standard/pubmatic.png
+  type: standard
+  
+- company: Sortable 
+  link: https://www.sortable.com/
+  imgURL: /assets/images/partners/standard/sortable.png
+  type: standard
+
+- company: CafeMedia 
+  link: http://www.cafemedia.com/
+  imgURL: /assets/images/partners/standard/cafemedia.png
+  type: standard
+
+- company: PubNative 
+  link: https://pubnative.net/
+  imgURL: /assets/images/partners/standard/Pubnative-RGB-Logo.png
+  type: standard
+
+- company: GoBrowsi
+  link: https://gobrowsi.com
+  imgURL: /assets/images/partners/community/Browsi-Logo.png
+  type: community

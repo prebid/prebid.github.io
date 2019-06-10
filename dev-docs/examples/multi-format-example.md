@@ -2,9 +2,8 @@
 layout: example
 title: Multi-Format Ad Units
 description: Multi-Format Ad Units
-top_nav_section: dev_docs
-nav_section: quick-start
 hide: true
+sidebarType: 1
 
 about:
 - A multi-format ad unit allows you receive any combination of banner, video, or native demand
@@ -13,9 +12,8 @@ about:
 - For ad ops setup instructions, see <a href="/adops/setting-up-prebid-multi-format-in-dfp.html">Setting up Prebid Multi-Format in DFP</a>
 - Try the Prebid.org-hosted <a href="/examples/multi_format_example.html">Multi-Format Example</a> to see multi-format slots including outstream video as well.
 
-jsfiddle_link: jsfiddle.net/prebid_org/u999cwtL/embedded/html,result
+jsfiddle_link: jsfiddle.net/Prebid_Examples/u999cwtL/36/embedded/html,result
 
 code_height: 3050
 
-pid: 11
 ---

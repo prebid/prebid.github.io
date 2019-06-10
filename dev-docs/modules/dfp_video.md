@@ -1,15 +1,15 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - DFP Video
 description: Addition of DFP Video to the Prebid package
-top_nav_section: dev_docs
-nav_section: modules
 module_code : dfpAdServerVideo
 display_name : DFP Video
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # DFP Video
 {:.no_toc}
@@ -30,5 +30,3 @@ The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev
 ## Further Reading
 
 + [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
-
-</div>

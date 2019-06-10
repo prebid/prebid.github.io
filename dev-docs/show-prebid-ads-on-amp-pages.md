@@ -1,19 +1,16 @@
 ---
-layout: page
-title: Show Prebid Ads on AMP Pages
+layout: page_v2
+title: Prebid AMP Implementation Guide
 description: Show Prebid Ads using Prebid Server and AMP RTC
-pid: 1
-is_top_nav: yeah
-top_nav_section: dev_docs
-nav_section: prebid-amp
+sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Show Prebid Ads on AMP Pages
+
+# Prebid AMP Implementation Guide
 {: .no_toc}
 
-This page has instructions for showing ads on AMP pages using Prebid.js.
+This page has instructions for showing ads on Accelerated Mobile Pages (AMP) using Prebid.js.
 
 Through this implementation, [Prebid Server][PBS] fetches demand and returns key-value targeting to the AMP runtime using the [AMP Real Time Config (RTC)][RTC-Overview] protocol.
 
@@ -25,8 +22,11 @@ For more information about AMP RTC, see:
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
-{: .alert.alert-success :}
+{% capture tipNote %}
 For ad ops setup instructions, see [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html).
+{% endcapture %}
+
+{% include alerts/alert_note.html content=tipNote %}
 
 * TOC
 {:toc }
@@ -43,10 +43,10 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 ## Implementation
 
-+ [Prebid Server Stored Request](#pbs-stored-request): This is the Prebid Server Stored Bid Request.
++ [Prebid Server Stored Request](#prebid-server-stored-request): This is the Prebid Server Stored Bid Request.
 + [AMP content page](#amp-content-page): This is where your content lives.
 + [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
-+ [User Sync in AMP](#user-sync-in-amp): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
++ [User Sync in AMP](#user-sync): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
 
 ### Prebid Server Stored Request
 
@@ -54,96 +54,209 @@ You will have to create at least one Stored Request for Prebid Server.  Valid St
 
 An example Stored Request is given below:
 
-{% highlight javascript %}
+```html
 
-    {
-        "id": "some-request-id",
-        "site": {
-            "page": "prebid.org"
-        },
-        "ext": {
-            "prebid": {
-                "targeting": {
-                    "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
-                        "precision": 2,
-                        "ranges": [{
-                            "max": 20.00,
-                            "increment": 0.10
-                        }]
-                    }
+{
+    "id": "some-request-id",
+    "site": {
+        "page": "prebid.org"
+    },
+    "ext": {
+        "prebid": {
+            "targeting": {
+                "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
+                    "precision": 2,
+                    "ranges": [{
+                        "max": 20.00,
+                        "increment": 0.10
+                    }]
                 }
             }
-        },
-        "imp": [
-            {
-                "id": "some-impression-id",
-                "banner": {
-                    "format": [
-                        {
-                            "w": 300,
-                            "h": 250
-                        }
-                    ]
+        }
+    },
+    "imp": [
+        {
+            "id": "some-impression-id",
+            "banner": {
+                "format": [
+                    {
+                        "w": 300,
+                        "h": 250
+                    }
+                ]
+            },
+            "ext": {
+                "appnexus": {
+                    // Insert parameters here
                 },
-                "ext": {
-                    "appnexus": {
-                        // Insert parameters here
-                    },
-                    "rubicon": {
-                        // Insert parameters here
-                    }
+                "rubicon": {
+                    // Insert parameters here
                 }
             }
-        ]
-    }
+        }
+    ]
+}
 
-{% endhighlight %}
+```
 
 ### AMP content page
 
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
 + `data-slot`: Identifies the ad slot for the auction.
-+ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC. 
-    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js].
++ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
+    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js]. We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
     + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
-{% highlight html %}
+e.g. for the AppNexus cluster of Prebid Servers:
+```html
+<amp-ad width="300" height="250"
+    type="doubleclick"
+    data-slot="/19968336/universal_creative"
+    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+</amp-ad>
+```
 
-    <amp-ad width="300" height="250"
-            type="doubleclick"
-            data-slot="/19968336/universal_creative"
-            rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
-    </amp-ad>
-
-{% endhighlight %}
+e.g. for Rubicon Project's cluster of Prebid Servers:
+```html
+<amp-ad width="300" height="250"
+    type="doubleclick"
+    data-slot="/19968336/universal_creative"
+    rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "1234-amp-pub-300x250"}}, "timeoutMillis": 500}'>
+</amp-ad>
+```
 
 ### HTML Creative
 
 This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)).
 
-{: .alert.alert-success :}
+{% capture tipNote %}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+{% endcapture %}
 
-{% include dev-docs/amp-creative.md %}
+{% include alerts/alert_tip.html content=tipNote %}
+
+For DFP:
+
+```html 
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%PATTERN:url%%";
+  ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+  ucTagData.hbPb = "%%PATTERN:hb_pb%%";
+  
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+```
+
+For Mopub:
+
+```html
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%KEYWORD:url%%";
+  ucTagData.targetingKeywords = "%%KEYWORDS%%";
+  ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
+  
+   try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+```
+
+For all other ad servers:
+
+```html
+
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%MACRO:url%%";
+  ucTagData.adId = "%%MACRO:hb_adid%%";
+  ucTagData.cacheHost = "%%MACRO:hb_cache_host%%";
+  ucTagData.cachePath = "%%MACRO:hb_cache_path%%";
+  ucTagData.uuid = "%%MACRO:hb_cache_id%%";
+  ucTagData.mediaType = "%%MACRO:hb_format%%";
+  ucTagData.env = "%%MACRO:hb_env%%";
+  ucTagData.size = "%%MACRO:hb_size%%";
+  ucTagData.hbPb = "%%MACRO:hb_pb%%";
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
+
+```
+
+Replace `MACRO` in the preceding example with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 
 ### User Sync
 
 To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
 
-{: .alert.alert-warning :}
-Iframes must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+{% capture tipNote %}
+The following examples include a transparent image as a placeholder which will allow you to place this at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+{% endcapture %}
 
-{% highlight html %}
+{% include alerts/alert_tip.html content=tipNote %}
 
-    <amp-iframe width="1" title="User Sync"
-                            height="1"
-                            sandbox="allow-scripts"
-                            frameborder="0"
-                            src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html">
-    </amp-iframe>
+If you're using AppNexus' Prebid Server cluster:
+```html
+<amp-iframe width="1" title="User Sync"
+  height="1"
+  sandbox="allow-scripts"
+  frameborder="0"
+  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=appnexus&max_sync_count=5">
+  <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
+</amp-iframe>
+```
 
-{% endhighlight %}
+Else if you're utilizing Rubicon Project's Prebid Server cluster, you'll need an extra 'args'
+param on the call to load-cookie.html and will need to replace _RUBICON_ACCOUNT_ID_ with
+the ID provided by your Rubicon Project account team.
+```html
+<amp-iframe width="1" title="User Sync"
+  height="1"
+  sandbox="allow-scripts"
+  frameborder="0"
+  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=rubicon&max_sync_count=6&args=account:RUBICON_ACCOUNT_ID">
+  <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
+</amp-iframe>
+```
+
+Available arguments for the `load-cookie.html` query string:
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Values | Description |
+| --- | --- | --- | --- |
+| endpoint | recommended | appnexus or rubicon | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
+| max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
+| args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie-sync call. The attribute and value will be quoted by the system when appropriate. |
+| gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
+| gdpr_consent | optional | String | IAB CMP-formatted consent string | 
+
+## Debugging Tips
+To review that Prebid on AMP is working properly the following aspects can be looked at:
++ Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
++ Look for the Prebid server call in the network panel. You can open this URL in a new tab to view additional debugging information relating to the Prebid Server Stored Bid Request. If working properly, Prebid server will display the targeting JSON for AMP to use.
++ Look for the network call from the Ad Server to ensure that key values are being passed. (For DFP these are in the `scp` query string parameter in the network request)
++ Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present in the Prebid Server query string. AMP won't add this parameter, so you'll need to grab the Prebid Server URL and manually add it to see the additional information provided.
 
 ## Related Topics
 

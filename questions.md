@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Questions & FAQ
 description: 
 hide: true
