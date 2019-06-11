@@ -181,8 +181,6 @@ pbjs.setConfig({
 6) Publisher is a DigiTrust member and supports both PubCommonID and DigiTrust ID integrated with Prebid
 
 {% highlight javascript %}
-<script src="https://cdn.digitru.st/prod/1/digitrust.min.js"> </script>
-
 <script>
 pbjs.setConfig({
     usersync: {
