@@ -221,6 +221,10 @@ pbjs.setConfig({
 </script>
 {% endhighlight %}
 
+Other examples:
+
+- [DigiTrust Example 1](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Simple.html)
+- [DigiTrust Example 2](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Full.html)
 
 ## Configuration
 
@@ -269,7 +273,7 @@ For bidders that want to support one or more of these ID systems here are the sp
 | --- | --- | --- | --- | --- | --- |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | user.ext.tpid[].source="tdid" | |
-| DigiTrust | IAB | bidRequest.userId.TBD  | TBD | |
+| DigiTrust | IAB | bidRequest.userId.digitrustid | user.ext.tpid.digitrustid | Example value: `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 
 Bidders that want to support the User ID module in **Prebid.js**, need to update their bidder adapter to read the indicated bidRequest attributes.
 
