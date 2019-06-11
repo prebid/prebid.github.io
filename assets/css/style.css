@@ -131,7 +131,8 @@ hr {
 	
 	padding:10px;
 	width: 100%;
-	margin-bottom: 10px;
+	margin: 10px 0;
+
 }
 
 .pb-alert-note { 
@@ -150,6 +151,7 @@ hr {
 	background-color: #ede5ba;
 	color: #85720f;
 	border: 1px solid #85720f;
+	
 
 }
 
@@ -159,10 +161,229 @@ hr {
 	border: 1px solid #527542;
 }
 
-.pb-text-orange { 
-	color: #95a5a6;
+/**********************
+	 API 
+*********************/
+
+/* for toggling the display*/
+
+.pb-api-on { 
+	display: block;
 }
 
+.pb-api-off {
+	display: none;
+}
+
+/* for argument lists */
+
+.pb-api-list ul { 
+	list-style-type: none;
+	margin: 0; 
+	padding: 0; 
+	overflow: hidden;
+}
+
+.pb-api-list-item li { 
+	border-bottom: 1px solid #cccccc;
+	border-bottom-width: 75%;
+	background-color:transparent;
+	margin-bottom: 10px;
+}
+
+.pb-api-list-item-sans-border li { 
+	background-color:transparent;
+	margin-bottom: 10px;
+}
+
+.pb-api-categories { 
+	margin-top:15px;
+}
+
+.pb-api-categories li { 
+	float: left;
+	margin-right: 15px;
+	background-color: #eeeeee;
+}
+
+.pb-api-categories a { 
+	color: #333333;
+	font-family: 'Verdana', sans-serif;
+	font-size: 17px;
+	font-weight: 400;
+	padding: 4px 10px;
+}
+
+.pb-api-categories a:hover { 
+	color: #3498db;
+}
+
+.pb-api-search { 
+	float:right;
+	margin-right: 30px;
+}
+
+.pb-api-title { 
+	
+	color: #EA9622;
+	font-family: 'Verdana', sans-serif;
+	font-size: 22px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 15px;
+	
+}
+
+.pb-api-code {
+	margin: 20px 0 20px 20px;
+}
+
+.pb-api-code-wrapper { 
+	margin-left: 20px;
+	
+}
+
+.pb-api-code-display {
+	margin: 20px 0 0 20px;
+	width: 70%;
+}
+
+.pb-api-code-block { 
+	width: 70%;
+}
+
+.pb-api-block { 
+	margin: 20px 0 20px 20px;
+}
+
+.pb-api-doc-title { 
+	color: #EA9622;
+	font-family: 'Verdana', sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	margin-bottom: 10px;
+}
+
+.pb-api-doc-description { 
+	color: #222222;
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	margin-bottom:10px;
+}
+
+.pb-api-doc-description ul, ol { 
+	font-size: 15px;
+}
+
+.pb-api-code-title-bar { 
+	background-color: #E4E8ED; 
+	text-align: left;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding-left: 5px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.pb-api-doc-sub-title { 
+	color: #EA9622;
+	font-family: 'Verdana', sans-serif;
+	font-size: 17px;
+	font-weight: 400;
+	margin: 15px 0;
+}
+
+.pb-api-doc-section-title {
+	font-size: 17px;
+	font-weight: 400;
+	color: #333333;
+	margin:15px 0;
+}
+
+.pb-api-list-item-description { 
+	margin-top 5px;
+	font-size:17px;
+}
+
+.pb-api-table { 
+	margin-top: 20px;
+	width:70%;
+}
+
+.pb-api-table-title { 
+	color: #333333;
+	font-family: 'Verdana', sans-serif;
+	font-size: 17px;
+	font-weight: 400;
+	text-align: center;
+	background-color: #aaaaaa;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.pb-api-table-text { 
+	color: #222222;
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+
+}
+
+.pb-api-spacing { 
+	margin-top: 25px;
+}
+
+.pb-api-alert { 
+	font-size:15px;
+}
+
+.pb-api-button { 
+	width: 120px;
+	height: 30px;
+	background-color: #cccccc;
+	border: 1px solid #333333;
+	color: #33333;
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
+
+/* Animation Effects */
+/*Created by Ian Lunn*/
+/*Used with permission under MIT License*/
+
+/* Overline From Center */
+.hvr-overline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-overline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 51%;
+  right: 51%;
+  top: 0;
+  background: #2098D1;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-overline-from-center:hover:before, .hvr-overline-from-center:focus:before, .hvr-overline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
 
 /* NavBar */
 
@@ -186,7 +407,6 @@ hr {
   font-size: 24px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  
 }
 
 .navbar-toggle {
