@@ -165,6 +165,8 @@ hr {
 	 API 
 *********************/
 
+/* for toggling the display*/
+
 .pb-api-on { 
 	display: block;
 }
@@ -172,6 +174,8 @@ hr {
 .pb-api-off {
 	display: none;
 }
+
+/* for argument lists */
 
 .pb-api-list ul { 
 	list-style-type: none;
