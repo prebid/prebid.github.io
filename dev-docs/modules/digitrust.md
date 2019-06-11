@@ -59,7 +59,7 @@ the user may experience more network requests than the scenarios that include th
 DigiTrust library.
 
 1. Build your Prebid package as above, skipping step 4.
-2. Add the DigiTrust initializer section to your Prebid initialization object as below, 
+2. Add the DigiTrust init section to your Prebid initialization object as below, 
    using your Member ID and Site ID.
 3. Add a reference to your Prebid package and the initialization code on all pages you wish
    to utilize Prebid with integrated DigiTrust ID.
@@ -69,13 +69,13 @@ DigiTrust library.
 
 ### Full DigiTrust with CDN referenced DigiTrust library
 
-Both "Full DigiTrust" deployments will result in a larger initial Javascript payload.
-The end user may experience fewer overall network requests as the encrypted and anonymous
+Both "Full DigiTrust" deployments will result in a larger initial Javascript payload,
+but the end user may experience fewer overall network requests as the encrypted and anonymous
 DigiTrust ID can often be generated fully in client-side code. Utilizing the CDN reference
 to the official DigiTrust distribution insures you will be running the latest version of the library.
 
 The Full DigiTrust deployment is designed to work with both new DigiTrust with Prebid deployments, and with
-Prebid deployments by existing DigiTrust members. This allows you to migrate your code more slowly
+Prebid deployments by existing DigiTrust members. This allows you to migrate your code in steps
 without losing DigiTrust support in the process.
 
 1. Deploy your built copy of `prebid.js` to your CDN.
@@ -85,7 +85,6 @@ without losing DigiTrust support in the process.
 3. Add a configuration section for Prebid that includes the `usersync` settings and the `digitrust` settings.
 
 ### Full DigiTrust packaged with Prebid
-
 
 1. Deploy your built copy of `prebid.js` to your CDN. Be sure to perform *Step 4* of the build to concatenate or 
    integrate the full DigiTrust library code with your Prebid package.
@@ -163,8 +162,6 @@ The below parameters apply only to the DigiTrust ID integration.
 ## Further Reading
 
 + [DigiTrust Home Page](http://digitru.st)
-
 + [DigiTrust integration guide](https://github.com/digi-trust/dt-cdn/wiki/Integration-Guide)
-
 + [DigiTrust ID Encryption](https://github.com/digi-trust/dt-cdn/wiki/ID-encryption)
 
