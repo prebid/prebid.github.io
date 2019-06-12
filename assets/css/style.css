@@ -167,6 +167,10 @@ hr {
 
 /* for toggling the display*/
 
+.pb-api-endpoint { 
+	width: 100%;
+}
+
 .pb-api-on { 
 	display: block;
 }
@@ -187,11 +191,6 @@ hr {
 .pb-api-list-item li { 
 	border-bottom: 1px solid #cccccc;
 	border-bottom-width: 75%;
-	background-color:transparent;
-	margin-bottom: 10px;
-}
-
-.pb-api-list-item-sans-border li { 
 	background-color:transparent;
 	margin-bottom: 10px;
 }
