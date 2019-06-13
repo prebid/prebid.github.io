@@ -106,9 +106,9 @@ There are two ways to target deal IDs using *Key-values* targeting:
 
 ### Step 4: Attach Creatives to Line Items
 
-Like all line items, those that represent deals have to be associated with creatives that correctly pass the `adid` back to Prebid.js for display.
+Like all line items, those that represent deals need to be associated with creatives that pass the correct adid back to Prebid.js for display.
 
-e.g. if the line item is targeted to hb_deal_pubmatic, then the creative needs to send hb_adid_pubmatic in the creative. Like this:
+e.g. if the line item is targeted to `hb_deal_pubmatic`, then the creative needs to send `hb_adid_pubmatic` in the creative. Like this:
 
     <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
@@ -131,5 +131,6 @@ e.g. if the line item is targeted to hb_deal_pubmatic, then the creative needs t
       }
     </script>
 
-If however, the line item is targeted to hb_dealid (without a bidder code), then the simplified creative setup in the [step-by-step instructions](/adops/step-by-step.html#step-2-add-a-creative) will be fine.
+If however, the line item is targeted to `hb_deal` (without a bidder code),
+then the simplified creative setup in the [step-by-step instructions](/adops/step-by-step.html#step-2-add-a-creative) will be fine.
 
