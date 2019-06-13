@@ -86,7 +86,8 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%PATTERN:url%%";
       ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
-
+      ucTagData.hbPb = "%%PATTERN:hb_pb%%";
+      
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {

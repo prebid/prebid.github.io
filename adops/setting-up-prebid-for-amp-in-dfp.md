@@ -58,6 +58,7 @@ You can always get the latest version of the creative code below from [the AMP e
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+  ucTagData.hbPb = "%%PATTERN:hb_pb%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
