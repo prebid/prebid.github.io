@@ -55,6 +55,7 @@ You can always get the latest version of the creative code below from [the Mobil
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%KEYWORD:url%%";
   ucTagData.targetingKeywords = "%%KEYWORDS%%";
+  ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
    try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {

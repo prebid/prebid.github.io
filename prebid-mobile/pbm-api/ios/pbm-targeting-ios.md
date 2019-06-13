@@ -88,6 +88,18 @@ Targeting.shared.domain = domain
 Retrieve and set the domain of your store URL with the following commands: 
 
 ```
+Targeting.shared.storeURL
+```
+
+```
+Targeting.shared.storeURL = "itunes store URL string"
+```
+
+### iTunesID
+
+Retrieve and set the domain of your store URL with the following commands: 
+
+```
 Targeting.shared.itunesID
 ```
 
