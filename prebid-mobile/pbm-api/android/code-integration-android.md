@@ -67,6 +67,29 @@ For details on creating the specific ad units and additional parameters and meth
 [Banner Ad Unit](/prebid-mobile/pbm-api/android/banneradunit-android.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
 
+### Resize ad slot
+
+Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.
+
+{% capture warning_note %}  
+Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+
+```
+        dfpAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+
+                dfpAdView.setAdSizes(dfpAdView.getAdSize());
+
+            }
+        });
+ ```
+
+
+
 ### Add Custom Keywords
 
 Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
