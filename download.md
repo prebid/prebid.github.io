@@ -204,14 +204,6 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
       <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
     </label>
   </div>
@@ -237,6 +229,14 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="adxcg" class="analytics-check-box"> Adxcg Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
     </label>
   </div>
 </div>
