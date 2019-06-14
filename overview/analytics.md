@@ -14,6 +14,7 @@ There are several analytics adapter plugins available to track header bidding pe
 {: .table .table-bordered .table-striped }
 | Analytics Adapter                                                | Cost | Contact |
 | -------------                                                    | ------------- | ----------- |
+| Appier                                                           | Contact vendor | [Website](https://www.appier.com) |
 | Adagio                                                           | Contact vendor| [Website](https://adagio.io)|
 | Assertive Yield (contact for adapter) | Free to try (Large accounts $0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) |
 | Finteza Analytics | <a href="mailto: support@finteza.com">Contact vendor</a> | [Website](https://www.finteza.com/) |
