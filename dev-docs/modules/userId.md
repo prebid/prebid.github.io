@@ -22,9 +22,9 @@ The User ID module has been available since Prebid.js 2.10.0.
 
 The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
-* **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
-* **ID5 ID** - a neutral universal identifier for the ad tech industry that can be used to pass a single user ID to all SSPs and DSPs to avoid the need for cookie syncing.
+* **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
+* **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 
 ## How It Works
 
@@ -69,6 +69,27 @@ of sub-objects. See the examples for each provider for specific use cases.
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId, 1825 for PubCommonID, and 90 for ID5Id | `365` |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the user's ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
 
+## Pub Common ID
+
+More details about the Pub Common ID can be found on [its module page](pubCommonId.html)
+
+### Examples
+1) Publisher supports PubCommonID and first party domain cookie storage
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",
+                name: "_pubCommonId",       // create a cookie with this name
+                expires: 1825               // expires in 5 years
+            }
+        }]
+    }
+});
+{% endhighlight %}
 
 ## Unified ID
 
@@ -153,35 +174,13 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-## Pub Common ID
-
-More details about the Pub Common ID can be found on [its module page](pubCommonId.html)
-
-### Examples
-1) Publisher supports PubCommonID and first party domain cookie storage
-
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "_pubCommonId",       // create a cookie with this name
-                expires: 1825               // expires in 5 years
-            }
-        }]
-    }
-});
-{% endhighlight %}
-
 ## ID5 ID
 
-The ID5 ID is a neutral identifier for ad tech platforms that can be used to eliminate cookie matching between SSPs and DSPs.
+The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 
 ### Registration
 
-The ID5 ID is free to use, but requires a simple registration with ID5. Please reach out to [contact@id5.io](mailto:contact@id5.io?subject=Prebid.js%20Registration) to sign up and request your `partnerId`.
+The ID5 ID is free to use, but requires a simple registration with ID5. Please reach out to [contact@id5.io](mailto:prebid@id5.io) to sign up and request your `partnerId`.
 
 ### Configuration
 
@@ -193,7 +192,7 @@ The ID5 ID is free to use, but requires a simple registration with ID5. Please r
 
 ### Examples
 
-1) Publisher has a partner ID with ID5.
+1) Publisher wants to retrieve the ID5 ID through Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -235,6 +234,12 @@ pbjs.setConfig({
 pbjs.setConfig({
     usersync: {
         userIds: [{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",
+                name: "pbjs-pubCommonId"    // create a cookie with this name
+            }
+        },{
             name: "unifiedId",
             params: {
                 partner: "myTtdPid"
@@ -242,12 +247,6 @@ pbjs.setConfig({
             storage: {
                 type: "cookie",
                 name: "pbjs-unifiedid"      // create a cookie with this name
-            }
-        },{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "pbjs-pubCommonId"    // create a cookie with this name
             }
         },{
             name: "id5Id",
@@ -289,7 +288,7 @@ For bidders that want to support one or more of these ID systems here are the sp
 | --- | --- | --- | --- | --- | --- |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | user.ext.tpid[].source="tdid" | |
-| ID5 ID | ID5 | bidRequest.userId.id5id | user.ext.id5id[].source="id5id" | |
+| ID5 ID | ID5 | bidRequest.userId.id5id | user.ext.tpid[].source="id5id" | |
 
 Bidders that want to support the User ID module in **Prebid.js**, need to update their bidder adapter to read the indicated bidRequest attributes.
 
