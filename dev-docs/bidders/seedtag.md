@@ -58,8 +58,8 @@ const adUnits = [
       {
         bidder: 'seedtag',
         params: {
-          publisherToken: '0000-0000-01',   // required
-          adunitId: '0000',                 // required
+          publisherId: '0000-0000-01',   // required
+          adUnitId: '0000',                 // required
           placement: 'banner',              // required
           adPosition: 0                     // optional
         }
@@ -84,8 +84,8 @@ var adUnits = [{
     {
       bidder: 'seedtag',
       params: {
-        publisherToken: '0000-0000-01', // required
-        adunitId: '0000',               // required
+        publisherId: '0000-0000-01', // required
+        adUnitId: '0000',               // required
         placement: 'video',             // required
         adPosition: 0,                  // optional
         // Video object as specified in OpenRTB 2.5
