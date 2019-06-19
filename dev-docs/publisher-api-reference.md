@@ -531,7 +531,7 @@ setTargetingForGPTAsync(adUnit, pickInViewDiv);
 
 ### pbjs.setTargetingForAst([adUnits])
 
-Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad units as an argument.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
+Set query string targeting on provided AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad units as an argument.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
