@@ -529,11 +529,16 @@ setTargetingForGPTAsync(adUnit, pickInViewDiv);
 
 <a name="module_pbjs.setTargetingForAst"></a>
 
-### pbjs.setTargetingForAst()
+### pbjs.setTargetingForAst([adUnits])
 
 Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad units.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
 
 **Kind**: static method of [pbjs](#module_pbjs)
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | -- |
+| [adUnits] | Optional | `array` | an array of adUnitCodes to set targeting for. |
 
 <hr class="full-rule">
 
