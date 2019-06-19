@@ -5,6 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 hide: true
 gdpr_supported: true
+media_types: banner, video
 ---
 
 ## Overview
@@ -49,16 +50,20 @@ var adUnits = [{
 ```javascript
 var adUnits = [{
     // ...
-
     mediaTypes: {
         banner: {
             sizes: [
                 [300, 250],
                 [300, 600]
             ]
+        },
+        video: {
+            context: 'instream',
+            playerSize: [
+                [1280, 720]
+            ]
         }
-    }
-
+    },
     // ...
 }];
 ```
@@ -69,7 +74,7 @@ var adUnits = [{
 | Type | Support |
 | --- | --- |
 | Banner | Fully supported for all IX approved sizes. |
-| Video  | Not supported. |
+| Video  | Fully supported for all IX approved sizes. |
 | Native | Not supported. |
 
 ## Bid Parameters
@@ -80,18 +85,32 @@ object are detailed here.
 ### Banner
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                                                                                                                                                                                                                                                                                                                   | Example      | Type             |
-|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------|
-| `siteId`      | required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have.                                                                                                                                                                           | `'3723'`     | `string`         |
-| `size`        | required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`.                                                                                                                                                                              | `[300, 250]` | `Array<integer>` |
+| Key | Scope | Type | Description |
+| --- | --- | --- | --- |
+| siteId | Required | String | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. Examples: `'3723'`, `'6482'`, `'3639'` |
+| size | Required | Number[] | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Examples: `[300, 250]`, `[300, 600]`, `[728, 90]` |
 
+### Video
+
+{: .table .table-bordered .table-striped }
+| Key | Scope | Type | Description |
+| --- | --- | --- | --- |
+| siteId | Required | String | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. Examples: `'3723'`, `'6482'`, `'3639'` |
+| size | Required | Number[] | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. Examples: `[1280, 720]`, `[640, 360]` |
+| video | Required | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. |
+| video.mimes | Required | String[] | Array list of content MIME types supported. Popular MIME types include, but are not limited to, `"video/x-ms- wmv"` for Windows Media and `"video/x-flv"` for Flash Video. |
+| video.minduration| Required | Integer | Minimum video ad duration in seconds. |
+| video.maxduration| Required | Integer | Maximum video ad duration in seconds. |
+| video.protocol / video.protocols| Required | Integer / Integer[] | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper |
 
 ## Setup Guide
 
 Follow these steps to configure and add the IX module to your Prebid.js
 integration.
 
-The examples in this guide assume the following starting configuration:
+The examples in this guide assume the following starting configuration (you may remove banner or video, if either does not apply).
+
+In regards to video, `context` can either be `'instream'` or `'outstream'`. Note that `outstream` requires additional configuration on the adUnit.
 
 ```javascript
 var adUnits = [{
@@ -101,6 +120,18 @@ var adUnits = [{
             sizes: [
                 [300, 250],
                 [300, 600]
+            ]
+        }
+    },
+    bids: []
+},
+{
+    code: 'video-div-a',
+    mediaTypes: {
+        video: {
+            context: 'instream',
+            playerSize: [
+                [1280, 720]
             ]
         }
     },
@@ -117,8 +148,8 @@ bid objects under `adUnits[].bids`:
 {
     bidder: 'ix',
     params: {
-        siteId: '',
-        size: []
+        siteId: '123456',
+        size: [300, 250]
     }
 }
 ```
@@ -126,8 +157,9 @@ bid objects under `adUnits[].bids`:
 Set `params.siteId` and `params.size` in each bid object to the values provided
 by your IX representative.
 
-**Example**
+**Examples**
 
+**Banner:**
 ```javascript
 var adUnits = [{
     code: 'banner-div-a',
@@ -142,28 +174,96 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '123456',
             size: [300, 250]
         }
     }, {
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '123456',
             size: [300, 600]
         }
     }]
 }];
 ```
-
+**Video (Instream):**
+```javascript
+var adUnits = [{
+    code: 'video-request-a',
+    mediaTypes: {
+        video: {
+            context: 'instream',
+            playerSize: [
+                [1280, 720]
+            ]
+        }
+    },
+    bids: [{
+        bidder: 'ix',
+        params: {
+            siteId: '123456',
+            size: [1280, 720],
+            video: {
+                skippable: false,
+                mimes: [
+                    'video/mp4',
+                    'video/webm'
+                ],
+                minduration: 0,
+                maxduration: 60,
+                protocols: [6]
+            }
+        }
+    }]
+}];
+```
 Please note that you can re-use the existing `siteId` within the same flex
 position.
 
+**Video (Outstream):**
+Note that currently, outstream video rendering must be configured by the publisher. In the adUnit, a `renderer` object must be defined, which includes a `url` pointing to the video rendering script, and a `render` function for creating the video player. See http://prebid.org/dev-docs/show-outstream-video-ads.html for more information.
+
+```javascript
+var adUnits = [{
+    code: 'video-div-a',
+    mediaTypes: {
+        video: {
+            context: 'outstream',
+            playerSize: [[640, 360]]
+        }
+    },
+    renderer: {
+        url: 'https://test.com/my-video-player.js',
+        render: function (bid) {
+            ...
+        }
+    },
+    bids: [{
+        bidder: 'ix',
+        params: {
+            siteId: '123456',
+            size: [640, 360],
+            video: {
+                skippable: false,
+                mimes: [
+                    'video/mp4',
+                    'video/webm'
+                ],
+                minduration: 0,
+                maxduration: 60,
+                protocols: [6]
+            }
+        }
+    }]
+}];
+```
+
 ##### 2. Include `ixBidAdapter` in your build process
 
-When running the build command, include `ixBidAdapter` as a module.
+When running the build command, include `ixBidAdapter` as a module, as well as `dfpAdServerVideo` if you require video support.
 
 ```
-gulp build --modules=ixBidAdapter,fooBidAdapter,bazBidAdapter
+gulp build --modules=ixBidAdapter,dfpAdServerVideo,fooBidAdapter,bazBidAdapter
 ```
 
 If a JSON file is being used to specify the bidder modules, add `"ixBidAdapter"`
@@ -172,6 +272,7 @@ to the top-level array in that file.
 ```json
 [
     "ixBidAdapter",
+    "dfpAdServerVideo",
     "fooBidAdapter",
     "bazBidAdapter"
 ]
@@ -245,8 +346,7 @@ the rest will be ignored.
 
 To avoid this situation, ensure that when `pbjs.requestBid` is invoked, that the
 number of bid objects (i.e. `adUnits[].bids`) with `adUnits[].bids[].bidder` set
-to `'ix'` across all ad units that bids are being requested for does not exceed
-20.
+to `'ix'` across all ad units that bids are being requested for does not exceed 20.
 
 ### Time-To-Live (TTL)
 
@@ -275,3 +375,4 @@ In your browser of choice, create a new tab and open the developer tools. In
 developer tools, select the network tab. Then, navigate to a page where IX is
 setup to bid. Now, in the network tab, search for requests to
 `casalemedia.com/cygnus`. These are the bid requests.
+
