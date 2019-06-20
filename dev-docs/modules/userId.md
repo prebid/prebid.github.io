@@ -239,6 +239,13 @@ If you're an ID provider that wants to get on the list:
 - Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
 - Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
 
+### Exporting User IDs
+
+If you need to export all of the user IDs that are stored by Prebid User Id module then you can use [pbjs.getUserIds()](/dev-docs/publisher-api-reference.html#getUserIds), it will return an object containing User IDs, format of the object is same as of bidRequest.userId.
+
+```
+pbjs.getUserIds() // returns object like bidRequest.userId
+```
 
 ## Further Reading
 

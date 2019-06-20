@@ -28,6 +28,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.getNoBids()](#module_pbjs.getNoBids)
+  * [.getUserIds()](#module_pbjs.getUserIds)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
@@ -485,6 +486,16 @@ pbjs.adServers.freewheel.getTargeting({
 Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](http://prebid.org/dev-docs/troubleshooting-tips.html).
 
 + `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getUserIds"></a>
+
+### pbjs.getUserIds() ⇒ `Object`
+
+Use this method to get all of the user IDs that are stored by Prebid User Id module.  This API will be available only when [User ID Module](http://prebid.org/dev-docs/modules/userId.html) is enabled.
+
++ `pbjs.getUserIds()`: returns an object containing all of the user IDs that are stored by Prebid User Id module. Format of the object is same as of bidRequest.userId.
 
 <hr class="full-rule">
 
