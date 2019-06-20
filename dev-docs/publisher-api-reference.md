@@ -26,7 +26,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
-  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids
+  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.getNoBids()](#module_pbjs.getNoBids)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
