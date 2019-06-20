@@ -493,9 +493,9 @@ Use this method to get all of the bid requests that resulted in a NO_BID.  These
 
 ### pbjs.getUserIds() ⇒ `Object`
 
-Use this method to get all of the user IDs that are stored by Prebid User Id module.  This API will be available only when [User ID Module](http://prebid.org/dev-docs/modules/userId.html) is enabled.
+Use this method to get all of the user IDs that are stored by Prebid User ID module.  This API will be available only when [User ID Module](http://prebid.org/dev-docs/modules/userId.html) is enabled.
 
-+ `pbjs.getUserIds()`: returns an object containing all of the user IDs that are stored by Prebid User Id module. Format of the object is same as of bidRequest.userId.
++ `pbjs.getUserIds()`: returns an object containing all of the user IDs that are stored by Prebid User Id module. Format of the object is same as that of bidRequest.userId.
 
 <hr class="full-rule">
 

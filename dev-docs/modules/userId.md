@@ -241,7 +241,7 @@ If you're an ID provider that wants to get on the list:
 
 ### Exporting User IDs
 
-If you need to export all of the user IDs that are stored by Prebid User Id module then you can use [pbjs.getUserIds()](/dev-docs/publisher-api-reference.html#getUserIds), it will return an object containing User IDs, format of the object is same as of bidRequest.userId.
+If you need to export all of the user IDs that are stored by Prebid User ID module then you can use [pbjs.getUserIds()](/dev-docs/publisher-api-reference.html#getUserIds), it will return an object containing User IDs, format of the object is same as that of bidRequest.userId.
 
 ```
 pbjs.getUserIds() // returns object like bidRequest.userId
