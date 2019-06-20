@@ -340,6 +340,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
     </label>
   </div>
