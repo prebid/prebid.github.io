@@ -71,11 +71,11 @@ var adUnits = [{
 ### Supported Media Types
 
 {: .table .table-bordered .table-striped }
-| Type | Support |
-| --- | --- |
-| Banner | Fully supported for all IX approved sizes. |
-| Video  | Fully supported for all IX approved sizes. |
-| Native | Not supported. |
+| Type   | Support |
+| ------ | ------- |
+| `Banner` | Fully supported for all IX approved sizes. |
+| `Video`  | Fully supported for all IX approved sizes. |
+| `Native` | Not supported. |
 
 ## Bid Parameters
 
@@ -85,23 +85,23 @@ object are detailed here.
 ### Banner
 
 {: .table .table-bordered .table-striped }
-| Key | Scope | Type | Description |
-| --- | --- | --- | --- |
-| siteId | Required | String | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. Examples: `'3723'`, `'6482'`, `'3639'` |
-| size | Required | Number[] | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Examples: `[300, 250]`, `[300, 600]`, `[728, 90]` |
+| Name | Scope | Description | Example | Type |
+| ---- | ----- | ----------- | ------- | ---- |
+| `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` | 
+| `size` | Required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. | `[300, 250]` | `Array<integer>` | 
 
 ### Video
 
 {: .table .table-bordered .table-striped }
-| Key | Scope | Type | Description |
-| --- | --- | --- | --- |
-| siteId | Required | String | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. Examples: `'3723'`, `'6482'`, `'3639'` |
-| size | Required | Number[] | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. Examples: `[1280, 720]`, `[640, 360]` |
-| video | Required | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. |
-| video.mimes | Required | String[] | Array list of content MIME types supported. Popular MIME types include, but are not limited to, `"video/x-ms- wmv"` for Windows Media and `"video/x-flv"` for Flash Video. |
-| video.minduration| Required | Integer | Minimum video ad duration in seconds. |
-| video.maxduration| Required | Integer | Maximum video ad duration in seconds. |
-| video.protocol / video.protocols| Required | Integer / Integer[] | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper |
+| Name | Scope | Description | Example | Type |
+| ---- | ----- | ----------- | ------- | ---- |
+| `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` |
+| `size` | Required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. | `[300, 600]` | `Array<integer>` |
+| `video` | Required | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes`, `protocols`, `minduration`, `maxduration` are required. | `video: { startdelay: 0 }` | `object` |
+| `video.mimes` | Required | Array list of content MIME types supported. | `['video/mp4', 'video/x-flv']` | `Array<string>` |
+| `video.minduration` | Required | Minimum video ad duration in seconds. | `0` | `integer` |
+| `video.maxduration` | Required | Maximum video ad duration in seconds. | `300` | `integer` |
+| `video.protocol` / `video.protocols` | Required | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper | `[2,3,5,6]` | `integer` / `Array<integer>` |
 
 ## Setup Guide
 
@@ -375,4 +375,3 @@ In your browser of choice, create a new tab and open the developer tools. In
 developer tools, select the network tab. Then, navigate to a page where IX is
 setup to bid. Now, in the network tab, search for requests to
 `casalemedia.com/cygnus`. These are the bid requests.
-
