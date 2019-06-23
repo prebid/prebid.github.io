@@ -15,16 +15,15 @@ sidebarType : 1
 * TOC
 {:toc}
 
-{: .alert.alert-info :}
-The User ID module has been available since Prebid.js 2.10.0.
-
 ## Overview
 
 The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
-* **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
+* **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
+* **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+
 
 ## How It Works
 
@@ -50,76 +49,54 @@ When paired with the `CookieConsent` module, privacy rules are enforced:
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
 * `_pbjs_id_optout` cookie or HTML5 local storage
-* `_pubcid_optout` cookie or HTML5 local storage (for backwards compatibility with the PubCommonID module.
+* `_pubcid_optout` cookie or HTML5 local storage (for backwards compatibility with the original PubCommonID module.
 
-## Configuration
+## Basic Configuration
 
-By including this module, the following options become available in `setConfig()`,
+By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
 all of them under the `usersync` object as attributes of the `userIds` array
-of sub-objects. See the examples for each provider for specific use cases.
+of sub-objects. The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, or `"id5Id"` | `"unifiedId"` |
-| params | Required for UnifiedId and ID5Id | Object | See details for UnifiedId and ID5Id in the documentation below. | |
+| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, or `"id5id"` | `"unifiedId"` |
+| params | Based on User ID sub-module | Object | | |
 | storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
-| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId, 1825 for PubCommonID, and 90 for ID5Id | `365` |
-| value | Optional | Object | Used only if the page has a separate mechanism for storing the user's ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
-
-## Pub Common ID
-
-More details about the Pub Common ID can be found on [its module page](pubCommonId.html)
-
-### Examples
-1) Publisher supports PubCommonID and first party domain cookie storage
-
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "_pubCommonId",       // create a cookie with this name
-                expires: 1825               // expires in 5 years
-            }
-        }]
-    }
-});
-{% endhighlight %}
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "id5id": "ID5-12345" }` |
 
 ## Unified ID
 
-{: .alert.alert-success :}
-While the Unified ID approach is open to other cookie vendors, the
-only one currently supporting Prebid.js is The Trade Desk. Prebid.org
-welcomes other ID vendors - create a PR or email support@prebid.org.
+The Unified ID solution is provided by adsrvr.org and the Trade Desk.
 
-### Registration
+### Unified ID Registration
 
 You can set up Unified ID in one of these ways:
 
 - Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
 - Utilize a [managed services](/prebid/managed.html) company who can do this for you.
 
-### Configuration
+### Unified ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| params | Required | Object | Details for UnifiedId. | |
-| params.partner | Either this or url required for UnifiedId | String | This is the Trade Desk partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. Note that the default URL is HTTP-only in Prebid.js 2.10-2.14. If your site is HTTPS, supply the override as shown in example 1 above. | `"myTtdPid"` |
-| params.url | Either this or partner required for UnifiedId | String | If specified, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
+| name | Required | String | `"unifiedId"` | `"unifiedId"` |
+| params | Required for UnifiedId | Object | Details for UnifiedId initialization. | |
+| params.partner | Either this or url required for UnifiedId | String | This is the partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. | `"myTtdPid"` |
+| params.url | Required for UnifiedId if not using TradeDesk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing the Unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
 
-### Examples
+### Unified ID Examples
 
 1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
 
 {: .alert.alert-warning :}
-Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using the 'partner' parameter, it's best to supply the Trade Desk URL.
+Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
+the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this example.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -130,12 +107,12 @@ pbjs.setConfig({
                 url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
             },
             storage: {
-                type: "cookie",
+                type: "cookie",  
                 name: "pbjs-unifiedid",       // create a cookie with this name
                 expires: 60                   // cookie can last for 60 days
             }
         }],
-        syncDelay: 5000              // 5 seconds after the first bidRequest()
+        syncDelay: 3000              // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
@@ -155,24 +132,148 @@ pbjs.setConfig({
                 name: "pbjs-unifiedid"    // set localstorage with this name
             }
         }],
-        syncDelay: 5000
+        syncDelay: 3000
     }
 });
 {% endhighlight %}
 
-3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js
+3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js.
 
 {% highlight javascript %}
 pbjs.setConfig({
     usersync: {
         userIds: [{
             name: "unifiedId",
-            value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3",
-                    "appnexus_id": "1234"}
+            value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}
         }]
     }
 });
 {% endhighlight %}
+
+## PubCommon ID
+
+This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
+
+There is no special registration or configuration for PubCommon ID. 
+
+### PubCommon ID Examples
+
+1) Publisher supports PubCommonID and first party domain cookie storage
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",  
+                name: "_pubCommonId",       // create a cookie with this name
+                expires: 1825               // expires in 5 years
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
+2) Publisher supports both UnifiedID and PubCommonID and first party domain cookie storage
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "unifiedId",
+            params: {
+                partner: "myTtdPid"
+            },
+            storage: {
+                type: "cookie",  
+                name: "pbjs-unifiedid"       // create a cookie with this name
+            }
+        },{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",  
+                name: "pbjs-pubCommonId"     // create a cookie with this name
+            }
+        }],
+        syncDelay: 5000       // 5 seconds after the first bidRequest()
+    }
+});
+{% endhighlight %}
+
+
+## DigiTrust
+
+[DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default. 
+
+### DigiTrust Registration
+
+In order to utilize DigiTrust a publisher must register and be approved for membership. You may register online at: [https://www.digitru.st/signup/](https://www.digitru.st/signup/)
+
+In addition to general usage and configuration of the User Id module, follow the additional instructions for configuring and deploying
+DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html).
+
+### DigiTrust Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"digitrust"` | `"digitrust"` |
+| params | Required for DigiTrust | Object | Details DigiTrust initialization. | |
+| params.init | Required for DigiTrust | Object | Defines the member and site | `{ member: 'example_member_id', site: 'example_site_id' }` |
+| params.callback | Optional for DigiTrust | Function | Allows init error handling | See example above |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing the DigiTrust ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"digitrustid": {"data":{"id": "1111", ...}}}` |
+
+Please consult the [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html) page for details on
+DigiTrust parameters and usage. For more complete instructions please review the 
+[Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
+
+### DigiTrust Examples
+
+1) Publisher is a DigiTrust member and supports both PubCommonID and DigiTrust ID integrated with Prebid
+
+{% highlight javascript %}
+<script>
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",  
+                name: "_pubCommonId",       // create a cookie with this name
+                expires: 1825               // expires in 5 years
+            },
+        {
+        name: "digitrust",
+        params: {
+            init: {
+                member: 'example_member_id',
+                site: 'example_site_id'
+            },
+            callback: function (digiTrustResult) {
+                if (digiTrustResult.success) {
+                    console.log('Success in Digitrust init', digiTrustResult.identity.id);
+                } else {
+                    console.error('Digitrust init failed');
+                }
+            }
+        },
+        storage: {
+        type: "html5",
+        name: "pbjsdigitrust",
+        expires: 60
+        }
+    }
+    }]
+    }
+});
+</script>
+{% endhighlight %}
+
+Other examples:
+
+- [DigiTrust Example 1](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Simple.html)
+- [DigiTrust Example 2](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Full.html)
 
 ## ID5 ID
 
@@ -180,7 +281,7 @@ The ID5 ID is a neutral identifier for digital advertising that can be used by p
 
 ### Registration
 
-The ID5 ID is free to use, but requires a simple registration with ID5. Please reach out to [contact@id5.io](mailto:prebid@id5.io) to sign up and request your `partnerId`.
+The ID5 ID is free to use, but requires a simple registration with ID5. Please reach out to [prebid@id5.io](mailto:prebid@id5.io) to sign up and request your `partnerId`.
 
 ### Configuration
 
@@ -226,47 +327,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-## Examples Using Multiple Providers
-
-1) Publisher supports UnifiedId, PubCommonID, and ID5Id and first party domain cookie storage
-
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "pbjs-pubCommonId"    // create a cookie with this name
-            }
-        },{
-            name: "unifiedId",
-            params: {
-                partner: "myTtdPid"
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-unifiedid"      // create a cookie with this name
-            }
-        },{
-            name: "id5Id",
-            params: {
-                partner: 173
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-id5id"          // create a cookie with this name
-            }
-        }],
-        syncDelay: 5000                     // 5 seconds after the first bidRequest()
-    }
-});
-{% endhighlight %}
-
-
-
-
-## Adapters Supporting the User ID Module
+## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 
@@ -279,45 +340,70 @@ pbjs.setConfig({
 {% endfor %}
 </table>
 
-## Implementation Details
+## Bidder Adapter Implementation
 
-For bidders that want to support one or more of these ID systems here are the specific details.
+### Prebid.js Adapters
+
+Bidders that want to support the User ID module in Prebid.js, need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
 
 {: .table .table-bordered .table-striped }
-| ID System Name | ID System Host | Prebid.js Attr | Prebid Server Attr | Notes |
+| ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
-| PubCommon ID | n/a | bidRequest.userId.pubcid | user.ext.tpid[].source="pubcid" | PubCommon is unique to each publisher domain. |
-| Unified ID | Trade Desk | bidRequest.userId.tdid | user.ext.tpid[].source="tdid" | |
-| ID5 ID | ID5 | bidRequest.userId.id5id | user.ext.tpid[].source="id5id" | |
+| PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
+| Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
+| DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
+| ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
 
-Bidders that want to support the User ID module in **Prebid.js**, need to update their bidder adapter to read the indicated bidRequest attributes.
+For example, the adapter code might do something like:
 
-Bidders that want to support the User ID module in **Prebid Server**, need to update their server-side bid adapter to read the indicated OpenRTB attributes. For example:
+{% highlight javascript %}
+   if (bidRequest.userId && bidRequest.userId.pubcid) {
+    url+="&pubcid="+bidRequest.userId.pubcid;
+   }
+{% endhighlight %}
+
+### Prebid Server Adapters
+
+Bidders that want to support the User ID module in Prebid Server, need to update their server-side bid adapter to read the desired OpenRTB attributes noted in the example below and send them to their endpoint.
 
 {% highlight bash %}
 {
-  "user": {
-    "ext": {
-      "tpid": [{
-        "source": "tdid",
-        "uid": "19cfaea8-a429-48fc-9537-8a19a8eb4f0c"
-      },
-      {
-        "source": "pubcid",
-        "uid": "29cfaea8-a429-48fc-9537-8a19a8eb4f0d"
-      },
-      {
-        "source": "id5id",
-        "uid": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA"
-      }]
+    "user": {
+        "ext": {
+            "eids": [{
+                "source": "adserver.org",  // Unified ID
+                "uids": [{
+                    "id": "111111111111",
+                    "ext": {
+                        "rtiPartner": "TDID"
+                    }
+                }]
+            },
+            {
+                "source": "pubcommon",  // PubCommon ID
+                "id":"11111111"
+            },
+            {
+                "source": "id5id",      // ID5 ID
+                "id": "ID5-12345"
+            }
+            ],
+            "digitrust": {              // DigiTrust
+                "id": "11111111111",
+                "keyv": 4
+            }
+        }
     }
-  }
 }
 {% endhighlight %}
 
+
+
+
+
 ### ID Providers
 
-If you're an ID provider that wants to get on the list:
+If you're an ID provider that wants to get on this page:
 
 - Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
 - Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
@@ -329,3 +415,4 @@ If you're an ID provider that wants to get on the list:
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
 * [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
+* [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html)
