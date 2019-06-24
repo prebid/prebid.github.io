@@ -381,11 +381,15 @@ Bidders that want to support the User ID module in Prebid Server, need to update
             },
             {
                 "source": "pubcommon",  // PubCommon ID
-                "id":"11111111"
+                "uids": [{
+                    "id":"11111111"
+                }]
             },
             {
                 "source": "id5id",      // ID5 ID
-                "id": "ID5-12345"
+                "uids": [{
+                    "id": "ID5-12345"
+                }]
             }
             ],
             "digitrust": {              // DigiTrust
