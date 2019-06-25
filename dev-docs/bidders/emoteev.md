@@ -1,0 +1,16 @@
+---
+layout: bidder
+title: Emoteev
+description: Prebid Emoteev Bidder Adaptor
+hide: true
+biddercode: emoteev
+---
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                                                              | Example        | Type                  |
+|-------------|----------|--------------------------------------------------------------------------|----------------|-----------------------|
+| `adSpaceId` | required | Provided by Emoteev team                                                 | `5084`         | Integer, not a string |
+| `context`   | required | One of `'in-content'`, `'footer'`, `'overlay'`, `'wallpaper'`            | `'in-content'` | String                |
+| `metadata`  | optional | Use it when you want to link your bids to some specific id on your side. | `12`           | Integer, not a string |
