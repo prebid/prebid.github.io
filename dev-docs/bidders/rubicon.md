@@ -6,7 +6,7 @@ hide: true
 biddercode: rubicon
 gdpr_supported: true
 media_types: video
-userIds: unifiedId/tradedesk
+userIds: unifiedId/tradedesk, digitrust
 ---
 
 
