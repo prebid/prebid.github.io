@@ -28,7 +28,6 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.getNoBids()](#module_pbjs.getNoBids)
-  * [.getUserIds()](#module_pbjs.getUserIds)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
@@ -40,6 +39,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
@@ -60,9 +60,12 @@ This page has documentation for the public API methods of Prebid.js.
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
-  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
-  * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting)
-  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
+
+Functions added by optional modules
+
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
+  * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -466,7 +469,6 @@ pbjs.adServers.freewheel.getTargeting({
     }
 });
 ```
-
 #### Argument Reference
 
 ##### The `options` object
@@ -479,6 +481,21 @@ pbjs.adServers.freewheel.getTargeting({
 
 <hr class="full-rule">
 
+<a name="userId.getUserIds"></a>
+
+### pbjs.getUserIds() ⇒ Object
+
+{: .alert.alert-info :}
+To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
+
+If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
+
+```
+pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
+```
+
+<hr class="full-rule">
+
 <a name="module_pbjs.getNoBids"></a>
 
 ### pbjs.getNoBids() ⇒ `Array`
@@ -486,16 +503,6 @@ pbjs.adServers.freewheel.getTargeting({
 Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](http://prebid.org/dev-docs/troubleshooting-tips.html).
 
 + `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
-
-<hr class="full-rule">
-
-<a name="module_pbjs.getUserIds"></a>
-
-### pbjs.getUserIds() ⇒ `Object`
-
-Use this method to get all of the user IDs that are stored by Prebid User ID module.  This API will be available only when [User ID Module](http://prebid.org/dev-docs/modules/userId.html) is enabled.
-
-+ `pbjs.getUserIds()`: returns an object containing all of the user IDs that are stored by Prebid User Id module. Format of the object is same as that of bidRequest.userId.
 
 <hr class="full-rule">
 
