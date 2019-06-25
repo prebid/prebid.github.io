@@ -56,6 +56,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [userSync](#setConfig-Configure-User-Syncing)
     * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
+    * [COPPA](#setConfig-coppa)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
@@ -1237,6 +1238,7 @@ Core config:
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
 + [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
++ [COPPA](#setConfig-coppa)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -1961,8 +1963,20 @@ pbjs.addAdUnits([{
 
 See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
-<a name="setConfig-Generic-Configuration" />
 
+<a name="setConfig-coppa" />
+
+#### COPPA
+
+Bidder adapters that support the Child Online Privacy Protection Act (COPPA) read the `coppa` configuration.
+Publishers with content falling under the scope of this regulation should consult with their legal teams.
+The flag may be passed to supporting adapters with this config:
+
+{% highlight js %}
+pbjs.setConfig('coppa', 'true'));
+{% endhighlight %}
+
+<a name="setConfig-Generic-Configuration" />
 
 #### Generic setConfig Configuration
 
@@ -1977,7 +1991,7 @@ Some adapters may support other options, as defined in their documentation. To s
 If you call `pbjs.setConfig` without an object, e.g.,
 
 {% highlight js %}
-pbjs.setConfig('debug', 'true'))
+pbjs.setConfig('debug', 'true'));
 {% endhighlight %}
 
 then Prebid.js will print an error to the console that says:

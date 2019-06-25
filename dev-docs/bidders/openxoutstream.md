@@ -5,7 +5,8 @@ description: Prebid OpenX Outstream Bidder Adaptor
 hide: true
 biddercode: openxoutstream
 media_types: native
-
+prebid_member: true
+coppa_supported: true
 ---
 
 
