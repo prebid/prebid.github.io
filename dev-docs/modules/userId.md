@@ -24,7 +24,6 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 
-
 ## How It Works
 
 1. The publisher builds Prebid.js with the optional User ID module and the specific ID sub-module they would like to include. e.g. "gulp build --modules=userId,pubCommonIdSystem"
@@ -400,10 +399,6 @@ Bidders that want to support the User ID module in Prebid Server, need to update
     }
 }
 {% endhighlight %}
-
-
-
-
 
 ### ID Providers
 

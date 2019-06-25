@@ -208,7 +208,7 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 
 ### User Sync
 
-To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
+To sync user IDs with Prebid Server, the `amp-iframe` below may added to your AMP pages referring to the `load-cookie.html` file made available as part of the [Prebid Universal Creative repository](https://github.com/prebid/prebid-universal-creative). Hosting for the `load-cookie.html` file is not provided by Prebid.org.
 
 {% capture tipNote %}
 The following examples include a transparent image as a placeholder which will allow you to place this at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
@@ -216,26 +216,24 @@ The following examples include a transparent image as a placeholder which will a
 
 {% include alerts/alert_tip.html content=tipNote %}
 
-If you're using AppNexus' Prebid Server cluster:
+If you're using AppNexus' managed service, you would enter something like this:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=appnexus&max_sync_count=5">
+  src="https://PROVIDED_BY_APPNEXUS/load-cookie.html?endpoint=appnexus&max_sync_count=5">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
 
-Else if you're utilizing Rubicon Project's Prebid Server cluster, you'll need an extra 'args'
-param on the call to load-cookie.html and will need to replace _RUBICON_ACCOUNT_ID_ with
-the ID provided by your Rubicon Project account team.
+Else if you're utilizing Rubicon Project's managed service, there's an extra parameter:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=rubicon&max_sync_count=6&args=account:RUBICON_ACCOUNT_ID">
+  src="https://PROVIDED_BY_RUBICON/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:RUBICON_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```

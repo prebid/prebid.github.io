@@ -56,6 +56,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [userSync](#setConfig-Configure-User-Syncing)
     * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
+    * [COPPA](#setConfig-coppa)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
@@ -529,11 +530,16 @@ setTargetingForGPTAsync(adUnit, pickInViewDiv);
 
 <a name="module_pbjs.setTargetingForAst"></a>
 
-### pbjs.setTargetingForAst()
+### pbjs.setTargetingForAst(adUnitCode)
 
-Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad units.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
+Set query string targeting for AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad unit(s).  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
 
 **Kind**: static method of [pbjs](#module_pbjs)
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | -- |
+| adUnitCode | Optional | `String or Array of strings` | Code(s) of the adUnit(s) for which targeting is being set. Omitting this parameter will set targeting on all adUnits. |
 
 <hr class="full-rule">
 
@@ -1232,6 +1238,7 @@ Core config:
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
 + [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
++ [COPPA](#setConfig-coppa)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -1956,8 +1963,20 @@ pbjs.addAdUnits([{
 
 See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
-<a name="setConfig-Generic-Configuration" />
 
+<a name="setConfig-coppa" />
+
+#### COPPA
+
+Bidder adapters that support the Child Online Privacy Protection Act (COPPA) read the `coppa` configuration.
+Publishers with content falling under the scope of this regulation should consult with their legal teams.
+The flag may be passed to supporting adapters with this config:
+
+{% highlight js %}
+pbjs.setConfig('coppa', 'true'));
+{% endhighlight %}
+
+<a name="setConfig-Generic-Configuration" />
 
 #### Generic setConfig Configuration
 
@@ -1972,7 +1991,7 @@ Some adapters may support other options, as defined in their documentation. To s
 If you call `pbjs.setConfig` without an object, e.g.,
 
 {% highlight js %}
-pbjs.setConfig('debug', 'true'))
+pbjs.setConfig('debug', 'true'));
 {% endhighlight %}
 
 then Prebid.js will print an error to the console that says:

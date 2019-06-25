@@ -377,6 +377,14 @@ Note: If you receive an error during download you most likely selected a configu
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
+    </label>
+  </div>
+</div>
+
 
 <div class="col-md-4">
   <div class="checkbox">
