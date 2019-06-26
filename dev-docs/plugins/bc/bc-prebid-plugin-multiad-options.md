@@ -33,6 +33,7 @@ Therefore, for the following configuration options, the plugin will use the valu
 - `scriptLoadTimeout`: used to specify the maximum time in milliseconds that the plugin will wait for a script file to load
 - `frequencyRules`: used to express control of ad frequency in a playlist
 - `adRenderer`: used to override the default behavior of selecting the plugin used to render the ad
+- `loggerLevel`: used to control the amount of information that is emitted by the plugin into the browser’s console.log
 
 ## Sample Code
 
