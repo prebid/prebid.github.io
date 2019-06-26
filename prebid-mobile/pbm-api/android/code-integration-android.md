@@ -77,17 +77,30 @@ Failure to resize rendering Prebid ads can cause revenue loss under certain cond
 
 
 ```
-        dfpAdView.setAdListener(new AdListener() {
+dfpAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
 
-                dfpAdView.setAdSizes(dfpAdView.getAdSize());
+                Util.findPrebidCreativeSize(dfpAdView, new Util.CreativeSizeCompletionHandler() {
+                    @Override
+                    public void onSize(final Util.CreativeSize size) {
+                        if (size != null) {
+                            dfpAdView.setAdSizes(new AdSize(size.getWidth(), size.getHeight()));
+                        }
+                    }
+                });
 
             }
         });
  ```
 
+### Supported Android versions
+
+Prebid supports the following versions by release:
+
+* Prebid SDK version 1.0 or 1.1 supoports Android 16+
+* Prebid SDK version 1.1.1+ supports Android 19+
 
 
 ### Add Custom Keywords
