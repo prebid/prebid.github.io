@@ -5,6 +5,7 @@ description: Prebid Arteebee Bidder Adaptor
 hide: true
 biddercode: arteebee
 gdpr_supported: true
+coppa_supported: true
 ---
 
 ### Bid Params

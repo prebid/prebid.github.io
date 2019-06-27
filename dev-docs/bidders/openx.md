@@ -6,7 +6,9 @@ hide: true
 biddercode: openx
 media_types: video
 gdpr_supported: true
+coppa_supported: true
 userIds: pubcommon
+prebid_member: true
 ---
 
 ### Bid Parameters

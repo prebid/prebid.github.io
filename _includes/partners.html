@@ -42,6 +42,26 @@
 	  writeDynamicTable({div:"memberTableStandard", data:"memberDataStandard", sort:"rowFirst"});
 	</script>
 
+	<div class="tableTitle"><h3>Prebid.org Publisher Members</h3></div>
+	<script type="text/javascript">
+	var memberDataPub=[];
+	var idx=0;
+
+	{% for item in site.data.partners %}
+		{% if item.type == "publisher" %}
+			memberDataPub[idx]={};
+			memberDataPub[idx].href="{{item.link}}";
+			memberDataPub[idx].text="<img src=\"{{item.imgURL}}\" width=\"88\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+
+	<div id="memberTablePub"></div>
+	<script>
+	  writeDynamicTable({div: "memberTablePub", data: "memberDataPub", sort:"rowFirst"});
+	</script>
+
 	<div class="tableTitle"><h3>Prebid.org Community Members</h3></div>
 	<script type="text/javascript">
 	var memberDataComm=[];
