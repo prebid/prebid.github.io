@@ -1,9 +1,9 @@
 ---
 layout: bidder
-title: Adasta
-description: Prebid Adasta Bidder Adaptor
+title: Adasta Media
+description: Prebid Adasta Media Bidder Adaptor
 hide: true
-biddercode: adasta
+biddercode: adastaMedia
 aliasCode: gamoshi
 ---
 
@@ -14,4 +14,4 @@ aliasCode: gamoshi
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
 
-Adasta is an aliased bidder for Gamoshi
+Adasta Media is an aliased bidder for Gamoshi
