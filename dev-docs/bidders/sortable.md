@@ -6,6 +6,7 @@ biddercode: sortable
 hide: true
 media_types: banner
 gdpr_supported: true
+prebid_member: true
 ---
 
 **Table of Contents**
