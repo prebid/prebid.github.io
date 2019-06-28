@@ -534,7 +534,7 @@ See [How To Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugin
 
 If specified, the value of this option should be an array containing one or more adapter definitions.
 
-Each adapter definition is specified in object with the following fields:
+Each adapter definition is specified as an object with the following fields:
 
 - id: A string that uniquely identifies an adapter.  The adapter will then create itself as a variable on the window object of the document where it is loaded.  This should also be the identifier that the adapter code itself knows.
 - url: A string which specifies the URL used to load the adapter script.

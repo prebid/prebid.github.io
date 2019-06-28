@@ -64,7 +64,7 @@ The plugin will call `enablePrebidPlugin` to determine if the adapter wants to b
 
 `enablePrebidPlugin()`
 
-This is a synchronous call.  This entry should return a value as described in the **Return Value** section below.
+This is a synchronous call.  This entry point should return a value as described in the **Return Value** section below.
 
 #### Return Value
 
