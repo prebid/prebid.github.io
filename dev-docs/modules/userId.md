@@ -23,6 +23,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+* **Id Link - Identity Link** – it calls out to a URL that responds with user’s identity link. The result is stored in the user’s browser configurable storage for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 
 ## How It Works
 
@@ -59,7 +60,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, or `"id5id"` | `"unifiedId"` |
+| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `idLink` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -322,6 +323,68 @@ pbjs.setConfig({
             name: "id5Id",
             value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
         }]
+    }
+});
+{% endhighlight %}
+
+## Id Link
+
+The Id Link (Identity Link) solution is provided by liveramp.com
+
+### Id Link Registration
+
+Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`. 
+
+### Id Link Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"idLink"` | `"idLink"` |
+| params | Required for Id Link | Object | Details for idLink initialization. | |
+| params.pid | This parameter is required for idLink | String | This is the placement ID, value needed for obtaining user’s identity link envelope
+
+
+### Id Link Examples
+
+1) Publisher pass a placement ID, and is using placement ID in the endpoint for identity link envelope. Cookie storage.
+
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "idLink",
+            params: {
+                pid: '14'
+            },
+            storage: {
+                type: "cookie",  
+                name: "idl_env",       // create a cookie with this name
+                expires: 60            // cookie can last for 60 days
+            }
+        }],
+        syncDelay: 3000              // 3 seconds after the first auction
+    }
+});
+{% endhighlight %}
+
+2) Publisher pass a placement ID, and is using placement ID in the endpoint for identity link envelope. LocalStorage html5 storage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "idLink",
+            params: {
+                pid: '14'
+            },
+            storage: {
+                type: "html5",
+                name: "idl_env"    // set localstorage with this name
+            }
+        }],
+        syncDelay: 3000
     }
 });
 {% endhighlight %}
