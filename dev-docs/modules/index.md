@@ -35,7 +35,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**DigiTrust**]({{site.baseurl}}/dev-docs/modules/digitrust.html) | A method of including the standard cross-domain ID in a DigiTrust package. |
 | [**Server-to-Server Testing**]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) | Adds A/B test support for easing into server-side header bidding. |
 | [**DFP Video**]({{site.baseurl}}/dev-docs/modules/dfp_video.html) | Required for serving instream video through DFP. |
-| [**User ID**]({{site.baseurl}}/dev-docs/modules/userId.html) | Supports Unified ID, PubCommon ID, DigiTrust, ID5 ID and IdLink. |
+| [**User ID**]({{site.baseurl}}/dev-docs/modules/userId.html) | Supports Unified ID, PubCommon ID, DigiTrust, ID5 ID and IdentityLink. |
 | [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | (Deprecated - please use User ID module) Adds a persisted user ID in the publisher's domain. |
 | [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
 | [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
