@@ -291,7 +291,7 @@ The ID5 ID is free to use, but requires a simple registration with ID5. Please v
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
 
 {: .alert.alert-info :}
-NOTE: The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.expires` to `1` day to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+NOTE: The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.expires` to `5` days to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
 
 ### ID5 ID Examples
 
@@ -308,7 +308,7 @@ pbjs.setConfig({
             storage: {
                 type: "cookie",
                 name: "pbjs-id5id",     // create a cookie with this name
-                expires: 1              // cookie can last for 1 day to ensure it is
+                expires: 5              // cookie can last for 5 days to ensure it is
                                         // encrypted with the latest key from ID5
             }
         }],
