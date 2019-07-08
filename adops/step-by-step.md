@@ -8,7 +8,7 @@ sidebarType: 3
 
 
 
-# Step by step guide to DFP setup
+# Step by step guide to Google Ad Manager setup
 
 <div id="youtube">
 <h2>(Sorry, YouTube videos aren't available with your cookie privacy settings.)</h2>
@@ -30,7 +30,7 @@ Optanon.InsertHtml('<iframe width="853" height="480" src="https://www.youtube.co
 
 ## Step 1. Add a line item
 
-In DFP, create a new order with a $0.50 line item.
+In Google Ad Manager, create a new order with a $0.50 line item.
 
 Enter all of the inventory sizes that your website has.
 
@@ -59,7 +59,7 @@ Set **Rotate Creatives** to *Evenly*.
 
 Choose the inventory that you want to run header bidding on.
 
-By default, `prebid.js` will send the highest bid price to DFP using the keyword `hb_pb`.
+By default, `prebid.js` will send the highest bid price to Google Ad Manager using the keyword `hb_pb`.
 
 This line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
 
@@ -125,7 +125,7 @@ Save the creative and go back to the line item.
 
 ## Step 4. Duplicate Creatives
 
-DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
+Google Ad Manager has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
 
 Let's say your page has 4 ad units.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
 

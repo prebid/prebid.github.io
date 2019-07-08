@@ -103,7 +103,7 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 
     // Do any additional setup after loading the view, typically from a nib.
     bannerUnit.fetchDemand(adObject: self.request) { (ResultCode) in
-        print("DFP banner bids fetch successfull")
+        print("Google Ad Manager banner bids fetch successfull")
         dfpBanner.load(self.request)
     }
 }

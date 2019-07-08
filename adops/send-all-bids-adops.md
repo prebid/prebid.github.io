@@ -37,16 +37,16 @@ See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 {% include send-all-bids-keyword-targeting.md %}
 
 {: .bg-info :}
-In this example we will use DFP setup to illustrate, but the steps are basically the same for any ad server.
+In this example we will use Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
 
 ## Step 1. Add an order
 
-In DFP, create a new order for one of the header bidding partners. Each header bidding partner should have its own DFP order. Repeat this step and the following when you are adding a new header bidding partner.
+In Google Ad Manager, create a new order for one of the header bidding partners. Each header bidding partner should have its own Google Ad Manager order. Repeat this step and the following when you are adding a new header bidding partner.
 
 
 ## Step 2. Add a line item
 
-In DFP, create a new order with a $0.50 line item.
+In Google Ad Manager, create a new order with a $0.50 line item.
 
 Enter all of the inventory sizes that your website has.
 
@@ -121,7 +121,7 @@ Make sure the creative size is set to 1x1.  This allows Prebid to set up size ov
 
 **Prebid universal creative code for other ad servers**
 
-If you're using an ad server other than DFP, your code snippet will look similar to one of the following:
+If you're using an ad server other than Google Ad Manager, your code snippet will look similar to one of the following:
 
 For Mopub:
 
@@ -201,7 +201,7 @@ Save the creative and go back to the line item.
 
 ## Step 5. Duplicate Creatives
 
-DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
+Google Ad Manager has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
 
 Let's say your page has 4 ad units.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
 
