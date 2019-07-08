@@ -106,7 +106,7 @@ pbjs.setConfig({
                 url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
             },
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "pbjs-unifiedid",       // create a cookie with this name
                 expires: 60                   // cookie can last for 60 days
             }
@@ -153,7 +153,7 @@ pbjs.setConfig({
 
 This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
-There is no special registration or configuration for PubCommon ID. 
+There is no special registration or configuration for PubCommon ID.
 
 ### PubCommon ID Examples
 
@@ -165,7 +165,7 @@ pbjs.setConfig({
         userIds: [{
             name: "pubCommonId",
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "_pubCommonId",       // create a cookie with this name
                 expires: 1825               // expires in 5 years
             }
@@ -185,13 +185,13 @@ pbjs.setConfig({
                 partner: "myTtdPid"
             },
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "pbjs-unifiedid"       // create a cookie with this name
             }
         },{
             name: "pubCommonId",
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "pbjs-pubCommonId"     // create a cookie with this name
             }
         }],
@@ -203,7 +203,7 @@ pbjs.setConfig({
 
 ## DigiTrust
 
-[DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default. 
+[DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default.
 
 ### DigiTrust Registration
 
@@ -224,7 +224,7 @@ DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/mod
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the DigiTrust ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"digitrustid": {"data":{"id": "1111", ...}}}` |
 
 Please consult the [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html) page for details on
-DigiTrust parameters and usage. For more complete instructions please review the 
+DigiTrust parameters and usage. For more complete instructions please review the
 [Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
 
 ### DigiTrust Examples
@@ -238,7 +238,7 @@ pbjs.setConfig({
         userIds: [{
             name: "pubCommonId",
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "_pubCommonId",       // create a cookie with this name
                 expires: 1825               // expires in 5 years
             },
@@ -276,21 +276,24 @@ Other examples:
 
 ## ID5 ID
 
-The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching. For more information about the ID5 ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
 
-### Registration
+### ID5 ID Registration
 
-The ID5 ID is free to use, but requires a simple registration with ID5. Please reach out to [prebid@id5.io](mailto:prebid@id5.io) to sign up and request your `partnerId`.
+The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/prebid](https://id5.i5/prebid) to sign up and request your ID5 Partner Number to get started.
 
-### Configuration
+### ID5 ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| params | Required | Object | Details for ID5Id. | |
-| params.partner | Required | Number | This is the ID5 partner ID value obtained from registering with ID5. | `173` |
+| params | Required | Object | Details for the ID5 ID. | |
+| params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
 
-### Examples
+{: .alert.alert-info :}
+NOTE: The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.expires` to `5` days to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+
+### ID5 ID Examples
 
 1) Publisher wants to retrieve the ID5 ID through Prebid.js
 
@@ -300,15 +303,16 @@ pbjs.setConfig({
         userIds: [{
             name: "id5Id",
             params: {
-                partner: 173
+                partner: 173            // change to the Partner Number you received from ID5
             },
             storage: {
                 type: "cookie",
                 name: "pbjs-id5id",     // create a cookie with this name
-                expires: 45             // cookie can last for 45 days
+                expires: 5              // cookie can last for 5 days to ensure it is
+                                        // encrypted with the latest key from ID5
             }
         }],
-        syncDelay: 5000                 // 5 seconds after the first bidRequest()
+        syncDelay: 1000                 // 1 second after the first bidRequest()
     }
 });
 {% endhighlight %}
