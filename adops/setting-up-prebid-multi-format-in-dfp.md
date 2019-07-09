@@ -27,7 +27,7 @@ For instructions on how to set up multi-format ads from the engineering side, se
 
 ## Step 1. Add an Ad Unit
 
-In Google Ad Manager, [create an ad unit](https://support.google.com/dfp_premium/answer/177203?hl=en).
+In Google Ad Manager, [create an ad unit](https://support.google.com/admanager/answer/177203).
 
 Decide what combination of formats will be permitted on the ad unit.  This will determine what sizes you allow to serve.  The ad unit's sizes must be configured properly to support the combination of formats that will be permitted.
 
@@ -70,7 +70,7 @@ Follow the instructions for creating line items, creatives, custom native format
 + Make sure you're targeting the right sizes for the native ads you want to serve:
     + Fixed-size native, where you specify one or more absolute sizes
     + Fluid, which expands to fit whatever space it's put in
-    + For more information on fluid vs. fixed, see [the Google Ad Manager docs](https://support.google.com/dfp_premium/answer/6366914?hl=en)
+    + For more information on fluid vs. fixed, see [the Google Ad Manager docs](https://support.google.com/admanager/answer/6366914)
 
 ## Related Topics
 

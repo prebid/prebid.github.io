@@ -504,14 +504,14 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 | customSlotMatching | Optional | `function` | gets a GoogleTag slot and returns a filter function for adUnitCode. |
 
 The `customSlotMatching` parameter allows flexibility in deciding which div id
-the ad results should render into. Instead of setting the timeout of auctions 
+the ad results should render into. Instead of setting the timeout of auctions
 short to make sure they get good viewability, the logic can find an appropriate placement for the auction
 result depending on where the user is once the auction completes.
 
 ```
 // returns a filter function that matches either with the slot or the adUnitCode
 // this filter function is being invoked after the auction has completed
-// this means that it can be used in order to place this within viewport instead of a static div naming 
+// this means that it can be used in order to place this within viewport instead of a static div naming
 // which regular classic setup allows (by default the its looking for a div id named same as the adUnitCode)
 
 // slot is in view according to the divInView() function
@@ -2069,7 +2069,7 @@ One or both of options.params and options.url is required. In other words, you m
 | `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
 | `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
 
-For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/dfp_premium/answer/1068325?hl=en).
+For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
 #### Examples
 

@@ -83,6 +83,6 @@ That's it as far as Prebid setup is concerned.  At this point you can add any ot
 ## Further Reading
 
 + [Show Video Ads with Google Ad Manager]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html) (Engineering setup)
-+ [Create a Master Video Tag Manually](https://support.google.com/dfp_premium/answer/1068325?hl=en&ref_topic=2480647) (Google Ad Manager)
++ [Create a Master Video Tag Manually](https://support.google.com/admanager/answer/1068325?hl=en&ref_topic=2480647) (Google Ad Manager)
 + [Add Key-Values to a Master Video Ad Tag](https://support.google.com/dfp_premium/answer/1080597) (Google Ad Manager)
-+ [Google Ad Manager Macros](https://support.google.com/dfp_premium/answer/1242718) (Google Ad Manager)
++ [Google Ad Manager Macros](https://support.google.com/admanager/answer/2376981) (Google Ad Manager)
