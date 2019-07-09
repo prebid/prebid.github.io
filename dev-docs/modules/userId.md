@@ -62,7 +62,7 @@ of sub-objects. The table below has the options that are common across ID system
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, or `"id5id"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
-| storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or Id system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
