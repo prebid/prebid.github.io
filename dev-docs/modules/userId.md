@@ -280,7 +280,7 @@ The ID5 ID is a neutral identifier for digital advertising that can be used by p
 
 ### ID5 ID Registration
 
-The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/prebid](https://id5.i5/prebid) to sign up and request your ID5 Partner Number to get started.
+The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/prebid](https://id5.io/prebid) to sign up and request your ID5 Partner Number to get started.
 
 ### ID5 ID Configuration
 
