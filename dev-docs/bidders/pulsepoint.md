@@ -24,7 +24,7 @@ media_types: banner, video, native
 | `video`    | required | Required for video requests. OpenRTB Video object.    | `{ w: 400, h: 300 }`         | `object`            |
 
 ### Video parameters
-Parameters on the Video object in Bid params for PulsePoint. [OpenRTB 2.5]((https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)) Video object specification is used. Below are some sample parameters from the OpenRTB Video specs.
+Parameters on the Video object in Bid params for PulsePoint. [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Video object specification is used. Below are some sample parameters from the OpenRTB Video specs.
 
 
 {: .table .table-bordered .table-striped }
