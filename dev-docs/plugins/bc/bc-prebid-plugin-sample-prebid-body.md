@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player API
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded
 
@@ -116,4 +116,4 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
 
 ```
 
-</div>
+

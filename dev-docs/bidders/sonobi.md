@@ -2,21 +2,18 @@
 layout: bidder
 title: Sonobi
 description: Prebid Sonobi Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: sonobi
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: video
 gdpr_supported: true
+userIds: pubCommon, unifiedId/tradedesk
 ---
 
 ### Note:
 The Sonobi Bidder adapter requires setup and approval from your Sonobi Account Manager. If you require assistance
 implementing our adapter please don't hesitate to contact us at apex.prebid@sonobi.com.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                    | Example                          | Type           |

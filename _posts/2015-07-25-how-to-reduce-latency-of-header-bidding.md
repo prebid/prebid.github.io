@@ -23,7 +23,7 @@ Here're a few screenshots of websites' network calls after implemented header bi
 
 ####Blocking Call Screenshot 1
 
-![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-blocking-1.png)
+![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-blocking-1.png){: .pb-lg-img }
 
 * All header bidding requests combined took 4 seconds to load!
 * Users have to wait for 4 seconds of blank space in their web browser before any content can load.
@@ -32,7 +32,7 @@ Here're a few screenshots of websites' network calls after implemented header bi
 
 ####Blocking Call Screenshot 2
 
-![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-blocking-2.png)
+![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-blocking-2.png){: .pb-lg-img }
 
 * All header bidding requests in total took 1 second to load. 
 * However, if all calls are made asynchrnously, latency can be dramatically reduced.
@@ -41,7 +41,7 @@ Here're a few screenshots of websites' network calls after implemented header bi
 
 ### After prebid.js's acceleration:
 
-![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-concurrent.png)
+![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-concurrent.png){: .pb-lg-img }
 
 * #####All Pre-bid Calls are made concurrently within 100ms.
 

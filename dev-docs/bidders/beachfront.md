@@ -2,17 +2,14 @@
 layout: bidder
 title: Beachfront
 description: Prebid Beachfront Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: beachfront
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: video
 gdpr_supported: true
+userIds: unifiedId/tradedesk
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                                                 | Example                                  | Type     |
@@ -21,6 +18,7 @@ gdpr_supported: true
 | `bidfloor` | required | Bid floor                                                                                   | `0.01`                                   | `float`  |
 | `video`    | optional | Object with video parameters. See the [video section below](#beachfront-video) for details. |                                          | `object` |
 | `banner`   | optional | Object with banner parameters. See the [banner section below](#beachfront-banner) for details. |                                       | `object` |
+| `player`   | optional | Object with outstream player parameters. See the [player section below](#beachfront-player) for details. |                             | `object` |
 
 <a name="beachfront-video"></a>
 
@@ -44,3 +42,14 @@ gdpr_supported: true
 |------------|----------|-----------------------------------------|------------------------------------------|----------|
 | `appId`    | optional | Beachfront Exchange ID for banner bids. | `'3b16770b-17af-4d22-daff-9606bdf2c9c3'` | `string` |
 | `bidfloor` | optional | Bid floor for banner bids. | `0.01` | `float` |
+
+<a name="beachfront-player"></a>
+
+### player params
+
+{: .table .table-bordered .table-striped }
+| Name       | Scope    | Description                             | Example                                  | Type     |
+|------------|----------|-----------------------------------------|------------------------------------------|----------|
+| `progressColor` | optional | The color of the progress bar formatted as a CSS value. | `#50A8FA` | `string` |
+| `expandInView` | optional | Defines whether to expand the player when the ad slot is in view. Defaults to `false`. | `false` | `boolean` |
+| `collapseOnComplete` | optional | Defines whether to collapse the player when ad playback has completed. Defaults to `true`. | `true` | `boolean` |

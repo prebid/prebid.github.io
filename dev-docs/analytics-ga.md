@@ -1,6 +1,6 @@
 ---
 redirect_to: "/overview/analytics.html"
-layout: page
+layout: page_v2
 title: Analytics with GA
 description: Prebid.js Analytics with GA
 pid: 30
@@ -9,7 +9,7 @@ nav_section: reference
 hide: true
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Analytics with GA
 {: .no_toc}
@@ -147,8 +147,7 @@ Install the [Google Analytics Spreadsheet Add-on](https://developers.google.com/
 
 Make a local copy of the [Demo Dashboard](https://docs.google.com/spreadsheets/d/11czzvF5wczKoWGMrGgz0NFEOM7wsnAISbp_MpmGzogU/edit?usp=sharing).
 
-{: .pb-lg-img :}
-![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-copy-dashboard.png)
+![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-copy-dashboard.png){: .pb-lg-img :}
 <br>
 <br>
 
@@ -156,21 +155,18 @@ Make a local copy of the [Demo Dashboard](https://docs.google.com/spreadsheets/d
 
 In your local copy, go to the **Report Configuration** tab, update the GA profile ID (you should be able to get this ID from Step 1)
 
-{: .pb-lg-img :}
-![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-report-config.png)
+![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-report-config.png){: .pb-lg-img :}
 
 <br>
 
 #### Step 4. Run the Report
 
-{: .pb-lg-img :}
-![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-run-report.png)
+![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-run-report.png){: .pb-lg-img :}
 
 <br>
 
 #### Step 5. (Optional) Schedule a Daily Report
 
-{: .pb-lg-img :}
-![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-schedule-report.png)
+![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-schedule-report.png){: .pb-lg-img :}
 
-</div>
+

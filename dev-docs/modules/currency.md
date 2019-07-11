@@ -1,22 +1,23 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - Currency
 description: Converts bids to the ad server currency
-top_nav_section: dev_docs
-nav_section: modules
 module_code : currency
 display_name : Currency
 enable_download : true
+sidebarType : 1
+
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Currency Module
 {:.no_toc}
 
 This module supports the conversion of multiple bidder currencies into a single currency
 used by the publisher's ad server. In previous versions of Prebid, this was accomplished
-by using [BidderSettings.bidCpmAdjustment](http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings), but that's a static value not changed except when
+by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings), but that's a static value not changed except when
 the web development team makes a manual update.
 
 Publishers may continue to use the bidCpmAdjustment approach, or may begin using this optional module, gaining automatic updates as currency exchange rates fluctuate. Here's how it works at a high level:
@@ -33,7 +34,7 @@ be provided in the page.
 
 The numbered circles in this diagram are explained below.
 
-![Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png)
+![Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png){:class="pb-lg-img"}
 
 
 ### 1. Line Item Creation
@@ -254,7 +255,7 @@ a currency object that may contain several parameters:
 
 ### Prebid.org's currency file
 
-Prebid.org hosts a conversion file at [https://currency.prebid.org/latest.json](https://currency.prebid.org/latest.json). The currencies currently supported are: AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
+Prebid.org hosts a conversion file at [https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json](https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json). The currencies currently supported are: AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
 
 {: .alert.alert-warning :}
 The currencies on this list could change if the underlying API source changes. If a desired currency isn't on this list, you will need to generate and host your own conversion file.
@@ -294,13 +295,14 @@ the file will be loaded well before bids return.
 
 **What happens if the file doesn't load on time or not at all or doesn't contain a necessary conversion?**
 
-If the currency feature is turned on and the file's not back by the time the system
-needs to convert a bid, that bid is queued until the currency file has loaded.
+If the currency feature is turned on and the conversion file's not back by the time the system
+needs to convert a bid, the `defaultRates` will be used. If there aren't any `defaultRates`, bids are queued
+until the currency file has loaded.
 
-The bid is also skipped if the file doesn't contain a conversion from the bid currency
+If the Prebid timeout occurs while bids are still on the queue, they will be skipped rather than passed to the ad server.
+
+A bid is also skipped if the file (or `defaultRates`) doesn't contain a conversion from the bid currency
 to the ad server currency.
-
-If the timeout occurs while bids are still on the queue, they will be skipped rather than passed to the ad server.
 
 **Can I use the DFP Secondary Currency Feature instead?**
 
@@ -316,4 +318,4 @@ If there's a currency conversion you need that's not included, there are several
 1. Build and host a currency conversion file that includes the desired currencies
 1. Find a reliable, free, no-strings source of conversation data that we can integrate into our hosted file, then post an issue on the github forum.
 
-</div>
+

@@ -1,13 +1,11 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Options Supported by the Brightcove Prebid Plugin
 description: Ad Unit Reference
 top_nav_section: dev_docs
 nav_section: plugins
 pid: 10
 ---
-
-<div class="bs-docs-section" markdown="1">
 
 # Prebid Options Supported by the Brightcove Prebid Plugin
 
@@ -35,6 +33,9 @@ When configuring prebid options for more than one ad break, create an array of P
 - [enablePrebidCache](#enablePrebidCache)
 - [label](#labeloption)
 - [scriptLoadTimeout](#scriptLoadTimeout)
+- [prebidPluginPath](#prebidPluginPath)
+- [adapters](#pb-adapters)
+- [loggerLevel](#loggerLevel)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -487,6 +488,103 @@ No
 
 `options1.scriptLoadTimeout = 5000;`
 
+<a name="prebidPluginPath"></a>
+### prebidPluginPath
+
+**Description:**
+
+Allows the user to specify a custom path used to load the Prebid plugin script.  This option could be used when you are building custom or test versions of the plugin that you want to try out.
+
+In version 0.4, the original plugin was split into a loader and the main plugin.  The loader is the file that you specify when embedding the plugin into the player.  The loader will then load the main plugin itself at runtime.  This separation simplifies the process of debugging the plugin, especially when the plugin is embedded directly into the player in Brightcove Studio.  It also means that when updates are published for the plugin, publishers will be able to pick up the updates without having to re-publish their players.
+
+When registering the plugin to the Brightcove Player, you should continue to use the original path to the plugin.  This is now the path to the loader.  By default, this path is: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js`.
+
+Also, by default, the loader will load in the plugin from: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`.
+
+However, if you are trying to run custom or trial versions of the plugin, you can specify the path to this trial version using this new option: `prebidPluginPath`.
+
+**Acceptable Values:**
+
+String that represents the full path to a version of the custom or trial Prebid plugin.
+
+**Required?**
+
+No.
+
+**Default Value:**
+
+http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
+
+**Example:**
+
+`options1.prebidPluginPath = 'https://your-path/bc_prebid_vast_plugin.js';`
+
+<a name="pb-adapters"></a>
+### adapters
+
+**Description:**
+
+Adapters are a mechanism that a publisher can use to add some specific behavior at runtime to customize the behavior of the Prebid plugin.  
+
+The `adapters` option defines a list of adapters that the publisher would like the Prebid plugin to load and execute.
+
+See [How To Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html) for details on how to build an adapter.
+
+**Acceptable Values:**
+
+If specified, the value of this option should be an array containing one or more adapter definitions.
+
+Each adapter definition is specified as an object with the following fields:
+
+- id: A string that uniquely identifies an adapter.  The adapter will then create itself as a variable on the window object of the document where it is loaded.  This should also be the identifier that the adapter code itself knows.
+- url: A string which specifies the URL used to load the adapter script.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+No default value. If this option is not specified with a valid value, then the plugin will not load and start any adapters.
+
+**Example:**
+
+`options.adapters = [{id : 'my-adapter', url : 'https://my-path/my-plugin-adapter.js'}]`
+
+<a name="loggerLevel"></a>
+### loggerLevel
+
+**Description:**
+
+The `loggerLevel` is used to control the amount of information that is emitted by the plugin into the browser’s console.log.  These levels correspond roughly to the log levels supported by many of the browsers.
+
+{% capture noteAlert %} It is not recommended to set the `loggerLevel` to 0 (silent). {% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+**Acceptable Values:**
+
+Use one of the following integer values to set `loggerLevel`:
+
+- 0 = Silent (not recommended)
+- 1 = Always (trace messages that are always reported, e.g. Version Number)
+- 2 = Error level
+- 3 - Warn
+- 4 = Info
+- 5 = Log
+- 6 = Verbose
+
+**Required?**
+
+No
+
+**Default Value:**
+
+1 (meaning that version number and other “always” reported messages will be emitted to the console.log.)
+
+**Example:**
+
+`options.loggerLevel = 6`
 
 <a name="set-up-params">
 ### Setting Up Prebid Parameters

@@ -1,15 +1,13 @@
 ---
-layout: page
+layout: page_v2
 title: Plugins
 description: External Plugins
-top_nav_section: dev_docs
-nav_section: interfaces
-pid: 28
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# External Plugins
+
+# Prebid.js External Plugins
 
 Plugins are software components (that can consist of multiple modules) that allow you to extend the functionality of an application. Plugins can be used to enable an application, such as a video player, to work with Prebid.js to implement a pre-bidding solution.
 
@@ -29,6 +27,7 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Prebid Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)
     -   [Render Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)
     -   [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)
+    -   [Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html)
 
 -   **Samples**
     -   [Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)
@@ -37,5 +36,3 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Brightcove Prebid Plugin - Sample Integration Using General Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-general-method.html)
     -   [Brightcove Prebid Plugin - Sample Integration Using Configured Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method.html)
     -   [Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)
-
-</div>

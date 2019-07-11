@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Setting up Prebid with the AppNexus Publisher Ad Server
 head_title: Setting up Prebid with the AppNexus Publisher Ad Server
 description: Setting up Prebid with the AppNexus Publisher Ad Server
@@ -7,10 +7,11 @@ pid: 3
 hide: false
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
 
+    
 # Setting up Prebid with the AppNexus Publisher Ad Server
 {: .no_toc}
 
@@ -74,8 +75,7 @@ Follow the creative setup instructions in [Add Creatives](https://console.appnex
 
 - Paste the code snippet shown below into the code box.
 
-{: .pb-img.pb-lg-img :}
-![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png)
+![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png) {: .pb-lg-img :}
 
 {% highlight html %}
 <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
@@ -90,7 +90,7 @@ Follow the creative setup instructions in [Add Creatives](https://console.appnex
   ucTagData.mediaType = "#{HB_FORMAT}";
   ucTagData.env = "";
   ucTagData.size = "#{HB_SIZE}";
-
+  ucTagData.hbPb = "#{HB_PB}";
   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -102,6 +102,11 @@ Follow the creative setup instructions in [Add Creatives](https://console.appnex
 {: .alert.alert-warning :}
 **Creative Expiration**  
 Note that creatives are automatically marked as inactive by the AppNexus systems after 45 days of inactivity.  This may happen to Prebid creatives since they are loaded relatively infrequently compared to other use cases.  For help with mitigating this issue, please contact your AppNexus representative.
+
+{: .alert.alert-warning :}
+**SafeFrame**
+If you want your creative to serve into a SafeFrame, this will need to be enabled on the site-side of the Prebid.js implementation rather than as a setting in the ad server.  A developer can learn how to enable this setting for the publisher by referencing [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).  Additionally if the AppNexus ad server tags are configured to use SafeFrames, you **will** need to use the above creative template to properly render the creative.  Earlier versions of the Prebid.js creative template may not be fully SafeFrame compliant (if they are still in-use from older setups), so it is recommended to switch to the above template in this scenario.
+
 
 ## Step 3. Set up Line Items
 
@@ -143,8 +148,8 @@ It will also make it easy to turn the targeting on and off for a given placement
 
 ## Related Topics
 
-+ [Getting Started with Prebid.js for Header Bidding]({{site.github.url}}/adops.html)
++ [Getting Started with Prebid.js for Header Bidding]({{site.github.url}}/overview/getting-started.html)
 
 + [Using Prebid.js with AppNexus as your Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)
 
-</div>
+

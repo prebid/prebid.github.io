@@ -2,14 +2,11 @@
 layout: bidder
 title: REXRTB
 description: Prebid REXRTB Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: rexrtb
-prebid_1_0_supported : true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

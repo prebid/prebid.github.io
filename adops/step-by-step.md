@@ -1,18 +1,23 @@
 ---
-layout: page
+layout: page_v2
 title: Send Top Bid to Adserver
 head_title: Getting Started with Prebid.js for Header Bidding
 description: An overview of Prebid.js, how it works, basic templates and examples, and more.
-pid: 1
-top_nav_section: adops
-nav_section: tutorials
+sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Step by step guide to DFP setup
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/-bfI24_hwZ0?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+<div id="youtube">
+<h2>(Sorry, YouTube videos aren't available with your cookie privacy settings.)</h2>
+<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+</div>
+
+<script type="text/javascript">
+Optanon.InsertHtml('<iframe width="853" height="480" src="https://www.youtube.com/embed/-bfI24_hwZ0?rel=0" frameborder="0" allowfullscreen="true"></iframe>', 'youtube', null, {deleteSelectorContent: true}, 3);
+</script>
 
 <div class="alert alert-danger" role="alert">
   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -29,20 +34,19 @@ In DFP, create a new order with a $0.50 line item.
 
 Enter all of the inventory sizes that your website has.
 
-{: .pb-img.pb-md-img :}
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/inventory-sizes.png)
+
+![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/inventory-sizes.png){: .pb-md-img :}
 
 Because header bidding partners return prices, set the Line Item **Type** to **Price priority** to enable them to compete on price.
 
-{: .pb-img.pb-sm-img :}
-![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png)
+![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png){: .pb-sm-img :}
 
 <br>
 
 Set the **Rate** to $0.50 so that this line item will compete with your other demand sources at $0.50 ECPM.
 
-{: .pb-img.pb-sm-img :}
-![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png)
+
+![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png){: .pb-sm-img :}
 
 <br>
 
@@ -50,8 +54,8 @@ Set **Display Creatives** to *One or More* since we'll have one or more creative
 
 Set **Rotate Creatives** to *Evenly*.
 
-{: .pb-img.pb-md-img :}
-![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png)
+
+![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png){: .pb-sm-img :}
 
 Choose the inventory that you want to run header bidding on.
 
@@ -61,8 +65,8 @@ This line item will capture the bids in the range from $0.50 to $1 by targeting 
 
 **You must enter the value to two decimal places, e.g., `1.50`.  If you don't use two decimal places, header bidding will not work.**
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png)
+
+![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png){: .pb-lg-img :}
 
 <br>
 
@@ -82,7 +86,8 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.adServerDomain = "";
       ucTagData.pubUrl = "%%PATTERN:url%%";
       ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
-
+      ucTagData.hbPb = "%%PATTERN:hb_pb%%";
+      
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
@@ -90,10 +95,13 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       }
     </script>
 
-{: .pb-img.pb-lg-img :}
-![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png)
+
+![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
 Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.
+
+{: .alert.alert-warning :}
+Note that safeframes don't work with older versions of Prebid.js (v1.23 and before) in combination with recent versions of [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative).
 
 ## Step 3. Attach the Creative to the Line Item
 
@@ -101,15 +109,15 @@ Next, let's attach the creative to the $0.50 line item you just created.  Click 
 
 There will be yellow box showing each ad spot that you haven't uploaded creatives for yet.  Since you've already made the creatives, click **use existing creatives** next to each size.
 
-![Use existing creatives list]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-01.png)
+![Use existing creatives list]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-01.png){: .pb-lg-img :}
 
 In the pop-up dialog that appears, click **Show All** to remove the default size filters and see the 1x1 creatives. Include the prebid creative and click **Save**.
 
-![Use existing creatives dialog]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-02.png)
+![Use existing creatives dialog]({{ site.github.url }}/assets/images/demo-setup/use-existing-creatives-02.png){: .pb-lg-img :}
 
 Back in the line item, go into the **Creatives** tab again, and click into the creative you just added.
 
-Then, in the creative's **Settings** tab, override all sizes in the **Size overrides** field.
+Then, in the creative's **Settings** tab, enable the **Size overrides** field and set all your line item's potential sizes.
 
 Save the creative and go back to the line item.
 
@@ -117,13 +125,13 @@ Save the creative and go back to the line item.
 
 ## Step 4. Duplicate Creatives
 
-DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
+DFP has a constraint that one creative can be served to at most one ad slot in a single pageview (see [here](https://support.google.com/admanager/answer/183281?hl=en) for more details).
 
-Let's say your page has 4 ad units.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
+Let's say your page has 4 ad slots.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
 
 Therefore, we need to duplicate our Prebid creative 4 times.
 
-Once that's done, we have a fully functioning line item with 4 creatives attached.
+Once that's done, we have a fully functioning line item with 4 creatives attached that can potentially fill 4 ad slots of varying sizes during a single pageview.
 
 <br>
 

@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid.js Video Examples
 description: Prebid.js Video Examples
 pid: 1
 top_nav_section: pbjs-video
 nav_section: pbjs-video-examples
+sidebarType: 4
 ---
 
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Video Examples
 
@@ -23,6 +24,7 @@ nav_section: pbjs-video-examples
 -   [VideoJS](videojs-demo.html)
 -   [Kaltura](klt-demo.html)
 -   [Ooyala](ooyala-demo.html)
+-   [Brid Player](brid-player-demo.html)
 
 ### Prebid.js (using Prebid Server)
 
@@ -33,8 +35,15 @@ nav_section: pbjs-video-examples
 -   [Kaltura](kaltura-pbserver-demo.html)
 -   [VideoJS](videojs-pbserver-demo.html)
 -   [Ooyala](ooyala-pbserver-demo.html)
+-   [Brid Player](bridplayer-pbserver-demo.html)
 
 ## Outstream Video
 
 -   [Video with DFP](outstream/outstream-dfp.html)
 -   [Outstream Video without an Ad Server](outstream/outstream-no-adserver.html)
+
+
+## Long-Form Video   
+
+-   [Long-Form Video Using Freewheel](long-form/long-form-video-with-freewheel.html)
+
