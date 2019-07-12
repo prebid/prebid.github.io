@@ -14,6 +14,7 @@ There are several analytics adapter plugins available to track header bidding pe
 {: .table .table-bordered .table-striped }
 | Analytics Adapter                                                | Cost | Contact |
 | -------------                                                    | ------------- | ----------- |
+| Appier                                                           | Contact vendor | [Website](https://www.appier.com) |
 | Adagio                                                           | Contact vendor| [Website](https://adagio.io)|
 | Assertive Yield (contact for adapter) | Free to try (Large accounts $0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) |
 | Finteza Analytics | <a href="mailto: support@finteza.com">Contact vendor</a> | [Website](https://www.finteza.com/) |
@@ -23,13 +24,17 @@ There are several analytics adapter plugins available to track header bidding pe
 | LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
 | OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) |
 | PrebidAnalytics by Roxot                                         | Paid, see [pricing](http://prebidanalytics.com/#pricing). | [Website](http://prebidanalytics.com/overview-examples) |
+| [Prebid Manager](http://prebidmanager.com/) | Free trial and free up to a certain volume. See [pricing](http://prebidmanager.com/#pricing) | [Website](http://prebidmanager.com/) |
 | PubWise                                                          | Free & Paid, see [pricing](https://pubwise.io/pricing/)  | [Website](https://pubwise.io/pubwise/) |
 | PulsePoint                                                       | Contact vendor | [Website](https://www.pulsepoint.com/) |
 | RealVu                                                           | Free  | [Website](https://www.realvu.com/rvaa/) |
 | Rivr Analytics                                                   | Contact vendor | [Website](https://www.rivr.ai/)|
 | Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) |
+| Scaleable.ai Analytics                                           | Free & Paid | [Website](https://scaleable.ai) |
 | ShareThrough                                                     | Contact vendor | |
 | Sortable | Contact vendor | [Website](https://www.sortable.com) |
+| Sovrn | <a href="https://www.sovrn.com/contact/">Contact vendor</a> | [Website](https://www.sovrn.com/analytics/)|
+| STAQ | <a href="https://www.staq.com/contact">Contact vendor</a> | [Website](https://www.staq.com/)|
 | Vuble                                                            | Contact vendor | [Website](https://vuble.tv/us/prebid/) |
 | YuktaMedia Analytics                                             | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) | 
 

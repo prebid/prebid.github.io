@@ -36,12 +36,11 @@ The table below lists ad servers supported by Prebid and provides links to step 
 |              | [Setting up Prebid Native in DFP]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html)                                       |
 | **AppNexus** | [Setting up Prebid with the AppNexus Publisher Ad Server]({{site.baseurl}}/adops/setting-up-prebid-with-the-appnexus-ad-server.html) |
 | **Smart Ad Server** | [Setting up Prebid.js with Smart Ad Server]({{site.baseurl}}/adops/setting-up-prebidjs-with-Smart-Ad-Server.html) |
+| **FreeWheel** | [FreeWheel Guide for Premium Long-Form Video]({{site.baseurl}}/adops/setting-up-prebid-video-in-freewheel.html) |
 
 ## Decide on price bucket granularity
 
 On a publisher's selected server the ad ops team will need to setup line items. These line items provide targeting information for the ad server, to include the CPM per impression. Prebid will pass in a bid's targeting parameters via key-values. The ad server will read these incoming targeting parameters and search through the line items for a match. 
-
-*<span style="color: #ff0000">Old text: With pre-bid, you'll need to setup line items to tell your ad server how much money the “bidder” demand is worth to you. This process is done via key-values.</span>*
 
 Example:
 
@@ -111,7 +110,4 @@ Implementing header bidding requires much more collaboration with your dev team 
 
 - [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html): How Prebid.js works at a high level.
 - [What is Prebid?]({{site.baseurl}}/overview/intro.html): Overview and history of header bidding and Prebid.js.
-+ [Docs by Ad Server]({{site.baseurl}}/adops/docs-by-ad-server.html): Ad ops docs arranged by ad server.
 + [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
-
-

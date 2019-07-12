@@ -236,6 +236,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
     </label>
   </div>
@@ -284,6 +292,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
     </label>
   </div>
@@ -324,6 +340,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
     </label>
   </div>
@@ -344,6 +368,23 @@ Note: If you receive an error during download you most likely selected a configu
     </label>
   </div>
 </div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
+    </label>
+  </div>
+</div>
+
 
 <div class="col-md-4">
   <div class="checkbox">

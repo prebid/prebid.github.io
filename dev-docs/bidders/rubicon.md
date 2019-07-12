@@ -5,10 +5,11 @@ description: Rubicon Project Prebid Bidder Adaptor
 hide: true
 biddercode: rubicon
 gdpr_supported: true
+coppa_supported: true
 media_types: video
-userIds: unifiedId/tradedesk
+userIds: unifiedId/tradedesk, digitrust
+prebid_member: true
 ---
-
 
 ### Note:
 The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
