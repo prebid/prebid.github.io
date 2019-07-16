@@ -504,14 +504,14 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 | customSlotMatching | Optional | `function` | gets a GoogleTag slot and returns a filter function for adUnitCode. |
 
 The `customSlotMatching` parameter allows flexibility in deciding which div id
-the ad results should render into. Instead of setting the timeout of auctions 
+the ad results should render into. Instead of setting the timeout of auctions
 short to make sure they get good viewability, the logic can find an appropriate placement for the auction
 result depending on where the user is once the auction completes.
 
 ```
 // returns a filter function that matches either with the slot or the adUnitCode
 // this filter function is being invoked after the auction has completed
-// this means that it can be used in order to place this within viewport instead of a static div naming 
+// this means that it can be used in order to place this within viewport instead of a static div naming
 // which regular classic setup allows (by default the its looking for a div id named same as the adUnitCode)
 
 // slot is in view according to the divInView() function
@@ -1816,11 +1816,19 @@ The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to de
 
 ##### How it Works
 
-- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` array based on the `labels` defined. Ad units that don't match the label definition are dropped.
+- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties.  Once it determines the active label(s), it will then filter the `adUnit.bids` array based on the `labels` defined and whether the `banner` mediaType was included. Ad units that include a `banner` mediaType that don't match the label definition are dropped.
 - The required `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
 - If a label conditional (e.g. `labelAny`) doesn't exist on an ad unit, it is automatically included in all requests for bids.
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
 - The `adUnit.mediaTypes.banner.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.mediaTypes.banner.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.mediaTypes.banner.sizes`. (Note: size config will also operate on `adUnit.sizes`, however `adUnit.sizes` is deprecated in favor of `adUnit.mediaTypes`)
+
+###### Note on sizeConfig and different mediaTypes
+
+The sizeConfig logic only applies to `adUnits`/`bids` that include the `banner` `mediaType` (regardless of whether the request is single or multi-format).
+
+For example, if a request  contained the `banner` and `video` `mediaTypes` and it failed the label check, then the entire adUnit/bid would be dropped (including the `video` part of the request).  However if the same request passed the label check, then the `adUnit.mediaTypes.banner.sizes` would be filtered as per the matching sizeConfig and the multi-format request would proceed as normal.
+
+If the ad unit does not include `banner` `mediaType` at all, then the sizeConfig logic will not influence that ad Unit; it will automatically be passed into the auction.
 
 <a name="sizeConfig-Example" />
 
