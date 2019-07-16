@@ -88,7 +88,7 @@ object are detailed here.
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` | 
-| `size` | Required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. | `[300, 250]` | `Array<integer>` | 
+| `size` | Required for client-side serving | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Note that the 'ix' Prebid Server bid adpater ignores this parameter. | `[300, 250]` | `Array<integer>` | 
 
 ### Video
 
