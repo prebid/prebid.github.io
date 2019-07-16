@@ -7,8 +7,6 @@ nav_section: plugins
 pid: 10
 ---
 
-
-
 # Prebid Options Supported by the Brightcove Prebid Plugin
 
 ## Overview
@@ -36,6 +34,8 @@ When configuring prebid options for more than one ad break, create an array of P
 - [label](#labeloption)
 - [scriptLoadTimeout](#scriptLoadTimeout)
 - [prebidPluginPath](#prebidPluginPath)
+- [adapters](#pb-adapters)
+- [loggerLevel](#loggerLevel)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -519,6 +519,72 @@ http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
 
 `options1.prebidPluginPath = 'https://your-path/bc_prebid_vast_plugin.js';`
 
+<a name="pb-adapters"></a>
+### adapters
+
+**Description:**
+
+Adapters are a mechanism that a publisher can use to add some specific behavior at runtime to customize the behavior of the Prebid plugin.  
+
+The `adapters` option defines a list of adapters that the publisher would like the Prebid plugin to load and execute.
+
+See [How To Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html) for details on how to build an adapter.
+
+**Acceptable Values:**
+
+If specified, the value of this option should be an array containing one or more adapter definitions.
+
+Each adapter definition is specified as an object with the following fields:
+
+- id: A string that uniquely identifies an adapter.  The adapter will then create itself as a variable on the window object of the document where it is loaded.  This should also be the identifier that the adapter code itself knows.
+- url: A string which specifies the URL used to load the adapter script.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+No default value. If this option is not specified with a valid value, then the plugin will not load and start any adapters.
+
+**Example:**
+
+`options.adapters = [{id : 'my-adapter', url : 'https://my-path/my-plugin-adapter.js'}]`
+
+<a name="loggerLevel"></a>
+### loggerLevel
+
+**Description:**
+
+The `loggerLevel` is used to control the amount of information that is emitted by the plugin into the browser’s console.log.  These levels correspond roughly to the log levels supported by many of the browsers.
+
+{% capture noteAlert %} It is not recommended to set the `loggerLevel` to 0 (silent). {% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+**Acceptable Values:**
+
+Use one of the following integer values to set `loggerLevel`:
+
+- 0 = Silent (not recommended)
+- 1 = Always (trace messages that are always reported, e.g. Version Number)
+- 2 = Error level
+- 3 - Warn
+- 4 = Info
+- 5 = Log
+- 6 = Verbose
+
+**Required?**
+
+No
+
+**Default Value:**
+
+1 (meaning that version number and other “always” reported messages will be emitted to the console.log.)
+
+**Example:**
+
+`options.loggerLevel = 6`
 
 <a name="set-up-params">
 ### Setting Up Prebid Parameters
