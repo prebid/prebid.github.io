@@ -6,6 +6,7 @@ hide: true
 biddercode: pulsepoint
 gdpr_supported: true
 media_types: banner, video, native
+userIds: pubcommonId, unifiedId, digitrustId, id5Id
 ---
 
 
