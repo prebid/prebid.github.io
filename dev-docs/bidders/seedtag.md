@@ -1,16 +1,16 @@
 ---
 layout: bidder
-title: Seedtag
+title: seedtag
 description: Prebid Seedtag Bidder Adapter
 hide: true
 biddercode: seedtag
-aliasCode: st
+aliasCode: seedtag
 ---
 
 ### Note
 
-Please reach out to your seedtag account team before using this plugin.\
-The publisher id 0000-0000-01 returns demo responses.\
+Please reach out to your seedtag account team before using this plugin.  
+The publisher id 0000-0000-01 returns demo responses.
 
 
 ### Bid Params
@@ -25,7 +25,9 @@ The publisher id 0000-0000-01 returns demo responses.\
 | `video`             | optional for video  | Video targeting parameters. See the video section below.            | {}                    | `object` |
 
 ### Video Param
+
 All parameters are optional and correspond to the the OpenRTB 2.5 specification.
+
 {: .table .table-bordered .table-striped }
 | Name                | Example       |
 |---------------------|---------------|
@@ -42,8 +44,7 @@ All parameters are optional and correspond to the the OpenRTB 2.5 specification.
 | `delivery`          | [1]           |
 | `placement`         | 1             |
 
-
-### Banner example
+### Banner example
 
 ```js
 const adUnits = [
@@ -58,7 +59,7 @@ const adUnits = [
       {
         bidder: 'seedtag',
         params: {
-          publisherId: '0000-0000-01',   // required
+          publisherId: '0000-0000-01',      // required
           adUnitId: '0000',                 // required
           placement: 'banner',              // required
           adPosition: 0                     // optional
@@ -69,7 +70,7 @@ const adUnits = [
 ]
 ```
 
-### Video InStream Example
+### Video InStream Example
 
 ```js
 var adUnits = [{
@@ -84,24 +85,24 @@ var adUnits = [{
     {
       bidder: 'seedtag',
       params: {
-        publisherId: '0000-0000-01', // required
+        publisherId: '0000-0000-01',    // required
         adUnitId: '0000',               // required
         placement: 'video',             // required
         adPosition: 0,                  // optional
         // Video object as specified in OpenRTB 2.5
         video: {
-          mimes: ['video/mp4'], // recommended
-          minduration: 5,       // optional
-          maxduration: 60,      // optional
-          boxingallowed: 1,     // optional
-          skip: 1,              // optional
-          startdelay: 1,        // optional
-          linearity: 1,         // optional
-          battr: [1, 2],        // optional
-          maxbitrate: 10,       // optional
-          playbackmethod: [1],  // optional
-          delivery: [1],        // optional
-          placement: 1,         // optional
+          mimes: ['video/mp4'],         // recommended
+          minduration: 5,               // optional
+          maxduration: 60,              // optional
+          boxingallowed: 1,             // optional
+          skip: 1,                      // optional
+          startdelay: 1,                // optional
+          linearity: 1,                 // optional
+          battr: [1, 2],                // optional
+          maxbitrate: 10,               // optional
+          playbackmethod: [1],          // optional
+          delivery: [1],                // optional
+          placement: 1,                 // optional
         }
       }
     }
