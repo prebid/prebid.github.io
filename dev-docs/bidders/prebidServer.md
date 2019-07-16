@@ -44,3 +44,55 @@ Configuration options
 | `adapter`    | String        |           | Adapter code; default: `"prebidServer"`.                                  |
 | `secure`     | Integer       |           | Override Prebid Server's determination of whether the request needs secure assets. Set to `1` to force secure assets on the response, or `0` for non-secure assets. |
 | `adapterOptions` | Object       |           | Arguments will be added to resulting OpenRTB payload to Prebid Server. |
+
+### Examples
+
+**Video (Outstream):**
+Note that currently, outstream video rendering must be configured by the publisher. In the adUnit, a `renderer` object must be defined, which includes a `url` pointing to the video rendering script, and a `render` function for creating the video player. See http://prebid.org/dev-docs/show-outstream-video-ads.html for more information.
+
+```javascript
+var adUnits = [{
+    code: 'div-gpt-ad-1460505748561-0',
+    mediaTypes: {
+        video: {
+            playerSize: [640, 480],
+            context: 'outstream',
+            mimes: ['video/mp4']
+        }
+    },
+    bids: [
+        {
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232392,
+                video: {
+                    skippable: true,
+                    playback_method: ['auto_play_sound_off']
+                }
+            },
+
+        }
+    ],
+    renderer: {
+        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        render: function (bid) {
+            adResponse = {
+                ad: {
+                    video: {
+                        content: bid.vastXml,
+                        player_height: bid.playerHeight,
+                        player_width: bid.playerWidth
+                    }
+                }
+            }
+            // push to render queue because ANOutstreamVideo may not be loaded yet.
+            bid.renderer.push(() => {
+                ANOutstreamVideo.renderAd({
+                    targetId: bid.adUnitCode, // target div id to render video.
+                    adResponse: adResponse
+                });
+            });
+        }
+    }
+}];
+```
