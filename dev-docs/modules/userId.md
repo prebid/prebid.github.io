@@ -23,6 +23,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+* **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 
 ## How It Works
 
@@ -61,7 +62,7 @@ of sub-objects. The table below has the options that are common across ID system
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, or `"id5id"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
-| storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
@@ -325,6 +326,44 @@ pbjs.setConfig({
         userIds: [{
             name: "id5Id",
             value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
+        }]
+    }
+});
+{% endhighlight %}
+
+## Criteo RTUS
+
+Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
+
+### Criteo RTUS Registration
+
+In order to use a Criteo rtus id a bidder must reach out to Criteo and get their unique client identifier.
+
+### Criteo RTUS Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
+|--------------------------------|----------|--------|---------------------------------------------------------------------|----------------------|
+| params                         | Required | Object | Details of Criteo ID                                                |                      |
+| params.clientIdentifier        | Required | Object | Object containing bidder code as key and client identifier as value | `{ "appnexus": 30 }` |
+
+{: .alert.alert-info :}
+NOTE: Criteo user id's max age is 1 hour. Criteo rtus module makes a request to criteo endpoint every hour to fetch new user id. Do not use `params.storage` when adding configuration for criteortus. If you are using multiple id systems then you can use storage (if that id system supports it). Read more about the `storage` property under [Basic Configuration](#basic-configuration).
+
+### Criteo RTUS Example
+
+This example assumes the publisher is working with AppNexus as one of the demand partners and AppNexus has partnered with Criteo.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "criteortus",
+            params: {
+              clientIdentifier: {
+                "appnexus": 30
+              }
+            }
         }]
     }
 });
