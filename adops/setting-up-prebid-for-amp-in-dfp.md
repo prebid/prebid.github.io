@@ -50,7 +50,7 @@ Enter the below code snippet in the **Code snippet** text area.
 {: .alert.alert-success :}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
-{% highlight javascript %}
+{% highlight html %}
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -66,8 +66,15 @@ You can always get the latest version of the creative code below from [the AMP e
     console.log(e);
   }
 </script>
-
 {% endhighlight %}
+
+{% capture sendAllBidsAlert %}
+If you're using the `Send All Bids` scenario where every bidder has a separate
+order, the creative and targeting will be different. Please see [the Send All Bids](/adops/send-all-bids-adops.html) page for details.
+{% endcapture %}
+
+{% include alerts/alert_important.html content=sendAllBidsAlert %}
+
 
 
 ## Further Reading

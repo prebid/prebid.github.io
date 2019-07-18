@@ -96,6 +96,13 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
     </script>
 
 
+{% capture sendAllBidsAlert %}
+If you're using the `Send All Bids` scenario where every bidder has a separate
+order, the creative and targeting will be different. Please see [the Send All Bids](/adops/send-all-bids-adops.html) page for details.
+{% endcapture %}
+
+{% include alerts/alert_important.html content=sendAllBidsAlert %}
+
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
 Make sure the creative size is set to 1x1.  This allows us to set up size override, which allows this creative to serve on all inventory sizes.
