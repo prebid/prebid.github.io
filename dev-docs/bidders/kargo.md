@@ -4,7 +4,7 @@ title: Kargo
 description: Prebid Kargo Bidder Adaptor
 hide: true
 biddercode: kargo
-userIds: tradedesk
+userIds: unifiedId/tradedesk
 ---
 
 ### Note:
