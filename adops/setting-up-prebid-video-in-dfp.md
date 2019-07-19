@@ -48,7 +48,7 @@ Be sure to duplicate your line item and video creative for each Prebid price buc
 
 3\. Set the **VAST tag URL** to the cache location. Note that each bidder, e.g. Rubicon Project, may have a different cache location URL.
 
-If you're using a single order for all bidders, then the VAST URL will be the same:
+If you're using a single order for all bidders, then the VAST URL will be the same for each bidder:
 
 {% highlight html %}
    https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
