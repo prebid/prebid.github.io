@@ -77,9 +77,10 @@ var videoAdUnit = {
 
 ### 2. Implement Custom Price Buckets
 
-By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets using the [`setPriceGranularity`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#customCPMObject) method.
+By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets setting the [priceGranularity](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) object in the `setConfig` method.
 
-For instructions, see [Custom Price Bucket with `setPriceGranularity`]({{site.baseurl}}/dev-docs/examples/custom-price-buckets.html).
+For instructions and sample code, see [Custom Price Granularity Buckets
+](/dev-docs/examples/custom-price-buckets.html).
 
 ### 3. Request bids, build video URL
 
