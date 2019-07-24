@@ -23,6 +23,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+* **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **Identity Link** – it calls out to a URL that responds with user’s IdentityLink envelope. The result is stored in the user’s browser configurable storage for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 
 ## How It Works
@@ -62,7 +63,7 @@ of sub-objects. The table below has the options that are common across ID system
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `identityLink` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
-| storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
@@ -107,7 +108,7 @@ pbjs.setConfig({
                 url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
             },
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "pbjs-unifiedid",       // create a cookie with this name
                 expires: 60                   // cookie can last for 60 days
             }
@@ -154,7 +155,7 @@ pbjs.setConfig({
 
 This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
-There is no special registration or configuration for PubCommon ID. 
+There is no special registration or configuration for PubCommon ID.
 
 ### PubCommon ID Examples
 
@@ -166,7 +167,7 @@ pbjs.setConfig({
         userIds: [{
             name: "pubCommonId",
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "_pubCommonId",       // create a cookie with this name
                 expires: 1825               // expires in 5 years
             }
@@ -186,13 +187,13 @@ pbjs.setConfig({
                 partner: "myTtdPid"
             },
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "pbjs-unifiedid"       // create a cookie with this name
             }
         },{
             name: "pubCommonId",
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "pbjs-pubCommonId"     // create a cookie with this name
             }
         }],
@@ -204,7 +205,7 @@ pbjs.setConfig({
 
 ## DigiTrust
 
-[DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default. 
+[DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default.
 
 ### DigiTrust Registration
 
@@ -225,7 +226,7 @@ DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/mod
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the DigiTrust ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"digitrustid": {"data":{"id": "1111", ...}}}` |
 
 Please consult the [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html) page for details on
-DigiTrust parameters and usage. For more complete instructions please review the 
+DigiTrust parameters and usage. For more complete instructions please review the
 [Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
 
 ### DigiTrust Examples
@@ -239,7 +240,7 @@ pbjs.setConfig({
         userIds: [{
             name: "pubCommonId",
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "_pubCommonId",       // create a cookie with this name
                 expires: 1825               // expires in 5 years
             },
@@ -277,21 +278,24 @@ Other examples:
 
 ## ID5 ID
 
-The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching. For more information about the ID5 ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
 
-### Registration
+### ID5 ID Registration
 
-The ID5 ID is free to use, but requires a simple registration with ID5. Please reach out to [prebid@id5.io](mailto:prebid@id5.io) to sign up and request your `partnerId`.
+The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/prebid](https://id5.io/prebid) to sign up and request your ID5 Partner Number to get started.
 
-### Configuration
+### ID5 ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| params | Required | Object | Details for ID5Id. | |
-| params.partner | Required | Number | This is the ID5 partner ID value obtained from registering with ID5. | `173` |
+| params | Required | Object | Details for the ID5 ID. | |
+| params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
 
-### Examples
+{: .alert.alert-info :}
+NOTE: The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.expires` to `5` days to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+
+### ID5 ID Examples
 
 1) Publisher wants to retrieve the ID5 ID through Prebid.js
 
@@ -301,15 +305,16 @@ pbjs.setConfig({
         userIds: [{
             name: "id5Id",
             params: {
-                partner: 173
+                partner: 173            // change to the Partner Number you received from ID5
             },
             storage: {
                 type: "cookie",
                 name: "pbjs-id5id",     // create a cookie with this name
-                expires: 45             // cookie can last for 45 days
+                expires: 5              // cookie can last for 5 days to ensure it is
+                                        // encrypted with the latest key from ID5
             }
         }],
-        syncDelay: 5000                 // 5 seconds after the first bidRequest()
+        syncDelay: 1000                 // 1 second after the first bidRequest()
     }
 });
 {% endhighlight %}
@@ -385,6 +390,44 @@ pbjs.setConfig({
             }
         }],
         syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+## Criteo RTUS
+
+Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
+
+### Criteo RTUS Registration
+
+In order to use a Criteo rtus id a bidder must reach out to Criteo and get their unique client identifier.
+
+### Criteo RTUS Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
+|--------------------------------|----------|--------|---------------------------------------------------------------------|----------------------|
+| params                         | Required | Object | Details of Criteo ID                                                |                      |
+| params.clientIdentifier        | Required | Object | Object containing bidder code as key and client identifier as value | `{ "appnexus": 30 }` |
+
+{: .alert.alert-info :}
+NOTE: Criteo user id's max age is 1 hour. Criteo rtus module makes a request to criteo endpoint every hour to fetch new user id. Do not use `params.storage` when adding configuration for criteortus. If you are using multiple id systems then you can use storage (if that id system supports it). Read more about the `storage` property under [Basic Configuration](#basic-configuration).
+
+### Criteo RTUS Example
+
+This example assumes the publisher is working with AppNexus as one of the demand partners and AppNexus has partnered with Criteo.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "criteortus",
+            params: {
+              clientIdentifier: {
+                "appnexus": 30
+              }
+            }
+        }]
     }
 });
 {% endhighlight %}
@@ -472,6 +515,15 @@ If you're an ID provider that wants to get on this page:
 - Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
 - Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
 
+<a name="getUserIds"></a>
+
+### Exporting User IDs
+
+If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
+
+```
+pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
+```
 
 ## Further Reading
 

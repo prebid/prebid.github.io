@@ -80,6 +80,13 @@ Note that this has to be a **Third party** creative. The **"Serve into a Safefra
 
 Copy this creative code snippet and paste it into the **Code snippet** box.
 
+{% capture sendAllBidsAlert %}
+If you're using the `Send All Bids` scenario (where every bidder has a separate
+order), the creative and targeting will be different from the example shown here. See [Send All Bids](/adops/send-all-bids-adops.html) for details.
+{% endcapture %}
+
+{% include alerts/alert_important.html content=sendAllBidsAlert %}
+
     <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
       var ucTagData = {};
@@ -87,7 +94,7 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.pubUrl = "%%PATTERN:url%%";
       ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
       ucTagData.hbPb = "%%PATTERN:hb_pb%%";
-      
+
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
@@ -117,7 +124,7 @@ In the pop-up dialog that appears, click **Show All** to remove the default size
 
 Back in the line item, go into the **Creatives** tab again, and click into the creative you just added.
 
-Then, in the creative's **Settings** tab, override all sizes in the **Size overrides** field.
+Then, in the creative's **Settings** tab, enable the **Size overrides** field and set all your line item's potential sizes.
 
 Save the creative and go back to the line item.
 
@@ -125,13 +132,13 @@ Save the creative and go back to the line item.
 
 ## Step 4. Duplicate Creatives
 
-DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
+DFP has a constraint that one creative can be served to at most one ad slot in a single pageview (see [here](https://support.google.com/admanager/answer/183281?hl=en) for more details).
 
-Let's say your page has 4 ad units.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
+Let's say your page has 4 ad slots.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
 
 Therefore, we need to duplicate our Prebid creative 4 times.
 
-Once that's done, we have a fully functioning line item with 4 creatives attached.
+Once that's done, we have a fully functioning line item with 4 creatives attached that can potentially fill 4 ad slots of varying sizes during a single pageview.
 
 <br>
 
