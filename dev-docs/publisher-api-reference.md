@@ -1579,6 +1579,13 @@ Additional information of these properties:
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
 
+{: .alert.alert-warning :}
+**Errors in bidder parameters will cause Prebid Server to reject the
+entire request.** The Prebid Server philosophy is to avoid silent failures --
+we assume you will test changes, and that it will be easier to notice a
+4xx error coming from the server than a silent failure where it skips just
+the bad parameter.
+
 **Video via s2sConfig**
 
 Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid` object. e.g.
