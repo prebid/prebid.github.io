@@ -4,7 +4,6 @@ title: seedtag
 description: Prebid Seedtag Bidder Adapter
 hide: true
 biddercode: seedtag
-aliasCode: seedtag
 ---
 
 ### Note
