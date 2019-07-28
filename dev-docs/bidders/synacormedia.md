@@ -8,7 +8,7 @@ media_types: banner, video
 gdpr_supported: false
 ---
 
-### Note:
+### Note
 
 The Synacor Media bidder adapter requires setup and approval from Synacor. Please reach out to your account manager for more information and to start using it.
 
@@ -32,6 +32,7 @@ pbjs.setConfig({
 ```
 
 ### DFP Video Creative
+
 To use video, setup a `VAST redirect` creative within Google AdManager (DFP) with the following VAST tag URL:
 
 ```
@@ -50,6 +51,7 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm
 | `video` | optional | Optional properties specific to video, see next table | `{ }` | Object |
 
 ### Example Ad Unit
+
 ```javascript
 var adUnits = [{
     "code": "test-div",
@@ -90,4 +92,4 @@ var adUnits = [{
 | `mimes` | optional | Content MIME types supported. | `["video/mp4", "application/javascript"]` | Array(`String`) |
 | `protocols` | optional | Array of supported video protocols. | `[1,2,3,4,5,6,7]` | Array(`int`) |
 | `api` | optional | List of supported API frameworks for this impression. | `[1,2]` | Array(`int`) |
-
+| `playbackmethod` | optional | Single element array with supported playback methods for this video impression. If multiple values are supplied, first element will be used. | `[1]` | Array(`int`) |
