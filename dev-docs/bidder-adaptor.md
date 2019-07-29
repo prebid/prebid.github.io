@@ -35,7 +35,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the following required conventions:
 
 * *Support multiple instances*: All adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on mutable global variables.
-* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime. (there is a exception to this policy that can be reviewed [here](https://github.com/prebid/prebid-js-external-js-template#policy) )
+* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime.
 * *Must support HTTPS*: Within a secure page context, the request to the bidder's server must also be secure.
 * *Compressed responses*: All bid responses from the bidder's server must be gzipped.
 * *Bid responses may not use JSONP*: All requests must be AJAX with JSON responses.
