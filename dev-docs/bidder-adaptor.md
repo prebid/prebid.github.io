@@ -1,4 +1,4 @@
-:w---
+---
 layout: page_v2
 title: How to Add a New Bidder Adapter
 description: Documentation on how to add a new bidder adapter
