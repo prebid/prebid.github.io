@@ -32,7 +32,7 @@
       var adtag = null
       var timeout = 2000
       var asyncTag = function() {
-        if (adtag) return Promise.resolve(vastTag)
+        if (adtag) return Promise.resolve(adtag)
 
         return new Promise(function (resolve) {
           setTimeout(function() {
@@ -55,9 +55,9 @@
         },
         bids: [
           {
-            bidder: 'appnexusAst',
+            bidder: 'appnexus',
             params: {
-              placementId: '9333431', // Add your own placement id here
+              placementId: '13232361', // Add your own placement id here
               video: {
                 skipppable: true,
                 playback_method: ['auto_play_sound_off']
@@ -71,7 +71,10 @@
         pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
 
         pbjs.setConfig({
-          usePrebidCache: true
+          debug: true,
+          cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+          }
         });
 
         pbjs.requestBids({
@@ -91,37 +94,7 @@
           }
         });
       });
-
-      pbjs.bidderSettings =
-        {
-          standard: {
-            adserverTargeting: [
-              {
-                key: "hb_bidder",
-                val: function (bidResponse) {
-                  return bidResponse.bidderCode;
-                }
-              }, {
-                key: "hb_adid",
-                val: function (bidResponse) {
-                  return bidResponse.adId;
-                }
-              }, {
-                key: "hb_pb",
-                val: function (bidResponse) {
-                  return "10.00";
-                }
-              }, {
-                key: "hb_size",
-                val: function (bidResponse) {
-                  return bidResponse.size;
-
-                }
-              }
-            ]
-          }
-        };
-
+        
     </script>
 </head>
 
