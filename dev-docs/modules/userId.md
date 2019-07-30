@@ -25,6 +25,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
+* **Parrable ID** - A ... @TODO finish this section
 
 ## How It Works
 
@@ -61,7 +62,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `identityLink` | `"unifiedId"` |
+| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"`, `identityLink`, or `"parrableId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -432,6 +433,49 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+## Parrable ID
+
+The Parrable ID is @TODO finish this section
+
+### Parrable ID Registration
+
+Each Parrable Partner has a Client ID assigned by Parrable.  Please obtain the Parrable Partner Client ID from the vendor for each Parrable-aware bid adapter you will be using.
+
+### Parrable ID Configuration
+
+In addition to the parameters documented above in the Basic Configuration section:
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| params | Required | Object | Details for the Parrable ID. | |
+| params.partners | Required | Number | A list of Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them. | `[30182847-e426-4ff9-b2b5-9ca1324ea09b]` |
+
+{: .alert.alert-info :}
+NOTE: The Parrable ID that is delivered to Prebid will be encrypted by Parrable with a time-based key and updated frequently in the browser to enforce privacy requirements.
+We recommend setting `storage.expires` to `365` days to ... @TODO finish this statement (Rick: I like having the note about privacy requirements.  I'm less sure that we need to explain why we are picking a year for the cookie expiration. Leaving out a mention of avoiding unathorized use of our ID aka. distinermediation is intentional as that doesn't have clear value to the publisher.)
+
+### Parrable ID Examples
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "parrableId",
+            params: {
+                partners: `['30182847-e426-4ff9-b2b5-9ca1324ea09b']`        // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+            },
+            storage: {
+                type: "cookie",
+                name: "_parrable_eid",     // create a cookie with this name
+                expires: 365               // cookie can last for a year
+            }
+        }],
+        syncDelay: 1000
+    }
+});
+{% endhighlight %}
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -458,6 +502,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
+| Parrable ID | Parrable | bidRequest.userId.parrableid | `"01.1563917337.c4768012dbede44e96fa1b1c639faa18bf142dfa0e6e4298b1d0d93e11118a9c4c06f0cedce4d285cd754fc4d445d9bad30986fe9203d57eda26c0445d910b4275d8e4d84bd50ae4ebc3"` |
 
 For example, the adapter code might do something like:
 
