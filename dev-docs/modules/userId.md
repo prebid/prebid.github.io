@@ -502,7 +502,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
-| Parrable ID | Parrable | bidRequest.userId.parrableid | `"01.1563917337.c4768012dbede44e96fa1b1c639faa18bf142dfa0e6e4298b1d0d93e11118a9c4c06f0cedce4d285cd754fc4d445d9bad30986fe9203d57eda26c0445d910b4275d8e4d84bd50ae4ebc3"` |
+| Parrable ID | Parrable | bidRequest.userId.parrableid | `"01.1563917337.encrypted-value"` |
 
 For example, the adapter code might do something like:
 
