@@ -367,6 +367,4 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 
 ## Related Topics
 
-+ [Developer Troubleshooting Tips]({{site.github.url}}/dev-docs/troubleshooting-tips.html)
-
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
