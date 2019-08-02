@@ -1,28 +1,26 @@
 
-//   dynamicTable
+//   writeDynamicTable
 //
 //   Given an array of objects, this function
 //   writes a table with 1,2, or 4 columns depending on screen width
 //
-//   the <script> invocation takes these args
+//   the invocation takes these args
 //
-//   1) data-div is the div id
-//   2) data-array is the name of variable containing the data
-//   2) data-sort can be "colFirst" (the default) or "rowFirst"
+//   div is the div id
+//   data is the name of variable containing the data
+//   sort can be "colFirst" (the default) or "rowFirst"
+//   maxcols can set a max number of columns
 //
 //   Structure of the data-array:
 //   dynamicTableContents[{{x}}]={};
 //   dynamicTableContents[{{x}}].href="/dev-docs/bidders.html#{{page.biddercode}}";
 //   dynamicTableContents[{{x}}].text="{{page.biddercode}}";
 //
-//   The calling page should create this array then load this
-//   function with:
-//   <script src="/assets/js/dynamicTable.js" data-div="mydiv" data-array="dynamicTableContents" type="text/javascript"></script>
 
-function writeDynamicTable() {
+function writeDynamicTable(args) {
 
   // find the div where the table's going to be written
-  var divId=document.currentScript.getAttribute('data-div');
+  var divId=args.div;
   var destDiv;
   if (divId) {
     destDiv = document.getElementById(divId);
@@ -31,7 +29,7 @@ function writeDynamicTable() {
   }
 
   // find the name of the array that stores the data
-  var arrayName=document.currentScript.getAttribute('data-array');
+  var arrayName=args.data;
   var _tableContents;
   if (arrayName) {
     _tableContents=window[arrayName];
@@ -40,18 +38,22 @@ function writeDynamicTable() {
   }
 
   // find what order to sort the table
-  var sortType=document.currentScript.getAttribute('data-sort');
+  var sortType=args.sort;
   if (!sortType) {
 	sortType="colFirst";
   }
 
+  var maxCols=args.maxcols;
   var numCols=4;
   if ($(window).width() <= 414) {
     numCols=1;
   } else if ($(window).width() <= 768) {
     numCols=2;
   }
-  var numRows=Math.round((_tableContents.length / numCols)+0.5);
+ if (numCols > maxCols) {
+   numCols=maxCols;
+  }
+  var numRows=Math.round((_tableContents.length / numCols)+0.49);
 
   var tbl = document.createElement('table');
   tbl.style.width = '100%';
@@ -82,4 +84,3 @@ function writeDynamicTable() {
   tbl.appendChild(tbdy);
   destDiv.appendChild(tbl)
 }
-writeDynamicTable();

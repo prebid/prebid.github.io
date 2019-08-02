@@ -725,7 +725,7 @@
 
 - sbSecId: 2
   title: Banner Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html
+  link: /prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -734,7 +734,7 @@
 
 - sbSecId: 2
   title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html
+  link: /prebid-mobile/pbm-api/ios/pbm-interstitialadunit-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -798,7 +798,7 @@
 
 - sbSecId: 2
   title: Ad Unit
-  link: /prebid-mobile/pbm-api/android/adunit-android.html
+  link: /prebid-mobile/pbm-api/android/pbm-adunit-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -807,7 +807,7 @@
 
 - sbSecId: 2
   title: Banner Ad Unit
-  link: /prebid-mobile/pbm-api/android/banneradunit-android.html
+  link: /prebid-mobile/pbm-api/android/pbm-banneradunit-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -816,7 +816,7 @@
 
 - sbSecId: 2
   title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/android/interstitialadunit-android.html
+  link: /prebid-mobile/pbm-api/android/pbm-interstitialadunit-android.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0

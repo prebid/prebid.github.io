@@ -9,6 +9,7 @@ nav_section: reference
 hide: true
 
 biddercode: cleanmedia
+media_types: banner, video
 aliasCode: gamoshi
 ---
 
@@ -18,5 +19,3 @@ aliasCode: gamoshi
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
-
-CleanMedia is an aliased bidder for Gamoshi

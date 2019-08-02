@@ -18,5 +18,4 @@ gdpr_supported: true
 | `publisherId`    | required | The publisher ID.  | `"4204204201"` | `string` |
 | `placementId`    | required | The placement ID.  | `"0420420421"` | `string` |
 | `customData`     | optional | publisher key-values used for targeting | `{"key1": "value1", "key2": "value2"}` | `string` |
-| `ozoneData`      | optional | ozone key-values used for targeting | `{"key1": "value1", "key2": "value2"}` | `string` |
 | `lotameData`     | optional | lotame key-values used for targeting | `{"key1": "value1", "key2": "value2"}` | `string` |

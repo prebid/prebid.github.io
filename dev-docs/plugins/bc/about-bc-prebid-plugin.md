@@ -38,6 +38,13 @@ The Brightcove Prebid Plugin supports the following features:
   - If DFP is NOT detected as the primary ad server (indicated by the absence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the MailOnline Plugin will be used to render the ad.
   - Publishers can override this default behavior using the `adRenderer` option.  Publishers can define this option only once in the set of Prebid config options.  Additional specifications for this option will be ignored.
 
+- The plugin supports the use of one or more optional adapters.
+  - Adapters are a mechanism that a publisher can use to add some specific behavior at runtime to customize the behavior of the Prebid plugin.
+  - Adapters can be especially useful to modify the runtime behavior of the plugin when the plugin is configured with Brightcove Studio.
+  - Adapters are defined within the Prebid configuration parameters.  See [Prebid Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html#pb-adapters) for more details on how to specify the use of an adapter.
+  - See [How To Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html) for details on how to build an adapter.
+
+
 - Open source project
 
 If the MailOnline plugin is used to render the ads, the plugin will support the following UI features:
@@ -148,7 +155,7 @@ If your page includes more than one Brightcove Player within the same HTML docum
 {% include alerts/alert_note.html content=infoNote %}
 
 {% capture infoNote %}
-If you will be using the Brightcove IMA plugin as the ad renderer, either because DFP is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time.
+If you will be using the Brightcove IMA plugin as the ad renderer, either because DFP is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}

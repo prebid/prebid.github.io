@@ -25,6 +25,7 @@ sidebarType: 4
 -   [Kaltura](klt-demo.html)
 -   [Ooyala](ooyala-demo.html)
 -   [Brid Player](brid-player-demo.html)
+-   [Flowplayer](flowplayer-demo.html)
 
 ### Prebid.js (using Prebid Server)
 

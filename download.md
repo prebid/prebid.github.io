@@ -236,6 +236,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
     </label>
   </div>
@@ -332,6 +340,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
     </label>
   </div>
@@ -357,6 +373,14 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
     </label>
   </div>
 </div>
@@ -392,6 +416,21 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
 </div>
  {% endfor %}
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="criteortusIdSystem" class="bidder-check-box"> User ID: Criteo RTUS ID</label>
+</div></div>
 </div>
 
 <br>

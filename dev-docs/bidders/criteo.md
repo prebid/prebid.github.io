@@ -7,6 +7,7 @@ biddercode: criteo
 bidder_supports_deals: false
 media_types: native
 gdpr_supported: true
+prebid_member: true
 ---
 
 

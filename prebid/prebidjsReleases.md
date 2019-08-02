@@ -6,17 +6,21 @@ description: Noteworthy updates in Prebid.js
 sidebarType: 1
 ---
 
-## Prebid.js Releases
+## Important Prebid.js Releases
 
 Not every Prebid.js release contains noteworthy core features, and
-the [GitHub releases page](https://github.com/prebid/Prebid.js/releases) can be hard to search for when a given change or bugfix was made.
+the [GitHub releases page](https://github.com/prebid/Prebid.js/releases) can be hard to search for when an important change or bugfix was made.
 
-The table below is a summary of feature changes and important bug fixes in core Prebid.js.
+The table below is a summary of feature changes and important bug fixes in core of Prebid.js. Almost [all releases](https://github.com/prebid/Prebid.js/releases) have new bid adapters or updates to existing adapters -- what's listed here is limited to core functionality. Releases with only minor core changes may not be shown here, and releases with multiple important changes may be shown more than once.
 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
-| 2.10 | [User ID module](/dev-docs/modules/userId.html) |
+| 2.20 | AuctionEnd event now always execute when auction completes even when there's no callback handler |
+| 2.18 | Currency Module: always adding originalCpm and originalCurrency to bid object |
+| 2.17 | Ability to limit the size of keys sent to ad server via [targeting controls](http://prebid.org/dev-docs/publisher-api-reference.html#setConfig-targetingControls) |
+| 2.16 | [User ID module](/dev-docs/modules/userId.html) refactored to support external sub-modules |
+| 2.10 | [User ID module](/dev-docs/modules/userId.html) released with support for PubCommon ID and Unified ID |
 | 2.10 | A bidder which responded in time is now considered a timely bidder, even if it responded with no bids. See [PR 3696](https://github.com/prebid/Prebid.js/pull/3696) |
 | 2.9 | Add 'hb_cache_host' targeting for video bids when cache is set to support upcoming video cache redirector |
 | 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698)
