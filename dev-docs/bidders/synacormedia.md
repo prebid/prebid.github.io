@@ -77,7 +77,7 @@ var adUnits = [{
 }]
 ```
 
-### Video Parameters (see openrtb 2.5 spec)
+### Video Parameters (see OpenRTB 2.5 spec, all are optional)
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Default | Type |
