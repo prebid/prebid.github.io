@@ -30,7 +30,7 @@ MGID header bidding adapter connects with MGID demand sources to fetch bids for 
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
 | `accountId`  | required | The account ID from Mgid           | `'123'`    | `string` |
-| `placementId`| required | The placement ID from Mgid         | `'123456'` | `string` |
+| `placementId`| optional | The placement ID from Mgid         | `'123456'` | `string` |
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
 | `currency`   | optional | Currency of request and response   | `'GBP'`    | `string` |
 

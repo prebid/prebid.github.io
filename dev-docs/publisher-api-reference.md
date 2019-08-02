@@ -26,7 +26,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
-  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids
+  * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.getNoBids()](#module_pbjs.getNoBids)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
@@ -39,6 +39,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
@@ -60,9 +61,12 @@ This page has documentation for the public API methods of Prebid.js.
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
-  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
-  * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting)
-  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
+
+Functions added by optional modules
+
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
+  * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -466,7 +470,6 @@ pbjs.adServers.freewheel.getTargeting({
     }
 });
 ```
-
 #### Argument Reference
 
 ##### The `options` object
@@ -476,6 +479,21 @@ pbjs.adServers.freewheel.getTargeting({
 | --- | --- | --- | --- |
 | codes | Optional | `Array` |  [`adUnitCode1`] |
 | callback | Required | `Function` |  Callback function to execute when targeting data is back. |
+
+<hr class="full-rule">
+
+<a name="userId.getUserIds"></a>
+
+### pbjs.getUserIds() ⇒ Object
+
+{: .alert.alert-info :}
+To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
+
+If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
+
+```
+pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
+```
 
 <hr class="full-rule">
 
@@ -1560,6 +1578,13 @@ Additional information of these properties:
 - Currently supported vendors are: appnexus & rubicon
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
+
+{: .alert.alert-warning :}
+**Errors in bidder parameters will cause Prebid Server to reject the
+entire request.** The Prebid Server philosophy is to avoid silent failures --
+we assume you will test changes, and that it will be easier to notice a
+4xx error coming from the server than a silent failure where it skips just
+the bad parameter.
 
 **Video via s2sConfig**
 

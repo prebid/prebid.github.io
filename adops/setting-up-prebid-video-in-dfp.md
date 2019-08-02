@@ -48,11 +48,22 @@ Be sure to duplicate your line item and video creative for each Prebid price buc
 
 3\. Set the **VAST tag URL** to the cache location. Note that each bidder, e.g. Rubicon Project, may have a different cache location URL.
 
+If you're using a single order for all bidders, then the VAST URL will be the same for each bidder:
+
 {% highlight html %}
    https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
 or
    [other bidder cache location]
 {% endhighlight %}
+
+If you're using different orders for each bidder, the VAST URL for each will need to be different:
+
+{% highlight html %}
+   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid_BIDDERCODE%%
+or
+   [other bidder cache location]
+{% endhighlight %}
+
 
    {: .alert.alert-warning :}
    This VAST tag URL is **required** in order to show video ads.  It points to
@@ -63,12 +74,6 @@ or
    DFP will show you a warning that fetching VAST from the creative
    URL failed.  This is expected, since the creative URL above points
    to a server-side asset cache hosted by Prebid Server.
-
-   {: .alert.alert-warning :}
-   Note that `hb_cache_id` will be the video ad server targeting variable going forward.
-   In previous versions, mobile used `hb_cache_id` and video used `hb_uuid`. There will be a
-   transition period where both of these values are provided to the ad server.
-   Please begin converting video creatives to use `hb_cache_id`.
 
 4\. Set the **duration** to **1**
 
