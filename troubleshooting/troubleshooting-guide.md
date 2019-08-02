@@ -7,16 +7,16 @@ title: Prebid.js Troubleshooting Guide
 
 # Troubleshooting Prebid.js
 {:.no_toc}
-This guide will provide several sequential steps to help troubleshoot your Prebid.js integration. 
+This guide will provide several sequential steps to help troubleshoot your Prebid.js integration.
 
 {: .pb-alert .pb-alert-warning :}
 Prebid.org does not support any version of Prebid.js prior to version 1.0.
 
-1. TOC 
-{:toc} 
+1. TOC
+{:toc}
 <hr>
 
-## Check your Prebid version 
+## Check your Prebid version
 
 The open source code in Prebid.js can change frequently. To see what version of Prebid.js you are using, open your browser console and type `pbjs.version;`.
 
@@ -49,14 +49,14 @@ This will add two types of messages to your browser’s developer console:
 
 <hr>
 
-## Verify your config 
+## Verify your config
 
 In your browser Console tab, insert `pbjs.getConfig()` in the command line. Check for basic setup in the output, including:
  - selected timeout,  
- - selected priceGranularity. 
- 
+ - selected priceGranularity.
+
 ![Verfiy your config](/assets/images/troubleshooting/pbjs-check-config.png "Verfiy your config"){: height="70%"  width="70%" :}
- 
+
  <hr>
 
 ## Turn on your ad server’s developer console
@@ -113,7 +113,7 @@ You can also print this data to the console in [table format](/dev-docs/troubles
 
 ## Modify bid responses for testing
 
-Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`. 
+Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`.
 
 {: .pb-alert .pb-alert-warning :}
 This allows for easy testing of pages that immediately start auctions (most pages), but also means you need to remember to deactivate debugging when you are done (or clear your local storage / use incognito mode when testing).
@@ -126,7 +126,7 @@ javascript console> pbjs.setConfig({
     bidders: ['bidderA', 'bidderB']
   }
 });
-    
+
 // Overwriting bid responses for all bidders
 javascript console> pbjs.setConfig({
   debugging: {
@@ -136,7 +136,7 @@ javascript console> pbjs.setConfig({
     }]
   }
 });
-    
+
 // Overwriting bid responses for a specific bidder and adUnit code (can use either separately)
 javascript console> pbjs.setConfig({
   debugging: {
@@ -148,7 +148,7 @@ javascript console> pbjs.setConfig({
     }]
   }
 });
-    
+
 // Disabling debugging
 javascript console> pbjs.setConfig({
   debugging: {
@@ -156,6 +156,157 @@ javascript console> pbjs.setConfig({
   }
 });
 ```
+<hr>
+
+## List your Bids and Bidders
+
+Open your browser console and type `pbjs.getBidResponses();` to see a list of the ad units that have been configured.  This also shows what bids have been returned from each of the bidder partners in chronological order as shown in the screenshot below.
+
+To see all of the winning bids, open your browser console and type [`pbjs.getAllWinningBids();`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getAllWinningBids).
+
+{: .alert.alert-danger :}
+Keep in mind that any bid responses that come back after [the timeout you configured during setup]({{site.github.url}}/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
+
+{: .alert.alert-success :}
+You can also [print this data to the console in table format]({{site.baseurl}}/dev-docs/troubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
+
+![pbjs.getBidResponses() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()"){: .pb-lg-img :}
+
+<hr>
+
+## See all bids in the console
+
+To print information about all of the bids that come in to the Console on any page that is running Prebid.js, follow these steps.
+
+Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
+
+![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
+
+<br />
+
+Right-click to add a **New** snippet:
+
+![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
+
+<br />
+
+Paste in the following code using Control-V (or Command-V on Mac), and give the snippet a name, such as 'show-all-bids':
+
+```javascript
+(function() {
+  function forEach(responses, cb) {
+    Object.keys(responses).forEach(function(adUnitCode) {
+      var response = responses[adUnitCode];
+      response.bids.forEach(function(bid) {
+        cb(adUnitCode, bid);
+      });
+    });
+  }
+  var winners = pbjs.getAllWinningBids();
+  var output = [];
+  forEach(pbjs.getBidResponses(), function(code, bid) {
+    output.push({
+      bid: bid,
+      adunit: code,
+      adId: bid.adId,
+      bidder: bid.bidder,
+      time: bid.timeToRespond,
+      cpm: bid.cpm,
+      msg: bid.statusMessage,
+      rendered: !!winners.find(function(winner) {
+        return winner.adId==bid.adId;
+      })
+    });
+  });
+  forEach(pbjs.getNoBids && pbjs.getNoBids() || {}, function(code, bid) {
+    output.push({
+      msg: "no bid",
+      adunit: code,
+      adId: bid.bidId,
+      bidder: bid.bidder
+    });
+  });
+  if (output.length) {
+    if (console.table) {
+      console.table(output);
+    } else {
+      for (var j = 0; j < output.length; j++) {
+        console.log(output[j]);
+      }
+    }
+  } else {
+    console.warn('NO prebid responses');
+  }
+})();
+```
+
+<br />
+
+Right-click the snippet and choose **Run**:
+
+![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
+
+<br />
+
+Check the output in Console to see the bids:
+
+![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
+
+<hr>
+
+## See all winning bids in the console
+
+To print information about all of the winning bids that come in to the Console on any page that is running Prebid.js, follow these steps.
+
+Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
+
+![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
+
+<br />
+
+Right-click to add a **New** snippet:
+
+![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
+
+<br />
+
+Paste in the following code using Control-V (or Command-V on Mac), and give the snippet a name, such as 'show-all-winning-bids':
+
+```javascript
+var bids = pbjs.getHighestCpmBids();
+var output = [];
+for (var i = 0; i < bids.length; i++) {
+    var b = bids[i];
+    output.push({
+        'adunit': b.adUnitCode, 'adId': b.adId, 'bidder': b.bidder,
+        'time': b.timeToRespond, 'cpm': b.cpm
+    });
+}
+if (output.length) {
+    if (console.table) {
+        console.table(output);
+    } else {
+        for (var j = 0; j < output.length; j++) {
+            console.log(output[j]);
+        }
+    }
+} else {
+    console.warn('No prebid winners');
+}
+```
+
+<br />
+
+Right-click the snippet and choose **Run**:
+
+![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
+
+<br />
+
+Check the output in Console to see the bids (note that this screenshot shows the output from "see all bids" but they're very similar):
+
+![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
+
 <hr>
 
 ## Verify ad server targeting
