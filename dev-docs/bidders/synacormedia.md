@@ -84,10 +84,10 @@ var adUnits = [{
 | ---- | ----- | ----------- | ------- | ---- |
 | `minduration` | optional | Minimum ad duration in seconds | `2` | `int` |
 | `maxduration` | optional | Maximum ad duration in seconds | `60` | `int` |
-| `startdelay` | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.  | `0` | `int` |
+| `startdelay` | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. | `0` | `int` |
 | `placement` | optional | Placement type for the impression. | `null` | `int` |
 | `linearity` | optional | Indicates if the impression must be linear, nonlinear, etc. | `1` | `int` |
 | `mimes` | optional | Content MIME types supported. | `["video/mp4", "application/javascript"]` | Array(`String`) |
 | `protocols` | optional | Array of supported video protocols. | `[1,2,3,4,5,6,7]` | Array(`int`) |
 | `api` | optional | List of supported API frameworks for this impression. | `[1,2]` | Array(`int`) |
-
+| `playbackmethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play<br/>`4`: Mouse-over | `2` | `int` |
