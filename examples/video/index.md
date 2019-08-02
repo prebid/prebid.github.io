@@ -46,4 +46,3 @@ sidebarType: 4
 ## Long-Form Video   
 
 -   [Long-Form Video Using Freewheel](long-form/long-form-video-with-freewheel.html)
-
