@@ -12,7 +12,7 @@ This guide will provide several sequential steps to help troubleshoot your Prebi
 {: .pb-alert .pb-alert-warning :}
 Prebid.org does not support any version of Prebid.js prior to version 1.0.
 
-1. TOC
+* TOC
 {:toc}
 <hr>
 
@@ -366,5 +366,7 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 <hr>
 
 ## Related Topics
+
+{:.no_toc}
 
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
