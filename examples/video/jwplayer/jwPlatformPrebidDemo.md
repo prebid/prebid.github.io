@@ -10,7 +10,7 @@ sidebarType: 4
 
 ## {{ page.title }}
 
-An example of instream video being displayed with JW Player.
+An example of a instream video being displayed with JW Player Platform.
 
 <div class="container pb-video-example">
 

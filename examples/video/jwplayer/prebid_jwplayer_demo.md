@@ -9,9 +9,9 @@ isVideoExample: true
 
 ---
 
-## Video Template
+## {{page.title}}
 
-A brief explanation of what is going on in the example.
+An example of a self hosted, instream video being displayed with JW Player.
 
 <div class="container pb-video-example">
 
@@ -20,6 +20,11 @@ A brief explanation of what is going on in the example.
   </div>
 
   <div class="pb-video-frame">
-    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/h2c7ke40/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe></iframe>
+    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/h2c7ke40/6/embedded/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+  </div>
+
+  <div>
+    <a href="jwPlatformPrebidDemo.html">Click here to see an example of integrating Prebid with a JW Platform account.</a>
+    <a href="jwPlaylistUniqueAds.html">Click here to see an example of using Prebid to show a new ad between JW Player playlist items.</a>
   </div>
 </div>
