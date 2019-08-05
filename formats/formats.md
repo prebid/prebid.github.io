@@ -62,5 +62,5 @@ Interstitial ads appear as full screen ads in mobile apps that must be dismissed
 
 - [Prebid Mobile Overview]({{site.baseurl}}/prebid-mobile/prebid-mobile.html)
 - [Getting Started with Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile-pbs.html)
-- [iOS Code Integration]({{site.baseurl}}/prebid-mobile/code-integration-ios.html)
-- [Android Code Integration]({{site.baseurl}}/prebid-mobile/code-integration-android.html)
+- [iOS Code Integration]({{site.baseurl}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
+- [Android Code Integration]({{site.baseurl}}/prebid-mobile/pbm-api/android/code-integration-android.html)
