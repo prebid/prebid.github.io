@@ -1611,6 +1611,10 @@ pbjs.setConfig({
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
+**ExtPrebid Convention**
+
+* Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
+
 <a name="setConfig-app" />
 
 #### Mobile App Post-Bid
