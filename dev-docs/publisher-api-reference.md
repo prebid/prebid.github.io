@@ -65,6 +65,7 @@ This page has documentation for the public API methods of Prebid.js.
 Functions added by optional modules
 
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
   * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
   * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
@@ -2153,6 +2154,65 @@ var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
 
 {: .alert.alert-warning :}
 In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.adServers.dfp.buildAdpodVideoUrl"></a>
+
+### pbjs.adServers.dfp.buildAdpodVideoUrl(options)
+
+{: .alert.alert-info :}
+The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+
+#### Argument Reference
+
+##### The `options` object
+
+{: .table .table-bordered .table-striped }
+| Field    | Type   | Description                                                                                                                                                                        |
+|----------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| iu | string | `adunit` |
+| description_url | string | The value should be the url pointing to a description of the video playing on the page. |
+
+{% include alerts/alert_important.html content="For long form Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
+
+#### Example
+
+```JavaScript
+pbjs.que.push(function(){
+    pbjs.addAdUnits(videoAdUnit);
+    pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        },
+        adpod: {
+            brandCategoryExclusion: true
+        },
+        brandCategoryTranslation: {
+            translationFile: "http://mymappingfile.com/mapping.json"
+        }
+    });
+
+    pbjs.requestBids({
+        bidsBackHandler: function(bids) {
+            pbjs.adServers.dfp. buildAdpodVideoUrl({
+                codes: ['sample-code'],
+                params: {
+                    iu: '/123456/testing/prebid.org/adunit1',
+                    description_url: 'http://mycontent.com/episode-1'
+                },
+                callback: function(err, masterTag) {
+                    // Invoke video player and pass the master tag
+                }
+            });
+        }
+    });
+});
+```
+
+{% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will return the cached VAST XML. " %}
 
 <hr class="full-rule">
 

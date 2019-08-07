@@ -1216,6 +1216,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+  
+- sbSecId: 4
+  title: Show OTT Video Ads with Prebid
+  link: /dev-docs/show-long-form-video-with-gam.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
 
 - sbSecId: 4
   title: Outstream Video Ads
