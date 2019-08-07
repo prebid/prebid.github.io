@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Show Long Form Video Ads with GAM
-description: Show Long Form Video Ads with GAM
+title: Show OTT Video Ads with Prebid
+description: Show OTT Video Ads with Prebid
 sidebarType: 4
 ---
 
@@ -26,7 +26,7 @@ For example, to build with the AppNexus bidder adapter and GAM use the following
 ```bash
 gulp build --modules=appnexusBidAdapter,dfpAdServerVideo
 ```
-For more information about how to build with modules, see the [Prebid module documentation}(/dev-docs/modules/).
+For more information about how to build with modules, see the [Prebid module documentation](/dev-docs/modules/).
 
 {% include alerts/alert_important.html content="If competitve separation is required the optional [`categoryTranslation` module](/dev-docs/modules/categoryTranslation.html) needs to be added to the build command." %}
 
@@ -167,9 +167,9 @@ hb_pb_cat_dur = '10.00_10s'
 
 **4. Implement Custom Price Buckets**
 
-By default, Prebid.js caps all CPMs at $20. With sell side video there may be an expecation to see CPMs over $20. In order to receive those bids, custom price buckets need to be implemented by setting the priceGranularity object of the `setConfig` method.
+By default, Prebid.js caps all CPMs at $20. With sell side video there may be an expecation to see CPMs over $20. In order to receive those bids, custom price buckets need to be implemented by setting the [priceGranularity](dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) object of the `setConfig` method.
 
-For instructions on setting custom price buckets, view the Custom Price Granularity Buckets documentation on prebid.org.
+For instructions on setting custom price buckets, view the [Custom Price Granularity Buckets](/dev-docs/examples/custom-price-buckets.html) documentation on prebid.org.
 
 **5. Send request for bids and build video URL**  
 
@@ -219,12 +219,12 @@ pbjs.que.push(function(){
 | iu | Required | string | `adunit` |
 | description_url | Required | string | The value should describe the video playing on the page. |
 
-{% include alerts/alert_important.html content="For long form Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
+{% include alerts/alert_important.html content="For `adpod`, Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
 
 Understanding the arguments to this method is especially important if you plan to pass any custom parameters to GAM. The params key in the argument to `buildAdpodVideoUrl` supports all parameters from the GAM API.
 
 ## Further Reading
 
-[Prebid API Reference](/dev-docs/publisher-api-reference.html)
-[Prebid.js Video Overview](/prebid-video/video-overview.html)
+[Prebid API Reference](/dev-docs/publisher-api-reference.html)  
+[Prebid.js Video Overview](/prebid-video/video-overview.html)  
 [Prebid.js Long Form (Ad Pod) Video](/prebid-video/video-long-form.html)
