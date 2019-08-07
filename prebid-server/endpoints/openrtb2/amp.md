@@ -99,7 +99,7 @@ A sample response payload looks like this:
 ```
 
 In [the typical AMP setup]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html),
-these targeting params will be sent to DFP.
+these targeting params will be sent to Google Ad Manager.
 
 ### Error Messages
 
