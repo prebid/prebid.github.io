@@ -1462,7 +1462,7 @@
 - sbSecId: 5
   title: Get Status
   link: /prebid-server/endpoints/status.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
