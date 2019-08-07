@@ -219,7 +219,7 @@ pbjs.que.push(function(){
 | iu | Required | string | `adunit` |
 | description_url | Required | string | The value should describe the video playing on the page. |
 
-{% alerts/alert_important.html content="For long form Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
+{% include alerts/alert_important.html content="For long form Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
 
 Understanding the arguments to this method is especially important if you plan to pass any custom parameters to GAM. The params key in the argument to `buildAdpodVideoUrl` supports all parameters from the GAM API.
 
