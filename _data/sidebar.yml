@@ -1450,7 +1450,7 @@
   sectionTitle:
   subgroup: 2
   
-  - sbSecId: 5
+- sbSecId: 5
   title: Get User Syncs
   link: /prebid-server/endpoints/getuids.html
   isLastSubSectionItem: 0

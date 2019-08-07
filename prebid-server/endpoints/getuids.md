@@ -31,4 +31,4 @@ It returns JSON like:
   }
 }
 ```
-{% include alerts_alert_note.html content="If there doesn't exist a cookie then this endpoint will return an empty JSON response." %}
+{% include alerts/alert_note.html content="If there doesn't exist a cookie then this endpoint will return an empty JSON response." %}
