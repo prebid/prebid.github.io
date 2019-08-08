@@ -1083,6 +1083,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+  
+- sbSecId: 3
+  title: Setting up Prebid Long-Form Video in Google Ad Manager
+  link: /adops/setting-up-prebid-ott-video-in-gam.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
 
 - sbSecId: 3
   title: Setting up Prebid with the AppNexus Publisher Ad Server
