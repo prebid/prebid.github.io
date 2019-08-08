@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: Setting up Prebid for AMP in DFP
-head_title: Setting up Prebid for AMP in DFP
-description: Setting up Prebid for AMP in DFP
+title: Setting up Prebid for AMP in Google Ad Manager
+head_title: Setting up Prebid for AMP in Google Ad Manager
+description: Setting up Prebid for AMP in Google Ad Manager
 pid: 3
 hide: false
 top_nav_section: adops
@@ -12,7 +12,7 @@ sidebarType: 3
 
 
 
-# Setting up Prebid for AMP in DFP
+# Setting up Prebid for AMP in Google Ad Manager
 {: .no_toc}
 
 This page describes how to set up a line item and creative to serve on AMP pages with Prebid.js.

@@ -21,7 +21,7 @@ The Brightcove Prebid Plugin supports the following features:
 
 - Several prebid styles, depending on how the prebid options are configured:
     - No ad server is specified
-    - DFP ad server is specified
+    - Google Ad Manager ad server is specified
     - Publisher uses another preferred ad server
     - Header bidding is conducted outside of the plugin
 
@@ -34,8 +34,8 @@ The Brightcove Prebid Plugin supports the following features:
         - AppNexus domain detection
 
 - The plugin supports more than one ad renderer by default.
-  - If DFP is detected as the primary ad server (indicated by the presence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the Brightcove IMA Plugin will be used to render the ad.
-  - If DFP is NOT detected as the primary ad server (indicated by the absence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the MailOnline Plugin will be used to render the ad.
+  - If Google Ad Manager is detected as the primary ad server (indicated by the presence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the Brightcove IMA Plugin will be used to render the ad.
+  - If Google Ad Manager is NOT detected as the primary ad server (indicated by the absence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the MailOnline Plugin will be used to render the ad.
   - Publishers can override this default behavior using the `adRenderer` option.  Publishers can define this option only once in the set of Prebid config options.  Additional specifications for this option will be ignored.
 
 - The plugin supports the use of one or more optional adapters.
@@ -121,10 +121,10 @@ You can think of the “plugin” as being a combination of the loader and the p
 
 ### MailOnline Plugin
 
-The MailOnline plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options do not identify DFP as the primary ad server, then the MailOnline Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that MailOnline is used to render the ad, regardless of the presence of the DFP parameters.
+The MailOnline plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options do not identify Google Ad Manager as the primary ad server, then the MailOnline Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that MailOnline is used to render the ad, regardless of the presence of the Google Ad Manager parameters.
 
 {% capture infoNote %}
-If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include DFP parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
+If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
@@ -146,16 +146,16 @@ This plugin includes modifications that can be found in the MailOnline repositor
 
 ### Brightcove IMA Plugin
 
-The Brightcove IMA plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options identifies DFP as the primary ad server, then the Brightcove IMA Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that the IMA plugin is used to render the ad, regardless of the presence of the DFP parameters.
+The Brightcove IMA plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options identifies Google Ad Manager as the primary ad server, then the Brightcove IMA Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that the IMA plugin is used to render the ad, regardless of the presence of the Google Ad Manager parameters.
 
 {% capture infoNote %}
-If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include DFP parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
+If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
 
 {% capture infoNote %}
-If you will be using the Brightcove IMA plugin as the ad renderer, either because DFP is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
+If you will be using the Brightcove IMA plugin as the ad renderer, either because Google Ad Manager is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
@@ -185,11 +185,11 @@ Defines CSS styles that are used by the MailOnline Plugin. If you are using anot
 
 The plugin supports several styles of prebid processing:
 
-- DFP is the primary ad server
-    - Bids from defined bidders will be passed to DFP
-    - DFP will return the ad URL to play
+- Google Ad Manager is the primary ad server
+    - Bids from defined bidders will be passed to Google Ad Manager
+    - Google Ad Manager will return the ad URL to play
 
-- An ad server other than DFP is the primary ad server
+- An ad server other than Google Ad Manager is the primary ad server
     - Publishers will provide a callback that the plugin will use to pass the list of bids to consider to the publisher's code
     - Publisher code and your preferred ad server will be responsible for determining which ad to play
     - Publisher code will specify the selected ad when requesting playback of the ad by the plugin
@@ -308,7 +308,7 @@ Configuration options are passed into the plugin via a JSON structure. This stru
 - Prebid configuration settings  
   These are options that define how the prebid process should be executed. These options include:
     - Definitions of the bidders that should be used by prebid.js
-    - Configuration settings used when DFP is the primary ad server
+    - Configuration settings used when Google Ad Manager is the primary ad server
     - Configuration settings if you are using another ad server as the primary ad server
     - Other bidding settings used by prebid.js
 
