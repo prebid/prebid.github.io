@@ -31,9 +31,8 @@ pbjs.setConfig({
 });
 ```
 
-### DFP Video Creative
-
-To use video, setup a `VAST redirect` creative within Google AdManager (DFP) with the following VAST tag URL:
+### Google Ad Manager Video Creative
+To use video, setup a `VAST redirect` creative within Google Ad Manager (formerly DFP) with the following VAST tag URL:
 
 ```
 https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm%%&AUCTION_PRICE=%%PATTERN:hb_pb_synacormedia%%

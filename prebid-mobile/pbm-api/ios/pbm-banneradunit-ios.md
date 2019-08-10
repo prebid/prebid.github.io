@@ -73,7 +73,7 @@ func loadDFPBanner(bannerUnit : AdUnit){
         request.testDevices = [ kGADSimulatorID,"cc7ca766f86b43ab6cdc92bed424069b"]
 
         bannerUnit.fetchDemand(adObject:self.request) { (ResultCode) in
-            print("Prebid demand fetch for DFP \(ResultCode.name())")
+            print("Prebid demand fetch for Google Ad Manager \(ResultCode.name())")
             self.dfpBanner!.load(self.request)
         }
     }
