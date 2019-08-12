@@ -2011,7 +2011,7 @@ Publishers with content falling under the scope of this regulation should consul
 The flag may be passed to supporting adapters with this config:
 
 {% highlight js %}
-pbjs.setConfig('coppa', 'true'));
+pbjs.setConfig({coppa: true});
 {% endhighlight %}
 
 <a name="setConfig-Generic-Configuration" />
