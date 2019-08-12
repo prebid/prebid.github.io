@@ -1,7 +1,8 @@
 ---
 layout: page_v2
-sidebarType: 7
+sidebarType: 1
 title: Prebid.js Troubleshooting Guide
+description: Troubleshooting Guide
 
 ---
 
@@ -369,4 +370,5 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 
 {:.no_toc}
 
++ [Prebid.js Training and Troubleshooting Video Guides](/videos/)
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)

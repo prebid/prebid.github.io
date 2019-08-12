@@ -21,8 +21,7 @@ AdOps
 
 Developers
 
-+ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html)
-+ [Developer Troubleshooting Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
++ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/troubleshooting/prebid-troubleshooting-guide.html)
 + [Debug Extension](/debugging/debugging.html)
 
 <hr>
@@ -38,4 +37,3 @@ https://prebid-server.rubiconproject.com/auction?url_override=rubiconproject.com
 
 
 Additional debugging references are under construction.
-
