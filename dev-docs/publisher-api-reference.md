@@ -65,7 +65,7 @@ This page has documentation for the public API methods of Prebid.js.
 Functions added by optional modules
 
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
-  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
   * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
   * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
@@ -2159,7 +2159,7 @@ In the event of collisions, querystring values passed via `options.params` take 
 
 <a name="module_pbjs.adServers.dfp.buildAdpodVideoUrl"></a>
 
-### pbjs.adServers.dfp.buildAdpodVideoUrl(options)
+### pbjs.adServers.dfp.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Alpha]</span>
 
 {: .alert.alert-info :}
 The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
