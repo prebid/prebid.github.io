@@ -151,8 +151,6 @@ hr {
 	background-color: #ede5ba;
 	color: #85720f;
 	border: 1px solid #85720f;
-	
-
 }
 
 .pb-alert-tip { 
@@ -160,6 +158,19 @@ hr {
 	color: #527542;
 	border: 1px solid #527542;
 }
+
+/*********************
+	Text Highlighting
+*********************/
+
+em .pb-red-text { 
+	color: #ff0000;
+}
+
+em .pb-blue-text { 
+	color: #33A2FF;
+}
+
 
 /**********************
 	 API 
