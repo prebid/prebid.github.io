@@ -370,5 +370,5 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 
 {:.no_toc}
 
-+ [Prebid.js Troubleshooting Video]((videos/))
-+ [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
++ [Prebid.js Troubleshooting Video](/videos/)
++ [Common Setup Issues](/dev-docs/common-issues.html)
