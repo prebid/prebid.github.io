@@ -11,8 +11,8 @@ sidebarType: 7
 
 Enable javascript console trace messages by adding ```?pbjs_debug=true``` to the end of the page's URL. These messages can help isolate issues and improve debugging efforts.
 
-+ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/troubleshooting/prebid-troubleshooting-guide.html)
-+ [Prebid.js Troubleshooting Videos](videos/)
++ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/troubleshooting/troubleshooting-guide.html)
++ [Prebid.js Troubleshooting Videos](/videos/)
 + [Debug Extension](/debugging/debugging.html)
 
 ## AdOps
