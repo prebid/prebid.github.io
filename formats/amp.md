@@ -22,7 +22,7 @@ At a high level, setting up AMP pages for header bidding with Prebid has these s
 
 ## Ad Ops
 
-+ [Setting up Prebid for AMP in GAM/DFP]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)
++ [Setting up Prebid for AMP in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)
 
 ## Developers
 

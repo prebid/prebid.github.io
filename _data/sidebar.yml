@@ -435,7 +435,7 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: DFP Express
+  title: Google Ad Manager Express
   link: /dev-docs/modules/dfp_express.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -462,7 +462,7 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: DFP Video
+  title: Google Ad Manager Video
   link: /dev-docs/modules/dfp_video.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -861,7 +861,7 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Setup Line items For DFP
+  title: Setup Line items For Google Ad Manager
   link: /prebid-mobile/adops-line-item-setup-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1022,7 +1022,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Guide to DFP Setup
+  title: Guide to Google Ad Manager Setup
   link: /adops/step-by-step.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1040,7 +1040,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid for AMP in DFP
+  title: Setting up Prebid for AMP in Google Ad Manager
   link: /adops/setting-up-prebid-for-amp-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1049,7 +1049,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid Multi-Format in DFP
+  title: Setting up Prebid Multi-Format in Google Ad Manager
   link: /adops/setting-up-prebid-multi-format-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1058,7 +1058,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid Native in DFP (Alpha)
+  title: Setting up Prebid Native in Google Ad Manager (Alpha)
   link: /adops/setting-up-prebid-native-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1067,7 +1067,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid Video in DFP
+  title: Setting up Prebid Video in Google Ad Manager
   link: /adops/setting-up-prebid-video-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1218,7 +1218,7 @@
 
 
 - sbSecId: 4
-  title: Show Video Ads with DFP
+  title: Show Video Ads with Google Ad Manager
   link: /dev-docs/show-video-with-a-dfp-video-tag.html
   isLastSubSectionItem: 0
   isHeader: 0

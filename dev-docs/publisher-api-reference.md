@@ -1351,7 +1351,7 @@ Sending all bids is the default, but should you wish to turn it off:
 pbjs.setConfig({ enableSendAllBids: false })
 {% endhighlight %}
 
-When sendAllBids mode is on, your page will send keywords for all bidders to your ad server. The ad server will then make the decision on which will win. Some ad servers, such as DFP, can then generate reporting on historical bid prices from all bidders.
+When sendAllBids mode is on, your page will send keywords for all bidders to your ad server. The ad server will then make the decision on which will win. Some ad servers, such as Google Ad Manager, can then generate reporting on historical bid prices from all bidders.
 
 Note that this config must be set before `pbjs.setTargetingForGPTAsync()` or `pbjs.getAdserverTargeting()`.
 
@@ -2011,7 +2011,7 @@ Publishers with content falling under the scope of this regulation should consul
 The flag may be passed to supporting adapters with this config:
 
 {% highlight js %}
-pbjs.setConfig('coppa', 'true'));
+pbjs.setConfig({coppa: true});
 {% endhighlight %}
 
 <a name="setConfig-Generic-Configuration" />
@@ -2079,9 +2079,9 @@ unsubscribe(); // no longer listening
 ### pbjs.adServers.dfp.buildVideoUrl(options)
 
 {: .alert.alert-info :}
-The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+The Google Ad Manager implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
 
-This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a Google Ad Manager video ad tag URL that can be used by a video player.
 
 #### Argument Reference
 
@@ -2091,7 +2091,7 @@ This method combines publisher-provided parameters with Prebid.js targeting para
 | Field    | Type   | Description                                                                                                                                                                        |
 |----------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `adUnit` | object | *Required*. The Prebid ad unit to which the returned URL will map.                                                                                                                 |
-| `params` | object | *Optional*. Querystring parameters that will be used to construct the DFP video ad tag URL. Publisher-supplied values will override values set by Prebid.js. See below for fields. |
+| `params` | object | *Optional*. Querystring parameters that will be used to construct the Google Ad Manager video ad tag URL. Publisher-supplied values will override values set by Prebid.js. See below for fields. |
 | `url`    | string | *Optional*. The video ad server URL. When given alongside params, the parsed URL will be overwritten with any matching components of params.                                       |
 | `bid`    | object | *Optional*. The Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.                                   |
 
@@ -2103,11 +2103,11 @@ One or both of options.params and options.url is required. In other words, you m
 {: .table .table-bordered .table-striped }
 | Field             | Type   | Description                                                                                                                 | Example                                         |
 |-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-| `iu`              | string | *Required*. DFP ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
-| `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to DFP on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
+| `iu`              | string | *Required*. Google Ad Manager ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
+| `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
 | `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
 
-For more information on any of these params, see [the DFP video tag documentation](https://support.google.com/dfp_premium/answer/1068325?hl=en).
+For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
 #### Examples
 

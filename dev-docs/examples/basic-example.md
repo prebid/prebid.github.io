@@ -7,7 +7,7 @@ sidebarType: 1
 
 
 about:
-- Asynchronous Prebid.js integration with single DFP ad slot
+- Asynchronous Prebid.js integration with single Google Ad Manager ad slot
 - Default keyword targeting setup (<a href="/dev-docs/publisher-api-reference.html#bidderSettingsDefault">reference</a>)
 - Default price granularity
 

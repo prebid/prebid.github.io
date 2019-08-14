@@ -24,7 +24,7 @@ In order to enable deals for prebid, the ad ops setup is slightly different from
 + From the dev side, if your page is using the standard prebid.js key-values, no change or work is required.
 
 {: .bg-info :}
-In this example we will use the DFP setup to illustrate, but the steps are basically the same for any ad server.
+In this example we will use the Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
 
 * TOC
 {:toc}
@@ -67,7 +67,7 @@ For each header bidding partner you work with, create a keyword in the format of
 
 ### Step 3: Create Line Items for Deals
 
-In DFP, create a new line item.
+In Google Ad Manager, create a new line item.
 
 Enter all the **Inventory sizes** for your deal (or deals):
 
