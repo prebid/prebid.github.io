@@ -2,19 +2,11 @@
 layout: bidder
 title: 152MediaHB
 description: Prebid 152MediaHB Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
 media_types: video
 gdpr_supported: true
 biddercode: oftmediahb
-
 aliasCode : adkernel
-
-
-
 ---
 
 ### Bid Params
