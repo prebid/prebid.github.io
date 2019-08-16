@@ -38,15 +38,15 @@
   imgURL: /assets/images/partners/standard/sortable.png
   type: technology
 
-- company: CafeMedia 
-  link: http://www.cafemedia.com/
-  imgURL: /assets/images/partners/standard/cafemedia.png
-  type: technology
-
 - company: PubNative 
   link: https://pubnative.net/
   imgURL: /assets/images/partners/standard/Pubnative-RGB-Logo.png
   type: technology
+
+- company: CafeMedia 
+  link: http://www.cafemedia.com/
+  imgURL: /assets/images/partners/standard/cafemedia.png
+  type: publisher
 
 - company: Mediavine
   link: https://www.mediavine.com/
@@ -56,4 +56,9 @@
 - company: GoBrowsi
   link: https://gobrowsi.com
   imgURL: /assets/images/partners/community/Browsi-Logo.png
+  type: community
+
+- company: Publica
+  link: https://getpublica.com
+  imgURL: /assets/images/partners/community/Publica-Logo.png
   type: community
