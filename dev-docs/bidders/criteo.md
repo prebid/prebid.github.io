@@ -4,7 +4,6 @@ title: Criteo
 description: Prebid Criteo Bidder Adaptor
 hide: true
 biddercode: criteo
-bidder_supports_deals: false
 media_types: display, native, video
 gdpr_supported: true
 prebid_member: true
