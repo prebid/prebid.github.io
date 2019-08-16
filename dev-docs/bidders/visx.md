@@ -8,7 +8,7 @@ gdpr_supported: true
 ---
 
 ### Note
-To be able to use the full bandwidth of VIS.X high impact ad products, we strongly recommend to disable SafeFrames:
+To be able to use the full bandwidth of VIS.X high impact ad products, we strongly recommend disabling SafeFrames:
 - If you are using Google Ad Manager (GAM), make sure the “Serve in Safeframe” box in creative settings is unchecked,
 - If you are using AppNexus Seller Tag, make sure the enableSafeFrame parameter is set to False.
 
