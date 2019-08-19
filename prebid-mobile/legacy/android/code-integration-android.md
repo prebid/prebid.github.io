@@ -50,11 +50,11 @@ The steps for using Prebid Mobile are as follows:
 
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 
-   NOTE: The [fluid ad size](https://developers.google.com/android/reference/com/google/android/gms/ads/AdSize.html#FLUID) (used in DFP) is not supported.
+   NOTE: The [fluid ad size](https://developers.google.com/android/reference/com/google/android/gms/ads/AdSize.html#FLUID) (used in Google Ad Manager) is not supported.
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+4. Set the primary adserver for the bid to either Google Ad Manager or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
 5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
@@ -111,7 +111,7 @@ adUnits.add(adUnit2);
 
 Once configuration is done, use the following API to initialize Prebid Mobile and start fetching Prebid ads for your list of ad units.
 
-If you're using DFP as your primary ad server, use the API like this:
+If you're using Google Ad Manager as your primary ad server, use the API like this:
 ```
 /**
  * Register ad units for prebid.
@@ -166,7 +166,7 @@ To wait for ads before attaching bids, implement the following listener.
 ```
 @Override
 public void onAttachComplete(Object adObj) {
-	// using DFP implementation as an example
+	// using Google Ad Manager implementation as an example
     if (adView != null && adObj != null && adObj instanceof PublisherAdRequest) {
         adView.loadAd((PublisherAdRequest) adObj);
         Prebid.detachUsedBid(adObj);
@@ -179,8 +179,8 @@ Prebid Mobile will immediately tell your app whether it has a bid or not without
 {: .table .table-bordered .table-striped }
 | Primary Ad Server | Ad Object Type | Ad Server Object Instance  | Ad Server Ad Load Method                           |
 |-------------------|----------------|----------------------------|----------------------------------------------------|
-| DFP               | Banner         | `PublisherAdRequest`       | `public void loadAd(PublisherAdRequest adRequest)` |
-| DFP               | Interstitial   | `PublisherAdRequest`       | `public void loadAd(PublisherAdRequest adRequest)` |
+| Google Ad Manager               | Banner         | `PublisherAdRequest`       | `public void loadAd(PublisherAdRequest adRequest)` |
+| Google Ad Manager               | Interstitial   | `PublisherAdRequest`       | `public void loadAd(PublisherAdRequest adRequest)` |
 | MoPub             | Banner         | `MoPubView`                | `public void loadAd()`                             |
 | MoPub             | Interstitial   | `MoPubInterstitial`        | `public void load()`                               |
 
@@ -207,8 +207,8 @@ public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
 }
  ```
 
-#### Primary Ad Server is DFP
-For DFP banner, the `loadAd(AdRequest)` has to be called again with updated bids info. If not, same set of bids will be used repeatedly until `loadAd()` is called with a new `AdRequest`. We recommend doing client side auto refresh yourself using code like the following:
+#### Primary Ad Server is Google Ad Manager
+For Google Ad Manager banner, the `loadAd(AdRequest)` has to be called again with updated bids info. If not, same set of bids will be used repeatedly until `loadAd()` is called with a new `AdRequest`. We recommend doing client side auto refresh yourself using code like the following:
  ```
  /**
  * Replace "PREBID-MOBILE-SLOT-ID" with the unique ad slot identifier
@@ -236,7 +236,7 @@ if(conditionToStopRefresh) {
 
 ### ProGuard Support
 
-#### Primary Ad Server is DFP
+#### Primary Ad Server is Google Ad Manager
 If ProGuard is enabled, the following lines must be added to your ProGuard file:
 ```
 -keep class com.google.android.gms.ads.doubleclick.PublisherAdRequest {

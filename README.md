@@ -6,7 +6,6 @@ Please see the sections below for more information.
 + [License](#license)
 + [Prerequisites](#prerequisites)
 + [Running Jekyll Locally](#running-jekyll-locally)
-+ [Alphabetization of Bidder Adapters](#alphabetization-of-bidder-adaptors)
 + [The Downloads Page](#the-downloads-page)
 + [Thanks](#thanks)
 
@@ -80,24 +79,6 @@ Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml
 ```
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
-
-<a name="alphabetization-of-bidder-adaptors" />
-
-## Alphabetization of Bidder Adaptors
-
-Please don't alphabetize the lists of adapters in your PR, either on the home page or the downloads page.
-
-The adapters are not listed in alphabetical order, they're listed in the order in which they were added to the Prebid.js repo, using (approximately) this command in `src/adapters`:
-
-```
-for file in `ls | grep -f <(git ls-files)`; do
-    HASH=`git rev-list HEAD $file | tail -n 1`;
-    DATE=`git show -s --format="%ci" $HASH --`;
-    printf "%-35s %-35s %s\n" $file "$DATE" $HASH;
-done | sort -d -k 2
-```
-
-<a name="the-downloads-page" />
 
 ## The Downloads Page
 

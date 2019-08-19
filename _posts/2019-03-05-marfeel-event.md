@@ -56,7 +56,7 @@ Finally, the results of mass-adoption—though the proving ground of mobile—wi
 
 The combination of a unified platform like Prebid Server, alongside machine learning, will allow advertisers to break down impressions and revenue by demand partner, ad format, inventory, and region. Publishers and advertisers will be able to track deal performance across multiple exchanges with a single report to see who is winning, where, and be able to infer why.
 
-Machine-learning powered algorithms will segment data by size, ad format, and DFP ad unit. Automated systems will see through the entire monetization funnel to spot bottlenecks and eliminate inefficiencies in real-time. Effective server-side header bidding will help facilitate the development of these intelligent ads.
+Machine-learning powered algorithms will segment data by size, ad format, and Google Ad Manager ad unit. Automated systems will see through the entire monetization funnel to spot bottlenecks and eliminate inefficiencies in real-time. Effective server-side header bidding will help facilitate the development of these intelligent ads.
 
 Prebid open-source tech: Deeper development through collaboration
 The current challenges of Prebid Server go beyond just cookie matching. They stretch to scaling server infrastructure and building creative caching. However, the accelerated development of the Prebid open source tech will create advancements beyond reduced latency, including intelligent ads and ad delivery that comes directly from Prebid server.

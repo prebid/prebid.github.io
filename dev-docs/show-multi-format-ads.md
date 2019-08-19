@@ -25,7 +25,7 @@ An ad unit is said to be multi-format if it supports at least two of the followi
 Once declared, any bidder that supports at least one of the media types can participate in the auction for that ad unit.
 
 {: .alert.alert-info :}
-For ad ops setup instructions, see [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
+For ad ops setup instructions, see [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
 
 * TOC
 {:toc}
@@ -44,7 +44,7 @@ The following key is added to your ad server targeting, and set to the value of 
 
 + `hb_format`
 
-The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
+The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
 
 ## Prerequisites
 
@@ -132,6 +132,6 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 ## Related Topics
 
-+ [Setting up Prebid Multi-Format in DFP]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
++ [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
 
 

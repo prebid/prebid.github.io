@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: Setting up Prebid Video in DFP
-head_title: Setting up Prebid Video in DFP
-description: Setting up Prebid Video in DFP
+title: Setting up Prebid Video in Google Ad Manager
+head_title: Setting up Prebid Video in Google Ad Manager
+description: Setting up Prebid Video in Google Ad Manager
 pid: 3
 hide: false
 top_nav_section: adops
@@ -12,15 +12,15 @@ sidebarType: 3
 
 
 
-# Setting up Prebid Video in DFP
+# Setting up Prebid Video in Google Ad Manager
 {: .no_toc}
 
-This page describes how to set up video creatives in DFP for use with Prebid.js.
+This page describes how to set up video creatives in Google Ad Manager for use with Prebid.js.
 
-For general DFP line item setup instructions, see the other pages in this section.
+For general Google Ad Manager line item setup instructions, see the other pages in this section.
 
 For engineering setup instructions, see
-[Show Video Ads with a DFP Video Tag]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+[Show Video Ads with a Google Ad Manager Video Tag]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
 * TOC
 {:toc}
@@ -31,7 +31,7 @@ For engineering setup instructions, see
 
 - In the **Master** text area, add your video player size(s).
 
-![DFP New Line Item]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-03.png){: .pb-md-img :}
+![Google Ad Manager New Line Item]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-03.png){: .pb-md-img :}
 
 Other line item settings and key/value targeting are the same as [those recommended for Prebid display]({{site.baseurl}}/adops/step-by-step.html#step-1-add-a-line-item), with one exception:
 
@@ -71,7 +71,7 @@ or
 
    {: .alert.alert-info :}
    **Prebid Cache and the VAST creative URL warning**  
-   DFP will show you a warning that fetching VAST from the creative
+   Google Ad Manager will show you a warning that fetching VAST from the creative
    URL failed.  This is expected, since the creative URL above points
    to a server-side asset cache hosted by Prebid Server.
 
@@ -79,7 +79,7 @@ or
 
 The resulting creative should look something like the following:
 
-![DFP Video Creative Setup]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-04.png){: .pb-md-img :}
+![Google Ad Manager Video Creative Setup]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-04.png){: .pb-md-img :}
 
 That's it as far as Prebid setup is concerned.  At this point you can add any other options you would normally use, e.g., labels or tracking URLs.
 
@@ -87,7 +87,7 @@ That's it as far as Prebid setup is concerned.  At this point you can add any ot
 
 ## Further Reading
 
-+ [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html) (Engineering setup)
-+ [Create a Master Video Tag Manually](https://support.google.com/dfp_premium/answer/1068325?hl=en&ref_topic=2480647) (DFP)
-+ [Add Key-Values to a Master Video Ad Tag](https://support.google.com/dfp_premium/answer/1080597) (DFP)
-+ [DFP Macros](https://support.google.com/dfp_premium/answer/1242718) (DFP)
++ [Show Video Ads with Google Ad Manager]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html) (Engineering setup)
++ [Create a Master Video Tag Manually](https://support.google.com/admanager/answer/1068325?hl=en&ref_topic=2480647) (Google Ad Manager)
++ [Add Key-Values to a Master Video Ad Tag](https://support.google.com/dfp_premium/answer/1080597) (Google Ad Manager)
++ [Google Ad Manager Macros](https://support.google.com/admanager/answer/2376981) (Google Ad Manager)

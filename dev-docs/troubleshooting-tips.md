@@ -45,7 +45,7 @@ Add `pbjs_debug=true` to the end of your page's URL. For example: <a href="{{ si
 
 ## Turn on your ad server's developer console
 
-The ad server's developer console usually provide information such as targeting, latency, and key events logging. For example, here is a screenshot of DFP's GPT developer console logs:
+The ad server's developer console usually provide information such as targeting, latency, and key events logging. For example, here is a screenshot of Google Ad Manager's GPT developer console logs:
 
 <br>
 

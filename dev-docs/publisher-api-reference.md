@@ -65,6 +65,7 @@ This page has documentation for the public API methods of Prebid.js.
 Functions added by optional modules
 
   * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
   * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
   * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
@@ -1350,7 +1351,7 @@ Sending all bids is the default, but should you wish to turn it off:
 pbjs.setConfig({ enableSendAllBids: false })
 {% endhighlight %}
 
-When sendAllBids mode is on, your page will send keywords for all bidders to your ad server. The ad server will then make the decision on which will win. Some ad servers, such as DFP, can then generate reporting on historical bid prices from all bidders.
+When sendAllBids mode is on, your page will send keywords for all bidders to your ad server. The ad server will then make the decision on which will win. Some ad servers, such as Google Ad Manager, can then generate reporting on historical bid prices from all bidders.
 
 Note that this config must be set before `pbjs.setTargetingForGPTAsync()` or `pbjs.getAdserverTargeting()`.
 
@@ -2010,7 +2011,7 @@ Publishers with content falling under the scope of this regulation should consul
 The flag may be passed to supporting adapters with this config:
 
 {% highlight js %}
-pbjs.setConfig('coppa', 'true'));
+pbjs.setConfig({coppa: true});
 {% endhighlight %}
 
 <a name="setConfig-Generic-Configuration" />
@@ -2078,9 +2079,9 @@ unsubscribe(); // no longer listening
 ### pbjs.adServers.dfp.buildVideoUrl(options)
 
 {: .alert.alert-info :}
-The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+The Google Ad Manager implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
 
-This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a Google Ad Manager video ad tag URL that can be used by a video player.
 
 #### Argument Reference
 
@@ -2090,7 +2091,7 @@ This method combines publisher-provided parameters with Prebid.js targeting para
 | Field    | Type   | Description                                                                                                                                                                        |
 |----------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `adUnit` | object | *Required*. The Prebid ad unit to which the returned URL will map.                                                                                                                 |
-| `params` | object | *Optional*. Querystring parameters that will be used to construct the DFP video ad tag URL. Publisher-supplied values will override values set by Prebid.js. See below for fields. |
+| `params` | object | *Optional*. Querystring parameters that will be used to construct the Google Ad Manager video ad tag URL. Publisher-supplied values will override values set by Prebid.js. See below for fields. |
 | `url`    | string | *Optional*. The video ad server URL. When given alongside params, the parsed URL will be overwritten with any matching components of params.                                       |
 | `bid`    | object | *Optional*. The Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.                                   |
 
@@ -2102,11 +2103,11 @@ One or both of options.params and options.url is required. In other words, you m
 {: .table .table-bordered .table-striped }
 | Field             | Type   | Description                                                                                                                 | Example                                         |
 |-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-| `iu`              | string | *Required*. DFP ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
-| `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to DFP on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
+| `iu`              | string | *Required*. Google Ad Manager ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
+| `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
 | `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
 
-For more information on any of these params, see [the DFP video tag documentation](https://support.google.com/dfp_premium/answer/1068325?hl=en).
+For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
 #### Examples
 
@@ -2153,6 +2154,65 @@ var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
 
 {: .alert.alert-warning :}
 In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.adServers.dfp.buildAdpodVideoUrl"></a>
+
+### pbjs.adServers.dfp.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Alpha]</span>
+
+{: .alert.alert-info :}
+The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+
+#### Argument Reference
+
+##### The `options` object
+
+{: .table .table-bordered .table-striped }
+| Field    | Type   | Description                                                                                                                                                                        |
+|----------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| iu | string | `adunit` |
+| description_url | string | The value should be the url pointing to a description of the video playing on the page. |
+
+{% include alerts/alert_important.html content="For long form Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
+
+#### Example
+
+```JavaScript
+pbjs.que.push(function(){
+    pbjs.addAdUnits(videoAdUnit);
+    pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        },
+        adpod: {
+            brandCategoryExclusion: true
+        },
+        brandCategoryTranslation: {
+            translationFile: "http://mymappingfile.com/mapping.json"
+        }
+    });
+
+    pbjs.requestBids({
+        bidsBackHandler: function(bids) {
+            pbjs.adServers.dfp. buildAdpodVideoUrl({
+                codes: ['sample-code'],
+                params: {
+                    iu: '/123456/testing/prebid.org/adunit1',
+                    description_url: 'http://mycontent.com/episode-1'
+                },
+                callback: function(err, masterTag) {
+                    // Invoke video player and pass the master tag
+                }
+            });
+        }
+    });
+});
+```
+
+{% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will return the cached VAST XML. " %}
 
 <hr class="full-rule">
 

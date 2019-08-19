@@ -11,42 +11,42 @@
 - company: Criteo 
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/standard/criteo.png
-  type: standard
+  type: technology
   
 - company: Marfeel 
   link: https://www.marfeel.com/
   imgURL: /assets/images/partners/standard/marfeel.png
-  type: standard
+  type: technology
   
 - company: Oath 
   link: https://www.oath.com/advertising/platforms/
   imgURL: /assets/images/partners/standard/oath.png
-  type: standard
+  type: technology
   
 - company: OpenX 
   link: https://www.openx.com/
   imgURL: /assets/images/partners/standard/openx.png
-  type: standard
+  type: leader
   
 - company: Pubmatic 
   link: https://pubmatic.com/products/header-bidding/
   imgURL: /assets/images/partners/standard/pubmatic.png
-  type: standard
+  type: leader
   
 - company: Sortable 
   link: https://www.sortable.com/
   imgURL: /assets/images/partners/standard/sortable.png
-  type: standard
-
-- company: CafeMedia 
-  link: http://www.cafemedia.com/
-  imgURL: /assets/images/partners/standard/cafemedia.png
-  type: standard
+  type: technology
 
 - company: PubNative 
   link: https://pubnative.net/
   imgURL: /assets/images/partners/standard/Pubnative-RGB-Logo.png
-  type: standard
+  type: technology
+
+- company: CafeMedia 
+  link: http://www.cafemedia.com/
+  imgURL: /assets/images/partners/standard/cafemedia.png
+  type: publisher
 
 - company: Mediavine
   link: https://www.mediavine.com/
@@ -56,4 +56,9 @@
 - company: GoBrowsi
   link: https://gobrowsi.com
   imgURL: /assets/images/partners/community/Browsi-Logo.png
+  type: community
+
+- company: Publica
+  link: https://getpublica.com
+  imgURL: /assets/images/partners/community/Publica-Logo.png
   type: community

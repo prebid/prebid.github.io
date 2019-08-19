@@ -53,11 +53,11 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 
-   NOTE: The [fluid ad size](https://developers.google.com/mobile-ads-sdk/docs/dfp/ios/api/reference/Constants#/c:@kGADAdSizeFluid) (used in DFP) is not supported.
+   NOTE: The [fluid ad size](https://developers.google.com/mobile-ads-sdk/docs/dfp/ios/api/reference/Constants#/c:@kGADAdSizeFluid) (used in Google Ad Manager) is not supported.
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+4. Set the primary adserver for the bid to either Google Ad Manager or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
 5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
@@ -109,7 +109,7 @@ PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdent
 /**
  * 3. Register the ad units with Prebid Mobile to start bid fetching process.
  *
- * DFP Example
+ * Google Ad Manager Example
  *
  * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
  *
@@ -186,8 +186,8 @@ Use the table below to see which ad objects are supported currently.
 {: .table .table-bordered .table-striped }
 | Primary Ad Server | Ad Object Type | Ad Server Ad View            | Ad Server Ad Load Method                    |
 |-------------------|----------------|------------------------------|---------------------------------------------|
-| DFP               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
-| DFP               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
+| Google Ad Manager               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
+| Google Ad Manager               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
 | MoPub             | Banner         | `MPAdView`                   | `- (void)loadAd`                            |
 | MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            |
 

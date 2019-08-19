@@ -8,6 +8,12 @@ gdpr_supported: true
 ---
 
 ### Note
+To be able to use the full bandwidth of VIS.X high impact ad products, we strongly recommend disabling SafeFrames:
+- If you are using Google Ad Manager (GAM), make sure the “Serve in Safeframe” box in creative settings is unchecked,
+- If you are using AppNexus Seller Tag, make sure the enableSafeFrame parameter is set to False.
+
+If you require SafeFrames to be activated, please reach out to your YOC account manager to obtain further details.
+
 The YOC VIS.X adaptor requires setup and approval from your YOC account manager team, even for existing YOC publishers. Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Bid params
