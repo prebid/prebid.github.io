@@ -19,6 +19,6 @@ An example of a instream video being displayed with JW Player Platform.
   </div>
 
   <div class="pb-video-frame">
-    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/x1oba324/2/embedded/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    <iframe width="640" height="560" src="//jsfiddle.net/vhp98ked/embed/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
   </div>
 </div>
