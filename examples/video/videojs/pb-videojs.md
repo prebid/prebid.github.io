@@ -9,7 +9,7 @@ isVideoExample: true
 
 ## {{page.title}}
 
-A brief explanation of what is going on in the example.
+Client side example using VideoJS player. 
 
 <div class="container pb-video-example">
 
