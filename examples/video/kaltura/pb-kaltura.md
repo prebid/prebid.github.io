@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Prebid Video | JWPlayer Self Hosted
-description: Prebid client side video example for self hosted JW Player.
+title: Prebid Video |Kaltura
+description: Prebid client side video example for Kaltura
 sidebarType: 4
 isVideoExample: true
 
@@ -9,7 +9,8 @@ isVideoExample: true
 
 ## {{page.title}}
 
-{{ page.description }}
+{{page.description}}
+
 <div class="container pb-video-example">
 
 
@@ -19,6 +20,6 @@ isVideoExample: true
 
   <!--drop in the js fiddle framework embed in this div - note: set the size and width as below!-->
   <div class="pb-video-frame">
-    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/cdbw0q8v/embedded/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/pao3t1e9/1/embedded/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
   </div>
 </div>
