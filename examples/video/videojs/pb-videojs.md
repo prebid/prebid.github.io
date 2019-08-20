@@ -20,6 +20,6 @@ A brief explanation of what is going on in the example.
 
   <!--drop in the js fiddle framework embed in this div - note: set the size and width as below!-->
   <div class="pb-video-frame">
-    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/h2c7ke40/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe></iframe>
+    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/bfyaps75/1/embedded/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
   </div>
 </div>
