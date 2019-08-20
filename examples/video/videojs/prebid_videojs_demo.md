@@ -1,16 +1,17 @@
 ---
 layout: page_v2
-title: Prebid Video | JW Player (Platform) Example
+title: Prebid Video | Video.js Example
 description: Prebid client side video example for JW Player
 top_nav_section: pbjs-video
 nav_section: pbjs-video-examples
 sidebarType: 4
+isVideoExample: true
 
 ---
 
 ## {{ page.title }}
 
-An example of a instream video being displayed with JW Player Platform.
+An example of instream video being displayed with the Video.js player.
 
 <div class="container pb-video-example">
 
@@ -19,6 +20,6 @@ An example of a instream video being displayed with JW Player Platform.
   </div>
 
   <div class="pb-video-frame">
-    <iframe width="640" height="560" src="//jsfiddle.net/vhp98ked/embed/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    <iframe width="640" height="560" src="//jsfiddle.net/PrebidFiddle/ctunmo7h/4/embedded/html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
   </div>
 </div>
