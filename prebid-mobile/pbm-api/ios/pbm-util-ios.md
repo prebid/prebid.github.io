@@ -18,33 +18,27 @@ This page will store any utilities that can used in conjuntion with the Prebid S
 ## Find Prebid Creative Size
 Prebid created `findPrebidCreativeSize` to address a bug in the Google Ad Manager ad server (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where under certain situations ads fail to render. It is recommended all Google Ad Manager integrations resize all ads served based on the winning Prebid creative size `findPrebidCreativeSize`.
 
-Functionally speaking a Google Ad Manager listener is created to listen for the [onAdLoaded](https://developers.google.com/android/reference/com/google/android/gms/ads/AdListener.html#onAdLoaded()) event (when an ad is recieved) to determine the winning Prehbid ad size to determine how to resize the ad slot.
+Functionally speaking the Prebid SDK resizes ad slots based on the [adViewDidReceiveAd event](https://developers.google.com/admob/ios/banner) (when an ad is recieved) to determine the winning Prehbid ad size to determine how to resize the ad slot.
 
 ### Util
 
-Supported in Prebid SDK version 1.1.2.
+Supported in Prebid SDK version 1.1.
 
-```java
-void findPrebidCreativeSize(@Nullable View adView, final CreativeSizeCompletionHandler completionHandler)
+```swift
+func findPrebidCreativeSize(_ adView: UIView, completion: @escaping (CGSize?) -> Void)
 ```
 
 Exmple:
-```java
-dfpAdView.setAdListener(new AdListener() {
-    @Override
-    public void onAdLoaded() {
-        super.onAdLoaded();
-
-        Util.findPrebidCreativeSize(dfpAdView, new Util.CreativeSizeCompletionHandler() {
-            @Override
-            public void onSize(final Util.CreativeSize size) {
-                if (size != null) {
-                    dfpAdView.setAdSizes(new AdSize(size.getWidth(), size.getHeight()));
-                }
-            }
-        });
-    }
-});
+```swift
+func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    print("adViewDidReceiveAd")
+        
+    Utils.shared.findPrebidCreativeSize(bannerView) { (size) in
+        if let bannerView = bannerView as? DFPBannerView, let size = size {
+            bannerView.resize(GADAdSizeFromCGSize(size))
+        }
+     }
+}
 ```
 
 ### AdViewUtils
@@ -52,30 +46,46 @@ dfpAdView.setAdListener(new AdListener() {
 Improved `findPrebidCreativeSize` solution supported in Prebid SDK version 1.2+.
 
 
-```java
-void findPrebidCreativeSize(@Nullable View adView, final PbFindSizeListener handler)
+```swift
+func findPrebidCreativeSize(_ adView: UIView, success: @escaping (CGSize) -> Void, failure: @escaping (Error) -> Void)
 ```
 
-Example:
-```java
-dfpAdView.setAdListener(new AdListener() {
-    @Override
-    public void onAdLoaded() {
-        super.onAdLoaded();
+Examples:
 
-        AdViewUtils.findPrebidCreativeSize(dfpAdView, new AdViewUtils.PbFindSizeListener() {
-            @Override
-            public void success(int width, int height) {
-                dfpAdView.setAdSizes(new AdSize(width, height));
-            }
+Swift
+```swift
+func adViewDidReceiveAd(_ bannerView: GADBannerView) {
 
-            @Override
-            public void failure(@NonNull PbFindSizeError error) {
-                Log.d("MyTag", "error: " + error);
-            }
-        });
+    AdViewUtils.findPrebidCreativeSize(bannerView,
+                                            success: { (size) in
+                                                guard let bannerView = bannerView as? DFPBannerView else {
+                                                    return
+                                                }
 
-    }
-});
+                                                bannerView.resize(GADAdSizeFromCGSize(size))
+
+        },
+                                            failure: { (error) in
+                                                print("error: \(error)");
+
+        })
+}
+```
+
+Objective C
+```objective_c
+-(void) adViewDidReceiveAd:(GADBannerView *)bannerView {
+    NSLog(@"Ad received");
+    [AdViewUtils findPrebidCreativeSize:bannerView
+                                   success:^(CGSize size) {
+                                       if ([bannerView isKindOfClass:[DFPBannerView class]]) {
+                                           DFPBannerView *dfpBannerView = (DFPBannerView *)bannerView;
+                                           
+                                           [dfpBannerView resize:GADAdSizeFromCGSize(size)];
+                                       }
+                                   } failure:^(NSError * _Nonnull error) {
+                                       NSLog(@"error: %@", error);
+                                   }];
+}
 ```
 
