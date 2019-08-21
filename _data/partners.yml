@@ -38,14 +38,14 @@
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
   type: technology
 
-- company: StreamAMP 
-  link: https://streamamp.com/
-  imgURL: /assets/images/partners/tech/StreamAMP_logo.png
-  type: technology
-
 - company: Sortable 
   link: https://www.sortable.com/
   imgURL: /assets/images/partners/tech/sortable.png
+  type: technology
+
+- company: StreamAMP 
+  link: https://streamamp.com/
+  imgURL: /assets/images/partners/tech/StreamAMP_logo.png
   type: technology
 
 - company: CafeMedia 
