@@ -1,9 +1,9 @@
 ---
 layout: bidder
-title: Viewdeos
-description: Prebid Viewdeos Bidder Adaptor
+title: 9Media Online
+description: Prebid 9Media Online Bidder Adaptor
 hide: true
-biddercode: viewdeos
+biddercode: 9MediaOnline
 media_types: banner, video
 aliasCode: gamoshi
 ---
