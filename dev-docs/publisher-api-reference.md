@@ -531,6 +531,10 @@ Here's how it works:
 3. If the `customSlotMatching` function is defined, call it. Else, try to match the AdUnit `code` with the GPT slot name. Else try to match the AdUnit `code` with the ID of the HTML div containing the slot.
 4. On the first slot that matches, add targeting from the bids on the AdUnit. Exactly which targets are added depends on the status of [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) and [auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls).
 
+{% capture tipAlert %} To see which targeting key/value pairs are being added to each slot, you can use the GPT Console. From the javascript console, run `googletag.openConsole();` {% endcapture %}
+
+{% include alerts/alert_tip.html content=tipAlert %}
+
 The `customSlotMatching` parameter allows flexibility in deciding which div id
 the ad results should render into. This could be useful on long-scrolling pages... instead of setting the timeout of auctions
 short to make sure they get good viewability, the logic can find an appropriate placement for the auction
