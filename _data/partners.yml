@@ -58,6 +58,11 @@
   imgURL: /assets/images/partners/publisher/mediavine-sq-teal-navy-pn-RGB.png
   type: publisher
 
+- company: News Corp
+  link: https://newscorp.com/
+  imgURL: /assets/images/partners/publisher/News_Corp_logo.png
+  type: publisher
+
 - company: GoBrowsi
   link: https://gobrowsi.com
   imgURL: /assets/images/partners/community/Browsi-Logo.png
