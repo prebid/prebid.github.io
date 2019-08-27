@@ -19,10 +19,12 @@ sidebarType : 1
 
 The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
-* **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org). The result is stored in the user’s browser for future requests and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
+* **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+* **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
+* **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
 
 ## How It Works
 
@@ -59,9 +61,9 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, or `"id5id"` | `"unifiedId"` |
+| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `identityLink` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
-| storage | Required (unless `value` is specified) | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
@@ -330,6 +332,106 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+## IdentityLink
+
+The Identity Link solution is provided by liveramp.com
+
+### IdentityLink Registration
+
+Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`. 
+
+### IdentityLink Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"identityLink"` | `"identityLink"` |
+| params | Required for Id Link | Object | Details for identityLink initialization. | |
+| params.pid | This parameter is required for IdentityLink | String | This is the placementId, value needed for obtaining user’s IdentityLink envelope
+
+
+### IdentityLink Examples
+
+1) Publisher passes a placement ID and elects to store the IdentityLink envelope in a cookie.
+
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "identityLink",
+            params: {
+                pid: '999'             // Set your real identityLink placement ID here
+            },
+            storage: {
+                type: "cookie",  
+                name: "idl_env",       // create a cookie with this name
+                expires: 60            // cookie can last for 60 days
+            }
+        }],
+        syncDelay: 3000              // 3 seconds after the first auction
+    }
+});
+{% endhighlight %}
+
+2) Publisher passes a placement ID and elects to store the IdentityLink envelope in HTML5 localStorage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "identityLink",
+            params: {
+                pid: '999'          // Set your real identityLink placement ID here
+            },
+            storage: {
+                type: "html5",
+                name: "idl_env"    // set localstorage with this name
+            }
+        }],
+        syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+## Criteo RTUS
+
+Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
+
+### Criteo RTUS Registration
+
+In order to use a Criteo rtus id a bidder must reach out to Criteo and get their unique client identifier.
+
+### Criteo RTUS Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
+|--------------------------------|----------|--------|---------------------------------------------------------------------|----------------------|
+| params                         | Required | Object | Details of Criteo ID                                                |                      |
+| params.clientIdentifier        | Required | Object | Object containing bidder code as key and client identifier as value | `{ "appnexus": 30 }` |
+
+{: .alert.alert-info :}
+NOTE: Criteo user id's max age is 1 hour. Criteo rtus module makes a request to criteo endpoint every hour to fetch new user id. Do not use `params.storage` when adding configuration for criteortus. If you are using multiple id systems then you can use storage (if that id system supports it). Read more about the `storage` property under [Basic Configuration](#basic-configuration).
+
+### Criteo RTUS Example
+
+This example assumes the publisher is working with AppNexus as one of the demand partners and AppNexus has partnered with Criteo.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "criteortus",
+            params: {
+              clientIdentifier: {
+                "appnexus": 30
+              }
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -413,6 +515,15 @@ If you're an ID provider that wants to get on this page:
 - Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
 - Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
 
+<a name="getUserIds"></a>
+
+### Exporting User IDs
+
+If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
+
+```
+pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
+```
 
 ## Further Reading
 

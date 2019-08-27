@@ -89,7 +89,7 @@ Exceptions are made for DigiTrust and GDPR, so that we define `ext` according to
 
 #### Bid Adjustments
 
-Bidders [are encouraged](../../developers/add-new-bidder.html) to make Net bids. However, there's no way for Prebid to enforce this.
+Bidders are encouraged to make [Net bids](../../developers/add-new-bidder.html). However, there's no way for Prebid to enforce this.
 If you find that some bidders use Gross bids, publishers can adjust for it with `request.ext.prebid.bidadjustmentfactors`:
 
 ```
@@ -103,8 +103,8 @@ This may also be useful for publishers who want to account for different discrep
 
 #### Targeting
 
-Targeting refers to strings which are sent to the adserver to
-[make header bidding possible]({{site.baseurl}}/overview/intro.html#how-does-prebid-work).
+[Targeting]({{site.baseurl}}/overview/intro.html#how-does-prebid-work) refers to strings which are sent to the adserver to
+make header bidding possible.
 
 `request.ext.prebid.targeting` is an optional property which causes Prebid Server
 to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.targeting`.

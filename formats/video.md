@@ -17,7 +17,7 @@ Video ads are supported by Prebid.js. Prebid Server support is coming soon.
 ### Adops
 
 - [Prebid.js video overview](/prebid-video/video-overview.html)
-- [Show video ads in DFP](/dev-docs/show-video-with-a-dfp-video-tag.html)
+- [Show video ads in Google Ad Manager](/dev-docs/show-video-with-a-dfp-video-tag.html)
 
 ### Developers
 

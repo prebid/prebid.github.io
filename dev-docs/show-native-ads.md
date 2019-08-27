@@ -18,7 +18,7 @@ In this tutorial, we'll set up Prebid.js to show native ads.
 
 We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
-Similarly, we'll use DFP as the ad server, but the concept and implementation should be pretty similar to other ad servers.
+Similarly, we'll use Google Ad Manager as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
 {: .alert.alert-success :}
 For a full working code sample using the techniques described on this page, see the [Prebid Native Example]({{site.github.url}}/examples/native/native-demo.html).
@@ -300,6 +300,6 @@ The `native-trk.js` script from `prebid-universal-creative` can replace native p
 
 ## Related Topics
 
-+ [Setting up Prebid Native in DFP]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
++ [Setting up Prebid Native in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
 
 

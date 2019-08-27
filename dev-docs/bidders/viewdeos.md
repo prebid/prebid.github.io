@@ -4,6 +4,7 @@ title: Viewdeos
 description: Prebid Viewdeos Bidder Adaptor
 hide: true
 biddercode: viewdeos
+media_types: banner, video
 aliasCode: gamoshi
 ---
 
@@ -13,5 +14,3 @@ aliasCode: gamoshi
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
-
-Viewdeos is an aliased bidder for Gamoshi

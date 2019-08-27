@@ -10,6 +10,7 @@
 //   data is the name of variable containing the data
 //   sort can be "colFirst" (the default) or "rowFirst"
 //   maxcols can set a max number of columns
+//   striped is boolean defining whether to set the table-striped class. defaults to yes.
 //
 //   Structure of the data-array:
 //   dynamicTableContents[{{x}}]={};
@@ -57,13 +58,24 @@ function writeDynamicTable(args) {
 
   var tbl = document.createElement('table');
   tbl.style.width = '100%';
-  tbl.setAttribute('class', 'table table-bordered table-striped');
+  var striped;
+  if (typeof args.striped === 'undefined') {
+    striped=true;
+  }
+  if (striped) {
+    tbl.setAttribute('class', 'table-bordered table-striped centered');
+  } else {
+    tbl.setAttribute('class', 'table-bordered centered');
+  }
   var tbdy = document.createElement('tbody');
+  tbdy.setAttribute('class','centered');
   var idx=0;
   for (var r = 0; r < numRows; r++) {
     var tr = document.createElement('tr');
+    tr.setAttribute('class','centered');
     for (var c = 0; c < numCols; c++) {
         var td = document.createElement('td');
+	td.setAttribute('class','centered');
 	if (sortType == "colFirst") {
 		idx=(r + (c*numRows));
 	} else {
