@@ -512,7 +512,7 @@ Use this method to get all of the bid requests that resulted in a NO_BID.  These
 
 ### pbjs.setTargetingForGPTAsync([codeArr], customSlotMatching)
 
-Set query string targeting on all GPT ad units. The logic for deciding query strings is described in the section Configure AdServer Targeting. Note that this function has to be called after all ad units on page are defined.
+Set query string targeting on GPT ad units after the auction.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -522,8 +522,21 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 | [codeArr] | Optional | `array` | an array of adUnitCodes to set targeting for. |
 | customSlotMatching | Optional | `function` | gets a GoogleTag slot and returns a filter function for adUnitCode. |
 
+This function matches AdUnits that have returned from the auction to a GPT ad slot and adds the `hb_`
+targeting attributes to the slot so they get sent to GAM.
+
+Here's how it works:
+1. For each AdUnit code that's returned from auction or is specified in the `codeArr` parameter:
+2. For each GPT ad slot on the page:
+3. If the `customSlotMatching` function is defined, call it. Else, try to match the AdUnit `code` with the GPT slot name. Else try to match the AdUnit `code` with the ID of the HTML div containing the slot.
+4. On the first slot that matches, add targeting from the bids on the AdUnit. Exactly which targets are added depends on the status of [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) and [auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls).
+
+{% capture tipAlert %} To see which targeting key/value pairs are being added to each slot, you can use the GPT Console. From the javascript console, run `googletag.openConsole();` {% endcapture %}
+
+{% include alerts/alert_tip.html content=tipAlert %}
+
 The `customSlotMatching` parameter allows flexibility in deciding which div id
-the ad results should render into. Instead of setting the timeout of auctions
+the ad results should render into. This could be useful on long-scrolling pages... instead of setting the timeout of auctions
 short to make sure they get good viewability, the logic can find an appropriate placement for the auction
 result depending on where the user is once the auction completes.
 

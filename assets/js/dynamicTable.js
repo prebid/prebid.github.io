@@ -63,16 +63,19 @@ function writeDynamicTable(args) {
     striped=true;
   }
   if (striped) {
-    tbl.setAttribute('class', 'table table-bordered table-striped');
+    tbl.setAttribute('class', 'table-bordered table-striped centered');
   } else {
-    tbl.setAttribute('class', 'table table-bordered');
+    tbl.setAttribute('class', 'table-bordered centered');
   }
   var tbdy = document.createElement('tbody');
+  tbdy.setAttribute('class','centered');
   var idx=0;
   for (var r = 0; r < numRows; r++) {
     var tr = document.createElement('tr');
+    tr.setAttribute('class','centered');
     for (var c = 0; c < numCols; c++) {
         var td = document.createElement('td');
+	td.setAttribute('class','centered');
 	if (sortType == "colFirst") {
 		idx=(r + (c*numRows));
 	} else {

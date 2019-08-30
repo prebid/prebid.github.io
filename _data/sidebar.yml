@@ -178,15 +178,6 @@
   subgroup: 0
 
 - sbSecId: 1
-  title: Prebid.js Training Videos
-  link: /videos/setup.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 1
   title: Examples
   link:
   isLastSubSectionItem: 0
@@ -268,7 +259,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 1
   title: Prebid.js FAQ
   link: /dev-docs/faq.html
@@ -279,14 +270,14 @@
   subgroup: 2
 
 - sbSecId: 1
-  title: Dev Tips
-  link: /dev-docs/troubleshooting-tips.html
+  title: Troubleshooting Guide
+  link: /troubleshooting/troubleshooting-guide.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 1
   title: Common Issues
   link: /dev-docs/common-issues.html
@@ -297,27 +288,9 @@
   subgroup: 2
 
 - sbSecId: 1
-  title: Prebid.js Troubleshooting Guide
-  link: /dev-docs/prebid-troubleshooting-guide.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 1
   title: Browser Extension for Debugging
   link: /debugging/debugging.html
   isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 1
-  title: Prebid.js Troubleshooting Training Videos
-  link: /videos/troubleshooting.html
-  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1467,11 +1440,20 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+  
+- sbSecId: 5
+  title: Get User Syncs
+  link: /prebid-server/endpoints/getuids.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Get Status
   link: /prebid-server/endpoints/status.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

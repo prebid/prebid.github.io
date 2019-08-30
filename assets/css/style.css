@@ -46,6 +46,8 @@ p {
 
 .centered {
   text-align: center;
+  vertical-align: middle;
+  padding: 8px;
 }
 
 /* Links */
