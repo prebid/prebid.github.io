@@ -486,6 +486,10 @@ hr {
 	font-weight:400;
 }
 
+.pb-video-list a { 
+	font-weight: 400;
+}
+
 /* DropDown*/
 
 .dropdown { 
