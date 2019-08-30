@@ -1440,11 +1440,20 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+  
+- sbSecId: 5
+  title: Get User Syncs
+  link: /prebid-server/endpoints/getuids.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Get Status
   link: /prebid-server/endpoints/status.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
