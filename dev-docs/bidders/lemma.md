@@ -13,7 +13,6 @@ Lemma bidder adapter requires setup and approval from the Lemma team. Please rea
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
 | Name                | Scope    | Description                           | Example      | Type      |
 | ------------------- | -------- | ------------------------------------- | ------------ | --------- |
 | `pubId`       | required | The publisher ID from Cosmos          | `1001`       | `integer` |
