@@ -15,6 +15,6 @@ Lemma bidder adapter requires setup and approval from the Lemma team. Please rea
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                           | Example      | Type      |
 | ------------------- | -------- | ------------------------------------- | ------------ | --------- |
-| `pubId`       | required | The publisher ID from Cosmos          | `1001`       | `integer` |
+| `pubId`       | required | The publisher ID from Lemma          | `1001`       | `integer` |
 | `adunitId`             | required | Identifier for specific ad adunit  | `1001`       | `integer` |
 | `bidFloor`          | optional | The minimum bid value                 | `1.07`       | `float`   |
