@@ -472,6 +472,17 @@ hr {
 	margin-top: 10px;
 }
 
+.pb-video-list-title { 
+	margin-top: 15px;
+	font-weight: 700;
+}
+
+.pb-video-list { 
+	margin-top: 5px;
+	padding-top: 0;
+	list-style-type:none;
+}
+
 /* DropDown*/
 
 .dropdown { 
