@@ -16,7 +16,6 @@ gdpr_supported: false
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-
 | Name          | Scope    | Description   | Example                | Type      |
 |---------------|----------|---------------|------------------------|-----------|
 | `placementId` | required | Placement ID. | `417846`               | `integer` |
