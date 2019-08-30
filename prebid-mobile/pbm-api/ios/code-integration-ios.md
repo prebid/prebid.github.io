@@ -20,13 +20,8 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 
 If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following: 
 
-{% capture warning_note %}  
-• Ensure that you set the platform to :ios, '11.0', setting the the platform to an earlier version might return unexpected results.  
-• Replace MyAmazingApp with your application's name. {% endcapture %}
-{% include /alerts/alert_warning.html content=warning_note %}
-
 ```
-platform :ios, '11.0'
+platform :ios, '9.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
@@ -97,6 +92,29 @@ For details on creating the specific ad units and additional parameters and meth
 
 [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+
+### Resize ad slot
+
+Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.
+
+{% capture warning_note %}  
+Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+
+```
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+
+        Utils.shared.findPrebidCreativeSize(bannerView) { (size) in
+            if let bannerView = bannerView as? DFPBannerView, let size = size {
+                bannerView.resize(GADAdSizeFromCGSize(size))
+            }
+        }
+    }
+ ```
+
+
 
 
 ### Add Custom Keywords

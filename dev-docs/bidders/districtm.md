@@ -7,7 +7,6 @@ nav_section: reference
 hide: true
 biddercode: districtm
 aliasCode : appnexus
-s2s_only: true
 sidebarType: 1
 isBidder: true
 

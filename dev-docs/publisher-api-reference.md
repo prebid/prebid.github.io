@@ -28,7 +28,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.getNoBids()](#module_pbjs.getNoBids)
-  * [.setTargetingForGPTAsync([codeArr])](#module_pbjs.setTargetingForGPTAsync)
+  * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
   * [.removeAdUnit(adUnitCode)](#module_pbjs.removeAdUnit)
@@ -39,6 +39,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
@@ -54,13 +55,19 @@ This page has documentation for the public API methods of Prebid.js.
     * [s2sConfig](#setConfig-Server-to-Server) (server-to-server config)
     * [app](#setConfig-app) (mobile app post-bid)
     * [userSync](#setConfig-Configure-User-Syncing)
+    * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
+    * [COPPA](#setConfig-coppa)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
-  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl)
-  * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting)
-  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
+
+Functions added by optional modules
+
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
+  * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
+  * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -451,20 +458,19 @@ Use this method to get all of the bids that have won their respective auctions b
 {: .alert.alert-info :}
 The FreeWheel implementation of this function requires including the `freeWheelAdserverVideo` module in your Prebid.js build.
 
-Use this method to get targeting key-value pairs to be sent to the ad server. 
+Use this method to get targeting key-value pairs to be sent to the ad server.
 
-+ `pbjs.adServers.freewheel.getTargeting(options)`: returns key-value pair from the ad server. 
++ `pbjs.adServers.freewheel.getTargeting(options)`: returns key-value pair from the ad server.
 
 ```javascript
 
 pbjs.adServers.freewheel.getTargeting({
     codes: [adUnitCode1],
-    callback: function(err, targeting) { 
-        //pass targeting to player api 
+    callback: function(err, targeting) {
+        //pass targeting to player api
     }
 });
 ```
-
 #### Argument Reference
 
 ##### The `options` object
@@ -474,6 +480,21 @@ pbjs.adServers.freewheel.getTargeting({
 | --- | --- | --- | --- |
 | codes | Optional | `Array` |  [`adUnitCode1`] |
 | callback | Required | `Function` |  Callback function to execute when targeting data is back. |
+
+<hr class="full-rule">
+
+<a name="userId.getUserIds"></a>
+
+### pbjs.getUserIds() ⇒ Object
+
+{: .alert.alert-info :}
+To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
+
+If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
+
+```
+pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
+```
 
 <hr class="full-rule">
 
@@ -489,27 +510,68 @@ Use this method to get all of the bid requests that resulted in a NO_BID.  These
 
 <a name="module_pbjs.setTargetingForGPTAsync"></a>
 
-### pbjs.setTargetingForGPTAsync([codeArr])
+### pbjs.setTargetingForGPTAsync([codeArr], customSlotMatching)
 
-Set query string targeting on all GPT ad units. The logic for deciding query strings is described in the section Configure AdServer Targeting. Note that this function has to be called after all ad units on page are defined.
+Set query string targeting on GPT ad units after the auction.
 
 **Kind**: static method of [pbjs](#module_pbjs)
-
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | -- |
 | [codeArr] | Optional | `array` | an array of adUnitCodes to set targeting for. |
+| customSlotMatching | Optional | `function` | gets a GoogleTag slot and returns a filter function for adUnitCode. |
+
+This function matches AdUnits that have returned from the auction to a GPT ad slot and adds the `hb_`
+targeting attributes to the slot so they get sent to GAM.
+
+Here's how it works:
+1. For each AdUnit code that's returned from auction or is specified in the `codeArr` parameter:
+2. For each GPT ad slot on the page:
+3. If the `customSlotMatching` function is defined, call it. Else, try to match the AdUnit `code` with the GPT slot name. Else try to match the AdUnit `code` with the ID of the HTML div containing the slot.
+4. On the first slot that matches, add targeting from the bids on the AdUnit. Exactly which targets are added depends on the status of [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) and [auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls).
+
+{% capture tipAlert %} To see which targeting key/value pairs are being added to each slot, you can use the GPT Console. From the javascript console, run `googletag.openConsole();` {% endcapture %}
+
+{% include alerts/alert_tip.html content=tipAlert %}
+
+The `customSlotMatching` parameter allows flexibility in deciding which div id
+the ad results should render into. This could be useful on long-scrolling pages... instead of setting the timeout of auctions
+short to make sure they get good viewability, the logic can find an appropriate placement for the auction
+result depending on where the user is once the auction completes.
+
+```
+// returns a filter function that matches either with the slot or the adUnitCode
+// this filter function is being invoked after the auction has completed
+// this means that it can be used in order to place this within viewport instead of a static div naming
+// which regular classic setup allows (by default the its looking for a div id named same as the adUnitCode)
+
+// slot is in view according to the divInView() function
+function pickInViewDiv(slot) {
+   return function(adUnitCode) {
+        return adUnitCode === slot.getAdUnitPath() &&
+                    divInView(slot.getSlotElementId()); }
+};
+
+// make sure we render the results from the auction in a div that is visible in the viewport (example infinite scrolling, instead of rendering a ad in the top of the list that will never be visible (made up example))
+
+setTargetingForGPTAsync(adUnit, pickInViewDiv);
+```
 
 <hr class="full-rule">
 
 <a name="module_pbjs.setTargetingForAst"></a>
 
-### pbjs.setTargetingForAst()
+### pbjs.setTargetingForAst(adUnitCode)
 
-Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad units.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
+Set query string targeting for AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad unit(s).  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
 
 **Kind**: static method of [pbjs](#module_pbjs)
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | -- |
+| adUnitCode | Optional | `String or Array of strings` | Code(s) of the adUnit(s) for which targeting is being set. Omitting this parameter will set targeting on all adUnits. |
 
 <hr class="full-rule">
 
@@ -1206,7 +1268,9 @@ Core config:
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
++ [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
++ [COPPA](#setConfig-coppa)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -1300,7 +1364,7 @@ Sending all bids is the default, but should you wish to turn it off:
 pbjs.setConfig({ enableSendAllBids: false })
 {% endhighlight %}
 
-When sendAllBids mode is on, your page will send keywords for all bidders to your ad server. The ad server will then make the decision on which will win. Some ad servers, such as DFP, can then generate reporting on historical bid prices from all bidders.
+When sendAllBids mode is on, your page will send keywords for all bidders to your ad server. The ad server will then make the decision on which will win. Some ad servers, such as Google Ad Manager, can then generate reporting on historical bid prices from all bidders.
 
 Note that this config must be set before `pbjs.setTargetingForGPTAsync()` or `pbjs.getAdserverTargeting()`.
 
@@ -1529,6 +1593,13 @@ Additional information of these properties:
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
 
+{: .alert.alert-warning :}
+**Errors in bidder parameters will cause Prebid Server to reject the
+entire request.** The Prebid Server philosophy is to avoid silent failures --
+we assume you will test changes, and that it will be easier to notice a
+4xx error coming from the server than a silent failure where it skips just
+the bad parameter.
+
 **Video via s2sConfig**
 
 Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid` object. e.g.
@@ -1553,6 +1624,10 @@ pbjs.setConfig({
 {% endhighlight %}
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
+
+**ExtPrebid Convention**
+
+* Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
 
 <a name="setConfig-app" />
 
@@ -1726,6 +1801,50 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
+<a name="setConfig-targetingControls" />
+
+#### Configure Targeting Controls
+
+The `targetingControls` object passed to `pbjs.setConfig` provides some options to influence how an auction's targeting keys are generated and managed.
+
+Below is an example config with the `targetingControls` object:
+
+```javascript
+pbjs.setConfig({
+  targetingControls: {
+    auctionKeyMaxChars: 5000
+  }
+});
+```
+
+##### Details on the auctionKeyMaxChars setting
+
+When this property is set up, the `auctionKeyMaxChars` setting creates an effective ceiling for the number of auction targeting keys that are passed to an ad server.  This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.  When there is such a limit, query characters that exceed the threshold are normally just dropped and/or ignored, which can cause potential issues with the delivery or rendering of the ad.
+
+Specifically, Prebid will go through the following steps with this feature:
+
+* Collect all the available targeting keys that were generated naturally by the auction.  The keys are grouped by each of the adUnits that participated in the auction.
+* Prioritize these groups of targeting keys based on the following factors:
+  * Bids with deals are prioritized before bids without deals.
+  * Bids with higher CPM are ranked before lower CPM bids.  
+  **Note** - The sorting follows this order specifically, so a bid with a deal that had a $10 CPM would be sorted before a bid with no deal that had a $15 CPM.
+* Convert the keys for each group into the format that they are passed to the ad server (i.e., an encoded query string) and count the number of characters that are used.
+* If the count is below the running threshold set in the `setConfig` call, that set of targeting keys will be passed along.  If the keys exceed the limit, then they are excluded.
+
+ If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.  
+
+##### Finding the right value
+
+Given the varying nature of how sites are set up for advertising and the varying mechanics and data-points needed by ad servers, providing a generic threshold setting is tricky.  If you plan to enable this setting, it's recommended you review your own setup to determine the ideal value.  The following steps provide some guidance on how to start this process:
+
+* Use Prebid to set up a test page that uses the typical setup for your site (in terms of the number of ad slots, etc.).
+* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.  
+  * You can do this by enabling the Prebid debug mode, enabling this setting in your `setConfig` with a high value, and then opening the browser's console to review the Console Logs section.
+* Also in the browser console, find your ad server's ad URL in the Network tab and review the details of the request to obtain information about the query data (specifically the number of characters used).
+  * You can copy the data to another tool to count the number of characters that are present.
+
+Between these two values (Prebid's targeting key count and the overall ad URL query character count), you will find the average number of characters that are used by your ad server.  It's likely that these ad server values will remain consistent given that type of setup.  So if you know your ad server has a particular character limit, you can assume that these ad server characters will be reserved and the difference is what you could allot to Prebid.
+
 <a name="setConfig-Configure-Responsive-Ads" />
 
 #### Configure Responsive Ads
@@ -1740,11 +1859,19 @@ The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to de
 
 ##### How it Works
 
-- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties and then filter the `adUnit.bids` array based on the `labels` defined. Ad units that don't match the label definition are dropped.
+- Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties.  Once it determines the active label(s), it will then filter the `adUnit.bids` array based on the `labels` defined and whether the `banner` mediaType was included. Ad units that include a `banner` mediaType that don't match the label definition are dropped.
 - The required `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
 - If a label conditional (e.g. `labelAny`) doesn't exist on an ad unit, it is automatically included in all requests for bids.
 - If multiple rules match, the sizes will be filtered to the intersection of all matching rules' `sizeConfig.sizesSupported` arrays.
 - The `adUnit.mediaTypes.banner.sizes` selected will be filtered based on the `sizesSupported` of the matched `sizeConfig`. So the `adUnit.mediaTypes.banner.sizes` is a subset of the sizes defined from the resulting intersection of `sizesSupported` sizes and `adUnit.mediaTypes.banner.sizes`. (Note: size config will also operate on `adUnit.sizes`, however `adUnit.sizes` is deprecated in favor of `adUnit.mediaTypes`)
+
+###### Note on sizeConfig and different mediaTypes
+
+The sizeConfig logic only applies to `adUnits`/`bids` that include the `banner` `mediaType` (regardless of whether the request is single or multi-format).
+
+For example, if a request  contained the `banner` and `video` `mediaTypes` and it failed the label check, then the entire adUnit/bid would be dropped (including the `video` part of the request).  However if the same request passed the label check, then the `adUnit.mediaTypes.banner.sizes` would be filtered as per the matching sizeConfig and the multi-format request would proceed as normal.
+
+If the ad unit does not include `banner` `mediaType` at all, then the sizeConfig logic will not influence that ad Unit; it will automatically be passed into the auction.
 
 <a name="sizeConfig-Example" />
 
@@ -1887,8 +2014,20 @@ pbjs.addAdUnits([{
 
 See [Conditional Ad Units]({{site.baseurl}}/dev-docs/conditional-ad-units.html) for additional use cases around labels.
 
-<a name="setConfig-Generic-Configuration" />
 
+<a name="setConfig-coppa" />
+
+#### COPPA
+
+Bidder adapters that support the Child Online Privacy Protection Act (COPPA) read the `coppa` configuration.
+Publishers with content falling under the scope of this regulation should consult with their legal teams.
+The flag may be passed to supporting adapters with this config:
+
+{% highlight js %}
+pbjs.setConfig({coppa: true});
+{% endhighlight %}
+
+<a name="setConfig-Generic-Configuration" />
 
 #### Generic setConfig Configuration
 
@@ -1903,7 +2042,7 @@ Some adapters may support other options, as defined in their documentation. To s
 If you call `pbjs.setConfig` without an object, e.g.,
 
 {% highlight js %}
-pbjs.setConfig('debug', 'true'))
+pbjs.setConfig('debug', 'true'));
 {% endhighlight %}
 
 then Prebid.js will print an error to the console that says:
@@ -1953,9 +2092,9 @@ unsubscribe(); // no longer listening
 ### pbjs.adServers.dfp.buildVideoUrl(options)
 
 {: .alert.alert-info :}
-The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+The Google Ad Manager implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
 
-This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a Google Ad Manager video ad tag URL that can be used by a video player.
 
 #### Argument Reference
 
@@ -1965,7 +2104,7 @@ This method combines publisher-provided parameters with Prebid.js targeting para
 | Field    | Type   | Description                                                                                                                                                                        |
 |----------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `adUnit` | object | *Required*. The Prebid ad unit to which the returned URL will map.                                                                                                                 |
-| `params` | object | *Optional*. Querystring parameters that will be used to construct the DFP video ad tag URL. Publisher-supplied values will override values set by Prebid.js. See below for fields. |
+| `params` | object | *Optional*. Querystring parameters that will be used to construct the Google Ad Manager video ad tag URL. Publisher-supplied values will override values set by Prebid.js. See below for fields. |
 | `url`    | string | *Optional*. The video ad server URL. When given alongside params, the parsed URL will be overwritten with any matching components of params.                                       |
 | `bid`    | object | *Optional*. The Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.                                   |
 
@@ -1977,11 +2116,11 @@ One or both of options.params and options.url is required. In other words, you m
 {: .table .table-bordered .table-striped }
 | Field             | Type   | Description                                                                                                                 | Example                                         |
 |-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-| `iu`              | string | *Required*. DFP ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
-| `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to DFP on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
+| `iu`              | string | *Required*. Google Ad Manager ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
+| `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
 | `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
 
-For more information on any of these params, see [the DFP video tag documentation](https://support.google.com/dfp_premium/answer/1068325?hl=en).
+For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
 #### Examples
 
@@ -2031,6 +2170,65 @@ In the event of collisions, querystring values passed via `options.params` take 
 
 <hr class="full-rule">
 
+<a name="module_pbjs.adServers.dfp.buildAdpodVideoUrl"></a>
+
+### pbjs.adServers.dfp.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Alpha]</span>
+
+{: .alert.alert-info :}
+The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+
+#### Argument Reference
+
+##### The `options` object
+
+{: .table .table-bordered .table-striped }
+| Field    | Type   | Description                                                                                                                                                                        |
+|----------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| iu | string | `adunit` |
+| description_url | string | The value should be the url pointing to a description of the video playing on the page. |
+
+{% include alerts/alert_important.html content="For long form Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
+
+#### Example
+
+```JavaScript
+pbjs.que.push(function(){
+    pbjs.addAdUnits(videoAdUnit);
+    pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        },
+        adpod: {
+            brandCategoryExclusion: true
+        },
+        brandCategoryTranslation: {
+            translationFile: "http://mymappingfile.com/mapping.json"
+        }
+    });
+
+    pbjs.requestBids({
+        bidsBackHandler: function(bids) {
+            pbjs.adServers.dfp. buildAdpodVideoUrl({
+                codes: ['sample-code'],
+                params: {
+                    iu: '/123456/testing/prebid.org/adunit1',
+                    description_url: 'http://mycontent.com/episode-1'
+                },
+                callback: function(err, masterTag) {
+                    // Invoke video player and pass the master tag
+                }
+            });
+        }
+    });
+});
+```
+
+{% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will return the cached VAST XML. " %}
+
+<hr class="full-rule">
+
 <a name="module_pbjs.markWinningBidAsUsed"></a>
 
 ### pbjs.markWinningBidAsUsed(markBidRequest)
@@ -2047,5 +2245,3 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | --- | --- | --- |
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
-
-
