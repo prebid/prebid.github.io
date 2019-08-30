@@ -31,7 +31,23 @@ var adUnit = {
             "supplyCode": "ssp-demo-rm6rh",
             "adCode": "ssp-!demo!-lufip",
             "videoId": "MyCoolVideo"    
-            // Other params go here       
+            // Other params go here,
+            "schain" : {
+                "ver":"1.0",
+                "complete":1,
+                "nodes":[
+                    {
+                        "asi":"exchange1.com",
+                        "sid":"1234",
+                        "hp":1
+                    },
+                    {
+                        "asi":"exchange2.com",
+                        "sid":"abcd",
+                        "hp":1
+                    }
+                ]
+            }       
         }
     }]
 }
@@ -51,3 +67,6 @@ var adUnit = {
 + `1` : Streaming
 + `2` : Progressive
 + `3` : Download
+
+### Supply Chain Object
+The adapter has been enhanced to accept the supply chain object (schain) if provided. Please refer to [SupplyChain for Non RTB Requests](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md#supplychain-for-non-openrtb-requests) for more information
