@@ -1681,7 +1681,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `filterSettings` | Object  | Configure lists of adapters to include or exclude their user syncing based on the pixel type (image/iframe). |
 | `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
 | `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
-| `auctionDelay`      | Integer | Delay in milliseconds to delay the auction to fetch ids. Default: `0`.                              |
+| `auctionDelay`      | Integer | Delay in milliseconds of the auction to sync user ids before auction. Default: `0`.                              |
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
@@ -1710,7 +1710,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-Delay auction to fetch ids first:
+Delay auction to sync user ids first:
 
 {% highlight js %}
 pbjs.setConfig({
