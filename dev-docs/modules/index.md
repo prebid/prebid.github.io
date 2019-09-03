@@ -41,6 +41,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
 | [**Freewheel**]({{site.baseurl}}/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
 | [**Ad Pod**]({{site.baseurl}}/dev-docs/modules/adpod.html) | Enables developers to add support for a new adserver that handles ad pod (long-form) videos |
+| [**Supply Chain Object**]({{site.baseurl}}/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
 
 ## Further Reading
 
