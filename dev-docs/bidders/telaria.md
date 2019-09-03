@@ -30,8 +30,45 @@ var adUnit = {
         "params": {
             "supplyCode": "ssp-demo-rm6rh",
             "adCode": "ssp-!demo!-lufip",
-            "videoId": "MyCoolVideo"    
-            // Other params go here,
+            "videoId": "MyCoolVideo"     
+        }
+    }]
+}
+```
+### Supply Chain Object:
+```javascript
+// There are two ways of passing the SupplyChain Object to our adapter: 
+// 1) set it in the config
+pbjs.setConfig({
+    "schain": {
+        "ver":"1.0",
+        "complete": 1,
+        "nodes": [
+            {
+                "asi":"indirectseller.com",
+                "sid":"00001",
+                "hp":1
+            }
+        ]     
+    }
+});
+
+// 2) pass it in the params object of the adunit:
+var adUnit = {
+    "code": "video1",
+    "mediaTypes": {
+        "video": {
+            "playerSize": [640, 480],
+            "context": "instream"
+        }
+    },
+    "bids": [{
+        "bidder": "telaria",
+        "params": {
+            "supplyCode": "ssp-demo-rm6rh",
+            "adCode": "ssp-!demo!-lufip",
+            "videoId": "MyCoolVideo",
+// Other params go here,
             "schain" : {
                 "ver":"1.0",
                 "complete":1,
@@ -47,7 +84,7 @@ var adUnit = {
                         "hp":1
                     }
                 ]
-            }       
+            }
         }
     }]
 }
