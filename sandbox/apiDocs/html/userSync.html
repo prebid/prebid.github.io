@@ -74,12 +74,6 @@
 								</tr>
 
 								<tr>
-									<td><code>auctionDelay</code></td>
-									<td>Integer</td>
-									<td>Initial delay of the auction in milliseconds to sync user ids. Continues the auction as soon as the ids are all fetched or delay times out. Prevents sync after auction ends. Default setting is 0, i.e. no delay.</td>
-								</tr>
-								
-								<tr>
 									<td><code>enableOverride</code></td>
 									<td>Boolean</td>
 									<td>Enable/disable publisher to trigger user syncs by calling <code>pbjs.triggerUserSyncs()</code>. Default setting is false.</td>
@@ -108,15 +102,6 @@
     }
 });</code></pre></div></div>
 
-		<p style="font-size:15px">Delay auction to fetch user ids. Continues the auction as soon as all ids are fetched or delay times out.</p>
-					
-		<div class="pb-api-code-block">
-			<div class="pb-api-code" id="pb-api-code-display"><pre class="javascript" style="border:0;"><code>pbjs.setConfig({
-		userSync: {
-			auctionDelay: 1000
-		}
-		});</code></pre></div></div>
-			
 			<p style="font-size:15px">Allow iframe-based syncs (the presence of a valid <code>filterSettings.iframe</code> object automatically enables iframe type user-syncing).</p>
 			
 			<div class="pb-api-code-block">
