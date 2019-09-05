@@ -496,6 +496,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
+  
+- sbSecId: 1
+  title: Supply Chain Object
+  link: /dev-docs/modules/schain.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
 
 - sbSecId: 1
   title: External Interfaces
