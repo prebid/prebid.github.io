@@ -11,11 +11,16 @@ sidebarType : 1
 
 # Supply Chain Object Module
 
-Aggregators who manage Prebid wrappers on behalf of multiple publishers and handle payment on behalf of the publishers need to declare their intermediary status in the Supply Chain Object. As the Supply Chain Object spec prohibits SSPs from adding upstream intermediaries, Prebid requests in this case need to come with the schain information.
+Aggregators who manage Prebid wrappers on behalf of multiple publishers and handle payment on behalf of the publishers need to declare their intermediary status in the Supply Chain Object. As the Supply Chain Object spec prohibits SSPs from adding upstream intermediaries, Prebid requests in this case need to come with the `schain` information.
 
 ## How to use the module:
 
-Call setConfig with the schain object to be used.  Example:
+First, build the schain module into your Prebid.js package:
+```
+gulp build --modules=schain,...
+```
+
+Next, in your page, call setConfig with the schain object to be used.  Example:
 
 ```
 pbjs.setConfig( {
@@ -43,7 +48,7 @@ pbjs.setConfig( {
 
 ### Supply Chain Object
 
-The `config` paramter contains a complete supply object confirming to the [IAB's OpenRTB SupplyChain Object Speification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
+The `config` paramter contains a complete supply object confirming to the [IAB's OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
 
 ## Adapters Supporting the Schain Module
 
@@ -69,5 +74,5 @@ $(function(){
 
 ## Further Reading
 
-- [IAB's OpenRTB SupplyChain Object Speification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
+- [IAB's OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
 - [Sellers.json Specification](https://iabtechlab.com/sellers-json/)  
