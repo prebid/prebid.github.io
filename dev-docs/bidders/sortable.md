@@ -3,10 +3,10 @@ layout: bidder
 title: Sortable
 description: Prebid Sortable Bidder Adaptor
 biddercode: sortable
-biddercode_longer_than_12: false
 hide: true
 media_types: banner
 gdpr_supported: true
+prebid_member: true
 ---
 
 **Table of Contents**

@@ -4,11 +4,10 @@ title: iQM
 description: Prebid iQM Bidder Adaptor
 hide: true
 biddercode: iqm
-biddercode_longer_than_12: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

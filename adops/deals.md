@@ -24,7 +24,7 @@ In order to enable deals for prebid, the ad ops setup is slightly different from
 + From the dev side, if your page is using the standard prebid.js key-values, no change or work is required.
 
 {: .bg-info :}
-In this example we will use the DFP setup to illustrate, but the steps are basically the same for any ad server.
+In this example we will use the Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
 
 * TOC
 {:toc}
@@ -67,7 +67,7 @@ For each header bidding partner you work with, create a keyword in the format of
 
 ### Step 3: Create Line Items for Deals
 
-In DFP, create a new line item.
+In Google Ad Manager, create a new line item.
 
 Enter all the **Inventory sizes** for your deal (or deals):
 
@@ -106,6 +106,31 @@ There are two ways to target deal IDs using *Key-values* targeting:
 
 ### Step 4: Attach Creatives to Line Items
 
-For instructions on attaching creatives to the line item, see [Add a Creative](/adops/step-by-step.html#step-2-add-a-creative).
+Like all line items, those that represent deals need to be associated with creatives that pass the correct adid back to Prebid.js for display.
 
+e.g. if the line item is targeted to `hb_deal_pubmatic`, then the creative needs to send `hb_adid_pubmatic` in the creative. Like this:
+
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+    <script>
+      var ucTagData = {};
+      ucTagData.adServerDomain = "";
+      ucTagData.pubUrl = "%%PATTERN:url%%";
+      ucTagData.env = "%%PATTERN:hb_env%%";
+      ucTagData.adId = "%%PATTERN:hb_adid_pubmatic%%";
+      ucTagData.cacheHost = "%%PATTERN:hb_cache_host_pubmatic%%";
+      ucTagData.cachePath = "%%PATTERN:hb_cache_path_pubmatic%%";
+      ucTagData.uuid = "%%PATTERN:hb_cache_id_pubmatic%%";
+      ucTagData.mediaType = "%%PATTERN:hb_format_pubmatic%%";
+      ucTagData.size = "%%PATTERN:hb_size_pubmatic%%";
+      ucTagData.hbPb = "%%PATTERN:hb_pb_pubmatic%%";
+
+      try {
+        ucTag.renderAd(document, ucTagData);
+      } catch (e) {
+        console.log(e);
+      }
+    </script>
+
+If however, the line item is targeted to `hb_deal` (without a bidder code),
+then the simplified creative setup in the [step-by-step instructions](/adops/step-by-step.html#step-2-add-a-creative) will be fine.
 

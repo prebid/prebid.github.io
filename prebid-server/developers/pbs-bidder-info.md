@@ -20,7 +20,7 @@ Some Prebid Server bidders require additional information for integration. For b
 
 ### Using Keywords
 
-The `keywords` bidder param (`../../static/bidder-params/appnexus.json`) will only work if
+The `keywords` [bidder param](https://github.com/prebid/prebid-server/blob/master/static/bidder-params/appnexus.json) will only work if
 it's enabled for your Account with AppNexus.
 
 **This permission is _distinct_ from the keywords feature used by Prebid.js.**

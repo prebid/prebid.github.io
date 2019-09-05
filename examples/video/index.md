@@ -24,6 +24,8 @@ sidebarType: 4
 -   [VideoJS](videojs-demo.html)
 -   [Kaltura](klt-demo.html)
 -   [Ooyala](ooyala-demo.html)
+-   [Brid Player](brid-player-demo.html)
+-   [Flowplayer](flowplayer-demo.html)
 
 ### Prebid.js (using Prebid Server)
 
@@ -34,6 +36,7 @@ sidebarType: 4
 -   [Kaltura](kaltura-pbserver-demo.html)
 -   [VideoJS](videojs-pbserver-demo.html)
 -   [Ooyala](ooyala-pbserver-demo.html)
+-   [Brid Player](bridplayer-pbserver-demo.html)
 
 ## Outstream Video
 

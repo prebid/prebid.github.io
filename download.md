@@ -204,7 +204,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
+      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
     </label>
   </div>
 </div>
@@ -212,39 +212,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
+      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
     </label>
   </div>
 </div>
@@ -268,15 +236,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
+      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
     </label>
   </div>
 </div>
@@ -292,7 +252,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+      <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> OpenX Analytics
     </label>
   </div>
 </div>
@@ -300,23 +260,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
     </label>
   </div>
 </div>
@@ -332,7 +276,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
+      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
     </label>
   </div>
 </div>
@@ -341,6 +285,119 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sortable" class="analytics-check-box" /> Sortable Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
+    </label>
+  </div>
+</div>
+
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
     </label>
   </div>
 </div>
@@ -359,6 +416,24 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
 </div>
  {% endfor %}
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="criteortusIdSystem" class="bidder-check-box"> User ID: Criteo RTUS ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+</div></div>
 </div>
 
 <br>
