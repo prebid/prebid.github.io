@@ -23,3 +23,4 @@ biddercode: outcon
 | `pod` 		| optional |require if not send internalId and publisher|"5beeb24a306ea47660632043"	| `string`|
 | `internalId`	| optional |require if not send pod						|"563643562"				| `string`|
 | `publisher` 	| optional |require if not send pod						|"5beeb24a306ea47660632043"	| `string`|
+| `demo` 		| optional |require for testing							|"true"						| `boolean`	|
