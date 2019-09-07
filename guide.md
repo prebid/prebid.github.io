@@ -337,20 +337,22 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | hide | no | - | Not used |
 | biddercode | yes | preferred bidder code | Used as the default ad server targeting suffix and the default download filename |
 | aliasCode | no | download filename | Overrides the filename used to build the PBJS package on the download page |
-| alternateBidderCode | no | secondary bidder code | Causes a second set of ad server targeting values to be displayed |
-| gdpr_supported | no | true or false, whether the adapter supports GDPR | For display. Defaults to 'no'. |
-| coppa_supported | no | true or false, whether the adapter supports COPPA | For display. Defaults to 'no'. |
+| prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
+| bidder_supports_deals | no | true or false, whether the adapter supports deals | For display. Defaults to 'true'. |
+| s2s_only | no | true or false, whether the adapter is server-to-server only | Adds a note to the display. Defaults to 'false'. |
+| gdpr_supported | no | true or false, whether the adapter supports GDPR | For display. Defaults to 'false'. |
+| coppa_supported | no | true or false, whether the adapter supports COPPA | For display. Defaults to 'false'. |
 | media_types | no | comma-separated list of: banner, video, native | For display. |
 | userIds | no | comma-separated list of supported user id modules | For display. |
 | prebid_member | no | true or false, whether this company is a prebid.org member | For display. |
 
-The bidderCode, aliasCode, and alternateBidderCode parameters bear some description. 
+The bidderCode, aliasCode, and prevBiddercode parameters bear some description. 
 Some adapters have a longer bidderCode and a shorter bidderCode -- their adapter supports both (with the `alias` feature) but
-there's only one documentation file and of course one PBJS adapter file. An example scenario is when the company started off with a
+there's only one documentation file and of course one PBJS adapter file. An relatively common scenario is when the company started off with a
 long bidderCode, but found it awkward to set up ad server targeting variables because GAM limits you to 20 chars, which is easy to exceed
-with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode for new customers while supporting the legacy targeting variables.
+with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode for new customers while supporting the legacy targeting variables. In that scenario, they:
 
-
-
-
-
+1) add the shorter code as an alias in their PBJS file, which can stay the old longer name
+2) change the biddercode to the shorter name as it's the new preferred code
+3) add aliasCode so the Download page will pull in the right module
+4) optionally add prevBiddercode to add a note to the page about the legacy value
