@@ -1,18 +1,16 @@
 ---
 layout: page_v2
-title: About Prebid.js
-description: How prebid.js was started and what is it about
-pid: 60
+title: prebid.org website guide
+description: details about how the site works
 isNew: false
 hide: true
-isNavParent: true
 sidebarType: 0
 ---
 
 # Prebid Website Maintenance Guide
 
-v 1.0  
-Janurary 7, 2019
+v 1.1  
+Sept 7, 2019
 
 ***
 
@@ -57,11 +55,12 @@ Jekyll was originally designed specifically for creation of blogging websites an
 
 Learn more about YML [here](https://yaml.org/start.html)
 
-There are three YML files in the Prebid _data directory
+There are several YML files in the Prebid _data directory
 
 - [dropdown_v2](#Dropdown)
 - [sidebar](#Sidebar)
 - [messages](#Messages)
+- [partners](#Partners)
 
 The contents of these files are used throughout the Prebid.org site for dynamically creating the navigation and displaying messages. See the [Data Model](#data-models) section for a review of how the data is structured and to see sample code.
 
@@ -85,6 +84,7 @@ The bidders directory is not a standard part of Jekyll; it’s a special use dir
 **_sites**
 
 The sites directory is created by Jekyll. It contains the live site generated from the collected files and data listed above, combined with the CSS, JS and image assets and the Markdown files for individual pages. 
+
 
 ***
 
@@ -163,6 +163,8 @@ The CSS file has multiple @media sections that handle the formatting of the webs
 
 The data files are stored in the __data directory. 
 
+<a name="Dropdown></a>
+
 ### Dropdown
 
 The dropdown_v2 YML file is used to construct the top nav when the site is viewed on desktops and tablets. 
@@ -215,6 +217,8 @@ The collection with the title property "What Is Prebid?" is a child of the colle
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (__includes/nav.html). 
 
+<a name="Sidebar></a>
+         
 ### Sidebar
 
 The sidebar YML file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when views on phones. 
@@ -273,6 +277,8 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 **Code Use**  
 This data file is read in the page_v2.html file using Liquid.
 
+<a name="Messages></a>
+
 ### Messages
 
 The messsages YML file is used to construct the message displayed on the Prebid homepage. Each message is represented in the YML map as a collection of key value pairs, each collection is prefixed with a dash (-). 
@@ -292,12 +298,57 @@ The messsages YML file is used to construct the message displayed on the Prebid 
 **Code Use**  
 This data file is read in the home.html file using Liquid.
 
+<a name="Partners></a>
+         
+### Partners
 
+There are three locations important for adding a new partner onto the [Partners Page](/partners/partners.html)
 
+1) The logo asset in /assets/images/partners
+2) The '\_data/partners.yml' file, which has these fields:
 
+```Markdown
+- company: CompanyName
+  link: CLICK_DESTINATION
+  imgURL: /assets/images/partners/PATH_TO_LOGO
+  type: founder|leader|technology|publisher|community
+```
 
+3) The '\_includes/partners.html' file
 
+This is the Liquid script that reads the partners.yml file and draws the boxes and logos. In order to make
+the boxes look good, the `maxcols` argument to `writeDynamicTable()` has been added to any table that fewer than 4 entries.
+Once there are more than 4 entries for a given group, it's recommended to remove that argument.
 
+## Bidder Files
+
+There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
+
+- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like http://prebid.org/dev-docs/bidders/rubicon.html
+- /dev-docs/bidders.md - this is used to generate the (large) combined page at http://prebid.org/dev-docs/bidders.html
+
+The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
+
+| Key | Required? | Values | Use |
+| ----- | ------ | ------ | ------ |
+| layout | yes | bidder | Links this file to the bidder.html layout |
+| title | yes | company name | For display |
+| description | no | - | Not used |
+| hide | no | - | Not used |
+| biddercode | yes | preferred bidder code | Used as the default ad server targeting suffix and the default download filename |
+| aliasCode | no | download filename | Overrides the filename used to build the PBJS package on the download page |
+| alternateBidderCode | no | secondary bidder code | Causes a second set of ad server targeting values to be displayed |
+| gdpr_supported | no | true or false, whether the adapter supports GDPR | For display. Defaults to 'no'. |
+| coppa_supported | no | true or false, whether the adapter supports COPPA | For display. Defaults to 'no'. |
+| media_types | no | comma-separated list of: banner, video, native | For display. |
+| userIds | no | comma-separated list of supported user id modules | For display. |
+| prebid_member | no | true or false, whether this company is a prebid.org member | For display. |
+
+The bidderCode, aliasCode, and alternateBidderCode parameters bear some description. 
+Some adapters have a longer bidderCode and a shorter bidderCode -- their adapter supports both (with the `alias` feature) but
+there's only one documentation file and of course one PBJS adapter file. An example scenario is when the company started off with a
+long bidderCode, but found it awkward to set up ad server targeting variables because GAM limits you to 20 chars, which is easy to exceed
+with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode for new customers while supporting the legacy targeting variables.
 
 
 
