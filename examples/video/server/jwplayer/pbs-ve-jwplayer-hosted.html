@@ -10,7 +10,7 @@
 		<meta name="description" content="{{page.description}}" />
 		
 		<link rel="shortcut icon" type="image/png" href="/favicon.png" />
-		<title>Prebid Server Video Example : JW Player (Platform)</title>
+		<title>Prebid Server Video Example : JW Player (Hosted)</title>
 		
 		
 		<!-- OneTrust Cookies Consent Notice start -->
@@ -52,7 +52,12 @@
 		
 		<!--Prebid.js and video player code-->
 		<script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
-		<script>
+		<script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"></script>
+        <script type="text/javascript">
+            jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key
+        </script>
+
+        <script>
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
 
@@ -76,6 +81,8 @@
                 tempTag = url;
             };
 
+            /* Prebid video ad unit */
+
             var videoAdUnit = {
                 code: 'video1',
                 mediaTypes: {
@@ -90,7 +97,7 @@
                 bids: [{
                     bidder: 'appnexus',
                     params: {
-                        placementId: 13232361, // Add your own placement id here.
+                        placementId: 13232361, // Add your own placement id here
                         video: {
                             skippable: true,
                             playback_method: ['auto_play_sound_off']
@@ -108,6 +115,7 @@
                         url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
                     debug: true,
+                    enableSendAllBids: true,
                     s2sConfig: {
                         endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                         enabled: true,
@@ -120,7 +128,8 @@
 
                 pbjs.requestBids({
                     bidsBackHandler: function(bids) {
-
+                        console.log("got some bids");
+                        console.log(bids);
                         var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
                             adUnit: videoAdUnit,
                             params: {
@@ -138,8 +147,8 @@
             });
 
         </script>
-     	</head>
-		<body>
+	</head>
+	<body>
     
     	<div style="margin:0; padding:0;">
 			<div style="margin-top: 20px; padding-left: 10px;"><a href="http://www.prebid.org"><img src=" /assets/images/logos/prebid_final.png" width="200" height="33"></a></div>
@@ -167,6 +176,7 @@
 					<p>Server</p>
 					<ul class="pb-video-list" style="list-style-type:none">
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jeplayer-platform.html">JW PLayer (Platform)</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jeplayer-hosted.html">JW PLayer (Platform)</a></li>
 					</ul>
 					<hr>
 					<p>Long Form</p>				
@@ -174,7 +184,7 @@
 				
 				<!--content-->
 				<div class="col-sm-9 pb-content" markdown="1">
-					<h4>Prebid Server Video | JW Player (Platform)</h4>
+					<h4>Prebid Server Video | JW Player (Hosted)</h4>
 					
 					<!--video example explanation-->
 					<div>This is an example of instream video using Prebid,js and JW Player. 
@@ -187,7 +197,7 @@
 					</div>
 					
 					<!--video placeholder | this should be formatted per the needs of each player-->
-					<div id="myElement1"></div>
+					<div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'>
 					
 					<!--video code fencing-->
 					
@@ -201,93 +211,67 @@
 					<h4>Place this code in the page header.</h4>
 <pre>
 	<!--put javascript code here-->
-	&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
+	&lt;!--Prebid.js and video player code--&gt;
+		&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
 		&lt;script&gt;
-            var pbjs = pbjs || {};
-            pbjs.que = pbjs.que || [];
-
-            /* PRE-DEFINE `invokeVideoPlayer`
-
-            Because we have no way of knowing when all the bids will be
-            returned from Prebid we can't be sure that the browser will
-            reach the point where `invokeVideoPlayer` is defined before
-            `bidsBackHandler` fires and tries to call it.
-
-            To prevent an "`invokeVideoPlayer` not defined" error, we
-            pre-define it before we make the call to Prebid, and redefine
-            it later on with the code to create the player and play the
-            ad.
-
-            In this first version, it simply stores the winning VAST to
-            use later. */
-
-            var tempTag = false;
-            var invokeVideoPlayer = function(url) {
-                tempTag = url;
-            };
-
-            var videoAdUnit = {
-                code: 'video1',
-                mediaTypes: {
-                    video: {
-                        playerSize: [640, 480],
-                        context: 'instream',
-                        mimes: ['video/mp4'],
-                        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                        playbackmethod: [2]
-                    }
-                },
-                bids: [{
-                    bidder: 'appnexus',
-                    params: {
-                        placementId: 13232361, // Add your own placement id here.
-                        video: {
-                            skippable: true,
-                            playback_method: ['auto_play_sound_off']
-                        }
-                    }
-                }]
-            };
-
-            pbjs.que.push(function() {
-
-                // configure prebid to use prebid cache and prebid server
-                // make sure to add your own accountId to your s2sConfig object
-                pbjs.setConfig({
-                    cache: {
-                        url: 'https://prebid.adnxs.com/pbc/v1/cache'
-                    },
-                    debug: true,
-                    s2sConfig: {
-                        endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-                        enabled: true,
-                        accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
-                        bidders: ['appnexus']
-                    }
-                });
-
-                pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-
-                pbjs.requestBids({
-                    bidsBackHandler: function(bids) {
-
-                        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-                            adUnit: videoAdUnit,
-                            params: {
-                                iu: '/19968336/prebid_cache_video_adunit',
-                                cust_params: {
-                                    section: 'blog',
-                                    anotherKey: 'anotherValue'
-                                },
-                                output: 'vast'
-                            }
-                        });
-                        invokeVideoPlayer(videoUrl);
-                    }
-                });
-            });
-
-        &lt;/script&gt;
+		    var pbjs = pbjs || {};
+		    pbjs.que = pbjs.que || [];
+		
+		    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
+		    var tempTag = false;
+		    var invokeVideoPlayer = function(url) {
+		        tempTag = url;
+		    }
+		
+		    var videoAdUnit = {
+		        code: 'video1',
+		        mediaTypes: {
+		            video: {
+		                playerSize: [640, 480],
+		                context: 'instream'
+		            }
+		        },
+		        bids: [{
+		            bidder: 'appnexus',
+		            params: {
+		                placementId: 13232361, // Add your own placement id here
+		                video: {
+		                    skipppable: true,
+		                    playback_method: ['auto_play_sound_off']
+		                }
+		            }
+		        }]
+		    };
+		
+		    pbjs.que.push(function() {
+		        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
+		
+		        pbjs.setConfig({
+		            debug: true,
+		            cache: {
+		                url: 'https://prebid.adnxs.com/pbc/v1/cache'
+		            }
+		        });
+		
+		        pbjs.requestBids({
+		            bidsBackHandler: function(bids) {
+		                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+		                    adUnit: videoAdUnit,
+		                    params: {
+		                        iu: '/19968336/prebid_cache_video_adunit',
+		                        cust_params: {
+		                            section: 'blog',
+		                            anotherKey: 'anotherValue'
+		                        },
+		                        output: 'vast'
+		                    }
+		                });
+		                invokeVideoPlayer(videoUrl);
+		            }
+		        });
+		    });
+		
+		&lt;/script&gt;
 
 </pre>
 					</div>
@@ -297,31 +281,25 @@
 					<h4>Place this code in the page body.</h4>
 <pre>
 	<!--put body html and javascript here-->
-	&lt;!--video player code--&gt;
-		&lt;!-- This line loads a player without loading any video content --&gt;
-        &lt;!-- Replace this with the correct url for your player --&gt;
-        &lt;script src="https://content.jwplatform.com/libraries/72xIKEe6.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
-            // we initialize our player instance, specifying the div to load it into
-            var playerInstance = jwplayer('myElement1');
+	&lt;script&gt;
+            var jwPlayerInstance = jwplayer("playerContainerJW");
 
-            function invokeVideoPlayer(url) {
-                // this calls setup on the player we initialized
-                // this will use the settings defined in the player we loaded above unless you override them here
-                playerInstance.setup({
-                    // this line loads a playlist from your jwplatform account (in either json or rss format)
-                    // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-                    // Replace this with the correct url for your playlist
-                    "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+            invokeVideoPlayer = function(url) {
+                console.log("starting player with url " + url);
+                jwPlayerInstance.setup({
+                    "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
                     "width": 640,
                     "height": 480,
-                    // we enable vast advertising for this player
+                    "autostart": true,
+                    "mute": true,
                     "advertising": {
-                        "client": "vast",
-                        // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                        "tag": url,
-                    },
+                        client: "vast",
+                    }
                 });
+
+                jwPlayerInstance.on('beforePlay', function() {
+                    jwPlayerInstance.playAd(url);
+                })
             }
 
             if (tempTag) {
@@ -329,7 +307,8 @@
                 tempTag = false;
             }
 
-        &lt;/script&gt;  
+        &lt;/script&gt;
+  
 
 </pre>
 					</div>
@@ -365,30 +344,25 @@
 		</script>
 		
 		<!--video player code-->
-		<!-- This line loads a player without loading any video content -->
-        <!-- Replace this with the correct url for your player -->
-        <script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
-        <script>
-            // we initialize our player instance, specifying the div to load it into
-            var playerInstance = jwplayer('myElement1');
+		<script>
+            var jwPlayerInstance = jwplayer("playerContainerJW");
 
-            function invokeVideoPlayer(url) {
-                // this calls setup on the player we initialized
-                // this will use the settings defined in the player we loaded above unless you override them here
-                playerInstance.setup({
-                    // this line loads a playlist from your jwplatform account (in either json or rss format)
-                    // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-                    // Replace this with the correct url for your playlist
-                    "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+            invokeVideoPlayer = function(url) {
+                console.log("starting player with url " + url);
+                jwPlayerInstance.setup({
+                    "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
                     "width": 640,
                     "height": 480,
-                    // we enable vast advertising for this player
+                    "autostart": true,
+                    "mute": true,
                     "advertising": {
-                        "client": "vast",
-                        // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                        "tag": url,
-                    },
+                        client: "vast",
+                    }
                 });
+
+                jwPlayerInstance.on('beforePlay', function() {
+                    jwPlayerInstance.playAd(url);
+                })
             }
 
             if (tempTag) {
@@ -396,6 +370,5 @@
                 tempTag = false;
             }
 
-        </script>   
-
+        </script>
     </body>
