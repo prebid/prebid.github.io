@@ -29,22 +29,39 @@
 		
 		                    <h3>{{ page.title }}</h3>
 		
-		                    <h4>Bidder Code</h4>
-		                    
 		                    {% if page.s2s_only == true %}
 								<div class="pb-bidder-s2">
 									<h3>Note:</h3> This is a S2S adapter only.</h3>
 								</div>
 							{% endif %}
 		
-		                    <code>{{ page.biddercode }}</code> 
-		                    {% if page.biddercode_longer_than_12 != true %}
-		                        <h4>Send All Bids Ad Server Keys</h4>
-		                        <code>hb_pb_{{ page.biddercode }}</code>
-		                        <code>hb_adid_{{ page.biddercode }}</code>
-		                        <code>hb_size_{{ page.biddercode }}</code> 
-		                    {% endif %} 
-		
+<h3>Features</h3>
+
+<table>
+<tr><th class="pbTh">Bidder Code</th><td class="pbTd">{{ page.biddercode }}</td><th class="pbTh">Prebid.org Member</th><td class="pbTd">{% if page.prebid_member == true %}yes{% else %}no{% endif %}</td></tr>
+<tr><th class="pbTh">Media Types</th><td class="pbTd">display{% if page.media_types contains 'video' %}, video{% endif %}{% if page.media_types contains 'native' %}, native{% endif %}</td><th class="pbTh">GDPR Support<td class="pbTd">{% if page.gdpr_supported == true %}yes{% else %}no{% endif %}</td></tr>
+<tr><th class="pbTh">User IDs</th><td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td><th class="pbTh">COPPA Support</th><td class="pbTd">{% if page.coppa_supported == true %}yes{% else %}no{% endif %}</td></tr>
+</table>
+
+<h3>"Send All Bids" Ad Server Keys</h3>
+
+<font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>
+
+<table>
+<tr><td class="pbTd"><code>{{ "hb_pb_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_bidder_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_adid_" | append: page.biddercode | slice: 0,20 }}</code></td></tr>
+<tr><td class="pbTd"><code>{{ "hb_size_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_source_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_format_" | append: page.biddercode | slice: 0,20 }}</code></td></tr>
+<tr><td class="pbTd"><code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code></td></tr>
+</table>
+
+{% if page.prevBiddercode %}
+This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
+{% endif %}
+
+{% if page.bidder_supports_deals != false %}
+<h3>"Deal ID" Ad Server Key</h3>
+<code>{{ "hb_deal_" | append: page.biddercode | slice: 0,20 }}</code>
+{% endif %}
+
 		                    {{content}}
 							
 		                </div>

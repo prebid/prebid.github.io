@@ -24,6 +24,8 @@ sidebarType: 4
 -   [VideoJS](videojs-demo.html)
 -   [Kaltura](klt-demo.html)
 -   [Ooyala](ooyala-demo.html)
+-   [Brid Player](brid-player-demo.html)
+-   [Flowplayer](flowplayer-demo.html)
 
 ### Prebid.js (using Prebid Server)
 
@@ -34,8 +36,15 @@ sidebarType: 4
 -   [Kaltura](kaltura-pbserver-demo.html)
 -   [VideoJS](videojs-pbserver-demo.html)
 -   [Ooyala](ooyala-pbserver-demo.html)
+-   [Brid Player](bridplayer-pbserver-demo.html)
 
 ## Outstream Video
 
 -   [Video with DFP](outstream/outstream-dfp.html)
 -   [Outstream Video without an Ad Server](outstream/outstream-no-adserver.html)
+
+
+## Long-Form Video   
+
+-   [Long-Form Video Using Freewheel](long-form/long-form-video-with-freewheel.html)
+

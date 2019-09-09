@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: Setting up Prebid Native in DFP (Alpha)
-head_title: Setting up Prebid Native in DFP
-description: Setting up Prebid Native in DFP
+title: Setting up Prebid Native in Google Ad Manager (Alpha)
+head_title: Setting up Prebid Native in Google Ad Manager
+description: Setting up Prebid Native in Google Ad Manager
 pid: 3
 hide: false
 top_nav_section: adops
@@ -12,12 +12,12 @@ sidebarType: 3
 
 
 
-# Setting up Prebid Native in DFP (Alpha)
+# Setting up Prebid Native in Google Ad Manager (Alpha)
 {: .no_toc}
 
-This page describes how to set up native creatives in DFP for use with Prebid.js.
+This page describes how to set up native creatives in Google Ad Manager for use with Prebid.js.
 
-For more information about DFP native ad setup, see the [DFP native ads documentation](https://support.google.com/dfp_premium/answer/6366845?hl=en).
+For more information about Google Ad Manager native ad setup, see the [Google Ad Manager native ads documentation](https://support.google.com/admanager/answer/6366845).
 
 * TOC
 {:toc}
@@ -42,7 +42,7 @@ Select **New format** under **Custom format**. (If you've already created an ad 
 
 ## 3. Style your native ad
 
-You can add HTML and CSS to define your native ad template. To allow for native impression trackers and click trackers within a Prebid native creative template, you'll need to include a CDN-hosted script in the HTML, as shown here (see Example HTML below for the full script):
+You can add HTML and CSS to define your native ad template. To allow for native impression trackers, click trackers, and [automatic placeholder value replacement]({{site.github.url}}/dev-docs/show-native-ads.html#sending-asset-placeholders) within a Prebid native creative template, you'll need to include a CDN-hosted script in the HTML, as shown here (see Example HTML below for the full script):
 
 ![native ad styling]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_styling.png){: .pb-md-img :}
 
@@ -144,7 +144,5 @@ p {
 ## Related Topics
 
 + [Show Native Ads with Prebid.js]({{site.github.url}}/dev-docs/show-native-ads.html) (Engineering setup instructions)
-+ [Step by Step Guide to DFP Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
++ [Step by Step Guide to Google Ad Manager Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
 + [Send all bids to the ad server]({{site.github.url}}/adops/send-all-bids-adops.html)
-
-

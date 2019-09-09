@@ -304,7 +304,7 @@ If the Prebid timeout occurs while bids are still on the queue, they will be ski
 A bid is also skipped if the file (or `defaultRates`) doesn't contain a conversion from the bid currency
 to the ad server currency.
 
-**Can I use the DFP Secondary Currency Feature instead?**
+**Can I use the Google Ad Manager Secondary Currency Feature instead?**
 
 Of course, use of Prebid currency feature is optional.
 

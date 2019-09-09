@@ -2,12 +2,8 @@
 layout: bidder
 title: Adhese 
 description: Prebid Adhese Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: adhese
-biddercode_longer_than_12: false
-prebid_1_0_supported: true
 media_types: banner, video 
 gdpr_supported: true
 ---
@@ -15,7 +11,7 @@ gdpr_supported: true
 ### Note
 The Adhese bid adapter may require an additional setup from the Adhese team, even for existing Adhese customers. Please reach out to your support team or info@adhese.com for more information.
  
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example                      | Type     |

@@ -9,8 +9,8 @@ nav_section: reference
 hide: true
 
 biddercode: cleanmedia
-
-biddercode_longer_than_12: false
+media_types: banner, video
+aliasCode: gamoshi
 ---
 
 ### Bid params
@@ -19,5 +19,3 @@ biddercode_longer_than_12: false
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
-
-CleanMedia is an aliased bidder for Gamoshi

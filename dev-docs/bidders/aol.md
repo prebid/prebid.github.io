@@ -2,20 +2,15 @@
 layout: bidder
 title: AOL
 description: Prebid AOL Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: aol
-biddercode_longer_than_12: false
-prebid_1_0_supported: true
-media_types: video
 gdpr_supported: true
 ---
 
 ### Note:
 This adapter allows use of both ONE by AOL: Display and ONE by AOL: Mobile platforms. In order to differentiate these sources of demand in your ad server and reporting, you may use the optional `onedisplay` and `onemobile` adapter aliases instead.
 
-### bid params
+### Bid Params
 
 #### ONE by AOL: Display
 

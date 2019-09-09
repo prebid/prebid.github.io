@@ -2,14 +2,12 @@
 layout: bidder
 title: AppNexus
 description: Prebid AppNexus Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: appnexus
-biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 media_types: banner, video, native
 gdpr_supported: true
+prebid_member: true
+userIds: criteortus
 ---
 
 ### Table of Contents
@@ -33,7 +31,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
-| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID.                                                     | `'234234'`                                            | `string`         |
+| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID. The `placementID` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string`value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
 | `member`            | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
 | `invCode`           | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
 | `user`              | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
