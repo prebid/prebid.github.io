@@ -252,7 +252,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> OpenX Analytics
+      <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> Finteza Analytics
     </label>
   </div>
 </div>
