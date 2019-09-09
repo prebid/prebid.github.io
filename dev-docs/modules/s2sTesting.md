@@ -45,6 +45,7 @@ pbjs.setConfig(
      bidders: [ "rubicon", "appnexus" ],
      enabled: true,
      testing: true,
+     testServerOnly: false,
      bidderControl: {
          "rubicon": {
              bidSource: {server:10, client:90},
