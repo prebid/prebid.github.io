@@ -101,31 +101,46 @@ Prebid recommends app developers to resize ads slots to the Prebid rendering ad 
 Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
+*SWIFT*
+```swift
+func adViewDidReceiveAd(_ bannerView: GADBannerView) {
 
-```
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
+    AdViewUtils.findPrebidCreativeSize(bannerView,
+                                            success: { (size) in
+                                                guard let bannerView = bannerView as? DFPBannerView else {
+                                                    return
+                                                }
 
-        Utils.shared.findPrebidCreativeSize(bannerView) { (size) in
-            if let bannerView = bannerView as? DFPBannerView, let size = size {
-                bannerView.resize(GADAdSizeFromCGSize(size))
-            }
-        }
-    }
+                                                bannerView.resize(GADAdSizeFromCGSize(size))
+
+        },
+                                            failure: { (error) in
+                                                print("error: \(error)");
+
+        })
+}
+
+
+
  ```
 
+*Objective C*
+ ```objective_c
+ -(void) adViewDidReceiveAd:(GADBannerView *)bannerView {
+    NSLog(@"Ad received");
+    [AdViewUtils findPrebidCreativeSize:bannerView
+                                   success:^(CGSize size) {
+                                       if ([bannerView isKindOfClass:[DFPBannerView class]]) {
+                                           DFPBannerView *dfpBannerView = (DFPBannerView *)bannerView;
+                                           
+                                           [dfpBannerView resize:GADAdSizeFromCGSize(size)];
+                                       }
+                                   } failure:^(NSError * _Nonnull error) {
+                                       NSLog(@"error: %@", error);
+                                   }];
+}
+ ```
 
-
-
-### Add Custom Keywords
-
-Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
-
-```
-bannerUnit.addKeyword(key:"Sample", value:"Value to add")
-```
-
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html).
 
 ## Further Reading
 
@@ -136,5 +151,6 @@ For more details on custom keywords, review the [adUnit class documention](/preb
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Prebid Utilities - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-util-ios.html)
 
