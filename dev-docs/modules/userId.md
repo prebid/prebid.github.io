@@ -25,6 +25,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
+* **LiveIntent ID** – fetches a user ID based on identifiers that are present on the page. It calls the LiveIntent Identity Exchange endpoint which resolves the inbound identifiers to a stable ID.
 
 ## How It Works
 
@@ -61,7 +62,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `identityLink` | `"unifiedId"` |
+| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"`, `identityLink` or `liveIntentId` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -444,6 +445,51 @@ pbjs.setConfig({
 {% endif %}
 {% endfor %}
 </table>
+
+## LiveIntent ID
+
+LiveIntent ID solution provides a stable user identifier based on first and third party identifiers. 
+
+### LiveIntent ID configuration
+
+|Param under usersync.userIds[]|Scope|Type|Description|Example|
+|---|:---:|:---:|---:|---:|
+|`name`|Required | `String`|The name of this module|`'liveIntentId'`|
+|`params`| Required|`Object`|Container of all module params||
+|`params.publisherId`| Required|`String`|The unique identifier of the publisher in question|`'12432415'`|
+|`params.identifiersToResolve`|Optional|`Array[String]`|Additional identifier that can be chosen to be sent along with the id resolution request|`['my-id']`|
+|`params.url`| Optional|`String`|In case a publisher is running Prebid.js and can call LiveIntent's Identity Exchange endpoint withing it's own domain, this parameter can be used to change the default endpoint URL|`'//idx.my-domain.com'`|
+
+### LiveIntent ID example
+
+The minimal setup would be as follows: 
+```
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "liveIntentId",
+            params: {
+              publisherId: "9896876"
+            }
+        }]
+    }
+})
+```
+
+If there are additional identifiers that LiveIntent could resolve, those can be added under the `identifiersToResolve` array in config params. 
+```
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "liveIntentId",
+            params: {
+              publisherId: "9896876",
+              identifiersToResolve: ["my-own-cookie"]  
+            }
+        }]
+    }
+})
+```
 
 ## Bidder Adapter Implementation
 
