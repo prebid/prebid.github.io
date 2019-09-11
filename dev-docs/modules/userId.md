@@ -457,7 +457,7 @@ LiveIntent ID solution provides a stable user identifier based on first and thir
 |`name`|Required | `String`|The name of this module|`'liveIntentId'`|
 |`params`| Required|`Object`|Container of all module params||
 |`params.publisherId`| Required|`String`|The unique identifier of the publisher in question|`'12432415'`|
-|`params.identifiersToResolve`|Optional|`Array[String]`|Additional identifier that can be chosen to be sent along with the id resolution request|`['my-id']`|
+|`params.identifiersToResolve`|Optional|`Array[String]`|Additional identifiers that can be sent along with the id resolution request|`['my-id']`|
 |`params.url`| Optional|`String`|In case a publisher is running Prebid.js and can call LiveIntent's Identity Exchange endpoint withing it's own domain, this parameter can be used to change the default endpoint URL|`'//idx.my-domain.com'`|
 
 ### LiveIntent ID example
