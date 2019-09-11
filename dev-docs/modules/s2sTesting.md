@@ -176,7 +176,7 @@ approach and a mixed client-server approach so we can gauge the impact of Prebid
 
 Using the `testServerOnly` flag means that all client requests will be suppressed (those requests will not be made) whenever any bid requests from the 'A/B test group' result in a 'server' bid request.  The 'A/B test group' includes any requests whose source is controled by 's2sConfig.bidderControl' or 'bidSource' at the adUnit level.  This may give a clearer picture of how s2s performs without interference from client bid requests.
 
-For best results, all bidders/bids in the 'A/B test group' should be configured with the same client/server allocation.  Because use of this flag will result in turning off cient bids a certain percentage of the time, it could negatively affect revenue, and should be used with caution.  Thus it should only be used when 'server' is allocated a small percentage (i.e. <= 5%) of bid requests.
+For best results, all bidders/bids in the 'A/B test group' should be configured with the same client/server allocation.  Because use of this flag will result in turning off client bids a certain percentage of the time, it could negatively affect revenue, and should be used with caution.  Thus it should only be used when 'server' is allocated a small percentage (i.e. <= 5%) of bid requests.
 
 Example S2S Config defining that 5% of the time all bid requests will go 'server' and 95% of the time a mix of 'server' and 'client':
 
@@ -184,9 +184,10 @@ Example S2S Config defining that 5% of the time all bid requests will go 'server
 pbjs.setConfig(
   s2sConfig: {
      account: "PREBID-SERVER-ACCOUNT",
-     bidders: [ "rubicon", "appnexus", "criteo" ],
+     bidders: [ "rubicon", "criteo" ],
      enabled: true,
      testing: true,
+     testServerOnly: true,
      bidderControl: {
          rubicon: {
             bidSource: {client:95, server 5},
@@ -208,15 +209,15 @@ AdUnit={
         bidder: "rubicon",
         [...]
     },{
-        bidder: "appnexus",
-        [...]
-    },{
         bidder: "criteo",
         [...]
     }]
 }
 ```
-5% of the time appnexus, rubicon, and criteo will use s2s bid requests while index does not bid, and the other 95% of the time appnexus will bid s2s while rubicon, criteo, and index use client bid requests.
+5% of the time rubicon, and criteo will use s2s bid requests while index does not bid, and the other 95% of the time rubicon, criteo, and index use client bid requests.
+
+Addtional details:
+- If a bidder is always 100% server-side -- i.e. doesn't have either `s2sConfig.bidderControl` or `AdUnit.bids[].bidSource`, then it will not affect `testServerOnly`. i.e. It's going on the server path will not exclude client side adapters.
 
 ### 4. Turn on Test KVP, but no server requests
 
