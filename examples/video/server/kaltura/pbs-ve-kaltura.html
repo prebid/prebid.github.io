@@ -10,7 +10,7 @@
 		<meta name="description" content="{{page.description}}" />
 		
 		<link rel="shortcut icon" type="image/png" href="/favicon.png" />
-		<title>Prebid Server Video Example : JW Player (Platform)</title>
+		<title>Prebid Server Video Example : Kaltura Player</title>
 		
 		
 		<!-- OneTrust Cookies Consent Notice start -->
@@ -52,6 +52,7 @@
 		
 		<!--Prebid.js and video player code-->
 		<script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+		
 		<script>
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
@@ -75,6 +76,8 @@
             var invokeVideoPlayer = function(url) {
                 tempTag = url;
             };
+
+            /* Prebid video ad unit */
 
             var videoAdUnit = {
                 code: 'video1',
@@ -137,7 +140,7 @@
                 });
             });
 
-        </script>
+        </script>	
 	</head>
 	<body>
     
@@ -172,6 +175,7 @@
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html">JW PLayer (Hosted)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html">JW PLayer (V7 Player)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html">JW PLayer (Playlist)</a></li>
+						<li><a href="/examples/video/server/kaltura/pbs-ve-kaltura.html">Kaltura</a></li>
 					</ul>
 					<hr>
 					<p>Long Form</p>				
@@ -179,10 +183,10 @@
 				
 				<!--content-->
 				<div class="col-sm-9 pb-content" markdown="1">
-					<h4>Prebid Server Video | JW Player (Platform)</h4>
+					<h4>Prebid Server Video | Kaltura</h4>
 					
 					<!--video example explanation-->
-					<div>This is an example of video with a pre-roll ad using Prebid Server and JW Player (Platform).</div>
+					<div>This is an example of video with a pre-roll ad using Prebid Server and Kaltura Player.</div>
 					
 					<!--video warning-->
 					<div markdown="span" class="pb-alert pb-alert-important" role="alert">
@@ -192,7 +196,7 @@
 					</div>
 					
 					<!--video placeholder | this should be formatted per the needs of each player-->
-					<div id="myElement1"></div>
+					<div id="myPlayer" style="width:640px; height:480px;"></div>
 					
 					<!--video code fencing-->
 					
@@ -205,8 +209,8 @@
 					<div>
 					<h4>Place this code in the page header.</h4>
 <pre>
-	<!--put javascript code here-->
 	&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
+		
 		&lt;script&gt;
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
@@ -230,6 +234,8 @@
             var invokeVideoPlayer = function(url) {
                 tempTag = url;
             };
+
+            /* Prebid video ad unit */
 
             var videoAdUnit = {
                 code: 'video1',
@@ -292,8 +298,7 @@
                 });
             });
 
-        &lt;/script&gt;
-
+        &lt;/script&gt;	
 </pre>
 					</div>
 					
@@ -302,45 +307,85 @@
 					<h4>Place this code in the page body.</h4>
 <pre>
 	<!--put body html and javascript here-->
-	&lt;div id="myElement1"&gt;&lt;/div&gt;
-	
-	&lt;div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'&gt;&lt;/div&gt;
-	
-	&lt;!--video player code--&gt;
-		&lt;!-- This line loads a player without loading any video content --&gt;
-        &lt;!-- Replace this with the correct url for your player --&gt;
-        &lt;script src="https://content.jwplatform.com/libraries/72xIKEe6.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
-            // we initialize our player instance, specifying the div to load it into
-            var playerInstance = jwplayer('myElement1');
+	&lt;div id="myPlayer" style="width:640px; height:480px;"&gt;&lt;/div&gt;
 
-            function invokeVideoPlayer(url) {
-                // this calls setup on the player we initialized
-                // this will use the settings defined in the player we loaded above unless you override them here
-                playerInstance.setup({
-                    // this line loads a playlist from your jwplatform account (in either json or rss format)
-                    // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-                    // Replace this with the correct url for your playlist
-                    "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
-                    "width": 640,
-                    "height": 480,
-                    // we enable vast advertising for this player
-                    "advertising": {
-                        "client": "vast",
-                        // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                        "tag": url,
+&lt;!-- INCLUDE KALTURA PLAYER SCRIPT
+
+		 Add the script for your Kaltura player. This will be part of
+		 the code you will copy-paste from Kaltura. --&gt;
+
+        &lt;script src="http://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"&gt;&lt;/script&gt;
+
+        &lt;script&gt;
+            invokeVideoPlayer = function(url) {
+
+                /* EMBED KALTURA PLAYER
+
+                Call `kWidget.embed()` and pass in a JSON object of your
+                player settings. Most of this JSON object will be part of
+                the code you will copy paste from Kaltura.
+
+                Documentation for kWidget available here:
+                http://player.kaltura.com/docs/kwidget */
+
+                kWidget.embed({
+                    "targetId": "myPlayer",
+                    "wid": "_2222001",
+                    "uiconf_id": 37440401,
+
+                    /* ADD VAST SETTINGS TO THE PLAYER SETTINGS
+
+                    Inside `flashVars`, add another key called `"vast"` and
+                    pass in a JSON object with:
+
+                    - the position where you want your ad to play
+
+                    - the URL of the ad (which in this case will be the `url`
+                    we got back from Prebid) */
+
+                    "flashvars": {
+                        "streamerType": "auto",
+                        "vast": {
+                            "plugin": true,
+                            "prerollUrl": url,
+                        }
                     },
+                    "entry_id": "1_k4eka7er",
+
+                    /* ADD A READY CALLBACK AND GET A REFERENCE TO THE PLAYER
+
+                    Add a ready callback to the player settings. This allows
+                    us to get a reference to the player (stored in the
+                    variable `kdp`) in order to interact with it later. */
+
+                    readyCallback: function(playerId) {
+                        console.log("Kaltura player " + playerId + " is ready.");
+                    }
                 });
-            }
+            };
+
+            /* ACCOUNT FOR PAGE SPEED
+
+            If Prebid returned bids before the browser reached the end of
+            the page, the first version of `invokeVideoPlayer` will have
+            been called from `bidsBackHandler` so the winning VAST tag
+            will be stored in the `tempTag` variable.
+
+            If that's the case, we want to call the 'real' version of
+            `invokeVideoPlayer` with the stored URL to create the player
+            and play the ad.
+
+            If `tempTag` is not defined, that means the browser reached
+            the end of the page before the bids came back from Prebid,
+            meaning the 'real' version of `invokeVideoPlayer` was already
+            called. */
 
             if (tempTag) {
                 invokeVideoPlayer(tempTag);
                 tempTag = false;
             }
 
-        &lt;/script&gt;  
-
-</pre>
+        &lt;/script&gt;</pre>
 					</div>
 					
 				</div><!--end content-->
@@ -374,29 +419,76 @@
 		</script>
 		
 		<!--video player code-->
-		<script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
-        <script>
-            // we initialize our player instance, specifying the div to load it into
-            var playerInstance = jwplayer('myElement1');
+		<!-- INCLUDE KALTURA PLAYER SCRIPT
 
-            function invokeVideoPlayer(url) {
-                // this calls setup on the player we initialized
-                // this will use the settings defined in the player we loaded above unless you override them here
-                playerInstance.setup({
-                    // this line loads a playlist from your jwplatform account (in either json or rss format)
-                    // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-                    // Replace this with the correct url for your playlist
-                    "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
-                    "width": 640,
-                    "height": 480,
-                    // we enable vast advertising for this player
-                    "advertising": {
-                        "client": "vast",
-                        // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                        "tag": url,
+		 Add the script for your Kaltura player. This will be part of
+		 the code you will copy-paste from Kaltura. -->
+
+        <script src="http://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"></script>
+
+        <script>
+            invokeVideoPlayer = function(url) {
+
+                /* EMBED KALTURA PLAYER
+
+                Call `kWidget.embed()` and pass in a JSON object of your
+                player settings. Most of this JSON object will be part of
+                the code you will copy paste from Kaltura.
+
+                Documentation for kWidget available here:
+                http://player.kaltura.com/docs/kwidget */
+
+                kWidget.embed({
+                    "targetId": "myPlayer",
+                    "wid": "_2222001",
+                    "uiconf_id": 37440401,
+
+                    /* ADD VAST SETTINGS TO THE PLAYER SETTINGS
+
+                    Inside `flashVars`, add another key called `"vast"` and
+                    pass in a JSON object with:
+
+                    - the position where you want your ad to play
+
+                    - the URL of the ad (which in this case will be the `url`
+                    we got back from Prebid) */
+
+                    "flashvars": {
+                        "streamerType": "auto",
+                        "vast": {
+                            "plugin": true,
+                            "prerollUrl": url,
+                        }
+                    },
+                    "entry_id": "1_k4eka7er",
+
+                    /* ADD A READY CALLBACK AND GET A REFERENCE TO THE PLAYER
+
+                    Add a ready callback to the player settings. This allows
+                    us to get a reference to the player (stored in the
+                    variable `kdp`) in order to interact with it later. */
+
+                    readyCallback: function(playerId) {
+                        console.log("Kaltura player " + playerId + " is ready.");
                     }
                 });
-            }
+            };
+
+            /* ACCOUNT FOR PAGE SPEED
+
+            If Prebid returned bids before the browser reached the end of
+            the page, the first version of `invokeVideoPlayer` will have
+            been called from `bidsBackHandler` so the winning VAST tag
+            will be stored in the `tempTag` variable.
+
+            If that's the case, we want to call the 'real' version of
+            `invokeVideoPlayer` with the stored URL to create the player
+            and play the ad.
+
+            If `tempTag` is not defined, that means the browser reached
+            the end of the page before the bids came back from Prebid,
+            meaning the 'real' version of `invokeVideoPlayer` was already
+            called. */
 
             if (tempTag) {
                 invokeVideoPlayer(tempTag);
@@ -404,4 +496,5 @@
             }
 
         </script>
-    </body>
+	</body>
+</html>

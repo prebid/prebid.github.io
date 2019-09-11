@@ -10,7 +10,7 @@
 		<meta name="description" content="{{page.description}}" />
 		
 		<link rel="shortcut icon" type="image/png" href="/favicon.png" />
-		<title>Prebid Server Video Example : JW Player (Platform)</title>
+		<title>Prebid Server Video Example : Cloud-Hosted Brid Player</title>
 		
 		
 		<!-- OneTrust Cookies Consent Notice start -->
@@ -52,7 +52,9 @@
 		
 		<!--Prebid.js and video player code-->
 		<script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
-		<script>
+		
+		<script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
+        <script>
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
 
@@ -76,6 +78,8 @@
                 tempTag = url;
             };
 
+            /* Prebid video ad unit */
+
             var videoAdUnit = {
                 code: 'video1',
                 mediaTypes: {
@@ -90,7 +94,7 @@
                 bids: [{
                     bidder: 'appnexus',
                     params: {
-                        placementId: 13232361, // Add your own placement id here.
+                        placementId: 13232361, // Add your own placement id here
                         video: {
                             skippable: true,
                             playback_method: ['auto_play_sound_off']
@@ -108,6 +112,7 @@
                         url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
                     debug: true,
+                    enableSendAllBids: true,
                     s2sConfig: {
                         endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                         enabled: true,
@@ -120,7 +125,8 @@
 
                 pbjs.requestBids({
                     bidsBackHandler: function(bids) {
-
+                        console.log("got some bids");
+                        console.log(bids);
                         var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
                             adUnit: videoAdUnit,
                             params: {
@@ -168,10 +174,14 @@
 					<hr>
 					<p>Server</p>
 					<ul class="pb-video-list" style="list-style-type:none">
+						<li><a href="/examples/video/server/brid/pbs-ve-brid.html">Brid</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html">JW PLayer (Platform)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html">JW PLayer (Hosted)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html">JW PLayer (V7 Player)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html">JW PLayer (Playlist)</a></li>
+						<li><a href="/examples/video/server/kaltura/pbs-ve-kaltura.html">Kaltura</a></li>
+						<li><a href="/examples/video/server/ooyala/pbs-ve-ooyala.html">Ooyala</a></li>
+						<li><a href="/examples/video/server/videojs/pbs-ve-videojs.html">Video.js</a></li>
 					</ul>
 					<hr>
 					<p>Long Form</p>				
@@ -179,10 +189,10 @@
 				
 				<!--content-->
 				<div class="col-sm-9 pb-content" markdown="1">
-					<h4>Prebid Server Video | JW Player (Platform)</h4>
+					<h4>Prebid Server Video | Brid</h4>
 					
 					<!--video example explanation-->
-					<div>This is an example of video with a pre-roll ad using Prebid Server and JW Player (Platform).</div>
+					<div>This is an example of video with a pre-roll ad using Prebid Server and Brid Player.</div>
 					
 					<!--video warning-->
 					<div markdown="span" class="pb-alert pb-alert-important" role="alert">
@@ -192,7 +202,7 @@
 					</div>
 					
 					<!--video placeholder | this should be formatted per the needs of each player-->
-					<div id="myElement1"></div>
+					<div id="myDiv" class="brid" style="width:640px; height:360;"></div>
 					
 					<!--video code fencing-->
 					
@@ -205,9 +215,11 @@
 					<div>
 					<h4>Place this code in the page header.</h4>
 <pre>
-	<!--put javascript code here-->
+		
 	&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
-		&lt;script&gt;
+	
+	&lt;script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"&gt;&lt;/script&gt;
+        &lt;script&gt;
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
 
@@ -231,6 +243,8 @@
                 tempTag = url;
             };
 
+            /* Prebid video ad unit */
+
             var videoAdUnit = {
                 code: 'video1',
                 mediaTypes: {
@@ -245,7 +259,7 @@
                 bids: [{
                     bidder: 'appnexus',
                     params: {
-                        placementId: 13232361, // Add your own placement id here.
+                        placementId: 13232361, // Add your own placement id here
                         video: {
                             skippable: true,
                             playback_method: ['auto_play_sound_off']
@@ -263,6 +277,7 @@
                         url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
                     debug: true,
+                    enableSendAllBids: true,
                     s2sConfig: {
                         endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                         enabled: true,
@@ -275,7 +290,8 @@
 
                 pbjs.requestBids({
                     bidsBackHandler: function(bids) {
-
+                        console.log("got some bids");
+                        console.log(bids);
                         var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
                             adUnit: videoAdUnit,
                             params: {
@@ -293,7 +309,6 @@
             });
 
         &lt;/script&gt;
-
 </pre>
 					</div>
 					
@@ -302,44 +317,26 @@
 					<h4>Place this code in the page body.</h4>
 <pre>
 	<!--put body html and javascript here-->
-	&lt;div id="myElement1"&gt;&lt;/div&gt;
 	
-	&lt;div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'&gt;&lt;/div&gt;
-	
-	&lt;!--video player code--&gt;
-		&lt;!-- This line loads a player without loading any video content --&gt;
-        &lt;!-- Replace this with the correct url for your player --&gt;
-        &lt;script src="https://content.jwplatform.com/libraries/72xIKEe6.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
-            // we initialize our player instance, specifying the div to load it into
-            var playerInstance = jwplayer('myElement1');
+	&lt;div id="myDiv" class="brid" style="width:640px; height:360;"&gt;&lt;/div&gt;
 
-            function invokeVideoPlayer(url) {
-                // this calls setup on the player we initialized
-                // this will use the settings defined in the player we loaded above unless you override them here
-                playerInstance.setup({
-                    // this line loads a playlist from your jwplatform account (in either json or rss format)
-                    // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-                    // Replace this with the correct url for your playlist
-                    "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
-                    "width": 640,
-                    "height": 480,
-                    // we enable vast advertising for this player
-                    "advertising": {
-                        "client": "vast",
-                        // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                        "tag": url,
-                    },
-                });
-            }
-
-            if (tempTag) {
-                invokeVideoPlayer(tempTag);
-                tempTag = false;
-            }
-
-        &lt;/script&gt;  
-
+	&lt;script type="text/javascript"&gt;
+	  invokeVideoPlayer = function(url) {
+	    $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
+	    "Ad": [
+	            {
+	                "mobile": url, // Array of url's will get called in succession
+	                "desktop": null, // Array of url's will get called in succession
+	                "adType": "0", // Type 0 for pre roll
+	                "adTimeType": "s",
+	                "overlayStartAt": null,
+	                "overlayDuration": null,
+	                "cuepoints": null
+	            }
+	        ]
+	    }); 
+	  }
+	&lt;/script&gt;	
 </pre>
 					</div>
 					
@@ -374,34 +371,22 @@
 		</script>
 		
 		<!--video player code-->
-		<script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
-        <script>
-            // we initialize our player instance, specifying the div to load it into
-            var playerInstance = jwplayer('myElement1');
-
-            function invokeVideoPlayer(url) {
-                // this calls setup on the player we initialized
-                // this will use the settings defined in the player we loaded above unless you override them here
-                playerInstance.setup({
-                    // this line loads a playlist from your jwplatform account (in either json or rss format)
-                    // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-                    // Replace this with the correct url for your playlist
-                    "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
-                    "width": 640,
-                    "height": 480,
-                    // we enable vast advertising for this player
-                    "advertising": {
-                        "client": "vast",
-                        // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                        "tag": url,
+		<script type="text/javascript">
+          invokeVideoPlayer = function(url) {
+            $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
+            "Ad": [
+                    {
+                        "mobile": url, // Array of url's will get called in succession
+                        "desktop": null, // Array of url's will get called in succession
+                        "adType": "0", // Type 0 for pre roll
+                        "adTimeType": "s",
+                        "overlayStartAt": null,
+                        "overlayDuration": null,
+                        "cuepoints": null
                     }
-                });
-            }
-
-            if (tempTag) {
-                invokeVideoPlayer(tempTag);
-                tempTag = false;
-            }
-
-        </script>
-    </body>
+                ]
+            }); 
+          }
+        </script>	
+	</body>
+</html>

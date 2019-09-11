@@ -11,7 +11,7 @@
 		{% if item.type == "founder" %}
 			memberDataFounders[idx]={};
 			memberDataFounders[idx].href="{{item.link}}";
-			memberDataFounders[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
+			memberDataFounders[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
@@ -30,14 +30,14 @@
 		{% if item.type == "leader" %}
 			memberDataLeader[idx]={};
 			memberDataLeader[idx].href="{{item.link}}";
-			memberDataLeader[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
+			memberDataLeader[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
 	</script>
 	<div id="memberTableLeader"></div>
 	<script>
-	  writeDynamicTable({div:"memberTableLeader", data:"memberDataLeader", sort:"rowFirst", maxcols:2, striped: false});
+	  writeDynamicTable({div:"memberTableLeader", data:"memberDataLeader", sort:"rowFirst", maxcols:3, striped: false});
 	</script>
 
 	<div class="tableTitle"><h3>Prebid.org Technology Partner Members</h3></div>
@@ -85,7 +85,7 @@
 		{% if item.type == "community" %}
 			memberDataComm[idx]={};
 			memberDataComm[idx].href="{{item.link}}";
-			memberDataComm[idx].text="<img src=\"{{item.imgURL}}\" width=\"75\">";
+			memberDataComm[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
@@ -93,7 +93,7 @@
 
 	<div id="memberTableComm"></div>
 	<script>
-	  writeDynamicTable({div: "memberTableComm", data: "memberDataComm", sort:"rowFirst", maxcols: 2, striped: false});
+	  writeDynamicTable({div: "memberTableComm", data: "memberDataComm", sort:"rowFirst", striped: false});
 	</script>
 
 

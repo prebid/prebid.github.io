@@ -44,6 +44,122 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 - `adObj`: bid request object
 - `onCompleteListener`: listener object
 
+
+
+
+### setAutoRefreshPeriodMillis
+
+If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off. 
+
+**Parameters**
+
+- `periodMillis`: Integer defining the refresh time in milliseconds.
+
+### startAutoRefresh
+
+Starts the auto-refresh behavior for a given Prebid Mobile ad unit.
+
+### stopAutoRefresh
+
+Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, `stopAutoRefresh` will be ignored.
+
+**Parameters**
+
+none
+
+### addContextKeywords
+Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5.
+
+**Parameters**
+`keyword` : a keyword of type string.
+
+```java
+void addContextKeyword(String keyword)
+```
+
+### addContextKeywords
+
+**Parameters**
+`keyword` : a keyword of type string.
+
+```java
+void addContextKeywords(Set<String> keywords)
+```
+
+### removeContextKeywords
+
+**Parameters**
+`keyword`: a keyword of type string.
+
+```java
+void removeContextKeyword(String keyword)
+```
+
+### clearContextKeywords
+
+**Parameters**
+none
+
+```java
+void clearContextKeywords()
+```
+
+### First Party Data
+
+First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
+
+Data is broken up into two different data types:
+* User
+  * Global in scope only
+* Inventory (context)
+  * Global scope
+  * Ad Unit grain
+
+ The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-android#first-party-data) page.
+
+
+#### addContextData
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+```java
+void addContextData(String key, String value)
+```
+
+#### updateContextData
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+```java
+void updateContextData(String key, Set<String> value)
+```
+
+#### removeContextData
+
+**Parameters**
+`key`: string containing the key
+
+```java
+void removeContextData(String key)
+```
+
+#### clearContextData
+
+**Parameters**
+none
+
+```java
+void clearContextData()
+```
+
+
+<div markdown="1" style="background-color: AntiqueWhite;">
+{% include alerts/alert_warning.html content="Ad Unit *User* keywords will be deprecated in favor of [targeting keywords](pbm-targeting-params-android#user-keywords) for Prebid versions 1.2+. Support will continue for Ad Unit User Keywords as users migrate to targeting user keywords." %}
+
 ### setUserKeyword
 
 Set a single key-value pair.
@@ -77,32 +193,16 @@ Clear all key-value combinations from the Prebid Mobile ad unit.
 **Parameters**
 
 none
-
-### setAutoRefreshPeriodMillis
-
-If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off. 
-
-**Parameters**
-
-- `periodMillis`: Integer defining the refresh time in milliseconds.
-
-### startAutoRefresh
-
-Starts the auto-refresh behavior for a given Prebid Mobile ad unit.
-
-### stopAutoRefresh
-
-Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, `stopAutoRefresh` will be ignored.
-
-**Parameters**
-
-none
+</div>
 
 ## Example
 
 ```
 InterstitialAdUnit interstitialAdUnit = new InterstitialAdUnit("PREBID_SERVER_CONFIGURATION_ID");
-interstitialAdUnit.setUserKeyword("my_key", "my_value");
+interstitialAdUnit.setUserKeyword("my_key", "my_value"); //will be deprecated in future releases
+interstitialAdUnit.addContextKeyword("adunitContextKeywordValue1");
+interstitialAdUnit.addContextKeyword("adunitContextKeywordValue2");
+interstitialAdUnit.addContextData("adunitContextDataKey1", "adunitContextDataValue1");
 interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
     @Override
     public void onComplete(ResultCode resultCode) {
