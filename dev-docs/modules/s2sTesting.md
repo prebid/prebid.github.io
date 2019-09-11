@@ -171,14 +171,14 @@ KVP will be sent to the ad server for additional reporting.
 
 ### 3. A/B Test isolating the server 
 
-*As a Publisher, I want to get metrics on the difference between a *pure server*
-approach and the client approach so we can gauge the impact of Prebid Server running alone, without any client requests. I'll use the `testServerOnly: true` flag to suppress all client requests whenever the "A/B test group" results in a server request.*
+*As a Publisher, I want to get metrics on the difference between a 'pure server'
+approach and a mixed client-server approach so we can gauge the impact of Prebid Server running alone, without any client requests. I'll use the `testServerOnly: true` flag to suppress all client requests whenever the 'A/B test group' results in a server request.*
 
-Using the `testServerOnly` flag means that all client requests will be suppressed (those requests will not be made) whenever any bid requests from the "A/B test group" result in a "server" bid request.  The "A/B test group" includes any requests whose source is controled by "s2sConfig.bidderControl" or "bidSource" at the adUnit level.  This may give a clearer picture of how s2s performs without interference from client bid requests.
+Using the `testServerOnly` flag means that all client requests will be suppressed (those requests will not be made) whenever any bid requests from the 'A/B test group' result in a 'server' bid request.  The 'A/B test group' includes any requests whose source is controled by 's2sConfig.bidderControl' or 'bidSource' at the adUnit level.  This may give a clearer picture of how s2s performs without interference from client bid requests.
 
-For best results, all bidders/bids in the "A/B test group" should be configured with the same client/server allocation.  Because use of this flag will result in turning off cient bids a certain percentage of the time, it could negatively affect revenue, and should be used with caution.  Thus it should only be used when "server" is allocated a small percentage (i.e. <= 5%) of bid requests.
+For best results, all bidders/bids in the 'A/B test group' should be configured with the same client/server allocation.  Because use of this flag will result in turning off cient bids a certain percentage of the time, it could negatively affect revenue, and should be used with caution.  Thus it should only be used when 'server' is allocated a small percentage (i.e. <= 5%) of bid requests.
 
-Example S2S Config defining that 5% of the time all bid requests will go "server" and 95% of the time a mix of "server" and "client":
+Example S2S Config defining that 5% of the time all bid requests will go 'server' and 95% of the time a mix of 'server' and 'client':
 
 ```
 pbjs.setConfig(
