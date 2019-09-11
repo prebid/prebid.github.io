@@ -68,6 +68,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: CHEQ
+  link: https://www.cheq.ai/
+  imgURL: /assets/images/partners/community/CHEQ_Logo.png
+  type: community
+
 - company: GoBrowsi
   link: https://gobrowsi.com
   imgURL: /assets/images/partners/community/Browsi-Logo.png
@@ -76,4 +81,9 @@
 - company: Publica
   link: https://getpublica.com
   imgURL: /assets/images/partners/community/Publica-Logo.png
+  type: community
+
+- company: PubWise
+  link: https://pubwise.io
+  imgURL: /assets/images/partners/community/Pubwise-logo.png
   type: community

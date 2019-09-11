@@ -85,7 +85,7 @@
 		{% if item.type == "community" %}
 			memberDataComm[idx]={};
 			memberDataComm[idx].href="{{item.link}}";
-			memberDataComm[idx].text="<img src=\"{{item.imgURL}}\" width=\"80\">";
+			memberDataComm[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
@@ -93,7 +93,7 @@
 
 	<div id="memberTableComm"></div>
 	<script>
-	  writeDynamicTable({div: "memberTableComm", data: "memberDataComm", sort:"rowFirst", maxcols: 2, striped: false});
+	  writeDynamicTable({div: "memberTableComm", data: "memberDataComm", sort:"rowFirst", striped: false});
 	</script>
 
 
