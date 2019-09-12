@@ -168,13 +168,25 @@
 					<hr>
 					<p>Outstream</p>
 					<hr>
+					<p>Server</p>
+					<ul class="pb-video-list" style="list-style-type:none">
+						<li><a href="/examples/video/server/brid/pbs-ve-brid.html">Brid</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html">JW PLayer (Platform)</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html">JW PLayer (Hosted)</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html">JW PLayer (V7 Player)</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html">JW PLayer (Playlist)</a></li>
+						<li><a href="/examples/video/server/kaltura/pbs-ve-kaltura.html">Kaltura</a></li>
+						<li><a href="/examples/video/server/ooyala/pbs-ve-ooyala.html">Ooyala</a></li>
+						<li><a href="/examples/video/server/videojs/pbs-ve-videojs.html">Video.js</a></li>
+					</ul>
+					<hr>
 					<p>Long Form</p>				
 				</div>
 				
 				<!--content-->
 				<div class="col-sm-9 pb-content" markdown="1">
 					<div class="row">
-						<h4>Prebid Video | Flowplayer Example</h4>
+						<h1>Prebid Video | Flowplayer Example</h1>
 						
 						<!--video example explanation-->
 						<div>An example of instream video with a playlist using Prebid.js and Flowplayer.</div>
@@ -209,7 +221,7 @@
 						
 						<div>
 					<h4>Place this code in the page header.</h4>
-<pre>
+<pre class="pb-code-hl">
 <!--put javascript code here-->
 	&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
 	&lt;link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/stable/style/flowplayer.css"&gt;
@@ -232,9 +244,9 @@
 	  var pbjs = pbjs || {};
 	  pbjs.que = pbjs.que || [];
 	
-	  // The ad tag in Flowplayer can be actual ad tag or promise to an ad tag.
-	  // We return the ad tag if it is available before the player is ready to play
-	  // Otherwise the player waits for 2 secs for tag to be available.
+	  // The ad tag in Flowplayer can be actual ad tag or promise to an ad tag. &nbsp;
+	  // We return the ad tag if it is available before the player is ready to play &nbsp;
+	  // Otherwise the player waits for 2 secs for tag to be available.<br>
 	  var adtag = null
 	  var timeout = 2000
 	  var asyncTag = function() {
@@ -308,7 +320,7 @@
 					<!--body code example-->
 					<div>
 					<h4>Place this code in the page body.</h4>
-<pre>
+<pre class="pb-code-hl">
 <!--put body html and javascript here-->
 
 	&lt;div id="player"&gt;&lt;/div&gt;
@@ -360,9 +372,6 @@
 				</div>
 				
 			</div><!--end main container-->
-			
-			
-								
 			
 			<!--footer-->
 			<div class="container">
@@ -420,6 +429,8 @@
 			player.ads.on(flowplayer.AdEvents.AD_COMPLETED, toggleDisabled(true));
 			player.ads.on(flowplayer.AdEvents.AD_SKIPPED, toggleDisabled(true));
 		
-		</script> 
+		</script>
+		<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
 
     </body>
+</html>

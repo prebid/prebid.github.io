@@ -140,12 +140,24 @@
 					<hr>
 					<p>Outstream</p>
 					<hr>
+					<p>Server</p>
+					<ul class="pb-video-list" style="list-style-type:none">
+						<li><a href="/examples/video/server/brid/pbs-ve-brid.html">Brid</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html">JW PLayer (Platform)</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html">JW PLayer (Hosted)</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html">JW PLayer (V7 Player)</a></li>
+						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html">JW PLayer (Playlist)</a></li>
+						<li><a href="/examples/video/server/kaltura/pbs-ve-kaltura.html">Kaltura</a></li>
+						<li><a href="/examples/video/server/ooyala/pbs-ve-ooyala.html">Ooyala</a></li>
+						<li><a href="/examples/video/server/videojs/pbs-ve-videojs.html">Video.js</a></li>
+					</ul>
+					<hr>
 					<p>Long Form</p>				
 				</div>
 				
 				<!--content-->
 				<div class="col-sm-9 pb-content" markdown="1">
-					<h4>Prebid Video | JW Player (Hosted) Example</h4>
+					<h1>Prebid Video | JW Player (Hosted) Example</h1>
 					
 					<!--video example explanation-->
 					<div>An example of instream video using Prebid.js and a self-hosted version of JW Player.</div> 
@@ -170,7 +182,7 @@
 					</div>
 					<div>
 					<h4>Place this code in the page header.</h4>
-<pre>
+<pre class="pb-code-hl">
 <!--put javascript code here-->
 &lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"&gt;&lt;/script&gt;
@@ -242,7 +254,7 @@
 					<!--body code example-->
 					<div>
 					<h4>Place this code in the page body.</h4>
-<pre>
+<pre class="pb-code-hl">
 <!--put body html and javascript here-->
 &lt;!--player div--&gt;
 &lt;div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'&gt;&lt;/div&gt;
@@ -332,6 +344,8 @@
                 tempTag = false;
             }
 
-        </script>  
+        </script>
+          
+		<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
 
     </body>

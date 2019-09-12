@@ -22,16 +22,16 @@
 		<!-- OneTrust Cookies Consent Notice end -->
 		
 		
-		<!--<link href=" /assets/css/bootstrap.min.css" rel="stylesheet">-->
+		<!--<link href="/assets/css/bootstrap.min.css" rel="stylesheet">-->
 		<!-- Latest compiled and minified Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link href=" /assets/css/docs.min.css" rel="stylesheet">
-		<link href=" /assets/css/style.css" rel="stylesheet">
+		<link href="/assets/css/docs.min.css" rel="stylesheet">
+		<link href="/assets/css/style.css" rel="stylesheet">
 		
 		
 		<!-- Favicons -->
-		<link href=" /assets/images/favicon.png" rel="icon">
-		<link href=" /assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+		<link href="/assets/images/favicon.png" rel="icon">
+		<link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
 		
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -41,14 +41,14 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	
 
-		<script src=" /assets/js/prism.js"></script>
-		<script src=" /assets/js/jquery.min.js"></script>
-		<script src=" /assets/js/bootstrap.js"></script>
-		<script src=" /assets/js/bootbox.min.js"></script>
-		<script src=" /assets/js/docs.min.js"></script>
-		<script src=" /assets/js/easing.min.js"></script>
-		<script src=" /assets/js/main.js"></script>
-		<script type="text/javascript" src=" /assets/js/pbjs_home.js"></script>
+		<script src="/assets/js/prism.js"></script>
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/bootstrap.js"></script>
+		<script src="/assets/js/bootbox.min.js"></script>
+		<script src="/assets/js/docs.min.js"></script>
+		<script src="/assets/js/easing.min.js"></script>
+		<script src="/assets/js/main.js"></script>
+		<script type="text/javascript" src="/assets/js/pbjs_home.js"></script>
 		
 		<!--Prebid.js and video player code-->
 		<script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
@@ -149,7 +149,7 @@
     
     	<div style="margin:0; padding:0;">
 			<div style="margin-top: 20px; padding-left: 10px;">
-				<a href="http://www.prebid.org"><img src=" /assets/images/logos/prebid_final.png" width="200" height="33" target="self"></a>
+				<a href="http://www.prebid.org"><img src="/assets/images/logos/prebid_final.png" width="200" height="33" target="self"></a>
 			</div>
 			
 			<div style="margin:0; padding:0;">
@@ -174,10 +174,14 @@
 					<hr>
 					<p>Server</p>
 					<ul class="pb-video-list" style="list-style-type:none">
+						<li><a href="/examples/video/server/brid/pbs-ve-brid.html">Brid</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html">JW PLayer (Platform)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html">JW PLayer (Hosted)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html">JW PLayer (V7 Player)</a></li>
 						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html">JW PLayer (Playlist)</a></li>
+						<li><a href="/examples/video/server/kaltura/pbs-ve-kaltura.html">Kaltura</a></li>
+						<li><a href="/examples/video/server/ooyala/pbs-ve-ooyala.html">Ooyala</a></li>
+						<li><a href="/examples/video/server/videojs/pbs-ve-videojs.html">Video.js</a></li>
 					</ul>
 					<hr>
 					<p>Long Form</p>				
@@ -185,7 +189,7 @@
 				
 				<!--content-->
 				<div class="col-sm-9 pb-content" markdown="1">
-					<h4>Prebid Server Video | JW Player (V7)</h4>
+					<h1>Prebid Server Video | JW Player (V7)</h1>
 					
 					<!--video example explanation-->
 					<div>This is an example of video with a pre-roll ad using Prebid Server and JW Player.</div>
@@ -210,7 +214,7 @@
 					</div>
 					<div>
 					<h4>Place this code in the page header.</h4>
-<pre>
+<pre class="pb-code-hl">
 	<!--put javascript code here-->
 	&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"&gt;&lt;/script&gt;
         &lt;script type="text/javascript"&gt;
@@ -256,7 +260,7 @@
                 bids: [{
                     bidder: 'appnexus',
                     params: {
-                        placementId: 13232361, // Add your own placement id here
+                        placementId: 13232361, // Add your own placement id here<br>
                         video: {
                             skippable: true,
                             playback_method: ['auto_play_sound_off']
@@ -267,8 +271,8 @@
 
             pbjs.que.push(function() {
 
-                // configure prebid to use prebid cache and prebid server
-                // make sure to add your own accountId to your s2sConfig object
+                // configure prebid to use prebid cache and prebid server &nbsp;
+                // make sure to add your own accountId to your s2sConfig object<br>
                 pbjs.setConfig({
                     cache: {
                         url: 'https://prebid.adnxs.com/pbc/v1/cache'
@@ -283,7 +287,7 @@
                     }
                 });
 
-                pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
+                pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
                 pbjs.requestBids({
                     bidsBackHandler: function(bids) {
                         var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -310,7 +314,7 @@
 					<!--body code example-->
 					<div>
 					<h4>Place this code in the page body.</h4>
-<pre>
+<pre class="pb-code-hl">
 	<!--put body html and javascript here-->
 	&lt;script&gt;
             var jwPlayerInstance = jwplayer("playerContainerJW");
@@ -398,4 +402,7 @@
             }
 
         </script>
+        <script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
+
     </body>
+</html>
