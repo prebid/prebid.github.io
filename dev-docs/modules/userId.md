@@ -492,6 +492,22 @@ pbjs.setConfig({
 })
 ```
 
+If there's a partner integration with LiveIntent, and partner specific data is to be returned and passed along in bid requests, the partner name can be set as `partner` in config params. 
+```
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "liveIntentId",
+            params: {
+              partner: "rubicon",  
+              publisherId: "9896876",
+              identifiersToResolve: ["my-own-cookie"]  
+            }
+        }]
+    }
+})
+```
+
 ## Bidder Adapter Implementation
 
 ### Prebid.js Adapters
