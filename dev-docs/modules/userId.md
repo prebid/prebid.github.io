@@ -432,6 +432,31 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+
+## netID
+
+xxx
+
+### netID Examples
+
+1) Publisher stores netID on its own logic
+
+{% highlight javascript %}
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: "netId",
+            value: {
+                name: "netId",
+                value: {
+                    "netId":"123456789"
+                }
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -458,6 +483,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
+| netID | netID | bidRequest.userId.netId | `"123456789"` |
 
 For example, the adapter code might do something like:
 
