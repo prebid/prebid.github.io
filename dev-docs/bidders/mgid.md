@@ -4,7 +4,7 @@ title: Mgid
 description: Prebid Mgid Bidder Adapter.
 hide: true
 biddercode: mgid
-media_types: banner
+media_types: banner,native
 gdpr_supported: true
 ---
 

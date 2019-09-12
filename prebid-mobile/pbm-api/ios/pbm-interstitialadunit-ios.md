@@ -18,6 +18,26 @@ Create a new Interstitial Ad Unit associated with a Prebid Server configuration 
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
+As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process. App developers can speicify a minimun width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction. 
+
+PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size. If that size is 1x1, it will look up the device's size and use that as the max size. If the wdith and height are not present, it will also use the device size as the max size. (1x1 support so that you don't have to omit size as a parameter to use the device size).
+
+PBS with interstitial support will come preconfigured with a list of common ad sizes, preferentially organized by weighing the larger and more common sizes first. No guarantees to the ordering will be made. PBS will generate a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
+
+Prebid Server will send the eligible size list to each bidder to solicit a bid. For a full description of the Prebid Server logic, please refer to the [Prebid Server PR 797](https://github.com/prebid/prebid-server/pull/797/files).
+
+```
+init(configId: String, minWidthPerc: Int, minHeightPerc: Int)
+```
+
+**Parameters**
+
+`configId`: Prebid Server configuration ID.
+
+`minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occuy of a device's real estate. Support in SDK version 1.2+
+
+`minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occuy of a device's real estate. Support in SDK version 1.2+
+
 
 ## Examples
 
@@ -30,7 +50,7 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 func loadDFPInterstitial(adUnit : AdUnit){
         print("Google Mobile Ads SDK version: \(DFPRequest.sdkVersion())")
 
-        let interstitialUnit = InterstitialAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45")
+        let interstitialUnit = InterstitialAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", minWidthPerc: 50, minHeightPerc: 70)
         dfpInterstitial = DFPInterstitial(adUnitID: "/19968336/PrebidMobileValidator_Interstitial")
         dfpInterstitial.delegate = self
         request.testDevices = [ kGADSimulatorID]
@@ -47,7 +67,7 @@ func loadDFPInterstitial(adUnit : AdUnit){
 ```
 -(void) loadDFPInterstitial {
 
-    self.interstitialUnit = [[InterstitialAdUnit alloc] initWithConfigId:@"625c6125-f19e-4d5b-95c5-55501526b2a4"];
+    self.interstitialUnit = [[InterstitialAdUnit alloc] initWithConfigId:@"625c6125-f19e-4d5b-95c5-55501526b2a4" minWidthPerc:50 minHeightPerc:70];
     self.dfpInterstitial = [[DFPInterstitial alloc] initWithAdUnitID:@"/19968336/PrebidMobileValidator_Interstitial"];
     self.dfpInterstitial.delegate = self;
     self.request = [[DFPRequest alloc] init];
