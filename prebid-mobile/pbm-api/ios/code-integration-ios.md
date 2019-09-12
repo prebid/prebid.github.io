@@ -20,13 +20,8 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 
 If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following: 
 
-{% capture warning_note %}  
-• Ensure that you set the platform to :ios, '11.0', setting the the platform to an earlier version might return unexpected results.  
-• Replace MyAmazingApp with your application's name. {% endcapture %}
-{% include /alerts/alert_warning.html content=warning_note %}
-
 ```
-platform :ios, '11.0'
+platform :ios, '9.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
@@ -98,16 +93,54 @@ For details on creating the specific ad units and additional parameters and meth
 [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
 
+### Resize ad slot
 
-### Add Custom Keywords
+Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.
 
-Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
+{% capture warning_note %}  
+Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
-```
-bannerUnit.addKeyword(key:"Sample", value:"Value to add")
-```
+*SWIFT*
+```swift
+func adViewDidReceiveAd(_ bannerView: GADBannerView) {
 
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html).
+    AdViewUtils.findPrebidCreativeSize(bannerView,
+                                            success: { (size) in
+                                                guard let bannerView = bannerView as? DFPBannerView else {
+                                                    return
+                                                }
+
+                                                bannerView.resize(GADAdSizeFromCGSize(size))
+
+        },
+                                            failure: { (error) in
+                                                print("error: \(error)");
+
+        })
+}
+
+
+
+ ```
+
+*Objective C*
+ ```objective_c
+ -(void) adViewDidReceiveAd:(GADBannerView *)bannerView {
+    NSLog(@"Ad received");
+    [AdViewUtils findPrebidCreativeSize:bannerView
+                                   success:^(CGSize size) {
+                                       if ([bannerView isKindOfClass:[DFPBannerView class]]) {
+                                           DFPBannerView *dfpBannerView = (DFPBannerView *)bannerView;
+                                           
+                                           [dfpBannerView resize:GADAdSizeFromCGSize(size)];
+                                       }
+                                   } failure:^(NSError * _Nonnull error) {
+                                       NSLog(@"error: %@", error);
+                                   }];
+}
+ ```
+
 
 ## Further Reading
 
@@ -118,5 +151,6 @@ For more details on custom keywords, review the [adUnit class documention](/preb
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Prebid Utilities - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-util-ios.html)
 

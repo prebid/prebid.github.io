@@ -94,9 +94,13 @@ The following parameters in the `bidResponse` object are common across all bidde
 <h3>Note:</h3> This is a S2S adapter only.
 {% endif %}
 
-<h3>Bidder Code</h3>
+<h3>Features</h3>
 
-<code>{{ page.biddercode }}</code>
+{: .table .table-bordered .table-striped }
+| **Bidder Code** | {{ page.biddercode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
+| **Media Types** | display{% if page.media_types contains 'video' %}, video{% endif %}{% if page.media_types contains 'native' %}, native{% endif %} | **GDPR Support** | {% if page.gdpr_supported == true %}yes{% else %}no{% endif %} |
+| **User IDs** | {% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% else %}no{% endif %} |
+
 
 <h3>"Send All Bids" Ad Server Keys</h3>
 
@@ -106,6 +110,12 @@ The following parameters in the `bidResponse` object are common across all bidde
 | <code>{{ "hb_pb_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_bidder_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_adid_" | append: page.biddercode | slice: 0,20 }}</code> |
 | <code>{{ "hb_size_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_source_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_format_" | append: page.biddercode | slice: 0,20 }}</code> |
 | <code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code> |
+
+{% if page.prevBiddercode %}
+
+This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
+
+{% endif %}
 
 {% if page.bidder_supports_deals != false %}
 

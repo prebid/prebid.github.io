@@ -21,7 +21,7 @@ Use the Prebid Mobile API 1.0 for Android to implement header bidding in your mo
 
 The Prebid Mobile API supports instantiation of the following objects:
 
-- [Global Prebid Mobile Ad Unit Settings]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
+- [Global Settings]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
 - [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
 - [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
 

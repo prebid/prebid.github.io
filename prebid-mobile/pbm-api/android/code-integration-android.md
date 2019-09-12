@@ -19,8 +19,15 @@ If you are not familar with using Maven for build management visit the [Maven we
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies:
 
 ```
-compile 'org.prebid:prebid-mobile-sdk:[0,1)'
+implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
+
+If you wish to explicitly state the lastest stable release, please use the following:
+
+```
+implementation 'org.prebid:prebid-mobile-sdk:1.2'
+```
+
 
 ### Build framework from source
 
@@ -60,14 +67,45 @@ For details on creating the specific ad units and additional parameters and meth
 [Banner Ad Unit](/prebid-mobile/pbm-api/android/banneradunit-android.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
 
-### Add Custom Keywords
+### Resize ad slot
 
-Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
+Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.
+
+{% capture warning_note %}  
+Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 
 ```
-bannerAdUnit.setUserKeyword("my_key", "my_value");
-```
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/android/adunit-android.html)
+dfpAdView.setAdListener(new AdListener() {
+    @Override
+    public void onAdLoaded() {
+        super.onAdLoaded();
+
+        AdViewUtils.findPrebidCreativeSize(dfpAdView, new AdViewUtils.PbFindSizeListener() {
+            @Override
+            public void success(int width, int height) {
+                dfpAdView.setAdSizes(new AdSize(width, height));
+            }
+
+            @Override
+            public void failure(@NonNull PbFindSizeError error) {
+                Log.d("MyTag", "error: " + error);
+            }
+        });
+
+    }
+});
+ ```
+
+### Supported Android versions
+
+Prebid supports the following versions by release:
+
+* Prebid SDK version 1.0 or 1.1 supports Android 16+
+* Prebid SDK version 1.1.1+ supports Android 19+
+
+
 
 ## Further Reading
 
@@ -77,4 +115,5 @@ For more details on custom keywords, review the [adUnit class documention](/preb
 - [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
+- [Prebid Utilities - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-util-android.html)
