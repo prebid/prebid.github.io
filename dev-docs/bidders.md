@@ -111,6 +111,12 @@ The following parameters in the `bidResponse` object are common across all bidde
 | <code>{{ "hb_size_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_source_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_format_" | append: page.biddercode | slice: 0,20 }}</code> |
 | <code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code> |
 
+{% if page.prevBiddercode %}
+
+This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
+
+{% endif %}
+
 {% if page.bidder_supports_deals != false %}
 
 <h3>"Deal ID" Ad Server Key</h3>

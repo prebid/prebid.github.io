@@ -161,18 +161,6 @@ hr {
 	border: 1px solid #527542;
 }
 
-/*********************
-	Text Highlighting
-*********************/
-
-em .pb-red-text { 
-	color: #ff0000;
-}
-
-em .pb-blue-text { 
-	color: #33A2FF;
-}
-
 
 /**********************
 	 API 

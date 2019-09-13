@@ -496,6 +496,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
+  
+- sbSecId: 1
+  title: Supply Chain Object
+  link: /dev-docs/modules/schain.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
 
 - sbSecId: 1
   title: External Interfaces
@@ -742,6 +751,16 @@
   subgroup: 1
 
 - sbSecId: 2
+  title: Prebid Utilities
+  link: /prebid-mobile/pbm-api/ios/pbm-util-ios.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+
+- sbSecId: 2
   title: For Android
   link:
   isLastSubSectionItem: 0
@@ -817,6 +836,15 @@
 - sbSecId: 2
   title: Prebid Mobile Object
   link: /prebid-mobile/pbm-api/android/prebidmobile-object-android.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Prebid Utility Functions
+  link: /prebid-mobile/pbm-api/android/pbm-util-android.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -1440,11 +1468,20 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+  
+- sbSecId: 5
+  title: Get User Syncs
+  link: /prebid-server/endpoints/getuids.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 5
   title: Get Status
   link: /prebid-server/endpoints/status.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
