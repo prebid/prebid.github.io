@@ -16,6 +16,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | -------------                                                    | ------------- | ----------- |
 | Appier                                                           | Contact vendor | [Website](https://www.appier.com) |
 | Adagio                                                           | Contact vendor| [Website](https://adagio.io)|
+| AdxPremium                                                       | Contact vendor| [Website](http://luponmedia.com)|
 | Assertive Yield (contact for adapter) | Free to try (Large accounts $0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) |
 | Datablocks Analytics                                             | Contact vendor| [Website](https://datablocks.net) |
 | Finteza Analytics | <a href="mailto: support@finteza.com">Contact vendor</a> | [Website](https://www.finteza.com/) |
