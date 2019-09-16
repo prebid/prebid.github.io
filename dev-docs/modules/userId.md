@@ -448,7 +448,11 @@ pbjs.setConfig({
 
 ## LiveIntent ID
 
-LiveIntent ID solution provides a stable user identifier based on first and third party identifiers. 
+LiveIntent ID solution provides a user identifier based on our graph which is driven by publisher email business (e.g. updates, newsletters, and subscriptions). 
+
+### Registering your own first party cookie space that is not PubCommonId
+
+In order for you to take advantage of the user id resolution in cookie challenged environments like iOS, you need to sync your first party cookie universe with us. For urther information please reach out to peoplebased@liveintent.com.
 
 ### LiveIntent ID configuration
 
