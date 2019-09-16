@@ -1,13 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Ad Unit Reference
 description: Ad Unit Reference
 top_nav_section: dev_docs
 nav_section: reference
 pid: 10
+sidebarType: 1
 ---
-
-<div class="bs-docs-section" markdown="1">
 
 # Ad Unit Reference
 {:.no_toc}
@@ -34,7 +33,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Type                                  | Description                                                                                                                                                                                |
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`       | Required | String                                | Unique identifier you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.                        |
+| `code`       | Required | String                                | Unique identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference.html#module_pbjs.setTargetingForGPTAsync) to match which auction is for which ad slot. |
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, define sizes within the appropriate `mediaTypes.{banner,native,video}` object. |
 | `bids`       | Required | Array[Object]                         | Array of bid objects representing demand partners and associated parameters for a given ad unit.  See [Bids](#adUnit.bids) below.                                                          |
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
@@ -94,7 +93,7 @@ The `native` object contains the following properties that correspond to the ass
 | `icon`        | Optional | Object | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#adUnit.mediaTypes.native.icon).                                                                                                   |
 | `image`       | Optional | Object | The image object is to be used for the main image of the native ad.  For properties, see [`native.image`](#adUnit.mediaTypes.native.image).                                                                          |
 | `clickUrl`    | Optional | Object | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                                                                                       |
-| `cta`         | Optional | Object | *Call to Action* text, e.g., "Click here for more information".  For properties, see [`native.cta`](#adUnit.mediaTypes.native.cta).                                                                                  |
+| `cta`         | Optional | String | *Call to Action* text, e.g., "Click here for more information".  |
 
 <a name="adUnit.mediaTypes.native.image" />
 
@@ -185,18 +184,38 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Optional    | String                 | The video context, either `"instream"` or `"outstream"`.  Example: `context: "outstream"`                                                                           |
-| `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                             |
-| `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                |
-| `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                           |
-| `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**. |
+| `context`        | Optional    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`                                                                                           |
+| `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
+| `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].                                                  |
+| `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
+| `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                            |
+| `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                     |
+
+If `'video.context'` is set to `'adpod'` then the following parameters are also available.  
+
+{: .table .table-bordered .table-striped }
+| Name             | Scope       | Type                   | Description                                                                                                                                                         |
+|------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `adPodDurationSec`        | Required    | Number                 | The length of the adpod in seconds. Example: `adPodDurationSec = 120` |
+| `durationRangeSec`        | Required    | Array[Number]                 | An array of  numbers represents a list of the potential/accepted duration values that the creatives can be in the adpod block. Example: `durationRangeSec = [30, 60, 90]` |
+| `requireExactDuration`        | Optional    | Boolean                 | Whether the returned creatives running time must match the value of `adPodDurationSec`. Example: `requireExactDuration = true` |
+| `tvSeriesName`        | Optional    | String                 | The name of the television series video the adpod will appear in. Example: `tvSeriesName = 'Once Upon A Time'` |
+| `tvEpisodeName`        | Optional    | String                 | The name of the episode of the television series video the adpod will appear in. Example: `tvEpisodeName = 'Pilot'` |
+| `tvSeasonNumber`        | Optional    | Number                 | A number representing the season number of the television series video  the adpod will appear in. Example: `tvSeasonNumber = 1` |
+| `tvEpisodeNumber`        | Optional    | Number                 | A number representing the episode number of the television series video the adpod will appear in. Example: `tvEpisodeNumber = 1` |
+| `contentLengthSec`        | Optional    | Number                 | A number representing the length of the video in seconds. Example: `contentLengthSec = 1` |
+| `contentMode`        | Optional    | String                 | A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`. Example: `contentMode = 'on-demand'` |
+
 
 <a name="adUnit-examples" />
 
 ## Examples
 
 + [Banner](#adUnit-banner-example)
-+ [Video](#adUnit-video-example)
++ [Video](#adUnit-video-example)  
+  - [Instream](#adUnit-video-example-instream)  
+  - [Outstream](#adUnit-video-example-outstream)  
+  - [Adpod (Long-Form)](#adUnit-video-example-adpod)
 + [Native](#adUnit-native-example)
 + [Multi-Format](#adUnit-multi-format-example)
 
@@ -211,37 +230,43 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         banner: {
-            sizes: [[300, 250], [300, 600]]
-        },
-        bids: [{
+            sizes: [[300, 250]]
+        }
+    },
+    bids: [
+        {
             bidder: 'appnexus',
             params: {
-                placementId: '9880618'
+                placementId: 13144370
             }
-        }, ]
-    }
-})
+        }
+    ]
+});
 ```
 
 <a name="adUnit-video-example">
 
 ### Video
 
+<a name="adUnit-video-example-instream"> 
+
+#### Instream
+
 For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
 ```javascript
 pbjs.addAdUnits({
-    code: 'video',
+    code: slot.code,
     mediaTypes: {
         video: {
-            context: "instream",
+            context: 'instream',
             playerSize: [640, 480],
         },
     },
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: '9333431',
+            placementId: 13232361,
             video: {
                 skippable: true,
                 playback_methods: ['auto_play_sound_off']
@@ -251,11 +276,15 @@ pbjs.addAdUnits({
 });
 ```
 
+<a name="adUnit-video-example-outstream">
+
+#### Outstream
+
 For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
 
 ```javascript
-pbjs.addAdUnit({
-    code: 'video1',
+pbjs.addAdUnits({
+    code: slot.code,
     mediaTypes: {
         video: {
             context: 'outstream',
@@ -272,7 +301,40 @@ pbjs.addAdUnit({
         }
     },
     ...
-})
+});
+```
+<a name="adUnit-video-example-adpod">
+
+#### Adpod (Long-Form)
+
+For an example of an adpod video ad unit, see below.  For more detailed instructions, see [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
+
+```javascript
+var longFormatAdUnit = {
+    video: {
+       // required params
+       context: 'adpod', 
+       playerSize: [640, 480],
+       adPodDurationSec: 300,
+       durationRangeSec: [15, 30],
+   
+       // optional params
+       requireExactDuration: true,
+       tvSeriesName: 'TvName',
+       tvEpisodeName: 'episodeName',
+       tvSeasonNumber: 3,
+       tvEpisodeNumber: 6,
+       contentLength: 300, // time in seconds,
+       contentMode: 'on-demand'
+    }
+
+    bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: '123456789',
+            }
+        }]
+}
 ```
 
 <a name="adUnit-native-example">
@@ -309,13 +371,15 @@ pbjs.addAdUnits({
             }
         }
     },
-    bids: [{
-        bidder: 'appnexus',
-        params: {
-            placementId: '9880618'
+    bids: [
+        {
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232354
+            }
         }
-    }, ]
-})
+    ]
+});
 ```
 
 <a name="adUnit-multi-format-example">
@@ -326,71 +390,71 @@ For an example of a multi-format ad unit, see below.  For more detailed instruct
 
 {% highlight js %}
 
-    pbjs.addAdUnits([{
-            code: 'div-banner-native',
-            mediaTypes: {
-                banner: {
-                    sizes: [
-                        [300, 250]
-                    ]
-                },
-                native: {
-                    type: 'image'
-                },
+pbjs.addAdUnits([{
+        code: 'div-banner-native',
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250]
+                ]
             },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: '12340414',
-                }
-            }]
+            native: {
+                type: 'image'
+            },
         },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232392,
+            }
+        }]
+    },
 
-        {
-            code: 'div-banner-outstream',
-            mediaTypes: {
-                banner: {
-                    sizes: [
-                        [300, 250]
-                    ]
-                },
-                video: {
-                    context: 'outstream',
-                    playerSize: [300, 250]
-                },
+    {
+        code: 'div-banner-outstream',
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250]
+                ]
             },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: '12340414',
-                }
-            }, ]
+            video: {
+                context: 'outstream',
+                playerSize: [300, 250]
+            },
         },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232392,
+            }
+        }, ]
+    },
 
-        {
-            code: 'div-banner-outstream-native',
-            mediaTypes: {
-                banner: {
-                    sizes: [
-                        [300, 250]
-                    ]
-                },
-                native: {
-                    type: 'image'
-                },
-                video: {
-                    context: 'outstream',
-                    playerSize: [300, 250]
-                },
+    {
+        code: 'div-banner-outstream-native',
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250]
+                ]
             },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: '12340414',
-                }
-            }, ]
-        }
-    ]);
+            native: {
+                type: 'image'
+            },
+            video: {
+                context: 'outstream',
+                playerSize: [300, 250]
+            },
+        },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232392,
+            }
+        }, ]
+    }
+]);
 
 {% endhighlight %}
 
@@ -401,15 +465,16 @@ For an example of a multi-format ad unit, see below.  For more detailed instruct
 + [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html)
 + [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
 + [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
++ [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html)
 + [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
 + [Prebid.org Native Examples]({{site.baseurl}}/examples/native/)
 
-</div>
+
 
 <!-- Reference Links -->
 
 [conditionalAds]: {{site.baseurl}}/dev-docs/conditional-ad-units.html
 [setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig
 [configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads
-[openRTB]: https://www.iab.com/wp-content/uploads/2015/05/OpenRTB_API_Specification_Version_2_3_1.pdf
+[openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html

@@ -2,23 +2,18 @@
 layout: bidder
 title: RTBHouse
 description: Prebid RTB House Bidder Adapter
-
-top_nav_section: dev_docs
-nav_section: reference
-
+gdpr_supported: true
 hide: true
 biddercode: rtbhouse
-biddercode_longer_than_12: false
-
-prebid_1_0_supported : true
+media_types: banner, native
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `publisherId` | required | Unique publisher ID | `ABCDEF` |
-| `region` | required | Assigned region | `prebid-eu` |
+| Name          | Scope    | Description         | Example       | Type     |
+|---------------|----------|---------------------|---------------|----------|
+| `publisherId` | required | Unique publisher ID | `'ABCDEF'`    | `string` |
+| `region`      | required | Assigned region     | `'prebid-eu'` | `string` |
+| `bidfloor`    | optional | Minimal CPM value   | `0.01`        | `float`  |
