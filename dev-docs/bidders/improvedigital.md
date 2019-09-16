@@ -20,6 +20,9 @@ Depending on your setup in our system, your placements will either have a global
 | `placementKey` | optional | The placement key for your placement.  Must be used with `publisherId`.                                                    | `'myMainBannerPlacement300x200'`                                       | `string`  |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
 | `size`         | optional | Single size filter.  Where a placement supports multiple sizes, this forces the response to feature only one of the multiple sizes. This parameter is ignored when `usePrebidSizes` is enabled (see `Sizes` section below) | `{ w:300, h:250 }`                                                     | `object`  |
+| `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
+| `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+
 
 ### Configuration
 
