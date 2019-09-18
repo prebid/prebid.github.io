@@ -69,67 +69,42 @@ function OptanonWrapper() { }
     <!--pbjs and player code -->	
     
 	<script>
+	    var pbjs = pbjs || {};
+	    pbjs.que = pbjs.que || [];
+	
+	    var adUnits = [{
+	        code: 'video1',
+	        mediaTypes: {
+	            video: {
+	                playerSize: [640, 480],
+	                context: 'outstream'
+	            }
+	        },
+	        bids: [{
+	            bidder: 'appnexus',
+	            params: {
+	                placementId: 13232385,
+	                video: {
+	                    skippable: true,
+	                    playback_method: ['auto_play_sound_off']
+	                }
+	            }
+	        }]
+        }];
 
-            var pbjs = pbjs || {};
-            pbjs.que = pbjs.que || [];
-
-            var googletag = googletag || {};
-            googletag.cmd = googletag.cmd || [];
-
-            var PREBID_TIMEOUT = 1000;
-
-            var adUnits = [{
-                code: 'video1',
-                mediaTypes: {
-                    video: {
-                        playerSize: [640, 480],
-                        context: 'outstream'
-                    }
-                },
-                bids: [
-                    {
-                        bidder: 'appnexus',
-                        params: {
-                            placementId: 13232385,
-                            video: {
-                                skippable: true,
-                                playback_method: ['auto_play_sound_off']
-                            }
-                        }
-                    }
-                ]
-            }];
-
-            pbjs.que.push(function() {
-                pbjs.addAdUnits(adUnits);
-                pbjs.requestBids({
-                    bidsBackHandler: initAdserver
-                });
+        pbjs.que.push(function() {
+            pbjs.addAdUnits(adUnits);
+            pbjs.requestBids({
+                timeout: 1000,
+                bidsBackHandler: function(bids) {
+                    var highestCpmBids = pbjs.getHighestCpmBids('video1');
+                    pbjs.renderAd(document, highestCpmBids[0].adId);
+                }
             });
+        });
 
-            function initAdserver() {
-                if (pbjs.initAdserverSet) return;
-                pbjs.initAdserverSet = true;
-                googletag.cmd.push(function() {
-                    pbjs.que.push(function() {
-                        pbjs.setTargetingForGPTAsync();
-                        googletag.pubads().refresh();
-                    });
-                });
-            }
-
-            setTimeout(function() {
-                initAdserver();
-            }, PREBID_TIMEOUT);
-
-            googletag.cmd.push(function() {
-                var slot1 = googletag.defineSlot('/19968336/prebid_outstream_adunit_1', [[1, 1]], 'video1').addService(googletag.pubads());
-                googletag.pubads().disableInitialLoad();
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
-            });
-
-        </script>
+    </script>
+    
 </head>
 
 <body>
