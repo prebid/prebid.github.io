@@ -433,12 +433,6 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
  {% endfor %}
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">

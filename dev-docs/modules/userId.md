@@ -75,16 +75,13 @@ of sub-objects. The table below has the options that are common across ID system
 The Unified ID solution is provided by adsrvr.org and the Trade Desk.
 
 Add it to your Prebid.js package with:
-{ % capture unifiedTip % }
-gulp build --modules=userId
-{ % endcapture % }
-{% include alerts/alert_important.html content=unifiedTip %}
 
-{ % capture unifiedAlert % }
-For historic reasons, Unified ID is packaged with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0,
-which will require specifically adding unifiedIdSystem to the gulp build command
-{ % endcapture % }
-{% include alerts/alert_important.html content=unifiedAlert %}
+{: .alert.alert-info :}
+gulp build --modules=userId
+
+{: .alert.alert-warning :}
+For historic reasons, Unified ID is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding unifiedIdSystem to the gulp build command
+
 
 ### Unified ID Registration
 
@@ -171,16 +168,12 @@ This module stores an unique user id in the first party domain and makes it acce
 There is no special registration or configuration for PubCommon ID.
 
 Add it to your Prebid.js package with:
-{ % capture PubCommonTip % }
-gulp build --modules=userId
-{ % endcapture % }
-{% include alerts/alert_important.html content=PubCommonTip %}
 
-{ % capture PubCommonAlert % }
-For historic reasons, PubCommon is packaged with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0,
-which will require specifically adding pubCommonIdSystem to the gulp build command
-{ % endcapture % }
-{% include alerts/alert_important.html content=PubCommonAlert %}
+{: .alert.alert-info :}
+gulp build --modules=userId
+
+{: .alert.alert-warning :}
+For historic reasons, PubCommon is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding pubCommonIdSystem to the gulp build command
 
 ### PubCommon ID Examples
 
@@ -233,10 +226,9 @@ pbjs.setConfig({
 [DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default.
 
 Add it to your Prebid.js package with:
-{ % capture DigitrustTip % }
+
+{: .alert.alert-info :}
 gulp build --modules=userId,digiTrustIdSystem
-{ % endcapture % }
-{% include alerts/alert_important.html content=DigitrustTip %}
 
 ### DigiTrust Registration
 
@@ -312,10 +304,9 @@ Other examples:
 The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching. For more information about the ID5 ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
 
 Add it to your Prebid.js package with:
-{ % capture ID5Tip % }
+
+{: .alert.alert-info :}
 gulp build --modules=userId,id5IdSystem
-{ % endcapture % }
-{% include alerts/alert_important.html content=ID5Tip %}
 
 ### ID5 ID Registration
 
@@ -374,10 +365,9 @@ pbjs.setConfig({
 The Identity Link solution is provided by liveramp.com
 
 Add it to your Prebid.js package with:
-{ % capture IdentityLinkTip % }
+
+{: .alert.alert-info :}
 gulp build --modules=userId,identityLinkIdSystem
-{ % endcapture % }
-{% include alerts/alert_important.html content=IdentityLinkTip %}
 
 ### IdentityLink Registration
 
@@ -442,10 +432,9 @@ pbjs.setConfig({
 Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
 
 Add it to your Prebid.js package with:
-{ % capture CriteoTip % }
+
+{: .alert.alert-info :}
 gulp build --modules=userId,criteortusIdSystem
-{ % endcapture % }
-{% include alerts/alert_important.html content=CriteoTip %}
 
 ### Criteo RTUS Registration
 
