@@ -36,6 +36,8 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Server-to-Server Testing**]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) | Adds A/B test support for easing into server-side header bidding. |
 | [**Google Ad Manager Video**]({{site.baseurl}}/dev-docs/modules/dfp_video.html) | Required for serving instream video through Google Ad Manager. |
 | [**User ID**]({{site.baseurl}}/dev-docs/modules/userId.html) | Supports Unified ID, PubCommon ID, DigiTrust, ID5 ID and IdentityLink. |
+| [**Real Time Data**]({{site.baseurl}}/dev-docs/modules/realTimeData.html) | Add real time data to bidders and primary ad server.  |
+| [**Browsi RTD Provider**]({{site.baseurl}}/dev-docs/modules/browsiRtdProvider.html) | Browsi provider for real time data module.  |
 | [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | (Deprecated - please use User ID module) Adds a persisted user ID in the publisher's domain. |
 | [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
 | [**IAB Category Translation**]({{site.baseurl}}/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
