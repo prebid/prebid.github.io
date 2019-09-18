@@ -5,6 +5,7 @@ description: Prebid One Fifty Two Media Bidder Adaptor
 hide: true
 biddercode: oftmedia
 aliasCode : appnexus
+gdpr_supported: true
 ---
 
 ### Bid Params

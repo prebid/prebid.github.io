@@ -6,6 +6,7 @@ hide: true
 biddercode: spotx
 media_types: video
 gdpr_supported: true
+prebid_member: true
 ---
 
 ### Bid Params

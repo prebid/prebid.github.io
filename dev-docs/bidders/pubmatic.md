@@ -6,6 +6,7 @@ hide: true
 biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true
+schain_supported: true
 userIds: unifiedId/tradedesk
 prebid_member: true
 ---
