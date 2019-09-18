@@ -40,7 +40,7 @@ Also note that not all bidder adapters support all forms of user ID. See the tab
 
 ## User ID, GDPR, and Opt-Out
 
-When paired with the `CookieConsent` module, privacy rules are enforced:
+When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
 
 * The module checks the GDPR consent string
 * If no consent string is available OR if the user has not consented to Purpose 1 (local storage):
@@ -73,6 +73,15 @@ of sub-objects. The table below has the options that are common across ID system
 ## Unified ID
 
 The Unified ID solution is provided by adsrvr.org and the Trade Desk.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId
+
+{: .alert.alert-warning :}
+For historic reasons, Unified ID is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding unifiedIdSystem to the gulp build command
+
 
 ### Unified ID Registration
 
@@ -158,6 +167,14 @@ This module stores an unique user id in the first party domain and makes it acce
 
 There is no special registration or configuration for PubCommon ID.
 
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId
+
+{: .alert.alert-warning :}
+For historic reasons, PubCommon is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding pubCommonIdSystem to the gulp build command
+
 ### PubCommon ID Examples
 
 1) Publisher supports PubCommonID and first party domain cookie storage
@@ -207,6 +224,11 @@ pbjs.setConfig({
 ## DigiTrust
 
 [DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,digiTrustIdSystem
 
 ### DigiTrust Registration
 
@@ -281,6 +303,11 @@ Other examples:
 
 The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching. For more information about the ID5 ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
 
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,id5IdSystem
+
 ### ID5 ID Registration
 
 The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/prebid](https://id5.io/prebid) to sign up and request your ID5 Partner Number to get started.
@@ -336,6 +363,11 @@ pbjs.setConfig({
 ## IdentityLink
 
 The Identity Link solution is provided by liveramp.com
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,identityLinkIdSystem
 
 ### IdentityLink Registration
 
@@ -398,6 +430,11 @@ pbjs.setConfig({
 ## Criteo RTUS
 
 Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,criteortusIdSystem
 
 ### Criteo RTUS Registration
 
