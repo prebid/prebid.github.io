@@ -61,6 +61,15 @@
     isHeader: 0
     isSubSectionStart: 0
 
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: Overview
+    title: Events
+    link:  /blog
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
 #----------Product SubNav------------
 
 - sectionId: 1
