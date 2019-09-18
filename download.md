@@ -236,6 +236,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="adxpremium" class="analytics-check-box"> AdxPremium Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
     </label>
   </div>
