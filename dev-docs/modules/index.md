@@ -34,7 +34,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**GDPR ConsentManagement**](/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
-| [**User ID**](/dev-docs/modules/userId.html) | Supports Unified ID, PubCommon ID, DigiTrust, ID5, and IdentityLink. |
+| [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5, IdentityLink, PubCommon ID, and Unified ID. |
 
 ## Video Modules
 
