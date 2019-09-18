@@ -22,7 +22,7 @@ sidebarType: 4
 		</div>
 		
 		<!--video placeholder | this should be formatted per the needs of each player-->
-		<div id="myDiv" class="brid" style="width:640px; height:360;"></div>
+		<div id="myElement1"></div>
 				
 		<!--video code fencing-->
 					
@@ -165,22 +165,34 @@ sidebarType: 4
 </div>
 	
 <!--video player code-->
-	<script type="text/javascript">
-      invokeVideoPlayer = function(url) {
-        $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
-        "Ad": [
-                {
-                    "mobile": url, // Array of url's will get called in succession
-                    "desktop": null, // Array of url's will get called in succession
-                    "adType": "0", // Type 0 for pre roll
-                    "adTimeType": "s",
-                    "overlayStartAt": null,
-                    "overlayDuration": null,
-                    "cuepoints": null
+	<script>
+        // we initialize our player instance, specifying the div to load it into
+        var playerInstance = jwplayer('myElement1');
+
+        function invokeVideoPlayer(url) {
+            // this calls setup on the player we initialized
+            // this will use the settings defined in the player we loaded above unless you override them here
+            playerInstance.setup({
+                // this line loads a playlist from your jwplatform account (in either json or rss format)
+                // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
+                // Replace this with the correct url for your playlist
+                "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+                "width": 640,
+                "height": 480,
+                // we enable vast advertising for this player
+                "advertising": {
+                    "client": "vast",
+                    // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
+                    "tag": url,
                 }
-            ]
-        }); 
-      }
+            });
+        }
+
+        if (tempTag) {
+            invokeVideoPlayer(tempTag);
+            tempTag = false;
+        }
+
     </script>
 	
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
