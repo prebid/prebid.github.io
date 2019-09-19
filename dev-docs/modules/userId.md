@@ -442,7 +442,7 @@ The EnID is a non-profit organization which is open to any contributing party on
 
 ### netID Examples
 
-1) Publisher stores netID on its own logic
+1) Publisher stores netID on their own logic
 
 {% highlight javascript %}
 pbjs.setConfig({
