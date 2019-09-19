@@ -36,102 +36,102 @@ sidebarType: 4
 			<h4>Place this code in the page header.</h4>
 <pre class="pb-code-hl">
 	<!--put javascript code here-->
-	&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
-		&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
-        &lt;script type="text/javascript"&gt;
-            jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key<br>
-        &lt;/script&gt;
+&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key<br>
+&lt;/script&gt;
 
-        &lt;script&gt;
-            var pbjs = pbjs || {};
-            pbjs.que = pbjs.que || [];
+&lt;script&gt;
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
 
-            /* PRE-DEFINE `invokeVideoPlayer`
+    /* PRE-DEFINE `invokeVideoPlayer`
 
-            Because we have no way of knowing when all the bids will be
-            returned from Prebid we can't be sure that the browser will
-            reach the point where `invokeVideoPlayer` is defined before
-            `bidsBackHandler` fires and tries to call it.
+    Because we have no way of knowing when all the bids will be
+    returned from Prebid we can't be sure that the browser will
+    reach the point where `invokeVideoPlayer` is defined before
+    `bidsBackHandler` fires and tries to call it.
 
-            To prevent an "`invokeVideoPlayer` not defined" error, we
-            pre-define it before we make the call to Prebid, and redefine
-            it later on with the code to create the player and play the
-            ad.
+    To prevent an "`invokeVideoPlayer` not defined" error, we
+    pre-define it before we make the call to Prebid, and redefine
+    it later on with the code to create the player and play the
+    ad.
 
-            In this first version, it simply stores the winning VAST to
-            use later. */
+    In this first version, it simply stores the winning VAST to
+    use later. */
 
-            var tempTag = false;
-            var invokeVideoPlayer = function(url) {
-                tempTag = url;
-            };
+    var tempTag = false;
+    var invokeVideoPlayer = function(url) {
+        tempTag = url;
+    };
 
-            /* Prebid video ad unit */
+    /* Prebid video ad unit */
 
-            var videoAdUnit = {
-                code: 'video1',
-                mediaTypes: {
-                    video: {
-                        playerSize: [640, 480],
-                        context: 'instream',
-                        mimes: ['video/mp4'],
-                        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                        playbackmethod: [2]
-                    }
-                },
-                bids: [{
-                    bidder: 'appnexus',
+    var videoAdUnit = {
+        code: 'video1',
+        mediaTypes: {
+            video: {
+                playerSize: [640, 480],
+                context: 'instream',
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2]
+            }
+        },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232361, // Add your own placement id here<br>
+                video: {
+                    skippable: true,
+                    playback_method: ['auto_play_sound_off']
+                }
+            }
+        }]
+    };
+
+    pbjs.que.push(function() {
+
+        // configure prebid to use prebid cache and prebid server<br>
+        // make sure to add your own accountId to your s2sConfig object<br>
+        pbjs.setConfig({
+            cache: {
+                url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            },
+            debug: true,
+            enableSendAllBids: true,
+            s2sConfig: {
+                endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+                enabled: true,
+                accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
+                bidders: ['appnexus']
+            }
+        });
+
+        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
+
+        pbjs.requestBids({
+            bidsBackHandler: function(bids) {
+                console.log("got some bids");
+                console.log(bids);
+                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                    adUnit: videoAdUnit,
                     params: {
-                        placementId: 13232361, // Add your own placement id here<br>
-                        video: {
-                            skippable: true,
-                            playback_method: ['auto_play_sound_off']
-                        }
-                    }
-                }]
-            };
-
-            pbjs.que.push(function() {
-
-                // configure prebid to use prebid cache and prebid server<br>
-                // make sure to add your own accountId to your s2sConfig object<br>
-                pbjs.setConfig({
-                    cache: {
-                        url: 'https://prebid.adnxs.com/pbc/v1/cache'
-                    },
-                    debug: true,
-                    enableSendAllBids: true,
-                    s2sConfig: {
-                        endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-                        enabled: true,
-                        accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
-                        bidders: ['appnexus']
+                        iu: '/19968336/prebid_cache_video_adunit',
+                        cust_params: {
+                            section: 'blog',
+                            anotherKey: 'anotherValue'
+                        },
+                        output: 'vast'
                     }
                 });
+                invokeVideoPlayer(videoUrl);
+            }
+        });
+    });
 
-                pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-
-                pbjs.requestBids({
-                    bidsBackHandler: function(bids) {
-                        console.log("got some bids");
-                        console.log(bids);
-                        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-                            adUnit: videoAdUnit,
-                            params: {
-                                iu: '/19968336/prebid_cache_video_adunit',
-                                cust_params: {
-                                    section: 'blog',
-                                    anotherKey: 'anotherValue'
-                                },
-                                output: 'vast'
-                            }
-                        });
-                        invokeVideoPlayer(videoUrl);
-                    }
-                });
-            });
-
-        &lt;/script&gt;
+&lt;/script&gt;
 
 </pre>
 
@@ -141,36 +141,36 @@ sidebarType: 4
 		<div>
 			<h4>Place this code in the page body.</h4>
 <pre class="pb-code-hl">
-	<!--put body html and javascript here-->
-	&lt;div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'&gt;&lt;/div&gt;
-	
-	&lt;script&gt;
-            var jwPlayerInstance = jwplayer("playerContainerJW");
+<!--put body html and javascript here-->
+&lt;div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'&gt;&lt;/div&gt;
 
-            invokeVideoPlayer = function(url) {
-                console.log("starting player with url " + url);
-                jwPlayerInstance.setup({
-                    "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
-                    "width": 640,
-                    "height": 480,
-                    "autostart": true,
-                    "mute": true,
-                    "advertising": {
-                        client: "vast",
-                    }
-                });
+&lt;script&gt;
+    var jwPlayerInstance = jwplayer("playerContainerJW");
 
-                jwPlayerInstance.on('beforePlay', function() {
-                    jwPlayerInstance.playAd(url);
-                })
+    invokeVideoPlayer = function(url) {
+        console.log("starting player with url " + url);
+        jwPlayerInstance.setup({
+            "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
+            "width": 640,
+            "height": 480,
+            "autostart": true,
+            "mute": true,
+            "advertising": {
+                client: "vast",
             }
+        });
 
-            if (tempTag) {
-                invokeVideoPlayer(tempTag);
-                tempTag = false;
-            }
+        jwPlayerInstance.on('beforePlay', function() {
+            jwPlayerInstance.playAd(url);
+        })
+    }
 
-        &lt;/script&gt;
+    if (tempTag) {
+        invokeVideoPlayer(tempTag);
+        tempTag = false;
+    }
+
+&lt;/script&gt;
 
 </pre>
 		</div>

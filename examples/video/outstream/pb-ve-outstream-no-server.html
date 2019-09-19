@@ -54,44 +54,43 @@ sidebarType: 4
 		<div>
 			<h4>Place this code in the page header.</h4>
 <pre class="pb-code-hl">
-	<!--put javascript code here-->
-	<!--put javascript code here-->
-	&lt;script&gt;
-        var pbjs = pbjs || {};
-        pbjs.que = pbjs.que || [];
+<!--put javascript code here-->
+&lt;script&gt;
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
 
-        var adUnits = [{
-            code: 'video1',
-            mediaTypes: {
+    var adUnits = [{
+        code: 'video1',
+        mediaTypes: {
+            video: {
+                playerSize: [640, 480],
+                context: 'outstream'
+            }
+        },
+        bids: [{
+            bidder: 'appnexus',
+            params: {
+                placementId: 13232385,
                 video: {
-                    playerSize: [640, 480],
-                    context: 'outstream'
+                    skippable: true,
+                    playback_method: ['auto_play_sound_off']
                 }
-            },
-            bids: [{
-                bidder: 'appnexus',
-                params: {
-                    placementId: 13232385,
-                    video: {
-                        skippable: true,
-                        playback_method: ['auto_play_sound_off']
-                    }
-                }
-            }]
-        }];
+            }
+        }]
+    }];
 
-        pbjs.que.push(function() {
-            pbjs.addAdUnits(adUnits);
-            pbjs.requestBids({
-                timeout: 1000,
-                bidsBackHandler: function(bids) {
-                    var highestCpmBids = pbjs.getHighestCpmBids('video1');
-                    pbjs.renderAd(document, highestCpmBids[0].adId);
-                }
-            });
+    pbjs.que.push(function() {
+        pbjs.addAdUnits(adUnits);
+        pbjs.requestBids({
+            timeout: 1000,
+            bidsBackHandler: function(bids) {
+                var highestCpmBids = pbjs.getHighestCpmBids('video1');
+                pbjs.renderAd(document, highestCpmBids[0].adId);
+            }
         });
+    });
 
-    &lt;/script&gt;
+&lt;/script&gt;
 
 </pre>
 
@@ -101,10 +100,10 @@ sidebarType: 4
 		<div>
 			<h4>Place this code in the page body.</h4>
 <pre class="pb-code-hl">
-	<!--put body html and javascript here-->
-	&lt;div id='video1'&gt;
- 		&lt;p&gt;Prebid Outstream Video Ad&lt;/p&gt;
- 	&lt;/div&gt;
+<!--put body html and javascript here-->
+&lt;div id='video1'&gt;
+	&lt;p&gt;Prebid Outstream Video Ad&lt;/p&gt;
+&lt;/div&gt;
 </pre>
 		</div>
 	
