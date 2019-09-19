@@ -1292,7 +1292,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JWPlayer (Platform)'
+  title: '&nbsp;&nbsp;JW Player (Platform)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1301,7 +1301,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JWPLayer (Hosted)'
+  title: '&nbsp;&nbsp;JW PLayer (Hosted)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1310,7 +1310,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JWPLayer (Playlist)'
+  title: '&nbsp;&nbsp;JW PLayer (Playlist)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1364,7 +1364,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JWPlayer (Platform)'
+  title: '&nbsp;&nbsp;JW Player (Platform)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1373,7 +1373,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JWPLayer (Hosted)'
+  title: '&nbsp;&nbsp;JW PLayer (Hosted)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1382,7 +1382,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JWPLayer (Playlist)'
+  title: '&nbsp;&nbsp;JW PLayer (Playlist)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1391,7 +1391,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JWPLayer (Player 7)'
+  title: '&nbsp;&nbsp;JW PLayer (Player 7)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html
   isLastSubSectionItem: 0
   isHeader: 0
