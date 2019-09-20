@@ -4,7 +4,7 @@ page_type: module
 title: Module - User ID
 description: Supports multiple cross-vendor user IDs
 module_code : userId
-display_name : User ID
+display_name : User ID (including UnifiedID and PubCommonID)
 enable_download : true
 sidebarType : 1
 ---
