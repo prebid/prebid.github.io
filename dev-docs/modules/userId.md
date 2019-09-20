@@ -62,7 +62,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"`, `identityLink` or `liveIntentId` | `"unifiedId"` |
+| name | Required | String | May be: `"criteortus"`, `"digitrust"`, `"id5id"`, `identityLink`, `liveIntentId`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -450,9 +450,9 @@ pbjs.setConfig({
 
 LiveIntent ID solution provides a user identifier based on our graph which is driven by publisher email business (e.g. updates, newsletters, and subscriptions). 
 
-### Registering your own first party cookie space that is not PubCommonId
+### Registering your own first party cookie space
 
-In order for you to take advantage of the user id resolution in cookie challenged environments like iOS, you need to sync your first party cookie universe with us. For urther information please reach out to peoplebased@liveintent.com.
+In order for you to take advantage of the user id resolution in cookie-challenged environments like iOS, you need to sync your first party cookie universe with us. For further information please reach out to peoplebased@liveintent.com.
 
 ### LiveIntent ID configuration
 
@@ -521,10 +521,13 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
-| PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
-| Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
+| CriteoRTUS | Criteo | bidRequest.userId.criteortus | `"1111"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
-| ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
+| ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
+| IdentityLink | Trade Desk | bidRequest.userId.identityLinkId | `"1111"` |
+| LiveIntent ID | Live Intent | bidRequest.userId.liveIntentId | `"1111"` |
+| PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
+| Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 
 For example, the adapter code might do something like:
 
@@ -550,21 +553,33 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                         "rtiPartner": "TDID"
                     }
                 }]
-            },
-            {
-                "source": "pubcommon",  // PubCommon ID
+            },{
+                "source": "pubcommon",
                 "uids": [{
                     "id":"11111111"
                 }]
-            },
-            {
-                "source": "id5id",      // ID5 ID
+            },{
+                "source": "id5",
                 "uids": [{
                     "id": "ID5-12345"
                 }]
-            }
-            ],
-            "digitrust": {              // DigiTrust
+            },{
+                "source": "identityLink",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+                "source": "criteortus",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+                "source": "liveIntent",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            }],
+            "digitrust": {              // DigiTrust is not in the eids section
                 "id": "11111111111",
                 "keyv": 4
             }
