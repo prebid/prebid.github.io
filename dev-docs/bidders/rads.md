@@ -4,7 +4,6 @@ title: Rads
 description: Prebid Rads Bidder Adaptor
 hide: true
 biddercode: rads
-biddercode_longer_than_12: false
 media_types: banner, video 
 gdpr_supported: false
 ---
