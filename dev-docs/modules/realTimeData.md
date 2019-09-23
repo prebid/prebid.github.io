@@ -37,9 +37,8 @@ that can be used by bidders or the ad server.
 
 ## Basic Configuration
 
-By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
-all of them under the `usersync` object as attributes of the `userIds` array
-of sub-objects. The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
+By including this module and one or more of the sub-modules, new options become available in `setConfig()`,
+all of them under the `realTimeData` object. The table below has the options that are common across sub-modules. See the sections below for specific configuration needed by each system and examples.
 
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
