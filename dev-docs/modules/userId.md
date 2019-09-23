@@ -436,13 +436,13 @@ pbjs.setConfig({
 
 ## netID
 
-The European netID Foundation (EnID) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
+The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
 
 The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
 
 ### netID Examples
 
-1) Publisher stores netID on their own logic
+1) Publisher stores netID via his own logic
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -452,7 +452,7 @@ pbjs.setConfig({
             value: {
                 name: "netId",
                 value: {
-                    "netId":"123456789"
+                    "netId":"5600b800-3b26-44d1-9d94-eabe61322096"
                 }
             }
         }]
@@ -486,7 +486,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
-| netID | netID | bidRequest.userId.netId | `"123456789"` |
+| netID | netID | bidRequest.userId.netId | `"5600b800-3b26-44d1-9d94-eabe61322096"` |
 
 For example, the adapter code might do something like:
 
