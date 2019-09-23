@@ -1283,6 +1283,15 @@
   subgroup: 1
   
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Brightcove'
+  link: /examples/video/instream/brightcove/pb-ve-brightcove.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
   title: '&nbsp;&nbsp;Flowplayer'
   link: /examples/video/instream/flowplayer/pb-ve-flowplayer.html
   isLastSubSectionItem: 0
@@ -1456,6 +1465,15 @@
 - sbSecId: 4
   title: "<span style='color:#EA9622;'>Long-Form (Ad Pods)"
   link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Freewheel'
+  link: /examples/video/long-form/pb-ve-lf-freewheel.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
