@@ -4,15 +4,9 @@ title: Enable Deals
 head_title: Enable Deals in Prebid for Header Bidding
 description: Enable Deals in Prebid for Header Bidding Analysis.
 pid: 4
-
 hide: false
-
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
-
-
 
 # Enable Deals in Prebid
 {:.no_toc}
@@ -50,8 +44,11 @@ hb_deal_appnexus = APN_456
 // hb_adid, hb_size, and hb_adid omitted
 ```
 
-{: .bg-info :}
-Whether your Ad Ops setup [sends all bids to the ad server](/adops/send-all-bids-adops.html) or just [sends the top bid to the ad server](/adops/step-by-step.html), Prebid.js will generate the deal key-values for every bidder. The reason is that you may want to give deals higher priorities in the ad server, which needs to see all deal-enabled bids.
+{: .alert.alert-info :}
+We recommend confirming with your development team that the page is setup to send all deal targeting to the ad server.
+There are two ways to do this: 1) set the `enableSendAllBids` to **true**.
+or 2) to minimize the number of targeting variables sent to the ad server,
+set `enableSendAllBids` to **false** and `alwaysIncludeDeals` to true. See the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) documentation for details.
 
 <br>
 
