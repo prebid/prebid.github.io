@@ -1270,6 +1270,7 @@
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
+  isCatHeader: 1
   sectionTitle: 
   subgroup: 1
   
@@ -1294,7 +1295,7 @@
 - sbSecId: 4
   title: '&nbsp;&nbsp;Flowplayer'
   link: /examples/video/instream/flowplayer/pb-ve-flowplayer.html
-  isLastSubSectionItem: 0
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle: 
@@ -1360,6 +1361,7 @@
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
+  isCatHeader: 1
   sectionTitle: 
   subgroup: 1
   
@@ -1441,6 +1443,7 @@
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
+  isCatHeader: 1
   sectionTitle: 
   subgroup: 1
   
@@ -1468,6 +1471,7 @@
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
+  isCatHeader: 1
   sectionTitle: 
   subgroup: 1
   
