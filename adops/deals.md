@@ -44,11 +44,14 @@ hb_deal_appnexus = APN_456
 // hb_adid, hb_size, and hb_adid omitted
 ```
 
-{: .alert.alert-info :}
-We recommend confirming with your development team that the page is setup to send all deal targeting to the ad server.
-There are two ways to do this: 1) set the `enableSendAllBids` to **true**.
-or 2) to minimize the number of targeting variables sent to the ad server,
-set `enableSendAllBids` to **false** and `alwaysIncludeDeals` to true. See the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) documentation for details.
+{% capture noteAlert %}
+We recommend confirming with your development team that the page is set up to send all deal targeting to the ad server. There are two ways to do this:  
+- Set the `enableSendAllBids` to **true**.  
+- Set `enableSendAllBids` to **false** and `alwaysIncludeDeals` to **true**. This option will minimize the number of targeting variables sent to the ad server.  
+See the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) documentation for details.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
 
 <br>
 
@@ -130,4 +133,3 @@ e.g. if the line item is targeted to `hb_deal_pubmatic`, then the creative needs
 
 If however, the line item is targeted to `hb_deal` (without a bidder code),
 then the simplified creative setup in the [step-by-step instructions](/adops/step-by-step.html#step-2-add-a-creative) will be fine.
-
