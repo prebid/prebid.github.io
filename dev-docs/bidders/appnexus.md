@@ -8,17 +8,19 @@ media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
 userIds: criteortus
+schain_supported: true
 ---
 
 ### Table of Contents
 
-- [Bid Params](#appnexus-bid-params)
-- [Video Object](#appnexus-video-object)
-- [User Object](#appnexus-user-object)
-- [App Object](#appnexus-app-object)
-- [Custom Targeting keys](#custom-targeting-keys)
-- [Passing Keys Without Values](#appnexus-no-value)
-- [Debug Auction](#appnexus-debug-auction)
+- [Table of Contents](#table-of-contents)
+  - [Bid Params](#bid-params)
+  - [Video Object](#video-object)
+  - [User Object](#user-object)
+  - [App Object](#app-object)
+  - [Custom Targeting keys](#custom-targeting-keys)
+  - [Passing Keys Without Values](#passing-keys-without-values)
+  - [Debug Auction](#debug-auction)
 
 <a name="appnexus-bid-params" />
 
