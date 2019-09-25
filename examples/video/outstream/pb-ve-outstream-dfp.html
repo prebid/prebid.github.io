@@ -57,71 +57,71 @@ sidebarType: 4
 		<div>
 			<h4>Place this code in the page header.</h4>
 <pre class="pb-code-hl">
-	<!--put javascript code here-->
-	 &lt;script async src="//www.googletagservices.com/tag/js/gpt.js"&gt;&lt;/script&gt;
+<!--put javascript code here-->
+&lt;script async src="//www.googletagservices.com/tag/js/gpt.js"&gt;&lt;/script&gt;
 
 &lt;script&gt;
 
-            var pbjs = pbjs || {};
-            pbjs.que = pbjs.que || [];
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
 
-            var googletag = googletag || {};
-            googletag.cmd = googletag.cmd || [];
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
 
-            var PREBID_TIMEOUT = 1000;
+    var PREBID_TIMEOUT = 1000;
 
-            var adUnits = [{
-                code: 'video1',
-                mediaTypes: {
-                    video: {
-                        playerSize: [640, 480],
-                        context: 'outstream'
-                    }
-                },
-                bids: [
-                    {
-                        bidder: 'appnexus',
-                        params: {
-                            placementId: 13232385,
-                            video: {
-                                skippable: true,
-                                playback_method: ['auto_play_sound_off']
-                            }
-                        }
-                    }
-                ]
-            }];
-
-            pbjs.que.push(function() {
-                pbjs.addAdUnits(adUnits);
-                pbjs.requestBids({
-                    bidsBackHandler: initAdserver
-                });
-            });
-
-            function initAdserver() {
-                if (pbjs.initAdserverSet) return;
-                pbjs.initAdserverSet = true;
-                googletag.cmd.push(function() {
-                    pbjs.que.push(function() {
-                        pbjs.setTargetingForGPTAsync();
-                        googletag.pubads().refresh();
-                    });
-                });
+    var adUnits = [{
+        code: 'video1',
+        mediaTypes: {
+            video: {
+                playerSize: [640, 480],
+                context: 'outstream'
             }
+        },
+        bids: [
+            {
+                bidder: 'appnexus',
+                params: {
+                    placementId: 13232385,
+                    video: {
+                        skippable: true,
+                        playback_method: ['auto_play_sound_off']
+                    }
+                }
+            }
+        ]
+    }];
 
-            setTimeout(function() {
-                initAdserver();
-            }, PREBID_TIMEOUT);
+    pbjs.que.push(function() {
+        pbjs.addAdUnits(adUnits);
+        pbjs.requestBids({
+            bidsBackHandler: initAdserver
+        });
+    });
 
-            googletag.cmd.push(function() {
-                var slot1 = googletag.defineSlot('/19968336/prebid_outstream_adunit_1', [[1, 1]], 'video1').addService(googletag.pubads());
-                googletag.pubads().disableInitialLoad();
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
+    function initAdserver() {
+        if (pbjs.initAdserverSet) return;
+        pbjs.initAdserverSet = true;
+        googletag.cmd.push(function() {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync();
+                googletag.pubads().refresh();
             });
+        });
+    }
 
-        &lt;/script&gt;
+    setTimeout(function() {
+        initAdserver();
+    }, PREBID_TIMEOUT);
+
+    googletag.cmd.push(function() {
+        var slot1 = googletag.defineSlot('/19968336/prebid_outstream_adunit_1', [[1, 1]], 'video1').addService(googletag.pubads());
+        googletag.pubads().disableInitialLoad();
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+
+&lt;/script&gt;
 </pre>
 
 		</div>
@@ -130,16 +130,16 @@ sidebarType: 4
 		<div>
 			<h4>Place this code in the page body.</h4>
 <pre class="pb-code-hl">
-	<!--put body html and javascript here-->
-	&lt;div id='video1'&gt;
-        &lt;p&gt;Prebid Outstream Video Ad&lt;/p&gt;
-        &lt;script type='text/javascript'&gt;
-            googletag.cmd.push(function() {
-                googletag.display('video1');
-            });
+<!--put body html and javascript here-->
+&lt;div id='video1'&gt;
+    &lt;p&gt;Prebid Outstream Video Ad&lt;/p&gt;
+    &lt;script type='text/javascript'&gt;
+        googletag.cmd.push(function() {
+            googletag.display('video1');
+        });
 
-        &lt;/script&gt;
-    &lt;/div&gt;
+    &lt;/script&gt;
+&lt;/div&gt;
 
 </pre>
 		</div>

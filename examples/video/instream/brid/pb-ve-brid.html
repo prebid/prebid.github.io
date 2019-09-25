@@ -36,102 +36,102 @@ sidebarType: 4
 		<div>
 			<h4>Place this code in the page header.</h4>
 <pre class="pb-code-hl">
-	<!--put javascript code here-->
-	&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;<br>
-		&lt;script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"&gt;&lt;/script&gt;
-		&lt;script&gt;
-		    var pbjs = pbjs || {};
-		    pbjs.que = pbjs.que || [];
-		
-		    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads<br>
-		    var tempTag = false;
-		    var invokeVideoPlayer = function(url){
-		      tempTag = url;
-		    }
-		
-		    /*
-		    Prebid Video adUnit
-		    */
-		
-		    var videoAdUnit = {
-		      code: 'video1',
-		      sizes: [640,480],
-		      mediaTypes: {
-		        video: {
-		          context: "instream"
-		        }
-		      },
-		      bids: [
-		        {
-		          bidder: 'appnexusAst',
-		          params: {
-		            placementId: '9333431', // Add your own placement id here
-		            video: {
-		              skipppable: true,
-		              playback_method: ['auto_play_sound_off']
-		            }
-		          }
-		        }
-		      ]
-		    };
-		
-		    pbjs.que.push(function(){
-			  // add your ad units to the bid request<br>
-		      pbjs.addAdUnits(videoAdUnit); 
-		
-		      pbjs.setConfig({ 
-		        usePrebidCache: true 
-		      });
-		
-		      pbjs.requestBids({
-		          bidsBackHandler: function(bids) {
-		              var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-		                  adUnit: videoAdUnit,
-		                  params: {
-		                      iu: '/19968336/prebid_cache_video_adunit',
-		                      cust_params: {
-		                        section: "blog",
-		                        anotherKey: "anotherValue"
-		                      },
-		                      output: "vast"
-		                  }
-		              });
-		              invokeVideoPlayer(videoUrl);
-		          }
-		      });
-		    });
-		
-		    pbjs.bidderSettings =
-		    {
-		        standard: {
-		            adserverTargeting: [
-		                {
-		                    key: "hb_bidder",
-		                    val: function (bidResponse) {
-		                        return bidResponse.bidderCode;
-		                    }
-		                }, {
-		                    key: "hb_adid",
-		                    val: function (bidResponse) {
-		                        return bidResponse.adId;
-		                    }
-		                }, {
-		                    key: "hb_pb",
-		                    val: function (bidResponse) {
-		                        return "10.00";
-		                    }
-		                }, {
-		                    key: "hb_size",
-		                    val: function (bidResponse) {
-		                        return bidResponse.size;
-		
-		                    }
-		                }
-		            ]
-		        }
-		    };
-		
-		  &lt;/script&gt;
+<!--put javascript code here-->
+&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;<br>
+&lt;script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+
+    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads<br>
+    var tempTag = false;
+    var invokeVideoPlayer = function(url){
+      tempTag = url;
+    }
+
+    /*
+    Prebid Video adUnit
+    */
+
+    var videoAdUnit = {
+      code: 'video1',
+      sizes: [640,480],
+      mediaTypes: {
+        video: {
+          context: "instream"
+        }
+      },
+      bids: [
+        {
+          bidder: 'appnexusAst',
+          params: {
+            placementId: '9333431', // Add your own placement id here
+            video: {
+              skipppable: true,
+              playback_method: ['auto_play_sound_off']
+            }
+          }
+        }
+      ]
+    };
+
+    pbjs.que.push(function(){
+	  // add your ad units to the bid request<br>
+      pbjs.addAdUnits(videoAdUnit); 
+
+      pbjs.setConfig({ 
+        usePrebidCache: true 
+      });
+
+      pbjs.requestBids({
+          bidsBackHandler: function(bids) {
+              var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                  adUnit: videoAdUnit,
+                  params: {
+                      iu: '/19968336/prebid_cache_video_adunit',
+                      cust_params: {
+                        section: "blog",
+                        anotherKey: "anotherValue"
+                      },
+                      output: "vast"
+                  }
+              });
+              invokeVideoPlayer(videoUrl);
+          }
+      });
+    });
+
+    pbjs.bidderSettings =
+    {
+        standard: {
+            adserverTargeting: [
+                {
+                    key: "hb_bidder",
+                    val: function (bidResponse) {
+                        return bidResponse.bidderCode;
+                    }
+                }, {
+                    key: "hb_adid",
+                    val: function (bidResponse) {
+                        return bidResponse.adId;
+                    }
+                }, {
+                    key: "hb_pb",
+                    val: function (bidResponse) {
+                        return "10.00";
+                    }
+                }, {
+                    key: "hb_size",
+                    val: function (bidResponse) {
+                        return bidResponse.size;
+
+                    }
+                }
+            ]
+        }
+    };
+
+&lt;/script&gt;
 </pre>
 
 		</div>
@@ -140,26 +140,26 @@ sidebarType: 4
 		<div>
 			<h4>Place this code in the page body.</h4>
 <pre class="pb-code-hl">
-	<!--put body html and javascript here-->
-	&lt;div id="myDiv" class="brid" style="width:640px; height:360;"&gt;&lt;/div&gt;
-	
-	&lt;script type="text/javascript"&gt;
-		invokeVideoPlayer = function(url) {
-		$bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
-		"Ad": [
-		        {
-		            "mobile": url, // Array of url's will get called in succession
-		            "desktop": null, // Array of url's will get called in succession
-		            "adType": "0", // Type 0 for pre roll
-		            "adTimeType": "s",
-		            "overlayStartAt": null,
-		            "overlayDuration": null,
-		            "cuepoints": null
-		        }
-		    ]
-		}); 
-		}
-	  &lt;/script&gt;     
+<!--put body html and javascript here-->
+&lt;div id="myDiv" class="brid" style="width:640px; height:360;"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+	invokeVideoPlayer = function(url) {
+	$bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
+	"Ad": [
+	        {
+	            "mobile": url, // Array of url's will get called in succession
+	            "desktop": null, // Array of url's will get called in succession
+	            "adType": "0", // Type 0 for pre roll
+	            "adTimeType": "s",
+	            "overlayStartAt": null,
+	            "overlayDuration": null,
+	            "cuepoints": null
+	        }
+	    ]
+	}); 
+	}
+  &lt;/script&gt;     
 </pre>
 		</div>
 	
