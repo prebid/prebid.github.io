@@ -12,15 +12,13 @@ schain_supported: true
 ---
 
 ### Table of Contents
-
-- [Table of Contents](#table-of-contents)
-  - [Bid Params](#bid-params)
-  - [Video Object](#video-object)
-  - [User Object](#user-object)
-  - [App Object](#app-object)
-  - [Custom Targeting keys](#custom-targeting-keys)
-  - [Passing Keys Without Values](#passing-keys-without-values)
-  - [Debug Auction](#debug-auction)
+- [Bid Params](#bid-params)
+- [Video Object](#video-object)
+- [User Object](#user-object)
+- [App Object](#app-object)
+- [Custom Targeting keys](#custom-targeting-keys)
+- [Passing Keys Without Values](#passing-keys-without-values)
+- [Debug Auction](#debug-auction)
 
 <a name="appnexus-bid-params" />
 
