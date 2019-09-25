@@ -433,22 +433,27 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-## Adapters Supporting the User ID Sub-Modules
-
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
-<table class="pbTable">
-<tr class="pbTr"><th class="pbTh">Bidder</th><th class="pbTh">IDs Supported</th></tr>
-{% for item in bidder_pages %}
-{% if item.userIds != nil %}
-<tr class="pbTr"><td class="pbTd">{{item.biddercode}}</td><td class="pbTd">{{item.userIds}}</td></tr>
-{% endif %}
-{% endfor %}
-</table>
-
 ## LiveIntent ID
 
-LiveIntent ID solution provides a user identifier based on our graph which is driven by publisher email business (e.g. updates, newsletters, and subscriptions). 
+LiveIntent ID solution provides a user identifier based on our graph which is driven by publisher email business (e.g. updates, newsletters, and subscriptions).
+
+It is possible, that depending on the `partner` & `publisherId` combination, the response contains segment ids which have been mapped against partner systems and their segments. For example, if LiveIntent has created a segmentId `999` which can be mapped to (`partner: test-partner`) `test-partner`'s segment, the response from LiveIntent's ID solution could look like:
+```
+{
+  "unifiedId": "T7JiRRvsRAmh88",
+  "segments": ["999"]
+}
+```
+
+The `request.userId.lipb` object would then look like
+```
+{
+  "lipbid": "T7JiRRvsRAmh88",
+  "segments": ["999"]
+}
+```
+
+Therefore, the adapters can then be implemented to use the `lipibid` as the identifier, and `segments` to which that identifier is associated with.
 
 ### Registering your own first party cookie space
 
@@ -467,7 +472,7 @@ In order for you to take advantage of the user id resolution in cookie-challenge
 
 ### LiveIntent ID example
 
-The minimal setup would be as follows: 
+The minimal setup would be as follows:
 ```
 pbjs.setConfig({
     usersync: {
@@ -481,7 +486,7 @@ pbjs.setConfig({
 })
 ```
 
-If there are additional identifiers that LiveIntent could resolve, those can be added under the `identifiersToResolve` array in config params. 
+If there are additional identifiers that LiveIntent could resolve, those can be added under the `identifiersToResolve` array in config params.
 ```
 pbjs.setConfig({
     usersync: {
@@ -496,7 +501,7 @@ pbjs.setConfig({
 })
 ```
 
-If there's a partner integration with LiveIntent, and partner specific data is to be returned and passed along in bid requests, the partner name can be set as `partner` in config params. 
+If there's a partner integration with LiveIntent, and partner specific data is to be returned and passed along in bid requests, the partner name can be set as `partner` in config params.
 ```
 pbjs.setConfig({
     usersync: {
@@ -511,6 +516,19 @@ pbjs.setConfig({
     }
 })
 ```
+
+## Adapters Supporting the User ID Sub-Modules
+
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+
+<table class="pbTable">
+<tr class="pbTr"><th class="pbTh">Bidder</th><th class="pbTh">IDs Supported</th></tr>
+{% for item in bidder_pages %}
+{% if item.userIds != nil %}
+<tr class="pbTr"><td class="pbTd">{{item.biddercode}}</td><td class="pbTd">{{item.userIds}}</td></tr>
+{% endif %}
+{% endfor %}
+</table>
 
 ## Bidder Adapter Implementation
 
