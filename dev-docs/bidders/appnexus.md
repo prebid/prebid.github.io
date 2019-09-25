@@ -12,6 +12,7 @@ schain_supported: true
 ---
 
 ### Table of Contents
+
 - [Bid Params](#appnexus-bid-params)
 - [Video Object](#appnexus-video-object)
 - [User Object](#appnexus-user-object)
