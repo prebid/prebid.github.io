@@ -48,6 +48,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
+    * [sendBidsControl](#setConfig-Send-Bids-Control)
     * [useBidCache](#setConfig-Use-Bid-Cache)
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
@@ -1261,6 +1262,7 @@ Core config:
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
++ [Configure send bids control](#setConfig-Send-Bids-Control)
 + [Bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1426,6 +1428,30 @@ pbjs.setConfig({
 ```
 
 <a name="setConfig-Bidder-Order" />
+
+#### Configure Send Bids Control
+
+<a name="setConfig-Send-Bids-Control" />
+
+The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher the option to adjust the targeting behavior when sendAllBids is enabled.
+
+{: .table .table-bordered .table-striped }
+| Attribute        | Type    | Description             |
+|------------+---------+---------------------------------|
+| bidLimit | integer | Specifies the maximum number of bids the system can add to ad server targeting. |
+
+##### Details on the bidLimit setting
+
+Below is an example config containing `bidLimit`:
+
+```javascript
+pbjs.setConfig({
+  sendBidsControl: {
+    bidLimit: 2,
+  }
+});
+```
+When this property is set, the `bidLimit` sets the maximum for the number of bids sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no bidLimit and will send all bids. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process. 
 
 #### Use Bid Cache
 
