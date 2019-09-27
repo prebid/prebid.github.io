@@ -1433,12 +1433,12 @@ pbjs.setConfig({
 
 <a name="setConfig-Send-Bids-Control" />
 
-The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher the option to adjust the targeting behavior when sendAllBids is enabled.
+The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher with the ability to adjust the targeting behavior when [sendAllBids](#setConfig-Send-All-Bids) is enabled.
 
 {: .table .table-bordered .table-striped }
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
-| bidLimit | integer | Specifies the maximum number of bids the system can add to ad server targeting. |
+| `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
 
 ##### Details on the bidLimit setting
 
@@ -1451,7 +1451,7 @@ pbjs.setConfig({
   }
 });
 ```
-When this property is set, the `bidLimit` sets the maximum for the number of bids sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no bidLimit and will send all bids. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process. 
+When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process. 
 
 #### Use Bid Cache
 
