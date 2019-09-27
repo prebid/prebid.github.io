@@ -22,7 +22,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
-* **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+* **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
 
@@ -299,33 +299,33 @@ Other examples:
 - [DigiTrust Example 1](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Simple.html)
 - [DigiTrust Example 2](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Full.html)
 
-## ID5 ID
+## ID5 Universal ID
 
-The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching. For more information about the ID5 ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
+The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,id5IdSystem
 
-### ID5 ID Registration
+### ID5 Universal ID Registration
 
-The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/prebid](https://id5.io/prebid) to sign up and request your ID5 Partner Number to get started.
+The ID5 Universal ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/universal-id](https://id5.io/universal-id) to sign up and request your ID5 Partner Number to get started.
 
-### ID5 ID Configuration
+### ID5 Universal ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| params | Required | Object | Details for the ID5 ID. | |
+| params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
 
 {: .alert.alert-info :}
-NOTE: The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.expires` to `5` days to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+**NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
 
-### ID5 ID Examples
+### ID5 Universal ID Examples
 
-1) Publisher wants to retrieve the ID5 ID through Prebid.js
+1) Publisher wants to retrieve the ID5 Universal ID through Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -333,21 +333,21 @@ pbjs.setConfig({
         userIds: [{
             name: "id5Id",
             params: {
-                partner: 173            // change to the Partner Number you received from ID5
+                partner: 173             // change to the Partner Number you received from ID5
             },
             storage: {
                 type: "cookie",
-                name: "pbjs-id5id",     // create a cookie with this name
-                expires: 5              // cookie can last for 5 days to ensure it is
-                                        // encrypted with the latest key from ID5
+                name: "pbjs-id5id",      // create a cookie with this name
+                expires: 90,             // cookie lasts for 90 days
+                refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it is fresh
             }
         }],
-        syncDelay: 1000                 // 1 second after the first bidRequest()
+        syncDelay: 1000                  // 1 second after the first bidRequest()
     }
 });
 {% endhighlight %}
 
-2) Publisher has integrated with ID5 on their own and wants to pass the ID5 ID directly through to Prebid.js
+2) Publisher has integrated with ID5 on their own (e.g. via the [ID5 API](https://github.com/id5io/id5-api.js)) and wants to pass the ID5 Universal ID directly through to Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
