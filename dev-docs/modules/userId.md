@@ -529,7 +529,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },
             {
-                "source": "id5id",      // ID5 ID
+                "source": "id5-sync.com",      // ID5 ID
                 "uids": [{
                     "id": "ID5-12345"
                 }]
