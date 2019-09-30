@@ -1,0 +1,61 @@
+{% include head.html %}
+
+{% include nav.html %}
+
+<div class="container bs-docs-container">
+	
+	<div class="row ">
+		
+		<div class="wrapper">
+		
+			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
+				
+				{% include left_nav.html %}							
+				
+			</div>	
+		
+		
+			<div class="col-sm-9 pb-content" markdown="1">
+			
+			{{ content }}
+			
+			{% if page.description == "Partners" %}
+				{% include partners.html %}
+			{% endif %}
+			
+			</div>
+				
+		</div>
+		<!--end wrapper-->
+	</div>	
+	<!--end row-->	
+</div>
+
+<p></p>
+<hr>
+
+{% if page.title != "Credits" %}
+	{% if page.layout != "home" %}
+		{% include footer.html %}
+	{% endif %}
+{% endif %}
+
+
+<!--
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $('#sidebarCollapse').on('click', function () {
+		   	$('#sidebar').toggleClass('active');
+	    });
+	});
+</script>
+
+-->
+
+
+ 
+
+    
+
+
+

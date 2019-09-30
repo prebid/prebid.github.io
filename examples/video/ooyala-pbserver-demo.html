@@ -21,21 +21,21 @@
 	   -->
 
         <!-- CORE PLAYER REQUIRED -->
-        <script src="//player.ooyala.com/static/v4/stable/latest/core.min.js"></script>
+        <script src="//player.ooyala.com/static/v4/production/latest/core.min.js"></script>
 
         <!-- VIDEO PLUGINS -->
-        <script src="//player.ooyala.com/static/v4/stable/latest/video-plugin/main_html5.min.js"></script>
-        <script src="//player.ooyala.com/static/v4/stable/latest/video-plugin/bit_wrapper.min.js"></script>
-        <script src="//player.ooyala.com/static/v4/stable/latest/video-plugin/osmf_flash.min.js"></script>
+        <script src="//player.ooyala.com/static/v4/production/latest/video-plugin/main_html5.min.js"></script>
+        <script src="//player.ooyala.com/static/v4/production/latest/video-plugin/bit_wrapper.min.js"></script>
+        <script src="//player.ooyala.com/static/v4/production/latest/video-plugin/osmf_flash.min.js"></script>
 
         <!-- HTML5 SKIN -->
-        <script src="//player.ooyala.com/static/v4/stable/latest/skin-plugin/html5-skin.min.js"></script>
+        <script src="//player.ooyala.com/static/v4/production/latest/skin-plugin/html5-skin.min.js"></script>
 
         <!-- SKIN ASSET -->
-        <link rel="stylesheet" href="//player.ooyala.com/static/v4/stable/latest/skin-plugin/html5-skin.min.css" />
+        <link rel="stylesheet" href="//player.ooyala.com/static/v4/production/latest/skin-plugin/html5-skin.min.css" />
 
         <!-- IMA PLUGIN -->
-        <script src="//player.ooyala.com/static/v4/stable/latest/ad-plugin/google_ima.js"></script>
+        <script src="//player.ooyala.com/static/v4/production/latest/ad-plugin/google_ima.js"></script>
         <script>
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
@@ -96,6 +96,7 @@
                     debug: true,
                     s2sConfig: {
                         endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+                        enabled: true,
                         accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e', // replace this with your account id
                         bidders: ['appnexus']
                     }

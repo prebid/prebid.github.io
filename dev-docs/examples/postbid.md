@@ -2,8 +2,7 @@
 layout: example
 title: Postbid Example
 description: Postbid Example
-top_nav_section: dev_docs
-nav_section: quick-start
+sidebarType: 1
 
 hide: true
 
@@ -18,6 +17,4 @@ about:
 jsfiddle_link: jsfiddle.net/prebid_org/ob1kn504/embedded/html,result
 
 code_height: 1450
-
-pid: 30
 ---
