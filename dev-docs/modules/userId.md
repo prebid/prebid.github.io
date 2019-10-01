@@ -491,7 +491,7 @@ pbjs.setConfig({
         userIds: [{
             name: "netId",
             value: {
-               "netId":"9ZROSPBfdt1wCfVvgu0Wc0N9QQlqxanu8y0sHkjA7I"
+               "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
             }
         }]
     }
@@ -524,7 +524,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
-| netID | netID | bidRequest.userId.netId | `"5600b800-3b26-44d1-9d94-eabe61322096"` |
+| netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
 
 For example, the adapter code might do something like:
 
