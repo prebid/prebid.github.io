@@ -301,18 +301,21 @@ Other examples:
 
 ## ID5 Universal ID
 
-The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
-
-Add it to your Prebid.js package with:
-
-{: .alert.alert-info :}
-gulp build --modules=userId,id5IdSystem
+The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID, please visit [our documentation](https://console.id5.io/docs/public/prebid). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
 
 ### ID5 Universal ID Registration
 
 The ID5 Universal ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/universal-id](https://id5.io/universal-id) to sign up and request your ID5 Partner Number to get started.
 
 ### ID5 Universal ID Configuration
+
+First, make sure to add the ID5 submodule to your Prebid.js package with:
+
+{% highlight bash %}
+gulp build --modules=userId,id5IdSystem
+{% endhighlight %}
+
+The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
@@ -329,21 +332,21 @@ The ID5 Universal ID is free to use, but requires a simple registration with ID5
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "id5Id",
-            params: {
-                partner: 173             // change to the Partner Number you received from ID5
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-id5id",      // create a cookie with this name
-                expires: 90,             // cookie lasts for 90 days
-                refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it is fresh
-            }
-        }],
-        syncDelay: 1000                  // 1 second after the first bidRequest()
-    }
+  usersync: {
+    userIds: [{
+      name: "id5Id",
+      params: {
+        partner: 173             // change to the Partner Number you received from ID5
+      },
+      storage: {
+        type: "cookie",
+        name: "pbjs-id5id",      // create a cookie with this name
+        expires: 90,             // cookie lasts for 90 days
+        refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
+      }
+    }],
+    syncDelay: 1000              // 1 second after the first bidRequest()
+  }
 });
 {% endhighlight %}
 
