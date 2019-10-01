@@ -10,7 +10,6 @@ gdpr_supported: false
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `tagId`       | mandatory| Ad Tag Id             | `'1399'`                  | `string` |
