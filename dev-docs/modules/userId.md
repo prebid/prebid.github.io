@@ -399,7 +399,7 @@ pbjs.setConfig({
             storage: {
                 type: "cookie",  
                 name: "idl_env",       // create a cookie with this name
-                expires: 60            // cookie can last for 60 days
+                expires: 30            // cookie can last for 30 days
             }
         }],
         syncDelay: 3000              // 3 seconds after the first auction
@@ -529,7 +529,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },
             {
-                "source": "id5id",      // ID5 ID
+                "source": "id5-sync.com",      // ID5 ID
                 "uids": [{
                     "id": "ID5-12345"
                 }]
