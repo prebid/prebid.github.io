@@ -4,7 +4,7 @@ title: Datablocks
 description: Prebid Datablocks Bidder Adaptor
 hide: true
 biddercode: datablocks
-media_types: banner,native
+media_types: banner,native,video
 gdpr_supported: true
 ---
 

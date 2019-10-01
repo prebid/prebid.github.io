@@ -78,6 +78,11 @@
   imgURL: /assets/images/partners/community/Browsi-Logo.png
   type: community
 
+- company: ID5
+  link: https://id5.io
+  imgURL: /assets/images/partners/community/ID5-Logo.png
+  type: community
+
 - company: Publica
   link: https://getpublica.com
   imgURL: /assets/images/partners/community/Publica-Logo.png
