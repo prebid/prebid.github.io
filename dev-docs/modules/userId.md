@@ -457,7 +457,7 @@ Therefore, the adapters can then be implemented to use the `lipibid` as the iden
 
 ### Registering your own first party cookie space
 
-In order for you to take advantage of the user id resolution in cookie-challenged environments like iOS, you need to sync your first party cookie universe with us. For further information please reach out to peoplebased@liveintent.com.
+In order for you to take advantage of the user id resolution in cookie-challenged environments, you need to sync your first party cookie universe with us. For further information please reach out to peoplebased@liveintent.com.
 
 ### LiveIntent ID configuration
 
