@@ -28,7 +28,7 @@ that can be used by bidders or the ad server.
 
 ## How It Works
 
-1. The publisher builds Prebid.js with the optional Real Time Data module and the specific ID sub-module they would like to include. e.g. "gulp build --modules=realTimeData,browsiRtdProvider"
+1. The publisher builds Prebid.js with the optional Real Time Data module and the specific ID sub-module they would like to include.
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, the sub-module is invoked, which may result in a call to a real-time data endpoint.
 1. If the option to delay the auction is enabled, Prebid.js will wait up to the supplied time limit before starting the auction.
@@ -46,7 +46,10 @@ all of them under the `realTimeData` object. The table below has the options tha
 | name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `identityLink` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 
-## Browsi
+## Browsi Viewability Module
+
+{: .alert.alert-info :}
+gulp build --modules=realTimeData,browsiRtdProvider
 
 ## Further Reading
 
