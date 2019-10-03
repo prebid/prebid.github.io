@@ -7,6 +7,7 @@ biddercode: sharethrough
 media_types: native
 gdpr_supported: true
 userIds: unifiedId/tradedesk
+schain_supported: true
 ---
 
 ### Note:
