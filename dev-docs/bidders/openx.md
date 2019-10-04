@@ -4,10 +4,10 @@ title: OpenX
 description: Prebid OpenX Bidder Adaptor
 hide: true
 biddercode: openx
-media_types: video
+media_types: banner, video
 gdpr_supported: true
 coppa_supported: true
-userIds: pubcommon
+userIds: pubCommon, unifiedId, identityLink
 prebid_member: true
 ---
 
