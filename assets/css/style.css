@@ -617,6 +617,13 @@ button.list-group-item:focus {
 }
 
 
+/**************Video Layout*********/
+
+pre {
+ white-space: pre-wrap;       /* css-3 */
+}
+
+
 /************* Home Page ************/
 
 .pb-homepage {
