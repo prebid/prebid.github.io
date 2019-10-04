@@ -374,7 +374,7 @@ gulp build --modules=userId,identityLinkIdSystem
 
 ### IdentityLink Registration
 
-Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`.
+Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`. 
 
 ### IdentityLink Configuration
 
