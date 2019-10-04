@@ -5,6 +5,7 @@ description: Prebid OpenX Bidder Adaptor
 hide: true
 biddercode: openx
 media_types: banner, video
+schain_supported: true
 gdpr_supported: true
 coppa_supported: true
 userIds: pubCommon, unifiedId, identityLink
