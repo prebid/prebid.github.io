@@ -39,7 +39,13 @@ sidebarType: 4
 <!--put javascript code here-->
 &lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
 
-&lt;script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key
+&lt;/script&gt;
+    
+&lt;!--pbjs and player code --&gt;	
+    	    
 &lt;script&gt;
     var pbjs = pbjs || {};
     pbjs.que = pbjs.que || [];
@@ -64,8 +70,6 @@ sidebarType: 4
         tempTag = url;
     };
 
-    /* Prebid video ad unit */
-
     var videoAdUnit = {
         code: 'video1',
         mediaTypes: {
@@ -80,7 +84,7 @@ sidebarType: 4
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: 13232361, // Add your own placement id here<br>
+                placementId: 13232361, // Add your own placement id here.<br>
                 video: {
                     skippable: true,
                     playback_method: ['auto_play_sound_off']
@@ -91,14 +95,13 @@ sidebarType: 4
 
     pbjs.que.push(function() {
 
-        // configure prebid to use prebid cache and prebid server &nbsp;
+        // configure prebid to use prebid cache and prebid server&nbsp;
         // make sure to add your own accountId to your s2sConfig object<br>
         pbjs.setConfig({
             cache: {
                 url: 'https://prebid.adnxs.com/pbc/v1/cache'
             },
             debug: true,
-            enableSendAllBids: true,
             s2sConfig: {
                 endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                 enabled: true,
@@ -111,8 +114,7 @@ sidebarType: 4
 
         pbjs.requestBids({
             bidsBackHandler: function(bids) {
-                console.log("got some bids");
-                console.log(bids);
+
                 var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
                     adUnit: videoAdUnit,
                     params: {
@@ -129,7 +131,7 @@ sidebarType: 4
         });
     });
 
-&lt;/script&gt;
+&lt;/script&gt; 
 
 </pre>
 
@@ -140,25 +142,37 @@ sidebarType: 4
 			<h4>Place this code in the page body.</h4>
 <pre class="pb-code-hl">
 <!--put body html and javascript here-->
-&lt;div id="myDiv" class="brid" style="width:640px; height:360;"&gt;&lt;/div&gt;
+&lt;!--video player code--&gt;
+&lt;script&gt;
+    // we initialize our player instance, specifying the div to load it into<br>
+    var playerInstance = jwplayer('myElement1');
 
-&lt;script type="text/javascript"&gt;
-  invokeVideoPlayer = function(url) {
-    $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
-    "Ad": [
-            {
-                "mobile": url, // Array of url's will get called in succession<br>
-                "desktop": null, // Array of url's will get called in succession<br>
-                "adType": "0", // Type 0 for pre roll<br>
-                "adTimeType": "s",
-                "overlayStartAt": null,
-                "overlayDuration": null,
-                "cuepoints": null
+    function invokeVideoPlayer(url) {
+        // this calls setup on the player we initialized&nbsp;
+        // this will use the settings defined in the player we loaded above unless you override them here<br>
+        playerInstance.setup({
+            // this line loads a playlist from your jwplatform account (in either json or rss format)&nbsp;
+            // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"&nbsp;
+            // Replace this with the correct url for your playlist<br>
+            "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+            "width": 640,
+            "height": 480,
+            // we enable vast advertising for this player<br>
+            "advertising": {
+                "client": "vast",
+                // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header<br>
+                "tag": url,
             }
-        ]
-    }); 
-  }
+        });
+    }
+
+    if (tempTag) {
+        invokeVideoPlayer(tempTag);
+        tempTag = false;
+    }
+
 &lt;/script&gt;
+
 </pre>
 		</div>
 	
@@ -167,34 +181,62 @@ sidebarType: 4
 	
 <!--video player code-->
 	<script>
-        // we initialize our player instance, specifying the div to load it into
-        var playerInstance = jwplayer('myElement1');
+    var adTag = "";
+    var playerInstance = jwplayer('myElement1');
 
-        function invokeVideoPlayer(url) {
-            // this calls setup on the player we initialized
-            // this will use the settings defined in the player we loaded above unless you override them here
+    invokeVideoPlayer = function(url) {
+        adTag = url;
+        console.log("MESSAGE: invoking the video player");
+
+        // if this is our first time invoking the player, we also need to create the player 
+        // and the event listeners
+
+        if (firstPlay) {
             playerInstance.setup({
-                // this line loads a playlist from your jwplatform account (in either json or rss format)
-                // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-                // Replace this with the correct url for your playlist
                 "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
                 "width": 640,
                 "height": 480,
-                // we enable vast advertising for this player
                 "advertising": {
                     "client": "vast",
-                    // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                    "tag": url,
+                },
+            });
+
+            // set firstPlay to false to make sure we don't call setup() on our player a second time
+            firstPlay = false;
+
+
+            // beforePlay gets triggered before each content video plays 
+            // we play the ad tag being stored in the variable adTag, which we refresh 
+            // each time a content video plays by calling requestVideoAd
+
+            playerInstance.on("beforePlay", function() {
+                playerInstance.playAd(adTag);
+                console.log("MESSAGE: refreshing the ad slot");
+                pbjs.que.push(function() {
+                    requestVideoAd();
+                });
+            });
+
+            // if our playlist ends and does not repeat, we want to play the last ad we got
+
+            playerInstance.on("beforeComplete", function() {
+                if (playerInstance.getPlaylistIndex() === playerInstance.getPlaylist().length - 1) {
+                    playerInstance.playAd(adTag);
                 }
             });
         }
+    }
 
-        if (tempTag) {
-            invokeVideoPlayer(tempTag);
-            tempTag = false;
-        }
+    // if prebid returned an ad before the browser reached the end of the page, 
+    // the version of invokeVideoPlayer we defined in the header has stored the url in tempTag, 
+    // so we call invokeVideoPlayer with the stored url we stored
 
-    </script>
+    if (tempTag) {
+        invokeVideoPlayer(tempTag);
+        tempTag = false;
+    }
+
+</script> 
 	
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
 	
