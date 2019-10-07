@@ -1265,11 +1265,12 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Instream</span>"
-  link: 
+  title: Prebid.js Video Examples
+  link: /examples/video/
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
+
   isCatHeader: 1
   sectionTitle: 
   subgroup: 1
@@ -1484,6 +1485,7 @@
   sectionTitle: 
   subgroup: 1
   
+
 
 
 

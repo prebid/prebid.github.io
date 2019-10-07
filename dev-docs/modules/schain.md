@@ -22,24 +22,24 @@ gulp build --modules=schain,...
 
 Next, in your page, call setConfig with the schain object to be used.  Example:
 
-```
-pbjs.setConfig( {
-    "schain":
-    	"validation": "strict",
-    	"config": {
-			"ver":"1.0",
-			"complete": 1,
-			"nodes": [
-			    {
-				   "asi":"indirectseller.com",
-				   "sid":"00001",
-				   "hp":1
-			    }
-			]
-		}
-	}
+{% highlight js %}
+pbjs.setConfig({
+  "schain": {
+    "validation": "strict",
+    "config": {
+      "ver":"1.0",
+      "complete": 1,
+      "nodes": [
+        {
+          "asi":"indirectseller.com",
+          "sid":"00001",
+          "hp":1
+        }
+      ]
+    }
+  }
 });
-```
+{% endhighlight %}
 
 ### Validation modes
 - `strict`: It is the default validation mode. In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object.
