@@ -55,11 +55,11 @@ In addition, individual users may opt-out of receiving cookies and HTML5 local s
 ## Basic Configuration
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
-all of them under the `usersync` object as attributes of the `userIds` array
+all of them under the `userSync` object as attributes of the `userIds` array
 of sub-objects. The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `identityLink` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
@@ -93,7 +93,7 @@ You can set up Unified ID in one of these ways:
 ### Unified ID Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"unifiedId"` | `"unifiedId"` |
 | params | Required for UnifiedId | Object | Details for UnifiedId initialization. | |
@@ -111,7 +111,7 @@ the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "unifiedId",
             params: {
@@ -132,7 +132,7 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "unifiedId",
             params: {
@@ -152,7 +152,7 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "unifiedId",
             value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}
@@ -181,7 +181,7 @@ For historic reasons, PubCommon is bundled with the User ID module in Prebid.js 
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "pubCommonId",
             storage: {
@@ -198,7 +198,7 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "unifiedId",
             params: {
@@ -240,7 +240,7 @@ DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/mod
 ### DigiTrust Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"digitrust"` | `"digitrust"` |
 | params | Required for DigiTrust | Object | Details DigiTrust initialization. | |
@@ -259,7 +259,7 @@ DigiTrust parameters and usage. For more complete instructions please review the
 {% highlight javascript %}
 <script>
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "pubCommonId",
             storage: {
@@ -318,7 +318,7 @@ gulp build --modules=userId,id5IdSystem
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
@@ -332,7 +332,7 @@ The following configuration parameters are available:
 
 {% highlight javascript %}
 pbjs.setConfig({
-  usersync: {
+  userSync: {
     userIds: [{
       name: "id5Id",
       params: {
@@ -354,7 +354,7 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "id5Id",
             value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
@@ -379,7 +379,7 @@ Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and reques
 ### IdentityLink Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"identityLink"` | `"identityLink"` |
 | params | Required for Id Link | Object | Details for identityLink initialization. | |
@@ -393,7 +393,7 @@ Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and reques
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "identityLink",
             params: {
@@ -414,7 +414,7 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "identityLink",
             params: {
@@ -446,7 +446,7 @@ In order to use a Criteo rtus id a bidder must reach out to Criteo and get their
 ### Criteo RTUS Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
+| Param under userSync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
 |--------------------------------|----------|--------|---------------------------------------------------------------------|----------------------|
 | params                         | Required | Object | Details of Criteo ID                                                |                      |
 | params.clientIdentifier        | Required | Object | Object containing bidder code as key and client identifier as value | `{ "appnexus": 30 }` |
@@ -460,7 +460,7 @@ This example assumes the publisher is working with AppNexus as one of the demand
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "criteortus",
             params: {
