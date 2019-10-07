@@ -462,13 +462,13 @@ We recommend setting `storage.expires` to no more than`364` days, which is the d
 pbjs.setConfig({
     usersync: {
         userIds: [{
-            name: "parrableId",
+            name: `'parrableId'`,
             params: {
                 partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
             },
             storage: {
-                type: "cookie",
-                name: "_parrable_eid",     // create a cookie with this name
+                type: `'cookie'`,
+                name: `'_parrable_eid'`,     // create a cookie with this name
                 expires: 364               // cookie can last for up to 1 year
             }
         }],
