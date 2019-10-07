@@ -464,7 +464,7 @@ pbjs.setConfig({
         userIds: [{
             name: "parrableId",
             params: {
-                partners: `['30182847-e426-4ff9-b2b5-9ca1324ea09b']`        // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+                partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
             },
             storage: {
                 type: "cookie",
