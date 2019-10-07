@@ -435,7 +435,7 @@ pbjs.setConfig({
 
 ## Parrable ID
 
-The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and and webviews on a single device including browsers that have third party cookie restrictions. 
+The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions. 
 
 ### Parrable ID Registration
 
