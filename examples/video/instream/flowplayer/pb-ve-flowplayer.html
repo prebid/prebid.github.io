@@ -1,7 +1,7 @@
 ---
 layout: video_sample
-title: Prebid Video | Instream Example with  FlowPlayer 
-description: An example of an instream pre-roll ad using Prebid.js and FlowPlayer.  
+title: Prebid Video | Instream Example with  Flowplayer 
+description: An example of an instream pre-roll ad using Prebid.js and Flowplayer.  
 videoType: pb-is-fp
 isVideo: true
 sidebarType: 4
@@ -11,12 +11,14 @@ sidebarType: 4
 
 <div class="container">
 	<div class="row">
-		<h1>{{ page.title }}</h1>
-		<p>{{page.description }}</p>
+		<div class="vidHeader" style="width:75vw;">
+			<h1>{{ page.title }}</h1>
+			<p>{{page.description }}</p>
+		</div>
 		
 		<!--video warning-->
-		<div markdown="span" class="pb-alert pb-alert-important" role="alert">
-			<i class="fa fa-exclamation-circle"></i>
+		<div class="pb-alert pb-alert-important" style="width:60vw;">
+			<p style="color:#85720f"><b>Important:</b>
 			<p style="color:#85720f"><b>Important:</b>
 			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
 		</div>
@@ -41,15 +43,14 @@ sidebarType: 4
 		<!--video code fencing-->
 					
 		<!--header code example-->
-		<div markdown="span" class="pb-alert pb-alert-warning" role="alert">
-			<i class="fa fa-exclamation-circle"></i>
+		<div class="pb-alert pb-alert-warning" style="width:60vw;">
 			<p style="color:#a94443"><b>Warning:</b>
 			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
 		</div>
 		
-		<div>
+		<div style="width:60vw;">
 			<h4>Place this code in the page header.</h4>
-<pre class="pb-code-hl">
+<pre class="pb-code-hl" style="width:60vw;">
 <!--put javascript code here-->
 &lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
 &lt;link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/stable/style/flowplayer.css"&gt;
@@ -147,9 +148,9 @@ sidebarType: 4
 		</div>
 					
 		<!--body code example-->
-		<div>
+		<div style="width:60vw;">
 			<h4>Place this code in the page body.</h4>
-<pre class="pb-code-hl">
+<pre class="pb-code-hl" style="width:60vw;">
 <!--put body html and javascript here-->
 &lt;div id="player"&gt;&lt;/div&gt;
 &lt;!--video player div--&gt;

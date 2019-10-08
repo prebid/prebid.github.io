@@ -1265,7 +1265,17 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Instream</span>"
+  title: Prebid.js Video Examples
+  link: /examples/video/
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: "<span style='color:#EA9622;'>Instream"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1311,7 +1321,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW PLayer (Hosted)'
+  title: '&nbsp;&nbsp;JW Player (Hosted)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1320,7 +1330,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW PLayer (Playlist)'
+  title: '&nbsp;&nbsp;JW Player (Playlist)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1384,7 +1394,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW PLayer (Hosted)'
+  title: '&nbsp;&nbsp;JW Player (Hosted)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1393,7 +1403,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW PLayer (Playlist)'
+  title: '&nbsp;&nbsp;JW Player (Playlist)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1402,7 +1412,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW PLayer (Player 7)'
+  title: '&nbsp;&nbsp;JW Player (Player 7)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1484,6 +1494,7 @@
   sectionTitle: 
   subgroup: 1
   
+
 
 
 
