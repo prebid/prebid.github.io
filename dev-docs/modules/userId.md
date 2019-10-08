@@ -365,7 +365,7 @@ pbjs.setConfig({
 
 ## IdentityLink
 
-The Identity Link solution is provided by liveramp.com
+IdentityLink, provided by [LiveRamp](http://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
 
 Add it to your Prebid.js package with:
 
