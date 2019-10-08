@@ -1,6 +1,5 @@
 #-------------Message----------------
 - messageId: 1
-  messageText:
-  messageCreateDt: 07_29_2019
-  
+  messageText: <a href="/blog/pbjs-3">Prebid.js 3.0 Major Release Announcement</a>
+  messageCreateDt: 10_07_2019
 
