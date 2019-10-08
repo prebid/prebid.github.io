@@ -233,7 +233,7 @@ Else if you're utilizing Rubicon Project's managed service, there's an extra par
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://PROVIDED_BY_RUBICON/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:RUBICON_ACCOUNT_ID">
+  src="https://PROVIDED_BY_RUBICON/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:RUBICON_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```

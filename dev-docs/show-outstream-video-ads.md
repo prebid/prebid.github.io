@@ -186,8 +186,7 @@ For more information, see the API documentation for:
 
 Below, find links to end-to-end "working examples" demonstrating Prebid Outstream:
 
-+ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/outstream-dfp.html)
-+ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html)
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
++ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
++ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
 
 </div>
