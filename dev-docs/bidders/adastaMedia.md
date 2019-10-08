@@ -4,6 +4,7 @@ title: Adasta Media
 description: Prebid Adasta Media Bidder Adaptor
 hide: true
 biddercode: adastaMedia
+media_types: banner, video
 aliasCode: gamoshi
 ---
 
@@ -13,5 +14,3 @@ aliasCode: gamoshi
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
-
-Adasta Media is an aliased bidder for Gamoshi

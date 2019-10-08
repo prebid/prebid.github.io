@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: VMG
-description: Connects DFP to the VMG Predict engine.
+description: Connects Google Ad Manager to the VMG Predict engine.
 hide: true
 biddercode: vmg
 ---

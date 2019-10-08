@@ -4,6 +4,7 @@ title: Undertone
 description: Prebid undertone Bidder Adaptor
 hide: true
 biddercode: undertone
+gdpr_supported: true
 ---
 
 

@@ -46,6 +46,8 @@ p {
 
 .centered {
   text-align: center;
+  vertical-align: middle;
+  padding: 8px;
 }
 
 /* Links */
@@ -130,7 +132,7 @@ hr {
 .pb-alert { 
 	
 	padding:10px;
-	width: 100%;
+	width:65wv;
 	margin: 10px 0;
 
 }
@@ -151,8 +153,6 @@ hr {
 	background-color: #ede5ba;
 	color: #85720f;
 	border: 1px solid #85720f;
-	
-
 }
 
 .pb-alert-tip { 
@@ -161,11 +161,10 @@ hr {
 	border: 1px solid #527542;
 }
 
+
 /**********************
 	 API 
 *********************/
-
-/* for toggling the display*/
 
 .pb-api-on { 
 	display: block;
@@ -174,8 +173,6 @@ hr {
 .pb-api-off {
 	display: none;
 }
-
-/* for argument lists */
 
 .pb-api-list ul { 
 	list-style-type: none;
@@ -250,6 +247,7 @@ hr {
 
 .pb-api-code-block { 
 	width: 70%;
+	backgeound-color: #333333;
 }
 
 .pb-api-block { 
@@ -384,6 +382,15 @@ hr {
   left: 0;
   right: 0;
 }
+
+/* API */
+
+.categoryBox { 
+	background-color: #f3ddde;
+	color: #a94443;
+	border: 1px solid #a94443;
+}
+
 
 /* NavBar */
 
@@ -607,6 +614,13 @@ button.list-group-item:focus {
   color: #555;
   text-decoration: none;
   background-color: #cccccc;
+}
+
+
+/**************Video Layout*********/
+
+pre {
+ white-space: pre-wrap;       /* css-3 */
 }
 
 
@@ -1205,13 +1219,14 @@ button.list-group-item:focus {
 
 .pb-content h1 { 
 	
+	/*background-color: #EA9622;*/
 	display: table;
-	background-color: #EA9622;
-	padding: 3px 8px;
+	padding: 3px 0px;
 	font-family: 'Verdana', sans-serif;
-	color: #ffffff;
+	color: #EA9622;
 	font-size: 34px;
 	font-weight: 400;
+	width:75wv;
 }
 
 .pb-content, .pb-blog h2 { 
@@ -2025,6 +2040,63 @@ div.pl-doc-entry{
 
 .prebid-mobile-notice {
     margin-top: 2em;
+}
+
+/*******************
+	API 
+
+
+
+.categoryBox { 
+	
+	display:block; 
+	float: left; 
+	margin-right:10px; 
+	line-height:40px; 
+	height: 40px; 
+	padding-left: 15px; 
+	padding-right: 15px; 
+	background-color:#f6f8fa; 
+	text-align:center;
+	
+}
+
+*/
+
+
+
+.boxShadow {
+  position: relative;
+}
+
+.boxShadow:before, .boxShadow:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.boxShadow:after {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
 }
 
 

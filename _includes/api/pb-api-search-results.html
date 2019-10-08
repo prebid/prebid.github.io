@@ -9,6 +9,7 @@
 		
 		var queryItems = getUrlVars()
 		var searchTerm = queryItems[0][1];
+		console.log(queryItems);
 		var strDisplay = "<div class=\"pb-api-doc-title\">Search results for: " + searchTerm + "</div><div style=\"float:right\"><a href=\"/sandbox/prebid-api-guide.html?apiDocTarget=About\">Return to API</a></div><br><hr>";
 		var arrAPIFiles = [];
 		
@@ -27,8 +28,10 @@
 	
 	function getFileContents(apiFile, searchTerm, strDisplay, idx, fileCount) {
 		$.get("/sandbox/apiDocs/html/" + apiFile, function(data) {
+			
 			if (data.search(searchTerm) != -1) {
 				arrData.push(getSearchResults(apiFile, data, searchTerm));
+			} else { 
 			}
 			
 			if(idx == fileCount) { 
