@@ -2,17 +2,8 @@
 layout: bidder
 title: Outcon
 description: Prebid Outcon Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
-
 biddercode: outcon
-
-
-
-
 ---
 
 ### Bid Params
