@@ -48,6 +48,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
+    * [sendBidsControl](#setConfig-Send-Bids-Control)
     * [useBidCache](#setConfig-Use-Bid-Cache)
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
@@ -1261,6 +1262,7 @@ Core config:
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
++ [Configure send bids control](#setConfig-Send-Bids-Control)
 + [Bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1426,6 +1428,33 @@ pbjs.setConfig({
 ```
 
 <a name="setConfig-Bidder-Order" />
+
+#### Configure Send Bids Control
+
+<a name="setConfig-Send-Bids-Control" />
+
+The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher with the ability to adjust the targeting behavior when [sendAllBids](#setConfig-Send-All-Bids) is enabled.
+
+{: .table .table-bordered .table-striped }
+| Attribute        | Type    | Description             |
+|------------+---------+---------------------------------|
+| `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
+
+##### Details on the bidLimit setting
+
+Below is an example config containing `bidLimit`:
+
+```javascript
+pbjs.setConfig({
+  sendBidsControl: {
+    bidLimit: 2
+  }
+});
+```
+When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process. 
+
+{: .alert.alert-info :}
+Note that this feature overlaps and can be used in conjunction with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls). Please see that section for tips on controlling the number of characters being sent to the ad server.
 
 #### Use Bid Cache
 
@@ -1860,6 +1889,9 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
 | alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
 
+{: .alert.alert-info :}
+Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control).
+
 ##### Details on the auctionKeyMaxChars setting
 
 Below is an example config containing `auctionKeyMaxChars`:
@@ -1897,6 +1929,9 @@ Given the varying nature of how sites are set up for advertising and the varying
   * You can copy the data to another tool to count the number of characters that are present.
 
 Between these two values (Prebid's targeting key count and the overall ad URL query character count), you will find the average number of characters that are used by your ad server.  It's likely that these ad server values will remain consistent given that type of setup.  So if you know your ad server has a particular character limit, you can assume that these ad server characters will be reserved and the difference is what you could allot to Prebid.
+
+Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
+
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
