@@ -137,7 +137,7 @@ pbjs.setConfig({
 
 1) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
 
-<a name="#rubicon-revenue-type"></a>
+<a name="rubicon-revenue-type"></a>
 
 2) The Rubicon Exchange defines whether bids are 'net' or 'gross', but doesn't
 tell the outside world which is in use.
