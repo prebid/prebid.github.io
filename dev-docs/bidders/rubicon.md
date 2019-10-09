@@ -135,4 +135,17 @@ pbjs.setConfig({
 
 ### Notes
 
-There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+1) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+
+<a name="#rubicon-revenue-type"></a>
+
+2) The Rubicon Exchange defines whether bids are 'net' or 'gross', but doesn't
+tell the outside world which is in use.
+The Rubicon adapter reports the revenue type as 'gross' by default before 2.35 and 'net' by default in 2.35 and later, as the vast majority of accounts are net, and all new accounts are net.
+However, it's important to note that what the adapter reports is not directly related to the exchange setting.
+If you're a publisher who has set your Rubicon revenue type to 'gross' with your Rubicon account team,
+and if you care that the adapter is aligned to that reality, you can override what the adapter reports to Prebid.js with:
+
+```
+pbjs.setConfig({ rubicon: {netRevenue: false} });
+```
