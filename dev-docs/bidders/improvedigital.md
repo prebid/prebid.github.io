@@ -5,7 +5,7 @@ description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
 hide: true
 gdpr_supported: true
-media_types: native
+media_types: banner, native, video
 ---
 
 ### Bid params
