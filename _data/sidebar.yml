@@ -444,6 +444,15 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Konduit Accelerate Module
+  link: /dev-docs/modules/konduit.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: User ID
   link: /dev-docs/modules/userId.html
   isLastSubSectionItem: 0
