@@ -5,10 +5,11 @@ description: Rubicon Project Prebid Bidder Adaptor
 hide: true
 biddercode: rubicon
 gdpr_supported: true
+coppa_supported: true
 media_types: video
-userIds: unifiedId/tradedesk
+userIds: unifiedId/tradedesk, digitrust
+prebid_member: true
 ---
-
 
 ### Note:
 The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
@@ -134,4 +135,16 @@ pbjs.setConfig({
 
 ### Notes
 
-There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+1) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+
+<a name="rubicon-revenue-type"></a>
+
+2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for Rubicon Project clients to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+
+For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net). 
+
+It’s important to note that what the Rubicon Prebid bid adapter reports is not directly related to the setting with the Rubicon Project exchange. If you are a publisher who has set your Rubicon exchange revenue type set to ‘gross’ and you'd like the Rubicon bid adapter to also report 'gross', you can change the 2.35+ default 'net' setting in Prebid.js with:
+
+```
+pbjs.setConfig({ rubicon: {netRevenue: false} });
+```

@@ -76,8 +76,9 @@ Here's how it works:
 
 1. Bid responses are stored in an AdUnit-specific bid pool.
 1. When the same AdUnit is called, Prebid.js calls the bidder again regardless of whether there's a bid in that AdUnit's bid pool.
-1. When all the new bids are back or the timeout is reached, Prebid.js considers both the new bids on that AdUnit and previous bids on the AdUnit that haven't reached their TTL.
-1. The cached bid is only used if its CPM beats the new bid.
+1. When all the new bids are back or the timeout is reached, Prebid.js considers both the new bids on that AdUnit and previously cached bids.
+1. Previously cached bids will be discarded if they've reached their TTL or if they have status `targetingSet` or `rendered`.
+1. A cached bid may be used if its CPM beats the new bids.
 1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.markWinningBidAsUsed) function.
 
 ## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
@@ -104,7 +105,7 @@ Here are a couple of alternative workarounds:
 
 - **Option 2:**
 
-	Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with DFP/AdX, but they can still compete with each other.  For more information, see [What is post-bid?]({{site.baseurl}}/overview/what-is-post-bid.html).
+	Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with Google Ad Manager/AdX, but they can still compete with each other.  For more information, see [What is post-bid?]({{site.baseurl}}/overview/what-is-post-bid.html).
 
 ## How do I use Prebid.js on secure (HTTPS) pages?
 
@@ -138,6 +139,18 @@ If you need different [price granularities]({{site.baseurl}}/dev-docs/publisher-
    1. Initiate the second auction with `requestBids`
 
 The handling of this scenario will be improved in a future release.
+
+## How can I control how many targeting variables are sent to my ad server?
+
+One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) option. However, there are optimization and reporting
+benefits for sending more than one bid.
+
+Once you find the right balance for your application, you can specify
+what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
+
+http://lh.prebid.org:8080/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids
+
+
 
 ## Related Reading
 

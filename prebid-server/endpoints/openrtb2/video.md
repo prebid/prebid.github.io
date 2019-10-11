@@ -19,7 +19,7 @@ This document describes the behavior of the Prebid Server `video` endpoint in de
 
 ## Overview
 
-Prebid Server (PBS) supports competitve separation for ad pod display from primary ad servers such as Freewheel and DFP.  PBS, on receiving this endpoint, will pass default settings and `stored_request` parameters to one or more OpenRTB requests, which will then be sent to the appropriate SSPs. 
+Prebid Server (PBS) supports competitve separation for ad pod display from primary ad servers such as Freewheel and Google Ad Manager.  PBS, on receiving this endpoint, will pass default settings and `stored_request` parameters to one or more OpenRTB requests, which will then be sent to the appropriate SSPs. 
 
 The process is similar to [Prebid.js client side](/prebid-video/video-long-form.html) support for this feature.
 
@@ -78,7 +78,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | video.mimes | Required | `String[]` |  Player supported mime types. Example: ["video/mp4"] |
 | video.protocols | Required | `Integer[]` |  Array of supported [video protocols](#video-protocols). |
 | includebrandcategory | Optional | `Object` |  Container Object for passing Category inputs. |
-| includebrandcategory.primaryadserver | Optional | `Integer` |  The ad server used by the publisher. Supported Values 1- Freewheel , 2- DFP. |
+| includebrandcategory.primaryadserver | Optional | `Integer` |  The ad server used by the publisher. Supported Values 1- Freewheel , 2- Google Ad Manager. |
 | includebrandcategory.publisher | Optional | `String` |  Identifier for the Publisher. |
 | content | Optional | `Object` | Miscellaneous content meta data that can be used for targeting the adPod(s) |
 | content.episode | Optional | `Integer` | The episode number. |

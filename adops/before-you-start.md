@@ -29,11 +29,11 @@ The table below lists ad servers supported by Prebid and provides links to step 
 {: .table .table-bordered .table-striped }  
 | Server       | Page                                                                                                                                    |
 |--------------+-----------------------------------------------------------------------------------------------------------------------------------------|
-| **DFP**      | [Step by step guide to DFP setup]({{site.baseurl}}/adops/step-by-step.html)                                                          |
+| **Google Ad Manager**      | [Step by step guide to Google Ad Manager setup]({{site.baseurl}}/adops/step-by-step.html)                                                          |
 |              | [Send all bids to the ad server]({{site.baseurl}}/adops/send-all-bids-adops.html)                                                    |
-|              | [Setting up Prebid for AMP in DFP]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)                                     |
-|              | [Setting up Prebid Video in DFP]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)                                         |
-|              | [Setting up Prebid Native in DFP]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html)                                       |
+|              | [Setting up Prebid for AMP in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)                                     |
+|              | [Setting up Prebid Video in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)                                         |
+|              | [Setting up Prebid Native in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html)                                       |
 | **AppNexus** | [Setting up Prebid with the AppNexus Publisher Ad Server]({{site.baseurl}}/adops/setting-up-prebid-with-the-appnexus-ad-server.html) |
 | **Smart Ad Server** | [Setting up Prebid.js with Smart Ad Server]({{site.baseurl}}/adops/setting-up-prebidjs-with-Smart-Ad-Server.html) |
 | **FreeWheel** | [FreeWheel Guide for Premium Long-Form Video]({{site.baseurl}}/adops/setting-up-prebid-video-in-freewheel.html) |
@@ -54,7 +54,7 @@ Our recommendation is to start with $1 or 10 cent granularity until you're more 
 
 {% capture dfpNote %}
 
-[DFP has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity).
+[Google Ad Manager has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity).
 {% endcapture %}
 
 {% include alerts/alert_note.html content= dfpNote %}
@@ -74,7 +74,7 @@ One set of line items for all bidders is the recommended way of setting up your 
 
 
 {% capture successNote %}
-For instructions on setting up pre-bid with one set of line items for all bidders, see [Send Top Bid to Ad Server - Step by Step guide to DFP setup](/adops/step-by-step.html).
+For instructions on setting up pre-bid with one set of line items for all bidders, see [Send Top Bid to Ad Server - Step by Step guide to Google Ad Manager setup](/adops/step-by-step.html).
 {% endcapture %}
 
 {% include alerts/alert_tip.html content=successNote %}
@@ -88,7 +88,7 @@ Choose one set of line items for each bidder if you:
     - With one set of line items for all bidders, Prebid.js only sends the highest bid to the ad server (the decision logic of choosing the highest bid can be customized by you). This is sufficient if the winning bids matter the most to you. For example, a bidder bidding 100% of time but losing in every auction still has a fill rate of 0%. However, if having access to all bid information is important to you, use one set of line items for each bidder.
 
 - Require bid landscape data for header bidding partners
-    - With one set of line items for all bidders, Prebid.js sends the bidder information (Which bidder has the highest price) via a keyword `bidder=bidder_name`. To run a report to attribute winning bids to bidders, you will need to rely on your ad server's keyword reports. DFP supports this, but some ad servers do not. DFP does not support running reports for more than 2 keywords. Therefore, if you have existing reports that already rely on keywords, and you want to add a winning bid by bidder dimension, use one set of line items for each bidder.
+    - With one set of line items for all bidders, Prebid.js sends the bidder information (Which bidder has the highest price) via a keyword `bidder=bidder_name`. To run a report to attribute winning bids to bidders, you will need to rely on your ad server's keyword reports. Google Ad Manager supports this, but some ad servers do not. Google Ad Manager does not support running reports for more than 2 keywords. Therefore, if you have existing reports that already rely on keywords, and you want to add a winning bid by bidder dimension, use one set of line items for each bidder.
 
 - Requires setting more keyword targeting within your ad server. The table below lists the required and optional keys for targeting with each of your header bidder partners.
 

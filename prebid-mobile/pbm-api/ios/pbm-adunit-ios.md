@@ -52,6 +52,9 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 `completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value.
 
+<div markdown="1" style="background-color: AntiqueWhite;">
+{% include alerts/alert_warning.html content="Ad Unit *User* keywords will be deprecated in favor of [targeting keywords](pbm-targeting-ios#user-keywords) for Prebid versions 1.2+. Support will continue for Ad Unit User Keywords as users migrate to targeting user keywords." %}
+
 ### addUserKeyword
 
 Obtains the user keyword and value for targeting of a Prebid Mobile ad unit. If the key already exists the value will be appended to the `customKeywords` property. No duplicates will be added.
@@ -71,6 +74,7 @@ Remove a key and all its associated values from `customKeywords` of a given Preb
 
 ### clearUserKeywords
 Remove all keys and all values from a given Prebid Mobile ad unit.
+</div>
 
 ### setAutoRefreshMillis
 If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
@@ -81,6 +85,83 @@ Starts the auto-refresh behavior for a given Prebid Mobile ad unit.
 
 ### stopAutoRefresh
 Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, `stopAutoRefresh` will be ignored.
+
+### addContextKeyword
+Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeyword` function adds a single keyword to the ad unit.
+
+```
+func addContextKeyword(_ newElement: String)
+```
+
+### addContextKeywords
+Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeywords` function adds a multiple keyword to the ad unit.
+
+```
+func addContextKeywords(_ newElements: Set<String>)
+```
+
+### removeContextKeyword
+
+```
+func removeContextKeyword(_ element: String)
+```
+
+### clearContextKeywords
+
+```
+func clearContextKeywords()
+```
+
+
+
+
+### First Party Data
+
+First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
+
+Data is broken up into two different data types:
+* User
+  * Global in scope only
+* Inventory (context)
+  * Global scope
+  * Ad Unit grain
+
+ The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-ios#first-party-data) page.
+
+#### addContextData
+```
+func addContextData(key: String, value: String)
+```
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+
+#### updateContextData
+```
+func updateContextData(key: String, value: Set<String>)
+```
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+
+#### removeContextData
+```
+func removeContextData(forKey: String)
+```
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+
+#### clearContextData
+```
+func clearContextData()
+```
 
 ## Examples
 
@@ -103,7 +184,7 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 
     // Do any additional setup after loading the view, typically from a nib.
     bannerUnit.fetchDemand(adObject: self.request) { (ResultCode) in
-        print("DFP banner bids fetch successfull")
+        print("Google Ad Manager banner bids fetch successfull")
         dfpBanner.load(self.request)
     }
 }
@@ -160,6 +241,18 @@ bannerUnit.setAutoRefreshMillis(time:Double)
 
 ```
 bannerUnit.stopAutoRefresh()
+```
+
+**addContextKeyword**
+```
+bannerAdUnit.addContextKeyword("adunitContextKeywordValue1")
+bannerAdUnit.addContextKeyword("adunitContextKeywordValue2")
+bannerAdUnit.addContextKeyword("adunitContextKeywordValue3")
+```
+
+**addContextData**
+```
+bannerAdUnit.addContextData(key: "adunitContextDataKey1", value: "adunitContextDataValue1")
 ```
 
 

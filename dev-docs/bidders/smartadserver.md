@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Smart
-description: Prebid Smart Bidder Adaptor
+title: Smart AdServer
+description: Prebid Smart AdServer Bidder Adaptor
 hide: true
 biddercode: smartadserver
 media_types: outstream
@@ -9,7 +9,7 @@ gdpr_supported: true
 ---
 
 ### Note:
-The Smart bidder adaptor requires setup and approval from the Smart Service team. Please reach out to your account manager for more information and start using it.
+The Smart AdServer bidder adaptor requires setup and approval from the Smart AdServer Service team. Please reach out to your account manager for more information and start using it.
 
 ### Bid params
 
@@ -25,4 +25,4 @@ The Smart bidder adaptor requires setup and approval from the Smart Service team
 | `bidfloor` | optional | Bid floor for this placement in USD or in the currency specified by the `currency` parameter. (Default: `0.0`) | `0.42`                                                            | `float`   |
 | `appName`  | optional | Mobile application name                                                                                        | `'Smart AdServer Preview'`                                        | `string`  |
 | `buId`     | optional | Mobile application bundle ID                                                                                   | `'com.smartadserver.android.dashboard'`                           | `string`  |
-| `ckId`     | optional | Unique Smart user ID                                                                                           | `1234567890123456789`                                             | `integer` |
+| `ckId`     | optional | Unique Smart AdServer user ID                                                                                           | `1234567890123456789`                                             | `integer` |

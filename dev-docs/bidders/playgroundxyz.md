@@ -4,7 +4,9 @@ title: Playground XYZ
 description: Prebid Playground XYZ Bidder Adapter
 gdpr_supported: true
 hide: true
-biddercode: playgroundxyz
+biddercode: pxyz
+prevBiddercode: playgroundxyz
+aliasCode: playgroundxyz
 ---
 
 ### Bid Params
