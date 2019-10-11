@@ -4,12 +4,12 @@ title: TheMediaGrid
 description: Prebid TheMediaGrid Bidder Adaptor
 hide: true
 biddercode: grid
-biddercode_longer_than_12: false
+media_types: banner, video
 gdpr_supported: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                    | Example   | Type      |

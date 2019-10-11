@@ -4,12 +4,11 @@ title: Supply2
 description: Prebid Media Donuts Bidder Adaptor
 hide: true
 biddercode: supply2
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                                                                                                                                     | Example   | Type      |

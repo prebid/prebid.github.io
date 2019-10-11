@@ -4,7 +4,6 @@ title: Vertamedia
 description: Prebid Vertamedia Bidder Adaptor
 hide: true
 biddercode: vertamedia
-biddercode_longer_than_12: false
 media_types: video
 ---
 

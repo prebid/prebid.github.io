@@ -4,12 +4,11 @@ title: Fidelity Media
 description: Prebid Fidelity Media Bidder Adapter
 hide: true
 biddercode: fidelity
-biddercode_longer_than_12: false
 media_types: banner
 gdpr_supported: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description                                      | Example                  | Type     |

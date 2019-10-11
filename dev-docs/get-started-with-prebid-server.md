@@ -69,6 +69,8 @@ See [The `s2sConfig` object]({{site.baseurl}}/dev-docs/publisher-api-reference.h
 {% highlight js %}
 var pbjs = pbjs || {};
 
+pbjs.que = pbjs.que || [];
+
 pbjs.que.push(function() {
 
     pbjs.setConfig({

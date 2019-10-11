@@ -6,7 +6,7 @@
   isHeader: 1
   hasSubMenus: 1
   submenus:
-  
+
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
@@ -15,7 +15,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
@@ -24,7 +24,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
@@ -33,7 +33,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
@@ -42,7 +42,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
@@ -51,12 +51,21 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
     title: Privacy Policy
     link:  /privacy.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: Overview
+    title: Events
+    link:  /prebid/events.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
@@ -69,7 +78,7 @@
   isHeader: 1
   hasSubMenus: 1
   submenus:
-  
+
   - subsectionId: 0
     sectionId: 1
     sectionName: Product
@@ -80,47 +89,57 @@
     isSubHeader: 1
     isSubSectionStart: 1
     nbCollapseId: prebidjs
-        
+
   - subsectionId: 0
     sectionId: 1
-    sectionName: Product   
+    sectionName: Product
     title: Analytics
     link: /overview/analytics.html
     needsDivider: 0
     isHeader: 0
     isSubHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 0
     sectionId: 1
-    sectionName: Product   
+    sectionName: Product
     title: Modules
     link: /dev-docs/modules/index.html
     needsDivider: 0
     isHeader: 0
     isSubHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 0
     sectionId: 1
-    sectionName: Product   
+    sectionName: Product
     title: Publisher API
     link: /dev-docs/publisher-api-reference.html
     needsDivider: 0
     isHeader: 0
     isSubHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 0
     sectionId: 1
-    sectionName: Product   
+    sectionName: Product
     title: Bidder Params
     link: /dev-docs/bidders.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Plugins
+    link: /dev-docs/plugins/index.html
     needsDivider: 1
     isHeader: 0
     isSubHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 1
     sectionId: 1
     sectionName: Product
@@ -129,7 +148,7 @@
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 2
     sectionId: 1
     sectionName: Product
@@ -138,25 +157,25 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 2
     sectionId: 1
     sectionName: Product
     title: iOS
-    link: /prebid-mobile/code-integration-ios.html
+    link: /prebid-mobile/pbm-api/ios/code-integration-ios.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 2
     sectionId: 1
     sectionName: Product
     title: Android
-    link: /prebid-mobile/code-integration-android.html
+    link: /prebid-mobile/pbm-api/android/code-integration-android.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 3
     sectionId: 1
     sectionName: Product
@@ -165,7 +184,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 3
     sectionId: 1
     sectionName: Product
@@ -174,7 +193,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 3
     sectionId: 1
     sectionName: Product
@@ -183,7 +202,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 3
     sectionId: 1
     sectionName: Product
@@ -192,7 +211,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 3
     sectionId: 1
     sectionName: Product
@@ -201,7 +220,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 3
     sectionId: 0
     sectionName: Product
@@ -210,7 +229,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
 #-------------_Support Section---------------
 
 - sectionId: 2
@@ -219,7 +238,7 @@
   isHeader: 1
   hasSubMenus: 1
   submenus:
-  
+
   - subsectionId: 0
     sectionId: 2
     sectionName: Support
@@ -228,7 +247,7 @@
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 1
     sectionId: 2
     sectionName: Support
@@ -237,7 +256,7 @@
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
-   
+
   - subsectionId: 2
     sectionId: 2
     sectionName: Support
@@ -246,7 +265,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 2
     sectionId: 2
     sectionName: Support
@@ -255,7 +274,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 2
     sectionId: 2
     sectionName: Support
@@ -278,11 +297,11 @@
     sectionId: 2
     sectionName: Support
     title: FAQ
-    link: /faq/faq.html 
+    link: /faq/faq.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 3
     sectionId: 2
     sectionName: Support
@@ -291,7 +310,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 3
     sectionId: 2
     sectionName: Support
@@ -300,7 +319,7 @@
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 4
     sectionId: 2
     sectionName: Support
@@ -309,7 +328,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
-    
+
 #-----------_Downloads---------------
 
 - sectionId: 3
@@ -318,7 +337,7 @@
   isHeader: 1
   hasSubMenus: 1
   submenus:
-  
+
   - subsectionId: 0
     sectionId: 3
     sectionName: Download
@@ -327,7 +346,7 @@
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 1
     sectionId: 3
     sectionName: Download
@@ -336,7 +355,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
-    
+
   - subsectionId: 1
     sectionId: 3
     sectionName: Download
@@ -345,7 +364,7 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
+
   - subsectionId: 1
     sectionId: 3
     sectionName: Download
@@ -354,10 +373,3 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
-    
-
-
-
-
-    
-  

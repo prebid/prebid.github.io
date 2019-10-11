@@ -2,10 +2,6 @@
 layout: page_v2
 title: What is Prebid.org?
 description: An overview of Prebid.org, the organization behind Prebid, and what our goals and missions are.
-pid: 1
-is_top_nav: yeah
-top_nav_section: overview
-nav_section: intro
 sidebarType: 0
 ---
 
@@ -13,7 +9,7 @@ sidebarType: 0
 
 # About Prebid.org
 
-Header bidding has seen incredible adoption across the industry, and Prebid.js has been an incredible part of that. While AppNexus created Prebid.js, it's too important to be owned by any one company. Thus, Prebid.org was created.
+Header bidding has seen incredible adoption across the industry, and Prebid.js has been an integral part of that. While AppNexus created Prebid.js, it's too important to be owned by any one company. Thus, Prebid.org was created.
 
 Formed in September of 2017, Prebid.org is an independent organization designed to ensure and promote fair, transparent, and efficient header bidding across the industry. Funded by dues-paying members, it manages the open source projects Prebid.js, Prebid Mobile, Prebid Server, Prebid Video, Prebid Native, and others.
 

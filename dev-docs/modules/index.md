@@ -25,18 +25,40 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 * TOC
 {:toc}
 
-## Modules
+## General Modules
 
 {: .table .table-bordered .table-striped }
 | Module              | Description  |
 |---------------------+--------------|
-| [**Currency**]({{site.baseurl}}/dev-docs/modules/currency.html) | Converts bid currency into ad server currency based on data in a supplied exchange rate file. |
-| [**DFP Express**]({{site.baseurl}}/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have DoubleClick Google Publisher Tag (GPT) ad calls in their pages. |
-| [**DigiTrust**]({{site.baseurl}}/dev-docs/modules/digitrust.html) | A method of including the standard cross-domain ID in a DigiTrust package. |
-| [**Server-to-Server Testing**]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) | Adds A/B test support for easing into server-side header bidding. |
-| [**DFP Video**]({{site.baseurl}}/dev-docs/modules/dfp_video.html) | Required for serving instream video through DFP. |
-| [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | Adds a persisted user ID in the publisher's domain. |
-| [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
+| [**Currency**](/dev-docs/modules/currency.html) | Converts bid currency into ad server currency based on data in a supplied exchange rate file. |
+| [**GDPR ConsentManagement**](/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
+| [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
+| [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
+| [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, and Unified ID. |
+
+## Video Modules
+
+{: .table .table-bordered .table-striped }
+| Module              | Description  |
+|---------------------+--------------|
+| [**Ad Pod**](/dev-docs/modules/adpod.html) | Enables developers to add support for a new adserver that handles ad pod (long-form) videos |
+| [**Freewheel**](/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
+| [**Google Ad Manager Video**](/dev-docs/modules/dfp_video.html) | Required for serving instream video through Google Ad Manager. |
+| [**IAB Category Translation**](/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
+
+## Testing and Debug Modules
+
+{: .table .table-bordered .table-striped }
+| Module              | Description  |
+|---------------------+--------------|
+| [**Server-to-Server Testing**](/dev-docs/modules/s2sTesting.html) | Adds A/B test support to ease into server-side header bidding. |
+
+## Deprecated Modules
+
+{: .table .table-bordered .table-striped }
+| Module              | Description  |
+|---------------------+--------------|
+| [**Publisher Common ID**](/dev-docs/modules/pubCommonId.html) | (Deprecated - please use User ID module) Adds a persisted user ID in the publisher's domain. |
 
 ## Further Reading
 

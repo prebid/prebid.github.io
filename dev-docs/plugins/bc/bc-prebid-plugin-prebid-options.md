@@ -7,8 +7,6 @@ nav_section: plugins
 pid: 10
 ---
 
-
-
 # Prebid Options Supported by the Brightcove Prebid Plugin
 
 ## Overview
@@ -36,6 +34,8 @@ When configuring prebid options for more than one ad break, create an array of P
 - [label](#labeloption)
 - [scriptLoadTimeout](#scriptLoadTimeout)
 - [prebidPluginPath](#prebidPluginPath)
+- [adapters](#pb-adapters)
+- [loggerLevel](#loggerLevel)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -314,7 +314,7 @@ None
 
 **Description:**
 
-Parameters used when using DFP as the ad server.
+Parameters used when using Google Ad Manager as the ad server.
 
 See prebid.org documentation for [buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
 
@@ -324,21 +324,21 @@ JSON object
 
 Can contain the following fields:
 
-- `params`: JSON object containing parameters needed to make DFP call. Parameters include:
+- `params`: JSON object containing parameters needed to make Google Ad Manager call. Parameters include:
   - `iu`: string (Required)
-  - DFP adUnit ID. For more information, see the DFP documentation on iu.
+  - Google Ad Manager adUnit ID. For more information, see the Google Ad Manager documentation on iu.
 
-- `cust_params`: JSON object (Optional). Key-value pairs that will be sent to DFP on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the DFP documentation on cust_params
+- `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params
 
 - `output`: (Required) String specifying the type of response expected. This value should be `"vast"`
 
-- `url`: String specifying the DFP ad tag to call. You can use this parameter rather then using the `params` object to specify the DFP tag. This URL MUST contain the DFP `iu` value fully resolved. This URL may contain any other parameters that need to be passed to DFP. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
+- `url`: String specifying the Google Ad Manager ad tag to call. You can use this parameter rather then using the `params` object to specify the Google Ad Manager tag. This URL MUST contain the Google Ad Manager `iu` value fully resolved. This URL may contain any other parameters that need to be passed to Google Ad Manager. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
 
 - `bid`: (Optional) JSON object describing the Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.
 
 **Required?**
 
-No - If present, then DFP is considered to be the primary ad server and the results of the prebid auction will be passed to DFP. One or both of `dfpParameters.params` and `dfpParameters.url` is required.
+No - If present, then Google Ad Manager is considered to be the primary ad server and the results of the prebid auction will be passed to Google Ad Manager. One or both of `dfpParameters.params` and `dfpParameters.url` is required.
 
 **Default Value:**
 
@@ -519,6 +519,72 @@ http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
 
 `options1.prebidPluginPath = 'https://your-path/bc_prebid_vast_plugin.js';`
 
+<a name="pb-adapters"></a>
+### adapters
+
+**Description:**
+
+Adapters are a mechanism that a publisher can use to add some specific behavior at runtime to customize the behavior of the Prebid plugin.  
+
+The `adapters` option defines a list of adapters that the publisher would like the Prebid plugin to load and execute.
+
+See [How To Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html) for details on how to build an adapter.
+
+**Acceptable Values:**
+
+If specified, the value of this option should be an array containing one or more adapter definitions.
+
+Each adapter definition is specified as an object with the following fields:
+
+- id: A string that uniquely identifies an adapter.  The adapter will then create itself as a variable on the window object of the document where it is loaded.  This should also be the identifier that the adapter code itself knows.
+- url: A string which specifies the URL used to load the adapter script.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+No default value. If this option is not specified with a valid value, then the plugin will not load and start any adapters.
+
+**Example:**
+
+`options.adapters = [{id : 'my-adapter', url : 'https://my-path/my-plugin-adapter.js'}]`
+
+<a name="loggerLevel"></a>
+### loggerLevel
+
+**Description:**
+
+The `loggerLevel` is used to control the amount of information that is emitted by the plugin into the browser’s console.log.  These levels correspond roughly to the log levels supported by many of the browsers.
+
+{% capture noteAlert %} It is not recommended to set the `loggerLevel` to 0 (silent). {% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+**Acceptable Values:**
+
+Use one of the following integer values to set `loggerLevel`:
+
+- 0 = Silent (not recommended)
+- 1 = Always (trace messages that are always reported, e.g. Version Number)
+- 2 = Error level
+- 3 - Warn
+- 4 = Info
+- 5 = Log
+- 6 = Verbose
+
+**Required?**
+
+No
+
+**Default Value:**
+
+1 (meaning that version number and other “always” reported messages will be emitted to the console.log.)
+
+**Example:**
+
+`options.loggerLevel = 6`
 
 <a name="set-up-params">
 ### Setting Up Prebid Parameters

@@ -1,5 +1,4 @@
 #-------------Message----------------
-
 - messageId: 1
-  messageText: <a href="/blog/barcelona-2019">Prebid Leadership Summit in Barcelona on Feb 25th 2019!</a>
-  messageCreateDt: 02_12_2019
+  messageText: <a href="/blog/2019-sf-event.html">Prebid Meetup and Leadership Summit in San Francisco on Oct 24th 2019!</a><br/><a href="/blog/pbjs-3">Prebid.js 3.0 Major Release Announcement</a>
+  messageCreateDt: 10_07_2019

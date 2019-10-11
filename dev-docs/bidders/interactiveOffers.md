@@ -4,7 +4,6 @@ title: InteractiveOffers
 description: Prebid InteractiveOffers.com Bidder Adaptor
 hide: true
 biddercode: interactiveOffers
-biddercode_longer_than_12: true
 gdpr_supported: false
 media_types: banner
 ---
@@ -12,7 +11,7 @@ media_types: banner
 ### Note:
 Module that connects to interactiveOffers demand sources. Param pubId is required.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description                                                          | Example                           | Type      |
@@ -21,7 +20,8 @@ Module that connects to interactiveOffers demand sources. Param pubId is require
 | `tmax`   | optional | Max timeout for response                                             | `150`                             | `integer` |
 
 Example:
-```javascript
+
+``` bash
 {
     bidder: "interactiveOffers",
     params: {

@@ -17,7 +17,7 @@ sidebarType: 4
 If you’re new to header bidding and Prebid, your implementation of Prebid for video demand will likely go much smoother if you first read the following:
 
 -	[What Is Prebid?]({{site.github.url}}/overview/intro.html)
--	[Getting Start with Prebid]({{site.github.url}}/overview/getting-started.html)
+-	[Getting Started with Prebid]({{site.github.url}}/overview/getting-started.html)
 
 See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.html) for a general description and high-level overview of working with video demand in Prebid.js.
 
@@ -36,8 +36,8 @@ One thing to keep in mind as you set up your line items is price granularity. Be
 
 If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable Prebid to monetize instream video.
 
-If you’re using DFP as your ad server:
-Once you understand the general setup requirements, follow the instructions for video-specific line item setup in [Setting Up Prebid Video in DFP]({{site.github.url}}/adops/setting-up-prebid-video-in-dfp.html).
+If you’re using Google Ad Manager as your ad server:
+Once you understand the general setup requirements, follow the instructions for video-specific line item setup in [Setting Up Prebid Video in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-video-in-dfp.html).
 
 If you’re using another ad server:
 Follow the instructions for your ad server to create line items for instream video content.  The primary points to keep in mind as you set up your line items include:
@@ -47,10 +47,12 @@ Follow the instructions for your ad server to create line items for instream vid
 
 #### Outstream
 
-If you already have a Prebid integration for banner, you don’t need to do anything differently for outstream video. Outstream units use the same creative and line item targeting setup as banner creatives. See the [Step by Step Guide to DFP Setup]({{site.github.url}}/adops/step-by-step.html) for instructions. (If you’re not using DFP as your ad server, follow your ad server’s guidelines for setting up your line items.)
+If you already have a Prebid integration for banner, you don’t need to do anything differently for outstream video. Outstream units use the same creative and line item targeting setup as banner creatives. See the [Step by Step Guide to Google Ad Manager Setup]({{site.github.url}}/adops/step-by-step.html) for instructions. (If you’re not using Google Ad Manager as your ad server, follow your ad server’s guidelines for setting up your line items.)
 
 {: .alert.alert-info :}
 **Prebid Server** If you’ve decided to conduct your header bidding auctions server-side rather than on the client, you need to have a Prebid Server account. See [Get Started with Prebid Server]({{site.github.url}}/dev-docs/get-started-with-prebid-server.html) to begin your integration. After you’ve created an account, you’ll need to pass along the account ID to your developers.
+
+
 
 ## Developers
 
@@ -59,7 +61,7 @@ If you already have a Prebid integration for banner, you don’t need to do anyt
 Your first step to implementing header bidding for video is to [download Prebid.js]({{site.github.url}}/download.html). Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
 -	Include at least one video adapter. Find a list of available video adapters [here]({{site.github.url}}/dev-docs/bidders.html#bidder-video-native).
--	If DFP is your ad server, you must include the [DFP Video module]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl).
+-	If Google Ad Manager is your ad server, you must include the [Google Ad Manager Video module]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl).
 -	If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
 
 ### Define Prebid Ad Units
@@ -109,7 +111,7 @@ In your ad unit you also need to define your list of bidders. For example, inclu
 
 The parameters differ depending on which bidder you’re including. For a list of parameters for each bidder, see [Bidders’ Params]({{site.github.url}}/dev-docs/bidders.html).
 
-For full details on creating instream video ad units, see [Show Video Ads with DFP – Create Ad Unit]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html#create-a-video-ad-unit).
+For full details on creating instream video ad units, see [Show Video Ads with Google Ad Manager – Create Ad Unit]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html#create-a-video-ad-unit).
 
 For full details on creating outstream video ad units, see [Show Outstream Video Ads – Create Ad Unit]({{site.github.url}}/dev-docs/show-outstream-video-ads.html#step-1-set-up-ad-units-with-the-video-media-type-and-outstream-context).
 
@@ -117,7 +119,7 @@ For full details on creating outstream video ad units, see [Show Outstream Video
 
 After you’ve defined your ad units, you can continue with the rest of your configuration.  This is where setups for instream and outstream more drastically diverge. For complete configuration details, see the following:
 
-Instream: [Show Video Ads with DFP]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html)
+Instream: [Show Video Ads with Google Ad Manager]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html)
 Outstream: [Show Outstream Video Ads]({{site.github.url}}/dev-docs/show-outstream-video-ads.html)
 
 Be sure to note the setting for price granularity.  You might need to set up a custom price granularity. (See “Custom CPM Bucket Sizing” under [Price Granularity]({{site.github.url}}/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity). Or, if you’re monetizing both banner and video inventory with Prebid, you might need to define format-specific price granularity settings through  [mediaTypePriceGranularity]({{site.github.url}}/dev-docs/publisher-api-reference.html#setConfig-MediaType-Price-Granularity).
@@ -127,7 +129,37 @@ Be sure to note the setting for price granularity.  You might need to set up a c
 
 ### Examples
 
-See [Prebid Video Examples]({{site.github.url}}/examples/video/) for working examples of instream and outstream video ads.
+See our working examples of instream and outstream video ads.
+
+### Using client-side adapters
+
+#### Instream
+
++ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
++ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
++ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
++ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
++ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
++ [JWPlayer - Playlist]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html)
++ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
++ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
++ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
+
+#### Outstream
+
++ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
++ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
+
+### Using Prebid Server 
+
++ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
++ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
++ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
++ [JW Player - Playlist]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html)
++ [JW Player - Player 7]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html)
++ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
++ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
++ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
 ## Further Reading
 

@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Setup Line Items for DFP
-description: Setup Line Items for DFP
+title: Setup Line Items for Google Ad Manager
+description: Setup Line Items for Google Ad Manager
 pid: 0
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
@@ -10,17 +10,17 @@ sidebarType: 2
 
 
 
-# Step by Step Line Item Setup for DFP
+# Step by Step Line Item Setup for Google Ad Manager
 {: .no_toc}
 
-This page describes step by step how to set up Prebid Mobile line items for DFP to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
+This page describes step by step how to set up Prebid Mobile line items for Google Ad Manager to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 * TOC
 {:toc }
 
 ## Step 1. Add a Line Item
 
-In DFP, create a new order with a $0.50 line item.
+In Google Ad Manager, create a new order with a $0.50 line item.
 
 Enter the inventory size of your mobile ad slots. Make sure to specify all the inventory sizes on your app.
 
@@ -44,7 +44,7 @@ Set **Rotate Creatives** to *Evenly*.
 
 Choose the inventory that you want to run header bidding on.
 
-By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
+By default, `Prebid Mobile` will send the highest bid price to Google Ad Manager using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
 
 You'll need to coordinate with your development team on what key-values you want to target.
 
@@ -79,6 +79,7 @@ You can always get the latest version of the creative code below from [the Mobil
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+  ucTagData.hbPb = "%%PATTERN:hb_pb%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
