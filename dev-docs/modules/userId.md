@@ -582,6 +582,12 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 "uids": [{
                     "id": "ID5-12345"
                 }]
+            },
+            {
+                source: "parrable.com",
+                uids: [{
+                    id: "01.1563917337.test-eid"
+                }]
             }
             ],
             "digitrust": {              // DigiTrust
