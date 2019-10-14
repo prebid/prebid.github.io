@@ -5,10 +5,9 @@ description: SmartRTB / smrtb.com Bidder Module
 hide: true
 biddercode: smartrtb
 aliasCode: smrtb
-biddercode_longer_than_12: false
 gdpr_supported: true
-media_types: banner, video (required publisher provided renderer)
-userIds: unifiedId/pubCommonId/id5id/digitrust
+media_types: banner, video
+userIds: unifiedId,pubCommonId,id5id,digitrust
 ---
 
 ### bid params
