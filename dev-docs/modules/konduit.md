@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - Konduit Accelerate
 description: Applies Konduit video ad acceleration optimization to a provided bid.
-module_code : konduitAccelerate
+module_code : konduitWrapper
 display_name : Konduit Accelerate
 enable_download : true
 sidebarType : 1
@@ -17,18 +17,20 @@ This module is required to apply [Konduit](http://konduit.me/)’s video acceler
 
 ### Step 1: Prepare the base Prebid file
 
-Receive an email package from the Prebid [Download]({{site.baseurl}}/download.html) page.
-In addition to the email package, a Konduit 'Client ID' needs to be used as a function parameter, see Sample code below.
+Build your Prebid.js package in one of two ways:
+
+1) Receive an email package from the Prebid [Download](/download.html) page.
+2) From the command line, `gulp build --modules=konduitWrapper,...`
 
 
 ### Step 2: Implement module code on page
 
-Insert the Konduit module code in your source code of the page.  
-The module exposes the `pbjs.adServers.konduit.buildVastUrl` function to use.
-The function should be provided a couple of input parameters including a bid to be accelerated (usually a winner bid) and Konduit parameters, see Sample code below.
+- Insert the Konduit module code in your source code of the page.  
+- The module exposes the `pbjs.adServers.konduit.buildVastUrl` function to use.
+- The function should be provided a couple of input parameters including a bid to be accelerated (usually a winner bid) and Konduit parameters, see sample code below.
 
 
-### Sample code
+### Sample Code
 
 It usually makes sense to use the Konduit Module function call in the `bidsBackHandler` callback function.
 
