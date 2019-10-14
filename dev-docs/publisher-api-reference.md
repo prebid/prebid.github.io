@@ -59,6 +59,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [COPPA](#setConfig-coppa)
+    * [cache](#setConfig-vast-cache)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.getConfig([string])](#module_pbjs.getConfig)
@@ -1452,7 +1453,7 @@ pbjs.setConfig({
   }
 });
 ```
-When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process. 
+When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls). Please see that section for tips on controlling the number of characters being sent to the ad server.
@@ -1781,7 +1782,7 @@ Delay auction to sync user ids first:
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        auctionDelay: 1000 
+        auctionDelay: 1000
     }
 });
 {% endhighlight %}
@@ -2120,19 +2121,17 @@ pbjs.setConfig({coppa: true});
 
 #### Client-side Caching of VAST XML
 
-When serving video ads, VAST XML creatives must be cached on the network so the 
-video player can retrieve them when ready. Players don't obtain the VAST XML from
-the Javascript DOM where Prebid.js, but rather expect to be given a URL where t can
+When serving video ads, VAST XML creatives must be cached on the network so the
+video player can retrieve them when it's ready. Players don't obtain the VAST XML from
+the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
 be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
 
-- Server-side caching: some video bidders (e.g. Rubicon Project) always cache
-the VAST XML on their servers as part of the bid. They provide a
-'videoCacheKey', which is used in conjunction with the VAST URL in the ad
-server to retrieve the correct VAST XML when needed. In this case, Prebid.js has
-nothing else to do.
-- Client-side caching: video bidders that don't cache on their servers return the whole VAST XML body. In this
-scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network.
-So in this scenario, Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to what's returned in the response.
+- Server-side caching:  
+  Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do.
+- Client-side caching:  
+  Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. In this scenario, Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
+
+For client-side caching, set the Prebid Cache URL as shown here (substituting the correct URL for the one shown here):
 
 {% highlight js %}
 pbjs.setConfig({
@@ -2143,18 +2142,15 @@ pbjs.setConfig({
 {% endhighlight %}
 
 {: .alert.alert-warning :}
-The endpoint URL provided must be a Prebid Cache or otherwise compatible with the [Prebid Cache interface](https://github.com/prebid/prebid-cache).
+The endpoint URL provided must be a Prebid Cache or be otherwise compatible with the [Prebid Cache interface](https://github.com/prebid/prebid-cache).
 
-As of Prebid.js 2.36, there's a feature that enables tracking of client-side cached VAST XML.
-This is useful for publishers that want to allow their analytics provider to
-measure video impressions.
+As of Prebid.js 2.36, you can track client-side cached VAST XML. This functionality is useful for publishers who want to allow their analytics provider to measure video impressions. The prerequisite to using this feature is the availability of a Prebid Server that supports:
 
-The prerequisite to use this feature is the availability of a Prebid Server that supports:
 - the /vtrack endpoint
 - an analytics module with connection to an analytics system that supports joining the impression event to the original auction request on the bidid
-- if account-level permission is enabled, the publisher is allowed to utilize it
+- the ability of a publisher to utilize the feature (if account-level permission is enabled)
 
-Given those conditions, the `vasttrack` flag may be specified:
+Given those conditions, the `vasttrack` flag can be specified:
 
 {% highlight js %}
 pbjs.setConfig({
@@ -2165,7 +2161,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-Setting the `vasttrack` parameter supplies the POST made to the `/vtrack`
+Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtrack`
 Prebid Server endpoint with a couple of additional parameters needed
 by the analytics system to join the event to the original auction request.
 
