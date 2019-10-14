@@ -415,10 +415,28 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-
+  
 - sbSecId: 1
-  title: DigiTrust
-  link: /dev-docs/modules/digitrust.html
+  title: GPDR Consent Management
+  link: /dev-docs/modules/consentManagement.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Supply Chain Object
+  link: /dev-docs/modules/schain.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: User ID
+  link: /dev-docs/modules/userId.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -442,42 +460,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-
-- sbSecId: 1
-  title: User ID
-  link: /dev-docs/modules/userId.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Publisher Common ID
-  link: /dev-docs/modules/pubCommonId.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: GPDR Consent Management
-  link: /dev-docs/modules/consentManagement.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-  
-- sbSecId: 1
-  title: Category Translation
-  link: /dev-docs/modules/categoryTranslation.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
   
 - sbSecId: 1
   title: Freewheel Module
@@ -496,10 +478,19 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
+    
+- sbSecId: 1
+  title: Category Translation
+  link: /dev-docs/modules/categoryTranslation.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
   
 - sbSecId: 1
-  title: Supply Chain Object
-  link: /dev-docs/modules/schain.html
+  title: Konduit Accelerate Module
+  link: /dev-docs/modules/konduit.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
@@ -1270,8 +1261,233 @@
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
-  sectionTitle:
+  isCatHeader: 1
+  sectionTitle: 
   subgroup: 1
+  
+- sbSecId: 4
+  title: "<span style='color:#EA9622;'>Instream"
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Brid'
+  link: /examples/video/instream/brid/pb-ve-brid.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Brightcove'
+  link: /examples/video/instream/brightcove/pb-ve-brightcove.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Flowplayer'
+  link: /examples/video/instream/flowplayer/pb-ve-flowplayer.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player (Platform)'
+  link: /examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player (Hosted)'
+  link: /examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player (Playlist)'
+  link: /examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Kaltura'
+  link: /examples/video/instream/kaltura/pb-ve-kaltura.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Ooyala'
+  link: /examples/video/instream/ooyala/pb-ve-ooyala.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;VideoJS'
+  link: /examples/video/instream/videojs/pb-ve-videojs.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: "<span style='color:#EA9622;'>Prebid Server"
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Brid'
+  link: /examples/video/server/brid/pbs-ve-brid.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player (Platform)'
+  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player (Hosted)'
+  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player (Playlist)'
+  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player (Player 7)'
+  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Kaltura'
+  link: /examples/video/server/kaltura/pbs-ve-kaltura.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Ooyala'
+  link: /examples/video/server/ooyala/pbs-ve-ooyala.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;VideoJS'
+  link: /examples/video/server/videojs/pbs-ve-videojs.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: "<span style='color:#EA9622;'>Outstream"
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Google Ad Manager'
+  link: /examples/video/outstream/pb-ve-outstream-dfp.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;No Server'
+  link: /examples/video/outstream/pb-ve-outstream-no-server.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: "<span style='color:#EA9622;'>Long-Form (Ad Pods)"
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Freewheel'
+  link: /examples/video/long-form/pb-ve-lf-freewheel.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+
+
+
 
 #--------------Prebid Server--------------|
 
@@ -1345,6 +1561,15 @@
 - sbSecId: 5
   title: Cookie Sync Technical Details
   link: /prebid-server/developers/cookie-syncs.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 5
+  title: COPPA Compliance
+  link: /prebid-server/developers/coppa.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
