@@ -60,17 +60,17 @@ var videoAdUnit = {
         video: {
             context: 'instream',
             playerSize: [640, 480],
-            mimes: ['video/mp4', 'video/x-ms-wmv']
-            protocols: [2,5],
-            maxduration:30,
-            linearity: 1,
-            api: [2]
+            mimes: ['video/mp4', 'video/x-ms-wmv'] // you must review all video
+            protocols: [2,3,5,6],                  // parameters to ensure validity
+            api: [2],                              // for your player and DSPs
+            maxduration:30,          
+            linearity: 1
         }
     },
     bids: [{
-        bidder: 'rubicon',
+        bidder: 'rubicon',                         // replace bidders
         params: {
-            accountId: '7780',
+            accountId: '7780',                     // and params
             siteId: '87184',
             zoneId: '413290',
             video: {
