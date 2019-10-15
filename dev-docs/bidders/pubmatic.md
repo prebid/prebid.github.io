@@ -7,7 +7,7 @@ biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true
 schain_supported: true
-userIds: pubcommonId, unifiedId/tradedesk, digitrustId, id5Id, criteortus, identityLink
+userIds: pubcommonId, unifiedId/tradedesk, digitrustId, id5Id, criteortus, identityLink, liveIntent
 prebid_member: true
 ---
 
