@@ -2,17 +2,15 @@
 layout: bidder
 title: OpenX
 description: Prebid OpenX Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: openx
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
-media_types: video
+media_types: banner, video
+schain_supported: true
 gdpr_supported: true
+coppa_supported: true
+userIds: pubCommon, unifiedId, identityLink
+prebid_member: true
 ---
-
-
 
 ### Bid Parameters
 #### Banner
@@ -37,7 +35,7 @@ gdpr_supported: true
 | `openrtb` | optional | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }` | Object | 
 
 
-# Example
+## Example
 ```javascript
 var adUnits = [
   {
@@ -81,12 +79,8 @@ var adUnits = [
       params: {
         unit: '1611023124',
         delDomain: 'PUBLISHER-d.openx.net',
-        openrtb: {
-          imp: [{
-            video: {
-              mimes: ['video/x-ms-wmv, video/mp4']
-            }
-          }]
+        video: { 
+          mimes: ['video/x-ms-wmv, video/mp4']
         }
       }
     }]
@@ -107,7 +101,7 @@ pbjs.setConfig({
 });
 ```
 
-# Additional Details
+## Additional Details
 [Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html)
 
 [Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html)

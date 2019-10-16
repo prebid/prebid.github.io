@@ -2,22 +2,14 @@
 layout: bidder
 title: SpotX
 description: Prebid SpotX Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
-
 biddercode: spotx
-
-biddercode_longer_than_12: false
 media_types: video
-prebid_1_0_supported: true
 gdpr_supported: true
-
+prebid_member: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name                 | Scope    | Description                                                                                                                                                   | Example                                                                                                                                                                                              | Type        |
@@ -27,13 +19,13 @@ gdpr_supported: true
 | `outstream_function` | optional | Custom function to be used as a renderer.                                                                                                                     | `function(bid){console.log(bid);}`                                                                                                                                                                   | `function`  |
 | `outstream_options`  | optional | Object to set options on the renderer. See [outstream_options Object](#spotx-outstream-options-object)                                                              | `{}`                                                                                                                                                                                                 | `object`    |
 | `secure`             | optional | Boolean identifying whether the reqeusts should be https or not (used to override the protocol if the page isn't secure.                                      | `true`                                                                                                                                                                                               | `boolean`   |
-| `mimes`              | optional | List of mimetypes to allow in ad.                                                                                                                             | `['application/javascript', 'video/mp4', 'video/webm']                                                                                                                                               | `array`     |
+| `mimes`              | optional | List of mimetypes to allow in ad.                                                                                                                             | `['application/javascript', 'video/mp4', 'video/webm']`                                                                                                                                               | `array`     |
 | `ad_volume`          | optional | Value between 0 and 1 to denote the volume the ad should start at                                                                                             |                                                                                                                                                                                                      | `float`     |
 | `price_floor`        | optional | Set the current channel price floor in real time.                                                                                                             | `10`                                                                                                                                                                                                   | `integer`   |
 | `hide_skin`          | optional | Set to true to hide the spotx skin                                                                                                                            |                                                                                                                                                                                                      | `boolean`   |
 | `custom`             | optional | See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/DirectSdk/README.md#custom-property-for-key-value-pair-reporting) |                                                                                                                                                                                                      | `object`    |
 
-<a name="spotx-outstream-options-object
+<a name="spotx-outstream-options-object" />
 
 #### outstream_options Object
 
@@ -44,7 +36,4 @@ gdpr_supported: true
 | `ad_mute`               | optional | Set to true to start the ad with the volume muted.          | `true`      | `boolean` |
 | `playersize_auto_adapt` | optional | Set to true to make video auto-adapt to the ad's dimensions | `true`      | `boolean` |
 | `in_iframe`             | optional | ID of iFrame element to insert EASI script tag.             | `'iframe1'` | `string`  |
-| `custom_override`       | optional | Object of script tag attributes to override from the list here: [EASI Attributes](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/README.md#common-javascript-attributes)
-NOTES:
-* exclude 'data-spotx_' from attribute name.
-* channel_id, vast_url, content_page_url, and ad_unit overrides are ignored | `{content_height: 300, content_width: 400}` | `object` |
+| `custom_override`       | optional | Object of script tag attributes to override from the list here: [EASI Attributes](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/README.md#common-javascript-attributes). (Note: Exclude `data-spotx_` from attribute name; `channel_id`, `vast_url`, `content_page_url`, and `ad_unit` overrides are ignored.) | `{content_height: 300, content_width: 400}` | `object` |

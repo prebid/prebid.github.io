@@ -27,6 +27,7 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Prebid Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)
     -   [Render Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)
     -   [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)
+    -   [Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html)
 
 -   **Samples**
     -   [Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)
@@ -35,4 +36,3 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Brightcove Prebid Plugin - Sample Integration Using General Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-general-method.html)
     -   [Brightcove Prebid Plugin - Sample Integration Using Configured Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method.html)
     -   [Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)
-

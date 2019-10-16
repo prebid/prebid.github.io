@@ -32,7 +32,7 @@ You can reference this against the changes listed in the [Prebid.js Release Note
 
 Make sure that you delay any calls to the ad server. This allows all of the key-values to be set before the auction in the ad server occurs.
 
-Within DFP, this is achieved by adding the following code to your page.  It should be called before any of the ad server code to make sure it runs first.
+Within Google Ad Manager, this is achieved by adding the following code to your page.  It should be called before any of the ad server code to make sure it runs first.
 
 {% highlight js %}
 var googletag = googletag || {};
@@ -79,7 +79,7 @@ Note that if no bids are returned, no key-values will be set. You may need to in
 
 After the Prebid auction has occurred and key-values have been set for the ad server, the ad server will use the line items targeting those key-values within its auction.
 
-If you're using DFP, you can verify this by using the [Google Publisher Console](https://support.google.com/dfp_sb/answer/2462712?hl=en), which can be accessed as follows:
+If you're using Google Ad Manager, you can verify this by using the [Google Publisher Console](https://support.google.com/dfp_sb/answer/2462712?hl=en), which can be accessed as follows:
 
 + Open your browser's console and type `googletag.openConsole();`
 
@@ -93,7 +93,7 @@ To make sure your ad server is set up correctly, answer the following questions:
 
 + **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.  
 
-  ![DFP Delivery Troubleshooting]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting"){: .pb-lg-img :}
+  ![Google Ad Manager Delivery Troubleshooting]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "Google Ad Manager Delivery Troubleshooting"){: .pb-lg-img :}
 
 + **Has the ad server order been activated?** If not, you'll have to activate the order to see Prebid-delivered ads.
 

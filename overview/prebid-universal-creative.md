@@ -2,9 +2,7 @@
 layout: page_v2
 title: Prebid Universal Creative
 description: An overview of Prebid Universal Creative
-pid: 9
-is_top_nav: yeah
-top_nav_section: overview
+sidebarType: 3
 nav_section: intro
 ---
 
@@ -31,18 +29,18 @@ The Prebid Universal Creative supports the following channels:
 
 ## How to Implement
 
-### DFP
+### Google Ad Manager
 
-- [Step by Step Guide to DFP Setup]({{site.baseurl}}/adops/step-by-step.html)
+- [Step by Step Guide to Google Ad Manager Setup]({{site.baseurl}}/adops/step-by-step.html)
 
 ### AMP
 
-- Adops: [Setting Up Prebid for AMP in DFP]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)
+- Adops: [Setting Up Prebid for AMP in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)
 - Developer: [Show Prebid Ads on AMP Pages]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html)
 
 ### Mobile App
 
-- [Step by Step Line Item Setup for DFP]({{site.baseurl}}/prebid-mobile/adops-line-item-setup-dfp.html)
+- [Step by Step Line Item Setup for Google Ad Manager]({{site.baseurl}}/prebid-mobile/adops-line-item-setup-dfp.html)
 - [Step by Step Line Item Setup for MoPub]({{site.baseurl}}/prebid-mobile/adops-line-item-setup-mopub.html)
 
 ### AppNexus Publisher Adserver

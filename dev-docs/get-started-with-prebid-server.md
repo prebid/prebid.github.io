@@ -22,7 +22,7 @@ the [Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html
 
 {: .alert.alert-success :}
 **Prebid Server is open source!**
-Prebid Server is an open source project.  [The source code is hosted under the Prebid organization on Github](https://github.com/prebid/prebid-server).
+Prebid Server is an open source project.  [The source code is hosted under the Prebid organization on GitHub](https://github.com/prebid/prebid-server).
 
 * TOC
 {:toc}
@@ -68,6 +68,8 @@ See [The `s2sConfig` object]({{site.baseurl}}/dev-docs/publisher-api-reference.h
 
 {% highlight js %}
 var pbjs = pbjs || {};
+
+pbjs.que = pbjs.que || [];
 
 pbjs.que.push(function() {
 

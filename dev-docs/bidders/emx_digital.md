@@ -2,21 +2,15 @@
 layout: bidder
 title: EMX Digital
 description: Prebid EMX Digital Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
 biddercode: emx_digital
-biddercode_longer_than_12: false
 bidder_supports_deals: false
-media_types: banner
-prebid_1_0_supported : true
+media_types: banner, video
 gdpr_supported: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                                                                          | Example                                       | Type       |

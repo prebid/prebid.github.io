@@ -2,23 +2,11 @@
 layout: bidder
 title: 152 Media 3.0
 description: Prebid 152 Media RTB Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: onefiftytwomedia
 aliasCode: adtelligent
-biddercode_longer_than_12: true
-prebid_1_0_supported : true
 media_types: banner, video
 ---
-
-#### send-all-bids ad server keys
-
-(Truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
-
-`hb_pb_onefiftytwomed`
-`hb_adid_onefiftytwom`
-`hb_size_onefiftytwom`
 
 ### Bid params
 
