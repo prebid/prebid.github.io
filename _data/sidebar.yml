@@ -415,10 +415,28 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-
+  
 - sbSecId: 1
-  title: DigiTrust
-  link: /dev-docs/modules/digitrust.html
+  title: GPDR Consent Management
+  link: /dev-docs/modules/consentManagement.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Supply Chain Object
+  link: /dev-docs/modules/schain.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: User ID
+  link: /dev-docs/modules/userId.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
@@ -442,42 +460,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-
-- sbSecId: 1
-  title: User ID
-  link: /dev-docs/modules/userId.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Publisher Common ID
-  link: /dev-docs/modules/pubCommonId.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: GPDR Consent Management
-  link: /dev-docs/modules/consentManagement.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-  
-- sbSecId: 1
-  title: Category Translation
-  link: /dev-docs/modules/categoryTranslation.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
   
 - sbSecId: 1
   title: Freewheel Module
@@ -496,10 +478,19 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
+    
+- sbSecId: 1
+  title: Category Translation
+  link: /dev-docs/modules/categoryTranslation.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
   
 - sbSecId: 1
-  title: Supply Chain Object
-  link: /dev-docs/modules/schain.html
+  title: Konduit Accelerate Module
+  link: /dev-docs/modules/konduit.html
   isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0

@@ -6,6 +6,7 @@ biddercode: improvedigital
 hide: true
 gdpr_supported: true
 media_types: banner, native, video
+schain_supported: true
 ---
 
 ### Bid params
