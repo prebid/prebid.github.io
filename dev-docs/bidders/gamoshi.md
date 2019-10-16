@@ -6,7 +6,7 @@ biddercode: gamoshi
 hide: true
 media_types: banner, video
 gdpr_supported: true
-userIds: unifiedId/tradedesk
+userIds: unifiedId/tradedesk, id5Id
 ---
 
 ### Bid params
