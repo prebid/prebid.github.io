@@ -436,7 +436,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |
-| params.partner | Required | Number | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
+| params.partner | Required | String | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
 
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
