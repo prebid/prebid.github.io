@@ -1006,7 +1006,7 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Prebid"
+  title: "<span style='color:#EA9622;'>Prebid</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1052,7 +1052,7 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Google Ad Manager"
+  title: "<span style='color:#EA9622;'>Google Ad Manager</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1116,7 +1116,7 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Freewheel"
+  title: "<span style='color:#EA9622;'>Freewheel</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1135,7 +1135,7 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>AppNexus Publisher"
+  title: "<span style='color:#EA9622;'>AppNexus Publisher</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1154,7 +1154,7 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Smart Ad Server"
+  title: "<span style='color:#EA9622;'>Smart Ad Server</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1326,7 +1326,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Instream"
+  title: "<span style='color:#EA9622;'>Instream</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1417,7 +1417,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Prebid Server"
+  title: "<span style='color:#EA9622;'>Prebid Server</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1499,7 +1499,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Outstream"
+  title: "<span style='color:#EA9622;'>Outstream</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1527,7 +1527,7 @@
   subgroup: 1
   
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Long-Form (Ad Pods)"
+  title: "<span style='color:#EA9622;'>Long-Form (Ad Pods)</span>"
   link: 
   isLastSubSectionItem: 0
   isHeader: 0
