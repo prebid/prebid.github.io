@@ -994,9 +994,19 @@
   isSectionHeader: 0
   sectionTitle: Ad Ops
   subgroup: 0
+  
+- sbSecId: 3
+  title: "<span style='color:#EA9622;'>Prebid"
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 0
 
 - sbSecId: 3
-  title: AdOps View of Prebid
+  title: 'AdOps View of Prebid'
   link: /adops/before-you-start.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1005,16 +1015,44 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: Prebid Universal Creative
+  title: 'Prebid Universal Creative'
   link: /overview/prebid-universal-creative.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+  
+- sbSecId: 3
+  title: 'Send All Bids'
+  link: /adops/send-all-bids-adops.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 3
+  title: 'Enable Deals'
+  link: /adops/deals.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 3
+  title: "<span style='color:#EA9622;'>Google Ad Manager"
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 0
 
 - sbSecId: 3
-  title: Guide to Google Ad Manager Setup
+  title: 'Guide to Ad Manager'
   link: /adops/step-by-step.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1023,16 +1061,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Send All Bids to the Ad Server
-  link: /adops/send-all-bids-adops.html
-  isLastSubSectionItem: 0
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setting up Prebid for AMP in Google Ad Manager
+  title: 'Setting up for AMP'
   link: /adops/setting-up-prebid-for-amp-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1041,7 +1070,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid Multi-Format in Google Ad Manager
+  title: 'Setting up Multi-Format'
   link: /adops/setting-up-prebid-multi-format-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1050,7 +1079,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid Native in Google Ad Manager (Alpha)
+  title: 'Setting up Native (Alpha)'
   link: /adops/setting-up-prebid-native-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1059,7 +1088,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid Video in Google Ad Manager
+  title: 'Setting up Video'
   link: /adops/setting-up-prebid-video-in-dfp.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1068,7 +1097,26 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: Setting up Prebid Long-Form Video in FreeWheel
+  title: 'Setting up Long-Form Video'
+  link: /adops/setting-up-prebid-ott-video-in-gam.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 3
+  title: "<span style='color:#EA9622;'>Freewheel"
+  link: 
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 0
+  
+- sbSecId: 3
+  title: 'Setting up Long-Form Video'
   link: /adops/setting-up-prebid-video-in-freewheel.html
   isLastSubSectionItem: 0
   isHeader: 0
@@ -1077,36 +1125,38 @@
   subgroup: 0
   
 - sbSecId: 3
-  title: Setting up Prebid Long-Form Video in Google Ad Manager
-  link: /adops/setting-up-prebid-ott-video-in-gam.html
+  title: "<span style='color:#EA9622;'>AppNexus Publisher"
+  link: 
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
-  sectionTitle:
+  isCatHeader: 1
+  sectionTitle: 
   subgroup: 0
 
 - sbSecId: 3
-  title: Setting up Prebid with the AppNexus Publisher Ad Server
+  title: 'Setting up Prebid'
   link: /adops/setting-up-prebid-with-the-appnexus-ad-server.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
+  
 - sbSecId: 3
-  title: Setting up Prebid.js with Smart Ad Server
-  link: /adops/setting-up-prebidjs-with-Smart-Ad-Server.html
+  title: "<span style='color:#EA9622;'>Smart Ad Server"
+  link: 
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
-  sectionTitle:
+  isCatHeader: 1
+  sectionTitle: 
   subgroup: 0
 
 - sbSecId: 3
-  title: Enable Deals
-  link: /adops/deals.html
-  isLastSubSectionItem: 1
+  title: 'Setting up Prebid'
+  link: /adops/setting-up-prebidjs-with-Smart-Ad-Server.html
+  isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
