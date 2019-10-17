@@ -134,6 +134,16 @@
   isHeader: 0
   isSectionHeader: 0
   subgroup: 0
+  
+- sbSecId: 0
+  title: Events
+  link: /prebid/events.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 0
+  
+
 
 #--------------Prebid.js--------------|
 
