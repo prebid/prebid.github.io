@@ -21,4 +21,4 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 | `pkey` | required | The placement key | `'DfFKxpkRGPMS7A9f71CquBgZ'` | `string`
 | `iframe` | optional | If `true`, the ad will render in an iframe. Defaults to `false`. | `true` | `boolean`
 | `iframeSize` | optional | `[width, height]` If provided, use this size for the iframe size. Only applicable if `iframe` is `true`. If omitted, the largest size from the ad unit sizes array will be used. | `[300, 250]` | `[integer]`
-| `bidfloor` | optional | The floor price, or minimum amount, a publisher will accept for an impression, given in CPM in USD. | `"1.00"` or `1.00` | `string` or `float`
+| `bidfloor` | optional | The floor price, or minimum amount, a publisher will accept for an impression, given in CPM in USD. | `1.00` | `float`
