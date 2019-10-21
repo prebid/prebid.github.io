@@ -27,9 +27,9 @@ media_types: video
       // Video instream adUnit
       {
         code: 'div-test-div',
-        sizes: [[640, 480]],
         mediaTypes: {
           video: {
+            playerSize:[640, 480],
             context: 'instream'
           }
         },
@@ -44,9 +44,9 @@ media_types: video
       // Video outstream adUnit
       {
         code: 'outstream-test-div',
-        sizes: [[640, 480]],
         mediaTypes: {
           video: {
+            playerSize:[640, 480],
             context: 'outstream'
           }
         },
@@ -61,7 +61,11 @@ media_types: video
       // Banner adUnit
       {
         code: 'div-test-div',
-        sizes: [[300, 250]],
+        mediaTypes: {
+          banner: {
+            sizes:[[300, 250]]
+          }
+        },
         bids: [{
           bidder: 'viewdeosDX',
           params: {
