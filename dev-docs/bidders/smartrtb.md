@@ -4,7 +4,6 @@ title: SmartRTB
 description: SmartRTB / smrtb.com Bidder Module
 hide: true
 biddercode: smartrtb
-aliasCode: smrtb
 gdpr_supported: true
 media_types: banner, video
 userIds: unifiedId,pubCommonId,id5id,digitrust
