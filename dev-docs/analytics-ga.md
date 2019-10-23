@@ -19,15 +19,16 @@ hide: true
 
 ### Code Example
 
-{% highlight js %}
-
 // If you're using GA, this should already be in your page:
+```
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+```
 
 // Add the below code snippet to your page
+```
 pbjs.que.push(function() {
     pbjs.enableAnalytics({
         provider: 'ga',
@@ -37,8 +38,8 @@ pbjs.que.push(function() {
         }
     });
 });
+```
 
-{% endhighlight %}
 
 ##### A Few Requirements
 
@@ -56,7 +57,7 @@ See [this link](https://developers.google.com/analytics/devguides/collection/pro
 
 To track a lower volume of traffic in Google Analytics, you may specify a sample rate in the options. For example, to set up a 5% sample rate:
 
-{% highlight js %}
+```
 pbjs.que.push(function() {
     pbjs.enableAnalytics({
         provider: 'ga',
@@ -67,7 +68,7 @@ pbjs.que.push(function() {
         }
     });
 });
-{% endhighlight %}
+```
 
 At the start of each page, Prebid chooses a random number between 0 and 1 
 and logs the analytics only if the number is less than the supplied sample rate, which defaults to 1 (100%).
