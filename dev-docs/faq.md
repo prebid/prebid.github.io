@@ -140,6 +140,18 @@ If you need different [price granularities]({{site.baseurl}}/dev-docs/publisher-
 
 The handling of this scenario will be improved in a future release.
 
+## How can I control how many targeting variables are sent to my ad server?
+
+One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) option. However, there are optimization and reporting
+benefits for sending more than one bid.
+
+Once you find the right balance for your application, you can specify
+what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
+
+http://lh.prebid.org:8080/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids
+
+
+
 ## Related Reading
 
 + [Prebid.js Dev Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
