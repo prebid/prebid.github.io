@@ -68,7 +68,7 @@ of sub-objects. The table below has the options that are common across ID system
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
-| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
+| storage.expires | Required | Integer | How long (in days) the user ID information will be stored. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "id5id": "ID5-12345" }` |
 
@@ -156,38 +156,36 @@ DigiTrust parameters and usage. For more complete instructions please review the
 {% highlight javascript %}
 <script>
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "_pubCommonId",       // create a cookie with this name
-                expires: 1825               // expires in 5 years
-            },
-        {
-        name: "digitrust",
-        params: {
-            init: {
-                member: 'example_member_id',
-                site: 'example_site_id'
-            },
-            callback: function (digiTrustResult) {
-                if (digiTrustResult.success) {
-                    console.log('Success in Digitrust init', digiTrustResult.identity.id);
-                } else {
-                    console.error('Digitrust init failed');
-                }
-            }
+  userSync: {
+    userIds: [{
+      name: "pubCommonId",
+      storage: {
+        type: "cookie",
+        name: "_pubcid",       // create a cookie with this name
+        expires: 365           // expires in 1 years
+      }
+    }, {
+      name: "digitrust",
+      params: {
+        init: {
+          member: 'example_member_id',
+          site: 'example_site_id'
         },
-        storage: {
+        callback: function (digiTrustResult) {
+          if (digiTrustResult.success) {
+            console.log('Success in Digitrust init', digiTrustResult.identity.id);
+          } else {
+            console.error('Digitrust init failed');
+          }
+        }
+      },
+      storage: {
         type: "html5",
         name: "pbjsdigitrust",
         expires: 60
-        }
-    }
+      }
     }]
-    }
-});
+  }});
 </script>
 {% endhighlight %}
 
@@ -319,7 +317,8 @@ pbjs.setConfig({
             },
             storage: {
                 type: "html5",
-                name: "idl_env"    // set localstorage with this name
+                name: "idl_env",    // set localstorage with this name
+                expires: 30
             }
         }],
         syncDelay: 3000
@@ -489,8 +488,8 @@ pbjs.setConfig({
             name: "pubCommonId",
             storage: {
                 type: "cookie",
-                name: "_pubCommonId",       // create a cookie with this name
-                expires: 1825               // expires in 5 years
+                name: "_pubcid",         // create a cookie with this name
+                expires: 365             // expires in 1 years
             }
         }]
     }
@@ -509,13 +508,15 @@ pbjs.setConfig({
             },
             storage: {
                 type: "cookie",
-                name: "pbjs-unifiedid"       // create a cookie with this name
+                name: "pbjs-unifiedid",       // create a cookie with this name
+                expires: 60
             }
         },{
             name: "pubCommonId",
             storage: {
                 type: "cookie",
-                name: "pbjs-pubCommonId"     // create a cookie with this name
+                name: "pbjs-pubCommonId",     // create a cookie with this name
+                expires: 180
             }
         }],
         syncDelay: 5000       // 5 seconds after the first bidRequest()
@@ -595,7 +596,8 @@ pbjs.setConfig({
             },
             storage: {
                 type: "html5",
-                name: "pbjs-unifiedid"    // set localstorage with this name
+                name: "pbjs-unifiedid",    // set localstorage with this name
+                expires: 60
             }
         }],
         syncDelay: 3000
