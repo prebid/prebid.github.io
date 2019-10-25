@@ -691,6 +691,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
+| BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
 | CriteoRTUS | Criteo | bidRequest.userId.criteortus | `"1111"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
@@ -748,6 +749,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },{
                 "source": "criteo",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+                "source": "britepool.com",
                 "uids": [{
                     "id": "11111111"
                 }]
