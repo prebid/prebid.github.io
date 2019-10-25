@@ -6,6 +6,7 @@ hide: true
 biddercode: rubicon
 gdpr_supported: true
 coppa_supported: true
+schain_supported: true
 media_types: video
 userIds: unifiedId/tradedesk, digitrust
 prebid_member: true
