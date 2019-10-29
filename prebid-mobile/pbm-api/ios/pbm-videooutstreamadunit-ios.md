@@ -1,43 +1,63 @@
 ---
 layout: page_v2
-title: BannerAdUnit AdUnit
-description: BannerAdUnit AdUnit
+title: VideoAdUnit AdUnit
+description: VideoAdUnit AdUnit
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# BannerAdUnit: AdUnit
+# VideoAdUnit: AdUnit
 {: .notoc}
 
-The BannerAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the BannerAdUnit object to create and configure a banner ad unit in your app.  '
+The VideoAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the VideoAdUnit object to create and configure a video outstream ad unit in your app.  '
 
 - TOC
  {:toc}
 
 ## Object
 
-### BannerAdUnit
+### VideoAdUnit
 
-Create a new Banner Ad Unit associated with a Prebid Server configuration ID and a banner size.
+Create a new Video Outstream Ad Unit associated with a Prebid Server configuration ID and a video size.
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
-**Parameters**
-
-`configId (String)`: Prebid Server configuration ID.
-
-`size (CGSize)`: Width and height of the banner.
-
-## Methods
-
-### addAdditionalSize
-
-* Add an additional banner size to the Prebid Mobile ad unit.  Banner ad units must be associated with one or more sizes.
+```VideoAdUnit(configId: String, size: CGSize(width: Int, height: Int), placement:Int)```
 
 **Parameters**
 
-`sizes (CGSize)`: The width and height of the banner ad.
+`configId (String)`: Prebid Server configuration ID
+
+`size (CGSize)`: Width and height of the video ad unit
+
+
+#### CGSize
+
+Size of video ad unit
+
+**Parameters**
+
+`width`: Width of video ad unit in DIPs
+
+`height`: Height of video ad unit in DIPs
+
+### videoAd
+
+* Video event listeners
+
+`videoAd (event: PBVideoAdEvent)`: event to listen to
+
+**Parameters**
+
+Events: one of the below event types
+* AdLoadSuccess
+* AdLoadFail
+* AdClicked
+* AdStarted
+* AdDidReachEnd
+
+
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for addtional parameters and methods.
 

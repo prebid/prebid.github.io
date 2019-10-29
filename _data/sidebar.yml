@@ -715,8 +715,26 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Interstitial Ad Unit
+  title: Banner Interstitial Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-interstitialadunit-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video Outstream Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videooutstreamadunit-ios.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html
   isLastSubSectionItem: 0
   isHeader: 0
   isSectionHeader: 0
