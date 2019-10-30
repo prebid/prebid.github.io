@@ -329,20 +329,13 @@ pbjs.setConfig({
 
 ### LiveIntent ID
 
-LiveIntent ID solution provides a user identifier based on our graph which is driven by publisher email business (e.g. updates, newsletters, and subscriptions).
+LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, anonymized email hash in our graph that functions in cookie-challenged environments like mobile browsers.
 
-Add it to your Prebid.js package with:
+Add LiveIntent ID to your Prebid.js package with:
+
 
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
-
-It is possible, that depending on the `partner` & `publisherId` combination, the response contains segment ids which have been mapped against partner systems and their segments. For example, if LiveIntent has created a segmentId `999` which can be mapped to (`partner: test-partner`) `test-partner`'s segment, the response from LiveIntent's ID solution could look like:
-```
-{
-  "unifiedId": "T7JiRRvsRAmh88",
-  "segments": ["999"]
-}
-```
 
 The `request.userId.lipb` object would then look like
 ```
@@ -352,26 +345,27 @@ The `request.userId.lipb` object would then look like
 }
 ```
 
-Therefore, the adapters can then be implemented to use the `lipibid` as the identifier, and `segments` to which that identifier is associated with.
+The adapters can be implemented to use the lipibid as the identifier, and segments to which that identifier is associated with.
 
-#### Registering your own first party cookie space
+#### LiveIntent ID Registration
 
-In order for you to take advantage of the user id resolution in cookie-challenged environments, you need to sync your first party cookie universe with us. For further information please reach out to peoplebased@liveintent.com.
+To leverage the LiveIntent ID, you need to first set up a first-party cookie sync with LiveIntent. Please reach out to peoplebased@liveintent.com for more information.
+
 
 #### LiveIntent ID configuration
 
 |Param under userSync.userIds[]|Scope|Type|Description|Example|
 |---|:---:|:---:|---:|---:|
-|`name`|Required | `String`|The name of this module|`'liveIntentId'`|
-|`params`| Required|`Object`|Container of all module params||
-|`params.publisherId`| Required|`String`|The unique identifier of the publisher in question|`'12432415'`|
+|`name`|Required | `String`|The name of this module.|`'liveIntentId'`|
+|`params`| Required|`Object`|Container of all module params.||
+|`params.publisherId`| Required|`String`| The unique identifier for each publisher.|`'12432415'`|
 |`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response |`'prebid'`|
-|`params.identifiersToResolve`|Optional|`Array[String]`|Additional identifiers that can be sent along with the id resolution request|`['my-id']`|
-|`params.url`| Optional|`String`|In case a publisher is running Prebid.js and can call LiveIntent's Identity Exchange endpoint withing it's own domain, this parameter can be used to change the default endpoint URL|`'//idx.my-domain.com'`|
+|`params.identifiersToResolve`|Optional|`Array[String]`|Used to define additional identifiers that you want to resolve to a LiveIntent ID.|`['my-id']`|
+|`params.url`| Optional|`String`|Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'//idx.my-domain.com'`|
 
-#### LiveIntent ID example
+#### LiveIntent ID examples
 
-The minimal setup would be as follows:
+1.To receive the LiveIntent ID, the setup looks like this.
 ```
 pbjs.setConfig({
     userSync: {
@@ -385,7 +379,7 @@ pbjs.setConfig({
 })
 ```
 
-If there are additional identifiers that LiveIntent could resolve, those can be added under the `identifiersToResolve` array in config params.
+2.If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add those under the `identifiersToResolve` array in the configuration parameters.
 ```
 pbjs.setConfig({
     userSync: {
@@ -400,21 +394,6 @@ pbjs.setConfig({
 })
 ```
 
-If there's a partner integration with LiveIntent, and partner specific data is to be returned and passed along in bid requests, the partner name can be set as `partner` in config params.
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "liveIntentId",
-            params: {
-              partner: "rubicon",  
-              publisherId: "9896876",
-              identifiersToResolve: ["my-own-cookie"]  
-            }
-        }]
-    }
-})
-```
 ### Parrable ID
 
 The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions. 
