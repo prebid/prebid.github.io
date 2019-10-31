@@ -1,13 +1,19 @@
 ---
 layout: page_v2
 title: Prebid Video Examples
-description: This section provide examples of instream, outstream, server and long-form videos with Prebid.js and server.
+description: This section provide examples of instream, outstream, server and long-form videos with Prebid.js.
 sidebarType: 4
 ---
 
 # {{page.title}}
 
 {{page.description}}
+
+<!--video warning-->
+<div class="pb-alert pb-alert-important" style="width:60vw;">
+  <p style="color:#85720f"><b>Important:</b>
+  These examples uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
+</div>
 
 The following examples are available:
 
