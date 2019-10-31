@@ -35,8 +35,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
 | [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, and Unified ID. |
-| [**Real Time Data**]({{site.baseurl}}/dev-docs/modules/realTimeData.html) | Add real time data to bidders and primary ad server.  |
-| [**Browsi RTD Provider**]({{site.baseurl}}/dev-docs/modules/browsiRtdProvider.html) | Browsi provider for real time data module.  |
+| [**Browsi Viewability**]({{site.baseurl}}/dev-docs/modules/browsiRtdProvider.html) | Browsi provider for real time data module.  |
 
 ## Video Modules
 

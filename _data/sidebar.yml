@@ -454,16 +454,7 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Real Time Data
-  link: /dev-docs/modules/realTimeData.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Browsi RTD Provider
+  title: Browsi Viewability Module
   link: /dev-docs/modules/browsiRtdProvider.html
   isLastSubSectionItem: 1
   isHeader: 0
