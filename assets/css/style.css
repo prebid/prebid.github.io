@@ -132,7 +132,7 @@ hr {
 .pb-alert { 
 	
 	padding:10px;
-	width: 100%;
+	width:65wv;
 	margin: 10px 0;
 
 }
@@ -159,18 +159,6 @@ hr {
 	background-color: #e3efd8;
 	color: #527542;
 	border: 1px solid #527542;
-}
-
-/*********************
-	Text Highlighting
-*********************/
-
-em .pb-red-text { 
-	color: #ff0000;
-}
-
-em .pb-blue-text { 
-	color: #33A2FF;
 }
 
 
@@ -626,6 +614,13 @@ button.list-group-item:focus {
   color: #555;
   text-decoration: none;
   background-color: #cccccc;
+}
+
+
+/**************Video Layout*********/
+
+pre {
+ white-space: pre-wrap;       /* css-3 */
 }
 
 
@@ -1231,6 +1226,7 @@ button.list-group-item:focus {
 	color: #EA9622;
 	font-size: 34px;
 	font-weight: 400;
+	width:75wv;
 }
 
 .pb-content, .pb-blog h2 { 

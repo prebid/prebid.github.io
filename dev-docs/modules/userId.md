@@ -4,7 +4,7 @@ page_type: module
 title: Module - User ID
 description: Supports multiple cross-vendor user IDs
 module_code : userId
-display_name : User ID
+display_name : User ID (including UnifiedID and PubCommonID)
 enable_download : true
 sidebarType : 1
 ---
@@ -19,12 +19,14 @@ sidebarType : 1
 
 The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
+* **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
+* **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
+* **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
+* **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
+* **LiveIntent ID** – fetches a user ID based on identifiers that are present on the page. It calls the LiveIntent Identity Exchange endpoint which resolves the inbound identifiers to a stable ID.
+* **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder. 
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
-* **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
-* **ID5 ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
-* **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
-* **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
 
 ## How It Works
 
@@ -40,7 +42,7 @@ Also note that not all bidder adapters support all forms of user ID. See the tab
 
 ## User ID, GDPR, and Opt-Out
 
-When paired with the `CookieConsent` module, privacy rules are enforced:
+When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
 
 * The module checks the GDPR consent string
 * If no consent string is available OR if the user has not consented to Purpose 1 (local storage):
@@ -55,169 +57,87 @@ In addition, individual users may opt-out of receiving cookies and HTML5 local s
 ## Basic Configuration
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
-all of them under the `usersync` object as attributes of the `userIds` array
+all of them under the `userSync` object as attributes of the `userIds` array
 of sub-objects. The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"unifiedId"`, `"pubCommonId"`, `"digitrust"`, `"id5id"` or `identityLink` | `"unifiedId"` |
+| name | Required | String | May be: `"criteortus"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
+| storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "id5id": "ID5-12345" }` |
 
-## Unified ID
+## User ID Sub-Modules
 
-The Unified ID solution is provided by adsrvr.org and the Trade Desk.
+### Criteo RTUS
 
-### Unified ID Registration
+Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
 
-You can set up Unified ID in one of these ways:
+Add it to your Prebid.js package with:
 
-- Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
-- Utilize a [managed services](/prebid/managed.html) company who can do this for you.
+{: .alert.alert-info :}
+gulp build --modules=userId,criteortusIdSystem
 
-### Unified ID Configuration
+#### Criteo RTUS Registration
+
+In order to use a Criteo rtus id a bidder must reach out to Criteo and get their unique client identifier.
+
+#### Criteo RTUS Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | `"unifiedId"` | `"unifiedId"` |
-| params | Required for UnifiedId | Object | Details for UnifiedId initialization. | |
-| params.partner | Either this or url required for UnifiedId | String | This is the partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. | `"myTtdPid"` |
-| params.url | Required for UnifiedId if not using TradeDesk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
-| value | Optional | Object | Used only if the page has a separate mechanism for storing the Unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
+| Param under userSync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
+|--------------------------------|----------|--------|---------------------------------------------------------------------|----------------------|
+| params                         | Required | Object | Details of Criteo ID                                                |                      |
+| params.clientIdentifier        | Required | Object | Object containing bidder code as key and client identifier as value | `{ "appnexus": 30 }` |
 
-### Unified ID Examples
+{: .alert.alert-info :}
+NOTE: Criteo user id's max age is 1 hour. Criteo rtus module makes a request to criteo endpoint every hour to fetch new user id. Do not use `params.storage` when adding configuration for criteortus. If you are using multiple id systems then you can use storage (if that id system supports it). Read more about the `storage` property under [Basic Configuration](#basic-configuration).
 
-1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
+#### Criteo RTUS Example
 
-{: .alert.alert-warning :}
-Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
-the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this example.
+This example assumes the publisher is working with AppNexus as one of the demand partners and AppNexus has partnered with Criteo.
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
-            name: "unifiedId",
+            name: "criteortus",
             params: {
-                url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-unifiedid",       // create a cookie with this name
-                expires: 60                   // cookie can last for 60 days
-            }
-        }],
-        syncDelay: 3000              // 3 seconds after the first auction
-    }
-});
-{% endhighlight %}
-
-2) Publisher supports UnifiedID with a vendor other than Trade Desk and HTML5 local storage.
-
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "unifiedId",
-            params: {
-                url: "URL_TO_UNIFIED_ID_SERVER"
-            },
-            storage: {
-                type: "html5",
-                name: "pbjs-unifiedid"    // set localstorage with this name
-            }
-        }],
-        syncDelay: 3000
-    }
-});
-{% endhighlight %}
-
-3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js.
-
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "unifiedId",
-            value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}
-        }]
-    }
-});
-{% endhighlight %}
-
-## PubCommon ID
-
-This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
-
-There is no special registration or configuration for PubCommon ID.
-
-### PubCommon ID Examples
-
-1) Publisher supports PubCommonID and first party domain cookie storage
-
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "_pubCommonId",       // create a cookie with this name
-                expires: 1825               // expires in 5 years
+              clientIdentifier: {
+                "appnexus": 30
+              }
             }
         }]
     }
 });
 {% endhighlight %}
 
-2) Publisher supports both UnifiedID and PubCommonID and first party domain cookie storage
 
-{% highlight javascript %}
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "unifiedId",
-            params: {
-                partner: "myTtdPid"
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-unifiedid"       // create a cookie with this name
-            }
-        },{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "pbjs-pubCommonId"     // create a cookie with this name
-            }
-        }],
-        syncDelay: 5000       // 5 seconds after the first bidRequest()
-    }
-});
-{% endhighlight %}
-
-
-## DigiTrust
+### DigiTrust
 
 [DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default.
 
-### DigiTrust Registration
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,digiTrustIdSystem
+
+#### DigiTrust Registration
 
 In order to utilize DigiTrust a publisher must register and be approved for membership. You may register online at: [https://www.digitru.st/signup/](https://www.digitru.st/signup/)
 
 In addition to general usage and configuration of the User Id module, follow the additional instructions for configuring and deploying
 DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html).
 
-### DigiTrust Configuration
+#### DigiTrust Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"digitrust"` | `"digitrust"` |
 | params | Required for DigiTrust | Object | Details DigiTrust initialization. | |
@@ -229,14 +149,14 @@ Please consult the [DigiTrust Module Usage and Configration](/dev-docs/modules/d
 DigiTrust parameters and usage. For more complete instructions please review the
 [Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
 
-### DigiTrust Examples
+#### DigiTrust Examples
 
 1) Publisher is a DigiTrust member and supports both PubCommonID and DigiTrust ID integrated with Prebid
 
 {% highlight javascript %}
 <script>
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "pubCommonId",
             storage: {
@@ -276,54 +196,62 @@ Other examples:
 - [DigiTrust Example 1](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Simple.html)
 - [DigiTrust Example 2](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Full.html)
 
-## ID5 ID
+### ID5 Universal ID
 
-The ID5 ID is a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching. For more information about the ID5 ID, please visit [our documentation](https://console.id5.io/docs/public/prebid).
+The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID, please visit [our documentation](https://console.id5.io/docs/public/prebid). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
 
-### ID5 ID Registration
+#### ID5 Universal ID Registration
 
-The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/prebid](https://id5.io/prebid) to sign up and request your ID5 Partner Number to get started.
+The ID5 Universal ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/universal-id](https://id5.io/universal-id) to sign up and request your ID5 Partner Number to get started.
 
-### ID5 ID Configuration
+#### ID5 Universal ID Configuration
+
+First, make sure to add the ID5 submodule to your Prebid.js package with:
+
+{% highlight bash %}
+gulp build --modules=userId,id5IdSystem
+{% endhighlight %}
+
+The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| params | Required | Object | Details for the ID5 ID. | |
+| params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
 
 {: .alert.alert-info :}
-NOTE: The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.expires` to `5` days to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+**NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
 
-### ID5 ID Examples
+#### ID5 Universal ID Examples
 
-1) Publisher wants to retrieve the ID5 ID through Prebid.js
+1) Publisher wants to retrieve the ID5 Universal ID through Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: "id5Id",
-            params: {
-                partner: 173            // change to the Partner Number you received from ID5
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-id5id",     // create a cookie with this name
-                expires: 5              // cookie can last for 5 days to ensure it is
-                                        // encrypted with the latest key from ID5
-            }
-        }],
-        syncDelay: 1000                 // 1 second after the first bidRequest()
-    }
+  userSync: {
+    userIds: [{
+      name: "id5Id",
+      params: {
+        partner: 173             // change to the Partner Number you received from ID5
+      },
+      storage: {
+        type: "cookie",
+        name: "pbjs-id5id",      // create a cookie with this name
+        expires: 90,             // cookie lasts for 90 days
+        refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
+      }
+    }],
+    syncDelay: 1000              // 1 second after the first bidRequest()
+  }
 });
 {% endhighlight %}
 
-2) Publisher has integrated with ID5 on their own and wants to pass the ID5 ID directly through to Prebid.js
+2) Publisher has integrated with ID5 on their own (e.g. via the [ID5 API](https://github.com/id5io/id5-api.js)) and wants to pass the ID5 Universal ID directly through to Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "id5Id",
             value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
@@ -332,32 +260,37 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-## IdentityLink
+### IdentityLink
 
-The Identity Link solution is provided by liveramp.com
+IdentityLink, provided by [LiveRamp](http://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
 
-### IdentityLink Registration
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,identityLinkIdSystem
+
+#### IdentityLink Registration
 
 Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`. 
 
-### IdentityLink Configuration
+#### IdentityLink Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"identityLink"` | `"identityLink"` |
 | params | Required for Id Link | Object | Details for identityLink initialization. | |
 | params.pid | This parameter is required for IdentityLink | String | This is the placementId, value needed for obtaining user’s IdentityLink envelope
 
 
-### IdentityLink Examples
+#### IdentityLink Examples
 
 1) Publisher passes a placement ID and elects to store the IdentityLink envelope in a cookie.
 
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "identityLink",
             params: {
@@ -366,7 +299,7 @@ pbjs.setConfig({
             storage: {
                 type: "cookie",  
                 name: "idl_env",       // create a cookie with this name
-                expires: 60            // cookie can last for 60 days
+                expires: 30            // cookie can last for 30 days
             }
         }],
         syncDelay: 3000              // 3 seconds after the first auction
@@ -378,7 +311,7 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "identityLink",
             params: {
@@ -394,43 +327,295 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-## Criteo RTUS
+### LiveIntent ID
 
-Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
+LiveIntent ID solution provides a user identifier based on our graph which is driven by publisher email business (e.g. updates, newsletters, and subscriptions).
 
-### Criteo RTUS Registration
-
-In order to use a Criteo rtus id a bidder must reach out to Criteo and get their unique client identifier.
-
-### Criteo RTUS Configuration
-
-{: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
-|--------------------------------|----------|--------|---------------------------------------------------------------------|----------------------|
-| params                         | Required | Object | Details of Criteo ID                                                |                      |
-| params.clientIdentifier        | Required | Object | Object containing bidder code as key and client identifier as value | `{ "appnexus": 30 }` |
+Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-NOTE: Criteo user id's max age is 1 hour. Criteo rtus module makes a request to criteo endpoint every hour to fetch new user id. Do not use `params.storage` when adding configuration for criteortus. If you are using multiple id systems then you can use storage (if that id system supports it). Read more about the `storage` property under [Basic Configuration](#basic-configuration).
+gulp build --modules=userId,liveIntentIdSystem
 
-### Criteo RTUS Example
+It is possible, that depending on the `partner` & `publisherId` combination, the response contains segment ids which have been mapped against partner systems and their segments. For example, if LiveIntent has created a segmentId `999` which can be mapped to (`partner: test-partner`) `test-partner`'s segment, the response from LiveIntent's ID solution could look like:
+```
+{
+  "unifiedId": "T7JiRRvsRAmh88",
+  "segments": ["999"]
+}
+```
 
-This example assumes the publisher is working with AppNexus as one of the demand partners and AppNexus has partnered with Criteo.
+The `request.userId.lipb` object would then look like
+```
+{
+  "lipbid": "T7JiRRvsRAmh88",
+  "segments": ["999"]
+}
+```
+
+Therefore, the adapters can then be implemented to use the `lipibid` as the identifier, and `segments` to which that identifier is associated with.
+
+#### Registering your own first party cookie space
+
+In order for you to take advantage of the user id resolution in cookie-challenged environments, you need to sync your first party cookie universe with us. For further information please reach out to peoplebased@liveintent.com.
+
+#### LiveIntent ID configuration
+
+|Param under userSync.userIds[]|Scope|Type|Description|Example|
+|---|:---:|:---:|---:|---:|
+|`name`|Required | `String`|The name of this module|`'liveIntentId'`|
+|`params`| Required|`Object`|Container of all module params||
+|`params.publisherId`| Required|`String`|The unique identifier of the publisher in question|`'12432415'`|
+|`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response |`'prebid'`|
+|`params.identifiersToResolve`|Optional|`Array[String]`|Additional identifiers that can be sent along with the id resolution request|`['my-id']`|
+|`params.url`| Optional|`String`|In case a publisher is running Prebid.js and can call LiveIntent's Identity Exchange endpoint withing it's own domain, this parameter can be used to change the default endpoint URL|`'//idx.my-domain.com'`|
+
+#### LiveIntent ID example
+
+The minimal setup would be as follows:
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "liveIntentId",
+            params: {
+              publisherId: "9896876"
+            }
+        }]
+    }
+})
+```
+
+If there are additional identifiers that LiveIntent could resolve, those can be added under the `identifiersToResolve` array in config params.
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "liveIntentId",
+            params: {
+              publisherId: "9896876",
+              identifiersToResolve: ["my-own-cookie"]  
+            }
+        }]
+    }
+})
+```
+
+If there's a partner integration with LiveIntent, and partner specific data is to be returned and passed along in bid requests, the partner name can be set as `partner` in config params.
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "liveIntentId",
+            params: {
+              partner: "rubicon",  
+              publisherId: "9896876",
+              identifiersToResolve: ["my-own-cookie"]  
+            }
+        }]
+    }
+})
+```
+### Parrable ID
+
+The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions. 
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,parrableIdSystem
+
+#### Parrable ID Registration
+
+Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Parter Client IDs.
+
+#### Parrable ID Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following Parrable specific configuration is required:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| params | Required | Object | Details for the Parrable ID. | |
+| params.partner | Required | String | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
+
+{: .alert.alert-info :}
+NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
+ 
+We recommend setting `storage.expires` to no more than`364` days, which is the default cookie expiration that Parrable uses in the standalone Parrable integration.
+
+#### Parrable ID Examples
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
-            name: "criteortus",
+            name: `'parrableId'`,
             params: {
-              clientIdentifier: {
-                "appnexus": 30
-              }
+                partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+            },
+            storage: {
+                type: `'cookie'`,
+                name: `'_parrable_eid'`,     // create a cookie with this name
+                expires: 364               // cookie can last for up to 1 year
+            }
+        }],
+        syncDelay: 1000
+    }
+});
+{% endhighlight %}
+
+### PubCommon ID
+
+This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
+
+There is no special registration or configuration for PubCommon ID.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId
+
+{: .alert.alert-warning :}
+For historic reasons, PubCommon is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding pubCommonIdSystem to the gulp build command
+
+#### PubCommon ID Examples
+
+1) Publisher supports PubCommonID and first party domain cookie storage
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",
+                name: "_pubCommonId",       // create a cookie with this name
+                expires: 1825               // expires in 5 years
             }
         }]
     }
 });
 {% endhighlight %}
+
+2) Publisher supports both UnifiedID and PubCommonID and first party domain cookie storage
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "unifiedId",
+            params: {
+                partner: "myTtdPid"
+            },
+            storage: {
+                type: "cookie",
+                name: "pbjs-unifiedid"       // create a cookie with this name
+            }
+        },{
+            name: "pubCommonId",
+            storage: {
+                type: "cookie",
+                name: "pbjs-pubCommonId"     // create a cookie with this name
+            }
+        }],
+        syncDelay: 5000       // 5 seconds after the first bidRequest()
+    }
+});
+{% endhighlight %}
+
+
+
+### Unified ID
+
+The Unified ID solution is provided by adsrvr.org and the Trade Desk.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId
+
+{: .alert.alert-warning :}
+For historic reasons, Unified ID is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding unifiedIdSystem to the gulp build command
+
+
+#### Unified ID Registration
+
+You can set up Unified ID in one of these ways:
+
+- Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
+- Utilize a [managed services](/prebid/managed.html) company who can do this for you.
+
+#### Unified ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"unifiedId"` | `"unifiedId"` |
+| params | Required for UnifiedId | Object | Details for UnifiedId initialization. | |
+| params.partner | Either this or url required for UnifiedId | String | This is the partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. | `"myTtdPid"` |
+| params.url | Required for UnifiedId if not using TradeDesk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing the Unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
+
+#### Unified ID Examples
+
+1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
+
+{: .alert.alert-warning :}
+Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
+the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this example.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "unifiedId",
+            params: {
+                url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
+            },
+            storage: {
+                type: "cookie",
+                name: "pbjs-unifiedid",       // create a cookie with this name
+                expires: 60                   // cookie can last for 60 days
+            }
+        }],
+        syncDelay: 3000              // 3 seconds after the first auction
+    }
+});
+{% endhighlight %}
+
+2) Publisher supports UnifiedID with a vendor other than Trade Desk and HTML5 local storage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "unifiedId",
+            params: {
+                url: "URL_TO_UNIFIED_ID_SERVER"
+            },
+            storage: {
+                type: "html5",
+                name: "pbjs-unifiedid"    // set localstorage with this name
+            }
+        }],
+        syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "unifiedId",
+            value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}
+        }]
+    }
+});
+{% endhighlight %}
+
 
 ## Adapters Supporting the User ID Sub-Modules
 
@@ -454,10 +639,14 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
-| PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
-| Unified ID | Trade Desk | bidRequest.userId.tdid | `"2222"` |
+| CriteoRTUS | Criteo | bidRequest.userId.criteortus | `"1111"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
-| ID5 ID | ID5 | bidRequest.userId.id5id | `"ID5-12345"` |
+| ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
+| IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
+| LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
+| Parrable ID | Parrable | bidRequest.userId.parrableid | `"eidVersion.encryptionKeyReference.encryptedValue"` |
+| PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
+| Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 
 For example, the adapter code might do something like:
 
@@ -483,21 +672,40 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                         "rtiPartner": "TDID"
                     }
                 }]
-            },
-            {
-                "source": "pubcommon",  // PubCommon ID
+            },{
+                "source": "pubcommon",
                 "uids": [{
                     "id":"11111111"
                 }]
             },
             {
-                "source": "id5id",      // ID5 ID
+                "source": "id5-sync.com",
                 "uids": [{
                     "id": "ID5-12345"
                 }]
-            }
-            ],
-            "digitrust": {              // DigiTrust
+            },
+            {
+                source: "parrable.com",
+                uids: [{
+                    id: "01.1563917337.test-eid"
+                }]
+            },{
+                "source": "identityLink",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+                "source": "criteo",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+                "source": "liveintent.com",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            }],
+            "digitrust": {              // DigiTrust is not in the eids section
                 "id": "11111111111",
                 "keyv": 4
             }
@@ -524,6 +732,10 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 ```
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
+
+## Passing UserIds to Google Ad Manager for targeting
+
+User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or to pass ahead in Google Exchange Bidding using ```userIdTargeting``` module. More details can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
 
 ## Further Reading
 
