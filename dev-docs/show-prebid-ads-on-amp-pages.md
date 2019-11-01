@@ -249,6 +249,16 @@ Available arguments for the `load-cookie.html` query string:
 | gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
 | gdpr_consent | optional | String | IAB CMP-formatted consent string | 
 
+### AMP RTC and GDPR
+
+The two Prebid Server RTC vendor strings 'prebidappnexus' and 'prebidrubicon'
+support passing GDPR consent to Prebid Server.
+
+The CONSENT_STRING macro will be populated if you've integrated with a CMP
+that supports amp-consent v2 -- custom CMP integration.
+
+If you're using a custom RTC callout, you'll need to add `gdpr_consent=CONSENT_STRING` to the list of parameters.
+
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:
 + Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
