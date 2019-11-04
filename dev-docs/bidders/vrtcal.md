@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Vrtcal Markets, Inc.
-description: Vrtcal Markets, Inc. Bid Adapter
+title: VRTCAL Markets, Inc.
+description: VRTCAL Markets, Inc. Bid Adapter
 hide: true
 media_ytpes: banner
 gdpr_supported: false
