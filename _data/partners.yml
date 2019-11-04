@@ -73,6 +73,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: Blockthrough
+  link: https://blockthrough.com/
+  imgURL: /assets/images/partners/community/Blockthrough-Logo.png
+  type: community
+
 - company: CHEQ
   link: https://www.cheq.ai/
   imgURL: /assets/images/partners/community/CHEQ_Logo.png
