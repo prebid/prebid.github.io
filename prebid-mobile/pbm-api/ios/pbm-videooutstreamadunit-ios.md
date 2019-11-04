@@ -23,7 +23,7 @@ Create a new Video Outstream Ad Unit associated with a Prebid Server configurati
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
-```VideoAdUnit(configId: String, size: CGSize(width: Int, height: Int), placement:Int)```
+```VideoAdUnit(configId: String, size: CGSize(width: Int, height: Int), placement:Enum)```
 
 **Parameters**
 
