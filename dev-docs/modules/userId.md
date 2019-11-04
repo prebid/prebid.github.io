@@ -359,8 +359,8 @@ To leverage the LiveIntent ID, you need to first set up a first-party cookie syn
 |`name`|Required | `String`|The name of this module.|`'liveIntentId'`|
 |`params`| Required|`Object`|Container of all module params.||
 |`params.publisherId`| Required|`String`| The unique identifier for each publisher.|`'12432415'`|
-|`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response |`'prebid'`|
-|`params.identifiersToResolve`|Optional|`Array[String]`|Used to define additional identifiers that you want to resolve to a LiveIntent ID.|`['my-id']`|
+|`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response.|`'prebid'`|
+|`params.identifiersToResolve`|Optional|`Array[String]`|Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
 |`params.url`| Optional|`String`|Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'//idx.my-domain.com'`|
 
 #### LiveIntent ID examples
