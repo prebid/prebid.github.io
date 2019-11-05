@@ -52,8 +52,8 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 `completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value.
 
-<div markdown="1" style="background-color: AntiqueWhite;">
 {% include alerts/alert_warning.html content="Ad Unit *User* keywords will be deprecated in favor of [targeting keywords](pbm-targeting-ios#user-keywords) for Prebid versions 1.2+. Support will continue for Ad Unit User Keywords as users migrate to targeting user keywords." %}
+
 
 ### addUserKeyword
 
