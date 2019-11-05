@@ -2200,13 +2200,12 @@ If you don't see that message, you can assume the config object is valid.
 
 ### pbjs.setBidderConfig(options)
 
-Configuration provided to the [`setConfig`](#module_pbjs.setConfig) function is
-globally available to all bidder adapters. This makes sense because
-most of these settings are global in nature.
+This function is similar to [`setConfig`](#module_pbjs.setConfig), but is designed to support certain bidder-specific scenarios.
 
-However, there are use cases where different bidders require
-different data, or where certain parameters apply only to a given
-bidder. This function supports these bidder-specific scenarios.
+Configuration provided through the [`setConfig`](#module_pbjs.setConfig) function is
+globally available to all bidder adapters. This makes sense because
+most of these settings are global in nature. However, there are use cases where different bidders require different data, or where certain parameters apply only to a given
+bidder. Use `setBidderConfig` when you need to support these cases.
 
 The page usage is:
 
