@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 title: Prebid Hosted Examples
-description: This section provides hosted examples of video, native, and multi-format ads with Prebid.js.
+description: This section provides hosted examples of basic, native, multi-format, and video ads with Prebid.js.
 sidebarType:
 ---
 
@@ -9,6 +9,13 @@ sidebarType:
 
 {{page.description}}
 
-  - [Prebid Video]({{site.baseurl}}/examples/video/index.html)
-  - [Prebid Native]({{site.baseurl}}/examples/native/index.html)
-  - [Prebid Mutli-Format]({{site.baseurl}}/examples/multi-format/index.html)
+## Prebid.js Examples
+
+- [Basic Example]({{site.baseurl}}/dev-docs/examples/basic-example.html)
+- [Prebid Native]({{site.baseurl}}/dev-docs/examples/native-ad-example.html)
+- [Prebid Mutli-Format]({{site.baseurl}}/dev-docs/examples/multi-format-example.html)
+
+
+## Prebid Video
+
+- [Prebid Video]({{site.baseurl}}/examples/video/index.html)
