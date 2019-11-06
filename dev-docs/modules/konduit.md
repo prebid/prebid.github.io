@@ -12,7 +12,7 @@ sidebarType : 1
 # Konduit Accelerate Module
 {:.no_toc}
 
-This module is required to apply [Konduit](http://konduit.me/)’s video acceleration optimization to a publisher’s existing Prebid setup. For instructions detailing how to add this module, please see below.
+The Konduit Acceleratemodule applies the [Konduit](http://konduit.me/)’s video acceleration optimization to a publisher’s existing Prebid setup. This optimization can reduce load times and increase ad starts. To install the module, follow the instructions below:
 
 
 ### Step 1: Prepare the base Prebid file
@@ -27,12 +27,12 @@ Build your Prebid.js package in one of two ways:
 
 - Insert the Konduit module code in your source code of the page.  
 - The module exposes the `pbjs.adServers.konduit.buildVastUrl` function to use.
-- The function should be provided a couple of input parameters including a bid to be accelerated (usually a winner bid) and Konduit parameters, see sample code below.
+- The function should be provided a couple of input parameters, including a bid to be accelerated (usually a winning bid) and Konduit parameters, see sample code below.
 
 
 ### Sample Code
 
-It usually makes sense to use the Konduit Module function call in the `bidsBackHandler` callback function.
+It is recommended to use the Konduit Module function call in the `bidsBackHandler` callback function.
 
 ```javascript
 pbjs.que.push(function() {
@@ -40,7 +40,7 @@ pbjs.que.push(function() {
   pbjs.requestBids({
     bidsBackHandler: function(bids) {
       var winnerBid = pbjs.getHighestCpmBids('videoAd')[0];
-      
+
       var vastTagUrl = pbjs.adServers.konduit.buildVastUrl({
         bid: winnerBid,
         params: {
