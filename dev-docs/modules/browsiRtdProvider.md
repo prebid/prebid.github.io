@@ -17,17 +17,22 @@ sidebarType : 1
 ## Overview
 
 The Browsi Viewability module provides viewability predictions for ad slots on the page.
-To use it, you'll need to work with [Browsi](https://gobrowsi.com) to get
+To use this module, you'll need to work with [Browsi](https://gobrowsi.com) to get
 an account and receive instructions on how to set up your pages and ad server.
 
-Here's how implementation works:
+Implementation works like this:
 
-1. Build the Browsi module into the Prebid.js package with `gulp build --modules=browsiRtdProvider&...`
-1. Use `setConfig` to instruct the browser to obtain the viewability data in parallel to the header bidding auction
+1. Build the Browsi module into the Prebid.js package with 
+
+```
+gulp build --modules=browsiRtdProvider&...
+```
+
+2. Use `setConfig` to instruct the browser to obtain the viewability data in parallel with the header bidding auction
 
 ## Configuration
 
-Config for this module is done as part of the `realTimeData.dataProviders` object:
+This module is configured as part of the `realTimeData.dataProviders` object:
 
 ```
     pbjs.setConfig({
@@ -35,7 +40,7 @@ Config for this module is done as part of the `realTimeData.dataProviders` objec
             dataProviders:[{          
                 "name": "browsi",
                 "params": {
-                    "url": "testUrl.com",   // get these values
+                    "url": "testUrl.com",   // get params values
                     "siteKey": "testKey",   // from Browsi
                     "pubKey": "testPub",    //
                     "keyName":"bv"          //
@@ -45,21 +50,17 @@ Config for this module is done as part of the `realTimeData.dataProviders` objec
     });
 ```    
 
-{: .alert.alert-info :}
-This module is the first use of the 'real time data' core module.
-Stay-tuned for more real time applications.
-
 Syntax details:
 
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| name  |String|real time data module name - `browsi`   |   | 
-| params  |Object   | |   |
-| params.siteKey  |String   |site key|   |
-| params.pubKey  |String   |publisher key|   |
-| params.url  |String   |server URL|   |
-| params.keyName  |String   |key value name| Optional. Defaults to 'bv'. |
+| name  | String | Real time data module name | Always 'browsi' | 
+| params  | Object   | |   |
+| params.siteKey  |String   |Site key|   |
+| params.pubKey  |String   |Publisher key|   |
+| params.url  |String   |Server URL|   |
+| params.keyName  |String   |Key value name| Optional. Defaults to 'bv'. |
 
 
 
