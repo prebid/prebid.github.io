@@ -68,7 +68,7 @@ of sub-objects. The table below has the options that are common across ID system
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
-| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Default is 30 for UnifiedId and 1825 for PubCommonID | `365` |
+| storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "id5id": "ID5-12345" }` |
 
@@ -146,38 +146,36 @@ DigiTrust parameters and usage. For more complete instructions please review the
 {% highlight javascript %}
 <script>
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "pubCommonId",
-            storage: {
-                type: "cookie",
-                name: "_pubCommonId",       // create a cookie with this name
-                expires: 1825               // expires in 5 years
-            },
-        {
-        name: "digitrust",
-        params: {
-            init: {
-                member: 'example_member_id',
-                site: 'example_site_id'
-            },
-            callback: function (digiTrustResult) {
-                if (digiTrustResult.success) {
-                    console.log('Success in Digitrust init', digiTrustResult.identity.id);
-                } else {
-                    console.error('Digitrust init failed');
-                }
-            }
+  userSync: {
+    userIds: [{
+      name: "pubCommonId",
+      storage: {
+        type: "cookie",
+        name: "_pubcid",       // create a cookie with this name
+        expires: 365           // expires in 1 years
+      }
+    }, {
+      name: "digitrust",
+      params: {
+        init: {
+          member: 'example_member_id',
+          site: 'example_site_id'
         },
-        storage: {
+        callback: function (digiTrustResult) {
+          if (digiTrustResult.success) {
+            console.log('Success in Digitrust init', digiTrustResult.identity.id);
+          } else {
+            console.error('Digitrust init failed');
+          }
+        }
+      },
+      storage: {
         type: "html5",
         name: "pbjsdigitrust",
         expires: 60
-        }
-    }
+      }
     }]
-    }
-});
+  }});
 </script>
 {% endhighlight %}
 
@@ -309,7 +307,8 @@ pbjs.setConfig({
             },
             storage: {
                 type: "html5",
-                name: "idl_env"    // set localstorage with this name
+                name: "idl_env",    // set localstorage with this name
+                expires: 30
             }
         }],
         syncDelay: 3000
@@ -319,20 +318,13 @@ pbjs.setConfig({
 
 ### LiveIntent ID
 
-LiveIntent ID solution provides a user identifier based on our graph which is driven by publisher email business (e.g. updates, newsletters, and subscriptions).
+LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, anonymized email hash in our graph that functions in cookie-challenged environments like mobile browsers.
 
-Add it to your Prebid.js package with:
+Add LiveIntent ID to your Prebid.js package with:
+
 
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
-
-It is possible, that depending on the `partner` & `publisherId` combination, the response contains segment ids which have been mapped against partner systems and their segments. For example, if LiveIntent has created a segmentId `999` which can be mapped to (`partner: test-partner`) `test-partner`'s segment, the response from LiveIntent's ID solution could look like:
-```
-{
-  "unifiedId": "T7JiRRvsRAmh88",
-  "segments": ["999"]
-}
-```
 
 The `request.userId.lipb` object would then look like
 ```
@@ -342,26 +334,27 @@ The `request.userId.lipb` object would then look like
 }
 ```
 
-Therefore, the adapters can then be implemented to use the `lipibid` as the identifier, and `segments` to which that identifier is associated with.
+The adapters can be implemented to use the lipibid as the identifier, and segments to which that identifier is associated with.
 
-#### Registering your own first party cookie space
+#### LiveIntent ID Registration
 
-In order for you to take advantage of the user id resolution in cookie-challenged environments, you need to sync your first party cookie universe with us. For further information please reach out to peoplebased@liveintent.com.
+To leverage the LiveIntent ID, you need to first set up a first-party cookie sync with LiveIntent. Please reach out to peoplebased@liveintent.com for more information.
+
 
 #### LiveIntent ID configuration
 
 |Param under userSync.userIds[]|Scope|Type|Description|Example|
 |---|:---:|:---:|---:|---:|
-|`name`|Required | `String`|The name of this module|`'liveIntentId'`|
-|`params`| Required|`Object`|Container of all module params||
-|`params.publisherId`| Required|`String`|The unique identifier of the publisher in question|`'12432415'`|
-|`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response |`'prebid'`|
-|`params.identifiersToResolve`|Optional|`Array[String]`|Additional identifiers that can be sent along with the id resolution request|`['my-id']`|
-|`params.url`| Optional|`String`|In case a publisher is running Prebid.js and can call LiveIntent's Identity Exchange endpoint withing it's own domain, this parameter can be used to change the default endpoint URL|`'//idx.my-domain.com'`|
+|`name`|Required | `String`|The name of this module.|`'liveIntentId'`|
+|`params`| Required|`Object`|Container of all module params.||
+|`params.publisherId`| Required|`String`| The unique identifier for each publisher.|`'12432415'`|
+|`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response.|`'prebid'`|
+|`params.identifiersToResolve`|Optional|`Array[String]`|Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
+|`params.url`| Optional|`String`|Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'//idx.my-domain.com'`|
 
-#### LiveIntent ID example
+#### LiveIntent ID examples
 
-The minimal setup would be as follows:
+1.To receive the LiveIntent ID, the setup looks like this.
 ```
 pbjs.setConfig({
     userSync: {
@@ -375,7 +368,7 @@ pbjs.setConfig({
 })
 ```
 
-If there are additional identifiers that LiveIntent could resolve, those can be added under the `identifiersToResolve` array in config params.
+2.If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add those under the `identifiersToResolve` array in the configuration parameters.
 ```
 pbjs.setConfig({
     userSync: {
@@ -390,21 +383,6 @@ pbjs.setConfig({
 })
 ```
 
-If there's a partner integration with LiveIntent, and partner specific data is to be returned and passed along in bid requests, the partner name can be set as `partner` in config params.
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "liveIntentId",
-            params: {
-              partner: "rubicon",
-              publisherId: "9896876",
-              identifiersToResolve: ["my-own-cookie"]
-            }
-        }]
-    }
-})
-```
 ### Parrable ID
 
 The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions.
@@ -479,8 +457,8 @@ pbjs.setConfig({
             name: "pubCommonId",
             storage: {
                 type: "cookie",
-                name: "_pubCommonId",       // create a cookie with this name
-                expires: 1825               // expires in 5 years
+                name: "_pubcid",         // create a cookie with this name
+                expires: 365             // expires in 1 years
             }
         }]
     }
@@ -499,13 +477,15 @@ pbjs.setConfig({
             },
             storage: {
                 type: "cookie",
-                name: "pbjs-unifiedid"       // create a cookie with this name
+                name: "pbjs-unifiedid",       // create a cookie with this name
+                expires: 60
             }
         },{
             name: "pubCommonId",
             storage: {
                 type: "cookie",
-                name: "pbjs-pubCommonId"     // create a cookie with this name
+                name: "_pubcid",     // create a cookie with this name
+                expires: 180
             }
         }],
         syncDelay: 5000       // 5 seconds after the first bidRequest()
@@ -585,7 +565,8 @@ pbjs.setConfig({
             },
             storage: {
                 type: "html5",
-                name: "pbjs-unifiedid"    // set localstorage with this name
+                name: "pbjs-unifiedid",    // set localstorage with this name
+                expires: 60
             }
         }],
         syncDelay: 3000
