@@ -1,0 +1,104 @@
+- company: Xandr
+  link: https://www.xandr.com/platform/
+  imgURL: /assets/images/partners/founders/xandr.png
+  type: founder
+  
+- company: Rubicon 
+  link: https://rubiconproject.com/header-bidding-for-publishers/
+  imgURL: /assets/images/partners/founders/rubicon.png
+  type: founder
+  
+- company: OpenX 
+  link: https://www.openx.com/
+  imgURL: /assets/images/partners/leader/openx.png
+  type: leader
+  
+- company: Pubmatic 
+  link: https://pubmatic.com/products/header-bidding/
+  imgURL: /assets/images/partners/leader/pubmatic.png
+  type: leader
+  
+- company: SpotX 
+  link: https://spotx.tv
+  imgURL: /assets/images/partners/leader/spotx_logo.png
+  type: leader
+
+- company: Criteo 
+  link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
+  imgURL: /assets/images/partners/tech/criteo.png
+  type: technology
+  
+- company: Datablocks 
+  link: https://datablocks.net/
+  imgURL: /assets/images/partners/tech/datablocks_logo.png
+  type: technology
+  
+- company: Marfeel 
+  link: https://www.marfeel.com/
+  imgURL: /assets/images/partners/tech/marfeel.png
+  type: technology
+  
+- company: Oath 
+  link: https://www.oath.com/advertising/platforms/
+  imgURL: /assets/images/partners/tech/oath.png
+  type: technology
+  
+- company: PubNative 
+  link: https://pubnative.net/
+  imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
+  type: technology
+
+- company: Sortable 
+  link: https://www.sortable.com/
+  imgURL: /assets/images/partners/tech/sortable.png
+  type: technology
+
+- company: StreamAMP 
+  link: https://streamamp.com/
+  imgURL: /assets/images/partners/tech/StreamAMP_logo.png
+  type: technology
+
+- company: CafeMedia 
+  link: http://www.cafemedia.com/
+  imgURL: /assets/images/partners/publisher/cafemedia.png
+  type: publisher
+
+- company: Mediavine
+  link: https://www.mediavine.com/
+  imgURL: /assets/images/partners/publisher/mediavine-sq-teal-navy-pn-RGB.png
+  type: publisher
+
+- company: News Corp
+  link: https://newscorp.com/
+  imgURL: /assets/images/partners/publisher/News_Corp_logo.png
+  type: publisher
+
+- company: Blockthrough
+  link: https://blockthrough.com/
+  imgURL: /assets/images/partners/community/Blockthrough-Logo.png
+  type: community
+
+- company: CHEQ
+  link: https://www.cheq.ai/
+  imgURL: /assets/images/partners/community/CHEQ_Logo.png
+  type: community
+
+- company: GoBrowsi
+  link: https://gobrowsi.com
+  imgURL: /assets/images/partners/community/Browsi-Logo.png
+  type: community
+
+- company: ID5
+  link: https://id5.io
+  imgURL: /assets/images/partners/community/ID5-Logo.png
+  type: community
+
+- company: Publica
+  link: https://getpublica.com
+  imgURL: /assets/images/partners/community/Publica-Logo.png
+  type: community
+
+- company: PubWise
+  link: https://pubwise.io
+  imgURL: /assets/images/partners/community/Pubwise-logo.png
+  type: community

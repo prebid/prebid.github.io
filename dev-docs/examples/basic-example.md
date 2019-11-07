@@ -3,11 +3,11 @@ layout: example
 title: Basic Example
 left_nav_override: Examples
 description: Basic Prebid.js Example
-top_nav_section: dev_docs
-nav_section: quick-start
+sidebarType: 1
+
 
 about:
-- Asynchronous Prebid.js integration with single DFP ad slot
+- Asynchronous Prebid.js integration with single Google Ad Manager ad slot
 - Default keyword targeting setup (<a href="/dev-docs/publisher-api-reference.html#bidderSettingsDefault">reference</a>)
 - Default price granularity
 

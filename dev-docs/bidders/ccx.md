@@ -2,17 +2,13 @@
 layout: bidder
 title: Clickonometrics
 description: Prebid Clickonometrics Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
-biddercode: cxx
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
+biddercode: ccx
 media_types: video
 ---
 
 
-### bid params
+### Bid Params
 
 #### Common params (banner, video)
 

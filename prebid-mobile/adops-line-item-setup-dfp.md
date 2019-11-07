@@ -1,39 +1,38 @@
 ---
-layout: page
-title: Setup Line Items for DFP
-description: Setup Line Items for DFP
+layout: page_v2
+title: Setup Line Items for Google Ad Manager
+description: Setup Line Items for Google Ad Manager
 pid: 0
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
+sidebarType: 2
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Step by Step Line Item Setup for DFP
+
+# Step by Step Line Item Setup for Google Ad Manager
 {: .no_toc}
 
-This page describes step by step how to set up Prebid Mobile line items for DFP to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
+This page describes step by step how to set up Prebid Mobile line items for Google Ad Manager to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 * TOC
 {:toc }
 
 ## Step 1. Add a Line Item
 
-In DFP, create a new order with a $0.50 line item.
+In Google Ad Manager, create a new order with a $0.50 line item.
 
 Enter the inventory size of your mobile ad slots. Make sure to specify all the inventory sizes on your app.
 
 Because header bidding partners return prices, set the Line Item **Type** to **Price priority** to enable them to compete on price.
 
-{: .pb-img.pb-sm-img :}
-![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png)
+![Price Priority]({{ site.github.url }}/assets/images/demo-setup/price-priority.png){: .pb-sm-img :}
 
 <br>
 
 Set the **Rate** to $0.50 so that this line item will compete with your other demand sources at $0.50 ECPM.
 
-{: .pb-img.pb-sm-img :}
-![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png)
+![Rate]({{ site.github.url }}/assets/images/demo-setup/rate.png){: .pb-sm-img :}
 
 <br>
 
@@ -41,24 +40,21 @@ Set **Display Creatives** to *One or More* since we'll have one or more creative
 
 Set **Rotate Creatives** to *Evenly*.
 
-{: .pb-img.pb-md-img :}
-![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png)
+![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png){: .pb-md-img :}
 
 Choose the inventory that you want to run header bidding on.
 
-By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
+By default, `Prebid Mobile` will send the highest bid price to Google Ad Manager using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
 
 You'll need to coordinate with your development team on what key-values you want to target.
 
 For instance, this line item will capture the bids in the range from $0.50 to $1 by targeting the keyword `hb_pb` set to `0.50` in the **Key-values** section.
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png)
+![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-line-item-setup-dfp/dfp5.png){: .pb-md-img :}
 
 **You must enter the value to two decimal places, e.g., `1.50`.  If you don't use two decimal places, header bidding will not work.**
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png)
+![Key-values]({{ site.github.url }}/assets/images/demo-setup/key-values.png){: .pb-md-img :}
 
 <br>
 
@@ -83,6 +79,7 @@ You can always get the latest version of the creative code below from [the Mobil
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+  ucTagData.hbPb = "%%PATTERN:hb_pb%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
@@ -145,4 +142,4 @@ Let's go into each of them to update some settings.  For each duplicated line it
 Repeat for your other line items until you have the pricing granularity level you want.
 
 
-</div>
+

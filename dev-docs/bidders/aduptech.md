@@ -2,12 +2,8 @@
 layout: bidder
 title: Ad Up Technology
 description: Prebid Bidder Adapter for Ad Up Technology
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: aduptech
-biddercode_longer_than_12: false
-prebid_1_0_supported : false
 media_types: banner
 gdpr_supported: true
 ---
