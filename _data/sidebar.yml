@@ -671,8 +671,24 @@ prebid.github.io/_data/sidebar.yml
   subgroup: 1
 
 - sbSecId: 2
-  title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-interstitialadunit-ios.html
+  title: Banner Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videoadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -753,8 +769,24 @@ prebid.github.io/_data/sidebar.yml
   subgroup: 2
 
 - sbSecId: 2
-  title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-interstitialadunit-android.html
+  title: Banner Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Video Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-videoadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Video Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-videointerstitialadunit-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
