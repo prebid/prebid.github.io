@@ -12,7 +12,7 @@ media_types: video
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
+| `aid` | required | The source ID from | `350975` | `integer` |
 
 
 
