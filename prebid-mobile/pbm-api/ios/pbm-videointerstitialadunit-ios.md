@@ -8,121 +8,108 @@ sidebarType: 2
 ---
 # VideoInterstitialAdUnit
 
-The VideoInterstitialAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the VideoInterstitialAdUnit object to create and configure a video interstitial ad unit in your app.
+Create a new Video Outstream Ad Unit associated with a Prebid Server configuration ID and a video size.
 
-## Object
-
-### VideoInterstitialAdUnit
-
-Create a new Video Interstitial Ad Unit associated with a Prebid Server configuration ID.
+Currently Google Ad Manager is the only supported ad server. Subsequent releases will provide support for additional ad servers.
+{: .alert .alert-info}
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
-
-```
-VideoInterstitialAdUnit(configId: String, size: CGSize(width: Int, height: Int))
-```
+```VideoInterstitialAdUnit(configId: String, size: CGSize(width: Int, height: Int), type:Enum)```
 
 **Parameters**
 
-`configId`: Prebid Server configuration ID.
+`configId(String)`: Prebid Server configuration ID
 
-`size`: Size of the video ad unit in Device Independent Pixels (DIPs)
+`size (CGSize)`: Width and height of the video ad unit
 
-* `width`: Width in DIPs
-* `height`: Height in DIPs
-
-`placement`: OpenRTB Placement integer (one of values 2, 3 or 4 for standard outstream)
+`type:Enum`: OpenRTB Placement Type
 
 
-## Examples
+#### CGSize
 
-**Create an VideoInterstitialAdUnit**
+Size of video ad unit
+
+**Parameters**
+
+`width`: Width of video ad unit in DIPs
+
+`height`: Height of video ad unit in DIPs
+
+
+#### type
+
+OpenRTB Placement Type represented as an enumeration of values:
+
+**Parameters**
+
+* `inBanner` is transformed into OpenRTB value 2 to bid adapters
+* `inArticle` is transformed into OpenRTB value 3 to bid adapters
+* `inFeed` is transformed into OpenRTB value 4 to bid adapters
+
+
+
+# videoAd: Video Events
+
+## videoAd
+
+* Video event listeners
+
+`videoAd (event: PBVideoAdEvent)`: event to listen to
+
+**Parameters**
+
+Events: one of the below event types
+* AdLoadSuccess
+* AdLoadFail
+* AdClicked
+* AdStarted
+* AdDidReachEnd
+
+
+
+See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for addtional parameters and methods.
+
+---
+
+## Example
+
 
 **Google Mobile Ads**
+Import the GoogleMobileAds from the [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the VideoAdUnit
 
 **Swift**
 ```    
-func loadDFPInterstitial(adUnit : AdUnit){
-        print("Google Mobile Ads SDK version: \(DFPRequest.sdkVersion())")
+    var adUnit: AdUnit!
+    var amInterstitial: DFPInterstitial!
 
-        let interstitialUnit = InterstitialAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", minWidthPerc: 50, minHeightPerc: 70)
-        dfpInterstitial = DFPInterstitial(adUnitID: "/19968336/PrebidMobileValidator_Interstitial")
-        dfpInterstitial.delegate = self
-        request.testDevices = [ kGADSimulatorID]
-        interstitialUnit.fetchDemand(adObject:self.request) { (ResultCode) in
+    func setupAndLoadAMInterstitialVAST() {
 
-            print("Prebid demand fetch for DFP \(ResultCode)")
-            self.dfpInterstitial!.load(self.request)
+        setupPBInterstitialVAST()
+        setupAMInterstitialVAST()
+        
+        loadInterstitial()
+    }
+
+    func setupPBInterstitialVAST() {
+        Prebid.shared.prebidServerHost = .Rubicon
+        Prebid.shared.prebidServerAccountId = "accountId"
+        adUnit = VideoInterstitialAdUnit(configId: "configId", size: CGSize(width: 300, height: 250), type: .inBanner)
+    }
+
+    func setupAMInterstitialVAST() {
+        amInterstitial = DFPInterstitial(adUnitID: "/5300653/test_adunit_vast_pavliuchyk")
+    }
+
+    func loadInterstitial() {
+        
+        adUnit.fetchDemand(adObject: self.request) { (resultCode: ResultCode) in
+            print("Prebid demand fetch for DFP \(resultCode.name())")
         }
     }
 ```
 
-**Objective-C**
 
-```
--(void) loadDFPInterstitial {
-
-    self.interstitialUnit = [[InterstitialAdUnit alloc] initWithConfigId:@"625c6125-f19e-4d5b-95c5-55501526b2a4" minWidthPerc:50 minHeightPerc:70];
-    self.dfpInterstitial = [[DFPInterstitial alloc] initWithAdUnitID:@"/19968336/PrebidMobileValidator_Interstitial"];
-    self.dfpInterstitial.delegate = self;
-    self.request = [[DFPRequest alloc] init];
-    self.request.testDevices = @[kDFPSimulatorID];
-    [self.interstitialUnit fetchDemandWithAdObject:self.request completion:^(enum ResultCode result) {
-        NSLog(@"Prebid demand result %ld", (long)result);
-        [self.dfpInterstitial loadRequest:self.request];
-    }];
-}
-```
----
-**MoPub**
-
-**Swift**
-
-
-```
-    func loadMoPubInterstitial(adUnit: AdUnit){
-
-        let interstitialUnit = InterstitialAdUnit(configId: "625c6125-f19e-4d5b-95c5-55501526b2a4")
-
-        let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "2829868d308643edbec0795977f17437")
-        sdkConfig.globalMediationSettings = []
-
-        MoPub.sharedInstance().initializeSdk(with: sdkConfig) {
-
-        }
-
-        self.mopubInterstitial = MPInterstitialAdController(forAdUnitId: "2829868d308643edbec0795977f17437")
-        self.mopubInterstitial.delegate = self
-
-        // Do any additional setup after loading the view, typically from a nib.
-        interstitialUnit.fetchDemand(adObject: mopubInterstitial!){ (ResultCode) in
-            print("Prebid demand fetch for mopub \(ResultCode)")
-
-            self.mopubInterstitial.loadAd()
-        }
-
-    }
-```
-
-**Objective-C**
-
-```
--(void) loadMoPubInterstitial {
-
-    self.interstitialUnit = [[InterstitialAdUnit alloc] initWithConfigId:@"625c6125-f19e-4d5b-95c5-55501526b2a4"];
-    MPMoPubConfiguration *configuration = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"2829868d308643edbec0795977f17437"];
-    [[MoPub sharedInstance] initializeSdkWithConfiguration:configuration completion:nil];
-    self.mopubInterstitial = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"2829868d308643edbec0795977f17437"];
-    self.mopubInterstitial.delegate = self;
-    [self.interstitialUnit fetchDemandWithAdObject:self.mopubInterstitial completion:^(enum ResultCode result) {
-        NSLog(@"Prebid demand result %ld", (long)result);
-        [self.mopubInterstitial loadAd];
-    }];
-
-
-}
-```
 ## Related Topics
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)

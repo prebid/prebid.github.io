@@ -10,7 +10,10 @@ sidebarType: 2
 # VideoAdUnit: AdUnit
 {: .notoc}
 
-The VideoAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the VideoAdUnit object to create and configure a video outstream ad unit in your app.  '
+The VideoAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the VideoAdUnit object to create and configure a video outstream ad unit in your app.
+
+Currently Google Ad Manager is the only supported ad server. Subsequent releases will provide support for additional ad servers.
+{: .alert .alert-info}
 
 - TOC
  {:toc}
@@ -23,13 +26,15 @@ Create a new Video Outstream Ad Unit associated with a Prebid Server configurati
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
-```VideoAdUnit(configId: String, size: CGSize(width: Int, height: Int), placement:Enum)```
+```VideoAdUnit(configId: String, size: CGSize(width: Int, height: Int), type:Enum)```
 
 **Parameters**
 
-`configId (String)`: Prebid Server configuration ID
+`configId(String)`: Prebid Server configuration ID
 
 `size (CGSize)`: Width and height of the video ad unit
+
+`type:Enum`: OpenRTB Placement Type
 
 
 #### CGSize
@@ -42,7 +47,22 @@ Size of video ad unit
 
 `height`: Height of video ad unit in DIPs
 
-### videoAd
+
+#### type
+
+OpenRTB Placement Type represented as an enumeration of values:
+
+**Parameters**
+
+* `inBanner` is transformed into OpenRTB value 2 to bid adapters
+* `inArticle` is transformed into OpenRTB value 3 to bid adapters
+* `inFeed` is transformed into OpenRTB value 4 to bid adapters
+
+
+
+# videoAd: Video Events
+
+## videoAd
 
 * Video event listeners
 
@@ -63,120 +83,56 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 ---
 
-## Examples
+## Example
 
-**Create a BannerAdUnit**
-```        
-let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
-```
-**Add additional ad sizes**
 
-```
-bannerUnit.addAdditionalSizes(sizes: CGSize(width: 320, height: 50))
-```
-Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and display creatives.
 
 **Google Mobile Ads**
 
-Import the GoogleMobileAds from the [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the BannerAdUnit
+Import the GoogleMobileAds from the [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the VideoAdUnit
 
 **Swift**
 ```
-func loadDFPBanner(bannerUnit : AdUnit){
-        print("Google Mobile Ads SDK version: \(DFPRequest.sdkVersion())")
-        dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
-        dfpBanner.adUnitID = "/19968336/PrebidMobileValidator_Banner_All_Sizes"
-        dfpBanner.rootViewController = self
-        dfpBanner.delegate = self
-        dfpBanner.backgroundColor = .red
-        appBannerView.addSubview(dfpBanner)
-        request.testDevices = [ kGADSimulatorID,"cc7ca766f86b43ab6cdc92bed424069b"]
+    var amBanner: DFPBannerView!
+    var adUnit: AdUnit!
 
-        bannerUnit.fetchDemand(adObject:self.request) { (ResultCode) in
-            print("Prebid demand fetch for Google Ad Manager \(ResultCode.name())")
-            self.dfpBanner!.load(self.request)
+    func setupAndLoadAMBannerVAST() {
+        
+        setupPBBannerVAST()
+        
+        setupAMBannerVAST()
+
+        loadBanner()
+    }
+    
+    func setupPBBannerVAST() {
+        
+        Prebid.shared.prebidServerHost = .Rubicon
+        Prebid.shared.prebidServerAccountId = "accountId"
+        
+        adUnit = VideoAdUnit(configId: "configId", size: CGSize(width: 300, height: 250), type: .inBanner)
+    }
+
+    func setupAMBannerVAST() {
+        setupAMBanner(id: "/5300653/test_adunit_vast_pavliuchyk")
+    }
+
+    func setupAMBanner(id: String) {
+        amBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
+        amBanner.adUnitID = id
+    }
+
+    func loadBanner() {
+
+        adUnit.fetchDemand(adObject: self.request) { [weak self] (resultCode: ResultCode) in
+            print("Prebid demand fetch for DFP \(resultCode.name())")
         }
     }
-```
-**Objective-C**
 
 ```
--(void) loadDFPBanner {
-
-    self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
-    [self.bannerUnit setAutoRefreshMillisWithTime:35000];
-    self.dfpView = [[DFPBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
-    self.dfpView.rootViewController = self;
-    self.dfpView.adUnitID = @"/19968336/PrebidMobileValidator_Banner_All_Sizes";
-    self.dfpView.delegate = self;
-    [self.bannerView addSubview:self.dfpView];
-    self.dfpView.backgroundColor = [UIColor redColor];
-    self.request = [[DFPRequest alloc] init];
-    self.request.testDevices = @[kDFPSimulatorID];
-
-    [self.bannerUnit fetchDemandWithAdObject:self.request completion:^(enum ResultCode result) {
-        NSLog(@"Prebid demand result %ld", (long)result);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.dfpView loadRequest:self.request];
-        });
-    }];
-}
-```
 
 
-**MoPub**
 
-Import MoPub from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) into the UIViewController displaying the BannerAdUnit
-
-**Swift**
-```
-func loadMoPubBanner(bannerUnit: AdUnit){
-
-        let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "a935eac11acd416f92640411234fbba6")
-        sdkConfig.globalMediationSettings = []
-
-        MoPub.sharedInstance().initializeSdk(with: sdkConfig) {
-
-        }
-
-        mopubBanner = MPAdView(adUnitId: "a935eac11acd416f92640411234fbba6", size: CGSize(width: 300, height: 250))
-        mopubBanner!.delegate = self
-
-        appBannerView.addSubview(mopubBanner!)
-
-        // Do any additional setup after loading the view, typically from a nib.
-        bannerUnit.fetchDemand(adObject: mopubBanner!){ (ResultCode) in
-            print("Prebid demand fetch for mopub \(ResultCode)")
-
-            self.mopubBanner!.loadAd()
-        }
-
-    }
-```
-
-**Objective-C**
-
-```
--(void) loadMoPubBanner {
-
-    MPMoPubConfiguration *configuration = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"a935eac11acd416f92640411234fbba6"];
-
-    [[MoPub sharedInstance] initializeSdkWithConfiguration:configuration completion:^{
-
-    }];
-    self.mopubAdView = [[MPAdView alloc] initWithAdUnitId:@"a935eac11acd416f92640411234fbba6" size:CGSizeMake(300, 250)];
-    self.mopubAdView.delegate = self;
-
-    [self.bannerView addSubview:self.mopubAdView];
-
-    self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self.bannerUnit fetchDemandWithAdObject:self.mopubAdView completion:^(enum ResultCode result) {         
-        NSLog(@"Prebid demand result %ld", (long)result);
-        [self.mopubAdView loadAd];
-    }];
-}
-```
 
 ## Related Topics
 
