@@ -4,7 +4,8 @@ title: ViewDeos DX
 description: Prebid ViewDeos Bidder Adaptor
 hide: true
 biddercode: viewdeosDX
-media_types: video
+media_types: banner,video
+gdpr_supported: true
 ---
 
 ### Bid params
