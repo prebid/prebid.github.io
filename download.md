@@ -413,6 +413,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="yieldone" class="analytics-check-box"> Platform One Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
     </label>
   </div>
@@ -439,7 +447,7 @@ Note: If you receive an error during download you most likely selected a configu
 <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="criteortusIdSystem" class="bidder-check-box"> User ID: Criteo RTUS ID</label>
+<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>

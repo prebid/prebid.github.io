@@ -29,7 +29,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | [Prebid Manager](http://prebidmanager.com/) | Free trial and free up to a certain volume. See [pricing](http://prebidmanager.com/#pricing) | [Website](http://prebidmanager.com/) |
 | PubWise                                                          | Free & Paid, see [pricing](https://pubwise.io/pricing/)  | [Website](https://pubwise.io/pubwise/) |
 | PulsePoint                                                       | Contact vendor | [Website](https://www.pulsepoint.com/) |
-| RealVu                                                           | Free  | [Website](https://www.realvu.com/rvaa/) |
+| RealVu                                                           | Contact vendor | [Website](https://www.realvu.com/rvaa/) |
 | Rivr Analytics                                                   | Contact vendor | [Website](https://www.rivr.ai/)|
 | Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) |
 | Scaleable.ai Analytics                                           | Free & Paid | [Website](https://scaleable.ai) |
@@ -38,6 +38,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Sovrn | <a href="https://www.sovrn.com/contact/">Contact vendor</a> | [Website](https://www.sovrn.com/analytics/)|
 | STAQ | <a href="https://www.staq.com/contact">Contact vendor</a> | [Website](https://www.staq.com/)|
 | Vuble                                                            | Contact vendor | [Website](https://vuble.tv/us/prebid/) |
+| Yieldone                                                         | Contact vendor | [Website](https://www.platform-one.co.jp/) |
 | YuktaMedia Analytics                                             | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) | 
 
 None of these analytics options are endorsed or supported by Prebid.org.

@@ -52,8 +52,8 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 `completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value.
 
-<div markdown="1" style="background-color: AntiqueWhite;">
 {% include alerts/alert_warning.html content="Ad Unit *User* keywords will be deprecated in favor of [targeting keywords](pbm-targeting-ios#user-keywords) for Prebid versions 1.2+. Support will continue for Ad Unit User Keywords as users migrate to targeting user keywords." %}
+
 
 ### addUserKeyword
 
@@ -168,8 +168,10 @@ func clearContextData()
 **fetchDemand**
 
 **Swift**
-```
 
+
+<div>
+<pre class="pb-code-hl"><code>
 
  func loadDFPBanner(bannerUnit : AdUnit){
 
@@ -188,7 +190,8 @@ func clearContextData()
         dfpBanner.load(self.request)
     }
 }
-```
+</code></pre></div>
+
 **Objective-C**
 
 ```
@@ -265,3 +268,5 @@ bannerAdUnit.addContextData(key: "adunitContextDataKey1", value: "adunitContextD
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
+
+

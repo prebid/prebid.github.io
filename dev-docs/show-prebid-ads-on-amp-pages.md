@@ -233,7 +233,7 @@ Else if you're utilizing Rubicon Project's managed service, there's an extra par
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://PROVIDED_BY_RUBICON/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:RUBICON_ACCOUNT_ID">
+  src="https://PROVIDED_BY_RUBICON/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:RUBICON_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
@@ -248,6 +248,16 @@ Available arguments for the `load-cookie.html` query string:
 | args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie-sync call. The attribute and value will be quoted by the system when appropriate. |
 | gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
 | gdpr_consent | optional | String | IAB CMP-formatted consent string | 
+
+### AMP RTC and GDPR
+
+The two Prebid Server RTC vendor strings 'prebidappnexus' and 'prebidrubicon'
+support passing GDPR consent to Prebid Server.
+
+The CONSENT_STRING macro will be populated if you've integrated with a CMP
+that supports amp-consent v2 -- custom CMP integration.
+
+If you're using a custom RTC callout, you'll need to add `gdpr_consent=CONSENT_STRING` to the list of parameters.
 
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:
