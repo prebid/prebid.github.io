@@ -168,8 +168,10 @@ func clearContextData()
 **fetchDemand**
 
 **Swift**
-```
 
+
+<div>
+<pre class="pb-code-hl"><code>
 
  func loadDFPBanner(bannerUnit : AdUnit){
 
@@ -188,7 +190,8 @@ func clearContextData()
         dfpBanner.load(self.request)
     }
 }
-```
+</code></pre></div>
+
 **Objective-C**
 
 ```
@@ -265,3 +268,5 @@ bannerAdUnit.addContextData(key: "adunitContextDataKey1", value: "adunitContextD
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
+
+
