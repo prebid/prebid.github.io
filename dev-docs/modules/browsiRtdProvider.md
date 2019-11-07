@@ -22,13 +22,13 @@ an account and receive instructions on how to set up your pages and ad server.
 
 Implementation works like this:
 
-1. Build the Browsi module into the Prebid.js package with 
+ 1) Build the Browsi module into the Prebid.js package with:
 
 ```
 gulp build --modules=browsiRtdProvider&...
 ```
 
-2. Use `setConfig` to instruct the browser to obtain the viewability data in parallel with the header bidding auction
+2) Use `setConfig` to instruct the browser to obtain the viewability data in parallel with the header bidding auction
 
 ## Configuration
 
