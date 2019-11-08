@@ -33,8 +33,6 @@ header:
   #color2: "#673051"
   trianglify: false
   
-# highlights
-highlighter: rouge
 
 # google analytics
 analytics:
