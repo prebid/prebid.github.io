@@ -51,8 +51,12 @@ If long-form video will be supported ensure the bidder has the following:
 |TypedBid.BidVideo.Duration | int | Ad duration in seconds|
 |TypedBid.bid.Price | float | Bid price|
 
-Note: `bid.bidVideo.PrimaryCategory` or `TypedBid.bid.Cat` should be specified.
-To learn more about IAB categories, refer to this convenience link (not the final official definition): [IAB categories](https://adtagmacros.com/list-of-iab-categories-for-advertisement/)
+{% capture alertNote %}
+`bid.bidVideo.PrimaryCategory` or `TypedBid.bid.Cat` should be specified.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=alertNote %}
+To learn more about IAB categories, refer site provided by adtagmacros.com: [IAB categories](https://adtagmacros.com/list-of-iab-categories-for-advertisement/)
 
 ## Test Your Bidder
 
