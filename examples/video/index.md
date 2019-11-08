@@ -47,4 +47,4 @@ The following examples are available:
 
 ## Long-Form (Ad Pods)
 
-  - [Freehweel](/examples/video/long-form/pb-ve-lf-freewheel.html)
+  - [Freewheel](/examples/video/long-form/pb-ve-lf-freewheel.html)
