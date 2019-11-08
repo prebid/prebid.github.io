@@ -7,6 +7,11 @@ title: Prebid Server | Developers | Adding a New Bidder
 
 # Adding a New Bidder
 
+{: .no_toc}
+
+* TOC
+{:toc }
+
 This document describes how to add a new Bidder to Prebid Server. Bidders are responsible for reaching out to your Server to fetch Bids.
 
 **NOTE**: To make everyone's lives easier, Bidders are expected to make Net bids (e.g. "If this ad wins, what will the publisher make?), not Gross ones.
