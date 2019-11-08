@@ -18,7 +18,7 @@ This name must be unique. Existing BidderNames can be found [here](https://githu
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
-## Define your Bidder Params
+## Define Your Bidder Params
 
 Bidders may define their own APIs for Publishers pass custom values. It is _strongly encouraged_ that these not
 duplicate values already present in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf).
@@ -27,7 +27,7 @@ Publishers will send values for these parameters in `request.imp[i].ext.{bidder}
 [the Auction endpoint](../endpoints/openrtb2/auction.html). Prebid Server will preprocess these so that
 your bidder will access them at `request.imp[i].ext.bidder`--regardless of what your `{bidder}` name is.
 
-## Implement your Bidder
+## Implement Your Bidder
 
 Bidder implementations are scattered throughout several files.
 
@@ -39,6 +39,20 @@ Bidder implementations are scattered throughout several files.
 - `static/bidder-info/{bidder}.yaml`: contains metadata (e.g. contact email, platform & media type support) about the adapter
 
 Bidder implementations may assume that any params have already been validated against the defined json-schema.
+
+## Long-Form Video Support
+If long-form video will be supported ensure the bidder has the following:
+
+{: .table .table-bordered .table-striped }
+|Field          |Type                           |Description                       
+|----------------|-------------------------------|-----------------------------|
+|bid.bidVideo.PrimaryCategory | string | The category for the bid. This should be able to be translated to Primary ad server format|           
+|TypedBid.bid.Cat | []string | The category for the bid. Should be an array with length 1 containing the value in IAB format|            
+|TypedBid.BidVideo.Duration | int | Ad duration in seconds|
+|TypedBid.bid.Price | float | Bid price|
+
+Note: `bid.bidVideo.PrimaryCategory` or `TypedBid.bid.Cat` should be specified.
+To learn more about IAB categories, refer to this convenience link (not the final official definition): [IAB categories](https://adtagmacros.com/list-of-iab-categories-for-advertisement/)
 
 ## Test Your Bidder
 
