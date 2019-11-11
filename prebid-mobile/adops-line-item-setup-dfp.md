@@ -139,7 +139,7 @@ Let's go into each of them to update some settings.  For each duplicated line it
 
 4.  (Optional) Set the start time to *Immediate* so you don't have to wait.
 
-Repeat for your other line items until you have the pricing granularity level you want.
+Repeat for your other line items until you have the pricing granularity level you want. To automate this process you can use [PubMonkey Chrome Extension](https://chrome.google.com/webstore/detail/pubmonkey/cjbdhopmleoleednpeaknmmbepfkhaml?hl=en).
 
 
 
