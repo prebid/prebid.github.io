@@ -67,6 +67,6 @@ You can always get the latest version of the creative code below from [the Mobil
 
 ## Step 3. Duplicate line items
 
-Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting.
+Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting.  To automate this process you can use [PubMonkey Chrome Extension](https://chrome.google.com/webstore/detail/pubmonkey/cjbdhopmleoleednpeaknmmbepfkhaml?hl=en).
 
 
