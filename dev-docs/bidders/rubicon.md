@@ -60,17 +60,17 @@ var videoAdUnit = {
         video: {
             context: 'instream',
             playerSize: [640, 480],
-            mimes: ['video/mp4', 'video/x-ms-wmv']
-            protocols: [2,5],
-            maxduration:30,
-            linearity: 1,
-            api: [2]
+            mimes: ['video/mp4', 'video/x-ms-wmv'] // you must review all video
+            protocols: [2,3,5,6],                  // parameters to ensure validity
+            api: [2],                              // for your player and DSPs
+            maxduration:30,          
+            linearity: 1
         }
     },
     bids: [{
-        bidder: 'rubicon',
+        bidder: 'rubicon',                         // replace bidders
         params: {
-            accountId: '7780',
+            accountId: '7780',                     // and params
             siteId: '87184',
             zoneId: '413290',
             video: {
@@ -139,12 +139,11 @@ pbjs.setConfig({
 
 <a name="rubicon-revenue-type"></a>
 
-2) The Rubicon Exchange defines whether bids are 'net' or 'gross', but doesn't
-tell the outside world which is in use.
-The Rubicon adapter reports the revenue type as 'gross' by default before 2.35 and 'net' by default in 2.35 and later, as the vast majority of accounts are net, and all new accounts are net.
-However, it's important to note that what the adapter reports is not directly related to the exchange setting.
-If you're a publisher who has set your Rubicon revenue type to 'gross' with your Rubicon account team,
-and if you care that the adapter is aligned to that reality, you can override what the adapter reports to Prebid.js with:
+2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for Rubicon Project clients to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+
+For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net). 
+
+It’s important to note that what the Rubicon Prebid bid adapter reports is not directly related to the setting with the Rubicon Project exchange. If you are a publisher who has set your Rubicon exchange revenue type set to ‘gross’ and you'd like the Rubicon bid adapter to also report 'gross', you can change the 2.35+ default 'net' setting in Prebid.js with:
 
 ```
 pbjs.setConfig({ rubicon: {netRevenue: false} });

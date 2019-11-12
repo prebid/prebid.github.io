@@ -3,6 +3,8 @@ layout: bidder
 title: Cedato
 description: Prebid Cedato Bidder Adapter
 top_nav_section: dev_docs
+media_types: banner, video
+gdpr_supported: true
 nav_section: reference
 hide: true
 biddercode: cedato
