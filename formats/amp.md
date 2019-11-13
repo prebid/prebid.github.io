@@ -6,7 +6,7 @@ sidebarType: 6
 ---
 
 
-# Accelerated Moble Pages (AMP) Support
+# Accelerated Mobile Pages (AMP) Support
 
 The [AMP Project](https://ampproject.org) speeds up web pages on mobile devices,
 but also restricts header bidding wrappers like Prebid.js. Instead, AMP supports a method of header bidding called [Real Time Configuration](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)(RTC), which is implemented by Prebid Server.
