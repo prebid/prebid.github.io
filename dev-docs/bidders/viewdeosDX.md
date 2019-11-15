@@ -13,7 +13,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from | `350975` | `integer` |
+| `aid` | required | The source ID from member zone | `350975` | `integer` |
 
 
 
