@@ -2,63 +2,63 @@
   link: https://www.xandr.com/platform/
   imgURL: /assets/images/partners/founders/xandr.png
   type: founder
-  
-- company: Rubicon 
+
+- company: Rubicon
   link: https://rubiconproject.com/header-bidding-for-publishers/
   imgURL: /assets/images/partners/founders/rubicon.png
   type: founder
-  
-- company: OpenX 
+
+- company: OpenX
   link: https://www.openx.com/
   imgURL: /assets/images/partners/leader/openx.png
   type: leader
-  
-- company: Pubmatic 
+
+- company: Pubmatic
   link: https://pubmatic.com/products/header-bidding/
   imgURL: /assets/images/partners/leader/pubmatic.png
   type: leader
-  
-- company: SpotX 
+
+- company: SpotX
   link: https://spotx.tv
   imgURL: /assets/images/partners/leader/spotx_logo.png
   type: leader
 
-- company: Criteo 
+- company: Criteo
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
   type: technology
-  
-- company: Datablocks 
+
+- company: Datablocks
   link: https://datablocks.net/
   imgURL: /assets/images/partners/tech/datablocks_logo.png
   type: technology
-  
-- company: Marfeel 
+
+- company: Marfeel
   link: https://www.marfeel.com/
   imgURL: /assets/images/partners/tech/marfeel.png
   type: technology
-  
-- company: Oath 
+
+- company: Oath
   link: https://www.oath.com/advertising/platforms/
   imgURL: /assets/images/partners/tech/oath.png
   type: technology
-  
-- company: PubNative 
+
+- company: PubNative
   link: https://pubnative.net/
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
   type: technology
 
-- company: Sortable 
+- company: Sortable
   link: https://www.sortable.com/
   imgURL: /assets/images/partners/tech/sortable.png
   type: technology
 
-- company: StreamAMP 
+- company: StreamAMP
   link: https://streamamp.com/
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
   type: technology
 
-- company: CafeMedia 
+- company: CafeMedia
   link: http://www.cafemedia.com/
   imgURL: /assets/images/partners/publisher/cafemedia.png
   type: publisher
@@ -71,6 +71,11 @@
 - company: News Corp
   link: https://newscorp.com/
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
+  type: publisher
+
+- company: Chegg
+  link: https://www.chegg.com/
+  imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
 
 - company: Blockthrough
