@@ -63,6 +63,11 @@
   imgURL: /assets/images/partners/publisher/cafemedia.png
   type: publisher
 
+- company: Chegg
+  link: https://www.chegg.com/
+  imgURL: /assets/images/partners/publisher/chegg.png
+  type: publisher
+  
 - company: Mediavine
   link: https://www.mediavine.com/
   imgURL: /assets/images/partners/publisher/mediavine-sq-teal-navy-pn-RGB.png
@@ -71,11 +76,6 @@
 - company: News Corp
   link: https://newscorp.com/
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
-  type: publisher
-
-- company: Chegg
-  link: https://www.chegg.com/
-  imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
 
 - company: Blockthrough
