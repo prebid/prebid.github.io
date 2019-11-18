@@ -27,8 +27,6 @@ Companies join Prebid.org because they want to take an active role in supporting
 - Promote Prebid projects for faster market adoption.
 - Help define the technologies that shape of the industry.
 
-To inquire about becoming a member us at [membership@prebid.org](mailto:membership@prebid.org).
-
 <hr>
 
 ## How To Join
@@ -53,7 +51,7 @@ To inquire about becoming a member us at [membership@prebid.org](mailto:membersh
 | Publishers          | As a Group,  Publisher members elect  a representative to  the board  | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $5,000      |
 | Community           | <span style="color:#B22222">✖</span>                                                                     | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#B22222">✖</span>                         | <span style="color:#B22222">✖</span>                           | Free        |
 
-
+Have questions about becoming a member, email us at [membership@prebid.org](mailto:membership@prebid.org).
 
 <br>
 <br>
