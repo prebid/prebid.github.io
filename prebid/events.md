@@ -25,7 +25,7 @@ a few things you can expect from these events:
 
 - Insights from member organizations and premium publishers into current best practices and future plans for Prebid.
 - Panel discussions on the expansion of header bidding into emerging formats, such as video and native.
-- Networking opportunities for publishers and Prebid members.
+- Networking opportunities for publishers and [Prebid members](/partners/partners.html).
 - And more!
 
 We look forward to seeing you at an event.
