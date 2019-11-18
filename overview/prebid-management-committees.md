@@ -9,19 +9,19 @@ sidebarType: 0
 
 Project Management Committees are responsible for the active management of one or more GitHub repositories, which are also identified by resolution of the Board.
 
-They meet periodically to:
+The committees meet periodically to:
 
 - establish and prioritize roadmap items
 - discuss issues and policies
-- develop development plans
+- create development plans
 
-The currently active committees follow.
+The following sections describe the currently active committees.
 
 ## Prebid.js
 
 Scope: Prebid.js and related repositories<br/>
 Description: browser-based header bidding<br/>
-Chair: Matt Kendall (AppNexus)<br/>
+Chair: Matt Kendall (Xandr)<br/>
 GitHub Repositories:
 
 + https://github.com/prebid/prebid.js
@@ -73,6 +73,4 @@ Chair: Roy Firestone
 ## Further Reading
 
 * [What is Prebid.org?]({{site.baseurl}}/overview/what-is-prebid-org.html)
-* [Prebid Org Members and Partners]({{site.baseurl}}/partners/partners.html)
-
-
+* [Prebid.org Members and Partners]({{site.baseurl}}/partners/partners.html)

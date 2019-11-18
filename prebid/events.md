@@ -21,11 +21,11 @@ A Prebid Meetup and Leadership Summit is an educational event including
 overviews, deep dives and conversations about Prebid, its evolution, roadmap
 and vision. It’s a chance to get key insights on the latest Prebid
 solutions and how they work for different kinds of publishers. Here are
-a few things you can expect from this event:
+a few things you can expect from these events:
 
 - Insights from member organizations and premium publishers into current best practices and future plans for Prebid.
 - Panel discussions on the expansion of header bidding into emerging formats, such as video and native.
-- Networking opportunities for publishers and Prebid members.
+- Networking opportunities for publishers and [Prebid members](/partners/partners.html).
 - And more!
 
 We look forward to seeing you at an event.
