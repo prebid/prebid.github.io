@@ -58,7 +58,7 @@ pbjs.setConfig({
     "priceGranularity": "low",
     "currency": {
        "adServerCurrency": "JPY",
-       "granularityMultiplier": 108
+       "granularityMultiplier": 108,
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
@@ -176,7 +176,7 @@ more parameters. The simplest recommended implementation would be:
 pbjs.setConfig({
     "currency": {
        "adServerCurrency": "JPY",
-       "granularityMultiplier": 108
+       "granularityMultiplier": 108,
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });

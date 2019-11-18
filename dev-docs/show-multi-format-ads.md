@@ -73,10 +73,7 @@ The ad unit below supports the banner, native, and video media types.
             },
             native: {
                 image: {
-                    sizes: [
-                        [300, 250],
-                        [300, 50]
-                    ]
+                    sizes: [300, 250]
                 }
             },
             video: {

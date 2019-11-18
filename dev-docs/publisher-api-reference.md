@@ -48,6 +48,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [timeoutBuffer](#setConfig-timeoutBuffer)
     * [bidderOrder](#setConfig-Bidder-Order)
     * [enableSendAllBids](#setConfig-Send-All-Bids)
+    * [sendBidsControl](#setConfig-Send-Bids-Control)
     * [useBidCache](#setConfig-Use-Bid-Cache)
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
@@ -58,14 +59,16 @@ This page has documentation for the public API methods of Prebid.js.
     * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [COPPA](#setConfig-coppa)
+    * [cache](#setConfig-vast-cache)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
+  * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
 
 Functions added by optional modules
 
-  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
-  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [GAM Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [GAM Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
   * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
   * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
@@ -428,6 +431,9 @@ Use this method to retrieve an array of winning bids.
 
 + `pbjs.getHighestCpmBids()`: with no argument, returns an array of winning bid objects for each ad unit on page
 + `pbjs.getHighestCpmBids(adUnitCode)`: when passed an ad unit code, returns an array with the winning bid object for that ad unit
+
+{: .alert.alert-warning :}
+Note that from **Prebid 3.0** onwards, `pbjs.getHighestCpmBids` will not return rendered bids.
 
 <hr class="full-rule">
 
@@ -1261,6 +1267,7 @@ Core config:
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
++ [Configure send bids control](#setConfig-Send-Bids-Control)
 + [Bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
@@ -1271,8 +1278,9 @@ Core config:
 + [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [COPPA](#setConfig-coppa)
++ [Caching VAST XML](#setConfig-vast-cache)
 + [Generic Configuration](#setConfig-Generic-Configuration)
-+ [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
++ [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
@@ -1358,38 +1366,101 @@ pbjs.setConfig({ timeoutBuffer: 300 });
 
 <a name="setConfig-Send-All-Bids" />
 
-Sending all bids is the default, but should you wish to turn it off:
+When enableSendAllBids is **true** (the default), the page will send keywords for all bidders to your ad server. The ad server can then make the decision on which bidder will win. Some ad servers, such as Google Ad Manager, can then generate reporting on historical bid prices from all bidders.
 
-{% highlight js %}
-pbjs.setConfig({ enableSendAllBids: false })
-{% endhighlight %}
+However, there will be a set of ad server targeting values for each bidder, so if you run many bidders this could cause an issue with how much data is being sent to the ad server.
 
-When sendAllBids mode is on, your page will send keywords for all bidders to your ad server. The ad server will then make the decision on which will win. Some ad servers, such as Google Ad Manager, can then generate reporting on historical bid prices from all bidders.
+There are several ways to address the issue of sending too much data to the ad server:
 
-Note that this config must be set before `pbjs.setTargetingForGPTAsync()` or `pbjs.getAdserverTargeting()`.
+1. Set `enableSendAllBids` to **false**. This will minimize the number of targeting variables sent to the ad server; only the top bid will be sent.
+1. Define the `auctionKeyMaxChars` setting. This allows you to establish a limit on the number of bytes sent to the ad server. See [targetingControls](#setConfig-targetingControls) for more details.
+1. Set `enableSendAllBids` to **false** and `targetingControls.alwaysIncludeDeals` to **true**. This will send the top bid and any deals.
+1. Set `enableSendAllBids` to **false**, `targetingControls.alwaysIncludeDeals` to **true**, and `auctionKeyMaxChars`. This will send the top bid and any deals up to the maximum number of characters.
 
-After this method is called, `pbjs.getAdserverTargeting()` will give you the below JSON (example). `pbjs.setTargetingForGPTAsync()` will apply the below keywords in the JSON to GPT (example below)
+Note that targeting config must be set before either `pbjs.setTargetingForGPTAsync()` or `pbjs.getAdserverTargeting()` is called.
 
-
-{% include send-all-bids-keyword-targeting.md %}
+##### Example results where enableSendAllBids is true
 
 {% highlight bash %}
 {
   "hb_adid_audienceNetw": "1663076dadb443d",
   "hb_pb_audienceNetwor": "9.00",
   "hb_size_audienceNetw": "300x250",
+  "hb_format_audienceNe": "banner",
+  "hb_source_audienceNe": "client",
+  "hb_adid_rubicon": "3485968928",
+  "hb_pb_rubicon": "8.00",
+  "hb_size_rubicon": "300x250",
+  "hb_deal_rubicon": "11111111",
+  "hb_format_rubicon": "banner",
+  "hb_source_rubicon": "client",
   "hb_adid_appnexus": "191f4aca0c0be8",
   "hb_pb_appnexus": "10.00",
   "hb_size_appnexus": "300x250",
-  // also sends the highest bid in the these variables:
+  "hb_format_appnexus": "banner",
+  "hb_source_appnexus": "client",
+  // the winning bid is copied to attributes without a suffix
   "hb_bidder": "appnexus",
   "hb_adid": "191f4aca0c0be8",
   "hb_pb": "10.00",
   "hb_size": "300x250",
+  "hb_format": "banner"
 }
 {% endhighlight %}
 
+You can see how the number of ad server targeting variable could get large
+when many bidders are present.
+
+{% capture noteAlert %}
+The Prebid recommendation is to leave `enableSendAllBids` as **true** when ad server targeting volume is not a concern. This approach is more transparent and leaves the decisioning in the ad server.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+##### Example of setting enableSendAllBids to false
+
+Turning off `enableSendAllBids` will cause the system to return only the
+winning bid. However, this could be a problem if you need to support [deals](/adops/deals.html), as often a deal may be chosen to win over an open market bid.
+
+To make sure that deal bids are sent along with the winning bid in the enableSendAllBids:false scenario, use the `alwaysIncludeDeals` flag that's part of [targetingControls](#setConfig-targetingControls):
+
+```javascript
+pbjs.setConfig({
+  enableSendAllBids: false,
+  targetingControls: {
+    alwaysIncludeDeals: true
+  }
+});
+```
+
 <a name="setConfig-Bidder-Order" />
+
+#### Configure Send Bids Control
+
+<a name="setConfig-Send-Bids-Control" />
+
+The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher with the ability to adjust the targeting behavior when [sendAllBids](#setConfig-Send-All-Bids) is enabled.
+
+{: .table .table-bordered .table-striped }
+| Attribute        | Type    | Description             |
+|------------+---------+---------------------------------|
+| `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
+
+##### Details on the bidLimit setting
+
+Below is an example config containing `bidLimit`:
+
+```javascript
+pbjs.setConfig({
+  sendBidsControl: {
+    bidLimit: 2
+  }
+});
+```
+When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.
+
+{: .alert.alert-info :}
+Note that this feature overlaps and can be used in conjunction with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls). Please see that section for tips on controlling the number of characters being sent to the ad server.
 
 #### Use Bid Cache
 
@@ -1569,7 +1640,7 @@ pbjs.setConfig({
 })
 {% endhighlight %}
 
-Additional information of these properties:
+Additional information of `s2sConfig` properties:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description                                                                                   |
@@ -1677,11 +1748,12 @@ For descriptions of all the properties that control user syncs, see the table be
 {: .table .table-bordered .table-striped }
 | Attribute        | Type    | Description                                                                                             |
 |------------------+---------+---------------------------------------------------------------------------------------------------------|
-| `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.                                               |
+| `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.  |
 | `filterSettings` | Object  | Configure lists of adapters to include or exclude their user syncing based on the pixel type (image/iframe). |
-| `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
-| `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
-| `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
+| `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`. |
+| `syncDelay`      | Integer | Delay in milliseconds for user syncing (both bid adapter user sync pixels and [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) ID providers) after the auction ends. Default: `3000`. Ignored if auctionDelay > 0. |
+| `auctionDelay`   | Integer | Delay in milliseconds of the auction to retrieve user ids via the [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) before the auction starts. Continues auction once all IDs are retrieved or delay times out. Does not apply to bid adapter user sync pixels. Default: `0`. |
+| `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
 
@@ -1705,6 +1777,16 @@ Turn off user syncing entirely:
 pbjs.setConfig({
     userSync: {
         syncEnabled: false
+    }
+});
+{% endhighlight %}
+
+Delay auction to retrieve userId module IDs first:
+
+{% highlight js %}
+pbjs.setConfig({
+    userSync: {
+        auctionDelay: 1000 // delay auction up to 1 second
     }
 });
 {% endhighlight %}
@@ -1807,17 +1889,26 @@ When user syncs are run, regardless of whether they are invoked by the platform 
 
 The `targetingControls` object passed to `pbjs.setConfig` provides some options to influence how an auction's targeting keys are generated and managed.
 
-Below is an example config with the `targetingControls` object:
+{: .table .table-bordered .table-striped }
+| Attribute        | Type    | Description             |
+|------------+---------+---------------------------------|
+| auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
+| alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
+
+{: .alert.alert-info :}
+Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control).
+
+##### Details on the auctionKeyMaxChars setting
+
+Below is an example config containing `auctionKeyMaxChars`:
 
 ```javascript
 pbjs.setConfig({
   targetingControls: {
-    auctionKeyMaxChars: 5000
+    auctionKeyMaxChars: 5000,
   }
 });
 ```
-
-##### Details on the auctionKeyMaxChars setting
 
 When this property is set up, the `auctionKeyMaxChars` setting creates an effective ceiling for the number of auction targeting keys that are passed to an ad server.  This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.  When there is such a limit, query characters that exceed the threshold are normally just dropped and/or ignored, which can cause potential issues with the delivery or rendering of the ad.
 
@@ -1844,6 +1935,9 @@ Given the varying nature of how sites are set up for advertising and the varying
   * You can copy the data to another tool to count the number of characters that are present.
 
 Between these two values (Prebid's targeting key count and the overall ad URL query character count), you will find the average number of characters that are used by your ad server.  It's likely that these ad server values will remain consistent given that type of setup.  So if you know your ad server has a particular character limit, you can assume that these ad server characters will be reserved and the difference is what you could allot to Prebid.
+
+Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
+
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
@@ -2027,19 +2121,69 @@ The flag may be passed to supporting adapters with this config:
 pbjs.setConfig({coppa: true});
 {% endhighlight %}
 
+<a name="setConfig-vast-cache" />
+
+#### Client-side Caching of VAST XML
+
+When serving video ads, VAST XML creatives must be cached on the network so the
+video player can retrieve them when it's ready. Players don't obtain the VAST XML from
+the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
+be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
+
+- Server-side caching:  
+  Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do.
+- Client-side caching:  
+  Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. In this scenario, Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
+
+For client-side caching, set the Prebid Cache URL as shown here (substituting the correct URL for the one shown here):
+
+{% highlight js %}
+pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
+});
+{% endhighlight %}
+
+{: .alert.alert-warning :}
+The endpoint URL provided must be a Prebid Cache or be otherwise compatible with the [Prebid Cache interface](https://github.com/prebid/prebid-cache).
+
+As of Prebid.js 2.36, you can track client-side cached VAST XML. This functionality is useful for publishers who want to allow their analytics provider to measure video impressions. The prerequisite to using this feature is the availability of a Prebid Server that supports:
+
+- the /vtrack endpoint
+- an analytics module with connection to an analytics system that supports joining the impression event to the original auction request on the bidid
+- the ability of a publisher to utilize the feature (if account-level permission is enabled)
+
+Given those conditions, the `vasttrack` flag can be specified:
+
+{% highlight js %}
+pbjs.setConfig({
+        cache: {
+            url: '_PREBID_SERVER_URL_/vtrack',
+            vasttrack: true
+        }
+});
+{% endhighlight %}
+
+Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtrack`
+Prebid Server endpoint with a couple of additional parameters needed
+by the analytics system to join the event to the original auction request.
+
 <a name="setConfig-Generic-Configuration" />
 
 #### Generic setConfig Configuration
 
 Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:
 
-`pbjs.setConfig({ <key>: <value> });`
+{% highlight js %}
+pbjs.setConfig({ <key>: <value> });
+{% endhighlight %}
 
 <a name="setConfig-Troubleshooting-your-configuration" />
 
 #### Troubleshooting your configuration
 
-If you call `pbjs.setConfig` without an object, e.g.,
+Towards catching syntax errors, one tip is to call `pbjs.setConfig` without an object, e.g.,
 
 {% highlight js %}
 pbjs.setConfig('debug', 'true'));
@@ -2054,6 +2198,37 @@ ERROR: setConfig options must be an object
 If you don't see that message, you can assume the config object is valid.
 
 <hr class="full-rule" />
+
+<a name="module_pbjs.setBidderConfig"></a>
+
+### pbjs.setBidderConfig(options)
+
+This function is similar to [`setConfig`](#module_pbjs.setConfig), but is designed to support certain bidder-specific scenarios.
+
+Configuration provided through the [`setConfig`](#module_pbjs.setConfig) function is
+globally available to all bidder adapters. This makes sense because
+most of these settings are global in nature. However, there are use cases where different bidders require different data, or where certain parameters apply only to a given
+bidder. Use `setBidderConfig` when you need to support these cases.
+
+The page usage is:
+
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ["bidderA"],  // one or more bidders
+   config: {              // the bidder-specific config
+      bidderA: {
+         customArg: 'value'
+      }
+   }
+});
+{% endhighlight %}
+
+When 'bidderA' calls `getConfig('bidderA')`, it will receive the object that contains 'customArg'.
+If any other bidder calls `getConfig('bidderA')`, it will receive nothing.
+
+{: .alert.alert-info :}
+The `setBidderConfig` function will soon be used by the `schain` and
+`first party data` features.
 
 <a name="module_pbjs.getConfig"></a>
 
@@ -2175,9 +2350,9 @@ In the event of collisions, querystring values passed via `options.params` take 
 ### pbjs.adServers.dfp.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Alpha]</span>
 
 {: .alert.alert-info :}
-The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+The GAM implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
 
-This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a GAM video ad tag URL that can be used by a video player.
 
 #### Argument Reference
 
@@ -2225,7 +2400,7 @@ pbjs.que.push(function(){
 });
 ```
 
-{% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will return the cached VAST XML. " %}
+{% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will cache the VAST XML. " %}
 
 <hr class="full-rule">
 
