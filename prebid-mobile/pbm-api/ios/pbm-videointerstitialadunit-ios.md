@@ -49,24 +49,6 @@ OpenRTB Placement Type represented as an enumeration of values:
 
 
 
-# videoAd: Video Events
-
-## videoAd
-
-* Video event listeners
-
-`videoAd (event: PBVideoAdEvent)`: event to listen to
-
-**Parameters**
-
-Events: one of the below event types
-* AdLoadSuccess
-* AdLoadFail
-* AdClicked
-* AdStarted
-* AdDidReachEnd
-
-
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for addtional parameters and methods.
 

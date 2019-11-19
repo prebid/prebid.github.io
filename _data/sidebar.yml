@@ -626,8 +626,8 @@
   subgroup: 0
 
 - sbSecId: 2
-  title: GDPR and Mobile
-  link: /prebid-mobile/gdpr.html
+  title: Privacy Regulation
+  link: /prebid-mobile/privacy-regulation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
