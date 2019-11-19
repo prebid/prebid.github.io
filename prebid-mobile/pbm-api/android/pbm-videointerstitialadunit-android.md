@@ -7,13 +7,13 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# InterstitialAdUnit Object
+# VideoInterstitialAdUnit Object
 {:.no_toc}
 
 Use the `VideoInterstitialAdUnit` object to create and configure an interstitial ad unit in your app.
 
 
-Currently Google Ad Manager is the only supported ad server. Subsequent releases will provide support for additional ad servers.
+Currently Google Ad Manager is the only supported ad server. We plan to provide support for additional ad servers in subsequent releases.
 {: .alert .alert-info}
 
 * TOC
@@ -32,7 +32,7 @@ VideoInterstitialAdUnit("configId");
 
 **Parameters**
 
-`configId`: Prebid Server configuration ID.
+`configId`: String; Prebid Server configuration ID.
 
 
 
@@ -86,10 +86,10 @@ private void loadInterstitial() {
 
 ## Related Topics
 
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html)
+- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
+- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
-- [Prebid Mobile API - android]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-android.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)

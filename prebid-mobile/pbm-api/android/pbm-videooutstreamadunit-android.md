@@ -10,9 +10,9 @@ sidebarType: 2
 # VideoAdUnit Object
 {:.no_toc}
 
-Use the `VideoAdUnit` object to create and configure an outstream vido ad unit in your app.
+Use the `VideoAdUnit` object to create and configure an outstream video ad unit in your app.
 
-Currently Google Ad Manager is the only supported ad server. Subsequent releases will provide support for additional ad servers.
+Currently Google Ad Manager is the only supported ad server. We plan to provide support for additional ad servers in subsequent releases.
 {: .alert .alert-info}
 
 * TOC
@@ -25,22 +25,22 @@ Currently Google Ad Manager is the only supported ad server. Subsequent releases
 Create a new Outstream Video Ad Unit associated with a Prebid Server configuration ID and a video player size.
 
 ```java
-VideoAdUnit( "configID", width, height, VideoAdUnit.PlacementType.placement);
+VideoAdUnit("configID", width, height, VideoAdUnit.PlacementType.placement);
 ```
 
 **Parameters**
 
 * `configId`: String; Prebid Server configuration ID.
-* `width`: Integer; Width of the video player
-* `height`: Integer; Height of the video player
-* `placement` is an enumeration whose value is one of:
+* `width`: Integer; Width of the video player.
+* `height`: Integer; Height of the video player.
+* `placement` Enumeration. Possible values:
 	* IN_BANNER
 	* IN_ARTICLE
 	* IN_FEED
 
 ## Methods
 
-`VideoAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html) object.
+`VideoAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-adunit-android.html) object.
 
 ## Example
 
@@ -86,8 +86,8 @@ private void loadBanner() {
 ## Related Topics
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
