@@ -55,16 +55,14 @@ Each analytics provider has specific instructions for using their system, but th
 This is an example call to `pbjs.enableAnalytics()`:
 
 {% highlight js %}
-
 pbjs.que.push(function() {
-pbjs.enableAnalytics({
-provider: 'NAME',
-options: {
-[...]
-}
+  pbjs.enableAnalytics({
+    provider: 'NAME',
+    options: {
+    [...]
+    }
+  });
 });
-});
-
 {% endhighlight %}
 
 ## Further Reading
