@@ -19,7 +19,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Datablocks Analytics | Contact vendor| [Website](https://datablocks.net) |
 | Finteza Analytics | <a href="mailto: support@finteza.com">Contact vendor</a> | [Website](https://www.finteza.com/) |
 | [Google Analytics]({{site.baseurl}}/overview/ga-analytics.html) | Free up to a certain volume. See [terms](https://www.google.com/analytics/terms/) | [Website](https://www.google.com/analytics) |
-| Invisibly Analytics | Contact vendor | [Website](https://invisibly.com/)
+| Invisibly Analytics | Contact vendor | [Website](https://invisibly.com/) |
 | Kargo Analytics | Contact vendor | [Website](https://kargo.com/) |
 | Livewrapped Analytics | Contact vendor | [Website](https://livewrapped.com/) |
 | LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
