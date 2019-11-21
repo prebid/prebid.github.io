@@ -626,8 +626,8 @@
   subgroup: 0
 
 - sbSecId: 2
-  title: GDPR and Mobile
-  link: /prebid-mobile/gdpr.html
+  title: Privacy Regulation
+  link: /prebid-mobile/privacy-regulation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -683,8 +683,24 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-interstitialadunit-ios.html
+  title: Banner Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video Outstream Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videooutstreamadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -765,8 +781,24 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-interstitialadunit-android.html
+  title: Banner Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Video Outstream Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-videooutstreamadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Video Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-videointerstitialadunit-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

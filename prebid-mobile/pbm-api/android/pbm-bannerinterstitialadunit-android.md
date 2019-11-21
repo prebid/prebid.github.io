@@ -7,7 +7,7 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# InterstitialAdUnit Object
+# InterstitialAdUnit Object (Banner)
 {:.no_toc}
 
 Use the `InterstitialAdUnit` object to create and configure an interstitial ad unit in your app.
@@ -21,7 +21,7 @@ Use the `InterstitialAdUnit` object to create and configure an interstitial ad u
 
 Create a new Interstitial Ad Unit associated with a Prebid Server configuration ID.
 
-As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process. App developers can speicify a minimun width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction. 
+As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process. App developers can speicify a minimun width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
 
 PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size. If that size is 1x1, it will look up the device's size and use that as the max size. If the wdith and height are not present, it will also use the device size as the max size. (1x1 support so that you don't have to omit size as a parameter to use the device size).
 
