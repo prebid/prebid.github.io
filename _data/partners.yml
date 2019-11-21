@@ -23,6 +23,11 @@
   imgURL: /assets/images/partners/leader/spotx_logo.png
   type: leader
 
+- company: theTradeDesk 
+  link: https://www.thetradedesk.com/
+  imgURL: /assets/images/partners/leader/TTD_logo.png
+  type: leader
+
 - company: Criteo 
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
