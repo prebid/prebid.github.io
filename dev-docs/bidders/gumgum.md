@@ -19,5 +19,5 @@ information.
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description | Example      | Type      |
 |------------|----------|-------------|--------------|-----------|
-| `inScreen` | optional | Tracking ID | `'ggumtest'` | `string`  |
+| `inScreen` | optional | Tracking ID or Publisher ID | `'ggumtest'` | `string` (tracking ID) or `integer` (publisher ID) |
 | `inSlot`   | optional | Slot ID     | `9`          | `integer` |
