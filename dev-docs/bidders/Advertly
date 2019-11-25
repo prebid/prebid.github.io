@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: ADVERTLY
+title: advertly
 description: Prebid ADVERTLY Bidder Adapter
 hide: true
 biddercode: advertly
