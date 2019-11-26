@@ -83,6 +83,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: SHE Media
+  link: https://www.shemedia.com/
+  imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
+  type: publisher
+
 - company: Blockthrough
   link: https://blockthrough.com/
   imgURL: /assets/images/partners/community/Blockthrough-Logo.png
