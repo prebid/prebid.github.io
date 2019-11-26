@@ -4,6 +4,7 @@ title: Rich Audience
 description: Prebid Rich Audience Bidder Adapter
 hide: true
 biddercode: richaudience
+userIds: pubcommonId, unifiedId/tradedesk, id5Id, criteo, identityLink, liveIntent
 media_types: banner, video
 gdpr_supported: true
 ---
