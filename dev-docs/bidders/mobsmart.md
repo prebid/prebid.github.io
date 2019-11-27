@@ -10,12 +10,12 @@ userIds: pubCommon
 
 ### Note:
 The Mobsmart Bidding adapter requires setup and approval beforehand.
-For more information, visit [Mobsmart website](https://kpis.jp/product_mobsmart).
+For more information, visit [Mobsmart website](https://kpis.jp/en/product_mobsmart).
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                             | Example  | Type      |
 |--------------|----------|-----------------------------------------|----------|-----------|
-| `floorPrice` | optional | Floor price                             | `10`    | `Integer` |
+| `floorPrice` | optional | Floor price                             | `10`     | `Integer` |
 | `currency`   | optional | Currency of request and response        | `'JPY'`  | `string`  |
