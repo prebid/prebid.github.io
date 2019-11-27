@@ -416,7 +416,7 @@
   subgroup: 5
   
 - sbSecId: 1
-  title: GPDR Consent Management
+  title: Consent Management
   link: /dev-docs/modules/consentManagement.html
   isHeader: 0
   isSectionHeader: 0
