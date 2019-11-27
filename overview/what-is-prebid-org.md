@@ -15,7 +15,7 @@ Formed in September of 2017, Prebid.org is an independent organization designed 
 
 Prebid.org is open to all companies who are part of the programmatic ecosystem, from ad tech vendors to publishers and others. We believe strongly that by working together, we can do some great things in the industry.
 
-To obtain more information about becoming a member of Prebid.org, email membership@prebid.org.
+[Learn more](/partners/partners.html) about becoming a member of Prebid.org.
 
 Read more here:
 
