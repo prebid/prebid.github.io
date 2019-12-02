@@ -13,10 +13,6 @@ Formed in September of 2017, Prebid.org is an independent organization designed 
 
 Prebid.org is open to all companies who are part of the programmatic ecosystem, from ad tech vendors to publishers and others. We believe strongly that by working together, we can do some great things in the industry.
 
-## Goals  
-- Create software that promotes open, transparent, and performant header bidding.  
-- Foster a collaborative community of partners.
-- Remain agnostic with respect to adapters, ad servers, etc.
 [Learn more](/partners/partners.html) about becoming a member of Prebid.org.
 
 ## Operations  

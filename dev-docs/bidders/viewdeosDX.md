@@ -4,7 +4,8 @@ title: ViewDeos DX
 description: Prebid ViewDeos Bidder Adaptor
 hide: true
 biddercode: viewdeosDX
-media_types: video
+media_types: banner,video
+gdpr_supported: true
 ---
 
 ### Bid params
@@ -12,7 +13,7 @@ media_types: video
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
+| `aid` | required | The source ID from member zone | `350975` | `integer` |
 
 
 
