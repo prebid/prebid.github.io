@@ -225,6 +225,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 1
+  title: Instream Video and Banner Ads
+  link: /dev-docs/examples/instream-banner-mix.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Individual Ad Unit Refresh/Infinite Scroll
