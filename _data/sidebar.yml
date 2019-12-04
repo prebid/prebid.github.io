@@ -416,8 +416,16 @@
   subgroup: 5
   
 - sbSecId: 1
-  title: Consent Management
+  title: Consent Management - GDPR
   link: /dev-docs/modules/consentManagement.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Consent Management - US Privacy (CCPA)
+  link: /dev-docs/modules/consentManagementUsp.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

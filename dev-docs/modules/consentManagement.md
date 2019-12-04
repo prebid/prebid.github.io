@@ -1,15 +1,15 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - Consent Management
-description: Add on module to consume and distribute consent information to bidder adapters
+title: Consent Management - GDPR
+description: Module to consume and distribute GDPR consent information to bidder adapters
 module_code : consentManagement
-display_name : Consent Management
+display_name : Consent Management - GDPR
 enable_download : true
 sidebarType : 1
 ---
 
-# Consent Management Module
+# GDPR Consent Management Module
 {: .no_toc }
 
 * TOC
@@ -17,12 +17,12 @@ sidebarType : 1
 
 ## Overview
 
-This consent management module is designed to support the following privacy regulations:
-
-- EU General Data Protection Regulation ([GDPR](https://www.iab.com/topics/consumer-privacy/gdpr/))
-- California Consumer Privacy Act ([CCPA](https://www.iab.com/guidelines/ccpa-framework/)). The IAB has generalized these guidelines to cover future regulations, referring to the feature as "US Privacy."
+This consent management module is designed to support the EU General Data Protection Regulation ([GDPR](https://www.iab.com/topics/consumer-privacy/gdpr/))
 
 This module works with supported [Consent Management Platforms](https://advertisingconsent.eu/cmp-list/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
+
+{: .alert.alert-info :}
+See also the [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html) for supporting the California Consumer Protection Act (CCPA)
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
@@ -30,21 +30,21 @@ Prebid functionality created to address regulatory requirements does not replace
 
 Here's a summary of the interaction process:
 
-1. Fetch the user's GDPR and/or US Privacy (CCPA) consent data from the CMP.
+1. Fetch the user's GDPR consent data from the CMP.
 2. Incorporate this data into the auction objects for adapters to collect.
 3. Proceed with the auction.
 
-In the the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
+In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.
 
 If the timeout period expires or an error from the CMP is thrown, one of these actions occurs:
 
-1. The auction is canceled outright. (Configurable only for GDPR.)
+1. The auction is canceled outright.
 2. The auction proceeds without the user's consent information.  
 
 ## Page Integration
 
-To utilize this module, a CMP compatible with the [IAB 1.1 TCF spec](https://iabeurope.eu/tcf-v1/) needs to be implemented onto the site to interact with the user and obtain their consent choices.  
+To utilize this module, a CMP compatible with the [IAB 1.1 TCF spec](https://iabeurope.eu/tcf-v1/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
 
 Though implementation details for the CMP are not covered by Prebid.org, we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes.
 
@@ -52,20 +52,23 @@ Once the CMP is implemented, simply include this module into your build and add 
 
 Here are the parameters supported in the `consentManagement` object:
 
+{: .alert.alert-warning :}
+Note that versions of Prebid.js before 2.43.0 had a different GDPR configuration. The module is backwards-compatible,
+but we recommend migrating to the new config structure when possible.
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
-| cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
-| consentAPIs | `array of strings` | Defines which IAB privacy APIs to look for. Possible values are `['gdpr', 'usp']`. The default is `['gdpr']`. | `['gdpr']` |
-| timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
-| uspTimeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the US Privacy consent string. Default is `50`. | `50` |
-| allowAuctionWithoutConsent | `boolean` | GDPR only. Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
-| consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. Not currently supported for US Privacy. | |
+| gdpr | object | | |
+| gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
+| gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
+| gdpr.allowAuctionWithoutConsent | `boolean` | Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
+| gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. Not currently supported for US Privacy. | |
 
 {: .alert.alert-info :}
-Note that the `allowAuctionWithoutConsent` parameter refers to the entire consent string, not to any individual consent option. Prebid.js does not parse either GDPR or US Privacy strings, so it doesn't know if the user has consented to any particular action.
+Note that the `allowAuctionWithoutConsent` parameter refers to the entire consent string, not to any individual consent option. Prebid.js does not parse the GDPR consent string, so it doesn't know if the user has consented to any particular action.
 
-### GDPR Examples
+### Examples
 
 Example 1: GDPR IAB CMP using custom timeout and cancel-auction options.
 
@@ -75,9 +78,11 @@ Example 1: GDPR IAB CMP using custom timeout and cancel-auction options.
      pbjs.que.push(function() {
         pbjs.setConfig({
           consentManagement: {
-            cmpApi: 'iab',
-            timeout: 8000,
-            allowAuctionWithoutConsent: false
+            gdpr: {
+              cmpApi: 'iab',
+              timeout: 8000,
+              allowAuctionWithoutConsent: false
+            }
           }
         });
         pbjs.addAdUnits(adUnits);
@@ -92,17 +97,19 @@ Example 2: Static CMP using custom data passing.
      pbjs.que.push(function() {
         pbjs.setConfig({
           consentManagement: {
-            cmpApi: 'static',
-            allowAuctionWithoutConsent: false,
-            consentData: {
-              getConsentData: {
-                'gdprApplies': true,
-                'hasGlobalScope': false,
-                'consentData': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA'
-              },
-              getVendorConsents: {
-                'metadata': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA',
-              ...
+            gdpr: {
+              cmpApi: 'static',
+              allowAuctionWithoutConsent: false,
+              consentData: {
+                getConsentData: {
+                  'gdprApplies': true,
+                  'hasGlobalScope': false,
+                  'consentData': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA'
+                },
+                getVendorConsents: {
+                  'metadata': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA',
+                ...
+                }
               }
             }
           }
@@ -111,37 +118,9 @@ Example 2: Static CMP using custom data passing.
      });
 {% endhighlight %}
 
-### US Privacy Examples
-
-Example 1: Support both US Privacy and GDPR
-
-{% highlight js %}
-pbjs.setConfig({
-       consentManagement: {
-            cmpApi: 'iab',
-            consentAPIs: ['gdpr', 'usp'],
-            allowAuctionWithoutConsent: false, // suppress auctions if there's no GDPR consent string
-            timeout: 3000,  // GDPR timeout 3000ms
-            uspTimeout: 100 // US Privacy timeout 100ms
-       }
-});
-{% endhighlight %}
-
-Example 2: Support US Privacy
-
-{% highlight js %}
-pbjs.setConfig({
-       consentManagement: {
-            cmpApi: 'iab',
-            consentAPIs: ['usp'],
-            uspTimeout: 100 // US Privacy timeout 100ms
-       }
-});
-{% endhighlight %}
-
 ## Build the Package
 
-Follow the basic build instructions on the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the the gulp build command:
+Follow the basic build instructions on the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the gulp build command:
 
 {% highlight bash %}
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
@@ -149,18 +128,16 @@ gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
 
 ## Adapter Integration
 
-If you are submitting changes to an adapter to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` and/or `usp_supported: true` variables to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR and US Privacy.**
+If you are submitting changes to an adapter to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
 
-### Bidder Adapter Integration
-
-#### GDPR Integration
+### Bidder Adapter GDPR Integration
 
 To find the GDPR consent information to pass along to your system, adapters should look for the `bidderRequest.gdprConsent` field in their `buildRequests()` method.
 Here is a sample of how the data is structured in the `bidderRequest` object:
 
 {% highlight js %}
 {
-  "bidderCode": "appnexus",
+  "bidderCode": "bidderA",
   "auctionId": "e3a336ad-2222-4a1c-bbbb-ecc7c5294a34",
   ...
   "timeout": 3000,
@@ -214,24 +191,9 @@ The implementation of the latter option is up to the adapter, but the general pr
 
 If neither option are taken, then there is the remote chance this field's value will be undefined.  As long as that's acceptable for the given system, this could be a potential third option.
 
-#### US Privacy Integration
-
-To find the US Privacy/CCPA consent information to pass along to your system, adapters should look for the `bidderRequest.us_privacy` field in their buildRequests() method.
-Below is a sample of how the data is structured in the `bidderRequest` object:
-
-{% highlight js %}
-{
-  "bidderCode": "appnexus",
-  "auctionId": "e3a336ad-2222-4a1c-bbbb-ecc7c5554a34",
-  ...
-  "us_privacy": "1YYY",
-  ...
-}
-{% endhighlight %}
-
 ### UserSync Integration
 
-The `gdprConsent` and `usPrivacy` objects are also available when registering `userSync` pixels.
+The `gdprConsent` object is also available when registering `userSync` pixels.
 The objects can be accessed by including them as arguments in the `getUserSyncs` function:
 
 {% highlight js %}
@@ -337,45 +299,26 @@ This should be false if there was some error in the consent data; otherwise set 
 **cmpLoaded**  
 This should be be set to true once the parameters listed above are processed.
 
-## Adapters Supporting Privacy Regulations
+## Adapters Supporting GDPR
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 var adaptersSupportingGdpr=[];
-var adaptersSupportingUsp=[];
 var idx_gdpr=0;
-var idx_usp=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
-<!-- {{item.title}} {{item.gdpr_supported}} -->
     {% if item.gdpr_supported == true %}
 	adaptersSupportingGdpr[idx_gdpr]={};
 	adaptersSupportingGdpr[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
 	adaptersSupportingGdpr[idx_gdpr].text="{{item.title}}";
 	idx_gdpr++;
     {% endif %}
-    {% if item.usp_supported == true %}
-	adaptersSupportingUsp[idx_usp]={};
-	adaptersSupportingUsp[idx_usp].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingUsp[idx_usp].text="{{item.title}}";
-	idx_usp++;
-    {% endif %}
 {% endfor %}
 </script>
-
-### Adapters Supporting GDPR
 
 <div id="adaptersTableGdpr">
         <script>
            writeDynamicTable({div: "adaptersTableGdpr", data: "adaptersSupportingGdpr", sort: "rowFirst", striped: false} );
-        </script>
-</div>
-
-### Adapters Supporting US-Privacy
-
-<div id="adaptersTableUsp">
-        <script>
-           writeDynamicTable({div: "adaptersTableUsp", data: "adaptersSupportingUsp", sort: "rowFirst", striped: false} );
         </script>
 </div>

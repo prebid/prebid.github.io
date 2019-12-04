@@ -31,7 +31,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | Module              | Description  |
 |---------------------+--------------|
 | [**Currency**](/dev-docs/modules/currency.html) | Converts bid currency into ad server currency based on data in a supplied exchange rate file. |
-| [**ConsentManagement**](/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of privacy regulations: EU GDPR and US Privacy (CCPA). |
+| **ConsentManagement** | Facilitates collecting and passing consent information in support of privacy regulations: [EU GDPR](/dev-docs/modules/consentManagement.html) and [US Privacy](/dev-docs/modules/consentManagementUsp.html) (CCPA). |
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
 | [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, and Unified ID. |
