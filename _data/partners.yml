@@ -98,6 +98,11 @@
   imgURL: /assets/images/partners/community/CHEQ_Logo.png
   type: community
 
+- company: DailyMotion
+  link: https://dailymotion.com/
+  imgURL: /assets/images/partners/community/Dailymotion_logo.png
+  type: community
+
 - company: GoBrowsi
   link: https://gobrowsi.com
   imgURL: /assets/images/partners/community/Browsi-Logo.png
