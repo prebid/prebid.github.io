@@ -94,8 +94,6 @@ See [Setting Up Prebid Parameters](#set-up-params) below
 
 Define aliases for bidders that are being specified in the biddersSpec. Using aliases allows to you to use the same bidder more than once with different targeting parameters.
 
-Define some behaviors for the platform and specific adapters. The basic structure is a ‘standard’ section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder.
-
 **Acceptable Values:**
 
 Array of one or more bidder aliases definitions.

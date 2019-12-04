@@ -12,27 +12,28 @@ sidebarType : 1
 # Konduit Accelerate Module
 {:.no_toc}
 
-This module is required to apply [Konduit](http://konduit.me/)’s video acceleration optimization to a publisher’s existing Prebid setup. For instructions detailing how to add this module, please see below.
+The Konduit Accelerate module applies the [Konduit](http://konduit.me/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization can reduce load times and increase ad starts. To install the module, follow these instructions:
 
 
 ### Step 1: Prepare the base Prebid file
 
 Build your Prebid.js package in one of two ways:
 
-1) Receive an email package from the Prebid [Download](/download.html) page.
-2) From the command line, `gulp build --modules=konduitWrapper,...`
+1. Receive an email package from the Prebid [Download](/download.html) page.
+2. From the command line, run  
+   `gulp build --modules=konduitWrapper,...`
 
 
 ### Step 2: Implement module code on page
 
-- Insert the Konduit module code in your source code of the page.  
-- The module exposes the `pbjs.adServers.konduit.buildVastUrl` function to use.
-- The function should be provided a couple of input parameters including a bid to be accelerated (usually a winner bid) and Konduit parameters, see sample code below.
+- Insert the Konduit module code in the source code of your page.  
+  The module exposes the `pbjs.adServers.konduit.buildVastUrl` function.
+- Provide input parameters to the function, including a bid to be accelerated (usually a winning bid) and Konduit-specific parameters (as shown in the sample code below).
 
 
 ### Sample Code
 
-It usually makes sense to use the Konduit Module function call in the `bidsBackHandler` callback function.
+We recommended using the Konduit module function call in the `bidsBackHandler` callback function.
 
 ```javascript
 pbjs.que.push(function() {
@@ -40,7 +41,7 @@ pbjs.que.push(function() {
   pbjs.requestBids({
     bidsBackHandler: function(bids) {
       var winnerBid = pbjs.getHighestCpmBids('videoAd')[0];
-      
+
       var vastTagUrl = pbjs.adServers.konduit.buildVastUrl({
         bid: winnerBid,
         params: {
@@ -57,5 +58,5 @@ pbjs.que.push(function() {
 
 ## Further Reading
 
-[Prebid.js](http://prebid.org/dev-docs/getting-started.html)  
-[Prebid Video](http://prebid.org/prebid-video/video-overview.html)  
+[Getting Started Example]({{site.baseurl}}/dev-docs/getting-started.html)  
+[Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)  

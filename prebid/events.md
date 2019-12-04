@@ -13,7 +13,6 @@ sidebarType: 0
 {: .table .table-bordered .table-striped }
 | Date | City | Register |
 |------+------+----------|
-| Oct 24, 2019 | San Francisco, CA, USA | [EventBrite](https://www.eventbrite.com/e/prebid-meetup-and-leadership-summit-san-francisco-october-24-2019-registration-72716612345) |
 | Nov 19, 2019 | Hamburg, Germany | [EventBrite](https://www.eventbrite.com/e/prebid-meetup-and-leadership-summit-hamburg-19-november-2019-registration-75219209681) |
 
 ## What happens at an event?
@@ -22,11 +21,11 @@ A Prebid Meetup and Leadership Summit is an educational event including
 overviews, deep dives and conversations about Prebid, its evolution, roadmap
 and vision. It’s a chance to get key insights on the latest Prebid
 solutions and how they work for different kinds of publishers. Here are
-a few things you can expect from this event:
+a few things you can expect from these events:
 
 - Insights from member organizations and premium publishers into current best practices and future plans for Prebid.
 - Panel discussions on the expansion of header bidding into emerging formats, such as video and native.
-- Networking opportunities for publishers and Prebid members.
+- Networking opportunities for publishers and [Prebid members](/partners/partners.html).
 - And more!
 
 We look forward to seeing you at an event.
@@ -43,3 +42,10 @@ Not at this point.
 We are considering this option, but the in-person meetings have been quite
 candid, and we don't want to change the comfort level of our panel members and
 audience members in speaking their minds.
+
+# Past events:
+
+{: .table .table-bordered .table-striped }
+| Date | City |
+|------+------|
+| Oct 24, 2019 | San Francisco, CA, USA |
