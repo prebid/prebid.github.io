@@ -39,8 +39,8 @@ Making these selections can take some time for the average user, so the module p
 
 If the timeout period expires or an error from the CMP is thrown, one of these actions occurs:
 
-1. The auction is canceled outright.
-2. The auction proceeds without the user's consent information.  
+- The auction is canceled outright.
+- The auction proceeds without the user's consent information.  
 
 ## Page Integration
 
@@ -54,19 +54,19 @@ Here are the parameters supported in the `consentManagement` object:
 
 {: .alert.alert-warning :}
 Note that versions of Prebid.js before 2.43.0 had a different GDPR configuration. The module is backwards-compatible,
-but we recommend migrating to the new config structure when possible.
+but we recommend migrating to the new config structure as soon as possible.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
-| gdpr | object | | |
+| gdpr | `Object` | | |
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
 | gdpr.allowAuctionWithoutConsent | `boolean` | Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. Not currently supported for US Privacy. | |
 
 {: .alert.alert-info :}
-Note that the `allowAuctionWithoutConsent` parameter refers to the entire consent string, not to any individual consent option. Prebid.js does not parse the GDPR consent string, so it doesn't know if the user has consented to any particular action.
+NOTE: The `allowAuctionWithoutConsent` parameter refers to the entire consent string, not to any individual consent option. Prebid.js does not parse the GDPR consent string, so it doesn't know if the user has consented to any particular action.
 
 ### Examples
 
@@ -120,7 +120,7 @@ Example 2: Static CMP using custom data passing.
 
 ## Build the Package
 
-Follow the basic build instructions on the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the gulp build command:
+Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the **gulp build** command:
 
 {% highlight bash %}
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
@@ -162,7 +162,7 @@ This field contains the raw vendor data in relation to the user's choices on con
 
 **_gdprApplies_**
 
-This boolean field represents whether the user in question is in an area where GDPR applies.  This field comes from the CMP itself; it's comes included in the response when a request is made to the CMP API.  On the rare occasion where this value isn't defined by the CMP, each adapter has the opportunity to set their own value for this field.
+This boolean field represents whether the user in question is in an area where GDPR applies.  This field comes from the CMP itself; it's included in the response when a request is made to the CMP API.  On the rare occasion where this value isn't defined by the CMP, each adapter has the opportunity to set their own value for this field.
 
 One of two general approaches can be taken by the adapter to populate this field:
 
@@ -194,7 +194,7 @@ If neither option are taken, then there is the remote chance this field's value 
 ### UserSync Integration
 
 The `gdprConsent` object is also available when registering `userSync` pixels.
-The objects can be accessed by including them as arguments in the `getUserSyncs` function:
+The object can be accessed by including it as an argument in the `getUserSyncs` function:
 
 {% highlight js %}
 getUserSyncs: function(syncOptions, responses, gdprConsent, usPrivacy) {
@@ -208,10 +208,10 @@ Depending on your needs, you could include the consent information in a query of
 
 Prebid.js and much of the ad industry rely on the IAB CMP standard for GDPR support, but there might be some publishers who have implemented a different approach to meeting the privacy rules. Those publishers can utilize Prebid.js and the whole header bidding ecosystem by building a translation layer between their consent method and the IAB method.
 
-At a high level, this could be done as follows:
-- Build a `window.__cmp()` function, which will be seen by Prebid.
-- If SafeFrames are in use, build a message receiver function.
-- Format consent data in a string according to the [IAB standard](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework).
+At a high level, this could be done as follows:  
+1. Build a `window.__cmp()` function, which will be seen by Prebid.
+2. If SafeFrames are in use, build a message receiver function.
+3. Format consent data in a string according to the [IAB standard](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework).
 
 Below is sample code for implementing the stub functions. Sample code for formatting the consent string can be obtained [here](https://github.com/appnexus/cmp).
 
@@ -281,22 +281,22 @@ var cmpLoaded;       // true if iabConsentData was loaded and processed
 
 ### Explanation of Parameters
 
-**iabConsentData**  
+**_iabConsentData_**  
 For instructions on how to generate the IAB consent string see the [IAB CMP 1.1 Spec](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework) and [IAB Consent String SDK](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/tree/master/Consent%20String%20SDK).
 
-**gdprApplies**  
-Use the following values in the gdprApplies field:
+**_gdprApplies_**  
+Use the following values in the _gdprApplies_ field:
 - True: the current user is in the European Economic Area (EEA) *or* the publisher wants to have all traffic considered in-scope for GDPR.
 - False: It's known that the user is outside the EEA.
 - Leave the attribute unspecified if user's location is unknown.
 
-**hasGlobalScope**  
+**_hasGlobalScope_**  
 This should be set to true if consent data was retrieved from global "euconsent" cookie, or it was publisher-specific. For general purpose, set this to false.
 
-**responseCode**  
+**_responseCode_**  
 This should be false if there was some error in the consent data; otherwise set to true. False is the same as calling the callback with no parameters.
 
-**cmpLoaded**  
+**_cmpLoaded_**  
 This should be be set to true once the parameters listed above are processed.
 
 ## Adapters Supporting GDPR

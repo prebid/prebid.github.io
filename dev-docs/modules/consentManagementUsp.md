@@ -22,7 +22,7 @@ This consent management module is designed to support the California Consumer Pr
 This module works with supported [Consent Management Platforms](https://advertisingconsent.eu/cmp-list/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
 {: .alert.alert-info :}
-See also the [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html) for supporting the EU General Data Protection Regulation (GDPR) 
+See also the [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html) for supporting the EU General Data Protection Regulation (GDPR)
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
@@ -52,7 +52,7 @@ Here are the parameters supported in the `consentManagement` object:
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
-| usp | object | | |
+| usp | `Object` | | |
 | usp.cmpApi | `string` | The CMP interface that is in use. The only currently supported value is **'iab'**, which is the default. | `'iab'` |
 | usp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
 
@@ -90,7 +90,7 @@ pbjs.setConfig({
 
 ## Build the Package
 
-Follow the basic build instructions on the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the the gulp build command:
+Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the the **gulp build** command:
 
 {% highlight bash %}
 gulp build --modules=consentManagementUsp,bidAdapter1,bidAdapter2
@@ -100,9 +100,9 @@ gulp build --modules=consentManagementUsp,bidAdapter1,bidAdapter2
 
 If you are submitting changes to an adapter to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `usp_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting US Privacy.**
 
-### Bidder Adapter US PrivacyIntegration
+### Bidder Adapter US Privacy Integration
 
-To find the US Privacy/CCPA consent information to pass along to your system, adapters should look for the `bidderRequest.uspConsent` field in their buildRequests() method.
+To find the US Privacy/CCPA consent information to pass along to your system, adapters should look for the `bidderRequest.uspConsent` field in their `buildRequests()` method.
 Below is a sample of how the data is structured in the `bidderRequest` object:
 
 {% highlight js %}
@@ -118,7 +118,7 @@ Below is a sample of how the data is structured in the `bidderRequest` object:
 ### UserSync Integration
 
 The `usPrivacy` object is also available when registering `userSync` pixels.
-The objects can be accessed by including them as arguments in the `getUserSyncs` function:
+The object can be accessed by including it as an argument in the `getUserSyncs` function:
 
 {% highlight js %}
 getUserSyncs: function(syncOptions, responses, gdprConsent, usPrivacy) {
