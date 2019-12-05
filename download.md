@@ -284,7 +284,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="invisiblyAnalytics" class="analytics-check-box"> Invisibly Analytics
+      <input type="checkbox" analyticscode="invisibly" class="analytics-check-box"> Invisibly Analytics
     </label>
   </div>
 </div>
