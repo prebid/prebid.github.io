@@ -25,19 +25,16 @@ Companies join Prebid.org because they want to take an active role in supporting
 - Support the community by helping fund Prebid services and events.
 - Demonstrate thought leadership in the ad tech space.
 - Promote Prebid projects for faster market adoption.
-- Help define the technologies that shape of the industry.
+- Help define the technologies that shape of the industry by participating in our Slack workspace and joining the [Product Management Committees](/overview/prebid-management-committees.html).
 
 <hr>
 
 ## How To Join
 
-- Download and review the [Prebid.org Bylaws](http://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
-- Download and complete the [Prebid.org Membership Agreement](http://files.prebid.org/docs/Prebid_org_membership_agreement_jun_2019.pdf).
-- Send completed Agreement to membership@prebid.org.
-- The Prebid Board of Directors will vote on your membership application.
-- Appoint a single point of contact for your organization.
-- Pay annual membership fees for this year (prorated).
-- Begin contributing to Prebid, including participation in PMCs.
+1. Download and review the [Prebid.org Bylaws](http://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
+2. Complete the [Prebid.org Membership Agreement](https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=9c0dbc9c-3583-46af-a226-240b3e9fcea3&env=na2
+).
+3. Prebid will consider your membership application.
 
 <hr>
 
