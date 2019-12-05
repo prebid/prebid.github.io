@@ -24,7 +24,7 @@ See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.h
 
 ## Ad Server Setup
 
-Prebid uses FreeWheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide. 
+Prebid uses FreeWheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide.
 
 ## Developers
 
@@ -35,7 +35,7 @@ To implement header bidding for long-form video start by [downloading Prebid.js]
 Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
 - Include at least one video adapter. Find a list of available video adapters [here]({{site.github.url}}/dev-docs/bidders.html#bidder-video-native).
-- Include the [FreeWheel](/dev-docs/modules/freewheel.html) Ad Server module. 
+- Include the [FreeWheel](/dev-docs/modules/freewheel.html) Ad Server module.
 - Include the [Category Translation](/dev-docs/modules/categoryTranslation.html) module.  
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
 
@@ -60,11 +60,11 @@ As with instream and outstream videos, you must set the video context for long-f
 var longFormatAdUnit = {
     video: {
        // required params
-       context: 'adpod', 
+       context: 'adpod',
        playerSize: [640, 480],
        adPodDurationSec: 300,
        durationRangeSec: [15, 30],
-   
+
        // optional params
        requireExactDuration: true,
        tvSeriesName: 'TvName',
@@ -83,20 +83,20 @@ var longFormatAdUnit = {
         }]
 }
 ```
- 
+
 #### Required Parameters
 
-`video.context` 
-A string indicating the ad unit type. 
+`video.context`
+A string indicating the ad unit type.
 
 `video.playerSize`  
-An array of numbers indicating the height and width of the video player size that will be passed to the demand partners. 
+An array of numbers indicating the height and width of the video player size that will be passed to the demand partners.
 
 `video.adPodDurationSec`  
 A number indicating how long the ad pod should run.   
 
 `video.durationRangeSec`  
-A number indicating how long the creatives of an ad pod should run. 
+A number indicating how long the creatives of an ad pod should run.
 
 #### Optional Parameters
 
@@ -104,7 +104,7 @@ A number indicating how long the creatives of an ad pod should run.
 A boolean indicating if the returned creatives running time must match the value of `adPodDurationSec`
 
 `video.tvSeriesName`  
-A string representing the name of the television series the adpod will appear in. 
+A string representing the name of the television series the adpod will appear in.
 
 `video.tvEpisodeName`  
 A string representing the episode name of the television series the adpod will appear in.
@@ -116,10 +116,10 @@ A number representing the season number of the television series the adpod will 
 A number representing the episode number of the television series the adpod will appear in.
 
 `video.contentLengthSec`  
-A number representing the length of the content the adpod will appear in. 
+A number representing the length of the content the adpod will appear in.
 
 `video.contentMode`   
-A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`. 
+A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`.
 
 <div class="alert alert-info">
   <strong>Prebid Server</strong>
@@ -143,7 +143,4 @@ After you’ve defined your ad units, you can continue with the rest of your con
 
 ### Examples
 
-See [Prebid Video Examples](/examples/video/long-form/long-form-video-with-freewheel.html) for examples of long-form video ads. 
-
-
-
+See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) for examples of long-form video ads. 

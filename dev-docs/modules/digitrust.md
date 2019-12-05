@@ -82,14 +82,14 @@ without losing DigiTrust support in the process.
 2. On each page reference both your `prebid.js` and a copy of the **DigiTrust** library. 
    This may either be a copy downloaded from the [DigiTrust CDN](https://cdn.digitru.st/prod/1/digitrust.min.js) to your CDN, 
    or directly referenced from the URL https://cdn.digitru.st/prod/1/digitrust.min.js. These may be added to the page in any order.
-3. Add a configuration section for Prebid that includes the `usersync` settings and the `digitrust` settings.
+3. Add a configuration section for Prebid that includes the `userSync` settings and the `digitrust` settings.
 
 ### Full DigiTrust packaged with Prebid
 
 1. Deploy your built copy of `prebid.js` to your CDN. Be sure to perform *Step 4* of the build to concatenate or 
    integrate the full DigiTrust library code with your Prebid package.
 2. On each page reference your `prebid.js`
-3. Add a configuration section for Prebid that includes the `usersync` settings and the `digitrust` settings. 
+3. Add a configuration section for Prebid that includes the `userSync` settings and the `digitrust` settings. 
    This code may also be appended to your Prebid package or placed in other initialization methods.
 
 
@@ -107,7 +107,7 @@ pbjs.que.push(function() {
 			timeout: 5000,
 			allowAuctionWithoutConsent: true
 		},
-		usersync: {
+		userSync: {
 			userIds: [
 			{
 				name: "digitrust",
@@ -139,11 +139,11 @@ pbjs.que.push(function() {
 });
 ```
 
-## Parameter Descriptions for the `usersync` Configuration Section
+## Parameter Descriptions for the `userSync` Configuration Section
 The below parameters apply only to the DigiTrust ID integration.
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the DigiTrust module - `"digitrust"` | `"digitrust"` |
 | params | Required | Object | Details for DigiTrust initialization. | |

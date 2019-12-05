@@ -30,8 +30,61 @@ var adUnit = {
         "params": {
             "supplyCode": "ssp-demo-rm6rh",
             "adCode": "ssp-!demo!-lufip",
-            "videoId": "MyCoolVideo"    
-            // Other params go here       
+            "videoId": "MyCoolVideo"     
+        }
+    }]
+}
+```
+### Supply Chain Object:
+```javascript
+// There are two ways of passing the SupplyChain Object to our adapter: 
+// 1) set it in the config
+pbjs.setConfig({
+    "schain": {
+        "ver":"1.0",
+        "complete": 1,
+        "nodes": [
+            {
+                "asi":"indirectseller.com",
+                "sid":"00001",
+                "hp":1
+            }
+        ]     
+    }
+});
+
+// 2) pass it in the params object of the adunit:
+var adUnit = {
+    "code": "video1",
+    "mediaTypes": {
+        "video": {
+            "playerSize": [640, 480],
+            "context": "instream"
+        }
+    },
+    "bids": [{
+        "bidder": "telaria",
+        "params": {
+            "supplyCode": "ssp-demo-rm6rh",
+            "adCode": "ssp-!demo!-lufip",
+            "videoId": "MyCoolVideo",
+// Other params go here,
+            "schain" : {
+                "ver":"1.0",
+                "complete":1,
+                "nodes":[
+                    {
+                        "asi":"exchange1.com",
+                        "sid":"1234",
+                        "hp":1
+                    },
+                    {
+                        "asi":"exchange2.com",
+                        "sid":"abcd",
+                        "hp":1
+                    }
+                ]
+            }
         }
     }]
 }
@@ -51,3 +104,6 @@ var adUnit = {
 + `1` : Streaming
 + `2` : Progressive
 + `3` : Download
+
+### Supply Chain Object
+The adapter has been enhanced to accept the supply chain object (schain) if provided. Please refer to [SupplyChain for Non RTB Requests](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md#supplychain-for-non-openrtb-requests) for more information

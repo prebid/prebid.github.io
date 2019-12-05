@@ -1,6 +1,6 @@
-- company: AppNexus
-  link: https://www.appnexus.com/en/publishers/header-bidding
-  imgURL: /assets/images/partners/founders/appnexus.png
+- company: Xandr
+  link: https://www.xandr.com/platform/
+  imgURL: /assets/images/partners/founders/xandr.png
   type: founder
   
 - company: Rubicon 
@@ -23,9 +23,19 @@
   imgURL: /assets/images/partners/leader/spotx_logo.png
   type: leader
 
+- company: theTradeDesk 
+  link: https://www.thetradedesk.com/
+  imgURL: /assets/images/partners/leader/TTD_logo.png
+  type: leader
+
 - company: Criteo 
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
+  type: technology
+  
+- company: Datablocks 
+  link: https://datablocks.net/
+  imgURL: /assets/images/partners/tech/datablocks_logo.png
   type: technology
   
 - company: Marfeel 
@@ -58,6 +68,11 @@
   imgURL: /assets/images/partners/publisher/cafemedia.png
   type: publisher
 
+- company: Chegg
+  link: https://www.chegg.com/
+  imgURL: /assets/images/partners/publisher/chegg.png
+  type: publisher
+  
 - company: Mediavine
   link: https://www.mediavine.com/
   imgURL: /assets/images/partners/publisher/mediavine-sq-teal-navy-pn-RGB.png
@@ -68,14 +83,34 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: SHE Media
+  link: https://www.shemedia.com/
+  imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
+  type: publisher
+
+- company: Blockthrough
+  link: https://blockthrough.com/
+  imgURL: /assets/images/partners/community/Blockthrough-Logo.png
+  type: community
+
 - company: CHEQ
   link: https://www.cheq.ai/
   imgURL: /assets/images/partners/community/CHEQ_Logo.png
   type: community
 
+- company: DailyMotion
+  link: https://dailymotion.com/
+  imgURL: /assets/images/partners/community/Dailymotion_logo.png
+  type: community
+
 - company: GoBrowsi
   link: https://gobrowsi.com
   imgURL: /assets/images/partners/community/Browsi-Logo.png
+  type: community
+
+- company: ID5
+  link: https://id5.io
+  imgURL: /assets/images/partners/community/ID5-Logo.png
   type: community
 
 - company: Publica

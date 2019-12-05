@@ -194,22 +194,28 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 
 ### Using client-side adapters
 
-+ [video.js]({{site.github.url}}/examples/video/videojs-demo.html)
-+ [JWPlayer]({{site.github.url}}/examples/video/jwPlayerPrebid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/bc-demo.html)
-+ [Kaltura]({{site.github.url}}/examples/video/klt-demo.html)
-+ [Ooyala]({{site.github.url}}/examples/video/ooyala-demo.html)
++ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
++ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
++ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
++ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
++ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
++ [JWPlayer - Playlist]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html)
++ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
++ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
++ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
++ [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
 ### Using Prebid Server Video
 
-+ [JW Player]({{site.baseurl}}/examples/video/jwplayer-pbserver-demo.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/kaltura-pbserver-demo.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/videojs-pbserver-demo.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/ooyala-pbserver-demo.html)
++ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
++ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
++ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
++ [JW Player - Playlist]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html)
++ [JW Player - Player 7]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html)
++ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
++ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
++ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
-### All examples in one place
-
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
 
 ## Related Topics
 

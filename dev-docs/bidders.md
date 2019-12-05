@@ -100,6 +100,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 | **Bidder Code** | {{ page.biddercode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
 | **Media Types** | display{% if page.media_types contains 'video' %}, video{% endif %}{% if page.media_types contains 'native' %}, native{% endif %} | **GDPR Support** | {% if page.gdpr_supported == true %}yes{% else %}no{% endif %} |
 | **User IDs** | {% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% else %}no{% endif %} |
+| **SChain Support** | {% if page.schain_supported  == true %}yes{% else %}no{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
 
 
 <h3>"Send All Bids" Ad Server Keys</h3>

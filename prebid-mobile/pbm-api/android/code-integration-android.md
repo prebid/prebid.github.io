@@ -25,7 +25,7 @@ implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 If you wish to explicitly state the lastest stable release, please use the following:
 
 ```
-implementation 'org.prebid:prebid-mobile-sdk:1.2'
+implementation 'org.prebid:prebid-mobile-sdk:1.3'
 ```
 
 
