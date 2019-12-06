@@ -19,9 +19,12 @@ The following sections describe the currently active committees.
 
 ## Prebid.js
 
-Scope: Prebid.js and related repositories<br/>
-Description: browser-based header bidding<br/>
-Chair: Matt Kendall (Xandr)<br/>
+{: .table .table-bordered .table-striped }
+| **Scope** | Prebid.js and related repositories |
+| **Description** | browser-based header bidding |
+| **Chair** | Matt Kendall (Blockthrough) |
+| **Audience** | Product and Engineers |
+
 GitHub Repositories:
 
 + https://github.com/prebid/prebid.js
@@ -32,9 +35,12 @@ GitHub Repositories:
 
 ## Prebid Mobile
 
-Scope: Prebid Mobile SDK<br/>
-Description: Mobile-app based header bidding<br/>
-Chair: Lila Hunt (Sortable)<br/>
+{: .table .table-bordered .table-striped }
+| **Scope** | Prebid Mobile SDK |
+| **Description** | Mobile-app based header bidding |
+| **Chair** | Bryan Szekely (Rubicon Project) |
+| **Audience** | Product and Engineers |
+
 GitHub Repositories:
 
 + https://github.com/prebid/prebid-mobile-ios
@@ -43,9 +49,12 @@ GitHub Repositories:
 
 ## Prebid Server
 
-Scope: Prebid Server and Prebid Cache<br/>
-Description: Server-side header bidding<br/>
-Chair: Bret Gorsline (Rubicon Project)<br/>
+{: .table .table-bordered .table-striped }
+| **Scope** | Prebid Server and Prebid Cache |
+| **Description** | Server-side header bidding |
+| **Chair** | Bret Gorsline (Rubicon Project) |
+| **Audience** | Product and Engineers |
+
 GitHub Repositories:
 
 + https://github.com/prebid/prebid-server
@@ -56,9 +65,12 @@ GitHub Repositories:
 
 ## Prebid Tools
 
-Scope: Misc. Tools<br/>
-Description: Debugging and Operational Support<br/>
-Chair: Philip Meyer (Rubicon Project)<br/>
+{: .table .table-bordered .table-striped }
+| **Scope** | Misc. Tools |
+| **Description** | Debugging and Operational Support |
+| **Chair** | Asaf Shamly (Browsi) |
+| **Audience** | Product, Business, and Engineers |
+
 GitHub Repositories:
 
 + https://github.com/prebid/header-bidder-expert
@@ -66,11 +78,30 @@ GitHub Repositories:
 
 ## Video Taskforce
 
-Scope: Video<br/>
-Description: Define the needs for video header bidding<br/>
-Chair: Roy Firestone
+{: .table .table-bordered .table-striped }
+| **Scope** | Video |
+| **Description** | Define the needs for video header bidding |
+| **Chair** | Maxence Faignart (Criteo) |
+| **Format Lead** | Joel Korpi (Xandr) |
+| **Audience** | Product, Business, and Engineers |
+
+## Marketing Taskforce
+
+{: .table .table-bordered .table-striped }
+| **Scope** | Prebid.org events and marketing |
+| **Description** | Coordinates Prebid events and press releases |
+| **Chair** | Joel Fisher (Rubicon Project) |
+| **Audience** | Marketing, Business |
+
+## Publisher Taskforce
+
+{: .table .table-bordered .table-striped }
+| **Scope** | Publisher-related topics |
+| **Description** | Header bidding issues, optimization, strategy, best practices |
+| **Chair** | TBD |
+| **Audience** | Business |
 
 ## Further Reading
 
-* [What is Prebid.org?]({{site.baseurl}}/overview/what-is-prebid-org.html)
-* [Prebid.org Members and Partners]({{site.baseurl}}/partners/partners.html)
+* [What is Prebid.org?](/overview/what-is-prebid-org.html)
+* [Prebid.org Membership and Partners](/partners/partners.html)
