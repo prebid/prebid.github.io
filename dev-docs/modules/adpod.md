@@ -11,7 +11,12 @@ sidebarType : 1
 
 # Adpod Module
 
-The adpod module enables developers to add support for a new adserver that handles `adpod` (long-form) videos, like Freewheel.  Specifically, the module provides functions to validate, cache, and modify long-form video bids. 
+{:.no_toc}
+
+* TOC
+{:toc}
+
+The adpod module enables developers to add support for a new adserver that handles `adpod` (long-form) videos, like Freewheel.  Specifically, the module provides functions to validate, cache, and modify long-form video bids.
 
 ## How to use the module as a publisher:
 
@@ -42,7 +47,7 @@ hb_pb_cat_dur = '10.00_10s'
 
 ## How to use the module as a developer:
 
-In the user's equivalent `<name>AdServerVideo` module, import the `initAdpodHooks` function and call it from within their module. Executing the init function will initialize several key functions from the module that are designed to handle `adpod` objects (ie. adUnits, bids, etc.) as the auction proceeds. These functions will only affect `adpod` objects, other `mediaTypes` will be handled by the base Prebid code. 
+In the user's equivalent `<name>AdServerVideo` module, import the `initAdpodHooks` function and call it from within their module. Executing the init function will initialize several key functions from the module that are designed to handle `adpod` objects (ie. adUnits, bids, etc.) as the auction proceeds. These functions will only affect `adpod` objects, other `mediaTypes` will be handled by the base Prebid code.
 
 ```
 initAdpodHooks();
@@ -55,7 +60,78 @@ In addition to the `initAdpodHooks` function, users can import values from the A
 This variable equates to `hb_pb_cat_dur`.
 
 `TARGETING_KEY_CACHE_ID`  
-This variable equates to `hb_cache_id`. 
+This variable equates to `hb_cache_id`.
+
+## CPM Adjustments by Deal Tier for CSAI
+To enable publishers to prioritize video deals with direct buys and over deals at the same price in the FreeWheel stack two new ad pod configs have been added, `prioritzeDeals` and `dealTier`. To obtain this higher priority the method uses the deal priority tier value that is passed by the bidder. This helps inflate the bid CPM that is passed into FreeWheel and gives it a higher priority.
+
+{: .table .table-bordered .table-striped }
+| Parameter  | Scope  | Type  | Description  |
+|---|---|---|---|
+| prioritizeDeals  |  Optional | Boolean  |  A flag to give a higher preference to deals. This will replace the CPM value within the `hb_pb_cat_dur` key with the `bid.video.tier` value.  For example: A bid with `hp_pb_cat_dur` value of `12.00_395_15s` that has a `dealTier.BIDDER.prefix` of tier and a `bid.video.tier` value of 6 would have its `hp_pb_cat_dur` value changed to `tier6_395_15s`. |
+| dealTier  | Optional  | Object  | The dealTier parameter contains objects which hold information about the minimum deal tier to set for each bidder and the prefix required by that bidder to conduct a deal. This enables each publisher to have line items set up in the ad server with different priorities. See the `dealTier` object below for parameters.  |
+| dealTier.BIDDER.prefix  | Required  | String  | The prefix required by the bidder to indicate this is a deal.  |
+| dealTier.BIDDER.minDealTier  | Required  | Integer  | When an `adpod` is passed with the `prioritizeDeals` flag set to true, the CPM in the cache key as well as targeting key/value pairs will be set to the `dealTier.BIDDER.minDealTier` value. If this value is set equal to or greater than five the bid will receive a higher preference within the FreeWheel stack.   |
+
+{% capture noteAlert %}
+Bids with a dealTier.BIDDER.minDealTier value less than 5 will not be ignored but their cache key will contain dealId in place of CPM. These bids will be auctioned just like non-deal bids.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+### Examples:
+
+{% highlight js %}
+// This will replace the cpm with dealId in cache key as well as targeting kv pair when prioritizeDeals flag is set to true.
+pbjs.setConfig({
+  adpod: {
+    prioritizeDeals: true,
+    dealTier: {
+      'appnexus': {
+        prefix: 'tier',
+        minDealTier: 5
+      },
+      'some-other-bidder': {
+        prefix: 'deals',
+        minDealTier: 20
+      }
+    }
+  }
+})
+{% endhighlight %}
+If the bidder returns multiple bid, each bid can have a different priority/deal tier set. To give publishers control over the deal tier a `filterBids` option has been added to `pbjs.adServers.freewheel.getTargeting` to select certain deal bids.
+
+{% highlight js %}
+pbjs.adServers.freewheel.getTargeting({
+
+    codes: [adUnitCode1],
+    callback: function(err, targeting) {
+        //pass targeting to player api
+    }
+});
+{% endhighlight %}
+
+#### Return
+
+{% highlight js %}
+// Sample return targeting key value pairs
+{
+  'adUnitCode-1': [
+    {
+      'hb_pb_cat_dur': 'tier9_400_15s', // Bid with deal id
+    },
+    {
+      'hb_pb_cat_dur': 'tier7_401_15s', // Bid with deal id
+    },
+    {
+      'hb_pb_cat_dur': '15.00_402_15s',
+    },
+    {
+      'hb_cache_id': '123'
+    }
+  ]
+}
+{% endhighlight %}
 
 ## Further Reading
 

@@ -499,7 +499,7 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 {: .alert.alert-info :}
 Following is Prebid's way to setup bid request for long-form, apadters are free to choose their own approach.
 
-Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement. 
+Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement.
 
 #### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
 ```
@@ -531,7 +531,7 @@ In Use case 1, you are asking endpoint to respond with 20 bids between min durat
 Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
   - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
   - reject bid if the bid is above the range of the listed durations (and outside the buffer)
-  
+
 Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
 
 #### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
@@ -546,7 +546,7 @@ AdUnit config
 }
 
 Algorithm
-# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length) 
+# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length)
 
 Each placement:
 placement.video.minduration = durationRangeSec[i]
@@ -555,11 +555,11 @@ placement.video.maxduration = durationRangeSec[i]
 Example:
 # of placements : MAX_VALUE( (300 / 15 = 20), 2) == 20
 
-20 / 2 = 10 placements: 
+20 / 2 = 10 placements:
 placement.video.minduration = 15
 placement.video.maxduration = 15
 
-20 / 2 = 10 placements: 
+20 / 2 = 10 placements:
 placement.video.minduration = 30
 placement.video.maxduration = 30
 
@@ -591,7 +591,7 @@ Appnexus Adapter uses above explained approach. You can refer [here](https://git
 
 Adapter must return one [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
-If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
+If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle.
 
 **Params**  
 
@@ -606,8 +606,8 @@ If the demand partner is going to use Prebid API for this process, their adapter
 **Example**
 
 ```
-getMappingFileInfo: function() { 
-  return { 
+getMappingFileInfo: function() {
+  return {
     url: '<mappingFileURL>',
     refreshInDays: 7
     localStorageKey: '<uniqueCode>'
@@ -615,7 +615,7 @@ getMappingFileInfo: function() {
 }
 ```
 
-The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
+The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion.
 
 To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
 
@@ -669,6 +669,77 @@ function createBid(status, reqBid, response) {
     return bid;
 }
 
+{% endhighlight %}
+
+### CPM Adjustments by Deal Tier for CSAI
+To enable publishers to prioritize video deals with direct buys and over deals at the same price in the FreeWheel stack two new ad pod configs have been added, `prioritzeDeals` and `dealTier`. To obtain this higher priority the method uses the deal priority tier value that is passed by the bidder. This helps inflate the bid CPM that is passed into FreeWheel and gives it a higher priority.
+
+{: .table .table-bordered .table-striped }
+| Parameter  | Scope  | Type  | Description  |
+|---|---|---|---|
+| prioritizeDeals  |  Optional | Boolean  |  A flag to give a higher preference to deals. This will replace the CPM value within the `hb_pb_cat_dur` key with the `bid.video.tier` value.  For example: A bid with `hp_pb_cat_dur` value of `12.00_395_15s` that has a `dealTier.BIDDER.prefix` of tier and a `bid.video.tier` value of 6 would have its `hp_pb_cat_dur` value changed to `tier6_395_15s`. |
+| dealTier  | Optional  | Object  | The dealTier parameter contains objects which hold information about the minimum deal tier to set for each bidder and the prefix required by that bidder to conduct a deal. This enables each publisher to have line items set up in the ad server with different priorities. See the `dealTier` object below for parameters.  |
+| dealTier.BIDDER.prefix  | Required  | String  | The prefix required by the bidder to indicate this is a deal.  |
+| dealTier.BIDDER.minDealTier  | Required  | Integer  | When an `adpod` is passed with the `prioritizeDeals` flag set to true, the CPM in the cache key as well as targeting key/value pairs will be set to the `dealTier.BIDDER.minDealTier` value. If this value is set equal to or greater than five the bid will receive a higher preference within the FreeWheel stack.   |
+
+{% capture noteAlert %}
+Bids with a dealTier.BIDDER.minDealTier value less than 5 will not be ignored but their cache key will contain dealId in place of CPM. These bids will be auctioned just like non-deal bids.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+#### Examples:
+
+{% highlight js %}
+// This will replace the cpm with dealId in cache key as well as targeting kv pair when prioritizeDeals flag is set to true.
+pbjs.setConfig({
+  adpod: {
+    prioritizeDeals: true,
+    dealTier: {
+      'appnexus': {
+        prefix: 'tier',
+        minDealTier: 5
+      },
+      'some-other-bidder': {
+        prefix: 'deals',
+        minDealTier: 20
+      }
+    }
+  }
+})
+{% endhighlight %}
+If the bidder returns multiple bid, each bid can have a different priority/deal tier set. To give publishers control over the deal tier a `filterBids` option has been added to `pbjs.adServers.freewheel.getTargeting` to select certain deal bids.
+
+{% highlight js %}
+pbjs.adServers.freewheel.getTargeting({
+
+    codes: [adUnitCode1],
+    callback: function(err, targeting) {
+        //pass targeting to player api
+    }
+});
+{% endhighlight %}
+
+#### Return
+
+{% highlight js %}
+// Sample return targeting key value pairs
+{
+  'adUnitCode-1': [
+    {
+      'hb_pb_cat_dur': 'tier9_400_15s', // Bid with deal id
+    },
+    {
+      'hb_pb_cat_dur': 'tier7_401_15s', // Bid with deal id
+    },
+    {
+      'hb_pb_cat_dur': '15.00_402_15s',
+    },
+    {
+      'hb_cache_id': '123'
+    }
+  ]
+}
 {% endhighlight %}
 
 ## Supporting Native
@@ -887,5 +958,3 @@ The Prebid.org [download page]({{site.baseurl}}/download.html) will automaticall
 ## Further Reading
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
-
-
