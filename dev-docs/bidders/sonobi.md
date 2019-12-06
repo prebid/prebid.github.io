@@ -18,12 +18,13 @@ implementing our adapter please don't hesitate to contact us at apex.prebid@sono
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                    | Example                          | Type           |
 |----------------|----------|----------------------------------------------------------------|----------------------------------|----------------|
-| `placement_id` | required* | The placement ID                                               | `'1a2b3c4d5e6f1a2b3c4d'`         | `string`       |
-| `ad_unit`      | required* | The adunit ID                                                  | `'/1234567/example/adUnit/code'` | `string`       |
+| `placement_id` | required* | The placement ID                                              | `'1a2b3c4d5e6f1a2b3c4d'`         | `string`       |
+| `ad_unit`      | required* | The adunit ID                                                 | `'/1234567/example/adUnit/code'` | `string`       |
 | `floor`        | optional | Bid floor for this placement in USD                            | `0.50`                           | `float`        |
 | `sizes`        | optional | Adunit sizes that will override global sizes                   | `[[300, 250], [300, 600]]`       | `Array<Array>` |
 | `hfa`          | optional | Publisher Unique Identifier                                    | `'123985'`                       | `string`       |
 | `referrer`     | optional | Overrides the default value for the ref param in a bid request | `'prebid.org'`                   | `string`       |
+| `keywords`     | optional | Comma separated list of keywords about the site                | `'sports,news,food'`                   | `string`       |
 
 ### Configuration
 *You *must* only include one ID field - either `placement_id` or `ad_unit`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
