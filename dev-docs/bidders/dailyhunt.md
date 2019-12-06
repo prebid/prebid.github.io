@@ -14,7 +14,7 @@ prebid_member: true
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                                                                          | Example                                       | Type       |
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
-| `partnerId`          | required | Serbing ads based on partnerId. Contact Dailyhunt for PartnerIds.                                    | `pb-partner`                                      | `string`  |
+| `partnerId`          | required | Serving ads based on partnerId. Contact Dailyhunt for PartnerIds.                                    | `pb-partner`                                      | `string`  |
 
 ### Test Parameters
 ```
