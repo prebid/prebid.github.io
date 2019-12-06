@@ -24,7 +24,7 @@ implementing our adapter please don't hesitate to contact us at apex.prebid@sono
 | `sizes`        | optional | Adunit sizes that will override global sizes                   | `[[300, 250], [300, 600]]`       | `Array<Array>` |
 | `hfa`          | optional | Publisher Unique Identifier                                    | `'123985'`                       | `string`       |
 | `referrer`     | optional | Overrides the default value for the ref param in a bid request | `'prebid.org'`                   | `string`       |
-| `keywords`     | optional | Comma separated list of keywords about the site                | `'sports,news,food'`                   | `string`       |
+| `keywords`     | optional | Comma separated list of keywords about the site                | `'sports,news,food'`             | `string`       |
 
 ### Configuration
 *You *must* only include one ID field - either `placement_id` or `ad_unit`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
