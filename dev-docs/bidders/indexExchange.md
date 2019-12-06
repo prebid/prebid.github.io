@@ -89,6 +89,7 @@ object are detailed here.
 | ---- | ----- | ----------- | ------- | ---- |
 | `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` | 
 | `size` | Required for client-side serving | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Note that the 'ix' Prebid Server bid adpater ignores this parameter. | `[300, 250]` | `Array<integer>` | 
+| `id` | Optional | An alphanumerical value used to identify the `slot_id` in reporting | `id: "billboardHomepage"`, `id: "billboardArticle"` | String |
 
 ### Video
 
@@ -102,6 +103,7 @@ object are detailed here.
 | `video.minduration` | Required | Minimum video ad duration in seconds. | `0` | `integer` |
 | `video.maxduration` | Required | Maximum video ad duration in seconds. | `300` | `integer` |
 | `video.protocol` / `video.protocols` | Required | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper | `[2,3,5,6]` | `integer` / `Array<integer>` |
+| `id` | Optional | An alphanumerical value used to identify the `slot_id` in reporting | `id: "inStreamCTP"`, `id: "inStreamAutoPlay"` | String |
 
 ## Setup Guide
 
@@ -329,7 +331,7 @@ such:
 ```javascript
 pbjs.setConfig({
     ix: {
-        timeout: 500
+        timeout: 250
     }
 });
 ```
