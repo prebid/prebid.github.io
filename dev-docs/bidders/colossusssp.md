@@ -5,6 +5,7 @@ description: Prebid Colossus Bidder Adaptor
 hide: true
 biddercode: colossusssp
 usp_supported: true
+schain_supported: true
 media_types: banner, video, native
 ---
 
