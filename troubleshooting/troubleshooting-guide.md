@@ -150,6 +150,21 @@ javascript console> pbjs.setConfig({
   }
 });
 
+// Overwriting bid responses for a specific bidder and adUnit code 
+//  - supplies a specific creative
+javascript console> pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bids: [{
+      bidder: 'bidderA',
+      adUnitCode: '/19968336/header-bid-tag-0',
+      cpm: 1.5,
+      adId: '111111',
+      ad: '<html><body><img src="https://files.prebid.org/creatives/prebid300x250.png"></body></html>'
+    }]
+  }
+});
+
 // Disabling debugging
 javascript console> pbjs.setConfig({
   debugging: {

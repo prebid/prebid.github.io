@@ -62,6 +62,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [cache](#setConfig-vast-cache)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
+  * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
 
 Functions added by optional modules
@@ -430,6 +431,9 @@ Use this method to retrieve an array of winning bids.
 
 + `pbjs.getHighestCpmBids()`: with no argument, returns an array of winning bid objects for each ad unit on page
 + `pbjs.getHighestCpmBids(adUnitCode)`: when passed an ad unit code, returns an array with the winning bid object for that ad unit
+
+{: .alert.alert-warning :}
+Note that from **Prebid 3.0** onwards, `pbjs.getHighestCpmBids` will not return rendered bids.
 
 <hr class="full-rule">
 
@@ -1636,7 +1640,7 @@ pbjs.setConfig({
 })
 {% endhighlight %}
 
-Additional information of these properties:
+Additional information of `s2sConfig` properties:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description                                                                                   |
@@ -2194,6 +2198,37 @@ ERROR: setConfig options must be an object
 If you don't see that message, you can assume the config object is valid.
 
 <hr class="full-rule" />
+
+<a name="module_pbjs.setBidderConfig"></a>
+
+### pbjs.setBidderConfig(options)
+
+This function is similar to [`setConfig`](#module_pbjs.setConfig), but is designed to support certain bidder-specific scenarios.
+
+Configuration provided through the [`setConfig`](#module_pbjs.setConfig) function is
+globally available to all bidder adapters. This makes sense because
+most of these settings are global in nature. However, there are use cases where different bidders require different data, or where certain parameters apply only to a given
+bidder. Use `setBidderConfig` when you need to support these cases.
+
+The page usage is:
+
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ["bidderA"],  // one or more bidders
+   config: {              // the bidder-specific config
+      bidderA: {
+         customArg: 'value'
+      }
+   }
+});
+{% endhighlight %}
+
+When 'bidderA' calls `getConfig('bidderA')`, it will receive the object that contains 'customArg'.
+If any other bidder calls `getConfig('bidderA')`, it will receive nothing.
+
+{: .alert.alert-info :}
+The `setBidderConfig` function will soon be used by the `schain` and
+`first party data` features.
 
 <a name="module_pbjs.getConfig"></a>
 

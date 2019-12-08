@@ -10,7 +10,6 @@
   subgroup: 1000
   sbCollapseId: overview
 
-
 - sbSecId: 0
   title: General
   link:
@@ -27,23 +26,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
-- sbSecId: 0
-  title: Project Principles
-  link: /principles.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: Contributing
-  link: /contributing/contribute.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
+  
 - sbSecId: 0
   title: About Prebid.org
   link: /overview/what-is-prebid-org.html
@@ -53,13 +36,21 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: Members and Partners
+  title: Project Principles
+  link: /principles.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+  
+- sbSecId: 0
+  title: Membership
   link: /partners/partners.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
+  
 - sbSecId: 0
   title: Prebid Management Committees
   link: /overview/prebid-management-committees.html
@@ -67,9 +58,25 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
+  
 - sbSecId: 0
-  title: Header Bidding Wrapper Code of Conduct
+  title: Developers
+  link: /developers.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 0
+  
+- sbSecId: 0
+  title: "<span style='color:#EA9622;'>Codes of Conduct</span>"
+  link: 
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 0
+  title: '&nbsp;&nbsp;Header Bidding Wrapper'
   link: /wrapper_code_of_conduct.html
   isHeader: 0
   isSectionHeader: 0
@@ -77,21 +84,31 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: Community Code of Conduct
+  title: '&nbsp;&nbsp;Community'
   link: /overview/community-code-of-conduct.html
   isHeader: 0
   isSectionHeader: 0
   subgroup: 0
-
+  
 - sbSecId: 0
-  title: Developers
-  link: /developers.html
+  title: "<span style='color:#EA9622;'>Policies</span>"
+  link: 
   isHeader: 0
   isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 0
+  title: '&nbsp;&nbsp;Contributing'
+  link: /contributing/contribute.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
   subgroup: 0
 
 - sbSecId: 0
-  title: Prebid.org IP Policy
+  title: '&nbsp;&nbsp;Prebid.org IP Policy'
   link: /overview/ip-policy.html
   isHeader: 0
   isSectionHeader: 0
@@ -99,7 +116,7 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: Privacy Policy
+  title: '&nbsp;&nbsp;Privacy Policy'
   link: /privacy.html
   isHeader: 0
   isSectionHeader: 0
@@ -107,21 +124,30 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: Cookies
+  title: '&nbsp;&nbsp;Cookies'
   link: /cookies.html
   isHeader: 0
   isSectionHeader: 0
   subgroup: 0
+  
+- sbSecId: 0
+  title: "<span style='color:#EA9622;'>Other</span>"
+  link: 
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
 
 - sbSecId: 0
-  title: Managed Services
+  title: '&nbsp;&nbsp;Managed Services'
   link: /prebid/managed.html
   isHeader: 0
   isSectionHeader: 0
   subgroup: 0
   
 - sbSecId: 0
-  title: Events
+  title: '&nbsp;&nbsp;Events'
   link: /prebid/events.html
   isHeader: 0
   isSectionHeader: 0
@@ -191,6 +217,22 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 1
+  title: Native Ads
+  link: /dev-docs/examples/native-ad-example.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 1
+  title: Instream Video and Banner Ads
+  link: /dev-docs/examples/instream-banner-mix.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Individual Ad Unit Refresh/Infinite Scroll
@@ -241,7 +283,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-  
+
 - sbSecId: 1
   title: Prebid.js FAQ
   link: /dev-docs/faq.html
@@ -257,7 +299,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-  
+
 - sbSecId: 1
   title: Common Issues
   link: /dev-docs/common-issues.html
@@ -382,8 +424,16 @@
   subgroup: 5
   
 - sbSecId: 1
-  title: GPDR Consent Management
+  title: Consent Management - GDPR
   link: /dev-docs/modules/consentManagement.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Consent Management - US Privacy (CCPA)
+  link: /dev-docs/modules/consentManagementUsp.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -420,7 +470,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-  
+
 - sbSecId: 1
   title: Freewheel Module
   link: /dev-docs/modules/freewheel.html
@@ -428,7 +478,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-  
+
 - sbSecId: 1
   title: Ad Pod Module
   link: /dev-docs/modules/adpod.html
@@ -436,7 +486,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-    
+  
 - sbSecId: 1
   title: Category Translation
   link: /dev-docs/modules/categoryTranslation.html
@@ -444,10 +494,19 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-  
+
 - sbSecId: 1
   title: Konduit Accelerate Module
   link: /dev-docs/modules/konduit.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Browsi Viewability Module
+  link: /dev-docs/modules/browsiRtdProvider.html
+  isLastSubSectionItem: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -583,8 +642,8 @@
   subgroup: 0
 
 - sbSecId: 2
-  title: GDPR and Mobile
-  link: /prebid-mobile/gdpr.html
+  title: Privacy Regulation
+  link: /prebid-mobile/privacy-regulation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -640,8 +699,24 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-interstitialadunit-ios.html
+  title: Banner Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video Outstream Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videooutstreamadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -678,7 +753,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-
 
 - sbSecId: 2
   title: For Android
@@ -722,8 +796,24 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-interstitialadunit-android.html
+  title: Banner Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Video Outstream Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-videooutstreamadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Video Interstitial Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-videointerstitialadunit-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -773,6 +863,14 @@
 - sbSecId: 2
   title: Setup Line items For Google Ad Manager
   link: /prebid-mobile/adops-line-item-setup-dfp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
+- sbSecId: 2
+  title: Setup Line items For Video
+  link: /prebid-mobile/adops-video-setup-dfp.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -915,7 +1013,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-  
+
 - sbSecId: 3
   title: 'Prebid Universal Creative'
   link: /overview/prebid-universal-creative.html
@@ -989,7 +1087,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-  
+
 - sbSecId: 3
   title: 'Setting up Long-Form Video'
   link: /adops/setting-up-prebid-ott-video-in-gam.html
@@ -997,7 +1095,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-  
+
 - sbSecId: 3
   title: "<span style='color:#EA9622;'>Freewheel</span>"
   link: 
@@ -1127,7 +1225,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-  
+
 - sbSecId: 4
   title: Getting Started with Long Form Video for Prebid.js
   link: /prebid-video/video-long-form.html
@@ -1144,7 +1242,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-  
+
 - sbSecId: 4
   title: Show OTT Video Ads with Prebid
   link: /dev-docs/show-long-form-video-with-gam.html
@@ -1176,15 +1274,6 @@
   headerId: videxamples
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: Prebid.js Video Examples
-  link: /examples/video/
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle: 
   subgroup: 1
   
 - sbSecId: 4
@@ -1462,7 +1551,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 5
   title: Currency Converter
   link: /prebid-server/developers/currency-converter.html
@@ -1470,7 +1559,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 5
   title: Default Request
   link: /prebid-server/developers/default-request.html
@@ -1543,7 +1632,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-  
+
 - sbSecId: 5
   title: Prebid Server AMP
   link: /prebid-server/endpoints/openrtb2/amp.html
@@ -1551,7 +1640,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-  
+
 - sbSecId: 5
   title: Prebid Server Video
   link: /prebid-server/endpoints/openrtb2/video.html
@@ -1567,7 +1656,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-  
+
 - sbSecId: 5
   title: Get User Syncs
   link: /prebid-server/endpoints/getuids.html
