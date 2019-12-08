@@ -6,7 +6,6 @@ hide: true
 biddercode: dailyhunt
 media_types: display, native
 gdpr_supported: true
-prebid_member: true
 ---
 
 ### Bid Params
