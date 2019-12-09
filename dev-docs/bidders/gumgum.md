@@ -17,7 +17,8 @@ information.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description | Example      | Type      |
-|------------|----------|-------------|--------------|-----------|
-| `inScreen` | optional | Tracking ID or Publisher ID | `'ggumtest'` | `string` (tracking ID) or `integer` (publisher ID) |
-| `inSlot`   | optional | Slot ID     | `9`          | `integer` |
+| Name           | Scope    | Description | Example      | Type      |
+|----------------|----------|-------------|--------------|-----------|
+| `inScreen`     | optional | Tracking ID | `'ggumtest'` | `string`  |
+| `inScreenPubID`| optional | Publisher ID| `123`        | `integer` |
+| `inSlot`       | optional | Slot ID     | `9`          | `integer` |
