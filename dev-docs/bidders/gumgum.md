@@ -5,6 +5,8 @@ description: Prebid GumGum Bidder Adaptor
 hide: true
 biddercode: gumgum
 media_types: native
+schain_supported: true
+userIds: unifiedId/tradedesk, digitrustId
 gdpr_supported: true
 ---
 
