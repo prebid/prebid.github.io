@@ -41,6 +41,76 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+Another way to setup the schain object can be done through the `pbjs.setBidderConfig` function.  This method would allow you to specify unique schain configs for indiviual bidders; this can be helpful if you have a different relationship with certain bidders and need to represent the schain information differently than normal.  
+
+You can opt to use the `pbjs.setBidderConfig` function in conjunction with the `pbjs.setConfig` function.  When together, the schain config setup via the `pbjs.setConfig` acts as a global config that applies to all your bidders, while the `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
+
+Below is an example of how this would look:
+{% highlight js %}
+pbjs.setConfig({
+  "schain": {
+    "validation": "strict",
+    "config": {
+      "ver":"1.0",
+      "complete": 1,
+      "nodes": [
+        {
+          "asi":"indirectseller.com",
+          "sid":"00001",
+          "hp":1
+        }
+      ]
+    }
+  }
+});
+
+pbjs.setBidderConfig({
+  bidders: ['rubicon'],   // can list more bidders here if they share the same config (eg if they had an alias you were using)
+  config: {
+    schain: {
+      "validation": "relaxed",
+    "config": {
+      "ver":"1.0",
+      "complete": 1,
+      "nodes": [
+        {
+          "asi":"myoverride1.com",
+          "sid":"00001",
+          "hp":1
+        }, {
+          "asi":"myoverride2.com",
+          "sid":"00002",
+          "hp":1
+        }
+      ]
+    }
+    }
+  }
+});
+
+pbjs.setBidderConfig({
+  bidders: ['appnexus'],
+  config: {
+    schain: {
+      "validation": "off",
+    "config": {
+      "ver":"1.0",
+      "complete": 1,
+      "nodes": [
+        {
+          "asi":"myothersite.com",
+          "sid":"00001",
+          "hp":1
+        }
+      ]
+    }
+    }
+  }
+});
+{% endhighlight%}
+
+You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig).
+
 ### Validation modes
 - `strict`: It is the default validation mode. In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object.
 - `relaxed`: In this mode, errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters.
