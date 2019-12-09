@@ -65,45 +65,45 @@ pbjs.setConfig({
 });
 
 pbjs.setBidderConfig({
-  bidders: ['rubicon'],   // can list more bidders here if they share the same config (eg if they had an alias you were using)
-  config: {
-    schain: {
+  "bidders": ['rubicon'],   // can list more bidders here if they share the same config
+  "config": {
+    "schain": {
       "validation": "relaxed",
-    "config": {
-      "ver":"1.0",
-      "complete": 1,
-      "nodes": [
-        {
-          "asi":"myoverride1.com",
-          "sid":"00001",
-          "hp":1
-        }, {
-          "asi":"myoverride2.com",
-          "sid":"00002",
-          "hp":1
-        }
-      ]
-    }
+      "config": {
+        "ver":"1.0",
+        "complete": 1,
+        "nodes": [
+          {
+            "asi":"myoverride1.com",
+            "sid":"00001",
+            "hp":1
+          }, {
+            "asi":"myoverride2.com",
+            "sid":"00002",
+            "hp":1
+          }
+        ]
+      }
     }
   }
 });
 
 pbjs.setBidderConfig({
-  bidders: ['appnexus'],
-  config: {
-    schain: {
+  "bidders": ['appnexus'],
+  "config": {
+    "schain": {
       "validation": "off",
-    "config": {
-      "ver":"1.0",
-      "complete": 1,
-      "nodes": [
-        {
-          "asi":"myothersite.com",
-          "sid":"00001",
-          "hp":1
-        }
-      ]
-    }
+      "config": {
+        "ver":"1.0",
+        "complete": 1,
+        "nodes": [
+          {
+            "asi":"myothersite.com",
+            "sid":"00001",
+            "hp":1
+          }
+        ]
+      }
     }
   }
 });
