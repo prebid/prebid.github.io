@@ -225,6 +225,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 1
+  title: Instream Video and Banner Ads
+  link: /dev-docs/examples/instream-banner-mix.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Individual Ad Unit Refresh/Infinite Scroll
@@ -416,8 +424,16 @@
   subgroup: 5
   
 - sbSecId: 1
-  title: GPDR Consent Management
+  title: Consent Management - GDPR
   link: /dev-docs/modules/consentManagement.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Consent Management - US Privacy (CCPA)
+  link: /dev-docs/modules/consentManagementUsp.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
