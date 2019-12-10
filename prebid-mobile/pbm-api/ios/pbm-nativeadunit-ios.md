@@ -19,7 +19,7 @@ The NativeAdUnit is a subclass of the AdUnit class. Use the NativeAdUnit object 
 ### NativeAdUnit
 Create a new `NativeAdUnit` associated with a Prebid Server configuration ID and a banner size.
 
-See [AdUnit](http://localhost:8080/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
+See [AdUnit](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
 **Parameters**
 
@@ -30,7 +30,7 @@ See [AdUnit](http://localhost:8080/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html
 **Create a NativeAdUnit**
 
 ```
-let nativeUnit = NativeRequest(configId: "25e17008-5081-4676-94d5-923ced4359d3")
+let nativeUnit = NativeRequest(configId: your-config-id)
 ```
 **Configure the NativeAdUnit**
 
@@ -48,7 +48,7 @@ To configure the `NativeAdUnit` create the following objects and set the value o
 | NativeEventTracker | Optional | The tracking required for the event. |
 
 {% capture noteAlert %}
-All the items listed above are optional. However, if you choose to include an item in the `NativeAdUnit` configuration it is recommended that when creating them, pass `required:true`
+All the items listed above are optional. However, if you choose to include an item in the `NativeAdUnit` configuration it is recommended that when creating them, set `required:true`
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
@@ -101,7 +101,7 @@ nativeUnit.fetchDemand(adObject: self.request) { [weak self] (resultCode: Result
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
-- [Banner Ad Unit]({{site.baseurl}}prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
+- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
 - [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)

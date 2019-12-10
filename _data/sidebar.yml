@@ -802,6 +802,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+  
+- sbSecId: 2
+  title: Native Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 2
   title: Banner Interstitial Ad Unit
