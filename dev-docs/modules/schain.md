@@ -10,8 +10,18 @@ sidebarType : 1
 ---
 
 # Supply Chain Object Module
+{:.no_toc}
 
-Aggregators who manage Prebid wrappers on behalf of multiple publishers and handle payment on behalf of the publishers need to declare their intermediary status in the Supply Chain Object. As the Supply Chain Object spec prohibits SSPs from adding upstream intermediaries, Prebid requests in this case need to come with the `schain` information.
+* TOC
+{:toc}
+
+Service Providers who manage Prebid wrappers on behalf of multiple publishers and handle payments to the publishers need to declare their intermediary status in the Supply Chain (aka `SChain`) object. As the [IAB's Supply Chain Object spec](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md) prohibits SSPs from adding upstream intermediaries, publishers or Prebid.js managed service providers need to specify `schain` information.
+
+Two modes are supported:
+
+1) Global SChain - use this configuration when the Prebid.js implementation is managed by an entity who needs to add an SChain node to every bid request. i.e. payments flow through this entity for all traffic.
+
+2) Bidder-Specific SChain - use this config when one or more bid adapters is an entity (e.g. a reseller) that requires an SChain node, but other adapters do not require the node. e.g. payments flow through a bidder that doesn't add its own schain node.
 
 ## How to use the module:
 
@@ -20,7 +30,12 @@ First, build the schain module into your Prebid.js package:
 gulp build --modules=schain,...
 ```
 
-Next, in your page, call setConfig with the schain object to be used.  Example:
+The module does validations on the schain data provided and makes it available to bidder adapters on the
+bidRequest object.
+
+### Global Supply Chains
+
+Just call setConfig with the `schain` object to be used:
 
 {% highlight js %}
 pbjs.setConfig({
@@ -41,31 +56,14 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-Another way to setup the schain object can be done through the `pbjs.setBidderConfig` function.  This method would allow you to specify unique schain configs for indiviual bidders; this can be helpful if you have a different relationship with certain bidders and need to represent the schain information differently than normal.  
+### Bidder-Specific SChain
 
-You can opt to use the `pbjs.setBidderConfig` function in conjunction with the `pbjs.setConfig` function.  When together, the schain config setup via the `pbjs.setConfig` acts as a global config that applies to all your bidders, while the `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
+This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above:
 
 Below is an example of how this would look:
 {% highlight js %}
-pbjs.setConfig({
-  "schain": {
-    "validation": "strict",
-    "config": {
-      "ver":"1.0",
-      "complete": 1,
-      "nodes": [
-        {
-          "asi":"indirectseller.com",
-          "sid":"00001",
-          "hp":1
-        }
-      ]
-    }
-  }
-});
-
 pbjs.setBidderConfig({
-  "bidders": ['rubicon'],   // can list more bidders here if they share the same config
+  "bidders": ['bidderA'],   // can list more bidders here if they share the same config
   "config": {
     "schain": {
       "validation": "relaxed",
@@ -74,31 +72,7 @@ pbjs.setBidderConfig({
         "complete": 1,
         "nodes": [
           {
-            "asi":"myoverride1.com",
-            "sid":"00001",
-            "hp":1
-          }, {
-            "asi":"myoverride2.com",
-            "sid":"00002",
-            "hp":1
-          }
-        ]
-      }
-    }
-  }
-});
-
-pbjs.setBidderConfig({
-  "bidders": ['appnexus'],
-  "config": {
-    "schain": {
-      "validation": "off",
-      "config": {
-        "ver":"1.0",
-        "complete": 1,
-        "nodes": [
-          {
-            "asi":"myothersite.com",
+            "asi":"bidderA.com",
             "sid":"00001",
             "hp":1
           }
@@ -111,19 +85,25 @@ pbjs.setBidderConfig({
 
 You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig).
 
-### Validation modes
-- `strict`: It is the default validation mode. In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object.
-- `relaxed`: In this mode, errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters.
-- `off`: In this mode, no validations are performed and schain object is passed as is to adapters.
+### Both Global and Bidder-Specific
 
-### Supply Chain Object
+Yes, you can set both global and bidder-specific SChain config. When together, the schain config setup via the `pbjs.setConfig` acts as a global config that applies to all your bidders, while the `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
 
-The `config` paramter contains a complete supply object confirming to the [IAB's OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
+## SChain Config Syntax
 
-## Adapters Supporting the Schain Module
+{: .table .table-bordered .table-striped }
+| SChain Param | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| validation | optional | string | `'strict'`: In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object. `'relaxed'`: errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters. `'off'`: no validations are performed and schain object is passed as is to adapters. The default value is `'strict'`. | 'strict' |
+| config | required | object | This is the full Supply Chain object sent to bidders conforming to the [IAB's OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md). | (see examples above) |
+
+## Adapters Supporting the SChain Module
+
+Adapters can read the `bidRequest.schain` object and pass it through to their endpoint. The adapter does not
+need to be concerned about whether a bidder-specific schain was provided; the system will provide the
+relevant one.
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
 
 <div class="adapters">
 {% for page in bidder_pages %}
