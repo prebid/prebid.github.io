@@ -15,27 +15,28 @@ sidebarType : 1
 * TOC
 {:toc}
 
-Service Providers who manage Prebid wrappers on behalf of multiple publishers and handle payments to the publishers need to declare their intermediary status in the Supply Chain (aka `SChain`) object. As the [IAB's Supply Chain Object spec](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md) prohibits SSPs from adding upstream intermediaries, publishers or Prebid.js managed service providers need to specify `schain` information.
+Service Providers who manage Prebid wrappers on behalf of multiple publishers and handle payments to the publishers need to declare their intermediary status in the Supply Chain (a.k.a `SChain`) object. The [IAB OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md) prohibits SSPs from adding upstream intermediaries, so publishers or Prebid.js managed service providers need to specify `schain` information.
 
 Two modes are supported:
 
-1) Global SChain - use this configuration when the Prebid.js implementation is managed by an entity who needs to add an SChain node to every bid request. i.e. payments flow through this entity for all traffic.
+- **Global Supply Chains**  
+  Use this configuration when the Prebid.js implementation is managed by an entity that needs to add an SChain node to every bid request. i.e. payments flow through this entity for all traffic.
 
-2) Bidder-Specific SChain - use this config when one or more bid adapters is an entity (e.g. a reseller) that requires an SChain node, but other adapters do not require the node. e.g. payments flow through a bidder that doesn't add its own schain node.
+- **Bidder-Specific Supply Chains**  
+  Use this configuration when one or more bid adapters is an entity (such as a reseller) that requires an SChain node, but other adapters do not require the node. e.g. payments flow through a bidder that doesn't add its own schain node.
 
-## How to use the module:
+## How to Use the Module
 
 First, build the schain module into your Prebid.js package:
 ```
 gulp build --modules=schain,...
 ```
 
-The module does validations on the schain data provided and makes it available to bidder adapters on the
-bidRequest object.
+The module performs validations on the schain data provided and makes it available to bidder adapters on the bidRequest object.
 
 ### Global Supply Chains
 
-Just call setConfig with the `schain` object to be used:
+Call `setConfig` with the `schain` object to be used:
 
 {% highlight js %}
 pbjs.setConfig({
@@ -56,11 +57,10 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### Bidder-Specific SChain
+### Bidder-Specific Supply Chains
 
-This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above:
+This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above.
 
-Below is an example of how this would look:
 {% highlight js %}
 pbjs.setBidderConfig({
   "bidders": ['bidderA'],   // can list more bidders here if they share the same config
@@ -85,23 +85,23 @@ pbjs.setBidderConfig({
 
 You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig).
 
-### Both Global and Bidder-Specific
+### Global and Bidder-Specific Together
 
-Yes, you can set both global and bidder-specific SChain config. When together, the schain config setup via the `pbjs.setConfig` acts as a global config that applies to all your bidders, while the `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
+Yes, you can set both global and bidder-specific SChain configs. When together, the schain config setup via `pbjs.setConfig` acts as a global config that applies to all your bidders, while `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
 
 ## SChain Config Syntax
 
 {: .table .table-bordered .table-striped }
 | SChain Param | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| validation | optional | string | `'strict'`: In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object. `'relaxed'`: errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters. `'off'`: no validations are performed and schain object is passed as is to adapters. The default value is `'strict'`. | 'strict' |
-| config | required | object | This is the full Supply Chain object sent to bidders conforming to the [IAB's OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md). | (see examples above) |
+| validation | optional | string | `'strict'`: In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object. `'relaxed'`: Errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters. `'off'`: No validations are performed and schain object is passed as-is to adapters. The default value is `'strict'`. | 'strict' |
+| config | required | object | This is the full Supply Chain object sent to bidders conforming to the [IAB OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md). | (See examples above) |
 
-## Adapters Supporting the SChain Module
+## Adapter Information
 
-Adapters can read the `bidRequest.schain` object and pass it through to their endpoint. The adapter does not
-need to be concerned about whether a bidder-specific schain was provided; the system will provide the
-relevant one.
+Adapters can read the `bidRequest.schain` object and pass it through to their endpoint. The adapter does not need to be concerned about whether a bidder-specific schain was provided; the system will provide the relevant one.
+
+## Adapters Supporting the schain Module
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 
@@ -124,5 +124,5 @@ $(function(){
 
 ## Further Reading
 
-- [IAB's OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
+- [IAB OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
 - [Sellers.json Specification](https://iabtechlab.com/sellers-json/)  
