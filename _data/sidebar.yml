@@ -705,6 +705,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 2
+  title: Native Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-nativeadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 2
   title: Video Outstream Ad Unit

@@ -1,0 +1,109 @@
+---
+layout: page_v2
+title: Banner Native AdUnit
+description: Banner Native AdUnit
+top_nav_section: prebid-mobile
+nav_section: prebid-mobile
+sidebarType: 2
+---
+
+# NativeAdUnit: AdUnit
+{: .notoc}
+
+The NativeAdUnit is a subclass of the AdUnit class. Use the NativeAdUnit object to create and configure a native ad unit in your app.
+
+- TOC
+ {:toc}
+
+## Object
+### NativeAdUnit
+Create a new `NativeAdUnit` associated with a Prebid Server configuration ID and a banner size.
+
+See [AdUnit](http://localhost:8080/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
+
+**Parameters**
+
+`configId (String)`: Prebid Server configuration ID.
+
+## Examples
+
+**Create a NativeAdUnit**
+
+```
+let nativeUnit = NativeRequest(configId: "25e17008-5081-4676-94d5-923ced4359d3")
+```
+**Configure the NativeAdUnit**
+
+To configure the `NativeAdUnit` create the following objects and set the value of `NativeAdUnit.assets` to an array containing these items.
+
+{: .table .table-bordered .table-striped }
+| Type | Scope |  Description |   
+|------|-------|--------------|
+| NativeAssetImage  | Optional  | The image that will be displayed in the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Main |   
+| NativeAssetImage  | Optional  | The icon that will be displayed with the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Icon.  |
+| NativeAssetTitle | Optional | The title of the native ad. |
+| NativeAssetData | Optional | The content to appear with the ad. Ensure that the type is set to `DataAsset.description` |
+| NativeAssetData | Optional | The text for the call to action button of the native ad. Ensure that the type is set to `DataAsset.ctatext` |
+| NativeAssetData | Optional | The sponsor (brand) of the native ad. Ensure that the type is set to `DataAsset.sponsored` |
+| NativeEventTracker | Optional | The tracking required for the event. |
+
+{% capture noteAlert %}
+All the items listed above are optional. However, if you choose to include an item in the `NativeAdUnit` configuration it is recommended that when creating them, pass `required:true`
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+```
+let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 200, required: true)
+
+image.type = ImageAsset.Main
+
+
+let icon = NativeAssetImage(minimumWidth: 20, minimumHeight: 20, required: true)
+
+icon.type = ImageAsset.Icon
+
+
+let title = NativeAssetTitle(length: 90, required: true)
+
+
+let body = NativeAssetData(type: DataAsset.description, required: true)
+
+
+let cta = NativeAssetData(type: DataAsset.ctatext, required: true)
+
+
+let sponsored = NativeAssetData(type: DataAsset.sponsored, required: true)
+
+
+nativeUnit.assets = [icon,title,image,body,cta,sponsored]
+
+
+let event1 = EventType.Impression
+
+eventTrackers = NativeEventTracker(event: event1, methods: [EventTracking.Image,EventTracking.js])
+
+nativeUnit.eventtrackers = [eventTrackers]
+```
+
+**Load the NativeAdUnit**
+```
+nativeUnit.fetchDemand(adObject: self.request) { [weak self] (resultCode: ResultCode) in
+
+    print("Prebid demand fetch successful \(resultCode.name())")
+
+    // call loadAd to load the view
+
+}
+```
+
+## Related Topics
+
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
+- [Banner Ad Unit]({{site.baseurl}}prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
+- [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
+- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
+- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
