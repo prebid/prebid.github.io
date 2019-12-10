@@ -19,8 +19,8 @@ The code below returns a demo ad.
 {: .table .table-bordered .table-striped }
 | Name                | Scope               | Description                                                       | Example                             | Type     |
 |---------------------|---------------------|-------------------------------------------------------------------|-------------------------------------|----------|
-| `placeId`           | required            | The place id.                                                     | 5af45ad34d506ee7acad0c26            | `string` |
-| `placement`         | required            | Adunit placement, possible values: banner, video                  | banner                              | `string` |
+| `placeId`           | required            | The place id.                                                     | '5af45ad34d506ee7acad0c26'            | `string` |
+| `placement`         | required            | Adunit placement, possible values: banner, video                  | 'banner'                              | `string` |
 
 
 ### Sample Banner Ad Unit
