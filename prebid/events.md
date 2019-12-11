@@ -13,7 +13,7 @@ sidebarType: 0
 {: .table .table-bordered .table-striped }
 | Date | City | Register |
 |------+------+----------|
-| Nov 19, 2019 | Hamburg, Germany | [EventBrite](https://www.eventbrite.com/e/prebid-meetup-and-leadership-summit-hamburg-19-november-2019-registration-75219209681) |
+| Feb 2020 | Tokyo, Japan | TBD |
 
 ## What happens at an event?
 
@@ -25,7 +25,7 @@ a few things you can expect from these events:
 
 - Insights from member organizations and premium publishers into current best practices and future plans for Prebid.
 - Panel discussions on the expansion of header bidding into emerging formats, such as video and native.
-- Networking opportunities for publishers and Prebid members.
+- Networking opportunities for publishers and [Prebid members](/partners/partners.html).
 - And more!
 
 We look forward to seeing you at an event.
@@ -49,3 +49,4 @@ audience members in speaking their minds.
 | Date | City |
 |------+------|
 | Oct 24, 2019 | San Francisco, CA, USA |
+| Nov 19, 2019 | Hamburg, Germany |

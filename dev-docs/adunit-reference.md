@@ -113,6 +113,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Type    | Description                                                                                          |
 |----------------+----------+---------+------------------------------------------------------------------------------------------------------|
+| `min_height`   | Optional | Integer | The minimum height required for an image to serve (in pixels).                                       |
 | `min_width`    | Optional | Integer | The minimum width required for an image to serve (in pixels).                                        |
 | `ratio_height` | Required | Integer | This, combined with `ratio_width`, determines the required aspect ratio for an image that can serve. |
 | `ratio_width`  | Required | Integer | See above.                                                                                           |
