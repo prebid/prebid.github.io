@@ -67,6 +67,8 @@ All the items listed above are optional. However, if you choose to include an it
 
 {% include alerts/alert_note.html content=noteAlert %}
 
+
+### Example 
 ```
 let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 200, required: true)
 
