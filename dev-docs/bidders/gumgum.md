@@ -8,6 +8,7 @@ media_types: native
 schain_supported: true
 userIds: unifiedId/tradedesk, digitrustId
 gdpr_supported: true
+usp_supported: true
 ---
 
 ### Note:
