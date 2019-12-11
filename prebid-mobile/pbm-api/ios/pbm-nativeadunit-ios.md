@@ -17,7 +17,7 @@ The NativeAdUnit is a subclass of the AdUnit class. Use the NativeAdUnit object 
 
 ## Object
 ### NativeAdUnit
-Create a new `NativeAdUnit` associated with a Prebid Server configuration ID and a banner size.
+Create a new `NativeAdUnit` associated with a Prebid Server configuration ID.
 
 See [AdUnit](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 

@@ -17,7 +17,7 @@ The NativeAdUnit is a subclass of the AdUnit class. Use the NativeAdUnit object 
 
 ## Object
 ### NativeAdUnit
-Create a new `NativeAdUnit` associated with a Prebid Server configuration ID and a banner size.
+Create a new `NativeAdUnit` associated with a Prebid Server configuration ID.
 
 See [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) for additional parameters and methods.
 
@@ -34,7 +34,7 @@ NativeAdUnit nativeAdUnit = new NativeAdUnit("your-config-id");
 ```
 
 {% capture importantAlert %}
-Note that a `NativeEventTracker` object is required. Other objects are optional but if you choose to include them in the `NativeAdUnit` configuration it is recommended that when creating them, set `required:true`
+Note that a `NativeEventTracker` object is required. Other objects are optional but if you choose to include them in the `NativeAdUnit` configuration it is recommended that when creating them you call `setRequired(true)`
 {% endcapture %}
 
 {% include alerts/alert_important.html content=importantAlert %}
@@ -64,7 +64,7 @@ title.setLength(90);
 title.setRequired(true);
 nativeAdUnit.addAsset(title);
 
-// Require a icon asset
+// Require an icon asset
 NativeImageAsset icon = new NativeImageAsset();
 icon.setImageType(NativeImageAsset.IMAGE_TYPE.ICON);
 icon.setWMin(20);
@@ -72,7 +72,7 @@ icon.setHMin(20);
 icon.setRequired(true);
 nativeAdUnit.addAsset(icon);
 
-// Require a main image asset
+// Require an main image asset
 NativeImageAsset image = new NativeImageAsset();
 image.setImageType(NativeImageAsset.IMAGE_TYPE.MAIN);
 image.setHMin(200);
