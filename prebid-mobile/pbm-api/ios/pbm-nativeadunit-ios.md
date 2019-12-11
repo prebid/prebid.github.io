@@ -36,16 +36,30 @@ let nativeUnit = NativeRequest(configId: your-config-id)
 
 To configure the `NativeAdUnit` create the following objects and set the value of `NativeAdUnit.assets` to an array containing these items.
 
+NativeAssetImage
+
 {: .table .table-bordered .table-striped }
-| Type | Scope |  Description |   
-|------|-------|--------------|
-| NativeAssetImage  | Optional  | The image that will be displayed in the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Main |   
-| NativeAssetImage  | Optional  | The icon that will be displayed with the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Icon.  |
-| NativeAssetTitle | Optional | The title of the native ad. |
-| NativeAssetData | Optional | The content to appear with the ad. Ensure that the type is set to `DataAsset.description` |
-| NativeAssetData | Optional | The text for the call to action button of the native ad. Ensure that the type is set to `DataAsset.ctatext` |
-| NativeAssetData | Optional | The sponsor (brand) of the native ad. Ensure that the type is set to `DataAsset.sponsored` |
-| NativeEventTracker | Optional | The tracking required for the event. |
+| Type | Scope | Description |
+|-------|--------|---------|
+| Main | Optional | The image that will be displayed in the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Main |
+| Icon | Optional | The icon that will be displayed with the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Icon. |
+
+NativeAssetData
+
+{: .table .table-bordered .table-striped }
+| Type | Scope | Description |
+|-------|--------|---------|
+| Description | Optional | The content to appear with the ad. Ensure that the type is set to `DataAsset.description`. |
+| ctatext | Optional | The text for the call to action button of the native ad. Ensure that the type is set to `DataAsset.ctatext`. |
+| Sponsored | Optional | The sponsor (brand) of the native ad. Ensure that the type is set to `DataAsset.sponsored`. |
+
+NativeAssetTitle
+
+{: .table .table-bordered .table-striped }
+| Type | Scope | Description |
+|-------|--------|---------|
+| Title | Optional | The title of the native ad. |
+
 
 {% capture noteAlert %}
 All the items listed above are optional. However, if you choose to include an item in the `NativeAdUnit` configuration it is recommended that when creating them, set `required:true`
