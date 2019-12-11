@@ -39,7 +39,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
-  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)gb 
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
@@ -1588,8 +1588,8 @@ Here are the rules for CPM intervals:
 
 The default [Prebid price granularities](#setConfig-Price-Granularity) cap out at $20, which isn't always convenient for video ads, which can command more than $20. One solution is to just set up a
 custom price
-granularity as described above. As of PBJS 1.12, another approach is that the
-`mediaTypePriceGranularity` config may be set to define granularities for each of the five media types:
+granularity as described above. Another approach is
+`mediaTypePriceGranularity` config that may be set to define granularities for each of five media types:
 banner, video, video-instream, video-outstream, and native. e.g.
 
 {% highlight js %}
@@ -1602,8 +1602,7 @@ const customPriceGranularity = {
 };
 
 pbjs.setConfig({'mediaTypePriceGranularity': {
-          'video': customPriceGranularity,
-	  'video-instream': customPriceGranularityInstream,
+          'video': customPriceGranularity,   // used as default for instream video
 	  'video-outstream': customPriceGranularityOutstream,
           'banner': 'medium',
           'native': 'medium',
@@ -1612,6 +1611,12 @@ pbjs.setConfig({'mediaTypePriceGranularity': {
 {% endhighlight %}
 
 Any `mediaTypePriceGranularity` setting takes precedence over `priceGranularity`.
+
+{: .alert.alert-info :}
+Note: mediaTypePriceGranularity is the only place that 'video-outstream' or 'video-instream'
+are recognized. This was driven by the recognition that outstream often shares line items with banner.
+If the mediatype is video, the price bucketing code further looks at the context (e.g. outstream) to see if there's
+a price granularity override. If it doesn't find 'video-outstream' defined, it will then look for just 'video'.
 
 <a name="setConfig-Server-to-Server" />
 
