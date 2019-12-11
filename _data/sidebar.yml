@@ -899,6 +899,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
+  
+- sbSecId: 2
+  title: Setup Native Ads
+  link: /prebid-mobile/adops-native-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
 
 - sbSecId: 2
   title: Price Granularity
