@@ -676,8 +676,7 @@
 
 - sbSecId: 2
   title: iOS Mobile API
-  link: /prebid-mobile/pbm-api/ios/pbm-api-ios.html
-  isLastSubSectionItem: 0
+  link: /prebid-mobile/pbm-api/ios/pbm-api-iOS.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -702,6 +701,14 @@
 - sbSecId: 2
   title: Banner Interstitial Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Native Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-nativeadunit-ios.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -795,6 +802,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+  
+- sbSecId: 2
+  title: Native Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 2
   title: Banner Interstitial Ad Unit
@@ -880,6 +895,14 @@
 - sbSecId: 2
   title: Setup Line Items For MoPub
   link: /prebid-mobile/adops-line-item-setup-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
+- sbSecId: 2
+  title: Setup Native Ads
+  link: /prebid-mobile/adops-native-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
