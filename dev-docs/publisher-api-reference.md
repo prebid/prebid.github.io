@@ -39,7 +39,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
   * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
-  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
+  * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)gb 
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
@@ -1589,13 +1589,13 @@ Here are the rules for CPM intervals:
 The default [Prebid price granularities](#setConfig-Price-Granularity) cap out at $20, which isn't always convenient for video ads, which can command more than $20. One solution is to just set up a
 custom price
 granularity as described above. As of PBJS 1.12, another approach is that the
-`mediaTypePriceGranularity` config may be set to define granularities for each of the three media types:
-banner, video, and native. e.g.
+`mediaTypePriceGranularity` config may be set to define granularities for each of the five media types:
+banner, video, video-instream, video-outstream, and native. e.g.
 
 {% highlight js %}
 const customPriceGranularity = {
             'buckets': [
-              { 'precision': 2, 'min': 0, 'max': 5, 'increment': 0.25 },
+              { 'precision': 2, 'min': 0, 'max':x 5, 'increment': 0.25 },
               { 'precision': 2, 'min': 6, 'max': 20, 'increment': 0.5 },
               { 'precision': 2, 'min': 21, 'max': 100, 'increment': 1 }
             ]
@@ -1603,8 +1603,10 @@ const customPriceGranularity = {
 
 pbjs.setConfig({'mediaTypePriceGranularity': {
           'video': customPriceGranularity,
+	  'video-instream': customPriceGranularityInstream,
+	  'video-outstream': customPriceGranularityOutstream,
           'banner': 'medium',
-          'native': 'medium'
+          'native': 'medium',
         }
 });
 {% endhighlight %}
