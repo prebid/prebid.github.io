@@ -1284,7 +1284,7 @@ Core config:
 
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
-+ [Currency module](dev-docs/modules/currency.html#currency-config-options)
++ [Currency module](/dev-docs/modules/currency.html#currency-config-options)
 + [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
 + [User ID module](/dev-docs/modules/userId.html#configuration)
 + [Adpod](/dev-docs/modules/adpod.html)
