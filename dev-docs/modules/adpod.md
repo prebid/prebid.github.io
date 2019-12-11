@@ -68,16 +68,10 @@ To enable publishers to prioritize video deals with direct buys and over deals a
 {: .table .table-bordered .table-striped }
 | Parameter  | Scope  | Type  | Description  |
 |---|---|---|---|
-| prioritizeDeals  |  Optional | Boolean  |  A flag to give a higher preference to deals. This will replace the CPM value within the `hb_pb_cat_dur` key with the `bid.video.tier` value.  For example: A bid with `hp_pb_cat_dur` value of `12.00_395_15s` that has a `dealTier.BIDDER.prefix` of tier and a `bid.video.tier` value of 6 would have its `hp_pb_cat_dur` value changed to `tier6_395_15s`. |
+| prioritizeDeals  |  Optional | Boolean  |  A flag to give a higher preference to deals. This will replace the CPM value within the `hb_pb_cat_dur` key with the `bid.video.dealTier` value.  For example: A bid with `hp_pb_cat_dur` value of `12.00_395_15s` that has a `dealTier.BIDDER.prefix` of tier and a `bid.video.dealTier` value of 6 would have its `hp_pb_cat_dur` value changed to `tier6_395_15s`. |
 | dealTier  | Optional  | Object  | The dealTier parameter contains objects which hold information about the minimum deal tier to set for each bidder and the prefix required by that bidder to conduct a deal. This enables each publisher to have line items set up in the ad server with different priorities. See the `dealTier` object below for parameters.  |
-| dealTier.BIDDER.prefix  | Required  | String  | The prefix required by the bidder to indicate this is a deal.  |
-| dealTier.BIDDER.minDealTier  | Required  | Integer  | When an `adpod` is passed with the `prioritizeDeals` flag set to true, the CPM in the cache key as well as targeting key/value pairs will be set to the `dealTier.BIDDER.minDealTier` value. If this value is set equal to or greater than five the bid will receive a higher preference within the FreeWheel stack.   |
-
-{% capture noteAlert %}
-Bids with a dealTier.BIDDER.minDealTier value less than 5 will not be ignored but their cache key will contain dealId in place of CPM. These bids will be auctioned just like non-deal bids.
-{% endcapture %}
-
-{% include alerts/alert_note.html content=noteAlert %}
+| dealTier.BIDDER.prefix  | Optional  | String  | The prefix required by the bidder to indicate this is a deal.  |
+| dealTier.BIDDER.minDealTier  | Optional  | Integer  | When an `adpod` is passed with the `prioritizeDeals` flag set to true, a higher preference is given to bids with a deal tier greater than the `minDealTier` setting. As an example, if the `dealTier.BIDDER.minDealTier` is set to 5 than all bids with a `dealTier` greater than or equal to five will be given a higher preference. Bid with a `dealTier` less than five will be considered the same as non-deal bids.   |
 
 ### Examples:
 
