@@ -19,12 +19,13 @@ sidebarType : 1
 
 The User ID module supports multiple ways of establishing pseudonymous IDs for users, which is an important way of increasing the value of header bidding. Instead of having several exchanges sync IDs with dozens of demand sources, a publisher can choose to integrate with one of these ID schemes:
 
-* **Criteo RTUS ID** – fetches a user id by reaching out to Criteo rtus endpoint for each bidder configured. The result is stored in the user's browser for 1 hour and is passed to bidder adapters to pass it through to SSPs and DSPs that support the ID scheme.
+* **BritePool ID** - Britepool Identity Resolution userId submodule. Universal Identity resolution which does not depend on 3rd party cookies.
+* **Criteo ID for Exchanges** –  specific id for Criteo and its partners that enables optimal take rate on all web browsers.
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
 * **LiveIntent ID** – fetches a user ID based on identifiers that are present on the page. It calls the LiveIntent Identity Exchange endpoint which resolves the inbound identifiers to a stable ID.
-* **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder. 
+* **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 
@@ -63,7 +64,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"criteortus"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -74,44 +75,84 @@ of sub-objects. The table below has the options that are common across ID system
 
 ## User ID Sub-Modules
 
-### Criteo RTUS
+### BritePool
 
-Criteo Real Time User Sync (RTUS) is designed for use as an alternative for platforms that cannot drop their cookies due to Safari 3rd party restriction.
+BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies.
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,criteortusIdSystem
+gulp build --modules=userId,britepoolIdSystem
 
-#### Criteo RTUS Registration
+#### BritePool Registration
 
-In order to use a Criteo rtus id a bidder must reach out to Criteo and get their unique client identifier.
+Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`. 
 
-#### Criteo RTUS Configuration
+#### BritePool Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under userSync.userIds[] |  Scope   |  Type  |  Description                                                        |  Example             |
-|--------------------------------|----------|--------|---------------------------------------------------------------------|----------------------|
-| params                         | Required | Object | Details of Criteo ID                                                |                      |
-| params.clientIdentifier        | Required | Object | Object containing bidder code as key and client identifier as value | `{ "appnexus": 30 }` |
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"britepoolId"` | `"britepoolId"` |
+| params | Required | Object | Details for britepool initialization. | |
+| params.api_key | Required | String | BritePool API Key provided by BritePool | "458frgde-djd7-3ert-gyhu-12fghy76dnmko" |
+| params.url | Optional | String | BritePool API url | "https://sandbox-api.britepool.com/v1/britepool/id" |
+| params.identifier | Required | String | Where identifier in the params object is the key name. At least one identifier is required. Available Identifiers `aaid` `dtid` `idfa` `ilid` `luid` `mmid` `msid` `mwid` `rida` `ssid` `hash` | `params.ssid` `params.aaid` |
+
+#### BritePool Examples
+
+1) Individual params may be set for the BritePool User ID Submodule. At least one identifier must be set in the params.
+
+{% highlight javascript %}
+   pbjs.setConfig({
+       usersync: {
+           userIds: [{
+               name: "britepoolId",
+               storage: {
+                   name: "britepoolid",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   url: "https://sandbox-api.britepool.com/v1/britepool/id", // optional. used for testing
+                   api_key: "xxx", // provided by britepool
+                   hash: "yyyy", // example identifier
+                   ssid: "r894hvfnviurfincdejkencjcv" // example identifier
+               }
+           }],
+           syncDelay: 3000 // 3 seconds after the first auction
+       }
+   });
+{% endhighlight %}
+
+### Criteo ID for Exchanges
+
+Criteo is the leading advertising platform for the Open Internet. The Criteo ID for Exchanges module enables publishers to access Criteo’s unique demand - more than 20.000 advertisers & brands -  to monetize their exchange inventory with an optimal take rate across all browsing environments.
+Note that direct access to that demand is also available through [Criteo Direct Bidder](https://www.criteo.com/products/criteo-direct-bidder/), in which case this module is unnecessary.
+
+Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-NOTE: Criteo user id's max age is 1 hour. Criteo rtus module makes a request to criteo endpoint every hour to fetch new user id. Do not use `params.storage` when adding configuration for criteortus. If you are using multiple id systems then you can use storage (if that id system supports it). Read more about the `storage` property under [Basic Configuration](#basic-configuration).
+gulp build --modules=userId,criteoIdSystem
 
-#### Criteo RTUS Example
+#### Criteo ID Configuration
 
-This example assumes the publisher is working with AppNexus as one of the demand partners and AppNexus has partnered with Criteo.
+The Criteo ID module does not require any configuration parameters. It should work as-is provided that bidders use it in their adapters.
+When calling Criteo RTB, partners should forward this id in the field `user.ext.prebid_criteoid`.
+
+List of the working bidders:
+- AppNexus
+
+{: .alert.alert-info :}
+NOTE: For optimal performance, the Criteo Id module should be called at every opportunity. It embeds its own optimal caching mechanism. It's best not to use `params.storage` with this module as it may only lower the performances. If you are using multiple id systems, however, you may use it for the other id systems that supports it.
+
+#### Criteo ID Example
 
 {% highlight javascript %}
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "criteortus",
-            params: {
-              clientIdentifier: {
-                "appnexus": 30
-              }
-            }
+            name: "criteo",
         }]
     }
 });
@@ -269,7 +310,7 @@ gulp build --modules=userId,identityLinkIdSystem
 
 #### IdentityLink Registration
 
-Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`. 
+Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`.
 
 #### IdentityLink Configuration
 
@@ -295,7 +336,7 @@ pbjs.setConfig({
                 pid: '999'             // Set your real identityLink placement ID here
             },
             storage: {
-                type: "cookie",  
+                type: "cookie",
                 name: "idl_env",       // create a cookie with this name
                 expires: 30            // cookie can last for 30 days
             }
@@ -386,7 +427,7 @@ pbjs.setConfig({
             name: "liveIntentId",
             params: {
               publisherId: "9896876",
-              identifiersToResolve: ["my-own-cookie"]  
+              identifiersToResolve: ["my-own-cookie"]
             }
         }]
     }
@@ -395,7 +436,7 @@ pbjs.setConfig({
 
 ### Parrable ID
 
-The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions. 
+The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions.
 
 Add it to your Prebid.js package with:
 
@@ -418,7 +459,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
- 
+
 We recommend setting `storage.expires` to no more than`364` days, which is the default cookie expiration that Parrable uses in the standalone Parrable integration.
 
 #### Parrable ID Examples
@@ -502,8 +543,6 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-
 
 ### Unified ID
 
@@ -620,7 +659,8 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
-| CriteoRTUS | Criteo | bidRequest.userId.criteortus | `"1111"` |
+| BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
+| CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
 | DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
@@ -654,7 +694,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     }
                 }]
             },{
-                "source": "pubcommon",
+                "source": "pubcid.org",
                 "uids": [{
                     "id":"11111111"
                 }]
@@ -677,6 +717,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },{
                 "source": "criteo",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+                "source": "britepool.com",
                 "uids": [{
                     "id": "11111111"
                 }]

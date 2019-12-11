@@ -62,6 +62,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [cache](#setConfig-vast-cache)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
+  * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
 
 Functions added by optional modules
@@ -430,6 +431,9 @@ Use this method to retrieve an array of winning bids.
 
 + `pbjs.getHighestCpmBids()`: with no argument, returns an array of winning bid objects for each ad unit on page
 + `pbjs.getHighestCpmBids(adUnitCode)`: when passed an ad unit code, returns an array with the winning bid object for that ad unit
+
+{: .alert.alert-warning :}
+Note that from **Prebid 3.0** onwards, `pbjs.getHighestCpmBids` will not return rendered bids.
 
 <hr class="full-rule">
 
@@ -1280,7 +1284,7 @@ Core config:
 
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
-+ [Currency module](dev-docs/modules/currency.html#currency-config-options)
++ [Currency module](/dev-docs/modules/currency.html#currency-config-options)
 + [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
 + [User ID module](/dev-docs/modules/userId.html#configuration)
 + [Adpod](/dev-docs/modules/adpod.html)
@@ -1584,28 +1588,35 @@ Here are the rules for CPM intervals:
 
 The default [Prebid price granularities](#setConfig-Price-Granularity) cap out at $20, which isn't always convenient for video ads, which can command more than $20. One solution is to just set up a
 custom price
-granularity as described above. As of PBJS 1.12, another approach is that the
-`mediaTypePriceGranularity` config may be set to define granularities for each of the three media types:
-banner, video, and native. e.g.
+granularity as described above. Another approach is
+`mediaTypePriceGranularity` config that may be set to define granularities for each of five media types:
+banner, video, video-instream, video-outstream, and native. e.g.
 
 {% highlight js %}
 const customPriceGranularity = {
             'buckets': [
-              { 'precision': 2, 'min': 0, 'max': 5, 'increment': 0.25 },
+              { 'precision': 2, 'min': 0, 'max':x 5, 'increment': 0.25 },
               { 'precision': 2, 'min': 6, 'max': 20, 'increment': 0.5 },
               { 'precision': 2, 'min': 21, 'max': 100, 'increment': 1 }
             ]
 };
 
 pbjs.setConfig({'mediaTypePriceGranularity': {
-          'video': customPriceGranularity,
+          'video': customPriceGranularity,   // used as default for instream video
+	  'video-outstream': customPriceGranularityOutstream,
           'banner': 'medium',
-          'native': 'medium'
+          'native': 'medium',
         }
 });
 {% endhighlight %}
 
 Any `mediaTypePriceGranularity` setting takes precedence over `priceGranularity`.
+
+{: .alert.alert-info :}
+Note: mediaTypePriceGranularity is the only place that 'video-outstream' or 'video-instream'
+are recognized. This was driven by the recognition that outstream often shares line items with banner.
+If the mediatype is video, the price bucketing code further looks at the context (e.g. outstream) to see if there's
+a price granularity override. If it doesn't find 'video-outstream' defined, it will then look for just 'video'.
 
 <a name="setConfig-Server-to-Server" />
 
@@ -1636,7 +1647,7 @@ pbjs.setConfig({
 })
 {% endhighlight %}
 
-Additional information of these properties:
+Additional information of `s2sConfig` properties:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description                                                                                   |
@@ -2194,6 +2205,37 @@ ERROR: setConfig options must be an object
 If you don't see that message, you can assume the config object is valid.
 
 <hr class="full-rule" />
+
+<a name="module_pbjs.setBidderConfig"></a>
+
+### pbjs.setBidderConfig(options)
+
+This function is similar to [`setConfig`](#module_pbjs.setConfig), but is designed to support certain bidder-specific scenarios.
+
+Configuration provided through the [`setConfig`](#module_pbjs.setConfig) function is
+globally available to all bidder adapters. This makes sense because
+most of these settings are global in nature. However, there are use cases where different bidders require different data, or where certain parameters apply only to a given
+bidder. Use `setBidderConfig` when you need to support these cases.
+
+The page usage is:
+
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ["bidderA"],  // one or more bidders
+   config: {              // the bidder-specific config
+      bidderA: {
+         customArg: 'value'
+      }
+   }
+});
+{% endhighlight %}
+
+When 'bidderA' calls `getConfig('bidderA')`, it will receive the object that contains 'customArg'.
+If any other bidder calls `getConfig('bidderA')`, it will receive nothing.
+
+{: .alert.alert-info :}
+The `setBidderConfig` function will soon be used by the `schain` and
+`first party data` features.
 
 <a name="module_pbjs.getConfig"></a>
 
