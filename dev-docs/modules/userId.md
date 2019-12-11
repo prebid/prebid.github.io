@@ -694,7 +694,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     }
                 }]
             },{
-                "source": "pubcommon",
+                "source": "pubcid.org",
                 "uids": [{
                     "id":"11111111"
                 }]
