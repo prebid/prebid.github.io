@@ -6,6 +6,7 @@ hide: true
 biddercode: spotx
 media_types: video
 gdpr_supported: true
+userIds: unifiedId/tradedesk, id5Id
 prebid_member: true
 schain_supported: true
 ---

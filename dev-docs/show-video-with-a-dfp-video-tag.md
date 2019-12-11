@@ -203,6 +203,7 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 + [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
 + [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
 + [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
++ [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
 ### Using Prebid Server Video
 

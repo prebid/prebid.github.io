@@ -325,8 +325,7 @@ Can contain the following fields:
 - `params`: JSON object containing parameters needed to make Google Ad Manager call. Parameters include:
   - `iu`: string (Required)
   - Google Ad Manager adUnit ID. For more information, see the Google Ad Manager documentation on iu.
-
-- `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params
+  - `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params.
 
 - `output`: (Required) String specifying the type of response expected. This value should be `"vast"`
 

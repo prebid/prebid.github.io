@@ -9,6 +9,8 @@ gdpr_supported: true
 prebid_member: true
 userIds: criteortus
 schain_supported: true
+coppa_supported: true
+usp_supported: true
 ---
 
 ### Table of Contents
