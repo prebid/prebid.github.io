@@ -61,14 +61,7 @@ NativeAssetTitle
 | Title | Optional | The title of the native ad. |
 
 
-{% capture noteAlert %}
-All the items listed above are optional. However, if you choose to include an item in the `NativeAdUnit` configuration it is recommended that when creating them, set `required:true`
-{% endcapture %}
-
-{% include alerts/alert_note.html content=noteAlert %}
-
-
-### Example 
+### Example
 ```
 let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 200, required: true)
 
