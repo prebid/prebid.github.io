@@ -5,6 +5,7 @@ description: Prebid LockerDome Bidder Adapter
 biddercode: lockerdome
 hide: true
 gdpr_supported: true
+usp_supported: true
 schain_supported: true
 ---
 
