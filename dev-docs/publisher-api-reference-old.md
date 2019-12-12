@@ -1,15 +1,16 @@
 ---
-layout: page
+layout: page_v2
 title: Publisher API Reference - DEPRECATED
 description: Publisher API Reference for Prebid.js Header Bidding - DEPRECATED
 pid: 10
+sidebarType: 1
 ---
 
 <div class="bs-docs-section" markdown="1">
 
 # Publisher API Reference - DEPRECATED
 
-This page has documentation for the pre-1.0 public API methods of Prebid.js.
+This page has documentation for the pre-1.0 public API methods of Prebid.js. These versions are not supported and this documentation is not being updated.
 
 {: .alert.alert-danger :}
 Warning: do not use this API reference for new Prebid.js implementations. This document is kept for users on old (Pre-1.0) versions of Prebid.js who need to maintain their pages.
@@ -352,7 +353,7 @@ Set query string targeting on all GPT ad units. The logic for deciding query str
 
 ### pbjs.setTargetingForAst()
 
-Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/JAUIBQ)) ad units.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
+Set query string targeting on all AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad units.  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -422,7 +423,7 @@ After this method is called, `pbjs.getAdserverTargeting()` will give you the bel
 {: .alert.alert-danger :}
 This method is deprecated as of version 0.27.0 and will be removed in version 1.0 (scheduled for release Q4 2017).  Please use [`setConfig`](#module_pbjs.setConfig) instead.
 
-This method is used to configure which price bucket is used for the `hb_pb` keyword.  For an example showing how to use this method, see the [Simplified price bucket setup](/dev-docs/examples/simplified-price-bucket-setup.html).
+This function defines the price bucket granularity setting that will be used for the `hb_pb` keyword.
 
 Accepted values:
 
@@ -519,7 +520,7 @@ This function will render the ad (based on params) in the given iframe document 
 
 ### pbjs.removeAdUnit(adUnitCode)
 
-Remove adUnit from the pbjs configuration
+Remove adUnit(s) from the pbjs configuration, If adUnit is not given then it will remove all adUnits
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -527,8 +528,7 @@ Remove adUnit from the pbjs configuration
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| adUnitCode | Required | `String` | the adUnitCode to remove |
-
+| adUnitCode | Optional | `String or Array of strings` | the adUnitCode(s) to remove, if empty it removes all |
 
 <hr class="full-rule">
 
@@ -878,7 +878,7 @@ bid along with all non-CPM bids, just specify this flag and the adapter-specific
 
 ##### 2.2. adserverTargeting
 
-As described in the [AdOps documentation]({{site.baseurl}}/adops.html), Prebid has a recommended standard
+As described in the [AdOps documentation]({{site.baseurl}}/overview/getting-started.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
 defined in the adserverTargeting attribute in the 'standard' section, but can be overridden
 per adapter as needed. Both scenarios are described below.
@@ -896,7 +896,7 @@ The key value pair targeting is applied to the bid's corresponding ad unit. Your
    transition period where both of these values are provided to the ad server.
    Please begin converting video creatives to use `hb_cache_id`.
 
-If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](../adops.html) documentation for more information.
+If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/overview/getting-started.html) documentation for more information.
 
 <a name="bidderSettingsDefault"></a>
 <a name="default-keywords">
@@ -1432,8 +1432,6 @@ pbjs.setConfig({
         adapter: 'prebidServer',
         endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
         syncEndpoint: 'https://prebid.adnxs.com/pbs/v1/cookie_sync'
-        cookieSet: true,
-        cookieSetUrl: 'https://acdn.adnxs.com/cookieset/cs.js',
     }
 })
 {% endhighlight %}
@@ -1451,7 +1449,7 @@ Additional information of these properties:
 | `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
-| `cookieSet` | Optional | Boolean | Initiates link-rewriting for Safari to improve cookie match rate. |
+| `cookieSet` | Optional | Boolean | Defaults to `false`.  If set to `true`, Prebid.js will overwrite all links on page to redirect through a persistent cookie URL and will display a footer message on Safari indicating that cookies will be placed on browsers that block 3rd party cookies. |
 | `cookieSetUrl` | Optional | URL | Cluster-specific script for Safari link-rewriting |
 
 *Currently supported vendors are: appnexus & rubicon
@@ -1577,7 +1575,7 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 * Removes undesired adapter registrations. (i.e. enforces the enabledBidders option)
 * Makes sure there's not too many queue entries from a given adapter. (i.e. enforces syncsPerBidder)
 
-When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML head tag. If there's no head tag, then they're appended to the end of the body tag.
+When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
 <a name="setConfig-Configure-Responsive-Ads" />
 

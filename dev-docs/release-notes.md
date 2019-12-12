@@ -1,10 +1,7 @@
 ---
-layout: page
+layout: page_v2
 title: Release Notes
 description: Release Notes
-pid: 40
-top_nav_section: dev_docs
-nav_section: reference
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -13,9 +10,6 @@ nav_section: reference
 {:.no_toc}
 
 This page has links to release notes for each of the projects associated with Prebid.org.
-
-* TOC
-{:toc}
 
 ## Prebid.js
 
