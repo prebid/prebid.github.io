@@ -5,6 +5,7 @@ description: Prebid AstraOne Bidder Adapter
 hide: true
 media_types: banner
 biddercode: astraone
+gdpr_supported: true
 ---
 
 ### Note
