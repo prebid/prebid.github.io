@@ -1375,6 +1375,14 @@
   subgroup: 1
   
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/instream/radiant/pb-ve-radiant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
   title: '&nbsp;&nbsp;VideoJS'
   link: /examples/video/instream/videojs/pb-ve-videojs.html
   isHeader: 0
@@ -1448,6 +1456,14 @@
   subgroup: 1
   
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/server/radiant/pbs-ve-radiant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
   title: '&nbsp;&nbsp;VideoJS'
   link: /examples/video/server/videojs/pbs-ve-videojs.html
   isHeader: 0
@@ -1508,6 +1524,14 @@
 - sbSecId: 4
   title: '&nbsp;&nbsp;Google Ad Manager'
   link: /examples/video/outstream/pb-ve-outstream-dfp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/outstream/pb-ve-outstream-radiant.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle: 
