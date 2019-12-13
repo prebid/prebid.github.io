@@ -36,3 +36,13 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Brightcove Prebid Plugin - Sample Integration Using General Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-general-method.html)
     -   [Brightcove Prebid Plugin - Sample Integration Using Configured Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method.html)
     -   [Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)
+
+## Cross-Player Prebid Component
+
+The Cross-Player Prebid Component is a JavaScript component that you can use to simplify your integration process between Prebid.js and any video player.
+
+- [About]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html)
+- [API]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-api.html)
+- [Configuration]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-config.html)
+- [Communication with Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
+- [Download](https://github.com/prebid/cross-player-prebid-component)
