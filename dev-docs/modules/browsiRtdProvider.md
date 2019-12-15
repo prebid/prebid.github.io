@@ -55,12 +55,15 @@ Syntax details:
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| name  | String | Real time data module name | Always 'browsi' | 
+| name  | String | Real time data module name | Always 'browsi' |
+| auctionDelay  | Number | Max time in ms to delay the auction | Optional. Default to 0 |
+| timeout  | Number | timeout in ms (only if auctionDealy is 0) | Optional. Default to 1000 |
 | params  | Object   | |   |
 | params.siteKey  |String   |Site key|   |
 | params.pubKey  |String   |Publisher key|   |
 | params.url  |String   |Server URL|   |
 | params.keyName  |String   |Key value name| Optional. Defaults to 'bv'. |
+
 
 
 
