@@ -21,10 +21,17 @@ Configuration options for a single ad break are typically passed into the plugin
 
 ## Plugin Rendering Options
 
-These options are used to configure how the plugin should execute the prebid process for a single ad break. They are included in the same JSON structure where the rendering options are also provided for the ad break.
+These options are used to configure how the selected ad should be displayed for each ad break. They are included in the same JSON structure that contains the prebid options for the ad break.
 
 When configuring prebid options for more than one ad break, create an array of prebid and rendering options for each ad break.
 
+{% capture infoNote %}
+Many of the rendering options listed below are ignored when the Brightcove IMA Plugin is used to render the ads.  That plugin does not provide an API that can be used to customize the rendering characteristics. These limitations will be noted below.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
+- [adRenderer](#adrenderer)
 - [skippable](#skippable)
 - [skippable.enabled](#enabled)
 - [skippable.videoThreshold](#videoThreshold)
@@ -38,12 +45,69 @@ When configuring prebid options for more than one ad break, create an array of p
 - [frequencyRules](#frequencyRules)
 - [label](#labeloption)
 
+<a name="adrenderer"></a>
+### adRenderer
+
+**Description:**
+
+This option is used to override the default behavior for selecting the plugin used to render the selected ad(s).
+
+By default, the prebid plugin will select the Brightcove IMA plugin if it detects that Google Ad Manager is the primary ad server.  If dfpParameters are specified in *any* of the prebid configuration options passed into the plugin, then Google Ad Manager is identified as the primary ad server.
+
+If the prebid configuration options do not include any dfpParameters, meaning that Google Ad Manager is *not* the primary ad server, then the MailOnline Prebid plugin will be used to render the ad(s).
+
+Specifying one of the acceptable values listed below will override this behavior; the prebid plugin will use the renderer specified in this option.
+
+{% capture infoNote %}
+The prebid plugin will only use the **_first_** definition of the `adRenderer` option to control the ad renderer selection.  If you define this option more than once, the other specifications will be ignored.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
+{% capture infoNote %}
+If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters and you are not using a "custom" renderer, in this case you should explicitly specify the IMA plugin using the `adRenderer` option as shown below. Doing so seems to prevent a problem observed when multiple players are being used in the same HTML document in PC browsers (Edge and Internet Explorer) and some of the players load the IMA plugin and the others load the MailOnline plugin. You can also prevent this collision if your players are loaded into their own iFrames.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
+{% capture infoNote %}
+If you will be using the Brightcove IMA plugin as the ad renderer, either because Google Ad Manager is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
+**Acceptable Values**
+
+One of the following strings:
+
+- `‘ima’`: The Brightcove IMA plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
+- `‘mailonline’`: The MailOnline plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
+- `‘custom’`: A custom ad renderer is being provided by the publisher.  This can be either a custom build of MailOnline or a custom renderer altogether.  If this value is specified for `adRenderer`, then the plugin will not attempt to use either of the default ad renderers.  The plugin will simply use the renderer as specified in the custom build of the plugin.  See the ReadMe file for more information on specifying a custom renderer.
+
+**Required**
+
+No
+
+**Default Value:**
+
+None. If this option is not specified with a valid value, the renderer selection will be made based on the presence of dfpParameters.
+
+**Example:**
+
+`options1.adRenderer = 'ima';`
+
 <a name="skippable"></a>
 ### skippable
 
 **Description:**
 
 Object that specifies the publisher preferences regarding ad skipping behavior.
+
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad. IMA will only display a SKIP button when the XML that is passed into the IMA renderer specifies a skipOffset value.  If the creative XML containing the skipOffset is passed into a VPAID wrapper such that the skipOffset value is not visible to IMA, then no SKIP button will be displayed.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
 
 **Acceptable Values:**
 
@@ -69,6 +133,13 @@ This means that the publisher does not have a client-side preference. Skippable 
 **Description:**
 
 Specifies whether skippable behavior should be enforced regardless of the presence of the `skipOffset` attribute in the creative XML.
+
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
 
 **Acceptable Values:**
 
@@ -96,6 +167,12 @@ None - If missing, then skippable behavior is controlled by the presence of the 
 
 Integer that specifies the minimum length in seconds of the ad video for a skip button to be enabled. If the duration of the ad video is less than the `videoThreshold` value, then the ad will not be skippable.
 
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
 **Acceptable Values:**
 
 Integer greater than zero
@@ -118,6 +195,12 @@ None - If missing and `skippable.enabled = true` then the ad will be skippable r
 **Description:**
 
 Integer that specifies the time in seconds when the skip button should be enabled (assuming that the `videoThreshold` criteria has been met).
+
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
 
 **Acceptable Values:**
 
@@ -142,6 +225,12 @@ None
 
 String used to customize the text that is displayed BEFORE the Skip button is enabled. This allows the publisher to customize the text for non-English language translation.
 
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
 **Acceptable Values:**
 
 String; use `%%TIME%%` as the placeholder for the countdown time.
@@ -164,6 +253,12 @@ No
 **Description:**
 
 String used as the text displayed in the Skip button. This allows the publisher to customize the text of the button, including customizing it for non-English language translation.
+
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
 
 **Acceptable Values:**
 
@@ -247,6 +342,12 @@ The Ad Indicator will always be displayed in the top left corner of the top bar 
 
 This field is used to customize the text of the Ad Indicator or to provide a non-English translation for the Ad Indicator.
 
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
+
 **Acceptable Values:**
 
 String providing the text for the Ad Indicator.
@@ -271,6 +372,12 @@ No
 **Description:**
 
 Specifies the maximum number of XML redirects that are allowed to be considered when attempting to play an ad.
+
+{% capture infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=infoNote %}
 
 **Acceptable Values:**
 
@@ -374,4 +481,3 @@ Sample implementations are provided at:
 - **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>
-

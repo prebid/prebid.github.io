@@ -1,0 +1,45 @@
+<div>
+	<ol>
+		<li>Sign in to your Google Ad Manager account.</li>
+		<li>Click Delivery > Native.</li>
+		<li>Click New Native Ad.</li>
+		<li>Click Select in the "HTML & CSS editor" box. The *Define ad settings* page will appear.
+			
+			<ol>
+				<li style="list-style-type: lower-alpha;">Select an ad size of `fluid`. With the Fluid size, Ad Manager will automatically size the ad to match available space.</li>  
+				<li style="list-style-type: lower-alpha;">Select an existing format or create a new one. (Formats are the variables that make up the content of your ad.)</li> 
+				<li style="list-style-type: lower-alpha;">Style your ad with HTML and CSS.
+				
+					<div>
+<pre>
+	<div class="sponsored-post">
+		<div class="thumbnail"></div>
+		    <div class="content" class="pb-click">
+		      <h1><a target="_blank" href="hb_native_linkurl" class="pb-click">hb_native_title</a></h1>
+		      <p>hb_native_body</p>
+		      <div class="attribution">hb_native_brand</div>
+		    </div>
+		  </div>
+		  <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-trk.js"></script>
+		  <script>
+		    var pbNativeTagData = {};
+		    pbNativeTagData.uuid = "%%PATTERN:hb_cache_id%%";
+		    pbNativeTagData.env = "mobile-app";
+		    window.pbNativeTag.startTrackers(pbNativeTagData);
+		  </script>
+</pre>
+					</div>
+
+					<p>Add your styles in the CSS tab in Ad Manager.</p>
+					<p>A native ad is made up of assets, image URL, titles, descriptions, icons, etc. that are plugged into the template we've just created. The template includes placeholder macros for those assets, and may be styled to match the form of the surrounding page.</p>
+					<p>At a high level, Prebid Mobile's support for native ads works like this by requesting native demand from bidder adapters. The native ad responses get placed on specific keys that are sent into your ad server.</p>  
+					<p>The `native-trk.js` linked in the code example above will find `hb_native_keys` and replace them with native assets. For more detailed information and a list of available keys see our documentation on explaining [how Native ads work](/dev-docs/show-native-ads.html#how-native-ads-work).</p>
+				</li>
+				<li style="list-style-type: lower-alpha;">Set the targeting to default and save.</li>
+			</ol>
+		</li>
+		<li>[Create a line item](/prebid-mobile/adops-line-item-setup-dfp.html) targeting this ad unit and a `hb_pb price`, for expected creatives, put in the ad format in step 4.b.</li>
+		<li>Create a native creative using the native styles (and the ad format created/used with the native styles), associating it with the line item.</li>
+	</ol>
+</div>
+		

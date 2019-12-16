@@ -4,11 +4,10 @@ title: Oneplanetonly
 description: Prebid Oneplanetonly Bidder Adaptor
 hide: true
 biddercode: oneplanetonly
-biddercode_longer_than_12: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description    | Example       | Type     |
@@ -17,7 +16,8 @@ biddercode_longer_than_12: true
 | `adUnitId` | required | The ad unit id | `'5-4587544'` | `string` |
 
 Example:
-```javascript
+
+``` bash
 {
     bidder: 'oneplanetonly',
     params: {

@@ -68,7 +68,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
         };
         window.bc_plugin_pbjs.plugin_prebid_options.biddersSpec = params;
 
-        // set the DFP Parameters
+        // set the Google Ad Manager Parameters
         var dfpParams = {
             params : {
                 iu : '/1234456/prebid_cache_video_ad_unit_test',

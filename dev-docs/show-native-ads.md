@@ -18,7 +18,7 @@ In this tutorial, we'll set up Prebid.js to show native ads.
 
 We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
-Similarly, we'll use DFP as the ad server, but the concept and implementation should be pretty similar to other ad servers.
+Similarly, we'll use Google Ad Manager as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
 {: .alert.alert-success :}
 For a full working code sample using the techniques described on this page, see the [Prebid Native Example]({{site.github.url}}/examples/native/native-demo.html).
@@ -35,14 +35,18 @@ At a high level, Prebid.js' support for native ads works like this:
 1. Prebid.js requests native demand from bidder adapters
 2. It sends the received assets to a native template defined in your ad server using key-value targeting
 
-The native ad responses get placed on specific keys that are sent into your ad server:
+The native ad responses get placed on specific keys that are sent into your ad server. For example:
 
 + `hb_native_title`
 + `hb_native_body`
++ `hb_native_body2`
 + `hb_native_brand`
 + `hb_native_image`
 + `hb_native_icon`
 + `hb_native_linkurl`
++ `hb_native_privacy`
++ `hb_native_privicon`
++ `hb_native_rating`
 + `hb_native_cta`
 
 Note that these keys correspond directly to the `mediaTypes.native` object you define in your ad unit (which is [described in more detail below](#native-ad-keys)).
@@ -77,16 +81,31 @@ const slot = {
 
 The native object (shown [below](#native-object)) contains the following keys that correspond to the assets of the native ad:
 
+{: .alert.alert-danger :}
+Specific bidders may not support all of the fields listed below or may return differing responses for the assets that are requested.
+
 {: .table .table-bordered .table-striped }
-| Key           | Description                                                                 |
-|---------------+-----------------------------------------------------------------------------|
-| `title`       | The title of the ad, usually a call to action or a brand name.              |
-| `body`        | Text of the ad copy.                                                        |
-| `sponsoredBy` | The name of the brand associated with the ad.                               |
-| `icon`        | The brand icon that will appear with the ad.                                |
-| `image`       | A picture that is associated with the brand, or grabs the user's attention. |
-| `clickUrl`    | Where the user will end up if they click the ad.                            |
-| `cta`         | *Call to Action* text, e.g., "Click here for more information".               |
+| Key           | Description                                                                          | Ad Server Key Value   |
+|---------------+--------------------------------------------------------------------------------------|-----------------------|
+| `title`       | The title of the ad, usually a call to action or a brand name.                       | `hb_native_title`     |
+| `body`        | Text of the ad copy.                                                                 | `hb_native_body`      |
+| `body2`       | Additional Text of the ad copy.                                                      | `hb_native_body2`     | 
+| `sponsoredBy` | The name of the brand associated with the ad.                                        | `hb_native_brand`     |
+| `icon`        | The brand icon that will appear with the ad.                                         | `hb_native_icon`      |
+| `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `hb_native_image`     |
+| `clickUrl`    | Where the user will end up if they click the ad.                                     | `hb_native_linkurl`   |
+| `displayUrl`  | Text that can be displayed instead of the raw click URL. e.g, "Example.com/Specials" | `hb_native_displayUrl`|
+| `privacyLink` | Link to the Privacy Policy of the Buyer, e.g. http://example.com/privacy             | `hb_native_privacy`   |
+| `privacyIcon` | Icon to display for the privacy link, e.g. http://example.com/privacy_icon.png       | `hb_native_privicon`  |
+| `cta`         | *Call to Action* text, e.g., "Click here for more information".                      | `hb_native_cta`       |
+| `rating`      | Rating information, e.g., "4" out of 5.                                              | `hb_native_rating`    |
+| `downloads`   | The total downloads of the advertised application/product                            | `hb_native_downloads` |
+| `likes`       | The total number of individuals who like the advertised application/product          | `hb_native_likes`     |
+| `price`       | The non-sale price of the advertised application/product                             | `hb_native_price`     |
+| `salePrice`   | The sale price of the advertised application/product                                 | `hb_native_saleprice` |
+| `address`     | Address of the Buyer/Store. e.g, "123 Main Street, Anywhere USA"                     | `hb_native_address`   |
+| `phone`       | Phone Number of the Buyer/Store. e.g, "(123) 456-7890"                               | `hb_native_phone`     |
+
 
 Each key's value is an object with several fields.  Most important is the `required` field, which says whether that asset should be filled in by the bid response.  Specifically, bids that do not have all of the native assets marked as required will be dropped from the auction and will not be sent to the ad server.
 
@@ -96,7 +115,7 @@ Each key's value is an object with several fields.  Most important is the `requi
    Prebid.js validates the assets on native bid responses like so:
   <ul>
       <li>
-       If the asset is marked as "required", it checks the bid response to ensure the asset is part of the response
+       If the asset is marked as "required: true", it checks the bid response to ensure the asset is part of the response. If the asset is marked as "required: false" it will be requested but may not have a value returned.
       </li>
       <li>
        However, Prebid.js does not do any additional checking of a required asset beyond ensuring that it's included in the response; for example, it doesn't validate that the asset has a certain length or file size, just that that key exists in the response JSON
@@ -129,6 +148,9 @@ pbjs.addAdUnits({
             },
             clickUrl: {
                 required: true
+            },
+            privacyLink: {
+                required: false
             },
             body: {
                 required: true
@@ -268,8 +290,8 @@ it will respond to that request with the actual asset values for that `adId` in 
 
 A script within the native template can listen for this response and replace the placeholder values with their actual values.
 
-The `native-trk.js` script available as part of `prebid-universal-creative`, if used in a template that sets any link with a `pbAdId` to `hb_adid`, will replace any placeholder values with their actual values automatically (note: this works for placeholders located within HTML native templates but not CSS native templates). See [Style your native ad]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html#3-style-your-native-ad)
-for more on how to set this up in a native template.
+{: .alert.alert-success :}
+The `native-trk.js` script from `prebid-universal-creative` can replace native placeholder values with their actual values. If a native template includes a link with a `pbAdId` attribute set to the targeting key `hb_adid`, and a `class` attribute set to `"pb-click"`, the function `pbNativeTag.startTrackers` will replace any placeholders found within the HTML template (but not CSS template) with their actual values automatically. For more on how to set this up in a native template, see [Style your native ad]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html#3-style-your-native-ad)
 
 ## Working Examples
 
@@ -278,6 +300,6 @@ for more on how to set this up in a native template.
 
 ## Related Topics
 
-+ [Setting up Prebid Native in DFP]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
++ [Setting up Prebid Native in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
 
 

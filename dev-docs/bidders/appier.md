@@ -3,24 +3,16 @@ layout: bidder
 title: Appier
 description: Prebid Appier Bidder Adaptor
 biddercode: appier
-biddercode_longer_than_12: false
 hide: true
 media_types: banner
 gdpr_supported: true
 ---
-
-### Table of Contents
-
-- [Bid Params](#appier-bid-params)
-- [Custom Settings](#appier-custom-settings)
-
 
 <a name="appier-bid-params" />
 
 #### Bid Params
 
 {: .table .table-bordered .table-striped }
-
 | Name      | Scope    | Description               | Example    | Type     |
 |-----------|----------|---------------------------|------------|----------|
 | `hzid`    | required | The zone ID from Appier.  | `"WhM5WIOp"` | `string` |
@@ -31,6 +23,7 @@ gdpr_supported: true
 #### Custom Settings (Optional)
 
 Set the "farm" to use region-specific server
+
 ```
 pbjs.que.push(function() {
   // use the bid server in Taiwan (country code: tw)
@@ -43,6 +36,7 @@ pbjs.que.push(function() {
 ```
 
 Explicitly override the bid server used for bidding
+
 ```
 pbjs.que.push(function() {
   pbjs.setConfig({

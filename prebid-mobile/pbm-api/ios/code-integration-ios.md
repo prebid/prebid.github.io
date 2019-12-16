@@ -8,19 +8,20 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
-
-
-
 # Code Integration for iOS
+{: .notoc}
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Cocoapods or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
 
-### Use Cocoapods?
+- TOC
+ {:toc}
 
-Easily include the Prebid Mobile SDK for your primary ad server in your Podfile.
+### Include with Cocoapods
+
+If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following:
 
 ```
-platform :ios, '11.0'
+platform :ios, '9.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
@@ -29,15 +30,14 @@ end
 
 ### Build framework from source
 
-Build Prebid Mobile from source code. After cloning the repo, from the root directory run
+Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:
 
 ```
 ./scripts/buildPrebidMobile.sh
 ```
-to output the PrebidMobile.framework.
+This will output the PrebidMobile.framework.
 
 ### Setup Prebid Server Account
-
 
 In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers:
 
@@ -65,7 +65,7 @@ Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
 
 Integrating **MoPub** with your application
 
-1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/) .
+1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
 
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
@@ -77,7 +77,7 @@ Go to Google's developer site and follow the instructions for integrating their 
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html).
 
 ### Create Ad Units
 
@@ -88,30 +88,68 @@ Banner and interstitial ad units can be created:
 let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
 ```
 
-For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them: 
+For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
 
 [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
 
+### Resize ad slot
 
-### Add Custom Keywords
+Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.
 
-Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
+{% capture warning_note %}  
+Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
-```
-bannerUnit.addKeyword(key:"Sample", value:"Value to add")
-```
+*SWIFT*
+```swift
+func adViewDidReceiveAd(_ bannerView: GADBannerView) {
 
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
+    AdViewUtils.findPrebidCreativeSize(bannerView,
+                                            success: { (size) in
+                                                guard let bannerView = bannerView as? DFPBannerView else {
+                                                    return
+                                                }
+
+                                                bannerView.resize(GADAdSizeFromCGSize(size))
+
+        },
+                                            failure: { (error) in
+                                                print("error: \(error)");
+
+        })
+}
+
+
+
+ ```
+
+*Objective C*
+ ```objective_c
+ -(void) adViewDidReceiveAd:(GADBannerView *)bannerView {
+    NSLog(@"Ad received");
+    [AdViewUtils findPrebidCreativeSize:bannerView
+                                   success:^(CGSize size) {
+                                       if ([bannerView isKindOfClass:[DFPBannerView class]]) {
+                                           DFPBannerView *dfpBannerView = (DFPBannerView *)bannerView;
+
+                                           [dfpBannerView resize:GADAdSizeFromCGSize(size)];
+                                       }
+                                   } failure:^(NSError * _Nonnull error) {
+                                       NSLog(@"error: %@", error);
+                                   }];
+}
+ ```
+
 
 ## Further Reading
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
 - [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Prebid Utilities - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-util-ios.html)
