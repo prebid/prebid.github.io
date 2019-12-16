@@ -13,7 +13,7 @@ sidebarType: 0
 {: .table .table-bordered .table-striped }
 | Date | City | Register |
 |------+------+----------|
-| Feb 20, 2020 | Tokyo, Japan | [Registration link](https://www.eventbrite.com/e/apac-prebid-meetup-and-leadership-summit-tokyo-february-20th-2020-registration-86002223967) |
+| Feb 20, 2020 | Tokyo, Japan | [Registration link](https://www.eventbrite.com/e/apac-prebid-meetup-and-leadership-summit-tokyo-february-20th-2020-registration-86002223967) - some sessions will be conducted in English and some in Japanese. Real-time translation will be provided. |
 
 ## What happens at an event?
 
