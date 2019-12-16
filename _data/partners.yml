@@ -73,6 +73,11 @@
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
   
+- company: Hive Media
+  link: https://www.hivemedia.com
+  imgURL: /assets/images/partners/publisher/Hive-Media-Group-Stacked-Color-web.png
+  type: publisher
+  
 - company: Insider, Inc. 
   link: https://www.insider-inc.com/
   imgURL: /assets/images/partners/publisher/Insider_Inc_logo.png
