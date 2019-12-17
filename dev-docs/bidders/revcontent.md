@@ -1,6 +1,6 @@
 ---
 title: RevContent
-description: RevContent Adagio Bidder Adaptor
+description: RevContent Bidder Adaptor
 biddercode: revcontent
 media_types: banner
 ---
