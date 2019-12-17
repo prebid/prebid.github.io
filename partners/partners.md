@@ -25,19 +25,16 @@ Companies join Prebid.org because they want to take an active role in supporting
 - Support the community by helping fund Prebid services and events.
 - Demonstrate thought leadership in the ad tech space.
 - Promote Prebid projects for faster market adoption.
-- Help define the technologies that shape of the industry.
+- Help define the technologies that shape of the industry by participating in our Slack workspace and joining the [Product Management Committees](/overview/prebid-management-committees.html).
 
 <hr>
 
 ## How To Join
 
-- Download and review the [Prebid.org Bylaws](http://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
-- Download and complete the [Prebid.org Membership Agreement](http://files.prebid.org/docs/Prebid_org_membership_agreement_jun_2019.pdf).
-- Send completed Agreement to membership@prebid.org.
-- The Prebid Board of Directors will vote on your membership application.
-- Appoint a single point of contact for your organization.
-- Pay annual membership fees for this year (prorated).
-- Begin contributing to Prebid, including participation in PMCs.
+1. Download and review the [Prebid.org Bylaws](http://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
+2. Complete the [Prebid.org Membership Agreement](https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=9c0dbc9c-3583-46af-a226-240b3e9fcea3&env=na2
+).
+3. Prebid will consider your membership application.
 
 <hr>
 
@@ -46,7 +43,7 @@ Companies join Prebid.org because they want to take an active role in supporting
 {: .table .table-bordered .table-striped }
 |                     | Board Seat                                                            | PMC Participation | Private Slack Instance | Participate in Prebid.org Events | Prebid.org Email Address | Logo on Prebid.org Website | Annual Fees |
 |---------------------|-----------------------------------------------------------------------|-------------------|------------------------|----------------------------------|--------------------------|----------------------------|-------------|
-| Leading Members     | <span style="color:#32CD32;">✓</span>                                                                    | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                               | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $40,000     |
+| Leader Members     | <span style="color:#32CD32;">✓</span>                                                                    | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                               | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $40,000     |
 | Technology Partners | As a Group,  Technology members  elect a representative  to the board | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $25,000     |
 | Publishers          | As a Group,  Publisher members elect  a representative to  the board  | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $5,000      |
 | Community           | <span style="color:#B22222">✖</span>                                                                     | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#B22222">✖</span>                         | <span style="color:#32CD32;">✓</span>                           | Free        |

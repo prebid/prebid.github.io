@@ -225,6 +225,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 1
+  title: Instream Video and Banner Ads
+  link: /dev-docs/examples/instream-banner-mix.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Individual Ad Unit Refresh/Infinite Scroll
@@ -416,8 +424,16 @@
   subgroup: 5
   
 - sbSecId: 1
-  title: GPDR Consent Management
+  title: Consent Management - GDPR
   link: /dev-docs/modules/consentManagement.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
+  title: Consent Management - US Privacy (CCPA)
+  link: /dev-docs/modules/consentManagementUsp.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -689,6 +705,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 2
+  title: Native Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-nativeadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 2
   title: Video Outstream Ad Unit
@@ -738,7 +762,6 @@
   sectionTitle:
   subgroup: 1
 
-
 - sbSecId: 2
   title: For Android
   link:
@@ -775,6 +798,14 @@
 - sbSecId: 2
   title: Banner Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-banneradunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: Native Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -852,10 +883,26 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
+  
+- sbSecId: 2
+  title: Setup Line items For Video
+  link: /prebid-mobile/adops-video-setup-dfp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
 
 - sbSecId: 2
   title: Setup Line Items For MoPub
   link: /prebid-mobile/adops-line-item-setup-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
+- sbSecId: 2
+  title: Setup Native Ads
+  link: /prebid-mobile/adops-native-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1328,6 +1375,14 @@
   subgroup: 1
   
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/instream/radiant/pb-ve-radiant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
   title: '&nbsp;&nbsp;VideoJS'
   link: /examples/video/instream/videojs/pb-ve-videojs.html
   isHeader: 0
@@ -1401,8 +1456,57 @@
   subgroup: 1
   
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/server/radiant/pbs-ve-radiant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
   title: '&nbsp;&nbsp;VideoJS'
   link: /examples/video/server/videojs/pbs-ve-videojs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: "<span style='color:#EA9622;'>Cross Player</span>"
+  link: 
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Flowplayer'
+  link: /examples/video/crossplayer/flowplayer/pb-cp-flowplayer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player'
+  link: /examples/video/crossplayer/jwplayer/pb-cp-jwplayer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Kaltura'
+  link: /examples/video/crossplayer/kaltura/pb-cp-kaltura.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;VideoJS'
+  link: /examples/video/crossplayer/videojs/pb-cp-videojs.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle: 
@@ -1420,6 +1524,14 @@
 - sbSecId: 4
   title: '&nbsp;&nbsp;Google Ad Manager'
   link: /examples/video/outstream/pb-ve-outstream-dfp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/outstream/pb-ve-outstream-radiant.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle: 

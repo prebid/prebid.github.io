@@ -64,7 +64,7 @@
   type: technology
 
 - company: CafeMedia 
-  link: http://www.cafemedia.com/
+  link: https://www.cafemedia.com/
   imgURL: /assets/images/partners/publisher/cafemedia.png
   type: publisher
 
@@ -73,6 +73,16 @@
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
   
+- company: Hive Media
+  link: https://www.hivemedia.com
+  imgURL: /assets/images/partners/publisher/Hive-Media-Group-Stacked-Color-web.png
+  type: publisher
+  
+- company: Insider, Inc. 
+  link: https://www.insider-inc.com/
+  imgURL: /assets/images/partners/publisher/Insider_Inc_logo.png
+  type: publisher
+
 - company: Mediavine
   link: https://www.mediavine.com/
   imgURL: /assets/images/partners/publisher/mediavine-sq-teal-navy-pn-RGB.png
@@ -83,6 +93,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: SHE Media
+  link: https://www.shemedia.com/
+  imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
+  type: publisher
+
 - company: Blockthrough
   link: https://blockthrough.com/
   imgURL: /assets/images/partners/community/Blockthrough-Logo.png
@@ -91,6 +106,11 @@
 - company: CHEQ
   link: https://www.cheq.ai/
   imgURL: /assets/images/partners/community/CHEQ_Logo.png
+  type: community
+
+- company: DailyMotion
+  link: https://dailymotion.com/
+  imgURL: /assets/images/partners/community/Dailymotion_logo.png
   type: community
 
 - company: GoBrowsi

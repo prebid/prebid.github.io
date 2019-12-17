@@ -13,7 +13,7 @@ sidebarType: 0
 {: .table .table-bordered .table-striped }
 | Date | City | Register |
 |------+------+----------|
-| Nov 19, 2019 | Hamburg, Germany | [EventBrite](https://www.eventbrite.com/e/prebid-meetup-and-leadership-summit-hamburg-19-november-2019-registration-75219209681) |
+| Feb 20, 2020 | Tokyo, Japan | [Registration link](https://www.eventbrite.com/e/apac-prebid-meetup-and-leadership-summit-tokyo-february-20th-2020-registration-86002223967) - some sessions will be conducted in English and some in Japanese. Real-time translation will be provided. |
 
 ## What happens at an event?
 
@@ -49,3 +49,4 @@ audience members in speaking their minds.
 | Date | City |
 |------+------|
 | Oct 24, 2019 | San Francisco, CA, USA |
+| Nov 19, 2019 | Hamburg, Germany |

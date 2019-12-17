@@ -29,6 +29,10 @@ The following examples are available:
   - [Ooyala](/examples/video/instream/ooyala/pb-ve-ooyala.html)
   - [VideoJS](/examples/video/instream/videojs/pb-ve-videojs.html)
 
+## Instream and Banner Mixed Page
+
+  - [Instream/Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
+
 ## Server
 
   - [Brid](/examples/video/server/brid/pbs-ve-brid.html)
