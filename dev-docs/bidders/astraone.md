@@ -20,9 +20,9 @@ The code below returns a demo ad.
 {: .table .table-bordered .table-striped }
 | Name                | Scope               | Description                                                       | Example                                                                       | Type     |
 |---------------------|---------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------|----------|
-| `placeId`           | required            | The place id.                                                     | 5af45ad34d506ee7acad0c26                                                      | `string` |
-| `imageUrl`          | required            | URL of the image on which the banner will be displayed.           | https://creative.astraone.io/files/default_image-1-600x400.jpg                | `string` |
-| `placement`         | required            | Adunit placement, possible values: inImage                        | inImage                                                                       | `string` |
+| `placeId`           | required            | The place id.                                                     | '5af45ad34d506ee7acad0c26'                                                    | `string` |
+| `imageUrl`          | required            | URL of the image on which the banner will be displayed.           | 'https://creative.astraone.io/files/default_image-1-600x400.jpg'              | `string` |
+| `placement`         | required            | Adunit placement, possible values: inImage                        | 'inImage'                                                                     | `string` |
 
 
 ### InImage Example page
@@ -50,7 +50,7 @@ The code below returns a demo ad.
     <script>
         var adUnits = [{
             code: 'test-div',
-            sizes: [],
+            sizes: [1, 1],
             bids: [{
                 bidder: "astraone",
                 params: {
@@ -130,7 +130,7 @@ The code below returns a demo ad.
 			code: 'div-gpt-ad-1574864639578-0',
 			mediaTypes: {
 				banner: {
-					sizes: [],
+					sizes: [1, 1],
 				}
 			},
 			bids: [{
