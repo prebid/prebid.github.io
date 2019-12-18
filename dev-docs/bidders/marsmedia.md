@@ -2,15 +2,13 @@
 layout: bidder
 title: Marsmedia
 description: Prebid Mars Media Group Bidder Adaptor
-
+hide: true
 top_nav_section: dev_docs
 nav_section: reference
-
-hide: true
-
 biddercode: marsmedia
-
-
+media_types: video, banner
+gdpr_supported: true
+schain_supported: true
 ---
 
 ### Bid Params
