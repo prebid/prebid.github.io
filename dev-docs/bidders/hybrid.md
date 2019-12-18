@@ -5,6 +5,7 @@ description: Prebid Hybrid.ai Bidder Adapter
 hide: true
 media_types: banner, video
 biddercode: hybrid
+gdpr_supported: true
 ---
 
 ### Note
