@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: fluct
-description: Prebid fluct Bidder Adaptor
+description: Prebid fluct Bidder Adapter
 
 top_nav_section: dev_docs
 nav_section: reference
