@@ -93,6 +93,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: Publishers Clearing House
+  link: https://pch.com/
+  imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
+  type: publisher
+
 - company: SHE Media
   link: https://www.shemedia.com/
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
@@ -111,6 +116,11 @@
 - company: DailyMotion
   link: https://dailymotion.com/
   imgURL: /assets/images/partners/community/Dailymotion_logo.png
+  type: community
+
+- company: DeepIntent
+  link: https://deepintent.com/
+  imgURL: /assets/images/partners/community/DeepIntent_Logo.png
   type: community
 
 - company: GoBrowsi
