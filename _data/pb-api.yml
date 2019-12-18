@@ -1,0 +1,18 @@
+
+- catId: 0
+  catName: About
+
+- catId: 1
+  catName: Configuration
+  
+- catId: 2
+  catName: Bids
+  
+- catId: 3
+  catName: Server
+  
+- catId: 4
+  catName: Targeting
+  
+- catId: 5
+  catName: AdUnit

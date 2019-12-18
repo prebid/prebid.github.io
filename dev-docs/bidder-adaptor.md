@@ -1,12 +1,13 @@
 ---
-layout: page
+layout: page_v2
 title: How to Add a New Bidder Adapter
 description: Documentation on how to add a new bidder adapter
 top_nav_section: dev_docs
 nav_section: adapters
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to Add a New Bidder Adapter
 {:.no_toc}
@@ -16,7 +17,7 @@ At a high level, a bidder adapter is responsible for:
 1. Creating the bid requests for the bidder's server.
 2. Parsing and registering the bid responses.
 
-This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the Github repo](https://github.com/prebid/Prebid.js/tree/master/modules) for reference.
+This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the GitHub repo](https://github.com/prebid/Prebid.js/tree/master/modules) for reference.
 
 * TOC
 {:toc}
@@ -34,15 +35,24 @@ This page has instructions for writing your own bidder adapter.  The instruction
 In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the following required conventions:
 
 * *Support multiple instances*: All adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on mutable global variables.
-* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime.
+* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
 * *Must support HTTPS*: Within a secure page context, the request to the bidder's server must also be secure.
 * *Compressed responses*: All bid responses from the bidder's server must be gzipped.
 * *Bid responses may not use JSONP*: All requests must be AJAX with JSON responses.
 * *All user-sync activity must be registered via the provided functions*: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
+* *Adapters may not create or trigger any network requests or pixels* outside of the requests that wrapper creates on behalf of the adapter from the return values of `buildRequests()` and `getUserSyncs()` or are included in a winning and rendered creative.
 * *Adapters may not use the `$$PREBID_GLOBAL$$` variable*: Instead, they must load any necessary functions and call them directly.
+* *Adapters may not modify ad slots directly*: e.g. Accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
+* *Adapters may not override standard ad server targeting*: Do not override, or set default values for any of the standard targeting variables: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
 
 {: .alert.alert-danger :}
 Failure to follow any of the above conventions could lead to delays in approving your adapter for inclusion in Prebid.js.
+
+{: .alert.alert-danger :}
+Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
+
+{: .alert.alert-danger :}
+Prebid.org does not support any version of Prebid.js prior to version 1.0.
 
 <a name="bidder-adaptor-Required-Files" />
 
@@ -74,30 +84,38 @@ Module that connects to Example's demand sources
 # Test Parameters
 ```
     var adUnits = [
-           {
-               code: 'test-div',
-               sizes: [[300, 250]],  // a display size
-               bids: [
-                   {
-                       bidder: "example",
-                       params: {
-                           placement: '12345'
-                       }
-                   }
-               ]
-           },{
-               code: 'test-div',
-               sizes: [[300, 50]],   // a mobile size
-               bids: [
-                   {
-                       bidder: "example",
-                       params: {
-                           placement: 67890
-                       }
-                   }
-               ]
-           }
-       ];
+        {
+            code: 'test-div',
+            mediaTypes: {
+                banner: {
+                    sizes: [[300, 250]],  // a display size
+                }
+            },
+            bids: [
+                {
+                    bidder: "example",
+                    params: {
+                        placement: '12345'
+                    }
+                }
+            ]
+        },{
+            code: 'test-div',
+            mediaTypes: {
+                banner: {
+                    sizes: [[320, 50]],   // a mobile size
+                }
+            },
+            bids: [
+                {
+                    bidder: "example",
+                    params: {
+                        placement: 67890
+                    }
+                }
+            ]
+        }
+    ];
 ```
 
 {% endhighlight %}
@@ -115,10 +133,14 @@ For more information about the kinds of information that can be passed using the
 {
     var adUnits = [{
         code: "top-med-rect",
-        sizes: [
-            [300, 250],
-            [300, 600]
-        ]
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250],
+                    [300, 600]
+                ]
+            }
+        },
         bids: [{
             bidder: "example",
             // params is custom to the bidder adapter and will be
@@ -144,6 +166,7 @@ If you're the type that likes to skip to the answer instead of going through a t
 + [Building the Request](#bidder-adaptor-Building-the-Request)
 + [Interpreting the Response](#bidder-adaptor-Interpreting-the-Response)
 + [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
++ [Registering on Timeout](#bidder-adaptor-Registering-on-Timout)
 
 <a name="bidder-adaptor-Overview" />
 
@@ -157,6 +180,7 @@ Compared to previous versions of Prebid, the new `BaseAdapter` model saves the a
 * `buildRequests` - Takes an array of valid bid requests, all of which are guaranteed to have passed the `isBidRequestValid()` test.
 * `interpretResponse` - Parse the response and generate one or more bid objects.
 * `getUserSyncs` - If the publisher allows user-sync activity, the platform will call this function and the adapter may register pixels and/or iframe user syncs.  For more information, see [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs) below.
+* `onTimeout` - If the adapter timed out for an auction, the platform will call this function and the adapter may register timeout.  For more information, see [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs) below.
 
 A high level example of the structure:
 
@@ -170,9 +194,12 @@ export const spec = {
     code: BIDDER_CODE,
     aliases: ['ex'], // short code
     isBidRequestValid: function(bid) {},
-    buildRequests: function(validBidRequests[]) {},
+    buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses) {}
+    getUserSyncs: function(syncOptions, serverResponses) {},
+    onTimeout: function(timeoutData) {},
+    onBidWon: function(bid) {},
+    onSetTargeting: function(bid) {}
 }
 registerBidder(spec);
 
@@ -187,7 +214,9 @@ When the page asks Prebid.js for bids, your module's `buildRequests` function wi
 * *Ad Unit Params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
 * *Transaction ID*: `bidderRequest.bids[].transactionId` should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
 * *Ad Server Currency*: If your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
-* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. We suggest using the `utils.getTopWindowUrl()` function to obtain the referrer.
+* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information.
+
+#### Valid Build Requests Array
 
 Sample array entry for `validBidRequests[]`:
 
@@ -203,15 +232,32 @@ Sample array entry for `validBidRequests[]`:
   "transactionId": "d7b773de-ceaa-484d-89ca-d9f51b8d61ec",
   "sizes": [[320,50],[300,250],[300,600]],
   "bidderRequestId": "418b37f85e772c",
-  "auctionId": "18fd8b8b0bd757"
+  "auctionId": "18fd8b8b0bd757",
+  "bidRequestsCount": 1
 }]
 {% endhighlight %}
 
-{: .alert.alert-success :}
-There are several IDs present in the bidRequest object:  
-- **Bid ID** is unique across ad units and bidders.  
-- **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.  
+#### bidRequest Parameters
+
+Notes on parameters in the bidRequest object:
+- **Bid ID** is unique across ad units and bidders.
+- **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.
 - **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
+- **Bid Request Count** is the number of times `requestBids` has been called for this ad unit.
+
+#### Referrers
+
+Referrer information is included on the `bidderRequest.refererInfo` property. This property contains the following parameters:
+
+- `referer`: a string containing the detected top-level URL.
+- `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
+- `numIframes`: the number of iFrames.
+- `stack`: a string of comma-separated URLs of all origins.
+- `canonicalUrl`: a string containing the canonical (search engine friendly) URL defined in top-most window.
+
+The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
+
+#### ServerRequest Objects
 
 The ServerRequest objects returned from your adapter have this structure:
 
@@ -251,7 +297,7 @@ The `interpretResponse` function will be called when the browser has received th
     // const headerValue = serverResponse.headers.get('some-response-header')
     const bidResponses = [];
     const bidResponse = {
-        requestId: bidRequest.bidId,
+        requestId: BID_ID,
         cpm: CPM,
         width: WIDTH,
         height: HEIGHT,
@@ -272,16 +318,17 @@ The parameters of the `bidObject` are:
 {: .table .table-bordered .table-striped }
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
-| `requestId`  | Required                                    | The bid ID. Used to tie this bid back to the request.                                                                                         | 12345                                |
+| `requestId`  | Required                                    | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
 | `cpm`        | Required                                    | The bid price. We recommend the most granular price a bidder can provide                                                                      | 3.5764                               |
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid.                                                                                 | 360                                  |
+| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"http://vid.example.com/9876`       |
+| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"http://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 
@@ -318,6 +365,81 @@ See below for an example implementation.  For more examples, search for `getUser
 
 {% endhighlight %}
 
+<a name="bidder-adaptor-Registering-on-Timout" />
+
+### Registering on Timeout
+
+The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end.
+
+Sample data received to this function:
+
+{% highlight js %}
+{
+  "bidder": "example",
+  "bidId": "51ef8751f9aead",
+  "params": {
+    ...
+  },
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "timeout": 3000,
+  "auctionId": "18fd8b8b0bd757"
+}
+{% endhighlight %}
+
+### Registering on Bid Won
+
+The `onBidWon` function will be called when a bid from the adapter won the auction.
+
+Sample data received by this function:
+
+{% highlight js %}
+{
+  "bidder": "example",
+  "width": 300,
+  "height": 250,
+  "adId": "330a22bdea4cac",
+  "mediaType": "banner",
+  "cpm": 0.28
+  "ad": "...",
+  "requestId": "418b37f85e772c",
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "size": "350x250",
+  "adserverTargeting": {
+    "hb_bidder": "example",
+    "hb_adid": "330a22bdea4cac",
+    "hb_pb": "0.20",
+    "hb_size": "350x250"
+  }
+}
+{% endhighlight %}
+
+### Registering on Set Targeting
+
+The `onSetTargeting` function will be called when the adserver targeting has been set for a bid from the adapter.
+
+Sample data received by this function:
+
+{% highlight js %}
+{
+  "bidder": "example",
+  "width": 300,
+  "height": 250,
+  "adId": "330a22bdea4cac",
+  "mediaType": "banner",
+  "cpm": 0.28,
+  "ad": "...",
+  "requestId": "418b37f85e772c",
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "size": "350x250",
+  "adserverTargeting": {
+    "hb_bidder": "example",
+    "hb_adid": "330a22bdea4cac",
+    "hb_pb": "0.20",
+    "hb_size": "350x250"
+  }
+}
+{% endhighlight %}
+
 ## Supporting Video
 
 Follow the steps in this section to ensure that your adapter properly supports video.
@@ -336,6 +458,9 @@ export const spec = {
 
 {% endhighlight %}
 
+{: .alert.alert-info :}
+If your adapter supports banner and video media types, make sure to include `'banner'` in the `supportedMediaTypes` array as well
+
 ### Step 2: Accept video parameters and pass them to your server
 
 Video parameters are often passed in from the ad unit in a `video` object.
@@ -346,13 +471,13 @@ For examples of video parameters accepted by different adapters, see [the list o
 
 #### Ingesting the Video Context
 
-Video ad units have a publisher-defined video context, which can be either `"instream"` or `"outstream"`.  Video demand partners can choose to ingest this signal for targeting purposes.  For example, the ad unit shown below has the outstream video context:
+Video ad units have a publisher-defined video context, which can be either `'instream'` or `'outstream'` or `'adpod'`.  Video demand partners can choose to ingest this signal for targeting purposes.  For example, the ad unit shown below has the outstream video context:
 
 ```javascript
 ...
 mediaTypes: {
     video: {
-        context: "outstream"
+        context: 'outstream'
     },
 },
 ...
@@ -368,6 +493,152 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
     /* Do something here. */
 }
 ```
+
+#### Long-Form Video Content
+
+{: .alert.alert-info :}
+Following is Prebid's way to setup bid request for long-form, apadters are free to choose their own approach.
+
+Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement. 
+
+#### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
+```
+AdUnit config
+{
+  ...
+  adPodDuration: 300,
+  durationRangeSec: [15, 30]
+  ...
+}
+
+Algorithm
+# of placements = adPodDuration / MIN_VALUE(durationRangeSec)
+
+Each placement set max duration:
+placement.video.maxduration = MAX_VALUE(durationRangeSec)
+
+Example:
+# of placements : 300 / 15 = 20.
+placement.video.maxduration = 30 (all placements the same)
+
+Your endpoint responds with:
+10 bids with 30 seconds duration
+10 bids with 15 seconds duration
+```
+
+In Use case 1, you are asking endpoint to respond with 20 bids between min duration 0 and max duration 30 seconds. If you get bids with duration which does not match duration in `durationRangeSec` array, Prebid will evaluate the bid's duration and will match into the appropriate duration bucket by using a rounding-type logic. This new duration will be used in sending bids to Ad server.
+
+Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
+  - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
+  - reject bid if the bid is above the range of the listed durations (and outside the buffer)
+  
+Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
+
+#### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
+```
+AdUnit config
+{
+  ...
+  adPodDuration: 300,
+  durationRangeSec: [15, 30],
+  requireExactDuration: true
+  ...
+}
+
+Algorithm
+# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length) 
+
+Each placement:
+placement.video.minduration = durationRangeSec[i]
+placement.video.maxduration = durationRangeSec[i]
+
+Example:
+# of placements : MAX_VALUE( (300 / 15 = 20), 2) == 20
+
+20 / 2 = 10 placements: 
+placement.video.minduration = 15
+placement.video.maxduration = 15
+
+20 / 2 = 10 placements: 
+placement.video.minduration = 30
+placement.video.maxduration = 30
+
+Your endpoint responds with:
+10 bids with 30 seconds duration
+10 bids with 15 seconds duration
+```
+
+In Use case 2 `requireExactDuration` is set to true and hence Prebid will only select bids that exactly match duration in `durationRangeSec` (don't round at all).
+
+In both use cases, adapter is requesting bid responses for 20 placements in one single http request. You can split these into chunks depending on your endpoint's capacity.
+
+Adapter must add following new properties to bid response
+
+{% highlight js %}
+{
+  meta: {
+    iabSubCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
+  },
+  video: {
+    context: 'adpod',
+    durationSeconds: 30
+  }
+}
+{% endhighlight %}
+
+
+Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
+
+Adapter must return one [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
+
+If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
+
+**Params**  
+
+{: .table .table-bordered .table-striped }
+| Key             | Scope    | Description                                                                                        | Example                    |
+|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
+| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
+| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+
+
+**Example**
+
+```
+getMappingFileInfo: function() { 
+  return { 
+    url: '<mappingFileURL>',
+    refreshInDays: 7
+    localStorageKey: '<uniqueCode>'
+  }
+}
+```
+
+The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
+
+To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
+
+```
+getIabSubCategory(bidderCode, pCategory)
+```
+
+**Params**
+
+{: .table .table-bordered .table-striped }
+| Key          | Scope    | Description                                   | Example               |
+|--------------|----------|-----------------------------------------------|-----------------------|
+| `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
+| `pCategory`  | Required | Proprietary category returned in bid response | `"sample-category"`   |
+
+**Example**
+
+{% highlight js %}
+
+import { getIabSubCategory } from '../src/adapters/bidderFactory';
+let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+
+{% endhighlight %}
 
 #### Outstream Video Renderers
 
@@ -408,7 +679,7 @@ In order for your bidder to support the native media type:
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
 3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
 
-The adapter code sample below fulfills requirement #2, unpacking the server's reponse and:
+The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
 1. Checking for native assets on the response.
 2. If present, filling in the `native` object with those assets.
@@ -420,21 +691,49 @@ else if (rtbBid.rtb.native) {
 
     /* If yes, let's populate our response with native assets */
 
-    const native = rtbBid.rtb.native;
+    const nativeResponse = rtbBid.rtb.native;
 
     bid.native = {
-        title: native.title,
-        body: native.desc,
-        cta: native.ctatext,
-        sponsoredBy: native.sponsored,
-        image: native.main_img && native.main_img.url,
-        icon: native.icon && native.icon.url,
-        clickUrl: native.link.url,
-        impressionTrackers: native.impression_trackers,
+        title: nativeResponse.title,
+        body: nativeResponse.desc,
+        cta: nativeResponse.ctatext,
+        sponsoredBy: nativeResponse.sponsored,
+        image: nativeResponse.main_img && nativeResponse.main_img.url,
+        icon: nativeResponse.icon && nativeResponse.icon.url,
+        clickUrl: nativeResponse.link.url,
+        impressionTrackers: nativeResponse.impression_trackers,
     };
 }
 
 {% endhighlight %}
+
+As of the [0.34.1 release](https://github.com/prebid/Prebid.js/releases/tag/0.34.1), a bidder may optionally return the height and width of a native `image` or `icon` asset.
+
+If your bidder does return the image size, you can expose the image dimensions on the bid response object as shown below.
+
+```javascript
+    /* Does the bidder respond with native assets? */
+    else if (rtbBid.rtb.native) {
+
+        const nativeResponse = rtbBid.rtb.native;
+
+        /* */
+
+        bid.native = {
+            title: nativeResponse.title,
+            image: {
+              url: nativeResponse.img.url,
+              height: nativeResponse.img.height,
+              width: nativeResponse.img.width,
+            },
+            icon: nativeResponse.icon.url,
+        };
+    }
+```
+
+The targeting key `hb_native_image` (about which more [here]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html) (ad ops setup) and [here]({{site.baseurl}}/dev-docs/show-native-ads.html) (engineering setup)) will be set with the value of `image.url` if `image` is an object.
+
+If `image` is a string, `hb_native_image` will be populated with that string (a URL).
 
 ## Adding Unit Tests
 
@@ -542,13 +841,51 @@ export const spec = {
         }
         return syncs;
     }
+
+    /**
+     * Register bidder specific code, which will execute if bidder timed out after an auction
+     * @param {data} Containing timeout specific data
+     */
+    onTimeout: function(data) {
+        // Bidder specifc code
+    }
+
+    /**
+     * Register bidder specific code, which will execute if a bid from this bidder won the auction
+     * @param {Bid} The bid that won the auction
+     */
+    onBidWon: function(bid) {
+        // Bidder specific code
+    }
+
+    /**
+     * Register bidder specific code, which will execute when the adserver targeting has been set for a bid from this bidder
+     * @param {Bid} The bid of which the targeting has been set
+     */
+    onSetTargeting: function(bid) {
+        // Bidder specific code
+    }
 }
 registerBidder(spec);
 
 {% endhighlight %}
 
+
+## Submitting your adapter
+
+- [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
+- Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
+  - Fork the repo
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify
+- Submit both the code and docs pull requests
+
+Within a few days, the code pull request will be assigned to a developer for review.
+Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
+
+The Prebid.org [download page]({{site.baseurl}}/download.html) will automatically be updated with your adapter once everything's been merged.
+
 ## Further Reading
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
 
-</div>
+
