@@ -6,19 +6,12 @@ description: Prebid fluct Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 
-hide: true
-
 biddercode: fluct
-aliasCode : adingo
-media_types: banner, video, native
-userIds: none
-prebid_member: false
-gdpr_supported: true
+media_types: banner
+gdpr_supported: false
 coppa_supported: false
 usp_supported: false
 schain_supported: true
-
-
 
 ---
 
