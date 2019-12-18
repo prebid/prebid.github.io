@@ -5,6 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 hide: true
 gdpr_supported: true
+usp_supported: true
 media_types: banner, video
 ---
 
@@ -19,7 +20,7 @@ Maintainer: prebid.support@indexexchange.com
 ## Description
 
 This module connects publishers to Index Exchange's (IX) network of demand
-sources through Prebid.js. This module is GDPR compliant.
+sources through Prebid.js. This module is GDPR and CCPA compliant.
 
 It is compatible with both the older ad unit format where the `sizes` and
 `mediaType` properties are placed at the top-level of the ad unit, and the newer
