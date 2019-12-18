@@ -5,6 +5,7 @@ description: Prebid Sovrn Bidder Adaptor
 hide: true
 biddercode: sovrn
 gdpr_supported: true
+usp_supported: true
 ---
 
 
