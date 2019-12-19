@@ -42,17 +42,21 @@ There are several analytics adapter plugins available to track header bidding pe
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
-## How it works
+## How to Integrate an Analytics Adapter
 
 Each analytics provider has specific instructions for using their system, but these are the general steps:
 
 - Create an account with the analytics vendor and obtain the necessary IDs
 - Build Prebid.js package with the vendor's analytics adapter
-- Load analytics JavaScript from vendor directly on the page
-- Call the `pbjs.enableAnalytics()` function
-- Use the vendor's UI for reporting
 
-This is an example call to `pbjs.enableAnalytics()`:
+{% highlight js %}
+gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
+{% endhighlight %}
+
+- If required, load analytics JavaScript from vendor directly on the page
+- Call the `pbjs.enableAnalytics()` function
+
+e.g.
 
 {% highlight js %}
 pbjs.que.push(function() {
