@@ -8,6 +8,11 @@
   imgURL: /assets/images/partners/founders/rubicon.png
   type: founder
   
+- company: MediaMath 
+  link: https://mediamath.com/
+  imgURL: /assets/images/partners/leader/MediaMath-wordmark.png
+  type: leader
+  
 - company: OpenX 
   link: https://www.openx.com/
   imgURL: /assets/images/partners/leader/openx.png
