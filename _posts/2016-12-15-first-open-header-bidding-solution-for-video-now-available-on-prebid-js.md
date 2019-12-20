@@ -14,8 +14,7 @@ The release of PreBid Video marks an important step forward for the open-source 
 
 In a supply-constrained video ecosystem in which the majority of inventory is monetized via direct sales, PreBid Video offers a programmatic avenue through which publishers can achieve incremental value while still maintaining these guaranteed and/or direct buys.
 
-{: .pb-md-img :}
-![PreBid Video Evian]({{ site.github.url }}/assets/images/blog/PreBid-Evian.png)
+![PreBid Video Evian]({{ site.github.url }}/assets/images/blog/PreBid-Evian.png){: .pb-md-img :}
 
 The true value of an open-sourced project is realized through the ability to incorporate new functionalities, feature development, and bug fixes from a wide contributor network which encompasses diverse expertise and an array of market positions. We encourage and welcome these contributions as we look ahead towards iterative improvement on PreBid Video. With help from the community, we expect to be able to build portfolios of video-capable adapters to match the nearly 40 demand partners integrated today with PreBid display; of video player and adserver integrations with Prebid.js; and, of video-specific formats.
 

@@ -1,10 +1,11 @@
 ---
-layout: page
+layout: page_v2
 title: Show Outstream Video Ads
 description: Show Outstream Video Ads with Prebid.js
 pid: 10
 top_nav_section: dev_docs
 nav_section: prebid-video
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -35,29 +36,25 @@ The fields supported in a given `bid.params.video` object will vary based on the
 
 {% highlight js %}
 
-var videoAdUnits = [
-  {
+var videoAdUnits = [{
     code: 'video1',
     mediaTypes: {
-      video: {
-        context: 'outstream',
-        playerSize: [640, 480]
-      }
-    },
-    bids: [
-      {
-        bidder: 'appnexusAst',
-        params: {
-          placementId: '5768085',
-          video: {
-            skippable: true,
-            playback_method: [ 'auto_play_sound_off' ]
-          }
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480]
         }
-      }
-    ]
-  }
-];
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232385,
+            video: {
+                skippable: true,
+                playback_method: ['auto_play_sound_off']
+            }
+        }
+    }]
+}];
 
 {% endhighlight %}
 
@@ -86,14 +83,14 @@ Renderers are associated with adUnits through the `adUnit.renderer` object.  Thi
 pbjs.addAdUnit({
     code: 'video1',
     mediaTypes: {
-      video: {
-        context: 'outstream',
-        playerSize: [640, 480]
-      }
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480]
+        }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
-        render: function(bid) {
+        url: 'http://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
+        render: function (bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
                 adResponse: bid.adResponse,
@@ -112,12 +109,15 @@ Some demand partners that return a renderer with their video bid responses may s
 pbjs.addAdUnit({
     code: 'video1',
     mediaTypes: {
-      video: { context: 'outstream', playerSize: [640, 480] }
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480]
+        }
     },
     renderer: {
-      options: {
-        adText: 'This text was configured in the ad unit',
-      }
+        options: {
+            adText: 'This text was configured in the ad unit',
+        }
     },
     ...
 });
@@ -132,17 +132,18 @@ For more technical information about renderers, see [the pull request adding the
 
 Invoke your ad server for the outstream adUnit from the body of the page in the same way that you would for a display adUnit
 
-For a live example, see [Outstream with an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-dfp-two-adapters-demo.html).
+For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/outstream-dfp.html).
 
 {% highlight html %}
 
 <div id='video1'>
-  <p>Prebid Outstream Video Ad</p>
-  <script type='text/javascript'>
-    googletag.cmd.push(function () {
-      googletag.display('video1');
-    });
-  </script>
+    <p>Prebid Outstream Video Ad</p>
+    <script type='text/javascript'>
+        googletag.cmd.push(function() {
+            googletag.display('video1');
+        });
+
+    </script>
 </div>
 
 {% endhighlight %}
@@ -151,7 +152,7 @@ For a live example, see [Outstream with an Ad Server]({{site.github.url}}/exampl
 
 Prebid can serve outstream demand directly without going through a primary ad server.
 
-For a live example, see [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver-demo.html).
+For a live example, see [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html).
 
 In the Prebid.js event queue, you'll need to add a function that:
 
@@ -161,6 +162,7 @@ In the Prebid.js event queue, you'll need to add a function that:
     2. Renders the ad
 
 {% highlight js %}
+
 pbjs.que.push(function () {
     pbjs.addAdUnits(videoAdUnits);
     pbjs.requestBids({
@@ -171,6 +173,7 @@ pbjs.que.push(function () {
         }
     });
 });
+
 {% endhighlight %}
 
 For more information, see the API documentation for:
@@ -183,12 +186,7 @@ For more information, see the API documentation for:
 
 Below, find links to end-to-end "working examples" demonstrating Prebid Outstream:
 
-+ [Outstream with two adapters]({{site.github.url}}/examples/video/outstream/outstream-dfp-two-adapters-demo.html)
-+ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver-demo.html)
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
-
-## Related Topics
-
-+ [Outstream Video Example]({{site.github.url}}/dev-docs/examples/outstream-video-example.html)
++ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
++ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
 
 </div>
