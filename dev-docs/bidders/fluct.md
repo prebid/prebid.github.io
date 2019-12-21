@@ -2,17 +2,12 @@
 layout: bidder
 title: fluct
 description: Prebid fluct Bidder Adapter
-
-top_nav_section: dev_docs
-nav_section: reference
-
 biddercode: fluct
 media_types: banner
 gdpr_supported: false
 coppa_supported: false
 usp_supported: false
 schain_supported: true
-
 ---
 
 ### Bid Params
