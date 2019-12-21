@@ -1,17 +1,17 @@
 ---
 layout: page_v2
-title: Show Video Ads with DFP
-description: Show Video Ads with DFP
+title: Show Video Ads with Google Ad Manager
+description: Show Video Ads with Google Ad Manager
 sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">
 
-# Show Video Ads with DFP
+# Show Video Ads with Google Ad Manager
 {: .no_toc}
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
-from DFP.  We'll use the [Video.js](http://videojs.com/) player and
+from Google Ad Manager.  We'll use the [Video.js](http://videojs.com/) player and
 the AppNexus bidder, but the principles are the same across
 different video players and video-enabled bidders.
 
@@ -30,7 +30,7 @@ Also, you need to make sure to build Prebid.js with:
 + Support for at least one video-enabled bidder
 + Support for the `dfpAdServerVideo` ad server adapter, which will provide the video ad support
 
-For example, to build with the AppNexus bidder adapter and the DFP
+For example, to build with the AppNexus bidder adapter and the Google Ad Manager
 Video ad server adapter, use the following command:
 
 ```bash
@@ -39,9 +39,9 @@ gulp build --modules=dfpAdServerVideo,appnexusBidAdapter
 
 For more information about how to build with modules, see the [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization).
 
-Finally, your ad ops team needs to have set up line items in DFP
+Finally, your ad ops team needs to have set up line items in Google Ad Manager
 following the instructions at
-[Setting up Prebid Video in DFP]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html).
+[Setting up Prebid Video in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html).
 
 ## Implementation
 
@@ -77,17 +77,18 @@ var videoAdUnit = {
 
 ### 2. Implement Custom Price Buckets
 
-By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets using the [`setPriceGranularity`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#customCPMObject) method.
+By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets setting the [priceGranularity](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) object in the `setConfig` method.
 
-For instructions, see [Custom Price Bucket with `setPriceGranularity`]({{site.baseurl}}/dev-docs/examples/custom-price-buckets.html).
+For instructions and sample code, see [Custom Price Granularity Buckets
+](/dev-docs/examples/custom-price-buckets.html).
 
 ### 3. Request bids, build video URL
 
 Next, we need to do the standard Prebid "add ad units and request bids" dance.
 
-In the example below, our callback builds the video URL the player needs using the `buildVideoUrl` method from the DFP ad server module that we built into our copy of Prebid.js in the **Prerequisites** section.
+In the example below, our callback builds the video URL the player needs using the `buildVideoUrl` method from the Google Ad Manager ad server module that we built into our copy of Prebid.js in the **Prerequisites** section.
 
-For more information, see the API documentation for [pbjs.adServers.dfp.buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl).  Understanding the arguments to this method is *especially* important if you plan to pass any custom parameters to DFP.  The `params` key in the argument to `buildVideoUrl` supports all parameters from the [DFP API](https://support.google.com/dfp_premium/answer/1068325?hl=en).
+For more information, see the API documentation for [pbjs.adServers.dfp.buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl).  Understanding the arguments to this method is *especially* important if you plan to pass any custom parameters to Google Ad Manager.  The `params` key in the argument to `buildVideoUrl` supports all parameters from the [Google Ad Manager API](https://support.google.com/admanager/answer/1068325).
 
 ```javascript
 pbjs.que.push(function() {
@@ -193,25 +194,31 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 
 ### Using client-side adapters
 
-+ [video.js]({{site.github.url}}/examples/video/videojs-demo.html)
-+ [JWPlayer]({{site.github.url}}/examples/video/jwPlayerPrebid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/bc-demo.html)
-+ [Kaltura]({{site.github.url}}/examples/video/klt-demo.html)
-+ [Ooyala]({{site.github.url}}/examples/video/ooyala-demo.html)
++ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
++ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
++ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
++ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
++ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
++ [JWPlayer - Playlist]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html)
++ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
++ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
++ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
++ [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
 ### Using Prebid Server Video
 
-+ [JW Player]({{site.baseurl}}/examples/video/jwplayer-pbserver-demo.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/kaltura-pbserver-demo.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/videojs-pbserver-demo.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/ooyala-pbserver-demo.html)
++ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
++ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
++ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
++ [JW Player - Playlist]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html)
++ [JW Player - Player 7]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html)
++ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
++ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
++ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
-### All examples in one place
-
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
 
 ## Related Topics
 
-+ [Setting up Prebid Video in DFP]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)
++ [Setting up Prebid Video in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)
 
 </div>

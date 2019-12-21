@@ -6,10 +6,9 @@ top_nav_section: dev_docs
 nav_section: reference
 hide: true
 biddercode: rtbdemand
-biddercode_longer_than_12: false
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description                         | Example                   | Type     |

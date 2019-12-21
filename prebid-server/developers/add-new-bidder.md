@@ -1,11 +1,16 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Developers | Adding A New Bidder
+title: Prebid Server | Developers | Adding a New Bidder
 
 ---
 
 # Adding a New Bidder
+
+{: .no_toc}
+
+* TOC
+{:toc }
 
 This document describes how to add a new Bidder to Prebid Server. Bidders are responsible for reaching out to your Server to fetch Bids.
 
@@ -14,11 +19,11 @@ Publishers can correct for Gross bids anyway by setting [Bid Adjustments](../end
 
 ## Choose a Bidder Name
 
-This name must be unique. Existing BidderNames can be found in `../../openrtb_ext/bidders.go`.
+This name must be unique. Existing BidderNames can be found [here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go).
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
-## Define your Bidder Params
+## Define Your Bidder Params
 
 Bidders may define their own APIs for Publishers pass custom values. It is _strongly encouraged_ that these not
 duplicate values already present in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf).
@@ -27,18 +32,36 @@ Publishers will send values for these parameters in `request.imp[i].ext.{bidder}
 [the Auction endpoint](../endpoints/openrtb2/auction.html). Prebid Server will preprocess these so that
 your bidder will access them at `request.imp[i].ext.bidder`--regardless of what your `{bidder}` name is.
 
-## Implement your Bidder
+## Implement Your Bidder
 
 Bidder implementations are scattered throughout several files.
 
-- `adapters/{bidder}/{bidder}.go`: contains an implementation of the Bidder interface (`../../adapters/bidder.go`).
+- `adapters/{bidder}/{bidder}.go`: contains an implementation of [the Bidder interface](https://github.com/prebid/prebid-server/blob/master/adapters/bidder.go).
 - `openrtb_ext/imp_{bidder}.go`: contract classes for your Bidder's params.
-- `usersync/usersyncers/{bidder}.go`: A Usersyncer (`../../usersync/usersync.go`) which returns cookie sync info for your bidder.
+- `usersync/usersyncers/{bidder}.go`: A [Usersyncer](https://github.com/prebid/prebid-server/blob/master/usersync/usersync.go) which returns cookie sync info for your bidder.
 - `usersync/usersyncers/{bidder}_test.go`: Unit tests for your Usersyncer
 - `static/bidder-params/{bidder}.json`: A [draft-4 json-schema](https://spacetelescope.github.io/understanding-json-schema/) which [validates your Bidder's params](https://www.jsonschemavalidator.net/).
 - `static/bidder-info/{bidder}.yaml`: contains metadata (e.g. contact email, platform & media type support) about the adapter
 
 Bidder implementations may assume that any params have already been validated against the defined json-schema.
+
+## Long-Form Video Support
+If long-form video will be supported ensure the bidder has the following:
+
+{: .table .table-bordered .table-striped }
+|Field          |Type                           |Description                       
+|----------------|-------------------------------|-----------------------------|
+|bid.bidVideo.PrimaryCategory | string | The category for the bid. This should be able to be translated to Primary ad server format|           
+|TypedBid.bid.Cat | []string | The category for the bid. Should be an array with length 1 containing the value in IAB format|            
+|TypedBid.BidVideo.Duration | int | Ad duration in seconds|
+|TypedBid.bid.Price | float | Bid price|
+
+{% capture alertNote %}
+`bid.bidVideo.PrimaryCategory` or `TypedBid.bid.Cat` should be specified.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=alertNote %}
+To learn more about IAB categories, refer site provided by adtagmacros.com: [IAB categories](https://adtagmacros.com/list-of-iab-categories-for-advertisement/)
 
 ## Test Your Bidder
 
@@ -50,7 +73,7 @@ Bidder tests live in two files:
 - `adapters/{bidder}/params_test.go`: contains unit tests for your Bidder's JSON Schema params.
 
 Since most Bidders communicate through HTTP using JSON bodies, you should
-use the JSON-test utilities (`../../adapters/adapterstest/test_json.go`).
+use the [JSON-test utilities](https://github.com/prebid/prebid-server/blob/master/adapters/adapterstest/test_json.go).
 This comes with several benefits, which are described in the source code docs.
 
 If your HTTP requests don't use JSON, you'll need to write your tests in the code.
@@ -81,9 +104,9 @@ The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidd
 
 ## Add your Bidder to the Exchange
 
-Add a new BidderName constant (`../../openrtb_ext/bidders.go`) for your {bidder}.
-Update the newAdapterMap function (`../../exchange/adapter_map.go`) to make your Bidder available in [auctions](../endpoints/openrtb2/auction).
-Update the NewSyncerMap function (`../../usersync/usersync.go`) to make your Bidder available for [usersyncs](../endpoints/setuid.html).
+Add a new [BidderName constant](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go) for your {bidder}.
+Update the [newAdapterMap function](https://github.com/prebid/prebid-server/blob/master/exchange/adapter_map.go) to make your Bidder available in [auctions](../endpoints/openrtb2/auction.html).
+Update the [NewSyncerMap function](https://github.com/prebid/prebid-server/blob/master/usersync/usersync.go) to make your Bidder available for [usersyncs](../endpoints/setuid.html).
 
 ## Contribute
 

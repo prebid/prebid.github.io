@@ -21,19 +21,8 @@ $(function(){
     return;
   });
 
-  $( ".selectpicker" ).change(function() {
-    if(this.value.match(/1\.\d+\.\d+/i)) {
-      $('.adapters .col-md-4').hide();
-      $('.prebid_1_0').show();
-    }
-    else{
-       $('.adapters .col-md-4').show();
-    }
-  });
-
-  //default to 1.x adapters:
-  $('.adapters .col-md-4').hide();
-  $('.prebid_1_0').show();
+  // show all adapters
+  $('.adapters .col-md-4').show();
 });
 
 function getVersionList() {
@@ -54,7 +43,7 @@ function getVersionList() {
           $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
         }
         else{
-          if(version.match(/1\.\d+\.\d+/i)){
+          if(version.match(/\d\.\d+\.\d+/i)){
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{
@@ -176,9 +165,6 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
 
-{: .alert.alert-danger :}
-**Deprecation Notice:** Prebid.org does not support any version of Prebid.js prior to version 1.0.
-
 {: .alert.alert-success :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
 
@@ -188,14 +174,13 @@ Note: If you receive an error during download you most likely selected a configu
 <select id="version_selector" class="selectpicker">
 </select>
 
-
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
 {% for page in bidder_pages %}
   {% if page.s2s_only == true %}
     {% continue %}
   {% endif %}
-<div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
+<div class="col-md-4">
  <div class="checkbox">
   <label>
   {% if page.aliasCode %}
@@ -205,6 +190,7 @@ Note: If you receive an error during download you most likely selected a configu
   {% endif %}
 
     </label>
+
 </div>
 </div>
 {% endfor %}
@@ -218,7 +204,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
+      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
     </label>
   </div>
 </div>
@@ -226,39 +212,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
+      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
     </label>
   </div>
 </div>
@@ -282,7 +236,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
+      <input type="checkbox" analyticscode="adxpremium" class="analytics-check-box"> AdxPremium Analytics
     </label>
   </div>
 </div>
@@ -290,7 +244,15 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
+      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="datablocks" class="analytics-check-box"> Datablocks Analytics
     </label>
   </div>
 </div>
@@ -306,7 +268,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+      <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> Finteza Analytics
     </label>
   </div>
 </div>
@@ -314,7 +276,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
+      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
     </label>
   </div>
 </div>
@@ -322,15 +284,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+      <input type="checkbox" analyticscode="invisibly" class="analytics-check-box"> Invisibly Analytics
     </label>
   </div>
 </div>
@@ -346,7 +300,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
+      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
     </label>
   </div>
 </div>
@@ -355,6 +309,126 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sortable" class="analytics-check-box" /> Sortable Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yieldone" class="analytics-check-box"> Platform One Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
     </label>
   </div>
 </div>
@@ -373,21 +447,31 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
 </div>
  {% endfor %}
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+</div></div>
 </div>
 
 <br>
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
+<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
 
 </div>
 
 </form>
 
 </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -420,13 +504,13 @@ Note: If you receive an error during download you most likely selected a configu
 
 
     </div>
+
   </div>
 </div>
-
 
 <div class="bs-docs-section" markdown="1">
 
 ### Option 2: Build from Source Code (More Advanced)
 
 {: .lead :}
-Alternatively, you can build Prebid.js from the source code.  For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
+Alternatively, you can build Prebid.js from the source code. For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).

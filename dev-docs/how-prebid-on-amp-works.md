@@ -28,7 +28,7 @@ The diagram below shows how the pieces of an AMP+Prebid solution fit together:
 
 + [AMP Format Overview]({{site.baseurl}}/formats/amp.html)
 + [Show Prebid Ads on AMP Pages]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html) (Developers)
-+ [Setting up Prebid for AMP in DFP]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops)
++ [Setting up Prebid for AMP in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops)
 
 </div>
 

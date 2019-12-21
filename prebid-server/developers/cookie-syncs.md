@@ -12,11 +12,11 @@ This document describes the mechancis of a Prebid Server cookie sync.
 
 Many Bidders track users through Cookies. Since Bidders will generally serve ads from a different domain
 than where Prebid Server is hosted, those cookies must be consolidated under the Prebid Server domain so
-that they can be sent to each demand source in [/openrtb2/auction](../endpoints/openrtb2/auction.html) calls.
+that they can be sent to each demand source in [/openrtb2/auction](../endpoints/openrtb2/auction.md) calls.
 
 ## How to do it?
 
-Start by calling [`/cookie_sync`](../endpoints/cookieSync.html). For each element of `response.bidder_status`,
+Start by calling [`/cookie_sync`](../endpoints/cookieSync.md). For each element of `response.bidder_status`,
 call `GET element.usersync.url`. That endpoint should respond with a redirect which will complete the cookie sync.
 
 ## Mechanics
@@ -24,7 +24,7 @@ call `GET element.usersync.url`. That endpoint should respond with a redirect wh
 Bidders who support cookie syncs must implement an endpoint under their domain which accepts
 an encoded URI for redirects. For example:
 
-> GET some-bidder-domain.com/usersync-url?redirectUri=www.prebid-domain.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3D%24UID
+> GET some-bidder-domain.com/usersync-url?redirectUri=www.prebid-domain.com/setuid?bidder=somebidder&uid=$UID
 
 This example endpoint would URL-decode the `redirectUri` param to get `www.prebid-domain.com/setuid?bidder=somebidder&uid=$UID`.
 It would then replace the `$UID` macro with the user's ID from their cookie. Supposing this user's ID was "132",

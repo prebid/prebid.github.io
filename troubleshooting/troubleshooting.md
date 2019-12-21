@@ -7,35 +7,44 @@ sidebarType: 7
 
 # Troubleshooting
 
-### Prebid.js
+## Prebid.js
 
-The most important tip is to add ```?pbjs_debug=true``` to the end of the page's URL -- you'll get a bunch of javascript console trace messages that will help pin down the issue.
+Enable javascript console trace messages by adding ```?pbjs_debug=true``` to the end of the page's URL. These messages can help isolate issues and improve debugging efforts.
 
++ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/troubleshooting/troubleshooting-guide.html)
++ [Prebid.js Troubleshooting Videos](/videos/)
++ [Debug Extension](/debugging/debugging.html)
 
-Other references:
-
-<br/>
-AdOps
+## AdOps
 
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
 
-Developers
+## Prebid Server
 
-+ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html)
-+ [Developer Troubleshooting Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
-+ [Debug Extension](/debugging/debugging.html)
+There are several ways to get more debug info from Prebid Server:
 
-<hr>
+### Direct Prebid Server Invocation
 
-### Prebid Server
+One of these parameters needs to be added to the OpenRTB:
+- `"test":1` -- this will inform the bidders that this should be treated as a test (non-billable) request, and also provide additional debug info in the OpenRTB response.
+- `"debug":1` -- this just adds the additional debug info.
 
-The best way to get debug info for Prebid Server is to add `&debug=1` to the end of the URL. A 'url_override' parameter is also available. e.g.
-
-<br/>
 {% highlight bash %}
-https://prebid-server.rubiconproject.com/auction?url_override=rubiconproject.com&debug=1
+POST https://prebid-server.rubiconproject.com/openrtb2/auction
+{
+    ...
+    "test":1
+}
 {% endhighlight %}
 
+### Invoked from Prebid.js
 
-Additional debugging references are under construction.
+There are two ways to turn on the OpenRTB `test` flag from Prebid.js:
 
+1) Add ?pbjs_debug=true to the URL of the page.
+
+2) Add the following `setConfig` to the page:
+
+{% highlight bash %}
+    pbjs.setConfig({"debug":true});
+{% endhighlight %}

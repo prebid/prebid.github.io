@@ -2,14 +2,11 @@
 layout: bidder
 title: Gamoshi
 description: Prebid Gamoshi Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: gamoshi
-biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 media_types: banner, video
 gdpr_supported: true
+userIds: unifiedId/tradedesk, id5Id
 ---
 
 ### Bid params

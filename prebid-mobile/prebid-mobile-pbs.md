@@ -12,8 +12,12 @@ sidebarType: 2
 
 This page gives an overview of steps you need to take, either as an ad ops user or as a developer, to start using Prebid Mobile.
 
-{: .alert.alert-info :}
+{% capture alertNote %}
 If this is your first time working with header bidding, we recommend that you read [What is Prebid?](/overview/intro.html) before diving into Prebid Mobile.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=alertNote %}
+
 
 * TOC
 {:toc}
@@ -55,13 +59,13 @@ To begin using Prebid Mobile, download the Prebid Mobile SDK:
 -   [SDK for Android](https://github.com/prebid/prebid-mobile-android)
 
 After you have the SDK installed, register ad units with the Prebid Mobile framework.
--   [iOS Code Integration]({{site.github.url}}/prebid-mobile/code-integration-ios.html)
--   [Android Code Integration]({{site.github.url}}/prebid-mobile/code-integration-android.html)
+-   [iOS Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
+-   [Android Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html)
 
 ## Ad Ops - Setting Up the Ad Server
 
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
--   [Set Up Line Items for DFP]({{site.github.url}}/prebid-mobile/adops-line-item-setup-dfp.html)
+-   [Set Up Line Items for Google Ad Manager]({{site.github.url}}/prebid-mobile/adops-line-item-setup-dfp.html)
 -   [Set Up Line Items for MoPub]({{site.github.url}}/prebid-mobile/adops-line-item-setup-mopub.html)
 
 ## Additional Information
@@ -77,19 +81,14 @@ The following resources are available for further information on working with Pr
 
 **iOS**
 
--   [Targeting Parameters](/prebid-mobile/targeting-params-ios.html)  
+-   [Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)  
     Learn about the parameters available in the iOS Prebid Mobile SDK.
 
--   [Logging and Troubleshooting](/prebid-mobile/logging-troubleshooting-ios.html)  
-    Instructions on troubleshooting issues you might encounter.
 
 **Android**
 
--   [Targeting Parameters](/prebid-mobile/targeting-params-android.html)  
+-   [Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)  
     Learn about the parameters available in the Android Prebid Mobile SDK.
-
--   [Logging and Troubleshooting](/prebid-mobile/logging-troubleshooting-android.html)  
-    Instructions on troubleshooting issues you might encounter.
 
 ### GDPR
 
@@ -98,7 +97,5 @@ Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Tra
 For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
 
 For specific implementation details, see the "GDPR Consent" section here:
--   [iOS - Targeting Parameters](/prebid-mobile/targeting-params-ios.html)
--   [Android - Targeting Parameters](/prebid-mobile/targeting-params-android.html)
-
-
+-   [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+-   [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
