@@ -5,6 +5,7 @@ description: Prebid Teads Bidder Adapter
 hide: true
 biddercode: teads
 gdpr_supported: true
+usp_supported: true
 media_types: banner, video
 ---
 
