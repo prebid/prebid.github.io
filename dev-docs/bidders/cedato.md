@@ -18,3 +18,8 @@ biddercode: cedato
 | ---- | ----- | ----------- | ------- | ---- |
 | `player_id`       | required | The player ID from Cedato | `1450133326` | `integer` |
 | `bidfloor`        | optional | Bid floor value | `0.01` | `integer` |
+
+### Note
+
+The Cedato adapter requires setup and approval from the Cedato team.
+Please reach out to your account team or publishers@cedato.com for more information.
