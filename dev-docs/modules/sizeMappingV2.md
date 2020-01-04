@@ -48,10 +48,7 @@ If you've used sizeMapping feature or **sizeConfig** in prebid.js before, the se
   }
 {% endhighlight %}
 
-- **labels** are no longer defined in sizeConfig object. Only way to define labels is inside `pbjs.setConfig`. Now, **labels** don't need to be associated with a size range defined by the **mediaQuery** property of sizeConfig object because each ad unit/bidder can define their own size buckets and sizes associated with those buckets. **lables** are still an effective way to do other tasks like, filtering ad units/bidders based on their Geo location, etc. For more details how to use labels, visit [Conditional Ad Units](http://prebid.org/dev-docs/conditional-ad-units.html).
-
-{: .alert.alert-info :}
-Labels are still fully supported. You can apply `labelAll` or `labelAny` operator on an Ad Unit or a Bidder and it'll behave the same way that is used to earlier.
+- **labels** are no longer defined in sizeConfig object. Labels should be defined in the `pbjs.requestBids` call. Now, **labels** don't need to be associated with a size range defined by the **mediaQuery** property of sizeConfig object because each ad unit/bidder can define their own size buckets and sizes associated with those buckets. **lables** are still an effective way to do other tasks like, filtering ad units/bidders based on their Geo location, etc. For more details on Labels, visit [Conditional Ad Units](http://prebid.org/dev-docs/conditional-ad-units.html).
 
 - **mediaQuery** is not needed. Instead, we need an array of size buckets defined by the `minViewPort` property. Only one size bucket activates based on viewport size.
 
