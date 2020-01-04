@@ -1133,31 +1133,28 @@ this method registers the callback for every `bidWon` event.
 {: .alert.alert-info :}
 Currently, `bidWon` is the only event that accepts the `id` parameter.
 
-Additional data may also be passed to the handler that you have defined
-
-{: .alert.alert-info :}
-Currently, `bidRequest`, `bidResponse`, and `bidWon`, are the only events that pass additional data to the handler
-
 The available events are:
 
 {: .table .table-bordered .table-striped }
-| Event         | Description                             |
-|---------------+-----------------------------------------|
-| auctionInit   | The auction has started                 |
-| auctionEnd    | The auction has ended                   |
-| bidAdjustment | A bid was adjusted                      |
-| bidTimeout    | A bid timed out                         |
-| bidRequested  | A bid was requested                     |
-| bidResponse   | A bid response has arrived              |
-| bidWon        | A bid has won                           |
-| setTargeting  | Targeting has been set                  |
-| requestBids   | Bids have been requested from adapters  |
-| addAdUnits    | Ad units have been added to the auction |
-| adRenderFailed| Ad rendering failed (added in v1.7)     |
-| bidderDone    | A bidder has signaled they are done responding (added in v1.8)|
+| Event         | Description                             | Callback Arguments |
+|---------------+-----------------------------------------|--------------------|
+| auctionInit   | The auction has started                 | Object containing auction details |
+| auctionEnd    | The auction has ended                   | Object containing auction details |
+| beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
+| bidRequested  | A bid was requested from a specific bidder | Bid request object |
+| bidResponse   | A bid response has arrived              | Bid response object |
+| bidAdjustment | A bid was adjusted                      | Bid response object |
+| bidWon        | A bid has won                           | Bid response object |
+| bidTimeout    | A bid timed out                         | Array of objects with timed out bids |
+| setTargeting  | Targeting has been set                  | Hash of targeting values |
+| requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | None |
+| addAdUnits    | Ad units have been added to the auction | None |
+| adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
+| bidderDone    | A bidder has signaled they are done responding | Bid request object |
 
-The examples below show how these methods can be used:
+The examples below show how these events can be used.
 
+Events example 1
 {% highlight js %}
 
         /* Log when ad units are added to Prebid */
@@ -1173,43 +1170,43 @@ The examples below show how these methods can be used:
 
 {% endhighlight %}
 
+Events example 2: Use the optional 3rd parameter for the `bidWon` event
 {% highlight js %}
-
-        /* Define your event handler callbacks */
-        var allSlotsBidWon = function allSlotsBidWon() {
-            console.log('allSlotsBidWon called');
+        /* This handler will be called only for rightAdUnit */
+        /* Uses the `pbjs.offEvent` method to remove the handler once it has been called */
+        var bidWonHandler = function bidWonHandler() {
+            console.log('bidWonHandler: ', arguments);
+            pbjs.offEvent('bidWon', bidWonHandler, rightAdUnit);
         };
 
-        /* In this event handler callback we use the `pbjs.offEvent`
-           method to remove the handler once it has been called */
-        var rightSlotBidWon = function rightSlotBidWon() {
-            console.log('rightSlotBidWon: ', arguments);
-            pbjs.offEvent('bidWon', rightSlotBidWon, rightSlotCode);
-        };
+        var rightAdUnit="/111111/right";
+        pbjs.que.push(function () {
+            var adUnits = [{
+                code: rightAdUnit,
+		...
+	    },{
+		...
+	    }];
 
-        googletag.cmd.push(function () {
+	    pbjs.addAdUnits(adUnits);
+            pbjs.requestBids({
+		...
+            });
 
-            /* Ad slots need to be defined before trying to register
-               callbacks on their events */
+            /* Register a callback for just the rightSlot `bidWon` event */
+            /* Note that defining an event that uses the 3rd parameter must come after initiating the auction */
+            pbjs.onEvent('bidWon', bidWonHandler, rightAdUnit);
 
-            var rightSlot =
-              googletag.defineSlot(rightSlotCode, rightSlotSizes, rightSlotElementId).addService(googletag.pubads());
+            ...
+{% endhighlight %}
 
-            var topSlot =
-              googletag.defineSlot(topSlotCode, topSlotSizes, topSlotElementId).setTargeting().addService(googletag.pubads());
-
-            pbjs.que.push(function () {
-
-                /* Register a callback for every `bidWon` event */
-                pbjs.onEvent('bidWon', allSlotsBidWon);
-
-                /* Register a callback for just the rightSlot `bidWon`
-                   event */
-                pbjs.onEvent('bidWon', rightSlotBidWon, rightSlotCode);
-
-                pbjs.setTargetingForGPTAsync();
-                ...
-
+Events example 3: Dynamically modify the auction
+{% highlight js %}
+	var bidderFilter = function bidderFilter(adunits) {
+	    // pub-specific logic to optimize bidders
+            // e.g. "remove any that haven't bid in the last 4 refreshes"
+	};
+	pbjs.onEvent('beforeRequestBids', bidderFilter);
 {% endhighlight %}
 
 <hr class="full-rule" />
