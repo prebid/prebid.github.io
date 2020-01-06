@@ -5,6 +5,8 @@ description: Prebid GumGum Bidder Adaptor
 hide: true
 biddercode: gumgum
 media_types: native
+schain_supported: true
+userIds: unifiedId/tradedesk, digitrustId
 gdpr_supported: true
 ---
 
@@ -17,7 +19,8 @@ information.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description | Example      | Type      |
-|------------|----------|-------------|--------------|-----------|
-| `inScreen` | optional | Tracking ID | `'ggumtest'` | `string`  |
-| `inSlot`   | optional | Slot ID     | `9`          | `integer` |
+| Name           | Scope    | Description | Example      | Type      |
+|----------------|----------|-------------|--------------|-----------|
+| `inScreen`     | optional | Tracking ID | `'ggumtest'` | `string`  |
+| `inScreenPubID`| optional | Publisher ID| `123`        | `integer` |
+| `inSlot`       | optional | Slot ID     | `9`          | `integer` |

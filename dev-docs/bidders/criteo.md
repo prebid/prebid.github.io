@@ -6,6 +6,7 @@ hide: true
 biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
+usp_supported: true
 prebid_member: true
 ---
 

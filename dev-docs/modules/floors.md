@@ -5,7 +5,7 @@ title: Module - Price Floors
 description: Determine and enforce auction price floors
 module_code : floors
 display_name : Price Floors
-enable_download : true
+enable_download : false
 sidebarType : 1
 ---
 

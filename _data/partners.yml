@@ -8,6 +8,11 @@
   imgURL: /assets/images/partners/founders/rubicon.png
   type: founder
   
+- company: MediaMath 
+  link: https://www.mediamath.com/
+  imgURL: /assets/images/partners/leader/MediaMath-wordmark.png
+  type: leader
+  
 - company: OpenX 
   link: https://www.openx.com/
   imgURL: /assets/images/partners/leader/openx.png
@@ -21,6 +26,11 @@
 - company: SpotX 
   link: https://spotx.tv
   imgURL: /assets/images/partners/leader/spotx_logo.png
+  type: leader
+
+- company: theTradeDesk 
+  link: https://www.thetradedesk.com/
+  imgURL: /assets/images/partners/leader/TTD_logo.png
   type: leader
 
 - company: Criteo 
@@ -59,8 +69,23 @@
   type: technology
 
 - company: CafeMedia 
-  link: http://www.cafemedia.com/
+  link: https://www.cafemedia.com/
   imgURL: /assets/images/partners/publisher/cafemedia.png
+  type: publisher
+
+- company: Chegg
+  link: https://www.chegg.com/
+  imgURL: /assets/images/partners/publisher/chegg.png
+  type: publisher
+  
+- company: Hive Media
+  link: https://www.hivemedia.com
+  imgURL: /assets/images/partners/publisher/Hive-Media-Group-Stacked-Color-web.png
+  type: publisher
+  
+- company: Insider, Inc. 
+  link: https://www.insider-inc.com/
+  imgURL: /assets/images/partners/publisher/Insider_Inc_logo.png
   type: publisher
 
 - company: Mediavine
@@ -73,6 +98,16 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: Publishers Clearing House
+  link: https://pch.com/
+  imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
+  type: publisher
+
+- company: SHE Media
+  link: https://www.shemedia.com/
+  imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
+  type: publisher
+
 - company: Blockthrough
   link: https://blockthrough.com/
   imgURL: /assets/images/partners/community/Blockthrough-Logo.png
@@ -81,6 +116,16 @@
 - company: CHEQ
   link: https://www.cheq.ai/
   imgURL: /assets/images/partners/community/CHEQ_Logo.png
+  type: community
+
+- company: DailyMotion
+  link: https://dailymotion.com/
+  imgURL: /assets/images/partners/community/Dailymotion_logo.png
+  type: community
+
+- company: DeepIntent
+  link: https://deepintent.com/
+  imgURL: /assets/images/partners/community/DeepIntent_Logo.png
   type: community
 
 - company: GoBrowsi

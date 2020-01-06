@@ -13,7 +13,7 @@ sidebarType: 0
 {: .table .table-bordered .table-striped }
 | Date | City | Register |
 |------+------+----------|
-| Nov 19, 2019 | Hamburg, Germany | [EventBrite](https://www.eventbrite.com/e/prebid-meetup-and-leadership-summit-hamburg-19-november-2019-registration-75219209681) |
+| Feb 20, 2020 | Tokyo, Japan | [Registration link](https://www.eventbrite.com/e/apac-prebid-meetup-and-leadership-summit-tokyo-february-20th-2020-registration-86002223967) - some sessions will be conducted in English and some in Japanese. Real-time translation will be provided. |
 
 ## What happens at an event?
 
@@ -21,11 +21,11 @@ A Prebid Meetup and Leadership Summit is an educational event including
 overviews, deep dives and conversations about Prebid, its evolution, roadmap
 and vision. It’s a chance to get key insights on the latest Prebid
 solutions and how they work for different kinds of publishers. Here are
-a few things you can expect from this event:
+a few things you can expect from these events:
 
 - Insights from member organizations and premium publishers into current best practices and future plans for Prebid.
 - Panel discussions on the expansion of header bidding into emerging formats, such as video and native.
-- Networking opportunities for publishers and Prebid members.
+- Networking opportunities for publishers and [Prebid members](/partners/partners.html).
 - And more!
 
 We look forward to seeing you at an event.
@@ -49,3 +49,4 @@ audience members in speaking their minds.
 | Date | City |
 |------+------|
 | Oct 24, 2019 | San Francisco, CA, USA |
+| Nov 19, 2019 | Hamburg, Germany |
