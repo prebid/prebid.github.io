@@ -29,7 +29,11 @@ The Prebid Component supports almost all the Prebid options supported by the oth
 
 The path to Prebid.js that you wish to use.
 
-NOTE: By default, the plugin currently supports Prebid.js 1.0 and up. It does NOT support version 0.x due to the breaking changes that were added in Prebid.js 1.0
+{% capture noteAlert %}
+By default, the plugin currently supports Prebid.js 1.0 and up.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
 
 **Acceptable Values:**
 
