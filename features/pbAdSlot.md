@@ -57,7 +57,7 @@ The Prebid Ad Slot is just a convention -- it's a form of adunit-specific first 
 stored under `adunit.fpd.context.pbAdSlot`. 
 It can be utilized by any code ready to look for it.
 
-It's intended to be specified in one of two ways:
+It's intended to be specified via Prebid.js in one of two ways:
 
 1. Either directly on the AdUnit itself
 2. Or defined during the run of a function before the auction
@@ -69,6 +69,14 @@ Some scenarios that could be supported:
 - use a custom div data element ID, else the AdUnit.code
 - use the AdUnit.fpd.context.pbAdSlot as a default rather than primary
 - support a different ad server
+
+## Prebid Server
+
+The OpenRTB location for the Prebid Ad Slot is `imp[].ext.context.data.adslot`:
+
+- The Prebid SDK will place the value there.
+- AMP Stored Requests should place the value there if desired.
+- Server-side bid and anlytics adapters may be modified to read the value.
 
 ## Further Reading
 
