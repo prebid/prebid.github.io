@@ -53,8 +53,9 @@ Here are the parameters supported in the `consentManagement` object:
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | usp | `Object` | | |
-| usp.cmpApi | `string` | The CMP interface that is in use. The only currently supported value is **'iab'**, which is the default. | `'iab'` |
-| usp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
+| usp.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
+| usp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the CCPA consent string. Default is `10000`. | `10000` |
+| usp.consentData | `Object` | An object representing the CCPA consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 
 ### Examples
 
@@ -86,6 +87,28 @@ pbjs.setConfig({
          }
        }
 });
+{% endhighlight %}
+
+Example 3: Static CMP using custom data passing.
+
+{% highlight js %}
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            usp: {
+              cmpApi: 'static',
+              consentData: {
+                getUSPData: {
+                  uspString: '1YYY'
+                }
+              }
+            }
+          }
+        });
+        pbjs.addAdUnits(adUnits);
+     });
 {% endhighlight %}
 
 ## Build the Package
