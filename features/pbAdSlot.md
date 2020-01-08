@@ -31,20 +31,48 @@ decides to add another identifier... the Prebid Ad Slot, or pbAdSlot.
 Example page function:
 {% highlight js %}
 
-// Use adunit.fpd.context.pbAdSlot if it exists, otherwise, assume the 
-// the adunit.code is the div ID and find the matching slot in GPT, using that slot name
-// as the pbAdSlot
+// Use adunit.fpd.context.pbAdSlot if it exists. Otherwise, if the 
+// the adunit.code is a div ID, then look for a data-adslotid attribute, then look a matching slot in GPT
+// Otherwise, just use the AdUnit.code
 var setPbAdSlot = function setPbAdSlot(adunits) {
-    forEach(adUnits, function(adUnit) {
-	if (adunit.fpd && adunit.fpd.context && adunit.fpd.context.pbAdSlot) {
-	    console.log('setPbAdSlot: using existing pbAdSlot '+adunit.fpd.context.pbAdSlot);
-	} else {
-	    // lookup the GPT slotname from the div ID
-	    window.googletag.pubads().getSlots().forEach(slot => {
-		... TBD ...
-	    });
-	}
-    });
+  // set pbAdSlot for all ad units
+  adUnits.forEach(function (adUnit) {
+    if (!adUnit.fpd) {
+      adUnit.fpd = {}
+    }
+    if (!adUnit.fpd.context) {
+      adUnit.fpd.context = {};
+    }
+
+    // use existing pbAdSlot if it is already set
+    if (adUnit.fpd.context.pbAdSlot) {
+      return;
+    }
+
+    // check if AdUnit.code has a div with a matching id value
+    const adUnitCodeDiv = document.getElementById(adUnit.code);
+    if (!adUnitCodeDiv) {
+      // try to retrieve a data element from the div called data-adslotid.
+      if (adUnitCodeDiv.dataset.adslotid) {
+        adUnit.fpd.context.pbAdSlot = adUnitCodeDiv.dataset.adslotid;
+        return;
+      }
+      // Else if AdUnit.code matched a div and it's a banner mediaType and googletag is present
+      if (adUnit.mediaType && typeof adUnit.mediaType === 'object' && adUnit.mediaType.banner && adUnit.mediaTypes.banner.sizes && window.googletag && googletag.apiReady) {
+        var gptSlots = googletag.pubads().getSlots();
+        // look up the GPT slot name from the div.
+        var linkedSlot = gptSlots.find(function (gptSlot) {
+          return (gptSlot.getSlotElementId() === adUnitCodeDiv.id);
+        });
+        if (linkedSlot) {
+          adUnit.fpd.context.pbAdSlot = linkedSlot.getAdUnitPath();
+          return;
+        }
+      }
+    }
+    // Else, just use the AdUnit.code, assuming that it's an ad unit slot
+    adUnit.fpd.context.pbAdSlot = adUnit.code;
+  };
 };
 
 pbjs.onEvent('beforeRequestBids', setPbAdSlot);
