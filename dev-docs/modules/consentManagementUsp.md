@@ -62,31 +62,39 @@ Here are the parameters supported in the `consentManagement` object:
 Example 1: Support both US Privacy and GDPR
 
 {% highlight js %}
-pbjs.setConfig({
-       consentManagement: {
-         gdpr: {
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+       pbjs.setConfig({
+         consentManagement: {
+           gdpr: {
             cmpApi: 'iab',
             allowAuctionWithoutConsent: false, // suppress auctions if there's no GDPR consent string
             timeout: 3000  // GDPR timeout 3000ms
-         },
-         usp: {
+           },
+           usp: {
             timeout: 100 // US Privacy timeout 100ms
+           }
          }
-       }
-});
+       });
+     });
 {% endhighlight %}
 
 Example 2: Support US Privacy
 
 {% highlight js %}
-pbjs.setConfig({
-       consentManagement: {
-         usp: {
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+       pbjs.setConfig({
+         consentManagement: {
+           usp: {
             cmpApi: 'iab',
             timeout: 100 // US Privacy timeout 100ms
+           }
          }
-       }
-});
+       });
+     });
 {% endhighlight %}
 
 Example 3: Static CMP using custom data passing.
@@ -107,7 +115,6 @@ Example 3: Static CMP using custom data passing.
             }
           }
         });
-        pbjs.addAdUnits(adUnits);
      });
 {% endhighlight %}
 
