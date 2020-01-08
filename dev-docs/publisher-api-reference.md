@@ -2234,7 +2234,7 @@ When 'bidderA' calls `getConfig('bidderA')`, it will receive the object that con
 If any other bidder calls `getConfig('bidderA')`, it will receive nothing.
 
 {: .alert.alert-info :}
-While the `setBidderConfig` function will soon be used by the `first party data` feature, it can currently be used by the `schain` feature. Refer to the [schain]({{site.baseurl}}/dev-docs/modules/schain.html) documentation for examples.
+This function is currently used by the `schain` feature. Refer to the [schain]({{site.baseurl}}/dev-docs/modules/schain.html) documentation for examples.
 
 <a name="module_pbjs.getConfig"></a>
 
