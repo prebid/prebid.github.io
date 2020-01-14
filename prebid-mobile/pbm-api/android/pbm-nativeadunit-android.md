@@ -33,12 +33,6 @@ See [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) for additio
 NativeAdUnit nativeAdUnit = new NativeAdUnit("your-config-id");
 ```
 
-{% capture importantAlert %}
-Note that a `NativeEventTracker` object is required. Other objects are optional but if you choose to include them in the `NativeAdUnit` configuration it is recommended that when creating them you call `setRequired(true)`
-{% endcapture %}
-
-{% include alerts/alert_important.html content=importantAlert %}
-
 **Configure the NativeAdUnit**
 
 ```

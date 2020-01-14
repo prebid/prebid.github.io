@@ -5,6 +5,7 @@ description: Prebid Clickonometrics Bidder Adaptor
 hide: true
 biddercode: ccx
 media_types: video
+gdpr_supported: true
 ---
 
 

@@ -4,8 +4,10 @@ title: TripleLift
 description: Prebid TripleLift Bidder Adapter
 hide: true
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
 biddercode: triplelift
-userIds: unifiedId/tradedesk
+userIds: unifiedId/tradedesk, identityLink
 ---
 
 ### Bid Params

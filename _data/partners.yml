@@ -8,6 +8,11 @@
   imgURL: /assets/images/partners/founders/rubicon.png
   type: founder
   
+- company: MediaMath 
+  link: https://www.mediamath.com/
+  imgURL: /assets/images/partners/leader/MediaMath-wordmark.png
+  type: leader
+  
 - company: OpenX 
   link: https://www.openx.com/
   imgURL: /assets/images/partners/leader/openx.png
@@ -28,6 +33,11 @@
   imgURL: /assets/images/partners/leader/TTD_logo.png
   type: leader
 
+- company: Conversant 
+  link: https://www.conversantmedia.com/
+  imgURL: /assets/images/partners/tech/conversant_logo.png
+  type: technology
+  
 - company: Criteo 
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
@@ -73,6 +83,11 @@
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
   
+- company: Hive Media
+  link: https://www.hivemedia.com
+  imgURL: /assets/images/partners/publisher/Hive-Media-Group-Stacked-Color-web.png
+  type: publisher
+  
 - company: Insider, Inc. 
   link: https://www.insider-inc.com/
   imgURL: /assets/images/partners/publisher/Insider_Inc_logo.png
@@ -86,6 +101,11 @@
 - company: News Corp
   link: https://newscorp.com/
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
+  type: publisher
+
+- company: Publishers Clearing House
+  link: https://pch.com/
+  imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
   type: publisher
 
 - company: SHE Media
@@ -106,6 +126,11 @@
 - company: DailyMotion
   link: https://dailymotion.com/
   imgURL: /assets/images/partners/community/Dailymotion_logo.png
+  type: community
+
+- company: DeepIntent
+  link: https://deepintent.com/
+  imgURL: /assets/images/partners/community/DeepIntent_Logo.png
   type: community
 
 - company: GoBrowsi
