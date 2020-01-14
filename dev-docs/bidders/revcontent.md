@@ -21,6 +21,6 @@ To use RevContent bidder, you need to have an existing RevContent account. To cr
 | `widgetId`         | recommended        | Widget ID.                                     | `599995`                                     | `number`  |
 | `domain`           | recommended        | Domain Name - Default referral hostname        | `'test.com'`                                 | `string`  |
 | `endpoint`         | optional           | Api Endpoint - Used for testing                | `'trends.revcontent.com'`                    | `string`  |
+| `bidfloor`         | optional           | Bid Floor                                      | `0.1`                                        | `float`   |
 | `template`         | optional           | Format of the display ad                       | `'<a href="{clickUrl}">{title}</a>'`         | `string`  |
-
 
