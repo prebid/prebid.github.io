@@ -10,14 +10,15 @@ hide: true
 
 biddercode: oftmedia
 
-biddercode_longer_than_12: false
+aliasCode : appnexus
+
 
 
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `placementId` | required | | |
+| Name          | Scope    | Description | Example | Type     |
+|---------------|----------|-------------|---------|----------|
+| `placementId` | required |             |         | `string` |

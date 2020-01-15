@@ -2,24 +2,18 @@
 layout: bidder
 title: Sovrn
 description: Prebid Sovrn Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
 hide: true
-
 biddercode: sovrn
-
-biddercode_longer_than_12: false
-
+gdpr_supported: true
+usp_supported: true
 ---
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `tagid` | required | The sovrn Ad Tag ID | "315045" |
-| `sizes` | optional | Override the default prebid size array | [970, 250] |
+| Name       | Scope    | Description          | Example    | Type     |
+|------------|----------|----------------------|------------|----------|
+| `tagid`    | required | The sovrn Ad Tag ID  | `'315045'` | `string` |
+| `bidfloor` | optional | Bid floor in dollars | `'0.04'`   | `string` |

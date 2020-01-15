@@ -1,13 +1,15 @@
 ---
-layout: page
+redirect_to: https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md
+layout: page_v2
 title: Testing Prebid.js
 description: How to write tests for the Prebid.js library
 pid: 199
 
 top_nav_section: dev_docs
-nav_section: hacking
-hide: false
+hide: true
 ---
+
+<div class="bs-docs-section" markdown="1">
 
 # Testing  Prebid.js
 {: .no_toc}
@@ -105,3 +107,5 @@ The Prebid.js testing stack contains some of the following tools. It may be help
 - [Mocha - test framework](http://mochajs.org/)
 - [Chai - BDD/TDD assertion library](http://chaijs.com/)
 - [Sinon - spy, stub, and mock library](http://sinonjs.org/)
+
+</div>

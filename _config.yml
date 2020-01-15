@@ -1,9 +1,7 @@
 # name of the software
-name: Prebid.js
+name: Prebid
 # current version of the software
 version: 1.0.0
-# url of the download button
-downloadUrl: https://github.com/prebid/Prebid.js/releases
 # licence of the software
 license: Apache License
 licenseUrl: http://www.apache.org/licenses/LICENSE-2.0
@@ -11,17 +9,17 @@ licenseUrl: http://www.apache.org/licenses/LICENSE-2.0
 # list of additional links on the right of the top menu
 headerLinks:
   - title: GitHub
-    url: https://github.com/prebid/Prebid.js
+    url: https://github.com/prebid
 
 
 # list if additional links on the footer
 footerLinks:
   - title: GitHub
-    url: https://github.com/prebid/Prebid.js
-  - title: Issues
-    url: https://github.com/prebid/Prebid.js/issues?state=open
- # - title: About Us
- #   url: /about.html
+    url: https://github.com/prebid/
+# - title: Issues
+#   url: https://github.com/prebid/Prebid.js/issues?state=open
+# - title: About Us
+#   url: /about.html
 
 
 # header
@@ -30,10 +28,11 @@ header:
   #color1: "#55acee"
   color1: "#3b88c3"
   #color1: "#2ABBB0"
-  
+
   #color1: "#080331"
   #color2: "#673051"
   trianglify: false
+  
 
 # google analytics
 analytics:
@@ -60,70 +59,35 @@ facebook:
 # Build settings
 markdown: kramdown
 
-nav_sections:
-  - top_nav: beta
-    code: current
-    name: CURRENT BETA
-  - top_nav: beta
-    code: past
-    name: PAST BETA
+highlighter: rouge
 
-  - top_nav: dev_docs
-    code: quick-start
-    name: QUICK START
-  - top_nav: dev_docs
-    code: prebid-video
-    name: PREBID VIDEO (BETA)
-  - top_nav: dev_docs
-    code: prebid-amp
-    name: PREBID FOR AMP (ALPHA)
-  - top_nav: dev_docs
-    code: troubleshooting
-    name: TROUBLESHOOTING
-  - top_nav: dev_docs
-    code: reference
-    name: REFERENCE
-  - top_nav: dev_docs
-    code: adaptors
-    name: ADAPTORS
-  - top_nav: dev_docs
-    code: hacking
-    name: HACKING ON PREBID.JS
+kramdown:
+  input:          GFM
+  # https://github.com/jekyll/jekyll/pull/4090
+  syntax_highlighter: rouge
 
-  - top_nav: overview
-    code: intro
-    name: INTRO
-  - top_nav: overview
-    code: postbid
-    name: POST-BID
-  - top_nav: overview
-    code: analytics
-    name: ANALYTICS
-  - top_nav: overview
-    code: studies
-    name: LATEST STUDIES
+  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  # span, block element options fall back to global
+  syntax_highlighter_opts:
+    # Rouge Options › https://github.com/jneen/rouge#full-options
+    css_class: 'highlight'
+    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
 
-  # - top_nav: beta
-  #   code: BETA PRODUCTS
-
-  - top_nav: adops
-    code: tutorials
-    name: TUTORIALS
-
-  - top_nav: support
-    code: support
-    name: SUPPORT
-
-  - top_nav: download
-    code: download
-    name: DOWNLOAD
+# Collections
+collections:
+  - bidders
 
 
-port: 80
+port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor']
 
-gems:
+plugins:
   - jekyll-mentions
   - jemoji
   - jekyll-redirect-from

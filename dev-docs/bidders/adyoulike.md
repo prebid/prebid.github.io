@@ -1,0 +1,20 @@
+---
+layout: bidder
+title: Adyoulike
+description: Prebid Adyoulike Bidder Adaptor
+hide: true
+biddercode: adyoulike
+gdpr_supported: true
+usp_supported: true
+---
+
+### Note:
+The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoulike team. Please reach out to your account manager or prebid@adyoulike.com for more information.
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                      | Example                              | Type     |
+|-------------|----------|----------------------------------|--------------------------------------|----------|
+| `placement` | required | The placement ID from Adyoulike. | `'194f787b85c829fb8822cdaf1ae64435'` | `string` |
+| `DC`        | optional | The data center name             | `'usa01'`                            | `string` |
