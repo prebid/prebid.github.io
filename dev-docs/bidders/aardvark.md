@@ -5,6 +5,7 @@ description: Prebid Aardvark Bidder Adaptor
 hide: true
 biddercode: aardvark
 gdpr_supported: true
+schain_supported: true
 ---
 
 ### Bid Params
