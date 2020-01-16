@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: AdTarget
-description: Prebid AdTarget Bidder Adaptor
+title: adtarget
+description: Prebid adtarget Bidder Adaptor
 biddercode: gamoshi
 hide: true
 media_types: banner, video
@@ -14,8 +14,8 @@ userIds: unifiedId/tradedesk, id5Id
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
-| `supplyPartnerId` | required | ID of the supply partner you created in the AdTarget dashboard. | `'12345'`            | `string` |
-| `rtbEndpoint`     | optional | If you have a whitelabel account on AdTarget, specify it here. | `'rtb.mybidder.com'` | `string` |
+| `supplyPartnerId` | required | ID of the supply partner you created in the adtarget dashboard. | `'12345'`            | `string` |
+| `rtbEndpoint`     | optional | If you have a whitelabel account on adtarget, specify it here. | `'rtb.mybidder.com'` | `string` |
 
 This adapter only requires you to provide your supply partner ID, and optionally your RTB endpoint, in order to request
-bids from your AdTarget account.
+bids from your adtarget account.
