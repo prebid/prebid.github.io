@@ -4,6 +4,8 @@ title: Trion Interactive
 description: Prebid Trion Interactive Bidder Adaptor
 hide: true
 biddercode: trion
+usp_supported: true
+gdpr_supported: true
 ---
 
 
