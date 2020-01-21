@@ -28,7 +28,7 @@ $(function(){
 function getVersionList() {
   $.ajax({
       type: "GET",
-      url: "http://js-download.prebid.org/versions",
+      url: "https://js-download.prebid.org/versions",
   })
   .success(function(data) {
     try{
@@ -79,7 +79,7 @@ function submit_download() {
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://js-download.prebid.org/download",
+        url: "https://js-download.prebid.org/download",
         //dataType: 'json',
         data: form_data
     })
