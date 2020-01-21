@@ -188,7 +188,7 @@ pbjs.que.push(function(){
             brandCategoryExclusion: true
         },
         brandCategoryTranslation: {
-            translationFile: "http://mymappingfile.com/mapping.json"
+            translationFile: "https://mymappingfile.com/mapping.json"
         }
     });
 
@@ -198,7 +198,7 @@ pbjs.que.push(function(){
                 codes: ['sample-code'],
                 params: {
                     iu: '/123456/testing/prebid.org/adunit1',
-                    description_url: 'http://mycontent.com/episode-1'
+                    description_url: 'https://mycontent.com/episode-1'
                 },
                 callback: function(err, masterTag) {
                     // Invoke video player and pass the master tag

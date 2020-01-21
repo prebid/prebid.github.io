@@ -265,7 +265,7 @@ The ServerRequest objects returned from your adapter have this structure:
 | Attribute | Type             | Description                                                        | Example Value               |
 |-----------+------------------+--------------------------------------------------------------------+-----------------------------|
 | `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
-| `url`     | String           | The endpoint for the request.                                      | `"http://bids.example.com"` |
+| `url`     | String           | The endpoint for the request.                                      | `"https://bids.example.com"` |
 | `data`    | String or Object | Data to be sent in the POST request. Objects will be sent as JSON. |                             |
 
 Here's a sample block of code returning a ServerRequest object:
@@ -327,8 +327,8 @@ The parameters of the `bidObject` are:
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
-| `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"http://vid.example.com/9876`       |
-| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"http://vid.exmpale.com/imp/134"`   |
+| `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
+| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 
@@ -589,7 +589,7 @@ Adapter must add following new properties to bid response
 
 Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
 
-Adapter must return one [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
+Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
 If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
 

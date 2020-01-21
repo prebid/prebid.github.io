@@ -10,7 +10,7 @@ sidebarType: 0
 
 Last updated Dec 18, 2018
 
-Prebid.org, Inc. respects your right to privacy.  This Privacy Notice explains who we are, how we collect, share and use personal information about you, and how you can exercise your privacy rights.  This Privacy Notice applies to personal information that we collect through our website at [http://prebid.org/](http://prebid.org/) and its subdomains ("**Website**") and via our marketing activities and events.  
+Prebid.org, Inc. respects your right to privacy.  This Privacy Notice explains who we are, how we collect, share and use personal information about you, and how you can exercise your privacy rights.  This Privacy Notice applies to personal information that we collect through our website at [https://prebid.org/](https://prebid.org/) and its subdomains ("**Website**") and via our marketing activities and events.  
 
 If you have any questions or concerns about our use of your personal information, then please contact us using the contact details provided at the bottom of this Privacy Notice.
 
@@ -28,7 +28,7 @@ Prebid.org is an industry consortium that provides free and open source solution
 
 The open source software products we make available may be utilized by third parties for the purposes of serving online advertisements. These third parties may configure the software to enable pseudonymized data included in bid requests to be transmitted within the online advertising ecosystem. However, Prebid.org has no involvement in these transactions and does not itself transmit, store or otherwise process the pseudonymized data in these transactions.  Prebid.org is not responsible for the privacy practices of such third parties and it is the responsibility of the third party concerned to handle data in accordance with applicable privacy laws.  
 
-For more information about Prebid.org, please see the “About” section of our Website at [http://prebid.org/overview/what-is-prebid-org.html](http://prebid.org/overview/what-is-prebid-org.html). 
+For more information about Prebid.org, please see the “About” section of our Website at [https://prebid.org/overview/what-is-prebid-org.html](/overview/what-is-prebid-org.html). 
 
 ## What personal information does Prebid.org collect and why?
 
@@ -112,7 +112,7 @@ If you are a resident of the European Economic Area, you have the following data
 
 * Similarly, if we have collected and processed your personal information with your consent, then you can withdraw your consent at any time.  Withdrawing your consent will not affect the lawfulness of any processing we conducted prior to your withdrawal, nor will it affect processing of your personal information conducted in reliance on lawful processing grounds other than consent.
 
-* You have the right to complain to a data protection authority about our collection and use of your personal information.  For more information, please contact your local data protection authority. Contact details for data protection authorities in the European Economic Area are available [here](http://ec.europa.eu/justice/data-protection/article-29/structure/data-protection-authorities/index_en.htm).
+* You have the right to complain to a data protection authority about our collection and use of your personal information.  For more information, please contact your local data protection authority. Contact details for data protection authorities in the European Economic Area are available [here](https://ec.europa.eu/justice/data-protection/article-29/structure/data-protection-authorities/index_en.htm).
 
 We respond to all requests we receive from individuals wishing to exercise their data protection rights in accordance with applicable data protection laws.
 
