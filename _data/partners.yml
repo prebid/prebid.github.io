@@ -83,6 +83,11 @@
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
   
+- company: Glewed TV
+  link: https://www.glewed.tv/
+  imgURL: /assets/images/partners/publisher/glewed_logo.png
+  type: publisher
+  
 - company: Hive Media
   link: https://www.hivemedia.com
   imgURL: /assets/images/partners/publisher/Hive-Media-Group-Stacked-Color-web.png
