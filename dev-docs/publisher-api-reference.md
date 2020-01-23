@@ -59,6 +59,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [COPPA](#setConfig-coppa)
+    * [first party data](#setConfig-fpd)
     * [cache](#setConfig-vast-cache)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
@@ -1275,6 +1276,7 @@ Core config:
 + [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [COPPA](#setConfig-coppa)
++ [First Party Data](#setConfig-fpd)
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
@@ -2124,6 +2126,84 @@ The flag may be passed to supporting adapters with this config:
 {% highlight js %}
 pbjs.setConfig({coppa: true});
 {% endhighlight %}
+
+<a name="setConfig-fpd" />
+
+#### First Party Data
+
+A number of adapters support taking key/value pairs as arguments, but they're all different. e.g.
+
+- RubiconProject takes `keywords`, `inventory` and `visitor` parameters
+- AppNexus takes `keywords` and `user`
+- OpenX takes `customParams`
+- etc.
+
+This feature allows publishers a way to specify key/value data in one place where each compatible bid adapter
+can read it.
+
+{: .alert.alert-warning :}
+Not all bid adapters currently support reading first party data in this way, but more will support
+it over time.
+
+**Scenario 1** - Global (cross-adunit) First Party Data open to all bidders
+
+{% highlight js %}
+pbjs.setConfig({
+   fpd: {
+       context: {
+           keywords: ["power tools"],
+           search: "drill",
+           content: { userrating: 4 },
+           data: {
+               pageType: "article",
+               category: "tools"
+           }
+        },
+        user: {
+           keywords: ["a","b"],
+           gender: "M",
+           yob: "1984",
+           geo: { country: "ca" },
+           data: {
+              registered: true,
+              interests: ["cars"]
+           }
+        }
+    }
+});
+{% endhighlight %}
+
+{: .alert.alert-info :}
+The First Party Data JSON structure reflects the OpenRTB standard. Arbitrary values should go in context.data or
+user.data. Keywords, search, content, gender, yob, and geo are special values in OpenRTB.
+
+**Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
+
+If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](#module_pbjs.setBidderConfig) function like this:
+
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ['bidderA', 'bidderB'],
+   config: {
+       fpd: {
+           context: {
+               data: {
+                  pageType: "article",
+                  category: "tools"
+               }
+            },
+            user: {
+               data: {
+                  registered: true,
+                  interests: ["cars"]
+               }
+          }
+      }
+   }
+});
+{% endhighlight %}
+
+**Scenario 3** - See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 
 <a name="setConfig-vast-cache" />
 
