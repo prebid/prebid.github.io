@@ -5,6 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 hide: true
 gdpr_supported: true
+usp_supported: true
 media_types: banner, video
 ---
 
@@ -19,7 +20,7 @@ Maintainer: prebid.support@indexexchange.com
 ## Description
 
 This module connects publishers to Index Exchange's (IX) network of demand
-sources through Prebid.js. This module is GDPR compliant.
+sources through Prebid.js. This module is GDPR and CCPA compliant.
 
 It is compatible with both the older ad unit format where the `sizes` and
 `mediaType` properties are placed at the top-level of the ad unit, and the newer
@@ -88,7 +89,8 @@ object are detailed here.
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` | 
-| `size` | Required for client-side serving | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Note that the 'ix' Prebid Server bid adpater ignores this parameter. | `[300, 250]` | `Array<integer>` | 
+| `size` | Required for client-side serving | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Note that the 'ix' Prebid Server bid adapter ignores this parameter. | `[300, 250]` | `Array<integer>` | 
+| `id` | Optional | An alphanumerical value used to identify the `slot_id` in reporting | `id: 'billboardHomepage'`, `id: 'billboardArticle'` | `string` |
 
 ### Video
 
@@ -102,6 +104,7 @@ object are detailed here.
 | `video.minduration` | Required | Minimum video ad duration in seconds. | `0` | `integer` |
 | `video.maxduration` | Required | Maximum video ad duration in seconds. | `300` | `integer` |
 | `video.protocol` / `video.protocols` | Required | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper | `[2,3,5,6]` | `integer` / `Array<integer>` |
+| `id` | Optional | An alphanumerical value used to identify the `slot_id` in reporting | `id: 'inStreamCTP'`, `id: 'inStreamAutoPlay'` | `string` |
 
 ## Setup Guide
 
@@ -204,7 +207,6 @@ var adUnits = [{
             siteId: '123456',
             size: [1280, 720],
             video: {
-                skippable: false,
                 mimes: [
                     'video/mp4',
                     'video/webm'
@@ -244,7 +246,6 @@ var adUnits = [{
             siteId: '123456',
             size: [640, 360],
             video: {
-                skippable: false,
                 mimes: [
                     'video/mp4',
                     'video/webm'
@@ -315,9 +316,7 @@ changes will be reflected in any proceeding bid requests.
 
 ## Setting a Server Side Timeout
 
-Setting a server-side timeout allows you to control the max length of time the
-servers will wait on DSPs to respond before generating the final bid response
-and returning it to this module.
+Setting a server-side timeout allows you to control the max length of time taken to connect to the server. The default value when unspecified is 50ms.
 
 This is distinctly different from the global bidder timeout that can be set in
 Prebid.js in the browser.
@@ -329,7 +328,7 @@ such:
 ```javascript
 pbjs.setConfig({
     ix: {
-        timeout: 500
+        timeout: 250
     }
 });
 ```

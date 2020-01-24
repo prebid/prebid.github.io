@@ -3,6 +3,7 @@ layout: bidder
 title: seedtag
 description: Prebid Seedtag Bidder Adapter
 hide: true
+media_types: banner, video
 biddercode: seedtag
 ---
 

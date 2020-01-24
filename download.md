@@ -28,7 +28,7 @@ $(function(){
 function getVersionList() {
   $.ajax({
       type: "GET",
-      url: "http://js-download.prebid.org/versions",
+      url: "https://js-download.prebid.org/versions",
   })
   .success(function(data) {
     try{
@@ -79,7 +79,7 @@ function submit_download() {
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://js-download.prebid.org/download",
+        url: "https://js-download.prebid.org/download",
         //dataType: 'json',
         data: form_data
     })
@@ -174,7 +174,6 @@ Note: If you receive an error during download you most likely selected a configu
 <select id="version_selector" class="selectpicker">
 </select>
 
-
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
 {% for page in bidder_pages %}
@@ -191,6 +190,7 @@ Note: If you receive an error during download you most likely selected a configu
   {% endif %}
 
     </label>
+
 </div>
 </div>
 {% endfor %}
@@ -236,6 +236,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="adxpremium" class="analytics-check-box"> AdxPremium Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
     </label>
   </div>
@@ -269,6 +277,14 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="invisibly" class="analytics-check-box"> Invisibly Analytics
     </label>
   </div>
 </div>
@@ -393,7 +409,6 @@ Note: If you receive an error during download you most likely selected a configu
   </div>
 </div>
 
-
 <div class="col-md-4">
   <div class="checkbox">
     <label>
@@ -405,7 +420,15 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
+      <input type="checkbox" analyticscode="yieldone" class="analytics-check-box"> Platform One Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaMedia Analytics
     </label>
   </div>
 </div>
@@ -425,19 +448,13 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
  {% endfor %}
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="criteortusIdSystem" class="bidder-check-box"> User ID: Criteo RTUS ID</label>
+<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
@@ -448,15 +465,13 @@ Note: If you receive an error during download you most likely selected a configu
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
+<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
 
 </div>
 
 </form>
 
 </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -489,13 +504,13 @@ Note: If you receive an error during download you most likely selected a configu
 
 
     </div>
+
   </div>
 </div>
-
 
 <div class="bs-docs-section" markdown="1">
 
 ### Option 2: Build from Source Code (More Advanced)
 
 {: .lead :}
-Alternatively, you can build Prebid.js from the source code.  For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
+Alternatively, you can build Prebid.js from the source code. For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
