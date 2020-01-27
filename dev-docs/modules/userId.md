@@ -31,7 +31,8 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 ## How It Works
 
-1. The publisher builds Prebid.js with the optional User ID module and the specific ID sub-module they would like to include. e.g. "gulp build --modules=userId,pubCommonIdSystem"
+1. The publisher determines which user ID modules to add to their Prebid.js package and consults with their legal counsel to determine the appropriate user disclosures.
+1. The publisher builds Prebid.js with the optional User ID module and the specific ID sub-module they would like to include. e.g. "gulp build --modules=userId,____IdSystem"
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userIds.
@@ -77,7 +78,7 @@ of sub-objects. The table below has the options that are common across ID system
 
 ### BritePool
 
-BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies.
+BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies. 
 
 Add it to your Prebid.js package with:
 
@@ -87,6 +88,8 @@ gulp build --modules=userId,britepoolIdSystem
 #### BritePool Registration
 
 Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`. 
+
+The BritePool privacy policy is at [https://britepool.com/services-privacy-notice/](https://britepool.com/services-privacy-notice/).
 
 #### BritePool Configuration
 
@@ -130,6 +133,8 @@ Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and requ
 Criteo is the leading advertising platform for the Open Internet. The Criteo ID for Exchanges module enables publishers to access Criteo’s unique demand - more than 20.000 advertisers & brands -  to monetize their exchange inventory with an optimal take rate across all browsing environments.
 Note that direct access to that demand is also available through [Criteo Direct Bidder](https://www.criteo.com/products/criteo-direct-bidder/), in which case this module is unnecessary.
 
+The Criteo privacy policy is at [https://www.criteo.com/privacy/](https://www.criteo.com/privacy/).
+
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
@@ -139,9 +144,6 @@ gulp build --modules=userId,criteoIdSystem
 
 The Criteo ID module does not require any configuration parameters. It should work as-is provided that bidders use it in their adapters.
 When calling Criteo RTB, partners should forward this id in the field `user.ext.prebid_criteoid`.
-
-List of the working bidders:
-- AppNexus
 
 {: .alert.alert-info :}
 NOTE: For optimal performance, the Criteo Id module should be called at every opportunity. It embeds its own optimal caching mechanism. It's best not to use `params.storage` with this module as it may only lower the performances. If you are using multiple id systems, however, you may use it for the other id systems that supports it.
@@ -174,6 +176,8 @@ In order to utilize DigiTrust a publisher must register and be approved for memb
 
 In addition to general usage and configuration of the User Id module, follow the additional instructions for configuring and deploying
 DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html).
+
+The DigiTrust privacy policy as at [https://www.digitru.st/privacy-policy/](https://www.digitru.st/privacy-policy/).
 
 #### DigiTrust Configuration
 
@@ -242,6 +246,8 @@ The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech
 #### ID5 Universal ID Registration
 
 The ID5 Universal ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/universal-id](https://id5.io/universal-id) to sign up and request your ID5 Partner Number to get started.
+
+The ID5 privacy policy as at [https://www.id5.io/platform-privacy-policy](https://www.id5.io/platform-privacy-policy).
 
 #### ID5 Universal ID Configuration
 
@@ -312,6 +318,8 @@ gulp build --modules=userId,identityLinkIdSystem
 
 Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`.
 
+The IdentityLink privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
+
 #### IdentityLink Configuration
 
 {: .table .table-bordered .table-striped }
@@ -373,7 +381,6 @@ LiveIntent offers audience resolution by leveraging our next-generation identity
 
 Add LiveIntent ID to your Prebid.js package with:
 
-
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
 
@@ -391,6 +398,7 @@ The adapters can be implemented to use the lipibid as the identifier, and segmen
 
 To leverage the LiveIntent ID, you need to first set up a first-party cookie sync with LiveIntent. Please reach out to peoplebased@liveintent.com for more information.
 
+The LiveIntent privacy policy is at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/).
 
 #### LiveIntent ID configuration
 
@@ -447,6 +455,8 @@ gulp build --modules=userId,parrableIdSystem
 
 Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Parter Client IDs.
 
+The Parrable privacy policy as at [https://www.parrable.com/privacy-policy/](https://www.parrable.com/privacy-policy/).
+
 #### Parrable ID Configuration
 
 In addition to the parameters documented above in the Basic Configuration section the following Parrable specific configuration is required:
@@ -487,7 +497,8 @@ pbjs.setConfig({
 
 This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
-There is no special registration or configuration for PubCommon ID.
+There is no special registration or configuration for PubCommon ID. Each publisher's privacy policy should take
+PubCommon ID into account.
 
 Add it to your Prebid.js package with:
 
@@ -563,6 +574,8 @@ You can set up Unified ID in one of these ways:
 
 - Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
 - Utilize a [managed services](/prebid/managed.html) company who can do this for you.
+
+The Unified ID privacy is covered under the [TradeDesk Services Privacy Policy](https://www.thetradedesk.com/general/privacy).
 
 #### Unified ID Configuration
 
