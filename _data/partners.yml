@@ -53,11 +53,6 @@
   imgURL: /assets/images/partners/tech/marfeel.png
   type: technology
   
-- company: Oath 
-  link: https://www.oath.com/advertising/platforms/
-  imgURL: /assets/images/partners/tech/oath.png
-  type: technology
-  
 - company: PubNative 
   link: https://pubnative.net/
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
@@ -68,6 +63,11 @@
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
   type: technology
 
+- company: Verizon Media 
+  link: https://www.verizonmedia.com/advertising
+  imgURL: /assets/images/partners/tech/verizon_logo.png
+  type: technology
+  
 - company: CafeMedia 
   link: https://www.cafemedia.com/
   imgURL: /assets/images/partners/publisher/cafemedia.png
