@@ -1,4 +1,4 @@
-This repository contains the source files for the Prebid.js documentation site at [Prebid.org](http://prebid.org).
+This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).
 
 Please see the sections below for more information.
 
@@ -32,9 +32,9 @@ All docs are under the license shown in the `LICENSE` file in this directory.
 
 ## Prerequisites
 
-The site uses [Jekyll](http://jekyllrb.com/), which is written in the [Ruby](http://www.ruby-lang.org/en/) language.
+The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](https://www.ruby-lang.org/en/) language.
 
-To follow the instructions in the next section, you will need to install the [Bundler](http://bundler.io/) Ruby gem.
+To follow the instructions in the next section, you will need to install the [Bundler](https://bundler.io/) Ruby gem.
 
 Try the following command:
 

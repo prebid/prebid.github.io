@@ -92,7 +92,7 @@ The following resources are available for further information on working with Pr
 
 ### GDPR
 
-Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](http://advertisingconsent.eu/).
+Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](https://advertisingconsent.eu/).
 
 For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
 

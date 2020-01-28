@@ -8,6 +8,11 @@
   imgURL: /assets/images/partners/founders/rubicon.png
   type: founder
   
+- company: MediaMath 
+  link: https://www.mediamath.com/
+  imgURL: /assets/images/partners/leader/MediaMath-wordmark.png
+  type: leader
+  
 - company: OpenX 
   link: https://www.openx.com/
   imgURL: /assets/images/partners/leader/openx.png
@@ -28,6 +33,11 @@
   imgURL: /assets/images/partners/leader/TTD_logo.png
   type: leader
 
+- company: Conversant 
+  link: https://www.conversantmedia.com/
+  imgURL: /assets/images/partners/tech/conversant_logo.png
+  type: technology
+  
 - company: Criteo 
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
@@ -53,11 +63,6 @@
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
   type: technology
 
-- company: Sortable 
-  link: https://www.sortable.com/
-  imgURL: /assets/images/partners/tech/sortable.png
-  type: technology
-
 - company: StreamAMP 
   link: https://streamamp.com/
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
@@ -71,6 +76,11 @@
 - company: Chegg
   link: https://www.chegg.com/
   imgURL: /assets/images/partners/publisher/chegg.png
+  type: publisher
+  
+- company: Glewed TV
+  link: https://www.glewed.tv/
+  imgURL: /assets/images/partners/publisher/glewed_logo.png
   type: publisher
   
 - company: Hive Media
@@ -101,6 +111,11 @@
 - company: SHE Media
   link: https://www.shemedia.com/
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
+  type: publisher
+
+- company: Sortable 
+  link: https://www.sortable.com/
+  imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
 
 - company: Blockthrough

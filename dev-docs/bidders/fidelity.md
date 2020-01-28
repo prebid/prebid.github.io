@@ -6,6 +6,7 @@ hide: true
 biddercode: fidelity
 media_types: banner
 gdpr_supported: true
+usp_supported: true
 ---
 
 ### Bid Params

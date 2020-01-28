@@ -265,7 +265,7 @@ The ServerRequest objects returned from your adapter have this structure:
 | Attribute | Type             | Description                                                        | Example Value               |
 |-----------+------------------+--------------------------------------------------------------------+-----------------------------|
 | `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
-| `url`     | String           | The endpoint for the request.                                      | `"http://bids.example.com"` |
+| `url`     | String           | The endpoint for the request.                                      | `"https://bids.example.com"` |
 | `data`    | String or Object | Data to be sent in the POST request. Objects will be sent as JSON. |                             |
 
 Here's a sample block of code returning a ServerRequest object:
@@ -327,8 +327,8 @@ The parameters of the `bidObject` are:
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
-| `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"http://vid.example.com/9876`       |
-| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"http://vid.exmpale.com/imp/134"`   |
+| `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
+| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 
@@ -499,7 +499,7 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 {: .alert.alert-info :}
 Following is Prebid's way to setup bid request for long-form, apadters are free to choose their own approach.
 
-Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement. 
+Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement.
 
 #### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
 ```
@@ -531,7 +531,7 @@ In Use case 1, you are asking endpoint to respond with 20 bids between min durat
 Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
   - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
   - reject bid if the bid is above the range of the listed durations (and outside the buffer)
-  
+
 Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
 
 #### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
@@ -546,7 +546,7 @@ AdUnit config
 }
 
 Algorithm
-# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length) 
+# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length)
 
 Each placement:
 placement.video.minduration = durationRangeSec[i]
@@ -555,11 +555,11 @@ placement.video.maxduration = durationRangeSec[i]
 Example:
 # of placements : MAX_VALUE( (300 / 15 = 20), 2) == 20
 
-20 / 2 = 10 placements: 
+20 / 2 = 10 placements:
 placement.video.minduration = 15
 placement.video.maxduration = 15
 
-20 / 2 = 10 placements: 
+20 / 2 = 10 placements:
 placement.video.minduration = 30
 placement.video.maxduration = 30
 
@@ -589,9 +589,9 @@ Adapter must add following new properties to bid response
 
 Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
 
-Adapter must return one [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](http://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
+Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
-If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
+If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle.
 
 **Params**  
 
@@ -606,8 +606,8 @@ If the demand partner is going to use Prebid API for this process, their adapter
 **Example**
 
 ```
-getMappingFileInfo: function() { 
-  return { 
+getMappingFileInfo: function() {
+  return {
     url: '<mappingFileURL>',
     refreshInDays: 7
     localStorageKey: '<uniqueCode>'
@@ -615,7 +615,7 @@ getMappingFileInfo: function() {
 }
 ```
 
-The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
+The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion.
 
 To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
 
@@ -671,6 +671,10 @@ function createBid(status, reqBid, response) {
 
 {% endhighlight %}
 
+### Deals in Ad Pods
+
+To do deals for long-form video (`adpod` ad unit) just add the `dielTier` integer value to `bid.video.dealTier`. For more details on conducting deals in ad pods see our [ad pod module documentation](/dev-docs/modules/adpod.html).
+ 
 ## Supporting Native
 
 In order for your bidder to support the native media type:
@@ -887,5 +891,3 @@ The Prebid.org [download page]({{site.baseurl}}/download.html) will automaticall
 ## Further Reading
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
-
-
