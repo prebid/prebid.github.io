@@ -9,7 +9,7 @@ about:
 - Custom price granularity buckets using <code>pbjs.setConfig()</code>
 - See the <a href="/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity">the API reference</a> for more detail.
 
-jsfiddle_link: jsfiddle.net/Prebid_Examples/5eurjwu1/9/embedded/html,result
+jsfiddle_link: jsfiddle.net/Prebid_Examples/vq05dhnj/1/embedded/html,result
 
 code_height: 2152
 
