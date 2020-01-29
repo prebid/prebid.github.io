@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Troubleshooting Overview
-description: Troubleshooting Overview
+title: Prebid Server Troubleshooting 
+description: Prebid Server Troubleshooting
 sidebarType: 7
 ---
 
