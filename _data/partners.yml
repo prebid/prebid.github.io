@@ -53,19 +53,9 @@
   imgURL: /assets/images/partners/tech/marfeel.png
   type: technology
   
-- company: Oath 
-  link: https://www.oath.com/advertising/platforms/
-  imgURL: /assets/images/partners/tech/oath.png
-  type: technology
-  
 - company: PubNative 
   link: https://pubnative.net/
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
-  type: technology
-
-- company: Sortable 
-  link: https://www.sortable.com/
-  imgURL: /assets/images/partners/tech/sortable.png
   type: technology
 
 - company: StreamAMP 
@@ -73,6 +63,11 @@
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
   type: technology
 
+- company: Verizon Media 
+  link: https://www.verizonmedia.com/advertising
+  imgURL: /assets/images/partners/tech/verizon_logo.png
+  type: technology
+  
 - company: CafeMedia 
   link: https://www.cafemedia.com/
   imgURL: /assets/images/partners/publisher/cafemedia.png
@@ -81,6 +76,11 @@
 - company: Chegg
   link: https://www.chegg.com/
   imgURL: /assets/images/partners/publisher/chegg.png
+  type: publisher
+  
+- company: Glewed TV
+  link: https://www.glewed.tv/
+  imgURL: /assets/images/partners/publisher/glewed_logo.png
   type: publisher
   
 - company: Hive Media
@@ -111,6 +111,11 @@
 - company: SHE Media
   link: https://www.shemedia.com/
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
+  type: publisher
+
+- company: Sortable 
+  link: https://www.sortable.com/
+  imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
 
 - company: Blockthrough

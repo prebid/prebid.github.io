@@ -204,7 +204,7 @@ This function returns the bid responses at the given moment.
         "adId": "7a53a9d3",
         "creative_id": 29681110,
         "cpm": 0.5,
-        "adUrl": "http://nym1.ib.adnxs.com/ab?e=wqT_3QLzBKBqAgAAAgDWAAUIkav6sAUQucfc0v-nzQcYj…r=http%3A%2F%2Flocal%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html",
+        "adUrl": "https://nym1.ib.adnxs.com/ab?e=wqT_3QLzBKBqAgAAAgDWAAUIkav6sAUQucfc0v-nzQcYj…r=http%3A%2F%2Flocal%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html",
         "requestTimestamp": 1444844944095,
         "responseTimestamp": 1444844944180,
         "timeToRespond": 85,
@@ -225,8 +225,8 @@ This function returns the bid responses at the given moment.
         "adId": "1139e34e14",
         "adSlot": "39620189@300x250",
         "cpm": 1,
-        "ad": "<span class=\"PubAPIAd\"><script src='http://ad.turn.com/server/ads.js?pub=5757398&cch=36757096&code=37127675&l=3…tcGlkPUVERkNGMDY5LTA2ODctNDAxQy04NkMwLTIzQjNFNzI1MzdGNiZwYXNzYmFjaz0w_url='></script></span> <!-- PubMatic Ad Ends -->",
-        "adUrl": "http://aktrack.pubmatic.com/AdServer/AdDisplayTrackerServlet?operId=1&pubId…local%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html&lpu=hotels.com",
+        "ad": "<span class=\"PubAPIAd\"><script src='https://ad.turn.com/server/ads.js?pub=5757398&cch=36757096&code=37127675&l=3…tcGlkPUVERkNGMDY5LTA2ODctNDAxQy04NkMwLTIzQjNFNzI1MzdGNiZwYXNzYmFjaz0w_url='></script></span> <!-- PubMatic Ad Ends -->",
+        "adUrl": "https://aktrack.pubmatic.com/AdServer/AdDisplayTrackerServlet?operId=1&pubId…local%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html&lpu=hotels.com",
         "dealId": "",
         "requestTimestamp": 1444844944105,
         "responseTimestamp": 1444844944354,
@@ -343,32 +343,32 @@ This function returns the bid responses at the given moment.
                     "pbAg" : "10.00",
                     "adId" : "473965c9df19d2",
                     "adserverTargeting" : {
-                       "hb_native_icon" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                       "hb_native_icon" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
                        "hb_native_title" : "This is a Prebid Native Multi-Format Creative",
                        "hb_native_brand" : "Prebid.org",
                        "hb_adid" : "473965c9df19d2",
                        "hb_pb" : "10.00",
                        "hb_source" : "client",
                        "hb_bidder" : "appnexus",
-                       "hb_native_image" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                       "hb_native_image" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
                        "hb_size" : "0x0",
                        "hb_mediatype" : "native",
                        "hb_native_body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
-                       "hb_native_linkurl" : "http://prebid.org/dev-docs/show-native-ads.html"
+                       "hb_native_linkurl" : "https://prebid.org/dev-docs/show-native-ads.html"
                     },
                     "native" : {
                        "icon" : {
-                          "url" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                          "url" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
                           "height" : 75,
                           "width" : 75
                        },
                        "body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
                        "image" : {
-                          "url" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                          "url" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
                           "height" : 2250,
                           "width" : 3000
                        },
-                       "clickUrl" : "http://prebid.org/dev-docs/show-native-ads.html",
+                       "clickUrl" : "https://prebid.org/dev-docs/show-native-ads.html",
                        "clickTrackers" : [
                           "..."
                        ],
@@ -508,7 +508,7 @@ pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111
 
 ### pbjs.getNoBids() ⇒ `Array`
 
-Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](http://prebid.org/dev-docs/troubleshooting-tips.html).
+Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](/dev-docs/troubleshooting-tips.html).
 
 + `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
 
@@ -788,7 +788,7 @@ pbjs.addAdUnit({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
         render: function(bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
@@ -1463,7 +1463,7 @@ Note that this feature overlaps and can be used in conjunction with [targetingCo
 
 <a name="setConfig-Use-Bid-Cache" />
 
-Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](http://prebid.org/dev-docs/faq.html#does-prebidjs-cache-bids).
+Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](/dev-docs/faq.html#does-prebidjs-cache-bids).
 However, if you'd like, you can disable this feature and prevent Prebid.js from using anything but the latest bids for
 a given auction.
 
@@ -2296,7 +2296,7 @@ One or both of options.params and options.url is required. In other words, you m
 |-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
 | `iu`              | string | *Required*. Google Ad Manager ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
 | `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
-| `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
+| `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `https://www.example.com`                        |
 
 For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
@@ -2319,7 +2319,7 @@ pbjs.requestBids({
                 },
                 hl: "en",
                 output: "xml_vast2",
-                url: "http://www.example.com",
+                url: "https://www.example.com",
             }
         });
         invokeVideoPlayer(videoUrl);
@@ -2332,7 +2332,7 @@ Using `options.url` only:
 ```javascript
 var adserverTag = 'https://pubads.g.doubleclick.net/gampad/ads?'
 + 'sz=640x480&iu=/19968336/prebid_cache_video_adunit&impl=s&gdfp_req=1'
-+ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=http://www.example.com'
++ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=https://www.example.com'
 + '&cust_params=section%3Dblog%26anotherKey%3DanotherValue';
 
 var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -2382,7 +2382,7 @@ pbjs.que.push(function(){
             brandCategoryExclusion: true
         },
         brandCategoryTranslation: {
-            translationFile: "http://mymappingfile.com/mapping.json"
+            translationFile: "https://mymappingfile.com/mapping.json"
         }
     });
 
@@ -2392,7 +2392,7 @@ pbjs.que.push(function(){
                 codes: ['sample-code'],
                 params: {
                     iu: '/123456/testing/prebid.org/adunit1',
-                    description_url: 'http://mycontent.com/episode-1'
+                    description_url: 'https://mycontent.com/episode-1'
                 },
                 callback: function(err, masterTag) {
                     // Invoke video player and pass the master tag

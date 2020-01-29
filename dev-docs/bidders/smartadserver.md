@@ -31,10 +31,10 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 
 <a name="smartadserver-video-object" />
 
-#### video Object
+#### Video Object
 
 {: .table .table-bordered .table-striped }
-| Name         | Scope    | Description                                             | Example                | Type      |
-|--------------|----------|---------------------------------------------------------|------------------------|-----------|
-| `protocol`   | optional | Maximum open RTB video protocol supported               | `8` (VAST 4.0 wrapper) | `integer` |
-| `startDelay` | optional | 1 for Pre-Roll, 2 for Mid-Roll, 3 for Post-Roll         | `1`                    | `integer` |
+| Name         | Scope    | Description                                                                                                             | Example                | Type      |
+|--------------|----------|-------------------------------------------------------------------------------------------------------------------------|------------------------|-----------|
+| `protocol`   | optional | Maximum open RTB video protocol supported                                                                               | `8` (VAST 4.0 wrapper) | `integer` |
+| `startDelay` | optional | Allowed values: 1 (generic pre-roll), 2 (generic mid-roll), 3 (generic post-roll), 0 (all positions, default)           | `1`                    | `integer` |
