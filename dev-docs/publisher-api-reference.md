@@ -2131,19 +2131,17 @@ pbjs.setConfig({coppa: true});
 
 #### First Party Data
 
-A number of adapters support taking key/value pairs as arguments, but they're all different. e.g.
+A number of adapters support taking key/value pairs as arguments, but they're all different. For example:
 
 - RubiconProject takes `keywords`, `inventory` and `visitor` parameters
 - AppNexus takes `keywords` and `user`
 - OpenX takes `customParams`
-- etc.
 
 This feature allows publishers a way to specify key/value data in one place where each compatible bid adapter
 can read it.
 
 {: .alert.alert-warning :}
-Not all bid adapters currently support reading first party data in this way, but more will support
-it over time.
+Not all bid adapters currently support reading first party data in this way, but support should increase over time.
 
 **Scenario 1** - Global (cross-adunit) First Party Data open to all bidders
 

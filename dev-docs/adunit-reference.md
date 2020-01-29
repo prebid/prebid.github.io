@@ -252,7 +252,7 @@ pbjs.addAdUnits({
 
 ### Video
 
-<a name="adUnit-video-example-instream"> 
+<a name="adUnit-video-example-instream">
 
 #### Instream
 
@@ -317,11 +317,11 @@ For an example of an adpod video ad unit, see below.  For more detailed instruct
 var longFormatAdUnit = {
     video: {
        // required params
-       context: 'adpod', 
+       context: 'adpod',
        playerSize: [640, 480],
        adPodDurationSec: 300,
        durationRangeSec: [15, 30],
-   
+
        // optional params
        requireExactDuration: true,
        tvSeriesName: 'TvName',
@@ -487,8 +487,8 @@ pbjs.addAdUnits({
 {% endhighlight %}
 
 Notes:
-- Only contextual data is supported on the AdUnit -- user-related data goes in the global first party data.
-- The [Prebid Ad Slot](/features/pbAdSlot.html) is a special type of first party data that may help some publishers in analytics and reporting.
+- Only contextual data is supported on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd).
+- For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
 
 ## Related Topics
 

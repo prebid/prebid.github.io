@@ -211,8 +211,8 @@ registerBidder(spec);
 
 When the page asks Prebid.js for bids, your module's `buildRequests` function will be executed and passed two parameters:
 
-- validBidRequests[] - this is an array of bidRequest objects, one for each AdUnit that your module is involved in. This has been processed for special features like sizeConfig, so it's the list that you should be looping through.
-- bidderRequest - this is the master bidRequest object, useful because it carries a couple of bid parameters that are global to all the bids.
+- `validBidRequests[]` - An array of bidRequest objects, one for each AdUnit that your module is involved in. This array has been processed for special features like sizeConfig, so it's the list that you should be looping through.
+- `bidderRequest` - The master bidRequest object. This object is useful because it carries a couple of bid parameters that are global to all the bids.
 
 {% highlight js %}
 buildRequests: function(validBidRequests, bidderRequest) {
@@ -224,13 +224,13 @@ buildRequests: function(validBidRequests, bidderRequest) {
 Building the request will use data from several places:
 
 * **Ad Unit Params**: The arguments provided by the page are in `validBidRequests[]`.
-* **BidRequest Params**: several important parameters like userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
+* **BidRequest Params**: Several important parameters such as userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
 * **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
 
 
 #### Ad Unit Params in the validBidRequests Array
 
-A sample array entry for `validBidRequests[]`:
+Here is a sample array entry for `validBidRequests[]`:
 
 {% highlight js %}
 [{
@@ -249,15 +249,17 @@ A sample array entry for `validBidRequests[]`:
 }]
 {% endhighlight %}
 
-Grab your bid parameters from the `params` object. Other notes:
+Retrieve your bid parameters from the `params` object.
+
+Other notes:
 - **Bid ID** is unique across ad units and bidders.
-- **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
+- **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
 
 #### bidderRequest Parameters
 
-A sample bidderRequest object:
+Here is a sample bidderRequest object:
 
 {% highlight js %}
 {
@@ -279,9 +281,9 @@ A sample bidderRequest object:
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
-- **refererInfo** is provided so you don't have to call any utils functions. See below for more info.
-- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters). 
-- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.. 
+- **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
@@ -295,13 +297,13 @@ into account:
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
-| Bidder Timeout | In case your endpoint needs to know how long the page is allowing the auction to be. | config.getConfig('bidderTimeout'); |
+| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
 | First Party Data | The publisher may provide first party data (e.g. page type). | config.getConfig('fpd'); |
 
 #### Referrers
 
-Referrer info should be passed to your endpoint in contexts where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information. This property contains the following parameters:
+Referrer information should be passed to your endpoint in contexts where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information. This property contains the following parameters:
 
 - `referer`: a string containing the detected top-level URL.
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
@@ -314,7 +316,7 @@ The URL returned by `refererInfo` is in raw format. We recommend encoding the UR
 #### The output of buildRequests: ServerRequest Objects
 
 You shouldn't call your bid endpoint directly. Rather, the end result of your buildRequests function is one or more
-ServerRequest object. They have this structure:
+ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Type             | Description                                                        | Example Value               |
@@ -554,7 +556,7 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 {: .alert.alert-info :}
 Following is Prebid's way to setup bid request for long-form, apadters are free to choose their own approach.
 
-Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement. 
+Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement.
 
 #### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
 ```
@@ -586,7 +588,7 @@ In Use case 1, you are asking endpoint to respond with 20 bids between min durat
 Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
   - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
   - reject bid if the bid is above the range of the listed durations (and outside the buffer)
-  
+
 Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
 
 #### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
@@ -601,7 +603,7 @@ AdUnit config
 }
 
 Algorithm
-# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length) 
+# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length)
 
 Each placement:
 placement.video.minduration = durationRangeSec[i]
@@ -610,11 +612,11 @@ placement.video.maxduration = durationRangeSec[i]
 Example:
 # of placements : MAX_VALUE( (300 / 15 = 20), 2) == 20
 
-20 / 2 = 10 placements: 
+20 / 2 = 10 placements:
 placement.video.minduration = 15
 placement.video.maxduration = 15
 
-20 / 2 = 10 placements: 
+20 / 2 = 10 placements:
 placement.video.minduration = 30
 placement.video.maxduration = 30
 
@@ -646,7 +648,7 @@ Appnexus Adapter uses above explained approach. You can refer [here](https://git
 
 Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
-If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle. 
+If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle.
 
 **Params**  
 
@@ -661,8 +663,8 @@ If the demand partner is going to use Prebid API for this process, their adapter
 **Example**
 
 ```
-getMappingFileInfo: function() { 
-  return { 
+getMappingFileInfo: function() {
+  return {
     url: '<mappingFileURL>',
     refreshInDays: 7
     localStorageKey: '<uniqueCode>'
@@ -670,7 +672,7 @@ getMappingFileInfo: function() {
 }
 ```
 
-The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion. 
+The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion.
 
 To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
 
@@ -942,5 +944,3 @@ The Prebid.org [download page]({{site.baseurl}}/download.html) will automaticall
 ## Further Reading
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
-
-
