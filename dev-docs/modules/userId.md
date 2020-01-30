@@ -4,8 +4,8 @@ page_type: module
 title: Module - User ID
 description: Supports multiple cross-vendor user IDs
 module_code : userId
-display_name : User ID (including UnifiedID and PubCommonID)
-enable_download : true
+display_name : User ID
+enable_download : false
 sidebarType : 1
 ---
 
@@ -32,7 +32,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 ## How It Works
 
 1. The publisher determines which user ID modules to add to their Prebid.js package and consults with their legal counsel to determine the appropriate user disclosures.
-1. The publisher builds Prebid.js with the optional User ID module and the specific ID sub-module they would like to include. e.g. "gulp build --modules=userId,____IdSystem"
+1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem"
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userIds.
@@ -83,7 +83,7 @@ BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Iden
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,britepoolIdSystem
+gulp build --modules=britepoolIdSystem
 
 #### BritePool Registration
 
@@ -138,7 +138,7 @@ The Criteo privacy policy is at [https://www.criteo.com/privacy/](https://www.cr
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,criteoIdSystem
+gulp build --modules=criteoIdSystem
 
 #### Criteo ID Configuration
 
@@ -168,7 +168,7 @@ pbjs.setConfig({
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,digiTrustIdSystem
+gulp build --modules=digiTrustIdSystem
 
 #### DigiTrust Registration
 
@@ -253,9 +253,8 @@ The ID5 privacy policy as at [https://www.id5.io/platform-privacy-policy](https:
 
 First, make sure to add the ID5 submodule to your Prebid.js package with:
 
-{% highlight bash %}
-gulp build --modules=userId,id5IdSystem
-{% endhighlight %}
+{: .alert.alert-info :}
+gulp build --modules=id5IdSystem
 
 The following configuration parameters are available:
 
@@ -312,7 +311,7 @@ IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-ba
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,identityLinkIdSystem
+gulp build --modules=identityLinkIdSystem
 
 #### IdentityLink Registration
 
@@ -382,7 +381,7 @@ LiveIntent offers audience resolution by leveraging our next-generation identity
 Add LiveIntent ID to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,liveIntentIdSystem
+gulp build --modules=liveIntentIdSystem
 
 The `request.userId.lipb` object would then look like
 ```
@@ -449,7 +448,7 @@ The Parrable ID is a Full Device Identifier that can be used to identify a devic
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,parrableIdSystem
+gulp build --modules=parrableIdSystem
 
 #### Parrable ID Registration
 
@@ -503,10 +502,7 @@ PubCommon ID into account.
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId
-
-{: .alert.alert-warning :}
-For historic reasons, PubCommon is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding pubCommonIdSystem to the gulp build command
+gulp build --modules=pubCommonIdSystem
 
 #### PubCommon ID Examples
 
@@ -562,11 +558,7 @@ The Unified ID solution is provided by adsrvr.org and the Trade Desk.
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId
-
-{: .alert.alert-warning :}
-For historic reasons, Unified ID is bundled with the User ID module in Prebid.js 1.x and 2.x. This will change in Prebid.js 3.0, which will require specifically adding unifiedIdSystem to the gulp build command
-
+gulp build --modules=unifiedIdSystem
 
 #### Unified ID Registration
 
