@@ -354,6 +354,8 @@ The `request.userId.lipb` object would then look like
 
 Therefore, the adapters can then be implemented to use the `lipibid` as the identifier, and `segments` to which that identifier is associated with.
 
+For identity resolution to work for a specific publisher, LiveIntent has to build a model on the backend. In order to collect data for this model an additional call is issued on each page load.
+
 #### Registering your own first party cookie space
 
 In order for you to take advantage of the user id resolution in cookie-challenged environments, you need to sync your first party cookie universe with us. For further information please reach out to peoplebased@liveintent.com.
@@ -365,9 +367,10 @@ In order for you to take advantage of the user id resolution in cookie-challenge
 |`name`|Required | `String`|The name of this module|`'liveIntentId'`|
 |`params`| Required|`Object`|Container of all module params||
 |`params.publisherId`| Required|`String`|The unique identifier of the publisher in question|`'12432415'`|
+|`params.appId`| Optional|`String`|LiveIntent's media business entity application id|`'a-0012'`|
 |`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response |`'prebid'`|
 |`params.identifiersToResolve`|Optional|`Array[String]`|Additional identifiers that can be sent along with the id resolution request|`['my-id']`|
-|`params.url`| Optional|`String`|In case a publisher is running Prebid.js and can call LiveIntent's Identity Exchange endpoint withing it's own domain, this parameter can be used to change the default endpoint URL|`'//idx.my-domain.com'`|
+|`params.url`| Optional|`String`|In case a publisher is running Prebid.js and can call LiveIntent's Identity Exchange endpoint within it's own domain, this parameter can be used to change the default endpoint URL|`'https://idx.my-domain.com'`|
 
 #### LiveIntent ID example
 
