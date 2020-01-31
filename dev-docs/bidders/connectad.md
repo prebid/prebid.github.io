@@ -15,9 +15,8 @@ userIds: pubcommonId, unifiedId/tradedesk, digitrustId, id5Id, liveIntent, parra
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
-| `siteId`    | required | The site ID from ConnectAd.    | `12345` | `integer` |
-| `networkId` | required | The network ID from ConnectAd. | `10047` | `integer` |
-| `floorprice`| optional | Requested Floorprice           | 0.15    | `integer` |
+| `siteId`    | required | The site ID from ConnectAd.    | 12345   | integer   |
+| `networkId` | required | The network ID from ConnectAd. | 10047   | integer   |
+| `floorprice`| optional | Requested Floorprice           | 0.15    | integer   |
