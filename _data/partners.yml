@@ -148,6 +148,11 @@
   imgURL: /assets/images/partners/community/ID5-Logo.png
   type: community
 
+- company: LiveIntent
+  link: https://www.liveintent.com
+  imgURL: /assets/images/partners/community/liveintent_logo.png
+  type: community
+
 - company: Publica
   link: https://getpublica.com
   imgURL: /assets/images/partners/community/Publica-Logo.png
