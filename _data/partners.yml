@@ -68,6 +68,11 @@
   imgURL: /assets/images/partners/tech/verizon_logo.png
   type: technology
   
+- company: Advance Local Media 
+  link: https://advancelocal.com
+  imgURL: /assets/images/partners/publisher/advancelocal_logo.png
+  type: publisher
+
 - company: CafeMedia 
   link: https://www.cafemedia.com/
   imgURL: /assets/images/partners/publisher/cafemedia.png
