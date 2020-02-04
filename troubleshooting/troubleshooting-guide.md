@@ -114,7 +114,7 @@ You can also print this data to the console in [table format](/dev-docs/troubles
 Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`.
 
 {: .pb-alert .pb-alert-warning :}
-This allows for easy testing of pages that immediately start auctions (most pages), but also means you need to remember to deactivate debugging when you are done (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid.
+While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid.
 
 ```javascript
 // Filtering bidders
@@ -147,7 +147,7 @@ javascript console> pbjs.setConfig({
   }
 });
 
-// Overwriting bid responses for a specific bidder and adUnit code 
+// Overwriting bid responses for a specific bidder and adUnit code
 //  - supplies a specific creative
 javascript console> pbjs.setConfig({
   debugging: {
@@ -175,13 +175,12 @@ javascript console> pbjs.setConfig({
 
 ## Define Prebid Server Responses
 
-{: .pb-alert .pb-alert-warning :}
+{: .pb-alert .pb-alert-important :}
 This debugging approach currently only works for the Java version of Prebid Server.
 
 Here's another scenario using the 'debugging' feature described in the previous section.
 
-This section covers when a particular server-side bidder doesn't always respond with a bid, or you want to
-try specific bid CPM values to verify line item setup.
+This section covers cases in which a particular server-side bidder doesn't always respond with a bid, or you want to try specific bid CPM values to verify line item setup.
 
 If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
 
