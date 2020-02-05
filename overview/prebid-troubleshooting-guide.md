@@ -8,4 +8,4 @@ hide: true
 sidebarType: 0
 ---
 
-<meta http-equiv="refresh" content="0; url=http://prebid.org/dev-docs/prebid-trubleshooting-guide.html" />
+<meta http-equiv="refresh" content="0; url=https://prebid.org/dev-docs/prebid-trubleshooting-guide.html" />

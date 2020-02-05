@@ -5,6 +5,7 @@ description: Prebid AOL Bidder Adaptor
 hide: true
 biddercode: aol
 gdpr_supported: true
+usp_supported: true
 ---
 
 ### Note:

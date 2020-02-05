@@ -10,14 +10,14 @@ We're pleased to announce the release of [Prebid.js 1.0!](https://github.com/pre
 
 As a publisher, you can look forward to the following improvements when adopting Prebid.js 1.0:
 
-- Universal ad unit type support for [native](http://prebid.org/dev-docs/show-native-ads.html), [video](http://prebid.org/dev-docs/show-video-with-a-dfp-video-tag.html), and banner
+- Universal ad unit type support for [native](/dev-docs/show-native-ads.html), [video](/dev-docs/show-video-with-a-dfp-video-tag.html), and banner
 - Faster performance due to using fewer JS libraries and simplifying adapter code
 - Module integrations that support things like:
     - [*Multiple currencies*]({{site.baseurl}}/dev-docs/modules/currency.html)
     - [*User syncing*]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
     - [*Simplified config APIs*]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)
 - Better support for single page applications/sites (concurrency)
-- Better [size mapping and responsive site support](http://prebid.org/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads)
+- Better [size mapping and responsive site support](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads)
 
 For more information, see:
 
