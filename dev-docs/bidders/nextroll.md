@@ -17,7 +17,7 @@ usp_supported: false
 | `sellerId`     | required | The seller ID from NextRoll.Please reach out your NextRoll representative for more details.                          | `541459`                  | `number` |
 | `publisherId`  | optional | The publisher ID from NextRoll.Please reach out your NextRoll representative for more details.                       | `956812`                  | `number` |
 | `zoneId`       | optional | Descriptive or unique identifier for the ad position                                                                 | `main-banner-505/600x160` | `string` |
-| `bidfloor`     | optional | Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `2.3`                     | `number` |
+| `bidfloor`     | optional | Integration mode to use for ad render (none or 'AMP'). Please reach out your NextRoll representative for more details. | `2.3`                     | `number` |
 
 #### Example of Banner Ad-unit
 ```
