@@ -132,7 +132,7 @@ For more technical information about renderers, see [the pull request adding the
 
 Invoke your ad server for the outstream adUnit from the body of the page in the same way that you would for a display adUnit
 
-For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/outstream-dfp.html).
+For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html).
 
 {% highlight html %}
 
