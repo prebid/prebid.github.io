@@ -102,7 +102,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | device.w | Optional  | `Integer` | Physical width of the screen in pixels. |
 | device.h | Optional  | `Integer` | Physical height of the screen in pixels. |
 | device.ifa | Optional  | `String` | ID sanctioned for advertiser use in the clear (i.e., not hashed). |
-| device.didshal | Optional  | `String` | Hardware device ID (e.g., IMEI); hashed via SHA1. |
+| device.didsha1 | Optional  | `String` | Hardware device ID (e.g., IMEI); hashed via SHA1. |
 | device.didmd5 | Optional  | `String` | Hardware device ID (e.g., IMEI); hashed via MD5. |
 | device.dpidsha1 | Optional  | `String` | Platform device ID (e.g., Android ID); hashed via SHA1. |
 | device.dpidmd5 | Optional  | `String` | Platform device ID (e.g., Android ID); hashed via MD5. |
@@ -119,7 +119,7 @@ The `podconfig.durationrangesec` is an array containing integers representing th
 ```javascript
 durationrangesec = [15, 30] 
 ```
-These values would indicate that ad durations of 15 ansd 30 seconds were allowed with this bid.
+These values would indicate that ad durations of 15 and 30 seconds were allowed with this bid.
 
 If `podconfig.requireexactduration` is set to `false`, then the ads durations will be rounded up to the closest value in the `durationrangesec` array. Implicit minimum bid duration is 0.
 
