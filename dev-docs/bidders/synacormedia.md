@@ -6,6 +6,7 @@ hide: true
 biddercode: synacormedia
 media_types: banner, video
 gdpr_supported: false
+schain_supported: true
 ---
 
 ### Note:
@@ -91,4 +92,3 @@ var adUnits = [{
 | `protocols` | optional | Array of supported video protocols. | `[1,2,3,4,5,6,7]` | Array(`int`) |
 | `api` | optional | List of supported API frameworks for this impression. | `[1,2]` | Array(`int`) |
 | `playbackmethod` | optional | Single element array with supported playback methods for this video impression. If multiple values are supplied, first element will be used. | `[1]` | Array(`int`) |
-
