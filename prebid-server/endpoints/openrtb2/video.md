@@ -110,7 +110,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | device.macmd5 | Optional  | `String` | MAC address of the device; hashed via MD5. |
 | pricegranularity | Optional  (recommended)   | `Object` | The price range in varying increments that the CPM of the ad unit will fall into. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. |
 | pricegranularity.precision | Optional  | `Object` | If precision is omitted, it will default to 2. |
-| pricegranularity.range | Optional  (recommended)   | `Array` | See [price range](#price-range) for details. |
+| pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 
 ### Pod Duration Range
 
@@ -210,8 +210,9 @@ The `pricegranularity` subobject `range` describes the maximum price point for t
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | range | Optional | `Object` |  Container object price granualarity range. |
-| range.max | Optional | `Float` |   |
-| range.increment | Optional | `Float` |   |
+| range.min | Required | `Float` |   |
+| range.max | Required | `Float` |   |
+| range.increment | Required | `Float` |   |
 
 ## Examples
 
