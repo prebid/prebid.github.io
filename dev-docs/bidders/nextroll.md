@@ -14,8 +14,8 @@ usp_supported: false
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                                                       | Example                     | Type     |
 |----------------|----------|---------------------------------------------------------------------------------------------------|-----------------------------|----------|
-| `sellerId`     | required | The seller ID from NextRoll.Please reach out your NextRoll representative for more details.       | `541459`                    | `number` |
-| `publisherId`  | optional | The publisher ID from NextRoll.Please reach out your NextRoll representative for more details.    | `956812`                    | `number` |
+| `sellerId`     | required | The seller ID from NextRoll.Please reach out your NextRoll representative for more details.       | `'541459'`                  | `string` |
+| `publisherId`  | optional | The publisher ID from NextRoll.Please reach out your NextRoll representative for more details.    | `'956812'`                  | `string` |
 | `zoneId`       | optional | Descriptive or unique identifier for the ad position                                              | `'main-banner-505/600x160'` | `string` |
 | `bidfloor`     | optional | Per ad-unit bid floor                                                                             | `2.3`                       | `number` |
 
@@ -31,7 +31,7 @@ var adUnits = [
             bidder: 'nextroll',
             params: {
                 bidfloor: 1,
-                zoneId: 13144370,
+                zoneId: "13144370",
                 publisherId: "publisherId",
                 sellerId: "sellerId",
             }
@@ -48,7 +48,7 @@ var adUnits = [
             bidder: 'nextroll',
             params: {
                 bidfloor: 2.3,
-                zoneId: 13144370,
+                zoneId: "13144370",
                 publisherId: "publisherId",
                 sellerId: "sellerId",
             }
