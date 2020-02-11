@@ -22,7 +22,7 @@
 	   writeDynamicTable({div: "memberTableFounders", data: "memberDataFounders", sort: "rowFirst", maxcols: 2, striped: false} );
 	</script>
 
-	<div class="tableTitle"><h3>Prebid.org Leading Members</h3></div>
+	<div class="tableTitle"><h3>Prebid.org Leader Members</h3></div>
 	<script type="text/javascript">
 	var memberDataLeader=[];
 	var idx=0;
@@ -48,7 +48,7 @@
 		{% if item.type == "technology" %}
 			memberDataTech[idx]={};
 			memberDataTech[idx].href="{{item.link}}";
-			memberDataTech[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
+			memberDataTech[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
@@ -66,7 +66,7 @@
 		{% if item.type == "publisher" %}
 			memberDataPub[idx]={};
 			memberDataPub[idx].href="{{item.link}}";
-			memberDataPub[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
+			memberDataPub[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
 			idx++;
 		{% endif %}
 	{% endfor %}

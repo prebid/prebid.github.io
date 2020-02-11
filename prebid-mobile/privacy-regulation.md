@@ -26,7 +26,7 @@ sidebarType: 2
 
 {% capture gdprNote %}
 
-  In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports the [IAB Europe Transparency & Consent Framework](http:///advertisingconsent.eu/) (the "Framework").  
+  In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports the [IAB Europe Transparency & Consent Framework](https:///advertisingconsent.eu/) (the "Framework").  
 
   This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in the EEA and signal approved vendors and, where necessary, pass consent, to demand sources and their vendors.  
 
@@ -44,7 +44,7 @@ Prebid Mobile provides two APIs for app publishers to use with the Framework. Th
 
 This information will be persisted by Prebid Mobile and will be added to each ad call. Publishers/Consent Management Platforms (CMPs) are free to store these values in an `NSUserDefaults/SharedPreferences` interface (as defined by [Mobile In-App CMP API v1.0: Transparency & Consent Framework](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Final.md)) instead of passing them via the new APIs, and Prebid Mobile will read the values as a fallback.
 
-Publishers are responsible for providing notice, transparency and choice and collecting consent from their users in accordance with [the Framework policies](http://advertisingconsent.eu/), either using their own CMP or working with a vendor.
+Publishers are responsible for providing notice, transparency and choice and collecting consent from their users in accordance with [the Framework policies](https://advertisingconsent.eu/), either using their own CMP or working with a vendor.
 
 -   [Register your own CMP](https://register.consensu.org/CMP)
 -   [List of registered CMPs](https://advertisingconsent.eu/cmp-list/)
