@@ -148,9 +148,6 @@ benefits for sending more than one bid.
 Once you find the right balance for your application, you can specify
 what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
 
-http://lh.prebid.org:8080/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids
-
-
 
 ## Related Reading
 

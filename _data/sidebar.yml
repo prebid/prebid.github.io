@@ -595,6 +595,14 @@
   sectionTitle:
   subgroup: 8
 
+- sbSecId: 1
+  title: Prebid Ad Slot
+  link: /features/pbAdSlot.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
 
 #--------------Prebid Mobile--------------|
 
@@ -1375,6 +1383,14 @@
   subgroup: 1
   
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/instream/radiant/pb-ve-radiant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
   title: '&nbsp;&nbsp;VideoJS'
   link: /examples/video/instream/videojs/pb-ve-videojs.html
   isHeader: 0
@@ -1448,8 +1464,57 @@
   subgroup: 1
   
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/server/radiant/pbs-ve-radiant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
   title: '&nbsp;&nbsp;VideoJS'
   link: /examples/video/server/videojs/pbs-ve-videojs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: "<span style='color:#EA9622;'>Cross Player</span>"
+  link: 
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Flowplayer'
+  link: /examples/video/crossplayer/flowplayer/pb-cp-flowplayer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;JW Player'
+  link: /examples/video/crossplayer/jwplayer/pb-cp-jwplayer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Kaltura'
+  link: /examples/video/crossplayer/kaltura/pb-cp-kaltura.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;VideoJS'
+  link: /examples/video/crossplayer/videojs/pb-cp-videojs.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle: 
@@ -1467,6 +1532,14 @@
 - sbSecId: 4
   title: '&nbsp;&nbsp;Google Ad Manager'
   link: /examples/video/outstream/pb-ve-outstream-dfp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle: 
+  subgroup: 1
+  
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Radiant'
+  link: /examples/video/outstream/pb-ve-outstream-radiant.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle: 

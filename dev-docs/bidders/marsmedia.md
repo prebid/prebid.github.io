@@ -1,16 +1,12 @@
 ---
 layout: bidder
 title: Marsmedia
-description: Prebid Marsmedia Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
+description: Prebid Mars Media Group Bidder Adaptor
 hide: true
-
 biddercode: marsmedia
-
-
+media_types: video, banner
+gdpr_supported: true
+schain_supported: true
 ---
 
 ### Bid Params
@@ -18,5 +14,4 @@ biddercode: marsmedia
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `publisherID` | required |             |         | `string` |
-| `floor`       | optional |             |         | `string` |
+| zoneId | required | The zone ID from Mars Media Group. | 9999 | integer |
