@@ -45,11 +45,11 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js
+https://acdn.adnxs.com/prebid/not-for-prod/3/prebid.js
 
 **Example:**
 
-`options.prebidPath = 'http://your-path/prebid.js'`
+`options.prebidPath = 'https://your-path/prebid.js'`
 
 <a name="biddersSpec"></a>
 ## biddersSpec
@@ -60,7 +60,7 @@ The parameters that are used in making a prebid call. These parameters include d
 
 **Acceptable Values:**
 
-The value of `biddersSpec` should be a JSON structure providing the definition of the bidders to use as well as placement configuration. The syntax for these parameters is defined in [Bidder Params](http://prebid.org/dev-docs/bidders.html).
+The value of `biddersSpec` should be a JSON structure providing the definition of the bidders to use as well as placement configuration. The syntax for these parameters is defined in [Bidder Params](/dev-docs/bidders.html).
 
 **Required?**
 
@@ -297,7 +297,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
 
 ```
 {
-    "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/3/prebid.js",
     "biddersSpec" : {
         "code" : "my-video-tag",
         "sizes" : [640, 480],

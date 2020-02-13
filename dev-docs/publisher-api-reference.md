@@ -204,7 +204,7 @@ This function returns the bid responses at the given moment.
         "adId": "7a53a9d3",
         "creative_id": 29681110,
         "cpm": 0.5,
-        "adUrl": "http://nym1.ib.adnxs.com/ab?e=wqT_3QLzBKBqAgAAAgDWAAUIkav6sAUQucfc0v-nzQcYj…r=http%3A%2F%2Flocal%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html",
+        "adUrl": "https://nym1.ib.adnxs.com/ab?e=wqT_3QLzBKBqAgAAAgDWAAUIkav6sAUQucfc0v-nzQcYj…r=http%3A%2F%2Flocal%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html",
         "requestTimestamp": 1444844944095,
         "responseTimestamp": 1444844944180,
         "timeToRespond": 85,
@@ -225,8 +225,8 @@ This function returns the bid responses at the given moment.
         "adId": "1139e34e14",
         "adSlot": "39620189@300x250",
         "cpm": 1,
-        "ad": "<span class=\"PubAPIAd\"><script src='http://ad.turn.com/server/ads.js?pub=5757398&cch=36757096&code=37127675&l=3…tcGlkPUVERkNGMDY5LTA2ODctNDAxQy04NkMwLTIzQjNFNzI1MzdGNiZwYXNzYmFjaz0w_url='></script></span> <!-- PubMatic Ad Ends -->",
-        "adUrl": "http://aktrack.pubmatic.com/AdServer/AdDisplayTrackerServlet?operId=1&pubId…local%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html&lpu=hotels.com",
+        "ad": "<span class=\"PubAPIAd\"><script src='https://ad.turn.com/server/ads.js?pub=5757398&cch=36757096&code=37127675&l=3…tcGlkPUVERkNGMDY5LTA2ODctNDAxQy04NkMwLTIzQjNFNzI1MzdGNiZwYXNzYmFjaz0w_url='></script></span> <!-- PubMatic Ad Ends -->",
+        "adUrl": "https://aktrack.pubmatic.com/AdServer/AdDisplayTrackerServlet?operId=1&pubId…local%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html&lpu=hotels.com",
         "dealId": "",
         "requestTimestamp": 1444844944105,
         "responseTimestamp": 1444844944354,
@@ -343,32 +343,32 @@ This function returns the bid responses at the given moment.
                     "pbAg" : "10.00",
                     "adId" : "473965c9df19d2",
                     "adserverTargeting" : {
-                       "hb_native_icon" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                       "hb_native_icon" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
                        "hb_native_title" : "This is a Prebid Native Multi-Format Creative",
                        "hb_native_brand" : "Prebid.org",
                        "hb_adid" : "473965c9df19d2",
                        "hb_pb" : "10.00",
                        "hb_source" : "client",
                        "hb_bidder" : "appnexus",
-                       "hb_native_image" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                       "hb_native_image" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
                        "hb_size" : "0x0",
                        "hb_mediatype" : "native",
                        "hb_native_body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
-                       "hb_native_linkurl" : "http://prebid.org/dev-docs/show-native-ads.html"
+                       "hb_native_linkurl" : "https://prebid.org/dev-docs/show-native-ads.html"
                     },
                     "native" : {
                        "icon" : {
-                          "url" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                          "url" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
                           "height" : 75,
                           "width" : 75
                        },
                        "body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
                        "image" : {
-                          "url" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                          "url" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
                           "height" : 2250,
                           "width" : 3000
                        },
-                       "clickUrl" : "http://prebid.org/dev-docs/show-native-ads.html",
+                       "clickUrl" : "https://prebid.org/dev-docs/show-native-ads.html",
                        "clickTrackers" : [
                           "..."
                        ],
@@ -508,7 +508,7 @@ pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111
 
 ### pbjs.getNoBids() ⇒ `Array`
 
-Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](http://prebid.org/dev-docs/troubleshooting-tips.html).
+Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](/dev-docs/troubleshooting-tips.html).
 
 + `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
 
@@ -788,7 +788,7 @@ pbjs.addAdUnit({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
         render: function(bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
@@ -1133,31 +1133,28 @@ this method registers the callback for every `bidWon` event.
 {: .alert.alert-info :}
 Currently, `bidWon` is the only event that accepts the `id` parameter.
 
-Additional data may also be passed to the handler that you have defined
-
-{: .alert.alert-info :}
-Currently, `bidRequest`, `bidResponse`, and `bidWon`, are the only events that pass additional data to the handler
-
 The available events are:
 
 {: .table .table-bordered .table-striped }
-| Event         | Description                             |
-|---------------+-----------------------------------------|
-| auctionInit   | The auction has started                 |
-| auctionEnd    | The auction has ended                   |
-| bidAdjustment | A bid was adjusted                      |
-| bidTimeout    | A bid timed out                         |
-| bidRequested  | A bid was requested                     |
-| bidResponse   | A bid response has arrived              |
-| bidWon        | A bid has won                           |
-| setTargeting  | Targeting has been set                  |
-| requestBids   | Bids have been requested from adapters  |
-| addAdUnits    | Ad units have been added to the auction |
-| adRenderFailed| Ad rendering failed (added in v1.7)     |
-| bidderDone    | A bidder has signaled they are done responding (added in v1.8)|
+| Event         | Description                             | Callback Arguments |
+|---------------+-----------------------------------------|--------------------|
+| auctionInit   | The auction has started                 | Object containing auction details |
+| auctionEnd    | The auction has ended                   | Object containing auction details |
+| beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
+| bidRequested  | A bid was requested from a specific bidder | Bid request object |
+| bidResponse   | A bid response has arrived              | Bid response object |
+| bidAdjustment | A bid was adjusted                      | Bid response object |
+| bidWon        | A bid has won                           | Bid response object |
+| bidTimeout    | A bid timed out                         | Array of objects with timed out bids |
+| setTargeting  | Targeting has been set                  | Hash of targeting values |
+| requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | None |
+| addAdUnits    | Ad units have been added to the auction | None |
+| adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
+| bidderDone    | A bidder has signaled they are done responding | Bid request object |
 
-The examples below show how these methods can be used:
+The examples below show how these events can be used.
 
+Events example 1
 {% highlight js %}
 
         /* Log when ad units are added to Prebid */
@@ -1173,43 +1170,43 @@ The examples below show how these methods can be used:
 
 {% endhighlight %}
 
+Events example 2: Use the optional 3rd parameter for the `bidWon` event
 {% highlight js %}
-
-        /* Define your event handler callbacks */
-        var allSlotsBidWon = function allSlotsBidWon() {
-            console.log('allSlotsBidWon called');
+        /* This handler will be called only for rightAdUnit */
+        /* Uses the `pbjs.offEvent` method to remove the handler once it has been called */
+        var bidWonHandler = function bidWonHandler() {
+            console.log('bidWonHandler: ', arguments);
+            pbjs.offEvent('bidWon', bidWonHandler, rightAdUnit);
         };
 
-        /* In this event handler callback we use the `pbjs.offEvent`
-           method to remove the handler once it has been called */
-        var rightSlotBidWon = function rightSlotBidWon() {
-            console.log('rightSlotBidWon: ', arguments);
-            pbjs.offEvent('bidWon', rightSlotBidWon, rightSlotCode);
-        };
+        var rightAdUnit="/111111/right";
+        pbjs.que.push(function () {
+            var adUnits = [{
+                code: rightAdUnit,
+		...
+	    },{
+		...
+	    }];
 
-        googletag.cmd.push(function () {
+	    pbjs.addAdUnits(adUnits);
+            pbjs.requestBids({
+		...
+            });
 
-            /* Ad slots need to be defined before trying to register
-               callbacks on their events */
+            /* Register a callback for just the rightSlot `bidWon` event */
+            /* Note that defining an event that uses the 3rd parameter must come after initiating the auction */
+            pbjs.onEvent('bidWon', bidWonHandler, rightAdUnit);
 
-            var rightSlot =
-              googletag.defineSlot(rightSlotCode, rightSlotSizes, rightSlotElementId).addService(googletag.pubads());
+            ...
+{% endhighlight %}
 
-            var topSlot =
-              googletag.defineSlot(topSlotCode, topSlotSizes, topSlotElementId).setTargeting().addService(googletag.pubads());
-
-            pbjs.que.push(function () {
-
-                /* Register a callback for every `bidWon` event */
-                pbjs.onEvent('bidWon', allSlotsBidWon);
-
-                /* Register a callback for just the rightSlot `bidWon`
-                   event */
-                pbjs.onEvent('bidWon', rightSlotBidWon, rightSlotCode);
-
-                pbjs.setTargetingForGPTAsync();
-                ...
-
+Events example 3: Dynamically modify the auction
+{% highlight js %}
+	var bidderFilter = function bidderFilter(adunits) {
+	    // pub-specific logic to optimize bidders
+            // e.g. "remove any that haven't bid in the last 4 refreshes"
+	};
+	pbjs.onEvent('beforeRequestBids', bidderFilter);
 {% endhighlight %}
 
 <hr class="full-rule" />
@@ -1466,7 +1463,7 @@ Note that this feature overlaps and can be used in conjunction with [targetingCo
 
 <a name="setConfig-Use-Bid-Cache" />
 
-Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](http://prebid.org/dev-docs/faq.html#does-prebidjs-cache-bids).
+Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](/dev-docs/faq.html#does-prebidjs-cache-bids).
 However, if you'd like, you can disable this feature and prevent Prebid.js from using anything but the latest bids for
 a given auction.
 
@@ -2299,7 +2296,7 @@ One or both of options.params and options.url is required. In other words, you m
 |-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
 | `iu`              | string | *Required*. Google Ad Manager ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
 | `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
-| `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
+| `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `https://www.example.com`                        |
 
 For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
@@ -2322,7 +2319,7 @@ pbjs.requestBids({
                 },
                 hl: "en",
                 output: "xml_vast2",
-                url: "http://www.example.com",
+                url: "https://www.example.com",
             }
         });
         invokeVideoPlayer(videoUrl);
@@ -2335,7 +2332,7 @@ Using `options.url` only:
 ```javascript
 var adserverTag = 'https://pubads.g.doubleclick.net/gampad/ads?'
 + 'sz=640x480&iu=/19968336/prebid_cache_video_adunit&impl=s&gdfp_req=1'
-+ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=http://www.example.com'
++ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=https://www.example.com'
 + '&cust_params=section%3Dblog%26anotherKey%3DanotherValue';
 
 var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -2385,7 +2382,7 @@ pbjs.que.push(function(){
             brandCategoryExclusion: true
         },
         brandCategoryTranslation: {
-            translationFile: "http://mymappingfile.com/mapping.json"
+            translationFile: "https://mymappingfile.com/mapping.json"
         }
     });
 
@@ -2395,7 +2392,7 @@ pbjs.que.push(function(){
                 codes: ['sample-code'],
                 params: {
                     iu: '/123456/testing/prebid.org/adunit1',
-                    description_url: 'http://mycontent.com/episode-1'
+                    description_url: 'https://mycontent.com/episode-1'
                 },
                 callback: function(err, masterTag) {
                     // Invoke video player and pass the master tag
