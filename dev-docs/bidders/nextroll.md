@@ -6,7 +6,7 @@ hide: true
 biddercode: nextroll
 media_types: display
 gdpr_supported: false
-usp_supported: false
+usp_supported: true
 ---
 
 ### Bid Params
