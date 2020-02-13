@@ -16,5 +16,5 @@ usp_supported: true
 
 | Name    | Scope    | Description                       | Example      | Type     |
 |---------|----------|-----------------------------------|--------------|----------|
-| `pubId` | required |                                   | `386276e072` | `string` |
+| `pubId` | required |                                   | `'386276e072'` | `string` |
 | `type`  | optional | The media type, default is banner | `'banner'`   | `string` |
