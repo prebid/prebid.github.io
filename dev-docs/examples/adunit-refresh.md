@@ -8,7 +8,7 @@ sidebarType: 1
 about:
 - Ability to <strong>refresh individual ad units</strong> - useful for infinite scrolling ad slots
 
-jsfiddle_link: jsfiddle.net/prebid_org/61uzp29t/embedded/html,result
+jsfiddle_link: jsfiddle.net/Prebid_Examples/cu7tpexf/1//embedded/html,result
 
 code_height: 1540
 
