@@ -1,10 +1,11 @@
 ---
-layout: page
+layout: page_v2
 title: Show Outstream Video Ads
 description: Show Outstream Video Ads with Prebid.js
 pid: 10
 top_nav_section: dev_docs
 nav_section: prebid-video
+sidebarType: 4
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -88,7 +89,7 @@ pbjs.addAdUnit({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
         render: function (bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
@@ -131,7 +132,7 @@ For more technical information about renderers, see [the pull request adding the
 
 Invoke your ad server for the outstream adUnit from the body of the page in the same way that you would for a display adUnit
 
-For a live example, see [Outstream with DFP]({{site.github.url}}/examples/video/outstream/outstream-dfp.html).
+For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html).
 
 {% highlight html %}
 
@@ -185,8 +186,7 @@ For more information, see the API documentation for:
 
 Below, find links to end-to-end "working examples" demonstrating Prebid Outstream:
 
-+ [Outstream with DFP]({{site.github.url}}/examples/video/outstream/outstream-dfp.html)
-+ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html)
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
++ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
++ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
 
 </div>
