@@ -204,13 +204,12 @@ The `user` object has a `gdpr` subobject that contains data about the user's GDP
 
 ### Price Range
 
-The `pricegranularity` subobject `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. 
+The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. 
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| range | Optional | `Object` |  Container object price granualarity range. |
-| range.min | Required | `Float` |   |
+| range | Optional | `Object` |  Container object price granularity range. |
 | range.max | Required | `Float` |   |
 | range.increment | Required | `Float` |   |
 
