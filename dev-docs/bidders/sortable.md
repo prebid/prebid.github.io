@@ -33,8 +33,8 @@ prebid_member: true
 
 Sortable supports the banner features described in:
 
-- [The `adUnit` banner documentation]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit-banner-example)
-- [Getting Started for Developers]({{site.baseurl}}/dev-docs/getting-started.html)
+- [The `adUnit` banner documentation](/dev-docs/adunit-reference.html#adUnit-banner-example)
+- [Getting Started for Developers](/dev-docs/getting-started.html)
 
 
 <a name="sortable-configuration" />
@@ -52,7 +52,7 @@ pbjs.setConfig({
 ```
 
 The Sortable adapter has the ability to initiate user-sync requests that will improve DSP user ID match rate,
-with the aim of generating higher bid prices. By default, Sortable sync requests are off. Setting the Sortable site ID globally as described above is required for user-sync requests. 
+with the aim of generating higher bid prices. By default, Sortable sync requests are off. Setting the Sortable site ID globally as described above is required for user-sync requests.
 
 ``` javascript
 pbjs.setConfig({

@@ -126,7 +126,7 @@ Data is broken up into two different data types:
   * Global scope
   * Ad Unit grain
 
- The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-ios#first-party-data) page.
+ The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
 
 #### addContextData
 ```

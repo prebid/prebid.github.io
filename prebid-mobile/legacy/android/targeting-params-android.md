@@ -6,7 +6,7 @@ sidebarType: 2
 ---
 
 {% capture warningNote %}
-This document describes a pre-release version of the Prebid Mobile API that has been deprecated. 
+This document describes a pre-release version of the Prebid Mobile API that has been deprecated.
 {% endcapture %}
 
 {% include alerts/alert_warning.html content=warningNote %}
@@ -79,7 +79,4 @@ Prebid mobile also checks if the values are present in the [SharedPreferences](h
 
 ## Other
 
-For more information about the TargetingParams, please check the source code in [Coding Integration for Android]({{site.github.url}}/prebid-mobile/code-integration-android).
-
-
-
+For more information about the TargetingParams, please check the source code in [Coding Integration for Android](/prebid-mobile/legacy/android/code-integration-android.html).

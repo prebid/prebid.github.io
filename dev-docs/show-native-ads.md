@@ -89,7 +89,7 @@ Specific bidders may not support all of the fields listed below or may return di
 |---------------+--------------------------------------------------------------------------------------|-----------------------|
 | `title`       | The title of the ad, usually a call to action or a brand name.                       | `hb_native_title`     |
 | `body`        | Text of the ad copy.                                                                 | `hb_native_body`      |
-| `body2`       | Additional Text of the ad copy.                                                      | `hb_native_body2`     | 
+| `body2`       | Additional Text of the ad copy.                                                      | `hb_native_body2`     |
 | `sponsoredBy` | The name of the brand associated with the ad.                                        | `hb_native_brand`     |
 | `icon`        | The brand icon that will appear with the ad.                                         | `hb_native_icon`      |
 | `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `hb_native_image`     |
@@ -298,11 +298,8 @@ The `native-trk.js` script from `prebid-universal-creative` can replace native p
 
 ## Working Examples
 
-+ [Prebid Native with two slots]({{site.github.url}}/examples/native/native-demo.html)
-+ [Prebid Native Examples]({{site.github.url}}/examples/native)
++ [Prebid Native Examples](/dev-docs/examples/native-ad-example.html)
 
 ## Related Topics
 
 + [Setting up Prebid Native in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
-
-
