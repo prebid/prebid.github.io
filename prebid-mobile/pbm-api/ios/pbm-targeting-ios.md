@@ -7,6 +7,7 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
+
 # Global Targeting Parameters
 {:.no_toc}
 
@@ -324,7 +325,7 @@ Objective C
 
 ## GPDR
 
-Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.github.url}}/prebid-mobile/gdpr.html)
+Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/privacy-regulation.html)
 
 ### Subject To GPDR
 
