@@ -468,7 +468,7 @@ pbjs.addAdUnits([{
 + [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
 + [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html)
 + [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
-+ [Prebid.org Native Examples]({{site.baseurl}}/dev-docs/examples/native-ad-example.html)
++ [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 
 
 

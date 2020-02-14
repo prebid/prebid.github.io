@@ -295,7 +295,7 @@ The `native-trk.js` script from `prebid-universal-creative` can replace native p
 
 ## Working Examples
 
-+ [Prebid Native with two slots]({{site.github.url}}/dev-docs/examples/native-ad-example.html)
++ [Prebid Native Examples](/dev-docs/examples/native-ad-example.html)
 
 ## Related Topics
 

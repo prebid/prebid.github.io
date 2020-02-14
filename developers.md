@@ -32,8 +32,8 @@ Key links for publisher developers.
 ### Prebid Mobile - integrating display, video, and native ads into iOS and Android apps
 
 + [Getting started with Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile-pbs.html)
-+ [Android code integration]({{site.baseurl}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
-+ [iOS code integration]({{site.baseurl}}/prebid-mobile/pbm-api/android/code-integration-android.html)
++ [Android code integration]({{site.baseurl}}/prebid-mobile/pbm-api/android/code-integration-android.html)
++ [iOS code integration]({{site.baseurl}}/prebid-mobile/pbm-api//ios/code-integration-ios.html)
 
 ---
 

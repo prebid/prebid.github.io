@@ -10,8 +10,8 @@ gdpr_supported: true
 
 ### Note:
 
-The Ad Up Technology Bidding adapter requires setup and approval before beginning.   
-For more information visit [www.adup-tech.com](http://www.adup-tech.com).
+The AdUp Technology bidding adapter requires setup and approval before beginning.
+For more information visit [www.adup-tech.com](https://www.adup-tech.com/) or contact [info@adup-tech.com](mailto:info@adup-tech.com).
 
 ### Bid params
 

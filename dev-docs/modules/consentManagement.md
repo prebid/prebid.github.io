@@ -21,7 +21,7 @@ sidebarType : 1
 
 Designed to support the EU General Data Protection Regulation ([GDPR](https://www.eugdpr.org/)), this module works with supported Consent Management Platforms (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
-This module will perform its tasks with the CMP prior to the auction starting.  A rough synopsis of this interaction process would be:
+This module works with supported [Consent Management Platforms](https://www.cmswire.com/information-management/what-is-a-consent-management-platform/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
 1. Fetch the user's consent data from the CMP (see note below regarding a workflow variance for new users).
 2. With a valid set of consent information, we will incorporate this data into the auction objects (for adapters to collect) and then allow the auction to proceed.
