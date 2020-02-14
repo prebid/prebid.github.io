@@ -4,6 +4,8 @@ title: E-Planning
 description: Prebid E-Planning Bidder Adapter
 hide: true
 biddercode: eplanning
+usp_supported: true
+gdpr_supported: true
 ---
 
 

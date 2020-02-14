@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Ad Up Technology
-description: Prebid Bidder Adapter for Ad Up Technology
+title: AdUp Technology
+description: Prebid Bidder Adapter for AdUp Technology
 hide: true
 biddercode: aduptech
 media_types: banner
@@ -16,7 +16,6 @@ For more information visit [www.adup-tech.com](https://www.adup-tech.com/) or co
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
 | `publisher` | required | Unique publisher id | `'1234'` |

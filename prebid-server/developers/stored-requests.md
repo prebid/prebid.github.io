@@ -259,8 +259,8 @@ stored_requests:
 ```yaml
 stored_requests:
   http:
-    endpoint: http://stored-requests.prebid.com
-    amp_endpoint: http://stored-requests.prebid.com?amp=true
+    endpoint: https://stored-requests.prebid.com
+    amp_endpoint: https://stored-requests.prebid.com?amp=true
 
 ```
 
@@ -300,15 +300,15 @@ stored_requests:
     dbname: database-name
     query: SELECT id, requestData, 'request' as type FROM stored_requests WHERE id in %REQUEST_ID_LIST% UNION ALL SELECT id, impData, 'imp' as type FROM stored_imps WHERE id in %IMP_ID_LIST%;
   http:
-    endpoint: http://stored-requests.prebid.com
-    amp_endpoint: http://stored-requests.prebid.com?amp=true
+    endpoint: https://stored-requests.prebid.com
+    amp_endpoint: https://stored-requests.prebid.com?amp=true
   in_memory_cache:
     ttl_seconds: 300 # 5 minutes
     request_cache_size_bytes: 107374182 # 0.1GB
     imp_cache_size_bytes: 107374182 # 0.1GB
   http_events:
-    endpoint: http://stored-requests.prebid.com
-    amp_endpoint: http://stored-requests.prebid.com?amp=true
+    endpoint: https://stored-requests.prebid.com
+    amp_endpoint: https://stored-requests.prebid.com?amp=true
     refresh_rate_seconds: 60
     timeout_ms: 100
 ```

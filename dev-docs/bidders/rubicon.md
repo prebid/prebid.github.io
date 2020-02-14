@@ -5,10 +5,11 @@ description: Rubicon Project Prebid Bidder Adaptor
 hide: true
 biddercode: rubicon
 gdpr_supported: true
+usp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: video
-userIds: unifiedId/tradedesk, digitrust
+userIds: unifiedId/tradedesk, digitrust, liveIntent
 prebid_member: true
 ---
 

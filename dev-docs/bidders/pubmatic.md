@@ -6,9 +6,10 @@ hide: true
 biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true
+usp_supported: true
 coppa_supported: true
 schain_supported: true
-userIds: pubcommonId, unifiedId/tradedesk, digitrustId, id5Id, criteo, identityLink, liveIntent, parrable
+userIds: pubcommonId, unifiedId/tradedesk, digitrustId, id5Id, criteo, identityLink, liveIntent, parrable, britepoolId
 prebid_member: true
 ---
 

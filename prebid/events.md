@@ -8,12 +8,20 @@ sidebarType: 0
 # Prebid.org Events
 {:.no_toc}
 
+{% capture alert %}
+With due regard to the safe and healthy environment for attendees in Tokyo, Prebid.org has cancelled the Prebid.org Meetup and Leadership Summit, scheduled for February 20th in Tokyo.  The global concern regarding the coronavirus outbreak, travel concern and other circumstances, make it impossible for Prebid.org to hold the event.
+<br/><br/>
+We sincerely apologize for any inconvenience and Prebid.org will be working to reschedule the event for later in the year. Registered attendees will be notified of the new date as soon as possible.  Our sympathies at this time are with those affected by the coronavirus.
+{% endcapture %}
+{% include alerts/alert_important.html content=alert %}
+
 ## Upcoming events:
 
 {: .table .table-bordered .table-striped }
 | Date | City | Register |
 |------+------+----------|
-| Nov 19, 2019 | Hamburg, Germany | [EventBrite](https://www.eventbrite.com/e/prebid-meetup-and-leadership-summit-hamburg-19-november-2019-registration-75219209681) |
+| Feb 20, 2020 | Tokyo, Japan | CANCELLED |
+| Apr 30, 2020 | London, UK | Details coming soon |
 
 ## What happens at an event?
 
@@ -49,3 +57,4 @@ audience members in speaking their minds.
 | Date | City |
 |------+------|
 | Oct 24, 2019 | San Francisco, CA, USA |
+| Nov 19, 2019 | Hamburg, Germany |

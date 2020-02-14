@@ -47,7 +47,7 @@ Key links for integrating into the Prebid ecosystem.
 
 + [How to add a bid adapter]({{site.baseurl}}/dev-docs/bidder-adaptor.html)
 + [How to add an analytics adapter]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html)
-+ [Open source repository](http://github.com/prebid/Prebid.js)
++ [Open source repository](https://github.com/prebid/Prebid.js)
 
 ### Prebid Server - adding an adapter
 
