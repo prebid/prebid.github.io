@@ -26,7 +26,7 @@ sidebarType: 2
 
 {% capture gdprNote %}
 
-  In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports the [IAB Europe Transparency & Consent Framework](https:///advertisingconsent.eu/) (the "Framework").  
+  In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) (the "Framework").  
 
   This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in the EEA and signal approved vendors and, where necessary, pass consent, to demand sources and their vendors.  
 
