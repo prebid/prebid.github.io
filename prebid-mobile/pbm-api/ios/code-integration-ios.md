@@ -90,8 +90,8 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 
 For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)  
+[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 
 ### Resize ad slot
 
@@ -151,5 +151,5 @@ func adViewDidReceiveAd(_ bannerView: GADBannerView) {
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Prebid Mobile API - iOS](/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
 - [Prebid Utilities - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-util-ios.html)
