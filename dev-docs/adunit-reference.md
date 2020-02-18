@@ -113,6 +113,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Type    | Description                                                                                          |
 |----------------+----------+---------+------------------------------------------------------------------------------------------------------|
+| `min_height`   | Optional | Integer | The minimum height required for an image to serve (in pixels).                                       |
 | `min_width`    | Optional | Integer | The minimum width required for an image to serve (in pixels).                                        |
 | `ratio_height` | Required | Integer | This, combined with `ratio_width`, determines the required aspect ratio for an image that can serve. |
 | `ratio_width`  | Required | Integer | See above.                                                                                           |
@@ -248,7 +249,7 @@ pbjs.addAdUnits({
 
 ### Video
 
-<a name="adUnit-video-example-instream"> 
+<a name="adUnit-video-example-instream">
 
 #### Instream
 
@@ -292,7 +293,7 @@ pbjs.addAdUnits({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
         render: function(bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
@@ -313,11 +314,11 @@ For an example of an adpod video ad unit, see below.  For more detailed instruct
 var longFormatAdUnit = {
     video: {
        // required params
-       context: 'adpod', 
+       context: 'adpod',
        playerSize: [640, 480],
        adPodDurationSec: 300,
        durationRangeSec: [15, 30],
-   
+
        // optional params
        requireExactDuration: true,
        tvSeriesName: 'TvName',
@@ -467,7 +468,7 @@ pbjs.addAdUnits([{
 + [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
 + [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html)
 + [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
-+ [Prebid.org Native Examples]({{site.baseurl}}/examples/native/)
++ [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 
 
 

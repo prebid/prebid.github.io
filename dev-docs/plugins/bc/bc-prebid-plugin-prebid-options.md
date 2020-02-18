@@ -56,7 +56,7 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js
+https://acdn.adnxs.com/prebid/not-for-prod/3/prebid.js
 
 **Example:**
 
@@ -93,8 +93,6 @@ See [Setting Up Prebid Parameters](#set-up-params) below
 **Description:**
 
 Define aliases for bidders that are being specified in the biddersSpec. Using aliases allows to you to use the same bidder more than once with different targeting parameters.
-
-Define some behaviors for the platform and specific adapters. The basic structure is a ‘standard’ section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder.
 
 **Acceptable Values:**
 
@@ -327,8 +325,7 @@ Can contain the following fields:
 - `params`: JSON object containing parameters needed to make Google Ad Manager call. Parameters include:
   - `iu`: string (Required)
   - Google Ad Manager adUnit ID. For more information, see the Google Ad Manager documentation on iu.
-
-- `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params
+  - `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params.
 
 - `output`: (Required) String specifying the type of response expected. This value should be `"vast"`
 

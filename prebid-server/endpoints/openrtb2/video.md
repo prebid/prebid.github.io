@@ -102,7 +102,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | device.w | Optional  | `Integer` | Physical width of the screen in pixels. |
 | device.h | Optional  | `Integer` | Physical height of the screen in pixels. |
 | device.ifa | Optional  | `String` | ID sanctioned for advertiser use in the clear (i.e., not hashed). |
-| device.didshal | Optional  | `String` | Hardware device ID (e.g., IMEI); hashed via SHA1. |
+| device.didsha1 | Optional  | `String` | Hardware device ID (e.g., IMEI); hashed via SHA1. |
 | device.didmd5 | Optional  | `String` | Hardware device ID (e.g., IMEI); hashed via MD5. |
 | device.dpidsha1 | Optional  | `String` | Platform device ID (e.g., Android ID); hashed via SHA1. |
 | device.dpidmd5 | Optional  | `String` | Platform device ID (e.g., Android ID); hashed via MD5. |
@@ -110,7 +110,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | device.macmd5 | Optional  | `String` | MAC address of the device; hashed via MD5. |
 | pricegranularity | Optional  (recommended)   | `Object` | The price range in varying increments that the CPM of the ad unit will fall into. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. |
 | pricegranularity.precision | Optional  | `Object` | If precision is omitted, it will default to 2. |
-| pricegranularity.range | Optional  (recommended)   | `Array` | See [price range](#price-range) for details. |
+| pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 
 ### Pod Duration Range
 
@@ -119,7 +119,7 @@ The `podconfig.durationrangesec` is an array containing integers representing th
 ```javascript
 durationrangesec = [15, 30] 
 ```
-These values would indicate that ad durations of 15 ansd 30 seconds were allowed with this bid.
+These values would indicate that ad durations of 15 and 30 seconds were allowed with this bid.
 
 If `podconfig.requireexactduration` is set to `false`, then the ads durations will be rounded up to the closest value in the `durationrangesec` array. Implicit minimum bid duration is 0.
 
@@ -204,14 +204,14 @@ The `user` object has a `gdpr` subobject that contains data about the user's GDP
 
 ### Price Range
 
-The `pricegranularity` subobject `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. 
+The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. 
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| range | Optional | `Object` |  Container object price granualarity range. |
-| range.max | Optional | `Float` |   |
-| range.increment | Optional | `Float` |   |
+| range | Optional | `Object` |  Container object price granularity range. |
+| range.max | Required | `Float` |   |
+| range.increment | Required | `Float` |   |
 
 ## Examples
 

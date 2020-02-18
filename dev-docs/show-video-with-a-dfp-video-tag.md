@@ -11,7 +11,7 @@ sidebarType: 4
 {: .no_toc}
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
-from Google Ad Manager.  We'll use the [Video.js](http://videojs.com/) player and
+from Google Ad Manager.  We'll use the [Video.js](https://videojs.com/) player and
 the AppNexus bidder, but the principles are the same across
 different video players and video-enabled bidders.
 
@@ -22,7 +22,7 @@ different video players and video-enabled bidders.
 
 The code example below was built using the following libraries:
 
-+ [video.js](http://videojs.com/) version 5.9.2
++ [video.js](https://videojs.com/) version 5.9.2
 + MailOnline's [videojs-vast-vpaid plugin](https://github.com/MailOnline/videojs-vast-vpaid) version 2.0.2
 
 Also, you need to make sure to build Prebid.js with:
@@ -161,9 +161,9 @@ In the body of the page, the following HTML and JS will show the ad:
     data-setup='{}'
     width='640'
     height='480'>
-    <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
-    <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
-    <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
+    <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+    <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
+    <source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
   </video>
 </div>
 
@@ -184,7 +184,7 @@ In the body of the page, the following HTML and JS will show the ad:
 </script>
 ```
 
-If you have [set up your ad server line items and creatives correctly]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html), you should see an instream pre-roll video ad followed by the oceans video from the [video.js homepage](http://videojs.com/).
+If you have [set up your ad server line items and creatives correctly]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html), you should see an instream pre-roll video ad followed by the oceans video from the [video.js homepage](https://videojs.com/).
 
 ## Working Examples
 
@@ -194,22 +194,28 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 
 ### Using client-side adapters
 
-+ [video.js]({{site.github.url}}/examples/video/videojs-demo.html)
-+ [JWPlayer]({{site.github.url}}/examples/video/jwPlayerPrebid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/bc-demo.html)
-+ [Kaltura]({{site.github.url}}/examples/video/klt-demo.html)
-+ [Ooyala]({{site.github.url}}/examples/video/ooyala-demo.html)
++ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
++ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
++ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
++ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
++ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
++ [JWPlayer - Playlist]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html)
++ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
++ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
++ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
++ [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
 ### Using Prebid Server Video
 
-+ [JW Player]({{site.baseurl}}/examples/video/jwplayer-pbserver-demo.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/kaltura-pbserver-demo.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/videojs-pbserver-demo.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/ooyala-pbserver-demo.html)
++ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
++ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
++ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
++ [JW Player - Playlist]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html)
++ [JW Player - Player 7]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html)
++ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
++ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
++ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
-### All examples in one place
-
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
 
 ## Related Topics
 

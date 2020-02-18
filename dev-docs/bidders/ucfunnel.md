@@ -6,6 +6,7 @@ hide: true
 biddercode: ucfunnel
 media_types: video, native
 gdpr_supported: true
+usp_supported: true
 ---
 
 ### Bid params
