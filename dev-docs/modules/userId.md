@@ -376,14 +376,14 @@ pbjs.setConfig({
 
 ### LiveIntent ID
 
-LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, anonymized email hash in our graph that functions in cookie-challenged environments like mobile browsers.
+LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, anonymized email hash in our graph and functions in cookie-challenged environments and browsers.
 
 Add LiveIntent ID to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=liveIntentIdSystem
+gulp build --modules=userId,liveIntentIdSystem
 
-The `request.userId.lipb` object would then look like
+The `request.userId.lipb` object would look like:
 ```
 {
   "lipbid": "T7JiRRvsRAmh88",
@@ -391,15 +391,29 @@ The `request.userId.lipb` object would then look like
 }
 ```
 
-The adapters can be implemented to use the lipibid as the identifier, and segments to which that identifier is associated with.
+The adapters can be implemented to use the lipibid as the identifier and segments to which that identifier is associated with. To enable identity resolution for a specific publisher, LiveIntent builds a model on the backend with data collected via an additional call issued on each page load.
 
-For identity resolution to work for a specific publisher, LiveIntent has to build a model on the backend. In order to collect data for this model an additional call is issued on each page load.
+#### How does LiveIntent ID work
+
+The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier (LIID). In order to provide resolution one or more first-party cookies are used to create a stable identifier. 
+
+How does LiveIntent ID sub-module decide, which first-cookies to use:
+1. By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
+2. A publisher can also define in the configuration which additional first-party cookies should be used. These can be used in a combination with the LiveIntent first-party cookie.
+
+The LiveIntent ID sub-module sends the defined identifiers to the identity graph, which processes them and creates a stable identifier (LIID). The detailed description of the parameters being sent is described here: https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md
+
+For the identity resolution the LiveIntent ID sub-module makes a request to the LiveIntent’s identity resolution API, which returns a stable identifier and the audience segment(s) a user belongs to. The identifier and the segment are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to any buyers targeting the segment via a deal.
+
+The first-party cookie generation and identity resolution functionality is provided by the LiveConnect JS library, included within the LiveIntent ID sub-module. LiveIntent has created a shared library that is open source, available at https://www.npmjs.com/package/live-connect-js.
+
+The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
 #### LiveIntent ID Registration
 
-To leverage the LiveIntent ID, you need to first set up a first-party cookie sync with LiveIntent. Please reach out to peoplebased@liveintent.com for more information.
-
-The LiveIntent privacy policy is at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/).
+You are not required to register with LiveIntent to start using the LiveIntent ID sub-module. However, we do recommend reaching out to us at peoplebased@liveintent.com so that we can guide you through the optimal setup and the ways you can benefit from LiveIntent identity solutions:
+1. Providing buyers a stable identifier, which can solve cross-browser and cross-channel frequency capping challenges.
+2. Leveraging your first-party audiences to increase the value of your inventory.
 
 #### LiveIntent ID configuration
 
@@ -407,11 +421,17 @@ The LiveIntent privacy policy is at [https://www.liveintent.com/services-privacy
 |---|:---:|:---:|---:|---:|
 |`name`|Required | `String`|The name of this module.|`'liveIntentId'`|
 |`params`| Required|`Object`|Container of all module params.||
-|`params.publisherId`| Required|`String`| The unique identifier for each publisher.|`'12432415'`|
-|`params.appId`| Optional|`String`|LiveIntent's media business entity application id|`'a-0012'`|
+|`params.publisherId`|Required|`String`| The unique identifier for each publisher.|`'12432415'`|
+|`params.ajaxTimeout`|Optional|`Number`|This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 |`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response.|`'prebid'`|
 |`params.identifiersToResolve`|Optional|`Array[String]`|Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
 |`params.url`| Optional|`String`|Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
+|`params.providedIdentifierName`| Optional|`String`|This parameter should be used whenever a customer is able to provide the most stable identifier possible, e.g. a cookie which is set via HttpHeaders on the first party domain.|`'my-best-id'`|
+|`params.liCollectConfig`|Optional|`Object`|Container of all collector params.||
+|`params.liCollectConfig.fpiStorageStrategy`|Optional|`String`|This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
+|`params.liCollectConfig.fpiExpirationDays`|Optional|`Number`|The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
+|`params.liCollectConfig.collectorUrl`|Optional|`String`|The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
+|`params.liCollectConfig.appId`|Optional|`String`|LiveIntent's media business entity application id.|`'a-0012'`|
 
 #### LiveIntent ID examples
 
@@ -438,6 +458,34 @@ pbjs.setConfig({
             params: {
               publisherId: "9896876",
               identifiersToResolve: ["my-own-cookie"]
+            }
+        }]
+    }
+})
+```
+
+3. If lll the supported configuration params are passed, then the setup looks like this.
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "liveIntentId",
+            params: {
+              publisherId: "9896876",
+              identifiersToResolve: ["my-own-cookie"],
+              providedIdentifierName: "my-best-cookie",
+              url: "https://publisher.liveintent.com/idex",
+              partner: "prebid",
+              ajaxTimeout: 1000,
+              storage: {
+                expires: 3
+              },
+              liCollectConfig: {
+                fpiStorageStrategy: "cookie",
+                fpiExpirationDays: 730,
+                collectorUrl: "https://rp.liadm.com",
+                appId: "a-0012"
+              }
             }
         }]
     }
