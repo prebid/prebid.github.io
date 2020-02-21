@@ -1758,7 +1758,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `syncDelay`      | Integer | Delay in milliseconds for user syncing (both bid adapter user sync pixels and [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) ID providers) after the auction ends. Default: `3000`. Ignored if auctionDelay > 0. |
 | `auctionDelay`   | Integer | Delay in milliseconds of the auction to retrieve user ids via the [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) before the auction starts. Continues auction once all IDs are retrieved or delay times out. Does not apply to bid adapter user sync pixels. Default: `0`. |
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
-| `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters Default: `false`. |
+| `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
 
