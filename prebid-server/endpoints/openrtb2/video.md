@@ -19,16 +19,16 @@ This document describes the behavior of the Prebid Server `video` endpoint in de
 
 ## Overview
 
-Prebid Server (PBS) supports competitve separation for ad pod display from primary ad servers such as Freewheel and Google Ad Manager.  PBS, on receiving this endpoint, will pass default settings and `stored_request` parameters to one or more OpenRTB requests, which will then be sent to the appropriate SSPs. 
+Prebid Server (PBS) supports competitve separation for ad pod display from primary ad servers such as Freewheel and Google Ad Manager.  PBS, on receiving this endpoint, will pass default settings and `stored_request` parameters to one or more OpenRTB requests, which will then be sent to the appropriate SSPs.
 
 The process is similar to [Prebid.js client side](/prebid-video/video-long-form.html) support for this feature.
 
 ### Process
 
-1. Application makes request for a video stream. 
+1. Application makes request for a video stream.
 2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
-3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them. 
-4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache. 
+3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them.
+4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
 5. PBS generates key-value pairs that are comprised of price, category, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
 &nbsp;&nbsp;&nbsp;&nbsp;  
 &nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.   
@@ -43,11 +43,11 @@ A PBS generated key-value of  `hb_pb_cat_dur = 1200_399_30s` would indicate:
 &nbsp;&nbsp;&nbsp;&nbsp;   
 These key-values are returned to the SSAI server as part of the video response.   
 
-6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request. 
-7. The ad server returns the optimized pod. 
+6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request.
+7. The ad server returns the optimized pod.
 8. The SSAI server requests the creatives from prebid cache.  
-9. The SSAI server requests the content from the content host and stitches the creatives and content together. 
-10. The stitched stream is returned to the application. 
+9. The SSAI server requests the content from the content host and stitches the creatives and content together.
+10. The stitched stream is returned to the application.
 
 <br>
 <img src="/assets/images/flowcharts/pb-lfv-serverside.png">
@@ -88,11 +88,11 @@ These key-values are returned to the SSAI server as part of the video response.
 | content.len | Optional | `Integer` | The length of the content in seconds. |
 | content.livestream | Optional | `Integer` | The content mode indicator for VOD or Live. Supported values:  integer 0 = not live, 1 = content is live (e.g., stream, live blog). |
 | user | Optional  (recommended) | `Object` | Container object for the user of of the actual device. |
-| user.buyeruids | Optional  | `Object` |  Container objects for all the SSP UserIDs to send to the SSPs endpoint. See [buyeruids](#buyer-uids) for more details.  |
 | user.yob | Optional   | `Integer` |  Year of birth as a 4-digit integer.  |
 | user.gender | Optional   | `String` |  Gender, where “M” = male, “F” = female, “O” = known to be other (i.e., omitted is unknown).  |
 | user.keywords | Optional   | `String` |  Comma separated list of keywords, interests, or intent.  |
-| user.gdpr | Optional   | `Object` |  Container object for GDPR. See [GDPR](#gdpr) for more details.  |
+|user.ext.consent | Optional  | `String` |  String containing the data structure developed by the [GDPR Consent Working Group](https://iabtechlab.com/standards/gdpr-transparency-and-consent-framework/) under the auspices of IAB Europe. See the [Regulations](#price-range) section below for more details. |
+| user.ext.prebid.buyeruids | Optional   | `Object` |  Container objects for all the SSP UserIDs to send to the SSPs endpoint.  |
 | device | Optional  (recommended) | `Object` | Container object for device specific data. |
 | device.ua | Optional  | `String` | Browser user agent string. |
 | device.dnt | Optional  | `Integer` | 	Standard “Do Not Track” flag as set in the header by the browser, where 0 = tracking is unrestricted, 1 = do not track. |
@@ -111,13 +111,16 @@ These key-values are returned to the SSAI server as part of the video response.
 | pricegranularity | Optional  (recommended)   | `Object` | The price range in varying increments that the CPM of the ad unit will fall into. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. |
 | pricegranularity.precision | Optional  | `Object` | If precision is omitted, it will default to 2. |
 | pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
+| regs | Optional   | `Object` |  Container object for data related to various regulations. See the [Regulations](#price-range) section below for more details. |
+| regs.ext.gdpr | Optional   | `Integer` |  Enable the user to indicate whether GDPR is in effect. `0` for disabled, `1` for enabled.  The default setting is disabled. See the [Regulations](#price-range) section below for more details. |
+| reg.ext.us.privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf). See the [Regulations](#price-range) section below for more details. |
 
 ### Pod Duration Range
 
-The `podconfig.durationrangesec` is an array containing integers representing the range of ad durations allowed in the pod in seconds. For example: 
+The `podconfig.durationrangesec` is an array containing integers representing the range of ad durations allowed in the pod in seconds. For example:
 
 ```javascript
-durationrangesec = [15, 30] 
+durationrangesec = [15, 30]
 ```
 These values would indicate that ad durations of 15 and 30 seconds were allowed with this bid.
 
@@ -144,11 +147,11 @@ These are the parameters for the `pod` subobject:
 ### Video Protocols
 A streaming protocol is a standardized method for delivering multimedia (usually video or audio) over the internet. It defines a method for sending "chunks" of content from one device to another and subsequently the method for reassembling those "chunks" into playable content.
 
-To indicate which protocol or protocols you wish to use for content management, pass an array of integers, each integer representing a video protocol. The table below list the integer/video protocol relationship. 
+To indicate which protocol or protocols you wish to use for content management, pass an array of integers, each integer representing a video protocol. The table below list the integer/video protocol relationship.
 
 {: .table .table-bordered .table-striped }
 | Integer | Protocol  |
-| --- | --- | 
+| --- | --- |
 | 1  | VAST 1.0 |
 | 2  | VAST 2.0 |
 | 3  | VAST 3.0 |
@@ -161,7 +164,7 @@ To indicate which protocol or protocols you wish to use for content management, 
 | 10  | DAAST 1.0 Wrapper |
 
 ### Buyer UIDs
-The `user.buyeruids` is an optional, but recommended parameter. It is an object that contains all the SSP UserIDs to send to the SSPs endpoint. They are passed as key-value pairs: `{bidder_name:bidder_specific_userid}`. 
+The `user.ext.prebid.buyeruids` is an optional, but recommended parameter. It is an object that contains all the SSP UserIDs to send to the SSPs endpoint. They are passed as key-value pairs: `{bidder_name:bidder_specific_userid}`.
 
 These are the supported (registered) bidder names.  
 
@@ -169,7 +172,7 @@ These are the supported (registered) bidder names.
 - "adform"
 - "adkernelAdn"
 - "adtelligent"  
-- "appnexus" 
+- "appnexus"
 - "audienceNetwork"  
 - "beachfront"
 - "brightroll"
@@ -179,32 +182,19 @@ These are the supported (registered) bidder names.
 - "gumgum"
 - "ix"
 - "lifestreet"
-- "openx" 
+- "openx"
 - "pubmatic"  
 - "pulsepoint"
 - "rhythmone"
 - "rubicon"
 - "somoaudience"  
-- "sonobi" 
+- "sonobi"
 - "sovrn"
-- "yieldmo" 
-
-### GDPR
-
-General Data Protection Regulation (GDPR) is designed to protect all European Union citizens from privacy and data theft. For more information on how Prebid works with GDPR visit our page on the [GDPR module](/dev-docs/modules/consentManagement.html) 
-
-The `user` object has a `gdpr` subobject that contains data about the user's GDPR preferences. 
-
-{: .table .table-bordered .table-striped }
-| Param | Scope | Type | Description |
-| --- | --- | --- | --- |
-| user.gdpr | Optional | `Object` |  Container object describing user GDPR preferences. |
-| gdpr.consentrequired | Optional | `Boolean` |  Indicates whether GDPR is in effect. |
-| gdpr.consentstring | Optional | `String` |  String that contains the data structure developed by the GDPR Consent Working Group under the auspices of IAB Europe. |
+- "yieldmo"
 
 ### Price Range
 
-The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. 
+The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details.
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
@@ -212,6 +202,23 @@ The `pricegranularity` sub-object `range` describes the maximum price point for 
 | range | Optional | `Object` |  Container object price granularity range. |
 | range.max | Required | `Float` |   |
 | range.increment | Required | `Float` |   |
+
+### Regulations
+
+{% capture legalNotice %}
+
+  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation.  Please note that because every company and its collection, use, and storage of personal data is different, you should also seek independent legal advice relating to obligations under European and /or US regulations, including the General Data Protection Regulations (GDPR), the existing ePrivacy Directive and California Consumer Protection Act (CCPA). Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+  {% endcapture %}
+
+{% include /alerts/alert_important.html content=legalNotice %}
+
+In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and CCPA, Prebid Server supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) and the [CCPA Compliance Framework](https://www.iab.com/guidelines/ccpa-framework/).
+
+Publishers can enable GDPR regulations by setting `regs.ext.gdpr` to `1`. To disable GDPR, change the setting to `0`. The default setting is `0`.
+
+Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to one of the accepted string formats outlined in [IAB's CCPA Framework](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf) such as `1YNN`.
+
+
 
 ## Examples
 
@@ -285,7 +292,7 @@ The `pricegranularity` sub-object `range` describes the maximum price point for 
 
 ### Post Response
 
-The POST response contains an array of `adPod` objects which represents the `adPods` in the request. Each value of the `adPod ` object (`podid:1`, `podid:2`, etc) contain the key-value targeting for those bids and optionally any errors encountered. 
+The POST response contains an array of `adPod` objects which represents the `adPods` in the request. Each value of the `adPod ` object (`podid:1`, `podid:2`, etc) contain the key-value targeting for those bids and optionally any errors encountered.
 
 ```javascript
 {
@@ -343,16 +350,13 @@ The POST response contains an array of `adPod` objects which represents the `adP
 ```
 
 ## SSAI processing of the response
-The SSAI should take the key-values from the response `adPods.[].targeting.[]${key}` and pass it to the primary ad server as keywords. Because `adPods` do not have specific targeting, an `adPod` can target any bid as long as the bid duration matches that of the `adPod`. 
+The SSAI should take the key-values from the response `adPods.[].targeting.[]${key}` and pass it to the primary ad server as keywords. Because `adPods` do not have specific targeting, an `adPod` can target any bid as long as the bid duration matches that of the `adPod`.
 
 
-## Further Reading: 
+## Further Reading:
 
 [Prebid Server overview](/prebid-server/prebid-server-overview.html)  
 [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/auction.html)  
 [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
 [Freewheel module](/dev-docs/modules/freewheel.html)  
 [Ad Pod module](/dev-docs/modules/adpod.html)  
-
-
-
