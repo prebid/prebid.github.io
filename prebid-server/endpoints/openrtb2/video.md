@@ -112,7 +112,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | pricegranularity.precision | Optional  | `Object` | If precision is omitted, it will default to 2. |
 | pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 | regs | Optional   | `Object` |  Container object for data related to various regulations. See the [Regulations](#price-range) section below for more details. |
-| regs.ext.gdpr | Optional   | `Integer` |  Indicates whether GDPR in in effect. `0` for disabled, `1` for enabled.  See the [Regulations](#price-range) section below for more details. |
+| regs.ext.gdpr | Optional   | `Integer` |  Enable the user to indicate whether GDPR is in effect. `0` for disabled, `1` for enabled.  The default setting is disable. See the [Regulations](#price-range) section below for more details. |
 | reg.ext.us.privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf). See the [Regulations](#price-range) section below for more details. |
 
 ### Pod Duration Range
@@ -207,14 +207,14 @@ The `pricegranularity` sub-object `range` describes the maximum price point for 
 
 {% capture legalNotice %}
 
-  This resource should not be construed as legal advice and Prebid.org make no guarantees about compliance with any law or regulation.  Please note that because every company and its collection, use, and storage of personal data is different, you should also seek independent legal advice relating to obligations under European and /or US regulations, including the General Data Protection Regulations (GDPR), the existing ePrivacy Directive and California Consumer Protection Act (CCPA). Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation.  Please note that because every company and its collection, use, and storage of personal data is different, you should also seek independent legal advice relating to obligations under European and /or US regulations, including the General Data Protection Regulations (GDPR), the existing ePrivacy Directive and California Consumer Protection Act (CCPA). Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
   {% endcapture %}
 
 {% include /alerts/alert_important.html content=legalNotice %}
 
-In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and CCPA, Prebid Server supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) and the [CCPA Compliance Framework](https://www.iab.com/events/ccpa-compliance-framework-technical-webinar/).
+In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and CCPA, Prebid Server supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) and the [CCPA Compliance Framework](https://www.iab.com/guidelines/ccpa-framework/).
 
-Publishers can indicate if GDPR regulations are enabled by setting `regs.ext.gdpr` to `1`. To disable GDPR, change the setting to `0`.
+Publishers can enable GDPR regulations by setting `regs.ext.gdpr` to `1`. To disable GDPR, change the setting to `0`. The default setting is `0`.
 
 Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to one of the accepted string formats outlined in [IAB's CCPA Framework](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf) such as `1YNN`.
 
