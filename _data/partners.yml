@@ -123,6 +123,11 @@
   imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
 
+- company: Adomik
+  link: https://adomik.com/
+  imgURL: /assets/images/partners/community/Adomik-logo.png
+  type: community
+
 - company: Blockthrough
   link: https://blockthrough.com/
   imgURL: /assets/images/partners/community/Blockthrough-Logo.png
