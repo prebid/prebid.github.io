@@ -433,6 +433,14 @@ Note: If you receive an error during download you most likely selected a configu
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="atsAnalytics" class="analytics-check-box"> ATS Analytics
+    </label>
+  </div>
+</div>
+
 </div>
 <br/>
 <div class="row">
