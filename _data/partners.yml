@@ -33,6 +33,11 @@
   imgURL: /assets/images/partners/founders/xandr.png
   type: leader
   
+- company: Beachfront Media
+  link: https://www.beachfront.com/
+  imgURL: /assets/images/partners/tech/beachfront_logo.png
+  type: technology
+  
 - company: Conversant 
   link: https://www.conversantmedia.com/
   imgURL: /assets/images/partners/tech/conversant_logo.png
