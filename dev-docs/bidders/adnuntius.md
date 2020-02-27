@@ -22,9 +22,7 @@ gdpr_supported: false
 
 #### Targeting
 
-In order to send targeting to the adnuntius adserver we recommend that you read this documentation.
-
-[Adnuntius Documentation](https://docs.adnuntius.com/adnuntius-advertising/requesting-ads/intro)
+The [Adnuntius Documentation](https://docs.adnuntius.com/adnuntius-advertising/requesting-ads/intro) provides detailed information on sending targeting data to the Adnuntius adserver.
 
 
 #### Example
