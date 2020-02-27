@@ -5,8 +5,10 @@ description: Prebid Sortable Bidder Adaptor
 biddercode: sortable
 biddercode_longer_than_12: false
 hide: true
-media_types: banner
+media_types: banner, native, video
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
 ---
 
 **Table of Contents**
