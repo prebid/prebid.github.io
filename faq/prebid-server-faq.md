@@ -13,6 +13,16 @@ This page has answers to some frequently asked questions about Prebid Server. If
 * TOC
 {:toc}
 
+## Do we need to be a member of Prebid.org to submit a bidder adapter?
+
+Nope. The only approval process is a code review. There are separate instructions for:
+
+- [Prebid Server - Go](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)
+- [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
+
+As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+but it's not necessary for contributing code as a community member.
+
 ## How can I debug Prebid Server requests?
 
 + When invoking Prebid Server through Prebid.js, this can be done just by adding `?pbjs_debug=true` to the page URL.
@@ -53,3 +63,32 @@ pbjs.setConfig({
     }
 });
 ```
+## How do user ID cookies and ID syncing work in Prebid Server?
+
+There are 3 answers here. The easy answer is for requests coming into Prebid Server from the Prebid SDK - there's no concept of cookies there, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
+
+For other scenarios, Prebid Server sets up and manages a multi-vendor ID match table in the `uids` cookie in the host company's 
+domain. i.e. adnxs.com, rubiconproject.com, or whichever Prebid Server vendor you're utilizing. When the user has a `uids` cookie, 
+Prebid Server parses it and passes the vendor-specific IDs to the relevant server-side bid adapters.
+
+Syncing in the AMP scenario uses the [load-cookie.html](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) file that's part of 
+the Prebid Universal Creative package. When placed into an AMP-iframe, this file will call /cookie-sync and initiate a sync that 
+creates or updates the `uids` cookie.
+
+The most common source of requests for Prebid Server is from Prebid.js:
+
+0) Assume that the user doesn't have any cookies for the Prebid Server domain.
+1) User loads a page with Prebid.js that's going to call Prebid Server -- i.e. the pub has set up s2sConfig.
+2) Immediately after seeing that s2sConfig is setup, Prebid.js calls Prebid Server's `/cookie-sync` endpoint to initiate syncing
+3) Prebid Server sees there no `uids` cookie, so responds to the browser with a list of pixel syncs for bidders that need to be synced.
+4) Prebid.js places all of the pixels on the page, but in the meantime, also initiates the auction.
+5) Because the syncs haven't completed yet, the auction call to Prebid Server doesn't yet contain the uids cookie.
+6) The first auction happens without IDs
+7) At some point later, the pixels come back to Prebid Server through a /setuid redirect, setting (or updating) the `uids` cookie.
+8) The second page view will have the IDs available.
+
+There's a nuance here: the company that's hosting Prebid Server can configure it to read and utilize their exchange's 
+native cookie. i.e. if you're using Rubicon Project's Prebid Server, it can read their 'khaos' cookie, and if you're using 
+AppNexus' Prebid Server, it can read their 'uuid2' cookie. In other words, if the host company is an exchange and the user 
+has the exchange cookie, the host company will have an ID one page-view sooner than the other bidders. This gives a slight edge to
+the hosting company in some scenarios, but it's technically unavoidable and better for both buyers and sellers to have one ID available rather than zero.

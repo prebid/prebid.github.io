@@ -5,14 +5,13 @@ title: Gjirafa
 description: Prebid Gjirafa Bidder Adaptor
 hide: true
 biddercode: gjirafa
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 
 ### Note:
 The Gjirafa Header Bidding adapter requires to have: placementId param in place OR minCPM and minCPC params.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                                        | Example  | Type     |

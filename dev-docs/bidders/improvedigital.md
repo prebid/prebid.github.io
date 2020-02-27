@@ -3,19 +3,12 @@ layout: bidder
 title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
-biddercode_longer_than_12: true
 hide: true
 gdpr_supported: true
-media_types: native
+usp_supported: true
+media_types: banner, native, video
+schain_supported: true
 ---
-
-### Send All Bids Ad Server Keys:
-(truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
-
-`hb_bidder_improvedig`
-`hb_pb_improvedigital`
-`hb_adid_improvedigit`
-`hb_size_improvedigit`
 
 ### Bid params
 
@@ -29,6 +22,9 @@ Depending on your setup in our system, your placements will either have a global
 | `placementKey` | optional | The placement key for your placement.  Must be used with `publisherId`.                                                    | `'myMainBannerPlacement300x200'`                                       | `string`  |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
 | `size`         | optional | Single size filter.  Where a placement supports multiple sizes, this forces the response to feature only one of the multiple sizes. This parameter is ignored when `usePrebidSizes` is enabled (see `Sizes` section below) | `{ w:300, h:250 }`                                                     | `object`  |
+| `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
+| `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+
 
 ### Configuration
 

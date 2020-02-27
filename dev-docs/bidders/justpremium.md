@@ -4,13 +4,13 @@ title: Justpremium
 description: Prebid Justpremium Bidder Adaptor
 hide: true
 biddercode: justpremium
-biddercode_longer_than_12: false
 gdpr_supported: true
+usp_supported: true
 ---
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |

@@ -4,7 +4,6 @@ title: My6Sense
 description: My6Sense Prebid Bidder Adapter
 media_type: native
 biddercode: my6sense
-biddercode_longer_than_12: false
 hide: true
 gdpr_supported: true
 ---

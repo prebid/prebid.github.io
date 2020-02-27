@@ -1,5 +1,5 @@
 {% capture infoNote %}
-**Important:** DFP has a key-value key character [limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values) of up to **20 characters**. Some of the keys without truncation will exceed 20 chars. Prebid.js automatically truncates the key length to 20 characters. For example, `hb_adid_longBidderName` is truncated to `hb_adid_longBidderNa` (`me` is truncated). Note that the key is case-sensitive. To get the exact key-value keys for each bidder, find them at [Bidder Params](/dev-docs/bidders.html).
+**Important:** Google Ad Manager has a key-value key character [limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values) of up to **20 characters**. Some of the keys without truncation will exceed 20 chars. Prebid.js automatically truncates the key length to 20 characters. For example, `hb_adid_longBidderName` is truncated to `hb_adid_longBidderNa` (`me` is truncated). Note that the key is case-sensitive. To get the exact key-value keys for each bidder, find them at [Bidder Params](/dev-docs/bidders.html).
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}

@@ -4,11 +4,13 @@ title: Aardvark
 description: Prebid Aardvark Bidder Adaptor
 hide: true
 biddercode: aardvark
-biddercode_longer_than_12: false
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
+userIds: unifiedId/tradedesk
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description        | Example  | Type     |

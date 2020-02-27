@@ -2,15 +2,14 @@
 layout: bidder
 title: Clean Media
 description: Prebid CleanMedia Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
 biddercode: cleanmedia
-
-biddercode_longer_than_12: false
+hide: true
+media_types: banner, video
+gdpr_supported: true
+schain_supported: true
+usp_supported: true
+userIds: unifiedId/tradedesk, id5Id
+aliasCode: gamoshi
 ---
 
 ### Bid params
@@ -19,5 +18,3 @@ biddercode_longer_than_12: false
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
-
-CleanMedia is an aliased bidder for Gamoshi

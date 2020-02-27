@@ -5,6 +5,8 @@ description: Prebid Video
 sidebarType: 6
 ---
 
+<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
+
 # Prebid Video Ads
 {:.no_toc}
 
@@ -15,7 +17,7 @@ Video ads are supported by Prebid.js. Prebid Server support is coming soon.
 ### Adops
 
 - [Prebid.js video overview](/prebid-video/video-overview.html)
-- [Show video ads in DFP](/dev-docs/show-video-with-a-dfp-video-tag.html)
+- [Show video ads in Google Ad Manager](/dev-docs/show-video-with-a-dfp-video-tag.html)
 
 ### Developers
 
@@ -40,7 +42,9 @@ var dynamicTableContents=[];
 {% endif %}
 {% endfor %}
 </script>
-<script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable" data-array="dynamicTableContents"></script>
+<script>
+  writeDynamicTable({div: "dynamicTable", data:"dynamicTableContents"});
+</script>
 
 
 ### Prebid.js bid adapters that support only outstream video ads
@@ -60,4 +64,6 @@ var outstreamTableContents=[];
 {% endif %}
 {% endfor %}
 </script>
-<script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable-outstream" data-array="outstreamTableContents"></script>
+<script>
+  writeDynamicTable({div: "dynamicTable-outstream", data:"outstreamTableContents"});
+</script>
