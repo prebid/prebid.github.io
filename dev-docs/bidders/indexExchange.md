@@ -363,7 +363,7 @@ to `'ix'` across all ad units that bids are being requested for does not exceed 
 
 ### Time-To-Live (TTL)
 
-All bids received from IX have a TTL of 35 seconds, after which time they become
+All bids received from IX have a TTL of 300 seconds, after which time they become
 invalid.
 
 If an invalid bid wins, and its associated ad is rendered, it will not count
