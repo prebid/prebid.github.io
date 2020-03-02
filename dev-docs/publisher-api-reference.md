@@ -59,6 +59,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [COPPA](#setConfig-coppa)
+    * [first party data](#setConfig-fpd)
     * [cache](#setConfig-vast-cache)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
@@ -1275,13 +1276,14 @@ Core config:
 + [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [COPPA](#setConfig-coppa)
++ [First Party Data](#setConfig-fpd)
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
-+ [Currency module](/dev-docs/modules/currency.html#currency-config-options)
++ [Currency module](/dev-docs/modules/currency.html)
 + [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
 + [User ID module](/dev-docs/modules/userId.html#configuration)
 + [Adpod](/dev-docs/modules/adpod.html)
@@ -1295,7 +1297,7 @@ Debug mode can be enabled permanently in a page if desired. In debug mode,
 Prebid.js will post additional messages to the browser console and cause Prebid Server to
 return additional information in its response. If not specified, debug is off.
 Note that debugging can be specified for a specific page view by adding
-`pbjs_debug=true` to the URL's query string. e.g. <a href="{{ site.github.url }}/examples/pbjs_demo.html?pbjs_debug=true" class="btn btn-default btn-sm" target="_blank">/pbjs_demo.html?pbjs_debug=true</a> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
+`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
 
 Turn on debugging permanently in the page:
 {% highlight js %}
@@ -2124,6 +2126,82 @@ The flag may be passed to supporting adapters with this config:
 {% highlight js %}
 pbjs.setConfig({coppa: true});
 {% endhighlight %}
+
+<a name="setConfig-fpd" />
+
+#### First Party Data
+
+A number of adapters support taking key/value pairs as arguments, but they're all different. For example:
+
+- RubiconProject takes `keywords`, `inventory` and `visitor` parameters
+- AppNexus takes `keywords` and `user`
+- OpenX takes `customParams`
+
+This feature allows publishers a way to specify key/value data in one place where each compatible bid adapter
+can read it.
+
+{: .alert.alert-warning :}
+Not all bid adapters currently support reading first party data in this way, but support should increase over time.
+
+**Scenario 1** - Global (cross-adunit) First Party Data open to all bidders
+
+{% highlight js %}
+pbjs.setConfig({
+   fpd: {
+       context: {
+           keywords: ["power tools"],
+           search: "drill",
+           content: { userrating: 4 },
+           data: {
+               pageType: "article",
+               category: "tools"
+           }
+        },
+        user: {
+           keywords: ["a","b"],
+           gender: "M",
+           yob: "1984",
+           geo: { country: "ca" },
+           data: {
+              registered: true,
+              interests: ["cars"]
+           }
+        }
+    }
+});
+{% endhighlight %}
+
+{: .alert.alert-info :}
+The First Party Data JSON structure reflects the OpenRTB standard. Arbitrary values should go in context.data or
+user.data. Keywords, search, content, gender, yob, and geo are special values in OpenRTB.
+
+**Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
+
+If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](#module_pbjs.setBidderConfig) function like this:
+
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ['bidderA', 'bidderB'],
+   config: {
+       fpd: {
+           context: {
+               data: {
+                  pageType: "article",
+                  category: "tools"
+               }
+            },
+            user: {
+               data: {
+                  registered: true,
+                  interests: ["cars"]
+               }
+          }
+      }
+   }
+});
+{% endhighlight %}
+
+**Scenario 3** - See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 
 <a name="setConfig-vast-cache" />
 

@@ -5,6 +5,7 @@ description: Prebid Vuble Bidder Adaptor
 hide: true
 biddercode: vuble
 media_types: video
+gdpr_supported: true
 ---
 
 ### Note:
