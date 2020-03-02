@@ -36,6 +36,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Sortable | Contact vendor | [Website](https://www.sortable.com) |
 | Sovrn | <a href="https://www.sovrn.com/contact/">Contact vendor</a> | [Website](https://www.sovrn.com/analytics/)|
 | STAQ | <a href="https://www.staq.com/contact">Contact vendor</a> | [Website](https://www.staq.com/)|
+| ucfunnel | Contact vendor | [Website](https://www.ucfunnel.com/)|
 | Vuble | Contact vendor | [Website](https://vuble.tv/us/prebid/) |
 | Yieldone | Contact vendor | [Website](https://www.platform-one.co.jp/) |
 | YuktaMedia Analytics | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) |

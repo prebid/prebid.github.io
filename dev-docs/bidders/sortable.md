@@ -4,8 +4,10 @@ title: Sortable
 description: Prebid Sortable Bidder Adaptor
 biddercode: sortable
 hide: true
-media_types: banner
+media_types: banner, native, video
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
 prebid_member: true
 ---
 

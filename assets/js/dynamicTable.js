@@ -72,10 +72,10 @@ function writeDynamicTable(args) {
   var idx=0;
   for (var r = 0; r < numRows; r++) {
     var tr = document.createElement('tr');
-    tr.setAttribute('class','centered');
+    tr.setAttribute('class','centeredFixedHeight');
     for (var c = 0; c < numCols; c++) {
         var td = document.createElement('td');
-	td.setAttribute('class','centered');
+	td.setAttribute('class','centeredFixedHeight');
 	if (sortType == "colFirst") {
 		idx=(r + (c*numRows));
 	} else {
