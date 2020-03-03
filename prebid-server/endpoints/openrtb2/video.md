@@ -141,7 +141,7 @@ These are the parameters for the `pod` subobject:
 | podconfig.pods | Required | `Object` |  Container object describing the adPod(s) to be requested. |
 | pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   <br>**Recommendation**: Order these numerically, with increment of 1. |
 | pod.adpoddurationsec | Required | `Integer` |  Duration of the adPod. |
-| pod.configid | Required | `Integer` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
+| pod.configid | Required | `String` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
 
 
 ### Video Protocols
