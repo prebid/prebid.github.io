@@ -138,6 +138,11 @@
   imgURL: /assets/images/partners/community/Adomik-logo.png
   type: community
 
+- company: Audigent
+  link: https://audigent.com/
+  imgURL: /assets/images/partners/community/audigent_logo.png
+  type: community
+
 - company: Blockthrough
   link: https://blockthrough.com/
   imgURL: /assets/images/partners/community/Blockthrough-Logo.png
