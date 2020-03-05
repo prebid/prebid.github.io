@@ -1444,6 +1444,7 @@ The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher w
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
 | `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
+| `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. |
 
 ##### Details on the bidLimit setting
 
