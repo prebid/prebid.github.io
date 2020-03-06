@@ -6,6 +6,7 @@ hide: true
 biddercode: deepintent
 media_types: banner
 gdpr_supported: false
+usp_supported: true
 ---
 
 ### Bid Params
