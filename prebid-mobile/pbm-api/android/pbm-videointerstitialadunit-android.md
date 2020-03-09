@@ -38,7 +38,7 @@ VideoInterstitialAdUnit("configId");
 
 ## Methods
 
-`VideoInterstitialAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html) object.
+`VideoInterstitialAdUnit` inherits all methods from the [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) object.
 
 
 
