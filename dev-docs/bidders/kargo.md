@@ -5,6 +5,7 @@ description: Prebid Kargo Bidder Adaptor
 hide: true
 biddercode: kargo
 userIds: unifiedId/tradedesk
+usp_supported: true
 ---
 
 ### Note:

@@ -31,9 +31,8 @@ Companies join Prebid.org because they want to take an active role in supporting
 
 ## How To Join
 
-1. Download and review the [Prebid.org Bylaws](http://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
-2. Complete the [Prebid.org Membership Agreement](https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=9c0dbc9c-3583-46af-a226-240b3e9fcea3&env=na2
-).
+1. Download and review the [Prebid.org Bylaws](https://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
+2. Complete the [Prebid.org Membership Agreement](https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=2208cbf4-d455-4c6b-ba4f-f00e3e0b4cda&env=na3-eu1&acct=2160069d-b42e-4c0a-9528-3a58d1c58bf9&v=2).
 3. Prebid will consider your membership application.
 
 <hr>

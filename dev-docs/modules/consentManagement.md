@@ -19,7 +19,7 @@ sidebarType : 1
 
 This consent management module is designed to support the EU General Data Protection Regulation ([GDPR](https://www.iab.com/topics/consumer-privacy/gdpr/))
 
-This module works with supported [Consent Management Platforms](https://advertisingconsent.eu/cmp-list/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
+This module works with supported [Consent Management Platforms](https://www.cmswire.com/information-management/what-is-a-consent-management-platform/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
 {: .alert.alert-info :}
 See also the [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html) for supporting the California Consumer Protection Act (CCPA)
