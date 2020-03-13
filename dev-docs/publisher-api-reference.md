@@ -42,6 +42,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
+    * [deviceAccess](#setConfig-deviceAcess)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
     * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
     * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
@@ -1260,6 +1261,7 @@ See below for usage examples.
 Core config:
 
 + [Debugging](#setConfig-Debugging)
++ [Device Access](#setConfig-deviceAccess)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
@@ -1306,6 +1308,18 @@ pbjs.setConfig({ debug: true });
 
 {: .alert.alert-warning :}
 Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
+
+<a name="setConfig-deviceAccess" />
+
+#### Device Access
+
+You can prevent Prebid.js from reading or writing cookies or HTML localstorage by setting this flag:
+
+{% highlight js %}
+pbjs.setConfig({ deviceAccess: false });
+{% endhighlight %}
+
+This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read or write the user's device.
 
 <a name="setConfig-Bidder-Timeouts" />
 
