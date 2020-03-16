@@ -16,4 +16,4 @@ usp_supported: true
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                                    | Example    | Type     |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
-| `siteId`    | required | Publisher  GUID from 33Across                                                                                                  | `'vi-site-id'` | `string` |
+| `siteId`    | required | Publisher site ID from Valueimpression                                                                                         | `'vi-site-id'` | `string` |
