@@ -9,7 +9,6 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 coppa_supported: true
----
 
 ### Bid Params
 

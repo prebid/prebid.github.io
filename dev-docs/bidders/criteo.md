@@ -9,14 +9,19 @@ gdpr_supported: true
 usp_supported: true
 prebid_member: true
 ---
+### Note
+{: .alert.alert-warning :}
+For Native Ads, in order to avoid further decoding issues of special characters, the assets need to be sent as placeholders. 
+That means, `sendId: true` becomes mandatory for all fields receiving URLs, notably: `icon`, `image`, `clickUrl`, `privacyLink`, `privacyIcon`.
+
+See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                                                                          | Example                                       | Type       |
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
-| `zoneId`          | required | The zone ID from Criteo. Can be replaced by `networkId` when using zone matching.                                    | `234234`                                      | `integer`  |
-| `networkId`       | optional | The network ID from Criteo.Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
+| `networkId`       | required | The network ID from Criteo.Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
 | `nativeCallback`  | optional | Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
 | `integrationMode` | optional | Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
 

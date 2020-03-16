@@ -21,7 +21,7 @@ This endpoint runs an auction with the given OpenRTB 2.5 bid request.
 
 ### Sample request
 
-The [Prebid sample ad]({{site.baseurl}}/examples/pbjs_demo.html) can be loaded from the JSON found in the [prebid-test-ad.json](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json) file on the Prebid Server Github page.  Other examples can be found in the [exemplary directory](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary) in the same Github repo. 
+The [Prebid sample ad](/dev-docs/examples/basic-example.html) can be loaded from the JSON found in the [prebid-test-ad.json](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json) file on the Prebid Server Github page.  Other examples can be found in the [exemplary directory](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary) in the same Github repo. 
 
 ### Sample Response
 
@@ -259,7 +259,7 @@ For example, a request may return this in `response.ext`
     ],
     "rubicon": [
       {
-        "code": 1, 
+        "code": 1,
         "message": "The request exceeded the timeout allocated"
       }
     ]
