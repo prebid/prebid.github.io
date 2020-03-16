@@ -50,6 +50,13 @@ p {
   padding: 8px;
 }
 
+.centeredFixedHeight {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  height: 150px;
+}
+
 /* Links */
 /*#3498db*/
 a {
@@ -1073,7 +1080,6 @@ pre {
 .carousel-control-next {
   right: -15%;
 }
-
 
 /************ pbTable ****************/
 

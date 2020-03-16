@@ -252,6 +252,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="atsAnalytics" class="analytics-check-box"> ATS Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="datablocks" class="analytics-check-box"> Datablocks Analytics
     </label>
   </div>
@@ -405,6 +413,14 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="ucfunnel" class="analytics-check-box" /> ucfunnel Analytics
     </label>
   </div>
 </div>

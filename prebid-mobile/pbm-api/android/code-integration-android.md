@@ -64,8 +64,8 @@ BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 3
 
 For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/android/banneradunit-android.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+[Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)  
+[Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 
 ### Resize ad slot
 

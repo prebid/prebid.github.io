@@ -21,7 +21,7 @@ We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appne
 Similarly, we'll use Google Ad Manager as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
 {: .alert.alert-success :}
-For a full working code sample using the techniques described on this page, see the [Prebid Native Example]({{site.github.url}}/examples/native/native-demo.html).
+For a full working code sample using the techniques described on this page, see the [Prebid Native Example](/dev-docs/examples/native-ad-example.html).
 
 * TOC
 {:toc}
@@ -61,7 +61,7 @@ Keep the following prerequisites in mind during the implementation:
 
 ## Implementation
 
-This section describes the implementation using code samples, but ignores some of the details that are common to all Prebid.js setups.  <!-- For full working example code, see the [Prebid Native example]({{site.github.url}}/dev-docs/examples/show-native-ads.html). -->
+This section describes the implementation using code samples, but ignores some of the details that are common to all Prebid.js setups.  <!-- For full working example code, see the [Prebid Native example](/examples/native-ad-example.html). -->
 
 ### 1. Set up your ad slot
 
