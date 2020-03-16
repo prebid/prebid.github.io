@@ -6,6 +6,7 @@ hide: true
 biddercode: lifestreet
 media_types: video
 gdpr_supported: true
+usp_supported: true
 ---
 
 
