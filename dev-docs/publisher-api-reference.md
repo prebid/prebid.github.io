@@ -1319,7 +1319,7 @@ You can prevent Prebid.js from reading or writing cookies or HTML localstorage b
 pbjs.setConfig({ deviceAccess: false });
 {% endhighlight %}
 
-This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read or write the user's device.
+This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
 
 <a name="setConfig-Bidder-Timeouts" />
 

@@ -16,7 +16,7 @@ sidebarType : 1
 {: toc }
 
 {: .alert.alert-warning :}
-Note that Prebid.org is working on support for reading and parsing TCF 2.0 consent strings. See the [blog post](/blog/tcf2) for timelines.
+Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](/blog/tcf2) for timelines.
 
 ## Overview
 
@@ -47,7 +47,7 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 ## Page Integration
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB 1.1 TCF spec](https://iabeurope.eu/tcf-v1/) or [IAB TCF 2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
+To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/tcf-v1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
 
 Though implementation details for the CMP are not covered by Prebid.org, we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes.
 
@@ -65,18 +65,18 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr | `Object` | | |
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
-| gdpr.defaultGdprScope | `boolean` | (TCF2 only) Defines what to send to adapters in gdprApplies when the TCF string isn't available. | `true` |
-| gdpr.allowAuctionWithoutConsent | `boolean` | (TCF 1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
+| gdpr.defaultGdprScope | `boolean` | (TCF v2.0 only) Defines whether GDPR is in scope, which determines what to send to adapters in gdprApplies when the TCF string isn't available. | `true` |
+| gdpr.allowAuctionWithoutConsent | `boolean` | (TCF v1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
-| gdpr.consentData.getTCData.tcString | `string` | (TCF2 only) Base64url-encoded TCF 2.0 string with segments. | |
-| gdpr.consentData.getTCData.gdprApplies | `boolean` | (TCF2 only) Whether or not this pageview is in GDPR scope. | |
-| gdpr.consentData.getConsentData.gdprApplies | `boolean` | (TCF1.1 only) Whether or not this pageview is in GDPR scope. | |
-| gdpr.consentData.getConsentData.hasGlobalScope | `boolean` | (TCF1.1 only) True if consent data is global, false if it's publisher specific. | |
-| gdpr.consentData.getConsentData.consentData | `string` | (TCF1.1 only) Encoded TCF 1.1 string. | |
-| gdpr.consentData.getVendorConsents.metadata | `string` | (TCF1.1 only) Encoded TCF 1.1 string. | |
+| gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
+| gdpr.consentData.getTCData.gdprApplies | `boolean` | (TCF v2.0 only) Defines whether or not this pageview is in GDPR scope. | |
+| gdpr.consentData.getConsentData.gdprApplies | `boolean` | (TCF v1.1 only) Defines whether or not this pageview is in GDPR scope. | |
+| gdpr.consentData.getConsentData.hasGlobalScope | `boolean` | (TCF v1.1 only) True if consent data is global, false if it's publisher specific. | |
+| gdpr.consentData.getConsentData.consentData | `string` | (TCF v1.1 only) Encoded TCF v1.1 string. | |
+| gdpr.consentData.getVendorConsents.metadata | `string` | (TCF v1.1 only) Encoded TCF v1.1 string. | |
 
 {: .alert.alert-info :}
-NOTE: The `allowAuctionWithoutConsent` parameter supported for TCF 1.1 refers to the entire consent string, not to any individual consent option. Prebid.js does not parse the GDPR consent string, so it doesn't know if the user has consented to any particular action.
+NOTE: The `allowAuctionWithoutConsent` parameter supported for TCF v1.1 refers to the entire consent string, not to any individual consent option. Prebid.js does not parse the GDPR consent string, so it doesn't know if the user has consented to any particular action.
 
 A related parameter is `deviceAccess`, which is at the global level of Prebid.js configuration because it can be used GDPR, CCPA, or custom privacy implementations:
 
@@ -86,7 +86,7 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 | deviceAccess | `boolean` | If false, Prebid.js will prevent adapters and modules from reading and setting cookies and HTML local storage. Defaults to `true`. | `false` |
 
 
-### TCF 2.0 Examples
+### TCF v2.0 Examples
 
 Example 1: IAB CMP using custom timeout and defining GDPR as in-scope by default
 
@@ -129,9 +129,9 @@ Example 2: Static CMP using custom data passing.
      });
 {% endhighlight %}
 
-### TCF 1.1 Examples
+### TCF v1.1 Examples
 
-Example 3: IAB CMP using custom timeout and cancel-auction options.
+Example 1: IAB CMP using custom timeout and cancel-auction options.
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -149,7 +149,7 @@ Example 3: IAB CMP using custom timeout and cancel-auction options.
      });
 {% endhighlight %}
 
-Example 4: Static CMP using custom data passing.
+Example 2: Static CMP using custom data passing.
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -188,7 +188,7 @@ gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
 ## Adapter Integration
 
 {: .alert.alert-info :}
-Note that Prebid.js adapters don't need to change to support TCF 2.0 -- the consent string is passed through the same bidrequest location. The bidder's endpoint, however, will need to change to support TCF 2.0.
+Prebid.js adapters don't need to change to support TCF v2.0 -- the consent string is passed through the same bidrequest location. The bidder's endpoint, however, will need to change to support TCF v2.0.
 
 If you are submitting changes to an adapter to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
 
@@ -270,26 +270,22 @@ Depending on your needs, you could include the consent information in a query of
 
 ### Page Control of Consented Activities
 
-Page javascript can prevent Prebid.js from performing various activities that come under the scope of GDPR controls.
-
-Since header bidding isn't the only service that falls under GDPR scope, the page may already have parsed the TCF string and stored it.
+Page JavaScript can prevent Prebid.js from performing various activities that come under the scope of GDPR controls. Since header bidding isn't the only service that falls under GDPR scope, the page may already have parsed the TCF string and stored it.
 
 Here are some things that publishers can do to control various activities:
 
-1) If the current page view is in GDPR scope, make sure the adapters are aware of it even on the first page where CMP hasn't been activated:
+1. If the current page view is in GDPR scope, make sure the adapters are aware of it even on the first page where CMP hasn't been activated by setting the defaultGdprScope:
+    `consentManagement.gdpr.defaultGdprScope: true`
 
-- set consentManagement.gdpr.defaultGdprScope: true
+2. If the user hasn't consented to Purpose 1:
+  - Set [deviceAccess](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess): false
+  - Don't enable [userSync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
+  - Don't enable [userId](/dev-docs/modules/userId.html) modules
 
-2) If the user hasn't consented to Purpose 1
-
-- set [deviceAccess](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess): false
-- don't enable [userSync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
-- don't enable [userId](/dev-docs/modules/userId.html) modules
-
-3) If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
+3. If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
 
 
-### Publishers not using an IAB-Compliant CMP
+### Publishers Not Using an IAB-Compliant CMP
 
 Prebid.js and much of the ad industry rely on the IAB CMP standard for GDPR support, but there might be some publishers who have implemented a different approach to meeting the privacy rules. Those publishers can utilize Prebid.js and the whole header bidding ecosystem by building a translation layer between their consent method and the IAB method.
 
@@ -384,7 +380,7 @@ This should be false if there was some error in the consent data; otherwise set 
 **_cmpLoaded_**  
 This should be be set to true once the parameters listed above are processed.
 
-## Adapters Supporting TCF 1.1:
+## Adapters Supporting TCF v1.1:
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -408,7 +404,7 @@ var idx_gdpr=0;
         </script>
 </div>
 
-## Adapters Supporting TCF 2.0:
+## Adapters Supporting TCF v2.0:
 
 <script type="text/javascript">
 var adaptersSupportingGdpr2=[];
@@ -429,4 +425,3 @@ var idx_gdpr=0;
            writeDynamicTable({div: "adaptersTableGdpr2", data: "adaptersSupportingGdpr2", sort: "rowFirst", striped: false} );
         </script>
 </div>
-
