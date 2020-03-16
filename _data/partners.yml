@@ -1,13 +1,3 @@
-- company: Xandr
-  link: https://www.xandr.com/platform/
-  imgURL: /assets/images/partners/founders/xandr.png
-  type: founder
-  
-- company: Rubicon 
-  link: https://rubiconproject.com/header-bidding-for-publishers/
-  imgURL: /assets/images/partners/founders/rubicon.png
-  type: founder
-  
 - company: MediaMath 
   link: https://www.mediamath.com/
   imgURL: /assets/images/partners/leader/MediaMath-wordmark.png
@@ -22,6 +12,11 @@
   link: https://pubmatic.com/products/header-bidding/
   imgURL: /assets/images/partners/leader/pubmatic.png
   type: leader
+
+- company: Rubicon Project
+  link: https://rubiconproject.com/header-bidding-for-publishers/
+  imgURL: /assets/images/partners/founders/rubicon.png
+  type: leader
   
 - company: SpotX 
   link: https://spotx.tv
@@ -33,6 +28,21 @@
   imgURL: /assets/images/partners/leader/TTD_logo.png
   type: leader
 
+- company: Xandr
+  link: https://www.xandr.com/platform/
+  imgURL: /assets/images/partners/founders/xandr.png
+  type: leader
+  
+- company: Beachfront Media
+  link: https://www.beachfront.com/
+  imgURL: /assets/images/partners/tech/beachfront_logo.png
+  type: technology
+  
+- company: Conversant 
+  link: https://www.conversantmedia.com/
+  imgURL: /assets/images/partners/tech/conversant_logo.png
+  type: technology
+  
 - company: Criteo 
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
@@ -48,25 +58,30 @@
   imgURL: /assets/images/partners/tech/marfeel.png
   type: technology
   
-- company: Oath 
-  link: https://www.oath.com/advertising/platforms/
-  imgURL: /assets/images/partners/tech/oath.png
-  type: technology
-  
 - company: PubNative 
   link: https://pubnative.net/
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
-  type: technology
-
-- company: Sortable 
-  link: https://www.sortable.com/
-  imgURL: /assets/images/partners/tech/sortable.png
   type: technology
 
 - company: StreamAMP 
   link: https://streamamp.com/
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
   type: technology
+
+- company: Tapad 
+  link: https://tapad.com/
+  imgURL: /assets/images/partners/tech/tapad_logo.png
+  type: technology
+
+- company: Verizon Media 
+  link: https://www.verizonmedia.com/advertising
+  imgURL: /assets/images/partners/tech/verizon_logo.png
+  type: technology
+  
+- company: Advance Local Media 
+  link: https://advancelocal.com
+  imgURL: /assets/images/partners/publisher/advancelocal_logo.png
+  type: publisher
 
 - company: CafeMedia 
   link: https://www.cafemedia.com/
@@ -76,6 +91,11 @@
 - company: Chegg
   link: https://www.chegg.com/
   imgURL: /assets/images/partners/publisher/chegg.png
+  type: publisher
+  
+- company: Glewed TV
+  link: https://www.glewed.tv/
+  imgURL: /assets/images/partners/publisher/glewed_logo.png
   type: publisher
   
 - company: Hive Media
@@ -108,6 +128,21 @@
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
   type: publisher
 
+- company: Sortable 
+  link: https://www.sortable.com/
+  imgURL: /assets/images/partners/publisher/sortable.png
+  type: publisher
+
+- company: Adomik
+  link: https://adomik.com/
+  imgURL: /assets/images/partners/community/Adomik-logo.png
+  type: community
+
+- company: Audigent
+  link: https://audigent.com/
+  imgURL: /assets/images/partners/community/audigent_logo.png
+  type: community
+
 - company: Blockthrough
   link: https://blockthrough.com/
   imgURL: /assets/images/partners/community/Blockthrough-Logo.png
@@ -136,6 +171,11 @@
 - company: ID5
   link: https://id5.io
   imgURL: /assets/images/partners/community/ID5-Logo.png
+  type: community
+
+- company: LiveIntent
+  link: https://www.liveintent.com
+  imgURL: /assets/images/partners/community/liveintent_logo.png
   type: community
 
 - company: Publica

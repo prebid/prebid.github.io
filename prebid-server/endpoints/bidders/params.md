@@ -23,10 +23,9 @@ For example:
 }
 ```
 
-The exact contents of the json-schema values can be found [here](../../../static/bidder-params).
+The exact contents of the json-schema values can be found [here](https://github.com/prebid/prebid-server/tree/master/static).
 
 ### See also
 
-- [JSON schema homepage](http://json-schema.org/specification-links.html#draft-4)
+- [JSON schema homepage](https://json-schema.org/specification-links.html#draft-4)
 - [Understanding JSON schema](https://spacetelescope.github.io/understanding-json-schema/)
-

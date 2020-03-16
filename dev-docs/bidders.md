@@ -61,7 +61,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 | `size`   | String  | Size of the bid creative; concatenation of width and height by 'x'                                                                                                | `"300x250"`                                                             |
 | `width`  | Integer | Width of the bid creative in pixels                                                                                                                               | `300`                                                                   |
 | `height` | Integer | Height of the bid creative in pixels                                                                                                                              | `250`                                                                   |
-| `adTag`  | String  | Creative's payload in HTML                                                                                                                                        | `"<html><body><img src=\"http://cdn.com/creative.png\"></body></html>"` |
+| `adTag`  | String  | Creative's payload in HTML                                                                                                                                        | `"<html><body><img src=\"https://cdn.com/creative.png\"></body></html>"` |
 
 <a name="bidders-with-video-and-native-demand"></a>
 <a name="bidder-video-native"></a>
