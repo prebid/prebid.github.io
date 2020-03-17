@@ -6,7 +6,9 @@ biddercode: nobid
 hide: true
 media_types: banner
 gdpr_supported: true
----
+usp_supported: true
+schain_supported: true
+coppa_supported: true
 
 ### Bid Params
 

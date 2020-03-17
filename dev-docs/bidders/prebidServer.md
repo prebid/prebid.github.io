@@ -60,7 +60,7 @@ Configuration options
 ### Examples
 
 **Video (Outstream):**
-Note that currently, outstream video rendering must be configured by the publisher. In the adUnit, a `renderer` object must be defined, which includes a `url` pointing to the video rendering script, and a `render` function for creating the video player. See http://prebid.org/dev-docs/show-outstream-video-ads.html for more information.
+Note that currently, outstream video rendering must be configured by the publisher. In the adUnit, a `renderer` object must be defined, which includes a `url` pointing to the video rendering script, and a `render` function for creating the video player. See https://prebid.org/dev-docs/show-outstream-video-ads.html for more information.
 
 ```javascript
 var adUnits = [{
@@ -86,7 +86,7 @@ var adUnits = [{
         }
     ],
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
         render: function (bid) {
             adResponse = {
                 ad: {

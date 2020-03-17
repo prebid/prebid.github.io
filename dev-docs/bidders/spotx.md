@@ -9,6 +9,7 @@ gdpr_supported: true
 userIds: unifiedId/tradedesk, id5Id
 prebid_member: true
 schain_supported: true
+usp_supported: true
 ---
 
 ### Bid Params
