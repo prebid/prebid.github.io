@@ -760,6 +760,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 "uids": [{
                     "id": "11111111"
                 }]
+            },{
+                "source": "netId",
+                "uids": [{
+                    "id": "11111111"
+                }]
             }],
             "digitrust": {              // DigiTrust is not in the eids section
                 "id": "11111111111",
