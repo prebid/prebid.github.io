@@ -20,8 +20,7 @@ We sincerely apologize for any inconvenience and Prebid.org will be working to r
 {: .table .table-bordered .table-striped }
 | Date | City | Register |
 |------+------+----------|
-| Feb 20, 2020 | Tokyo, Japan | CANCELLED |
-| Apr 30, 2020 | London, UK | Details coming soon |
+| Apr 30, 2020 | London, UK | Registration for the [main event at 1pm](https://www.eventbrite.com/e/prebid-meetup-and-leadership-summit-london-april-30-2020-registration-95649272549) and [hands-on training and troubleshooting at 9am](https://www.eventbrite.com/e/prebid-hands-on-training-and-troubleshooting-london-april-30-2020-registration-95672463915) |
 
 ## What happens at an event?
 
