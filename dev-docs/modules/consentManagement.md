@@ -272,7 +272,7 @@ Page JavaScript can prevent Prebid.js from performing various activities that co
 Here are some things that publishers can do to control various activities:
 
 1. If the user hasn't consented to Purpose 1:
-  - Set [deviceAccess](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess): false
+  - Set [deviceAccess: false](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess)
   - Don't enable [userSync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
   - Don't enable [userId](/dev-docs/modules/userId.html) modules
 
@@ -374,9 +374,9 @@ This should be false if there was some error in the consent data; otherwise set 
 **_cmpLoaded_**  
 This should be be set to true once the parameters listed above are processed.
 
-## Adapters Supporting TCF v1.1:
+## Adapters Supporting TCF v1.1
 
-Bidders on this list have self-declared their TCF 1.1 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding `gdpr_supported: true`. 
+Bidders on this list have self-declared their TCF 1.1 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true". 
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -400,9 +400,9 @@ var idx_gdpr=0;
         </script>
 </div>
 
-## Adapters Supporting TCF v2.0:
+## Adapters Supporting TCF v2.0
 
-Bidders on this list have self-declared their TCF 2.0 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding `tcf2_supported: true`. 
+Bidders on this list have self-declared their TCF 2.0 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "tcf2_supported: true". 
 
 <script type="text/javascript">
 var adaptersSupportingGdpr2=[];
