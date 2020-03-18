@@ -43,7 +43,7 @@ InterstitialAdUnit(@NonNull String configId, int minWidthPerc, int minHeightPerc
 
 ## Methods
 
-`InterstitialAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html) object.
+`InterstitialAdUnit` inherits all methods from the [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) object.
 
 ## Example
 
@@ -59,10 +59,10 @@ interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
 
 ## Related Topics
 
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html)
+- [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
-- [Prebid Mobile API - android]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-android.html)
+- [Prebid Mobile API - android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

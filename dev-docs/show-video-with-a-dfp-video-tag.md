@@ -11,7 +11,7 @@ sidebarType: 4
 {: .no_toc}
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
-from Google Ad Manager.  We'll use the [Video.js](http://videojs.com/) player and
+from Google Ad Manager.  We'll use the [Video.js](https://videojs.com/) player and
 the AppNexus bidder, but the principles are the same across
 different video players and video-enabled bidders.
 
@@ -22,7 +22,7 @@ different video players and video-enabled bidders.
 
 The code example below was built using the following libraries:
 
-+ [video.js](http://videojs.com/) version 5.9.2
++ [video.js](https://videojs.com/) version 5.9.2
 + MailOnline's [videojs-vast-vpaid plugin](https://github.com/MailOnline/videojs-vast-vpaid) version 2.0.2
 
 Also, you need to make sure to build Prebid.js with:
@@ -161,9 +161,9 @@ In the body of the page, the following HTML and JS will show the ad:
     data-setup='{}'
     width='640'
     height='480'>
-    <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
-    <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
-    <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
+    <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+    <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
+    <source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
   </video>
 </div>
 
@@ -184,7 +184,7 @@ In the body of the page, the following HTML and JS will show the ad:
 </script>
 ```
 
-If you have [set up your ad server line items and creatives correctly]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html), you should see an instream pre-roll video ad followed by the oceans video from the [video.js homepage](http://videojs.com/).
+If you have [set up your ad server line items and creatives correctly]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html), you should see an instream pre-roll video ad followed by the oceans video from the [video.js homepage](https://videojs.com/).
 
 ## Working Examples
 
