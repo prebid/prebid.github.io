@@ -761,7 +761,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "11111111"
                 }]
             },{
-                "source": "netId",
+                "source": "netid.de",
                 "uids": [{
                     "id": "11111111"
                 }]
