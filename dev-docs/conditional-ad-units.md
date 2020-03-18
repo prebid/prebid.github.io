@@ -22,7 +22,7 @@ By supporting these scenarios, header bidding can be more efficient - the browse
 
 The basic steps are:
 
-1. Build up an array of 'labels' from two sources: either as an output of [`sizeConfig`](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids), or both.
+1. Build up an array of 'labels' from two sources: as an output of [`sizeConfig`](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids), or both.
 1. Apply label targeting to AdUnits or specific bids.
 
 See the [Publisher API reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads) for syntax.
@@ -32,7 +32,7 @@ See the [Publisher API reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 {: .alert.alert-info :}
 See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario.
 
-Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile 
+Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile
 to send them requests from display or tablets.
 
 We'll start with how to set up the labels from `sizeConfig`:
@@ -107,7 +107,7 @@ For instance, say that a given bidder wants to define different placements for d
 | Display | 1111 |
 | Phones and tablets | 2222 |
 
-### Using the Global SizeConfig Approach
+### Using the Global sizeConfig Approach
 
 Assuming the same `sizeConfig` as in the first use case above, the AdUnit would contain bids for both
 placements, but the conditional `labelAny` is added to them both. This will cause the bid to be fired only if one
@@ -149,9 +149,9 @@ How this works:
     1. The first bid requires that the label "display" be present in the array. It's not, so that bid is skipped.
     1. The second bid requires that either "phone" or "tablet" be present. Since tablet is in the label array, that bid is activated and the correct placement is sent to bidderA.
 
-### Using the Advanced Size Mapping approach for different bidder params
+### Using the Advanced Size Mapping Approach for Different Bidder Params
 
-Here's another way of doing the same thing:
+Here's another way of doing the same thing as shown in the previous section:
 
 {% highlight js %}
 
@@ -221,7 +221,7 @@ var AdUnits = [{
 
 {% endhighlight %}
 
-## What if some bid requests apply only to users originating certain from countries? 
+## What if some bid requests apply only to users originating certain from countries?
 
 Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids) function as an argument.
 
@@ -234,7 +234,7 @@ a label can be implemented and applied to make the bid conditional.
 // page logic determines the 'europeanUser' boolean
 If (europeanUser) {
     reqArgs={labels:['eur']};
-} 
+}
 pbjs.requestBids(reqArgs);
 {% endhighlight %}
 
@@ -272,5 +272,3 @@ labels:
 + [Responsive ad designs](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads)
 + [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
 + [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
-
-
