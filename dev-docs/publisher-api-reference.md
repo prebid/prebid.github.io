@@ -1564,19 +1564,14 @@ To set up your own custom CPM buckets, create an object like the following, and 
 const customConfigObject = {
   "buckets" : [{
       "precision": 2,  //default is 2 if omitted - means 2.1234 rounded to 2 decimal places = 2.12
-      "min" : 0,
       "max" : 5,
       "increment" : 0.01  // from $0 to $5, 1-cent increments
     },
     {
-      "precision": 2,
-      "min" : 5,
       "max" : 8,
       "increment" : 0.05  // from $5 to $8, round down to the previous 5-cent increment
     },
     {
-      "precision": 2,
-      "min" : 8,
       "max" : 40,
       "increment" : 0.5   // from $8 to $40, round down to the previous 50-cent increment
     }]
@@ -1590,10 +1585,23 @@ pbjs.setConfig({
 
 Here are the rules for CPM intervals:
 
-- The attributes `min`, `max`, and `increment` must all be specified
+- `max` and `increment` must be specified
+- A range's minimum value is assumed to be the max value of the previous range. The first interval starts at a min value of 0.
 - `precision` is optional and defaults to 2
-- `min` must be less than `max`
-- The ranges [(min1,max1),(min2,max2),(minN,maxN)] should not overlap or the behavior is not guaranteed.
+
+{% capture warning-granularity %}
+As of Prebid.js 3.0, the 'min' parameter is no longer supported in custom granularities.
+<br/>
+<br/>
+Also note an important idiosyncracy of the way that price ranges are supported: the
+interval starts at the min value, and the max of one range defines the min of the next range.
+So if the second interval defines an implicit min of 0.99 and goes to 5 with an increment of 0.05, Prebid.js will generate the values: 0.99, 1.04, 1.09, etc.
+<br/>
+<br/>
+This implies that ranges should have max values that are really the min value of next range.
+{% endcapture %}
+
+{% include alerts/alert_warning.html content=warning-granularity %}
 
 
 <a name="setConfig-MediaType-Price-Granularity" />
@@ -1609,9 +1617,9 @@ banner, video, video-instream, video-outstream, and native. e.g.
 {% highlight js %}
 const customPriceGranularity = {
             'buckets': [
-              { 'precision': 2, 'min': 0, 'max':x 5, 'increment': 0.25 },
-              { 'precision': 2, 'min': 6, 'max': 20, 'increment': 0.5 },
-              { 'precision': 2, 'min': 21, 'max': 100, 'increment': 1 }
+              { 'precision': 2, 'max':x 5, 'increment': 0.25 },
+              { 'precision': 2, 'max': 20, 'increment': 0.5 },
+              { 'precision': 2, 'max': 100, 'increment': 1 }
             ]
 };
 
