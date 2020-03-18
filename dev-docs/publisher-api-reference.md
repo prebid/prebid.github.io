@@ -1964,7 +1964,22 @@ Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/pu
 
 #### Configure Responsive Ads
 
-The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to describe types of devices and screens using [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  See below for an explanation of the feature and examples showing how to use it.
+The `sizeConfig` object passed to `pbjs.setConfig` provides a global way to describe types of devices and screens using [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  See below for an explanation of the feature and examples showing how to use it.
+
+{% capture tip-choosing %}
+As of Prebid.js 3.11.0, the [Advanced SizeMapping module](/dev-docs/modules/sizeMappingV2.html) provides an alternate way to handle responsive AdUnits.
+You should consider using that module if any of these scenarios are true:
+{::nomarkdown}
+<ul>
+<li> The site needs to alter different AdUnits at different screen widths; e.g., the left-nav changes sizes at 600 pixels, but the footer's size behavior changes at 620 pixels.</li>
+<li>The site needs to alter different mediaTypes at different screen widths; e.g., the banner size ranges are 0-400px, 401-700px, and 701+px, but the native ads appear at 500px.</li>
+<li>Some bidders or mediaTypes should be included (or removed) at different overlapping size ranges.</li>
+</ul>
+<br/>
+{:/}
+If, on the other hand, the AdUnits, bidders, and mediaTypes all change behavior together at the same viewport width, then the built-in sizeConfig feature is appropriate.
+{% endcapture %}
+{% include alerts/alert_tip.html content=tip-choosing %}
 
 + [How it works](#sizeConfig-How-it-Works)
 + [Example](#sizeConfig-Example)
