@@ -14,8 +14,8 @@ usp_supported: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `siteId` | required | siteId is provided by your NoBid account manager |         | `integer` |
-| `placementId` | optional | placementId is provided by your NoBid account manager. This parameter allows to report on a specific ad unit |         | `integer` |
+| `siteId` | required | siteId is provided by your NoBid account manager(s) |         | `integer` |
+| `placementId` | optional | placementId is provided by your NoBid account manager(s). This parameter allows to report on a specific ad unit |         | `integer` |
 
 # Test Parameters
 ```
