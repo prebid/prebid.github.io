@@ -185,7 +185,7 @@ gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
 ## Adapter Integration
 
 {: .alert.alert-info :}
-Prebid.js adapters don't need to change to support TCF v2.0 -- the consent string is passed through the same bidrequest location. The bidder's endpoint, however, will need to change to support TCF v2.0.
+Prebid.js adapters don't need to change to support TCF v2.0 if they already support TCF 1.1 -- the consent string is passed through the same bidrequest location. The bidder's endpoint, however, will need to change to support TCF v2.0. Once the endpoint supports TCF2, you can update the documentation.md file as described below above the table showing the list of TCF2-compliant bidders. 
 
 If you are submitting changes to an adapter to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
 
@@ -376,6 +376,8 @@ This should be be set to true once the parameters listed above are processed.
 
 ## Adapters Supporting TCF v1.1:
 
+Bidders on this list have self-declared their TCF 1.1 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding `gdpr_supported: true`. 
+
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -399,6 +401,8 @@ var idx_gdpr=0;
 </div>
 
 ## Adapters Supporting TCF v2.0:
+
+Bidders on this list have self-declared their TCF 2.0 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding `tcf2_supported: true`. 
 
 <script type="text/javascript">
 var adaptersSupportingGdpr2=[];
