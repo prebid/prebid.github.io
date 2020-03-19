@@ -113,7 +113,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 | regs | Optional   | `Object` |  Container object for data related to various regulations. See the [Regulations](#price-range) section below for more details. |
 | regs.ext.gdpr | Optional   | `Integer` |  Enable the user to indicate whether GDPR is in effect. `0` for disabled, `1` for enabled.  The default setting is disabled. See the [Regulations](#price-range) section below for more details. |
-| reg.ext.us.privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf). See the [Regulations](#price-range) section below for more details. |
+| regs.ext.us_privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf). See the [Regulations](#price-range) section below for more details. |
 
 ### Pod Duration Range
 
@@ -141,7 +141,7 @@ These are the parameters for the `pod` subobject:
 | podconfig.pods | Required | `Object` |  Container object describing the adPod(s) to be requested. |
 | pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   <br>**Recommendation**: Order these numerically, with increment of 1. |
 | pod.adpoddurationsec | Required | `Integer` |  Duration of the adPod. |
-| pod.configid | Required | `Integer` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
+| pod.configid | Required | `String` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
 
 
 ### Video Protocols

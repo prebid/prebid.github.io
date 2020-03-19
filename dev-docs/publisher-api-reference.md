@@ -42,6 +42,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
+    * [deviceAccess](#setConfig-deviceAcess)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
     * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
     * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
@@ -1260,6 +1261,7 @@ See below for usage examples.
 Core config:
 
 + [Debugging](#setConfig-Debugging)
++ [Device Access](#setConfig-deviceAccess)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
@@ -1306,6 +1308,18 @@ pbjs.setConfig({ debug: true });
 
 {: .alert.alert-warning :}
 Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
+
+<a name="setConfig-deviceAccess" />
+
+#### Device Access
+
+You can prevent Prebid.js from reading or writing cookies or HTML localstorage by setting this flag:
+
+{% highlight js %}
+pbjs.setConfig({ deviceAccess: false });
+{% endhighlight %}
+
+This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
 
 <a name="setConfig-Bidder-Timeouts" />
 
@@ -1444,6 +1458,7 @@ The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher w
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
 | `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
+| `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. |
 
 ##### Details on the bidLimit setting
 
@@ -1549,19 +1564,14 @@ To set up your own custom CPM buckets, create an object like the following, and 
 const customConfigObject = {
   "buckets" : [{
       "precision": 2,  //default is 2 if omitted - means 2.1234 rounded to 2 decimal places = 2.12
-      "min" : 0,
       "max" : 5,
       "increment" : 0.01  // from $0 to $5, 1-cent increments
     },
     {
-      "precision": 2,
-      "min" : 5,
       "max" : 8,
       "increment" : 0.05  // from $5 to $8, round down to the previous 5-cent increment
     },
     {
-      "precision": 2,
-      "min" : 8,
       "max" : 40,
       "increment" : 0.5   // from $8 to $40, round down to the previous 50-cent increment
     }]
@@ -1575,10 +1585,23 @@ pbjs.setConfig({
 
 Here are the rules for CPM intervals:
 
-- The attributes `min`, `max`, and `increment` must all be specified
+- `max` and `increment` must be specified
+- A range's minimum value is assumed to be the max value of the previous range. The first interval starts at a min value of 0.
 - `precision` is optional and defaults to 2
-- `min` must be less than `max`
-- The ranges [(min1,max1),(min2,max2),(minN,maxN)] should not overlap or the behavior is not guaranteed.
+
+{% capture warning-granularity %}
+As of Prebid.js 3.0, the 'min' parameter is no longer supported in custom granularities.
+<br/>
+<br/>
+Also note an important idiosyncracy of the way that price ranges are supported: the
+interval starts at the min value, and the max of one range defines the min of the next range.
+So if the second interval defines an implicit min of 0.99 and goes to 5 with an increment of 0.05, Prebid.js will generate the values: 0.99, 1.04, 1.09, etc.
+<br/>
+<br/>
+This implies that ranges should have max values that are really the min value of next range.
+{% endcapture %}
+
+{% include alerts/alert_warning.html content=warning-granularity %}
 
 
 <a name="setConfig-MediaType-Price-Granularity" />
@@ -1594,9 +1617,9 @@ banner, video, video-instream, video-outstream, and native. e.g.
 {% highlight js %}
 const customPriceGranularity = {
             'buckets': [
-              { 'precision': 2, 'min': 0, 'max':x 5, 'increment': 0.25 },
-              { 'precision': 2, 'min': 6, 'max': 20, 'increment': 0.5 },
-              { 'precision': 2, 'min': 21, 'max': 100, 'increment': 1 }
+              { 'precision': 2, 'max':x 5, 'increment': 0.25 },
+              { 'precision': 2, 'max': 20, 'increment': 0.5 },
+              { 'precision': 2, 'max': 100, 'increment': 1 }
             ]
 };
 
@@ -1949,7 +1972,22 @@ Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/pu
 
 #### Configure Responsive Ads
 
-The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to describe types of devices and screens using [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  See below for an explanation of the feature and examples showing how to use it.
+The `sizeConfig` object passed to `pbjs.setConfig` provides a global way to describe types of devices and screens using [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  See below for an explanation of the feature and examples showing how to use it.
+
+{% capture tip-choosing %}
+As of Prebid.js 3.11.0, the [Advanced SizeMapping module](/dev-docs/modules/sizeMappingV2.html) provides an alternate way to handle responsive AdUnits.
+You should consider using that module if any of these scenarios are true:
+{::nomarkdown}
+<ul>
+<li> The site needs to alter different AdUnits at different screen widths; e.g., the left-nav changes sizes at 600 pixels, but the footer's size behavior changes at 620 pixels.</li>
+<li>The site needs to alter different mediaTypes at different screen widths; e.g., the banner size ranges are 0-400px, 401-700px, and 701+px, but the native ads appear at 500px.</li>
+<li>Some bidders or mediaTypes should be included (or removed) at different overlapping size ranges.</li>
+</ul>
+<br/>
+{:/}
+If, on the other hand, the AdUnits, bidders, and mediaTypes all change behavior together at the same viewport width, then the built-in sizeConfig feature is appropriate.
+{% endcapture %}
+{% include alerts/alert_tip.html content=tip-choosing %}
 
 + [How it works](#sizeConfig-How-it-Works)
 + [Example](#sizeConfig-Example)

@@ -68,6 +68,11 @@
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
   type: technology
 
+- company: Tapad 
+  link: https://tapad.com/
+  imgURL: /assets/images/partners/tech/tapad_logo.png
+  type: technology
+
 - company: Verizon Media 
   link: https://www.verizonmedia.com/advertising
   imgURL: /assets/images/partners/tech/verizon_logo.png
@@ -131,6 +136,11 @@
 - company: Adomik
   link: https://adomik.com/
   imgURL: /assets/images/partners/community/Adomik-logo.png
+  type: community
+
+- company: Audigent
+  link: https://audigent.com/
+  imgURL: /assets/images/partners/community/audigent_logo.png
   type: community
 
 - company: Blockthrough
