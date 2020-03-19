@@ -7,6 +7,7 @@ biddercode: openx
 media_types: banner, video
 schain_supported: true
 gdpr_supported: true
+usp_supported: true
 coppa_supported: true
 userIds: pubCommon, unifiedId, identityLink
 prebid_member: true

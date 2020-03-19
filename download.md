@@ -28,7 +28,7 @@ $(function(){
 function getVersionList() {
   $.ajax({
       type: "GET",
-      url: "http://js-download.prebid.org/versions",
+      url: "https://js-download.prebid.org/versions",
   })
   .success(function(data) {
     try{
@@ -79,7 +79,7 @@ function submit_download() {
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://js-download.prebid.org/download",
+        url: "https://js-download.prebid.org/download",
         //dataType: 'json',
         data: form_data
     })
@@ -252,6 +252,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="atsAnalytics" class="analytics-check-box"> ATS Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="datablocks" class="analytics-check-box"> Datablocks Analytics
     </label>
   </div>
@@ -412,6 +420,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="ucfunnel" class="analytics-check-box" /> ucfunnel Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
     </label>
   </div>
@@ -428,7 +444,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaMedia Analytics
     </label>
   </div>
 </div>
@@ -448,6 +464,9 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
  {% endfor %}
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> User ID: BritePool ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
@@ -458,6 +477,21 @@ Note: If you receive an error during download you most likely selected a configu
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> User ID: LiveIntent ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> User ID: Parrable ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
 </div></div>
 </div>
 

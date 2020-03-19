@@ -10,7 +10,7 @@ sidebarType: 2
 # AdUnit Object
 {:.no_toc}
 
-The `AdUnit` object is an abstract object that cannot be instantiated. Use the [BannerAdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html) or [InterstitialAdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html) object to create and configure the desired type of ad unit within your app.
+The `AdUnit` object is an abstract object that cannot be instantiated. Use the [BannerAdUnit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html) or [InterstitialAdUnit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html) object to create and configure the desired type of ad unit within your app.
 
 * TOC
 {:toc}
@@ -49,7 +49,7 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 ### setAutoRefreshPeriodMillis
 
-If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off. 
+If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off.
 
 **Parameters**
 
@@ -214,8 +214,8 @@ interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
 ## Related Topics
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
+- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
