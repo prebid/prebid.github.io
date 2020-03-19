@@ -376,7 +376,7 @@ pbjs.setConfig({
 
 ### LiveIntent ID
 
-LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, anonymized email hash in our graph and functions in cookie-challenged environments and browsers.
+LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 
 Add LiveIntent ID to your Prebid.js package with:
 
