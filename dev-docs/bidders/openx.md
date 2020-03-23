@@ -11,6 +11,7 @@ usp_supported: true
 coppa_supported: true
 userIds: pubCommon, unifiedId, identityLink
 prebid_member: true
+tcf2_supported: true
 ---
 
 ### Bid Parameters
