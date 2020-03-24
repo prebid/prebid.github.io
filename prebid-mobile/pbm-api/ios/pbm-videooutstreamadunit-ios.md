@@ -12,7 +12,7 @@ sidebarType: 2
 
 The VideoAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the VideoAdUnit object to create and configure a video outstream ad unit in your app.
 
-Currently Google Ad Manager is the only supported ad server. We plan to provide support for additional ad servers in subsequent releases.
+Video Outstresam is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
 - TOC
@@ -23,6 +23,7 @@ Currently Google Ad Manager is the only supported ad server. We plan to provide 
 ### VideoAdUnit
 
 Create a new Video Outstream Ad Unit associated with a Prebid Server configuration ID and a video size.
+
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
@@ -56,23 +57,6 @@ OpenRTB Placement Type represented as an enumeration of values:
 * `inArticle` is transformed into OpenRTB value 3 to bid adapters
 * `inFeed` is transformed into OpenRTB value 4 to bid adapters
 
-## videoAd: Video Events
-
-### videoAd
-
-* Video event listeners
-
-`videoAd (event: PBVideoAdEvent)`: Event to listen to.
-
-**Parameters**
-
-Events - one of the below event types:
-
-* AdLoadSuccess
-* AdLoadFail
-* AdClicked
-* AdStarted
-* AdDidReachEnd
 
 
 
