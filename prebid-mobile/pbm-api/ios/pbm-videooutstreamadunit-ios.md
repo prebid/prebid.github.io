@@ -12,7 +12,7 @@ sidebarType: 2
 
 The VideoAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the VideoAdUnit object to create and configure a video outstream ad unit in your app.
 
-Video Outstresam is only supported with Google Ad Manager.
+Video Outstream is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
 - TOC
