@@ -9,6 +9,7 @@ schain_supported: true
 userIds: unifiedId/tradedesk, digitrustId
 gdpr_supported: true
 usp_supported: true
+tcf2_supported: true
 ---
 
 ### Note:
