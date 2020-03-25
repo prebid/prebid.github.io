@@ -10,7 +10,7 @@ sidebarType: 2
 
 Create a new Video Outstream Ad Unit associated with a Prebid Server configuration ID and a video size.
 
-Video Instertital is only supported with Google Ad Manager.
+Video Insterstital is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
 `VideoInterstitialAdUnit(configId: String)`
