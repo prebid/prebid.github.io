@@ -13,7 +13,7 @@ sidebarType: 2
 Use the `VideoInterstitialAdUnit` object to create and configure an interstitial ad unit in your app.
 
 
-Video Intertital is only supported with Google Ad Manager.
+Video Interstital is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
 * TOC
