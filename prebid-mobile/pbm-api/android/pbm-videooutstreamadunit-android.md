@@ -12,7 +12,7 @@ sidebarType: 2
 
 Use the `VideoAdUnit` object to create and configure an outstream video ad unit in your app.
 
-Currently Google Ad Manager is the only supported ad server. We plan to provide support for additional ad servers in subsequent releases.
+Video Outstream is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
 * TOC
