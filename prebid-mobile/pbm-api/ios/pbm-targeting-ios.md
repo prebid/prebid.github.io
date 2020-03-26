@@ -379,6 +379,29 @@ guard let gdprConsentString = Targeting.shared.gdprConsentString else {
 Targeting.shared.gdprConsentString = "A String"
 ```
 
+### Purpose Consent
+
+```
+public var purposeConsents: String?
+```
+
+You can retrieve and set the purposeConsents for targeting:
+
+```
+//given
+
+Targeting.shared.purposeConsents = "100000000000000000000000"
+
+defer {
+
+  Targeting.shared.purposeConsents = nil
+
+}
+
+//when
+
+let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent()
+```
 ### Subject to COPPA
 
 Prebid supports passing of the Child Online Privacy Prection (COPPA) signal to Prebid Server (PBS) for all COPPA traffic. When PBS receives the COPPA flag we strip out all personal data from the requeset. For a general overview of COPPA, see the [FTC's guidlines](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule).
