@@ -36,8 +36,9 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem"
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
-   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userIds.
-1. An object containing one or more IDs (bidRequest.userIds) is made available to Prebid.js adapters and Prebid Server S2S adapters.
+   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userId.
+1. An object containing one or more IDs (bidRequest.userId) is made available to Prebid.js adapters and Prebid Server S2S adapters.
+1. In addition to bidRequest.userId, bidRequest.userIdAsEids is made available to Prebid.js adapters and Prebid Server S2S adapters. bidRequest.userIdAsEids has userIds in ORTB EIDS format.
 
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
 
@@ -642,13 +643,13 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-## netID
+### netID
 
 The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
 
 The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
 
-### netID Examples
+#### netID Examples
 
 1) Publisher stores netID via his own logic
 
@@ -757,6 +758,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },{
                 "source": "liveintent.com",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+                "source": "netid.de",
                 "uids": [{
                     "id": "11111111"
                 }]

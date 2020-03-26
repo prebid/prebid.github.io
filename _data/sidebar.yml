@@ -464,6 +464,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Advanced Size Mapping
+  link: /dev-docs/modules/sizeMappingV2.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+  
+- sbSecId: 1
   title: Google Ad Manager Video
   link: /dev-docs/modules/dfp_video.html
   isHeader: 0
