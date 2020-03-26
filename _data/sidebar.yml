@@ -884,64 +884,6 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: For Ad Ops
-  link:
-  isHeader: 1
-  headerId: foradops
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Setup Line items For Google Ad Manager
-  link: /prebid-mobile/adops-line-item-setup-dfp.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Setup Line items For Video
-  link: /prebid-mobile/adops-video-setup-dfp.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Setup Line Items For MoPub
-  link: /prebid-mobile/adops-line-item-setup-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Setup Native Ads
-  link: /prebid-mobile/adops-native-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Price Granularity
-  link: /prebid-mobile/adops-price-granularity.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Dr. Prebid Validation App
-  link: /prebid-mobile/dr-prebid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-
-- sbSecId: 2
   title: For Contributors
   link:
   isHeader: 1
@@ -1131,6 +1073,47 @@
 - sbSecId: 3
   title: 'Setting up Long-Form Video'
   link: /adops/setting-up-prebid-ott-video-in-gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: "<span style='color:#EA9622;'>Mobile</span>"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Setup Line Items For MoPub
+  link: /prebid-mobile/adops-line-item-setup-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Setup Native Ads
+  link: /prebid-mobile/adops-native-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Price Granularity
+  link: /prebid-mobile/adops-price-granularity.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Dr. Prebid Validation App
+  link: /prebid-mobile/dr-prebid.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
