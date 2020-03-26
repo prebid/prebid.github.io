@@ -131,7 +131,7 @@ A custom series of classes created to control the formatting of the Benefits sec
 The carousel class is a Bootstrap class. It controls the formatting and functionality of the carousel displayed on the homepage. Portions of it have been modified specifically for Prebid formatting. Additional custom classes have been created for specific formatting or functionality required by Prebid. 
 
 *Partners*  
-A custom series of classes created to control the formatting of the [partners](http://prebid.org/partners/partners.html) page. 
+A custom series of classes created to control the formatting of the [partners](/partners/partners.html) page. 
 
 *Blog*  
 A custom series of classes created to control the formatting of the blog pages.
@@ -324,8 +324,8 @@ Once there are more than 4 entries for a given group, it's recommended to remove
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
 
-- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like http://prebid.org/dev-docs/bidders/rubicon.html
-- /dev-docs/bidders.md - this is used to generate the (large) combined page at http://prebid.org/dev-docs/bidders.html
+- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like https://prebid.org/dev-docs/bidders/rubicon.html
+- /dev-docs/bidders.md - this is used to generate the (large) combined page at https://prebid.org/dev-docs/bidders.html
 
 The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
 

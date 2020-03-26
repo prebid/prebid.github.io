@@ -10,14 +10,14 @@ sidebarType: 2
 # Prebid: NSObject
 {: .notoc}
 
-The Prebid class is a singleton that enables the user to apply global settings. 
+The Prebid class is a singleton that enables the user to apply global settings.
 
 - TOC
  {:toc}
 
---- 
+---
 
-## Object 
+## Object
 
 ### Prebid
 
@@ -33,10 +33,10 @@ var prebidServerAccountId: String { get set }
 
 ```
 var prebidServerHost: PrebidHost { get set }
-func setCustomPrebidServer(url: String)	throws	
+func setCustomPrebidServer(url: String)	throws
 ```
 
-`shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false. 
+`shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
 
 ```
 var shareGeoLocation: Bool { get set }
@@ -60,7 +60,7 @@ Default value is `debug`. All logging will be disabled in the release build. For
 ```
 var logLevel: LogLevel { get set }
 ```
-`timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact. 
+`timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
 
 ```swift
 var timeoutMillis: Int
@@ -128,10 +128,10 @@ Prebid.shared.prebidServerHost = PrebidHostRubicon;
 
 //or set a custom host
 Prebid.shared.prebidServerHost = PrebidHostCustom;
-    
+
 NSError *error = nil;
 bool ok = [Prebid.shared setCustomPrebidServerWithUrl:@"https://prebid-server.customhost.com" error: &error];
-    
+
 if (!ok) {
     NSLog(@"An error happend: %@", error);
 }
@@ -155,14 +155,11 @@ Prebid.shared.storedAuctionResponse = @"111122223333";
 
 ## Related Topics
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Prebid Utilities - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-util-ios.html)
-
-
-

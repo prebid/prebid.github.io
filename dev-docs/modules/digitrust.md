@@ -13,11 +13,11 @@ sidebarType : 1
 # DigiTrust Module
 {:.no_toc}
 
-[DigiTrust](http://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard
+[DigiTrust](https://digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard
 user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default. See the [DigiTrust integration guide](https://github.com/digi-trust/dt-cdn/wiki/Integration-Guide) for more details.
 
 DigiTrust is now integrated as an optional module in the Prebid ecosystem. DigiTrust ties in to the new UserId module. 
-In order to use DigiTrust ID you must sign up as a member publisher at: http://www.digitru.st/signup/. When utilizing the
+In order to use DigiTrust ID you must sign up as a member publisher at: https://www.digitru.st/signup/. When utilizing the
 integrated DigiTrust ID support with Prebid, your site will be able to access your users' DigiTrust ID values through the official
 DigiTrust ID first party cookie. Supporting bidder-adpters will also have access to the encrypted DigiTrust ID value.
 Approved bidder systems will need to [decrypt the ID as per official DigiTrust documentation](https://github.com/digi-trust/dt-cdn/wiki/ID-encryption).
@@ -41,7 +41,7 @@ ex: $ gulp build --modules=userId,digitrustIdLoader
 
 
 ## Deploying Prebid with DigiTrust ID support
-**Precondition:** You must be a DigiTrust member and have registered through the [DigiTrust Signup Process](http://www.digitru.st/signup/).
+**Precondition:** You must be a DigiTrust member and have registered through the [DigiTrust Signup Process](https://www.digitru.st/signup/).
 Your assigned publisher ID will be required in the configuration settings for all deployment scenarios.
 
 There are three supported approaches to deploying the Prebid-integrated DigiTrust package:
@@ -82,14 +82,14 @@ without losing DigiTrust support in the process.
 2. On each page reference both your `prebid.js` and a copy of the **DigiTrust** library. 
    This may either be a copy downloaded from the [DigiTrust CDN](https://cdn.digitru.st/prod/1/digitrust.min.js) to your CDN, 
    or directly referenced from the URL https://cdn.digitru.st/prod/1/digitrust.min.js. These may be added to the page in any order.
-3. Add a configuration section for Prebid that includes the `usersync` settings and the `digitrust` settings.
+3. Add a configuration section for Prebid that includes the `userSync` settings and the `digitrust` settings.
 
 ### Full DigiTrust packaged with Prebid
 
 1. Deploy your built copy of `prebid.js` to your CDN. Be sure to perform *Step 4* of the build to concatenate or 
    integrate the full DigiTrust library code with your Prebid package.
 2. On each page reference your `prebid.js`
-3. Add a configuration section for Prebid that includes the `usersync` settings and the `digitrust` settings. 
+3. Add a configuration section for Prebid that includes the `userSync` settings and the `digitrust` settings. 
    This code may also be appended to your Prebid package or placed in other initialization methods.
 
 
@@ -107,7 +107,7 @@ pbjs.que.push(function() {
 			timeout: 5000,
 			allowAuctionWithoutConsent: true
 		},
-		usersync: {
+		userSync: {
 			userIds: [
 			{
 				name: "digitrust",
@@ -139,11 +139,11 @@ pbjs.que.push(function() {
 });
 ```
 
-## Parameter Descriptions for the `usersync` Configuration Section
+## Parameter Descriptions for the `userSync` Configuration Section
 The below parameters apply only to the DigiTrust ID integration.
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the DigiTrust module - `"digitrust"` | `"digitrust"` |
 | params | Required | Object | Details for DigiTrust initialization. | |
@@ -161,7 +161,7 @@ The below parameters apply only to the DigiTrust ID integration.
 
 ## Further Reading
 
-+ [DigiTrust Home Page](http://digitru.st)
++ [DigiTrust Home Page](https://digitru.st)
 + [DigiTrust integration guide](https://github.com/digi-trust/dt-cdn/wiki/Integration-Guide)
 + [DigiTrust ID Encryption](https://github.com/digi-trust/dt-cdn/wiki/ID-encryption)
 

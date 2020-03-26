@@ -9,8 +9,6 @@ nav_section: prebid-multi-format
 sidebarType: 1
 ---
 
-
-
 # Show Multi-Format Ads with Prebid.js
 {: .no_toc }
 
@@ -73,10 +71,7 @@ The ad unit below supports the banner, native, and video media types.
             },
             native: {
                 image: {
-                    sizes: [
-                        [300, 250],
-                        [300, 50]
-                    ]
+                    sizes: [300, 250]
                 }
             },
             video: {
@@ -128,10 +123,8 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 ## Working Examples
 
-+ [Multi-Format Example]({{site.baseurl}}/examples/multi_format_example.html)
++ [Multi-Format Example](/dev-docs/examples/multi-format-example.html)
 
 ## Related Topics
 
 + [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
-
-
