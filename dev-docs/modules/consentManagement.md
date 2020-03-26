@@ -65,6 +65,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr | `Object` | | |
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
+| gdpr.defaultGdprScope | `boolean` | (TCF v2.0 only) Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time. | `true` |
 | gdpr.allowAuctionWithoutConsent | `boolean` | (TCF v1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
@@ -87,7 +88,7 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 
 ### TCF v2.0 Examples
 
-Example 1: IAB CMP using custom timeout
+Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -97,7 +98,8 @@ Example 1: IAB CMP using custom timeout
           consentManagement: {
             gdpr: {
               cmpApi: 'iab',
-              timeout: 8000
+              timeout: 8000,
+              defaultGdprScope: true
             }
           }
         });
@@ -271,12 +273,13 @@ Page JavaScript can prevent Prebid.js from performing various activities that co
 
 Here are some things that publishers can do to control various activities:
 
-1. If the user hasn't consented to Purpose 1:
+1. If the current page view is known to be in GDPR scope, make sure the adapters are aware of it even on the first page where CMP hasn't been activated by setting the defaultGdprScope: `consentManagement.gdpr.defaultGdprScope: true`
+2. If the user hasn't consented to Purpose 1:
   - Set [deviceAccess: false](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess)
   - Don't enable [userSync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
   - Don't enable [userId](/dev-docs/modules/userId.html) modules
 
-2. If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
+3. If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
 
 
 ### Publishers Not Using an IAB-Compliant CMP
