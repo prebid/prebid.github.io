@@ -25,7 +25,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Livewrapped Analytics | Contact vendor | [Website](https://livewrapped.com/) |
 | LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
 | OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) |
-| Media.net | Contact vendor| [Website](https://media.net) |
+| Media.net | <a href="mailto: prebid-support@media.net">Contact vendor</a>| [Website](https://media.net) |
 | PrebidAnalytics by Roxot | [Paid]( http://prebidanalytics.roxot.com/) | [Website](http://prebidanalytics.roxot.com/) |
 | [Prebid Manager](https://prebidmanager.com/) | Free trial and free up to a certain volume. See [pricing](http://prebidmanager.com/#pricing) | [Website](http://prebidmanager.com/) |
 | PubWise | Free & Paid, see [pricing](https://pubwise.io/pricing/) | [Website](https://www.pubwise.io/) |
