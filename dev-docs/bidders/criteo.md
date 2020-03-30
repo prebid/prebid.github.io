@@ -9,6 +9,12 @@ gdpr_supported: true
 usp_supported: true
 prebid_member: true
 ---
+### Note
+{: .alert.alert-warning :}
+For Native Ads, in order to avoid further decoding issues of special characters, the assets need to be sent as placeholders. 
+That means, `sendId: true` becomes mandatory for all fields receiving URLs, notably: `icon`, `image`, `clickUrl`, `privacyLink`, `privacyIcon`.
+
+See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
 ### Bid Params
 

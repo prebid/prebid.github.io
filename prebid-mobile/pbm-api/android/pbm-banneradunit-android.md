@@ -29,7 +29,7 @@ Create a new Banner Ad Unit associated with a Prebid Server configuration ID and
 
 ## Methods
 
-`BannerAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html) object. It also includes the following additional methods:
+`BannerAdUnit` inherits all methods from the [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) object. It also includes the following additional methods:
 
 ### addAdditionalSize
 
