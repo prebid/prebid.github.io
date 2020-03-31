@@ -96,7 +96,7 @@ The BritePool privacy policy is at [https://britepool.com/services-privacy-notic
 #### BritePool Configuration
 
 {: .table .table-bordered .table-striped }
-| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"britepoolId"` | `"britepoolId"` |
 | params | Required | Object | Details for britepool initialization. | |
@@ -110,7 +110,7 @@ The BritePool privacy policy is at [https://britepool.com/services-privacy-notic
 
 {% highlight javascript %}
    pbjs.setConfig({
-       usersync: {
+       userSync: {
            userIds: [{
                name: "britepoolId",
                storage: {
@@ -706,7 +706,7 @@ The EnID is a non-profit organization which is open to any contributing party on
 
 {% highlight javascript %}
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: "netId",
             value: {
