@@ -742,7 +742,7 @@ getFloor({
 }
 {% endhighlight %}
 
-To aid in the accuracy of floor selection when using size ”\*” in getFloor, the Floors Module has built-in smart rule selection when an ad unit in the internal bidRequest to the bid adapters interface has one ad unit type and one size. In the above example, if the ad unit within the bidRequest object has an ad unit type of “banner” with only one size, say “300x250”, the Floors Module will intelligently select the rule with banner|300x250 in it, as opposed to the banner|\* rule producing the following response:
+To aid in the accuracy of floor selection when using size ”\*” in getFloor, the Floors Module has built-in smart rule selection when an ad unit in the internal bidRequest to the bid adapters interface has one ad unit type and one size. In the above example, if the ad unit within the bidRequest object has an ad unit type of “banner” with only one size, say “300x250”, the Floors Module will intelligently select the rule with "banner\|300x250" in it, as opposed to the "banner\|\*" rule producing the following response:
 
 {% highlight js %}
 {
