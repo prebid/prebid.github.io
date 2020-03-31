@@ -9,7 +9,7 @@ schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-userIds: pubCommon, unifiedId, identityLink
+userIds: criteo, identityLink, pubCommonId, unifiedId
 prebid_member: true
 ---
 
