@@ -24,18 +24,19 @@ This consent management module is designed to support the EU General Data Protec
 
 This module works with supported [Consent Management Platforms](https://www.cmswire.com/information-management/what-is-a-consent-management-platform/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
-{: .alert.alert-info :}
-See also the [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html) for supporting the California Consumer Protection Act (CCPA)
-
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
 **We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach.**
 
-Here's a summary of the interaction process:
+This base EU GDPR Consent Management Module performs these actions:
 
 1. Fetch the user's GDPR consent data from the CMP.
 2. Incorporate this data into the auction objects for adapters to collect.
-3. Proceed with the auction.
+
+The optional [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) adds on these actions:
+
+3. Allows the page to define which activities should be enforced at the Prebid.js level.
+4. Actively enforces those activities based on user consent data.
 
 In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.
@@ -183,6 +184,8 @@ Follow the basic build instructions in the GitHub Prebid.js repo's main [README]
 {% highlight bash %}
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
 {% endhighlight %}
+
+Or you can use the [Prebid.js Download](/download.html) page.
 
 ## Adapter Integration
 
@@ -426,3 +429,10 @@ var idx_gdpr=0;
            writeDynamicTable({div: "adaptersTableGdpr2", data: "adaptersSupportingGdpr2", sort: "rowFirst", striped: false} );
         </script>
 </div>
+
+## Further Reading
+
+- [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html)
+- [IAB Transparancy and Consent Framework Policies](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/)
+- [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
+
