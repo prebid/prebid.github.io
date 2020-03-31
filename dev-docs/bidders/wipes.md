@@ -8,7 +8,8 @@ media_types: video
 ---
 
 ### Note:
-
+Publishers needs to be set up and approved by WIPES team to enable this adapter.
+Please contact support@wipestream.com for further information.
 
 ### Bid Params
 
