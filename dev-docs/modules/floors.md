@@ -572,7 +572,7 @@ Data providers can optionally build Analytics Adapters to ingest bid data within
 {% capture warning_note %}
 As a floor provider, your goal is to provide effective floors, with minimal page impact. If you are performing a Dynamic fetch to retrieve data prior to auctions, the following recommendations are advised to reduce page performance issues:  
   
-- Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services
+- Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services  
 - Work with publishers on setting appropriate auction delays to retrieve dynamic data  
 - Implement client-side caching (such as max-age headers) whenever possible  
 - Evaluate data freshness vs frequency of new fetches to the CDN to reduce unnecessary calls  
