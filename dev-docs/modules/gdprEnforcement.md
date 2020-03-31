@@ -22,7 +22,7 @@ module enforces the results. See that module page for general background, usage,
 
 ## Overview
 
-Here's a summary of how this feature works:
+How this feature works:
 
 The base [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html) performs these actions:
 
@@ -65,7 +65,7 @@ These are the fields supported in the [`consentManagement.gdpr`](/dev-docs/modul
 
 Note:
 
-- The vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs, i.e. "rubicon" instead of "52". First, the names are easier to work with, and second, there are Prebid.js modules and adapters that don't have GVL IDs.
+- The vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs, i.e. "rubicon" instead of "52". This was done to accomodate Prebid.js modules and adapters that don't have GVL IDs.  
 
 ### Examples
 
