@@ -16,52 +16,49 @@ sidebarType : 1
 {: toc }
 
 {: .alert.alert-warning :}
-This module requires the [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html). That base
-module reads consent values from the Consent Management Platform (CMP) and this
-module enforces the results. See that module page for general background, usage, and legal disclaimers.
+This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagement.html), which reads consent values from the Consent Management Platform (CMP). The GDPR enforcement module
+will then enforce the results. See the base module page for general background, usage, and legal disclaimers.
 
 ## Overview
 
-How this feature works:
-
-The base [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html) performs these actions:
+The base [EU GDPR consent management module](/dev-docs/modules/consentManagement.html) performs the following actions:
 
 1. Fetch the user's GDPR consent data from the CMP.
 2. Incorporate this data into the auction objects for adapters to collect.
 
-This GDPR Enforcement Module adds:
+This GDPR enforcement module adds the following:
 
 3. Allows the page to define which activities should be enforced at the Prebid.js level.
 4. Actively enforces those activities based on user consent data.
 
-The following table details the Prebid.js activities that fall under the Transparency and Consent Framework (TCF) scope:
+The following table details the Prebid.js activities that fall under the [Transparency and Consent Framework (TCF)](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/) scope:
 
 {: .table .table-bordered .table-striped }
 | TCF Purpose | In-Scope Activity | Enforcement Activity | Optional Controls |
 | --- | --- | --- | --- |
 | Purpose 1 - Store and/or access information on a device | usersync pixels | May result in preventing one or more usersync activities for one or more vendors. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
 | Purpose 1 - Store and/or access information on a device | user ID modules | May result in preventing one or more UserID modules to not activate. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
-| Purpose 1 - Store and/or access information on a device | device storage | May result in preventing one or adapters or modules not being able to read or write cookies or localstorage in the user's browser. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
+| Purpose 1 - Store and/or access information on a device | device storage | May result in preventing one or more adapters or modules not being able to read or write cookies or localstorage in the user's browser. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
 
-Additional TCF Purposes and activities will be added in future releases.
+There are plans to add more TCF Purposes and activities in future releases.
 
 ## Page Integration
 
-The page needs to define configuration rules about how Prebid.js should enforce each in-scope activity.
+A page needs to define configuration rules about how Prebid.js should enforce each in-scope activity.
 
 {: .alert.alert-warning :}
 **Important Legal Note:** Prebid.org cannot provide legal advice about GDPR or any other governmental regulation. Our aim is to provide a toolkit of functionality that will let publishers configure header bidding as defined by their legal counsel. We will consider feature suggestions, and review any code offered by the community.
 
-These are the fields supported in the [`consentManagement.gdpr`](/dev-docs/modules/consentManagement.html) object:
+These are the fields related to GDPR enforcment that are supported in the [`consentManagement.gdpr`](/dev-docs/modules/consentManagement.html) object:
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gdpr.rules | `Array of Objects` | Lets the publisher override the default behavior. | |
 | gdpr.rules[].purpose | `String` | The only currently supported value is "storage", corresponding to TCF Purpose 1. | "storage" |
-| gdpr.rules[].enforcePurpose | `Boolean` | Whether to enforce the purpose consent or not. The default in PBJS 3.x will be not to enforce purposes, and in 4.0 to enforce consent for Purpose 1 and no others. | true |
-| gdpr.rules[].enforceVendor | `Boolean` | Whether to enforce vendor signals for this purpose or not. The default in PBJS 3.x is not to enforce vendor signals, and in 4.0 to enforce signals for Purpose 1 and no others. | true |
-| gdpr.rules[].vendorExceptions | `Array of Strings` | Which biddercodes or module names do not fall under the enforcement of either enforcePurpose=true or enforceVendors=true. The idea is that the publisher trusts this vendor to enforce the appropriate rules on their own. | true |
+| gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent or not. The default in Prebid.js 3.x is not to enforce purposes. The plan for Prebid.js 4.0 is to enforce consent for Purpose 1 and no others. | true |
+| gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose or not. The default in Prebid.js 3.x is not to enforce vendor signals. The plan for Prebid.js 4.0 to enforce signals for Purpose 1 and no others. | true |
+| gdpr.rules[].vendorExceptions | `Array of Strings` | Defines which biddercodes or module names do not fall under the enforcement of either enforcePurpose=true or enforceVendors=true. Publishers will not be able to validate that any vendor in this list is enforcing the appropriate GDPR rules. | true |
 
 Note:
 
@@ -70,7 +67,7 @@ Note:
 ### Examples
 
 The following examples cover a range of use cases and how Prebid.js supports
-configuration of different business rules. 
+configuration of different business rules.
 
 1) Enforce that the user consents to DeviceAccess as an activity and consider their per-vendor selection.
 
@@ -118,7 +115,7 @@ pbjs.setConfig({
         vendorExceptions: ["bidderA"]
       }
 
-5) Turn off enforcement of Purpos 1: don't enforce either the user's DeviceAccess consent or their per-vendor selection.
+5) Turn off enforcement of Purpose 1: don't enforce either the user's DeviceAccess consent or their per-vendor selection.
 
       ...
       rules: [{
@@ -136,7 +133,7 @@ pbjs.setConfig({
         enforceVendor: true
       }
 
-7) Don't enforce the user's DeviceAccess consent, but do consider their per-vendor selection, except don't enforce vendor selection for BidderA.
+7) Don't enforce the user's DeviceAccess consent, but do consider their per-vendor selection; don't enforce vendor selection for BidderA.
 
       ...
       rules: [{
@@ -153,20 +150,20 @@ a "basic" form of TCF validation using the supplied consent string.
 
 A goal of basic enforcement is to confirm that there's enough evidence of consent to pass data on to vendors who do have access to the GVL and can fully parse and enforce.
 
-Before allowing an activity tied to a TCF-protected purpose for a given Vendor, one of these scenarios must be true:
+Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
 - Configuration rules enforce both consent and vendor signals and either:
-  - We have the User’s purpose consent and the User’s vendor consent
-  - Or we confirmed the User’s LI (Legitimate Interest) Transparency is established for this purpose and the User’s Vendor LI field didn’t reject this vendor
+  - we have the user’s purpose consent and the user’s vendor consent, or
+  - we confirmed the user’s LI (Legitimate Interest) Transparency is established for this purpose and the user’s Vendor LI field didn’t reject this vendor.
 - Configuration rules enforce only purpose consent and either:
-  - We have the user’s purpose consent
-  - Or we confirmed the User’s LI Transparency is established for this purpose
+  - we have the user’s purpose consent, or
+  - we confirmed the user’s LI Transparency is established for this purpose.
 - Configuration rules enforce only vendor signals and either:
-  - We have the user’s vendor consent
-  - Or we confirmed the User’s Vendor LI field didn’t reject this vendor
+  - we have the user’s vendor consent, or
+  - we confirmed the user’s Vendor LI field didn’t reject this vendor
 - Configuration rules enforce neither purpose consent nor vendor signal.
 
-Technically these rules are defined:
+Technically these rules are defined as follows:
 
 1. enforcePurpose[P]==true AND PurposesConsent[P]==1 AND enforceVendor[P,V]==true AND VendorConsentBitfield[V]==1
 1. enforcePurpose[P]==true AND PurposesConsent[P]==1 AND enforceVendor[P,V]==false
@@ -196,9 +193,9 @@ Follow the basic build instructions in the GitHub Prebid.js repo's main [README]
 gulp build --modules=consentManagement,gdprEnforcement,bidAdapter1,bidAdapter2
 {% endhighlight %}
 
-Or you can use the [Prebid.js Download](/download.html) page.
+You can also use the [Prebid.js Download](/download.html) page.
 
 ## Further Reading
 
-- [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html) 
+- [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
 - [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md)
