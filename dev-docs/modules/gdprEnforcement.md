@@ -36,9 +36,9 @@ The following table details the Prebid.js activities that fall under the [Transp
 {: .table .table-bordered .table-striped }
 | TCF Purpose | In-Scope Activity | Enforcement Activity | Optional Controls |
 | --- | --- | --- | --- |
-| Purpose 1 - Store and/or access information on a device | usersync pixels | May result in preventing one or more usersync activities for one or more vendors. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
-| Purpose 1 - Store and/or access information on a device | user ID modules | May result in preventing one or more UserID modules to not activate. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
-| Purpose 1 - Store and/or access information on a device | device storage | May result in preventing one or more adapters or modules not being able to read or write cookies or localstorage in the user's browser. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
+| Purpose 1 - Store and/or access information on a device | usersync pixels | May prevent one or more vendor usersyncs. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
+| Purpose 1 - Store and/or access information on a device | user ID modules | May prevent one or more UserID modules from activating. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
+| Purpose 1 - Store and/or access information on a device | device storage | May prevent one or more adapters or modules from being able to read or write cookies or localstorage in the user's browser. | Do not enforce Purpose 1. Do not enforce Purpose 1 vendor signals. Do not enforce Purpose 1 for vendor V. |
 
 There are plans to add more TCF Purposes and activities in future releases.
 
@@ -58,7 +58,7 @@ These are the fields related to GDPR enforcment that are supported in the [`cons
 | gdpr.rules[].purpose | `String` | The only currently supported value is "storage", corresponding to TCF Purpose 1. | "storage" |
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent or not. The default in Prebid.js 3.x is not to enforce purposes. The plan for Prebid.js 4.0 is to enforce consent for Purpose 1 and no others. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose or not. The default in Prebid.js 3.x is not to enforce vendor signals. The plan for Prebid.js 4.0 to enforce signals for Purpose 1 and no others. | true |
-| gdpr.rules[].vendorExceptions | `Array of Strings` | Defines which biddercodes or module names do not fall under the enforcement of either enforcePurpose=true or enforceVendors=true. Publishers will not be able to validate that any vendor in this list is enforcing the appropriate GDPR rules. | true |
+| gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | true |
 
 Note:
 
