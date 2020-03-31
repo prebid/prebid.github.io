@@ -440,6 +440,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Floors Module
+  link: /dev-docs/modules/floors.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: Supply Chain Object
   link: /dev-docs/modules/schain.html
   isHeader: 0
