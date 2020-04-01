@@ -6,6 +6,7 @@ hide: true
 biddercode: yieldlab
 media_types: video
 gdpr_supported: true
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 
