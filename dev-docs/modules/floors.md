@@ -50,11 +50,11 @@ There are several places where the Floor module changes the behavior of the Preb
 
 1. When building the Prebid.js package, the Floors module (and any analytics adapters) needs to be included with 'gulp build --modules=floors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
-  - a. If an endpoint URL (a Dynamic Floor) is defined, the Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data
+  - a. If an endpoint URL (a Dynamic Floor) is defined, the Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
 3. Bid Adapters are responsible for utilizing the getFloors() from the bidRequest object for each ad slot media type, size combination. The Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
 5. Bid adapters will submit bids to back to Prebid core, where the Floors Module will perform enforcement on each bid 
-6. The Floors Module will mark all bids below as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
+6. The Floors Module will mark all bids below the floor as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
     - a. The Floors module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
 
 
@@ -572,7 +572,7 @@ Data providers can optionally build Analytics Adapters to ingest bid data within
 {% capture warning_note %}
 As a floor provider, your goal is to provide effective floors, with minimal page impact. If you are performing a Dynamic fetch to retrieve data prior to auctions, the following recommendations are advised to reduce page performance issues:  
   
-- Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services
+- Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services  
 - Work with publishers on setting appropriate auction delays to retrieve dynamic data  
 - Implement client-side caching (such as max-age headers) whenever possible  
 - Evaluate data freshness vs frequency of new fetches to the CDN to reduce unnecessary calls  
