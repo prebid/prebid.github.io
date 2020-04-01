@@ -89,7 +89,7 @@ gdpr_supported: true
                   siteId: '26049',
                   placementId: '123',
                   video: {
-                      skipppable: true,
+                      skippable: true,
                   }
               }
           }]
