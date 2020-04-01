@@ -24,18 +24,19 @@ This consent management module is designed to support the EU General Data Protec
 
 This module works with supported [Consent Management Platforms](https://www.cmswire.com/information-management/what-is-a-consent-management-platform/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
-{: .alert.alert-info :}
-See also the [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html) for supporting the California Consumer Protection Act (CCPA)
-
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
 **We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach.**
 
-Here's a summary of the interaction process:
+This base EU GDPR consent management module performs these actions:
 
 1. Fetch the user's GDPR consent data from the CMP.
 2. Incorporate this data into the auction objects for adapters to collect.
-3. Proceed with the auction.
+
+The optional [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) adds on these actions:
+
+3. Allows the page to define which activities should be enforced at the Prebid.js level.
+4. Actively enforces those activities based on user consent data.
 
 In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.
@@ -184,10 +185,12 @@ Follow the basic build instructions in the GitHub Prebid.js repo's main [README]
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
 {% endhighlight %}
 
+You can also use the [Prebid.js Download](/download.html) page.
+
 ## Adapter Integration
 
 {: .alert.alert-info :}
-Prebid.js adapters don't need to change to support TCF v2.0 if they already support TCF 1.1 -- the consent string is passed through the same bidrequest location. The bidder's endpoint, however, will need to change to support TCF v2.0. Once the endpoint supports TCF2, you can update the documentation.md file as described below above the table showing the list of TCF2-compliant bidders. 
+Prebid.js adapters don't need to change to support TCF v2.0 if they already support TCF 1.1 -- the consent string is passed through the same bidrequest location. The bidder's endpoint, however, will need to change to support TCF v2.0. Once the endpoint supports TCF2, you can update the documentation.md file as described below above the table showing the list of TCF2-compliant bidders.
 
 If you are submitting changes to an adapter to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
 
@@ -379,7 +382,7 @@ This should be be set to true once the parameters listed above are processed.
 
 ## Adapters Supporting TCF v1.1
 
-Bidders on this list have self-declared their TCF 1.1 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true". 
+Bidders on this list have self-declared their TCF 1.1 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -405,7 +408,7 @@ var idx_gdpr=0;
 
 ## Adapters Supporting TCF v2.0
 
-Bidders on this list have self-declared their TCF 2.0 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "tcf2_supported: true". 
+Bidders on this list have self-declared their TCF 2.0 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "tcf2_supported: true".
 
 <script type="text/javascript">
 var adaptersSupportingGdpr2=[];
@@ -426,3 +429,9 @@ var idx_gdpr=0;
            writeDynamicTable({div: "adaptersTableGdpr2", data: "adaptersSupportingGdpr2", sort: "rowFirst", striped: false} );
         </script>
 </div>
+
+## Further Reading
+
+- [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html)
+- [IAB Transparancy and Consent Framework Policies](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/)
+- [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
