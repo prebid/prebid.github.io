@@ -6,6 +6,7 @@ hide: true
 biddercode: smartadserver
 media_types: display, video
 gdpr_supported: true
+schain_supported: true
 ---
 
 ### Note:
