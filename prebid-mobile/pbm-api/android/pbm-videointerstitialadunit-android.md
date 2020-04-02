@@ -13,7 +13,7 @@ sidebarType: 2
 Use the `VideoInterstitialAdUnit` object to create and configure an interstitial ad unit in your app.
 
 
-Currently Google Ad Manager is the only supported ad server. We plan to provide support for additional ad servers in subsequent releases.
+Video Interstital is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
 * TOC

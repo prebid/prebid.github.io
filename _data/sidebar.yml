@@ -432,8 +432,24 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: GDPR Enforcement
+  link: /dev-docs/modules/gdprEnforcement.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: Consent Management - US Privacy (CCPA)
   link: /dev-docs/modules/consentManagementUsp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Floors Module
+  link: /dev-docs/modules/floors.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -737,10 +753,17 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-
 - sbSecId: 2
   title: Video interstitial Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Video Rewarded Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-video-rewarded-adunit-ios.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -850,6 +873,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+
+- sbSecId: 2
+  title: Video Rewarded Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-video-rewarded-adunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
 
 - sbSecId: 2
   title: Targeting Parameters
