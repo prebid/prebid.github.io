@@ -6,7 +6,7 @@ hide: true
 biddercode: adagio
 media_types: banner
 gdpr_supported: true
-SChain Support: true
+schain_supported: true
 ---
 
 ### Note
