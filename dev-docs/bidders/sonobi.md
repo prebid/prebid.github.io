@@ -6,7 +6,7 @@ hide: true
 biddercode: sonobi
 media_types: video
 gdpr_supported: true
-userIds: pubCommon, unifiedId/tradedesk
+userIds: britepoolId, pubCommon, unifiedId/tradedesk
 ---
 
 ### Note:
