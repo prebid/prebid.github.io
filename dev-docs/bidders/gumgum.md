@@ -6,7 +6,7 @@ hide: true
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true
-userIds: unifiedId/tradedesk, digitrustId
+userIds: digitrust, unifiedId
 gdpr_supported: true
 usp_supported: true
 ---

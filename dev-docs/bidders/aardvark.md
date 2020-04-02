@@ -7,7 +7,7 @@ biddercode: aardvark
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
-userIds: unifiedId/tradedesk
+userIds: unifiedId
 ---
 
 ### Bid Params

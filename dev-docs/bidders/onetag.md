@@ -7,6 +7,7 @@ biddercode: onetag
 media_types: banner, video
 gdpr_supported: true
 usp_supported: true
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 
