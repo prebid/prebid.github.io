@@ -5,6 +5,7 @@ description: Prebid Aardvark Bidder Adaptor
 hide: true
 biddercode: aardvark
 gdpr_supported: true
+tcf2_supported: true
 usp_supported: true
 schain_supported: true
 userIds: unifiedId/tradedesk
