@@ -370,13 +370,13 @@ The `interpretResponse` function will be called when the browser has received th
             networkName: NETWORK_NAME
             agencyId: AGENCY_ID,
             agencyName: AGENCY_NAME,
-            buyerId: BUYER_ID,
-            buyerName: BUYER_NAME,
+            advertiserId: ADVERTISER_ID,
+            advertiserName: ADVERTISER_NAME,
+            advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS]
             brandId: BRAND_ID,
             brandName: BRAND_NAME,
             primaryCatId: IAB_CATEGORY,
             secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
-            adomain: [ARRAY_OF_ADVERTISER_DOMAINS]
         }
     };
     bidResponses.push(bidResponse);
@@ -408,8 +408,10 @@ The parameters of the `bidResponse` object are:
 | `meta.agencyId`     | Optional                                    | Agency ID                                                                                                                                       |                           |
 | `meta.agencyName`     | Optional                                    | Agency Name                                                                                                                                       |                           |
 | `meta.advertiserId`     | Optional                                    | Advertiser ID                                                                                                                                       |                           |
-| `meta.advertiserName`     | Optional                                    | Advertiser ID                                                                                                                                       |                           |
-| `meta.advertiserDomain`     | Optional                                    | Array of Advertiser Domains                                                                                                                                       |                           |
+| `meta.advertiserName`     | Optional                                    | Advertiser Name                                                                                                                                       |                           |
+| `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains                                                                                                                                       |                           |
+| `meta.brandId`     | Optional                                    | Brand ID (big advertisers have many brands)                                                                                                    |                           |
+| `meta.brandName`     | Optional                                    | Brand Name                                                                                                                                       |                           |
 | `meta.primaryCatId`     | Optional                                    | Primary IAB category ID                                                                                                                                       |                           |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category ID                                                                                                                                       |                           |
 
