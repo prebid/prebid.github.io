@@ -356,38 +356,62 @@ The `interpretResponse` function will be called when the browser has received th
     const bidResponse = {
         requestId: BID_ID,
         cpm: CPM,
+        currency: CURRENCY,
         width: WIDTH,
         height: HEIGHT,
         creativeId: CREATIVE_ID,
         dealId: DEAL_ID,
-        currency: CURRENCY,
         netRevenue: true,
         ttl: TIME_TO_LIVE,
-        ad: CREATIVE_BODY
+        ad: CREATIVE_BODY,
+        dealId: DEAL_ID,
+        meta: {
+            networkId: NETWORK_ID,
+            networkName: NETWORK_NAME
+            agencyId: AGENCY_ID,
+            agencyName: AGENCY_NAME,
+            buyerId: BUYER_ID,
+            buyerName: BUYER_NAME,
+            brandId: BRAND_ID,
+            brandName: BRAND_NAME,
+            primaryCatId: IAB_CATEGORY,
+            secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
+            adomain: [ARRAY_OF_ADVERTISER_DOMAINS]
+        }
     };
     bidResponses.push(bidResponse);
     return bidResponses;
 
 {% endhighlight %}
 
-The parameters of the `bidObject` are:
+The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
 | `requestId`  | Required                                    | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
 | `cpm`        | Required                                    | The bid price. We recommend the most granular price a bidder can provide                                                                      | 3.5764                               |
+| `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
 | `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
-| `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
 | `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
+| `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
+| `meta.networkId`     | Optional                                    | Network/DSP Id                                                                                                                                       |                           |
+| `meta.networkName`     | Optional                                    | Network/DSP Name                                                                                                                                       |                           |
+| `meta.agencyId`     | Optional                                    | Agency ID                                                                                                                                       |                           |
+| `meta.agencyName`     | Optional                                    | Agency Name                                                                                                                                       |                           |
+| `meta.advertiserId`     | Optional                                    | Advertiser ID                                                                                                                                       |                           |
+| `meta.advertiserName`     | Optional                                    | Advertiser ID                                                                                                                                       |                           |
+| `meta.advertiserDomain`     | Optional                                    | Array of Advertiser Domains                                                                                                                                       |                           |
+| `meta.primaryCatId`     | Optional                                    | Primary IAB category ID                                                                                                                                       |                           |
+| `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category ID                                                                                                                                       |                           |
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
