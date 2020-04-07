@@ -3,6 +3,7 @@ layout: bidder
 title: Fidelity Media
 description: Prebid Fidelity Media Bidder Adapter
 hide: true
+schain_supported: true
 biddercode: fidelity
 media_types: banner
 gdpr_supported: true
