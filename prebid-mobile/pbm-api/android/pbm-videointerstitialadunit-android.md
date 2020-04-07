@@ -13,7 +13,7 @@ sidebarType: 2
 Use the `VideoInterstitialAdUnit` object to create and configure an interstitial ad unit in your app.
 
 
-Currently Google Ad Manager is the only supported ad server. We plan to provide support for additional ad servers in subsequent releases.
+Video Interstital is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
 * TOC
@@ -38,7 +38,7 @@ VideoInterstitialAdUnit("configId");
 
 ## Methods
 
-`VideoInterstitialAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html) object.
+`VideoInterstitialAdUnit` inherits all methods from the [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) object.
 
 
 
@@ -92,4 +92,4 @@ private void loadInterstitial() {
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)

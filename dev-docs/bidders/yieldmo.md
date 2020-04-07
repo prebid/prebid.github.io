@@ -5,7 +5,7 @@ description: Prebid Yieldmo Bidder Adaptor
 hide: true
 biddercode: yieldmo
 media_types: native
-userIds: pubCommon
+userIds: pubCommonId, unifiedId
 ---
 
 

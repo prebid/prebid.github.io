@@ -6,7 +6,7 @@ hide: true
 biddercode: smartrtb
 gdpr_supported: true
 media_types: banner, video
-userIds: unifiedId,pubCommonId,id5id,digitrust
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 ### bid params
