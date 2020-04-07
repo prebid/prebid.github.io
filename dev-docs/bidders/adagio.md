@@ -2,24 +2,32 @@
 layout: bidder
 title: Adagio
 description: Prebid Adagio Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: adagio
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: banner
 gdpr_supported: true
 ---
 
+### Note
 
-### bid params
+The Adagio bidder adaptor requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
+
+### Bid Params
+
+**Important**: Adagio needs to collect attention data about the ads displayed on a page and must listen to some specifics ad-server events. Please refer to the [Adagio user guide](https://support.adagio.io/hc/en-us/articles/360019849112-Adagio-PreBid-Installation-guide-for-publishers) for details.
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                                                | Example                | Type            |
-|---------------|----------|----------------------------------------------------------------------------|------------------------|-----------------|
-| `siteId`      | required | Site ID from Adagio.                                                       | `0`                    | `string`        |
-| `placementId` | required | Placement ID from Adagio. Refers to the placement of an ad unit in a page. | `4`                    | `string`        |
-| `pagetypeId`  | required | Page type ID from Adagio.                                                  | `343`                  | `string`        |
-| `categories`  | required | IAB categories of the page.                                                | `['IAB12', 'IAB12-2']` | `Array<string>` |
+| Name               | Scope              | Description                                                                                                          | Example         | Type      |
+|--------------------|--------------------|----------------------------------------------------------------------------------------------------------------------|-----------------|-----------|
+| `organizationId`   | required           | Id of the Organization. Handed out by Adagio.                                                                        | `'1010'`        | `string`  |
+| `site`             | required           | Name of the site. Handed out by Adagio.<br><i>- max length: 50</i>                                                   | `'mysite-com'`  | `string`  |
+| `adUnitElementId`  | required           | Refers to the adunit html attribute id in a page.                                                                    | `'gpt-ban-atf'` | `string`  |
+| `environment`*     | highly recommended | Environment where the page is displayed.<br><i>- max length: 30</i><br><i>- max distinctives values: 10</i>          | `'desktop'`     | `string`  |
+| `placement`*       | highly recommended | Refers to the placement of an adunit in a page.<br>Must not contain any information about the type of device.<br><i>- max length: 30</i><br><i>- max distinctives values: 10</i> | `'ban_atf'`     | `string`  |
+| `pagetype`*        | recommended        | Describes what kind of content will be present in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i> | `'article'`     | `string`  |
+| `category`*        | recommended        | Category of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>    | `'sport'`       | `string`  |
+| `subcategory`*     | optional           | Subcategory of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i> | `'handball'`    | `string`  |
+| `postBid`          | optional           | Used in Post-Bid context only.                                                                                       | `true`          | `boolean` |
+
+<i>*These parameters will have its accentuated characters converted to their non-accentuated version:&nbsp;`é`&nbsp;=>&nbsp;`e`</i>

@@ -1,14 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid 1.0 Publisher API Changes
 description: Description of the changes to the publisher facing API for Prebid 1.0
 top_nav_section: dev_docs
 nav_section: reference
 hide: false
-pid: 8
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid 1.0 Publisher API Changes
 {:.no_toc}

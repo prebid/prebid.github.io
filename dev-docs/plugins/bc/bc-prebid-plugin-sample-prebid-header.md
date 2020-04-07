@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player API
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,7 +7,7 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Sample Brightcove Player Prebid Plugin Integration - Prebid in Header
 
@@ -68,7 +68,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
         };
         window.bc_plugin_pbjs.plugin_prebid_options.biddersSpec = params;
 
-        // set the DFP Parameters
+        // set the Google Ad Manager Parameters
         var dfpParams = {
             params : {
                 iu : '/1234456/prebid_cache_video_ad_unit_test',
@@ -115,4 +115,4 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
 </html>
 ```
 
-</div>
+
