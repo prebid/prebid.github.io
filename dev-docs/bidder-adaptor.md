@@ -196,7 +196,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {}
@@ -402,18 +402,26 @@ See below for an example implementation.  For more examples, search for `getUser
 {% highlight js %}
 
 {
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;
@@ -886,18 +894,26 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;
