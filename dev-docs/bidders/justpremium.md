@@ -6,6 +6,7 @@ hide: true
 biddercode: justpremium
 gdpr_supported: true
 usp_supported: true
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 

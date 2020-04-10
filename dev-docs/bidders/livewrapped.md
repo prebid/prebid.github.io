@@ -6,7 +6,7 @@ biddercode: livewrapped
 hide: true
 media_types: banner
 gdpr_supported: true
-userIds: pubcommon
+userIds: id5Id, pubCommonId
 ---
 
 ### Note:

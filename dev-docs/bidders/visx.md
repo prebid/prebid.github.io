@@ -6,7 +6,7 @@ hide: true
 biddercode: visx
 gdpr_supported: true
 schain_supported: true
-userIds: unifiedId, digitrust, id5
+userIds: digitrust, id5Id, unifiedId
 ---
 
 ### Note
