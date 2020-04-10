@@ -4,9 +4,13 @@
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
         
+        <!--fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Prompt' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Aleo' rel='stylesheet'>
+        
         <!--Bootstrap css/js-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
 		<!--jQuery and popper-->
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -15,6 +19,7 @@
         <!--Prebid.js-->
         <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
         <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+        
         <script>
             var div_1_sizes = [
                 [300, 250]
@@ -84,6 +89,7 @@
                     });
                 });
             }
+            
             // in case PBJS doesn't load
             setTimeout(function() {
                 initAdserver();
@@ -106,22 +112,21 @@
         
         <style>
 	        
-        	.row {
-				margin-left: 0;
-				margin-right: 0;
-			}
-			
-			.left-nav { 
-				padding-top:10px;
-			}
-			
-			.left-nav-list { 
-				list-style-type:none
-			}
-			
-			.bottom-ad { 
-				padding-top: 5px;
-			}
+	        .sidebar { 
+		        padding: 20px 10px 20px 60px;
+		        background-color: #c7bb99;
+		        border-right: 1px solid #332a09;
+		        min-height: calc(100vh - 250px);
+		        font-family: 
+	        }
+	        
+	        .sidebar-title { 
+		        font-family: Prompt, sans-serif;
+		        font-weight: 600;
+		        font-size: 20px;
+		        color: #212f4f
+	        }
+	        
 				
 	    </style>
 
@@ -129,76 +134,68 @@
 
     <body>
 	    
-	 
-	
-		<div class="container">
-		  <div class="page-header">
-		    <h1>Mid Atlantic Outside</h1> 
-		    <p>Some aggregate news site.</p>       
-		  </div>
-		  
-		  <div class="row">
-		    <div class="col-md-2 left-nav" style="background-color:#8079ff">
-		      <ul class="left-nav-list">
-			      <li>Link 1</li>
-			      <li>Link 2</li>
-			      <li>Link 3</li>
+	    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+		  <div class="container">
+		    <a href="#" class="navbar-brand">
+				<!-- Logo Image -->
+				<img src="/sandbox/demo/assets/images/prebid_logo.png" width="240">
+    		</a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+		          <span class="navbar-toggler-icon"></span>
+		        </button>
+		    <div class="collapse navbar-collapse" id="navbarResponsive">
+		      <ul class="navbar-nav ml-auto">
+		        <li class="nav-item active">
+		          <a class="nav-link" href="#">Home
+		                <span class="sr-only">(current)</span>
+		              </a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="#">About</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="#">Services</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="#">Contact</a>
+		        </li>
 		      </ul>
 		    </div>
-		    
-		    <div class="col-md-10">
-		      <div class="row">
-		         <div class="container">
-				 	<div class="row">
-						<div class="col-sm">
-					      <h3>Whiskey Springs</h3><p>Because of its location on the Appalachian Trail and because of a lack of publicity regarding the climbing, it's more likely that you'll run into hikers and backpackers rather than climbers at this boulder field. But for in-the-know climbers, it doesn't get much better than Whiskey Springs. The rock is a high quality, rough quartzite, and outcroppings are scattered throughout the area. Purchasing the guidebook or finding a local familiar with the area is wise, as it is not heavily trafficked and the area is somewhat difficult to navigate. Some noteworthy climbs include, "The Cranking" V9 and "Webber Seam" V4.
-					    </div>
-					    <div class="col-sm" id='div-1'>
-					      <script type='text/javascript'>
-				                googletag.cmd.push(function() {
-				                    googletag.display('div-1');
-				                });
-				
-				            </script>
-					    </div>
-					</div><!-- end row-->
-				</div><!--end container 2-->
-			  </div><!--end row-->
-			</div><!--end col md 10-->
-			
-			<div class="row bottom-ad" style="text-align:center;">
-				
-				<div id='div-2' style="display:inline;>
-					<script type='text/javascript'>
-		                googletag.cmd.push(function() {
-		                    googletag.display('div-2');
-		                });
-					
-					</script>
+		  </div>
+		</nav>
+		
+		<div class="container-fluid" style="margin-top: 100px;">
+			<!--<div class="row">
+				<div class="col-md-2 sidebar">
+					<ul>
+						<li><a href="#" class="sidebar-title">Norman MacLean: <br>Young Men and Fire</a></li>
 				</div>
-				            
-		    </div>
-		    
-		  </div><!--end row-->
-		</div>
-		          
+				<div class="col-md-7">
+					<div id="instructions" class="page-text">Click an author to read an excerpt from their book</div>
+					<div id="maclean">
+						<p>Dodge testifies that this was the first time he had tried to communicate with his men since rejoining them at the head of the gulch, and he is reported as saying—for the second time—something about "getting out of this death trap." When asked by the Board of Review if he had explained to the men the danger they were in, he looked at the Board in amazement, as if the Board had never been outside the city limits and wouldn't know sawdust if they saw it in a pile. It was getting late for talk anyway. What could anybody hear? It roared from behind, below, and across, and the crew, inside it, was shut out from all but a small piece of the outside world.</p>
+						<p>They had come to the station of the cross where something you want to see and can't shuts out the sight of everything that otherwise could be seen. Rumsey says again and again what the something was he couldn't see. "The top of the ridge, the top of the ridge.</p>
+						<p>"I had noticed that a fire will wear out when it reaches the top of a ridge. I started putting on steam thinking if I could get to the top of the ridge I would be safe.</p>
+						<p>"I kept thinking the ridge—if I can make it. On the ridge I will be safe . . . I forgot to mention I could not definitely see the ridge from where we were. We kept running up since it had to be there somewhere. Might be a mile and a half or a hundred feet—I had no idea."</p>
+						<p>The survivors say they weren't panicked, and something like that is probably true. Smokejumpers are selected for being tough, but Dodge's men were very young and, as he testified, none of them had been on a blowup before and they were getting exhausted and confused. The world roared at them—there was no safe place inside and there was almost no outside. By now they were short of breath from the exertion of their climbing and their lungs were being seared by the heat. A world was coming where no organ of the body had consciousness but the lungs.</p>
+						<p>Dodge's order was to throw away just their packs and heavy tools, but to his surprise some of them had already thrown away all their equipment. On the other hand, some of them wouldn't abandon their heavy tools, even after Dodge's order. Diettert, one of the most intelligent of the crew, continued carrying both his tools until Rumsey caught up with him, took his shovel, and leaned it against a pine tree. Just a little farther on, Rumsey and Sallee passed the recreation guard, Jim Harrison, who, having been on the fire all afternoon, was now exhausted. He was sitting with his heavy pack on and was making no effort to take it off, and Rumsey and Sallee wondered numbly why he didn't but no one stopped to suggest he get on his feet or gave him a hand to help him up. It was even too late to pray for him. Afterwards, his ranger wrote his mother and, struggling for something to say that would comfort her, told her that her son always attended mass when he could.</p>
+						<p>It was way over one hundred degrees. Except for some scattered timber, the slope was mostly hot rock slides and grass dried to hay.</p>
+						<p>It was becoming a world where thought that could be described as such was done largely by fixations. Thought consisted in repeating over and over something that had been said in a training course or at least by somebody older than you.</p>
+						<p>Critical distances shortened. It had been a quarter of a mile from where Dodge had rejoined his crew to where he had the crew reverse direction. From there they had gone only five hundred yards at the most before he realized the fire was gaining on them so rapidly that the men should discard whatever was heavy.</p>
+						<p>The next station of the cross was only seventy-five yards ahead. There they came to the edge of scattered timber with a grassy slope ahead. There they could see what is really not possible to see: the center of a blowup. It is really not possible to see the center of a blowup because the smoke only occasionally lifts, and when it does all that can be seen are pieces, pieces of death flying around looking for you—burning cones, branches circling on wings, a log in flight without a propeller. Below in the bottom of the gulch was a great roar without visible flames but blown with winds on fire. Now, for the first time, they could have seen to the head of the gulch if they had been looking that way. And now, for the first time, to their left the top of the ridge was visible, looking when the smoke parted to be not more than two hundred yards away.</p>
+				</div>
+				<div id="expurey">
+					<p>We had no means of angular orientation, were already deafened, and were bit by bit growing blind. The moon like a pallid ember began to go out in the banks of fog. Overhead the sky was filling with clouds, and we flew thenceforth between cloud and fog in a world voided of all substance and all light. The ports that signaled us had given up trying to tell us where we were. “No bearings, no bearings,” was all their message, for our voice reached them from everywhere and nowhere. With sinking hearts Neri and I leaned out, he on his side and I on mine, to see if anything, anything at all, was distinguishable in this void. Already our tired eyes were seeing things— errant signs, delusive flashes, phantoms.</p>
+					<p>And suddenly, when already we were in despair, low on the horizon a brilliant point was unveiled on our port bow. A wave of joy went through me. Neri leaned forward, and I could hear him singing. It could not but be the beacon of an airport, for after dark the whole Sahara goes black and forms a great dead expanse. That light twinkled for a space— and then went out! We had been steering for a star which was visible for a few minutes only, just before setting on the horizon between the layer of fog and the clouds. </p>
+					<p>Then other stars took up the game, and with a sort of dogged hope we set our course for each of them in turn. Each time that a light lingered a while, we performed the same crucial experiment. Neri would send his message to the airport at Cisneros: “Beacon in view. Put out your light and flash three times.” And Cisneros would put out its beacon and flash three times while the hard light at which we gazed would not, incorruptible star, so much as wink. And despite our dwindling fuel we continued to nibble at the golden bait which each time seemed more surely the true light of a beacon, was each time a promise of a landing and of life— and we had each time to change our star.</p>
+					<p>And with that we knew ourselves to be lost in interplanetary space among a thousand inaccessible planets, we who sought^only the one veritable planet, our own, that planet on which alone we should find our familiar countryside, the houses of our friends, our treasures. On which alone we should find . . . Let me draw the picture that took shape before my eyes. It will seem to you childish; but even in the midst of danger a man retains his human concerns. I was thirsty and I was hungry. If we did find Cisneros we should re-fuel and carry on to Casablanca, and there we should come down in the cool of daybreak, free to idle the hours away. Neri and I would go into town. We would go to a little pub already open despite the early hour. Safe and sound, Neri and I would sit down at table and laugh at the night of danger as we ate our warm rolls and drank our bowls of coffee and hot milk. We would receive this matutinal gift at the hands of life. Even as an old peasant woman recognizes her God in a painted image, in a childish medal, in a chaplet, so life would speak to us in its hum- blest language in order that we understand. The joy of living, I say, was summed up for me in the remembered sensation of that first burning and aromatic swallow, that mixture of milk and coffee and bread by which men hold communion with tranquil pastures, exotic plantations, and golden harvests, communion with the earth. Amidst all these stars there was but one that could make itself significant for us by composing this aromatic bowl that was its daily gift at dawn. And from that earth of men, that earth docile to the reaping of grain and the harvesting of the grape, bearing its rivers asleep in their fields, its villages clinging to their hillsides, our ship was separated by astronomical distances. AJl the treasures of the world were summed up in a grain of dust now blown far out of our path by the very destiny itself of dust and of the orbs of night.</p> 
+					<p>And Neri still prayed to the stars.</p>
+			</div>
+			<div class="col-md-3">Test</div>
+		</div>-->   	
+				          
     </body>
 
 </html>
 
-<script>
-	
-	var newsFeedURL = "newsFeed.xml";
-	$(document).ready(function() {
-		$.ajax(newsFeedURL, {
-			accepts:{
-				xml:"application/rss+xml"
-			},
-			dataType:"xml",
-			success:function(data) {
-				console.log(data)
-			}
-		});
-	});
-	
-</script>
+
