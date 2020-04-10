@@ -61,12 +61,7 @@ NativeAssetTitle
 | Title | Optional | The title of the native ad. |
 
 
-{% capture noteAlert %}
-All the items listed above are optional. However, if you choose to include an item in the `NativeAdUnit` configuration it is recommended that when creating them, set `required:true`
-{% endcapture %}
-
-{% include alerts/alert_note.html content=noteAlert %}
-
+### Example
 ```
 let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 200, required: true)
 
@@ -113,7 +108,7 @@ nativeUnit.fetchDemand(adObject: self.request) { [weak self] (resultCode: Result
 
 ## Related Topics
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
 - [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
 - [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)

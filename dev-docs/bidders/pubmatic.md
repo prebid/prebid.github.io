@@ -9,7 +9,7 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-userIds: pubcommonId, unifiedId/tradedesk, digitrustId, id5Id, criteo, identityLink, liveIntent, parrable, britepoolId
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 ---
 
@@ -36,6 +36,7 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
 | `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
 | `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
+| `deals`    | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.) | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |
 
 ### Configuration
 

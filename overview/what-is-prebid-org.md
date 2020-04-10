@@ -45,6 +45,5 @@ Prebid welcomes any contribution on these projects!
 Read more here:
 
 * [Prebid.org Members and Partners](/partners/partners.html)
-* [Prebid.org press release](https://www.appnexus.com/en/company/news-and-events/press-releases/news-2017-0911)
 * [The Drum reporting on Prebid.org](https://www.thedrum.com/news/2017/09/11/appnexus-and-rubicon-project-launch-prebidorg-hailing-open-source-approach-header)
 * [Current members of Prebid.org]({{site.baseurl}}/partners/partners.html)

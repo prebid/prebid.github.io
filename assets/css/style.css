@@ -50,6 +50,13 @@ p {
   padding: 8px;
 }
 
+.centeredFixedHeight {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  height: 150px;
+}
+
 /* Links */
 /*#3498db*/
 a {
@@ -1074,7 +1081,6 @@ pre {
   right: -15%;
 }
 
-
 /************ pbTable ****************/
 
 .pbtable {
@@ -1308,6 +1314,57 @@ pre {
 	margin-right: auto;
 	text-align: center;
 	
+}
+
+/************ Was This Helpful Form ****************/
+
+.wthHeader { 
+	background-color: #EA9622;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	height: 10px;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.wthBordered { 
+	border: 1px solid #cccccc;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	margin-top: 10px;
+	padding-left: 7px;
+}
+
+.wthForm { 
+	padding-left: 15px;
+}
+
+.wthForm.input { 
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.wthSubmit { 
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.wthLabel { 
+	
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size:18px;
+	color: #EA9622;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.wthTitle { 
+	
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	font-size:24px;
+	color: #3498db;
 }
 
 
@@ -2114,6 +2171,8 @@ div.pl-doc-entry{
   right: 10px;
   left: auto;
 }
+
+
 
 
 

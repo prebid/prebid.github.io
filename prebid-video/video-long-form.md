@@ -144,3 +144,5 @@ After you’ve defined your ad units, you can continue with the rest of your con
 ### Examples
 
 See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) for examples of long-form video ads. 
+
+{% include wth_form.html %}

@@ -21,7 +21,7 @@ We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appne
 Similarly, we'll use Google Ad Manager as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
 {: .alert.alert-success :}
-For a full working code sample using the techniques described on this page, see the [Prebid Native Example]({{site.github.url}}/examples/native/native-demo.html).
+For a full working code sample using the techniques described on this page, see the [Prebid Native Example](/dev-docs/examples/native-ad-example.html).
 
 * TOC
 {:toc}
@@ -61,7 +61,7 @@ Keep the following prerequisites in mind during the implementation:
 
 ## Implementation
 
-This section describes the implementation using code samples, but ignores some of the details that are common to all Prebid.js setups.  <!-- For full working example code, see the [Prebid Native example]({{site.github.url}}/dev-docs/examples/show-native-ads.html). -->
+This section describes the implementation using code samples, but ignores some of the details that are common to all Prebid.js setups.  <!-- For full working example code, see the [Prebid Native example](/examples/native-ad-example.html). -->
 
 ### 1. Set up your ad slot
 
@@ -89,7 +89,7 @@ Specific bidders may not support all of the fields listed below or may return di
 |---------------+--------------------------------------------------------------------------------------|-----------------------|
 | `title`       | The title of the ad, usually a call to action or a brand name.                       | `hb_native_title`     |
 | `body`        | Text of the ad copy.                                                                 | `hb_native_body`      |
-| `body2`       | Additional Text of the ad copy.                                                      | `hb_native_body2`     | 
+| `body2`       | Additional Text of the ad copy.                                                      | `hb_native_body2`     |
 | `sponsoredBy` | The name of the brand associated with the ad.                                        | `hb_native_brand`     |
 | `icon`        | The brand icon that will appear with the ad.                                         | `hb_native_icon`      |
 | `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `hb_native_image`     |
@@ -298,11 +298,8 @@ The `native-trk.js` script from `prebid-universal-creative` can replace native p
 
 ## Working Examples
 
-+ [Prebid Native with two slots]({{site.github.url}}/examples/native/native-demo.html)
-+ [Prebid Native Examples]({{site.github.url}}/examples/native)
++ [Prebid Native Examples](/dev-docs/examples/native-ad-example.html)
 
 ## Related Topics
 
 + [Setting up Prebid Native in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
-
-

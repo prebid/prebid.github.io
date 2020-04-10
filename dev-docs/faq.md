@@ -121,7 +121,7 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 ## How often is Prebid.js updated?
 
-See [the github release schedule](https://github.com/prebid/Prebid.js/blob/master/README.md) for more details.
+See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/master/RELEASE_SCHEDULE.md) for more details.
 
 ## When do I have to upgrade my version of Prebid.js?
 

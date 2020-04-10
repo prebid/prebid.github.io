@@ -10,61 +10,14 @@ sidebarType: 2
 
 Create a new Video Outstream Ad Unit associated with a Prebid Server configuration ID and a video size.
 
-Currently Google Ad Manager is the only supported ad server. We plan to provide support for additional ad servers in subsequent releases.
+Video Insterstital is only supported with Google Ad Manager.
 {: .alert .alert-info}
 
-See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
-
-`VideoInterstitialAdUnit(configId: String, size: CGSize(width: Int, height: Int), type:Enum)`
+`VideoInterstitialAdUnit(configId: String)`
 
 **Parameters**
 
-`configId(String)`: Prebid Server configuration ID
-
-`size(CGSize)`: Width and height of the video ad unit
-
-`type:Enum`: OpenRTB Placement Type
-
-
-#### CGSize
-
-Size of video ad unit.
-
-**Parameters**
-
-`width`: Width of video ad unit in DIPs.
-
-`height`: Height of video ad unit in DIPs.
-
-
-#### type
-
-OpenRTB Placement Type represented as an enumeration of values:
-
-* `inBanner` is transformed into OpenRTB value 2 to bid adapters
-* `inArticle` is transformed into OpenRTB value 3 to bid adapters
-* `inFeed` is transformed into OpenRTB value 4 to bid adapters
-
-
-
-## videoAd: Video Events
-
-### videoAd
-
-* Video event listeners
-
-`videoAd (event: PBVideoAdEvent)`: Event to listen to.
-
-**Parameters**
-
-Events - one of these event types:
-
-* AdLoadSuccess
-* AdLoadFail
-* AdClicked
-* AdStarted
-* AdDidReachEnd
-
+`configId(String)`: Prebid Server configuration ID.
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
@@ -74,7 +27,7 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 
 **Google Mobile Ads**  
-Import the GoogleMobileAds from [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the VideoAdUnit.
+Import the GoogleMobileAds from [google-mobile-sdk](https://developers.google.com/admob/ios/download) into the UIViewController displaying the VideoInterstitialAdUnit.
 
 **Swift**
 ```    
@@ -92,7 +45,7 @@ Import the GoogleMobileAds from [google-mobile-sdk](https://developers.google.co
     func setupPBInterstitialVAST() {
         Prebid.shared.prebidServerHost = .Rubicon
         Prebid.shared.prebidServerAccountId = "accountId"
-        adUnit = VideoInterstitialAdUnit(configId: "configId", size: CGSize(width: 300, height: 250), type: .inBanner)
+        adUnit = VideoInterstitialAdUnit(configId: "configId")
     }
 
     func setupAMInterstitialVAST() {
@@ -110,7 +63,7 @@ Import the GoogleMobileAds from [google-mobile-sdk](https://developers.google.co
 
 ## Related Topics
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
 - [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)

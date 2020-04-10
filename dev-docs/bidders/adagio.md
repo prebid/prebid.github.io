@@ -6,11 +6,13 @@ hide: true
 biddercode: adagio
 media_types: banner
 gdpr_supported: true
+schain_supported: true
+tcf2_supported: true
 ---
 
 ### Note
 
-The Adagio bidder adaptor requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](contact@adagio.io) for more information.
+The Adagio bidder adaptor requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
 
 ### Bid Params
 

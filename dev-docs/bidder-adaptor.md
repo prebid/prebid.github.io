@@ -196,7 +196,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {}
@@ -209,45 +209,101 @@ registerBidder(spec);
 
 ### Building the Request
 
-When the page asks Prebid.js for bids, your module's `buildRequests` function will be executed. Building the request will use data from several places:
+When the page asks Prebid.js for bids, your module's `buildRequests` function will be executed and passed two parameters:
 
-* *Ad Unit Params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
-* *Transaction ID*: `bidderRequest.bids[].transactionId` should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
-* *Ad Server Currency*: If your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
-* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information.
+- `validBidRequests[]` - An array of bidRequest objects, one for each AdUnit that your module is involved in. This array has been processed for special features like sizeConfig, so it's the list that you should be looping through.
+- `bidderRequest` - The master bidRequest object. This object is useful because it carries a couple of bid parameters that are global to all the bids.
 
-#### Valid Build Requests Array
+{% highlight js %}
+buildRequests: function(validBidRequests, bidderRequest) {
+   ...
+   return ServerRequestObjects;
+}
+{% endhighlight %}
 
-Sample array entry for `validBidRequests[]`:
+Building the request will use data from several places:
+
+* **Ad Unit Params**: The arguments provided by the page are in `validBidRequests[]`.
+* **BidRequest Params**: Several important parameters such as userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
+* **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
+
+
+#### Ad Unit Params in the validBidRequests Array
+
+Here is a sample array entry for `validBidRequests[]`:
 
 {% highlight js %}
 [{
-  "bidder": "example",
-  "bidId": "51ef8751f9aead",
-  "params": {
-    "cId": "59ac1da80784890004047d89",
-    ...
-  },
-  "adUnitCode": "div-gpt-ad-1460505748561-0",
-  "transactionId": "d7b773de-ceaa-484d-89ca-d9f51b8d61ec",
-  "sizes": [[320,50],[300,250],[300,600]],
-  "bidderRequestId": "418b37f85e772c",
-  "auctionId": "18fd8b8b0bd757",
-  "bidRequestsCount": 1
+  adUnitCode: "test-div"
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
+  bidId: "22c4871113f461"
+  bidder: "rubicon"
+  bidderRequestId: "15246a574e859f"
+  bidRequestsCount: 1
+  bidderRequestsCount: 1
+  bidderWinsCount: 0
+  mediaTypes: {banner: {...}}
+  params: {...}
+  src: "client"
+  transactionId: "54a58774-7a41-494e-9aaf-fa7b79164f0c"
 }]
 {% endhighlight %}
 
-#### bidRequest Parameters
+Retrieve your bid parameters from the `params` object.
 
-Notes on parameters in the bidRequest object:
+Other notes:
 - **Bid ID** is unique across ad units and bidders.
-- **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.
-- **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
-- **Bid Request Count** is the number of times `requestBids` has been called for this ad unit.
+- **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
+- **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
+- **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+
+#### bidderRequest Parameters
+
+Here is a sample bidderRequest object:
+
+{% highlight js %}
+{
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
+  auctionStart: 1579746300522
+  bidderCode: "myBidderCode"
+  bidderRequestId: "15246a574e859f"
+  userId: {...}
+  schain: {...}
+  bids: [{...}]
+  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
+  refererInfo:
+    canonicalUrl: undefined
+    numIframes: 0
+    reachedTop: true
+    referer: "http://mypage?pbjs_debug=true"
+}
+{% endhighlight %}
+
+Notes on parameters in the bidderRequest object:
+- **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
+- **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
+- **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
+- **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
+
+#### Prebid Config
+
+There are a number of important values that a publisher can set in the page that your bid adapter may need to take
+into account:
+
+{: .table .table-bordered .table-striped }
+| Value | Description                                   | Example               |
+| ----- | ------------ | ---------- |
+| Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
+| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
+| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
+| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
+| First Party Data | The publisher may provide first party data (e.g. page type). | config.getConfig('fpd'); |
 
 #### Referrers
 
-Referrer information is included on the `bidderRequest.refererInfo` property. This property contains the following parameters:
+Referrer information should be passed to your endpoint in contexts where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information. This property contains the following parameters:
 
 - `referer`: a string containing the detected top-level URL.
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
@@ -257,9 +313,10 @@ Referrer information is included on the `bidderRequest.refererInfo` property. Th
 
 The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
-#### ServerRequest Objects
+#### The output of buildRequests: ServerRequest Objects
 
-The ServerRequest objects returned from your adapter have this structure:
+You shouldn't call your bid endpoint directly. Rather, the end result of your buildRequests function is one or more
+ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Type             | Description                                                        | Example Value               |
@@ -345,18 +402,26 @@ See below for an example implementation.  For more examples, search for `getUser
 {% highlight js %}
 
 {
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;
@@ -829,18 +894,26 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;
