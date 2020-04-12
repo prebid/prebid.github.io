@@ -384,6 +384,11 @@ The `interpretResponse` function will be called when the browser has received th
 
 {% endhighlight %}
 
+{: .alert.alert-info :}
+Please provide as much information as possible in the `meta` object. Publishers use this
+data for tracking down bad creatives and ad blocking. The advertiserDomains field is
+particularly useful. Some of these fields may become required in a future release.
+
 The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
@@ -403,17 +408,17 @@ The parameters of the `bidResponse` object are:
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 | `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
-| `meta.networkId`     | Optional                                    | Network/DSP Id                                                                                                                                       |                           |
-| `meta.networkName`     | Optional                                    | Network/DSP Name                                                                                                                                       |                           |
-| `meta.agencyId`     | Optional                                    | Agency ID                                                                                                                                       |                           |
-| `meta.agencyName`     | Optional                                    | Agency Name                                                                                                                                       |                           |
-| `meta.advertiserId`     | Optional                                    | Advertiser ID                                                                                                                                       |                           |
-| `meta.advertiserName`     | Optional                                    | Advertiser Name                                                                                                                                       |                           |
-| `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains                                                                                                                                       |                           |
-| `meta.brandId`     | Optional                                    | Brand ID (big advertisers have many brands)                                                                                                    |                           |
-| `meta.brandName`     | Optional                                    | Brand Name                                                                                                                                       |                           |
-| `meta.primaryCatId`     | Optional                                    | Primary IAB category ID                                                                                                                                       |                           |
-| `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category ID                                                                                                                                       |                           |
+| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | 1111             |
+| `meta.networkName`     | Optional                                    | Network/DSP Name               | `"NetworkN"`                |
+| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | 2222                          |
+| `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
+| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | 3333                          |
+| `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
+| `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
+| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
+| `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
+| `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
+| `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
