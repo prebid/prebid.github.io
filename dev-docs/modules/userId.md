@@ -29,6 +29,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 * **netID** – provides an open, standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier Framework, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising bought through programmatic systems.
+* **SharedID** – A first party id written in the publishers domain.  This open UUID can be used used to efficiently sell & deliver interest based advertisements.  Using this UUID requires no registration, and can be deployed and added to the bid stream with minimal effort. Adapters that support SharedID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 ## How It Works
 
@@ -67,7 +68,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`, `"SharedID"`,  or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -603,6 +604,70 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+#### SharedID
+
+The SharedId UUID is a native Prebid identity service.  SharedID has been designed to minimize its footprint on publishers pages, and optimized for the most common identity use case, interest based advertising.  SharedID writes a simple 1st party ID in the publisher's domain. The first 48 bits represents the UUID’s birthdate, followed by 80 bits of random characters. Yes, a user will have a unique SharedID identity for each publisher they visit.  However, since each UUID is available to all bidders who integrate with this identity service, we expect an open & transparent graph of users to emerge.  Delegating this task to the community, and supporting it with this simple, efficient 1st party identity is beneficial to all parties participating in the RTB ecosystem. 
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=sharedIdSystem
+
+#### SharedID Registration
+
+SharedID does not require registration, publishers may use the SharedID identity service at their own discretion. Each publisher's privacy policy should take SharedID into account.
+ 
+
+#### SharedID ID Example
+
+1) Publisher supports SharedID and first party domain cookie storage
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "sharedId",
+            storage: {
+                type: "cookie",
+                name: "sharedid",         // create a cookie with this name
+                expires: 28             // expires in 28 days
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
+2) Publisher supports both UnifiedID and SharedID and first party domain cookie storage
+
+{% highlight javascript %}
+ 
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "unifiedId",
+            params: {
+                partner: "myTtdPid"
+            },
+            storage: {
+                type: "cookie",
+                name: "pbjs-unifiedid",       // create a cookie with this name
+                expires: 60
+            }
+        },{
+            name: "sharedId",
+            storage: {
+                type: "cookie",
+                name: "sharedid",     // create a cookie with this name
+                expires: 28
+            }
+        }],
+        syncDelay: 5000       // 5 seconds after the first bidRequest()
+    }
+});
+
+{% endhighlight %}
+
 
 ### Unified ID
 
