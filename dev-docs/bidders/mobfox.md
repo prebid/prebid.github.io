@@ -4,11 +4,10 @@ title: MobFox
 description: Prebid MobFox Bidder Adaptor
 hide: true
 biddercode: mobfox
-biddercode_longer_than_12: false
 media_types: video
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                            | Example                              | Type      |

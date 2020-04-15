@@ -37,7 +37,7 @@ Prebid Server is an open source project.  [The source code is hosted under the P
   - When approved, you will receive an email with your assigned `accountId`. You will need this for configuring Prebid.js to use Prebid Server.
 
 - **Rubicon Project**
-  - Reach out to your Rubicon Project account manager and proceed to **Step 2** below. You do not have to wait for a verification email to get started.
+  - [Learn more](https://rubiconproject.com/demand-manager-hosted-prebid-server/) about Rubicon Project's Hosted Prebid Server offering.
 
 
 ## Step 2. Download Prebid.js with Prebid Server enabled
@@ -68,6 +68,8 @@ See [The `s2sConfig` object]({{site.baseurl}}/dev-docs/publisher-api-reference.h
 
 {% highlight js %}
 var pbjs = pbjs || {};
+
+pbjs.que = pbjs.que || [];
 
 pbjs.que.push(function() {
 

@@ -31,7 +31,7 @@ At a high level, the way Prebid.js works is:
 - Your ad server chooses the winning bid to serve based on line items targeting keywords that match price ranges
 - The page serves the creative from the winning bid
 
-For a more in-depth explanation of how header bidding works, see [Header Bidding Explained Step-by-Step](http://www.adopsinsider.com/header-bidding/header-bidding-step-by-step/).
+For a more in-depth explanation of how header bidding works, see [Header Bidding Explained Step-by-Step](https://www.adopsinsider.com/header-bidding/header-bidding-step-by-step/).
 
 ## Step 1. Engineering adds Prebid code to the page
 
@@ -51,8 +51,6 @@ To see how it works, follow the instructions in [Send all bids to the ad server 
 
 For more information, check out the following:
 
-+ [Before You Start]({{site.baseurl}}/overview/getting-started.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
-+ [Docs by Ad Server]({{site.baseurl}}/adops/docs-by-ad-server.html): Ad ops docs arranged by ad server.
-+ [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
-
-
++ [Before You Start](/adops/before-you-start.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
++ [Supported Ad Servers](/adops/before-you-start.html#supported-ad-servers): Ad ops docs arranged by ad server.
++ [Docs by Format](/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).

@@ -5,7 +5,7 @@ description: Setup line items for MoPub
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
-sidebarType: 2
+sidebarType: 3
 ---
 
 
@@ -33,7 +33,7 @@ For each level of pricing granularity you need, you will have to set up one line
 
 Line items must be set up to target custom keywords that include bid price information. The bid price keywords tell you how much the buyer bid on the impression.
 
-By default, `Prebid Mobile` will send the highest bid price to DFP using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
+By default, `Prebid Mobile` will send the highest bid price to Google Ad Manager using the keyword `hb_pb` but will also pass the keys `hb_pb_BIDDERCODE`. You can decide to create one set of line items for all bidders or one set of line items for each bidder.
 
 ## Step 2. Add creatives to your line item
 
@@ -55,6 +55,7 @@ You can always get the latest version of the creative code below from [the Mobil
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%KEYWORD:url%%";
   ucTagData.targetingKeywords = "%%KEYWORDS%%";
+  ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
    try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -67,5 +68,3 @@ You can always get the latest version of the creative code below from [the Mobil
 ## Step 3. Duplicate line items
 
 Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting.
-
-

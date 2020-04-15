@@ -4,12 +4,12 @@ title: adxcg
 description: Prebid adxcg bidder adaptor
 hide: true
 biddercode: adxcg
-biddercode_longer_than_12: false
 media_types: native, video
 gdpr_supported: true
+userIds: id5Id, identityLink, pubCommonId, unifiedId
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description   | Example | Type     |

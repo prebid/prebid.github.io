@@ -4,11 +4,14 @@ title: TripleLift
 description: Prebid TripleLift Bidder Adapter
 hide: true
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
+coppa_supported: true
 biddercode: triplelift
-biddercode_longer_than_12: false
+userIds: criteo, identityLink, unifiedId
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
