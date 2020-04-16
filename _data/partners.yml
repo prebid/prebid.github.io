@@ -63,6 +63,11 @@
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
   type: technology
 
+- company: Rakuten Advertising
+  link: https://rakutenadvertising.com/
+  imgURL: /assets/images/partners/tech/rakuten_logo.png
+  type: technology
+
 - company: StreamAMP 
   link: https://streamamp.com/
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
