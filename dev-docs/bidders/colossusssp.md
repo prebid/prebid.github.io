@@ -7,7 +7,7 @@ biddercode: colossusssp
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-userIds: britepoolid, identityLink, unifiedId
+userIds: britepoolid, identityLink, unifiedId, id5Id
 gdpr: true
 ---
 
