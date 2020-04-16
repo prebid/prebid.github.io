@@ -15,6 +15,7 @@ userIds: digitrust, id5Id, liveIntentId, parrableId, pubCommonId, unifiedId
 
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
 | `siteId`    | required | The site ID from ConnectAd.    | 12345   | integer   |
