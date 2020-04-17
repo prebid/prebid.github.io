@@ -1,8 +1,8 @@
-
 <html>
 
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
+        <title>Prebid JS Demo</title>
         
         <!--fonts-->
         <link href='https://fonts.googleapis.com/css?family=Prompt' rel='stylesheet'>
@@ -16,29 +16,17 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		
-        
-        <!--
         <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-        <!--Brid Player-->
-        <script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
-		<!--Prebid.js-->
-        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
-        
-        
-        
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
         <script>
             var div_1_sizes = [
-                [300, 250]
+                [300, 250],
+                [300, 600]
             ];
-            
             var div_2_sizes = [
-                [728, 90]
+                [728, 90],
+                [970, 250]
             ];
-            
-            var div_3_sizes = [
-                [728, 90]
-            ];
-            
             var PREBID_TIMEOUT = 1000;
             var FAILSAFE_TIMEOUT = 3000;
 
@@ -72,7 +60,7 @@
                     }]
                 }
             ];
-            
+
             // ======== DO NOT EDIT BELOW THIS LINE =========== //
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
@@ -101,7 +89,6 @@
                     });
                 });
             }
-            
             // in case PBJS doesn't load
             setTimeout(function() {
                 initAdserver();
@@ -117,110 +104,142 @@
                 googletag.pubads().enableSingleRequest();
                 googletag.enableServices();
             });
-            
-            
 
         </script>
         
         <!--instream video script-->
-        <script>
+        <script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
+		<script>
 		    var pbjs = pbjs || {};
 		    pbjs.que = pbjs.que || [];
 		
-		    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
+		    /* PRE-DEFINE `invokeVideoPlayer`
+		
+		    Because we have no way of knowing when all the bids will be
+		    returned from Prebid we can't be sure that the browser will
+		    reach the point where `invokeVideoPlayer` is defined before
+		    `bidsBackHandler` fires and tries to call it.
+		
+		    To prevent an "`invokeVideoPlayer` not defined" error, we
+		    pre-define it before we make the call to Prebid, and redefine
+		    it later on with the code to create the player and play the
+		    ad.
+		
+		    In this first version, it simply stores the winning VAST to
+		    use later. */
 		
 		    var tempTag = false;
-		    var invokeVideoPlayer = function(url){
-		      tempTag = url;
-		    }
+		    var invokeVideoPlayer = function(url) {
+		        tempTag = url;
+		    };
 		
-		    /*
-		    Prebid Video adUnit
-		    */
+		    /* Prebid video ad unit */
 		
 		    var videoAdUnit = {
-		      code: 'video1',
-		      sizes: [640,480],
-		      mediaTypes: {
-		        video: {
-		          context: "instream"
-		        }
-		      },
-		      bids: [
-		        {
-		          bidder: 'appnexusAst',
-		          params: {
-		            placementId: '9333431', // Add your own placement id here
-		
+		        code: 'video1',
+		        mediaTypes: {
 		            video: {
-		              skipppable: true,
-		              playback_method: ['auto_play_sound_off']
+		                playerSize: [640, 480],
+		                context: 'instream',
+		                mimes: ['video/mp4'],
+		                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+		                playbackmethod: [2]
 		            }
-		          }
-		        }
-		      ]
-		    };
+		        },
+		        bids: [{
+		            bidder: 'appnexus',
+		            params: {
+		                placementId: 13232361, // Add your own placement id here
 		
-		    pbjs.que.push(function(){
-			  // add your ad units to the bid request
-		
-		      pbjs.addAdUnits(videoAdUnit);
-		
-		      pbjs.setConfig({
-		        usePrebidCache: true
-		      });
-		
-		      pbjs.requestBids({
-		          bidsBackHandler: function(bids) {
-		              var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-		                  adUnit: videoAdUnit,
-		                  params: {
-		                      iu: '/19968336/prebid_cache_video_adunit',
-		                      cust_params: {
-		                        section: "blog",
-		                        anotherKey: "anotherValue"
-		                      },
-		                      output: "vast"
-		                  }
-		              });
-		              invokeVideoPlayer(videoUrl);
-		          }
-		      });
-		    });
-		
-		    pbjs.bidderSettings =
-		    {
-		        standard: {
-		            adserverTargeting: [
-		                {
-		                    key: "hb_bidder",
-		                    val: function (bidResponse) {
-		                        return bidResponse.bidderCode;
-		                    }
-		                }, {
-		                    key: "hb_adid",
-		                    val: function (bidResponse) {
-		                        return bidResponse.adId;
-		                    }
-		                }, {
-		                    key: "hb_pb",
-		                    val: function (bidResponse) {
-		                        return "10.00";
-		                    }
-		                }, {
-		                    key: "hb_size",
-		                    val: function (bidResponse) {
-		                        return bidResponse.size;
-		
-		                    }
+		                video: {
+		                    skippable: true,
+		                    playback_method: ['auto_play_sound_off']
 		                }
-		            ]
-		        }
+		            }
+		        }]
 		    };
+		
+		    pbjs.que.push(function() {
+		
+		        // configure prebid to use prebid cache and prebid server  
+		        // make sure to add your own accountId to your s2sConfig object
+		
+		        pbjs.setConfig({
+		            cache: {
+		                url: 'https://prebid.adnxs.com/pbc/v1/cache'
+		            },
+		            debug: true,
+		            enableSendAllBids: true,
+		            s2sConfig: {
+		                endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+		                enabled: true,
+		                accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
+		                bidders: ['appnexus']
+		            }
+		        });
+		
+		        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
+		
+		
+		        pbjs.requestBids({
+		            bidsBackHandler: function(bids) {
+		                console.log("got some bids");
+		                console.log(bids);
+		                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+		                    adUnit: videoAdUnit,
+		                    params: {
+		                        iu: '/19968336/prebid_cache_video_adunit',
+		                        cust_params: {
+		                            section: 'blog',
+		                            anotherKey: 'anotherValue'
+		                        },
+		                        output: 'vast'
+		                    }
+		                });
+		                invokeVideoPlayer(videoUrl);
+		            }
+		        });
+		    });
 		
 		</script>
 		
+		<!--outstream video-->
+		<script>
+		    var pbjs = pbjs || {};
+		    pbjs.que = pbjs.que || [];
 		
+		    var adUnits = [{
+		        code: 'video1',
+		        mediaTypes: {
+		            video: {
+		                playerSize: [640, 480],
+		                context: 'outstream'
+		            }
+		        },
+		        bids: [{
+		            bidder: 'appnexus',
+		            params: {
+		                placementId: 13232385,
+		                video: {
+		                    skippable: true,
+		                    playback_method: ['auto_play_sound_off']
+		                }
+		            }
+		        }]
+		    }];
+		
+		    pbjs.que.push(function() {
+		        pbjs.addAdUnits(adUnits);
+		        pbjs.requestBids({
+		            timeout: 1000,
+		            bidsBackHandler: function(bids) {
+		                var highestCpmBids = pbjs.getHighestCpmBids('video1');
+		                pbjs.renderAd(document, highestCpmBids[0].adId);
+		            }
+		        });
+		    });
+		
+		</script>
         
         <style>
 	        
@@ -272,6 +291,7 @@
 				
 	    </style>
 
+
     </head>
 
     <body>
@@ -285,29 +305,14 @@
 		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		          <span class="navbar-toggler-icon"></span>
 		        </button>
-		    <div class="collapse navbar-collapse" id="navbarResponsive">
-		      <ul class="navbar-nav ml-auto">
-		        <li class="nav-item active">
-		          <a class="nav-link" href="#">Home
-		                <span class="sr-only">(current)</span>
-		              </a>
-		        </li>
-		        <li class="nav-item">
-		          <a class="nav-link" href="#">About</a>
-		        </li>
-		        <li class="nav-item">
-		          <a class="nav-link" href="#">Services</a>
-		        </li>
-		        <li class="nav-item">
-		          <a class="nav-link" href="#">Contact</a>
-		        </li>
-		      </ul>
-		    </div>
+		    <div class="collapse navbar-collapse" id="navbarResponsive"></div>
 		  </div>
 		</nav>
 		
 		<div class="container-fluid" style="margin-top: 100px;">
 			<div class="row">
+				
+				<!--sidebar-->
 				<div class="col-md-2 sidebar colHeight">
 					<h2>Static Examples</h2>
 					<hr>
@@ -320,10 +325,12 @@
 					<h2>Video Examples</h2>
 					<p><a id="instream-vid" href="#">Instream Video </a></p>
 					<hr>
-					<p><a id="instream-vid" href="#">Outstream Video </a></p>
+					<p><a id="outstream-vid" href="#">Outstream Video </a></p>
 					<hr>
 				</div>
 				
+				
+				<!--content-->
 				<div class="col-md-7 colHeight">
 					<div id="instructions" class="page-text page-content">
 						<h2>Click an author to read an excerpt from their book.</h2>
@@ -360,31 +367,27 @@
 						<p>But for the past few days he had spoken to them about only one thing: the girl, the daughter of a merchant who lived in the village they would reach in about four days. He had been to the village only once, the year before. The merchant was the proprietor of a dry goods shop, and he always demanded that the sheep be sheared in his presence, so that he would not be cheated. A friend had told the boy about the shop, and he had taken his sheep there.</p>
 					</div>
 					
-					<div id="instream-text" class="page-text page-content">
-						<p>Instream is a system that’s familiar to most. It involves standard pre-roll, mid-roll, or post-roll ad placements within your favorite videos. While vulnerable to ad blockers, instream is still the most reliable system for placing video ads within a relevant video context, and of course the most frequently utilized.<p>
+					<div id="instream-text">
+						<p>Which is why this concert is more than entertainment, why the star syndrome doesn't exactly apply here, why the Grateful Dead isn't really a rock band and is only tangentially part of the American music industry. Garcia is indeed charismatic, but not the least remarkable of his contributions to the group is his general refusal to run it. "You can call me boss," he once said, chuckling, "just don't ask me to make any decisions." That is why the fans, the colorful, exuberant Dead Heads gathered outside, are members of a cult that at its best serves Dionysus rather than individual performers, and why the police, veterans of these parking lot festivals, understand the benign nature of their guests and are smiling at them.</p>
+						<p>A few days earlier the gig had been at a music theater out in the country. The endless sleepy commute, a forty-five-minute spin on an unfamiliar road from a generic RamadaMarriottSheraton, through endless geometrically identical cornfields, to a resort nowhere in particular, induced a feeling of absolute random disassociation. Conversation was desperately required, and centered on Lesh's newly purchased book about the anthropic principle, which posited the universe as a mind.</p>
+						<p>Obeying an unspoken protocol, Scrib had left the front seats to the band and retreated to the back of the van--limousines are thought too conspicuous--to consider the band's personalities in archetypal terms. Garcia is a powerful bohemian visionary, a shaman of a sort, and his personal style has largely defined the band's social and musical structure. Yet his role is nothing like that suggested by the automatic attention paid to a virtuoso rock guitarist or the guru figure the media have fabricated in his name. The band's candidate for Handsome Rock Star is Weir, the eternal Younger Brother. But on a day-to-day basis, the psychic pivot to the Dead is Phil Lesh, the most aggressive purist, the anti-philistine Artist. It is he who most often and most loudly demands that they dance as closely as possible to the edge of the nearest available precipice. Intellectual, kinetic, intense, he was once nicknamed Reddy Kilowatt in recognition of his high mental and physical velocity. Twenty years later his mind is still exceedingly agile, although on this day he was content to let Garcia dominate the rap.</p>
+						<p>"Why would the universe go through the trouble of evolving consciousness?" inquired Garcia. "If it wanted life that would succeed, just to create the most effective living thing, it could have stopped at bacteria. Or it could have stopped at vertebrates or sharks. But consciousness goes a quantum step further than just life. It might be that consciousness is the whole reason there is a universe. There might not be a universe apart from consciousness." Garcia lit another Pall Mall. "And who knows what it's like elsewhere in the universe? Local realities change enough, locally, that those Hindu guys can walk through huge, blazing fires and not get burned. It's got to be that consciousness modulates reality. Besides, the truth can't only be here, or you could stare at your toes and figure it all out."</p>
+						
 						<div id="myDiv" class="brid" style="width:640px; height:360;"></div>
-
-							<script type="text/javascript">
-								invokeVideoPlayer = function(url) {
-								$bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
-								"Ad": [
-								        {
-								            "mobile": url, // Array of url's will get called in succession
-								            "desktop": null, // Array of url's will get called in succession
-								            "adType": "0", // Type 0 for pre roll
-								            "adTimeType": "s",
-								            "overlayStartAt": null,
-								            "overlayDuration": null,
-								            "cuepoints": null
-								        }
-								    ]
-								});
-								}
-							  </script>
 					</div>
 					
-										
-					<!--side ad-->
+					<div id="outstream-text">
+						<p>We rented a room in town from a crazy old man named Harry Kobatake. One hundred dollars a month for a roach-infested sweatbox with a toilet down the hall. We cooked our meals on a hot plate on the floor. The rent was high, but Lahaina had a housing shortage. Also, Kobatake’s rooming house was directly across Front Street from the harbour, where two of the best local waves broke. Bryan had been right — the good summer waves were all in or near town. One spot, called Breakwall, needed real swell to be rideable. Over four feet, it could produce sweet lefts and rights on a jagged reef straight off a rocky breakwater that ran parallel to shore. The other spot, known as Harbor Mouth, was a crisp, ultraconsistent peak on the west side of the harbour entrance channel. It was good even at one foot, crowded, and picked up every hint of south swell. The crowd was largely haole, not local. That became my bread-and-butter spot.</p>
+						<p>I would get up in the dark, tiptoe down the stairs barefoot with my board, and jog across a little courthouse park to the wharf, hoping to be the first one out. I often was. A lot of mainland surfers had fetched up in Lahaina that year, but they were a hard-partying lot, which cut down on the number of guys ready to hit it at dawn. Caryn and I were by contrast a sober pair, and knew few people. I closed the Either/Or at nine. From her job she brought me tinfoil packages of aku and mahimahi that customers hadn’t touched. And those were our evenings, eating and reading and killing cockroaches that got too bold. We named the geckos that patrolled the ceiling. I was so indifferent to bar life that when a tourist asked me the legal drinking age in Hawaii, I had to admit I didn’t know.</p>
+						<p>Harbor Mouth had a short, hollow right that got longer and more complicated as the surf got bigger and the takeoff moved farther out the reef. Still, it never got very complicated. It was a wave that one could get wired — could come to understand deeply — in a summer dedicated to the task. I loved it at five feet and up, when, with clean conditions, the outside wall presented a perfectly even face and people often got fooled, moving too deep or too far out on the shoulder, unsure where to take off. There was a deep spot from which a six-foot wave, caught early and ridden correctly, could nearly always be made, and I got to know where that was, even though it gave no visual clues. Harbor Mouth’s signal feature, though, its claim to whatever fame it had, was the end-section on the right (there were also longer, less shapely lefts, running away from the channel).</p>
+						<div id='video1'>
+							<p>Prebid Outstream Video Ad</p>
+						</div>
+<p>It was a very short, thick, shallow, highly reliable chunk of wave that almost always stayed open. If you timed it right, that section was as close to a guaranteed barrel as any wave I’ve seen. Even at two feet, you could squeeze through it and come out dry. For the first time in my surf career, I became accustomed to the view from inside, looking out from behind a silver curtain toward the morning sun. I had sessions where I got tubed on half my rides. I would trot back to Kobatake’s, where Caryn was still asleep on our pallet on the floor, my brain aflame with eight or ten brief, sharp glimpses of eternity.</p>
+						<p>I took to surfing Harbor Mouth in the black of night, after work. The tide had to be high, and the swell good-sized, and a moon could help. Even so, it was a fairly insane thing to do. It was basically surfing blind. And I usually wasn’t the only one trying to do it. But I thought I knew the break so well, after a while, that I could feel — from the shadows, from the pull of the current — where to be, which way to go, what to do. I was often wrong, and spent a great deal of time hunting for my lost board in the shallows. That was the reason it had to be high tide. The lagoon inside Harbor Mouth was broad and shallow, with sharp coral covered with cruel sea urchins. In daylight I knew the little rivulets in the reef that one could float down, eyes open underwater, chest full of air for maximum flotation, skimming over the purple urchin spines, even at lower tides, in pursuit of a lost board. At night, however, one could see nothing underwater. And a search for the faint glistening ellipse of one’s board, bobbing in the lagoon among all the bathtub chop dancing in the glare from the seafront streetlights, could take a whole different type of eternity from the one glimpsed in the tube. Giving up was not an option, though. I had only one board, and I always found it.</p>
+					</div>
+					
+					<!--bottom ad-->
 					<div id="bottom-ad">
 						<div id='div-2'>
 							<script type='text/javascript'>
@@ -396,32 +399,32 @@
 						</div>
 					</div>
 				</div>
-				
+					
+				<!--gutter-->
 				<div class="col-md-3 colHeight">
 					<div class="container">
 						<div class="row">
-							
+						
 							<!--side ad-->
 							<div style="margin-top:40px;">
 								<div id='div-1'>
 									<script type='text/javascript'>
 										googletag.cmd.push(function() {
 										googletag.display('div-1');
-	                					});
-	
-	            					</script>
-	        					</div>
+                						});
+										
+            						</script>
+        						</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
-		
-		
-							
-		
-		<script>
+    </body>
+    
+    <script>
 			
 			$(document).ready(function() {
 				
@@ -429,6 +432,7 @@
 				$("#expurey-text").hide();
 				$("#coelho-text").hide();
 				$("#instream-text").hide();
+				$("#outstream-text").hide();
 				
 				
 				var thisAuthor = 0;
@@ -463,6 +467,13 @@
 					
 					hideInstructions();
 					showInstreamVideoAd();				
+					
+				});
+				
+				$("#outstream-vid").click(function() {
+					
+					hideInstructions();
+					showOutstreamVideoAd();				
 					
 				});
 				
@@ -502,15 +513,25 @@
 					
 				}
 				
-				function showInstreamVideoAd(bHideVideo) {
+				function showInstreamVideoAd() {
 					
 					hideInstructions();
 					
 					$("#maclean-text").hide(500); 
 					$("#expurey-text").hide(500);
 					$("#coelho-text").hide(500);
+					$("#outstream-text").hide(500);
 					$("#instream-text").show(1000);
 					
+				}
+				
+				function showOutstreamVideoAd() {
+					$("#maclean-text").hide(500); 
+					$("#expurey-text").hide(500);
+					$("#coelho-text").hide(500);
+					$("#instream-text").hide(500);
+					
+					$("#outstream-text").show(1000);
 				}
 				
 				
@@ -518,10 +539,29 @@
 			});
 			
 			
-		</script>   	
-				          
-    </body>
+		</script> 
+		
+		<!--Brid Player Script-->
+		<script type="text/javascript">
+		  invokeVideoPlayer = function(url) {
+		    $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
+		    "Ad": [
+		            {
+		                "mobile": url, // Array of url's will get called in succession
+		
+		                "desktop": null, // Array of url's will get called in succession
+		
+		                "adType": "0", // Type 0 for pre roll
+		
+		                "adTimeType": "s",
+		                "overlayStartAt": null,
+		                "overlayDuration": null,
+		                "cuepoints": null
+		            }
+		        ]
+		    }); 
+		  }
+		</script> 	
+
 
 </html>
-
-
