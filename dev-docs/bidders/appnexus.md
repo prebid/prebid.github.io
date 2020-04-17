@@ -11,6 +11,7 @@ userIds: criteo
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+tcf2_supported: true
 ---
 
 ### Table of Contents

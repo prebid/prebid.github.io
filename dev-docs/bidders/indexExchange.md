@@ -7,6 +7,7 @@ hide: true
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
+tcf2_supported: true
 media_types: banner, video
 ---
 
@@ -269,6 +270,23 @@ pbjs.setConfig({
     usePrebidCache: true,
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    }
+});
+```
+
+#### User Sync
+Add the following code to enable user sync. IX strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the IX bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+
+```
+pbjs.setConfig({
+    userSync: {
+        iframeEnabled: true,
+        filterSettings: {
+            iframe: {
+                bidders: ['ix'],
+                filter: 'include'
+            }
+        }
     }
 });
 ```

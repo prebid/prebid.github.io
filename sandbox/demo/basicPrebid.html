@@ -1,0 +1,204 @@
+
+<html>
+
+    <head>
+        <link rel="icon" type="image/png" href="/favicon.png">
+        
+        <!--Bootstrap css/js-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+		<!--jQuery and popper-->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        
+        <!--Prebid.js-->
+        <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+        <script>
+            var div_1_sizes = [
+                [300, 250]
+            ];
+            var div_2_sizes = [
+                [728, 90]
+            ];
+            var PREBID_TIMEOUT = 1000;
+            var FAILSAFE_TIMEOUT = 3000;
+
+            var adUnits = [
+                {
+                    code: '/19968336/header-bid-tag-0',
+                    mediaTypes: {
+                        banner: {
+                            sizes: div_1_sizes
+                        }
+                    },
+                    bids: [{
+                        bidder: 'appnexus',
+                        params: {
+                            placementId: 13144370
+                        }
+                    }]
+                },
+                {
+                    code: '/19968336/header-bid-tag-1',
+                    mediaTypes: {
+                        banner: {
+                            sizes: div_2_sizes
+                        }
+                    },
+                    bids: [{
+                        bidder: 'appnexus',
+                        params: {
+                            placementId: 13144370
+                        }
+                    }]
+                }
+            ];
+
+            // ======== DO NOT EDIT BELOW THIS LINE =========== //
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+            googletag.cmd.push(function() {
+                googletag.pubads().disableInitialLoad();
+            });
+
+            var pbjs = pbjs || {};
+            pbjs.que = pbjs.que || [];
+
+            pbjs.que.push(function() {
+                pbjs.addAdUnits(adUnits);
+                pbjs.requestBids({
+                    bidsBackHandler: initAdserver,
+                    timeout: PREBID_TIMEOUT
+                });
+            });
+
+            function initAdserver() {
+                if (pbjs.initAdserverSet) return;
+                pbjs.initAdserverSet = true;
+                googletag.cmd.push(function() {
+                    pbjs.que.push(function() {
+                        pbjs.setTargetingForGPTAsync();
+                        googletag.pubads().refresh();
+                    });
+                });
+            }
+            // in case PBJS doesn't load
+            setTimeout(function() {
+                initAdserver();
+            }, FAILSAFE_TIMEOUT);
+
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/19968336/header-bid-tag-0', div_1_sizes, 'div-1').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/19968336/header-bid-tag-1', div_2_sizes, 'div-2').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+            
+            
+
+        </script>
+        
+        <style>
+	        
+        	.row {
+				margin-left: 0;
+				margin-right: 0;
+			}
+			
+			.left-nav { 
+				padding-top:10px;
+			}
+			
+			.left-nav-list { 
+				list-style-type:none
+			}
+			
+			.bottom-ad { 
+				padding-top: 5px;
+			}
+				
+	    </style>
+
+    </head>
+
+    <body>
+	    
+	 
+	
+		<div class="container">
+		  <div class="page-header">
+		    <h1>Mid Atlantic Outside</h1> 
+		    <p>Some aggregate news site.</p>       
+		  </div>
+		  
+		  <div class="row">
+		    <div class="col-md-2 left-nav" style="background-color:#8079ff">
+		      <ul class="left-nav-list">
+			      <li>Link 1</li>
+			      <li>Link 2</li>
+			      <li>Link 3</li>
+		      </ul>
+		    </div>
+		    
+		    <div class="col-md-10">
+		      <div class="row">
+		         <div class="container">
+				 	<div class="row">
+						<div class="col-sm">
+					      <h3>Whiskey Springs</h3><p>Because of its location on the Appalachian Trail and because of a lack of publicity regarding the climbing, it's more likely that you'll run into hikers and backpackers rather than climbers at this boulder field. But for in-the-know climbers, it doesn't get much better than Whiskey Springs. The rock is a high quality, rough quartzite, and outcroppings are scattered throughout the area. Purchasing the guidebook or finding a local familiar with the area is wise, as it is not heavily trafficked and the area is somewhat difficult to navigate. Some noteworthy climbs include, "The Cranking" V9 and "Webber Seam" V4.
+					    </div>
+					    <div class="col-sm" id='div-1'>
+					      <script type='text/javascript'>
+				                googletag.cmd.push(function() {
+				                    googletag.display('div-1');
+				                });
+				
+				            </script>
+					    </div>
+					</div><!-- end row-->
+				</div><!--end container 2-->
+			  </div><!--end row-->
+			</div><!--end col md 10-->
+			
+			<div class="row bottom-ad" style="text-align:center;">
+				
+				<div id='div-2' style="display:inline;>
+					<script type='text/javascript'>
+		                googletag.cmd.push(function() {
+		                    googletag.display('div-2');
+		                });
+					
+					</script>
+				</div>
+				            
+		    </div>
+		    
+		  </div><!--end row-->
+		</div>
+		          
+    </body>
+
+</html>
+
+<script>
+	
+	var newsFeedURL = "newsFeed.xml";
+	$(document).ready(function() {
+		$.ajax(newsFeedURL, {
+			accepts:{
+				xml:"application/rss+xml"
+			},
+			dataType:"xml",
+			success:function(data) {
+				console.log(data)
+			}
+		});
+	});
+	
+</script>
