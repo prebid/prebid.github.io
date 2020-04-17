@@ -123,6 +123,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: Orange Click Media
+  link: https://orangeclickmedia.com/
+  imgURL: /assets/images/partners/publisher/orangeclickmedia_logo.png
+  type: publisher
+
 - company: Publishers Clearing House
   link: https://pch.com/
   imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
