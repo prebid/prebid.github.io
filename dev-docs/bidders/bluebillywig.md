@@ -9,7 +9,7 @@ gdpr_supported: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 #### Bid Params
