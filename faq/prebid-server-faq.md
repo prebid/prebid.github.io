@@ -75,19 +75,20 @@ Syncing in the AMP scenario uses the [load-cookie.html](/dev-docs/show-prebid-ad
 the Prebid Universal Creative package. When placed into an AMP-iframe, this file will call /cookie-sync and initiate a sync that 
 creates or updates the `uids` cookie.
 
-The most common source of requests for Prebid Server is from Prebid.js:
+The most common source of requests for Prebid Server is from Prebid.js in a scenario where the user doesn't have any cookies for the Prebid Server domain.
+1. The user loads a page with Prebid.js that's going to call Prebid Server -- i.e. the pub has set up s2sConfig.
+2. Immediately after confirming that s2sConfig is setup, Prebid.js calls Prebid Server's /cookie-sync endpoint to initiate syncing
+3. Prebid Server determines there is no `uids` cookie and responds to the browser with a list of pixel syncs for bidders that need to be synced.
+4. Prebid.js places all of the pixels on the page and initiates the auction.
+5. Because the syncs haven't completed, the auction call to Prebid Server will not contain the uids cookie.
+6. The first auction occurs without IDs
+7. At some point later, the pixels come back to Prebid Server through a /setuid redirect, setting (or updating) the uids cookie.
+8. The second page view will have the IDs available.
 
-1. Assume that the user doesn't have any cookies for the Prebid Server domain.
-1. User loads a page with Prebid.js that's going to call Prebid Server -- i.e. the pub has set up s2sConfig.
-1. Immediately after seeing that s2sConfig is setup, Prebid.js calls Prebid Server's `/cookie-sync` endpoint to initiate syncing
-1. Prebid Server sees there no `uids` cookie, so responds to the browser with a list of pixel syncs for bidders that need to be synced.
-1. Prebid.js places all of the pixels on the page, but in the meantime, also initiates the auction.
-1. Because the syncs haven't completed yet, the auction call to Prebid Server doesn't yet contain the uids cookie.
-1. The first auction happens without IDs
-1. At some point later, the pixels come back to Prebid Server through a /setuid redirect, setting (or updating) the `uids` cookie.
-1. The second page view will have the IDs available.
 
-There's a nuance here: the company that's hosting Prebid Server can configure it to read and utilize their exchange's 
+
+{: .alert.alert-info :}
+Note: the company that's hosting Prebid Server can configure it to read and utilize their exchange's 
 native cookie. i.e. if you're using Rubicon Project's Prebid Server, it can read their 'khaos' cookie, and if you're using 
 AppNexus' Prebid Server, it can read their 'uuid2' cookie. In other words, if the host company is an exchange and the user 
 has the exchange cookie, the host company will have an ID one page-view sooner than the other bidders. This gives a slight edge to
@@ -147,7 +148,7 @@ More details are available [here](https://docs.google.com/document/d/1fBRaodKifv
 
 ### COPPA
 
-The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a rule in the US.
+The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a law in the US which imposes certain requirements on operators of websites or online services directed to children under 13 years of age, and on operators of other websites or online services that have actual knowledge that they are collecting personal information online from a child under 13 years of age.
 If `regs.coppa` is set to '1' on the OpenRTB request, the following anonymization actions take place before going to the adapters:
 
 - Removes all ID fields: device.ifa, device.macsha1, device.macmd5, device.dpidsha1, device.dpidmd5, device.didsha1, device.didmd5
@@ -158,12 +159,13 @@ If `regs.coppa` is set to '1' on the OpenRTB request, the following anonymizatio
 
 ### CCPA / US-Privacy
 
-The [California Consumer Privacy Act](https://oag.ca.gov/privacy/ccpa) is another rule in the US. The IAB has generalized
+The [California Consumer Privacy Act (CCPA)](https://oag.ca.gov/privacy/ccpa) is a law in the US. which covers consumer rights relating to the access to, deletion of, and sharing of personal information that is collected by businesses.
+The IAB has generalized
 this state-specific rule into a [US Privacy](https://iabtechlab.com/standards/ccpa/) compliance framework.
 If `regs.ext.us_privacy` is parsed to find that the user has opted-out of a "sale",
 the following anonymization steps are taken:
 
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
+- Mask the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
