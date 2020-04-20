@@ -6,7 +6,7 @@ hide: true
 biddercode: conversant
 media_types: video
 gdpr_supported: true
-userIds: criteo, digitrust, id5Id, identityLink, liveIntentId, parrableId, unifiedId
+userIds: criteo, digitrust, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
 ---
 
 
