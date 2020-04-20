@@ -109,7 +109,10 @@ function OptanonWrapper() { }
 		  pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
 		
 		  pbjs.setConfig({ 
-		    usePrebidCache: true 
+		    usePrebidCache: true,
+		    cache: {
+			url: 'https://prebid.adnxs.com/pbc/v1/cache'
+		    } 
 		  });
 		
 		  pbjs.requestBids({
