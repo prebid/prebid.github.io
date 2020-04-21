@@ -107,200 +107,7 @@
 
         </script>
         
-        <!--instream video script-->
-        <script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
-		<script>
-		    var pbjs = pbjs || {};
-		    pbjs.que = pbjs.que || [];
-		
-		    /* PRE-DEFINE `invokeVideoPlayer`
-		
-		    Because we have no way of knowing when all the bids will be
-		    returned from Prebid we can't be sure that the browser will
-		    reach the point where `invokeVideoPlayer` is defined before
-		    `bidsBackHandler` fires and tries to call it.
-		
-		    To prevent an "`invokeVideoPlayer` not defined" error, we
-		    pre-define it before we make the call to Prebid, and redefine
-		    it later on with the code to create the player and play the
-		    ad.
-		
-		    In this first version, it simply stores the winning VAST to
-		    use later. */
-		
-		    var tempTag = false;
-		    var invokeVideoPlayer = function(url) {
-		        tempTag = url;
-		    };
-		
-		    /* Prebid video ad unit */
-		
-		    var videoAdUnit = {
-		        code: 'video1',
-		        mediaTypes: {
-		            video: {
-		                playerSize: [640, 480],
-		                context: 'instream',
-		                mimes: ['video/mp4'],
-		                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-		                playbackmethod: [2]
-		            }
-		        },
-		        bids: [{
-		            bidder: 'appnexus',
-		            params: {
-		                placementId: 13232361, // Add your own placement id here
-		
-		                video: {
-		                    skippable: true,
-		                    playback_method: ['auto_play_sound_off']
-		                }
-		            }
-		        }]
-		    };
-		
-		    pbjs.que.push(function() {
-		
-		        // configure prebid to use prebid cache and prebid server  
-		        // make sure to add your own accountId to your s2sConfig object
-		
-		        pbjs.setConfig({
-		            cache: {
-		                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-		            },
-		            debug: true,
-		            enableSendAllBids: true,
-		            s2sConfig: {
-		                endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
-		                enabled: true,
-		                accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
-		                bidders: ['appnexus']
-		            }
-		        });
-		
-		        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-		
-		
-		        pbjs.requestBids({
-		            bidsBackHandler: function(bids) {
-		                console.log("got some bids");
-		                console.log(bids);
-		                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-		                    adUnit: videoAdUnit,
-		                    params: {
-		                        iu: '/19968336/prebid_cache_video_adunit',
-		                        cust_params: {
-		                            section: 'blog',
-		                            anotherKey: 'anotherValue'
-		                        },
-		                        output: 'vast'
-		                    }
-		                });
-		                invokeVideoPlayer(videoUrl);
-		            }
-		        });
-		    });
-		
-		</script>
-		
-		<!--outstream video-->
-		<script type="text/javascript">
-    	
-		var pbjs = pbjs || {};
-		pbjs.que = pbjs.que || [];
-		
-		// define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
-		var tempTag = false;
-		var invokeVideoPlayer = function(url){
-		  tempTag = url;
-		}
-		
-		/*
-		Prebid Video adUnit
-		*/
-		
-		var videoAdUnit = {
-		  code: 'video1',
-		  sizes: [640,480],
-		  mediaTypes: {
-		    video: {
-		      context: "instream"
-		    }
-		  },
-		  bids: [
-		    {
-		      bidder: 'appnexusAst',
-		      params: {
-		        placementId: '13232361', // Add your own placement id here
-		        video: {
-		          skipppable: true,
-		          playback_method: ['auto_play_sound_off']
-		        }
-		      }
-		    }
-		  ]
-		};
-		
-		pbjs.que.push(function(){
-		  pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-		
-		  pbjs.setConfig({ 
-		    usePrebidCache: true,
-				cache: {
-					url: 'https://prebid.adnxs.com/pbc/v1/cache'
-				} 
-		  });
-		
-		  pbjs.requestBids({
-		      bidsBackHandler: function(bids) {
-		          var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-		              adUnit: videoAdUnit,
-		              params: {
-		                  iu: '/19968336/prebid_cache_video_adunit',
-		                  cust_params: {
-		                    section: "blog",
-		                    anotherKey: "anotherValue"
-		                  },
-		                  output: "vast"
-		              }
-		          });
-		          invokeVideoPlayer(videoUrl);
-		      }
-		  });
-		});
-		
-		pbjs.bidderSettings =
-		{
-		    standard: {
-		        adserverTargeting: [
-		            {
-		                key: "hb_bidder",
-		                val: function (bidResponse) {
-		                    return bidResponse.bidderCode;
-		                }
-		            }, {
-		                key: "hb_adid",
-		                val: function (bidResponse) {
-		                    return bidResponse.adId;
-		                }
-		            }, {
-		                key: "hb_pb",
-		                val: function (bidResponse) {
-		                    return "10.00";
-		                }
-		            }, {
-		                key: "hb_size",
-		                val: function (bidResponse) {
-		                    return bidResponse.size;
-		
-		                }
-		            }
-		        ]
-		    }
-		};
-			     
-	</script>
-        
+                
         <style>
 	        
 	        .colHeight { 
@@ -380,19 +187,18 @@
 					<hr>
 					<p><a id="expurey" href="#">Antoine St. Exupery:<br>Wind, Sand, and Stars</a></p>
 					<hr>
-					<p><a id="coelho" href="#">Paulo Coelho:<br>The Alchemist</a></p>
+					<p><a id="cahill" href="#">Tim Cahill:<br>Pass The Butterworms</a></p>
 					<hr>
 					<h2>Video Examples</h2>
-					<p><a id="instream-vid" href="#">Instream Video </a></p>
-					<hr>
-					<p><a id="outstream-vid" href="#">Outstream Video </a></p>
-					<hr>
+					<p><a href="instream-demo.html">Instream Video</a></p>
+					
 				</div>
 				
 				
 				<!--content-->
 				<div class="col-md-7 colHeight">
 					<div id="instructions" class="page-text page-content">
+						<h2>Some of Steve's favorite authors</h2>
 						<h2>Click an author to read an excerpt from their book.</h2>
 					</div>
 					
@@ -416,35 +222,11 @@
 					<p>And with that we knew ourselves to be lost in interplanetary space among a thousand inaccessible planets, we who sought^only the one veritable planet, our own, that planet on which alone we should find our familiar countryside, the houses of our friends, our treasures. On which alone we should find . . . Let me draw the picture that took shape before my eyes. It will seem to you childish; but even in the midst of danger a man retains his human concerns. I was thirsty and I was hungry. If we did find Cisneros we should re-fuel and carry on to Casablanca, and there we should come down in the cool of daybreak, free to idle the hours away. Neri and I would go into town. We would go to a little pub already open despite the early hour. Safe and sound, Neri and I would sit down at table and laugh at the night of danger as we ate our warm rolls and drank our bowls of coffee and hot milk. We would receive this matutinal gift at the hands of life. Even as an old peasant woman recognizes her God in a painted image, in a childish medal, in a chaplet, so life would speak to us in its hum- blest language in order that we understand. The joy of living, I say, was summed up for me in the remembered sensation of that first burning and aromatic swallow, that mixture of milk and coffee and bread by which men hold communion with tranquil pastures, exotic plantations, and golden harvests, communion with the earth. Amidst all these stars there was but one that could make itself significant for us by composing this aromatic bowl that was its daily gift at dawn. And from that earth of men, that earth docile to the reaping of grain and the harvesting of the grape, bearing its rivers asleep in their fields, its villages clinging to their hillsides, our ship was separated by astronomical distances. AJl the treasures of the world were summed up in a grain of dust now blown far out of our path by the very destiny itself of dust and of the orbs of night.</p> 
 					<p>And Neri still prayed to the stars.</p>
 					</div>
-					<div id="coelho-text" class="page-text page-content">
-						<p>The boy's name was Santiago. Dusk was falling as the boy arrived with his herd at an abandoned church. The roof had fallen in long ago, and an enormous sycamore had grown on the spot where the sacristy had once stood.</p>
-						<p>He decided to spend the night there. He saw to it that all the sheep entered through the ruined gate, and then laid some planks across it to prevent the flock from wandering away during the night. There were no wolves in the region, but once an animal had strayed during the night, and the boy had had to spend the entire next day searching for it.</p>
-						<p>He swept the floor with his jacket and lay down, using the book he had just finished reading as a pillow. He told himself that he would have to start reading thicker books: they lasted longer, and made more comfortable pillows.</p>
-						<p>It was still dark when he awoke, and, looking up, he could see the stars through the half-destroyed roof.</p>
-						<p>I wanted to sleep a little longer, he thought. He had had the same dream that night as a week ago, and once again he had awakened before it ended.</p>
-						<p>He arose and, taking up his crook, began to awaken the sheep that still slept. He had noticed that, as soon as he awoke, most of his animals also began to stir. It was as if some mysterious energy bound his life to that of the sheep, with whom he had spent the past two years, leading them through the countryside in search of food and water. "They are so used to me that they know my schedule," he muttered. Thinking about that for a moment, he realized that it could be the other way around: that it was he who had become accustomed to their schedule.</p>
-						<p>But there were certain of them who took a bit longer to awaken. The boy prodded them, one by one, with his crook, calling each by name. He had always believed that the sheep were able to understand what he said. So there were times when he read them parts of his books that had made an impression on him, or when he would tell them of the loneliness or the happiness of a shepherd in the fields. Sometimes he would comment to them on the things he had seen in the villages they passed.</p>
-						<p>But for the past few days he had spoken to them about only one thing: the girl, the daughter of a merchant who lived in the village they would reach in about four days. He had been to the village only once, the year before. The merchant was the proprietor of a dry goods shop, and he always demanded that the sheep be sheared in his presence, so that he would not be cheated. A friend had told the boy about the shop, and he had taken his sheep there.</p>
-					</div>
-					
-					<div id="instream-text">
-						<p>Which is why this concert is more than entertainment, why the star syndrome doesn't exactly apply here, why the Grateful Dead isn't really a rock band and is only tangentially part of the American music industry. Garcia is indeed charismatic, but not the least remarkable of his contributions to the group is his general refusal to run it. "You can call me boss," he once said, chuckling, "just don't ask me to make any decisions." That is why the fans, the colorful, exuberant Dead Heads gathered outside, are members of a cult that at its best serves Dionysus rather than individual performers, and why the police, veterans of these parking lot festivals, understand the benign nature of their guests and are smiling at them.</p>
-						<p>A few days earlier the gig had been at a music theater out in the country. The endless sleepy commute, a forty-five-minute spin on an unfamiliar road from a generic RamadaMarriottSheraton, through endless geometrically identical cornfields, to a resort nowhere in particular, induced a feeling of absolute random disassociation. Conversation was desperately required, and centered on Lesh's newly purchased book about the anthropic principle, which posited the universe as a mind.</p>
-						<p>Obeying an unspoken protocol, Scrib had left the front seats to the band and retreated to the back of the van--limousines are thought too conspicuous--to consider the band's personalities in archetypal terms. Garcia is a powerful bohemian visionary, a shaman of a sort, and his personal style has largely defined the band's social and musical structure. Yet his role is nothing like that suggested by the automatic attention paid to a virtuoso rock guitarist or the guru figure the media have fabricated in his name. The band's candidate for Handsome Rock Star is Weir, the eternal Younger Brother. But on a day-to-day basis, the psychic pivot to the Dead is Phil Lesh, the most aggressive purist, the anti-philistine Artist. It is he who most often and most loudly demands that they dance as closely as possible to the edge of the nearest available precipice. Intellectual, kinetic, intense, he was once nicknamed Reddy Kilowatt in recognition of his high mental and physical velocity. Twenty years later his mind is still exceedingly agile, although on this day he was content to let Garcia dominate the rap.</p>
-						<p>"Why would the universe go through the trouble of evolving consciousness?" inquired Garcia. "If it wanted life that would succeed, just to create the most effective living thing, it could have stopped at bacteria. Or it could have stopped at vertebrates or sharks. But consciousness goes a quantum step further than just life. It might be that consciousness is the whole reason there is a universe. There might not be a universe apart from consciousness." Garcia lit another Pall Mall. "And who knows what it's like elsewhere in the universe? Local realities change enough, locally, that those Hindu guys can walk through huge, blazing fires and not get burned. It's got to be that consciousness modulates reality. Besides, the truth can't only be here, or you could stare at your toes and figure it all out."</p>
-						
-						<div id="myDiv" class="brid" style="width:640px; height:360;"></div>
-					</div>
-					
-					<div id="outstream-text">
-						<p>We rented a room in town from a crazy old man named Harry Kobatake. One hundred dollars a month for a roach-infested sweatbox with a toilet down the hall. We cooked our meals on a hot plate on the floor. The rent was high, but Lahaina had a housing shortage. Also, Kobatake’s rooming house was directly across Front Street from the harbour, where two of the best local waves broke. Bryan had been right — the good summer waves were all in or near town. One spot, called Breakwall, needed real swell to be rideable. Over four feet, it could produce sweet lefts and rights on a jagged reef straight off a rocky breakwater that ran parallel to shore. The other spot, known as Harbor Mouth, was a crisp, ultraconsistent peak on the west side of the harbour entrance channel. It was good even at one foot, crowded, and picked up every hint of south swell. The crowd was largely haole, not local. That became my bread-and-butter spot.</p>
-						<p>I would get up in the dark, tiptoe down the stairs barefoot with my board, and jog across a little courthouse park to the wharf, hoping to be the first one out. I often was. A lot of mainland surfers had fetched up in Lahaina that year, but they were a hard-partying lot, which cut down on the number of guys ready to hit it at dawn. Caryn and I were by contrast a sober pair, and knew few people. I closed the Either/Or at nine. From her job she brought me tinfoil packages of aku and mahimahi that customers hadn’t touched. And those were our evenings, eating and reading and killing cockroaches that got too bold. We named the geckos that patrolled the ceiling. I was so indifferent to bar life that when a tourist asked me the legal drinking age in Hawaii, I had to admit I didn’t know.</p>
-						<p>Harbor Mouth had a short, hollow right that got longer and more complicated as the surf got bigger and the takeoff moved farther out the reef. Still, it never got very complicated. It was a wave that one could get wired — could come to understand deeply — in a summer dedicated to the task. I loved it at five feet and up, when, with clean conditions, the outside wall presented a perfectly even face and people often got fooled, moving too deep or too far out on the shoulder, unsure where to take off. There was a deep spot from which a six-foot wave, caught early and ridden correctly, could nearly always be made, and I got to know where that was, even though it gave no visual clues. Harbor Mouth’s signal feature, though, its claim to whatever fame it had, was the end-section on the right (there were also longer, less shapely lefts, running away from the channel).</p>
-						<div id='video1'>
-							<p>Prebid Outstream Video Ad</p>
-						</div>
-<p>It was a very short, thick, shallow, highly reliable chunk of wave that almost always stayed open. If you timed it right, that section was as close to a guaranteed barrel as any wave I’ve seen. Even at two feet, you could squeeze through it and come out dry. For the first time in my surf career, I became accustomed to the view from inside, looking out from behind a silver curtain toward the morning sun. I had sessions where I got tubed on half my rides. I would trot back to Kobatake’s, where Caryn was still asleep on our pallet on the floor, my brain aflame with eight or ten brief, sharp glimpses of eternity.</p>
-						<p>I took to surfing Harbor Mouth in the black of night, after work. The tide had to be high, and the swell good-sized, and a moon could help. Even so, it was a fairly insane thing to do. It was basically surfing blind. And I usually wasn’t the only one trying to do it. But I thought I knew the break so well, after a while, that I could feel — from the shadows, from the pull of the current — where to be, which way to go, what to do. I was often wrong, and spent a great deal of time hunting for my lost board in the shallows. That was the reason it had to be high tide. The lagoon inside Harbor Mouth was broad and shallow, with sharp coral covered with cruel sea urchins. In daylight I knew the little rivulets in the reef that one could float down, eyes open underwater, chest full of air for maximum flotation, skimming over the purple urchin spines, even at lower tides, in pursuit of a lost board. At night, however, one could see nothing underwater. And a search for the faint glistening ellipse of one’s board, bobbing in the lagoon among all the bathtub chop dancing in the glare from the seafront streetlights, could take a whole different type of eternity from the one glimpsed in the tube. Giving up was not an option, though. I had only one board, and I always found it.</p>
+					<div id="cahill-text" class="page-text page-content">
+						<p>Fifty miles east of Uliastai, the cruel joke of a road ended in what was an attempt at a hot springs resort, a series of whacked together wooden buildings originally built for Communist party bigwigs. The place looked embarrassed, like a man in a tux at a beer party. All the other inhabitations in the countryside, without exception, were round felt tents, basically unchanged since the time Ghengis declared himself 'ruler of all those who live in felt tents.' They looked like round puffball mushrooms and were called gers. Don't say <i>yurt</i>. Russians say <i>yurt</i>.</p>
+						<p>At the end of the road, wranglers hired for the trip, watched as we set up our American tents. The men thought our gers were flimsy but they liked the portability. It took, they said, several hours to take down a Mongolian ger. The wranglers seemed shy, and they smiled constantly, nervously.<p>
+						<p>In the saddle, though, these same men laughed and sang unselfconsciously, utterly at home on horseback. In Montant, we'd call them can-do cowboys.</p>
+						<p>Our head wrangle, Lharga, a lean, unflappable man in his fifties, took it upon himself to coach me in matters Mongolian. The wraparound jackets all the men wore were called dels. The sleeves could be rolled down to warm the hands in cold weather, and the sash that held the garment together was a handy place to stash a knife. The oversize boots with turned up toes were called  gutuls. For the past seventy years children had been taught in school that gutuls were a symbol of Mongolian subservience to religion. You can drop to your knees so much easier in boots with turned up toes. Actually, Lharga explained, the boots are designed to slip easily into the stirrup, and to show respect for the earth. Turned up toes don't tear into the ground.</p>
 					</div>
 					
 					<!--bottom ad-->
@@ -490,10 +272,7 @@
 				
 				$("#maclean-text").hide();
 				$("#expurey-text").hide();
-				$("#coelho-text").hide();
-				$("#instream-text").hide();
-				$("#outstream-text").hide();
-				
+				$("#cahill-text").hide();
 				
 				var thisAuthor = 0;
 				
@@ -514,7 +293,7 @@
 					toggleAuthor();
 				});
 				
-				$("#coelho").click(function() {
+				$("#cahill").click(function() {
 					
 					thisAuthor = 3;
 					
@@ -522,21 +301,6 @@
 					toggleAuthor();				
 					
 				});
-				
-				$("#instream-vid").click(function() {
-					
-					hideInstructions();
-					showInstreamVideoAd();				
-					
-				});
-				
-				$("#outstream-vid").click(function() {
-					
-					hideInstructions();
-					showOutstreamVideoAd();				
-					
-				});
-				
 				
 				
 				function hideInstructions() { 
@@ -551,13 +315,13 @@
 										
 					if (thisAuthor == 1) { 
 						$("#expurey-text").hide(500);
-						$("#coelho-text").hide(500);
+						$("#cahill-text").hide(500);
 						if($("#maclean-text").is(":hidden")) { 
 							$("#maclean-text").show(1000);
 						}
 					} else if (thisAuthor == 2) { 
 						$("#maclean-text").hide(500);
-						$("#coelho-text").hide(500);
+						$("#cahill-text").hide(500);
 						if($("#expurey-text").is(":hidden")) { 
 							$("#expurey-text").show(1000);
 						}
@@ -566,62 +330,16 @@
 						$("#maclean-text").hide(500);
 						$("#expurey-text").hide(500);
 						
-						if($("#coelho-text").is(":hidden")) { 
-							$("#coelho-text").show(1000);
+						if($("#cahill-text").is(":hidden")) { 
+							$("#cahill-text").show(1000);
 						}
 					}
 					
 				}
 				
-				function showInstreamVideoAd() {
-					
-					hideInstructions();
-					
-					$("#maclean-text").hide(500); 
-					$("#expurey-text").hide(500);
-					$("#coelho-text").hide(500);
-					$("#outstream-text").hide(500);
-					$("#instream-text").show(1000);
-					
-				}
-				
-				function showOutstreamVideoAd() {
-					$("#maclean-text").hide(500); 
-					$("#expurey-text").hide(500);
-					$("#coelho-text").hide(500);
-					$("#instream-text").hide(500);
-					
-					$("#outstream-text").show(1000);
-				}
-				
-				
 								
 			});
 			
-			
 		</script> 
-		
-		<!--Brid Player Script-->
-		<script type="text/javascript">
-		  invokeVideoPlayer = function(url) {
-		    $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
-		    "Ad": [
-		            {
-		                "mobile": url, // Array of url's will get called in succession
-		
-		                "desktop": null, // Array of url's will get called in succession
-		
-		                "adType": "0", // Type 0 for pre roll
-		
-		                "adTimeType": "s",
-		                "overlayStartAt": null,
-		                "overlayDuration": null,
-		                "cuepoints": null
-		            }
-		        ]
-		    }); 
-		  }
-		</script> 	
-
 
 </html>
