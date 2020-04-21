@@ -846,6 +846,31 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
 
+You can use `getUserIdsAsEids()` to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+```
+pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g. 
+[
+  {
+      source: 'pubcid.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1
+      }]
+  },
+
+  {
+      source: 'adserver.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1,
+          ext: {
+              rtiPartner: 'TDID'
+          }
+      }]
+  }
+]
+``` 
+
 ## Passing UserIds to Google Ad Manager for targeting
 
 User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or to pass ahead in Google Exchange Bidding using ```userIdTargeting``` module. More details can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
