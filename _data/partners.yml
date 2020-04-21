@@ -63,6 +63,11 @@
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
   type: technology
 
+- company: Rakuten Advertising
+  link: https://rakutenadvertising.com/
+  imgURL: /assets/images/partners/tech/rakuten_logo.png
+  type: technology
+
 - company: StreamAMP 
   link: https://streamamp.com/
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
@@ -118,6 +123,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: Orange Click Media
+  link: https://orangeclickmedia.com/
+  imgURL: /assets/images/partners/publisher/orangeclickmedia_logo.png
+  type: publisher
+
 - company: Publishers Clearing House
   link: https://pch.com/
   imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
@@ -132,6 +142,11 @@
   link: https://www.sortable.com/
   imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
+
+- company: AdForm
+  link: https://site.adform.com/
+  imgURL: /assets/images/partners/community/Adform-Logo.png
+  type: community
 
 - company: Adomik
   link: https://adomik.com/

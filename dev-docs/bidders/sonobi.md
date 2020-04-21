@@ -6,7 +6,7 @@ hide: true
 biddercode: sonobi
 media_types: video
 gdpr_supported: true
-userIds: pubCommon, unifiedId/tradedesk
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 ### Note:
@@ -25,6 +25,7 @@ implementing our adapter please don't hesitate to contact us at apex.prebid@sono
 | `hfa`          | optional | Publisher Unique Identifier                                    | `'123985'`                       | `string`       |
 | `referrer`     | optional | Overrides the default value for the ref param in a bid request | `'prebid.org'`                   | `string`       |
 | `keywords`     | optional | Comma separated list of keywords about the site                | `'sports,news,food'`             | `string`       |
+| `bid_request_url`| optional | String representing the url the Sonobi adapter should make to request bids | `'https://iad-2-apex.go.sonobi.com/trinity.json'`             | `string`       |
 
 ### Configuration
 *You *must* only include one ID field - either `placement_id` or `ad_unit`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.

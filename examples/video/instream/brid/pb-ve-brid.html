@@ -80,7 +80,10 @@ sidebarType: 4
       pbjs.addAdUnits(videoAdUnit);
 
       pbjs.setConfig({
-        usePrebidCache: true
+        usePrebidCache: true,
+        cache: {
+          url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
       });
 
       pbjs.requestBids({

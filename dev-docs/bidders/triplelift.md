@@ -8,7 +8,7 @@ usp_supported: true
 schain_supported: true
 coppa_supported: true
 biddercode: triplelift
-userIds: unifiedId/tradedesk, identityLink
+userIds: criteo, identityLink, unifiedId
 ---
 
 ### Bid Params
