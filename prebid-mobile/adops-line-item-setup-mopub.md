@@ -5,7 +5,7 @@ description: Setup line items for MoPub
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
-sidebarType: 2
+sidebarType: 3
 ---
 
 
@@ -68,5 +68,3 @@ You can always get the latest version of the creative code below from [the Mobil
 ## Step 3. Duplicate line items
 
 Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting.
-
-

@@ -42,6 +42,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
+    * [deviceAccess](#setConfig-deviceAcess)
     * [bidderTimeout](#setConfig-Bidder-Timeouts)
     * [maxRequestsPerOrigin](#setConfig-Max-Requests-Per-Origin)
     * [disableAjaxTimeout](#setConfig-Disable-Ajax-Timeout)
@@ -59,14 +60,17 @@ This page has documentation for the public API methods of Prebid.js.
     * [targetingControls](#setConfig-targetingControls)
     * [sizeConfig and labels](#setConfig-Configure-Responsive-Ads) (responsive ads)
     * [COPPA](#setConfig-coppa)
+    * [first party data](#setConfig-fpd)
+    * [cache](#setConfig-vast-cache)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
+  * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
 
 Functions added by optional modules
 
-  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html)
-  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [DFP Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
+  * [.adServers.dfp.buildVideoUrl(options)](#module_pbjs.adServers.dfp.buildVideoUrl) - requires [GAM Video Module](/dev-docs/modules/dfp_video.html)
+  * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [GAM Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
   * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
   * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
@@ -202,7 +206,7 @@ This function returns the bid responses at the given moment.
         "adId": "7a53a9d3",
         "creative_id": 29681110,
         "cpm": 0.5,
-        "adUrl": "http://nym1.ib.adnxs.com/ab?e=wqT_3QLzBKBqAgAAAgDWAAUIkav6sAUQucfc0v-nzQcYj…r=http%3A%2F%2Flocal%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html",
+        "adUrl": "https://nym1.ib.adnxs.com/ab?e=wqT_3QLzBKBqAgAAAgDWAAUIkav6sAUQucfc0v-nzQcYj…r=http%3A%2F%2Flocal%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html",
         "requestTimestamp": 1444844944095,
         "responseTimestamp": 1444844944180,
         "timeToRespond": 85,
@@ -223,8 +227,8 @@ This function returns the bid responses at the given moment.
         "adId": "1139e34e14",
         "adSlot": "39620189@300x250",
         "cpm": 1,
-        "ad": "<span class=\"PubAPIAd\"><script src='http://ad.turn.com/server/ads.js?pub=5757398&cch=36757096&code=37127675&l=3…tcGlkPUVERkNGMDY5LTA2ODctNDAxQy04NkMwLTIzQjNFNzI1MzdGNiZwYXNzYmFjaz0w_url='></script></span> <!-- PubMatic Ad Ends -->",
-        "adUrl": "http://aktrack.pubmatic.com/AdServer/AdDisplayTrackerServlet?operId=1&pubId…local%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html&lpu=hotels.com",
+        "ad": "<span class=\"PubAPIAd\"><script src='https://ad.turn.com/server/ads.js?pub=5757398&cch=36757096&code=37127675&l=3…tcGlkPUVERkNGMDY5LTA2ODctNDAxQy04NkMwLTIzQjNFNzI1MzdGNiZwYXNzYmFjaz0w_url='></script></span> <!-- PubMatic Ad Ends -->",
+        "adUrl": "https://aktrack.pubmatic.com/AdServer/AdDisplayTrackerServlet?operId=1&pubId…local%3A4000%2Fexamples%2Fpbjs_partial_refresh_example.html&lpu=hotels.com",
         "dealId": "",
         "requestTimestamp": 1444844944105,
         "responseTimestamp": 1444844944354,
@@ -341,32 +345,32 @@ This function returns the bid responses at the given moment.
                     "pbAg" : "10.00",
                     "adId" : "473965c9df19d2",
                     "adserverTargeting" : {
-                       "hb_native_icon" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                       "hb_native_icon" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
                        "hb_native_title" : "This is a Prebid Native Multi-Format Creative",
                        "hb_native_brand" : "Prebid.org",
                        "hb_adid" : "473965c9df19d2",
                        "hb_pb" : "10.00",
                        "hb_source" : "client",
                        "hb_bidder" : "appnexus",
-                       "hb_native_image" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                       "hb_native_image" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
                        "hb_size" : "0x0",
                        "hb_mediatype" : "native",
                        "hb_native_body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
-                       "hb_native_linkurl" : "http://prebid.org/dev-docs/show-native-ads.html"
+                       "hb_native_linkurl" : "https://prebid.org/dev-docs/show-native-ads.html"
                     },
                     "native" : {
                        "icon" : {
-                          "url" : "http://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                          "url" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
                           "height" : 75,
                           "width" : 75
                        },
                        "body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
                        "image" : {
-                          "url" : "http://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                          "url" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
                           "height" : 2250,
                           "width" : 3000
                        },
-                       "clickUrl" : "http://prebid.org/dev-docs/show-native-ads.html",
+                       "clickUrl" : "https://prebid.org/dev-docs/show-native-ads.html",
                        "clickTrackers" : [
                           "..."
                        ],
@@ -429,6 +433,9 @@ Use this method to retrieve an array of winning bids.
 
 + `pbjs.getHighestCpmBids()`: with no argument, returns an array of winning bid objects for each ad unit on page
 + `pbjs.getHighestCpmBids(adUnitCode)`: when passed an ad unit code, returns an array with the winning bid object for that ad unit
+
+{: .alert.alert-warning :}
+Note that from **Prebid 3.0** onwards, `pbjs.getHighestCpmBids` will not return rendered bids.
 
 <hr class="full-rule">
 
@@ -503,7 +510,7 @@ pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111
 
 ### pbjs.getNoBids() ⇒ `Array`
 
-Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](http://prebid.org/dev-docs/troubleshooting-tips.html).
+Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](/dev-docs/troubleshooting-tips.html).
 
 + `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
 
@@ -783,7 +790,7 @@ pbjs.addAdUnit({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
         render: function(bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
@@ -1128,31 +1135,28 @@ this method registers the callback for every `bidWon` event.
 {: .alert.alert-info :}
 Currently, `bidWon` is the only event that accepts the `id` parameter.
 
-Additional data may also be passed to the handler that you have defined
-
-{: .alert.alert-info :}
-Currently, `bidRequest`, `bidResponse`, and `bidWon`, are the only events that pass additional data to the handler
-
 The available events are:
 
 {: .table .table-bordered .table-striped }
-| Event         | Description                             |
-|---------------+-----------------------------------------|
-| auctionInit   | The auction has started                 |
-| auctionEnd    | The auction has ended                   |
-| bidAdjustment | A bid was adjusted                      |
-| bidTimeout    | A bid timed out                         |
-| bidRequested  | A bid was requested                     |
-| bidResponse   | A bid response has arrived              |
-| bidWon        | A bid has won                           |
-| setTargeting  | Targeting has been set                  |
-| requestBids   | Bids have been requested from adapters  |
-| addAdUnits    | Ad units have been added to the auction |
-| adRenderFailed| Ad rendering failed (added in v1.7)     |
-| bidderDone    | A bidder has signaled they are done responding (added in v1.8)|
+| Event         | Description                             | Callback Arguments |
+|---------------+-----------------------------------------|--------------------|
+| auctionInit   | The auction has started                 | Object containing auction details |
+| auctionEnd    | The auction has ended                   | Object containing auction details |
+| beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
+| bidRequested  | A bid was requested from a specific bidder | Bid request object |
+| bidResponse   | A bid response has arrived              | Bid response object |
+| bidAdjustment | A bid was adjusted                      | Bid response object |
+| bidWon        | A bid has won                           | Bid response object |
+| bidTimeout    | A bid timed out                         | Array of objects with timed out bids |
+| setTargeting  | Targeting has been set                  | Hash of targeting values |
+| requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | None |
+| addAdUnits    | Ad units have been added to the auction | None |
+| adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
+| bidderDone    | A bidder has signaled they are done responding | Bid request object |
 
-The examples below show how these methods can be used:
+The examples below show how these events can be used.
 
+Events example 1
 {% highlight js %}
 
         /* Log when ad units are added to Prebid */
@@ -1168,43 +1172,43 @@ The examples below show how these methods can be used:
 
 {% endhighlight %}
 
+Events example 2: Use the optional 3rd parameter for the `bidWon` event
 {% highlight js %}
-
-        /* Define your event handler callbacks */
-        var allSlotsBidWon = function allSlotsBidWon() {
-            console.log('allSlotsBidWon called');
+        /* This handler will be called only for rightAdUnit */
+        /* Uses the `pbjs.offEvent` method to remove the handler once it has been called */
+        var bidWonHandler = function bidWonHandler() {
+            console.log('bidWonHandler: ', arguments);
+            pbjs.offEvent('bidWon', bidWonHandler, rightAdUnit);
         };
 
-        /* In this event handler callback we use the `pbjs.offEvent`
-           method to remove the handler once it has been called */
-        var rightSlotBidWon = function rightSlotBidWon() {
-            console.log('rightSlotBidWon: ', arguments);
-            pbjs.offEvent('bidWon', rightSlotBidWon, rightSlotCode);
-        };
+        var rightAdUnit="/111111/right";
+        pbjs.que.push(function () {
+            var adUnits = [{
+                code: rightAdUnit,
+		...
+	    },{
+		...
+	    }];
 
-        googletag.cmd.push(function () {
+	    pbjs.addAdUnits(adUnits);
+            pbjs.requestBids({
+		...
+            });
 
-            /* Ad slots need to be defined before trying to register
-               callbacks on their events */
+            /* Register a callback for just the rightSlot `bidWon` event */
+            /* Note that defining an event that uses the 3rd parameter must come after initiating the auction */
+            pbjs.onEvent('bidWon', bidWonHandler, rightAdUnit);
 
-            var rightSlot =
-              googletag.defineSlot(rightSlotCode, rightSlotSizes, rightSlotElementId).addService(googletag.pubads());
+            ...
+{% endhighlight %}
 
-            var topSlot =
-              googletag.defineSlot(topSlotCode, topSlotSizes, topSlotElementId).setTargeting().addService(googletag.pubads());
-
-            pbjs.que.push(function () {
-
-                /* Register a callback for every `bidWon` event */
-                pbjs.onEvent('bidWon', allSlotsBidWon);
-
-                /* Register a callback for just the rightSlot `bidWon`
-                   event */
-                pbjs.onEvent('bidWon', rightSlotBidWon, rightSlotCode);
-
-                pbjs.setTargetingForGPTAsync();
-                ...
-
+Events example 3: Dynamically modify the auction
+{% highlight js %}
+	var bidderFilter = function bidderFilter(adunits) {
+	    // pub-specific logic to optimize bidders
+            // e.g. "remove any that haven't bid in the last 4 refreshes"
+	};
+	pbjs.onEvent('beforeRequestBids', bidderFilter);
 {% endhighlight %}
 
 <hr class="full-rule" />
@@ -1244,6 +1248,10 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 + `hb_size_newalias`
 + `hb_deal_newalias`
 
+{: .alert.alert-info :}
+Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
+config in the [`s2sConfig`](#setConfig-Server-to-Server) object.
+
 <hr class="full-rule" />
 
 <a name="module_pbjs.setConfig"></a>
@@ -1257,6 +1265,7 @@ See below for usage examples.
 Core config:
 
 + [Debugging](#setConfig-Debugging)
++ [Device Access](#setConfig-deviceAccess)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
@@ -1273,12 +1282,14 @@ Core config:
 + [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [COPPA](#setConfig-coppa)
++ [First Party Data](#setConfig-fpd)
++ [Caching VAST XML](#setConfig-vast-cache)
 + [Generic Configuration](#setConfig-Generic-Configuration)
-+ [Troubleshooting your configuration](#setConfig-Troubleshooting-your-configuration)
++ [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
-+ [Currency module](dev-docs/modules/currency.html#currency-config-options)
++ [Currency module](/dev-docs/modules/currency.html)
 + [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
 + [User ID module](/dev-docs/modules/userId.html#configuration)
 + [Adpod](/dev-docs/modules/adpod.html)
@@ -1292,7 +1303,7 @@ Debug mode can be enabled permanently in a page if desired. In debug mode,
 Prebid.js will post additional messages to the browser console and cause Prebid Server to
 return additional information in its response. If not specified, debug is off.
 Note that debugging can be specified for a specific page view by adding
-`pbjs_debug=true` to the URL's query string. e.g. <a href="{{ site.github.url }}/examples/pbjs_demo.html?pbjs_debug=true" class="btn btn-default btn-sm" target="_blank">/pbjs_demo.html?pbjs_debug=true</a> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
+`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
 
 Turn on debugging permanently in the page:
 {% highlight js %}
@@ -1301,6 +1312,18 @@ pbjs.setConfig({ debug: true });
 
 {: .alert.alert-warning :}
 Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
+
+<a name="setConfig-deviceAccess" />
+
+#### Device Access
+
+You can prevent Prebid.js from reading or writing cookies or HTML localstorage by setting this flag:
+
+{% highlight js %}
+pbjs.setConfig({ deviceAccess: false });
+{% endhighlight %}
+
+This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
 
 <a name="setConfig-Bidder-Timeouts" />
 
@@ -1439,6 +1462,7 @@ The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher w
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
 | `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
+| `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. |
 
 ##### Details on the bidLimit setting
 
@@ -1451,7 +1475,7 @@ pbjs.setConfig({
   }
 });
 ```
-When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process. 
+When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls). Please see that section for tips on controlling the number of characters being sent to the ad server.
@@ -1460,7 +1484,7 @@ Note that this feature overlaps and can be used in conjunction with [targetingCo
 
 <a name="setConfig-Use-Bid-Cache" />
 
-Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](http://prebid.org/dev-docs/faq.html#does-prebidjs-cache-bids).
+Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](/dev-docs/faq.html#does-prebidjs-cache-bids).
 However, if you'd like, you can disable this feature and prevent Prebid.js from using anything but the latest bids for
 a given auction.
 
@@ -1544,19 +1568,14 @@ To set up your own custom CPM buckets, create an object like the following, and 
 const customConfigObject = {
   "buckets" : [{
       "precision": 2,  //default is 2 if omitted - means 2.1234 rounded to 2 decimal places = 2.12
-      "min" : 0,
       "max" : 5,
       "increment" : 0.01  // from $0 to $5, 1-cent increments
     },
     {
-      "precision": 2,
-      "min" : 5,
       "max" : 8,
       "increment" : 0.05  // from $5 to $8, round down to the previous 5-cent increment
     },
     {
-      "precision": 2,
-      "min" : 8,
       "max" : 40,
       "increment" : 0.5   // from $8 to $40, round down to the previous 50-cent increment
     }]
@@ -1570,10 +1589,23 @@ pbjs.setConfig({
 
 Here are the rules for CPM intervals:
 
-- The attributes `min`, `max`, and `increment` must all be specified
+- `max` and `increment` must be specified
+- A range's minimum value is assumed to be the max value of the previous range. The first interval starts at a min value of 0.
 - `precision` is optional and defaults to 2
-- `min` must be less than `max`
-- The ranges [(min1,max1),(min2,max2),(minN,maxN)] should not overlap or the behavior is not guaranteed.
+
+{% capture warning-granularity %}
+As of Prebid.js 3.0, the 'min' parameter is no longer supported in custom granularities.
+<br/>
+<br/>
+Also note an important idiosyncracy of the way that price ranges are supported: the
+interval starts at the min value, and the max of one range defines the min of the next range.
+So if the second interval defines an implicit min of 0.99 and goes to 5 with an increment of 0.05, Prebid.js will generate the values: 0.99, 1.04, 1.09, etc.
+<br/>
+<br/>
+This implies that ranges should have max values that are really the min value of next range.
+{% endcapture %}
+
+{% include alerts/alert_warning.html content=warning-granularity %}
 
 
 <a name="setConfig-MediaType-Price-Granularity" />
@@ -1582,28 +1614,35 @@ Here are the rules for CPM intervals:
 
 The default [Prebid price granularities](#setConfig-Price-Granularity) cap out at $20, which isn't always convenient for video ads, which can command more than $20. One solution is to just set up a
 custom price
-granularity as described above. As of PBJS 1.12, another approach is that the
-`mediaTypePriceGranularity` config may be set to define granularities for each of the three media types:
-banner, video, and native. e.g.
+granularity as described above. Another approach is
+`mediaTypePriceGranularity` config that may be set to define granularities for each of five media types:
+banner, video, video-instream, video-outstream, and native. e.g.
 
 {% highlight js %}
 const customPriceGranularity = {
             'buckets': [
-              { 'precision': 2, 'min': 0, 'max': 5, 'increment': 0.25 },
-              { 'precision': 2, 'min': 6, 'max': 20, 'increment': 0.5 },
-              { 'precision': 2, 'min': 21, 'max': 100, 'increment': 1 }
+              { 'precision': 2, 'max':x 5, 'increment': 0.25 },
+              { 'precision': 2, 'max': 20, 'increment': 0.5 },
+              { 'precision': 2, 'max': 100, 'increment': 1 }
             ]
 };
 
 pbjs.setConfig({'mediaTypePriceGranularity': {
-          'video': customPriceGranularity,
+          'video': customPriceGranularity,   // used as default for instream video
+	  'video-outstream': customPriceGranularityOutstream,
           'banner': 'medium',
-          'native': 'medium'
+          'native': 'medium',
         }
 });
 {% endhighlight %}
 
 Any `mediaTypePriceGranularity` setting takes precedence over `priceGranularity`.
+
+{: .alert.alert-info :}
+Note: mediaTypePriceGranularity is the only place that 'video-outstream' or 'video-instream'
+are recognized. This was driven by the recognition that outstream often shares line items with banner.
+If the mediatype is video, the price bucketing code further looks at the context (e.g. outstream) to see if there's
+a price granularity override. If it doesn't find 'video-outstream' defined, it will then look for just 'video'.
 
 <a name="setConfig-Server-to-Server" />
 
@@ -1615,7 +1654,7 @@ Example config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with
 pbjs.setConfig({
     s2sConfig: {
         accountId: '1',
-        bidders: ['appnexus', 'pubmatic'],
+        bidders: ['appnexus', 'openx', 'tripleliftVideo'],
         defaultVendor: 'appnexus',
         timeout: 1000,
         adapterOptions: {
@@ -1626,15 +1665,19 @@ pbjs.setConfig({
             'openx': function(type, url, bidder) {
             const publisherId = '00000123231231'
             url += `&ri=${publisherId}`;
-
             return url
+            }
+        },
+	extPrebid: {
+	    aliases: {
+                tripleliftVideo: tripleLift
             }
         }
     }
 })
 {% endhighlight %}
 
-Additional information of these properties:
+Additional information of `s2sConfig` properties:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description                                                                                   |
@@ -1649,7 +1692,7 @@ Additional information of these properties:
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in every impression object at request.imp[].ext.BIDDER. See the example above. |
-| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See video-related example below. |
+| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
 | `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
 
 **Notes on s2sConfig properties**
@@ -1690,7 +1733,17 @@ pbjs.setConfig({
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
-**ExtPrebid Convention**
+**Server-Side Aliases**
+
+You may want to run a particular bidder on the client for banner, but that same bidder on the 
+server for video. You would do this by setting a **server-side** alias. The
+[example](#setConfig-Server-to-Server) at the start of this section provides an example. Here's how it works:
+
+1. Video ad units are coded with the dynamic alias. e.g. tripleliftVideo
+1. The s2sConfig.bidders array contains 'tripleliftVideo' telling Prebid.js to direct bids for that code to the server
+1. Finally, the extPrebid.aliases line tells Prebid Server to route the 'tripleliftVideo' biddercode to the 'triplelift' server-side adapter.
+
+**Passing the Referrer to Server Side Adapters**
 
 * Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
 
@@ -1742,12 +1795,13 @@ For descriptions of all the properties that control user syncs, see the table be
 {: .table .table-bordered .table-striped }
 | Attribute        | Type    | Description                                                                                             |
 |------------------+---------+---------------------------------------------------------------------------------------------------------|
-| `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.                                               |
+| `syncEnabled`    | Boolean | Enable/disable the user syncing feature. Default: `true`.  |
 | `filterSettings` | Object  | Configure lists of adapters to include or exclude their user syncing based on the pixel type (image/iframe). |
-| `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`.                 |
-| `syncDelay`      | Integer | Delay in milliseconds for syncing after the auction ends. Default: `3000`.                              |
-| `auctionDelay`      | Integer | Delay in milliseconds of the auction to sync user ids before auction. Continues auction once ids are synced or delay times out. Default: `0`.                              |
-| `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`.  Default: `false`. |
+| `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`. |
+| `syncDelay`      | Integer | Delay in milliseconds for user syncing (both bid adapter user sync pixels and [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) ID providers) after the auction ends. Default: `3000`. Ignored if auctionDelay > 0. |
+| `auctionDelay`   | Integer | Delay in milliseconds of the auction to retrieve user ids via the [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) before the auction starts. Continues auction once all IDs are retrieved or delay times out. Does not apply to bid adapter user sync pixels. Default: `0`. |
+| `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
+| `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
 
@@ -1775,12 +1829,12 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-Delay auction to sync user ids first:
+Delay auction to retrieve userId module IDs first:
 
 {% highlight js %}
 pbjs.setConfig({
     userSync: {
-        auctionDelay: 1000 
+        auctionDelay: 1000 // delay auction up to 1 second
     }
 });
 {% endhighlight %}
@@ -1937,7 +1991,22 @@ Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/pu
 
 #### Configure Responsive Ads
 
-The `sizeConfig` object passed to `pbjs.setConfig` provides a powerful way to describe types of devices and screens using [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  See below for an explanation of the feature and examples showing how to use it.
+The `sizeConfig` object passed to `pbjs.setConfig` provides a global way to describe types of devices and screens using [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  See below for an explanation of the feature and examples showing how to use it.
+
+{% capture tip-choosing %}
+As of Prebid.js 3.11.0, the [Advanced SizeMapping module](/dev-docs/modules/sizeMappingV2.html) provides an alternate way to handle responsive AdUnits.
+You should consider using that module if any of these scenarios are true:
+{::nomarkdown}
+<ul>
+<li> The site needs to alter different AdUnits at different screen widths; e.g., the left-nav changes sizes at 600 pixels, but the footer's size behavior changes at 620 pixels.</li>
+<li>The site needs to alter different mediaTypes at different screen widths; e.g., the banner size ranges are 0-400px, 401-700px, and 701+px, but the native ads appear at 500px.</li>
+<li>Some bidders or mediaTypes should be included (or removed) at different overlapping size ranges.</li>
+</ul>
+<br/>
+{:/}
+If, on the other hand, the AdUnits, bidders, and mediaTypes all change behavior together at the same viewport width, then the built-in sizeConfig feature is appropriate.
+{% endcapture %}
+{% include alerts/alert_tip.html content=tip-choosing %}
 
 + [How it works](#sizeConfig-How-it-Works)
 + [Example](#sizeConfig-Example)
@@ -2115,19 +2184,145 @@ The flag may be passed to supporting adapters with this config:
 pbjs.setConfig({coppa: true});
 {% endhighlight %}
 
+<a name="setConfig-fpd" />
+
+#### First Party Data
+
+A number of adapters support taking key/value pairs as arguments, but they're all different. For example:
+
+- RubiconProject takes `keywords`, `inventory` and `visitor` parameters
+- AppNexus takes `keywords` and `user`
+- OpenX takes `customParams`
+
+This feature allows publishers a way to specify key/value data in one place where each compatible bid adapter
+can read it.
+
+{: .alert.alert-warning :}
+Not all bid adapters currently support reading first party data in this way, but support should increase over time.
+
+**Scenario 1** - Global (cross-adunit) First Party Data open to all bidders
+
+{% highlight js %}
+pbjs.setConfig({
+   fpd: {
+       context: {
+           keywords: ["power tools"],
+           search: "drill",
+           content: { userrating: 4 },
+           data: {
+               pageType: "article",
+               category: "tools"
+           }
+        },
+        user: {
+           keywords: ["a","b"],
+           gender: "M",
+           yob: "1984",
+           geo: { country: "ca" },
+           data: {
+              registered: true,
+              interests: ["cars"]
+           }
+        }
+    }
+});
+{% endhighlight %}
+
+{: .alert.alert-info :}
+The First Party Data JSON structure reflects the OpenRTB standard. Arbitrary values should go in context.data or
+user.data. Keywords, search, content, gender, yob, and geo are special values in OpenRTB.
+
+**Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
+
+If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](#module_pbjs.setBidderConfig) function like this:
+
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ['bidderA', 'bidderB'],
+   config: {
+       fpd: {
+           context: {
+               data: {
+                  pageType: "article",
+                  category: "tools"
+               }
+            },
+            user: {
+               data: {
+                  registered: true,
+                  interests: ["cars"]
+               }
+          }
+      }
+   }
+});
+{% endhighlight %}
+
+**Scenario 3** - See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
+
+<a name="setConfig-vast-cache" />
+
+#### Client-side Caching of VAST XML
+
+When serving video ads, VAST XML creatives must be cached on the network so the
+video player can retrieve them when it's ready. Players don't obtain the VAST XML from
+the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
+be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
+
+- Server-side caching:  
+  Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do.
+- Client-side caching:  
+  Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. In this scenario, Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
+
+For client-side caching, set the Prebid Cache URL as shown here (substituting the correct URL for the one shown here):
+
+{% highlight js %}
+pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
+});
+{% endhighlight %}
+
+{: .alert.alert-warning :}
+The endpoint URL provided must be a Prebid Cache or be otherwise compatible with the [Prebid Cache interface](https://github.com/prebid/prebid-cache).
+
+As of Prebid.js 2.36, you can track client-side cached VAST XML. This functionality is useful for publishers who want to allow their analytics provider to measure video impressions. The prerequisite to using this feature is the availability of a Prebid Server that supports:
+
+- the /vtrack endpoint
+- an analytics module with connection to an analytics system that supports joining the impression event to the original auction request on the bidid
+- the ability of a publisher to utilize the feature (if account-level permission is enabled)
+
+Given those conditions, the `vasttrack` flag can be specified:
+
+{% highlight js %}
+pbjs.setConfig({
+        cache: {
+            url: '_PREBID_SERVER_URL_/vtrack',
+            vasttrack: true
+        }
+});
+{% endhighlight %}
+
+Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtrack`
+Prebid Server endpoint with a couple of additional parameters needed
+by the analytics system to join the event to the original auction request.
+
 <a name="setConfig-Generic-Configuration" />
 
 #### Generic setConfig Configuration
 
 Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:
 
-`pbjs.setConfig({ <key>: <value> });`
+{% highlight js %}
+pbjs.setConfig({ <key>: <value> });
+{% endhighlight %}
 
 <a name="setConfig-Troubleshooting-your-configuration" />
 
 #### Troubleshooting your configuration
 
-If you call `pbjs.setConfig` without an object, e.g.,
+Towards catching syntax errors, one tip is to call `pbjs.setConfig` without an object, e.g.,
 
 {% highlight js %}
 pbjs.setConfig('debug', 'true'));
@@ -2142,6 +2337,36 @@ ERROR: setConfig options must be an object
 If you don't see that message, you can assume the config object is valid.
 
 <hr class="full-rule" />
+
+<a name="module_pbjs.setBidderConfig"></a>
+
+### pbjs.setBidderConfig(options)
+
+This function is similar to [`setConfig`](#module_pbjs.setConfig), but is designed to support certain bidder-specific scenarios.
+
+Configuration provided through the [`setConfig`](#module_pbjs.setConfig) function is
+globally available to all bidder adapters. This makes sense because
+most of these settings are global in nature. However, there are use cases where different bidders require different data, or where certain parameters apply only to a given
+bidder. Use `setBidderConfig` when you need to support these cases.
+
+The page usage is:
+
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ["bidderA"],  // one or more bidders
+   config: {              // the bidder-specific config
+      bidderA: {
+         customArg: 'value'
+      }
+   }
+});
+{% endhighlight %}
+
+When 'bidderA' calls `getConfig('bidderA')`, it will receive the object that contains 'customArg'.
+If any other bidder calls `getConfig('bidderA')`, it will receive nothing.
+
+{: .alert.alert-info :}
+This function is currently used by the `schain` feature. Refer to the [schain]({{site.baseurl}}/dev-docs/modules/schain.html) documentation for examples.
 
 <a name="module_pbjs.getConfig"></a>
 
@@ -2206,7 +2431,7 @@ One or both of options.params and options.url is required. In other words, you m
 |-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------|
 | `iu`              | string | *Required*. Google Ad Manager ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
 | `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
-| `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `http://www.example.com`                        |
+| `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `https://www.example.com`                        |
 
 For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
@@ -2229,7 +2454,7 @@ pbjs.requestBids({
                 },
                 hl: "en",
                 output: "xml_vast2",
-                url: "http://www.example.com",
+                url: "https://www.example.com",
             }
         });
         invokeVideoPlayer(videoUrl);
@@ -2242,7 +2467,7 @@ Using `options.url` only:
 ```javascript
 var adserverTag = 'https://pubads.g.doubleclick.net/gampad/ads?'
 + 'sz=640x480&iu=/19968336/prebid_cache_video_adunit&impl=s&gdfp_req=1'
-+ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=http://www.example.com'
++ '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=https://www.example.com'
 + '&cust_params=section%3Dblog%26anotherKey%3DanotherValue';
 
 var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -2263,9 +2488,9 @@ In the event of collisions, querystring values passed via `options.params` take 
 ### pbjs.adServers.dfp.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Alpha]</span>
 
 {: .alert.alert-info :}
-The DFP implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+The GAM implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
 
-This method combines publisher-provided parameters with Prebid.js targeting parameters to build a DFP video ad tag URL that can be used by a video player.
+This method combines publisher-provided parameters with Prebid.js targeting parameters to build a GAM video ad tag URL that can be used by a video player.
 
 #### Argument Reference
 
@@ -2292,7 +2517,7 @@ pbjs.que.push(function(){
             brandCategoryExclusion: true
         },
         brandCategoryTranslation: {
-            translationFile: "http://mymappingfile.com/mapping.json"
+            translationFile: "https://mymappingfile.com/mapping.json"
         }
     });
 
@@ -2302,7 +2527,7 @@ pbjs.que.push(function(){
                 codes: ['sample-code'],
                 params: {
                     iu: '/123456/testing/prebid.org/adunit1',
-                    description_url: 'http://mycontent.com/episode-1'
+                    description_url: 'https://mycontent.com/episode-1'
                 },
                 callback: function(err, masterTag) {
                     // Invoke video player and pass the master tag
@@ -2313,7 +2538,7 @@ pbjs.que.push(function(){
 });
 ```
 
-{% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will return the cached VAST XML. " %}
+{% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will cache the VAST XML. " %}
 
 <hr class="full-rule">
 

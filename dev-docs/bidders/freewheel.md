@@ -5,6 +5,7 @@ description: Freewheel Bidder Adaptor
 hide: true
 biddercode: freewheel-ssp
 gdpr_supported: true
+usp_supported: true
 media_types: video
 ---
 

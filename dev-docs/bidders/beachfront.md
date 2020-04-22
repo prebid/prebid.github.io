@@ -6,7 +6,8 @@ hide: true
 biddercode: beachfront
 media_types: video
 gdpr_supported: true
-userIds: unifiedId/tradedesk
+usp_supported: true
+userIds: unifiedId
 ---
 
 ### Bid Params
@@ -51,6 +52,7 @@ userIds: unifiedId/tradedesk
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                             | Example                                  | Type     |
 |------------|----------|-----------------------------------------|------------------------------------------|----------|
-| `progressColor` | optional | The color of the progress bar formatted as a CSS value. | `#50A8FA` | `string` |
+| `progressColor` | optional | The color of the progress bar formatted as a CSS value. | `'#50A8FA'` | `string` |
+| `adPosterColor` | optional | The color of the ad poster formatted as a CSS value. | `'#FFFFFF'` | `string` |
 | `expandInView` | optional | Defines whether to expand the player when the ad slot is in view. Defaults to `false`. | `false` | `boolean` |
 | `collapseOnComplete` | optional | Defines whether to collapse the player when ad playback has completed. Defaults to `true`. | `true` | `boolean` |

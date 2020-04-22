@@ -6,6 +6,9 @@ biddercode: nobid
 hide: true
 media_types: banner
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
+coppa_supported: true
 ---
 
 ### Bid Params
@@ -13,7 +16,8 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `siteId` | required | siteId is provided by your Nobid account manager |         | `integer` |
+| `siteId` | required | siteId is provided by your NoBid account manager(s) |         | `integer` |
+| `placementId` | optional | placementId is provided by your NoBid account manager(s). This parameter allows to report on a specific ad unit |         | `integer` |
 
 # Test Parameters
 ```
@@ -29,7 +33,8 @@ gdpr_supported: true
                 {
                     bidder: "nobid",
                     params: {
-                        siteId: 2
+                        siteId: 2,
+                        placementId: 3
                     }
                 }
             ]

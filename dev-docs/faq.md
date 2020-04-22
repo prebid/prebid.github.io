@@ -121,7 +121,7 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 ## How often is Prebid.js updated?
 
-See [the github release schedule](https://github.com/prebid/Prebid.js/blob/master/README.md) for more details.
+See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/master/RELEASE_SCHEDULE.md) for more details.
 
 ## When do I have to upgrade my version of Prebid.js?
 
@@ -147,9 +147,6 @@ benefits for sending more than one bid.
 
 Once you find the right balance for your application, you can specify
 what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
-
-http://lh.prebid.org:8080/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids
-
 
 
 ## Related Reading

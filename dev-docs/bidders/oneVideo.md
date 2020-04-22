@@ -6,6 +6,8 @@ hide: true
 biddercode: oneVideo
 media_types: video
 gdpr_supported: true
+tcf2_supported: true
+usp_supported: true
 ---
 
 ### Note:

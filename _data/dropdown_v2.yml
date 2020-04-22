@@ -46,7 +46,7 @@
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
-    title: Members and Partners
+    title: Membership
     link:  /partners/partners.html
     needsDivider: 0
     isHeader: 0
@@ -65,7 +65,7 @@
     sectionId: 0
     sectionName: Overview
     title: Events
-    link:  /blog
+    link:  /prebid/events.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0

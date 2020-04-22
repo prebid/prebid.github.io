@@ -21,8 +21,4 @@ Enable javascript console trace messages by adding ```?pbjs_debug=true``` to the
 
 ## Prebid Server
 
-To return debug data for Prebid Server add `&debug=1` to the end of the URL. A 'url_override' parameter is also available to help further isolate issues.
-
-{% highlight bash %}
-https://prebid-server.rubiconproject.com/auction?url_override=rubiconproject.com&debug=1
-{% endhighlight %}
++ [Prebid Server Troubleshooting](/troubleshooting/pbs-troubleshooting.html)

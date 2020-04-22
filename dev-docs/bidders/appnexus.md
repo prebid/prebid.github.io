@@ -7,8 +7,11 @@ hide: true
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteortus
+userIds: criteo
 schain_supported: true
+coppa_supported: true
+usp_supported: true
+tcf2_supported: true
 ---
 
 ### Table of Contents

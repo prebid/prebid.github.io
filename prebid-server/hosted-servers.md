@@ -16,7 +16,7 @@ Several Prebid.org members host Prebid Server clusters for use by publishers.
 <td>Fill out the <a href="https://prebid.adnxs.com">AppNexus Prebid Server sign-up page</a>. If approved, you will receive an email with your assigned accountId.</td>
 </tr>
 <tr><td><img src="/assets/images/partners/founders/rubicon.png" width="100"></td>
-<td>Send email to <a href="mailto:prebidserver@rubiconproject.com">prebidserver@rubiconproject.com</a></td>
+<td><a href="https://rubiconproject.com/demand-manager-hosted-prebid-server/">Learn more</a> about Rubicon Project's Hosted Prebid Server offering.</td>
 </tr>
 </table>
 

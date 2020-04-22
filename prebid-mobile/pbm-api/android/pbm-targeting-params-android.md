@@ -246,24 +246,49 @@ TargetingParams.addBidderToAccessControlList(TargetingParams.BIDDER_NAME_RUBICON
 
 ## Global GDPR Targeting
 
-Prebid Mobile supports the [IAB GDPR recommendations](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.github.url}}/prebid-mobile/gdpr.html)
+Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/privacy-regulation.html)
+
+### Subject To GPDR
 
 Enable (true) or disable (false) the ability to provide consent.
+
+#### Retrieve subjectToGDPR
+
+```
+TargetingParams.isSubjectToGDPR();
+```
+#### Set subjectToGDPR
 
 ```
 TargetingParams.setSubjectToGDPR(context, true);
 ```
 
-Retrieve the consent string.
+### GDPR Consent String
+
+#### Retrieve gdprConsentString
 
 ```
 context = TargetingParams.getGDPRConsentString();
 ```
 
-Enable publishers to set the consent string.
+#### Set gdprConsentString
 
 ```
-TargetingParams.setGDPRConsentString(context, "consent_string");
+TargetingParams.setGDPRConsentString(string);
+```
+
+### Purpose Consent
+
+#### Retrieve purposeConsent
+
+```
+TargetingParams.getPurposeConsents();
+```
+
+#### Set purposeConsent
+
+```
+TargetingParams.setPurposeConsents(string);
 ```
 
 Prebid mobile also checks if the values are present in the [SharedPreferences](https://developer.android.com/training/data-storage/shared-preferences) keys specified by the IAB. If the values are also set in these objects they will be passed in the OpenRTB request object.

@@ -11,7 +11,7 @@ sidebarType: 2
 {: .notoc}
 
 
-The AdUnit class is the superclass of the [BannerAdUnit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html) and [InterstitialAdUnit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html) classes.
+The AdUnit class is the superclass of the [BannerAdUnit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html) and [InterstitialAdUnit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html) classes.
 
 
 - TOC
@@ -52,8 +52,8 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 `completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value.
 
-<div markdown="1" style="background-color: AntiqueWhite;">
 {% include alerts/alert_warning.html content="Ad Unit *User* keywords will be deprecated in favor of [targeting keywords](pbm-targeting-ios#user-keywords) for Prebid versions 1.2+. Support will continue for Ad Unit User Keywords as users migrate to targeting user keywords." %}
+
 
 ### addUserKeyword
 
@@ -126,7 +126,7 @@ Data is broken up into two different data types:
   * Global scope
   * Ad Unit grain
 
- The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-ios#first-party-data) page.
+ The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
 
 #### addContextData
 ```
@@ -168,8 +168,10 @@ func clearContextData()
 **fetchDemand**
 
 **Swift**
-```
 
+
+<div>
+<pre class="pb-code-hl"><code>
 
  func loadDFPBanner(bannerUnit : AdUnit){
 
@@ -188,7 +190,8 @@ func clearContextData()
         dfpBanner.load(self.request)
     }
 }
-```
+</code></pre></div>
+
 **Objective-C**
 
 ```
@@ -258,9 +261,9 @@ bannerAdUnit.addContextData(key: "adunitContextDataKey1", value: "adunitContextD
 
 ## Related Topics
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
