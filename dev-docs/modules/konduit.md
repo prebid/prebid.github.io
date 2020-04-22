@@ -12,24 +12,49 @@ sidebarType : 1
 # Konduit Accelerate Module
 {:.no_toc}
 
-The Konduit Accelerate module applies the [Konduit](http://konduit.me/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization can reduce load times and increase ad starts. To install the module, follow these instructions:
+The Konduit Accelerate module applies the [Konduit](https://konduitvideo.com/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization can reduce load times and increase ad starts.
+Konduit Accelerate allows
+- wrapping a bid response so that it is processed through Konduit platform
+- obtaining a historical performance indicator for a bid
 
-
+ To install the module, follow these instructions:
+ 
 ### Step 1: Prepare the base Prebid file
 
 Build your Prebid.js package in one of two ways:
 
-1. Receive an email package from the Prebid [Download](/download.html) page.
-2. From the command line, run  
+- Receive an email package from the Prebid [Download](/download.html) page.
+
+- From the command line, run  
    `gulp build --modules=konduitWrapper,...`
 
 
 ### Step 2: Implement module code on page
 
-- Insert the Konduit module code in the source code of your page.  
-  The module exposes the `pbjs.adServers.konduit.buildVastUrl` function.
-- Provide input parameters to the function, including a bid to be accelerated (usually a winning bid) and Konduit-specific parameters (as shown in the sample code below).
+- Add konduitId as config using `setConfig` prebid method (`pbjs.setConfig({ konduit: { konduitId: your_konduit_id } })`)
 
+- Insert the Konduit module code in the source code of your page.  
+  The module exposes the `pbjs.adServers.konduit.processBids` function.
+  
+- Provide input parameters to the function (all parameters are shown in the table below).
+
+{: .table .table-bordered .table-striped }
+  | Param | Type | Description | Default |
+  |---+---+---+---+---|
+  | bid | object | prebid object with VAST url that should be cached | If the bid parameter is not passed then first winning bid will be used |
+  | adUnitCode | string | adUnitCode where a winner bid can be found | - |
+  | timeout | number | max time to wait for Konduit response with cache key and kCpm data | 2000 |
+  | callback | function | callback function is called once Konduit cache data for the bid. Arguments of this function are - `error` and `bids` (error should be `null` if Konduit request is successful) | - |
+  
+### Step 3: GAM related configuration
+
+It is important to configure your GAM line items. 
+Please contact [support@konduit.me](mailto:support@konduit.me) for assistance.
+
+In most cases it would require only Creative VAST URL update with the following URL:
+```
+https://p.konduit.me/api/vastProxy?konduit_hb=1&konduit_hb_awarded=1&konduit_cache_key=%%PATTERN:konduit_cache_key%%&konduit_id=%%PATTERN:konduit_id%%
+```
 
 ### Sample Code
 
@@ -37,19 +62,28 @@ We recommended using the Konduit module function call in the `bidsBackHandler` c
 
 ```javascript
 pbjs.que.push(function() {
+  pbjs.setConfig({
+    konduit: {
+      konduitId: your_konduit_id,
+    }
+  });
   pbjs.addAdUnits(videoAdUnits);
   pbjs.requestBids({
     bidsBackHandler: function(bids) {
       var winnerBid = pbjs.getHighestCpmBids('videoAd')[0];
 
-      var vastTagUrl = pbjs.adServers.konduit.buildVastUrl({
+      pbjs.adServers.konduit.processBids({
         bid: winnerBid,
-        params: {
-          konduit_id: '{konduit_client_id}',
+        adUnitCode: videoAdUnit[0].code,
+        timeout: 2000,
+        callback: function (error, bids) {
+          var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+            ...
+          });
+
+          invokeVideoPlayer(videoUrl);
         }
       });
-
-      invokeVideoPlayer(vastTagUrl);
     }
   });
 });

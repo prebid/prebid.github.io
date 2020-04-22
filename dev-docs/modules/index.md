@@ -47,7 +47,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Freewheel**](/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
 | [**Google Ad Manager Video**](/dev-docs/modules/dfp_video.html) | Required for serving instream video through Google Ad Manager. |
 | [**IAB Category Translation**](/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
-| [**Konduit Accelerate**](/dev-docs/modules/konduit.html) | Module for serving instream video through Konduit Accelerate service. |
+| [**Konduit Accelerate**](/dev-docs/modules/konduit.html) | Provides Real Time Start Rate Performance per Bidder. |
 
 ## Testing and Debug Modules
 
