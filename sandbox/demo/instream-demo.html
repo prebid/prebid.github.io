@@ -1,0 +1,241 @@
+<html>
+
+    <head>
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <title>Prebid JS Demo</title>
+        
+        <!--fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Prompt' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Aleo' rel='stylesheet'>
+        
+        <!--Bootstrap css/js-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+		<!--jQuery and popper-->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		
+        <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
+        
+        <!--brid & prebid js code-->
+		<script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
+		<script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>  	
+    
+	    <script type="text/javascript">
+	    	
+			var pbjs = pbjs || {};
+			pbjs.que = pbjs.que || [];
+			
+			// define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
+			var tempTag = false;
+			var invokeVideoPlayer = function(url){
+			  tempTag = url;
+			}
+			
+			/*
+			Prebid Video adUnit
+			*/
+			
+			var videoAdUnit = {
+			  code: 'video1',
+			  sizes: [640,480],
+			  mediaTypes: {
+			    video: {
+			      context: "instream"
+			    }
+			  },
+			  bids: [
+			    {
+			      bidder: 'appnexusAst',
+			      params: {
+			        placementId: '13232361', // Add your own placement id here
+			        video: {
+			          skipppable: true,
+			          playback_method: ['auto_play_sound_off']
+			        }
+			      }
+			    }
+			  ]
+			};
+			
+			pbjs.que.push(function(){
+			  pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
+			
+			  pbjs.setConfig({ 
+			    usePrebidCache: true,
+					cache: {
+						url: 'https://prebid.adnxs.com/pbc/v1/cache'
+					} 
+			  });
+			
+			  pbjs.requestBids({
+			      bidsBackHandler: function(bids) {
+			          var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+			              adUnit: videoAdUnit,
+			              params: {
+			                  iu: '/19968336/prebid_cache_video_adunit',
+			                  cust_params: {
+			                    section: "blog",
+			                    anotherKey: "anotherValue"
+			                  },
+			                  output: "vast"
+			              }
+			          });
+			          invokeVideoPlayer(videoUrl);
+			      }
+			  });
+			});
+			
+			pbjs.bidderSettings =
+			{
+			    standard: {
+			        adserverTargeting: [
+			            {
+			                key: "hb_bidder",
+			                val: function (bidResponse) {
+			                    return bidResponse.bidderCode;
+			                }
+			            }, {
+			                key: "hb_adid",
+			                val: function (bidResponse) {
+			                    return bidResponse.adId;
+			                }
+			            }, {
+			                key: "hb_pb",
+			                val: function (bidResponse) {
+			                    return "10.00";
+			                }
+			            }, {
+			                key: "hb_size",
+			                val: function (bidResponse) {
+			                    return bidResponse.size;
+			
+			                }
+			            }
+			        ]
+			    }
+			};
+				     
+		</script>        
+                
+        <style>
+	        
+	        .colHeight { 
+		        min-height: calc(100vh - 250px);
+	        }
+	        
+	        .sidebar { 
+		        padding: 20px 10px 20px 60px;
+		        background-color: #c7bb99;
+		        border-right: 1px solid #332a09;
+		        font-family: Prompt, sans-serif;
+
+	        }
+	        
+	        .sidebar h2 { 
+		        font-size: 20px;
+		        font-weight: 600;
+		        color: #212f4f
+	        }
+	        
+	        .sidebar a { 
+		        color: #3d2323;
+		        font-size: 16px;
+		        font-weight: 500;
+	        }
+	        
+	        .page-text { 
+		        font-family: Aleo, serif;
+		        font-weight: 300;
+		        font-size: 16px;
+		        color:#102720
+	        }
+	        
+	        .page-content { 
+		        padding-top: 35px;
+		        padding-bottom:10px;
+	        }
+	        
+	        	        
+	        #instructions { 
+		        height: 800px;
+	        }
+	        
+	        #instream-text { 
+		        margin-bottom: 20px;
+	        }
+	        
+				
+	    </style>
+
+
+    </head>
+
+    <body>
+	    
+	    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+		  <div class="container">
+		    <a href="#" class="navbar-brand">
+				<!-- Logo Image -->
+				<img src="/sandbox/demo/assets/images/prebid_logo.png" width="240">
+    		</a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+		          <span class="navbar-toggler-icon"></span>
+		        </button>
+		    <div class="collapse navbar-collapse" id="navbarResponsive"></div>
+		  </div>
+		</nav>
+		
+		<div class="container-fluid" style="margin-top: 100px;">
+			<div class="row">
+				
+				<!--sidebar-->
+				<div class="col-md-2 sidebar colHeight">
+					<h2>Static Examples</h2>
+					<hr>
+					<p><a href="index.html">Prebid.js Demo</a></p>
+					<hr>
+					<h2>Video Examples</h2>
+					<p><a href="instream-demo.html">Instream Video</a></p>
+					
+				</div>
+				
+				
+				<!--content-->
+				<div class="col-md-7 colHeight">
+					<div id="instream-text">
+						<p>Which is why this concert is more than entertainment, why the star syndrome doesn't exactly apply here, why the Grateful Dead isn't really a rock band and is only tangentially part of the American music industry. Garcia is indeed charismatic, but not the least remarkable of his contributions to the group is his general refusal to run it. "You can call me boss," he once said, chuckling, "just don't ask me to make any decisions." That is why the fans, the colorful, exuberant Dead Heads gathered outside, are members of a cult that at its best serves Dionysus rather than individual performers, and why the police, veterans of these parking lot festivals, understand the benign nature of their guests and are smiling at them.</p>
+						<p>A few days earlier the gig had been at a music theater out in the country. The endless sleepy commute, a forty-five-minute spin on an unfamiliar road from a generic RamadaMarriottSheraton, through endless geometrically identical cornfields, to a resort nowhere in particular, induced a feeling of absolute random disassociation. Conversation was desperately required, and centered on Lesh's newly purchased book about the anthropic principle, which posited the universe as a mind.</p>
+						<p>Obeying an unspoken protocol, Scrib had left the front seats to the band and retreated to the back of the van--limousines are thought too conspicuous--to consider the band's personalities in archetypal terms. Garcia is a powerful bohemian visionary, a shaman of a sort, and his personal style has largely defined the band's social and musical structure. Yet his role is nothing like that suggested by the automatic attention paid to a virtuoso rock guitarist or the guru figure the media have fabricated in his name. The band's candidate for Handsome Rock Star is Weir, the eternal Younger Brother. But on a day-to-day basis, the psychic pivot to the Dead is Phil Lesh, the most aggressive purist, the anti-philistine Artist. It is he who most often and most loudly demands that they dance as closely as possible to the edge of the nearest available precipice. Intellectual, kinetic, intense, he was once nicknamed Reddy Kilowatt in recognition of his high mental and physical velocity. Twenty years later his mind is still exceedingly agile, although on this day he was content to let Garcia dominate the rap.</p>
+						<p>"Why would the universe go through the trouble of evolving consciousness?" inquired Garcia. "If it wanted life that would succeed, just to create the most effective living thing, it could have stopped at bacteria. Or it could have stopped at vertebrates or sharks. But consciousness goes a quantum step further than just life. It might be that consciousness is the whole reason there is a universe. There might not be a universe apart from consciousness." Garcia lit another Pall Mall. "And who knows what it's like elsewhere in the universe? Local realities change enough, locally, that those Hindu guys can walk through huge, blazing fires and not get burned. It's got to be that consciousness modulates reality. Besides, the truth can't only be here, or you could stare at your toes and figure it all out."</p>
+						
+						<div id="myDiv" class="brid" style="width:640px; height:360;"></div>
+					</div>
+				</div>
+				<!--gutter-->
+				<div class="col-md-3 colHeight"></div>
+			</div>
+		</div>
+    </body>
+		
+		<!--video player code-->
+		<script type="text/javascript">
+          invokeVideoPlayer = function(url) {
+            $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
+            "Ad": [
+                    {
+                        "mobile": url, // Array of url's will get called in succession
+                        "desktop": null, // Array of url's will get called in succession
+                        "adType": "0", // Type 0 for pre roll
+                        "adTimeType": "s",
+                        "overlayStartAt": null,
+                        "overlayDuration": null,
+                        "cuepoints": null
+                    }
+                ]
+            });
+          }
+        </script>
+        
+</html>

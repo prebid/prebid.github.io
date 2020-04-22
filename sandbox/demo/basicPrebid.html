@@ -1,0 +1,528 @@
+
+
+<html>
+
+    <head>
+        <link rel="icon" type="image/png" href="/favicon.png">
+        
+        <!--fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Prompt' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Aleo' rel='stylesheet'>
+        
+        <!--Bootstrap css/js-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+		<!--jQuery and popper-->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		
+        
+        <!--
+        <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
+        <!--Brid Player-->
+        <script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
+		<!--Prebid.js-->
+        <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+        
+        
+        
+        <script>
+            var div_1_sizes = [
+                [300, 250]
+            ];
+            
+            var div_2_sizes = [
+                [728, 90]
+            ];
+            
+            var div_3_sizes = [
+                [728, 90]
+            ];
+            
+            var PREBID_TIMEOUT = 1000;
+            var FAILSAFE_TIMEOUT = 3000;
+
+            var adUnits = [
+                {
+                    code: '/19968336/header-bid-tag-0',
+                    mediaTypes: {
+                        banner: {
+                            sizes: div_1_sizes
+                        }
+                    },
+                    bids: [{
+                        bidder: 'appnexus',
+                        params: {
+                            placementId: 13144370
+                        }
+                    }]
+                },
+                {
+                    code: '/19968336/header-bid-tag-1',
+                    mediaTypes: {
+                        banner: {
+                            sizes: div_2_sizes
+                        }
+                    },
+                    bids: [{
+                        bidder: 'appnexus',
+                        params: {
+                            placementId: 13144370
+                        }
+                    }]
+                }
+            ];
+            
+            // ======== DO NOT EDIT BELOW THIS LINE =========== //
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+            googletag.cmd.push(function() {
+                googletag.pubads().disableInitialLoad();
+            });
+
+            var pbjs = pbjs || {};
+            pbjs.que = pbjs.que || [];
+
+            pbjs.que.push(function() {
+                pbjs.addAdUnits(adUnits);
+                pbjs.requestBids({
+                    bidsBackHandler: initAdserver,
+                    timeout: PREBID_TIMEOUT
+                });
+            });
+
+            function initAdserver() {
+                if (pbjs.initAdserverSet) return;
+                pbjs.initAdserverSet = true;
+                googletag.cmd.push(function() {
+                    pbjs.que.push(function() {
+                        pbjs.setTargetingForGPTAsync();
+                        googletag.pubads().refresh();
+                    });
+                });
+            }
+            
+            // in case PBJS doesn't load
+            setTimeout(function() {
+                initAdserver();
+            }, FAILSAFE_TIMEOUT);
+
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/19968336/header-bid-tag-0', div_1_sizes, 'div-1').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/19968336/header-bid-tag-1', div_2_sizes, 'div-2').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+            
+            
+
+        </script>
+        
+        <!--instream video script-->
+        <script>
+		    var pbjs = pbjs || {};
+		    pbjs.que = pbjs.que || [];
+		
+		    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
+		
+		    var tempTag = false;
+		    var invokeVideoPlayer = function(url){
+		      tempTag = url;
+		    }
+		
+		    /*
+		    Prebid Video adUnit
+		    */
+		
+		    var videoAdUnit = {
+		      code: 'video1',
+		      sizes: [640,480],
+		      mediaTypes: {
+		        video: {
+		          context: "instream"
+		        }
+		      },
+		      bids: [
+		        {
+		          bidder: 'appnexusAst',
+		          params: {
+		            placementId: '9333431', // Add your own placement id here
+		
+		            video: {
+		              skipppable: true,
+		              playback_method: ['auto_play_sound_off']
+		            }
+		          }
+		        }
+		      ]
+		    };
+		
+		    pbjs.que.push(function(){
+			  // add your ad units to the bid request
+		
+		      pbjs.addAdUnits(videoAdUnit);
+		
+		      pbjs.setConfig({
+		        usePrebidCache: true
+		      });
+		
+		      pbjs.requestBids({
+		          bidsBackHandler: function(bids) {
+		              var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+		                  adUnit: videoAdUnit,
+		                  params: {
+		                      iu: '/19968336/prebid_cache_video_adunit',
+		                      cust_params: {
+		                        section: "blog",
+		                        anotherKey: "anotherValue"
+		                      },
+		                      output: "vast"
+		                  }
+		              });
+		              invokeVideoPlayer(videoUrl);
+		          }
+		      });
+		    });
+		
+		    pbjs.bidderSettings =
+		    {
+		        standard: {
+		            adserverTargeting: [
+		                {
+		                    key: "hb_bidder",
+		                    val: function (bidResponse) {
+		                        return bidResponse.bidderCode;
+		                    }
+		                }, {
+		                    key: "hb_adid",
+		                    val: function (bidResponse) {
+		                        return bidResponse.adId;
+		                    }
+		                }, {
+		                    key: "hb_pb",
+		                    val: function (bidResponse) {
+		                        return "10.00";
+		                    }
+		                }, {
+		                    key: "hb_size",
+		                    val: function (bidResponse) {
+		                        return bidResponse.size;
+		
+		                    }
+		                }
+		            ]
+		        }
+		    };
+		
+		</script>
+		
+		
+        
+        <style>
+	        
+	        .colHeight { 
+		        min-height: calc(100vh - 250px);
+	        }
+	        
+	        .sidebar { 
+		        padding: 20px 10px 20px 60px;
+		        background-color: #c7bb99;
+		        border-right: 1px solid #332a09;
+		        font-family: Prompt, sans-serif;
+
+	        }
+	        
+	        .sidebar h2 { 
+		        font-size: 20px;
+		        font-weight: 600;
+		        color: #212f4f
+	        }
+	        
+	        .sidebar a { 
+		        color: #3d2323;
+		        font-size: 16px;
+		        font-weight: 500;
+	        }
+	        
+	        .page-text { 
+		        font-family: Aleo, serif;
+		        font-weight: 300;
+		        font-size: 16px;
+		        color:#102720
+	        }
+	        
+	        .page-content { 
+		        padding-top: 35px;
+		        padding-bottom:10px;
+	        }
+	        
+	        	        
+	        #instructions { 
+		        height: 800px;
+	        }
+	        
+	        #instream-text { 
+		        margin-bottom: 20px;
+	        }
+	        
+				
+	    </style>
+
+    </head>
+
+    <body>
+	    
+	    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+		  <div class="container">
+		    <a href="#" class="navbar-brand">
+				<!-- Logo Image -->
+				<img src="/sandbox/demo/assets/images/prebid_logo.png" width="240">
+    		</a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+		          <span class="navbar-toggler-icon"></span>
+		        </button>
+		    <div class="collapse navbar-collapse" id="navbarResponsive">
+		      <ul class="navbar-nav ml-auto">
+		        <li class="nav-item active">
+		          <a class="nav-link" href="#">Home
+		                <span class="sr-only">(current)</span>
+		              </a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="#">About</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="#">Services</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="#">Contact</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+		
+		<div class="container-fluid" style="margin-top: 100px;">
+			<div class="row">
+				<div class="col-md-2 sidebar colHeight">
+					<h2>Static Examples</h2>
+					<hr>
+					<p><a id="maclean" href="#">Norman MacLean:<br>Young Men and Fire</a></p>
+					<hr>
+					<p><a id="expurey" href="#">Antoine St. Exupery:<br>Wind, Sand, and Stars</a></p>
+					<hr>
+					<p><a id="coelho" href="#">Paulo Coelho:<br>The Alchemist</a></p>
+					<hr>
+					<h2>Video Examples</h2>
+					<p><a id="instream-vid" href="#">Instream Video </a></p>
+					<hr>
+					<p><a id="instream-vid" href="#">Outstream Video </a></p>
+					<hr>
+				</div>
+				
+				<div class="col-md-7 colHeight">
+					<div id="instructions" class="page-text page-content">
+						<h2>Click an author to read an excerpt from their book.</h2>
+					</div>
+					
+					<div id="maclean-text" class="page-text page-content">
+						<p>Dodge testifies that this was the first time he had tried to communicate with his men since rejoining them at the head of the gulch, and he is reported as saying—for the second time—something about "getting out of this death trap." When asked by the Board of Review if he had explained to the men the danger they were in, he looked at the Board in amazement, as if the Board had never been outside the city limits and wouldn't know sawdust if they saw it in a pile. It was getting late for talk anyway. What could anybody hear? It roared from behind, below, and across, and the crew, inside it, was shut out from all but a small piece of the outside world.</p>
+						<p>They had come to the station of the cross where something you want to see and can't shuts out the sight of everything that otherwise could be seen. Rumsey says again and again what the something was he couldn't see. "The top of the ridge, the top of the ridge.</p>
+						<p>"I had noticed that a fire will wear out when it reaches the top of a ridge. I started putting on steam thinking if I could get to the top of the ridge I would be safe.</p>
+						<p>"I kept thinking the ridge—if I can make it. On the ridge I will be safe . . . I forgot to mention I could not definitely see the ridge from where we were. We kept running up since it had to be there somewhere. Might be a mile and a half or a hundred feet—I had no idea."</p>
+						<p>The survivors say they weren't panicked, and something like that is probably true. Smokejumpers are selected for being tough, but Dodge's men were very young and, as he testified, none of them had been on a blowup before and they were getting exhausted and confused. The world roared at them—there was no safe place inside and there was almost no outside. By now they were short of breath from the exertion of their climbing and their lungs were being seared by the heat. A world was coming where no organ of the body had consciousness but the lungs.</p>
+						<p>Dodge's order was to throw away just their packs and heavy tools, but to his surprise some of them had already thrown away all their equipment. On the other hand, some of them wouldn't abandon their heavy tools, even after Dodge's order. Diettert, one of the most intelligent of the crew, continued carrying both his tools until Rumsey caught up with him, took his shovel, and leaned it against a pine tree. Just a little farther on, Rumsey and Sallee passed the recreation guard, Jim Harrison, who, having been on the fire all afternoon, was now exhausted. He was sitting with his heavy pack on and was making no effort to take it off, and Rumsey and Sallee wondered numbly why he didn't but no one stopped to suggest he get on his feet or gave him a hand to help him up. It was even too late to pray for him. Afterwards, his ranger wrote his mother and, struggling for something to say that would comfort her, told her that her son always attended mass when he could.</p>
+						<p>It was way over one hundred degrees. Except for some scattered timber, the slope was mostly hot rock slides and grass dried to hay.</p>
+						<p>It was becoming a world where thought that could be described as such was done largely by fixations. Thought consisted in repeating over and over something that had been said in a training course or at least by somebody older than you.</p>
+						<p>Critical distances shortened. It had been a quarter of a mile from where Dodge had rejoined his crew to where he had the crew reverse direction. From there they had gone only five hundred yards at the most before he realized the fire was gaining on them so rapidly that the men should discard whatever was heavy.</p>
+						<p>The next station of the cross was only seventy-five yards ahead. There they came to the edge of scattered timber with a grassy slope ahead. There they could see what is really not possible to see: the center of a blowup. It is really not possible to see the center of a blowup because the smoke only occasionally lifts, and when it does all that can be seen are pieces, pieces of death flying around looking for you—burning cones, branches circling on wings, a log in flight without a propeller. Below in the bottom of the gulch was a great roar without visible flames but blown with winds on fire. Now, for the first time, they could have seen to the head of the gulch if they had been looking that way. And now, for the first time, to their left the top of the ridge was visible, looking when the smoke parted to be not more than two hundred yards away.</p>
+					</div>
+					
+					<div id="expurey-text" class="page-text page-content">
+						<p>We had no means of angular orientation, were already deafened, and were bit by bit growing blind. The moon like a pallid ember began to go out in the banks of fog. Overhead the sky was filling with clouds, and we flew thenceforth between cloud and fog in a world voided of all substance and all light. The ports that signaled us had given up trying to tell us where we were. “No bearings, no bearings,” was all their message, for our voice reached them from everywhere and nowhere. With sinking hearts Neri and I leaned out, he on his side and I on mine, to see if anything, anything at all, was distinguishable in this void. Already our tired eyes were seeing things— errant signs, delusive flashes, phantoms.</p>
+					<p>And suddenly, when already we were in despair, low on the horizon a brilliant point was unveiled on our port bow. A wave of joy went through me. Neri leaned forward, and I could hear him singing. It could not but be the beacon of an airport, for after dark the whole Sahara goes black and forms a great dead expanse. That light twinkled for a space— and then went out! We had been steering for a star which was visible for a few minutes only, just before setting on the horizon between the layer of fog and the clouds. </p>
+					<p>Then other stars took up the game, and with a sort of dogged hope we set our course for each of them in turn. Each time that a light lingered a while, we performed the same crucial experiment. Neri would send his message to the airport at Cisneros: “Beacon in view. Put out your light and flash three times.” And Cisneros would put out its beacon and flash three times while the hard light at which we gazed would not, incorruptible star, so much as wink. And despite our dwindling fuel we continued to nibble at the golden bait which each time seemed more surely the true light of a beacon, was each time a promise of a landing and of life— and we had each time to change our star.</p>
+					<p>And with that we knew ourselves to be lost in interplanetary space among a thousand inaccessible planets, we who sought^only the one veritable planet, our own, that planet on which alone we should find our familiar countryside, the houses of our friends, our treasures. On which alone we should find . . . Let me draw the picture that took shape before my eyes. It will seem to you childish; but even in the midst of danger a man retains his human concerns. I was thirsty and I was hungry. If we did find Cisneros we should re-fuel and carry on to Casablanca, and there we should come down in the cool of daybreak, free to idle the hours away. Neri and I would go into town. We would go to a little pub already open despite the early hour. Safe and sound, Neri and I would sit down at table and laugh at the night of danger as we ate our warm rolls and drank our bowls of coffee and hot milk. We would receive this matutinal gift at the hands of life. Even as an old peasant woman recognizes her God in a painted image, in a childish medal, in a chaplet, so life would speak to us in its hum- blest language in order that we understand. The joy of living, I say, was summed up for me in the remembered sensation of that first burning and aromatic swallow, that mixture of milk and coffee and bread by which men hold communion with tranquil pastures, exotic plantations, and golden harvests, communion with the earth. Amidst all these stars there was but one that could make itself significant for us by composing this aromatic bowl that was its daily gift at dawn. And from that earth of men, that earth docile to the reaping of grain and the harvesting of the grape, bearing its rivers asleep in their fields, its villages clinging to their hillsides, our ship was separated by astronomical distances. AJl the treasures of the world were summed up in a grain of dust now blown far out of our path by the very destiny itself of dust and of the orbs of night.</p> 
+					<p>And Neri still prayed to the stars.</p>
+					</div>
+					<div id="coelho-text" class="page-text page-content">
+						<p>The boy's name was Santiago. Dusk was falling as the boy arrived with his herd at an abandoned church. The roof had fallen in long ago, and an enormous sycamore had grown on the spot where the sacristy had once stood.</p>
+						<p>He decided to spend the night there. He saw to it that all the sheep entered through the ruined gate, and then laid some planks across it to prevent the flock from wandering away during the night. There were no wolves in the region, but once an animal had strayed during the night, and the boy had had to spend the entire next day searching for it.</p>
+						<p>He swept the floor with his jacket and lay down, using the book he had just finished reading as a pillow. He told himself that he would have to start reading thicker books: they lasted longer, and made more comfortable pillows.</p>
+						<p>It was still dark when he awoke, and, looking up, he could see the stars through the half-destroyed roof.</p>
+						<p>I wanted to sleep a little longer, he thought. He had had the same dream that night as a week ago, and once again he had awakened before it ended.</p>
+						<p>He arose and, taking up his crook, began to awaken the sheep that still slept. He had noticed that, as soon as he awoke, most of his animals also began to stir. It was as if some mysterious energy bound his life to that of the sheep, with whom he had spent the past two years, leading them through the countryside in search of food and water. "They are so used to me that they know my schedule," he muttered. Thinking about that for a moment, he realized that it could be the other way around: that it was he who had become accustomed to their schedule.</p>
+						<p>But there were certain of them who took a bit longer to awaken. The boy prodded them, one by one, with his crook, calling each by name. He had always believed that the sheep were able to understand what he said. So there were times when he read them parts of his books that had made an impression on him, or when he would tell them of the loneliness or the happiness of a shepherd in the fields. Sometimes he would comment to them on the things he had seen in the villages they passed.</p>
+						<p>But for the past few days he had spoken to them about only one thing: the girl, the daughter of a merchant who lived in the village they would reach in about four days. He had been to the village only once, the year before. The merchant was the proprietor of a dry goods shop, and he always demanded that the sheep be sheared in his presence, so that he would not be cheated. A friend had told the boy about the shop, and he had taken his sheep there.</p>
+					</div>
+					
+					<div id="instream-text" class="page-text page-content">
+						<p>Instream is a system that’s familiar to most. It involves standard pre-roll, mid-roll, or post-roll ad placements within your favorite videos. While vulnerable to ad blockers, instream is still the most reliable system for placing video ads within a relevant video context, and of course the most frequently utilized.<p>
+						<div id="myDiv" class="brid" style="width:640px; height:360;"></div>
+
+							<script type="text/javascript">
+								invokeVideoPlayer = function(url) {
+								$bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
+								"Ad": [
+								        {
+								            "mobile": url, // Array of url's will get called in succession
+								            "desktop": null, // Array of url's will get called in succession
+								            "adType": "0", // Type 0 for pre roll
+								            "adTimeType": "s",
+								            "overlayStartAt": null,
+								            "overlayDuration": null,
+								            "cuepoints": null
+								        }
+								    ]
+								});
+								}
+							  </script>
+					</div>
+					
+										
+					<!--side ad-->
+					<div id="bottom-ad">
+						<div id='div-2'>
+							<script type='text/javascript'>
+								googletag.cmd.push(function() {
+								googletag.display('div-1');
+	        					});
+	
+	    					</script>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-3 colHeight">
+					<div class="container">
+						<div class="row">
+							
+							<!--side ad-->
+							<div style="margin-top:40px;">
+								<div id='div-1'>
+									<script type='text/javascript'>
+										googletag.cmd.push(function() {
+										googletag.display('div-1');
+	                					});
+	
+	            					</script>
+	        					</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+							
+		
+		<script>
+			
+			$(document).ready(function() {
+				
+				$("#maclean-text").hide();
+				$("#expurey-text").hide();
+				$("#coelho-text").hide();
+				$("#instream-text").hide();
+				
+				
+				var thisAuthor = 0;
+				
+				$("#maclean").click(function() {
+					
+					thisAuthor = 1;
+					
+					hideInstructions();
+					toggleAuthor();				
+					
+				});
+				
+				$("#expurey").click(function() {
+					
+					thisAuthor = 2;
+					
+					hideInstructions();
+					toggleAuthor();
+				});
+				
+				$("#coelho").click(function() {
+					
+					thisAuthor = 3;
+					
+					hideInstructions();
+					toggleAuthor();				
+					
+				});
+				
+				$("#instream-vid").click(function() {
+					
+					hideInstructions();
+					showInstreamVideoAd();				
+					
+				});
+				
+				
+				
+				function hideInstructions() { 
+					$("#instructions").hide();
+				}
+				
+				function toggleAuthor() {
+					
+					if(!$("#instream-text").is(":hidden")) {
+						$("#instream-text").hide(500);
+					}
+										
+					if (thisAuthor == 1) { 
+						$("#expurey-text").hide(500);
+						$("#coelho-text").hide(500);
+						if($("#maclean-text").is(":hidden")) { 
+							$("#maclean-text").show(1000);
+						}
+					} else if (thisAuthor == 2) { 
+						$("#maclean-text").hide(500);
+						$("#coelho-text").hide(500);
+						if($("#expurey-text").is(":hidden")) { 
+							$("#expurey-text").show(1000);
+						}
+					} else if (thisAuthor == 3) {						
+						
+						$("#maclean-text").hide(500);
+						$("#expurey-text").hide(500);
+						
+						if($("#coelho-text").is(":hidden")) { 
+							$("#coelho-text").show(1000);
+						}
+					}
+					
+				}
+				
+				function showInstreamVideoAd(bHideVideo) {
+					
+					hideInstructions();
+					
+					$("#maclean-text").hide(500); 
+					$("#expurey-text").hide(500);
+					$("#coelho-text").hide(500);
+					$("#instream-text").show(1000);
+					
+				}
+				
+				
+								
+			});
+			
+			
+		</script>   	
+				          
+    </body>
+
+</html>
+
+

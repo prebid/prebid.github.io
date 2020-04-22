@@ -90,7 +90,7 @@ A sample response payload looks like this:
     "errors": {
         "openx":[
             {
-               "code": 1, 
+               "code": 1,
                "message": "The request exceeded the timeout allocated"
             }
         ]
@@ -99,11 +99,11 @@ A sample response payload looks like this:
 ```
 
 In [the typical AMP setup]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html),
-these targeting params will be sent to DFP.
+these targeting params will be sent to Google Ad Manager.
 
 ### Error Messages
 
-If any errors were generated they will appear  within `response.ext.errors.{bidderName}`. There are five error codes that could be returned: 
+If any errors were generated they will appear  within `response.ext.errors.{bidderName}`. There are five error codes that could be returned:
 
 ```
 0   NoErrorCode
@@ -113,7 +113,7 @@ If any errors were generated they will appear  within `response.ext.errors.{bidd
 999 UnknownErrorCode
 ```
 
-See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.html) for a description of some common OpenRTB errors. The following is a list of AMP specific errors that could be returned: 
+See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.html) for a description of some common OpenRTB errors. The following is a list of AMP specific errors that could be returned:
 
 {: .table .table-bordered .table-striped }
 | Task  | Code |  Message | Action  |
@@ -152,7 +152,7 @@ This endpoint supports the following query parameters:
    - A configuration option `amp_timeout_adjustment_ms` may be set to account for estimated latency so that Prebid Server can handle timeouts from adapters and respond to the AMP RTC request before it times out.
 8. `debug` - When set to `1`, the respones will contain extra info for debugging.
 
-Ensure that the amp-ad component was imported in the header. 
+Ensure that the amp-ad component was imported in the header.
 
 ```html
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
@@ -162,13 +162,13 @@ This script provides code libraries that will convert the `<amp-ad>` properties 
 
 ```html
 <amp-ad  
-    width="300" 
-    height="250" 
+    width="300"
+    height="250"
     type="a9">
     rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "ef8299d0-cc32-46cf-abcd-41cebe8b4b85"}}, "timeoutMillis": 500}'
 </amp-ad>
 ```
-The endpoint is rewritten as: 
+The endpoint is rewritten as:
 
 ```
 /openrtb2/amp?tag_id='ef8299d0-cc32-46cf-abcd-41cebe8b4b85'&w=300&h=250&timeout=500
@@ -179,7 +179,7 @@ If any of the enpoint parameters are present, they will override parts of your S
 
 1. `ow`, `oh`, `w`, `h`, and/or `ms` will be used to set `request.imp[0].banner.format` if `request.imp[0].banner` is present.
 2. `curl` will be used to set `request.site.page`
-3. `timeout` will generally be used to set `request.tmax`. However, the Prebid Server host can [configure](../../developers/configuration.html) their deploy to reduce this timeout for technical reasons.
+3. `timeout` will generally be used to set `request.tmax`. However, the Prebid Server host can [configure](https://github.com/prebid/prebid-server/blob/master/docs/developers/configuration.md) their deploy to reduce this timeout for technical reasons.
 4. `debug` will be used to set `request.test`, causing the `response.debug` to have extra debugging info in it.
 
 ### Resolving Sizes

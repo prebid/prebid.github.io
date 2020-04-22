@@ -6,6 +6,11 @@ hide: true
 biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+prebid_member: true
 ---
 
 ### Prebid Server Note:
@@ -31,6 +36,7 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
 | `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
 | `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
+| `deals`    | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.) | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |
 
 ### Configuration
 
@@ -77,15 +83,15 @@ Support and behavior differs by Prebid.js version
 
 Prebid.js v2.13.0 and later:
 
-adSlot parameter is now optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  All options will send the ad request with all sizes specified in the Prebid ad unit configuration.
+adSlot parameter is now optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  All options will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
 Prebid.js v2.9.0 to v2.12.0:
 
-Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
+Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
 Prebid.js v1.1.18 to v2.8.0:
 
-Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.   Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
+Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
 
 Prebid.js v1.1.17 and earlier:
 

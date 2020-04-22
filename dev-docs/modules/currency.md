@@ -58,7 +58,7 @@ pbjs.setConfig({
     "priceGranularity": "low",
     "currency": {
        "adServerCurrency": "JPY",
-       "granularityMultiplier": 108
+       "granularityMultiplier": 108,
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
@@ -176,7 +176,7 @@ more parameters. The simplest recommended implementation would be:
 pbjs.setConfig({
     "currency": {
        "adServerCurrency": "JPY",
-       "granularityMultiplier": 108
+       "granularityMultiplier": 108,
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
@@ -246,7 +246,7 @@ a currency object that may contain several parameters:
 | --- | --- | --- | --- |
 | adServerCurrency | `string` | ISO 4217 3-letter currency code. If this value is present, the currency conversion feature is activated. | "EUR" |
 | granularityMultiplier | `decimal` | How much to scale the price granularity calculations. Defaults to 1. | 108 |
-| conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. | `http://example.com/rates.json` |
+| conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. | `https://example.com/rates.json` |
 | rates | object | This optional argument allows you to specify the rates with a JSON object, subverting the need for the conversionRateFile parameter.  If this argument is specified, the conversion rate file will not be loaded. | { 'USD': { 'CNY': 6.8842, 'GBP': 0.7798, 'JPY': 110.49 } } |
 | defaultRates | `object` | An optional parameter that defines a default rate that can be used if the currency file cannot be loaded. This option isn't used when the `rates` parameter is supplied. | { 'USD': { 'GPB': 0.75 }} |
 | bidderCurrencyDefault | `object` | This is an optional argument to provide publishers a way to define which currency is used by a particular bidder. This option was provided as a transition until such a time that most bidder adapters define currency on bid response and is kept for legacy 0.x integrations. | { "bidderXYZ": "GBP" } |
@@ -304,7 +304,7 @@ If the Prebid timeout occurs while bids are still on the queue, they will be ski
 A bid is also skipped if the file (or `defaultRates`) doesn't contain a conversion from the bid currency
 to the ad server currency.
 
-**Can I use the DFP Secondary Currency Feature instead?**
+**Can I use the Google Ad Manager Secondary Currency Feature instead?**
 
 Of course, use of Prebid currency feature is optional.
 

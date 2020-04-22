@@ -65,7 +65,7 @@ After you have the SDK installed, register ad units with the Prebid Mobile frame
 ## Ad Ops - Setting Up the Ad Server
 
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
--   [Set Up Line Items for DFP]({{site.github.url}}/prebid-mobile/adops-line-item-setup-dfp.html)
+-   [Set Up Line Items for Google Ad Manager]({{site.github.url}}/prebid-mobile/adops-line-item-setup-dfp.html)
 -   [Set Up Line Items for MoPub]({{site.github.url}}/prebid-mobile/adops-line-item-setup-mopub.html)
 
 ## Additional Information
@@ -92,9 +92,9 @@ The following resources are available for further information on working with Pr
 
 ### GDPR
 
-Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](http://advertisingconsent.eu/).
+Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/).
 
-For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
+For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/privacy-regulation.html).
 
 For specific implementation details, see the "GDPR Consent" section here:
 -   [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
