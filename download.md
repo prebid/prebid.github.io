@@ -428,6 +428,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="tercept" class="analytics-check-box" /> Tercept Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="ucfunnel" class="analytics-check-box" /> ucfunnel Analytics
     </label>
   </div>
