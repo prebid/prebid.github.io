@@ -7,6 +7,7 @@ biddercode: districtmDMX
 gdpr_supported: true
 schain_supported: true
 usp_supported: true
+userIds: digitrust, id5Id, identityLink, pubCommonId, unifiedId
 ---
 
 
