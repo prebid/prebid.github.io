@@ -27,6 +27,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **LiveIntent ID** – a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 * **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
+* **PubDirect ID** – a free and cookieless user identity solution for user tracking and 1st party data storage.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 * **netID** – provides an open, standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier Framework, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising bought through programmatic systems.
 
@@ -80,7 +81,7 @@ of sub-objects. The table below has the options that are common across ID system
 
 ### BritePool
 
-BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies. 
+BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies.
 
 Add it to your Prebid.js package with:
 
@@ -89,7 +90,7 @@ gulp build --modules=britepoolIdSystem
 
 #### BritePool Registration
 
-Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`. 
+Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`.
 
 The BritePool privacy policy is at [https://britepool.com/services-privacy-notice/](https://britepool.com/services-privacy-notice/).
 
@@ -397,7 +398,7 @@ The adapters can be implemented to use the lipibid as the identifier and segment
 
 #### How does LiveIntent ID work
 
-The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier (LIID). In order to provide resolution one or more first-party cookies are used to create a stable identifier. 
+The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier (LIID). In order to provide resolution one or more first-party cookies are used to create a stable identifier.
 
 How does LiveIntent ID sub-module decide, which first-party cookies to use:
 1. By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
@@ -602,6 +603,57 @@ pbjs.setConfig({
         syncDelay: 5000       // 5 seconds after the first bidRequest()
     }
 });
+{% endhighlight %}
+
+### PubDirect ID
+This module creates a random unique user Id and makes it accessible to all downstream adapters. It also functions as a gateway for publishers to pass sitedata to pub.direct's datastore.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=pubDirectSystem
+
+#### PubDirect ID Registration
+
+Please email hello@pub.direct for the publisherId and UI access.
+
+#### PubDirect ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"pubDirect"` | `"pubDirect"` |
+| params | Required | Object | Configuration details | |
+| params.publisherId | Required | String | publisherId assigned to you | `"PUB_1000000"` |
+| params.segments | Optional | Object | Within here you can pass 1st data to the pub.direct datastore | `{"siteContent": "news", "userLifestyle": "hip"}` |
+
+#### PubDirect ID Examples
+
+1) Please make sure you have received your own publisherId from pub.direct.
+
+2) For additional information on the pub.direct datastore (optional) please your pub.direct account team.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [
+        {
+            name: "pubDirect",
+            params: {
+            publisherId: "pubdirect_1001",
+            segments: {
+                "siteContent": 'news',
+                "userLifestyle": 'hip'
+            }
+            },
+            storage: {
+            type: "html5",
+            name: "pubDirectId",
+            expires: 60
+        }
+        }],
+    }
+    });
 {% endhighlight %}
 
 ### Unified ID
