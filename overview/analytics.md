@@ -28,6 +28,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Media.net | <a href="mailto: prebid-support@media.net">Contact vendor</a>| [Website](https://media.net) |
 | PrebidAnalytics by Roxot | [Paid]( http://prebidanalytics.roxot.com/) | [Website](http://prebidanalytics.roxot.com/) |
 | [Prebid Manager](https://prebidmanager.com/) | Free trial and free up to a certain volume. See [pricing](http://prebidmanager.com/#pricing) | [Website](http://prebidmanager.com/) |
+| [Pubstack](https://pubstack.io?source=prebid.org-analytics) ~ Real Time Analytics For Prebid and GAM | <a href="mailto: sales@pubstack.io">Start a free trial / Talk to the Sales Team</a> | [Website](https://pubstack.io?source=prebid.org-analytics)
 | PubWise | Free & Paid, see [pricing](https://pubwise.io/pricing/) | [Website](https://www.pubwise.io/) |
 | PulsePoint | Contact vendor | [Website](https://www.pulsepoint.com/) |
 | RealVu | Contact vendor | [Website](https://www.realvu.com/rvaa/) |
