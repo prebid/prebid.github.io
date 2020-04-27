@@ -4,6 +4,11 @@ title: LuponMedia
 description: LuponMedia Bidder Adapter
 hide: true
 biddercode: luponmedia
+gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+userIds: digitrust, identityLink, liveIntentId, pubCommonId
 ---
 
 ### Note:
