@@ -17,5 +17,5 @@ The Adprime Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `id`      | required | Adprime placement id         | `1234asdf`    | `string` |
+| `id`      | required | Adprime placement id         | `'1234asdf'`    | `string` |
 
