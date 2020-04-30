@@ -340,6 +340,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="pubstack" class="analytics-check-box" /> Pubstack Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
     </label>
   </div>
