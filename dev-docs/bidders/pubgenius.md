@@ -25,12 +25,12 @@ userIds: unifiedId
 
 #### Video
 
-Video object of bid params takes precedence over the same properties in `mediaTypes.video` of the ad unit. The following video properties are required:
+The following properties are required in `mediaTypes.video` of the ad unit:
 
 {: .table .table-bordered .table-striped }
-| Name        | Description                                                                                                                                  |
-|-------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| `placement` | Placement type for the impression. It may also be specified as `instream` or `outstream` value of `mediaTypes.video.context` of the ad unit. |
-| `w` and `h` | Video player size. They may also be specified as `mediaTypes.video.playerSize` of the ad unit.                                               |
-| `mimes`     | At least one supported MIME types must be specified. It may also be specified as `mediaTypes.video.mimes` of the ad unit.                    |
-| `protocols` | At least one supported protocol must be specified. It may also be specified as `mediaTypes.video.protocols` of the ad unit.                  |
+| Name         | Description                                          |
+|--------------|------------------------------------------------------|
+| `context`    | Supported values are `instream` and `outstream`.     |
+| `playerSize` | Video player size.                                   |
+| `mimes`      | At least one supported MIME type must be specified.  |
+| `protocols`  | At least one supported protocol must be specified.   |
