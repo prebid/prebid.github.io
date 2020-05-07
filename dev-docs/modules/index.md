@@ -34,7 +34,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | **ConsentManagement** | Collecting and passing consent information in support of privacy regulations:{::nomarkdown}<ul><li><a href="/dev-docs/modules/consentManagement.html">EU GDPR</a> with optional <a href="/dev-docs/modules/gdprEnforcement.html">GDPR Enforcement</a> module</li><li><a href="/dev-docs/modules/consentManagementUsp.html">US Privacy</a> (CCPA)</li></ul>{:/} |
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
-| [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, and Unified ID. |
+| [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, Unified ID and LiveIntent ID. |
 | [**Browsi Viewability**]({{site.baseurl}}/dev-docs/modules/browsiRtdProvider.html) | Browsi provider for real time data module.  |
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
 
