@@ -22,6 +22,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | [Google Analytics]({{site.baseurl}}/overview/ga-analytics.html) | Free up to a certain volume. See [terms](https://www.google.com/analytics/terms/) | [Website](https://www.google.com/analytics) |
 | Invisibly Analytics | Contact vendor | [Website](https://invisibly.com/) |
 | Kargo Analytics | Contact vendor | [Website](https://kargo.com/) |
+| Konduit Accelerate | Contact vendor | [Website](https://konduitvideo.com/) |
 | Livewrapped Analytics | Contact vendor | [Website](https://livewrapped.com/) |
 | LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
 | OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) |
