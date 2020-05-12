@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - Price Floors
 description: Determine and enforce auction price floors
-module_code : floors
+module_code : priceFloors
 display_name : Price Floors
 enable_download : true
 sidebarType : 1
