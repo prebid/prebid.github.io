@@ -33,7 +33,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 ## How It Works
 
 1. The publisher determines which user ID modules to add to their Prebid.js package and consults with their legal counsel to determine the appropriate user disclosures.
-1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem"
+1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem". You also need to add the `userId` module to your Prebid.js distribution.
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userId.
@@ -845,6 +845,31 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 ```
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
+
+You can use `getUserIdsAsEids()` to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+```
+pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g. 
+[
+  {
+      source: 'pubcid.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1
+      }]
+  },
+
+  {
+      source: 'adserver.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1,
+          ext: {
+              rtiPartner: 'TDID'
+          }
+      }]
+  }
+]
+``` 
 
 ## Passing UserIds to Google Ad Manager for targeting
 
