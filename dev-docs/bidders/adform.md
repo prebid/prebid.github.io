@@ -6,6 +6,8 @@ hide: true
 biddercode: adform
 media_types: video
 gdpr_supported: true
+usp_supported: true
+tcf2_supported: true
 ---
 
 
