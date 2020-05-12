@@ -13,8 +13,9 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description | Example | Type |
 |------|----------|-------------|---------|------|
-| `placement_id` | required | Serving ads based on placement_id. Contact Dailyhunt for publisher_id. | `1` | `int` |
+| `placement_id` | required | Serving ads based on placement_id. Contact Dailyhunt for placement_id. | `1` | `int` |
 | `publisher_id` | required | Serving ads based on publisher_id. Contact Dailyhunt for publisher_id. | `1` | `int` |
+| `partner_name` | required | Serving ads based on partner_name. Contact Dailyhunt for partner_name. | `dailyhunt` | `string` |
 | `test_mode` | optional | Serving test mode campaign only. | `true` | `bool` |
 | `bidfloor` | optional | Minimum bid for this bid expressed in CPM. | `1.4` | `float` |
 | `video` | optional | A Video object required if this bid is offered as a video ad opportunity. It is ortb video object. | `video: { w: 640, h: 480, mimes: ["video/mp4"] }` | `object` |
@@ -23,7 +24,7 @@ gdpr_supported: true
 | `user` | optional | Details about the human user of the device; the advertising audience. It is ortb user object. | `user: { id: "456789876567897654678987656789", gender: "M", gender: 1990, keywords: "marketing,traveling,reading" }` | `object` |
 | `publisher` | optional | Details about the Publisher of the site. It is ortb publisher object. | `publisher: { id: "8953", name: "dailyhunt", "cat": [ "IAB3-1" ], "domain": "m.dailyhunt.in" }` | `object` |
 
-**Notes: `video`, `site`, `device`, `user`, `publisher` these objects are ortb object so you can refer ortb documentation. [ORTB DOC](url_link)**
+**Notes: `video`, `site`, `device`, `user`, `publisher` these objects are ortb object so you can refer ortb documentation. [ORTB DOC](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)**
 
 # Test Parameters
 ```
@@ -41,7 +42,8 @@ gdpr_supported: true
                     bidder: 'dailyhunt',
                     params: {
                         placement_id: 1,
-                        publisher_id: 1
+                        publisher_id: 1,
+                        partner_name: 'dailyhunt'
                     }
                 }
             ]
@@ -70,7 +72,8 @@ gdpr_supported: true
                     bidder: 'dailyhunt',
                     params: {
                         placement_id: 1,
-                        publisher_id: 1
+                        publisher_id: 1,
+                        partner_name: 'dailyhunt'
                     }
                 }
             ]
@@ -89,6 +92,7 @@ gdpr_supported: true
                     params: {
                         placement_id: 1,
                         publisher_id: 1,
+                        partner_name: 'dailyhunt',
                         video: {
                             mimes: [
                                 'video/mp4'
