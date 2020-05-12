@@ -448,7 +448,7 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Floors Module
+  title: Price Floors Module
   link: /dev-docs/modules/floors.html
   isHeader: 0
   isSectionHeader: 0

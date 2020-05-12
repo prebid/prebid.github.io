@@ -37,6 +37,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, Unified ID and LiveIntent ID. |
 | [**Browsi Viewability**]({{site.baseurl}}/dev-docs/modules/browsiRtdProvider.html) | Browsi provider for real time data module.  |
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
+| [**Price Floors Module**](/dev-docs/modules/floors.html) | Configure and enforce minimum bids. |
 
 ## Video Modules
 
@@ -47,7 +48,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Freewheel**](/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
 | [**Google Ad Manager Video**](/dev-docs/modules/dfp_video.html) | Required for serving instream video through Google Ad Manager. |
 | [**IAB Category Translation**](/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
-| [**Konduit Accelerate**](/dev-docs/modules/konduit.html) | Module for serving instream video through Konduit Accelerate service. |
+| [**Konduit Accelerate**](/dev-docs/modules/konduit.html) | Provides Real Time Start Rate Performance per Bidder. |
 
 ## Testing and Debug Modules
 
