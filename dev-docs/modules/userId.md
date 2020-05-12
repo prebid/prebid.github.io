@@ -505,7 +505,7 @@ gulp build --modules=parrableIdSystem
 
 #### Parrable ID Registration
 
-Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Parter Client IDs.
+Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Partner Client IDs.
 
 The Parrable privacy policy as at [https://www.parrable.com/privacy-policy/](https://www.parrable.com/privacy-policy/).
 
@@ -522,7 +522,10 @@ In addition to the parameters documented above in the Basic Configuration sectio
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
 
-We recommend setting `storage.expires` to no more than`364` days, which is the default cookie expiration that Parrable uses in the standalone Parrable integration.
+The Parrable ID system manages a cookie with the name of `_parrable_id` containing the ID and optout states of the user.
+This cookie is used also by standalone Parrable integrations outside of Prebid.
+It is for this reason that the cookie name is not configurable for the Parrable ID system.
+
 
 #### Parrable ID Examples
 
@@ -533,11 +536,6 @@ pbjs.setConfig({
             name: `'parrableId'`,
             params: {
                 partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
-            },
-            storage: {
-                type: `'cookie'`,
-                name: `'_parrable_eid'`,     // create a cookie with this name
-                expires: 364               // cookie can last for up to 1 year
             }
         }],
         syncDelay: 1000
