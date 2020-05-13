@@ -377,6 +377,7 @@ The `interpretResponse` function will be called when the browser has received th
             brandName: BRAND_NAME,
             primaryCatId: IAB_CATEGORY,
             secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
+            mediaType: MEDIA_TYPE
         }
     };
     bidResponses.push(bidResponse);
@@ -419,6 +420,7 @@ The parameters of the `bidResponse` object are:
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
+| `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
