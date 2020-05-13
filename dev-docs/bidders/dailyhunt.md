@@ -43,7 +43,10 @@ gdpr_supported: true
                     params: {
                         placement_id: 1,
                         publisher_id: 1,
-                        partner_name: 'dailyhunt'
+                        partner_name: 'dailyhunt',
+                        device: {
+                            ip: "182.23.143.212"
+                        }
                     }
                 }
             ]
@@ -73,7 +76,10 @@ gdpr_supported: true
                     params: {
                         placement_id: 1,
                         publisher_id: 1,
-                        partner_name: 'dailyhunt'
+                        partner_name: 'dailyhunt',
+                        device: {
+                            ip: "182.23.143.212"
+                        }
                     }
                 }
             ]
@@ -93,6 +99,9 @@ gdpr_supported: true
                         placement_id: 1,
                         publisher_id: 1,
                         partner_name: 'dailyhunt',
+                        device: {
+                            ip: "182.23.143.212"
+                        },
                         video: {
                             mimes: [
                                 'video/mp4'
