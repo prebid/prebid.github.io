@@ -24,7 +24,7 @@ gdpr_supported: true
 | `user` | optional | Details about the human user of the device; the advertising audience. It is ortb user object. | `user: { id: "456789876567897654678987656789", gender: "M", gender: 1990, keywords: "marketing,traveling,reading" }` | `object` |
 | `publisher` | optional | Details about the Publisher of the site. It is ortb publisher object. | `publisher: { id: "8953", name: "dailyhunt", "cat": [ "IAB3-1" ], "domain": "m.dailyhunt.in" }` | `object` |
 
-**Notes: `video`, `site`, `device`, `user`, `publisher` these objects are ortb object so you can refer ortb documentation. [ORTB DOC](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)**
+**Notes: The `video`, `site`, `device`, `user`, `publisher` objects are all ORTB objects. Please refer to the [ORTB documentation](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for additional details.**
 
 # Test Parameters
 ```
