@@ -486,7 +486,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-  
+
 - sbSecId: 1
   title: Google Ad Manager Video
   link: /dev-docs/modules/dfp_video.html
@@ -1616,12 +1616,208 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: Overview
-  link: /prebid-server/prebid-server-overview.html
+  title: What is Prebid Server
+  link: /prebid-server/overview/prebid-server-overview.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+- sbSecId: 5
+  title: Hosted vs. Self-Hosted Solutions
+  link: /prebid-server/overview/hosting-options.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: Go or Java
+  link: /prebid-server/overview/go-or-java.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: "<span style='color:#EA9622;'>Use Cases</span>"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Prebid.js'
+  link: /prebid-server/overview/use-cases/prebid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Mobile'
+  link: /prebid-server/overview/use-cases/mobile.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;AMP'
+  link: /prebid-server/overview/use-cases/amp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Video'
+  link: /prebid-server/overview/use-cases/video.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: Features
+  link:
+  isHeader: 1
+  headerId: serveroverview
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: Targeting and Price Granularity
+  link: /prebid-server/overview/targeting.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Bid and VAST XML Caching
+  link: /prebid-server/overview/caching.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Currency Conversion
+  link: /prebid-server/overview/currency.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Stored Requests
+  link: /prebid-server/overview/stored-requests.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Interstitials
+  link: /prebid-server/overview/interstitials.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Events
+  link: /prebid-server/overview/events.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Analytics
+  link: /prebid-server/overview/analytics.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Privacy
+  link: /prebid-server/overview/privacy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 5
+  title: Bid Adapters
+  link:
+  isHeader: 1
+  headerId: bidadapters
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 5
+  title: List of Bid Adapters
+  link: /prebid-server/bid-adapters/list.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 5
+  title: Hosting Instructions
+  link:
+  isHeader: 1
+  headerId: serverhosting
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Go Integration
+  link: /prebid-server/hosting/go.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Java Integration
+  link: /prebid-server/hosting/java.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Enabling Bidder Adapters
+  link: /prebid-server/hosting/enable-bid-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Registering Bidder Adapters
+  link: /prebid-server/hosting/register-bid-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Setting Up Metrics
+  link: /prebid-server/hosting/setup-metrics.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
 
 - sbSecId: 5
   title: Developers
@@ -1630,169 +1826,147 @@
   headerId: serverdevelopers
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 4
 
 - sbSecId: 5
-  title: Add A New Analytics Module
-  link: /prebid-server/developers/add-new-analytics-module.html
+  title: Building a Server Side Adapter
+  link: /prebid-server/developers/build-server-adapter.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 4
 
 - sbSecId: 5
-  title: Add A Bidder
-  link: /prebid-server/developers/add-new-bidder.html
+  title: Cookie Sync
+  link: /prebid-server/developers/cookie-sync.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 4
 
 - sbSecId: 5
-  title: Prebid Server Bidders - Additional Info
-  link: /prebid-server/developers/pbs-bidder-info.html
+  title: Building an Analytics Adapter
+  link: /prebid-server/developers/build-analytics-adapter.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 4
 
 - sbSecId: 5
-  title: Cookie Sync Technical Details
-  link: /prebid-server/developers/cookie-syncs.html
+  title: Debugging Stored Requests
+  link: /prebid-server/developers/debug-stored-requests.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 4
 
 - sbSecId: 5
-  title: COPPA Compliance
-  link: /prebid-server/developers/coppa.html
+  title: Debugging Stored Requests
+  link: /prebid-server/developers/debug-stored-requests.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 4
 
 - sbSecId: 5
-  title: Currency Converter
-  link: /prebid-server/developers/currency-converter.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Default Request
-  link: /prebid-server/developers/default-request.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: GDPR Mechanics
-  link: /prebid-server/developers/gdpr.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Stored Requests
-  link: /prebid-server/developers/stored-requests.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Endpoints
+  title: References
   link:
   isHeader: 1
-  headerId: endpoints
+  headerId: serverdevelopers
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Info - Bidders
+  title: "<span style='color:#EA9622;'>Endpoints</span>"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Info - Bidders'
   link: /prebid-server/endpoints/info/bidders.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Info - Bidder Name
+  title: '&nbsp;&nbsp;Info - Bidder Name'
   link: /prebid-server/endpoints/info/bidders/bidderName.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Bidders - Params
+  title: '&nbsp;&nbsp;Bidders - Params'
   link: /prebid-server/endpoints/bidders/params.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Starting Cookie Sync
+  title: '&nbsp;&nbsp;Starting Cookie Sync'
   link: /prebid-server/endpoints/cookieSync.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Prebid Server Auction
+  title: '&nbsp;&nbsp;Prebid Server Auction'
   link: /prebid-server/endpoints/openrtb2/auction.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Prebid Server AMP
+  title: '&nbsp;&nbsp;Prebid Server AMP'
   link: /prebid-server/endpoints/openrtb2/amp.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Prebid Server Video
+  title: '&nbsp;&nbsp;Prebid Server Video'
   link: /prebid-server/endpoints/openrtb2/video.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Saving User Syncs
+  title: '&nbsp;&nbsp;Saving User Syncs'
   link: /prebid-server/endpoints/setuid.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Get User Syncs
+  title: '&nbsp;&nbsp;Get User Syncs'
   link: /prebid-server/endpoints/getuids.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
 
 - sbSecId: 5
-  title: Get Status
+  title: '&nbsp;&nbsp;Get Status'
   link: /prebid-server/endpoints/status.html
   Item: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 5
+
 
 #--------------Formats--------------|
 
