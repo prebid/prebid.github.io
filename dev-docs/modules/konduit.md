@@ -60,7 +60,7 @@ Please refer to the Prebid documentation as to the Send All Bids settings:
 In order for Konduit’s module to be completely integrated, line item Creatives need to be adjusted in GAM.
 Please contact [support@konduit.me](mailto:support@konduit.me) for assistance.
 
-n most cases it would be enough to update a  Creative VAST URL in related GAM line items.
+In most cases it would be enough to update a  Creative VAST URL in related GAM line items.
 
 Konduit platform supports ‘Send all bids’ scenario and depending on whether this feature is used or not GAM configuration could be slightly different.
 
