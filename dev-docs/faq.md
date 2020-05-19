@@ -64,7 +64,7 @@ The "limited bid caching" feature applies only:
 Since the storage is in the browser, cached bids only apply to a single page context. If the user refreshes the page, the bid is lost.
 
 Each bid adapter defines the amount of time their bids can be cached and reconsidered.
-This setting is called “Time to Live” (TTL), documented [here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
+This setting is called “Time to Live” (TTL), documented in the <code>pbjs.getBidResponse</code> [parameter table here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
 
 Examples of scenarios where a bid may be reconsidered in Prebid.js:
 
@@ -121,7 +121,7 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 ## How often is Prebid.js updated?
 
-See [the github release schedule](https://github.com/prebid/Prebid.js/blob/master/README.md) for more details.
+See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/master/RELEASE_SCHEDULE.md) for more details.
 
 ## When do I have to upgrade my version of Prebid.js?
 

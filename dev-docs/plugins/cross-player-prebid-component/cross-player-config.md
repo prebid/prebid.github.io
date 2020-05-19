@@ -45,7 +45,7 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js
+https://acdn.adnxs.com/prebid/not-for-prod/prebid.js
 
 **Example:**
 
@@ -297,7 +297,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
 
 ```
 {
-    "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js",
+    "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/prebid.js",
     "biddersSpec" : {
         "code" : "my-video-tag",
         "sizes" : [640, 480],

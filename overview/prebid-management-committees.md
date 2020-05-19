@@ -81,7 +81,7 @@ GitHub Repositories:
 {: .table .table-bordered .table-striped }
 | **Scope** | Video |
 | **Description** | Define the needs for video header bidding |
-| **Chair** | Maxence Faignart (Criteo) |
+| **Chair** | Mike Chowla (Pubmatic) |
 | **Format Lead** | Joel Korpi (Xandr) |
 | **Audience** | Product, Business, and Engineers |
 
@@ -98,7 +98,7 @@ GitHub Repositories:
 {: .table .table-bordered .table-striped }
 | **Scope** | Publisher-related topics |
 | **Description** | Header bidding issues, optimization, strategy, best practices |
-| **Chair** | TBD |
+| **Chair** | Stephanie Layser (NewsCorp) |
 | **Audience** | Business |
 
 ## Further Reading

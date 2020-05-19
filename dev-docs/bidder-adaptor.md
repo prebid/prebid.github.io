@@ -196,7 +196,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {}
@@ -209,45 +209,101 @@ registerBidder(spec);
 
 ### Building the Request
 
-When the page asks Prebid.js for bids, your module's `buildRequests` function will be executed. Building the request will use data from several places:
+When the page asks Prebid.js for bids, your module's `buildRequests` function will be executed and passed two parameters:
 
-* *Ad Unit Params*: The arguments provided by the page are in `validBidRequests` as illustrated below.
-* *Transaction ID*: `bidderRequest.bids[].transactionId` should be sent to your server and forwarded to any Demand Side Platforms your server communicates with.
-* *Ad Server Currency*: If your service supports bidding in more than one currency, your adapter should call `config.getConfig(currency)` to see if the page has defined which currency it needs for the ad server.
-* *Referrer*: Referrer should be passed into your server and utilized there. This is important in contexts like AMP where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information.
+- `validBidRequests[]` - An array of bidRequest objects, one for each AdUnit that your module is involved in. This array has been processed for special features like sizeConfig, so it's the list that you should be looping through.
+- `bidderRequest` - The master bidRequest object. This object is useful because it carries a couple of bid parameters that are global to all the bids.
 
-#### Valid Build Requests Array
+{% highlight js %}
+buildRequests: function(validBidRequests, bidderRequest) {
+   ...
+   return ServerRequestObjects;
+}
+{% endhighlight %}
 
-Sample array entry for `validBidRequests[]`:
+Building the request will use data from several places:
+
+* **Ad Unit Params**: The arguments provided by the page are in `validBidRequests[]`.
+* **BidRequest Params**: Several important parameters such as userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
+* **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
+
+
+#### Ad Unit Params in the validBidRequests Array
+
+Here is a sample array entry for `validBidRequests[]`:
 
 {% highlight js %}
 [{
-  "bidder": "example",
-  "bidId": "51ef8751f9aead",
-  "params": {
-    "cId": "59ac1da80784890004047d89",
-    ...
-  },
-  "adUnitCode": "div-gpt-ad-1460505748561-0",
-  "transactionId": "d7b773de-ceaa-484d-89ca-d9f51b8d61ec",
-  "sizes": [[320,50],[300,250],[300,600]],
-  "bidderRequestId": "418b37f85e772c",
-  "auctionId": "18fd8b8b0bd757",
-  "bidRequestsCount": 1
+  adUnitCode: "test-div"
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
+  bidId: "22c4871113f461"
+  bidder: "rubicon"
+  bidderRequestId: "15246a574e859f"
+  bidRequestsCount: 1
+  bidderRequestsCount: 1
+  bidderWinsCount: 0
+  mediaTypes: {banner: {...}}
+  params: {...}
+  src: "client"
+  transactionId: "54a58774-7a41-494e-9aaf-fa7b79164f0c"
 }]
 {% endhighlight %}
 
-#### bidRequest Parameters
+Retrieve your bid parameters from the `params` object.
 
-Notes on parameters in the bidRequest object:
+Other notes:
 - **Bid ID** is unique across ad units and bidders.
-- **Auction ID** is unique per call to `requestBids()`, but is the same across ad units.
-- **Transaction ID** is unique for each ad unit with a call to `requestBids`, but same across bidders. This is the ID that DSPs need to recognize the same impression coming in from different supply sources.
-- **Bid Request Count** is the number of times `requestBids` has been called for this ad unit.
+- **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
+- **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
+- **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+
+#### bidderRequest Parameters
+
+Here is a sample bidderRequest object:
+
+{% highlight js %}
+{
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
+  auctionStart: 1579746300522
+  bidderCode: "myBidderCode"
+  bidderRequestId: "15246a574e859f"
+  userId: {...}
+  schain: {...}
+  bids: [{...}]
+  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
+  refererInfo:
+    canonicalUrl: undefined
+    numIframes: 0
+    reachedTop: true
+    referer: "http://mypage?pbjs_debug=true"
+}
+{% endhighlight %}
+
+Notes on parameters in the bidderRequest object:
+- **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
+- **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
+- **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
+- **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
+
+#### Prebid Config
+
+There are a number of important values that a publisher can set in the page that your bid adapter may need to take
+into account:
+
+{: .table .table-bordered .table-striped }
+| Value | Description                                   | Example               |
+| ----- | ------------ | ---------- |
+| Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
+| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
+| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
+| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
+| First Party Data | The publisher may provide first party data (e.g. page type). | config.getConfig('fpd'); |
 
 #### Referrers
 
-Referrer information is included on the `bidderRequest.refererInfo` property. This property contains the following parameters:
+Referrer information should be passed to your endpoint in contexts where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information. This property contains the following parameters:
 
 - `referer`: a string containing the detected top-level URL.
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
@@ -257,9 +313,10 @@ Referrer information is included on the `bidderRequest.refererInfo` property. Th
 
 The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
-#### ServerRequest Objects
+#### The output of buildRequests: ServerRequest Objects
 
-The ServerRequest objects returned from your adapter have this structure:
+You shouldn't call your bid endpoint directly. Rather, the end result of your buildRequests function is one or more
+ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Type             | Description                                                        | Example Value               |
@@ -299,38 +356,71 @@ The `interpretResponse` function will be called when the browser has received th
     const bidResponse = {
         requestId: BID_ID,
         cpm: CPM,
+        currency: CURRENCY,
         width: WIDTH,
         height: HEIGHT,
         creativeId: CREATIVE_ID,
         dealId: DEAL_ID,
-        currency: CURRENCY,
         netRevenue: true,
         ttl: TIME_TO_LIVE,
-        ad: CREATIVE_BODY
+        ad: CREATIVE_BODY,
+        dealId: DEAL_ID,
+        meta: {
+            networkId: NETWORK_ID,
+            networkName: NETWORK_NAME
+            agencyId: AGENCY_ID,
+            agencyName: AGENCY_NAME,
+            advertiserId: ADVERTISER_ID,
+            advertiserName: ADVERTISER_NAME,
+            advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS]
+            brandId: BRAND_ID,
+            brandName: BRAND_NAME,
+            primaryCatId: IAB_CATEGORY,
+            secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
+            mediaType: MEDIA_TYPE
+        }
     };
     bidResponses.push(bidResponse);
     return bidResponses;
 
 {% endhighlight %}
 
-The parameters of the `bidObject` are:
+{: .alert.alert-info :}
+Please provide as much information as possible in the `meta` object. Publishers use this
+data for tracking down bad creatives and ad blocking. The advertiserDomains field is
+particularly useful. Some of these fields may become required in a future release.
+
+The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
 | `requestId`  | Required                                    | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
 | `cpm`        | Required                                    | The bid price. We recommend the most granular price a bidder can provide                                                                      | 3.5764                               |
+| `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
 | `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
-| `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
 | `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
+| `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
+| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | 1111             |
+| `meta.networkName`     | Optional                                    | Network/DSP Name               | `"NetworkN"`                |
+| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | 2222                          |
+| `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
+| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | 3333                          |
+| `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
+| `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
+| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
+| `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
+| `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
+| `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
+| `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
@@ -345,18 +435,26 @@ See below for an example implementation.  For more examples, search for `getUser
 {% highlight js %}
 
 {
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;
@@ -829,18 +927,26 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;

@@ -56,7 +56,7 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js
+https://acdn.adnxs.com/prebid/not-for-prod/prebid.js
 
 **Example:**
 
