@@ -14,6 +14,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | ------------- | ------------- | ----------- |
 | Appier | Contact vendor | [Website](https://www.appier.com) |
 | Adagio | Contact vendor| [Website](https://adagio.io)|
+| adWMG Analytics | Contact vendor| [Website](https://adwmg.com)|
 | AdxPremium | Free to try| [Website](https://luponmedia.com)|
 | Assertive Yield (contact for adapter) | Free to try (Large accounts \$0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) |
 | ATS Analytics | Contact vendor | [Website](https://liveramp.com) |
