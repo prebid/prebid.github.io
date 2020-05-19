@@ -227,7 +227,9 @@ If you're using AppNexus' managed service, you would enter something like this:
 </amp-iframe>
 ```
 
-Else if you're utilizing Rubicon Project's managed service, there's an extra parameter:
+See the AppNexus bidder parameters page [for more details](/). 
+
+If you are utilizing Rubicon Project's managed service, there's an extra parameter:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
