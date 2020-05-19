@@ -518,6 +518,12 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |
 | params.partner | Required | String | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
+| params.timezoneFilter | Optional | Object | Configures a timezone or timezone offset filter | |
+| params.timezoneFilter.allowedZones | Optional | Array[String] | description | `[ 'America/Anchorage' ]` |
+| params.timezoneFilter.allowedOffsets | Optional | Array[Number] | description | `[ -4 ]` |
+| params.timezoneFilter.blockedZones | Optional | Array[String] | description | `[ 'America/New_York' ]` |
+| params.timezoneFilter.blockedOffsets | Optional | Array[Number] | description | `[ -5 ]` |
+
 
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
@@ -526,6 +532,15 @@ The Parrable ID system manages a cookie with the name of `_parrable_id` containi
 This cookie is used also by standalone Parrable integrations outside of Prebid.
 It is for this reason that the cookie name is not configurable for the Parrable ID system.
 
+#### Timezone and Timezone Offset Filtering
+
+The Parrable ID system allows a publisher to configure a lists of allowed timezones (eg. `Europe/Dublin`) and/or timezone offsets (eg. `-4`) as well as a lists of blocked timezones and timezone offsets.
+
+- With no configuration (`params.timezoneFilter` not set, or all of the lists are empty) all impressions are permitted.
+- With only allow lists configured a browser must match either a timezone or timezone offset for it to not be filtered.
+- With only block lists configured an impression will be filtered only if it is from a browser matching a blocked timezone or timezone offset.
+- An impression from a browser that matches any allowed timezone or timezone offset, but does not match a blocked timezone or timezone offset will engage in the Parrable ID syncronization process.
+- If a browser has a stored Parrable ID then it will not be filtered even if the browser is in a timezone or timezone offset that is blocked.
 
 #### Parrable ID Examples
 
