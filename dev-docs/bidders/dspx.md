@@ -4,15 +4,14 @@ title: DSPx
 description: Prebid DSPx Bidder Adapter
 hide: true
 biddercode: dspx
-biddercode_longer_than_12: false
 media_types: banner, video 
 gdpr_supported: true
 ---
 
 ### Note:
-The Dspx Bidder Adapter requires setup and approval from DSPx team. Please reach out to your account team or prebid@dspx.tv for more information.
+The DSPx Bidder Adapter requires setup and approval from DSPx team. Please reach out to your account team or prebid@dspx.tv for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
