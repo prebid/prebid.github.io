@@ -138,7 +138,7 @@ You can always get the latest version of the creative code below from [the AMP e
 
 For Google Ad Manager:
 
-```html 
+```html
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -147,7 +147,7 @@ For Google Ad Manager:
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
   ucTagData.hbPb = "%%PATTERN:hb_pb%%";
-  
+
   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -168,7 +168,7 @@ For Mopub:
   ucTagData.pubUrl = "%%KEYWORD:url%%";
   ucTagData.targetingKeywords = "%%KEYWORDS%%";
   ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
-  
+
    try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -208,10 +208,10 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 
 ### User Sync
 
-To sync user IDs with Prebid Server, the `amp-iframe` below may added to your AMP pages referring to the `load-cookie.html` file made available as part of the [Prebid Universal Creative repository](https://github.com/prebid/prebid-universal-creative). Hosting for the `load-cookie.html` file is not provided by Prebid.org.
+To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your AMP pages referring to the `load-cookie.html` file made available as part of the [Prebid Universal Creative repository](https://github.com/prebid/prebid-universal-creative). Hosting for the `load-cookie.html` file is not provided by Prebid.org.
 
 {% capture tipNote %}
-The following examples include a transparent image as a placeholder which will allow you to place this at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
 {% endcapture %}
 
 {% include alerts/alert_tip.html content=tipNote %}
@@ -227,7 +227,9 @@ If you're using AppNexus' managed service, you would enter something like this:
 </amp-iframe>
 ```
 
-Else if you're utilizing Rubicon Project's managed service, there's an extra parameter:
+See the AppNexus bidder parameters page [for more details](/). 
+
+If you are utilizing Rubicon Project's managed service, there's an extra parameter:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
@@ -247,7 +249,7 @@ Available arguments for the `load-cookie.html` query string:
 | max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
 | args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie-sync call. The attribute and value will be quoted by the system when appropriate. |
 | gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
-| gdpr_consent | optional | String | IAB CMP-formatted consent string | 
+| gdpr_consent | optional | String | IAB CMP-formatted consent string |
 
 ### AMP RTC and GDPR
 

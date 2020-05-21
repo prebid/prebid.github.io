@@ -7,7 +7,7 @@ title: Prebid Server | Developers | COPPA Support
 
 # COPPA Support
 
-The [Children's Online Privacy Protection Act (COPPA)](http://www.coppa.org/) is a law created to protect the privacy of children under 13. The Act was passed by the U.S. Congress in 1998 and took effect in April 2000. COPPA is managed by the Federal Trade Commission (FTC).
+The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a law created to protect the privacy of children under 13. The Act was passed by the U.S. Congress in 1998 and took effect in April 2000. COPPA is managed by the Federal Trade Commission (FTC).
 
 Prebid-Server supports COPPA compliance by enabling developers to set a flag in the bid request. Developers can do so by setting:
 ```javascript

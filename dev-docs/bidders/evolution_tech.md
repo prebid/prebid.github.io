@@ -18,4 +18,3 @@ The E-volution Bidding adapter requires setup before beginning. Please contact u
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | required | E-volution tech placement id         | `1234asdf`    | `'string'` |
-

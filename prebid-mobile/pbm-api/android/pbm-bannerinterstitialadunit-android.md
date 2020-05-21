@@ -43,7 +43,7 @@ InterstitialAdUnit(@NonNull String configId, int minWidthPerc, int minHeightPerc
 
 ## Methods
 
-`InterstitialAdUnit` inherits all methods from the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html) object.
+`InterstitialAdUnit` inherits all methods from the [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) object.
 
 ## Example
 
