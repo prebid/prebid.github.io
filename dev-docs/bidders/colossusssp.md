@@ -4,10 +4,14 @@ title: Colossus
 description: Prebid Colossus Bidder Adaptor
 hide: true
 biddercode: colossusssp
-biddercode_longer_than_12: false
+usp_supported: true
+schain_supported: true
+media_types: banner, video, native
+userIds: britepoolid, identityLink, unifiedId, id5Id
+gdpr: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |

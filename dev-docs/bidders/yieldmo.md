@@ -4,14 +4,18 @@ title: Yieldmo
 description: Prebid Yieldmo Bidder Adaptor
 hide: true
 biddercode: yieldmo
-biddercode_longer_than_12: false
 media_types: native
+userIds: pubCommonId, unifiedId, criteo
+gdpr_supported: true
+usp_supported: true
+schain_supported: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description          | Example                   | Type     |
 |---------------|----------|----------------------|---------------------------|----------|
 | `placementId` | required | Yieldmo placement id | `'825209316101005155'` | `string` |
+| `bidFloor`    | optional |      Bid Floor       |         `0.1`          |  `float` |

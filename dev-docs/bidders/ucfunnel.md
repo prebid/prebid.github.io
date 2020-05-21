@@ -4,9 +4,10 @@ title: ucfunnel
 description: Prebid ucfunnel Bidder Adaptor
 hide: true
 biddercode: ucfunnel
-biddercode_longer_than_12: false
 media_types: video, native
 gdpr_supported: true
+usp_supported: true
+userIds: unifiedId
 ---
 
 ### Bid params

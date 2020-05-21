@@ -16,7 +16,7 @@ There are several ways to contribute to the Prebid project. The easiest way is t
 Pull requests must satisfy certain conditions before being considered for merge. All the repos require the following:
 
 + 80% unit test code coverage
-+ any necessary documentation
++ accompanying documentation (as necessary)
 
 ## Repositories
 
@@ -31,4 +31,4 @@ Pull requests must satisfy certain conditions before being considered for merge.
 
 ## Reporting An Issue
 
-This website contains information on <a href="/dev-docs/common-issues.html" title="Common Issues">common issues</a>. If you cannot find the issue you are reporting there, check on the appropriate GitHub repo's issue page ([Prebid.js](https://github.com/prebid/Prebid.js/issues), [Android SDK](https://github.com/prebid/prebid-mobile-android/issues), [iOS SDK](https://github.com/prebid/prebid-mobile-ios/issues). If you are unable to find the issue there then <a href="https://github.com/prebid/Prebid.js/issues/new" title="Report a new issue">submit a new issue </a>.
+This website contains information on <a href="/dev-docs/common-issues.html" title="Common Issues">common issues</a>. If you cannot find the issue you are reporting there, check on the appropriate GitHub repo's issue page ([Prebid.js](https://github.com/prebid/Prebid.js/issues), [Android SDK](https://github.com/prebid/prebid-mobile-android/issues), [iOS SDK](https://github.com/prebid/prebid-mobile-ios/issues)). If you are unable to find the issue there then <a href="https://github.com/prebid/Prebid.js/issues/new" title="Report a new issue">submit a new issue </a>.

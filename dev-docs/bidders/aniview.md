@@ -4,15 +4,15 @@ title: ANIVIEW
 description: Prebid ANIVIEW Bidder Adaptor
 hide: true
 biddercode: aniview
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
+usp_supported: true
 ---
 
 ### Note:
 For more information about [Aniview Ad Server](http://www.aniview.com/), please contact info@aniview.com.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description      | Example                      | Type     |
