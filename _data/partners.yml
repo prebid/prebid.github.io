@@ -168,6 +168,10 @@
   imgURL: /assets/images/partners/community/CHEQ_Logo.png
   type: community
 
+- company: ConnectAd
+  link: https://connectad.io
+  type: community
+
 - company: DailyMotion
   link: https://dailymotion.com/
   imgURL: /assets/images/partners/community/Dailymotion_logo.png
@@ -188,9 +192,21 @@
   imgURL: /assets/images/partners/community/ID5-Logo.png
   type: community
 
+- company: JWPlayer
+  link: https://jwplayer.com
+  type: community
+
 - company: LiveIntent
   link: https://www.liveintent.com
   imgURL: /assets/images/partners/community/liveintent_logo.png
+  type: community
+
+- company: Media.net
+  link: https://media.net
+  type: community
+
+- company: Parrable
+  link: https://parrable.com
   type: community
 
 - company: Publica
@@ -201,4 +217,16 @@
 - company: PubWise
   link: https://pubwise.io
   imgURL: /assets/images/partners/community/Pubwise-logo.png
+  type: community
+
+- company: Simplaex
+  link: https://simplaex.com
+  type: community
+
+- company: Sovrn
+  link: https://sovrn.com
+  type: community
+
+- company: Yeahmobi
+  link: https://yeahmobi.com
   type: community

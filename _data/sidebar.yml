@@ -448,7 +448,7 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Price Floors Module
+  title: Floors Module
   link: /dev-docs/modules/floors.html
   isHeader: 0
   isSectionHeader: 0
@@ -486,7 +486,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
-  
+
 - sbSecId: 1
   title: Google Ad Manager Video
   link: /dev-docs/modules/dfp_video.html
