@@ -5,6 +5,7 @@ description: Prebid Vidazoo Bidder Adaptor
 biddercode: vidazoo
 hide: true
 gdpr_supported: true
+usp_supported: true
 ---
 
 ### Bid Params

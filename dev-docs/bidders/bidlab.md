@@ -18,4 +18,3 @@ The Bidlab Bidding adapter requires setup before beginning. Please contact us at
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | required | Bidlab placement id         | `1234asdf`    | `'string'` |
-

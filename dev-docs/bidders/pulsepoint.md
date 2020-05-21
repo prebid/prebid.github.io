@@ -8,7 +8,7 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-userIds: pubcommonId, unifiedId, digitrustId, id5Id, britepoolId, criteo, identityLink, parrable, liveIntent
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
 ---
 
 

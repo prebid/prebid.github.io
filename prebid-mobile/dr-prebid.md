@@ -5,7 +5,7 @@ description: How to Use the Dr. Prebid App
 pid: 4
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
-sidebarType: 2
+sidebarType: 3
 ---
 
 # Dr. Prebid
