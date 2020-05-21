@@ -18,5 +18,5 @@ The Adman Bidding adapter requires setup before beginning. Please contact us at 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `id`      | required | Adman placement id         | `1234asdf`    | `string` |
+| `placementId`      | required | Adman placement id         | `1234asdf`    | `'string'` |
 
