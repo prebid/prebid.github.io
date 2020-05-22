@@ -73,6 +73,7 @@ Functions added by optional modules
   * [.adServers.dfp.buildAdpodVideoUrl(options)](#module_pbjs.adServers.dfp.buildAdpodVideoUrl) - requires [GAM Video Module](/dev-docs/modules/dfp_video.html) <span style="color:red" markdown="1">[Alpha]</span>
   * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
   * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
+  * [.getUserIdsAsEids()](#userId.getUserIdsAsEids) - requires [User Id Module](/dev-docs/modules/userId.html)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -502,6 +503,41 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 
 ```
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
+```
+
+<hr class="full-rule">
+
+<a name="userId.getUserIdsAsEids"></a>
+
+### pbjs.getUserIdsAsEids() ⇒ Object
+
+{: .alert.alert-info :}
+To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
+
+If you need to export the user IDs stored by Prebid User ID module in ORTB Eids frormat, then the `getUserIdsAsEids()` function will return an array formatted as per [ORTB Eids](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md).
+
+```
+pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g. 
+[
+  {
+      source: 'pubcid.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1
+      }]
+  },
+
+  {
+      source: 'adserver.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1,
+          ext: {
+              rtiPartner: 'TDID'
+          }
+      }]
+  }
+]
 ```
 
 <hr class="full-rule">
@@ -1248,6 +1284,10 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 + `hb_size_newalias`
 + `hb_deal_newalias`
 
+{: .alert.alert-info :}
+Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
+config in the [`s2sConfig`](#setConfig-Server-to-Server) object.
+
 <hr class="full-rule" />
 
 <a name="module_pbjs.setConfig"></a>
@@ -1650,7 +1690,7 @@ Example config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with
 pbjs.setConfig({
     s2sConfig: {
         accountId: '1',
-        bidders: ['appnexus', 'pubmatic'],
+        bidders: ['appnexus', 'openx', 'tripleliftVideo'],
         defaultVendor: 'appnexus',
         timeout: 1000,
         adapterOptions: {
@@ -1661,8 +1701,12 @@ pbjs.setConfig({
             'openx': function(type, url, bidder) {
             const publisherId = '00000123231231'
             url += `&ri=${publisherId}`;
-
             return url
+            }
+        },
+	extPrebid: {
+	    aliases: {
+                tripleliftVideo: tripleLift
             }
         }
     }
@@ -1684,7 +1728,7 @@ Additional information of `s2sConfig` properties:
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in every impression object at request.imp[].ext.BIDDER. See the example above. |
-| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See video-related example below. |
+| `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
 | `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
 
 **Notes on s2sConfig properties**
@@ -1725,7 +1769,17 @@ pbjs.setConfig({
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
-**ExtPrebid Convention**
+**Server-Side Aliases**
+
+You may want to run a particular bidder on the client for banner, but that same bidder on the 
+server for video. You would do this by setting a **server-side** alias. The
+[example](#setConfig-Server-to-Server) at the start of this section provides an example. Here's how it works:
+
+1. Video ad units are coded with the dynamic alias. e.g. tripleliftVideo
+1. The s2sConfig.bidders array contains 'tripleliftVideo' telling Prebid.js to direct bids for that code to the server
+1. Finally, the extPrebid.aliases line tells Prebid Server to route the 'tripleliftVideo' biddercode to the 'triplelift' server-side adapter.
+
+**Passing the Referrer to Server Side Adapters**
 
 * Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
 
@@ -1783,6 +1837,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `syncDelay`      | Integer | Delay in milliseconds for user syncing (both bid adapter user sync pixels and [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) ID providers) after the auction ends. Default: `3000`. Ignored if auctionDelay > 0. |
 | `auctionDelay`   | Integer | Delay in milliseconds of the auction to retrieve user ids via the [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) before the auction starts. Continues auction once all IDs are retrieved or delay times out. Does not apply to bid adapter user sync pixels. Default: `0`. |
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
+| `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
 

@@ -16,6 +16,15 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 3.16 | isSafariBrowser fixed for Chrome and Firefox on iOS |
+| 3.15 | Advanced Size Mapping module support adunits of the same name |
+| 3.14 | New [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) supports enforcing Purpose 1 - DeviceAccess |
+| 3.13 | GDPR module supports defaultGdprScope option |
+| 3.12 | Initial support for TCF2 - reading and passing consent strings, added [DeviceAccess](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess) configuration setting |
+| 3.11 | [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) |
+| 3.10 | UserId module provide sub-module ids in ORTB eids format |
+| 3.8 | [First Party Data](/dev-docs/publisher-api-reference.html#setConfig-fpd) convention |
+| 3.3 | [Prebid Ad Slot](/features/pbAdSlot.html) support |
 | 3.2 | [Bidder-specific Supply Chain](/dev-docs/modules/schain.html#bidder-specific-supply-chains) support, added [static API option](/dev-docs/modules/consentManagementUsp.html) to the CCPA/USP module |
 | 3.1 | pbsBidAdapter: fix for handling response currency |
 | 3.0 | [Prebid.js 3.0](/blog/pbjs-3) |

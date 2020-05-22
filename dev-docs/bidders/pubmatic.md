@@ -9,8 +9,9 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-userIds: pubcommonId, unifiedId/tradedesk, digitrustId, id5Id, criteo, identityLink, liveIntent, parrable, britepoolId
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
+tcf2_supported: true
 ---
 
 ### Prebid Server Note:
