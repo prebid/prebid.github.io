@@ -17,4 +17,4 @@ The Trendqube Bidding adapter requires setup before beginning. Please contact us
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | Adprime placement id         | `1234asdf`    | `'string'` |
+| `placementId`      | required | Adprime placement id         | `'1234asdf'`    | `'string'` |
