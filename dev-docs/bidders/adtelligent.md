@@ -1,11 +1,15 @@
 ---
 layout: bidder
 title: Adtelligent
-description: Prebid Adtelligent Bidder Adaptor
+description: Prebid Adtelligent Bidder Adapter
 hide: true
 biddercode: adtelligent
+media_types: video,banner
 gdpr_supported: true
-media_types: video
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+schain_supported: true
+coppa_supported: true
+usp_supported: true
 ---
 
 ### Bid params
@@ -15,12 +19,13 @@ media_types: video
 |-------|----------|---------------------------------|----------|-----------|
 | `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
 
-
 ### Description
 Get access to multiple demand partners across Adtelligent AdExchange and maximize your yield with Adtelligent header bidding adapter.
 
 Adtelligent header bidding adapter connects with Adtelligent demand sources in order to fetch bids.
-This adapter provides a solution for accessing Video demand and display demand
+This adapter provides a solution for accessing Video demand and display demand.
+
+Adtelligent now supports adpod 
 
 ### Test Parameters
 ```
@@ -28,11 +33,11 @@ This adapter provides a solution for accessing Video demand and display demand
 
       // Video instream adUnit
       {
-        code: 'div-test-div',
-        sizes: [[640, 480]],
+        code: 'test-div',
         mediaTypes: {
           video: {
-            context: 'instream'
+            context: 'instream',
+            playerSize: [640, 480]
           }
         },
         bids: [{
@@ -45,11 +50,29 @@ This adapter provides a solution for accessing Video demand and display demand
 
       // Video outstream adUnit
       {
-        code: 'outstream-test-div',
+        code: 'test-div',
+        mediaTypes: {
+          video: {
+            context: 'outstream',
+            playerSize: [640, 480]
+          }
+        },
+        bids: [{
+          bidder: 'adtelligent',
+          params: {
+            aid: 331133
+          }
+        }]
+      },
+
+       // Video ADPOD adUnit
+      {
+        code: 'test-div',
         sizes: [[640, 480]],
         mediaTypes: {
           video: {
-            context: 'outstream'
+            context: 'adpod',
+            playerSize: [640, 480]            
           }
         },
         bids: [{
@@ -62,8 +85,12 @@ This adapter provides a solution for accessing Video demand and display demand
 
       // Banner adUnit
       {
-        code: 'div-test-div',
-        sizes: [[300, 250]],
+        code: 'test-div',
+        mediaTypes:{
+            banner:{
+                sizes: [[300, 250]]
+            }
+        }
         bids: [{
           bidder: 'adtelligent',
           params: {
@@ -72,4 +99,19 @@ This adapter provides a solution for accessing Video demand and display demand
         }]
       }
     ];
+```
+
+### Additional Configuration
+
+It is possible to configure requests to be splitted in chunks to have less bid requests in single http request 
+(default value is 10)
+
+```
+    pbjs.setBidderConfig({
+        config: {              
+            adtelligent: {
+                chunkSize: 1   // makes 1 http request per 1 adunit configured
+            }
+        }
+    });
 ```
