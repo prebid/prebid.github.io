@@ -1,5 +1,5 @@
 ---
-layout: bidder
+layout: deprecated-bidder
 title: 152Media
 description: Prebid 152Media Bidder Adaptor
 

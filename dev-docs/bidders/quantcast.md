@@ -7,6 +7,8 @@ biddercode: quantcast
 media_types: video
 gdpr_supported: true
 usp_supported: true
+tcf2_supported: true
+coppa_supported: true
 ---
 
 ### Bid Params

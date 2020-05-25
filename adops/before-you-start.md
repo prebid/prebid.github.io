@@ -11,7 +11,7 @@ sbUUID: 3.2
 # Ad Ops and Prebid
 {: .no_toc }
 
-Prebid products are designed to integrate with the ad ops line item configuration on the publisher's selected ad server. Whether using Prebid.js, Prebid Server or Prebid Mobile, bid targeting parameters are passed to the ad server. The ad server then attempts to  match the targeting parameters to a preset line item. If successful, that line item is compared to other line items and if the Prebid bid wins the auction, the creative is returned to the web page or app for display. 
+Prebid products are designed to integrate with the ad ops line item configuration on the publisher's selected ad server. Whether using Prebid.js, Prebid Server or Prebid Mobile, bid targeting parameters are passed to the ad server. The ad server then attempts to  match the targeting parameters to a preset line item. If successful, that line item is compared to other line items and if the Prebid bid wins the auction, the creative is returned to the web page or app for display.
 
 {% capture importantNote %}
 This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
@@ -19,12 +19,24 @@ This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}
 
 {% include alerts/alert_important.html content=importantNote %}
 
+{% capture tip-choosing %}
+
+Including this module in your Prebid.js build adds about 12KB to the package size. It's
+meant for publishers that have complex site designs:
+
+  - if the site needs to alter different AdUnits at different screen widths. e.g. the left-nav changes sizes-supported at 600 pixels, but the footer's size behavior changes at 620 pixels.
+  - if the site needs to alter different mediaTypes at different screen widths
+  - if some bidders or mediaTypes should be included (or removed) at overlapping size ranges.
+
+{% endcapture %}
+{% include alerts/alert_tip.html content=tip-choosing %}
+
 * TOC
 {: toc }
 
 ## Supported ad servers
 
-The table below lists ad servers supported by Prebid and provides links to step by step documentation for the configurations those ad servers support. 
+The table below lists ad servers supported by Prebid and provides links to step by step documentation for the configurations those ad servers support.
 
 {: .table .table-bordered .table-striped }  
 | Server       | Page                                                                                                                                    |
@@ -40,7 +52,7 @@ The table below lists ad servers supported by Prebid and provides links to step 
 
 ## Decide on price bucket granularity
 
-On a publisher's selected server the ad ops team will need to setup line items. These line items provide targeting information for the ad server, to include the CPM per impression. Prebid will pass in a bid's targeting parameters via key-values. The ad server will read these incoming targeting parameters and search through the line items for a match. 
+On a publisher's selected server the ad ops team will need to setup line items. These line items provide targeting information for the ad server, to include the CPM per impression. Prebid will pass in a bid's targeting parameters via key-values. The ad server will read these incoming targeting parameters and search through the line items for a match.
 
 Example:
 
@@ -70,7 +82,7 @@ One set of line items for all bidders is the recommended way of setting up your 
 - It's easier to maintain because adding more bidders requires no change to your line item setup.
 - It's less error-prone because you only need to maintain 3 keywords:
 
-{% include default-keyword-targeting.md %} 
+{% include default-keyword-targeting.md %}
 
 
 {% capture successNote %}
@@ -92,7 +104,7 @@ Choose one set of line items for each bidder if you:
 
 - Requires setting more keyword targeting within your ad server. The table below lists the required and optional keys for targeting with each of your header bidder partners.
 
-{% include send-all-bids-keyword-targeting.md %} 
+{% include send-all-bids-keyword-targeting.md %}
 
 {% capture successNote %}
 For instructions on setting up pre-bid with one set of line items for each bidder, see [Send all bids to the ad server - Ad Ops setup](/adops/send-all-bids-adops.html).
