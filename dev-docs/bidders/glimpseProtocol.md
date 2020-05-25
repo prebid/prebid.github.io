@@ -26,14 +26,6 @@ compliant with GDPR, DPA and CCPA.
 This module was built and tested against prebid 3.21.0 and so compatibility against
 version 2 and earlier is unknown.
 
-## Table of Contents
-
-- [Media Types](#media-types)
-- [Bid Parameters](#bid-parameters)
-- [Banner](#banner)
-- [Setup Guide](#setup-guide)
-- [FAQs](#faqs)
-
 ## Media Types
 
 | Type     | Support                                                            |
@@ -46,9 +38,9 @@ The only parameter is `placementId` and it is required.
 
 ### Banner
 
-| Name          | Scope    | Description                                                                                                      | Example | Type |
-| ------------- | -------- | ---------------------------------------------------------------------------------------------------------------- | ------- | ---- |
-| `placementId` | Required | An identifier associated unique to a publisher and ad unit. Values can be obtained through our publisher portal. |
+| Name          | Scope    | Description                                                                                                      | Example                | Type   |
+| ------------- | -------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------- | ------ |
+| `placementId` | Required | An identifier associated unique to a publisher and ad unit. Values can be obtained through our publisher portal. | 'glimpse-demo-300x250' | String |
 
 ## Setup Guide
 
