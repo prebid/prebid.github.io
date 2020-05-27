@@ -17,11 +17,11 @@ sidebarType : 1
 
 ## Overview
 
-The Floors module provides an open source framework in Prebid for Publishers to configure price floors on their own or to work with a vendor who can provide floors.
+The Floors module provides an open source framework in Prebid for Publishers to configure Prebid price floors on their own or to work with a vendor who can provide floors.
 
 A ‘floor’ is defined as the lowest CPM price a bid will need to meet for each Prebid auction. It’s a way for publishers to signal to bidders the price to beat, thereby protecting the value of their inventory.
 
-The module provides several ways for floors to be defined, that are used by bidder adapters to read floors and enforced on bid responses in any supported currency. The floors utilized by the Prebid.js floors module are defined by one or more set of rules containing any or all of the following dimensions:
+The module provides several ways for Prebid floors to be defined, that are used by bidder adapters to read floors and enforced on bid responses in any supported currency. The floors utilized by the Prebid.js floors module are defined by one or more set of rules containing any or all of the following dimensions:
 
 
 - AdUnit
@@ -33,7 +33,7 @@ The module provides several ways for floors to be defined, that are used by bidd
 {: .alert.alert-warning :}
 When using GPT Slot name, the gpt library is required to load first. Failing to do so may yield unexpected results and could impact revenue performance.
 
-The entire set of floors selected by the Floors Module for a given auction is called a “Rule Location”. A Rule Location can be any one of:
+The entire set of Prebid floors selected by the Floors Module for a given auction is called a “Rule Location”. A Rule Location can be any one of:
 1. Within the AdUnit (AdUnit)
 2. Within setConfig  (Package)
 3. Retrieved from a real-time data service (Dynamic)
@@ -801,7 +801,9 @@ The price floors module will do this by leveraging the already existing implemen
 |---+---+---+---+---|
 | skipped | Boolean | Whether the skipRate resolved to be true or false| true |
 | modelVersion | String | The name of the model| ‘floor-model-4.3’ |
-| location | String | Where the floor rules came from adUnit, setConfig, fetch | ‘floor-model-4.3’ |
+| location | String | Where the Floors Module derived the rule set. Values are one of 'adUnit', 'setConfig' or 'fetch' | ‘fetch’ |
+| fetchStatus | String | Provides details on the status of a fetch for a JSON floors file when fetches are attempted. Valid values are: 'success' (when fetch returns an http 200 status), 'timeout' (when fetch results not returned before either auction delay or prebid timeout) or 'error' (any http status other than 200 or other error condition). To determine if fetch succeeds but returns invalid floors data, refer to the location field to infer invalid data if 'fetch' is not resultant value. | ‘success’ |
+| skipRate | integer | skipRate will be populated when a skip rate is configured in the Prebid Floors Module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 
 **bidResponse**: When a bid response is being processed it is important for analytics adapters to know the decision which was made and the context of the rule selection. Here is the data which is attached to each bidResponse:
 

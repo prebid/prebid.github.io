@@ -242,6 +242,8 @@ Here is a sample array entry for `validBidRequests[]`:
   bidRequestsCount: 1
   bidderRequestsCount: 1
   bidderWinsCount: 0
+  userId: {...}
+  schain: {...}
   mediaTypes: {banner: {...}}
   params: {...}
   src: "client"
@@ -256,6 +258,8 @@ Other notes:
 - **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
 
@@ -267,8 +271,6 @@ Here is a sample bidderRequest object:
   auctionStart: 1579746300522
   bidderCode: "myBidderCode"
   bidderRequestId: "15246a574e859f"
-  userId: {...}
-  schain: {...}
   bids: [{...}]
   gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
   refererInfo:
@@ -282,8 +284,6 @@ Here is a sample bidderRequest object:
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
-- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
@@ -675,7 +675,7 @@ Adapter must add following new properties to bid response
 {% highlight js %}
 {
   meta: {
-    iabSubCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
+    primaryCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
   },
   video: {
     context: 'adpod',
@@ -734,7 +734,7 @@ getIabSubCategory(bidderCode, pCategory)
 {% highlight js %}
 
 import { getIabSubCategory } from '../src/adapters/bidderFactory';
-let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+let primaryCatId = getIabSubCategory(bidderCode, pCategory)
 
 {% endhighlight %}
 

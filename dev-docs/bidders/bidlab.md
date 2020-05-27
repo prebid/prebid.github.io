@@ -17,5 +17,4 @@ The Bidlab Bidding adapter requires setup before beginning. Please contact us at
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `id`      | required | Bidlab placement id         | `1234asdf`    | `string` |
-
+| `placementId`      | required | Bidlab placement id         | `'1234asdf'`    | `'string'` |
