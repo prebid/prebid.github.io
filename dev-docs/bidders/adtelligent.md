@@ -25,7 +25,7 @@ Get access to multiple demand partners across Adtelligent AdExchange and maximiz
 Adtelligent header bidding adapter connects with Adtelligent demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-Adtelligent now supports adpod 
+Adtelligent now supports adpod. 
 
 ### Test Parameters
 ```
@@ -103,8 +103,8 @@ Adtelligent now supports adpod
 
 ### Additional Configuration
 
-It is possible to configure requests to be splitted in chunks to have less bid requests in single http request 
-(default value is 10)
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+(default value is 10).
 
 ```
     pbjs.setBidderConfig({
