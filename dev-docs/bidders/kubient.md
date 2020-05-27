@@ -22,4 +22,4 @@ The adsolut Bidding adaptor requires setup and approval before beginning. Please
 |--------|----------|--------------------------------------------------|--------------------------|----------|
 | zoneid | required | The ad zone or tag specific ID                   | `'27248'`                | `string` |
 | floor  | optional | The floor CPM price for the request              | `0.1234`                 | `float`  |
-| server | optional | Bidder domain (default `'x.fidelity-media.com'`) | `'x.fidelity-media.com'` | `string` |
+| server | optional | Bidder domain (default `'x.fidelity-media.com'`) | `'kssp.kbntx.ch'`        | `string` |
