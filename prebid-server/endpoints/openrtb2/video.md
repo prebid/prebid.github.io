@@ -79,7 +79,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | video.protocols | Required | `Integer[]` |  Array of supported [video protocols](#video-protocols). |
 | includebrandcategory | Optional | `Object` |  Container Object for passing Category inputs. |
 | includebrandcategory.primaryadserver | Optional | `Integer` |  The ad server used by the publisher. Supported Values 1- Freewheel , 2- Google Ad Manager. |
-| includebrandcategory.publisher | Optional | `String` |  Identifier for the Publisher. If <code>includebrandcategory.primaryadserver is set to 2 (GAM) then this parameter is required. This enables the category mapping file to be found. |
+| includebrandcategory.publisher | Optional | `String` |  Identifier for the Publisher. If <code>includebrandcategory.primaryadserver</code> is set to 2 (GAM) then this parameter is required. This enables the category mapping file to be found. |
 | content | Optional | `Object` | Miscellaneous content meta data that can be used for targeting the adPod(s) |
 | content.episode | Optional | `Integer` | The episode number. |
 | content.title | Optional | `String` | The episode name. |
