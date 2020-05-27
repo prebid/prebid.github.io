@@ -13,7 +13,7 @@ usp_supported: true
 
 ### Note:
 
-The adsolut Bidding adaptor requires setup and approval before beginning. Please reach out to <prebid@kubient.com> for more details
+The Kubient Bidder Adapter requires setup and approval before beginning. Please reach out to <prebid@kubient.com> for more details.
 
 ### Bid Params
 
