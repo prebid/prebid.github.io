@@ -803,6 +803,7 @@ The price floors module will do this by leveraging the already existing implemen
 | modelVersion | String | The name of the model| ‘floor-model-4.3’ |
 | location | String | Where the Floors Module derived the rule set. Values are one of 'adUnit', 'setConfig' or 'fetch' | ‘fetch’ |
 | fetchStatus | String | Provides details on the status of a fetch for a JSON floors file when fetches are attempted. Valid values are: 'success' (when fetch returns an http 200 status), 'timeout' (when fetch results not returned before either auction delay or prebid timeout) or 'error' (any http status other than 200 or other error condition). To determine if fetch succeeds but returns invalid floors data, refer to the location field to infer invalid data if 'fetch' is not resultant value. | ‘success’ |
+| skipRate | integer | skipRate will be populated when a skip rate is configured in the Prebid Floors Module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 
 **bidResponse**: When a bid response is being processed it is important for analytics adapters to know the decision which was made and the context of the rule selection. Here is the data which is attached to each bidResponse:
 
