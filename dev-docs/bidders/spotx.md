@@ -29,6 +29,7 @@ usp_supported: true
 | `custom`             | optional | See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/DirectSdk/README.md#custom-property-for-key-value-pair-reporting) |                                                                                                                                                                                                      | `object`    |
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                                                                            |                                                                                                                                                                                                      | `integer`   |
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                                                                            |                                                                                                                                                                                                      | `integer`   |
+
 <a name="spotx-outstream-options-object" />
 
 #### outstream_options Object
