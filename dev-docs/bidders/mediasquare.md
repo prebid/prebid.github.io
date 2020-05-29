@@ -17,5 +17,5 @@ media_types: banner
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                              | Type      |
 |---------------|----------|-----------------------|--------------------------------------|-----------|
-| `owner `      | required | Mediasquare Owner Id  | `test`                               | `string`  |
-| `code`        | required | Mediasquare Code Id   | `publishername_atf_desktop_rg_pave`  | `string`  |
+| `owner `      | required | Mediasquare owner ID  | `'test'`                               | `string`  |
+| `code`        | required | Mediasquare code ID   | `'publishername_atf_desktop_rg_pave'`  | `string`  |
