@@ -15,7 +15,7 @@ media_types: banner
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `owner `      | required | Mediasquare Owner Id  | `test`    | `string`  |
-| `code`        | required | Mediasquare Code Id   | `113244`  | `string`  |
+| Name          | Scope    | Description           | Example                              | Type      |
+|---------------|----------|-----------------------|--------------------------------------|-----------|
+| `owner `      | required | Mediasquare Owner Id  | `test`                               | `string`  |
+| `code`        | required | Mediasquare Code Id   | `publishername_atf_desktop_rg_pave`  | `string`  |
