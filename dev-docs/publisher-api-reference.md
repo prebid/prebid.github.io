@@ -1684,17 +1684,19 @@ a price granularity override. If it doesn't find 'video-outstream' defined, it w
 
 #### Server to Server
 
-Example config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html) header bidding:
+Prebid.js can be configured to connect to one or more [Prebid Servers](/dev-docs/get-started-with-prebid-server.html) for one or more bidders.
+
+Example config:
 
 {% highlight js %}
 pbjs.setConfig({
-    s2sConfig: {
+    s2sConfig: [{
         accountId: '1',
         bidders: ['appnexus', 'openx', 'tripleliftVideo'],
         defaultVendor: 'appnexus',
-        timeout: 1000,
+        timeout: 500,
         adapterOptions: {
-            pubmatic: { key: 'value' },
+            openx: { key: 'value' },
             appnexus: { key: 'value' }
         },
         syncUrlModifier: {
@@ -1709,21 +1711,24 @@ pbjs.setConfig({
                 tripleliftVideo: tripleLift
             }
         }
-    }
+    }]
 })
 {% endhighlight %}
 
-Additional information of `s2sConfig` properties:
+{: .alert.alert-info :}
+Note that `s2sConfig` can be specified as an object or an array.
+
+The `s2sConfig` properties:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description                                                                                   |
 |------------+---------+---------+---------------------------------------------------------------|
-| `accountId` | Required | String | Your Prebid Server account ID |
-| `bidders` | Required | Array of Strings | Which bidders support auctions on the server side |
+| `accountId` | Required | String | Your Prebid Server account ID. This is obtained from whoever's hosting your Prebid Server. |
+| `bidders` | Required | Array of Strings | Which bidders auctions should take place on the server side |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
-| `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
+| `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
-| `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
+| `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
@@ -1750,7 +1755,7 @@ Supporting video through the Server-to-Server route can be done by providing a c
 
 {% highlight js %}
 pbjs.setConfig({
-    s2sConfig: {
+    s2sConfig: [{
         accountId: '1001',
         bidders: ['rubicon', 'pubmatic'],
         defaultVendor: 'rubicon',
@@ -1763,7 +1768,7 @@ pbjs.setConfig({
                 pricegranularity: {"ranges": [{"max":40.00,"increment":1.00}]}
             }
         }
-    }
+    }]
 })
 {% endhighlight %}
 
