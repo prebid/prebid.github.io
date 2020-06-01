@@ -21,7 +21,7 @@ This endpoint runs an auction with the given OpenRTB 2.5 bid request.
 
 ### Sample request
 
-The [Prebid sample ad](/dev-docs/examples/basic-example.html) can be loaded from the JSON found in the [prebid-test-ad.json](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json) file on the Prebid Server Github page.  Other examples can be found in the [exemplary directory](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary) in the same Github repo. 
+The [Prebid sample ad](/dev-docs/examples/basic-example.html) can be loaded from the JSON found in the [prebid-test-ad.json](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary/prebid-test-ad.json) file on the Prebid Server Github page.  Other examples can be found in the [exemplary directory](https://github.com/prebid/prebid-server/blob/master/endpoints/openrtb2/sample-requests/valid-whole/exemplary) in the same Github repo.
 
 ### Sample Response
 
@@ -313,8 +313,8 @@ Bids can be temporarily cached on the server by sending the following data as `r
 }
 ```
 
-Both `bids` and `vastxml` are optional, but one of the two is required. Thils property will have no effect
-unless `request.ext.prebid.targeting` is also set in the request.
+Both `bids` and `vastxml` are optional, but one of the two is required for cache to function.
+This property will have no effect unless `request.ext.prebid.targeting` is also set in the request.
 
 If `bids` is present, Prebid Server will make a _best effort_ to include these extra
 `bid.ext.prebid.targeting` keys:
