@@ -3,10 +3,11 @@ layout: bidder
 title: Playground XYZ
 description: Prebid Playground XYZ Bidder Adapter
 gdpr_supported: true
+usp_supported: true
 hide: true
 biddercode: pxyz
 prevBiddercode: playgroundxyz
-aliasCode: playgroundxyz
+aliasBiddercode: playgroundxyz
 ---
 
 ### Bid Params

@@ -1,10 +1,14 @@
 ---
 layout: bidder
-title: 9Media Online
-description: Prebid 9Media Online Bidder Adaptor
-hide: true
+title: 9 Media Online
+description: Prebid 9 Media Online Bidder Adaptor
 biddercode: 9MediaOnline
+hide: true
 media_types: banner, video
+gdpr_supported: true
+schain_supported: true
+usp_supported: true
+userIds: id5Id, unifiedId
 aliasCode: gamoshi
 ---
 

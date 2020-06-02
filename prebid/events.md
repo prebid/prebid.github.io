@@ -10,38 +10,16 @@ sidebarType: 0
 
 ## Upcoming events:
 
-{: .table .table-bordered .table-striped }
-| Date | City | Register |
-|------+------+----------|
-| Feb 20, 2020 | Tokyo, Japan | [Registration link](https://www.eventbrite.com/e/apac-prebid-meetup-and-leadership-summit-tokyo-february-20th-2020-registration-86002223967) - some sessions will be conducted in English and some in Japanese. Real-time translation will be provided. |
-
-## What happens at an event?
-
-A Prebid Meetup and Leadership Summit is an educational event including
-overviews, deep dives and conversations about Prebid, its evolution, roadmap
-and vision. It’s a chance to get key insights on the latest Prebid
-solutions and how they work for different kinds of publishers. Here are
-a few things you can expect from these events:
-
-- Insights from member organizations and premium publishers into current best practices and future plans for Prebid.
-- Panel discussions on the expansion of header bidding into emerging formats, such as video and native.
-- Networking opportunities for publishers and [Prebid members](/partners/partners.html).
-- And more!
-
-We look forward to seeing you at an event.
-
+### Prebid Product Roadmap - Moving Forward While Staying In Place
+- **Date**: Tuesday June 2, 2020 8:30am-10am US Pacific Time
+- **Description**: In our first of a series of Prebid virtual meetups, Prebid.org Product Management Committee members will give updates on Prebid product roadmaps, including recent highlights and upcoming product release plans. Attendees will gain insights on the direction of Prebid.org and have an opportunity to help shape the future of the Prebid community.
+- [Register here](https://event.on24.com/wcc/r/2366096/86825880B7AF15ACBCE71F188729FC63)
 
 # Frequently Asked Questions
 
 ## Are there any online recordings of past events?
 
 Not at this point.
-
-## Will events be livestreamed or recorded in the future?
-
-We are considering this option, but the in-person meetings have been quite
-candid, and we don't want to change the comfort level of our panel members and
-audience members in speaking their minds.
 
 # Past events:
 

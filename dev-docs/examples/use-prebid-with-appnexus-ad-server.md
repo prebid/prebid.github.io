@@ -10,6 +10,6 @@ about:
 - See the <a href="https://wiki.appnexus.com/x/PgOXBQ">AppNexus Seller Tag documentation</a> for more information
 - To configure the AppNexus Seller Tag to use SafeFrames, refer to the <a href="https://wiki.appnexus.com/x/QgOXBQ">SafeFrame API Reference</a>.
 
-jsfiddle_link: jsfiddle.net/prebid_org/7hc1gm8h/embedded/html,result
+jsfiddle_link: jsfiddle.net/Prebid_Examples/tr1djf9e/3/embedded/html,result
 code_height: 2404
 ---
