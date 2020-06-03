@@ -53,6 +53,11 @@
   imgURL: /assets/images/partners/tech/datablocks_logo.png
   type: technology
   
+- company: LiveRamp 
+  link: https://liveramp.com/
+  imgURL: /assets/images/partners/tech/LiveRamp-Logo.png
+  type: technology
+  
 - company: Marfeel 
   link: https://www.marfeel.com/
   imgURL: /assets/images/partners/tech/marfeel.png
