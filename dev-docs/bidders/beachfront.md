@@ -30,6 +30,7 @@ userIds: unifiedId
 |------------------|----------|------------------------------------------------|-------------------------------------------|-----------------|
 | `appId`          | optional | Beachfront Exchange ID for video bids. | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
 | `bidfloor`       | optional | Bid floor for video bids. | `0.01` | `float` |
+| `tagid`          | optional | Tag ID | `'7cd7a7b4-ef3f-4aeb-9565-3627f255fa10'` | `string` |
 | `mimes`          | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` | `Array<string>` |
 | `playbackmethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play<br/>`4`: Mouse-over | `1` | `integer` |
 | `maxduration`    | optional | Maximum video ad duration in seconds. | `30` | `integer` |
