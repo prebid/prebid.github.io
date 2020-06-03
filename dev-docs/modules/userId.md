@@ -497,7 +497,7 @@ pbjs.setConfig({
 
 ### Lotame Panorama ID
 
-The Lotame Panorama ID module enables publishers to access Lotame's extensive network and exchange it across the ad tech ecosystem.
+The Lotame Panorama ID module enables publishers to exchange data with the ad tech ecosystem without depending on 3rd party cookies.
 
 The Lotame privacy policy is at [https://www.lotame.com/about-lotame/privacy/](https://www.lotame.com/about-lotame/privacy/).
 
