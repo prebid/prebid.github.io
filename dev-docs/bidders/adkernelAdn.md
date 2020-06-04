@@ -4,8 +4,9 @@ title: AdKernelAdn
 description: Prebid AdKernel Ad Delivery Network Bidder Adaptor
 hide: true
 biddercode: adkernelAdn
-media_types: video
+media_types: banner, video
 gdpr_supported: true
+usp_supported: true
 ---
 
 ### Note:

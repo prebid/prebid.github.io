@@ -19,7 +19,8 @@ sidebarType : 1
 
 This consent management module is designed to support the California Consumer Privacy Act ([CCPA](https://www.iab.com/guidelines/ccpa-framework/)). The IAB has generalized these guidelines to cover future regulations, referring to the feature as "US Privacy."
 
-This module works with supported [Consent Management Platforms](https://advertisingconsent.eu/cmp-list/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
+
+This module works with supported [Consent Management Platforms](https://www.cmswire.com/information-management/what-is-a-consent-management-platform/) (CMPs) to fetch an encoded string representing the user's consent choices and make it available for adapters to consume and process.
 
 {: .alert.alert-info :}
 See also the [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html) for supporting the EU General Data Protection Regulation (GDPR)
@@ -37,11 +38,13 @@ Here's a summary of the interaction process:
 In the the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.
 
-If the timeout period expires or an error from the CMP is thrown, the auction proceeds without the user's consent information.  
+
+If the timeout period expires or an error from the CMP is thrown, the auction proceeds without the user's consent information.
 
 ## Page Integration
 
-To utilize this module, a CMP compatible with the [IAB 1.1 TCF spec](https://iabeurope.eu/tcf-v1/) needs to be implemented onthe site to interact with the user and obtain their consent choices.  
+To utilize this module, a CMP compatible with the [IAB 1.1 TCF spec](https://iabeurope.eu/tcf-v1/) needs to be implemented onthe site to interact with the user and obtain their consent choices.
+
 
 Though implementation details for the CMP are not covered by Prebid.org, we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes.
 
@@ -53,39 +56,69 @@ Here are the parameters supported in the `consentManagement` object:
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | usp | `Object` | | |
-| usp.cmpApi | `string` | The CMP interface that is in use. The only currently supported value is **'iab'**, which is the default. | `'iab'` |
-| usp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
+| usp.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
+| usp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the CCPA consent string. Default is `10000`. | `10000` |
+| usp.consentData | `Object` | An object representing the CCPA consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 
 ### Examples
 
 Example 1: Support both US Privacy and GDPR
 
 {% highlight js %}
-pbjs.setConfig({
-       consentManagement: {
-         gdpr: {
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+       pbjs.setConfig({
+         consentManagement: {
+           gdpr: {
             cmpApi: 'iab',
             allowAuctionWithoutConsent: false, // suppress auctions if there's no GDPR consent string
             timeout: 3000  // GDPR timeout 3000ms
-         },
-         usp: {
+           },
+           usp: {
             timeout: 100 // US Privacy timeout 100ms
+           }
          }
-       }
-});
+       });
+     });
 {% endhighlight %}
 
 Example 2: Support US Privacy
 
 {% highlight js %}
-pbjs.setConfig({
-       consentManagement: {
-         usp: {
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+       pbjs.setConfig({
+         consentManagement: {
+           usp: {
             cmpApi: 'iab',
             timeout: 100 // US Privacy timeout 100ms
+           }
          }
-       }
-});
+       });
+     });
+{% endhighlight %}
+
+Example 3: Static CMP using custom data passing.
+
+{% highlight js %}
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            usp: {
+              cmpApi: 'static',
+              consentData: {
+                getUSPData: {
+                  uspString: '1YYY'
+                }
+              }
+            }
+          }
+        });
+     });
 {% endhighlight %}
 
 ## Build the Package

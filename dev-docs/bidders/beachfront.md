@@ -6,7 +6,8 @@ hide: true
 biddercode: beachfront
 media_types: video
 gdpr_supported: true
-userIds: unifiedId/tradedesk
+usp_supported: true
+userIds: unifiedId
 ---
 
 ### Bid Params

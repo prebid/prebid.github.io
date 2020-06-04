@@ -7,10 +7,11 @@ hide: true
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteortus
+userIds: criteo
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+tcf2_supported: true
 ---
 
 ### Table of Contents
@@ -21,6 +22,7 @@ usp_supported: true
 - [App Object](#appnexus-app-object)
 - [Custom Targeting keys](#custom-targeting-keys)
 - [Passing Keys Without Values](#appnexus-no-value)
+- [User Sync in AMP](#appnexus-amp)
 - [Debug Auction](#appnexus-debug-auction)
 
 <a name="appnexus-bid-params" />
@@ -150,6 +152,12 @@ keywords: {
   otherKeyword: ['']
 }
 ```
+
+<a name="appnexus-amp" />
+
+#### User Sync in AMP
+
+If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code> 
 
 <a name="appnexus-debug-auction" />
 
