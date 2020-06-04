@@ -68,7 +68,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`,`"lotamePanoramaId"` `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`,`"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
