@@ -717,17 +717,17 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-## Shared ID User ID Submodule
+### Shared ID User ID Submodule
 
 Shared ID User ID Module generates a UUID that can be utilized to improve user matching.This module enables timely synchronization which handles sharedId.org optout. This module does not require any registration.  
 
-### Building Prebid with Shared Id Support
+#### Building Prebid with Shared Id Support
 Your Prebid build must include the modules for both **userId** and **sharedId** submodule. 
 Add it to your Prebid.js package with:
 
 ex: $ gulp build --modules=userId,sharedIdSystem
 
-### Prebid Params
+#### Prebid Params
 
 Individual params may be set for the Shared ID User ID Submodule. 
 ```
@@ -748,7 +748,7 @@ pbjs.setConfig({
 });
 ```
 
-### SharedId Configuration
+#### SharedId Configuration
 
 {: .table .table-bordered .table-striped }
 | Params under usersync.userIds[]| Scope | Type | Description | Example |
