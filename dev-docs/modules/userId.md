@@ -24,7 +24,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
-* **LiveIntent ID** – fetches a user ID based on identifiers that are present on the page. It calls the LiveIntent Identity Exchange endpoint which resolves the inbound identifiers to a stable ID.
+* **LiveIntent ID** – a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 * **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
@@ -33,7 +33,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 ## How It Works
 
 1. The publisher determines which user ID modules to add to their Prebid.js package and consults with their legal counsel to determine the appropriate user disclosures.
-1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem"
+1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem". You also need to add the `userId` module to your Prebid.js distribution.
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userId.
@@ -399,7 +399,7 @@ The adapters can be implemented to use the lipibid as the identifier and segment
 
 The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier (LIID). In order to provide resolution one or more first-party cookies are used to create a stable identifier. 
 
-How does LiveIntent ID sub-module decide, which first-cookies to use:
+How does LiveIntent ID sub-module decide, which first-party cookies to use:
 1. By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
 2. A publisher can also define in the configuration which additional first-party cookies should be used. These can be used in a combination with the LiveIntent first-party cookie.
 
@@ -417,27 +417,30 @@ You are not required to register with LiveIntent to start using the LiveIntent I
 1. Providing buyers a stable identifier, which can solve cross-browser and cross-channel frequency capping challenges.
 2. Leveraging your first-party audiences to increase the value of your inventory.
 
+The LiveIntent privacy policy is at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/)
+
 #### LiveIntent ID configuration
 
-|Param under userSync.userIds[]|Scope|Type|Description|Example|
-|---|:---:|:---:|---:|---:|
-|`name`|Required | `String`|The name of this module.|`'liveIntentId'`|
-|`params`| Required|`Object`|Container of all module params.||
-|`params.publisherId`|Required|`String`| The unique identifier for each publisher.|`'12432415'`|
-|`params.ajaxTimeout`|Optional|`Number`|This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
-|`params.partner`| Optional|`String`|The name of the partner whose data will be returned in the response.|`'prebid'`|
-|`params.identifiersToResolve`|Optional|`Array[String]`|Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
-|`params.url`| Optional|`String`|Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
-|`params.providedIdentifierName`| Optional|`String`|This parameter should be used whenever a customer is able to provide the most stable identifier possible, e.g. a cookie which is set via HttpHeaders on the first party domain.|`'my-best-id'`|
-|`params.liCollectConfig`|Optional|`Object`|Container of all collector params.||
-|`params.liCollectConfig.fpiStorageStrategy`|Optional|`String`|This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
-|`params.liCollectConfig.fpiExpirationDays`|Optional|`Number`|The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
-|`params.liCollectConfig.collectorUrl`|Optional|`String`|The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
-|`params.liCollectConfig.appId`|Optional|`String`|LiveIntent's media business entity application id.|`'a-0012'`|
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'liveIntentId'` |
+| params | Required | Object | Container of all module params. ||
+| params.publisherId |Required| String | The unique identifier for each publisher.|`'12432415'`|
+| params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
+| params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
+| params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
+| params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
+| params.providedIdentifierName | Optional| String |This parameter should be used whenever a customer is able to provide the most stable identifier possible, e.g. a cookie which is set via HttpHeaders on the first party domain.|`'my-best-id'`|
+| params.liCollectConfig |Optional| Object |Container of all collector params.||
+| params.liCollectConfig.fpiStorageStrategy |Optional| String |This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
+| params.liCollectConfig.fpiExpirationDays |Optional| Number |The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
+| params.liCollectConfig.collectorUrl |Optional| String |The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
+| params.liCollectConfig.appId |Optional| String |LiveIntent's media business entity application id.|`'a-0012'`|
 
 #### LiveIntent ID examples
 
-1.To receive the LiveIntent ID, the setup looks like this.
+1. To receive the LiveIntent ID, the setup looks like this.
 ```
 pbjs.setConfig({
     userSync: {
@@ -451,7 +454,7 @@ pbjs.setConfig({
 })
 ```
 
-2.If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add those under the `identifiersToResolve` array in the configuration parameters.
+2. If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add those under the `identifiersToResolve` array in the configuration parameters.
 ```
 pbjs.setConfig({
     userSync: {
@@ -466,7 +469,7 @@ pbjs.setConfig({
 })
 ```
 
-3. If lll the supported configuration params are passed, then the setup looks like this.
+3. If all the supported configuration params are passed, then the setup looks like this.
 ```
 pbjs.setConfig({
     userSync: {
@@ -479,9 +482,6 @@ pbjs.setConfig({
               url: "https://publisher.liveintent.com/idex",
               partner: "prebid",
               ajaxTimeout: 1000,
-              storage: {
-                expires: 3
-              },
               liCollectConfig: {
                 fpiStorageStrategy: "cookie",
                 fpiExpirationDays: 730,
@@ -845,6 +845,31 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 ```
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
+
+You can use `getUserIdsAsEids()` to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+```
+pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g. 
+[
+  {
+      source: 'pubcid.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1
+      }]
+  },
+
+  {
+      source: 'adserver.org',
+      uids: [{
+          id: 'some-random-id-value',
+          atype: 1,
+          ext: {
+              rtiPartner: 'TDID'
+          }
+      }]
+  }
+]
+``` 
 
 ## Passing UserIds to Google Ad Manager for targeting
 
