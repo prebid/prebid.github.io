@@ -6,8 +6,8 @@ hide: true
 biddercode: mediasquare
 gdpr_supported: true
 tcf2_supported: true
-usp_supported: true
-schain_supported: true
+usp_supported: false
+schain_supported: false
 media_types: banner
 ---
 
