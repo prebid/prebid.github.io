@@ -2,17 +2,17 @@
 layout: bidder
 title: OpenX
 description: Prebid OpenX Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: openx
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
-media_types: video
+media_types: banner, video
+schain_supported: true
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+prebid_member: true
+tcf2_supported: true
 ---
-
-
 
 ### Bid Parameters
 #### Banner
@@ -20,7 +20,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type | 
 | ---- | ----- | ----------- | ------- | ---- | 
-| `delDomain` | required | OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net" | String | 
+| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative.  | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String | 
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String | 
 | `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object | 
 | `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50 | Number | 
@@ -37,7 +37,7 @@ gdpr_supported: true
 | `openrtb` | optional | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }` | Object | 
 
 
-# Example
+## Example
 ```javascript
 var adUnits = [
   {
@@ -50,6 +50,16 @@ var adUnits = [
         params: {
           unit: '539439964',
           delDomain: 'se-demo-d.openx.net',
+          customParams: {
+            key1: 'v1',
+            key2: ['v2', 'v3']
+          },
+        }
+      }, {
+        bidder: 'openx',
+        params: {
+          unit: '539439964',
+          platform: 'a3aece0c-9e80-4316-8deb-faf804779bd1',
           customParams: {
             key1: 'v1',
             key2: ['v2', 'v3']
@@ -71,12 +81,8 @@ var adUnits = [
       params: {
         unit: '1611023124',
         delDomain: 'PUBLISHER-d.openx.net',
-        openrtb: {
-          imp: [{
-            video: {
-              mimes: ['video/x-ms-wmv, video/mp4']
-            }
-          }]
+        video: { 
+          mimes: ['video/x-ms-wmv, video/mp4']
         }
       }
     }]
@@ -97,7 +103,7 @@ pbjs.setConfig({
 });
 ```
 
-# Additional Details
+## Additional Details
 [Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html)
 
 [Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html)

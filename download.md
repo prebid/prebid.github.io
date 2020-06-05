@@ -1,16 +1,8 @@
 ---
-layout: page
+layout: page_v2
 title: Download Prebid.js
 description: Documentation on how to download Prebid.js for header bidding.
-
-pid: 0
-
-is_top_nav: yeah
-
-top_nav_section: download
-nav_section: download
-
-
+sidebarType: 0
 ---
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
@@ -29,25 +21,14 @@ $(function(){
     return;
   });
 
-  $( ".selectpicker" ).change(function() {
-    if(this.value.match(/1\.\d+\.\d+/i)) {
-      $('.adapters .col-md-4').hide();
-      $('.prebid_1_0').show();
-    }
-    else{
-       $('.adapters .col-md-4').show();
-    }
-  });
-
-  //default to 1.x adapters:
-  $('.adapters .col-md-4').hide();
-  $('.prebid_1_0').show();
+  // show all adapters
+  $('.adapters .col-md-4').show();
 });
 
 function getVersionList() {
   $.ajax({
       type: "GET",
-      url: "http://js-download.prebid.org/versions",
+      url: "https://js-download.prebid.org/versions",
   })
   .success(function(data) {
     try{
@@ -62,11 +43,11 @@ function getVersionList() {
           $('.selectpicker').append('<option value="'+version+'">'+version+' - latest </option>');
         }
         else{
-          if(version.match(/1\.\d+\.\d+/i)){
+          if(version.match(/\d\.\d+\.\d+/i)){
             $('.selectpicker').append('<option value="'+version+'">'+version+'</option>');
           }
           else{
-            $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecating on September 27, 2018</option>');
+            // $('.selectpicker').append('<option value="'+version+'">'+version+' - deprecated</option>');
           }
         }
       });
@@ -91,11 +72,6 @@ function submit_download() {
 
     var alertStatus = $('#download-status');
 
-    if (!(form_data['email'] && form_data['company'])) {
-      alertStatus.html('Email and Company fields are required.');
-      alertStatus.removeClass('hide');
-      return;
-    }
     alertStatus.addClass('hide');
 
     $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
@@ -103,7 +79,7 @@ function submit_download() {
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://js-download.prebid.org/download",
+        url: "https://js-download.prebid.org/download",
         //dataType: 'json',
         data: form_data
     })
@@ -162,8 +138,6 @@ function get_form_data() {
     }
 
     var form_data = {};
-    form_data['email'] = $('#input-email').val();
-    form_data['company'] = $('#input-company').val();
     form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
 
@@ -189,10 +163,7 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 ### Option 1: Customize your download here
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% assign module_pages = site.pages | where: "nav_section", "modules" %}
-
-{: .alert.alert-danger :}
-**Deprecation Notice:** Legacy versions of Prebid.js (0.x) will be deprecated as of **September 27, 2018**. Prebid.org will no longer support any version of Prebid.js prior to version 1.0.
+{% assign module_pages = site.pages | where: "page_type", "module" %}
 
 {: .alert.alert-success :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
@@ -203,14 +174,13 @@ Note: If you receive an error during download you most likely selected a configu
 <select id="version_selector" class="selectpicker">
 </select>
 
-
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
 {% for page in bidder_pages %}
-  {% if page.s2s_only == true %}  
+  {% if page.s2s_only == true %}
     {% continue %}
   {% endif %}
-<div class="col-md-4{% if page.prebid_1_0_supported %} prebid_1_0{% endif %}">
+<div class="col-md-4">
  <div class="checkbox">
   <label>
   {% if page.aliasCode %}
@@ -220,6 +190,7 @@ Note: If you receive an error during download you most likely selected a configu
   {% endif %}
 
     </label>
+
 </div>
 </div>
 {% endfor %}
@@ -233,7 +204,151 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adomik" class="analytics-check-box"> Adomik Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adWMG" class="analytics-check-box"> adWMG Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adxcg" class="analytics-check-box"> Adxcg Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adxpremium" class="analytics-check-box"> AdxPremium Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="atsAnalytics" class="analytics-check-box"> ATS Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="datablocks" class="analytics-check-box"> Datablocks Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> Finteza Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="invisibly" class="analytics-check-box"> Invisibly Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="medianet" class="analytics-check-box"> Media.net Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pubstack" class="analytics-check-box" /> Pubstack Analytics
     </label>
   </div>
 </div>
@@ -257,7 +372,15 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
+      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
     </label>
   </div>
 </div>
@@ -273,23 +396,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adomik" class="analytics-check-box"> Adomik Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adxcg" class="analytics-check-box"> Adxcg Analytics
+      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
     </label>
   </div>
 </div>
@@ -305,7 +412,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
+      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
     </label>
   </div>
 </div>
@@ -313,7 +420,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
+      <input type="checkbox" analyticscode="sortable" class="analytics-check-box" /> Sortable Analytics
     </label>
   </div>
 </div>
@@ -321,7 +428,31 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+      <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="tercept" class="analytics-check-box" /> Tercept Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="ucfunnel" class="analytics-check-box" /> ucfunnel Analytics
     </label>
   </div>
 </div>
@@ -337,18 +468,25 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
+      <input type="checkbox" analyticscode="yieldone" class="analytics-check-box"> Platform One Analytics
     </label>
   </div>
 </div>
 
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaMedia Analytics
+    </label>
+  </div>
+</div>
 
 </div>
 <br/>
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
-  {% if page.enable_download == false %}  
+  {% if page.enable_download == false %}
     {% continue %}
   {% endif %}
  <div class="col-md-4">
@@ -357,21 +495,49 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
 </div>
  {% endfor %}
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> User ID: BritePool ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> User ID: LiveIntent ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> User ID: Parrable ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
+</div></div>
 </div>
 
 <br>
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Get Prebid.js! </button>
+<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
 
 </div>
 
 </form>
 
 </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -387,17 +553,7 @@ Note: If you receive an error during download you most likely selected a configu
       <div class="modal-body">
 
         <div class="lead">
-          Enter your information below to generate the download file.
-        </div>
-
-
-        <div class="form-group col-md-6">
-            <label for="input-email">Email address</label>
-            <input type="email" class="form-control" id="input-email" placeholder="Email" name="email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="input-company">Company Name</label>
-            <input type="text" class="form-control" id="input-company" placeholder="Your Company" name="company_email">
+          Downloading Prebid.js...
         </div>
 
         <div class="form-group">
@@ -414,13 +570,13 @@ Note: If you receive an error during download you most likely selected a configu
 
 
     </div>
+
   </div>
 </div>
-
 
 <div class="bs-docs-section" markdown="1">
 
 ### Option 2: Build from Source Code (More Advanced)
 
 {: .lead :}
-Alternatively, you can build Prebid.js from the source code.  For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
+Alternatively, you can build Prebid.js from the source code. For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).

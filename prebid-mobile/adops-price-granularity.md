@@ -1,13 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: Price Granularity
 description: Price granularity
 pid: 2
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
+sidebarType: 3
 ---
-
-<div class="bs-docs-section" markdown="1">
 
 # Price Granularity
 
@@ -61,7 +60,4 @@ Example:
 
 The below screenshot is taken from the Prebid Server account page where you can choose your price granularity setting from the options.
 
-{: .pb-img.pb-md-img :}
-![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-price-granularity/pg-setting.png)
-
-</div>
+![Key-values]({{ site.github.url }}/assets/images/prebid-mobile/adops-price-granularity/pg-setting.png){: .pb-md-img :}

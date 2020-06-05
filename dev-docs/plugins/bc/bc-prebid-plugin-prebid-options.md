@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Options Supported by the Brightcove Prebid Plugin
 description: Ad Unit Reference
 top_nav_section: dev_docs
@@ -7,29 +7,35 @@ nav_section: plugins
 pid: 10
 ---
 
-<div class="bs-docs-section" markdown="1">
-
 # Prebid Options Supported by the Brightcove Prebid Plugin
 
 ## Overview
 
-Configuration options are passed into the plugin in a JSON object structure.  These options can include:
+Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html) for more details.) These options can include:
 
 - Prebid options, which configure how the prebid process should be executed.
 - Rendering options, which customize the ad playback.
 
 ## Plugin Prebid Options
 
-These options are used to configure how the plugin should execute the prebid process.  They are included in the same JSON structure where the rendering options are also provided.
+These options are used to configure how the plugin should execute the prebid process for a single ad break.  They are included in the same JSON structure where the rendering options are also provided for the ad break.
+
+When configuring prebid options for more than one ad break, create an array of Prebid and rendering options for each ad break.
 
 - [prebidPath](#prebidPath)
 - [biddersSpec](#biddersSpec)
+- [bidderAliases](#bidderAliases)
 - [bidderSettings](#bidderSettings)
 - [prebidConfigOptions](#prebidConfigOptions)
 - [dfpParameters](#dfpParameters)
 - [adServerCallback](#adServerCallback)
 - [prebidTimeout](#prebidTimeout)
 - [enablePrebidCache](#enablePrebidCache)
+- [label](#labeloption)
+- [scriptLoadTimeout](#scriptLoadTimeout)
+- [prebidPluginPath](#prebidPluginPath)
+- [adapters](#pb-adapters)
+- [loggerLevel](#loggerLevel)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -50,7 +56,7 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js
+https://acdn.adnxs.com/prebid/not-for-prod/prebid.js
 
 **Example:**
 
@@ -81,6 +87,47 @@ Yes - if you want the plugin to execute prebid.
 
 See [Setting Up Prebid Parameters](#set-up-params) below
 
+<a name="bidderAliases"></a>
+### bidderAliases
+
+**Description:**
+
+Define aliases for bidders that are being specified in the biddersSpec. Using aliases allows to you to use the same bidder more than once with different targeting parameters.
+
+**Acceptable Values:**
+
+Array of one or more bidder aliases definitions.
+
+Each bidder alias definition is defined in a JSON object containing the following fields:
+
+- `bidderName`: The name of a known bidder adapter that is being used in bidding.
+- `name`: A String that species the name of the alias for the bidder adapter.
+
+See "aliasBidder" at [Prebid.org]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for details.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+None
+
+**Example:**
+
+```
+"bidderAliases": [
+    {
+      "bidderName": "appnexus",
+      "name": "alias1"
+    },
+    {
+      "bidderName": "appnexus",
+      "name": "alias2"
+    }
+]
+```
+
 <a name="bidderSettings"></a>
 ### bidderSettings
 
@@ -90,7 +137,60 @@ Define some behaviors for the platform and specific adapters. The basic structur
 
 **Acceptable Values:**
 
-JSON object.
+When you are defining all options to the prebid plugin directly on the page, you may use a JSON Object using same syntax described under "bidderSettings" on [Prebid.org]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
+
+However, if you're defining all options directly in Brightcove Studio, you cannot use inline functions as the "val" of a bidder setting key. The use of inline functions breaks the JSON object that you are creating in the Studio. To get around this problem, the plugin supports using a syntax consisting of an array of strings to represent the inline function. The plugin then takes care of re-creating the inline function once the plugin has been loaded.
+
+When using this syntax, the first element of the array MUST be a String with the following value: "valueIsFunction".
+
+The rest of the elements in the array are a series of strings that comprise the literal lines of code of your function. In other words, each line of code in your `bidderSettings` value function is converted to a string value, and added in order to the JSON array.
+
+For example, if a `bidderSettings` function value on the page would normally look like this:
+
+```
+...,
+{
+  key: "hb_size",
+  val: function(bidResponse) {
+    return bidResponse.size;
+  }  
+},
+...
+```
+
+When you put it into Brightcove Studio as part of your settings JSON, it would look like:
+
+```
+...,
+{
+  "key": "hb_size",
+  "val": [
+    "valueIsFunction",
+    "function(bidResponse) {",
+    "  return bidResponse.size;",
+    "}"
+  ]
+},
+...
+```
+
+NOTE: That if the value of a bidder setting is NOT a function, but is instead a standard JSON-supported value type (Number, String, or Boolean), then you do not need to use this special array-based syntax.
+
+For example:
+
+```
+...,
+{
+  "key": "hb_size",
+  "val": "640x480"
+},
+...
+```
+
+A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool in one of the following ways:
+
+- directly in the GitHub repository for the plugin: [https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
+- directly using this external link: [http://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html](http://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html)
 
 See "bidderSettings" at [Prebid.org]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for details.
 
@@ -110,7 +210,77 @@ None
 
 **Example:**
 
-`options.bidderSettings = { ... };`
+When `bidderSettings` are defined on the page:
+
+```
+bidderSettings = {
+  standard: {
+    adserverTargeting: [{
+      key: "hb_bidder",
+      val: function(bidResponse) {
+        return bidResponse.bidderCode;
+      }
+    }, {
+      key: "hb_adid",
+      val: function(bidResponse) {
+        return bidResponse.adId;
+      }
+    }, {
+      key: "hb_pb",
+      val: function(bidResponse) {
+        return bidResponse.pbMg;
+      }
+    }, {
+      key: 'hb_size',
+      val: function (bidResponse) {
+        return bidResponse.size;
+      }
+    }]
+  }
+}
+```
+
+When `bidderSettings` are defined in Brightcove Studio:
+
+```
+"bidderSettings": {
+    "standard": {
+      "adserverTargeting": [{
+        "key": "hb_bidder",
+        "val": [
+          "valueIsFunction",
+          "function(bidResponse) {",
+          "  return bidResponse.bidderCode;",
+          "}"
+        ]
+      }, {
+        "key": "hb_adid",
+        "val": [
+          "valueIsFunction",
+          "function(bidResponse) {",
+          "  return bidResponse.adId;",
+          "}"
+        ]
+      }, {
+        "key": "hb_pb",
+        "val": [
+          "valueIsFunction",
+          "function(bidResponse) {",
+          "  return bidResponse.pbMg;",
+          "}"
+        ]
+      }, {
+        "key": "hb_size",
+        "val": [
+          "valueIsFunction",
+          "function (bidResponse) {",
+          "  return bidResponse.size;",
+          "}"
+        ]
+      }]
+    }
+}
+```
 
 <a name="prebidConfigOptions"></a>
 ### prebidConfigOptions
@@ -142,7 +312,7 @@ None
 
 **Description:**
 
-Parameters used when using DFP as the ad server.
+Parameters used when using Google Ad Manager as the ad server.
 
 See prebid.org documentation for [buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
 
@@ -152,21 +322,20 @@ JSON object
 
 Can contain the following fields:
 
-- `params`: JSON object containing parameters needed to make DFP call. Parameters include:
+- `params`: JSON object containing parameters needed to make Google Ad Manager call. Parameters include:
   - `iu`: string (Required)
-  - DFP adUnit ID. For more information, see the DFP documentation on iu.
-
-- `cust_params`: JSON object (Optional). Key-value pairs that will be sent to DFP on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the DFP documentation on cust_params
+  - Google Ad Manager adUnit ID. For more information, see the Google Ad Manager documentation on iu.
+  - `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params.
 
 - `output`: (Required) String specifying the type of response expected. This value should be `"vast"`
 
-- `url`: String specifying the DFP ad tag to call. You can use this parameter rather then using the `params` object to specify the DFP tag. This URL MUST contain the DFP `iu` value fully resolved. This URL may contain any other parameters that need to be passed to DFP. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
+- `url`: String specifying the Google Ad Manager ad tag to call. You can use this parameter rather then using the `params` object to specify the Google Ad Manager tag. This URL MUST contain the Google Ad Manager `iu` value fully resolved. This URL may contain any other parameters that need to be passed to Google Ad Manager. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
 
 - `bid`: (Optional) JSON object describing the Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.
 
 **Required?**
 
-No - If present, then DFP is considered to be the primary ad server and the results of the prebid auction will be passed to DFP. One or both of `dfpParameters.params` and `dfpParameters.url` is required.
+No - If present, then Google Ad Manager is considered to be the primary ad server and the results of the prebid auction will be passed to Google Ad Manager. One or both of `dfpParameters.params` and `dfpParameters.url` is required.
 
 **Default Value:**
 
@@ -240,6 +409,9 @@ No
 
 700
 
+{: .alert.alert-info :}
+NOTE:  You may need to increase the `prebidTimeout` value when running on mobile platforms, especially when the ad is scheduled as a late midroll or postroll.
+
 **Example:**
 
 `options.prebidTimeout = 900;`
@@ -266,6 +438,150 @@ true
 **Example:**
 
 `options.enablePrebidCache = false;`
+
+<a name="labeloption"></a>
+### label
+
+**Description:**
+
+User-defined text that identifies a set of prebid/rendering options.  This string is particularly useful when defining configuration options for more than one ad break.  Use this option to make it easier to manage all the sets of configuration options.
+
+**Acceptable Values:**
+
+String that uniquely identifies a set of prebid options.  Your label should be logically correct.  For example, do not use a label of "preroll ad" if the ad is going to be used in the midroll position.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+None
+
+**Example:**
+
+`options1.label = 'midroll-at-5-minutes';`
+
+<a name="scriptLoadTimeout"></a>
+### scriptLoadTimeout
+
+**Description:**
+
+Maximum time in milliseconds that the plugin will wait for a script file to load.  For example, this value controls how long the plugin will wait for Prebid.js to load.
+
+**Acceptable Values:**
+
+Any positive integer
+
+**Required?**
+
+No
+
+**Default Value:**
+
+3000
+
+**Example:**
+
+`options1.scriptLoadTimeout = 5000;`
+
+<a name="prebidPluginPath"></a>
+### prebidPluginPath
+
+**Description:**
+
+Allows the user to specify a custom path used to load the Prebid plugin script.  This option could be used when you are building custom or test versions of the plugin that you want to try out.
+
+In version 0.4, the original plugin was split into a loader and the main plugin.  The loader is the file that you specify when embedding the plugin into the player.  The loader will then load the main plugin itself at runtime.  This separation simplifies the process of debugging the plugin, especially when the plugin is embedded directly into the player in Brightcove Studio.  It also means that when updates are published for the plugin, publishers will be able to pick up the updates without having to re-publish their players.
+
+When registering the plugin to the Brightcove Player, you should continue to use the original path to the plugin.  This is now the path to the loader.  By default, this path is: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js`.
+
+Also, by default, the loader will load in the plugin from: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`.
+
+However, if you are trying to run custom or trial versions of the plugin, you can specify the path to this trial version using this new option: `prebidPluginPath`.
+
+**Acceptable Values:**
+
+String that represents the full path to a version of the custom or trial Prebid plugin.
+
+**Required?**
+
+No.
+
+**Default Value:**
+
+http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
+
+**Example:**
+
+`options1.prebidPluginPath = 'https://your-path/bc_prebid_vast_plugin.js';`
+
+<a name="pb-adapters"></a>
+### adapters
+
+**Description:**
+
+Adapters are a mechanism that a publisher can use to add some specific behavior at runtime to customize the behavior of the Prebid plugin.  
+
+The `adapters` option defines a list of adapters that the publisher would like the Prebid plugin to load and execute.
+
+See [How To Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html) for details on how to build an adapter.
+
+**Acceptable Values:**
+
+If specified, the value of this option should be an array containing one or more adapter definitions.
+
+Each adapter definition is specified as an object with the following fields:
+
+- id: A string that uniquely identifies an adapter.  The adapter will then create itself as a variable on the window object of the document where it is loaded.  This should also be the identifier that the adapter code itself knows.
+- url: A string which specifies the URL used to load the adapter script.
+
+**Required?**
+
+No
+
+**Default Value:**
+
+No default value. If this option is not specified with a valid value, then the plugin will not load and start any adapters.
+
+**Example:**
+
+`options.adapters = [{id : 'my-adapter', url : 'https://my-path/my-plugin-adapter.js'}]`
+
+<a name="loggerLevel"></a>
+### loggerLevel
+
+**Description:**
+
+The `loggerLevel` is used to control the amount of information that is emitted by the plugin into the browser’s console.log.  These levels correspond roughly to the log levels supported by many of the browsers.
+
+{% capture noteAlert %} It is not recommended to set the `loggerLevel` to 0 (silent). {% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
+
+**Acceptable Values:**
+
+Use one of the following integer values to set `loggerLevel`:
+
+- 0 = Silent (not recommended)
+- 1 = Always (trace messages that are always reported, e.g. Version Number)
+- 2 = Error level
+- 3 - Warn
+- 4 = Info
+- 5 = Log
+- 6 = Verbose
+
+**Required?**
+
+No
+
+**Default Value:**
+
+1 (meaning that version number and other “always” reported messages will be emitted to the console.log.)
+
+**Example:**
+
+`options.loggerLevel = 6`
 
 <a name="set-up-params">
 ### Setting Up Prebid Parameters
@@ -301,5 +617,7 @@ Sample implementations are provided at:
 - **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
 
 - **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
+
+- **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>

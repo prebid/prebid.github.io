@@ -2,13 +2,10 @@
 layout: bidder
 title: E-Planning
 description: Prebid E-Planning Bidder Adapter
-
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: eplanning
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
+usp_supported: true
+gdpr_supported: true
 ---
 
 
@@ -16,7 +13,7 @@ prebid_1_0_supported : true
 ### Note:
 The E-Planning Header Bidding adaptor requires setup and approval from the E-Planning team. Please go to [E-Planning website](http://www.e-planning.net) for more details.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                                   | Example                   | Type      |
@@ -25,3 +22,4 @@ The E-Planning Header Bidding adaptor requires setup and approval from the E-Pla
 | `sv`  | optional | Indicates a bidder URL different than default | `'ads.us.e-planning.net'` | `string`  |
 | `isv` | optional | Indicates a CDN URL different than default    | `'us.img.e-planning.net'` | `string`  |
 | `t`   | optional | Indicates bidding for testing purposes        | `1`                       | `integer` |
+| `ml`  | optional | Uses placement names as ad unit names instead of sizes | `1`              | `integer` |
