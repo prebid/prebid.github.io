@@ -5,6 +5,9 @@ description: Prebid CPMStar Bidder Adaptor
 hide: true
 biddercode: cpmstar
 media_types: banner, video
+gdpr_supported: true
+usp_supported: true
+coppa_supported: true
 ---
 
 ### Bid Params

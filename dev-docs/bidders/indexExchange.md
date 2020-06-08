@@ -4,7 +4,10 @@ title: Index Exchange
 description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 hide: true
+schain_supported: true
 gdpr_supported: true
+usp_supported: true
+tcf2_supported: true
 media_types: banner, video
 ---
 
@@ -19,7 +22,7 @@ Maintainer: prebid.support@indexexchange.com
 ## Description
 
 This module connects publishers to Index Exchange's (IX) network of demand
-sources through Prebid.js. This module is GDPR compliant.
+sources through Prebid.js. This module is GDPR and CCPA compliant.
 
 It is compatible with both the older ad unit format where the `sizes` and
 `mediaType` properties are placed at the top-level of the ad unit, and the newer
@@ -141,7 +144,7 @@ var adUnits = [{
 }];
 ```
 
-##### 1. Add IX to the appropriate ad units
+### 1. Add IX to the appropriate ad units
 
 For each size in an ad unit that IX will be bidding on, add one of the following
 bid objects under `adUnits[].bids`:
@@ -258,7 +261,37 @@ var adUnits = [{
 }];
 ```
 
-##### 2. Include `ixBidAdapter` in your build process
+#### Video Caching
+
+Note that the IX adapter expects a client-side Prebid Cache to be enabled for video bidding.
+
+```
+pbjs.setConfig({
+    usePrebidCache: true,
+    cache: {
+        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    }
+});
+```
+
+#### User Sync
+Add the following code to enable user sync. IX strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the IX bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+
+```
+pbjs.setConfig({
+    userSync: {
+        iframeEnabled: true,
+        filterSettings: {
+            iframe: {
+                bidders: ['ix'],
+                filter: 'include'
+            }
+        }
+    }
+});
+```
+
+### 2. Include `ixBidAdapter` in your build process
 
 When running the build command, include `ixBidAdapter` as a module, as well as `dfpAdServerVideo` if you require video support.
 
@@ -348,8 +381,7 @@ to `'ix'` across all ad units that bids are being requested for does not exceed 
 
 ### Time-To-Live (TTL)
 
-All bids received from IX have a TTL of 35 seconds, after which time they become
-invalid.
+Banner bids from IX have a TTL of 300 seconds while video bids have a TTL of 1 hour, after which time they become invalid.
 
 If an invalid bid wins, and its associated ad is rendered, it will not count
 towards total impressions on IX's side.

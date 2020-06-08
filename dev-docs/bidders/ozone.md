@@ -6,6 +6,7 @@ biddercode: ozone
 hide: true
 media_types: banner
 gdpr_supported: true
+userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId
 ---
 
 #### Bid Params

@@ -6,8 +6,8 @@ title: Prebid Server | Developers | GDPR Mechanics
 ---
 # GDPR Mechanics
 
-Within the framework of [GDPR](https://www.gdpreu.org/), Prebid Server behaves like a [data processor](https://www.gdpreu.org/the-regulation/key-concepts/data-controllers-and-processors/).
-[Cookie syncs](./cookie-syncs.md) save the user ID for each Bidder in the cookie, and each Bidder's ID is sent back to that Bidder during the [auction](../endpoints/openrtb2/auction.md).
+Within the framework of [GDPR](https://gdpr.eu/), Prebid Server behaves like a [data processor](https://gdpr.eu/recital-81-the-use-of-processors/).
+[Cookie syncs](/prebid-server/developers/cookie-syncs.html) save the user ID for each Bidder in the cookie, and each Bidder's ID is sent back to that Bidder during the [auction](/prebid-server/endpoints/openrtb2/auction.html).
 Prebid Server does not use this ID for any other reason.
 
 ## IDs during Auction
@@ -33,5 +33,5 @@ For all endpoints, `gdpr` should be `1` if GDPR is in effect, `0` if not, and om
 `gdpr_consent` should be an [unpadded base64-URL](https://tools.ietf.org/html/rfc4648#page-7) encoded [Vendor Consent String](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Consent%20string%20and%20vendor%20list%20formats%20v1.1%20Final.md#vendor-consent-string-format-).
 
 `gdpr_consent` is required if `gdpr` is `1` and ignored if `gdpr` is `0`. If `gdpr` is omitted, the Prebid Server
-host company can decide whether it behaves like a `1` or `0` through the [app configuration](./configuration.md).
+host company can decide whether it behaves like a `1` or `0` through the [app configuration](https://github.com/prebid/prebid-server/blob/master/docs/developers/configuration.md).
 Callers are encouraged to send the `gdpr_consent` param if `gdpr` is omitted.
