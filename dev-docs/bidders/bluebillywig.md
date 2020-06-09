@@ -1,5 +1,5 @@
 ---
-layout: bluebillywig 
+layout: bidder 
 title: Blue Billywig
 description: Prebid Blue Billywig Bidder Adaptor
 biddercode: bluebillywig
