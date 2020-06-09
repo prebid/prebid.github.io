@@ -51,14 +51,14 @@ var setPbAdSlot = function setPbAdSlot(adunits) {
 
     // check if AdUnit.code has a div with a matching id value
     const adUnitCodeDiv = document.getElementById(adUnit.code);
-    if (!adUnitCodeDiv) {
+    if (adUnitCodeDiv) {
       // try to retrieve a data element from the div called data-adslotid.
       if (adUnitCodeDiv.dataset.adslotid) {
         adUnit.fpd.context.pbAdSlot = adUnitCodeDiv.dataset.adslotid;
         return;
       }
       // Else if AdUnit.code matched a div and it's a banner mediaType and googletag is present
-      if (adUnit.mediaType && typeof adUnit.mediaType === 'object' && adUnit.mediaType.banner && adUnit.mediaTypes.banner.sizes && window.googletag && googletag.apiReady) {
+      if (adUnit.mediaTypes && typeof adUnit.mediaTypes === 'object' && adUnit.mediaTypes.banner && adUnit.mediaTypes.banner.sizes && window.googletag && googletag.apiReady) {
         var gptSlots = googletag.pubads().getSlots();
         // look up the GPT slot name from the div.
         var linkedSlot = gptSlots.find(function (gptSlot) {
@@ -72,7 +72,7 @@ var setPbAdSlot = function setPbAdSlot(adunits) {
     }
     // Else, just use the AdUnit.code, assuming that it's an ad unit slot
     adUnit.fpd.context.pbAdSlot = adUnit.code;
-  };
+  });
 };
 
 pbjs.onEvent('beforeRequestBids', setPbAdSlot);

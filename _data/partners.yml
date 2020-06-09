@@ -53,6 +53,11 @@
   imgURL: /assets/images/partners/tech/datablocks_logo.png
   type: technology
   
+- company: LiveRamp 
+  link: https://liveramp.com/
+  imgURL: /assets/images/partners/tech/LiveRamp-Logo.png
+  type: technology
+  
 - company: Marfeel 
   link: https://www.marfeel.com/
   imgURL: /assets/images/partners/tech/marfeel.png
@@ -61,6 +66,11 @@
 - company: PubNative 
   link: https://pubnative.net/
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
+  type: technology
+
+- company: Rakuten Advertising
+  link: https://rakutenadvertising.com/
+  imgURL: /assets/images/partners/tech/rakuten_logo.png
   type: technology
 
 - company: StreamAMP 
@@ -118,6 +128,11 @@
   imgURL: /assets/images/partners/publisher/News_Corp_logo.png
   type: publisher
 
+- company: Orange Click Media
+  link: https://orangeclickmedia.com/
+  imgURL: /assets/images/partners/publisher/orangeclickmedia_logo.png
+  type: publisher
+
 - company: Publishers Clearing House
   link: https://pch.com/
   imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
@@ -132,6 +147,11 @@
   link: https://www.sortable.com/
   imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
+
+- company: AdForm
+  link: https://site.adform.com/
+  imgURL: /assets/images/partners/community/Adform-Logo.png
+  type: community
 
 - company: Adomik
   link: https://adomik.com/
@@ -151,6 +171,10 @@
 - company: CHEQ
   link: https://www.cheq.ai/
   imgURL: /assets/images/partners/community/CHEQ_Logo.png
+  type: community
+
+- company: ConnectAd
+  link: https://connectad.io
   type: community
 
 - company: DailyMotion
@@ -173,9 +197,25 @@
   imgURL: /assets/images/partners/community/ID5-Logo.png
   type: community
 
+- company: JW Player
+  link: https://jwplayer.com
+  type: community
+
 - company: LiveIntent
   link: https://www.liveintent.com
   imgURL: /assets/images/partners/community/liveintent_logo.png
+  type: community
+
+- company: Media.net
+  link: https://media.net
+  type: community
+
+- company: MobileFuse
+  link: https://mobilefuse.com/
+  type: community
+
+- company: Parrable
+  link: https://parrable.com
   type: community
 
 - company: Publica
@@ -186,4 +226,16 @@
 - company: PubWise
   link: https://pubwise.io
   imgURL: /assets/images/partners/community/Pubwise-logo.png
+  type: community
+
+- company: Simplaex
+  link: https://simplaex.com
+  type: community
+
+- company: Sovrn
+  link: https://sovrn.com
+  type: community
+
+- company: Yeahmobi
+  link: https://yeahmobi.com
   type: community

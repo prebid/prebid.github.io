@@ -196,7 +196,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {}
@@ -242,6 +242,8 @@ Here is a sample array entry for `validBidRequests[]`:
   bidRequestsCount: 1
   bidderRequestsCount: 1
   bidderWinsCount: 0
+  userId: {...}
+  schain: {...}
   mediaTypes: {banner: {...}}
   params: {...}
   src: "client"
@@ -256,6 +258,8 @@ Other notes:
 - **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
 
@@ -263,27 +267,24 @@ Here is a sample bidderRequest object:
 
 {% highlight js %}
 {
-  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
-  auctionStart: 1579746300522
-  bidderCode: "myBidderCode"
-  bidderRequestId: "15246a574e859f"
-  userId: {...}
-  schain: {...}
-  bids: [{...}]
-  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
-  refererInfo:
-    canonicalUrl: undefined
-    numIframes: 0
-    reachedTop: true
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+  auctionStart: 1579746300522,
+  bidderCode: "myBidderCode",
+  bidderRequestId: "15246a574e859f",
+  bids: [{...}],
+  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+  refererInfo: {
+    canonicalUrl: undefined,
+    numIframes: 0,
+    reachedTop: true,
     referer: "http://mypage?pbjs_debug=true"
+  }
 }
 {% endhighlight %}
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
-- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
@@ -356,38 +357,71 @@ The `interpretResponse` function will be called when the browser has received th
     const bidResponse = {
         requestId: BID_ID,
         cpm: CPM,
+        currency: CURRENCY,
         width: WIDTH,
         height: HEIGHT,
         creativeId: CREATIVE_ID,
         dealId: DEAL_ID,
-        currency: CURRENCY,
         netRevenue: true,
         ttl: TIME_TO_LIVE,
-        ad: CREATIVE_BODY
+        ad: CREATIVE_BODY,
+        dealId: DEAL_ID,
+        meta: {
+            networkId: NETWORK_ID,
+            networkName: NETWORK_NAME
+            agencyId: AGENCY_ID,
+            agencyName: AGENCY_NAME,
+            advertiserId: ADVERTISER_ID,
+            advertiserName: ADVERTISER_NAME,
+            advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS]
+            brandId: BRAND_ID,
+            brandName: BRAND_NAME,
+            primaryCatId: IAB_CATEGORY,
+            secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
+            mediaType: MEDIA_TYPE
+        }
     };
     bidResponses.push(bidResponse);
     return bidResponses;
 
 {% endhighlight %}
 
-The parameters of the `bidObject` are:
+{: .alert.alert-info :}
+Please provide as much information as possible in the `meta` object. Publishers use this
+data for tracking down bad creatives and ad blocking. The advertiserDomains field is
+particularly useful. Some of these fields may become required in a future release.
+
+The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
 | `requestId`  | Required                                    | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
 | `cpm`        | Required                                    | The bid price. We recommend the most granular price a bidder can provide                                                                      | 3.5764                               |
+| `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
 | `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
-| `currency`   | Required                                    | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
 | `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
+| `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
+| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | 1111             |
+| `meta.networkName`     | Optional                                    | Network/DSP Name               | `"NetworkN"`                |
+| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | 2222                          |
+| `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
+| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | 3333                          |
+| `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
+| `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
+| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
+| `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
+| `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
+| `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
+| `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
@@ -402,18 +436,26 @@ See below for an example implementation.  For more examples, search for `getUser
 {% highlight js %}
 
 {
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;
@@ -634,7 +676,7 @@ Adapter must add following new properties to bid response
 {% highlight js %}
 {
   meta: {
-    iabSubCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
+    primaryCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
   },
   video: {
     context: 'adpod',
@@ -693,7 +735,7 @@ getIabSubCategory(bidderCode, pCategory)
 {% highlight js %}
 
 import { getIabSubCategory } from '../src/adapters/bidderFactory';
-let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+let primaryCatId = getIabSubCategory(bidderCode, pCategory)
 
 {% endhighlight %}
 
@@ -886,18 +928,26 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses) {
-        const syncs = []
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+       const syncs = []
+
+       var gdpr_params;
+       if (typeof gdprConsent.gdprApplies === 'boolean') {
+           gdpr_params = `gdpr=${Number(gdprConsent.gdprApplies)}&gdpr_consent=${gdprConsent.consentString}`;
+       } else {
+           gdpr_params = `gdpr_consent=${gdprConsent.consentString}`;
+       }
+
         if (syncOptions.iframeEnabled) {
             syncs.push({
                 type: 'iframe',
-                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html'
+                url: '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html?' + gdpr_params
             });
         }
         if (syncOptions.pixelEnabled && serverResponses.length > 0) {
             syncs.push({
                 type: 'image',
-                url: serverResponses[0].body.userSync.url
+                url: serverResponses[0].body.userSync.url + gdpr_params
             });
         }
         return syncs;
