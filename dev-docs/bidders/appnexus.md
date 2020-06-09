@@ -2,14 +2,16 @@
 layout: bidder
 title: AppNexus
 description: Prebid AppNexus Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: appnexus
-biddercode_longer_than_12: false
 hide: true
-prebid_1_0_supported : true
 media_types: banner, video, native
 gdpr_supported: true
+prebid_member: true
+userIds: criteo
+schain_supported: true
+coppa_supported: true
+usp_supported: true
+tcf2_supported: true
 ---
 
 ### Table of Contents
@@ -20,6 +22,8 @@ gdpr_supported: true
 - [App Object](#appnexus-app-object)
 - [Custom Targeting keys](#custom-targeting-keys)
 - [Passing Keys Without Values](#appnexus-no-value)
+- [User Sync in AMP](#appnexus-amp)
+- [Debug Auction](#appnexus-debug-auction)
 
 <a name="appnexus-bid-params" />
 
@@ -32,7 +36,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
-| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID.                                                     | `'234234'`                                            | `string`         |
+| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID. The `placementID` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string`value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
 | `member`            | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
 | `invCode`           | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
 | `user`              | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
@@ -42,7 +46,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 | `video`             | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 | `app`               | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
 | `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here.                | `0.90`                                                | `float`          |
-| `position`          | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `0`; Above the fold: `1`; Below the fold: `2`                                                    | `1`                                                   | `integer`        |
+| `position`          | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
 | `trafficSourceCode` | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
 | `supplyType`        | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
 | `pubClick`          | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using AppNexus click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
@@ -148,3 +152,32 @@ keywords: {
   otherKeyword: ['']
 }
 ```
+
+<a name="appnexus-amp" />
+
+#### User Sync in AMP
+
+If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code> 
+
+<a name="appnexus-debug-auction" />
+
+#### Debug Auction
+
+{: .alert.alert-danger :}
+Enabling the AppNexus Debug Auction feature should only be done for diagnosing the AppNexus auction. Do not enable this feature in a production setting where it may impact users.
+
+To understand what is happening behind the scenes during an auction, you can enable a debug auction by adding an `apn_prebid_debug` cookie with a JSON string. For example:
+
+{% highlight js %}
+{ "enabled": true, "dongle": "QWERTY", "debug_timeout": 1000, "member_id": 958 }
+{% endhighlight %}
+
+To view the results of the debug auction, add the `pbjs_debug=true` query string parameter and open your browser's developer console.
+
+{: .table .table-bordered .table-striped }
+| Name              | Description                                                     | Example               | Type             |
+|-------------------|-----------------------------------------------------------------|-----------------------|------------------|
+| `enabled`         | Toggle the debug auction to occur                               | `true`                | `boolean`        |
+| `dongle`          | Your account's unique debug password.                           | `QWERTY`              | `string`         |
+| `member_id`       | The ID of the member running the debug auction                  | `958`                 | `integer`        |
+| `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |

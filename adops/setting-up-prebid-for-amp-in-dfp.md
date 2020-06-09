@@ -1,17 +1,18 @@
 ---
-layout: page
-title: Setting up Prebid for AMP in DFP
-head_title: Setting up Prebid for AMP in DFP
-description: Setting up Prebid for AMP in DFP
+layout: page_v2
+title: Setting up Prebid for AMP in Google Ad Manager
+head_title: Setting up Prebid for AMP in Google Ad Manager
+description: Setting up Prebid for AMP in Google Ad Manager
 pid: 3
 hide: false
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Setting up Prebid for AMP in DFP
+
+# Setting up Prebid for AMP in Google Ad Manager
 {: .no_toc}
 
 This page describes how to set up a line item and creative to serve on AMP pages with Prebid.js.
@@ -46,10 +47,14 @@ Ensure that the **Serve into a SafeFrame** box is checked.
 
 Enter the below code snippet in the **Code snippet** text area.
 
-{: .alert.alert-success :}
-You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+{% capture sendAllBidsAlert %}
+If you're using the `Send All Bids` scenario (where every bidder has a separate
+order), the creative and targeting will be different from the example shown here. See [Send All Bids](/adops/send-all-bids-adops.html) for details.
+{% endcapture %}
 
-{% highlight javascript %}
+{% include alerts/alert_important.html content=sendAllBidsAlert %}
+
+{% highlight html %}
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -57,6 +62,7 @@ You can always get the latest version of the creative code below from [the AMP e
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+  ucTagData.hbPb = "%%PATTERN:hb_pb%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
@@ -64,8 +70,10 @@ You can always get the latest version of the creative code below from [the AMP e
     console.log(e);
   }
 </script>
-
 {% endhighlight %}
+
+{: .alert.alert-success :}
+You can always get the latest version of the creative code from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
 
 ## Further Reading
@@ -73,7 +81,7 @@ You can always get the latest version of the creative code below from [the AMP e
 + [Show Prebid Ads on AMP Pages]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html)
 + [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
 
-</div>
+
 
 <!-- Reference Links -->
 

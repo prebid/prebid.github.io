@@ -2,36 +2,17 @@
 layout: bidder
 title: Nano Interactive
 description: Prebid Nano Interactive Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
 hide: true
 biddercode: nanointeractive
-biddercode_longer_than_12: true
-prebid_1_0_supported : true
 media_types: banner
 gdpr_supported: true
 ---
 
-<br>
 ### Requirements:
 To be able to get identification key (`pid`), please contact us at <br>
 `https://www.nanointeractive.com/publishers` <br>
-<br><br><br>
 
-#### Send All Bids Ad Server Keys:
-(truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
-
-`hb_adid_nanointeract`
-`hb_bidder_nanointera`
-`hb_pb_nanointeractiv`
-`hb_format_nanointera`
-`hb_size_nanointeract`
-`hb_source_nanointera`
-
-#### Default Deal ID Keys:
-`hb_deal_nanointeract`
-
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                      | Example                      | Type     |

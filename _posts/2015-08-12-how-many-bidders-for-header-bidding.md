@@ -22,8 +22,7 @@ Luckily, the publishers using Prebid.js are curious about these questions too. W
 
 ### Q1: How is revenue affected by different factors?
 
-{: .pb-lg-img :}
-![Prebid Diagram Image]({{ site.github.url }}/assets/images/blog/experiments/revenue.png)
+![Prebid Diagram Image]({{ site.github.url }}/assets/images/blog/experiments/revenue.png){: .pb-lg-img :}
 (_the above data is normalized to CPM = 1 for anonymity_)
 
 Revenue is mainly determined by:
@@ -51,8 +50,7 @@ Conclusions:
 
 ### Q2: How is page content load time affected?
 
-{: .pb-lg-img :}
-![Prebid Diagram Image]({{ site.github.url }}/assets/images/blog/experiments/page-load-time.png)
+![Prebid Diagram Image]({{ site.github.url }}/assets/images/blog/experiments/page-load-time.png){: .pb-lg-img :}
 _(The above page has on average 130 HTTP requests, 1.5MB data transferred per refresh)_
 
 
@@ -72,8 +70,7 @@ Conclusions:
 
 ### Q3: How about ad load time?
 
-{: .pb-lg-img :}
-![Prebid Diagram Image]({{ site.github.url }}/assets/images/blog/experiments/ad-load-time.png)
+![Prebid Diagram Image]({{ site.github.url }}/assets/images/blog/experiments/ad-load-time.png){: .pb-lg-img :}
 _(The above page has on average 130 HTTP requests, 1.5MB data transferred per refresh)_
 
 Ad load time measures how long a user has to wait before he/she can see the ad. This is less important than the page's content load time. However, the initial blank space in the ad unit, or the page elements shifting around due to a late ad load, can both demage the user experience.

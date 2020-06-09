@@ -1,17 +1,15 @@
 ---
 redirect_from: "/getting-started.html"
-layout: page
+layout: page_v2
 title: Getting Started
 head_title: Getting started with Prebid.js for header bidding
 description: An overview of Prebid, how it works, basic templates and examples, and more.
-pid: 10
-top_nav_section: overview
-nav_section: intro
+sidebarType: 0
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Getting Started
+
+# Getting Started with Prebid.js
 {:.no_toc}
 
 This page has high-level instructions for getting started with Prebid.js.
@@ -33,7 +31,7 @@ At a high level, the way Prebid.js works is:
 - Your ad server chooses the winning bid to serve based on line items targeting keywords that match price ranges
 - The page serves the creative from the winning bid
 
-For a more in-depth explanation of how header bidding works, see [Header Bidding Explained Step-by-Step](http://www.adopsinsider.com/header-bidding/header-bidding-step-by-step/).
+For a more in-depth explanation of how header bidding works, see [Header Bidding Explained Step-by-Step](https://www.adopsinsider.com/header-bidding/header-bidding-step-by-step/).
 
 ## Step 1. Engineering adds Prebid code to the page
 
@@ -53,8 +51,6 @@ To see how it works, follow the instructions in [Send all bids to the ad server 
 
 For more information, check out the following:
 
-+ [Before You Start]({{site.baseurl}}/adops.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
-+ [Docs by Ad Server]({{site.baseurl}}/adops/docs-by-ad-server.html): Ad ops docs arranged by ad server.
-+ [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
-
-</div>
++ [Before You Start](/adops/before-you-start.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
++ [Supported Ad Servers](/adops/before-you-start.html#supported-ad-servers): Ad ops docs arranged by ad server.
++ [Docs by Format](/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).

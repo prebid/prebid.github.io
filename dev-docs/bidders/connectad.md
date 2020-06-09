@@ -1,28 +1,23 @@
 ---
 layout: bidder
 title: ConnectAd
-description: Prebid Serverbid Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
+description: ConnectAd Prebid Adaptor
 hide: true
-
 biddercode: connectad
-
-aliasCode: serverbid
-
-biddercode_longer_than_12: false
-
-prebid_1_0_supported: true
-
+media_types: banner
+gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+userIds: digitrust, id5Id, liveIntentId, parrableId, pubCommonId, unifiedId
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
-| `siteId`    | required | The site ID from ConnectAd.    | `12345` | `integer` |
-| `networkId` | required | The network ID from ConnectAd. | `10047` | `integer` |
+| `siteId`    | required | The site ID from ConnectAd.    | 12345   | integer   |
+| `networkId` | required | The network ID from ConnectAd. | 10047   | integer   |
+| `floorprice`| optional | Requested Floorprice           | 0.15    | integer   |
