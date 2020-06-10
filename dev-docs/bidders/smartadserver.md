@@ -24,7 +24,6 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 | `formatId` | required | The placement format ID                                                                                        | `1234`                                                               | `integer` |
 | `domain`   | optional | The network domain (default see example)                                                                       | `'http://prg.smartadserver.com', 'https://prg.smartadserver.com'`    | `string`  |
 | `target`   | optional | The keyword targeting                                                                                          | `'sport=tennis'`                                                     | `string`  |
-| `currency` | optional | Override the default currency code (ISO 4217) of the ad request. (Default: `'USD'`)                            | `'EUR'`                                                              | `string`  |
 | `bidfloor` | optional | Bid floor for this placement in USD or in the currency specified by the `currency` parameter. (Default: `0.0`) | `0.42`                                                               | `float`   |
 | `appName`  | optional | Mobile application name                                                                                        | `'Smart AdServer Preview'`                                           | `string`  |
 | `buId`     | optional | Mobile application bundle ID                                                                                   | `'com.smartadserver.android.dashboard'`                              | `string`  |
@@ -41,4 +40,4 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 | Name         | Scope    | Description                                                                                                             | Example                | Type      |
 |--------------|----------|-------------------------------------------------------------------------------------------------------------------------|------------------------|-----------|
 | `protocol`   | optional | Maximum open RTB video protocol supported                                                                               | `8` (VAST 4.0 wrapper) | `integer` |
-| `startDelay` | optional | Allowed values: 1 (generic pre-roll), 2 (generic mid-roll), 3 (generic post-roll), 0 (all positions, default)           | `1`                    | `integer` |
+| `startDelay` | optional | Allowed values: 1 (generic pre-roll, default), 2 (generic mid-roll), 3 (generic post-roll)                               | `1`                    | `integer` |
