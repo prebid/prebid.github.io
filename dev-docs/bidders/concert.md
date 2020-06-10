@@ -12,6 +12,6 @@ usp_supported: true
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                 | Example | Type     |
-| ----------- | -------- | --------------------------- | ------- | -------- |
-| `partnerId` | required | The partner id assigned by concert. | `partner_name` | `string` |
+| Name        | Scope    | Description                         | Example          | Type     |
+| ----------- | -------- | ----------------------------------- | ---------------- | -------- |
+| `partnerId` | required | The partner id assigned by concert. | `'partner_name'` | `string` |
