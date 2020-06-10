@@ -242,6 +242,8 @@ Here is a sample array entry for `validBidRequests[]`:
   bidRequestsCount: 1
   bidderRequestsCount: 1
   bidderWinsCount: 0
+  userId: {...}
+  schain: {...}
   mediaTypes: {banner: {...}}
   params: {...}
   src: "client"
@@ -256,6 +258,8 @@ Other notes:
 - **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
 
@@ -263,27 +267,24 @@ Here is a sample bidderRequest object:
 
 {% highlight js %}
 {
-  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
-  auctionStart: 1579746300522
-  bidderCode: "myBidderCode"
-  bidderRequestId: "15246a574e859f"
-  userId: {...}
-  schain: {...}
-  bids: [{...}]
-  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
-  refererInfo:
-    canonicalUrl: undefined
-    numIframes: 0
-    reachedTop: true
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+  auctionStart: 1579746300522,
+  bidderCode: "myBidderCode",
+  bidderRequestId: "15246a574e859f",
+  bids: [{...}],
+  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+  refererInfo: {
+    canonicalUrl: undefined,
+    numIframes: 0,
+    reachedTop: true,
     referer: "http://mypage?pbjs_debug=true"
+  }
 }
 {% endhighlight %}
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
-- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
@@ -377,6 +378,7 @@ The `interpretResponse` function will be called when the browser has received th
             brandName: BRAND_NAME,
             primaryCatId: IAB_CATEGORY,
             secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
+            mediaType: MEDIA_TYPE
         }
     };
     bidResponses.push(bidResponse);
@@ -419,6 +421,7 @@ The parameters of the `bidResponse` object are:
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
+| `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
@@ -673,7 +676,7 @@ Adapter must add following new properties to bid response
 {% highlight js %}
 {
   meta: {
-    iabSubCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
+    primaryCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
   },
   video: {
     context: 'adpod',
@@ -732,7 +735,7 @@ getIabSubCategory(bidderCode, pCategory)
 {% highlight js %}
 
 import { getIabSubCategory } from '../src/adapters/bidderFactory';
-let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+let primaryCatId = getIabSubCategory(bidderCode, pCategory)
 
 {% endhighlight %}
 
