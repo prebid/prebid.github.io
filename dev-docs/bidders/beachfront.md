@@ -8,6 +8,7 @@ media_types: video
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId
+prebid_member: true
 ---
 
 ### Bid Params

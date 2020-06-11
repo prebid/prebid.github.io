@@ -6,6 +6,7 @@ hide: true
 biddercode: adform
 media_types: video
 gdpr_supported: true
+prebid_member: true
 ---
 
 
