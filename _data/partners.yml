@@ -138,6 +138,11 @@
   imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
   type: publisher
 
+- company: PubWise
+  link: https://pubwise.io
+  imgURL: /assets/images/partners/publisher/Pubwise-logo.png
+  type: publisher
+
 - company: SHE Media
   link: https://www.shemedia.com/
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
@@ -221,11 +226,6 @@
 - company: Publica
   link: https://getpublica.com
   imgURL: /assets/images/partners/community/Publica-Logo.png
-  type: community
-
-- company: PubWise
-  link: https://pubwise.io
-  imgURL: /assets/images/partners/community/Pubwise-logo.png
   type: community
 
 - company: Simplaex
