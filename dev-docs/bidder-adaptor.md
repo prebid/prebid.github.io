@@ -995,6 +995,7 @@ registerBidder(spec);
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`
     - If you support COPPA, add `coppa_supported: true`
     - If you support SChain, add `schain_supported: true`
+    - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder.
     - If you're a member of Prebid.org, add `prebid_member: true`
 - Submit both the code and docs pull requests
 
