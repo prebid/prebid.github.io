@@ -12,6 +12,7 @@ schain_supported: true
 media_types: video
 userIds: digitrust, identityLink, liveIntentId, pubCommonId, unifiedId
 prebid_member: true
+safeframes_ok: true
 ---
 
 ### Note:

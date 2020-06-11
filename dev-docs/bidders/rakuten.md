@@ -4,6 +4,7 @@ title: Rakuten
 description: Prebid Rakuten Bidder Adaptor
 hide: true
 biddercode: rakuten
+prebid_member: true
 ---
 
 
