@@ -267,17 +267,18 @@ Here is a sample bidderRequest object:
 
 {% highlight js %}
 {
-  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
-  auctionStart: 1579746300522
-  bidderCode: "myBidderCode"
-  bidderRequestId: "15246a574e859f"
-  bids: [{...}]
-  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
-  refererInfo:
-    canonicalUrl: undefined
-    numIframes: 0
-    reachedTop: true
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+  auctionStart: 1579746300522,
+  bidderCode: "myBidderCode",
+  bidderRequestId: "15246a574e859f",
+  bids: [{...}],
+  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+  refererInfo: {
+    canonicalUrl: undefined,
+    numIframes: 0,
+    reachedTop: true,
     referer: "http://mypage?pbjs_debug=true"
+  }
 }
 {% endhighlight %}
 

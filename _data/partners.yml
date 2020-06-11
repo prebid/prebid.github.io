@@ -53,6 +53,11 @@
   imgURL: /assets/images/partners/tech/datablocks_logo.png
   type: technology
   
+- company: LiveRamp 
+  link: https://liveramp.com/
+  imgURL: /assets/images/partners/tech/LiveRamp-Logo.png
+  type: technology
+  
 - company: Marfeel 
   link: https://www.marfeel.com/
   imgURL: /assets/images/partners/tech/marfeel.png
@@ -133,6 +138,11 @@
   imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
   type: publisher
 
+- company: PubWise
+  link: https://pubwise.io
+  imgURL: /assets/images/partners/publisher/Pubwise-logo.png
+  type: publisher
+
 - company: SHE Media
   link: https://www.shemedia.com/
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
@@ -192,7 +202,7 @@
   imgURL: /assets/images/partners/community/ID5-Logo.png
   type: community
 
-- company: JWPlayer
+- company: JW Player
   link: https://jwplayer.com
   type: community
 
@@ -216,11 +226,6 @@
 - company: Publica
   link: https://getpublica.com
   imgURL: /assets/images/partners/community/Publica-Logo.png
-  type: community
-
-- company: PubWise
-  link: https://pubwise.io
-  imgURL: /assets/images/partners/community/Pubwise-logo.png
   type: community
 
 - company: Simplaex
