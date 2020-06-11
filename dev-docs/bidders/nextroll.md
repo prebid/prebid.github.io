@@ -4,7 +4,7 @@ title: NextRoll
 description: Prebid NextRoll Bidder Adapter
 hide: true
 biddercode: nextroll
-media_types: banner, native
+media_types: display, native
 gdpr_supported: false
 usp_supported: true
 ---
