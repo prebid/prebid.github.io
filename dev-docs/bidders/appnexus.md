@@ -22,6 +22,7 @@ tcf2_supported: true
 - [App Object](#appnexus-app-object)
 - [Custom Targeting keys](#custom-targeting-keys)
 - [Passing Keys Without Values](#appnexus-no-value)
+- [User Sync in AMP](#appnexus-amp)
 - [Debug Auction](#appnexus-debug-auction)
 
 <a name="appnexus-bid-params" />
@@ -35,9 +36,10 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
-| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID. The `placementID` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string`value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
+| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID. The `placementID` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string` value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
 | `member`            | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
 | `invCode`           | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
+| `publisherId`       | optional | The publisher ID from AppNexus. It is used by the AppNexus end point to identify the publisher when `placementId` is not provided and `invCode` goes wrong. The `publisherId` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred.                                                                                                                    | `12345`                                             | `integer`         |
 | `user`              | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes` | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule`    | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
@@ -151,6 +153,12 @@ keywords: {
   otherKeyword: ['']
 }
 ```
+
+<a name="appnexus-amp" />
+
+#### User Sync in AMP
+
+If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code> 
 
 <a name="appnexus-debug-auction" />
 

@@ -1,9 +1,10 @@
 ---
 layout: bidder
-title: RDN
-description: Prebid RDN Bidder Adaptor
+title: Rakuten
+description: Prebid Rakuten Bidder Adaptor
 hide: true
-biddercode: rdn
+biddercode: rakuten
+prebid_member: true
 ---
 
 
@@ -16,7 +17,7 @@ biddercode: rdn
 
 ### Configuration
 
-The RDN adapter allows the endpoint to be configured with the following configuration option.  
+The Rakuten adapter allows the endpoint to be configured with the following configuration option.  
 
 ``` javascript
 pbjs.setConfig({

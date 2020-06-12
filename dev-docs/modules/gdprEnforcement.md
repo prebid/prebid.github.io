@@ -58,7 +58,7 @@ These are the fields related to GDPR enforcment that are supported in the [`cons
 | gdpr.rules[].purpose | `String` | The only currently supported value is "storage", corresponding to TCF Purpose 1. | "storage" |
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent or not. The default in Prebid.js 3.x is not to enforce purposes. The plan for Prebid.js 4.0 is to enforce consent for Purpose 1 and no others. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose or not. The default in Prebid.js 3.x is not to enforce vendor signals. The plan for Prebid.js 4.0 to enforce signals for Purpose 1 and no others. | true |
-| gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | true |
+| gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
 
 Note:
 
@@ -86,7 +86,7 @@ pbjs.setConfig({
 });
 ```
 
-2) Enforce that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, BidderA is a special case - the publisher has entrusted BidderA for this activity regardless of what the user says.
+2) Enforce that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, BidderA is a special case - the publisher has entrusted BidderA for this activity.
 
       ...
       rules: [{
@@ -105,7 +105,7 @@ pbjs.setConfig({
         enforceVendor: false,
       }
 
-4) Enforce that the user consents to DeviceAccess as an activity, but don't consider their per-vendor selection for any bidders except BidderA. BidderA is entrusted to enforce the rules on their own.
+4) Enforce that the user consents to DeviceAccess as an activity, but don't consider their per-vendor selection. BidderA is entrusted to enforce the rules on their own.
 
       ...
       rules: [{
@@ -133,7 +133,7 @@ pbjs.setConfig({
         enforceVendor: true
       }
 
-7) Don't enforce the user's DeviceAccess consent, but do consider their per-vendor selection; don't enforce vendor selection for BidderA.
+7) Don't enforce the user's DeviceAccess consent, but do consider their per-vendor selection except for BidderA.
 
       ...
       rules: [{
