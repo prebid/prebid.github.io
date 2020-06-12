@@ -6,6 +6,8 @@ hide: true
 biddercode: adformOpenRTB
 media_types: no-display, native
 gdpr_supported: true
+usp_supported: true
+tcf2_supported: true
 prebid_member: true
 ---
 
