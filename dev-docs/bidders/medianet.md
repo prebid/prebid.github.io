@@ -8,6 +8,7 @@ gdpr_supported: true
 media_types: banner,native
 usp_supported: true
 userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+prebid_member: true
 ---
 
 ### Bid Params
