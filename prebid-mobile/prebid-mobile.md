@@ -58,7 +58,7 @@ The following diagram shows how the Prebid Mobile header bidding solution works.
 
 6.  If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JavaScript to the ad server's SDK.
 
-7.  The Prebid Mobile creative JavaScript will fetch and render the corresponding creative con
+7.  The Prebid Mobile creative JavaScript will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
 
 ## Mobile Analytics
 
