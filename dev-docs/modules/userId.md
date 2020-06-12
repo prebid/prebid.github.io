@@ -494,6 +494,29 @@ pbjs.setConfig({
 })
 ```
 
+### netID
+
+The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
+
+The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
+
+#### netID Examples
+
+1) Publisher stores netID via his own logic
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "netId",
+            value: {
+               "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Parrable ID
 
 The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions.
@@ -604,6 +627,50 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Shared ID User ID Submodule
+
+Shared ID User ID Module generates a UUID that can be utilized to improve user matching.This module enables timely synchronization which handles sharedId.org optout. This module does not require any registration.  
+
+#### Building Prebid with Shared Id Support
+Your Prebid build must include the modules for both **userId** and **sharedId** submodule. 
+Add it to your Prebid.js package with:
+
+ex: $ gulp build --modules=userId,sharedIdSystem
+
+#### Prebid Params
+
+Individual params may be set for the Shared ID User ID Submodule. 
+```
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: 'sharedId',
+            params: {
+                      syncTime: 60 // in seconds, default is 24 hours
+             },
+            storage: {
+                name: 'sharedid',
+                type: 'cookie',
+                expires: 28
+            },
+        }]
+    }
+});
+```
+
+#### SharedId Configuration
+
+{: .table .table-bordered .table-striped }
+| Params under usersync.userIds[]| Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
+| params | Optional | Object | Details for sharedId syncing. | |
+| params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
+| storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
+| storage.type | Required | String | This is where the results of the user ID will be stored. The recommended method is `localStorage` by specifying `html5`. | `"html5"` |
+| storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"sharedid"` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `28` |
+
 ### Unified ID
 
 The Unified ID solution is provided by adsrvr.org and the Trade Desk.
@@ -693,74 +760,6 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-### netID
-
-The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
-
-The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
-
-#### netID Examples
-
-1) Publisher stores netID via his own logic
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "netId",
-            value: {
-               "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
-            }
-        }]
-    }
-});
-{% endhighlight %}
-
-### Shared ID User ID Submodule
-
-Shared ID User ID Module generates a UUID that can be utilized to improve user matching.This module enables timely synchronization which handles sharedId.org optout. This module does not require any registration.  
-
-#### Building Prebid with Shared Id Support
-Your Prebid build must include the modules for both **userId** and **sharedId** submodule. 
-Add it to your Prebid.js package with:
-
-ex: $ gulp build --modules=userId,sharedIdSystem
-
-#### Prebid Params
-
-Individual params may be set for the Shared ID User ID Submodule. 
-```
-pbjs.setConfig({
-    usersync: {
-        userIds: [{
-            name: 'sharedId',
-            params: {
-                      syncTime: 60 // in seconds, default is 24 hours
-             },
-            storage: {
-                name: 'sharedid',
-                type: 'cookie',
-                expires: 28
-            },
-        }]
-    }
-});
-```
-
-#### SharedId Configuration
-
-{: .table .table-bordered .table-striped }
-| Params under usersync.userIds[]| Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
-| params | Optional | Object | Details for sharedId syncing. | |
-| params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
-| storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
-| storage.type | Required | String | This is where the results of the user ID will be stored. The recommended method is `localStorage` by specifying `html5`. | `"html5"` |
-| storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"sharedid"` |
-| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `28` |
-
 
 ## Adapters Supporting the User ID Sub-Modules
 
