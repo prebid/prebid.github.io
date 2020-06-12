@@ -717,6 +717,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
