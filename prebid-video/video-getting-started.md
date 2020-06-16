@@ -154,6 +154,7 @@ This section contains working examples of instream and outstream video ads for v
 
 #### Instream
 
++ [AdPlayer.Pro]({{site.baseurl}}/examples/video/instream/adplayerpro/pb-ve-adplayerpro.html)
 + [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
 + [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
 + [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
@@ -171,6 +172,7 @@ This section contains working examples of instream and outstream video ads for v
 
 ### Using Prebid Server 
 
++ [AdPlayer.Pro]({{site.baseurl}}/examples/video/server/adplayerpro/pbs-ve-adplayerpro.html)
 + [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
 + [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
 + [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
