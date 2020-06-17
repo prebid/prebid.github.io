@@ -9,7 +9,7 @@ gdpr_supported: true
 schain_supported: true
 tcf2_supported: true
 usp_supported: true
-eids_supported: true
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 ### Note:
