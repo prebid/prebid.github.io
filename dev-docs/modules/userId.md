@@ -818,7 +818,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
-| Lotame Panorama ID | Lotame | bidRequest.userid.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
+| Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableid | `"eidVersion.encryptionKeyReference.encryptedValue"` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
