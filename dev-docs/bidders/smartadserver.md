@@ -32,7 +32,6 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 | `ckId`     | optional | Unique Smart AdServer user ID                                                                                  | `1234567890123456789`                                                                                              | `integer` |
 | `video`    | optional | Parameter object for instream video. See [video Object](#smartadserver-video-object)                           | `{}`                                                                                                               | `object`  |
 | `schain`   | optional | Supply Chain                                                                                                   | `'1.0,1!exchange1.com,1234,1,bid-request-1,publisher,publisher.com'`                                               | `string`  |
-| `userId`   | optional | The UserId Module                                                                                             | `{ britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId }` | `object`  |
 
 <a name="smartadserver-video-object" />
 
