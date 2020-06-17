@@ -68,7 +68,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`,`"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -495,6 +495,29 @@ pbjs.setConfig({
 })
 ```
 
+### netID
+
+The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
+
+The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
+
+#### netID Examples
+
+1) Publisher stores netID via his own logic
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "netId",
+            value: {
+               "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Lotame Panorama ID
 
 Lotame Panorama is a suite of data-enrichment solutions for digital advertising that empowers marketers, agencies, publishers and media companies to transform consumer personas into addressable audiences. At the heart of Lotame Panorama is the Panorama ID, a people-based identifier powered by deterministic and probabilistic data, available across the cookie-challenged web and all browsers.
@@ -536,7 +559,7 @@ gulp build --modules=parrableIdSystem
 
 #### Parrable ID Registration
 
-Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Parter Client IDs.
+Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Partner Client IDs.
 
 The Parrable privacy policy as at [https://www.parrable.com/privacy-policy/](https://www.parrable.com/privacy-policy/).
 
@@ -553,7 +576,10 @@ In addition to the parameters documented above in the Basic Configuration sectio
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
 
-We recommend setting `storage.expires` to no more than`364` days, which is the default cookie expiration that Parrable uses in the standalone Parrable integration.
+The Parrable ID system manages a cookie with the name of `_parrable_id` containing the ID and optout states of the user.
+This cookie is used also by standalone Parrable integrations outside of Prebid.
+It is for this reason that the cookie name is not configurable for the Parrable ID system.
+
 
 #### Parrable ID Examples
 
@@ -564,11 +590,6 @@ pbjs.setConfig({
             name: `'parrableId'`,
             params: {
                 partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
-            },
-            storage: {
-                type: `'cookie'`,
-                name: `'_parrable_eid'`,     // create a cookie with this name
-                expires: 364               // cookie can last for up to 1 year
             }
         }],
         syncDelay: 1000
@@ -634,6 +655,50 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Shared ID User ID Submodule
+
+Shared ID User ID Module generates a UUID that can be utilized to improve user matching.This module enables timely synchronization which handles sharedId.org optout. This module does not require any registration.  
+
+#### Building Prebid with Shared Id Support
+Your Prebid build must include the modules for both **userId** and **sharedId** submodule. 
+Add it to your Prebid.js package with:
+
+ex: $ gulp build --modules=userId,sharedIdSystem
+
+#### Prebid Params
+
+Individual params may be set for the Shared ID User ID Submodule. 
+```
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: 'sharedId',
+            params: {
+                      syncTime: 60 // in seconds, default is 24 hours
+             },
+            storage: {
+                name: 'sharedid',
+                type: 'cookie',
+                expires: 28
+            },
+        }]
+    }
+});
+```
+
+#### SharedId Configuration
+
+{: .table .table-bordered .table-striped }
+| Params under usersync.userIds[]| Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
+| params | Optional | Object | Details for sharedId syncing. | |
+| params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
+| storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
+| storage.type | Required | String | This is where the results of the user ID will be stored. The recommended method is `localStorage` by specifying `html5`. | `"html5"` |
+| storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"sharedid"` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `28` |
 
 ### Unified ID
 
@@ -725,30 +790,6 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### netID
-
-The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
-
-The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
-
-#### netID Examples
-
-1) Publisher stores netID via his own logic
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "netId",
-            value: {
-               "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
-            }
-        }]
-    }
-});
-{% endhighlight %}
-
-
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -777,10 +818,12 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
+| Lotame Panorama ID | Lotame | bidRequest.userid.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableid | `"eidVersion.encryptionKeyReference.encryptedValue"` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
+| Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 
 For example, the adapter code might do something like:
 
@@ -844,9 +887,22 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "11111111"
                 }]
             },{
+                "source": "crwdcntrl.net",
+                "uids": [{
+                    "id": "e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"
+                }]
+            },{
                 "source": "netid.de",
                 "uids": [{
                     "id": "11111111"
+                }]
+            },{
+               "source": "sharedid.org",  // Shared ID
+                "uids": [{
+                    "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
+                    "ext": {
+                        "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
+                    }
                 }]
             }],
             "digitrust": {              // DigiTrust is not in the eids section
