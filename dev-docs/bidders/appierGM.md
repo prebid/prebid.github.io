@@ -3,13 +3,11 @@ layout: bidder
 title: AppierGM
 description: Prebid Appier Bidder Adapter
 biddercode: appierGM
-aliasCode: appier
+aliasCode: appier
 hide: true
 media_types: banner
 gdpr_supported: true
 ---
-
-<a name="appier-bid-params" />
 
 #### Bid Params
 
@@ -17,9 +15,6 @@ gdpr_supported: true
 | Name      | Scope    | Description               | Example    | Type     |
 |-----------|----------|---------------------------|------------|----------|
 | `hzid`    | required | The zone ID from Appier.  | `"WhM5WIOp"` | `string` |
-
-
-<a name="appier-custom-settings" />
 
 #### Custom Settings (Optional)
 
