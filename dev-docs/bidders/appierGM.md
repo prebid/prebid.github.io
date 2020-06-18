@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: AppierGM
-description: Prebid Appier Bidder Adaptor
+description: Prebid Appier Bidder Adapter
 biddercode: appierGM
 aliasCode: appier
 hide: true

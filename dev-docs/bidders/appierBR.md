@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: AppierBR
-description: Prebid Appier Bidder Adaptor
+description: Prebid Appier Bidder Adapter
 biddercode: appierBR
 aliasCode: appier
 hide: true
