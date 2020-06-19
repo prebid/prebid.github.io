@@ -1341,6 +1341,14 @@
   subgroup: 1
 
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Ad Player Pro'
+  link: /examples/video/instream/adplayerpro/pb-ve-adplayerpro.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
   title: '&nbsp;&nbsp;Brid'
   link: /examples/video/instream/brid/pb-ve-brid.html
   isHeader: 0
