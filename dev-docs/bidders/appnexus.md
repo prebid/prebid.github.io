@@ -61,7 +61,6 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 {: .table .table-bordered .table-striped }
 | Name              | Description                                                                                                                                                                                                                                  | Type             |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| `mimes` | Array of strings listing the content MIME types supported, e.g., `["video/x-flv", "video/x-ms-wmv"]`. | `Array<string>`  |
 | `minduration` | Integer that defines the minimum video ad duration in seconds. | `integer` |
 | `maxduration` | Integer that defines the maximum video ad duration in seconds. | `integer` |
 |`context` | A string that indicates the type of video ad requested.  Allowed values: `"pre_roll"`; `"mid_roll"`; `"post_roll"`; `"outstream"`. | `string` |
