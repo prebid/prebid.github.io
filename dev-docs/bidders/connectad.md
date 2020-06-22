@@ -10,6 +10,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 userIds: digitrust, id5Id, liveIntentId, parrableId, pubCommonId, unifiedId
+prebid_member: true
 ---
 
 

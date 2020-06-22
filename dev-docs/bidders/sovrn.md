@@ -7,6 +7,7 @@ biddercode: sovrn
 gdpr_supported: true
 usp_supported: true
 userIds: digitrust
+prebid_member: true
 ---
 
 

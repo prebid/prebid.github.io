@@ -5,7 +5,8 @@ description: Prebid AdMixer Bidder Adaptor
 hide: true
 biddercode: admixer
 media_types: video
-
+gdpr_supported: true
+usp_supported: true
 ---
 
 ### Bid Params
