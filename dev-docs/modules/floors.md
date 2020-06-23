@@ -301,13 +301,13 @@ Schema 1 restricts floors providers or publishers to apply only one data group. 
 
 ### Schema 2
 
-Schema 2 allows floors providers to A / B test multiple floor groups controlled by supplying a weight per floor group to be applied.
+Schema 2 allows floors providers to A / B one or more floor groups, determined at auction time.
 
 The following principals apply to schema 2:
-- Schema 2 requires the below attributes
+- The below attributes are required:
     - data.floorsSchemaVersion to be set to 2
-    - A valid modelGroups object be set
-    - If more than one modelGroup is supplied, a modelGroups.modelWeight is required
+    - A valid modelGroups object must be set
+    - The field modelGroups.modelWeight is required for each model group
         - If one of the model weights is missing, no schema 2 floor will be set and the Floors Module will look in other locations for floor definitions
 - If common attributes that are set in both the modelGroups and root level of the data object, modelGroups attributes prevail
 -  The Schema 2 data model can only be applied in Package level (i.e. directly in setConfig) or Dynamic level
@@ -348,7 +348,7 @@ While some attributes are common in both schema versions, for completeness, all 
 *Example 1*
 Model weights add up to 100 and are sampled at a 25%, 25%, 50% distrobution. Additionally, each model group has diffirent schema fields:
 
-```
+{% highlight js %}
 { 
     "currency": "EU",
     "skipRate": 20,
@@ -408,7 +408,7 @@ Model weights add up to 100 and are sampled at a 25%, 25%, 50% distrobution. Add
     ]
     
 }
-```
+{% highlight %}
 
 *Example 2*
 Model weights do not equal 100 and are normalized. Weights be applied in the following method: Model weight / (sum of all weights)
@@ -417,7 +417,7 @@ model2 = 50  -> 50 / (20 + 50) = 71% of auctions model 2 will be applied
 
 Additionally skipRate is supplied at model group level where model1 will skip floors 20% of times when model1 is selected, whereas model2 will skip 50% of auctions when model2 is selected. 
 
-```
+{% highlight js %}
 { 
     "currency": "EU",
     "floorsSchemaVersion":2,
@@ -461,7 +461,7 @@ Additionally skipRate is supplied at model group level where model1 will skip fl
     ]
     
 }
-```
+{% highlight %}
 
 
 ## Rule Handling
@@ -822,6 +822,56 @@ floor determined by Domain, GPT Slot, Media Type and Size:
     default: 0.75
 }
 {% endhighlight %}
+
+
+#### Example Response 3
+
+Floors Schema version 2
+
+{% highlight js %}
+{ 
+    "currency": "USD",
+    "floorsSchemaVersion":2,
+    "skipRate": 5,
+    "modelGroups": [
+        {
+            "modelWeight":50,
+            "modelVersion": "Model1",
+            "schema": {
+                "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.15
+        },
+        {
+            "modelWeight": 50,
+            "modelVersion": "Model3",
+            "schema": {
+                "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "/1111/homepage/top-banner|banner|728x90": 1.00,
+                "/1111/homepage/top-rect|banner|300x250": 1.20,
+                "/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "*|banner|*": 0.80,
+            },
+            "default": 0.05
+        }
+    ]
+    
+}
+{% highlight %}
 
 
 ### Bid Adapter Interface
