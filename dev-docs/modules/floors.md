@@ -265,9 +265,14 @@ pbjs.setConfig({
 {% endhighlight %}
 
 
-### Floors Syntax
+## Floors Syntax
 
-The examples above covered several different scenarios. Here are all the options supported by the Floors module.
+The examples above covered several different scenarios where floors can be applied. Below we will cover the syntax and definition of the floors data schema. As of prebid.js version 3.24, the Floors model supports a second data schema with the ability to add new schemas to future-proof the needs of additional design changes while keeping backwards compatibility.
+
+
+### Schema 1
+
+Schema 1 restricts floors providers or publishers to apply only one data group. To test more than one floor group, floor providers or publishers are required to reset the data set with new rules after each request bids.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
@@ -280,16 +285,184 @@ The examples above covered several different scenarios. Here are all the options
 | endpoint | object | Controls behavior for dynamically retrieving floors  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data  | - |
 | data | object (required) | Floor data used by the Floors Module to pass floor data to bidders and floor enforcement | - |
-| data.currency | string |Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
+| data.currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. | 0 |
+| data.floorsSchemaVersion | string | The Floors Module supports two version of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows to sample multiple models selected by supplied weights. If not schema version is provided, the Floors Module will assume version 1 for backwards compatiblity sake. For schema version 2 see the subsequent section. | 1 |
 | data.modelVersion | string | Used by floor providers to train on model version performance. The expectation is a floor provider’s analytics adapter will pass the model verson back for algorithm training. | - |
 | data.schema | object |allows for flexible definition of how floor data is formatted. | - |
 | data.schema.delimiter | string | Character separating the floor keys | '\|' |
 | data.schema.fields | array of strings | supported values are: gptSlot, adUnitCode, mediaType, size | - |
 | data.values | key / values | a series of attributes representing a hash of floor data in a format defined by the schema object. | - |
 | data.values."rule key" | string | delimited field of attribute values that define a floor | - |
-| data.values."floor" | float | the floor value for this key | - |
+| data.values."rule floor value" | float | the floor value for this key | - |
 | data.default | float | Floor used if no matching rules are found | - |
+
+
+
+### Schema 2
+
+Schema 2 allows floors providers to A / B test multiple floor groups controlled by supplying a weight per floor group to be applied.
+
+The following principals apply to schema 2:
+- Schema 2 requires the below attributes
+    - data.floorsSchemaVersion to be set to 2
+    - A valid modelGroups object be set
+    - If more than one modelGroup is supplied, a modelGroups.modelWeight is required
+        - If one of the model weights is missing, no schema 2 floor will be set and the Floors Module will look in other locations for floor definitions
+- If common attributes that are set in both the modelGroups and root level of the data object, modelGroups attributes prevail
+-  The Schema 2 data model can only be applied in Package level (i.e. directly in setConfig) or Dynamic level
+- Sampling weights are applied at the auction level. Each new auction the dice will be rolled
+- If the data.modelGroups object and the data.values (schema 1 field) are set, the data.floorsSchemaVersion will dictate what schema version is applied
+
+
+While some attributes are common in both schema versions, for completeness, all valid schema 2 attributes are provided:
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description | Default |
+|---+---+---+---+---|
+| enforcement | object | Controls the enforcement behavior within the Floors Module.| - |
+| enforcement.enforceJS | boolean | If set to true, the floor module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the prebid floors module will still provide floors for bid adapters, there will be no floor enforcement.| true |
+| enforcement.enforcePBS | boolean | If set to true, the prebid js floors module will signal to PBS to pass floors to it’s bid adapters and enforce floors. If set to false, the pbjs should still pass matched bid request floor data to PBS, however no enforcement will take place. | false |
+| enforcement.floorDeals | boolean | Enforce floors for deal bid requests | false |
+| enforcement.bidAdjustment | boolean | Adjust floors passed to Bid Aapters. If bid adjustment is passed to PBS and flag set is not set to false | true |
+| endpoint | object | Controls behavior for dynamically retrieving floors  | - |
+| endpoint.url | string | URL of endpoint to retrieve dynamic floor data  | - |
+| data | object (required) | Floor data used by the Floors Module to pass floor data to bidders and floor enforcement | - |
+| data.currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
+| data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. | 0 |
+| data.floorsSchemaVersion | string | The Floors Module supports two version of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows to sample multiple models selected by supplied weights. If not schema version is provided, the Floors Module will assume version 1 for backwards compatiblity sake.| 1 |
+| data.modelGroups | array of objects | Array of model objects to be used for A/B sampling multiple models. This field is only used when data.floorsSchemaVersion = 2 | - |
+| data.modelGroups[].currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
+| data.modelGroups[].skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. | 0 |
+| data.modelGroups[].modelVersion | string | Used by floor providers to train on model version performance. The expectation is a floor provider’s analytics adapter will pass the model verson back for algorithm training. | - |
+| data.modelGroups[].modelWeight | integer | Used by the Floors Module to determine when to apply the specific model. All weights will be normalized and appllied at runtime. Futher clarification will be provided in examples below. | - |
+| data.schema | object |allows for flexible definition of how floor data is formatted. | - |
+| data.modelGroups[].schema.delimiter | string | Character separating the floor keys | '\|' |
+| data.modelGroups[].schema.fields | array of strings | supported pre-defined values are: gptSlot, adUnitCode, mediaType, size | - |
+| data.modelGroups[].values | key / values | a series of attributes representing a hash of floor data in a format defined by the schema object. | - |
+| data.modelGroups[].values."rule key" | string | delimited field of attribute values that define a floor | - |
+| data.modelGroups[].values."rule floor value" | float | the floor value for this key | - |
+| data.modelGroups[].default | float | Floor used if no matching rules are found | - |
+
+
+*Example 1*
+Model weights add up to 100 and are sampled at a 25%, 25%, 50% distrobution. Additionally, each model group has diffirent schema fields:
+
+```
+{ 
+    "currency": "EU",
+    "skipRate": 20,
+    "floorsSchemaVersion":2,
+    "modelGroups": [
+        {
+            "modelWeight":25,
+            "modelVersion": "Model1",
+            "schema": {
+                "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 25,
+            "modelVersion": "Model2",
+            "schema": {
+                "fields": [ "domain", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|banner|728x90": 1.00,
+                "www.publisher.com|banner|300x250": 1.20,
+                "www.publisher.com|banner|300x600": 1.80,
+                ...
+                "www.domain.com|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "modelVersion": "Model3",
+            "schema": {
+                "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "/1111/homepage/top-banner|banner|728x90": 1.00,
+                "/1111/homepage/top-rect|banner|300x250": 1.20,
+                "/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+    ]
+    
+}
+```
+
+*Example 2*
+Model weights do not equal 100 and are normalized. Weights be applied in the following method: Model weight / (sum of all weights)
+model1 = 20  -> 20 / (20 + 50) = 29% of auctions model 1 will be applied
+model2 = 50  -> 50 / (20 + 50) = 71% of auctions model 2 will be applied
+
+Additionally skipRate is supplied at model group level where model1 will skip floors 20% of times when model1 is selected, whereas model2 will skip 50% of auctions when model2 is selected. 
+
+```
+{ 
+    "currency": "EU",
+    "floorsSchemaVersion":2,
+    "modelGroups": [
+        {
+            "modelWeight":25,
+            "skipRate": 20,
+            "modelVersion": "Model1",
+            "schema": {
+                "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "skipRate": 50,
+            "modelVersion": "Model2",
+            "schema": {
+                "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "/1111/homepage/top-banner|banner|728x90": 1.00,
+                "/1111/homepage/top-rect|banner|300x250": 1.20,
+                "/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+    ]
+    
+}
+```
+
 
 ## Rule Handling
 
