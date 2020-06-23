@@ -16,17 +16,17 @@ sidebarType : 1
 {: toc }
 
 {: .alert.alert-warning :}
-This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagement.html), which reads consent values from the Consent Management Platform (CMP). The GDPR enforcement module
-will then enforce the results. See the base module page for general background, usage, and legal disclaimers.
+This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagement.html) (the base consent module), which reads consent values from the Consent Management Platform (CMP). The GDPR Enforcement Module
+will then enforce the results. See the [base module page](/dev-docs/modules/consentManagement.html) for general background, usage, and legal disclaimers.
 
 ## Overview
 
-The base [EU GDPR consent management module](/dev-docs/modules/consentManagement.html) performs the following actions:
+The [base consent module](/dev-docs/modules/consentManagement.html) performs the following actions:
 
-1. Fetch the user's GDPR consent data from the CMP.
-2. Incorporate this data into the auction objects for adapters to collect.
+1. Fetches the user's GDPR consent data from the CMP.
+2. Incorporates this data into the auction objects for adapters to collect.
 
-This GDPR Enforcement Module adds the following:
+The GDPR Enforcement Module adds the following:
 
 3. Allows the page to define which activities should be enforced at the Prebid.js level.
 4. Actively enforces those activities based on user consent data.
@@ -34,7 +34,7 @@ This GDPR Enforcement Module adds the following:
 The following table details the Prebid.js activities that fall under the [Transparency and Consent Framework (TCF)](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/) scope:
 
 {: .table .table-bordered .table-striped }
-| In-Scope Activity | TCF Legal Basis Required | Enforcement Activity | PBJS Version |
+| In-Scope Activity | TCF Legal Basis Required | Enforcement Activity | Prebid.js Version |
 | --- | --- | --- | --- |
 | Invoke usersync pixels | Purpose 1 - Store and/or access information on a device | May prevent one or more vendor usersyncs. | 3.14+ |
 | Invoke user ID modules | Purpose 1 - Store and/or access information on a device | May prevent one or more UserID modules from activating. | 3.14+ |
@@ -51,32 +51,31 @@ A page needs to define configuration rules about how Prebid.js should enforce ea
 **Important Legal Note:** Prebid.org cannot provide legal advice about GDPR or any other governmental regulation. Our aim is to provide a toolkit of functionality that will let publishers configure header bidding as defined by their legal counsel. We will consider feature suggestions, and review any code offered by the community.
 
 {: .alert.alert-info :}
-There are two steps needed to turn on Prebid.js enforcement:
+To turn on Prebid.js enforcement you must:
 1) Include the gdprEnforcement module in the Prebid.js build
 and 2) setConfig `consentManagement.gdpr.cmp` to either 'iab' or 'static'
 
-These are the fields related to GDPR enforcment that are supported in the [`consentManagement.gdpr`](/dev-docs/modules/consentManagement.html) object:
+The following fields related to GDPR enforcement are supported in the [`consentManagement.gdpr`](/dev-docs/modules/consentManagement.html) object:
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gdpr.rules | `Array of Objects` | Lets the publisher override the default behavior. | |
 | gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2) | "storage" |
-| gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent or not. The default in Prebid.js 3.x is not to enforce purposes. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
-| gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose or not. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
+| gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent. The default in Prebid.js 3.x is not to enforce purposes. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
+| gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
 
 Note:
 
-- The vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs, i.e. "rubicon" instead of "52". This was done to accomodate Prebid.js modules and adapters that don't have GVL IDs.  
+- To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "rubicon" instead of "52").
 
 ### Examples
 
-The following examples cover a range of use cases and how Prebid.js supports
+The following examples cover a range of use cases and show how Prebid.js supports
 configuration of different business rules.
 
-1) Enforce device access activity and basic ads. These are the default values if the module is
-included in the build and 
+1) Enforce device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
 
 ```
 pbjs.setConfig({
@@ -108,8 +107,7 @@ pbjs.setConfig({
         vendorExceptions: ["idSystemA"]
       }]
 
-3) Enforce legal basis for both storage and basicAds, except always allow the "firstPartyBidder"
-to run an auction. Assumes the publisher has special legal basis for this entity.
+3) Enforce legal basis for both storage and basicAds, with the exception of "firstPartyBidder", which is always allowed to run an auction. Assumes the publisher has special legal basis for this entity.
 
       ...
       rules: [{
