@@ -21,11 +21,6 @@ The Smaato adapter requires setup and approval from the Smaato team, even for ex
 |------------|----------|----------------------|------------|----------|
 | `publisherId` | required | Your Smaato publisher id  | `'1100012345'` | `string` |
 | `adspaceId` | required | Your Smaato adspace id | `'11002234'`   | `string` |
-| `yob` | optional | Users year of birth | `1950`   | `integer` |
-| `gender` | optional | Users gender (f,m,o) | `'f'`   | `string` |
-| `lat` | optional | Users latitude | `53.575`   | `float` |
-| `lon` | optional | Users longitude | `10.015`   | `float` |
-| `keywords` | optional | Site keywords | `'keyword1,keyword2,keyword3'`   | `string` |
 
 ### Example Ad Unit
 
@@ -41,13 +36,27 @@ var adUnit = {
         "bidder": "smaato",
         "params": {
             "publisherId": "1100012345",
-            "adspaceId": "11002234",
-            "yob": 1950,
-            "gender": "f",
-            "lat": 53.575,
-            "lon": 10.015,
-            "keywords": "keyword1,keyword2,keyword3"
+            "adspaceId": "11002234"
         }
     }]
 }
+```
+
+The Smaato adapter supports passing through first party data configured in your prebid integration.
+
+```javascript
+pbjs.setConfig({
+    fpd: {
+        context: {
+            keywords: ["power tools"],
+            search: "drill",
+            content: { userrating: 4 }
+        },
+        user: {
+            keywords: ["a","b"],
+            gender: "M",
+            yob: "1984",
+            geo: { country: "ca" }
+        }
+});
 ```
