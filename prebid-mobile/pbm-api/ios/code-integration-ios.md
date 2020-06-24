@@ -28,6 +28,12 @@ target 'MyAmazingApp' do
 end
 ```
 
+### Include with Carthage
+
+If you are not familiar with the Carthage package builder, please refere to the project [github page](https://github.com/Carthage/Carthage) for more details.
+
+
+
 ### Build framework from source
 
 Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:
