@@ -1665,7 +1665,7 @@
 
 - sbSecId: 5
   title: Prebid.js Migration Guide
-  link: /prebid-server/pbs-migration.html
+  link: /prebid-server/overview/pbs-pbjs-migration-guide.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1689,7 +1689,7 @@
 
 - sbSecId: 5
   title: Hosting Servers
-  link: /prebid-server/hosting/hosting-servers.html
+  link: /prebid-server/hosting/pbs-hosting-servers.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2014,7 +2014,7 @@
 
 - sbSecId: 5
   title: Request/Response Examples
-  link: /prebid-server/endpoint/pbs-request-response-example.html
+  link: /prebid-server/endpoints/pbs-request-response-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
