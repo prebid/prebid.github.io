@@ -165,8 +165,9 @@ To improve the speed and load time of your site, build Prebid.js for only the he
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
 
-{: .alert.alert-success :}
-Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
+{: .alert.alert-info :}
+Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,
+Prebid only supports the most recent major version. Within a month or so after a major release (e.g. 3.x), we won't patch the previous major release (e.g. 2.x).
 
 <form>
 <div class="row">

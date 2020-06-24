@@ -8,6 +8,7 @@ gdpr_supported: true
 usp_supported: true
 media_types: banner, native, video
 schain_supported: true
+tcf2_supported: true
 ---
 
 ### Bid params
