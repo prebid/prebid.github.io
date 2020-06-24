@@ -144,7 +144,7 @@
     sectionId: 1
     sectionName: Product
     title: Prebid Server
-    link: /prebid-server/prebid-server-overview.html
+    link: /prebid-server/overview/prebid-server-overview.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
