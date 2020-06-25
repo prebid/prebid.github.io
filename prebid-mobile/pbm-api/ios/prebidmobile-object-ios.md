@@ -89,6 +89,10 @@ func addStoredBidResponse(bidder: String, responseId: String)
 func clearStoredBidResponses()
 ```
 
+`pbsDebug`: adds the debug flag ("test":1) to the Prebid Server call. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving the Stored Request IDs) as we all provides the full Bid Request and Bid Response to and from each bidder.
+```swift
+pbsDebug = BOOL
+```
 
 
 ## Examples
