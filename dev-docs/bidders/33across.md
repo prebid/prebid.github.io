@@ -5,6 +5,8 @@ description: Prebid 33Across Bidder Adapter
 hide: true
 biddercode: 33across
 gdpr_supported: true
+schain_supported: true
+usp_supported: true
 ---
 
 
