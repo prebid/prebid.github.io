@@ -281,7 +281,7 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 | enforcement.enforceJS | boolean | If set to true, the floors module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the prebid floors module will still provide floors for bid adapters, there will be no floor enforcement.| true |
 | enforcement.enforcePBS | boolean | If set to true, the Prebid.js floors module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, the pbjs should still pass matched bid request floor data to PBS, however no enforcement will take place. | false |
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
-| enforcement.bidAdjustment | boolean | Adjust floors passed to Bid Aapters. If bid adjustment is passed to PBS and flag set is not set to false | true |
+| enforcement.bidAdjustment | boolean | If true, the Floors Module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
 | endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
 | data | object (required) | Floor data used by the Floors Module to pass floor data to bidders and floor enforcement. | - |
@@ -324,7 +324,7 @@ While some attributes are common in both schema versions, for completeness, all 
 | enforcement.enforceJS | boolean | If set to true, the floors module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the prebid floors module will still provide floors for bid adapters, but there will be no floor enforcement.| true |
 | enforcement.enforcePBS | boolean | If set to true, the Prebid.js floors module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, Prebid.js should still pass matched bid request floor data to Prebid Server, however no enforcement will take place. | false |
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
-| enforcement.bidAdjustment | boolean | Adjust floors passed to Bid Aapters. If bid adjustment is passed to Prebid Server and flag set is not set to false | true |
+| enforcement.bidAdjustment | boolean | If true, the Floors Module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
 | endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
 | data | object (required) | Floor data used by the Floors Module to pass floor data to bidders and floor enforcement. | - |
