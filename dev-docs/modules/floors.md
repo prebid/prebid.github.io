@@ -53,7 +53,7 @@ There are several places where the Floor module changes the behavior of the Preb
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
 3. Bid Adapters are responsible for utilizing the getFloors() from the bidRequest object for each ad slot media type, size combination. The Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
-5. Bid adapters will submit bids to back to Prebid core, where the Floors Module will perform enforcement on each bid 
+5. Bid adapters will submit bids to back to Prebid core, where the Floors Module will perform enforcement on each bid
 6. The Floors Module will mark all bids below the floor as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
     - a. The Floors module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
 
@@ -349,7 +349,7 @@ While some attributes are common in both schema versions, for completeness, all 
 Model weights add up to 100 and are sampled at a 25%, 25%, 50% distribution. Additionally, each model group has diffirent schema fields:
 
 {% highlight js %}
-{ 
+{
     "currency": "EU",
     "skipRate": 20,
     "floorsSchemaVersion":2,
@@ -406,19 +406,19 @@ Model weights add up to 100 and are sampled at a 25%, 25%, 50% distribution. Add
             "default": 0.75
         }
     ]
-    
+
 }
-{% highlight %}
+{% endhighlight %}
 
 *Example 2*
 Model weights do not equal 100 and are normalized. Weights will be applied in the following method: Model weight / (sum of all weights)
 model1 = 20  -> 20 / (20 + 50) = 29% of auctions model 1 will be applied
 model2 = 50  -> 50 / (20 + 50) = 71% of auctions model 2 will be applied
 
-Additionally skipRate is supplied at model group level where model1 will skip floors 20% of times when model1 is selected, whereas model2 will skip 50% of auctions when model2 is selected. 
+Additionally skipRate is supplied at model group level where model1 will skip floors 20% of times when model1 is selected, whereas model2 will skip 50% of auctions when model2 is selected.
 
 {% highlight js %}
-{ 
+{
     "currency": "EU",
     "floorsSchemaVersion":2,
     "modelGroups": [
@@ -459,9 +459,9 @@ Additionally skipRate is supplied at model group level where model1 will skip fl
             "default": 0.75
         }
     ]
-    
+
 }
-{% highlight %}
+{% endhighlight %}
 
 
 ## Rule Handling
@@ -479,9 +479,9 @@ The Floors Module will use the below prioritization scheme on determining which 
 
 ### Rule Selection Process
 
-The job of the Prebid floors module is to select a matching Prebid floor rule for enforcement \(when a bid adapter bids in the auction\) given the context of each Ad Unit. With the usage of “\*” values in rules definitions \(where “\*” applies when no specific value matches\) multiple Prebid floor rules can match for a given ad unit auction. 
+The job of the Prebid floors module is to select a matching Prebid floor rule for enforcement \(when a bid adapter bids in the auction\) given the context of each Ad Unit. With the usage of “\*” values in rules definitions \(where “\*” applies when no specific value matches\) multiple Prebid floor rules can match for a given ad unit auction.
 
-The Prebid Floors module algorithm will produce a list of every possible permutation for each ad unit auction based on the defined schema types. The best matching rule for each enforced bid request and getFloor is based on specificity of values \(meaning match an exact value\) weighted from left to right, where the specificity of a value in the left most column would match over a rule with it’s “\*” equivalent if “\*” is supplied. 
+The Prebid Floors module algorithm will produce a list of every possible permutation for each ad unit auction based on the defined schema types. The best matching rule for each enforced bid request and getFloor is based on specificity of values \(meaning match an exact value\) weighted from left to right, where the specificity of a value in the left most column would match over a rule with it’s “\*” equivalent if “\*” is supplied.
 
 Priority order behavior where “\_” is a specific value, and the “\*” is a catch all
 
@@ -490,14 +490,14 @@ Priority order for one column rule sets:
  \_   
  \*   
 
-Priority order for two column rule set: 
+Priority order for two column rule set:
 
  \_ \| \_  
  \_ \| \*  
  \* \|\_   
  \* \| \*   
 
-Priority order for three column rule sets: 
+Priority order for three column rule sets:
 
  \_ \| \_ \| \_  
  \_ \| \_ \| \*  
@@ -553,8 +553,8 @@ Floor provider rule definition
 mediaType = banner  
 Size = 300x600  
 Domain context = www.website.com  
- 
-The Price Floor Module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The Floors Module attempt to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set. 
+
+The Price Floor Module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The Floors Module attempt to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set.
 
 {% highlight js %}
 {
@@ -686,7 +686,7 @@ Floor enforced: 4.01
 
 mediaType = video  
 Size = 640x480  
-Domain context = www.website.com. 
+Domain context = www.website.com.
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -744,7 +744,7 @@ Data providers can optionally build Analytics Adapters to ingest bid data within
 
 {% capture warning_note %}
 As a floor provider, your goal is to provide effective floors, with minimal page impact. If you are performing a Dynamic fetch to retrieve data prior to auctions, the following recommendations are advised to reduce page performance issues:  
-  
+
 - Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services  
 - Work with publishers on setting appropriate auction delays to retrieve dynamic data  
 - Implement client-side caching (such as max-age headers) whenever possible  
@@ -829,7 +829,7 @@ floor determined by Domain, GPT Slot, Media Type and Size:
 Floors Schema version 2
 
 {% highlight js %}
-{ 
+{
     "currency": "USD",
     "floorsSchemaVersion":2,
     "skipRate": 5,
@@ -869,9 +869,9 @@ Floors Schema version 2
             "default": 0.05
         }
     ]
-    
+
 }
-{% highlight %}
+{% endhighlight %}
 
 
 ### Bid Adapter Interface
@@ -1071,10 +1071,10 @@ currency = ‘USD’,
 ‘banner|300x250’: 1.00
 
 {% highlight js %}
-getFloor({ 
-  currency: ‘EUR’, 
-  mediaType: ‘banner’, 
-  size: [300, 250] 
+getFloor({
+  currency: ‘EUR’,
+  mediaType: ‘banner’,
+  size: [300, 250]
 });
 {% endhighlight %}
 
@@ -1082,7 +1082,7 @@ If successfully returned the requested currency:
 
 {% highlight js %}
 {
-  floor: 0.85, 
+  floor: 0.85,
   currency: ‘EUR’
 }
 {% endhighlight %}
@@ -1091,7 +1091,7 @@ If unsuccessfully returned the requested currency:
 
 {% highlight js %}
 {
-  floor:1.0, 
+  floor:1.0,
   currency: ‘USD’
 }
 {% endhighlight %}
@@ -1108,7 +1108,7 @@ Currency conversion can fail for the following reasons:
 
 **Enforcement**
 
-Enforcement in the Floors module occurs when bidders respond (i.e. bid) with a bidResponse object into the Prebid auction. The Floors Module will read the bid submitted within each valid bidResponse and its associated currency, performing currency conversion where necessary. 
+Enforcement in the Floors module occurs when bidders respond (i.e. bid) with a bidResponse object into the Prebid auction. The Floors Module will read the bid submitted within each valid bidResponse and its associated currency, performing currency conversion where necessary.
 
 There exist three locations where currencies can differ within enforcement:
 
