@@ -215,6 +215,10 @@
   imgURL: /assets/images/partners/community/liveintent_logo.png
   type: community
 
+- company: Lotame
+  link: https://www.lotame.com/
+  type: community
+
 - company: Media.net
   link: https://media.net
   type: community
