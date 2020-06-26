@@ -2,60 +2,58 @@
 layout: page_v2
 title: Prebid Server Overview
 description: Prebid Server Overview
-pid: 0
-top_nav_section: prebid-server
-nav_section: prebid-server
 sidebarType: 5
 ---
 
 # Prebid Server Overview
 {:.no_toc}
 
-Prebid Server is an open-source solution for server-to-server header bidding with Prebid.js and Prebid Mobile. By running your header bidding auction server-side you can improve your page’s load time, thereby improving performance.
+Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and [long-form video](/prebid-server/use-cases/pbs-lfv.html).
 
-* TOC
-{:toc}
+![Prebid Server Architecture](/assets/images/prebid-server/pbs-architecture.png)
 
-## Hosted Solution
+At a high level, Prebid Server is basically an intelligent proxy server with a growing list of features:
+- Completes and validates incoming requests
+  - Dynamic stored requests
+  - Privacy regulation support
+- Calls server-side bid adapters
+  - There are currently 70+ server-side bid adapters available
+- Forumulates an appropriate response
+  - Currency conversion
+  - Bid quantization
+  - VAST XML caching
+- Optional analytics support
+
+The Prebid Cache Server is an adjunct to Prebid Server that stores VAST and bids as needed, supporting video and AMP use cases.
+
+Explore [Prebid Server features in more detail](/prebid-server/pbs-features.html).
+
+## Where will you run Prebid Server?
+
+Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that somewhere ought to be scaleable, distributed, and fast.
+
+### Hosted
 
 Your simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members host](/prebid-server/hosted-servers.html) up-to-date server software with a global footprint, and provide tools to manage stored requests.
 
-## On Your Own
+### DIY
 
-If you decide to implement your own Prebid Server solution, you can [download the source code from GitHub](https://github.com/prebid/prebid-server). The GitHub site has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation.
+But of course this is open source, so you're welcome to do this on your own. If you decide to implement your own Prebid Server solution, there are two
+options:
 
-## Bidders
+- [Prebid Server (Go)](/prebid-server/versions/pbs-versions-go.html) - the original Prebid Server is written in the Go language.
+- [Prebid Server (Java)](/prebid-server/versions/pbs-versions-java.html) - we also support a Java language port.
 
-Prebid.org provides a full list of [Prebid Server bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html), including various details about parameters and open issues.
+To choose between them, see the [FAQ entry](http://prebid.org/faq/prebid-server-faq.html#why-are-there-two-versions-of-prebid-server-are-they-kept-in-sync) and the [Prebid Server Feature Matrix](/prebid-server/versions/pbs-versions-overview.html)
 
-You can also find [additional information]({{site.baseurl}}/prebid-server/developers/pbs-bidder-info.html) for some of the Prebid Server bidders that will help you with your implementation.
+## Which Server-Side Bidders will you utilize?
 
-## Endpoints
+Here's the [full list of Prebid Server bidders](/dev-docs/prebid-server-bidders.html), including various details like media types supported and contact info.
 
-Full documentation is available for all Prebid Server endpoints:
+You can also find [additional information](/prebid-server/developers/pbs-bidder-info.html) for some of the Prebid Server bidders that will help with implementation.
 
-- [Bidder List](/prebid-server/endpoints/info/bidders.html)
-- [Bidder Info - BidderName]({{site.baseurl}}/prebid-server/endpoints/info/bidders/bidderName.html)
-- [Bidder Params]({{site.baseurl}}/prebid-server/endpoints/bidders/params.html)
-- [Starting Cookie Sync]({{site.baseurl}}/prebid-server/endpoints/cookieSync.html)
-- [Prebid Server AMP]({{site.baseurl}}/prebid-server/endpoints/openrtb2/amp.html)
-- [Prebid Server Auction]({{site.baseurl}}/prebid-server/endpoints/openrtb2/auction.html)
-- [Saving User Syncs]({{site.baseurl}}/prebid-server/endpoints/setuid.html)
-- [Get Status]({{site.baseurl}}/prebid-server/endpoints/status.html)
+If you're a demand source, there's information about [creating your own server-side adapter](/prebid-server/bidders/pbs-build-a-bid-adapter.html).
 
-## Additional Developer Information
+## Have more questions?
 
-- [Add a New Analytics Module]({{site.baseurl}}/prebid-server/developers/add-new-analytics-module.html)  
-  Description, including and example, of how to add an analytics module to Prebid Server.
-
-- [Add a New Bidder]({{site.baseurl}}/prebid-server/developers/add-new-bidder.html)  
-  Learn how to define and test a new bidder, then add the bidder to theExchange.
-
-- [Cookie Syncs]({{site.baseurl}}/prebid-server/developers/cookie-syncs.html)  
-  Describes the mechanics of a Prebid Server cookie sync.
-
-- [GDPR]({{site.baseurl}}/prebid-server/developers/gdpr.html)  
-  Explore the way in which Prebid Server supports GDPR regulations.
-
-- [Stored Request]({{site.baseurl}}/prebid-server/developers/stored-requests.html)  
-  Learn about the Prebid Server Stored Requests feature.
+If you need help with Prebid Server...
