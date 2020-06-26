@@ -1577,6 +1577,14 @@
   subgroup: 1
 
 - sbSecId: 4
+  title: '&nbsp;&nbsp;AdPlayer.Pro'
+  link: /examples/video/outstream/pb-ve-outstream-app.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
   title: '&nbsp;&nbsp;No Server'
   link: /examples/video/outstream/pb-ve-outstream-no-server.html
   isHeader: 0
