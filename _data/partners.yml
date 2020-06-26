@@ -163,6 +163,10 @@
   imgURL: /assets/images/partners/community/Adomik-logo.png
   type: community
 
+- company: Adtelligent
+  link: https://adtelligent.com/
+  type: community
+
 - company: Audigent
   link: https://audigent.com/
   imgURL: /assets/images/partners/community/audigent_logo.png
@@ -209,6 +213,10 @@
 - company: LiveIntent
   link: https://www.liveintent.com
   imgURL: /assets/images/partners/community/liveintent_logo.png
+  type: community
+
+- company: Lotame
+  link: https://www.lotame.com/
   type: community
 
 - company: Media.net

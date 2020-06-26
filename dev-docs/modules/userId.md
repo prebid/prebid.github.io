@@ -395,29 +395,30 @@ The `request.userId.lipb` object would look like:
 
 The adapters can be implemented to use the lipibid as the identifier and segments to which that identifier is associated with. To enable identity resolution for a specific publisher, LiveIntent builds a model on the backend with data collected via an additional call issued on each page load.
 
+#### LiveIntent ID Registration
+
+You are not required to register with LiveIntent to start using the LiveIntent ID sub-module. However, we do recommend reaching out to us at [peoplebased@liveintent.com](mailto:peoplebased@liveintent.com) so that we can guide you through the optimal setup and the ways you can benefit from LiveIntent identity solutions:
+1. Providing buyers a stable identifier, which can solve cross-browser and cross-channel frequency capping challenges.
+2. Leveraging your first-party audiences to increase the value of your inventory.
+
+When adding LiveIntent’s ID to your Prebid.js package, you disclose or make available Personal Information to LiveIntent.  This information made available to LiveIntent is used to (i) connect with and reference data that already exists in LiveIntent’s graph (the “LiveIntent Graph”), and (ii) authenticate and validate data in aggregate to improve the performance of the services LiveIntent provides. By activating LiveIntent’s module, you hereby confirm that with regard to all individuals to whom Personal Information relates, you have, at or before the point of collecting Personal Information or making Personal Information available to LiveIntent, provided any legally required notices, obtained any legally required consents, and provided individuals with an opportunity to opt-out of the sharing of Personal Information, if such an opt-out is required under applicable laws, such that LiveIntent can provide service to you as described here and in LiveIntent’s privacy policies for the services which can be found at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/) 
+
 #### How does LiveIntent ID work
 
-The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier (LIID). In order to provide resolution one or more first-party cookies are used to create a stable identifier. 
+The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier (nonID). In order to provide resolution one or more first-party cookies are used to create a stable identifier. 
 
 How does LiveIntent ID sub-module decide, which first-party cookies to use:
 1. By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
 2. A publisher can also define in the configuration which additional first-party cookies should be used. These can be used in a combination with the LiveIntent first-party cookie.
 
-The LiveIntent ID sub-module sends the defined identifiers to the identity graph, which processes them and creates a stable identifier (LIID). The detailed description of the parameters being sent is described here: https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md
+The LiveIntent ID sub-module sends the defined identifiers to the identity graph, which processes them and creates a stable identifier (nonID). The detailed description of the parameters being sent is described here: [Collector parameters](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md)
 
 For the identity resolution the LiveIntent ID sub-module makes a request to the LiveIntent’s identity resolution API, which returns a stable identifier and the audience segment(s) a user belongs to. The identifier and the segment are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to any buyers targeting the segment via a deal.
 
-The first-party cookie generation and identity resolution functionality is provided by the LiveConnect JS library, included within the LiveIntent ID sub-module. LiveIntent has created a shared library that is open source, available at https://www.npmjs.com/package/live-connect-js.
+The first-party cookie generation and identity resolution functionality is provided by the LiveConnect JS library, included within the LiveIntent ID sub-module. LiveIntent has created a shared library that is open source, available at [https://www.npmjs.com/package/live-connect-js](https://www.npmjs.com/package/live-connect-js)
 
 The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
-#### LiveIntent ID Registration
-
-You are not required to register with LiveIntent to start using the LiveIntent ID sub-module. However, we do recommend reaching out to us at peoplebased@liveintent.com so that we can guide you through the optimal setup and the ways you can benefit from LiveIntent identity solutions:
-1. Providing buyers a stable identifier, which can solve cross-browser and cross-channel frequency capping challenges.
-2. Leveraging your first-party audiences to increase the value of your inventory.
-
-The LiveIntent privacy policy is at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/)
 
 #### LiveIntent ID configuration
 
@@ -426,17 +427,20 @@ The LiveIntent privacy policy is at [https://www.liveintent.com/services-privacy
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'liveIntentId'` |
 | params | Required | Object | Container of all module params. ||
-| params.publisherId |Required| String | The unique identifier for each publisher.|`'12432415'`|
+| params.publisherId |Optional| String | The unique identifier for each publisher (for existing LiveIntent customers)|`'12432415'`|
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
-| params.providedIdentifierName | Optional| String |This parameter should be used whenever a customer is able to provide the most stable identifier possible, e.g. a cookie which is set via HttpHeaders on the first party domain.|`'my-best-id'`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
 | params.liCollectConfig.fpiStorageStrategy |Optional| String |This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
 | params.liCollectConfig.fpiExpirationDays |Optional| Number |The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
 | params.liCollectConfig.collectorUrl |Optional| String |The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
 | params.liCollectConfig.appId |Optional| String |LiveIntent's media business entity application id.|`'a-0012'`|
+| storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
+| storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
+| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'pbjs_li_nonid'` |
+| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
 
 #### LiveIntent ID examples
 
@@ -448,7 +452,12 @@ pbjs.setConfig({
             name: "liveIntentId",
             params: {
               publisherId: "9896876"
-            }
+            },
+            storage: {             
+            type: “cookie”,             
+            name: “pbjs_li_nonid”,    //create a cookie with this name             
+            expires: 1                // cookie is stored for 1 day          
+            } 
         }]
     }
 })
@@ -463,7 +472,12 @@ pbjs.setConfig({
             params: {
               publisherId: "9896876",
               identifiersToResolve: ["my-own-cookie"]
-            }
+            },
+            storage: {             
+            type: “cookie”,             
+            name: “pbjs_li_nonid”,    //create a cookie with this name             
+            expires: 1                // cookie is stored for 1 day          
+            } 
         }]
     }
 })
@@ -478,7 +492,6 @@ pbjs.setConfig({
             params: {
               publisherId: "9896876",
               identifiersToResolve: ["my-own-cookie"],
-              providedIdentifierName: "my-best-cookie",
               url: "https://publisher.liveintent.com/idex",
               partner: "prebid",
               ajaxTimeout: 1000,
@@ -488,11 +501,39 @@ pbjs.setConfig({
                 collectorUrl: "https://rp.liadm.com",
                 appId: "a-0012"
               }
-            }
+            },
+            storage: {             
+            type: “cookie”,             
+            name: “pbjs_li_nonid”,    //create a cookie with this name             
+            expires: 1                // cookie is stored for 1 day          
+            } 
         }]
     }
 })
 ```
+
+### netID
+
+The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
+
+The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
+
+#### netID Examples
+
+1) Publisher stores netID via his own logic
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "netId",
+            value: {
+               "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
+            }
+        }]
+    }
+});
+{% endhighlight %}
 
 ### Parrable ID
 
@@ -602,6 +643,50 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Shared ID User ID Submodule
+
+Shared ID User ID Module generates a UUID that can be utilized to improve user matching.This module enables timely synchronization which handles sharedId.org optout. This module does not require any registration.  
+
+#### Building Prebid with Shared Id Support
+Your Prebid build must include the modules for both **userId** and **sharedId** submodule. 
+Add it to your Prebid.js package with:
+
+ex: $ gulp build --modules=userId,sharedIdSystem
+
+#### Prebid Params
+
+Individual params may be set for the Shared ID User ID Submodule. 
+```
+pbjs.setConfig({
+    usersync: {
+        userIds: [{
+            name: 'sharedId',
+            params: {
+                      syncTime: 60 // in seconds, default is 24 hours
+             },
+            storage: {
+                name: 'sharedid',
+                type: 'cookie',
+                expires: 28
+            },
+        }]
+    }
+});
+```
+
+#### SharedId Configuration
+
+{: .table .table-bordered .table-striped }
+| Params under usersync.userIds[]| Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
+| params | Optional | Object | Details for sharedId syncing. | |
+| params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
+| storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
+| storage.type | Required | String | This is where the results of the user ID will be stored. The recommended method is `localStorage` by specifying `html5`. | `"html5"` |
+| storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"sharedid"` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `28` |
+
 ### Unified ID
 
 The Unified ID solution is provided by adsrvr.org and the Trade Desk.
@@ -692,30 +777,6 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### netID
-
-The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
-
-The EnID is a non-profit organization which is open to any contributing party on both, the demand and supply side to make identity work for consumers as well as the advertising ecosystem.
-
-#### netID Examples
-
-1) Publisher stores netID via his own logic
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "netId",
-            value: {
-               "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
-            }
-        }]
-    }
-});
-{% endhighlight %}
-
-
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -748,6 +809,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
+| Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 
 For example, the adapter code might do something like:
 
@@ -814,6 +876,14 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 "source": "netid.de",
                 "uids": [{
                     "id": "11111111"
+                }]
+            },{
+               "source": "sharedid.org",  // Shared ID
+                "uids": [{
+                    "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
+                    "ext": {
+                        "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
+                    }
                 }]
             }],
             "digitrust": {              // DigiTrust is not in the eids section

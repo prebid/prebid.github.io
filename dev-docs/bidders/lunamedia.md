@@ -7,7 +7,7 @@ biddercode: lunamedia
 ---
 
 ### Note:
-For more information about Luna Media, please contact lokesh@advangelists.com
+For more information about Luna Media, please contact info@lunamedia.io
 
 ### Bid Params
 
