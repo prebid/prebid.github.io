@@ -9,6 +9,7 @@ gdpr_supported: true
 usp_supported: true
 tcf2_supported: true
 prebid_member: true
+userIds: pubCommonId, unifiedId, id5Id, parrableId, identityLink, liveIntentId, britepoolId, digitrust, criteo, netId, sharedId
 ---
 
 ### Bid params
