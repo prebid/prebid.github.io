@@ -141,6 +141,11 @@ sidebarType: 4
 		var pbjs;
 		pbjs = pbjs || {};
 		pbjs.que = pbjs.que || [];
+		var debug = false;
+		if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined' || typeof window.console.dir === 'undefined') {
+		  debug = false;
+		}
+		var videoId = 'video1';
 
 		/* Prebid video ad unit
 		   This is a working example but you must use your own settings/bidders for production
