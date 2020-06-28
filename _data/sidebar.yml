@@ -1624,15 +1624,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: <b>Use Cases</b>
-  link: /prebid-server/use-cases/prebid-server-cases.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid.js'
+  title: '&nbsp;&nbsp;PBS+Prebid.js'
   link: /prebid-server/use-cases/pbs-pbjs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1640,7 +1632,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Mobile SDK'
+  title: '&nbsp;&nbsp;PBS+SDK'
   link: /prebid-server/use-cases/pbs-sdk.html
   isHeader: 0
   isSectionHeader: 0
@@ -1648,7 +1640,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;AMP'
+  title: '&nbsp;&nbsp;PBS+AMP'
   link: /prebid-server/use-cases/pbs-amp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1656,7 +1648,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Long-Form Video'
+  title: '&nbsp;&nbsp;PBS+Long-Form Video'
   link: /prebid-server/use-cases/pbs-lfv.html
   isHeader: 0
   isSectionHeader: 0
@@ -1664,36 +1656,20 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: Prebid.js Migration Guide
-  link: /prebid-server/overview/pbs-pbjs-migration-guide.html
+  title: '&nbsp;&nbsp;Managed Solutions'
+  link: /prebid-server/hosting/pbs-solutions.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
 - sbSecId: 5
-  title: Hosting
-  link: /prebid-server/hosting/pbs-hosting.html
-  isHeader: 1
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Hosting Solutions
-  link: /prebid-server/hosting/pbs-solutions.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Hosting Servers
+  title: '&nbsp;&nbsp;Hosting Your Own PBS'
   link: /prebid-server/hosting/pbs-hosting-servers.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 0
 
 - sbSecId: 5
   title: Hosting With Go
