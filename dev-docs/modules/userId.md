@@ -29,6 +29,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 * **netID** – provides an open, standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier Framework, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising bought through programmatic systems.
+* **IntentIQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
 
 ## How It Works
 
@@ -67,7 +68,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`, `"intentIqId"`, or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -773,6 +774,75 @@ pbjs.setConfig({
             name: "unifiedId",
             value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}
         }]
+    }
+});
+{% endhighlight %}
+
+### IntentIQ ID
+
+The IntentIQ ID solution is provided by intentiq.com.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=intentIqIdSystem
+
+#### IntentIQ ID Registration
+
+You can set up IntentIQ ID by contacting our operations team at [IntentIQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
+
+The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
+
+#### IntentIQ ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"intentIqId"` | `"intentIqId"` |
+| params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
+| params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
+
+#### IntentIQ ID Examples
+
+1) Publisher has a partner ID from IntentIQ and cookies.
+
+{: .alert.alert-warning :}
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "cookie",
+                name: "intentIqId",       // create a cookie with this name
+                expires: 60                   // cookie can last for 60 days
+            }
+        }],
+        syncDelay: 3000              // 3 seconds after the first auction
+    }
+});
+{% endhighlight %}
+
+2) Publisher supports IntentIQ and HTML5 local storage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "html5",
+                name: "intentIqId",    // set localstorage with this name
+                expires: 60
+            }
+        }],
+        syncDelay: 3000
     }
 });
 {% endhighlight %}
