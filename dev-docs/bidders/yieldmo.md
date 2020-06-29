@@ -4,11 +4,12 @@ title: Yieldmo
 description: Prebid Yieldmo Bidder Adaptor
 hide: true
 biddercode: yieldmo
-media_types: native
+media_types: banner
 userIds: pubCommonId, unifiedId, criteo
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
+tcf2_supported: true
 ---
 
 
