@@ -156,10 +156,10 @@ A  boolean that indicates if deals should be given a higher preference. If true,
 An object that enables publishers to set a prefix and minimum deal tier for each bidder. The `dealTier` object enables publishers to have different line item setups with varying priorities.
 
 `dealTier.prefix`  
-A string that enables bidders to target deal line items.
+An optional string that enables bidders to target deal line items.
 
 `dealTier.minDealTier`  
-An integer that will give higher preference to  deal bids when the `minDealTier` value is greater than five (5). Bids with `minDealTier` values less than five will not be ignored, however their cache key will contain `dealId` in place of `cpm`. These bids will be auctioned as non-deal bids.
+An integer that will give higher preference to deal bids which return tier greater than minDealTier.  Bids with `minDealTier` values less than five will not be ignored, however their cache key will contain `dealId` in place of `cpm`. These bids will be auctioned as non-deal bids.
 
     <pre>
     // This will replace the cpm with dealId in cache key as well as targeting kv pair when prioritizeDeals flag is set to true.
