@@ -163,6 +163,92 @@ Here's an example video request that could come from Prebid.js:
 
 ### The Page Gets the Response
 
-### The Page Calls the Ad Server
+Here's an example video response carrying cache information for where
+the VAST can be retrieved.
+
+```
+{
+    "id": "19af7cb0-b186-4128-84d6-8b60fddc21d9",
+    "seatbid": [
+        {
+            "bid": [
+                {
+                    "id": "19af7cb0-b186-4128-84d6-8b60fddc21d0",
+                    "impid": "video1",
+                    "price": 1.23,
+                    "crid": "4458534",
+                    "ext": {
+                        "prebid": {
+                            "type": "video",
+                            "targeting": {
+                                "hb_size_bidderA": "1x1",
+                                "hb_cache_id": "114ded12-ed89-439e-9704-430c08627652",
+                                "hb_uuid": "114ded12-ed89-439e-9704-430c08627652",
+                                "hb_cache_path_bidderA": "/cache",
+                                "hb_cache_host_bidderA": "prebid-cache-us-east.example.com",
+                                "hb_pb": "1.20",
+                                "hb_pb_rubicon": "1.20",
+                                "hb_cache_id_bidderA": "114ded12-ed89-439e-9704-430c08627652",
+                                "hb_uuid_bidderA": "114ded12-ed89-439e-9704-430c08627652",
+                                "hb_cache_path": "/cache",
+                                "hb_size": "1x1",
+                                "hb_bidder": "bidderA",
+                                "hb_bidder_bidderA": "bidderA",
+                                "hb_cache_host": "prebid-cache-us-east.rubiconproject.com"
+                            },
+                            "cache": {
+                                "bids": {
+                                    "url": "https://prebid-cache-us-east.rubiconproject.com/cache?uuid=114ded12-ed89-439e-9704-430c08627652",
+                                    "cacheId": "114ded12-ed89-439e-9704-430c08627652"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "seat": "bidderA",
+            "group": 0
+        }
+    ],
+    "cur": "USD",
+    "ext": {
+        "responsetimemillis": {
+            "bidderA": 52
+        },
+        "tmaxrequest": 500
+    }
+}
+```
+
+Prebid.js parses this and makes the data available to Prebid.js core.
+
+### The Ad Server is Called
+
+#### Banner
+
+A callback function grabs the ad server targeting values and
+adds them to the ad server call.
+
+#### Video
+
+Depending on the ad server, the ad server targeting values are added
+to the ad server URL and given to the video player.
+
+The player decides when it's time to call the ad server.
 
 ### The Ad is Displayed
+
+#### Banner
+
+When a Prebid ad wins in the ad server, the response is a javascript creative. This javascript loads the Prebid Universal Creative code, which displays the ad in an iframe.
+
+#### Video
+
+When a Prebid video ad wins in the ad server, the response is a VAST URL.
+The video player uses this URL to retrieve the VAST, and then loads the
+actual creative asset when it's time to display.
+
+## Further Reading
+
+- [What is Prebid.js?](/prebid/prebidjs.html)
+- [Prebid Video Ads](/formats/video.html)
