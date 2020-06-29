@@ -1737,48 +1737,8 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Targeting and Price Granulairity
-  link: /prebid-server/features/pbs-targeting-and-price.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: <b>Caching</b>
-  link: /prebid-server/features/caching/pbs-caching-overview.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Bid Caching'
-  link: /prebid-server/features/caching/pbs-bid-caching.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;VAST XML'
-  link: /prebid-server/features/caching/pbs-vast-caching.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: Currency Conversion
-  link: /prebid-server/features/pbs-currency.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: Stored Requests
-  link: /prebid-server/features/pbs-stored-request.html
+  title: Caching
+  link: /prebid-server/features/pbs-caching-overview.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1793,24 +1753,8 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Events
-  link: /prebid-server/features/pbs-events.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
   title: Analytics Support
   link: /prebid-server/features/pbs-analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: Programmatic Guaranteed
-  link: /prebid-server/features/pbs-prog-guaranteed.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
