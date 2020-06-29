@@ -101,7 +101,8 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
       ucTagData.env = "%%PATTERN:hb_env%%";
       ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
       ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
-
+      // mobileResize needed for mobile only
+      ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
@@ -137,6 +138,8 @@ For Mopub:
       ucTagData.env = "%%KEYWORD:hb_env%%";
       ucTagData.size = "%%KEYWORD:hb_size_BIDDERCODE%%";
       ucTagData.hbPb = "%%KEYWORD:hb_pb_BIDDERCODE%%";
+      // mobileResize needed for mobile only
+      ucTagData.mobileResize = "hb_size:%%KEYWORD:hb_size_BIDDERCODE%%";
        try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
@@ -165,6 +168,8 @@ For other ad servers:
       ucTagData.env = "%%MACRO:hb_env%%";
       ucTagData.size = "%%MACRO:hb_size_BIDDERCODE%%";
       ucTagData.hbPb = "%%MACRO:hb_pb_BIDDERCODE%%";
+      // mobileResize needed for mobile only
+      ucTagData.mobileResize = "hb_size:%%MACRO:hb_size_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
