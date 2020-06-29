@@ -2258,7 +2258,7 @@ pbjs.setConfig({
         user: {
            keywords: ["a","b"],
            gender: "M",
-           yob: "1984",
+           yob: 1984,
            geo: { country: "ca" },
            data: {
               registered: true,
