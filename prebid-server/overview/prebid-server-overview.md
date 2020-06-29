@@ -27,7 +27,7 @@ At a high level, Prebid Server is an intelligent proxy server with a growing lis
 
 The Prebid Cache is an adjunct to Prebid Server that stores VAST and bids as needed, supporting video and AMP use cases.
 
-Explore [Prebid Server features in more detail](/prebid-server/pbs-features.html).
+Explore [Prebid Server features in more detail](/prebid-server/features/index.html).
 
 ## Where will you run Prebid Server?
 
