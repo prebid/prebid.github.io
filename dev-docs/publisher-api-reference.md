@@ -2247,7 +2247,7 @@ Not all bid adapters currently support reading first party data in this way, but
 pbjs.setConfig({
    fpd: {
        context: {
-           keywords: ["power tools"],
+           keywords: "power tools",
            search: "drill",
            content: { userrating: 4 },
            data: {
@@ -2256,7 +2256,7 @@ pbjs.setConfig({
            }
         },
         user: {
-           keywords: ["a","b"],
+           keywords: "a,b",
            gender: "M",
            yob: 1984,
            geo: { country: "ca" },
