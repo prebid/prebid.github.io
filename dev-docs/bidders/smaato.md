@@ -48,12 +48,12 @@ The Smaato adapter supports passing through first party data configured in your 
 pbjs.setConfig({
     fpd: {
         context: {
-            keywords: ["power tools"]
+            keywords: "power tools"
         },
         user: {
-            keywords: ["a","b"],
+            keywords: "a,b",
             gender: "M",
-            yob: "1984"
+            yob: 1984
         }
 });
 ```
