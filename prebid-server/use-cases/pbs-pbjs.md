@@ -11,7 +11,7 @@ When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/publisher-a
 
 Here's how that works for banner adunits:
 
-![Prebid Server Web Banner Architecture](/assets/images/prebid-server/pbs-js-banner-architecture.png)
+![Prebid Server Web Banner Architecture](/assets/images/prebid-server/pbs-js-banner-architecture.png){:class="pb-xlg-img"}
 
 1. Prebid.js is set up to run auctions for one or more bidders through “s2sConfig”.
 1. Prebid Server parses the request and holds the auction
@@ -23,7 +23,7 @@ Here's how that works for banner adunits:
 
 Video ad units are handled in mostly the same way, but there's caching involved and display is different:
 
-![Prebid Server Web Video Architecture](/assets/images/prebid-server/pbs-js-video-architecture.png)
+![Prebid Server Web Video Architecture](/assets/images/prebid-server/pbs-js-video-architecture.png){:class="pb-xlg-img"}
 
 1. Prebid.js is set up to run auctions for one or more bidders through “s2sConfig”.
 1. Prebid Server parses the request and holds the auction

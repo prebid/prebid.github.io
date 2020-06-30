@@ -9,7 +9,7 @@ title: Prebid Server | Use Cases | Mobile SDK
 
 Unlike Prebid.js, the [Prebid Mobile SDK](/prebid-mobile/prebid-mobile.html) doesn't make requests to demand sources directly. Instead, it relies entirely on Prebid Server to handle the bidder communication.
 
-![Prebid SDK Architecture](/assets/images/prebid-server/pbs-sdk-architecture.png)
+![Prebid SDK Architecture](/assets/images/prebid-server/pbs-sdk-architecture.png){:class="pb-xlg-img"}
 
 1. The mobile app calls SDK with one or more “stored request” IDs. SDK forms OpenRTB for the auction and calls Prebid Server. This request contains one or more “stored request IDs” mapping adunits to bidders and parameters. 
 1. Prebid Server looks up the stored request to find which bidders and parameters to use.

@@ -12,7 +12,7 @@ as part of the tradeoff, header bidding wrappers like Prebid.js don't work well.
 
 Here's how it works:
 
-![Prebid AMP Architecture](/assets/images/prebid-server/pbs-amp-architecture.png)
+![Prebid AMP Architecture](/assets/images/prebid-server/pbs-amp-architecture.png){:class="pb-xlg-img"}
 
 1. A browser processing an Accelerated Mobile Page (AMP) calls Prebid Server using the Real Time Protocol (RTC) and passing in a number of parameters, including a stored request ID. Each ad on the page is a separate request.
 1. Prebid Server looks up the stored request to find which bidders and parameters to use

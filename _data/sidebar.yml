@@ -1657,7 +1657,7 @@
 
 - sbSecId: 5
   title: '&nbsp;&nbsp;Managed Solutions'
-  link: /prebid-server/hosting/pbs-solutions.html
+  link: /prebid-server/hosting/hosted-servers.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1665,32 +1665,17 @@
 
 - sbSecId: 5
   title: '&nbsp;&nbsp;Hosting Your Own PBS'
-  link: /prebid-server/hosting/pbs-hosting-servers.html
+  link: /prebid-server/hosting/pbs-hosting.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
 - sbSecId: 5
-  title: Hosting With Go
-  link: /prebid-server/hosting/pbs-hosting-go.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Hosting With Java
-  link: /prebid-server/hosting/pbs-hosting-java.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Versions</b>
-  link: /prebid-server/versions/pbs-versions.html
+  title: Versions
+  link:
   isHeader: 1
+  headerId: pbsversions
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
@@ -1729,7 +1714,15 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Privacy Support (GDPR, CCPA, COPPA)
+  title: Feature Summary
+  link: /prebid-server/features/index.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Privacy Support (GDPR, CCPA, etc)
   link: /prebid-server/features/privacy/pbs-privacy.html
   isHeader: 0
   isSectionHeader: 0
@@ -1738,7 +1731,7 @@
 
 - sbSecId: 5
   title: Caching
-  link: /prebid-server/features/pbs-caching-overview.html
+  link: /prebid-server/features/pbs-caching.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1753,18 +1746,10 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Analytics Support
-  link: /prebid-server/features/pbs-analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
   title: Bidders
   link:
   isHeader: 1
-  headerId: serverdevelopers
+  headerId: pbsbidders
   isSectionHeader: 0
   sectionTitle:
   subgroup: 4
@@ -1838,13 +1823,13 @@
   title: Endpoints
   link:
   isHeader: 1
-  headerId: serverreferences
+  headerId: pbsendpoints
   isSectionHeader: 0
   sectionTitle:
   subgroup: 6
 
 - sbSecId: 5
-  title: <b>Endpoint Documentation</b>
+  title: Overview
   link: /prebid-server/endpoints/pbs-endpoint-overview.html
   isHeader: 0
   isSectionHeader: 0
