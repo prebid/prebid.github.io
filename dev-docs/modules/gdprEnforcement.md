@@ -97,7 +97,7 @@ pbjs.setConfig({
 });
 ```
 
-2) Enforce that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, idSystemA is a special case - the publisher has confirmed that this system obtains the ID every auction and does not write to the local device.
+2) Enforce that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, idSystemA is a special case - the publisher has confirmed that this system obtains a user ID every auction and does not write to the local device.
 
       ...
       rules: [{
@@ -140,10 +140,10 @@ A goal of basic enforcement is to confirm that there's enough evidence of consen
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
 - Configuration rules enforce both consent and vendor signals and either:
-  - we have the user’s purpose consent and the user’s vendor consent, or
+  - Prebid.js has the user’s purpose consent and the user’s vendor consent, or
   - (for Purpose 2 only) we've confirmed the user’s Legitimate Interest (LI) Transparency is established for this purpose
 - Configuration rules enforce only purpose consent and either:
-  - we have the user’s purpose consent, or
+  - Prebid.js have the user’s purpose consent, or
   - (for Purpose 2 only) we confirmed the user’s LI Transparency is established for this purpose.
 - Configuration rules enforce only vendor signals and we have the user’s vendor consent
 - Configuration rules enforce neither purpose consent nor vendor signal.
