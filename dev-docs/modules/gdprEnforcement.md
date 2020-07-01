@@ -39,7 +39,7 @@ The following table details the Prebid.js activities that fall under the [Transp
 | Invoke usersync pixels | Purpose 1 - Store and/or access information on a device | May prevent one or more vendor usersyncs. | 3.14+ |
 | Invoke user ID modules | Purpose 1 - Store and/or access information on a device | May prevent one or more UserID modules from activating. | 3.14+ |
 | Read and write data to device | Purpose 1 - Store and/or access information on a device | May prevent one or more adapters or modules from being able to read or write cookies or localstorage in the user's browser. | 3.14+ |
-| Perform header bidding auction | Purpose 2 - Basic ads | May prevent one or more bid adapters from participating the auction. | 4.0+ |
+| Perform header bidding auction | Purpose 2 - Basic ads | May prevent one or more bid adapters from participating in the auction. | 4.0+ |
 
 There are plans to add more TCF Purposes and activities in future releases.
 
@@ -143,7 +143,7 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
   - Prebid.js has the user’s purpose consent and the user’s vendor consent, or
   - (for Purpose 2 only) we've confirmed the user’s Legitimate Interest (LI) Transparency is established for this purpose
 - Configuration rules enforce only purpose consent and either:
-  - Prebid.js have the user’s purpose consent, or
+  - Prebid.js has the user’s purpose consent, or
   - (for Purpose 2 only) we confirmed the user’s LI Transparency is established for this purpose.
 - Configuration rules enforce only vendor signals and we have the user’s vendor consent
 - Configuration rules enforce neither purpose consent nor vendor signal.
