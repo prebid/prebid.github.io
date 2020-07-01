@@ -7,7 +7,7 @@ schain_supported: false
 gdpr_supported: true
 usp_supported: true
 tcf2_supported: false
-biddercode: appmonet
+biddercode: amx
 media_types: banner, video
 ---
 
