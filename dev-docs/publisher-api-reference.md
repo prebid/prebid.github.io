@@ -517,7 +517,7 @@ To use this function, include the [UserId module](/dev-docs/modules/userId.html)
 If you need to export the user IDs stored by Prebid User ID module in ORTB Eids frormat, then the `getUserIdsAsEids()` function will return an array formatted as per [ORTB Eids](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md).
 
 ```
-pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g. 
+pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
   {
       source: 'pubcid.org',
@@ -608,7 +608,7 @@ setTargetingForGPTAsync(adUnit, pickInViewDiv);
 
 ### pbjs.setTargetingForAst(adUnitCode)
 
-Set query string targeting for AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad unit(s).  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
+Set query string targeting for AST ([Seller Tag](https://docs.xandr.com/bundle/seller-tag/page/seller-tag.html)) ad unit(s).  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -1776,7 +1776,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Server-Side Aliases**
 
-You may want to run a particular bidder on the client for banner, but that same bidder on the 
+You may want to run a particular bidder on the client for banner, but that same bidder on the
 server for video. You would do this by setting a **server-side** alias. The
 [example](#setConfig-Server-to-Server) at the start of this section provides an example. Here's how it works:
 
@@ -2247,7 +2247,7 @@ Not all bid adapters currently support reading first party data in this way, but
 pbjs.setConfig({
    fpd: {
        context: {
-           keywords: ["power tools"],
+           keywords: "power tools",
            search: "drill",
            content: { userrating: 4 },
            data: {
@@ -2256,7 +2256,7 @@ pbjs.setConfig({
            }
         },
         user: {
-           keywords: ["a","b"],
+           keywords: "a,b",
            gender: "M",
            yob: 1984,
            geo: { country: "ca" },
