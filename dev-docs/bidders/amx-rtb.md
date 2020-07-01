@@ -18,3 +18,16 @@ media_types: banner, video
 |-------------|----------|--------------------------------------|---------------------------------|----------|
 | `testMode`  | optional | Activate 100% fill ads               | `true`                          | `boolean`|
 | `tagId`     | optional | Tag ID                               | `'bfeh23'`                      | `string` |
+
+### Test Parameters
+
+To enable 100% fill test ads, you can use the following `params`:
+
+```javascript
+{
+  testMode: true,
+  tagId: "cHJlYmlkLm9yZw"
+}
+```
+
+Note that the `tagId` is case-sensitive. This will produce a bid at $10 with a test creative.
