@@ -2,7 +2,7 @@
 layout: bidder
 title: SpotX
 description: Prebid SpotX Bidder Adaptor
-hide: true
+
 biddercode: spotx
 media_types: video
 gdpr_supported: true

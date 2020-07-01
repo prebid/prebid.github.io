@@ -2,7 +2,7 @@
 layout: bidder
 title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adaptor
-hide: true
+
 biddercode: rubicon
 gdpr_supported: true
 tcf2_supported: true

@@ -3,7 +3,7 @@ layout: bidder
 title: Vidazoo
 description: Prebid Vidazoo Bidder Adaptor
 biddercode: vidazoo
-hide: true
+
 userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 gdpr_supported: true
 usp_supported: true

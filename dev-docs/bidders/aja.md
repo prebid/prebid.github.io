@@ -2,7 +2,7 @@
 layout: bidder
 title: AJA
 description: Prebid AJA Bidder Adaptor
-hide: true
+
 biddercode: aja
 media_types: video, native
 ---

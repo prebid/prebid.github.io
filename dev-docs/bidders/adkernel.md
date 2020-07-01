@@ -2,7 +2,7 @@
 layout: bidder
 title: AdKernel
 description: Prebid AdKernel Bidder Adaptor
-hide: true
+
 biddercode: adkernel
 media_types: banner, native, video
 gdpr_supported: true

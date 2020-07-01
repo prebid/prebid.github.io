@@ -2,7 +2,7 @@
 layout: bidder
 title: Kubient
 description: Prebid Kubient Bidder Adapter
-hide: true
+
 schain_supported: true
 biddercode: kubient
 aliasCode: fidelity

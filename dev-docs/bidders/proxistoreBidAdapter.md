@@ -2,7 +2,7 @@
 layout: bidder
 title: Proxistore
 description: Prebid Proxistore Bidder Adapter
-hide: true
+
 biddercode: proxistore
 gdpr_supported: true
 ---

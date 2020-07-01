@@ -2,7 +2,7 @@
 layout: bidder
 title: Luna Media
 description: Prebid Luna Media Bidder Adapter
-hide: true
+
 biddercode: lunamedia
 ---
 

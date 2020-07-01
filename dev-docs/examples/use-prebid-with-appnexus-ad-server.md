@@ -1,8 +1,8 @@
 ---
 layout: example
-title: Using Prebid.js with Xandr Publisher Ad Server
-description: Using Prebid.js with Xandr Publisher Ad Server
-hide: true
+title: Using Prebid.js with AppNexus Publisher Ad Server
+description: Using Prebid.js with AppNexus Publisher Ad Server
+
 sidebarType: 1
 
 about:

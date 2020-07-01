@@ -2,7 +2,7 @@
 layout: bidder
 title: Yieldmo
 description: Prebid Yieldmo Bidder Adaptor
-hide: true
+
 biddercode: yieldmo
 media_types: banner
 userIds: pubCommonId, unifiedId, criteo

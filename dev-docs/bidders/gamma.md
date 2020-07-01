@@ -2,7 +2,7 @@
 layout: bidder
 title: Gamma
 description: Prebid Gamma Bidder Adaptor
-hide: true
+
 biddercode: gamma
 media_types: video
 ---

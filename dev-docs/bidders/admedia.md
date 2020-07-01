@@ -2,7 +2,7 @@
 layout: bidder
 title: AdMedia
 description: Prebid AdMedia Bidder Adaptor
-hide: true
+
 biddercode: admedia
 media_types: banner
 gdpr_supported: false

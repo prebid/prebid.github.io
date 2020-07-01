@@ -2,7 +2,7 @@
 layout: bidder
 title: Beachfront
 description: Prebid Beachfront Bidder Adaptor
-hide: true
+
 biddercode: beachfront
 media_types: video
 gdpr_supported: true

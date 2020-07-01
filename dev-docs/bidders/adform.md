@@ -2,7 +2,7 @@
 layout: bidder
 title: Adform
 description: Prebid Adform Bidder Adaptor
-hide: true
+
 biddercode: adform
 media_types: video
 gdpr_supported: true
