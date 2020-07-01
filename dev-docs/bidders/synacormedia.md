@@ -2,7 +2,7 @@
 layout: bidder
 title: Synacor Media
 description: Prebid Synacor Media Bidder Adapter
-hide: true
+
 biddercode: synacormedia
 media_types: banner, video
 gdpr_supported: false

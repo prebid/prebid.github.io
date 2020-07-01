@@ -2,7 +2,7 @@
 layout: bidder
 title: Adyoulike
 description: Prebid Adyoulike Bidder Adaptor
-hide: true
+
 biddercode: adyoulike
 gdpr_supported: true
 usp_supported: true

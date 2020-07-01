@@ -2,7 +2,7 @@
 layout: bidder
 title: Justpremium
 description: Prebid Justpremium Bidder Adaptor
-hide: true
+
 biddercode: justpremium
 gdpr_supported: true
 usp_supported: true

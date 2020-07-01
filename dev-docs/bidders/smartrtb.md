@@ -2,7 +2,7 @@
 layout: bidder
 title: SmartRTB
 description: SmartRTB / smrtb.com Bidder Module
-hide: true
+
 biddercode: smartrtb
 gdpr_supported: true
 media_types: banner, video

@@ -2,7 +2,7 @@
 layout: bidder
 title: Beintoo
 description: Prebid Beintoo Bidder Adaptor
-hide: true
+
 biddercode: beintoo
 aliasCode : appnexus
 ---

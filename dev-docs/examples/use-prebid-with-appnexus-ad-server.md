@@ -2,7 +2,7 @@
 layout: example
 title: Using Prebid.js with AppNexus Publisher Ad Server
 description: Using Prebid.js with AppNexus Publisher Ad Server
-hide: true
+
 sidebarType: 1
 
 about:

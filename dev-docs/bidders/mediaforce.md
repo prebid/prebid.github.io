@@ -4,7 +4,7 @@ title: MediaForce
 description: MediaForce Prebid Bidder Adapter
 media_types: banner 
 biddercode: mediaforce
-hide: true
+
 gdpr_supported: false
 ---
 

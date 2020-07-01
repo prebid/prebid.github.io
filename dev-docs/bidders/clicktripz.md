@@ -2,7 +2,7 @@
 layout: bidder
 title: Clicktripz
 description: Prebid Clicktripz Bidder Adaptor
-hide: true
+
 biddercode: clicktripz
 media_types: banner
 ---

@@ -3,7 +3,7 @@ layout: bidder
 title: AppNexus
 description: Prebid AppNexus Bidder Adaptor
 biddercode: appnexus
-hide: true
+
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true

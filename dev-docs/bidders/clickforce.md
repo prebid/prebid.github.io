@@ -2,7 +2,7 @@
 layout: bidder
 title: Clickforce
 description: Prebid Clickforce Bidder Adaptor
-hide: true
+
 biddercode: clickforce
 media_types: native
 ---

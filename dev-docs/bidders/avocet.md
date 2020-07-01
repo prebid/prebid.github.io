@@ -2,7 +2,7 @@
 layout: bidder
 title: Avocet
 description: Prebid Avocet Bidder Adapter
-hide: true
+
 biddercode: avct
 gdpr_supported: true
 media_types: banner, video
