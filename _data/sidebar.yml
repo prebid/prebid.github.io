@@ -1837,31 +1837,15 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Info - Bidders'
-  link: /prebid-server/endpoints/info/pbs-endpoint-bidders.html
+  title: '&nbsp;&nbsp;/info'
+  link: /prebid-server/endpoints/info/pbs-endpoint-info.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Info - Bidder Name'
-  link: /prebid-server/endpoints/info/pbs-endpoint-bidderName.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Bidders - Params'
-  link: /prebid-server/endpoints/info/pbs-bidder-params.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Starting Cookie Sync'
+  title: '&nbsp;&nbsp;/cookie_sync'
   link: /prebid-server/endpoints/pbs-endpoint-cookieSync.html
   isHeader: 0
   isSectionHeader: 0
@@ -1869,7 +1853,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid Server Auction'
+  title: '&nbsp;&nbsp;/openrtb2/auction'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html
   isHeader: 0
   isSectionHeader: 0
@@ -1877,7 +1861,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid Server AMP'
+  title: '&nbsp;&nbsp;/openrtb2/amp'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1885,7 +1869,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid Server Video'
+  title: '&nbsp;&nbsp;/openrtb2/video'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-video.html
   isHeader: 0
   isSectionHeader: 0
@@ -1893,7 +1877,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Saving User Syncs'
+  title: '&nbsp;&nbsp;/setuid'
   link: /prebid-server/endpoints/pbs-endpoint-setuid.html
   isHeader: 0
   isSectionHeader: 0
@@ -1901,7 +1885,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Get User Syncs'
+  title: '&nbsp;&nbsp;/getuids'
   link: /prebid-server/endpoints/pbs-endpoint-getuids.html
   isHeader: 0
   isSectionHeader: 0
@@ -1909,17 +1893,9 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Get Status'
+  title: '&nbsp;&nbsp;/status'
   link: /prebid-server/endpoints/pbs-endpoint-status.html
   Item: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-- sbSecId: 5
-  title: Request/Response Examples
-  link: /prebid-server/endpoints/pbs-request-response-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
