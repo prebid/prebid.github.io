@@ -300,6 +300,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="konduit" class="analytics-check-box"> Konduit Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
     </label>
   </div>
