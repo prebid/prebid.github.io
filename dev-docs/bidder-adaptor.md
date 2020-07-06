@@ -242,6 +242,8 @@ Here is a sample array entry for `validBidRequests[]`:
   bidRequestsCount: 1
   bidderRequestsCount: 1
   bidderWinsCount: 0
+  userId: {...}
+  schain: {...}
   mediaTypes: {banner: {...}}
   params: {...}
   src: "client"
@@ -256,6 +258,8 @@ Other notes:
 - **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
 
@@ -263,27 +267,24 @@ Here is a sample bidderRequest object:
 
 {% highlight js %}
 {
-  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
-  auctionStart: 1579746300522
-  bidderCode: "myBidderCode"
-  bidderRequestId: "15246a574e859f"
-  userId: {...}
-  schain: {...}
-  bids: [{...}]
-  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
-  refererInfo:
-    canonicalUrl: undefined
-    numIframes: 0
-    reachedTop: true
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+  auctionStart: 1579746300522,
+  bidderCode: "myBidderCode",
+  bidderRequestId: "15246a574e859f",
+  bids: [{...}],
+  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+  refererInfo: {
+    canonicalUrl: undefined,
+    numIframes: 0,
+    reachedTop: true,
     referer: "http://mypage?pbjs_debug=true"
+  }
 }
 {% endhighlight %}
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
-- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
@@ -675,7 +676,7 @@ Adapter must add following new properties to bid response
 {% highlight js %}
 {
   meta: {
-    iabSubCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
+    primaryCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
   },
   video: {
     context: 'adpod',
@@ -734,7 +735,7 @@ getIabSubCategory(bidderCode, pCategory)
 {% highlight js %}
 
 import { getIabSubCategory } from '../src/adapters/bidderFactory';
-let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+let primaryCatId = getIabSubCategory(bidderCode, pCategory)
 
 {% endhighlight %}
 
@@ -986,7 +987,16 @@ registerBidder(spec);
 - [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
-  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
+    - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`
+    - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`
+    - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`
+    - If you support one or more userId modules, add `userId: (list of supported vendors)`
+    - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`
+    - If you support COPPA, add `coppa_supported: true`
+    - If you support SChain, add `schain_supported: true`
+    - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder.
+    - If you're a member of Prebid.org, add `prebid_member: true`
 - Submit both the code and docs pull requests
 
 Within a few days, the code pull request will be assigned to a developer for review.

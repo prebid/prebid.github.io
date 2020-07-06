@@ -14,6 +14,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | ------------- | ------------- | ----------- |
 | Appier | Contact vendor | [Website](https://www.appier.com) |
 | Adagio | Contact vendor| [Website](https://adagio.io)|
+| adWMG Analytics | Contact vendor| [Website](https://adwmg.com)|
 | AdxPremium | Free to try| [Website](https://luponmedia.com)|
 | Assertive Yield (contact for adapter) | Free to try (Large accounts \$0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) |
 | ATS Analytics | Contact vendor | [Website](https://liveramp.com) |
@@ -42,7 +43,6 @@ There are several analytics adapter plugins available to track header bidding pe
 | STAQ | <a href="https://www.staq.com/contact">Contact vendor</a> | [Website](https://www.staq.com/)|
 | Tercept Analytics | <a href="https://www.tercept.com/unified-analytics/">Contact vendor</a> | [Website](https://www.tercept.com/)|
 | ucfunnel | Contact vendor | [Website](https://www.ucfunnel.com/)|
-| Vuble | Contact vendor | [Website](https://vuble.tv/us/prebid/) |
 | Yieldone | Contact vendor | [Website](https://www.platform-one.co.jp/) |
 | YuktaMedia Analytics | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) |
 

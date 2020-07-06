@@ -1,3 +1,8 @@
+- company: Magnite
+  link: https://www.magnite.com/
+  imgURL: /assets/images/partners/leader/Magnite_logo.png
+  type: leader
+  
 - company: MediaMath 
   link: https://www.mediamath.com/
   imgURL: /assets/images/partners/leader/MediaMath-wordmark.png
@@ -13,11 +18,6 @@
   imgURL: /assets/images/partners/leader/pubmatic.png
   type: leader
 
-- company: Rubicon Project
-  link: https://rubiconproject.com/header-bidding-for-publishers/
-  imgURL: /assets/images/partners/founders/rubicon.png
-  type: leader
-  
 - company: SpotX 
   link: https://spotx.tv
   imgURL: /assets/images/partners/leader/spotx_logo.png
@@ -51,6 +51,11 @@
 - company: Datablocks 
   link: https://datablocks.net/
   imgURL: /assets/images/partners/tech/datablocks_logo.png
+  type: technology
+  
+- company: LiveRamp 
+  link: https://liveramp.com/
+  imgURL: /assets/images/partners/tech/LiveRamp-Logo.png
   type: technology
   
 - company: Marfeel 
@@ -133,6 +138,11 @@
   imgURL: /assets/images/partners/publisher/PCH-logo_v3.jpg
   type: publisher
 
+- company: PubWise
+  link: https://pubwise.io
+  imgURL: /assets/images/partners/publisher/Pubwise-logo.png
+  type: publisher
+
 - company: SHE Media
   link: https://www.shemedia.com/
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
@@ -151,6 +161,10 @@
 - company: Adomik
   link: https://adomik.com/
   imgURL: /assets/images/partners/community/Adomik-logo.png
+  type: community
+
+- company: Adtelligent
+  link: https://adtelligent.com/
   type: community
 
 - company: Audigent
@@ -192,7 +206,7 @@
   imgURL: /assets/images/partners/community/ID5-Logo.png
   type: community
 
-- company: JWPlayer
+- company: JW Player
   link: https://jwplayer.com
   type: community
 
@@ -201,8 +215,16 @@
   imgURL: /assets/images/partners/community/liveintent_logo.png
   type: community
 
+- company: Lotame
+  link: https://www.lotame.com/
+  type: community
+
 - company: Media.net
   link: https://media.net
+  type: community
+
+- company: MobileFuse
+  link: https://mobilefuse.com/
   type: community
 
 - company: Parrable
@@ -214,13 +236,12 @@
   imgURL: /assets/images/partners/community/Publica-Logo.png
   type: community
 
-- company: PubWise
-  link: https://pubwise.io
-  imgURL: /assets/images/partners/community/Pubwise-logo.png
-  type: community
-
 - company: Simplaex
   link: https://simplaex.com
+  type: community
+
+- company: Sovrn
+  link: https://sovrn.com
   type: community
 
 - company: Yeahmobi

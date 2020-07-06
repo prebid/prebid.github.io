@@ -517,7 +517,7 @@ To use this function, include the [UserId module](/dev-docs/modules/userId.html)
 If you need to export the user IDs stored by Prebid User ID module in ORTB Eids frormat, then the `getUserIdsAsEids()` function will return an array formatted as per [ORTB Eids](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md).
 
 ```
-pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g. 
+pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
   {
       source: 'pubcid.org',
@@ -608,7 +608,7 @@ setTargetingForGPTAsync(adUnit, pickInViewDiv);
 
 ### pbjs.setTargetingForAst(adUnitCode)
 
-Set query string targeting for AST ([AppNexus Seller Tag](https://wiki.appnexus.com/x/PgOXBQ)) ad unit(s).  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
+Set query string targeting for AST ([Seller Tag](https://docs.xandr.com/bundle/seller-tag/page/seller-tag.html)) ad unit(s).  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
 
 **Kind**: static method of [pbjs](#module_pbjs)
 
@@ -1684,17 +1684,19 @@ a price granularity override. If it doesn't find 'video-outstream' defined, it w
 
 #### Server to Server
 
-Example config for [server-to-server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html) header bidding:
+Prebid.js can be configured to connect to one or more [Prebid Servers](/dev-docs/get-started-with-prebid-server.html) for one or more bidders.
+
+Example config:
 
 {% highlight js %}
 pbjs.setConfig({
-    s2sConfig: {
+    s2sConfig: [{
         accountId: '1',
         bidders: ['appnexus', 'openx', 'tripleliftVideo'],
         defaultVendor: 'appnexus',
-        timeout: 1000,
+        timeout: 500,
         adapterOptions: {
-            pubmatic: { key: 'value' },
+            openx: { key: 'value' },
             appnexus: { key: 'value' }
         },
         syncUrlModifier: {
@@ -1709,21 +1711,24 @@ pbjs.setConfig({
                 tripleliftVideo: tripleLift
             }
         }
-    }
+    }]
 })
 {% endhighlight %}
 
-Additional information of `s2sConfig` properties:
+{: .alert.alert-info :}
+Note that `s2sConfig` can be specified as an object or an array.
+
+The `s2sConfig` properties:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description                                                                                   |
 |------------+---------+---------+---------------------------------------------------------------|
-| `accountId` | Required | String | Your Prebid Server account ID |
-| `bidders` | Required | Array of Strings | Which bidders support auctions on the server side |
+| `accountId` | Required | String | Your Prebid Server account ID. This is obtained from whoever's hosting your Prebid Server. |
+| `bidders` | Required | Array of Strings | Which bidders auctions should take place on the server side |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
-| `enabled` | Optional | Boolean | Enables S2S - defaults to `false` |
+| `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
-| `adapter` | Required | String | Adapter code for S2S. Defaults to 'prebidServer' |
+| `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
@@ -1750,7 +1755,7 @@ Supporting video through the Server-to-Server route can be done by providing a c
 
 {% highlight js %}
 pbjs.setConfig({
-    s2sConfig: {
+    s2sConfig: [{
         accountId: '1001',
         bidders: ['rubicon', 'pubmatic'],
         defaultVendor: 'rubicon',
@@ -1763,7 +1768,7 @@ pbjs.setConfig({
                 pricegranularity: {"ranges": [{"max":40.00,"increment":1.00}]}
             }
         }
-    }
+    }]
 })
 {% endhighlight %}
 
@@ -1771,7 +1776,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Server-Side Aliases**
 
-You may want to run a particular bidder on the client for banner, but that same bidder on the 
+You may want to run a particular bidder on the client for banner, but that same bidder on the
 server for video. You would do this by setting a **server-side** alias. The
 [example](#setConfig-Server-to-Server) at the start of this section provides an example. Here's how it works:
 
@@ -2242,7 +2247,7 @@ Not all bid adapters currently support reading first party data in this way, but
 pbjs.setConfig({
    fpd: {
        context: {
-           keywords: ["power tools"],
+           keywords: "power tools",
            search: "drill",
            content: { userrating: 4 },
            data: {
@@ -2251,9 +2256,9 @@ pbjs.setConfig({
            }
         },
         user: {
-           keywords: ["a","b"],
+           keywords: "a,b",
            gender: "M",
-           yob: "1984",
+           yob: 1984,
            geo: { country: "ca" },
            data: {
               registered: true,

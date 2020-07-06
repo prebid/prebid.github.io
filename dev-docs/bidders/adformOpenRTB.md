@@ -2,10 +2,13 @@
 layout: bidder
 title: AdformOpenRTB
 description: Prebid AdformOpenRTB Bidder Adaptor
-hide: true
+
 biddercode: adformOpenRTB
-media_types: native
+media_types: no-display, native
 gdpr_supported: true
+usp_supported: true
+tcf2_supported: true
+prebid_member: true
 ---
 
 ### Bid params

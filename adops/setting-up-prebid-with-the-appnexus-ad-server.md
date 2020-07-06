@@ -4,7 +4,7 @@ title: Setting up Prebid with the AppNexus Publisher Ad Server
 head_title: Setting up Prebid with the AppNexus Publisher Ad Server
 description: Setting up Prebid with the AppNexus Publisher Ad Server
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3

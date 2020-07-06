@@ -2,7 +2,7 @@
 layout: bidder
 title: Invibes
 description: Prebid Invibes Bidder Adaptor
-hide: true
+
 biddercode: invibes
 gdpr_supported: true
 ---
