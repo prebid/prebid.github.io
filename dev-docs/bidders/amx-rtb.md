@@ -8,6 +8,7 @@ gdpr_supported: true
 usp_supported: true
 tcf2_supported: false
 biddercode: amx
+safeframes_ok: true
 media_types: banner, video
 ---
 
@@ -17,7 +18,7 @@ media_types: banner, video
 | Name        | Scope    | Description                          | Example                         | Type     |
 |-------------|----------|--------------------------------------|---------------------------------|----------|
 | `testMode`  | optional | Activate 100% fill ads               | `true`                          | `boolean`|
-| `tagId`     | optional | Tag ID                               | `'bfeh23'`                      | `string` |
+| `tagId`     | optional | Tag ID                               | `'cHJlYmlkLm9yZw'`              | `string` |
 
 ### Test Parameters
 
