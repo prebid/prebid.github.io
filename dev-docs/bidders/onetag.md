@@ -21,4 +21,4 @@ userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netI
 
 ### Video Additional Information
 
-Note that right now video support is only provided when the context is "instream" or "outstream". Also a renderer should be included when defining an outstream adUnit.
+Note that right now video support is only provided when the context is "instream" or "outstream".
