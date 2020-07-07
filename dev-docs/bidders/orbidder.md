@@ -6,6 +6,7 @@ biddercode: orbidder
 
 media_types: banner
 gdpr_supported: true
+tcf2_supported: true
 ---
 
 ### Bid Params
