@@ -103,6 +103,11 @@
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
   
+- company: Freestar
+  link: https://freestar.com/
+  imgURL: /assets/images/partners/publisher/freestar-logo.png
+  type: publisher
+  
 - company: Glewed TV
   link: https://www.glewed.tv/
   imgURL: /assets/images/partners/publisher/glewed_logo.png
