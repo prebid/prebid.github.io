@@ -5,15 +5,13 @@ title: Prebid Server | Endpoints | OpenRTB2 | AMP
 
 ---
 
-# Prebid Server | Endpoints | OpenRTB2 | AMP
+# Prebid Server | Endpoints | /openrtb2/amp
 
 This document describes the behavior of the Prebid Server AMP endpoint in detail.
 For a more general reference, see the [Prebid AMP Implementation Guide
 ]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html).
 
-## AMP Endpoint
-
- `GET /openrtb2/amp?tag_id={ID}`
+## GET /openrtb2/amp
 
  **Parameters**
 
@@ -21,8 +19,20 @@ For a more general reference, see the [Prebid AMP Implementation Guide
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | tag_id | Required | `String` |  The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/developers/stored-requests.html). For a thorough description of bid request JSON, see the [/openrtb2/auction](./auction.html) docs. |
+| w | recommended | `String` | Comes from the amp-ad.width attribute. The stored request may contain width already, but this parameter reflects what's actually in the page. It replaces imp.banner.format[0].w |
+| h | recommended | `String` | Comes from the amp-ad.height attribute. The stored request may contain height already, but this parameter reflects what's actually in the page. It replaces imp.banner.format[0].h |
+| ms | optional | `String` | Comes from the amp-ad.data-multi-size attribute. e.g. "970x90, 728x90". Sizes are parsed and added to imp.banner.format |
+| oh | optional | `String` | Comes from the amp-ad.data-override-height attribute. See below for details on size calculation. |
+| ow | optional | `String` | Comes from the amp-ad.data-override-width attribute. See below for details on size calculation. |
+| curl | optional | `String` | Added to OpenRTB request as site.page |
+| slot | optional | `String` | Added to OpenRTB request as imp[0].tagid |
+| timeout | optional | `String` | Added to OpenRTB request as tmax |
+| targeting | optional | `String` | First Party Data |
+| gdpr_consent | optional | `String` | Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
+| account | optional | `String` | Can be used to pass the Prebid-Server specific account ID. This is useful if `tag_id` parameters aren't unique across accounts. |
+| debug | optional | `integer` | If 1, returns additional debug info. |
 
-To be compatible with AMP, this endpoint behaves slightly different from normal `/openrtb2/auction` requests.
+To be compatible with AMP, this endpoint behaves different from normal `/openrtb2/auction` requests.
 
 1. The Stored `request.imp` data must have exactly one element.
 2. `request.imp[0].secure` will be always be set to `1`, because AMP requires all content to be `https`.
@@ -138,19 +148,9 @@ The following errors can occur when loading a stored OpenRTB request for an inco
 
 
 <a name="query_params"></a>
-### Query Parameters
+### Query Parameter Details
 
-This endpoint supports the following query parameters:
-
-1. `h` - `amp-ad` `height`
-2. `w` - `amp-ad` `width`
-3. `oh` - `amp-ad` `data-override-height`
-4. `ow` - `amp-ad` `data-override-width`
-5. `ms` - `amp-ad` `data-multi-size`
-6. `curl` - the canonical URL of the page
-7. `timeout` - the publisher-specified timeout for the RTC callout
    - A configuration option `amp_timeout_adjustment_ms` may be set to account for estimated latency so that Prebid Server can handle timeouts from adapters and respond to the AMP RTC request before it times out.
-8. `debug` - When set to `1`, the respones will contain extra info for debugging.
 
 Ensure that the amp-ad component was imported in the header.
 
@@ -158,24 +158,22 @@ Ensure that the amp-ad component was imported in the header.
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
  ```
 
-This script provides code libraries that will convert the `<amp-ad>` properties to the endpoint query parameters. In the most basic usage pass `width` and `height` as well as `type` and a `rtc-config`.  The `type` value is the ad network you will be using. The `rtc-config` is used to pass JSON configuration to the Prebid Server, which handles the communication with [AMP RTC](https://medium.com/ampfuel/better-than-header-bidding-amp-rtc-fc54e80f3999). Vendors is an object that defines any vendors that will be receiving the RTC callout. In this example, the required parameter `tag_id` will receive the `PLACEMENT_ID` value.
+This script provides code libraries that will convert the `<amp-ad>` properties to the endpoint query parameters. In the most basic usage pass `width` and `height` as well as `type` and a `rtc-config`.  The `type` value is the ad network you will be using. The `rtc-config` is used to pass JSON configuration to the Prebid Server, which handles the communication with [AMP RTC](https://medium.com/ampfuel/better-than-header-bidding-amp-rtc-fc54e80f3999). Vendors is an object that defines any vendors that will be receiving the RTC callout. In this example, the required parameter `tag_id` will receive the `PLACEMENT_ID` (or `REQUEST_ID`) value.
 
 ```html
 <amp-ad  
     width="300"
     height="250"
-    type="a9">
     rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "ef8299d0-cc32-46cf-abcd-41cebe8b4b85"}}, "timeoutMillis": 500}'
 </amp-ad>
 ```
-The endpoint is rewritten as:
+Here's a simplified URL:
 
 ```
 /openrtb2/amp?tag_id='ef8299d0-cc32-46cf-abcd-41cebe8b4b85'&w=300&h=250&timeout=500
 ```
 
-
-If any of the enpoint parameters are present, they will override parts of your Stored Request.
+Some endpoint parameters will override parts of the Stored Request.
 
 1. `ow`, `oh`, `w`, `h`, and/or `ms` will be used to set `request.imp[0].banner.format` if `request.imp[0].banner` is present.
 2. `curl` will be used to set `request.site.page`

@@ -10,7 +10,7 @@ title: Prebid Server | Versions | Java
 <div class="row">
     <div class="col-md-6">
 
-The Java Prebid Server is for those who:
+The Java version of Prebid Server is for those who:
 <ul>
 <li> Want to host Programmatic Guaranteed</li>
 <li> Prefer the Java language</li>
@@ -41,6 +41,10 @@ will soon move to the Prebid org.
 
 See [Hosting your own Prebid Server](/prebid-server/hosting/pbs-hosting.html) for
 important architectural considerations, then follow the instructions for [Installing PBS-Java](/prebid-server/developers/installing-java.html).
+
+## References
+
+- [Building an Analytics Adapter](/prebid-server/developers/pbs-build-an-analytics-adapter.html#adding-an-analytics-adapter-in-pbs-java)
 
 ## See Also
 

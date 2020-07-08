@@ -6,12 +6,16 @@ title: Prebid Server | Developer | Build An Analytics Adapter
 ---
 
 # Prebid Server | Developer | Build An Analytics Adapter
+{: .no_toc}
 
 There aren't any open sourced analytics adapters for Prebid Server, 
 but there is an internal interface that host companies can use to
 integrate their own modules.
 
 Here's an outline of how it's done for both versions of the server.
+
+* TOC
+{:toc }
 
 ## Adding an Analytics Adapter in PBS-Go
 

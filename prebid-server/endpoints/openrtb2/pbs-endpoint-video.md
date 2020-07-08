@@ -5,15 +5,14 @@ title: Prebid Server | Endpoints | OpenRTB2 | Video
 
 ---
 
-# Prebid Server | Endpoints | OpenRTB2 | Video
+# Prebid Server | Endpoints | /openrtb2/video
 {: .no_toc }
 This document describes the behavior of the Prebid Server `video` endpoint in detail.
 
 * TOC
 {:toc}
 
-## Video Endpoint
- `POST /openrtb2/video`
+## POST /openrtb2/video
 
 ## Overview
 

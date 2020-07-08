@@ -10,7 +10,7 @@ title: Prebid Server | Versions | Go
 <div class="row">
 <div class="col-md-6">
 
-The OG Prebid Server is for those who:
+The Go version of Prebid Server is for those who:
 <ul>
 <li>Need long-form video</li>
 <li>Need the most recent bidder adapters</li>
@@ -39,6 +39,10 @@ PBS-Go has all the core PBS features, but does have a backlog of newer [features
 
 See [Hosting your own Prebid Server](/prebid-server/hosting/pbs-hosting.html) for
 important architectural considerations, then follow the instructions for [Installing PBS-Go](/prebid-server/developers/installing-go.html).
+
+## References
+
+- [Building an Analytics Adapter](/prebid-server/developers/pbs-build-an-analytics-adapter.html#adding-an-analytics-adapter-in-pbs-go)
 
 ## See Also
 - [Prebid Server - Java](/prebid-server/versions/pbs-versions-java.html)

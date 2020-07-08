@@ -1746,6 +1746,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Stored Requests
+  link: /prebid-server/features/pbs-storedreqs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Bidders
   link:
   isHeader: 1
@@ -1755,7 +1763,7 @@
   subgroup: 4
 
 - sbSecId: 5
-  title: Bidder List
+  title: Bid Adapter List
   link: /prebid-server/bidders/pbs-bidders.html
   isHeader: 0
   isSectionHeader: 0
@@ -1765,22 +1773,6 @@
 - sbSecId: 5
   title: Enabling Bidder Adapters
   link: /prebid-server/bidders/pbs-enable-adapter.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 5
-  title: Additional Info
-  link: /prebid-server/bidders/pbs-bidder-info.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 5
-  title: Building a Bidder Adapter
-  link: /prebid-server/bidders/pbs-build-a-bid-adapter.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1804,16 +1796,16 @@
   subgroup: 5
 
 - sbSecId: 5
-  title: Building an Analytics Adapter
-  link: /prebid-server/developers/pbs-build-an-analytics-adapter.html
+  title: Building a Bidder Adapter
+  link: /prebid-server/developers/add-new-bidder-go.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
 
 - sbSecId: 5
-  title: Debugging Stored Requests
-  link: /prebid-server/developers/pbs-debugging-stored-request.html
+  title: Building an Analytics Adapter
+  link: /prebid-server/developers/pbs-build-an-analytics-adapter.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

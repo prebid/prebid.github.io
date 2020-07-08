@@ -5,7 +5,7 @@ title: Prebid Server | Endpoints | Overview
 
 ---
 
-# Prebid Server | Endpoints | Overview
+# Prebid Server Endpoints Overview
 
 Here's a summary of the API endpoints recognized by Prebid Server:
 

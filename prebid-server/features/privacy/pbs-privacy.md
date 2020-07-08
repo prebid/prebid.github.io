@@ -27,6 +27,10 @@ activities that take place.
 The enforcement strategy changed significantly between TCF 1.1 and TCF 2.0. [TCF2](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) is a 
 more nuanced and stricter policy.
 
+{: .alert.alert-info :}
+If a Prebid Server host company wants to support GDPR, they must [register for the IAB Global Vendor List](https://register.consensu.org/). 
+The user must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
+
 ### TCF 1.1
 
 If Prebid Server determines that the user is in GDPR scope and doesn't consent
@@ -46,15 +50,16 @@ If Prebid server determines the user is in GDPR scope, then consent is independe
 for each 'Purpose' with different consequences for each:
 
 {: .table .table-bordered .table-striped }
-| TCF Purpose | Consequence of Not Obtaining Consent |
+| Activity | Legal Basis Required |
 | ----------- | ------------------------------------ |
-| 1 - Device Access | Prevents one or more usersync activities for one or more vendors. |
-| 2 - Basic Ads | May result in skipping one or more bid adapters in the auction. |
-| 4 - Personalized Ads | May result in removing the userIds before calling one or more bid adapters. |
-| 7 - Measure Ad Performance | May result in skipping one or more analytics adapters. |
-| Special Feature 1 - Use precise geolocation data | May result in rounding lat/long values and IP address before sending to server-side adapters. |
+| Responding to /cookie-sync requests | Purpose 1 (Device Access) |
+| Setting a cookie on /setuid requests | Purpose 1 (Device Access) |
+| Conducting auctions | Purpose 2 (Basic Ads) |
+| Passing User IDs into an auction | Any Purpose 2-10. User IDs are important for more than personalizing ads - they can be used in frequency capping, building profiles, counting unique users, etc. So Prebid Server should pass User IDs through the auction if any of Purposes 2-10 pass the legal basis test. |
+| Invoke an analytics adapter | Purpose 7 |
+| Pass the user’s precise geographic information into auctions | Special Feature 1 |
 
-More details are available [here](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#).
+More details are available in the [Prebid Support for TCF2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#) reference and in the [Prebid Server GDPR Reference](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#).
 
 ## COPPA
 

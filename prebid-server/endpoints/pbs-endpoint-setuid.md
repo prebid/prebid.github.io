@@ -10,7 +10,7 @@ title: Prebid Server | Endpoints | /setuid
 This endpoint is used during cookie syncs to save the results in the Prebid Server `uids` cookie. For technical details, see the
 [Cookie Sync developer docs](../developers/cookie-syncs.html).
 
-## `GET /setuid`
+## GET /setuid
 
 This endpoint saves a UserID for a Bidder in the Cookie. Saved IDs will be recognized for 7 days before being considered "stale" and being re-synced.
 

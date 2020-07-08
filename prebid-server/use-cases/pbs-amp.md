@@ -32,7 +32,20 @@ As described in the [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-
 There are two basic ways of invoking AMP RTC:
 
 1. Use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js).
-1. Construct a direct URL from component pieces: w, h, slot, targeting, gdpr_consent, account, page url (purl), etc.
+
+```
+  <amp-ad width="300" height="50"
+    type="doubleclick"
+    data-slot="/11111/amp_test"
+    data-multi-size-validation="false"
+    rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "14062-amp-AMP_Test-300x250"}, "ACCOUNT_ID": "1001"}}'
+    json='{ "targeting": {"site": {"tags": "autoestima","url": "/amp/familia/materias/33559-princesa-africana-da-disney-lembra-por-que-toda-crianca-precisa-se-sentir-representada"}}}' >
+  </amp-ad>
+```
+**Note:** the `prebidrubicon` and `prebidappnexus` AMP vendors define different parameters. AppNexus uses "PLACEMENT_ID" as the argument to rtc-config while Rubicon uses "REQUEST_ID".
+
+
+2. Construct a direct URL from component pieces: w, h, slot, targeting, gdpr_consent, account, page url (purl), etc.
 
 ```
   <amp-ad width="300" height="50"

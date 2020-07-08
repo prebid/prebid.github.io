@@ -5,7 +5,7 @@ title: Prebid Server | Endpoints | Info
 
 ---
 
-# Prebid Server | Endpoints | Info
+# Prebid Server | Endpoints | /info
 {:.no_toc}
 
 * TOC

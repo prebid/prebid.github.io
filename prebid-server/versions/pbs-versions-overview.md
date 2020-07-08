@@ -5,7 +5,7 @@ title: Prebid Server | Versions | Overview
 
 ---
 
-# Prebid Server | Versions | Overview
+# Prebid Server Has Two Code Bases
 
 The original version of Prebid Server was the Go-Lang version. Rubicon Project ported it to Java because they had more engineers who knew Java than Go.
 
