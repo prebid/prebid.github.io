@@ -261,7 +261,7 @@ Prebid only supports the most recent major version. Within a month or so after a
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="atsAnalytics" class="analytics-check-box"> ATS Analytics
+      <input type="checkbox" analyticscode="ats" class="analytics-check-box"> ATS Analytics
     </label>
   </div>
 </div>
