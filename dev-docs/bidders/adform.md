@@ -4,11 +4,12 @@ title: Adform
 description: Prebid Adform Bidder Adaptor
 
 biddercode: adform
-media_types: video
+media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 tcf2_supported: true
 prebid_member: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
 ---
 
 
