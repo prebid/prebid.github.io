@@ -103,6 +103,11 @@
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
   
+- company: diDNA
+  link: https://didna.io/
+  imgURL: /assets/images/partners/publisher/didna-logo.png
+  type: publisher
+  
 - company: Freestar
   link: https://freestar.com/
   imgURL: /assets/images/partners/publisher/freestar-logo.png
