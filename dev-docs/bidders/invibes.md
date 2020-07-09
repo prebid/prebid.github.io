@@ -5,6 +5,7 @@ description: Prebid Invibes Bidder Adaptor
 
 biddercode: invibes
 gdpr_supported: true
+tcf2_supported: true
 ---
 
 ### Bid Params
