@@ -1722,14 +1722,6 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Privacy Support (GDPR, CCPA, etc)
-  link: /prebid-server/features/privacy/pbs-privacy.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
   title: Caching
   link: /prebid-server/features/pbs-caching.html
   isHeader: 0
@@ -1738,8 +1730,24 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Currency Conversion
+  link: /prebid-server/features/pbs-currency.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Interstitials
   link: /prebid-server/features/pbs-interstitials.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Privacy Support (GDPR, CCPA, etc)
+  link: /prebid-server/features/privacy/pbs-privacy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1887,6 +1895,24 @@
 - sbSecId: 5
   title: '&nbsp;&nbsp;/status'
   link: /prebid-server/endpoints/pbs-endpoint-status.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Event Endpoints'
+  link: /prebid-server/endpoints/pbs-endpoint-event.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Admin Endpoints'
+  link: /prebid-server/endpoints/pbs-endpoint-admin.html
   Item: 1
   isHeader: 0
   isSectionHeader: 0

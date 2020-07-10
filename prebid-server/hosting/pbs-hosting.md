@@ -48,7 +48,7 @@ depend on the expected traffic, your traffic mix, and the average length that ob
 
 ## Replicated Database
 
-Account information and StoredRequests are stored in a database
+Account information and StoredRequests are stored in a [database](/prebid-server/hosting/pbs-database.html)
 queried by Prebid Server at runtime.
 PBS has an internal LRU cache for this database, so only queries when there's an account or stored request it hasn't seen recently.
 
@@ -70,10 +70,11 @@ operational monitoring system.
 ## Installing the Software
 
 The process for actually installing and configuring the software will differ for
-the Go and Java versions of the softare. See the relevant section
+the Go and Java versions of the software. See the relevant section
 as a next step.
 
 ## Further Reading
 
+- [Prebid Server Database](/prebid-server/hosting/pbs-database.html)
 - FIXME: Pointer to PBS-Go instructions
 - FIXME: Pointer to PBS-Java instructions
