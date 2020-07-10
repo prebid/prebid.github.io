@@ -21,7 +21,6 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 * **BritePool ID** - Britepool Identity Resolution userId submodule. Universal Identity resolution which does not depend on 3rd party cookies.
 * **Criteo ID for Exchanges** –  specific id for Criteo and its partners that enables optimal take rate on all web browsers.
-* **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
 * **LiveIntent ID** – a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
@@ -68,7 +67,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -162,85 +161,6 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-
-### DigiTrust
-
-[DigiTrust](https://www.digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default.
-
-Add it to your Prebid.js package with:
-
-{: .alert.alert-info :}
-gulp build --modules=digiTrustIdSystem
-
-#### DigiTrust Registration
-
-In order to utilize DigiTrust a publisher must register and be approved for membership. You may register online at: [https://www.digitru.st/signup/](https://www.digitru.st/signup/)
-
-In addition to general usage and configuration of the User Id module, follow the additional instructions for configuring and deploying
-DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html).
-
-The DigiTrust privacy policy as at [https://www.digitru.st/privacy-policy/](https://www.digitru.st/privacy-policy/).
-
-#### DigiTrust Configuration
-
-{: .table .table-bordered .table-striped }
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | `"digitrust"` | `"digitrust"` |
-| params | Required for DigiTrust | Object | Details DigiTrust initialization. | |
-| params.init | Required for DigiTrust | Object | Defines the member and site | `{ member: 'example_member_id', site: 'example_site_id' }` |
-| params.callback | Optional for DigiTrust | Function | Allows init error handling | See example above |
-| value | Optional | Object | Used only if the page has a separate mechanism for storing the DigiTrust ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"digitrustid": {"data":{"id": "1111", ...}}}` |
-
-Please consult the [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html) page for details on
-DigiTrust parameters and usage. For more complete instructions please review the
-[Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
-
-#### DigiTrust Examples
-
-1) Publisher is a DigiTrust member and supports both PubCommonID and DigiTrust ID integrated with Prebid
-
-{% highlight javascript %}
-<script>
-pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: "pubCommonId",
-      storage: {
-        type: "cookie",
-        name: "_pubcid",       // create a cookie with this name
-        expires: 365           // expires in 1 years
-      }
-    }, {
-      name: "digitrust",
-      params: {
-        init: {
-          member: 'example_member_id',
-          site: 'example_site_id'
-        },
-        callback: function (digiTrustResult) {
-          if (digiTrustResult.success) {
-            console.log('Success in Digitrust init', digiTrustResult.identity.id);
-          } else {
-            console.error('Digitrust init failed');
-          }
-        }
-      },
-      storage: {
-        type: "html5",
-        name: "pbjsdigitrust",
-        expires: 60
-      }
-    }]
-  }});
-</script>
-{% endhighlight %}
-
-Other examples:
-
-- [DigiTrust Example 1](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Simple.html)
-- [DigiTrust Example 2](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Full.html)
 
 ### ID5 Universal ID
 
@@ -832,7 +752,6 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | --- | --- | --- | --- | --- | --- |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
-| DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
@@ -922,11 +841,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                         "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
                     }
                 }]
-            }],
-            "digitrust": {              // DigiTrust is not in the eids section
-                "id": "11111111111",
-                "keyv": 4
-            }
+            }]
         }
     }
 }
@@ -984,4 +899,3 @@ User IDs from Prebid User ID module can be passed to GAM for targeting in Google
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
 * [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
-* [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html)
