@@ -16,3 +16,22 @@ Performax adapter requires setup and approval from the Performax team. Please re
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `slotId`      | required | Slot ID            | `32572`                      | `Integer`|
+
+### Example
+
+```javascript
+    var adUnits = [
+        {
+            code: 'performax-div',
+            sizes: [[300, 300]],
+            bids: [
+                {
+                    bidder: "performax",
+                    params: {
+                        slotId: 28   // required
+                    }
+                }
+            ]
+        }
+    ];
+```
