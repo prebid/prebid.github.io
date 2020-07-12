@@ -8,6 +8,7 @@ media_types: video
 gdpr_supported: true
 tcf2_supported: true
 usp_supported: true
+schain_supported: true
 ---
 
 ### Note:
