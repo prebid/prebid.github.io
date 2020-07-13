@@ -49,8 +49,8 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 **Parameters**
 
-- `adObj`: bid request object
-    - As of Prebid SDK 1.7, `adObj` is replaced with the ad server build object `builder`
+- `adObj`: This is the ad server request object (for [Google Ad Manager](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest) and for [Mopub](https://developers.mopub.com/publishers/reference/android/MoPubView/)). If you do not wish to add any additional /custom key values to the ad server after the Prebid auction, pass `adObj` to the fetchDemand function, where Prebid SDK will set all the Prebid targeting keys as well as any keys added prior to auction
+- As of Prebid SDK 1.7, a publisher can optionally pass the Google Ad Manager `builder` object of the [Google Ad Manager Mobile Ads SDK](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest.Builder) to pass custom keys to Google Ad Manager after the Prebid Auction
 - `onCompleteListener`: listener object
 
 
@@ -220,7 +220,7 @@ interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
     }
 });
 
-//As of Prebid SDK 1.7, the fetchDemand method supports passing a request builder to append custom key values to the build object.
+//As of Prebid SDK 1.7, the fetchDemand method supports passing a request builder object to append custom key values to the build object. See fetchDemand above for furher details. 
 
 final PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
 
