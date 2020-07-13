@@ -2,7 +2,7 @@
 layout: bidder
 title: Ad Generation
 description: Prebid Ad Generation Bidder Adaptor
-hide: true
+
 biddercode: adgeneration
 media_types: native
 ---

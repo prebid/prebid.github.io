@@ -3,7 +3,7 @@ layout: bidder
 title: RTBHouse
 description: Prebid RTB House Bidder Adapter
 gdpr_supported: true
-hide: true
+
 biddercode: rtbhouse
 media_types: banner, native
 schain_supported: true

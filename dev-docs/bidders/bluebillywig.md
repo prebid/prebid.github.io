@@ -3,7 +3,7 @@ layout: bidder
 title: Blue Billywig
 description: Prebid Blue Billywig Bidder Adaptor
 biddercode: bluebillywig
-hide: true
+
 media_types: video
 gdpr_supported: true
 schain_supported: true

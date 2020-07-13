@@ -2,7 +2,7 @@
 layout: bidder
 title: DistrictmDMX
 description: Prebid DistrictmDMX Bidder Adaptor
-hide: true
+
 biddercode: districtmDMX
 gdpr_supported: true
 schain_supported: true

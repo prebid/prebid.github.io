@@ -2,7 +2,7 @@
 layout: bidder
 title: Aardvark
 description: Prebid Aardvark Bidder Adaptor
-hide: true
+
 biddercode: aardvark
 gdpr_supported: true
 tcf2_supported: true

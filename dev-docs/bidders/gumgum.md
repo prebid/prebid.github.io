@@ -2,7 +2,7 @@
 layout: bidder
 title: GumGum
 description: Prebid GumGum Bidder Adaptor
-hide: true
+
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true

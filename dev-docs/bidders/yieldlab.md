@@ -2,7 +2,7 @@
 layout: bidder
 title: Yieldlab
 description: Prebid Yieldlab Bidder Adapter
-hide: true
+
 biddercode: yieldlab
 media_types: video
 gdpr_supported: true

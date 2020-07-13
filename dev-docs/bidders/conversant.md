@@ -2,7 +2,7 @@
 layout: bidder
 title: Conversant
 description: Prebid Conversant Bidder Adaptor
-hide: true
+
 biddercode: conversant
 media_types: video
 gdpr_supported: true

@@ -2,7 +2,7 @@
 layout: bidder
 title: PulsePoint
 description: Prebid PulsePoint Bidder Adaptor
-hide: true
+
 biddercode: pulsepoint
 gdpr_supported: true
 usp_supported: true

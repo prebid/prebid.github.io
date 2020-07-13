@@ -4,7 +4,7 @@ title: AppierGM
 description: Prebid Appier Bidder Adapter
 biddercode: appierGM
 aliasCode: appier
-hide: true
+
 media_types: banner
 gdpr_supported: true
 ---
