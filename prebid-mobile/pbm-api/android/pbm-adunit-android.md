@@ -33,6 +33,14 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 - `periodMillis`: Integer defining the refresh time in milliseconds. Default = 0, meaning no auto refresh.
 - `keywords`: ArrayList containing keys and values.
 
+#### pbAdSlot
+
+PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
+
+`adUnit.pbAdSlot = "/1111111/homepage/med-rect-2"`
+
+---
+
 ## Methods
 
 ### fetchDemand
@@ -42,7 +50,9 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 **Parameters**
 
 - `adObj`: bid request object
+    - As of Prebid SDK 1.7, `adObj` is replaced with the ad server build object `builder`
 - `onCompleteListener`: listener object
+
 
 
 
@@ -207,6 +217,19 @@ interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
     @Override
     public void onComplete(ResultCode resultCode) {
         dfpInterstitial.loadAd(publisherAdRequest);
+    }
+});
+
+//As of Prebid SDK 1.7, the fetchDemand method supports passing a request builder to append custom key values to the build object.
+
+final PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
+
+adUnit.fetchDemand(builder, new OnCompleteListener() {
+    @Override
+    public void onComplete(ResultCode resultCode) {
+        builder.addCustomTargeting("key1", "value1");
+        PublisherAdRequest request = builder.build();
+        amBanner.loadAd(request);
     }
 });
 ```
