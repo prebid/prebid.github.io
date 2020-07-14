@@ -163,6 +163,11 @@
   imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
 
+- company: Havas 
+  link: https://havasmedia.com/
+  imgURL: /assets/images/partners/buyer/Havas_Media_Logo.png
+  type: buyer
+
 - company: AdForm
   link: https://site.adform.com/
   imgURL: /assets/images/partners/community/Adform-Logo.png
