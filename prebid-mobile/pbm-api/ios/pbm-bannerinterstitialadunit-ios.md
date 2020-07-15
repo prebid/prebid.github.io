@@ -27,7 +27,7 @@ PBS with interstitial support will come preconfigured with a list of common ad s
 Prebid Server will send the eligible size list to each bidder to solicit a bid. For a full description of the Prebid Server logic, please refer to the [Prebid Server PR 797](https://github.com/prebid/prebid-server/pull/797/files).
 
 ```
-init(configId: String, minWidthPerc: Int, minHeightPerc: Int)
+BannerInterstitialAdUnit(configId: String, minWidthPerc: Int, minHeightPerc: Int)
 ```
 
 **Parameters**
@@ -59,6 +59,33 @@ Array of integers or a predefined constant representing the supported [OpenRTB 2
 ## Examples
 
 **Create an InterstitialAdUnit**
+
+```        
+let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
+```
+**Add additional ad sizes**
+
+```
+bannerUnit.addAdditionalSizes(sizes: CGSize(width: 320, height: 50))
+```
+Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and display creatives.
+
+** Define any appropriate API Frameworks **
+
+Swift
+```swift
+let parameters = BannerAdUnit.Parameters()
+parameters.api = [Signals.Api.MRAID_2] //parameters.api = [Signals.Api(5)]
+adUnit.setParameters(parameters);
+```
+
+Objective C
+```
+PBBannerAdUnitParameters* parameters = [[PBBannerAdUnitParameters alloc] init];
+parameters.api = @[PBApi.MRAID_2];
+//parameters.api = @[[[PBApi alloc] initWithIntegerLiteral:5]];
+bannerAdUnit.parameters = parameters;
+```
 
 **Google Mobile Ads**
 

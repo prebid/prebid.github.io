@@ -51,25 +51,26 @@ carthage update
 ```
 
 3. Build the specific schema `CarthageBuild.sh`
-
-
-**Variant 1**
-
-- Run CarthageBuild.sh script from Cartfile folder. The path should be:
-`.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
-
-- Enter Schema name (PrebidMobile or PrebidMobileCore)
-    - If you run CarthageBuild.sh and see Permission denied use `chmod +x <path_to_CarthageBuild.sh>`
-
-**Variant 2**
-
-1. Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
-
-2. Manage Schemes -> Check Shared checkbox for a necessary schema
-
-3. run `carthage build prebid-mobile-ios`
-
+    
+    **Variant 1**
+    
+    - Run CarthageBuild.sh script from Cartfile folder. The path should be:
+        `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
+    
+    - Enter Schema name (PrebidMobile or PrebidMobileCore)
+        - If you run CarthageBuild.sh and see Permission denied use:
+             `chmod +x <path_to_CarthageBuild.sh>`
+    
+    **Variant 2**
+    
+    - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
+    
+    - Manage Schemes -> Check Shared checkbox for a necessary schema
+    
+    - run `carthage build prebid-mobile-ios`
 4. Integrate the binary into your project
+
+
 
 You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
 

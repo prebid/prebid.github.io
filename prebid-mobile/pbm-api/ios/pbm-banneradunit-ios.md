@@ -76,9 +76,19 @@ Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and di
 
 ** Define any appropriate API Frameworks **
 
+Swift
 ```swift
 let parameters = BannerAdUnit.Parameters()
 parameters.api = [Signals.Api.MRAID_2] //parameters.api = [Signals.Api(5)]
+adUnit.setParameters(parameters);
+```
+
+Objective C
+```
+PBBannerAdUnitParameters* parameters = [[PBBannerAdUnitParameters alloc] init];
+parameters.api = @[PBApi.MRAID_2];
+//parameters.api = @[[[PBApi alloc] initWithIntegerLiteral:5]];
+bannerAdUnit.parameters = parameters;
 ```
 
 **Google Mobile Ads**
@@ -109,10 +119,6 @@ func loadDFPBanner(bannerUnit : AdUnit){
 -(void) loadDFPBanner {
 
     self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
-    PBBannerAdUnitParameters* parameters = [[PBBannerAdUnitParameters alloc] init];
-parameters.api = @[PBApi.MRAID_2];
-//parameters.api = @[[[PBApi alloc] initWithIntegerLiteral:5]];
-    bannerAdUnit.parameters = parameters;
     [self.bannerUnit setAutoRefreshMillisWithTime:35000];
     self.dfpView = [[DFPBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
     self.dfpView.rootViewController = self;
