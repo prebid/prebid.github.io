@@ -141,7 +141,7 @@ Targeting.shared.storeURL = "itunes store URL string"
 
 ### iTunesID
 
-Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID. According to OpenRTB 2.5, it is recommended to transmit the iTunes ID as the bundle ID. Failure to do so can have a negative monetary impact.
+Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.
 
 ```
 Targeting.shared.itunesID
