@@ -62,6 +62,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [COPPA](#setConfig-coppa)
     * [first party data](#setConfig-fpd)
     * [cache](#setConfig-vast-cache)
+    * [site](#setConfig-site)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -1320,6 +1321,7 @@ Core config:
 + [COPPA](#setConfig-coppa)
 + [First Party Data](#setConfig-fpd)
 + [Caching VAST XML](#setConfig-vast-cache)
++ [Site Metadata](#setConfig-site)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -2349,6 +2351,23 @@ pbjs.setConfig({
 Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtrack`
 Prebid Server endpoint with a couple of additional parameters needed
 by the analytics system to join the event to the original auction request.
+
+<a name="setConfig-site" />
+
+#### Site Configuration
+
+Adapters, including Prebid Server adapters, can support taking site parameters like language.
+The structure here is OpenRTB; the site object will be available to client- and server-side adapters.
+
+{% highlight js %}
+pbjs.setConfig({
+   site: {
+       content: {
+           language: "en"
+       }
+   }
+});
+{% endhighlight %}
 
 <a name="setConfig-Generic-Configuration" />
 
