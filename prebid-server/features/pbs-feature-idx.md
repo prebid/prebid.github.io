@@ -53,3 +53,4 @@ title: Prebid Server | Features
 | Operations | core metrics | Emits detailed operational metrics to back-end systems such as Graphite, Influx, etc. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Operations | circuit breaker | Protects system performance during fault scenarios by detecting problems with external and internal endpoints, turning them off temporarily when a problem occurs. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | |
 | Operations | [server default request](/prebid.github.io/prebid-server/features/pbs-default-request.html) | Support global defaults for incoming requests. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+|	|	|	|	|	|
