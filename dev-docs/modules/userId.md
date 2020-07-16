@@ -45,7 +45,7 @@ Note that User IDs aren't needed in the mobile app world because device ID is av
 
 Also note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
 
-As of Prebid 4.0, identity will attempt storage in the main domain of the website instead of on the subdomain.
+As of Prebid 4.0, identity will attempt storage in the main domain of the website instead of on the subdomain, unless this behavior is overriden by a submodule.
 
 ## User ID, GDPR, and Opt-Out
 
