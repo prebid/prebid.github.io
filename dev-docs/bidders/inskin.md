@@ -2,8 +2,9 @@
 layout: bidder
 title: Inskin
 description: Inskin Media Bidder Adaptor
-hide: true
+
 biddercode: inskin
+gdpr_supported: true
 ---
 
 ### Note:

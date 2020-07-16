@@ -2,10 +2,10 @@
 layout: bidder
 title: Mobsmart
 description: Prebid Mobsmart SSP Bidder Adaptor
-hide: true
+
 biddercode: mobsmart
 media_types: banner
-userIds: pubCommon
+userIds: pubCommonId
 ---
 
 ### Note:

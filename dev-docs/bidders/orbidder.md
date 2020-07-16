@@ -3,9 +3,10 @@ layout: bidder
 title: Orbidder
 description: Prebid Orbidder Bidder Adaptor
 biddercode: orbidder
-hide: true
+
 media_types: banner
 gdpr_supported: true
+tcf2_supported: true
 ---
 
 ### Bid Params

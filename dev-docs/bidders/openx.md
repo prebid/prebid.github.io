@@ -2,15 +2,16 @@
 layout: bidder
 title: OpenX
 description: Prebid OpenX Bidder Adaptor
-hide: true
+
 biddercode: openx
 media_types: banner, video
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-userIds: pubCommon, unifiedId, identityLink
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
+tcf2_supported: true
 ---
 
 ### Bid Parameters

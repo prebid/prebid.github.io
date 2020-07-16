@@ -152,7 +152,7 @@ For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/e
 
 Prebid can serve outstream demand directly without going through a primary ad server.
 
-For a live example, see [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html).
+For a live example, see [Outstream without an Ad Server](/examples/video/outstream/pb-ve-outstream-no-server.html).
 
 In the Prebid.js event queue, you'll need to add a function that:
 
