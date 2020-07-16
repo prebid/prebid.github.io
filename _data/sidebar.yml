@@ -1624,15 +1624,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: <b>Use Cases</b>
-  link: /prebid-server/use-cases/prebid-server-cases.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid.js'
+  title: '&nbsp;&nbsp;PBS+Prebid.js'
   link: /prebid-server/use-cases/pbs-pbjs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1640,7 +1632,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Mobile SDK'
+  title: '&nbsp;&nbsp;PBS+SDK'
   link: /prebid-server/use-cases/pbs-sdk.html
   isHeader: 0
   isSectionHeader: 0
@@ -1648,7 +1640,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;AMP'
+  title: '&nbsp;&nbsp;PBS+AMP'
   link: /prebid-server/use-cases/pbs-amp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1656,7 +1648,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Long-Form Video'
+  title: '&nbsp;&nbsp;PBS+Long-Form Video'
   link: /prebid-server/use-cases/pbs-lfv.html
   isHeader: 0
   isSectionHeader: 0
@@ -1664,57 +1656,26 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: Prebid.js Migration Guide
-  link: /prebid-server/overview/pbs-pbjs-migration-guide.html
+  title: '&nbsp;&nbsp;Managed Solutions'
+  link: /prebid-server/hosting/hosted-servers.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
 - sbSecId: 5
-  title: Hosting
+  title: '&nbsp;&nbsp;Hosting Your Own PBS'
   link: /prebid-server/hosting/pbs-hosting.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: Versions
+  link:
   isHeader: 1
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Hosting Solutions
-  link: /prebid-server/hosting/pbs-solutions.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Hosting Servers
-  link: /prebid-server/hosting/pbs-hosting-servers.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Hosting With Go
-  link: /prebid-server/hosting/pbs-hosting-go.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Hosting With Java
-  link: /prebid-server/hosting/pbs-hosting-java.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 5
-  title: Versions</b>
-  link: /prebid-server/versions/pbs-versions.html
-  isHeader: 1
+  headerId: pbsversions
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
@@ -1753,40 +1714,16 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Privacy Support (GDPR, CCPA, COPPA)
-  link: /prebid-server/features/privacy/pbs-privacy.html
+  title: Feature Summary
+  link: /prebid-server/features/pbs-feature-idx.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
 
 - sbSecId: 5
-  title: Targeting and Price Granulairity
-  link: /prebid-server/features/pbs-targeting-and-price.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: <b>Caching</b>
-  link: /prebid-server/features/caching/pbs-caching-overview.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Bid Caching'
-  link: /prebid-server/features/caching/pbs-bid-caching.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;VAST XML'
-  link: /prebid-server/features/caching/pbs-vast-caching.html
+  title: Caching
+  link: /prebid-server/features/pbs-caching.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1801,14 +1738,6 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Stored Requests
-  link: /prebid-server/features/pbs-stored-request.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
   title: Interstitials
   link: /prebid-server/features/pbs-interstitials.html
   isHeader: 0
@@ -1817,24 +1746,16 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Events
-  link: /prebid-server/features/pbs-events.html
+  title: Privacy Support (GDPR, CCPA, etc)
+  link: /prebid-server/features/privacy/pbs-privacy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
 
 - sbSecId: 5
-  title: Analytics Support
-  link: /prebid-server/features/pbs-analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: Programmatic Guaranteed
-  link: /prebid-server/features/pbs-prog-guaranteed.html
+  title: Stored Requests
+  link: /prebid-server/features/pbs-storedreqs.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1844,13 +1765,13 @@
   title: Bidders
   link:
   isHeader: 1
-  headerId: serverdevelopers
+  headerId: pbsbidders
   isSectionHeader: 0
   sectionTitle:
   subgroup: 4
 
 - sbSecId: 5
-  title: Bidder List
+  title: Bid Adapter List
   link: /prebid-server/bidders/pbs-bidders.html
   isHeader: 0
   isSectionHeader: 0
@@ -1860,22 +1781,6 @@
 - sbSecId: 5
   title: Enabling Bidder Adapters
   link: /prebid-server/bidders/pbs-enable-adapter.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 5
-  title: Additional Info
-  link: /prebid-server/bidders/pbs-bidder-info.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 5
-  title: Building a Bidder Adapter
-  link: /prebid-server/bidders/pbs-build-a-bid-adapter.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1899,16 +1804,16 @@
   subgroup: 5
 
 - sbSecId: 5
-  title: Building an Analytics Adapter
-  link: /prebid-server/developers/pbs-build-an-analytics-adapter.html
+  title: Building a Bidder Adapter
+  link: /prebid-server/developers/add-new-bidder-go.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
 
 - sbSecId: 5
-  title: Debugging Stored Requests
-  link: /prebid-server/developers/pbs-debugging-stored-request.html
+  title: Building an Analytics Adapter
+  link: /prebid-server/developers/pbs-build-an-analytics-adapter.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1918,13 +1823,13 @@
   title: Endpoints
   link:
   isHeader: 1
-  headerId: serverreferences
+  headerId: pbsendpoints
   isSectionHeader: 0
   sectionTitle:
   subgroup: 6
 
 - sbSecId: 5
-  title: <b>Endpoint Documentation</b>
+  title: Overview
   link: /prebid-server/endpoints/pbs-endpoint-overview.html
   isHeader: 0
   isSectionHeader: 0
@@ -1932,31 +1837,15 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Info - Bidders'
-  link: /prebid-server/endpoints/info/pbs-endpoint-bidders.html
+  title: '&nbsp;&nbsp;/info'
+  link: /prebid-server/endpoints/info/pbs-endpoint-info.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Info - Bidder Name'
-  link: /prebid-server/endpoints/info/pbs-endpoint-bidderName.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Bidders - Params'
-  link: /prebid-server/endpoints/info/pbs-bidder-params.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 6
-
-- sbSecId: 5
-  title: '&nbsp;&nbsp;Starting Cookie Sync'
+  title: '&nbsp;&nbsp;/cookie_sync'
   link: /prebid-server/endpoints/pbs-endpoint-cookieSync.html
   isHeader: 0
   isSectionHeader: 0
@@ -1964,7 +1853,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid Server Auction'
+  title: '&nbsp;&nbsp;/openrtb2/auction'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html
   isHeader: 0
   isSectionHeader: 0
@@ -1972,7 +1861,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid Server AMP'
+  title: '&nbsp;&nbsp;/openrtb2/amp'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1980,7 +1869,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid Server Video'
+  title: '&nbsp;&nbsp;/openrtb2/video'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-video.html
   isHeader: 0
   isSectionHeader: 0
@@ -1988,7 +1877,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Saving User Syncs'
+  title: '&nbsp;&nbsp;/setuid'
   link: /prebid-server/endpoints/pbs-endpoint-setuid.html
   isHeader: 0
   isSectionHeader: 0
@@ -1996,7 +1885,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Get User Syncs'
+  title: '&nbsp;&nbsp;/getuids'
   link: /prebid-server/endpoints/pbs-endpoint-getuids.html
   isHeader: 0
   isSectionHeader: 0
@@ -2004,7 +1893,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Get Status'
+  title: '&nbsp;&nbsp;/status'
   link: /prebid-server/endpoints/pbs-endpoint-status.html
   Item: 1
   isHeader: 0
@@ -2013,8 +1902,18 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: Request/Response Examples
-  link: /prebid-server/endpoints/pbs-request-response-example.html
+  title: '&nbsp;&nbsp;Event Endpoints'
+  link: /prebid-server/endpoints/pbs-endpoint-event.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Admin Endpoints'
+  link: /prebid-server/endpoints/pbs-endpoint-admin.html
+  Item: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

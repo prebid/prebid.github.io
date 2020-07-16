@@ -5,8 +5,6 @@ description: Show Prebid Ads using Prebid Server and AMP RTC
 sidebarType: 2
 ---
 
-
-
 # Prebid AMP Implementation Guide
 {: .no_toc}
 
@@ -16,10 +14,10 @@ Through this implementation, [Prebid Server][PBS] fetches demand and returns key
 
 For more information about AMP RTC, see:
 
-+ [How Prebid on AMP Works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
-+ [Prebid Server AMP Endpoint](https://github.com/prebid/prebid-server/blob/master/docs/endpoints/openrtb2/amp.md)
++ [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
++ [Prebid Server AMP Endpoint Technical Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
 + [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [AMP RTC Overview][RTC-Overview]
++ [AMP RTC Overview][https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
@@ -268,19 +266,15 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 + Look for the network call from the Ad Server to ensure that key values are being passed. (For Google Ad Manager these are in the `scp` query string parameter in the network request)
 + Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present in the Prebid Server query string. AMP won't add this parameter, so you'll need to grab the Prebid Server URL and manually add it to see the additional information provided.
 
-## Related Topics
+## Further Reading
 
-+ [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
-+ [Prebid Server AMP Endpoint](https://github.com/prebid/prebid-server/blob/master/docs/endpoints/openrtb2/amp.md)
-+ [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
-+ [AMP RTC Overview][RTC-Overview]
-+ [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
++ [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
++ [Setting up Prebid for AMP in Google Ad Manager](/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
++ [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 
 </div>
 
 <!-- Reference Links -->
 
-[PBS]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
-[RTC-Overview]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md
+[PBS]: /prebid-server/overview/prebid-server-overview.html
 [callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js
