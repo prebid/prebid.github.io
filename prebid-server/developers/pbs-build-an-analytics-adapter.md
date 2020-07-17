@@ -39,8 +39,8 @@ It can be configured with:
 analytics:
   file:
     filename: "path/to/file.log
-Prebid Server will then write sample log messages to the file you provided.
 ```
+Prebid Server will then write sample log messages to the file you provided.
 
 ## Adding an Analytics Adapter in PBS-Java
 

@@ -6,8 +6,12 @@ title: Prebid Server | Admin Endpoints
 ---
 
 # Prebid Server | Admin Endpoints
+{: .no_toc}
 
 There are several endpoints on the special `admin` port that a host company may utilize that aren't available to external users. This port defaults to 8060, but can be set in the `admin.port` config.
+
+* TOC
+{:toc}
 
 ## GET /currency/rates
 

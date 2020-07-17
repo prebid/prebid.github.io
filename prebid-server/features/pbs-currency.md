@@ -63,10 +63,9 @@ installation, you can host your own currency conversion file at a URL using the 
   }
   ```
 
+## Examples
 
- ## Examples
-
- Here are couple examples showing the logic behind the currency converter:
+Here are couple examples showing the logic behind the currency converter:
 
 | Bidder bid price | Request Currency    | Rate to USD   | Rate converter is active | Converted bid price (USD) | Valid bid |
 | :--------------- | :------------ |:--------------| :------------------------| :-------------------------|:----------|
