@@ -74,6 +74,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | (TCF v2.0 only) Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time. | `true` |
 | gdpr.allowAuctionWithoutConsent | `boolean` | (TCF v1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
+| gdpr.cacheConsentData | `boolean` | Determines if prebid should cache the consent data to prevent a new reading of the cmp for next auctions. Disabling it can increase the time to execute bid requests. Default is `false` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
 | gdpr.consentData.getTCData.gdprApplies | `boolean` | (TCF v2.0 only) Defines whether or not this pageview is in GDPR scope. | |
