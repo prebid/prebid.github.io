@@ -4,7 +4,7 @@ title: Setting up Prebid Native in Google Ad Manager (Alpha)
 head_title: Setting up Prebid Native in Google Ad Manager
 description: Setting up Prebid Native in Google Ad Manager
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3

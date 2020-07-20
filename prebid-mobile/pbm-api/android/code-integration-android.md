@@ -10,7 +10,7 @@ sidebarType: 2
 
 # Code Integration for Android
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK. 
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
 
 ### Include with Maven
 
@@ -42,7 +42,7 @@ to output the PrebidMobile framework for Android.
 ### Integrate Ad Servers With Your App
 
 Integrating **MoPub** with your application
-1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/). 
+1.  Go to [MoPub.com](https://app.mopub.com/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
 Integrating **Google** with your application   
@@ -56,16 +56,16 @@ Targeting parameters enable you to define the target audience for the bid reques
 View the full list of [targeting parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).
 
 ### Create Ad Units
-Banner and interstitial ad units can be created: 
+Banner and interstitial ad units can be created:
 
 ```
 BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 300, 250);
 ```
 
-For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them: 
+For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/android/banneradunit-android.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+[Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)  
+[Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 
 ### Resize ad slot
 
@@ -110,9 +110,9 @@ Prebid supports the following versions by release:
 ## Further Reading
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+- [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
+- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

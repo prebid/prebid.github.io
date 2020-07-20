@@ -2,10 +2,11 @@
 layout: bidder
 title: Deepintent
 description: Prebid Deepintent Bidder Adaptor
-hide: true
+
 biddercode: deepintent
 media_types: banner
-gdpr_supported: false
+gdpr_supported: true
+usp_supported: true
 ---
 
 ### Bid Params
@@ -13,9 +14,11 @@ gdpr_supported: false
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `tagId`       | mandatory| Ad Tag Id             | `'1399'`                  | `string` |
-| `height`      | optional | height of the creative| `350`                     | `string` |
-| `width`       | optional | width of the creative | `250`                     | `string` |
-| `custom`      | optional | custom key value params| `'{"user_gender":"male"}''`| `object` |
+| `height`      | optional | height of the creative| `350`                     | `number` |
+| `width`       | optional | width of the creative | `250`                     | `number` |
+| `custom`      | optional | custom key value params| `'{"position":"right-box"}''`| `object` |
+| `user`        | optional | user params according to IAB standards | `'{"gender":"F"}''`| `object` |
+| `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
 
 ### Configuration
 
@@ -53,9 +56,15 @@ var adUnits = [
                         tagId: "1399",
                         height: 300,
                         width: 250,
+                        pos: 1,
+                        user: {
+                            gender: "F",
+                            uid: "publisher_uid",
+                            buyeruid: "test_buyeruid",
+                            yob: 2000  
+                        },
                         custom: {
-                            "user_gender": "male",
-                            "user_min_age": "18"
+                            "position": "right-box"
                         }
                     }
                 }]
