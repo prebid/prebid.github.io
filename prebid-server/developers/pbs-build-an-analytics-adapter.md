@@ -5,7 +5,7 @@ title: Prebid Server | Developer | Build An Analytics Adapter
 
 ---
 
-# Prebid Server | Developer | Build An Analytics Adapter
+# Prebid Server - Building an Analytics Adapter
 {: .no_toc}
 
 There aren't any open sourced analytics adapters for Prebid Server, 

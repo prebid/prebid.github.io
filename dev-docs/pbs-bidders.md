@@ -2,7 +2,7 @@
 layout: page_v2
 title: Prebid Server Bidder Params
 description: Documentation on bidders' params
-sidebarType: 1
+sidebarType: 5
 ---
 
 # Prebid Server Bidder Params

@@ -1672,6 +1672,14 @@
   subgroup: 0
 
 - sbSecId: 5
+  title: '&nbsp;&nbsp;Bid Adapter List'
+  link: /dev-docs/pbs-bidders.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
   title: Versions
   link:
   isHeader: 1
@@ -1760,31 +1768,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
-
-- sbSecId: 5
-  title: Bidders
-  link:
-  isHeader: 1
-  headerId: pbsbidders
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 5
-  title: Bid Adapter List
-  link: /dev-docs/pbs-bidders.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 5
-  title: Enabling Bidder Adapters
-  link: /prebid-server/bidders/pbs-enable-adapter.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
 
 - sbSecId: 5
   title: Developers

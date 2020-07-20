@@ -1,11 +1,11 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Features | Currency
+title: Prebid Server | Feature | Currency Conversion
 
 ---
 
-# Prebid Server Currency Conversion
+# Prebid Server | Feature | Currency Conversion
 
 Prebid server supports currency conversions when receiving bids.
 
