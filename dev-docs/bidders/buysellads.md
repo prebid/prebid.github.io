@@ -2,7 +2,7 @@
 layout: bidder
 title: BuySellAds
 description: Prebid Serverbid Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: buysellads
 aliasCode: serverbid
 ---

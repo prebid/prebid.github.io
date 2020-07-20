@@ -2,7 +2,7 @@
 layout: bidder
 title: Vertamedia
 description: Prebid Vertamedia Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: vertamedia
 media_types: video
 ---

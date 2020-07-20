@@ -2,7 +2,7 @@
 layout: bidder
 title: Kargo
 description: Prebid Kargo Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: kargo
 userIds: unifiedId
 usp_supported: true

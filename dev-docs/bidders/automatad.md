@@ -2,7 +2,7 @@
 layout: bidder
 title: Automatad
 description: Prebid Serverbid Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: automatad
 aliasCode: serverbid
 ---

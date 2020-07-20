@@ -2,7 +2,8 @@
 layout: bidder
 title: Smart AdServer
 description: Prebid Smart AdServer Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: smartadserver
 media_types: display, video
 gdpr_supported: true

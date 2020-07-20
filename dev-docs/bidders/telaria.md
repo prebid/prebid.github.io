@@ -2,7 +2,8 @@
 layout: bidder
 title: Telaria
 description: Telaria Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: telaria
 media_types: video
 gdpr_supported: true

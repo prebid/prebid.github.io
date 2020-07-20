@@ -2,7 +2,7 @@
 layout: bidder
 title: vi
 description: vi bid adapter
-hide: true
+pbjs: true
 biddercode: vi
 ---
 

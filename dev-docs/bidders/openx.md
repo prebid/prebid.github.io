@@ -2,7 +2,8 @@
 layout: bidder
 title: OpenX
 description: Prebid OpenX Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: openx
 media_types: banner, video
 schain_supported: true

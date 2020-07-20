@@ -1772,7 +1772,7 @@
 
 - sbSecId: 5
   title: Bid Adapter List
-  link: /prebid-server/bidders/pbs-bidders.html
+  link: /dev-docs/pbs-bidders.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

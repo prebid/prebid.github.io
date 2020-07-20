@@ -2,7 +2,7 @@
 layout: bidder
 title: MANTIS Ad Network
 description: Prebid Mantis Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: mantis
 media_types: native, video
 

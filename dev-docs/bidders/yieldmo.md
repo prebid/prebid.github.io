@@ -2,7 +2,8 @@
 layout: bidder
 title: Yieldmo
 description: Prebid Yieldmo Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: yieldmo
 media_types: native
 userIds: pubCommonId, unifiedId, criteo

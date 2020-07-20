@@ -2,7 +2,7 @@
 layout: bidder
 title: One Fifty Two Media
 description: Prebid One Fifty Two Media Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: oftmedia
 aliasCode : appnexus
 gdpr_supported: true

@@ -2,7 +2,7 @@
 layout: bidder
 title: Windtalker 
 description: Prebid Windtalker Bidder Adapter
-hide: true
+pbjs: true
 biddercode: windtalker
 media_types: native, video
 gdpr_supported: true

@@ -2,7 +2,7 @@
 layout: bidder
 title: AdUp Technology
 description: Prebid Bidder Adapter for AdUp Technology
-hide: true
+pbjs: true
 biddercode: aduptech
 media_types: banner
 gdpr_supported: true

@@ -3,7 +3,8 @@ layout: bidder
 title: AppNexus
 description: Prebid AppNexus Bidder Adaptor
 biddercode: appnexus
-hide: true
+pbjs: true
+pbs: true
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
@@ -12,6 +13,9 @@ schain_supported: true
 coppa_supported: true
 usp_supported: true
 tcf2_supported: true
+pbjs: true
+pbs: true
+pbs: true
 ---
 
 ### Table of Contents
@@ -43,7 +47,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 | `user`              | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes` | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule`    | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
-| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://console.appnexus.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
+| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://console.appnexus.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. Note: keywords must be enabled by your account manager if to be used on Prebid Server.| `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
 | `video`             | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 | `app`               | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
 | `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here.                | `0.90`                                                | `float`          |

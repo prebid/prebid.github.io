@@ -2,7 +2,7 @@
 layout: bidder
 title: Colossus
 description: Prebid Colossus Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: colossusssp
 usp_supported: true
 schain_supported: true

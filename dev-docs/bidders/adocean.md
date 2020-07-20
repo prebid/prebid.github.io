@@ -2,7 +2,8 @@
 layout: bidder
 title: AdOcean
 description: Prebid AdOcean Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: adocean
 gdpr_supported: true
 ---

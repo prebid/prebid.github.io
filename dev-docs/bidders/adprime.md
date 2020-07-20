@@ -2,7 +2,7 @@
 layout: bidder
 title: Adprime
 description: Prebid Adprime Bidder Adapter
-hide: true
+pbjs: true
 biddercode: adprime
 gdpr_supported: true
 media_types: banner, video

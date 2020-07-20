@@ -2,7 +2,8 @@
 layout: bidder
 title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true

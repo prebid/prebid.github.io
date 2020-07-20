@@ -2,7 +2,7 @@
 layout: bidder
 title: Serverbid
 description: Prebid Serverbid Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: serverbid
 ---
 

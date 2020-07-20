@@ -2,7 +2,7 @@
 layout: bidder
 title: Insticator
 description: Prebid Serverbid Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: insticator
 aliasCode: serverbid
 ---
