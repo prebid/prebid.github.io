@@ -45,6 +45,48 @@ Bidder implementations are scattered throughout several files.
 
 Bidder implementations may assume that any params have already been validated against the defined json-schema.
 
+### Bid Response Metadata
+
+In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
+provide additional metadata in their bid response:
+
+{% highlight js %}
+{
+  "seatbid": [{
+    "bid": [{
+      ...
+      "ext": {
+        "prebid": {
+          "meta": {
+            "networkId": NETWORK_ID,
+            "networkName": NETWORK_NAME
+            "agencyId": AGENCY_ID,
+            "agencyName": AGENCY_NAME,
+            "advertiserId": ADVERTISER_ID,
+            "advertiserName": ADVERTISER_NAME,
+            "advertiserDomains": [ARRAY_OF_ADVERTISER_DOMAINS]
+            "brandId": BRAND_ID,
+            "brandName": BRAND_NAME,
+            "primaryCatId": IAB_CATEGORY,
+            "secondaryCatIds": [ARRAY_OF_IAB_CATEGORIES],
+          }
+        }
+      }
+    }]
+  }]
+}
+{% endhighlight %}
+
+Notes:
+
+- `advertiserDomains` is the same as the OpenRTB 2.5 `bid.adomain` field but replicated here for downstream convenience
+- See the [Prebid.js Bidder Adapter](/dev-docs/bidder-adaptor.html) page for details about the requested values for each field.
+
+{: .alert.alert-info :}
+Please provide as much information as possible in the meta object. Publishers use this data for tracking down bad creatives and ad blocking. The advertiserDomains field is particularly useful. Some of these fields may become required in a future release.
+
+
+
 ## Long-Form Video Support
 If long-form video will be supported ensure the bidder has the following:
 
@@ -93,7 +135,7 @@ go build .
 ./prebid-server
 ```
 
-Then `POST` an OpenRTB Request to `http://localhost:8000/openrtb2/auction`.
+Then `POST` an OpenRTB Request to `https://localhost:8000/openrtb2/auction`.
 
 If at least one `request.imp[i].ext.{bidder}` is defined in your Request,
 then your bidder should be called.
