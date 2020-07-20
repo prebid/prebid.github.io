@@ -19,5 +19,5 @@ For demand partners, we recommend building new bid adapters in Go - the team wil
 For those looking to host a Prebid Server, here's some guidance:
 
 - If you plan to use long-form video, we recommend the Go version of the server.
-- Look over the [features](/prebid-server/features/index.html) and see if there are any important to you.
+- Look over the [features](/prebid-server/features/pbs-feature-idx.html) and see if there are any important to you.
 - Otherwise, just choose the language your engineering team is most comfortable with inspecting and enhancing.
