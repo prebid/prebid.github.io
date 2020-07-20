@@ -1,15 +1,16 @@
 ---
 layout: bidder
-title: Somo Audience
-description: Somo Audience Bidder Adapter
-hide: true
+title: SomoAudience
+pbs: true
+media_types: banner
 biddercode: somoaudience
+gdpr_supported: true
 ---
-
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                            | Example                              | Type     |
-|---------------|----------|----------------------------------------|--------------------------------------|----------|
-| `placementId` | required | Placement ID provided by Somo Audience | `'22a58cfb0c9b656bff713d1236e930e8'` | `string` |
+| Name       | Scope    | Description            | Example | Type     |
+|------------|----------|------------------------|---------|----------|
+| placement_hash | required | A hash defining the placement selling the impression | 'woenfae23csoiu' | string |
+| bid_floor | optional | Bid Floor for Impression | 1.2 | number |

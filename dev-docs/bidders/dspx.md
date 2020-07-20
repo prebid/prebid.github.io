@@ -2,7 +2,7 @@
 layout: bidder
 title: DSPx
 description: Prebid DSPx Bidder Adapter
-hide: true
+pbjs: true
 biddercode: dspx
 media_types: banner, video 
 gdpr_supported: true

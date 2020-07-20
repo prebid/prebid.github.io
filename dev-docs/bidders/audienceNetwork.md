@@ -2,7 +2,8 @@
 layout: bidder
 title: Audience Network
 description: Prebid Audience Network Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: audienceNetwork
 media_types: native, video
 ---

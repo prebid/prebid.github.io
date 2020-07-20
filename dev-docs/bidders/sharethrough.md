@@ -2,7 +2,8 @@
 layout: bidder
 title: Sharethrough
 description: Prebid Sharethrough Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: sharethrough
 media_types: native
 gdpr_supported: true

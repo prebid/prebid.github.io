@@ -2,7 +2,7 @@
 layout: bidder
 title: Readpeak
 description: Readpeak Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: readpeak
 media_types: native
 ---

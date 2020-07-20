@@ -2,7 +2,7 @@
 layout: bidder
 title: Adagio
 description: Prebid Adagio Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adagio
 media_types: banner
 gdpr_supported: true

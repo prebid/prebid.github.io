@@ -2,7 +2,7 @@
 layout: bidder
 title: AdformOpenRTB
 description: Prebid AdformOpenRTB Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adformOpenRTB
 media_types: no-display, native
 gdpr_supported: true

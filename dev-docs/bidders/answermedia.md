@@ -2,7 +2,7 @@
 layout: bidder
 title: Answer Media
 description: Prebid Serverbid Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: answermedia
 aliasCode: serverbid
 ---

@@ -2,7 +2,8 @@
 layout: bidder
 title: Sonobi
 description: Prebid Sonobi Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: sonobi
 media_types: video
 gdpr_supported: true

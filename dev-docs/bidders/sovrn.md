@@ -2,15 +2,14 @@
 layout: bidder
 title: Sovrn
 description: Prebid Sovrn Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: sovrn
 gdpr_supported: true
 usp_supported: true
 userIds: digitrust
 prebid_member: true
 ---
-
-
 
 ### Bid Params
 

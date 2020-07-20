@@ -2,7 +2,7 @@
 layout: bidder
 title: Select Media
 description: Prebid Select Media Bidder Adapter
-hide: true
+pbjs: true
 biddercode: selectmedia
 aliasCode: adtelligent
 media_types: banner, video

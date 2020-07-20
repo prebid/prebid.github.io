@@ -1,11 +1,11 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Features | Currency
+title: Prebid Server | Feature | Currency Conversion
 
 ---
 
-# Prebid Server Currency Conversion
+# Prebid Server | Feature | Currency Conversion
 
 Prebid server supports currency conversions when receiving bids.
 
@@ -63,10 +63,9 @@ installation, you can host your own currency conversion file at a URL using the 
   }
   ```
 
+## Examples
 
- ## Examples
-
- Here are couple examples showing the logic behind the currency converter:
+Here are couple examples showing the logic behind the currency converter:
 
 | Bidder bid price | Request Currency    | Rate to USD   | Rate converter is active | Converted bid price (USD) | Valid bid |
 | :--------------- | :------------ |:--------------| :------------------------| :-------------------------|:----------|

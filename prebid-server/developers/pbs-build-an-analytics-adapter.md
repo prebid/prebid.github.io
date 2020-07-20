@@ -5,7 +5,7 @@ title: Prebid Server | Developer | Build An Analytics Adapter
 
 ---
 
-# Prebid Server | Developer | Build An Analytics Adapter
+# Prebid Server - Building an Analytics Adapter
 {: .no_toc}
 
 There aren't any open sourced analytics adapters for Prebid Server, 
@@ -39,8 +39,8 @@ It can be configured with:
 analytics:
   file:
     filename: "path/to/file.log
-Prebid Server will then write sample log messages to the file you provided.
 ```
+Prebid Server will then write sample log messages to the file you provided.
 
 ## Adding an Analytics Adapter in PBS-Java
 

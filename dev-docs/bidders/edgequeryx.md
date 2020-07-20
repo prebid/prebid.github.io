@@ -2,7 +2,7 @@
 layout: bidder
 title: Edge Query X
 description: Prebid for Edge Query X Adaptor
-hide: true
+pbjs: true
 biddercode: edgequeryx 
 media_types: display
 gdpr_supported: true

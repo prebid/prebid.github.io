@@ -2,7 +2,7 @@
 layout: bidder
 title: Undertone
 description: Prebid undertone Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: undertone
 gdpr_supported: true
 usp_supported: true

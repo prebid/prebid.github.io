@@ -2,7 +2,7 @@
 layout: bidder
 title: ConnectAd
 description: ConnectAd Prebid Adaptor
-hide: true
+pbjs: true
 biddercode: connectad
 media_types: banner
 gdpr_supported: true

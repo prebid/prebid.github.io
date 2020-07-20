@@ -2,7 +2,8 @@
 layout: bidder
 title: Beachfront
 description: Prebid Beachfront Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: beachfront
 media_types: video
 gdpr_supported: true
@@ -10,6 +11,8 @@ usp_supported: true
 userIds: unifiedId
 prebid_member: true
 ---
+
+To use the beachfront bidder you will need an appId from an exchange account on [https://platform.beachfront.io](https://platform.beachfront.io). For further information, please contact [adops@beachfront.com](mailto:adops@beachfront.com).
 
 ### Bid Params
 

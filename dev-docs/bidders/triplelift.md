@@ -2,7 +2,8 @@
 layout: bidder
 title: TripleLift
 description: Prebid TripleLift Bidder Adapter
-hide: true
+pbjs: true
+pbs: true
 gdpr_supported: true
 usp_supported: true
 schain_supported: true

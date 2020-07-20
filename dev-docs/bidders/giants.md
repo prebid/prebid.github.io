@@ -2,7 +2,7 @@
 layout: bidder
 title: IPAX
 description: Prebid IPAX Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: giants
 media_types: video
 ---

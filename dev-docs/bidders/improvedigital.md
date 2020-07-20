@@ -3,7 +3,8 @@ layout: bidder
 title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
-hide: true
+pbjs: true
+pbs: true
 gdpr_supported: true
 usp_supported: true
 media_types: banner, native, video

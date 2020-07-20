@@ -15,15 +15,31 @@ that they can be sent to each demand source as part of auction calls.
 
 ## How to do it?
 
-Start by calling [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html). For each element of `response.bidder_status[]`,
-call `GET bidder_status[].usersync.url`. This will be a bidder-specific endpoint should read the users's cookie for their domain and respond with a redirect back to Prebid Server's [`/setuid` endpoint](/prebid-server/endpoints/pbs-endpoint-setuid.html) which will complete the user ID sync.
+The client will start by calling [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html). 
+When it receives a response, it should loop through each element of `response.bidder_status[]`,
+calling `GET bidder_status[].usersync.url`. This will be a bidder-specific endpoint should read the users's cookie for their domain and respond with a redirect back to Prebid Server's [`/setuid` endpoint](/prebid-server/endpoints/pbs-endpoint-setuid.html) which will complete the user ID sync.
 
 ## Mechanics
 
-Bidders must implement an endpoint under their domain which accepts
-an encoded URI for redirects. For example:
+Bidders must implement an endpoint under their domain which accepts an encoded URI for redirects. 
+This URL should be able to accept privacy parameters:
 
-> GET some-bidder-domain.com/usersync-url?redirectUri=prebid-server.example.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3D%24UID
+- gdpr: if 0, declares this request isn't in GDPR scope. If 1, declares it is in scope. Otherwise indeterminate.
+- gdpr_consent: the TCF1 or TCF2 consent string. This is unpadded base64-URL encoded.
+- us_privacy: the IAB US Privacy string
+
+These values will be passed to your usersync endpoint. For example:
+
+Here's an example that shows the privacy macros used by PBS-Go:
+```
+GET some-bidder-domain.com/usersync-url?gdpr={%raw%}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}{%endraw%}&redirectUri=prebid-server.example.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3D%24UID
+```
+PBS-Java uses slightly different macros:
+```
+GET some-bidder-domain.com/usersync-url?gdpr={%raw%}{{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}{%endraw%}&redirectUri=prebid-server.example.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3D%24UID
+```
+In either case, you can receive the values on whatever query string parameters you'd like -- these are
+the macros you can use to define the values.
 
 This example endpoint would URL-decode the `redirectUri` param to get `prebid-server.example.com/setuid?bidder=somebidder&uid=$UID`.
 It would then replace the `$UID` macro with the user's ID from their cookie. Supposing this user's ID was "132",

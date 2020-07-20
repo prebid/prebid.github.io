@@ -2,7 +2,8 @@
 layout: bidder
 title: EMX Digital
 description: Prebid EMX Digital Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: emx_digital
 bidder_supports_deals: false
 media_types: banner, video
