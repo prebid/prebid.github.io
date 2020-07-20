@@ -19,18 +19,6 @@ This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}
 
 {% include alerts/alert_important.html content=importantNote %}
 
-{% capture tip-choosing %}
-
-Including this module in your Prebid.js build adds about 12KB to the package size. It's
-meant for publishers that have complex site designs:
-
-  - if the site needs to alter different AdUnits at different screen widths. e.g. the left-nav changes sizes-supported at 600 pixels, but the footer's size behavior changes at 620 pixels.
-  - if the site needs to alter different mediaTypes at different screen widths
-  - if some bidders or mediaTypes should be included (or removed) at overlapping size ranges.
-
-{% endcapture %}
-{% include alerts/alert_tip.html content=tip-choosing %}
-
 * TOC
 {: toc }
 

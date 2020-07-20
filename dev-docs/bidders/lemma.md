@@ -2,7 +2,7 @@
 layout: bidder
 title: LEMMA
 description: Prebid Lemma Bidder Adapter
-hide: true
+
 biddercode: lemma
 ---
 

@@ -2,13 +2,14 @@
 layout: bidder
 title: Smart AdServer
 description: Prebid Smart AdServer Bidder Adaptor
-hide: true
+
 biddercode: smartadserver
 media_types: display, video
 gdpr_supported: true
 schain_supported: true
 tcf2_supported: true
 usp_supported: true
+userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 ### Note:
@@ -17,7 +18,7 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                                                                                                    | Example                                                              | Type      |
+| Name       | Scope    | Description                                                                                                    | Example                                                                                                            | Type      |
 |------------|----------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|-----------|
 | `siteId`   | required | The placement site ID                                                                                          | `1234`                                                               | `integer` |
 | `pageId`   | required | The placement page ID                                                                                          | `1234`                                                               | `integer` |
@@ -30,7 +31,6 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 | `ckId`     | optional | Unique Smart AdServer user ID                                                                                  | `1234567890123456789`                                                | `integer` |
 | `video`    | optional | Parameter object for instream video. See [video Object](#smartadserver-video-object)                           | `{}`                                                                 | `object`  |
 | `schain`   | optional | Supply Chain                                                                                                   | `'1.0,1!exchange1.com,1234,1,bid-request-1,publisher,publisher.com'` | `string`  |
-
 
 <a name="smartadserver-video-object" />
 
