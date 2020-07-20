@@ -2,11 +2,7 @@
 layout: bidder
 title: SeedingAlliance
 description: Prebid SeedingAlliance Bidder Adaptor
-<<<<<<< HEAD
-hide: true
-=======
 
->>>>>>> master
 biddercode: seedingAlliance
 media_types: native
 gdpr_supported: true
