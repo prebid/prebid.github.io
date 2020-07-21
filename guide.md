@@ -3,7 +3,7 @@ layout: page_v2
 title: prebid.org website guide
 description: details about how the site works
 isNew: false
-hide: true
+
 sidebarType: 0
 ---
 

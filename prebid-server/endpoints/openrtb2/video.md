@@ -79,7 +79,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | video.protocols | Required | `Integer[]` |  Array of supported [video protocols](#video-protocols). |
 | includebrandcategory | Optional | `Object` |  Container Object for passing Category inputs. |
 | includebrandcategory.primaryadserver | Optional | `Integer` |  The ad server used by the publisher. Supported Values 1- Freewheel , 2- Google Ad Manager. |
-| includebrandcategory.publisher | Optional | `String` |  Identifier for the Publisher. |
+| includebrandcategory.publisher | Optional | `String` |  Identifier for the Publisher. If <code>includebrandcategory.primaryadserver</code> is set to 2 (GAM) then this parameter is required. This enables the category mapping file to be found. |
 | content | Optional | `Object` | Miscellaneous content meta data that can be used for targeting the adPod(s) |
 | content.episode | Optional | `Integer` | The episode number. |
 | content.title | Optional | `String` | The episode name. |
@@ -113,7 +113,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 | regs | Optional   | `Object` |  Container object for data related to various regulations. See the [Regulations](#price-range) section below for more details. |
 | regs.ext.gdpr | Optional   | `Integer` |  Enable the user to indicate whether GDPR is in effect. `0` for disabled, `1` for enabled.  The default setting is disabled. See the [Regulations](#price-range) section below for more details. |
-| reg.ext.us.privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf). See the [Regulations](#price-range) section below for more details. |
+| regs.ext.us_privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf). See the [Regulations](#price-range) section below for more details. |
 
 ### Pod Duration Range
 
@@ -141,7 +141,7 @@ These are the parameters for the `pod` subobject:
 | podconfig.pods | Required | `Object` |  Container object describing the adPod(s) to be requested. |
 | pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   <br>**Recommendation**: Order these numerically, with increment of 1. |
 | pod.adpoddurationsec | Required | `Integer` |  Duration of the adPod. |
-| pod.configid | Required | `Integer` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
+| pod.configid | Required | `String` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
 
 
 ### Video Protocols

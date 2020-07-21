@@ -129,7 +129,7 @@ Targeting.shared.domain = domain
 ```
 ### Store URL
 
-Retrieve and set the domain of your store URL with the following commands:
+Retrieve and set the domain of your store URL with the following command:
 
 ```
 Targeting.shared.storeURL
@@ -141,7 +141,7 @@ Targeting.shared.storeURL = "itunes store URL string"
 
 ### iTunesID
 
-Retrieve and set the domain of your store URL with the following commands:
+Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.
 
 ```
 Targeting.shared.itunesID
@@ -379,6 +379,29 @@ guard let gdprConsentString = Targeting.shared.gdprConsentString else {
 Targeting.shared.gdprConsentString = "A String"
 ```
 
+### Purpose Consent
+
+```
+public var purposeConsents: String?
+```
+
+You can retrieve and set the purposeConsents for targeting:
+
+```
+//given
+
+Targeting.shared.purposeConsents = "100000000000000000000000"
+
+defer {
+
+  Targeting.shared.purposeConsents = nil
+
+}
+
+//when
+
+let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent()
+```
 ### Subject to COPPA
 
 Prebid supports passing of the Child Online Privacy Prection (COPPA) signal to Prebid Server (PBS) for all COPPA traffic. When PBS receives the COPPA flag we strip out all personal data from the requeset. For a general overview of COPPA, see the [FTC's guidlines](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule).
@@ -401,5 +424,5 @@ Targeting.shared.subjectToCOPPA = true;
 
 ## Further Reading
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Prebid Mobile API - iOS](/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

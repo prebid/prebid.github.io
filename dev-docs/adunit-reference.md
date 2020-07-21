@@ -2,9 +2,6 @@
 layout: page_v2
 title: Ad Unit Reference
 description: Ad Unit Reference
-top_nav_section: dev_docs
-nav_section: reference
-pid: 10
 sidebarType: 1
 ---
 
@@ -34,7 +31,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Type                                  | Description                                                                                                                                                                                |
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`       | Required | String                                | Unique identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference.html#module_pbjs.setTargetingForGPTAsync) to match which auction is for which ad slot. |
+| `code`       | Required | String                                | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference.html#module_pbjs.setTargetingForGPTAsync) to match which auction is for which ad slot. |
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, define sizes within the appropriate `mediaTypes.{banner,native,video}` object. |
 | `bids`       | Required | Array[Object]                         | Array of bid objects representing demand partners and associated parameters for a given ad unit.  See [Bids](#adUnit.bids) below.                                                          |
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
@@ -221,6 +218,7 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
   - [Adpod (Long-Form)](#adUnit-video-example-adpod)
 + [Native](#adUnit-native-example)
 + [Multi-Format](#adUnit-multi-format-example)
++ [Twin Codes](#adUnit-twin-codes-example)
 + [First Party Data](#adUnit-fpd-example)
 
 <a name="adUnit-banner-example">
@@ -461,6 +459,63 @@ pbjs.addAdUnits([{
 ]);
 
 {% endhighlight %}
+
+<a name="adUnit-twin-codes-example">
+
+### Twin AdUnit Codes
+
+It's ok to have multiple AdUnits with the same `code`. This can be useful in scenarios
+where bidders have different capabilities for the same spot on the page. e.g.
+
+- BidderA should receive both media types, while BidderB gets only one
+- BidderA gets one size while BidderB gets another
+
+In this example, bidderA gets both banner and outstream, while bidderB gets only banner.
+{% highlight js %}
+    var adUnits = [
+           {
+               code: 'test-div',
+                mediaTypes: {
+                    video: {
+                        context: "outstream",
+                        playerSize: [[300,250]]
+                    }
+                },
+               bids: [
+                   {
+                        bidder: 'bidderA',
+                        params: {
+                             ...
+                        }
+                   }
+               ]
+           },
+           {
+               code: 'test-div',
+                mediaTypes: {
+                    banner: {
+                        sizes: [[300,250],[300,600],[728,90]]
+                    }
+                },
+               bids: [
+                   {
+                       bidder: 'bidderB',
+                       params: {
+                           ...
+                       }
+                   },{
+                        bidder: 'bidderA',
+                        params: {
+                           ...
+                        }
+                   }
+               ]
+           }
+       ];
+{% endhighlight %}
+
+In this example, bidderA receives 2 bidRequest objects while bidderB receives one. If a bidder provides more than one bid for the same AdUnit.code, Prebid.js will use the highest bid when it's
+time to set targeting.
 
 <a name="adUnit-fpd-example">
 

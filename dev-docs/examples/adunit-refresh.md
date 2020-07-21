@@ -2,7 +2,7 @@
 layout: example
 title: Individual Ad Unit Refresh / Infinite Scroll
 description: Individual Ad Unit Refresh / Infinite Scroll
-hide: true
+
 sidebarType: 1
 
 about:

@@ -2,7 +2,7 @@
 layout: bidder
 title: Project Limelight
 description: Prebid Project Limelight Bidder Adaptor
-hide: true
+
 biddercode: project-limelight
 aliasCode: projectLimeLight
 ---

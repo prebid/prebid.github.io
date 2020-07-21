@@ -4,7 +4,7 @@ title: Setting up Prebid Video in FreeWheel
 head_title: Setting up Prebid Video in FreeWheel
 description: Setting up Prebid Video in FreeWheel
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3
