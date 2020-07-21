@@ -1910,6 +1910,15 @@
   sectionTitle:
   subgroup: 6
 
+- sbSecId: 5
+  title: '&nbsp;&nbsp;Prebid Cache Endpoints'
+  link: /prebid-server/endpoints/pbs-endpoints-pbc.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
 #--------------Formats--------------|
 
 - sbSecId: 6
