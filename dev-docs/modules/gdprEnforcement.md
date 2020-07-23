@@ -15,6 +15,12 @@ sidebarType : 1
 * TOC
 {: toc }
 
+{% capture legalNotice %}
+  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+  {% endcapture %}
+
+{% include /alerts/alert_important.html content=legalNotice %}
+
 {: .alert.alert-warning :}
 This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagement.html), which reads consent values from the Consent Management Platform (CMP). The GDPR enforcement module
 will then enforce the results. See the base module page for general background, usage, and legal disclaimers.
@@ -80,7 +86,7 @@ pbjs.setConfig({
         purpose: "storage",
         enforcePurpose: true,
         enforceVendor: true
-      }
+      }]
     }
   }
 });
@@ -94,7 +100,7 @@ pbjs.setConfig({
         enforcePurpose: true,
         enforceVendor: true,
         vendorExceptions: ["bidderA"]
-      }
+      }]
 
 3) Enforce that the user consents to DeviceAccess as an activity, but don't consider their per-vendor selection.
 
@@ -103,7 +109,7 @@ pbjs.setConfig({
         purpose: "storage",
         enforcePurpose: true,
         enforceVendor: false,
-      }
+      }]
 
 4) Enforce that the user consents to DeviceAccess as an activity, but don't consider their per-vendor selection. BidderA is entrusted to enforce the rules on their own.
 
@@ -113,7 +119,7 @@ pbjs.setConfig({
         enforcePurpose: true,
         enforceVendor: false,
         vendorExceptions: ["bidderA"]
-      }
+      }]
 
 5) Turn off enforcement of Purpose 1: don't enforce either the user's DeviceAccess consent or their per-vendor selection.
 
@@ -122,7 +128,7 @@ pbjs.setConfig({
         purpose: "storage",
         enforcePurpose: false,
         enforceVendor: false
-      }
+      }]
 
 6) Don't enforce the user's DeviceAccess consent, but do consider their per-vendor selection.
 
@@ -131,7 +137,7 @@ pbjs.setConfig({
         purpose: "storage",
         enforcePurpose: false,
         enforceVendor: true
-      }
+      }]
 
 7) Don't enforce the user's DeviceAccess consent, but do consider their per-vendor selection except for BidderA.
 
@@ -141,7 +147,7 @@ pbjs.setConfig({
         enforcePurpose: false,
         enforceVendor: true,
         vendorExceptions: ["bidderA"]
-      }
+      }]
 
 ## Basic Enforcement
 
@@ -154,34 +160,12 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
 
 - Configuration rules enforce both consent and vendor signals and either:
   - we have the user’s purpose consent and the user’s vendor consent, or
-  - we confirmed the user’s LI (Legitimate Interest) Transparency is established for this purpose and the user’s Vendor LI field didn’t reject this vendor.
+  - (for Purpose 2 only) we've confirmed the user’s LI (Legitimate Interest) Transparency is established for this purpose
 - Configuration rules enforce only purpose consent and either:
   - we have the user’s purpose consent, or
-  - we confirmed the user’s LI Transparency is established for this purpose.
-- Configuration rules enforce only vendor signals and either:
-  - we have the user’s vendor consent, or
-  - we confirmed the user’s Vendor LI field didn’t reject this vendor
+  - (for Purpose only) we confirmed the user’s LI Transparency is established for this purpose.
+- Configuration rules enforce only vendor signals and we have the user’s vendor consent
 - Configuration rules enforce neither purpose consent nor vendor signal.
-
-Technically these rules are defined as follows:
-
-1. enforcePurpose[P]==true AND PurposesConsent[P]==1 AND enforceVendor[P,V]==true AND VendorConsentBitfield[V]==1
-1. enforcePurpose[P]==true AND PurposesConsent[P]==1 AND enforceVendor[P,V]==false
-1. enforcePurpose[P]==false AND enforceVendor[P,V]==true AND VendorConsentBitfield[V]==1
-1. enforcePurpose[P]==true AND PurposesLITransparency[P]==1 AND enforceVendor[P,V]==true AND VendorLegitimateInterestBitfield[V]==1
-1. enforcePurpose[P]==true AND PurposesLITransparency[P]==1 AND enforceVendor[P,V]==false
-1. enforcePurpose[P]==false AND enforceVendor[P,V]==true AND VendorLegitimateInterestBitfield[V]==1
-1. enforcePurpose[P]==false AND enforceVendor[P,V]==false
-
-Where:
-
-- P is the Purpose number
-- V is the vendor ID
-- 'enforcePurpose' and 'enforceVendor' are Prebid.js config rules
-- 'PurposesConsent' is the consent string field of the same name
-- 'VendorConsentBitfield' is the consent string 'Vendor Consent Section'
-- 'PurposesLITransparency' is the consent string field of the same name
-- 'VendorLegitimateInterestBitfield' is the consent string 'Vendor Legitimate Interest Section'
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 

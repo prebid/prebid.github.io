@@ -2,14 +2,14 @@
 layout: bidder
 title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
-hide: true
+
 biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 tcf2_supported: true
 ---

@@ -2,7 +2,7 @@
 layout: bidder
 title: WaardeX
 description: Prebid WaardeX Bidder Adaptor
-hide: true
+
 biddercode: waardex_ak
 aliasCode: adkernel
 media_types: display, video

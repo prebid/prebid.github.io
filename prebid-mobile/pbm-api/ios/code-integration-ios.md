@@ -28,6 +28,54 @@ target 'MyAmazingApp' do
 end
 ```
 
+### Include with Carthage
+
+If you are not familiar with the Carthage package builder, please refere to the project [github page](https://github.com/Carthage/Carthage) for more details.
+
+Since Prebid SDK architecture supports a multi-module feature for future enhancements, that currently use the same module name for every schema, please use CarthageBuild.sh script to build a necessary binary.
+
+There are two shared schemes available ([issue #239](https://github.com/prebid/prebid-mobile-ios/issues/239)):
+
+- PrebidMobile
+- PrebidMobileCore
+
+Follow the next steps:
+
+1. Add PrebidSDK dependency into Cartfile. Release notes
+```
+github "prebid/prebid-mobile-ios" == 1.5
+```
+2. Update Carthage
+```
+carthage update
+```
+
+3. Build the specific schema `CarthageBuild.sh`
+    
+    **Variant 1**
+    
+    - Run CarthageBuild.sh script from Cartfile folder. The path should be:
+        `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
+    
+    - Enter Schema name (PrebidMobile or PrebidMobileCore)
+        - If you run CarthageBuild.sh and see Permission denied use:
+             `chmod +x <path_to_CarthageBuild.sh>`
+    
+    **Variant 2**
+    
+    - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
+    
+    - Manage Schemes -> Check Shared checkbox for a necessary schema
+    
+    - run `carthage build prebid-mobile-ios`
+4. Integrate the binary into your project
+
+
+
+You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
+
+
+
 ### Build framework from source
 
 Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:

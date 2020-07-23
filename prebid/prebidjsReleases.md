@@ -16,6 +16,11 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 3.24 | PBS Bid Adapter allows setting site params |
+| 3.23 | If a server-side bid contains imp.ext.prebid.event.win, pbsBidAdapter listens to BidsWon events and hits the URL. |
+| 3.22 | Secure creatives use event.origin rather than a hard coded adServerDomain |
+| 3.21 | Price Floors Module: New Analytics signals |
+| 3.17 | UserID module also exports IDs as eids |
 | 3.16 | isSafariBrowser fixed for Chrome and Firefox on iOS |
 | 3.15 | Advanced Size Mapping module support adunits of the same name |
 | 3.14 | New [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) supports enforcing Purpose 1 - DeviceAccess |
