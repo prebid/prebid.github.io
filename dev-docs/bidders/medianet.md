@@ -47,97 +47,92 @@ In addition to `bids[].params.video`, Media.net adapter consumes parameters spec
 
 #### Example of Instream Video Ad-unit
 ```
-       var videoAdUnit = {
-         code: 'video1',
-         mediaTypes: {
-           video: {
-             context: "outstream",
-             playerSize: [640, 480]
-           }
-         },
-         bids: [
-           {
-             bidder: 'medianet',
-             params: {
-               cid: '8CUX0H51C',
-               video: {
-                 mimes: ['video/mp4'],
-                 placement: 1
-               },
-               // Site member is to be used only for testing
-               site: {
-                 page: 'http://smoketesting.net/prebidtest/',
-                 domain: 'smoketesting.net',
-                 ref: 'http://smoketesting.net/prebidtest/'
-               }
-             }
-           }
-         ]
-       };
+var videoAdUnit = {
+  code: 'video1',
+  mediaTypes: {
+    video: {
+      context: "outstream",
+      playerSize: [640, 480]
+    }
+  },
+  bids: [{
+    bidder: 'medianet',
+    params: {
+      cid: '8CUX0H51C',
+      video: {
+        mimes: ['video/mp4'],
+        placement: 1
+      },
+      // Site member is to be used only for testing
+      site: {
+        page: 'http://smoketesting.net/prebidtest/',
+        domain: 'smoketesting.net',
+        ref: 'http://smoketesting.net/prebidtest/'
+      }
+    }
+  }]
+};
 ```
 
 #### Example of Native Ad-unit
 ```
-      var adUnits = [
-        {
-          code: 'div-gpt-ad-1544091247692-0',
-          mediaTypes: {
-            native: {
-              image: {
-                required: true,
-                sizes: [300, 250],
-                wmin: 50,
-              },
-              title: {
-                required: true,
-                len: 80
-              }
-            }
-          },
-          bids: [
-            {
-              bidder: 'medianet',
-              params: {
-                cid: '8CUX0H51C',
-                crid: '776755783',
-                // Site member is to be used only for testing
-                site: {
-                  page: 'http://smoketesting.net/prebidtest/',
-                  domain: 'smoketesting.net',
-                  ref: 'http://smoketesting.net/prebidtest/'
-                }
-              }
-            }
-          ]
-        }
-      ];
+var adUnits = [{
+  code: 'div-gpt-ad-1544091247692-0',
+  mediaTypes: {
+    native: {
+      image: {
+        required: true,
+        sizes: [300, 250],
+        wmin: 50,
+      },
+      title: {
+        required: true,
+        len: 80
+      }
+    }
+  },
+  bids: [{
+    bidder: 'medianet',
+    params: {
+      cid: '8CUX0H51C',
+      crid: '776755783',
+      // Site member is to be used only for testing
+      site: {
+        page: 'http://smoketesting.net/prebidtest/',
+        domain: 'smoketesting.net',
+        ref: 'http://smoketesting.net/prebidtest/'
+      }
+    }
+  }]
+}];
 ```
 
 #### Example of Banner Ad-unit
 ```
- var adUnits = [{
-        code: 'div-gpt-ad-1460505748561-0',
-        mediaTypes: {
-          banner: {
-            sizes: [[728, 90], [300,600],[300,250]],
-          }
-        },
-        bids: [
-          {
-            bidder: 'medianet',
-            params: {
-              cid: '8CUX0H51C',
-              crid: '451466393',
-              // Site member is to be used only for testing
-              site: {
-                page: 'http://smoketesting.net/prebidtest/',
-                domain: 'smoketesting.net',
-                ref: 'http://smoketesting.net/prebidtest/'
-              }
-            }
-          }
-        ]
+var adUnits = [{
+  code: 'div-gpt-ad-1460505748561-0',
+  mediaTypes: {
+    banner: {
+      sizes: [
+        [728, 90],
+        [300, 600],
+        [300, 250]
+      ],
+    }
+  },
+  bids: [{
+    bidder: 'medianet',
+    params: {
+      cid: '8CUX0H51C',
+      crid: '451466393',
+      // Site member is to be used only for testing
+      site: {
+        page: 'http://smoketesting.net/prebidtest/',
+        domain: 'smoketesting.net',
+        ref: 'http://smoketesting.net/prebidtest/'
       }
-      ];
+    }
+  }]
+}];
 ```
 	
