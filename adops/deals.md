@@ -5,14 +5,8 @@ head_title: Enable Deals in Prebid for Header Bidding
 description: Enable Deals in Prebid for Header Bidding Analysis.
 pid: 4
 
-hide: false
-
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
-
-
 
 # Enable Deals in Prebid
 {:.no_toc}
@@ -24,7 +18,7 @@ In order to enable deals for prebid, the ad ops setup is slightly different from
 + From the dev side, if your page is using the standard prebid.js key-values, no change or work is required.
 
 {: .bg-info :}
-In this example we will use the DFP setup to illustrate, but the steps are basically the same for any ad server.
+In this example we will use the Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
 
 * TOC
 {:toc}
@@ -50,8 +44,14 @@ hb_deal_appnexus = APN_456
 // hb_adid, hb_size, and hb_adid omitted
 ```
 
-{: .bg-info :}
-Whether your Ad Ops setup [sends all bids to the ad server](/adops/send-all-bids-adops.html) or just [sends the top bid to the ad server](/adops/step-by-step.html), Prebid.js will generate the deal key-values for every bidder. The reason is that you may want to give deals higher priorities in the ad server, which needs to see all deal-enabled bids.
+{% capture noteAlert %}
+We recommend confirming with your development team that the page is set up to send all deal targeting to the ad server. There are two ways to do this:  
+- Set the `enableSendAllBids` to **true**.  
+- Set `enableSendAllBids` to **false** and `alwaysIncludeDeals` to **true**. This option will minimize the number of targeting variables sent to the ad server.  
+See the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) documentation for details.
+{% endcapture %}
+
+{% include alerts/alert_note.html content=noteAlert %}
 
 <br>
 
@@ -67,7 +67,7 @@ For each header bidding partner you work with, create a keyword in the format of
 
 ### Step 3: Create Line Items for Deals
 
-In DFP, create a new line item.
+In Google Ad Manager, create a new line item.
 
 Enter all the **Inventory sizes** for your deal (or deals):
 
@@ -133,4 +133,3 @@ e.g. if the line item is targeted to `hb_deal_pubmatic`, then the creative needs
 
 If however, the line item is targeted to `hb_deal` (without a bidder code),
 then the simplified creative setup in the [step-by-step instructions](/adops/step-by-step.html#step-2-add-a-creative) will be fine.
-

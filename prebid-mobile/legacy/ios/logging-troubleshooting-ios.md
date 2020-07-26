@@ -34,7 +34,7 @@ Setting any log level other than `PBLogLevelAll` or `PBLogLevelOff` will enable 
 
 # FAQs
 
-**Q:** *I've defined a banner size as fluid in DFP SDK (`AdSize(-3,-4)`), why am I receiving an empty response?*
+**Q:** *I've defined a banner size as fluid in Google Ad Manager SDK (`AdSize(-3,-4)`), why am I receiving an empty response?*
 
 **A:** Prebid Mobile does not support fluid size.
 

@@ -1,4 +1,4 @@
- <ul class="list-group">
+<ul class="list-group">
 					
 					<!--get all sections-->
 					
@@ -97,14 +97,19 @@
 											{% endif %}
 				            				
 				            				<!--display subsection items with links-->
-				            				{% if subsectionIdx == 0 %}
-					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-						            				{% if isPage == 1 %}
-						            					<span class="menu-collapsed pb-nav-item pb-first-item" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
-						            				{% else %}
-														<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
-													{% endif %}
-				                				</a>
+				            				{% if subsectionIdx == 0 % || thisSubItem.isCatHeader == 1 %}
+				            					<!--video example categories should not link-->
+				            					{% if thisSubItem.isCatHeader == 1 %}
+				            						<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
+				            					{% else %}
+						            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+							            				{% if isPage == 1 %}
+							            					<span class="menu-collapsed pb-nav-item pb-first-item" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
+							            				{% else %}
+															<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
+														{% endif %}
+					                				</a>
+				                				{% endif %}
 				            				{% elsif subsectionIdx == lastIdx %}
 					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
 						            				{% if isPage == 1 %}
@@ -115,13 +120,17 @@
 				                				</a>
 				                		
 				                			{% else %}
-				                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-					                				{% if isPage == 1 %}
-					                					<span class="menu-collapsed pb-nav-item bg-secondary" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
-					                				{% else %}
-														<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
-													{% endif %}
-			                					</a>
+				                				{% if thisSubItem.isCatHeader == 1 %}
+				                					<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+				                				{% else %}
+					                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
+						                				{% if isPage == 1 %}
+						                					<span class="menu-collapsed pb-nav-item bg-secondary" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
+						                				{% else %}
+															<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+														{% endif %}
+				                					</a>
+				                				{% endif %}
 				            				{% endif %}
 										
 				            				

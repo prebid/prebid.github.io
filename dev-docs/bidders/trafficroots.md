@@ -2,7 +2,7 @@
 layout: bidder
 title: Trafficroots
 description: Prebid Trafficroots Bidder Adapter
-hide: true
+
 biddercode: trafficroots
 gdpr_supported: true
 ---

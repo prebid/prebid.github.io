@@ -23,7 +23,7 @@ This page has tips and tricks for troubleshooting issues with your Prebid.js int
 
 ## Turn on Prebid.js debug messages
 
-Add `pbjs_debug=true` to the end of your page's URL. For example: <a href="{{ site.github.url }}/examples/pbjs_demo.html?pbjs_debug=true" class="btn btn-default btn-sm" target="_blank">/pbjs_demo.html?pbjs_debug=true</a>. This will add two types of messages to your browser's developer console:
+Add `pbjs_debug=true` to the end of your page's URL. For example: <code>/pbjs_demo.html?pbjs_debug=true</code>. This will add two types of messages to your browser's developer console:
 
 1. Prebid.js suppresses Javascript errors in the normal mode to not break the rest of your page. Adding the `pbjs_debug` parameter will expose the Javascript errors.
 2. You'll find additional debug messages. Filter the messages by string `MESSAGE:`. For example:
@@ -45,7 +45,7 @@ Add `pbjs_debug=true` to the end of your page's URL. For example: <a href="{{ si
 
 ## Turn on your ad server's developer console
 
-The ad server's developer console usually provide information such as targeting, latency, and key events logging. For example, here is a screenshot of DFP's GPT developer console logs:
+The ad server's developer console usually provide information such as targeting, latency, and key events logging. For example, here is a screenshot of Google Ad Manager's GPT developer console logs:
 
 <br>
 
@@ -65,7 +65,7 @@ Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**,
 
 Right-click to add a **New** snippet:
 
-![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :} 
+![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
 
 <br />
 
@@ -187,7 +187,7 @@ Check the output in Console to see the bids (note that this screenshot shows the
 ## Modify bid responses for testing
 
 Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in.
-When this type of debugging is enabled it will persist across page loads using `sessionStorage`.  This allows 
+When this type of debugging is enabled it will persist across page loads using `sessionStorage`.  This allows
 for easy testing of pages that immediately start auctions (most pages), but also means you need to remember
 to deactivate debugging when you are done (or clear your local storage / use incognito mode when testing).
 
@@ -199,7 +199,7 @@ javascript console> pbjs.setConfig({
     bidders: ['bidderA', 'bidderB']
   }
 });
-    
+
 // Overwriting bid responses for all bidders
 javascript console> pbjs.setConfig({
   debugging: {
@@ -209,7 +209,7 @@ javascript console> pbjs.setConfig({
     }]
   }
 });
-    
+
 // Overwriting bid responses for a specific bidder and adUnit code (can use either separately)
 javascript console> pbjs.setConfig({
   debugging: {
@@ -221,7 +221,7 @@ javascript console> pbjs.setConfig({
     }]
   }
 });
-    
+
 // Disabling debugging
 javascript console> pbjs.setConfig({
   debugging: {
@@ -234,5 +234,3 @@ javascript console> pbjs.setConfig({
 
 + [Prebid.js FAQ](/dev-docs/faq.html)
 + [Prebid.js Common Issues](/dev-docs/common-issues.html)
-
-

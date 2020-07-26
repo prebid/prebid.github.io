@@ -15,11 +15,11 @@ sidebarType: 0
 
 Prebid.org uses the following principles to guide how we develop [Prebid.js]({{site.baseurl}}/prebid/prebidjs.html), [Prebid Server]({{site.baseurl}}/prebid-server/prebid-server-overview.html), [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html), and any future sub-projects:
 
-+ **Collaborative**: Foster a community of contribution
++ **Collaborative**: Foster a community of contribution.
 
-+ **Open and Transparent**: No black-box auction dynamics, bid biasing or hidden fees
++ **Open and Transparent**: No black-box auction dynamics, bid biasing or hidden fees.
 
-+ **Agnostic**: No adapter preferencing or inherent reliance on ad servers
++ **Agnostic**: No adapter preferencing or inherent reliance on ad servers.
 
 + **Performant**: Don’t kill the page!
 
@@ -27,5 +27,3 @@ Prebid.org uses the following principles to guide how we develop [Prebid.js]({{s
 
 + [What is Prebid?](/overview/intro.html)
 + [Header Bidding Wrapper Code of Conduct]({{site.baseurl}}/wrapper_code_of_conduct.html)
-
-

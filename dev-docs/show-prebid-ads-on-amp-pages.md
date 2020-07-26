@@ -23,7 +23,7 @@ For more information about AMP RTC, see:
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
-For ad ops setup instructions, see [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html).
+For ad ops setup instructions, see [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html).
 {% endcapture %}
 
 {% include alerts/alert_note.html content=tipNote %}
@@ -128,7 +128,7 @@ e.g. for Rubicon Project's cluster of Prebid Servers:
 
 ### HTML Creative
 
-This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)).
+This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)).
 
 {% capture tipNote %}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
@@ -136,9 +136,9 @@ You can always get the latest version of the creative code below from [the AMP e
 
 {% include alerts/alert_tip.html content=tipNote %}
 
-For DFP:
+For Google Ad Manager:
 
-```html 
+```html
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -147,7 +147,7 @@ For DFP:
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
   ucTagData.hbPb = "%%PATTERN:hb_pb%%";
-  
+
   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -168,7 +168,7 @@ For Mopub:
   ucTagData.pubUrl = "%%KEYWORD:url%%";
   ucTagData.targetingKeywords = "%%KEYWORDS%%";
   ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
-  
+
    try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -208,34 +208,34 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 
 ### User Sync
 
-To properly sync user IDs with Prebid Server, the `amp-iframe` pixel below should be added to your AMP pages. As of now, only image pixels (those returned with "type": "redirect") are supported.
+To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your AMP pages referring to the `load-cookie.html` file made available as part of the [Prebid Universal Creative repository](https://github.com/prebid/prebid-universal-creative). Hosting for the `load-cookie.html` file is not provided by Prebid.org.
 
 {% capture tipNote %}
-The following examples include a transparent image as a placeholder which will allow you to place this at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
 {% endcapture %}
 
 {% include alerts/alert_tip.html content=tipNote %}
 
-If you're using AppNexus' Prebid Server cluster:
+If you're using AppNexus' managed service, you would enter something like this:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=appnexus&max_sync_count=5">
+  src="https://PROVIDED_BY_APPNEXUS/load-cookie.html?endpoint=appnexus&max_sync_count=5">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
 
-Else if you're utilizing Rubicon Project's Prebid Server cluster, you'll need an extra 'args'
-param on the call to load-cookie.html and will need to replace _RUBICON_ACCOUNT_ID_ with
-the ID provided by your Rubicon Project account team.
+See the AppNexus bidder parameters page [for more details](/). 
+
+If you are utilizing Rubicon Project's managed service, there's an extra parameter:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
   sandbox="allow-scripts"
   frameborder="0"
-  src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/load-cookie.html?endpoint=rubicon&max_sync_count=6&args=account:RUBICON_ACCOUNT_ID">
+  src="https://PROVIDED_BY_RUBICON/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:RUBICON_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
@@ -249,13 +249,23 @@ Available arguments for the `load-cookie.html` query string:
 | max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
 | args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie-sync call. The attribute and value will be quoted by the system when appropriate. |
 | gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
-| gdpr_consent | optional | String | IAB CMP-formatted consent string | 
+| gdpr_consent | optional | String | IAB CMP-formatted consent string |
+
+### AMP RTC and GDPR
+
+The two Prebid Server RTC vendor strings 'prebidappnexus' and 'prebidrubicon'
+support passing GDPR consent to Prebid Server.
+
+The CONSENT_STRING macro will be populated if you've integrated with a CMP
+that supports amp-consent v2 -- custom CMP integration.
+
+If you're using a custom RTC callout, you'll need to add `gdpr_consent=CONSENT_STRING` to the list of parameters.
 
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:
 + Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
 + Look for the Prebid server call in the network panel. You can open this URL in a new tab to view additional debugging information relating to the Prebid Server Stored Bid Request. If working properly, Prebid server will display the targeting JSON for AMP to use.
-+ Look for the network call from the Ad Server to ensure that key values are being passed. (For DFP these are in the `scp` query string parameter in the network request)
++ Look for the network call from the Ad Server to ensure that key values are being passed. (For Google Ad Manager these are in the `scp` query string parameter in the network request)
 + Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present in the Prebid Server query string. AMP won't add this parameter, so you'll need to grab the Prebid Server URL and manually add it to see the additional information provided.
 
 ## Related Topics
@@ -263,7 +273,7 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 + [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
 + [Prebid Server AMP Endpoint](https://github.com/prebid/prebid-server/blob/master/docs/endpoints/openrtb2/amp.md)
 + [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [Setting up Prebid for AMP in DFP]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
++ [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 

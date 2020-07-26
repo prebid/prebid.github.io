@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - DFP Video
+title: Module - Google Ad Manager Video
 description: Addition of DFP Video to the Prebid package
 module_code : dfpAdServerVideo
 display_name : DFP Video

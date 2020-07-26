@@ -2,9 +2,6 @@
 layout: page_v2
 title: Prebid Plugin for Brightcove (Videojs) Player API
 description: Ad Unit Reference
-top_nav_section: dev_docs
-nav_section: plugins
-pid: 10
 ---
 
 
@@ -54,7 +51,7 @@ This page presents a sample publisher page using the General Integration Method 
     <script>
     // create the options object
     var adOptions = {
-        "prebidPath": "//files.prebid.org/prebid-org.js",
+        "prebidPath": "//files.prebid.org/prebid-org.js",  // not for production use
         "biddersSpec": {
             ”code": "my-video-tag",
             "sizes": [640,480],

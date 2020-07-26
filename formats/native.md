@@ -16,7 +16,7 @@ Native ads are supported by Prebid.js for mobile web. Prebid Server support is c
 
 ### Adops
 
-- [Setting up Prebid Native in DFP](/adops/setting-up-prebid-native-in-dfp.html)
+- [Setting up Prebid Native in Google Ad Manager](/adops/setting-up-prebid-native-in-dfp.html)
 
 ### Developers
 

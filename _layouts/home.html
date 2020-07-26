@@ -53,20 +53,18 @@
 				</div>
 				
 				{% assign arrMsgs = site.data.message %}
-					
+				{% assign lastMsg = arrMsgs.last %}
+				{% assign lastMsgSize = lastMsg.messageText | size %}
 				<div class="pb-message-container">
 					
-					{% if arrMsgs.size > 0 %}
+					{% if lastMsgSize > 1 %}
 					<div class="pb-message">
 						
-						{% assign lastMsg = arrMsgs.last %}
 						<h3>{{lastMsg.messageText}}</h3>
 						
 					</div>
 					{% else %}
-					<div class="pb--empty-message">
-						
-					</div>
+					<div class="pb-empty-message">&nbsp;</div>
 					{% endif %}
 				</div>
 				

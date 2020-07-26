@@ -37,16 +37,16 @@ See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 {% include send-all-bids-keyword-targeting.md %}
 
 {: .bg-info :}
-In this example we will use DFP setup to illustrate, but the steps are basically the same for any ad server.
+In this example we will use Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
 
 ## Step 1. Add an order
 
-In DFP, create a new order for one of the header bidding partners. Each header bidding partner should have its own DFP order. Repeat this step and the following when you are adding a new header bidding partner.
+In Google Ad Manager, create a new order for one of the header bidding partners. Each header bidding partner should have its own Google Ad Manager order. Repeat this step and the following when you are adding a new header bidding partner.
 
 
 ## Step 2. Add a line item
 
-In DFP, create a new order with a $0.50 line item.
+In Google Ad Manager, create a new order with a $0.50 line item.
 
 Enter all of the inventory sizes that your website has.
 
@@ -82,12 +82,13 @@ This line item will target the bids in the range from $0.50 to $1.00 from the bi
 
 Next, add a creative to this $0.50 line item; we will duplicate the creative later.
 
-Choose the same advertiser we've assigned the line item to.
+- Choose the same advertiser we've assigned the line item to.
+- Set it to be a **Third party** creative.
+- Make sure the creative size is set to 1x1.  This allows the creative to serve on all inventory sizes. When associating with the line item, just change the creative filter setting to show all creatives instead of 'Inventory filtered based on size'.
+- The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
+- Copy this creative code snippet for each bidder and paste it into the **Code snippet** box, replacing BIDDERCODE with the current bidder name.
 
-Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
-
-Copy this creative code snippet and paste it into the **Code snippet** box.
-
+```
     <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
       var ucTagData = {};
@@ -101,27 +102,28 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.env = "%%PATTERN:hb_env%%";
       ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
       ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
-
+      // mobileResize needed for mobile GAM only
+      ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
         console.log(e);
       }
     </script>
+```
 
 {% capture noteAlert %}
-Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`
+Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`. IMPORTANT: Make sure that none of the values are
+longer than 20 characters. e.g. you'll need to truncate hb_cache_host_triplelift to hb_cache_host_triple. GAM doesn't support attributes longer than 20 chars, so all Prebid software truncates attributes to that length.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
 
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
-Make sure the creative size is set to 1x1.  This allows Prebid to set up size override, which enables this creative to serve on all inventory sizes.
-
 **Prebid universal creative code for other ad servers**
 
-If you're using an ad server other than DFP, your code snippet will look similar to one of the following:
+If you're using an ad server other than Google Ad Manager, your code snippet will look similar to one of the following:
 
 For Mopub:
 
@@ -195,19 +197,19 @@ In the pop-up dialog that appears, click **Show All** to remove the default size
 
 Back in the line item, go into the **Creatives** tab again, and click into the creative you just added.
 
-Then, in the creative's **Settings** tab, override all sizes in the **Size overrides** field.
+Then, in the creative's **Settings** tab, enable the **Size overrides** field and set all your line item's potential sizes.
 
 Save the creative and go back to the line item.
 
 ## Step 5. Duplicate Creatives
 
-DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
+Google Ad Manager has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
 
-Let's say your page has 4 ad units.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
+Let's say your page has 4 ad slots.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
 
 Therefore, we need to duplicate our Prebid creative 4 times.
 
-Once that's done, we have a fully functioning line item with 4 creatives attached.
+Once that's done, we have a fully functioning line item with 4 creatives attached that can potentially fill 4 ad slots of varying sizes during a single pageview.
 
 ## Step 6. Duplicate Line Items
 

@@ -54,7 +54,7 @@ go build .
 ./prebid-server
 ```
 
-And then `POST` to [`/openrtb2/auction`](../endpoints/openrtb2/auction.md) with your chosen ID.
+And then `POST` to [`/openrtb2/auction`](/prebid-server/endpoints/openrtb2/auction.html) with your chosen ID.
 
 ```json
 {
@@ -129,7 +129,7 @@ HTTP request properties will overwrite the Stored Request ones.
 
 ## Interstitial Ads  
 
-Prebid Server supports interstitial ad type requests. These requests are enabled through the addition of the interstitial key to device.ext.prebid. This key has two fields, minwidthperc and minheightperc. The values are integers that represent the minimum allowed size for the ad, as a percentage of the base side. For example, a `width` of 600 and `minwidthperc` of 60 would allow ad widths of 360 (600 * .60) to 600. 
+Prebid Server supports interstitial ad type requests. These requests are enabled through the addition of the interstitial key to `device.ext.prebid`. This key has two fields, `minwidthperc` and `minheightperc`. The values are integers that represent the minimum allowed size for the ad, as a percentage of the base size. For example, a `width` of 600 and `minwidthperc` of 60 would allow ad widths of 360 (600 * .60) to 600.
 
 ```json
 
@@ -141,13 +141,13 @@ Prebid Server supports interstitial ad type requests. These requests are enabled
              "id":"test-imp-id",
              "banner": {
                 "format": [
-                
+
                 {                   
                      "w":300,                   
                       "h":250              
                 }
 ,
-              
+
                {                   
                      "w":300,                  
                       "h":600              
@@ -243,8 +243,8 @@ then the data for those Stored Imps not be resolved.
 
 ## Alternate backends
 
-Stored Requests do not need to be saved to files. [Other backends](../../stored_requests/backends) are supported
-with different [configuration options](configuration.md). For example:
+Stored Requests do not need to be saved to files. [Other backends](https://github.com/prebid/prebid-server/tree/master/stored_requests/backends) are supported
+with different [configuration options](https://github.com/prebid/prebid-server/blob/master/docs/developers/configuration.md). For example:
 
 ```yaml
 stored_requests:
@@ -259,12 +259,12 @@ stored_requests:
 ```yaml
 stored_requests:
   http:
-    endpoint: http://stored-requests.prebid.com
-    amp_endpoint: http://stored-requests.prebid.com?amp=true
+    endpoint: https://stored-requests.prebid.com
+    amp_endpoint: https://stored-requests.prebid.com?amp=true
 
 ```
 
-If you need support for a backend that you don't see, please [contribute it](contributing.md).
+If you need support for a backend that you don't see, please [contribute it](https://github.com/prebid/prebid-server/blob/master/docs/developers/contributing.md).
 
 ## Caches and Event-based updating
 
@@ -300,15 +300,15 @@ stored_requests:
     dbname: database-name
     query: SELECT id, requestData, 'request' as type FROM stored_requests WHERE id in %REQUEST_ID_LIST% UNION ALL SELECT id, impData, 'imp' as type FROM stored_imps WHERE id in %IMP_ID_LIST%;
   http:
-    endpoint: http://stored-requests.prebid.com
-    amp_endpoint: http://stored-requests.prebid.com?amp=true
+    endpoint: https://stored-requests.prebid.com
+    amp_endpoint: https://stored-requests.prebid.com?amp=true
   in_memory_cache:
     ttl_seconds: 300 # 5 minutes
     request_cache_size_bytes: 107374182 # 0.1GB
     imp_cache_size_bytes: 107374182 # 0.1GB
   http_events:
-    endpoint: http://stored-requests.prebid.com
-    amp_endpoint: http://stored-requests.prebid.com?amp=true
+    endpoint: https://stored-requests.prebid.com
+    amp_endpoint: https://stored-requests.prebid.com?amp=true
     refresh_rate_seconds: 60
     timeout_ms: 100
 ```

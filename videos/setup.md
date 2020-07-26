@@ -50,7 +50,7 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/208843795" width
 Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/237794019" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo3', null, {deleteSelectorContent: true}, 3);
 </script>
 
-## Setup DFP for Header Bidding
+## Setup Google Ad Manager for Header Bidding
 
 <div id="vimeo4">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
@@ -61,7 +61,7 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/237794019" width
 Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/214538709" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo4', null, {deleteSelectorContent: true}, 3);
 </script>
 
-<p><a href="https://vimeo.com/214538709">Setup DFP for Header Bidding</a> from <a href="https://vimeo.com/appnexus">AppNexus</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://vimeo.com/214538709">Setup Google Ad Manager for Header Bidding</a> from <a href="https://vimeo.com/appnexus">AppNexus</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ## Ad Units Array Setup
 

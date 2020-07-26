@@ -2,7 +2,7 @@
 layout: bidder
 title: ShowHeroes
 description: Prebid ShowHeroes Bidder Adapter
-hide: true
+
 biddercode: showheroes-bs
 media_types: video, banner
 gdpr_supported: true
