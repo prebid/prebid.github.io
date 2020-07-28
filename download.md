@@ -485,7 +485,7 @@ Prebid only supports the most recent major version. Within a month or so after a
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaMedia Analytics
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaOne Analytics by YuktaMedia
     </label>
   </div>
 </div>

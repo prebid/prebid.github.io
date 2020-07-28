@@ -44,7 +44,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Tercept Analytics | <a href="https://www.tercept.com/unified-analytics/">Contact vendor</a> | [Website](https://www.tercept.com/)|
 | ucfunnel | Contact vendor | [Website](https://www.ucfunnel.com/)|
 | Yieldone | Contact vendor | [Website](https://www.platform-one.co.jp/) |
-| YuktaMedia Analytics | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) |
+| YuktaOne Analytics by YuktaMedia | <a href="mailto:info@yuktamedia.com">Freemium \| Contact vendor</a> | [Website](https://yuktamedia.com/prebid/) |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 
