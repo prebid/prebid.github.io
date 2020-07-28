@@ -2,7 +2,7 @@
 layout: bidder
 title: AdUp Technology
 description: Prebid Bidder Adapter for AdUp Technology
-hide: true
+
 biddercode: aduptech
 media_types: banner
 gdpr_supported: true
@@ -11,7 +11,7 @@ gdpr_supported: true
 ### Note:
 
 The AdUp Technology bidding adapter requires setup and approval before beginning.
-For more information visit [www.adup-tech.com](https://www.adup-tech.com/en) or contact [info@adup-tech.com](mailto:info@adup-tech.com).
+For more information visit [www.adup-tech.com](https://www.adup-tech.com/) or contact [info@adup-tech.com](mailto:info@adup-tech.com).
 
 ### Bid params
 

@@ -39,7 +39,7 @@ For more information about how to contribute, see the *Contribute* section of th
 
 ## Stack Overflow
 
-If you ask questions on [Stack Overflow](http://stackoverflow.com/), please use the following tags:
+If you ask questions on [Stack Overflow](https://stackoverflow.com/), please use the following tags:
 
 + `prebid`
 + `prebid.js`

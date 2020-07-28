@@ -5,7 +5,7 @@ description: How to add an analytics adapter
 pid: 28
 top_nav_section: dev_docs
 nav_section: adapters
-hide: false
+
 sidebarType: 1
 ---
 

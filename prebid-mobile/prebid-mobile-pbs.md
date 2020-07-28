@@ -50,7 +50,7 @@ After you've registered with your chosen Prebid Server host, you need to create 
 ]
 ```
 
-The preceding is an example structure using AppNexus as the bidder. The parameters you need to set differ for each bidder. See [Bidder Parameters]({{site.github.url}}/dev-docs/bidders.html) for a full list of parameters for available bidders.
+The preceding is an example structure using AppNexus as the bidder. The parameters you need to set differ for each bidder. See [Bidder Parameters]({{site.github.url}}/dev-docs/prebid-server-bidders.html) for a full list of parameters for available Prebid Server bidders.
 
 ## Developers - Using the SDK
 
@@ -74,27 +74,27 @@ The following resources are available for further information on working with Pr
 
 ### Ad Ops
 
--   [Price Granularity](/prebid-mobile/adops-price-granularity.html)  
+-   [Price Granularity](/prebid-mobile/adops-price-granularity.html)
     Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
 
 ### Mobile Developers
 
 **iOS**
 
--   [Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)  
+-   [Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
     Learn about the parameters available in the iOS Prebid Mobile SDK.
 
 
 **Android**
 
--   [Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)  
+-   [Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
     Learn about the parameters available in the Android Prebid Mobile SDK.
 
 ### GDPR
 
-Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](http://advertisingconsent.eu/).
+Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/).
 
-For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/gdpr.html).
+For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/privacy-regulation.html).
 
 For specific implementation details, see the "GDPR Consent" section here:
 -   [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
