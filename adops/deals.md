@@ -4,7 +4,7 @@ title: Enable Deals
 head_title: Enable Deals in Prebid for Header Bidding
 description: Enable Deals in Prebid for Header Bidding Analysis.
 pid: 4
-hide: false
+
 sidebarType: 3
 ---
 

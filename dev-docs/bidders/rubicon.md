@@ -2,7 +2,7 @@
 layout: bidder
 title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adaptor
-hide: true
+
 biddercode: rubicon
 gdpr_supported: true
 tcf2_supported: true
@@ -10,8 +10,9 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: video
-userIds: digitrust, identityLink, liveIntentId, pubCommonId, unifiedId
+userIds: identityLink, liveIntentId, pubCommonId, unifiedId
 prebid_member: true
+safeframes_ok: true
 ---
 
 ### Note:

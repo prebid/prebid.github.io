@@ -129,7 +129,7 @@ Targeting.shared.domain = domain
 ```
 ### Store URL
 
-Retrieve and set the domain of your store URL with the following commands:
+Retrieve and set the domain of your store URL with the following command:
 
 ```
 Targeting.shared.storeURL
@@ -141,7 +141,7 @@ Targeting.shared.storeURL = "itunes store URL string"
 
 ### iTunesID
 
-Retrieve and set the domain of your store URL with the following commands:
+Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.
 
 ```
 Targeting.shared.itunesID
