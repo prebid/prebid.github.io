@@ -3,9 +3,6 @@ layout: page_v2
 title: Getting Started with Video for Prebid.js
 description: Prebid Video Getting Started
 pid: 1
-is_top_nav: yeah
-top_nav_section: pbjs-video
-nav_section: pbjs-video-get-started
 sidebarType: 4
 ---
 
@@ -117,10 +114,32 @@ For full details on creating outstream video ad units, see [Show Outstream Video
 
 ### Configuration
 
-After you’ve defined your ad units, you can continue with the rest of your configuration.  This is where setups for instream and outstream more drastically diverge. For complete configuration details, see the following:
+After you’ve defined your ad units, you can continue with the rest of your configuration. In
+most cases for video, the first step will be to define where the VAST XML coming back in the bids
+will be stored. Some bidders have you covered here -- the VAST is stored on their servers. But
+many bidders don't have their own server-side cache.
 
-Instream: [Show Video Ads with Google Ad Manager]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html)
-Outstream: [Show Outstream Video Ads]({{site.github.url}}/dev-docs/show-outstream-video-ads.html)
+{: .alert.alert-success :}
+Video players expect that the response from the ad server will be a URL that points to somewhere
+on the internet that stores the video ad creative. This URL can't point to the browser,
+so Prebid.js will send bid VAST XML out to a cache so it can be displayed if it wins in the ad server.
+
+Configuring the video cache is done with [`setConfig`](/dev-docs/publisher-api-reference.html#setConfig-vast-cache):
+
+```
+    pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            /* Or whatever your preferred video cache URL is */
+        }
+    });
+```
+
+
+And this is where setups for instream and outstream diverge. Please follow one of these links:
+
+- Instream: [Show Video Ads with Google Ad Manager]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html)
+- Outstream: [Show Outstream Video Ads]({{site.github.url}}/dev-docs/show-outstream-video-ads.html)
 
 Be sure to note the setting for price granularity.  You might need to set up a custom price granularity. (See “Custom CPM Bucket Sizing” under [Price Granularity]({{site.github.url}}/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity). Or, if you’re monetizing both banner and video inventory with Prebid, you might need to define format-specific price granularity settings through  [mediaTypePriceGranularity]({{site.github.url}}/dev-docs/publisher-api-reference.html#setConfig-MediaType-Price-Granularity).
 
@@ -129,7 +148,37 @@ Be sure to note the setting for price granularity.  You might need to set up a c
 
 ### Examples
 
-See [Prebid Video Examples]({{site.github.url}}/examples/video/) for working examples of instream and outstream video ads.
+This section contains working examples of instream and outstream video ads for various players.
+
+### Using client-side adapters
+
+#### Instream
+
++ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
++ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
++ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
++ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
++ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
++ [JWPlayer - Playlist]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html)
++ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
++ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
++ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
+
+#### Outstream
+
++ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
++ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
+
+### Using Prebid Server 
+
++ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
++ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
++ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
++ [JW Player - Playlist]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html)
++ [JW Player - Player 7]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html)
++ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
++ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
++ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
 ## Further Reading
 

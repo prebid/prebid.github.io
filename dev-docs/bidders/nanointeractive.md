@@ -2,7 +2,7 @@
 layout: bidder
 title: Nano Interactive
 description: Prebid Nano Interactive Bidder Adapter
-hide: true
+
 biddercode: nanointeractive
 media_types: banner
 gdpr_supported: true

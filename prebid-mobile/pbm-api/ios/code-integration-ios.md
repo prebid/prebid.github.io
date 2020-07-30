@@ -11,14 +11,14 @@ sidebarType: 2
 # Code Integration for iOS
 {: .notoc}
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Cocoapods or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK. 
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Cocoapods or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
 
 - TOC
  {:toc}
 
 ### Include with Cocoapods
 
-If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following: 
+If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following:
 
 ```
 platform :ios, '9.0'
@@ -27,6 +27,54 @@ target 'MyAmazingApp' do
     pod 'PrebidMobile'
 end
 ```
+
+### Include with Carthage
+
+If you are not familiar with the Carthage package builder, please refere to the project [github page](https://github.com/Carthage/Carthage) for more details.
+
+Since Prebid SDK architecture supports a multi-module feature for future enhancements, that currently use the same module name for every schema, please use CarthageBuild.sh script to build a necessary binary.
+
+There are two shared schemes available ([issue #239](https://github.com/prebid/prebid-mobile-ios/issues/239)):
+
+- PrebidMobile
+- PrebidMobileCore
+
+Follow the next steps:
+
+1. Add PrebidSDK dependency into Cartfile. Release notes
+```
+github "prebid/prebid-mobile-ios" == 1.5
+```
+2. Update Carthage
+```
+carthage update
+```
+
+3. Build the specific schema `CarthageBuild.sh`
+    
+    **Variant 1**
+    
+    - Run CarthageBuild.sh script from Cartfile folder. The path should be:
+        `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
+    
+    - Enter Schema name (PrebidMobile or PrebidMobileCore)
+        - If you run CarthageBuild.sh and see Permission denied use:
+             `chmod +x <path_to_CarthageBuild.sh>`
+    
+    **Variant 2**
+    
+    - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
+    
+    - Manage Schemes -> Check Shared checkbox for a necessary schema
+    
+    - run `carthage build prebid-mobile-ios`
+4. Integrate the binary into your project
+
+
+
+You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
+
+
 
 ### Build framework from source
 
@@ -65,7 +113,7 @@ Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
 
 Integrating **MoPub** with your application
 
-1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
+1.  Go to [MoPub.com](https://app.mopub.com/register) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
 
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
@@ -88,10 +136,10 @@ Banner and interstitial ad units can be created:
 let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
 ```
 
-For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them: 
+For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)  
+[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 
 ### Resize ad slot
 
@@ -101,40 +149,54 @@ Prebid recommends app developers to resize ads slots to the Prebid rendering ad 
 Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
+*SWIFT*
+```swift
+func adViewDidReceiveAd(_ bannerView: GADBannerView) {
 
-```
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
+    AdViewUtils.findPrebidCreativeSize(bannerView,
+                                            success: { (size) in
+                                                guard let bannerView = bannerView as? DFPBannerView else {
+                                                    return
+                                                }
 
-        Utils.shared.findPrebidCreativeSize(bannerView) { (size) in
-            if let bannerView = bannerView as? DFPBannerView, let size = size {
-                bannerView.resize(GADAdSizeFromCGSize(size))
-            }
-        }
-    }
+                                                bannerView.resize(GADAdSizeFromCGSize(size))
+
+        },
+                                            failure: { (error) in
+                                                print("error: \(error)");
+
+        })
+}
+
+
+
+ ```
+
+*Objective C*
+ ```objective_c
+ -(void) adViewDidReceiveAd:(GADBannerView *)bannerView {
+    NSLog(@"Ad received");
+    [AdViewUtils findPrebidCreativeSize:bannerView
+                                   success:^(CGSize size) {
+                                       if ([bannerView isKindOfClass:[DFPBannerView class]]) {
+                                           DFPBannerView *dfpBannerView = (DFPBannerView *)bannerView;
+
+                                           [dfpBannerView resize:GADAdSizeFromCGSize(size)];
+                                       }
+                                   } failure:^(NSError * _Nonnull error) {
+                                       NSLog(@"error: %@", error);
+                                   }];
+}
  ```
 
 
-
-
-### Add Custom Keywords
-
-Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
-
-```
-bannerUnit.addKeyword(key:"Sample", value:"Value to add")
-```
-
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html).
-
 ## Further Reading
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerad-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
+- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-
+- [Prebid Utilities - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-util-ios.html)

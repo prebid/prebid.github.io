@@ -2,7 +2,7 @@
 layout: bidder
 title: Piximedia
 description: Piximedia Bidder Adaptor
-hide: true
+
 biddercode: piximedia
 media_types: banner
 ---

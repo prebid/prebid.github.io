@@ -2,9 +2,10 @@
 layout: bidder
 title: Kargo
 description: Prebid Kargo Bidder Adaptor
-hide: true
+
 biddercode: kargo
-userIds: unifiedId/tradedesk
+userIds: unifiedId
+usp_supported: true
 ---
 
 ### Note:

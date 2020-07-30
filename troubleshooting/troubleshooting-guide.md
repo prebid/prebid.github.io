@@ -10,9 +10,6 @@ description: Troubleshooting Guide
 {:.no_toc}
 This guide will provide several sequential steps to help troubleshoot your Prebid.js integration.
 
-{: .pb-alert .pb-alert-warning :}
-Prebid.org does not support any version of Prebid.js prior to version 1.0.
-
 * TOC
 {:toc}
 <hr>
@@ -117,7 +114,7 @@ You can also print this data to the console in [table format](/dev-docs/troubles
 Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`.
 
 {: .pb-alert .pb-alert-warning :}
-This allows for easy testing of pages that immediately start auctions (most pages), but also means you need to remember to deactivate debugging when you are done (or clear your local storage / use incognito mode when testing).
+While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid.
 
 ```javascript
 // Filtering bidders
@@ -150,6 +147,21 @@ javascript console> pbjs.setConfig({
   }
 });
 
+// Overwriting bid responses for a specific bidder and adUnit code
+//  - supplies a specific creative
+javascript console> pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bids: [{
+      bidder: 'bidderA',
+      adUnitCode: '/19968336/header-bid-tag-0',
+      cpm: 1.5,
+      adId: '111111',
+      ad: '<html><body><img src="https://files.prebid.org/creatives/prebid300x250.png"></body></html>'
+    }]
+  }
+});
+
 // Disabling debugging
 javascript console> pbjs.setConfig({
   debugging: {
@@ -157,6 +169,45 @@ javascript console> pbjs.setConfig({
   }
 });
 ```
+<hr>
+
+<a name="pbs-stored-responses">
+
+## Define Prebid Server Responses
+
+{: .pb-alert .pb-alert-important :}
+This debugging approach currently only works for the Java version of Prebid Server.
+
+Here's another scenario using the 'debugging' feature described in the previous section.
+
+This section covers cases in which a particular server-side bidder doesn't always respond with a bid, or you want to try specific bid CPM values to verify line item setup.
+
+If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
+
+```javascript
+javascript console> pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bidRequests: [
+         {adUnitCode: "test-div", storedAuctionResponse: "bidderA-4cpm-bidderB-3.5cpm"}
+    ]
+  }
+});
+```
+Then simply reload the page.
+
+Your Prebid Server host company will have set up some responses in their Prebid Server's database. They will provide
+the storedAuctionResponse IDs you can use, and can add other scenarios you'd like to test.
+
+As noted in the previous section, the debugging feature works by setting HTML local storage that persists for the session. To turn off debugging, set 'enabled' to false:
+```
+javascript console> pbjs.setConfig({
+  debugging: {
+    enabled: false
+  }
+});
+```
+
 <hr>
 
 ## List your Bids and Bidders

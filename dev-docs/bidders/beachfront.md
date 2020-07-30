@@ -2,11 +2,13 @@
 layout: bidder
 title: Beachfront
 description: Prebid Beachfront Bidder Adaptor
-hide: true
+
 biddercode: beachfront
 media_types: video
 gdpr_supported: true
-userIds: unifiedId/tradedesk
+usp_supported: true
+userIds: unifiedId
+prebid_member: true
 ---
 
 ### Bid Params
@@ -29,6 +31,7 @@ userIds: unifiedId/tradedesk
 |------------------|----------|------------------------------------------------|-------------------------------------------|-----------------|
 | `appId`          | optional | Beachfront Exchange ID for video bids. | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
 | `bidfloor`       | optional | Bid floor for video bids. | `0.01` | `float` |
+| `tagid`          | optional | Tag ID | `'7cd7a7b4-ef3f-4aeb-9565-3627f255fa10'` | `string` |
 | `mimes`          | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` | `Array<string>` |
 | `playbackmethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play<br/>`4`: Mouse-over | `1` | `integer` |
 | `maxduration`    | optional | Maximum video ad duration in seconds. | `30` | `integer` |
@@ -51,6 +54,7 @@ userIds: unifiedId/tradedesk
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                             | Example                                  | Type     |
 |------------|----------|-----------------------------------------|------------------------------------------|----------|
-| `progressColor` | optional | The color of the progress bar formatted as a CSS value. | `#50A8FA` | `string` |
+| `progressColor` | optional | The color of the progress bar formatted as a CSS value. | `'#50A8FA'` | `string` |
+| `adPosterColor` | optional | The color of the ad poster formatted as a CSS value. | `'#FFFFFF'` | `string` |
 | `expandInView` | optional | Defines whether to expand the player when the ad slot is in view. Defaults to `false`. | `false` | `boolean` |
 | `collapseOnComplete` | optional | Defines whether to collapse the player when ad playback has completed. Defaults to `true`. | `true` | `boolean` |

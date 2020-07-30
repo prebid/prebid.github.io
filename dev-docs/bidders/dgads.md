@@ -2,7 +2,7 @@
 layout: bidder
 title: dgads
 description: Prebid dgads Bidder Adapter
-hide: true
+
 biddercode: dgads
 media_types: native
 ---

@@ -2,7 +2,7 @@
 layout: bidder
 title: YIELDONE
 description: Prebid YIELDONE Bidder Adaptor
-hide: true
+
 biddercode: yieldone
 media_types: banner, video
 ---

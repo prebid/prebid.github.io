@@ -10,7 +10,7 @@ sidebarType: 2
 
 # Code Integration for Android
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK. 
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
 
 ### Include with Maven
 
@@ -25,7 +25,7 @@ implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 If you wish to explicitly state the lastest stable release, please use the following:
 
 ```
-implementation 'org.prebid:prebid-mobile-sdk:1.1.1'
+implementation 'org.prebid:prebid-mobile-sdk:1.3'
 ```
 
 
@@ -42,7 +42,7 @@ to output the PrebidMobile framework for Android.
 ### Integrate Ad Servers With Your App
 
 Integrating **MoPub** with your application
-1.  Go to [MoPub.com](https://app.mopub.com/account/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/). 
+1.  Go to [MoPub.com](https://app.mopub.com/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
 2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
 Integrating **Google** with your application   
@@ -56,16 +56,16 @@ Targeting parameters enable you to define the target audience for the bid reques
 View the full list of [targeting parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).
 
 ### Create Ad Units
-Banner and interstitial ad units can be created: 
+Banner and interstitial ad units can be created:
 
 ```
 BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 300, 250);
 ```
 
-For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them: 
+For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/android/banneradunit-android.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+[Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)  
+[Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 
 ### Resize ad slot
 
@@ -78,46 +78,42 @@ Failure to resize rendering Prebid ads can cause revenue loss under certain cond
 
 ```
 dfpAdView.setAdListener(new AdListener() {
+    @Override
+    public void onAdLoaded() {
+        super.onAdLoaded();
+
+        AdViewUtils.findPrebidCreativeSize(dfpAdView, new AdViewUtils.PbFindSizeListener() {
             @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
+            public void success(int width, int height) {
+                dfpAdView.setAdSizes(new AdSize(width, height));
+            }
 
-                Util.findPrebidCreativeSize(dfpAdView, new Util.CreativeSizeCompletionHandler() {
-                    @Override
-                    public void onSize(final Util.CreativeSize size) {
-                        if (size != null) {
-                            dfpAdView.setAdSizes(new AdSize(size.getWidth(), size.getHeight()));
-                        }
-                    }
-                });
-
+            @Override
+            public void failure(@NonNull PbFindSizeError error) {
+                Log.d("MyTag", "error: " + error);
             }
         });
+
+    }
+});
  ```
 
 ### Supported Android versions
 
 Prebid supports the following versions by release:
 
-* Prebid SDK version 1.0 or 1.1 supoports Android 16+
+* Prebid SDK version 1.0 or 1.1 supports Android 16+
 * Prebid SDK version 1.1.1+ supports Android 19+
 
 
-### Add Custom Keywords
-
-Once an ad unit has been instantiated, custom keywords can be added to it to improve its targeting.  
-
-```
-bannerAdUnit.setUserKeyword("my_key", "my_value");
-```
-For more details on custom keywords, review the [adUnit class documention](/prebid-mobile/pbm-api/android/adunit-android.html)
 
 ## Further Reading
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+- [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
+- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
+- [Prebid Utilities - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-util-android.html)
