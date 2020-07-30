@@ -5,6 +5,7 @@ description: Prebid Adprime Bidder Adapter
 hide: true
 biddercode: adprime
 gdpr_supported: true
+usp_supported: true
 media_types: banner, video
 ---
 
