@@ -1358,6 +1358,14 @@
   subgroup: 1
 
 - sbSecId: 4
+  title: '&nbsp;&nbsp;Akamai AMP'
+  link: /examples/video/instream/akamai/pb-ve-amp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
   title: '&nbsp;&nbsp;Brid'
   link: /examples/video/instream/brid/pb-ve-brid.html
   isHeader: 0
