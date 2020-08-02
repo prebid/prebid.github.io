@@ -22,8 +22,8 @@ servers in the region closest to them.
 
 Once the users have come into their nearest server cluster, a load balancer will direct them in one of two ways:
 
-1) If the URI of the request contains `/cache`, they should be directed to one of the Prebid Cache servers. 
-2) Otherwise, all other endpoints should be forwarded to one of the Prebid Servers.
+1. If the URI of the request contains `/cache`, they should be directed to one of the Prebid Cache servers.
+2. Otherwise, all other endpoints should be forwarded to one of the Prebid Servers.
 
 ## Prebid Servers
 
@@ -33,8 +33,8 @@ and many versions of the GDPR vendors list.
 
 Other services you may want to run alongside Prebid Server are:
 
-- geographic lookup (for GDPR scope determination)
-- device lookup service (future: for Programmatic Guaranteed targeting)
+- Geographic lookup (for GDPR scope determination)
+- Device lookup service (future: for Programmatic Guaranteed targeting)
 
 ## Prebid Cache Servers
 
@@ -44,13 +44,13 @@ between Prebid protocols and the chosen No-SQL system that implements the storag
 ## Storage Clusters
 
 You can setup Redis, Aerospike, or Cassandra. How many you need will
-depend on the expected traffic, your traffic mix, and the average length that objects are cached.
+depend on the expected traffic, your traffic mix, and the average length of time that objects are cached.
 
 ## Replicated Database
 
 Account information and StoredRequests are stored in a [database](/prebid-server/hosting/pbs-database.html)
 queried by Prebid Server at runtime.
-PBS has an internal LRU cache for this database, so only queries when there's an account or stored request it hasn't seen recently.
+PBS has an internal LRU cache for this database, so it only queries when there's an account or stored request it hasn't seen recently.
 
 Getting data to each of the regions likely involves setting up a
 source database that replicates to each region.
@@ -76,5 +76,5 @@ as a next step.
 ## Further Reading
 
 - [Prebid Server Database](/prebid-server/hosting/pbs-database.html)
-- FIXME: Pointer to PBS-Go instructions
-- FIXME: Pointer to PBS-Java instructions
+- [PBS-Go](/prebid-server/versions/pbs-versions-go.html)
+- [PBS-Java](/prebid-server/versions/pbs-versions-java.html)

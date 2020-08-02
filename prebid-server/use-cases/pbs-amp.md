@@ -10,20 +10,24 @@ title: Prebid Server | Use Cases | AMP
 [Accelerated Mobile Pages (AMP)](https://ampproject.org/) is an alternate web technology that can speed page performance, but
 as part of the tradeoff, header bidding wrappers like Prebid.js don't work well. Instead, AMP supports a method of header bidding called Real Time Configuration(RTC), which is implemented by Prebid Server.
 
-Here's how it works:
+## Workflow
+
+Here's a workflow diagramming how this works.
 
 ![Prebid AMP Architecture](/assets/images/prebid-server/pbs-amp-architecture.png){:class="pb-xlg-img"}
 
 1. A browser processing an Accelerated Mobile Page (AMP) calls Prebid Server using the Real Time Protocol (RTC) and passing in a number of parameters, including a stored request ID. Each ad on the page is a separate request.
-1. Prebid Server looks up the stored request to find which bidders and parameters to use
-1. The auction takes place and bid responses are placed in a cache
-1. Prebid Server responds to the AMP page with results and ad server targeting variables
-1. The ad server targeting variables are sent along with the ad request
-1. When header bidding wins in the ad server, the ad server responds with a call to the Prebid Universal Creative
-1. The Prebid Universal Creative pulls the winning bid from the cache
-1. And displays it
+1. Prebid Server looks up the stored request to find which bidders and parameters to use.
+1. The auction takes place and bid responses are placed in a cache.
+1. Prebid Server responds to the AMP page with results and ad server targeting variables.
+1. The ad server targeting variables are sent along to the ad server with the ad request.
+1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](overview/prebid-universal-creative.html).
+1. The Prebid Universal Creative pulls the winning bid from the cache.
+1. The Prebid Universal Creative displays the winning bid creative from the cache.
 
-## How It Works - Detailed
+## Details
+
+The following sections give additional details of the steps provided in the workflows.
 
 ### AMP RTC Tags are Placed in the Page
 
@@ -31,7 +35,7 @@ As described in the [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-
 
 There are two basic ways of invoking AMP RTC:
 
-1. Use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js).
+- One option is to use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js).
 
 ```
   <amp-ad width="300" height="50"
@@ -45,7 +49,7 @@ There are two basic ways of invoking AMP RTC:
 **Note:** the `prebidrubicon` and `prebidappnexus` AMP vendors define different parameters. AppNexus uses "PLACEMENT_ID" as the argument to rtc-config while Rubicon uses "REQUEST_ID".
 
 
-2. Construct a direct URL from component pieces: w, h, slot, targeting, gdpr_consent, account, page url (purl), etc.
+- The other option is to construct a direct URL from component pieces: w, h, slot, targeting, gdpr_consent, account, page url (purl), etc.
 
 ```
   <amp-ad width="300" height="50"
@@ -58,7 +62,7 @@ There are two basic ways of invoking AMP RTC:
 
 ### Prebid Server Receives the AMP Request
 
-Prebid Server's first job on the /openrtb2/amp endpoint is to create an OpenRTB block to pass to the adapters.
+Prebid Server's first job on the [/openrtb2/amp endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) is to create an OpenRTB block to pass to the adapters.
 
 #### Prebid Server Resolves the Stored Request ID
 
@@ -190,12 +194,12 @@ When all the RTC calls have come back, the AMP infrastructure combines the targe
 
 ### Display
 
-When a Prebid ad wins in the ad server, a javascript creative is returned to the
-AMP page. The javascript loads the Prebid Universal Creative code, which 
+When a Prebid ad wins in the ad server, a JavaScript creative is returned to the
+AMP page. The JavaScript loads the Prebid Universal Creative code, which
 determines that it's the AMP environment, so it
-loads the creative body from the cache parameters: `hb_cache_id`, `hb_cache_host`, and `hb_cache_path`. (Or hb_cache_id_bidderA, hb_cache_host_bidderA, and hb_cache_path_bidderA when in send-all-bids mode.)
+loads the creative body from the cache parameters: `hb_cache_id`, `hb_cache_host`, and `hb_cache_path`. (Or `hb_cache_id_bidderA`, `hb_cache_host_bidderA`, and `hb_cache_path_bidderA` when in send-all-bids mode.)
 
-When response is received from the Prebid Cache server, it's written
+When the response is received from the Prebid Cache server, it's written
 into an iframe for display.
 
 ## Further Reading

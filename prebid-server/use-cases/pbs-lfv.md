@@ -7,11 +7,11 @@ title: Prebid Server | Use Cases | Long Form Video
 
 # Use Case: Prebid Server | Long Form Video
 
-## Overview
-
 Prebid Server (PBS) supports filling _pods_ of multiple video advertisements, including support for competitve separation.
 
-### How it Works
+## Workflow
+
+Here's a workflow diagramming how this works.
 
 ![Prebid Server Long Form Video](/assets/images/flowcharts/pb-lfv-serverside.png){:class="pb-xlg-img"}
 
