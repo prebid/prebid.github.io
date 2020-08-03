@@ -46,6 +46,30 @@ POST https://prebid-server.example.com/cookie_sync
 
 5) When the browser receives this redirect, it contacts Prebid Server, which will once again check the privacy settings and will update the `uids` cookie if allowed.
 
+### How It Works for AMP
+
+Cookie sync for AMP works in a way quite similar to Prebid.js.
+
+1) The Prebid Server hosting company places a modified version of the `load-cookie` script onto a CDN. This script is part of the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative/blob/master/src/cookieSync.js) repo.
+
+Note that the only two values currently valid for 'endpoint' are 'appnexus' and 'rubicon' -- other host companies should update their copy to include their endpoint.
+
+
+2) The publisher places the 'load-cookie' script into the page:
+
+```
+<amp-iframe width="1" title="User Sync"
+  height="1"
+  sandbox="allow-scripts"
+  frameborder="0"
+  src="https://PROVIDED_BY_HOSTCOMPANY/load-cookie.html?endpoint=HOSTCOMPANY&max_sync_count=5">
+  <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
+</amp-iframe>
+```
+
+3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works the same as described for Prebid.js above.
+
+
 ## Building a Sync Endpoint
 
 Bidders must implement an endpoint under their domain which accepts an encoded URI for redirects. 
