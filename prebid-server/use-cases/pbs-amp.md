@@ -77,7 +77,6 @@ in the appropriate OpenRTB locations:
 - curl added as site.page
 - slot added as imp.tagid
 - timeout added as tmax
-- targeting - see the first party data section (NEED LINK)
 
 So for the /openrtb2/amp URL above, the resulting OpenRTB might be:
 ```
