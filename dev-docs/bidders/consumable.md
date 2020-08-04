@@ -2,7 +2,7 @@
 layout: bidder
 title: Consumable
 description: Prebid Consumable Bidder Adaptor
-hide: true
+
 biddercode: consumable
 ---
 

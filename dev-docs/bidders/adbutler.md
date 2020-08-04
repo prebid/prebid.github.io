@@ -2,7 +2,7 @@
 layout: bidder
 title: AdButler
 description: Prebid AdButler Bidder Adaptor
-hide: true
+
 biddercode: adbutler
 ---
 

@@ -3,7 +3,7 @@ layout: bidder
 title: Index Exchange
 description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
-hide: true
+
 schain_supported: true
 gdpr_supported: true
 usp_supported: true

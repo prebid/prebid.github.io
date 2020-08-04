@@ -6,8 +6,8 @@ title: Prebid Server | Developers | GDPR Mechanics
 ---
 # GDPR Mechanics
 
-Within the framework of [GDPR](https://www.gdpreu.org/), Prebid Server behaves like a [data processor](https://www.gdpreu.org/the-regulation/key-concepts/data-controllers-and-processors/).
-[Cookie syncs](./cookie-syncs.md) save the user ID for each Bidder in the cookie, and each Bidder's ID is sent back to that Bidder during the [auction](../endpoints/openrtb2/auction.md).
+Within the framework of [GDPR](https://gdpr.eu/), Prebid Server behaves like a [data processor](https://gdpr.eu/recital-81-the-use-of-processors/).
+[Cookie syncs](/prebid-server/developers/cookie-syncs.html) save the user ID for each Bidder in the cookie, and each Bidder's ID is sent back to that Bidder during the [auction](/prebid-server/endpoints/openrtb2/auction.html).
 Prebid Server does not use this ID for any other reason.
 
 ## IDs during Auction
