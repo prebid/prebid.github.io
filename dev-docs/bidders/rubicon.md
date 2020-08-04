@@ -16,7 +16,6 @@ prebid_member: true
 safeframes_ok: true
 pbjs: true
 pbs: true
-pbs: true
 ---
 
 ### Note:
@@ -51,7 +50,7 @@ The following video parameters are supported:
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `playerWidth`  | optional | Video player width in pixels. If not specified, takes width set in mediaTypes.video.playerSize                                                                                                                                                                             | `'640'` | `string`  |
 | `playerHeight` | optional | Video player height in pixels. If not specified, takes height set in mediaTypes.video.playerSize                                                                                                                                                                            | `'360'` | `string`  |
-| `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, infers from mediaTypes.video.context | `201`   | `integer` |
+| `size_id`      | optional (Prebid.js)<br/> required (Server) |  Integer indicating the Rubicon Project video ad format ID: 201, 202, or 203. If not set, infers from mediaTypes.video.context | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
 {: .alert.alert-warning :}
