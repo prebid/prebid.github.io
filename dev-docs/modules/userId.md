@@ -601,7 +601,7 @@ It is for this reason that the cookie name is not configurable for the Parrable 
 
 #### Timezone and Timezone Offset Filtering
 
-The Parrable ID system allows a publisher to configure a lists of allowed timezones (eg. `Europe/Dublin`) and/or timezone offsets (eg. `-4`) as well as a lists of blocked timezones and timezone offsets.
+The Parrable ID system enables a publisher to configure lists of **allowed** timezones (eg. `Europe/Dublin`) and/or timezone offsets (eg. `-4`) as well as a lists of **blocked** timezones and timezone offsets.
 
 - With no configuration (`params.timezoneFilter` not set, or all of the lists are empty) all impressions are permitted.
 - With only allow lists configured a browser must match either a timezone or timezone offset for it to not be filtered.
