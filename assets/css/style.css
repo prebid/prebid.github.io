@@ -682,6 +682,19 @@ pre {
 	border: 1px dashed purple;
 }
 
+.pb-rule { 
+	padding-top: 10px;
+}
+
+.pb-link-title { 
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
 
 
 
