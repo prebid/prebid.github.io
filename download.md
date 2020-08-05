@@ -407,6 +407,14 @@ Prebid only supports the most recent major version. Within a month or so after a
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="pubperf" class="analytics-check-box" /> Pubperf Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
     </label>
   </div>
