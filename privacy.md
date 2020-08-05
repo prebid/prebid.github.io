@@ -106,9 +106,7 @@ When we have no ongoing legitimate business need to process your personal inform
 <a name="data-protection-rights"></a>
 ## Your data protection rights
 
-If you are a resident of the European Economic Area or California, you have the right to request to access or request deletion of your personal information. 
-
-You may exercise these rights at any time by using the contact details provided under the ["How to contact us"](#contact) heading below.  
+If you are a resident of the European Economic Area or California, you have the right to request to access or request deletion of your personal information. You may exercise this right at any time by using the contact details provided under the ["How to contact us"](#contact) heading below.  
 
 In addition, if you are a resident of the European Economic Area, you have the following additional data protection rights: 
 
@@ -116,7 +114,7 @@ In addition, if you are a resident of the European Economic Area, you have the f
 * If we have collected and processed your personal information with your consent, then you can withdraw your consent at any time.  Withdrawing your consent will not affect the lawfulness of any processing we conducted prior to your withdrawal, nor will it affect processing of your personal information conducted in reliance on lawful processing grounds other than consent.
 * You have the right to complain to a data protection authority about our collection and use of your personal information.  For more information, please contact your local data protection authority. Contact details for data protection authorities in the European Economic Area are available [here](https://ec.europa.eu/justice/data-protection/article-29/structure/data-protection-authorities/index_en.htm).
 
-In addition, you have the right to opt-out of marketing communications we send you
+Everyone has the right to opt-out of marketing communications we send you
 at any time. You can exercise this right by clicking on the "unsubscribe" or
 "opt-out" link in the marketing e-mails we send you. Alternatively, you can opt
 out by using the contact details provided under the ["How to contact us"](#contact) heading below.
@@ -127,7 +125,7 @@ We respond to all requests we receive from individuals wishing to exercise their
  
 If you are a California resident, please review the following additional privacy disclosures under the California Consumer Privacy Act ("CCPA").
 
-You have the right to understand how we collect, use, and disclose your personal information, to access your information, to request that we delete certain information, and to not be discriminated against for exercising your privacy rights. You may exercise these rights as described in the ["Your Data protection rights"](#data-protection-rights) section above. 
+You have the right to understand how we collect, use, and disclose your personal information, to access your information, to request that we delete certain information, and to not be discriminated against for exercising your privacy rights. You may exercise these rights as described in the ["Your data protection rights"](#data-protection-rights) section above. 
 
 You also have the right to understand what information we collect, for what purpose, and how we disclose personal information to third parties. As described in the [What personal information does Prebid.org collect and why?](#what-personal-info) section, we collect the categories of personal information listed below, and we use and disclose these categories of information for the business purposes described in that section. The categories are:
 
