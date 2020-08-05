@@ -11,6 +11,7 @@ coppa_supported: true
 schain_supported: true
 userIds: id5Id, liveIntentId, parrableId, pubCommonId, unifiedId
 prebid_member: true
+tcf2_supported: true
 ---
 
 
