@@ -46,8 +46,7 @@ The following table details the Prebid.js activities that fall under the [Transp
 | Invoke user ID modules | Purpose 1 - Store and/or access information on a device | May prevent one or more UserID modules from activating. | 3.14+ |
 | Read and write data to device | Purpose 1 - Store and/or access information on a device | May prevent one or more adapters or modules from being able to read or write cookies or localstorage in the user's browser. | 3.14+ |
 | Perform header bidding auction | Purpose 2 - Basic ads | May prevent one or more bid adapters from participating in the auction. | 4.0+ |
-
-There are plans to add more TCF Purposes and activities in future releases.
+| Invoke analytics adapters | Purpose 7 - Measurement | May prevent one or more analytics adapters from participating in the auction. | 4.x+ |
 
 ## Page Integration
 
@@ -67,7 +66,7 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gdpr.rules | `Array of Objects` | Lets the publisher override the default behavior. | |
-| gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2) | "storage" |
+| gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2), "measurement" (Purpose 7) | "storage" |
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent. The default in Prebid.js 3.x is not to enforce purposes. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
@@ -95,6 +94,10 @@ pbjs.setConfig({
         enforceVendor: true
       },{
         purpose: "basicAds",
+        enforcePurpose: true,
+        enforceVendor: true
+      },{
+        purpose: "measurement",
         enforcePurpose: true,
         enforceVendor: true
       }]
@@ -134,6 +137,16 @@ pbjs.setConfig({
         purpose: "storage",
         enforcePurpose: false,
         enforceVendor: false
+      }]
+
+5) Allow the user to suppress analtyics provider A, but make an exception for analytics provider B.
+
+      ...
+      rules: [{
+        purpose: "measurement",
+        enforcePurpose: true,
+        enforceVendor: true,
+	vendorExceptions: ["analyticsB"]
       }]
 
 ## Basic Enforcement
