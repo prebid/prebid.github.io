@@ -272,8 +272,6 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 + [Setting up Prebid for AMP in Google Ad Manager](/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
 + [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 
-</div>
-
 <!-- Reference Links -->
 
 [PBS]: /prebid-server/overview/prebid-server-overview.html
