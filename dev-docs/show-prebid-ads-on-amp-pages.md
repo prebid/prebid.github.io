@@ -297,8 +297,6 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 + [AMP RTC Overview][RTC-Overview]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
-</div>
-
 <!-- Reference Links -->
 
 [PBS]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
