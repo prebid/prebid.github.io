@@ -10,8 +10,8 @@
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
-    title: Getting Started
-    link:  /dev-docs/getting-started.html
+    title: Introduction
+    link:  /overview/intro.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
