@@ -190,7 +190,7 @@ The following configuration parameters are available:
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
 | params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
-| params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://console.id5.io/docs/public/prebid) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
+| params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/display/PD/Prebid.js+UserId+Module) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
