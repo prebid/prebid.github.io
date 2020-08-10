@@ -12,5 +12,5 @@ media_types: banner
 
 | Name          | Scope    | Example            | Type      |
 |---------------|----------|--------------------|-----------|
-| `propertyId`  | required | `12345`            | `string`  |
-| `placementId` | required | `54321`            | `string`  |
+| `propertyId`  | required | `"12345"`          | `string`  |
+| `placementId` | required | `"54321"`          | `string`  |
