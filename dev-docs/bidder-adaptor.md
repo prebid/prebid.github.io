@@ -562,7 +562,24 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 ### Step 2: Accept video parameters and pass them to your server
 
-Video parameters are often passed in from the ad unit in a `video` object.
+Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
+
+| parameter |
+|-|
+| mimes |
+| minduration |
+| maxduration |
+| protocols |
+| startdelay |
+| placement |
+| skip |
+| skipafter |
+| minbitrate |
+| maxbitrate |
+| delivery |
+| playbackmethod |
+| api |
+| linearity |
 
 The design of these parameters may vary depending on what your server-side bidder accepts.  If possible, we recommend using the video parameters in the [OpenRTB specification](https://iabtechlab.com/specifications-guidelines/openrtb/).
 

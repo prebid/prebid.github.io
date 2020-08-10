@@ -230,6 +230,10 @@
   link: https://jwplayer.com
   type: community
 
+- company: Konduit
+  link: https://konduitvideo.com/
+  type: community
+
 - company: LiveIntent
   link: https://www.liveintent.com
   imgURL: /assets/images/partners/community/liveintent_logo.png
@@ -266,6 +270,10 @@
 
 - company: Yeahmobi
   link: https://yeahmobi.com
+  type: community
+
+- company: Yieldlab
+  link: https://yieldlab.de
   type: community
 
 - company: Zeta Global
