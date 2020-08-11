@@ -13,7 +13,7 @@ Prebid Server (PBS) supports filling _pods_ of multiple video advertisements, in
 
 Here's a workflow diagramming how this works.
 
-![Prebid Server Long Form Video](/assets/images/flowcharts/pb-lfv-serverside.png){:class="pb-xlg-img"}
+![Prebid Server Long Form Video](/assets/images/flowcharts/prebid-server/pbs-lfv-flow.png){:class="pb-xlg-img"}
 
 1. Application makes request for a video stream.
 2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
