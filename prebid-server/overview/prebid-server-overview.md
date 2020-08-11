@@ -10,7 +10,7 @@ sidebarType: 5
 
 Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and [long-form video](/prebid-server/use-cases/pbs-lfv.html).
 
-![Prebid Server Architecture](/assets/images/prebid-server/pbs-architecture.png){:class="pb-xlg-img"}
+![Prebid Server Architecture](/assets/images/flowcharts/prebid-server/pbs-basic-flow.png){:class="pb-xlg-img"}
 
 Prebid Server is an intelligent proxy server with a growing list of features. At a high level, it works like this:
 

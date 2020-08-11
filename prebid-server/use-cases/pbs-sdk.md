@@ -13,7 +13,7 @@ Unlike Prebid.js, the [Prebid Mobile SDK](/prebid-mobile/prebid-mobile.html) doe
 
 Here's a workflow diagramming how this works.
 
-![Prebid SDK Architecture](/assets/images/prebid-server/pbs-sdk-architecture.png){:class="pb-xlg-img"}
+![Prebid SDK Architecture](/assets/images/flowcharts/prebid-server/pbm-flow.png){:class="pb-xlg-img"}
 
 1. The mobile app calls Prebid SDK with one or more "stored request IDs". Prebid SDK forms an OpenRTB request for the auction and calls Prebid Server. This request contains an ad format and one or more "stored request IDs" mapping adunits to bidders and parameters.
 1. Prebid Server looks up the stored request to find which bidders and parameters to use as well as any privacy regulation enforcement, calling all eligible bidders for bids.

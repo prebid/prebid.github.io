@@ -15,7 +15,7 @@ Here are workflows diagramming how this works.
 
 ### Banner
 
-![Prebid Server Web Banner Architecture](/assets/images/prebid-server/pbs-js-banner-architecture.png){:class="pb-xlg-img"}
+![Prebid Server Web Banner Architecture](/assets/images/flowcharts/prebid-server/pbjs-server-flow.png){:class="pb-xlg-img"}
 
 1. Prebid.js is set up to run auctions for one or more bidders through “s2sConfig”.
 1. Prebid Server parses the request and holds the auction.
@@ -28,7 +28,7 @@ Here are workflows diagramming how this works.
 
 Video ad units are handled in mostly the same way as banner, but there's caching involved and display is different.
 
-![Prebid Server Web Video Architecture](/assets/images/prebid-server/pbs-js-video-architecture.png){:class="pb-xlg-img"}
+![Prebid Server Web Video Architecture](/assets/images/flowcharts/prebid-server/pbjs-video-server-flow.png){:class="pb-xlg-img"}
 
 1. Prebid.js is set up to run auctions for one or more bidders through “s2sConfig”.
 1. Prebid Server parses the request and holds the auction.
