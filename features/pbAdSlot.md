@@ -34,7 +34,7 @@ Example page function:
 // Use adunit.fpd.context.pbAdSlot if it exists. Otherwise, if the 
 // the adunit.code is a div ID, then look for a data-adslotid attribute, then look a matching slot in GPT
 // Otherwise, just use the AdUnit.code
-var setPbAdSlot = function setPbAdSlot(adunits) {
+var setPbAdSlot = function setPbAdSlot(adUnits) {
   // set pbAdSlot for all ad units
   adUnits.forEach(function (adUnit) {
     if (!adUnit.fpd) {
