@@ -1,3 +1,12 @@
+---
+layout: bidder
+title: Ap Stream
+description: AP Stream Bidder Adapter
+biddercode: appnexus
+gdpr_supported: true
+tcf2_supported: true
+---
+
 # Overview
 
 ```
@@ -35,15 +44,15 @@ Module that connects to AP Stream source
 # Explicit ad-unit code
 ```
     var website = null;
-    switch (location.hostname) { 
-      case "site1.com": 
-        website = "S1"; 
+    switch (location.hostname) {
+      case "site1.com":
+        website = "S1";
         break;
       case "site2.com":
         website = "S2";
         break;
     }
-    
+
     var adUnits = [
       {
         code: '/19968336/header-bid-tag-1',
