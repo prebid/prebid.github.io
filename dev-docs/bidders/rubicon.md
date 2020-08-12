@@ -10,7 +10,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: video
-userIds: identityLink, liveIntentId, pubCommonId, unifiedId
+userIds: identityLink, liveIntentId, unifiedId
 prebid_member: true
 safeframes_ok: true
 ---
