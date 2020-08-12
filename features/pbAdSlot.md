@@ -100,7 +100,7 @@ Some scenarios that could be supported:
 
 ## Prebid Server
 
-The OpenRTB location for the Prebid Ad Slot is `imp[].ext.context.data.adslot`:
+The OpenRTB location for the Prebid Ad Slot is `imp[].ext.context.data.pbadslot`:
 
 - The Prebid SDK will place the value there.
 - AMP Stored Requests should place the value there if desired.
