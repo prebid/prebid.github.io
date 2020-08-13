@@ -537,6 +537,15 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: GPT Pre-Auction Module
+  link: /dev-docs/modules/gpt-pre-auction.html
+  isLastSubSectionItem: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: External Interfaces
   link:
   isHeader: 1
@@ -1337,6 +1346,14 @@
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
+  title: '&nbsp;&nbsp;Akamai AMP'
+  link: /examples/video/instream/akamai/pb-ve-amp.html
+  isHeader: 0
+  isSectionHeader: 0
   sectionTitle:
   subgroup: 1
 
