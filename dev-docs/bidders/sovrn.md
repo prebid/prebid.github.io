@@ -7,6 +7,7 @@ biddercode: sovrn
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId
+schain_supported: true
 prebid_member: true
 ---
 
