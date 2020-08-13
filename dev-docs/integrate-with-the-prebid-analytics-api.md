@@ -78,6 +78,8 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagement.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf-v2-0/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+
 #### Basic prototype analytics adapter
 
 The best way to get started is to look at some of the existing AnalyticsAdapter.js files in [the repository](https://github.com/prebid/Prebid.js/tree/master/modules).
@@ -108,7 +110,8 @@ exAnalytics.enableAnalytics = function (config) {
 
 adaptermanager.registerAnalyticsAdapter({
   adapter: exAnalytics,
-  code: 'exAnalytics'
+  code: 'exAnalytics',
+  gvlid: 1
 });
 
 export default exAnalytics;
