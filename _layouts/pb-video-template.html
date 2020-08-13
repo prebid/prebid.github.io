@@ -1,0 +1,42 @@
+{% include head.html %}
+
+{% include nav.html %}
+
+<div class="container bs-docs-container">
+	
+	<div class="row ">
+		
+		<div class="wrapper">
+		
+			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
+				
+				{% include left_nav.html %}							
+				
+			</div>	
+		
+		
+			<div class="col-sm-9 pb-content" markdown="1">
+				
+				<div id="myElement1"></div>
+				
+				<script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
+				<script type="text/javascript">
+					alert("ok");
+					$.getScript("/assets/js/video/" + "{{ page.videoMFile }}" + ".js", function( data, status, jqxhr) {
+			  		if (status == "success") { 
+				  		loadVideoData();
+				  	} else { 
+					  	alert("There was an error loading the video.");
+					}
+			  	});
+				</script>
+				
+				
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+{% include footer.html %}
