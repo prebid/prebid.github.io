@@ -13,6 +13,7 @@ Several Prebid.org members host Prebid Server clusters for use by publishers.
 
 <div class="container">
   <div class="row">
+
     <div class="col-md-3">
       <div style="background-color:#eeeeee; line-height:120px; height:120px; text-align:center; border-top-left-radius:10px; border-top-right-radius:10px;"><img src="/assets/images/logos/magnite-logo-black.svg"></div>
       <div style="background-color: #eeeeee; text-align:center; padding:15px 20px 0px 20px; height:600px;">Magnite’s Prebid-as-a-service solution makes it easy for large publishers to deploy and control custom header bidding implementations without writing code. The combination of an intuitive UI and on-demand support from our Prebid and yield management experts enables publishers to make faster decisions and potentially capture more revenue. This solution supports display and video ads across desktop and mobile app environments via Prebid.js, Prebid Mobile and Prebid Server. Contact <a href="mailto:sales@magnite.com">sales@magnite.com</a> for more information.</div>
