@@ -1,3 +1,8 @@
+- company: IndexExchange
+  link: https://www.indexexchange.com/
+  imgURL: /assets/images/partners/leader/IX-logo.png
+  type: leader
+  
 - company: Magnite
   link: https://www.magnite.com/
   imgURL: /assets/images/partners/leader/Magnite_logo.png
@@ -163,6 +168,11 @@
   imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
 
+- company: Havas 
+  link: https://havasmedia.com/
+  imgURL: /assets/images/partners/buyer/Havas_Media_Logo.png
+  type: buyer
+
 - company: AdForm
   link: https://site.adform.com/
   imgURL: /assets/images/partners/community/Adform-Logo.png
@@ -220,6 +230,10 @@
   link: https://jwplayer.com
   type: community
 
+- company: Konduit
+  link: https://konduitvideo.com/
+  type: community
+
 - company: LiveIntent
   link: https://www.liveintent.com
   imgURL: /assets/images/partners/community/liveintent_logo.png
@@ -256,6 +270,10 @@
 
 - company: Yeahmobi
   link: https://yeahmobi.com
+  type: community
+
+- company: Yieldlab
+  link: https://yieldlab.de
   type: community
 
 - company: Zeta Global

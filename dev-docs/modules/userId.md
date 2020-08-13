@@ -23,6 +23,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **Criteo ID for Exchanges** –  specific id for Criteo and its partners that enables optimal take rate on all web browsers.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
+* **IntentIQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
 * **LiveIntent ID** – a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 * **Lotame Panorama ID** - a people-based identifier available across all browsers -- including when third-party cookies are not available -- to connect and activate first, second, and third party data for programmatic advertising.
 * **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder.
@@ -43,6 +44,8 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
 
 Also note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
+
+As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
 
 ## User ID, GDPR, and Opt-Out
 
@@ -67,7 +70,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`, or `"unifiedId"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -164,28 +167,30 @@ pbjs.setConfig({
 
 ### ID5 Universal ID
 
-The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID, please visit [our documentation](https://console.id5.io/docs/public/prebid). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
+The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID and detailed integration docs, please visit [our documentation](https://console.id5.io/docs/public/prebid). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
 
 #### ID5 Universal ID Registration
 
 The ID5 Universal ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/universal-id](https://id5.io/universal-id) to sign up and request your ID5 Partner Number to get started.
 
-The ID5 privacy policy as at [https://www.id5.io/platform-privacy-policy](https://www.id5.io/platform-privacy-policy).
+The ID5 privacy policy is at [https://www.id5.io/platform-privacy-policy](https://www.id5.io/platform-privacy-policy).
 
 #### ID5 Universal ID Configuration
 
 First, make sure to add the ID5 submodule to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=id5IdSystem
+gulp build --modules=id5IdSystem,userId
 
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
 | params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
+| params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://console.id5.io/docs/public/prebid) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
@@ -200,16 +205,17 @@ pbjs.setConfig({
     userIds: [{
       name: "id5Id",
       params: {
-        partner: 173             // change to the Partner Number you received from ID5
+        partner: 173,            // change to the Partner Number you received from ID5
+        pd: "MT1iNTBjY..."       // optional, see param table above for a link to how to generate this string
       },
       storage: {
         type: "cookie",
-        name: "pbjs-id5id",      // create a cookie with this name
+        name: "id5id.1st",       // create a cookie with this name
         expires: 90,             // cookie lasts for 90 days
         refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
       }
     }],
-    syncDelay: 1000              // 1 second after the first bidRequest()
+    auctionDelay: 50             // 50ms maximum auction delay
   }
 });
 {% endhighlight %}
@@ -218,12 +224,12 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "id5Id",
-            value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
-        }]
-    }
+  userSync: {
+    userIds: [{
+      name: "id5Id",
+      value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
+    }]
+  }
 });
 {% endhighlight %}
 
@@ -290,6 +296,75 @@ pbjs.setConfig({
                 type: "html5",
                 name: "idl_env",    // set localstorage with this name
                 expires: 30
+            }
+        }],
+        syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+### IntentIQ ID
+
+The IntentIQ ID solution is provided by intentiq.com.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=intentIqIdSystem
+
+#### IntentIQ ID Registration
+
+You can set up IntentIQ ID by contacting our operations team at [IntentIQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
+
+The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
+
+#### IntentIQ ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"intentIqId"` | `"intentIqId"` |
+| params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
+| params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
+
+#### IntentIQ ID Examples
+
+1) Publisher has a partner ID from IntentIQ and cookies.
+
+{: .alert.alert-warning :}
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "cookie",
+                name: "intentIqId",       // create a cookie with this name
+                expires: 60                   // cookie can last for 60 days
+            }
+        }],
+        syncDelay: 3000              // 3 seconds after the first auction
+    }
+});
+{% endhighlight %}
+
+2) Publisher supports IntentIQ and HTML5 local storage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "html5",
+                name: "intentIqId",    // set localstorage with this name
+                expires: 60
             }
         }],
         syncDelay: 3000
@@ -755,8 +830,9 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
+| IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
-| Parrable ID | Parrable | bidRequest.userId.parrableid | `"eidVersion.encryptionKeyReference.encryptedValue"` |
+| Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
@@ -801,7 +877,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
             {
                 source: "parrable.com",
                 uids: [{
-                    id: "01.1563917337.test-eid"
+                    id: "01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"
                 }]
             },{
                 "source": "identityLink",

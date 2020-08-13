@@ -62,6 +62,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [COPPA](#setConfig-coppa)
     * [first party data](#setConfig-fpd)
     * [cache](#setConfig-vast-cache)
+    * [site](#setConfig-site)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -1320,6 +1321,7 @@ Core config:
 + [COPPA](#setConfig-coppa)
 + [First Party Data](#setConfig-fpd)
 + [Caching VAST XML](#setConfig-vast-cache)
++ [Site Metadata](#setConfig-site)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -1732,6 +1734,7 @@ The `s2sConfig` properties:
 | `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
 | `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
+| `defaultTtl` | Optional | Integer | Configures the default TTL in the Prebid Server adapter to use when Prebid Server does not return a bid TTL - 60 if not set |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in every impression object at request.imp[].ext.BIDDER. See the example above. |
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
 | `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
@@ -2039,13 +2042,14 @@ As of Prebid.js 3.11.0, the [Advanced SizeMapping module](/dev-docs/modules/size
 You should consider using that module if any of these scenarios are true:
 {::nomarkdown}
 <ul>
+<li> You need to work with video or native AdUnits</li>
 <li> The site needs to alter different AdUnits at different screen widths; e.g., the left-nav changes sizes at 600 pixels, but the footer's size behavior changes at 620 pixels.</li>
 <li>The site needs to alter different mediaTypes at different screen widths; e.g., the banner size ranges are 0-400px, 401-700px, and 701+px, but the native ads appear at 500px.</li>
 <li>Some bidders or mediaTypes should be included (or removed) at different overlapping size ranges.</li>
 </ul>
 <br/>
 {:/}
-If, on the other hand, the AdUnits, bidders, and mediaTypes all change behavior together at the same viewport width, then the built-in sizeConfig feature is appropriate.
+If, on the other hand, you're only working with the banner mediaType and the AdUnits all change behavior together at the same viewport width, then the built-in sizeConfig feature is appropriate.
 {% endcapture %}
 {% include alerts/alert_tip.html content=tip-choosing %}
 
@@ -2055,7 +2059,7 @@ If, on the other hand, the AdUnits, bidders, and mediaTypes all change behavior 
 
 <a name="sizeConfig-How-it-Works" />
 
-##### How it Works
+##### How Size Config Works for Banners
 
 - Before `requestBids` sends bid requests to adapters, it will evaluate and pick the appropriate label(s) based on the `sizeConfig.mediaQuery` and device properties.  Once it determines the active label(s), it will then filter the `adUnit.bids` array based on the `labels` defined and whether the `banner` mediaType was included. Ad units that include a `banner` mediaType that don't match the label definition are dropped.
 - The required `sizeConfig.mediaQuery` property allows [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  The queries are tested using the [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
@@ -2348,6 +2352,23 @@ pbjs.setConfig({
 Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtrack`
 Prebid Server endpoint with a couple of additional parameters needed
 by the analytics system to join the event to the original auction request.
+
+<a name="setConfig-site" />
+
+#### Site Configuration
+
+Adapters, including Prebid Server adapters, can support taking site parameters like language.
+The structure here is OpenRTB; the site object will be available to client- and server-side adapters.
+
+{% highlight js %}
+pbjs.setConfig({
+   site: {
+       content: {
+           language: "en"
+       }
+   }
+});
+{% endhighlight %}
 
 <a name="setConfig-Generic-Configuration" />
 
