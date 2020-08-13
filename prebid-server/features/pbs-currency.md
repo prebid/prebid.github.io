@@ -20,8 +20,10 @@ client.
 There are several ways to define the request currency:
 
 - The OpenRTB request can define the `cur` parameter. This is an array in OpenRTB, but Prebid Server only looks at the first element of the array.
+- An AMP Stored Request can define the `cur` parameter.
+- An App 'top-level' Stored Request can define the `cur` parameter.
 - PBS-Java can configure the default installation currency (auction.ad-server-currency)
-- Otherwise, both versions default to USD
+- Otherwise, both PBS-Go and PBS-Java default to USD
 
 ## Loading Currency Conversion Rates
 
@@ -65,7 +67,7 @@ installation, you can host your own currency conversion file at a URL using the 
 
 ## Examples
 
-Here are couple examples showing the logic behind the currency converter:
+Here are a couple examples showing the logic behind the currency converter:
 
 | Bidder bid price | Request Currency    | Rate to USD   | Rate converter is active | Converted bid price (USD) | Valid bid |
 | :--------------- | :------------ |:--------------| :------------------------| :-------------------------|:----------|
@@ -75,6 +77,28 @@ Here are couple examples showing the logic behind the currency converter:
 | 1                | EUR           |          1.13 | YES                      |                      1.13 | YES       |
 | 1                | EUR           |           N/A | YES                      |                       N/A | NO        |
 | 1                | EUR           |          1.13 | NO                       |                       N/A | NO        |
+
+## Request-Defined Conversion Rates
+
+Using PBS-Java, rates can be passed in on the request:
+
+```
+"ext": {
+    "prebid": {
+	  "currency": {
+		  "rates": {
+			  "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }
+		  },
+                  "usepbsrates": false // defaults to true
+	  }
+  }
+}
+```
+
+Note that the `usepbsrates` flag allows you to define which rates to use when PBS has two rates to consider: the one it loaded from the external source and the one on the request:
+- If usepbsrates==true, then prefer the external source's rates
+- If usepbsrates==false, then prefer the rate from the request
+
 
 ## Debug
 
