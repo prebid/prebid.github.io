@@ -12,6 +12,7 @@ media_types: video
 userIds: identityLink, liveIntentId, unifiedId
 prebid_member: true
 safeframes_ok: true
+bidder_supports_deals: true
 pbjs: true
 pbs: true
 ---
