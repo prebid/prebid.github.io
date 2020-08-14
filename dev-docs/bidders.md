@@ -23,7 +23,7 @@ In addition to the bidder-specific parameters, there are <a href="#common-bidres
 
 For information about which bidders support video and native demand, see <a href="#bidder-video-native">this list of bidders with video and native demand</a>.
 
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true %}
 
 - [Bidders](#bidders)
 - [Common Bid Response Parameters](#common-bid-response-parameters)
@@ -69,7 +69,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 ## Bidders with Video and Native Demand
 {: .no_toc }
 
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true %}
 <table class="table table-bordered table-striped">
 <thead><tr>
 <th>Bidder</th>
@@ -90,10 +90,6 @@ The following parameters in the `bidResponse` object are common across all bidde
 <div class="bs-docs-section" markdown="1">
 <h2><a name="{{ page.biddercode }}" >{{ page.title }}</a></h2>
 
-{% if page.s2s_only == true %}
-<h3>Note:</h3> This is a S2S adapter only.
-{% endif %}
-
 <h3>Features</h3>
 
 {: .table .table-bordered .table-striped }
@@ -102,7 +98,8 @@ The following parameters in the `bidResponse` object are common across all bidde
 | **User IDs** | {% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %} | **GDPR TCF2 Support** | {% if page.tcf2_supported == true %}yes{% else %}no{% endif %} |
 | **SChain Support** | {% if page.schain_supported  == true %}yes{% else %}no{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% else %}no{% endif %} |
 | **Safeframes OK** | {% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
-
+| **Supports Deals** | {% if page.bidder_supports_deals == false %}no{% elsif page.bidder_supports_deals == true %}yes{% else %}check with bidder{% endif %} | **Prebid.js Adapter** | yes |
+| | | **Prebid Server Adapter** | {% if page.pbs == true %}yes{% else %}no{% endif %} |
 
 <h3>"Send All Bids" Ad Server Keys</h3>
 
