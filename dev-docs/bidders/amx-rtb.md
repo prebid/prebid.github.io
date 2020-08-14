@@ -17,10 +17,11 @@ media_types: banner, video
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                          | Example                         | Type     |
-|-------------|----------|--------------------------------------|---------------------------------|----------|
-| `testMode`  | optional | Activate 100% fill ads               | `true`                          | `boolean`|
-| `tagId`     | optional | Tag ID                               | `'cHJlYmlkLm9yZw'`              | `string` |
+| Name        | Scope    | Description                                                     | Example                         | Type     |
+|-------------|----------|-----------------------------------------------------------------|---------------------------------|----------|
+| `testMode`  | optional | Activate 100% fill ads                                          | `true`                          | `boolean`|
+| `tagId`     | optional | Tag ID                                                          | `'cHJlYmlkLm9yZw'`              | `string` |
+| `adUnitId`  | optional | Ad Unit ID used in reporting. Will default to `bid.adUnitCode`  | `'sticky_banner'`               | `string` |
 
 ### Test Parameters
 
