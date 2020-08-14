@@ -2,16 +2,15 @@
 layout: bidder
 title: Sovrn
 description: Prebid Sovrn Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: sovrn
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId
-schain_supported: true
 prebid_member: true
+schain_supported: true
 ---
-
-
 
 ### Bid Params
 

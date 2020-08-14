@@ -2,7 +2,8 @@
 layout: bidder
 title: TheMediaGrid
 description: Prebid TheMediaGrid Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: grid
 media_types: banner, video
 gdpr_supported: true

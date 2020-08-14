@@ -2,7 +2,6 @@
 layout: bidder
 title: Adtelligent
 description: Prebid Adtelligent Bidder Adapter
-
 biddercode: adtelligent
 media_types: video,banner
 gdpr_supported: true
@@ -13,6 +12,8 @@ usp_supported: true
 tcf2_supported: true
 safeframes_ok: true
 prebid_member: true
+pbjs: true
+pbs: true
 ---
 
 ### Bid params

@@ -2,7 +2,7 @@
 layout: bidder
 title: iQM
 description: Prebid iQM Bidder Adaptor
-
+pbjs: true
 biddercode: iqm
 ---
 

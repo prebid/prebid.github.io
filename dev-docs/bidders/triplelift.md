@@ -2,15 +2,15 @@
 layout: bidder
 title: TripleLift
 description: Prebid TripleLift Bidder Adapter
-
 gdpr_supported: true
 tcf2_supported: true
 usp_supported: true
 schain_supported: true
 coppa_supported: true
-
 biddercode: triplelift
 userIds: criteo, identityLink, unifiedId
+pbjs: true
+pbs: true
 ---
 
 ### Bid Params

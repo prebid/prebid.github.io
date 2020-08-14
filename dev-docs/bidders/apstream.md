@@ -3,7 +3,7 @@ layout: bidder
 title: AP Stream
 description: AP Stream Bidder Adapter
 biddercode: apstream
-
+pbjs: true
 media_types: banner
 gdpr_supported: true
 tcf2_supported: true

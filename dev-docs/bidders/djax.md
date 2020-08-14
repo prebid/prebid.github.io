@@ -2,7 +2,7 @@
 layout: bidder
 title: DJAX
 description: Prebid djax Bidder Adapter
-
+pbjs: true
 biddercode: djax
 ---
 

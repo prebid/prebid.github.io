@@ -2,7 +2,8 @@
 layout: bidder
 title: ADman Media
 description: Prebid Adman Bidder Adapter
-
+pbjs: true
+pbs: true
 biddercode: adman
 gdpr_supported: true
 media_types: banner, video

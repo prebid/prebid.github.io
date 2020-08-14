@@ -2,11 +2,12 @@
 layout: bidder
 title: SmartRTB
 description: SmartRTB / smrtb.com Bidder Module
-
 biddercode: smartrtb
 gdpr_supported: true
 media_types: banner, video
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs: true
+pbs: true
 ---
 
 ### bid params

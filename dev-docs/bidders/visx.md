@@ -2,7 +2,8 @@
 layout: bidder
 title: VIS.X
 description: Prebid VIS.X Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: visx
 gdpr_supported: true
 schain_supported: true
