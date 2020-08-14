@@ -1190,6 +1190,7 @@ The available events are:
 | addAdUnits    | Ad units have been added to the auction | None |
 | adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
+| tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 
 The examples below show how these events can be used.
 
