@@ -2,16 +2,14 @@
 layout: bidder
 title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adaptor
-pbjs: true
-pbs: true
 biddercode: rubicon
 gdpr_supported: true
 tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-media_types: banner, video
-userIds: digitrust, identityLink, liveIntentId, pubCommonId, unifiedId
+media_types: video
+userIds: identityLink, liveIntentId, unifiedId
 prebid_member: true
 safeframes_ok: true
 pbjs: true
@@ -50,7 +48,7 @@ The following video parameters are supported:
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `playerWidth`  | optional | Video player width in pixels. If not specified, takes width set in mediaTypes.video.playerSize                                                                                                                                                                             | `'640'` | `string`  |
 | `playerHeight` | optional | Video player height in pixels. If not specified, takes height set in mediaTypes.video.playerSize                                                                                                                                                                            | `'360'` | `string`  |
-| `size_id`      | optional (Prebid.js)<br/> required (Server) |  Integer indicating the Rubicon Project video ad format ID: 201, 202, or 203. If not set, infers from mediaTypes.video.context | `201`   | `integer` |
+| `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, infers from mediaTypes.video.context | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
 {: .alert.alert-warning :}
@@ -142,15 +140,11 @@ pbjs.setConfig({
 
 ### Notes
 
-1) In order to utilize Rubicon's Prebid Server adapter within your own Prebid Server, you must Contact your Rubicon Project account manager to get set up with a login and cookie-sync URL.
-
-You will be given instructions, including the available endpoints.
-
-2) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+1) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
 
 <a name="rubicon-revenue-type"></a>
 
-3) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for Rubicon Project clients to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for Rubicon Project clients to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
 
 For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net). 
 

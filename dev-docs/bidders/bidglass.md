@@ -7,7 +7,6 @@ biddercode: bidglass
 ---
 
 
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }

@@ -7,8 +7,9 @@ pbs: true
 biddercode: sovrn
 gdpr_supported: true
 usp_supported: true
-userIds: digitrust
+userIds: unifiedId
 prebid_member: true
+schain_supported: true
 ---
 
 ### Bid Params

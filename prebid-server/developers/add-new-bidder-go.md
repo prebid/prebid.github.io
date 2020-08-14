@@ -42,7 +42,7 @@ Bidder implementations are scattered throughout several files.
 - `usersync/usersyncers/{bidder}.go`: A [Usersyncer](https://github.com/prebid/prebid-server/blob/master/usersync/usersync.go) which returns cookie sync info for your bidder.
 - `usersync/usersyncers/{bidder}_test.go`: Unit tests for your Usersyncer
 - `static/bidder-params/{bidder}.json`: A [draft-4 json-schema](https://spacetelescope.github.io/understanding-json-schema/) which [validates your Bidder's params](https://www.jsonschemavalidator.net/).
-- `static/bidder-info/{bidder}.yaml`: contains metadata (e.g. contact email, platform & media type support) about the adapter
+- `static/bidder-info/{bidder}.yaml`: contains metadata (e.g. contact email, platform & media type support) about the adapter. Note that email cannot be a single individual – we need robust maintainer contact info read by multiple people like "support@example.com".
 
 Bidder implementations may assume that any params have already been validated against the defined json-schema.
 
@@ -188,6 +188,57 @@ The `./validate.sh` script will run these using the [Race Detector](https://gola
 - Add a new [BidderName constant](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go) for your `{bidder}`.
 - Update the [newAdapterMap function](https://github.com/prebid/prebid-server/blob/master/exchange/adapter_map.go) to make your Bidder available in auctions.
 - Update the [newSyncerMap function](https://github.com/prebid/prebid-server/blob/master/usersync/usersync.go) to make your Bidder available for user syncs.
+
+## Document Your Adapter
+
+There are two documents required before we'll accept your pull request:
+
+1. Repo metadata - create a new file https://github.com/prebid/prebid-server/blob/master/static/bidder-info/BIDDERCODE.yaml based on one of the other ones there. Note that you must provide an email that's not a single individual -- we need robust maintainer contact info read by multiple people like "support@example.com".
+1. User documentation - required to appear in the [Prebid Server adapters page](/dev-docs/pbs-bidders.html).
+    1. If you already have a Prebid.js bid adapter, update your bidders existing file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules to add the `pbs: true` variable in the header section.
+    1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules based on the example below.
+
+```
+---
+layout: bidder
+title: example
+description: Prebid example Bidder Adapter
+biddercode: example
+gdpr_supported: true/false
+tcf2_supported: true/false
+usp_supported: true/false
+coppa_supported: true/false
+schain_supported: true/false
+userId: (list of supported vendors)
+media_types: banner, video, native
+safeframes_ok: true/false
+pbjs: true/false
+pbs: true/false
+prebid_member: true/false
+---
+
+### Note:
+
+The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placement`      | required | Placement id         | `'11111'`    | `string` |
+```
+Notes on the metadata fields:
+- Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
+- If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
+- If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+- If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
+- If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
+- If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
+- If you support COPPA, add `coppa_supported: true`. Default is false.
+- If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+- If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
+- If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 ## Contribute
 
