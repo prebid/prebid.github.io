@@ -212,6 +212,7 @@ schain_supported: true/false
 userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true/false
+bidder_supports_deals: true/false
 pbjs: true/false
 pbs: true/false
 prebid_member: true/false
@@ -238,6 +239,7 @@ Notes on the metadata fields:
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
+- If your bidder supports deals, set `bidder_supports_deals: true`. No default value.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 ## Contribute
