@@ -24,7 +24,7 @@ Several Prebid.org members host Prebid Server clusters for use by publishers.
     </div>
     <div class="col-md-3">
       <div style="background-color:#eeeeee; line-height:120px; height:120px; text-align:center; border-top-left-radius:10px; border-top-right-radius:10px;"><img src="/assets/images/logos/openx.png"></div>
-      <div style="background-color: #eeeeee; text-align:center; padding:15px 20px 0px 20px; height:600px;"><a href="prebid@openx.com">Contact OpenX</a> or your account manager for information regarding OpenX's Hosted Prebid Server service&nbsp;</div>
+      <div style="background-color: #eeeeee; text-align:center; padding:15px 20px 0px 20px; height:600px;"><a href="prebid@openx.com">Contact OpenX</a> or your account manager for information regarding OpenX's Hosted Prebid Server service.</div>
     </div>
     <div class="col-md-3">
       <div style="background-color:#eeeeee; line-height:120px; height:120px; text-align:center; border-top-left-radius:10px; border-top-right-radius:10px;"><img src="/assets/images/logos/xandr-logo.svg"></div>
