@@ -2,7 +2,7 @@
 layout: bidder
 title: Pollux Network
 description: Prebid Pollux Network Bidder Adaptor
-
+pbjs: true
 biddercode: pollux
 ---
 

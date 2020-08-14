@@ -2,7 +2,7 @@
 layout: bidder
 title: RtbSape
 description: Prebid RtbSape Bidder Adaptor
-
+pbjs: true
 biddercode: rtbsape
 media_types: banner, video
 ---

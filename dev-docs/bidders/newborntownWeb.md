@@ -2,7 +2,7 @@
 layout: bidder
 title: newborntownWeb
 description: Prebid newborntownWeb Bidder Adaptor
-
+pbjs: true
 biddercode: newborntownWeb
 ---
 

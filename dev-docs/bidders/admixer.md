@@ -2,7 +2,8 @@
 layout: bidder
 title: AdMixer
 description: Prebid AdMixer Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: admixer
 media_types: video
 gdpr_supported: true

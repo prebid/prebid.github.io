@@ -2,7 +2,7 @@
 layout: bidder
 title: TheAdx
 description: Prebid TheAdx Bidder Adapter
-
+pbjs: true
 biddercode: theadx
 gdpr_supported: false
 ---

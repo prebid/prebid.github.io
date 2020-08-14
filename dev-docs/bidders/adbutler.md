@@ -2,7 +2,7 @@
 layout: bidder
 title: AdButler
 description: Prebid AdButler Bidder Adaptor
-
+pbjs: true
 biddercode: adbutler
 ---
 

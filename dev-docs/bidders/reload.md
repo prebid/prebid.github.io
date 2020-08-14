@@ -2,7 +2,7 @@
 layout: bidder
 title: Reload
 description: Reload Prebid Adaptor
-
+pbjs: true
 biddercode: reload
 ---
 

@@ -2,7 +2,7 @@
 layout: bidder
 title: brainy
 description: Prebid brainy Bidder Adaptor
-
+pbjs: true
 biddercode: brainy
 ---
 

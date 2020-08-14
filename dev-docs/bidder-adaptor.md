@@ -1005,21 +1005,55 @@ registerBidder(spec);
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
   - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
-    - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`
-    - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`
-    - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`
-    - If you support one or more userId modules, add `userId: (list of supported vendors)`
-    - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`
-    - If you support COPPA, add `coppa_supported: true`
-    - If you support SChain, add `schain_supported: true`
-    - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder.
-    - If you're a member of Prebid.org, add `prebid_member: true`
+    - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
+    - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
+    - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+    - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
+    - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
+    - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
+    - If you support COPPA, add `coppa_supported: true`. Default is false.
+    - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+    - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
+    - If you support deals, set `bidder_supports_deals: true`. No default value..
+    - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
+
+For example:
+```
+---
+layout: bidder
+title: example
+description: Prebid example Bidder Adapter
+biddercode: example
+gdpr_supported: true/false
+tcf2_supported: true/false
+usp_supported: true/false
+coppa_supported: true/false
+schain_supported: true/false
+userId: (list of supported vendors)
+media_types: banner, video, native
+safeframes_ok: true/false
+bidder_supports_deals: true/false
+pbjs: true/false
+pbs: true/false
+prebid_member: true/false
+---
+### Note:
+
+The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placement`      | required | Placement id         | `'11111'`    | `string` |
+```
 
 Within a few days, the code pull request will be assigned to a developer for review.
 Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
 
-The Prebid.org [download page]({{site.baseurl}}/download.html) will automatically be updated with your adapter once everything's been merged.
+The Prebid.org [download page](/download.html) will automatically be updated with your adapter once everything's been merged.
 
 ## Further Reading
 

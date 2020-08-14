@@ -2,7 +2,7 @@
 layout: bidder
 title: NextMillennium
 description: NextMillennium bid adapter
-
+pbjs: true
 biddercode: nextMillennium
 ---
 
