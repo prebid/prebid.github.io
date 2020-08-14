@@ -6,6 +6,8 @@ top_nav_section: dev_docs
 nav_section: reference
 
 biddercode: brightcom
+gdpr_supported: true
+tcf2_supported: true
 ---
 
 ### Note:
