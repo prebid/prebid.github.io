@@ -2,14 +2,16 @@
 layout: bidder
 title: SpotX
 description: Prebid SpotX Bidder Adaptor
-pbjs: true
 biddercode: spotx
-media_types: video
+media_types: no-display, video
 gdpr_supported: true
+tcf2_supported: true
 userIds: id5Id, pubCommonId, unifiedId
 prebid_member: true
 schain_supported: true
 usp_supported: true
+safeframes_ok: false
+pbjs: true
 ---
 
 ### Bid Params
@@ -29,6 +31,8 @@ usp_supported: true
 | `custom`             | optional | An object containing key-value pairs for reporting. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/DirectSdk/README.md#custom-property-for-key-value-pair-reporting) |                                                                                                                                                                                                      | `object`    |
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                                                                            |                                                                                                                                                                                                      | `integer`   |
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                                                                            |                                                                                                                                                                                                      | `integer`   |
+| `placement_type`       | optional | Number corresponding to the type of ad placement. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/README.md)                                                                                                                          |                                                                                                                                                                                                      | `integer`   |
+| `position`       | optional | Number corresponding to the position of the ad. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/README.md)                                                                                                                         |                                                                                                                                                                                                      | `integer`   |
 
 <a name="spotx-outstream-options-object" />
 

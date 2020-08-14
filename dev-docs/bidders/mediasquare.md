@@ -6,8 +6,9 @@ pbjs: true
 biddercode: mediasquare
 gdpr_supported: true
 tcf2_supported: true
-usp_supported: false
-schain_supported: false
+usp_supported: true
+schain_supported: true
+userIds: id5Id
 media_types: banner
 ---
 

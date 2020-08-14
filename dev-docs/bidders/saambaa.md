@@ -1,14 +1,13 @@
 ---
 layout: bidder
-title: Luna Media
-description: Prebid Luna Media Bidder Adapter
+title: Saambaa
+description: Prebid Saambaa Bidder Adapter
 pbjs: true
-pbs: true
-biddercode: lunamedia
+biddercode: saambaa
 ---
 
 ### Note:
-For more information about Luna Media, please contact info@lunamedia.io
+For more information about Saambaa, please contact matt.voigt@saambaa.com
 
 ### Bid Params
 
@@ -17,6 +16,7 @@ For more information about Luna Media, please contact info@lunamedia.io
 |------------------|----------|------------------|------------------------------------------|-------------------|
 | `placement  `    | required |                  | `'263'`                                  | `string`          |
 | `pubid`          | required |                  | `'0cf8d6d643e13d86a5b6374148a4afac'`     | `string`          |
+| `size`           | optional |                  | `'320x50'`                              | `string`          |
 | `mimes`          | optional |  video only      | `['video/mp4', 'application/javascript']`| `array of strings`|
 | `playbackmethod` | optional |  video only      | `[2,6]`                                  | `array of numbers`|
 | `maxduration`    | optional |  video only      | `30`                                     | `number`          |
