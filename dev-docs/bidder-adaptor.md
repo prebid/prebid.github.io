@@ -285,7 +285,7 @@ Here is a sample bidderRequest object:
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-- **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
+- **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
 #### Prebid Config
