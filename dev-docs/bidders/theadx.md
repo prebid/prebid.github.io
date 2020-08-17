@@ -3,7 +3,7 @@ layout: bidder
 title: TheAdx
 description: Prebid TheAdx Bidder Adapter
 hide: true
-biddercode: theadx
+biddercode: theAdx
 gdpr_supported: false
 ---
 
