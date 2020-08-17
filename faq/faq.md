@@ -24,5 +24,5 @@ Check out the [Prebid.js FAQ](/dev-docs/faq.html). If you don't find what you ne
 If you don't find answers to your questions in the [Prebid Server FAQ](/faq/prebid-server-faq.html), you can learn more here:
 
 - [Troubleshooting](/troubleshooting/troubleshooting.html)
-- [Prebid Server Overview](/prebid-server/prebid-server-overview)
+- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
 - [Resources](/support/index.html)

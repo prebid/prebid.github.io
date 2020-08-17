@@ -28,7 +28,7 @@ The Go version of Prebid Server is for those who:
 
 ## Features
 
-PBS-Go has all the core PBS features, but does have a backlog of newer [features](prebid-server/features/index.html), so you'll want to look over the list to be familiar with the differences.
+PBS-Go has all the core PBS features, but does have a backlog of newer [features](/prebid-server/features/pbs-feature-idx.html), so you'll want to look over the list to be familiar with the differences.
 
 ## Code Repositories
 
