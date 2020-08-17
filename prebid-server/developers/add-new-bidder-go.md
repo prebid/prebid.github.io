@@ -150,7 +150,7 @@ Then `POST` an OpenRTB Request to `https://localhost:8000/openrtb2/auction`.
 If at least one `request.imp[i].ext.{bidder}` is defined in your Request,
 then your bidder should be called.
 
-To test user syncs, [save a UID](../endpoints/setuid.html) using the FamilyName of your Usersyncer.
+To test user syncs, [save a UID](/prebid-server/endpoints/pbs-endpoint-setuid.html) using the FamilyName of your Usersyncer.
 The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidder should have
 `BidRequest.User.BuyerUID` with the value you saved.
 
@@ -245,4 +245,3 @@ Notes on the metadata fields:
 ## Contribute
 
 Finally, [Contribute](https://github.com/prebid/prebid-server/blob/master/docs/developers/contributing.md) your Bidder to the project.
-

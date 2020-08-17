@@ -115,7 +115,7 @@ that doesn't come from /amp parameters:
 }
 
 ```
-This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](prebid-server/endpoints/openrtb2/amp.html).
+This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html).
 
 ### AMP content page
 
@@ -245,7 +245,7 @@ If you're using AppNexus' managed service, you would enter something like this:
 </amp-iframe>
 ```
 
-See the AppNexus bidder parameters page [for more details](/). 
+See the AppNexus bidder parameters page [for more details](/).
 
 If you are utilizing Rubicon Project's managed service, there's an extra parameter:
 ```html
