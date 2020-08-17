@@ -27,7 +27,7 @@ The Java version of Prebid Server is for those who:
 
 ## Features
 
-PBS-Java look over the [feature list](prebid-server/features/index.html) to be familiar with the differences.
+PBS-Java look over the [feature list](/prebid-server/features/pbs-feature-idx.html) to be familiar with the differences.
 
 ## Code Repositories
 

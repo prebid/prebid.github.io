@@ -123,7 +123,7 @@ If any errors were generated they will appear  within `response.ext.errors.{bidd
 999 UnknownErrorCode
 ```
 
-See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/auction.html) for a description of some common OpenRTB errors. The following is a list of AMP specific errors that could be returned:
+See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) for a description of some common OpenRTB errors. The following is a list of AMP specific errors that could be returned:
 
 {: .table .table-bordered .table-striped }
 | Task  | Code |  Message | Action  |
