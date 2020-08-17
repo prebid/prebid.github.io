@@ -352,7 +352,7 @@ The SSAI should take the key-values from the response `adPods.[].targeting.[]${k
 
 ## Further Reading:
 
-- [Prebid Server overview](/prebid-server/prebid-server-overview.html)  
+- [Prebid Server overview](/prebid-server/overview/prebid-server-overview.html)  
 - [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/auction.html)  
 - [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
 - [Freewheel module](/dev-docs/modules/freewheel.html)  
