@@ -51,6 +51,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [enableSendAllBids](#setConfig-Send-All-Bids)
     * [sendBidsControl](#setConfig-Send-Bids-Control)
     * [useBidCache](#setConfig-Use-Bid-Cache)
+    * [pageUrl](#setConfig-Page-URL)
     * [publisherDomain](#setConfig-Publisher-Domain)
     * [priceGranularity](#setConfig-Price-Granularity)
     * [mediaTypePriceGranularity](#setConfig-MediaType-Price-Granularity)
@@ -1312,6 +1313,7 @@ Core config:
 + [Configure send bids control](#setConfig-Send-Bids-Control)
 + [Bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
++ [Set the page URL](#setConfig-Page-URL)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
 + [Set a delay before requesting cookie sync](#setConfig-Cookie-Sync-Delay)
 + [Set price granularity](#setConfig-Price-Granularity)
@@ -1542,6 +1544,16 @@ Set the order in which bidders are called:
 
 {% highlight js %}
 pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
+{% endhighlight %}
+
+<a name="setConfig-Page-URL" />
+
+#### Page URL
+
+Override Prebid.js' page referer algorithm.
+
+a{% highlight js %}
+pbjs.setConfig({ pageUrl: "https://example.com/index.html" )
 {% endhighlight %}
 
 <a name="setConfig-Publisher-Domain" />

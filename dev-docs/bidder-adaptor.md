@@ -38,6 +38,8 @@ In order to provide a fast and safe header bidding environment for publishers, t
 * **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
 * **Adapters may not create or trigger any network requests or pixels** outside of the requests that wrapper creates on behalf of the adapter from the return values of `buildRequests()` and `getUserSyncs()` or are included in a winning and rendered creative.
 * **Adapters may not modify ad slots directly**: e.g. Accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
+* **All parameter conventions must be followed**:
+    * Video params must be read from AdUnit.mediaTypes.video when available; however bidder config can override the ad unit.
 
 {: .alert.alert-danger :}
 What's listed above is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/module-rules.html) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your case in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
@@ -276,19 +278,25 @@ Notes on parameters in the bidderRequest object:
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
-#### Prebid Config
+<a name="std-param-location"></a>
 
-There are a number of important values that a publisher can set in the page that your bid adapter may need to take
-into account:
+#### Prebid Standard Parameter Locations
+
+There are a number of important values that a publisher expects to handled in a standard way across
+all Prebid.js adapters:
 
 {: .table .table-bordered .table-striped }
-| Value | Description                                   | Example               |
+| Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
-| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
-| First Party Data | The publisher may provide first party data (e.g. page type). | config.getConfig('fpd'); |
+| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
+| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
+| Page Referrer | Intead of building your own function to find the page referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.referer |
+| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
+| [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
+| Video Parameters | Video params must be read from AdUnit.mediaTypes.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
 
 #### Referrers
 

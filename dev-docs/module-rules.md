@@ -87,7 +87,7 @@ The use of the terms ‘must’ and ‘should’ is deliberate.  However, some o
     1. If a bidder would like to incorporate an external data fetch that would influence the auction, they must(*) build a Real-Time Data sub-module that obtains data in a way that can be utilized by other bidders as well.
 1. Bidder modules must not obtain bid information from or about any other party in the auction. E.g. They cannot listen to ad server events and forward information naming other bidders back to their endpoint - that is the job of an analytics module.
 1. Bidder modules must not(*) cache bids from previous auctions. That functionality is reserved for Prebid core.
-1. Bidders must(*) accept the following global parameters in preference to bidder-specific parameters: first party data, floors, schain, video params, page referrer, and COPPA. 
+1. Bidders must(*) accept parameters in the conventional location in preference to bidder-specific parameters. The list of these parameters is in [the bidder adapter documentation](/dev-docs/bidder-adaptor.html#std-param-location).
 1. Bidders must not override the standard ad server targeting values: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
 1. If bid adapters are reporting multiple media types in the hb_format as ‘banner’, they must(*) indicate the actual mediatype in the metadata object. One use case for this is that it allows publishers to manage which creatives support safeframes.
 1. Bidder modules should supply buyer metadata - including advertiser, advertiser domain, network, actual mediatype, and others defined in the Prebid documentation.
