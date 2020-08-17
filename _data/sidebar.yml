@@ -76,7 +76,7 @@
   subgroup: 1
 
 - sbSecId: 0
-  title: '&nbsp;&nbsp;Header Bidding Wrapper'
+  title: '&nbsp;&nbsp;Header Bidding'
   link: /wrapper_code_of_conduct.html
   isHeader: 0
   isSectionHeader: 0
@@ -86,6 +86,13 @@
 - sbSecId: 0
   title: '&nbsp;&nbsp;Community'
   link: /overview/community-code-of-conduct.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 0
+
+- sbSecId: 0
+  title: '&nbsp;&nbsp;Module Rules'
+  link: /dev-docs/module-rules.html
   isHeader: 0
   isSectionHeader: 0
   subgroup: 0

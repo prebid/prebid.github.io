@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: How to Add a New Bidder Adapter
-description: Documentation on how to add a new bidder adapter
+title: How to Add a New Prebid.js Bidder Adapter
+description: Documentation on how to add a Prebid.js new bidder adapter
 top_nav_section: dev_docs
 nav_section: adapters
 sidebarType: 1
@@ -9,7 +9,7 @@ sidebarType: 1
 
 
 
-# How to Add a New Bidder Adapter
+# How to Add a New Prebid.js Bidder Adapter
 {:.no_toc}
 
 At a high level, a bidder adapter is responsible for:
@@ -24,35 +24,23 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 ## Planning your Adapter
 
-+ [Required Adapter Conventions](#bidder-adaptor-Required-Adapter-Conventions)
++ [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
 + [Required Files](#bidder-adaptor-Required-Files)
 + [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
-### Required Adapter Conventions
+### Required Adapter Rules
 
-In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the following required conventions:
+In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required conventions laid out for bid adapters in the [Module Rules](/dev-docs/module-rules.html). Here are additional Prebid.js-specific details:
 
-* *Support multiple instances*: All adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on mutable global variables.
-* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
-* *Must support HTTPS*: Within a secure page context, the request to the bidder's server must also be secure.
-* *Compressed responses*: All bid responses from the bidder's server must be gzipped.
-* *Bid responses may not use JSONP*: All requests must be AJAX with JSON responses.
-* *All user-sync activity must be registered via the provided functions*: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
-* *Adapters may not create or trigger any network requests or pixels* outside of the requests that wrapper creates on behalf of the adapter from the return values of `buildRequests()` and `getUserSyncs()` or are included in a winning and rendered creative.
-* *Adapters may not use the `$$PREBID_GLOBAL$$` variable*: Instead, they must load any necessary functions and call them directly.
-* *Adapters may not modify ad slots directly*: e.g. Accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
-* *Adapters may not override standard ad server targeting*: Do not override, or set default values for any of the standard targeting variables: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
+* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
+* **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
+* **Adapters may not create or trigger any network requests or pixels** outside of the requests that wrapper creates on behalf of the adapter from the return values of `buildRequests()` and `getUserSyncs()` or are included in a winning and rendered creative.
+* **Adapters may not modify ad slots directly**: e.g. Accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
 
 {: .alert.alert-danger :}
-Failure to follow any of the above conventions could lead to delays in approving your adapter for inclusion in Prebid.js.
-
-{: .alert.alert-danger :}
-Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
-
-{: .alert.alert-danger :}
-Prebid.org does not support any version of Prebid.js prior to version 1.0.
+What's listed above is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/module-rules.html) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your case in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
 
 <a name="bidder-adaptor-Required-Files" />
 
@@ -1058,3 +1046,4 @@ The Prebid.org [download page](/download.html) will automatically be updated wit
 ## Further Reading
 
 + [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
++ [Module Rules](/dev-docs/module-rules.html)

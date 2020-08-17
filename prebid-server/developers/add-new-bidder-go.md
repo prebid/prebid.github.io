@@ -46,6 +46,9 @@ Bidder implementations are scattered throughout several files.
 
 Bidder implementations may assume that any params have already been validated against the defined json-schema.
 
+{: .alert.alert-warning :}
+Prebid Server bid adapters must follow all required conventions defined in the [Module Rules](/dev-docs/module-rules.html). Not doing so could lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to apply for an exception to one of the rules, make your case in a new [Prebid Server issue](https://github.com/prebid/prebid-server/issues).
+
 ### Bid Response Metadata
 
 In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
