@@ -4,6 +4,7 @@ title: YeahMobi
 pbs: true
 media_types: native
 biddercode: yeahmobi
+prebid_member: true
 ---
 
 ### Bid Params

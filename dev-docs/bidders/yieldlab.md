@@ -7,6 +7,7 @@ media_types: video
 gdpr_supported: true
 tcf2_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+prebid_member: true
 pbjs: true
 pbs: true
 ---
