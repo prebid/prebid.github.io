@@ -8,7 +8,7 @@ title: Prebid Server | Endpoints | /setuid
 # Prebid Server | Endpoints | /setuid
 
 This endpoint is used during cookie syncs to save the results in the Prebid Server `uids` cookie. For technical details, see the
-[Cookie Sync developer docs](../developers/cookie-syncs.html).
+[Cookie Sync developer docs](/prebid-server/developers/pbs-cookie-sync.html).
 
 ## GET /setuid
 
