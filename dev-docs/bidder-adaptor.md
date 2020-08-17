@@ -32,17 +32,16 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 ### Required Adapter Rules
 
-In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required conventions laid out for bid adapters in the [Module Rules](/dev-docs/module-rules.html). Here are additional Prebid.js-specific details:
+In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/module-rules.html). Here are additional details specific to Prebid.js:
 
 * **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
 * **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
-* **Adapters may not create or trigger any network requests or pixels** outside of the requests that wrapper creates on behalf of the adapter from the return values of `buildRequests()` and `getUserSyncs()` or are included in a winning and rendered creative.
-* **Adapters may not modify ad slots directly**: e.g. Accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
-* **All parameter conventions must be followed**:
-    * Video params must be read from AdUnit.mediaTypes.video when available; however bidder config can override the ad unit.
+* **Adapters may not create or trigger any network requests or pixels** outside of the requests the wrapper creates on behalf of the adapter (from the return values of `buildRequests()` and `getUserSyncs()`) or that are included in a winning and rendered creative.
+* **Adapters may not modify ad slots directly**: For example, accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
+* **All parameter conventions must be followed**: Video params must be read from AdUnit.mediaTypes.video when available; however, bidder config can override the ad unit.
 
 {: .alert.alert-danger :}
-What's listed above is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/module-rules.html) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your case in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
+The above list is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/module-rules.html) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
 
 <a name="bidder-adaptor-Required-Files" />
 
@@ -282,8 +281,7 @@ Notes on parameters in the bidderRequest object:
 
 #### Prebid Standard Parameter Locations
 
-There are a number of important values that a publisher expects to handled in a standard way across
-all Prebid.js adapters:
+There are a number of important values that a publisher expects to be handled in a standard way across all Prebid.js adapters:
 
 {: .table .table-bordered .table-striped }
 | Parameter | Description                                   | Example               |
@@ -296,7 +294,7 @@ all Prebid.js adapters:
 | Page Referrer | Intead of building your own function to find the page referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.referer |
 | Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
-| Video Parameters | Video params must be read from AdUnit.mediaTypes.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
+| Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
 
 #### Referrers
 
@@ -786,7 +784,7 @@ function createBid(status, reqBid, response) {
 ### Deals in Ad Pods
 
 To do deals for long-form video (`adpod` ad unit) just add the `dielTier` integer value to `bid.video.dealTier`. For more details on conducting deals in ad pods see our [ad pod module documentation](/dev-docs/modules/adpod.html).
- 
+
 ## Supporting Native
 
 In order for your bidder to support the native media type:
@@ -1053,5 +1051,5 @@ The Prebid.org [download page](/download.html) will automatically be updated wit
 
 ## Further Reading
 
-+ [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
++ [Prebid.js Repo - Bidder Adapter Sources](https://github.com/prebid/Prebid.js/tree/master/modules)
 + [Module Rules](/dev-docs/module-rules.html)

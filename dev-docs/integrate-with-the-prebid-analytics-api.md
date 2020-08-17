@@ -11,7 +11,7 @@ sidebarType: 1
 
 
 
-# How to Add Prebid.js Analytics Adapter
+# How to Add a Prebid.js Analytics Adapter
 {:.no_toc}
 
 The Prebid Analytics API provides a way to get analytics data from `Prebid.js` and send it to the analytics provider of your choice, such as Google Analytics.  Because it's an open source API, you can write an adapter to send analytics data to any provider you like.  Integrating with the Prebid Analytics API has the following benefits:
@@ -51,7 +51,7 @@ with the [module rules](/dev-docs/module-rules.html) that apply globally and to 
 
 ### Step 1: Add a markdown file describing the module
 
-1. Create a markdown file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.md`
+Create a markdown file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.md`
 
 Example markdown file:
 {% highlight text %}
@@ -152,7 +152,7 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
 
 ### Step 5: Website pull request
 
-There are two files that need to be updated to list your new analytics adapter. 
+There are two files that need to be updated to list your new analytics adapter.
 
 1. Create a fork of the [website repo](https://github.com/prebid/prebid.github.io) and a branch for your new adapter. (e.g. feature/exAnalyticsAdapter)
 
@@ -170,4 +170,4 @@ We sometimes get pretty busy, so it can take a couple of weeks for the review pr
 ## Further Reading
 
 - [Analytics for Prebid](/overview/analytics.html) (Overview and list of analytics providers)
-- [Module Rules](/dev-docs/modules-rules.html)
+- [Module Rules](/dev-docs/module-rules.html)
