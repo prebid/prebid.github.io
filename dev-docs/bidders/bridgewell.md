@@ -2,7 +2,7 @@
 layout: bidder
 title: Bridgewell
 description: Prebid Bridgewell Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: bridgewell
 media_types: native
 ---

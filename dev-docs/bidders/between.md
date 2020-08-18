@@ -2,7 +2,7 @@
 layout: bidder
 title: BetweenDigital
 description: between bid adapter
-hide: true
+pbjs: true
 biddercode: between
 ---
 

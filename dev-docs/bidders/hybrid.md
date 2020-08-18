@@ -2,7 +2,7 @@
 layout: bidder
 title: Hybrid.ai
 description: Prebid Hybrid.ai Bidder Adapter
-hide: true
+pbjs: true
 media_types: banner, video
 biddercode: hybrid
 gdpr_supported: true

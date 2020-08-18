@@ -2,10 +2,12 @@
 layout: bidder
 title: Adhese 
 description: Prebid Adhese Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: adhese
 media_types: banner, video 
 gdpr_supported: true
+userIds: id5Id
 ---
 
 ### Note

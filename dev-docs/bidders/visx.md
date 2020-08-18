@@ -2,11 +2,12 @@
 layout: bidder
 title: VIS.X
 description: Prebid VIS.X Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: visx
 gdpr_supported: true
 schain_supported: true
-userIds: digitrust, id5Id, unifiedId
+userIds: id5Id, unifiedId
 ---
 
 ### Note

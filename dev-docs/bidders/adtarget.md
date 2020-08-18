@@ -2,15 +2,20 @@
 layout: bidder
 title: Adtarget
 description: Adtarget Bidder Adapter
-hide: true
 biddercode: adtarget
 media_types: banner, video
 gdpr_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+pbjs: true
+pbs: true
 ---
+
+### Registration
+
+To use the Adtarget bidder you will need an aid from an exchange account on [https://console.adtarget.com.tr](adtarget.com.tr). For further information, please contact kamil@adtarget.com.tr.
 
 ### Bid params
 

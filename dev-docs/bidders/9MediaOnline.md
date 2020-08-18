@@ -3,7 +3,7 @@ layout: bidder
 title: 9 Media Online
 description: Prebid 9 Media Online Bidder Adaptor
 biddercode: 9MediaOnline
-hide: true
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
 schain_supported: true

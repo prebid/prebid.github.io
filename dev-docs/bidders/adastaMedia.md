@@ -2,7 +2,7 @@
 layout: bidder
 title: Adasta Media
 description: Prebid Adasta Media Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adasta
 aliasCode : appnexus
 ---
