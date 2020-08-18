@@ -169,7 +169,7 @@ pbjs.setConfig({
 ### ID+
 
 ID+ solution is Zeotap Initiative which is an open invitation to the whole ecosystem to collaboratively solve the industry challenge of identity resolution in a third-party cookieless environment. 
-ID+ is based on Zeotap’s Deterministic Audience graph. ID+ is tied to an encrypted email in our graph and is designed to work in the world without the 3rd party cookie. This sub-module makes the user’s ID+ available in the bid request.
+ID+ is based on Zeotap’s Deterministic Audience graph and is designed to work in the world without the 3rd party cookie. This sub-module makes the user’s ID+ available in the bid request.
 
 You can learn more about it at [ID+ powered by Zeotap](https://idplus.io/)
 
