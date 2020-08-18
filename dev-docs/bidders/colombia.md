@@ -2,7 +2,7 @@
 layout: bidder
 title: COLOMBIA
 description: Prebid COLOMBIA Bidder Adaptor
-
+pbjs: true
 biddercode: colombia
 ---
 

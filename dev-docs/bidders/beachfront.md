@@ -2,13 +2,14 @@
 layout: bidder
 title: Beachfront
 description: Prebid Beachfront Bidder Adaptor
-
 biddercode: beachfront
 media_types: video
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId
 prebid_member: true
+pbjs: true
+pbs: true
 ---
 
 ### Bid Params

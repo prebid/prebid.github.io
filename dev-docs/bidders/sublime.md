@@ -2,7 +2,7 @@
 layout: bidder
 title: Sublime
 description: Prebid Sublime Bidder Adapter
-
+pbjs: true
 biddercode: sublime
 gdpr_supported: true
 ---

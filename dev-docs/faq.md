@@ -125,7 +125,7 @@ See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/maste
 
 ## When do I have to upgrade my version of Prebid.js?
 
-Prebid.org does not support any version of Prebid.js prior to version 1.0. If you want continued support through updates and documentation you should upgrade to a newer version.
+Prebid.org does not support any version of Prebid.js prior to the previous version. e.g. if the current version is 4.x, we'll help debug 3.x, but not 2.x. If you want continued support through updates and documentation you should upgrade to a newer version.
 
 ## How can I change the price granularity for different ad units?
 
@@ -148,6 +148,15 @@ benefits for sending more than one bid.
 Once you find the right balance for your application, you can specify
 what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
 
+## Can I run multiple different versions of Prebid.js concurrently?
+
+It's technically possible, but we don't recommend doing this:
+
+- The code isn't small. For performance reasons you don't want to run two versions if you can help it
+- We don't test concurrent versions
+- We won't specifically support debugging problems caused by running two concurrent versions. But will take take PRs if someone finds an issue.
+
+If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/master/package.json#L20)
 
 ## Related Reading
 

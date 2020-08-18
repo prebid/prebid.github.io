@@ -3,7 +3,8 @@ layout: bidder
 title: Gamoshi
 description: Prebid Gamoshi Bidder Adaptor
 biddercode: gamoshi
-
+pbjs: true
+pbs: true
 media_types: banner, video
 gdpr_supported: true
 schain_supported: true
