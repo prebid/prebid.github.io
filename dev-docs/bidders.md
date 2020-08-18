@@ -52,7 +52,6 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 | **Supports Deals** | {% if page.bidder_supports_deals == false %}no{% elsif page.bidder_supports_deals == true %}yes{% else %}check with bidder{% endif %} | **Prebid.js Adapter** | yes |
 | | | **Prebid Server Adapter** | {% if page.pbs == true %}yes{% else %}no{% endif %} |
 
-
 <h3>"Send All Bids" Ad Server Keys</h3>
 
 <font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>

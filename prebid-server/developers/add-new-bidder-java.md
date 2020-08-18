@@ -11,7 +11,7 @@ title: Prebid Server | Developers | Adding a New Bidder
 * TOC
 {:toc }
 
-This document describes how to add a new bid adapter to the Java version of Prebid Server. However, our recommendation is to [build new adapters in Go](http://lh.prebid.org:8080/prebid-server/developers/add-new-bidder-go.html) because we port them to Java within a couple of months.
+This document describes how to add a new bid adapter to the Java version of Prebid Server. However, our recommendation is to [build new adapters in Go](/prebid-server/developers/add-new-bidder-go.html) because we port them to Java within a couple of months.
 
 **NOTE**: To make everyone's lives easier, Bidders are expected to make net-price bids (e.g. "If this ad wins, what will the publisher make?"), not gross-price bids.
 Publishers can correct for gross-price bids by setting [Bid Adjustments](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) to account for fees.

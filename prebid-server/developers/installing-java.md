@@ -9,7 +9,7 @@ title: Prebid Server | Versions | Java | Installing
 
 ## Development
 
-This project is built upon [Vert.x](http://vertx.io) to achieve high request throughput. 
+This project is built upon [Vert.x](http://vertx.io) to achieve high request throughput.
 We use [Maven](https://maven.apache.org) and attempt to introduce minimal dependencies.
 
 ## Getting Started
@@ -28,4 +28,4 @@ For more information how to start the server follow the [run documentation](http
 
 - To verify everything is OK go to `http://localhost:8080/status` and check response status is `200 OK`.
 
-## More detailed project documentation can be found [here](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/TOC.md).
+More detailed project documentation can be found [here](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/TOC.md).

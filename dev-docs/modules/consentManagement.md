@@ -15,6 +15,12 @@ sidebarType : 1
 * TOC
 {: toc }
 
+{% capture legalNotice %}
+  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+  {% endcapture %}
+
+{% include /alerts/alert_important.html content=legalNotice %}
+
 {: .alert.alert-warning :}
 Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](/blog/tcf2) for timelines.
 
@@ -48,7 +54,7 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 ## Page Integration
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/tcf-v1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
+To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/all-news/the-iab-europe-transparency-consent-framework-tcf-steering-group-votes-to-extend-technical-support-for-tcf-v1-1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
 
 Though implementation details for the CMP are not covered by Prebid.org, we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes.
 
@@ -233,7 +239,7 @@ One of two general approaches can be taken by the adapter to populate this field
 - Set a hardcoded default value.
 - Use their own system to determine whether consent is required for the end-user and set the value accordingly.
 
-The folowing is an example of how the integration could look for the former option:
+The following is an example of how the integration could look for the former option:
 
 {% highlight js %}
 ...

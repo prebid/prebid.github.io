@@ -103,4 +103,4 @@ Note that the `usepbsrates` flag allows you to define which rates to use when PB
 ## Debug
 
 A dedicated endpoint on the Admin port will allow you to see what's happening within the currency converter.
-See [currency rates endpoint](prebid-server/endpoints/pbs-endpoint-admin.html) for more details.
+See [currency rates endpoint](/prebid-server/endpoints/pbs-endpoint-admin.html) for more details.

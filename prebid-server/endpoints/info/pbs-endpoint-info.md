@@ -15,7 +15,7 @@ title: Prebid Server | Endpoints | Info
 
 This endpoint returns a list of Bidders supported by Prebid Server.
 These are the core values allowed to be used as `request.imp[i].ext.{bidder}`
-keys in [Auction](../openrtb2/auction.html) requests.
+keys in [Auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) requests.
 
 For detailed info about a specific Bidder, use [`/info/bidders/{bidderName}`](./bidders/bidderName.html)
 

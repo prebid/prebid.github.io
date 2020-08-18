@@ -8,7 +8,7 @@ title: Prebid Server | Endpoints | /cookie_sync
 # Prebid Server | Endpoints | /cookie_sync
 
 This endpoint is used to initiate cookie syncs. For technical details, see the
-[Cookie Sync developer docs](../developers/cookie-syncs.html).
+[Cookie Sync developer docs](/prebid-server/developers/pbs-cookie-sync.html).
 
 ## POST /cookie_sync
 

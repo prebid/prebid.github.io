@@ -3,7 +3,7 @@ layout: page_v2
 title: Setting up Prebid.js with Smart Ad Server
 head_title: Setting up Prebid.js with Smart Ad Server
 description: Setting up Prebid.js with Smart Ad Server
-hide: false
+
 sidebarType: 3
 ---
 
