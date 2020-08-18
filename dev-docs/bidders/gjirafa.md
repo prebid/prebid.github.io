@@ -3,7 +3,7 @@
 layout: bidder
 title: Gjirafa
 description: Prebid Gjirafa Bidder Adaptor
-
+pbjs: true
 biddercode: gjirafa
 gdpr_supported: true
 ---

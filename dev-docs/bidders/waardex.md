@@ -5,6 +5,7 @@ description: Prebid Waardex Bidder Adaptor
 hide: true
 biddercode: waardex
 media_types: banner
+pbjs: true
 ---
 
 ### Bid Params

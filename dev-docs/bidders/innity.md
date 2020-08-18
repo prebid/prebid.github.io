@@ -2,7 +2,7 @@
 layout: bidder
 title: Innity
 description: Prebid Innity Bidder Adapter
-
+pbjs: true
 biddercode: innity
 ---
 

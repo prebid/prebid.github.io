@@ -67,7 +67,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.js`
 
-2. Create an analytics adapter to listen for Prebid events and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
+2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'bundle' type.
 
@@ -78,7 +78,13 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-A basic prototype analytics adapter:
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagement.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf-v2-0/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+
+#### Basic prototype analytics adapter
+
+The best way to get started is to look at some of the existing AnalyticsAdapter.js files in [the repository](https://github.com/prebid/Prebid.js/tree/master/modules).
+
+Here's a skeleton outline:
 
 {% highlight js %}
 import {ajax} from 'src/ajax';
@@ -104,11 +110,28 @@ exAnalytics.enableAnalytics = function (config) {
 
 adaptermanager.registerAnalyticsAdapter({
   adapter: exAnalytics,
-  code: 'exAnalytic'
+  code: 'exAnalytics',
+  gvlid: 1
 });
+
+export default exAnalytics;
 {% endhighlight %}
 
-Analytics adapter best practices:
+#### Reading TCF2 enforcement actions
+
+Analytics adapters can learn what happened with regards to GDPR TCF2 enforcement by listening to the tcf2Enforcement event.
+
+The callback will receive an object with the following attributes:
+
+```
+{
+  storageBlocked: ['moduleA', 'moduleB'],
+  biddersBlocked: ['moduleB'],
+  analyticsBlocked: ['moduleC']
+}
+```
+
+#### Analytics adapter best practices
 
 + listen only to the events required
 + batch up calls to the backend for post-auction logging rather than calling immediately after each event.

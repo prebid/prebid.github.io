@@ -36,7 +36,7 @@ We support wrappers based on Prebid technology with rights to the **Powered by P
 ## Current Projects
 All Prebid projects are open source and licensed under Apache License 2.0.  
 - [Prebid.js](/prebid/prebidjs.html), including [Prebid Video](/prebid-video/video-overview.html) and [Prebid Native](/dev-docs/examples/native-ad-example.html): Header bidding on desktop and mobile web.
-- [Prebid Server](/prebid-server/prebid-server-overview.html): Server-to-server header bidding.
+- [Prebid Server](/prebid-server/overview/prebid-server-overview.html): Server-to-server header bidding.
 - [Prebid Mobile](/prebid-mobile/prebid-mobile.html): SDK for mobile app header bidding on iOS and Android. Works in conjunction with Prebid Server.
 - Continuing work on our tools, website, and documentation.
 Prebid welcomes any contribution on these projects!

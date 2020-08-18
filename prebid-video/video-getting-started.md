@@ -186,5 +186,3 @@ This section contains working examples of instream and outstream video ads for v
 -   [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)
 -   [What is Prebid?]({{site.github.url}}/overview/intro.html)
 
-{% include wth_form.html %}
-

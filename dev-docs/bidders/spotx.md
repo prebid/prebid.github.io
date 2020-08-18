@@ -2,7 +2,6 @@
 layout: bidder
 title: SpotX
 description: Prebid SpotX Bidder Adaptor
-
 biddercode: spotx
 media_types: no-display, video
 gdpr_supported: true
@@ -12,6 +11,7 @@ prebid_member: true
 schain_supported: true
 usp_supported: true
 safeframes_ok: false
+pbjs: true
 ---
 
 ### Bid Params

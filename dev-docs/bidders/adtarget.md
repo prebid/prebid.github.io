@@ -2,7 +2,6 @@
 layout: bidder
 title: Adtarget
 description: Adtarget Bidder Adapter
-
 biddercode: adtarget
 media_types: banner, video
 gdpr_supported: true
@@ -10,6 +9,8 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+pbjs: true
+pbs: true
 ---
 
 ### Bid params

@@ -2,10 +2,10 @@
 layout: bidder
 title: Welect
 description: Prebid Welect Bidder Adapter
-
 biddercode: welect
 media_types: no-display, video
 gdpr_supported: true
+pbjs: true
 ---
 
 ### Note:

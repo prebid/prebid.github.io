@@ -2,7 +2,7 @@
 layout: bidder
 title: AOL
 description: Prebid AOL Bidder Adaptor
-
+pbjs: true
 biddercode: aol
 gdpr_supported: true
 usp_supported: true

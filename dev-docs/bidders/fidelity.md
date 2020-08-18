@@ -2,7 +2,7 @@
 layout: bidder
 title: Fidelity Media
 description: Prebid Fidelity Media Bidder Adapter
-
+pbjs: true
 schain_supported: true
 biddercode: fidelity
 media_types: banner
