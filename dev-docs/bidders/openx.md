@@ -15,6 +15,10 @@ prebid_member: true
 tcf2_supported: true
 ---
 
+### Registration
+
+If you have any questions regarding set up, please reach out to your account manager or support@openx.com.
+
 ### Bid Parameters
 #### Banner
 
