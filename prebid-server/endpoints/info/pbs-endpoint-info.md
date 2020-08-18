@@ -76,3 +76,24 @@ The fields hold the following information:
 If `capabilities.app` or `capabilities.site` do not exist, then this Bidder does not support that platform.
 OpenRTB Requests which define a `request.app` or `request.site` property will fail if a
 `request.
+
+## GET /bidders/params
+
+This endpoint gets information about all the custom bidders params that Prebid Server supports.
+
+### Returns
+{:.no_toc}
+
+A JSON object whose keys are bidder codes, and values are Draft 4 JSON schemas which describe that bidders' params.
+
+For example:
+
+```
+{
+  "appnexus": { /* A json-schema describing AppNexus' bidder params */ },
+  "rubicon": { /* A json-schema describing Rubicon's bidder params */ }
+  ... all other bidders will have similar keys & values here ...
+}
+```
+
+The exact contents of the json-schema values can be found at [https://github.com/prebid/prebid-server/tree/master/static/bidder-params](https://github.com/prebid/prebid-server/tree/master/static/bidder-params)
