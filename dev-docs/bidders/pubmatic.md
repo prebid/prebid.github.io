@@ -10,6 +10,7 @@ coppa_supported: true
 schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
+safeframes_ok: true
 tcf2_supported: true
 pbjs: true
 pbs: true
@@ -91,16 +92,16 @@ Prebid.js v2.9.0 to v2.12.0:
 
 Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
-Prebid.js v1.1.18 to v2.8.0:
+Prebid.js v1.18.0 to v2.8.0:
 
 Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
 
-Prebid.js v1.1.17 and earlier:
+Prebid.js v1.17.0 and earlier:
 
 Only With Size is supported.  To support multi-size ad units, list the PubMatic bidder entry multiple times, once for each size.  Mutli-sized ad units are not supported when using Prebid Server.
 
 ### video parameters
-The PubMatic adapter supports video as of Prebid 1.16.0
+The PubMatic adapter supports video as of Prebid v1.16.0
 
 {: .table .table-bordered .table-striped }
 | Name 					 | Scope    | Description        										  | Example |
