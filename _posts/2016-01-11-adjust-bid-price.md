@@ -20,8 +20,7 @@ For example, some bidders returned the bid prices in gross (before any fee is ta
 
 This feature allows the publisher to adjust the bidding price before the bids targeting are set on the ad server tag. This is especially relevant for publishers who choose to let prebid.js send only the top winning bid to the ad server, because the price adjustment is done before the top winning bid is chosen. 
 
-{: .pb-img.pb-md-img :}
-![Prebid.js Adjust Bid Price]({{ site.github.url }}/assets/images/blog/prebid-adjust-price.png)
+![Prebid.js Adjust Bid Price]({{ site.github.url }}/assets/images/blog/prebid-adjust-price.png){: .pb-md-img :}
 
 <br>
 

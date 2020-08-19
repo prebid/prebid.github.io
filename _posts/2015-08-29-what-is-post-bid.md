@@ -17,8 +17,7 @@ permalink: /blog/what-is-post-bid
 
 In post-bid, the competition among your mediated demand sources compete AFTER your ad server has chosen the winning line item (vs. in header bidding, demand sources compete BEFORE your ad server has seen the impression). In post-bid, your mediated demand sources no longer run daisy chain; they all compete in one single line item based on price.
 
-{: .pb-lg-img :}
-![Add Creative to Line Item]({{ site.github.url }}/assets/images/blog/postbid-diagram.png)
+![Add Creative to Line Item]({{ site.github.url }}/assets/images/blog/postbid-diagram.png){: .pb-lg-img :}
 
 Steps:
 

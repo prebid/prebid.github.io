@@ -2,10 +2,9 @@
 layout: example
 title: Postbid Example
 description: Postbid Example
-top_nav_section: dev_docs
-nav_section: quick-start
+sidebarType: 1
 
-hide: true
+
 
 why_link: /overview/what-is-post-bid.html
 
@@ -15,9 +14,7 @@ about:
 - There is no need to create line items for each price bucket as the postbid creative is served after the ad server has chosen the line item. 
 - This postbid creative <strong>supports passback</strong>. See how this works below.
 
-jsfiddle_link: jsfiddle.net/prebid_org/ob1kn504/embedded/html,result
+jsfiddle_link: jsfiddle.net/Prebid_Examples/mtuq7kz0/2/embedded/html,result
 
 code_height: 1450
-
-pid: 30
 ---

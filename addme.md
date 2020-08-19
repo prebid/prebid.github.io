@@ -1,11 +1,11 @@
 ---
 redirect_to: "/index.html"
-layout: page
+layout: page_v2
 title: Add me!
 description: 
 pid: 60
 isNew: true
-hide: false
+
 isNavParent: true
 ---
 

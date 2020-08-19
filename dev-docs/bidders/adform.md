@@ -1,28 +1,23 @@
 ---
 layout: bidder
 title: Adform
-description: Prebid Adform Bidder Adaptor 
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
+description: Prebid Adform Bidder Adaptor
 biddercode: adform
-
-biddercode_longer_than_12: false
-
-prebid_1_0_supported : true
-media_types: video
+media_types: banner, video
 gdpr_supported: true
+usp_supported: true
+tcf2_supported: true
+prebid_member: true
+pbjs: true
+pbs: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `mid` | required | | `12345` |
-| `adxDomain` | optional | The Adform domain | `"adx.adform.net"` |
+| Name        | Scope    | Description       | Example            | Type      |
+|-------------|----------|-------------------|--------------------|-----------|
+| `mid`       | required |                   | `12345`            | `integer` |
+| `adxDomain` | optional | The Adform domain | `'adx.adform.net'` | `string`  |

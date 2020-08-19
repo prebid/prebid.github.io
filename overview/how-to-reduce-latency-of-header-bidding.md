@@ -1,14 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: How to reduce the latency of header bidding with Prebid.js
 head_title: How to reduce the latency of header bidding with Prebid.js
 description: A walkthrough of why header bidding implementations cause latency. An overview of how to use Prebid.js to reduce it.
-pid: 40
-top_nav_section: overview
-nav_section: studies
+sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # How to reduce the latency of header bidding with Prebid.js
 {:.no_toc}
@@ -30,8 +28,7 @@ The final scenario shows how header bidding is accelerated by Prebid.js.
 
 ## Blocking Call Scenario 1
 
-{: .pb-lg-img :}
-![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-blocking-1.png)
+![Blocking Ad Calls 1]({{ site.github.url }}/assets/images/icons/latency-blocking-1.png){: .pb-lg-img :}
 
 * In this scenario, all header bidding requests combined took 4 seconds to load!
 * Users have to wait for 4 seconds of blank space in their web browser before any content can load.
@@ -40,8 +37,7 @@ The final scenario shows how header bidding is accelerated by Prebid.js.
 
 ## Blocking Call Scenario 2
 
-{: .pb-lg-img :}
-![Blocking Ad Calls 2]({{ site.github.url }}/assets/images/icons/latency-blocking-2.png)
+![Blocking Ad Calls 2]({{ site.github.url }}/assets/images/icons/latency-blocking-2.png){: .pb-lg-img :}
 
 * In this scenario, all header bidding requests in total took 1 second to load.
 * However, if all of the calls were made asynchronously, latency could still be dramatically reduced.
@@ -50,8 +46,7 @@ The final scenario shows how header bidding is accelerated by Prebid.js.
 
 ## Asynchronous Call Scenario with Prebid.js
 
-{: .pb-lg-img :}
-![Prebid ad calls made concurrently]({{ site.github.url }}/assets/images/icons/latency-concurrent.png)
+![Prebid ad calls made concurrently]({{ site.github.url }}/assets/images/icons/latency-concurrent.png){: .pb-lg-img :}
 
 * *All Pre-bid Calls are made concurrently within 100ms*: Note that AppNexus, Pubmatic, OpenX, Rubicon bidding header calls were all made within the first 100ms. 
 
@@ -63,4 +58,4 @@ The final scenario shows how header bidding is accelerated by Prebid.js.
 
 + [Getting Started]({{site.baseurl}}/overview/getting-started.html)
 
-</div>
+

@@ -1,0 +1,89 @@
+{% include head.html %}
+
+{% include nav.html %}
+
+		
+<div class="container bs-docs-container">
+	
+	 
+	
+	<div class="row ">
+		
+		<div class="wrapper">
+			
+			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">		
+				{% include left_nav.html %}
+			</div>
+		
+		
+			<div class="col-sm-9 pb-content" markdown="1">
+				
+				{% if page.is_full_screen %} 
+					{{content}}
+				{% else %}
+			
+				<div class="row">
+		
+		            <div class="col-md-9" role="main">
+		                <div class="bs-docs-section">
+		
+		                    <h3>{{ page.title }}</h3>
+		
+		                    <h4>Bidder Code</h4>
+		                    
+		                    {% if page.s2s_only == true %}
+								<div class="pb-bidder-s2">
+									<h3>Note:</h3> This is a S2S adapter only.</h3>
+								</div>
+							{% endif %}
+		
+		                    <code>{{ page.biddercode }}</code> 
+		                    {% if page.biddercode_longer_than_12 != true %}
+		                        <h4>Send All Bids Ad Server Keys</h4>
+		                        <code>hb_pb_{{ page.biddercode }}</code>
+		                        <code>hb_adid_{{ page.biddercode }}</code>
+		                        <code>hb_size_{{ page.biddercode }}</code> 
+		                    {% endif %} 
+		
+		                    {{content}}
+							
+		                </div>
+		
+		                {% if page.show_disqus %} 
+		                    {% include disqus_addon.html %} 
+		                {% endif %}
+		            </div>
+		
+		        </div>
+		        
+		        {% endif %}
+
+
+        	</div>
+
+							
+		</div>
+		<!--end wrapper-->
+	</div>	
+	<!--end row-->	
+	
+	<p></p>
+	<hr>
+
+	{% if page.title != "Credits" %}
+		{% if page.layout != "home" %}
+			{% include footer.html %}
+		{% endif %}
+	{% endif %}
+	
+	</div>
+
+
+
+</body>
+		
+		
+
+
+
+

@@ -6,23 +6,19 @@ description: This week, we're pleased to announce the formation of Prebid.org, a
 permalink: /blog/announcing-prebid-org
 ---
 
-(_This post originally appeared on the
-[AppNexus blog](http://blog.appnexus.com/2017/prebid-org-explained-interview-michael-richardson/).
-It has been lightly edited for clarity._)
-
 This week, we're pleased to announce the formation of
-[Prebid.org](http://prebid.org/overview/what-is-prebid-org.html): an
+[Prebid.org](/overview/what-is-prebid-org.html): an
 independent organization dedicated to open source tools that drive
 publisher monetization.
 
 We sat down with
 [Michael Richardson](https://www.linkedin.com/in/mtrichardson/) to
 answer a few questions about why
-[Prebid.org](http://prebid.org/overview/what-is-prebid-org.html) is
+[Prebid.org](/overview/what-is-prebid-org.html) is
 being launched as an independent entity and what it means for
 publishers and vendors.  Michael is a Product Line Manager at
 [AppNexus](https://www.appnexus.com) and Chairman of
-[Prebid.org](http://prebid.org/overview/what-is-prebid-org.html).
+[Prebid.org](/overview/what-is-prebid-org.html).
 
 * TOC
 {:toc}
@@ -42,9 +38,9 @@ group effort. We want to work together with the rest of the industry
 to keep driving header bidding adoption and effectiveness.
 
 That's why we're launching
-[Prebid.org](http://prebid.org/overview/what-is-prebid-org.html): a
+[Prebid.org](/overview/what-is-prebid-org.html): a
 coalition to champion open-source header bidding and its ongoing
-development. [Prebid.org](http://prebid.org/overview/what-is-prebid-org.html)
+development. [Prebid.org](/overview/what-is-prebid-org.html)
 will act as an independent voice on how publishers should interact
 with programmatic, help ensure that header bidding remains fair and
 transparent across all parties affiliated with Prebid, and continue to
@@ -87,8 +83,7 @@ partners can trust that their wrappers are treating them fairly.
 ## Who is part of Prebid.org?
 
 We're launching with [Rubicon Project](https://rubiconproject.com) to
-start. They've
-[contributed a ton](https://blog.appnexus.com/2017/prebid-expert-series-interview-de-zwart/)
+start. They've contributed a ton
 to Prebid already – some great additions to the project have come from
 the AppNexus and Rubicon Project teams working together.
 
