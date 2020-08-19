@@ -131,6 +131,10 @@ The callback will receive an object with the following attributes:
 }
 ```
 
+#### Listening for errors
+
+There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID)
+
 #### Analytics adapter best practices
 
 + listen only to the events required
