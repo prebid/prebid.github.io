@@ -1189,6 +1189,7 @@ The available events are:
 | requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | None |
 | addAdUnits    | Ad units have been added to the auction | None |
 | adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
+| auctionDebug  | An error was logged to the console | Object containing 'type' and 'arguments' |
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 
@@ -1247,6 +1248,16 @@ Events example 3: Dynamically modify the auction
             // e.g. "remove any that haven't bid in the last 4 refreshes"
 	};
 	pbjs.onEvent('beforeRequestBids', bidderFilter);
+{% endhighlight %}
+
+Events example 4: Log errors and render fails to your own endpoint
+{% highlight js %}
+        pbjs.onEvent('adRenderFailed', function () {
+              // pub-specific logic to call their own endpoint
+            });
+	pbjs.onEvent('auctionDebug', function () {
+              // pub-specific logic to call their own endpoint
+            });
 {% endhighlight %}
 
 <hr class="full-rule" />
