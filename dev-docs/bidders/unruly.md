@@ -2,10 +2,11 @@
 layout: bidder
 title: Unruly
 description: Prebid Unruly Bidder Adaptor
-hide: true
 biddercode: unruly
 media_types: native, video
 gdpr_supported: true
+pbjs: true
+pbs: true
 ---
 
 ### Bid Params

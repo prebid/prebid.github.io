@@ -2,7 +2,7 @@
 layout: bidder
 title: andbeyond
 description: Prebid andbeyond Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: andbeyond
 ---
 

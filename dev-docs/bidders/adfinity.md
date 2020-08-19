@@ -2,7 +2,7 @@
 layout: bidder
 title: Adfinity
 description: Prebid Adfinity Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adfinity
 media_types: banner, video, native
 gdpr_supported: true

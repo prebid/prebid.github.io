@@ -2,7 +2,7 @@
 layout: bidder
 title: Platform.io
 description: Prebid Platform.io Bidder Adapter
-hide: true
+pbjs: true
 biddercode: platformio
 media_types: native, video
 gdpr_supported: true

@@ -180,7 +180,9 @@ This section contains working examples of instream and outstream video ads for v
 + [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
 + [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
+
 ## Further Reading
 
 -   [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)
 -   [What is Prebid?]({{site.github.url}}/overview/intro.html)
+

@@ -64,7 +64,7 @@ The "limited bid caching" feature applies only:
 Since the storage is in the browser, cached bids only apply to a single page context. If the user refreshes the page, the bid is lost.
 
 Each bid adapter defines the amount of time their bids can be cached and reconsidered.
-This setting is called “Time to Live” (TTL), documented [here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
+This setting is called “Time to Live” (TTL), documented in the <code>pbjs.getBidResponse</code> [parameter table here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
 
 Examples of scenarios where a bid may be reconsidered in Prebid.js:
 
@@ -125,7 +125,7 @@ See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/maste
 
 ## When do I have to upgrade my version of Prebid.js?
 
-Prebid.org does not support any version of Prebid.js prior to version 1.0. If you want continued support through updates and documentation you should upgrade to a newer version.
+Prebid.org does not support any version of Prebid.js prior to the previous version. e.g. if the current version is 4.x, we'll help debug 3.x, but not 2.x. If you want continued support through updates and documentation you should upgrade to a newer version.
 
 ## How can I change the price granularity for different ad units?
 
@@ -148,6 +148,15 @@ benefits for sending more than one bid.
 Once you find the right balance for your application, you can specify
 what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
 
+## Can I run multiple different versions of Prebid.js concurrently?
+
+It's technically possible, but we don't recommend doing this:
+
+- The code isn't small. For performance reasons you don't want to run two versions if you can help it
+- We don't test concurrent versions
+- We won't specifically support debugging problems caused by running two concurrent versions. But will take take PRs if someone finds an issue.
+
+If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/master/package.json#L20)
 
 ## Related Reading
 

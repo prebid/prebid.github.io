@@ -2,7 +2,7 @@
 layout: bidder
 title: Komoona
 description: Prebid Komoona Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: komoona
 ---
 

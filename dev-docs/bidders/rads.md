@@ -2,7 +2,7 @@
 layout: bidder
 title: Rads
 description: Prebid Rads Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: rads
 media_types: banner, video 
 gdpr_supported: false

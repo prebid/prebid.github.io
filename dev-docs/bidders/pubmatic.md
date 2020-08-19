@@ -2,15 +2,17 @@
 layout: bidder
 title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
-hide: true
 biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
+tcf2_supported: true
+pbjs: true
+pbs: true
 ---
 
 ### Prebid Server Note:
@@ -196,5 +198,37 @@ pbjs.setConfig({
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }
 });
+```
+
+### Prebid Server Test Request
+
+The following test parameters can be used to verify that Prebid Server is working properly with the
+PubMatic adapter. This example includes an `imp` object with an PubMatic test publisher ID, ad slot,
+and sizes that would match with the test creative.
+
+```
+"imp":[
+      {
+         "id":“"some-impression-id”,
+         "banner":{
+            "format":[
+               {
+                  "w":300,
+                  "h":250
+               },
+               {
+                  "w":300,
+                  "h":600
+               }
+            ]
+         },
+         "ext":{
+            "pubmatic":{
+               "publisherId":“156276”,
+               "adSlot":"pubmatic_test"
+            }
+         }
+      }
+   ]
 ```
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->

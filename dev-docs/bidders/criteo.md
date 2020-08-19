@@ -2,12 +2,13 @@
 layout: bidder
 title: Criteo
 description: Prebid Criteo Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
 usp_supported: true
 prebid_member: true
+tcf2_supported: true
 ---
 ### Note
 {: .alert.alert-warning :}

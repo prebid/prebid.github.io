@@ -6,7 +6,7 @@ description: Prebid.js Analytics with GA
 pid: 30
 top_nav_section: dev_docs
 nav_section: reference
-hide: true
+
 ---
 
 

@@ -2,7 +2,7 @@
 layout: bidder
 title: Quantcast
 description: Prebid Quantcast Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: quantcast
 media_types: video
 gdpr_supported: true
