@@ -38,9 +38,7 @@ Specific technical rules are needed to govern the development and review of modu
 
 Bid adapters, user ID adapters, analytics adapters, and other modules will be reviewed for conformity to the Core Values of Prebid.org.
 
-This set of module rules applies to both Prebid.js and Prebid Server.
-
-These rules don’t necessarily apply to tools or the Prebid Mobile SDK. Rules and guidelines for those products will be determined by their respective committees as required.
+This set of module rules applies to both Prebid.js and Prebid Server.  However, these rules don’t necessarily apply to tools or the Prebid Mobile SDK. Rules and guidelines for those products will be determined by their respective committees as required.
 
 The use of the terms "must" and "should" in this document is deliberate.  However, some of the rules are "aspirational," in that we know there are existing exceptions to the rule that will need to get sorted out over time. These are marked with an asterisk (*). The goal is:
 
