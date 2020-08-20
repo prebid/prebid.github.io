@@ -21,7 +21,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 * **BritePool ID** - Britepool Identity Resolution userId submodule. Universal Identity resolution which does not depend on 3rd party cookies.
 * **Criteo ID for Exchanges** –  specific id for Criteo and its partners that enables optimal take rate on all web browsers.
-* **ID+** - ID+ is based on Zeotap’s Deterministic Audience graph and is designed to work in the world without the 3rd party cookie. This Module makes the user’s ID+ available for it to be used in the bid request.
+* **ID+** - a universal identity solution that aims to empower the marketing ecosystem with a privacy-compliant mechanism to overcome identity resolution challenges arising from ID fragmentation, cookie restrictions and increasingly stringent regulation across the world. It is powered by Zeotap and built on the back of the world’s largest marketing identity graph.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
 * **IntentIQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
@@ -168,10 +168,11 @@ pbjs.setConfig({
 
 ### ID+
 
-ID+ solution is Zeotap Initiative which is an open invitation to the whole ecosystem to collaboratively solve the industry challenge of identity resolution in a third-party cookieless environment. 
-ID+ is based on Zeotap’s Deterministic Audience graph and is designed to work in the world without the 3rd party cookie. This sub-module makes the user’s ID+ available in the bid request.
+ID+, a zeotap powered solution, is an open invitation to the entire ecosystem to collaboratively solve the industry challenge of identity resolution in a third-party cookieless environment. 
 
-You can learn more about it at [ID+ powered by Zeotap](https://idplus.io/)
+This sub-module enables the user’s ID+ to be available in the bid request.
+
+More information on ID+ can be found here: [https://idplus.io/](https://idplus.io/)
 
 Add it to your Prebid.js package with:
 
@@ -180,7 +181,8 @@ gulp build --modules=zeotapIdPlusIdSystem
 
 #### ID+ Registration
 
-You can set up your ID+ account by contacting our Product Operations Analyst team directly at [team.pom@zeotap.com](mailto:prebid@liveramp.com) or via [https://idplus.io/contact-us.html](https://idplus.io/contact-us.html)
+You can set up your ID+ account by contacting our support team at [support.idplus@zeotap.com](mailto:support.idplus@zeotap.com) or via [https://idplus.io/contact-us](https://idplus.io/contact-us.html) and we will get back to you.
+
 ID+ is covered under zeotap privacy policy: [Zeotap Privacy Policy](https://zeotap.com/website-privacy-policy).
 
 #### ID+ Example
