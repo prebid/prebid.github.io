@@ -10,6 +10,9 @@ media_types: banner, video
 gdpr_supported: true
 ---
 
+### Registration
+
+To use this bidder you will need an account and a valid tagid from our exchange.  For further information, please contact your Account Manager or adops@emxdigital.com.
 
 ### Bid Params
 

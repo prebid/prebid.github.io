@@ -7,6 +7,7 @@ pbs: true
 biddercode: adhese
 media_types: banner, video 
 gdpr_supported: true
+tcf2_supported: true
 userIds: id5Id
 ---
 

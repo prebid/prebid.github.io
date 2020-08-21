@@ -2,7 +2,11 @@
 layout: bidder
 title: MobileFuse
 pbs: true
-media_types: banner
+pbjs: false
+media_types: banner, video
+schain_supported: true
+usp_supported: true
+coppa_supported: true
 biddercode: mobilefuse
 ccpa_supported: true
 prebid_member: true

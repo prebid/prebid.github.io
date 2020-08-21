@@ -36,13 +36,13 @@ Prebid functionality created to address regulatory requirements does not replace
 
 This base EU GDPR consent management module performs these actions:
 
-1. Fetch the user's GDPR consent data from the CMP.
+1. Fetch the user's GDPR & Google additional consent data from the CMP.
 2. Incorporate this data into the auction objects for adapters to collect.
 
 The optional [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) adds on these actions:
 
 3. Allows the page to define which activities should be enforced at the Prebid.js level.
-4. Actively enforces those activities based on user consent data.
+4. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
 
 In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.
@@ -54,7 +54,7 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 ## Page Integration
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/tcf-v1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
+To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/all-news/the-iab-europe-transparency-consent-framework-tcf-steering-group-votes-to-extend-technical-support-for-tcf-v1-1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
 
 Though implementation details for the CMP are not covered by Prebid.org, we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes.
 
@@ -76,6 +76,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.allowAuctionWithoutConsent | `boolean` | (TCF v1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
+| gdpr.consentData.getTCData.addtlConsent | `string` | (TCF v2.0 only) Additional consent string if available from the cmp TCData object | |
 | gdpr.consentData.getTCData.gdprApplies | `boolean` | (TCF v2.0 only) Defines whether or not this pageview is in GDPR scope. | |
 | gdpr.consentData.getConsentData.gdprApplies | `boolean` | (TCF v1.1 only) Defines whether or not this pageview is in GDPR scope. | |
 | gdpr.consentData.getConsentData.hasGlobalScope | `boolean` | (TCF v1.1 only) True if consent data is global, false if it's publisher specific. | |
@@ -225,6 +226,10 @@ Here is a sample of how the data is structured in the `bidderRequest` object:
 **_consentString_**
 
 This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field might come to you with an `undefined` value; normally this happens when there was an error during the CMP interaction and the publisher had the config option `allowAuctionWithoutConsent` set to `true`.  If you don't want to pass `undefined` to your system, you can check for this value and replace it with a valid consent string.  See the *consent_required* code in the example below (under "gdprApplies") for a possible approach to checking and replacing values.
+
+**_addtlConsent_**
+
+If the CMP responds with additional consent data as proposed at https://support.google.com/admanager/answer/9681920?hl=en then the corresponding string is stored here.
 
 **_vendorData_**
 

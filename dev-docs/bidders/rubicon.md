@@ -17,8 +17,9 @@ pbjs: true
 pbs: true
 ---
 
-### Note:
-The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
+### Registration
+
+For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or globalsupport@magnite.com for more information.
 
 ### Bid Params
 

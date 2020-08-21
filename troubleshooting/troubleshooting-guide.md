@@ -417,6 +417,24 @@ When this event is logged, it shows that Prebid.js has requested to render the a
 
 <hr>
 
+## Common Bid Response Parameters
+
+The following parameters in the `bidResponse` object are common across all bidders.
+
+{: .table .table-bordered .table-striped }
+| Name     | Type    | Description                                                                                                                                                       | Example                                                                 |
+|----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------|
+| `bidder` | String  | Unique bidder code used by ad server's line items to identify the bidder                                                                                          | `"appnexus"`                                                            |
+| `adId`   | String  | Unique identifier of a bid creative. Used by the line item's creative as in [this example]({{site.baseurl}}/adops/send-all-bids-adops.html#step-3-add-a-creative) | `"123"`                                                                 |
+| `pbLg`   | String  | Low granularity price bucket: $0.50 increment, capped at $5, floored to 2 decimal places (0.50, 1.00, 1.50, ..., 5.00)                                            | `"1.50"`                                                                |
+| `pbMg`   | String  | Medium granularity price bucket: 0.10 increment, capped at $20, floored to 2 decimal places (0.10, 0.20, ..., 19.90, 20.00)                                       | `"1.60"`                                                                |
+| `pbHg`   | String  | High granularity price bucket: 0.01 increment, capped at $20, floored to 2 decimal places (0.01, 0.02, ..., 19.99, 20.00)                                         | `"1.61"`                                                                |
+| `size`   | String  | Size of the bid creative; concatenation of width and height by 'x'                                                                                                | `"300x250"`                                                             |
+| `width`  | Integer | Width of the bid creative in pixels                                                                                                                               | `300`                                                                   |
+| `height` | Integer | Height of the bid creative in pixels                                                                                                                              | `250`                                                                   |
+| `adTag`  | String  | Creative's payload in HTML                                                                                                                                        | `"<html><body><img src=\"https://cdn.com/creative.png\"></body></html>"` |
+
+
 ## Related Topics
 
 {:.no_toc}
