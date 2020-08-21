@@ -78,6 +78,10 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
 | gdpr.consentData.getTCData.addtlConsent | `string` | (TCF v2.0 only) Additional consent string if available from the cmp TCData object | |
 | gdpr.consentData.getTCData.gdprApplies | `boolean` | (TCF v2.0 only) Defines whether or not this pageview is in GDPR scope. | |
+| gdpr.consentData.getTCData.purpose.consents | `Object` | (TCF v2.0 only) An object representing the user's consent status for specific purpose IDs | |
+| gdpr.consentData.getTCData.purpose.legitimateInterests | `Object` | (TCF v2.0 only) An object representing the user's legitimate interest status for specific purpose IDs | |
+| gdpr.consentData.getTCData.vendor.consents | `Object` | (TCF v2.0 only) An object representing the user's consent status for specific vendor IDs | |
+| gdpr.consentData.getTCData.vendor.legitimateInterests | `Object` | (TCF v2.0 only) An object representing the user's legitimate interest status for specific vendors IDs | |
 | gdpr.consentData.getConsentData.gdprApplies | `boolean` | (TCF v1.1 only) Defines whether or not this pageview is in GDPR scope. | |
 | gdpr.consentData.getConsentData.hasGlobalScope | `boolean` | (TCF v1.1 only) True if consent data is global, false if it's publisher specific. | |
 | gdpr.consentData.getConsentData.consentData | `string` | (TCF v1.1 only) Encoded TCF v1.1 string. | |
@@ -125,10 +129,30 @@ Example 2: Static CMP using custom data passing.
             gdpr: {
               cmpApi: 'static',
               consentData: {
-		getTCData: {
-		  tcString: 'COwK6gaOwK6gaFmAAAENAPCAAAAAAAAAAAAAAAAAAAAA.IFoEUQQgAIQwgIwQABAEAAAAOIAACAIAAAAQAIAgEAACEAAAAAgAQBAAAAAAAGBAAgAAAAAAAFAAECAAAgAAQARAEQAAAAAJAAIAAgAAAYQEAAAQmAgBC3ZAYzUw',
-		  gdprApplies: true
-		}
+                getTCData: {
+                  tcString: 'COwK6gaOwK6gaFmAAAENAPCAAAAAAAAAAAAAAAAAAAAA.IFoEUQQgAIQwgIwQABAEAAAAOIAACAIAAAAQAIAgEAACEAAAAAgAQBAAAAAAAGBAAgAAAAAAAFAAECAAAgAAQARAEQAAAAAJAAIAAgAAAYQEAAAQmAgBC3ZAYzUw',
+                  gdprApplies: true,
+                  purpose: {
+                    consents: {
+                      0: true,
+                      ...
+                    },
+                    legitimateInterests: {
+                      0: true,
+                      ...
+                    }
+                  },
+                  vendor: {
+                    consents: {
+                      00: true,
+                      ...
+                    },
+                    legitimateInterests: {
+                      0: true,
+                      ...
+                    }
+                  }
+                }
               }
             }
           }
