@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Mediago
+title: MediaGo
 description: MediaGo Prebid Bidder Adapter
 biddercode: mediago
 media_types: banner
