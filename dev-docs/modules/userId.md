@@ -191,8 +191,7 @@ ID+ is covered under zeotap privacy policy: [Zeotap Privacy Policy](https://zeot
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "zeotapIdPlus",
-            storage: { name: "IDP", type: “cookie” }
+            name: "zeotapIdPlus"
         }]
     }
 });
