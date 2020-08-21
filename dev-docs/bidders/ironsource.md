@@ -2,8 +2,8 @@
 layout: bidder
 title: IronSource
 description: Prebid IronSource Bidder Adaptor
-
-biddercode: ironSource
+pbjs: true
+biddercode: ironsource
 media_types: no-display, video
 schain_supported: true
 gdpr_supported: true
@@ -38,7 +38,7 @@ var adUnits = [
           }
         },
         bids: [{
-          bidder: 'ironSource',
+          bidder: 'ironsource',
           params: {
             isOrg: '56f91cd4d3e3660002000033', // Required
             floorPrice: 5.00, // Optional
@@ -70,6 +70,6 @@ For Prebid.js v1.14.0 and before:
 pbjs.setConfig({
   userSync: {
     iframeEnabled: true,
-    enabledBidders: ['ironSource']
+    enabledBidders: ['ironsource']
   }
 });
