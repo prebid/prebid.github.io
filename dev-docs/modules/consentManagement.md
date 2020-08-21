@@ -78,6 +78,10 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
 | gdpr.consentData.getTCData.addtlConsent | `string` | (TCF v2.0 only) Additional consent string if available from the cmp TCData object | |
 | gdpr.consentData.getTCData.gdprApplies | `boolean` | (TCF v2.0 only) Defines whether or not this pageview is in GDPR scope. | |
+| gdpr.consentData.getTCData.purpose.consents | `Object` | (TCF v2.0 only) An object representing the user's consent status for specific purpose IDs. | |
+| gdpr.consentData.getTCData.purpose.legitimateInterests | `Object` | (TCF v2.0 only) An object representing the user's legitimate interest status for specific purpose IDs. | |
+| gdpr.consentData.getTCData.vendor.consents | `Object` | (TCF v2.0 only) An object representing the user's consent status for specific vendor IDs. | |
+| gdpr.consentData.getTCData.vendor.legitimateInterests | `Object` | (TCF v2.0 only) An object representing the user's legitimate interest status for specific vendors IDs. | |
 | gdpr.consentData.getConsentData.gdprApplies | `boolean` | (TCF v1.1 only) Defines whether or not this pageview is in GDPR scope. | |
 | gdpr.consentData.getConsentData.hasGlobalScope | `boolean` | (TCF v1.1 only) True if consent data is global, false if it's publisher specific. | |
 | gdpr.consentData.getConsentData.consentData | `string` | (TCF v1.1 only) Encoded TCF v1.1 string. | |
@@ -85,6 +89,9 @@ but we recommend migrating to the new config structure as soon as possible.
 
 {: .alert.alert-info :}
 NOTE: The `allowAuctionWithoutConsent` parameter supported for TCF v1.1 refers to the entire consent string, not to any individual consent option. Prebid.js does not parse the GDPR consent string, so it doesn't know if the user has consented to any particular action.
+
+{: .alert.alert-info :}
+NOTE: The `purpose` and `vendor` objects are required if you are using the `gdprEnforcement` module.  If the data is not included, your bid adpaters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
 
 A related parameter is `deviceAccess`, which is at the global level of Prebid.js configuration because it can be used GDPR, CCPA, or custom privacy implementations:
 
@@ -125,10 +132,30 @@ Example 2: Static CMP using custom data passing.
             gdpr: {
               cmpApi: 'static',
               consentData: {
-		getTCData: {
-		  tcString: 'COwK6gaOwK6gaFmAAAENAPCAAAAAAAAAAAAAAAAAAAAA.IFoEUQQgAIQwgIwQABAEAAAAOIAACAIAAAAQAIAgEAACEAAAAAgAQBAAAAAAAGBAAgAAAAAAAFAAECAAAgAAQARAEQAAAAAJAAIAAgAAAYQEAAAQmAgBC3ZAYzUw',
-		  gdprApplies: true
-		}
+                getTCData: {
+                  tcString: 'COwK6gaOwK6gaFmAAAENAPCAAAAAAAAAAAAAAAAAAAAA.IFoEUQQgAIQwgIwQABAEAAAAOIAACAIAAAAQAIAgEAACEAAAAAgAQBAAAAAAAGBAAgAAAAAAAFAAECAAAgAAQARAEQAAAAAJAAIAAgAAAYQEAAAQmAgBC3ZAYzUw',
+                  gdprApplies: true,
+                  purpose: {
+                    consents: {
+                      0: true,
+                      ...
+                    },
+                    legitimateInterests: {
+                      0: true,
+                      ...
+                    }
+                  },
+                  vendor: {
+                    consents: {
+                      00: true,
+                      ...
+                    },
+                    legitimateInterests: {
+                      0: true,
+                      ...
+                    }
+                  }
+                }
               }
             }
           }
