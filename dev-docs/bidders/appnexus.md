@@ -44,7 +44,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 | `user`              | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes` | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule`    | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
-| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
+| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
 | `video`             | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 | `app`               | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
 | `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here.                | `0.90`                                                | `float`          |
@@ -165,6 +165,15 @@ If you are syncing user id's with Prebid Server and are using AppNexus' managed 
 
 <a name="appnexus-debug-auction" />
 
+#### Mobile App Display Manager Version
+
+The AppNexus endpoint expects `imp.displaymanagerver` to be populated for mobile app sources
+requests, however not all SDKs will populate this field. If the `imp.displaymanagerver` field
+is not supplied for an `imp`, but `request.app.ext.prebid.source`
+and `request.app.ext.prebid.version` are supplied, the adapter will fill in a value for
+`diplaymanagerver`. It will concatenate the two `app` fields as `<source>-<version>` fo fill in
+the empty `displaymanagerver` before sending the request to AppNexus.
+
 #### Debug Auction
 
 {: .alert.alert-danger :}
@@ -185,3 +194,29 @@ To view the results of the debug auction, add the `pbjs_debug=true` query string
 | `dongle`          | Your account's unique debug password.                           | `QWERTY`              | `string`         |
 | `member_id`       | The ID of the member running the debug auction                  | `958`                 | `integer`        |
 | `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |
+
+#### Prebid Server Test Request
+
+The following test parameters can be used to verify that Prebid Server is working properly with the 
+server-side Appnexus adapter. This example includes an `imp` object with an Appnexus test placement ID and sizes
+that would match with the test creative.
+
+```
+	"imp": [{
+		"id": "some-impression-id",
+		"banner": {
+			"format": [{
+				"w": 600,
+				"h": 500
+			}, {
+				"w": 300,
+				"h": 600
+			}]
+		},
+		"ext": {
+			"appnexus": {
+				"placementId": 13144370
+			}
+		}
+	}]
+```
