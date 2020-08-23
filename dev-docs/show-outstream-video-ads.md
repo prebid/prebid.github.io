@@ -90,16 +90,27 @@ pbjs.addAdUnit({
         }
     },
     renderer: {
-        url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
-        backupOnly: 'true',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        backupOnly: 'true', // prefer demand renderer
         render: function (bid) {
-            ANOutstreamVideo.renderAd({
-                targetId: bid.adUnitCode,
-                adResponse: bid.adResponse,
+            adResponse = {
+                ad: {
+                    video: {
+                        content: bid.vastXml,
+                        player_height: bid.playerHeight,
+                        player_width: bid.playerWidth
+                    }
+                }
+            }
+            // push to render queue because ANOutstreamVideo may not be loaded yet.
+            bid.renderer.push(() => {
+                ANOutstreamVideo.renderAd({
+                    targetId: bid.adUnitCode, // target div id to render video.
+                    adResponse: adResponse
+                });
             });
         }
-    },
-    ...
+    }
 });
 
 {% endhighlight %}
