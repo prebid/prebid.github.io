@@ -2,19 +2,13 @@
 layout: page_v2
 title: How to Add a Prebid.js RTD submodule
 description: How to Add a Prebid.js RTD submodule
-pid: 28
-top_nav_section: dev_docs
-nav_section: adapters
-
 sidebarType: 1
 ---
-
-
 
 # How to Add a Real Time Data Submodule
 {:.no_toc}
 
-Sub-modules will interact with the Real-Time Data core module in order to add any type of data to bidders and to the primary ad server.
+Sub-modules will interact with the Real-Time Data (RTD) core module in order to add any type of data to bidders and to the primary ad server.
 
 
 * TOC
