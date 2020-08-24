@@ -1699,7 +1699,7 @@ a price granularity override. If it doesn't find 'video-outstream' defined, it w
 
 #### Server to Server
 
-Prebid.js can be configured to connect to one or more [Prebid Servers](/dev-docs/get-started-with-prebid-server.html) for one or more bidders.
+Prebid.js can be configured to connect to one or more [Prebid Servers](/prebid-server/overview/prebid-server-overview.html) for one or more bidders.
 
 Example config:
 

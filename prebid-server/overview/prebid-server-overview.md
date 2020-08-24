@@ -51,7 +51,7 @@ To choose between them, see the [Prebid Server version overview](/prebid-server/
 
 ## Which Server-Side Bidders to Utilize
 
-We've provided a [full list of Prebid Server bidders](/dev-docs/prebid-server-bidders.html), including various details about those bidders, such as media types supported and contact info.
+We've provided a [full list of Prebid Server bidders](/dev-docs/pbs-bidders.html), including various details about those bidders, such as media types supported and contact info.
 
 If you're a demand source, we also have information about [creating your own server-side adapter](/prebid-server/bidders/pbs-build-a-bid-adapter.html).
 
