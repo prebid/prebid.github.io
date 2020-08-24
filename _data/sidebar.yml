@@ -398,6 +398,14 @@
   subgroup: 4
 
 - sbSecId: 1
+  title: How to Add an RTD submodule
+  link: /dev-docs/add-rtd-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
   title: Prebid Modules
   link:
   isHeader: 1
