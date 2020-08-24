@@ -35,10 +35,31 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
 | [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, Unified ID and LiveIntent ID. |
-| [**Browsi Viewability**]({{site.baseurl}}/dev-docs/modules/browsiRtdProvider.html) | Browsi provider for real time data module.  |
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
 | [**Price Floors Module**](/dev-docs/modules/floors.html) | Configure and enforce minimum bids. |
 | [**GPT Pre-Auction Module**](/dev-docs/modules/gpt-pre-auction.html) | Adds a PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters. |
+
+## Real-Time Data Providers
+
+{% assign module_pages = site.pages | where: "page_type", "module" | where: "module_type", "rtd" %}
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in module_pages %}
+  {% if page.enable_download == false %}{% continue %}{% endif %}
+    <tr>
+      <td><a href="/dev-docs/modules/{{page.module_code}}RtdProvider.html"><strong>{{page.title}}</strong></a></td>
+      <td>{{page.description}}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
 
 ## Video Modules
 

@@ -8,7 +8,8 @@ sidebarType: 1
 # How to Add a Real Time Data Submodule
 {:.no_toc}
 
-Sub-modules will interact with the Real-Time Data (RTD) core module in order to add any type of data to bidders and to the primary ad server.
+Sub-modules interact with the Real-Time Data (RTD) core module to
+add data to bid requests or add targeting values for the primary ad server.
 
 
 * TOC
@@ -16,19 +17,23 @@ Sub-modules will interact with the Real-Time Data (RTD) core module in order to 
 
 ## Overview
 1. RTD module is a generic core module, allowing sub-modules to register and use it to modify bid request/response and set targeting data for the publisher’s ad server.
-2. This will be done using hooks (with optional auction delay) and events.
-3. Sub-modules functions will be invoked by the RTD module, eliminating race conditions and data override issues.
-4. As a rule, sub-modules should delay the auction as little as possible.
+2. This is done using hooks (with optional auction delay) and events.
+3. Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc.
+4. Sub-module functions are invoked by the RTD core module.
+5. As a rule, sub-modules should delay the auction as little as possible.
 
 ## Architecture
 
 The RTD module using hooks and event listeners to genrate the flow for the data modificatios.
 On each step it calls the submodules to retrive the data.
-Here is the flow for the RTD module and submodules:
+Here is the flow for how the RTD-core module interacts with its sub-modules:
 
-![Prebid RTD Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-rtd-architecture.jpg){: .pb-md-img :}
+![Prebid RTD Architecture Diagram](/assets/images/prebid-rtd-architecture.jpg){: .pb-xlg-img :}
 
-## Creating a submodule
+The activities performed by the RTD-core module are on the left-hand side, while the functions
+that can be provided by your RTD sub-module are on the right-hand side. Note that you don't need to implement all of the functions - you'll want to plan out your functionality and develop the appropriate functions.
+
+## Creating a Sub-Module
 
 Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:
 
@@ -39,10 +44,10 @@ Working with any Prebid project requires using Github. In general, we recommend 
 5. If there's something that needs to change on the prebid.org website, follow the above steps for the [website repo](https://github.com/prebid/prebid.github.io).
 
 {: .alert.alert-warning :}
-Analytics adapters are subject to a number of specific technical rules. Please become familiar
-with the [module rules](/dev-docs/module-rules.html) that apply globally and to real time data modules in particular.
+RTD sub-modules are subject to a number of specific technical rules. Please become familiar
+with the [module rules](/dev-docs/module-rules.html) that apply globally and to Real Time Data modules in particular.
 
-### Step 1: Add a markdown file describing the module
+### Step 1: Add a markdown file describing the sub-module
 
 Create a markdown file under `modules` with the name of the module suffixed with 'RtdProvider', e.g., `exRtdProvider.md`
 
@@ -60,37 +65,51 @@ RTD provider for Example.com. Contact prebid@example.com for information.
 
 {% endhighlight %}
 
-### Step 2: Mandatory functions and parameters
+### Step 2: Build the Module
 
-#### Submodule object
+Now create a javascript file under `modules` with the name of the module suffixed with 'RtdProvider', e.g., `exRtdProvider.js`
 
-Create an object with the following parameters:
+#### The Sub-Module object
+
+In order to let RTD-core know where to find the functions in your sub-module, create an object called `submoduleObj` that contains key values:
 
 {: .table .table-bordered .table-striped }
-|  param name | type  |
-| :------------ | :------------ |
-| name  | string  |
-|  getData  | function  |
-|  init | function  |
+|  param name | type  | Scope | Description | Params |
+| :------------ | :------------ | :------ | :------ | :------ |
+| name  | string  | required | must match the name provided by the publisher in the on-page config | n/a |
+|  getData  | function | required? | ? | adUnitArray, onDoneCallback |
+|  init | function | required | does any auction-level initialization required | config, gdpr, usp |
+|  auctionInit | function | optional | lets sub-module inspect and/or update the auction | auctionDetails, config |
+|  auctionEnd | function |optional | lets sub-module know when auction is done | auctionDetails, config |
+| updateBidRequest | function |optional | lets sub-module inspect and/or update adunits before the auction | adUnitArray, config |
+| updateBidResponse | function |optional | lets sub-module inspect and/or update bidresponses | bidResonse, config |
 
-#### Register submodule 
+For example:
+{% highlight text %}
+export const subModuleObj = {
+  name: 'ExampleRTDModule',
+  getData: sendDataToModule,
+  init: init
+};
+{% endhighlight %}
 
-Register submodule to the real time data module:
+#### Register the submodule 
+
+Register submodule to RTD-core:
 
 {% highlight text %}
 submodule('realTimeData', subModuleObject);
 {% endhighlight %}
 
-
-#### initialization function
-1. The function receives module configuration, GDPR consent, and USP consent as parameters.
+#### The init() function
+1. This function receives module configuration, GDPR consent, and USP consent as parameters.
 2. If the function returns `false`, the submodule will be ignored.
 
+See the [Building the Request](/dev-docs/bidder-adaptor.html#building-the-request) section of the Bid Adapter documentation for more details about GDPR and USP.
 
-
-####  getData function
-1. The function receives adUnits and callback function as parameters
-2. This data will be set as key values on the primary ad server and bidders.
+####  The getData() function
+1. RTD-core will call this function with an array of adUnits and a callback function as parameters
+2. Your sub-module will respond with data that should be set as key values on the ad server targeting and bid requests.
 3. For empty data, call the callback function with an empty object.
 4. The function should call the callback function with an object in the following structure:
 {% highlight text %}
@@ -104,18 +123,20 @@ submodule('realTimeData', subModuleObject);
 }
 {% endhighlight %}
 
-####  Code example
+**Code Example**
 
 {% highlight text %}
 /** @type {RtdSubmodule} */
-export const submoduleObj = {
-  name: 'Sוubmodule name',
+export const subModuleObj = {
+  name: 'ExampleRTDModule',
   getData: sendDataToModule,
   init: init
 };
 
 function init(params, gdprData, uspData) {
-  return gdprData.consentRequired;
+  // do init stuff
+  if (initfailed) return false;
+  return true;
 }
 
 function sendDataToModule(adUnits, callback) {
@@ -126,28 +147,20 @@ function sendDataToModule(adUnits, callback) {
   callback(data);
 }
 
-submodule('realTimeData', submoduleObj);
+submodule('realTimeData', subModuleObj);
 {% endhighlight %}
-
-### Step 3: Optional functions
-
-#### Using event listeners
-1. RTD module listens to 4 events - `auctionInit`, `auctionEnd`, `beforeRequestBids` and `bidResponse`.
-2. Each time one of the events fires, the RTD module will invoke its corresponding function on the sub-modules, allowing the sub-module to make changes to the event object.
-3. To use this on your sub-module, define the required functions (`onAuctionInit` / `onAuctionEnd` / `updateBidRequest` / `updateBidResponse`).
-
-
 
 #### beforeInit
 1. Use this function to take action to make sure data will be served as soon as possible (AJAX calls, pixels, etc..)
-2. This function is **not** invoked by the RTD module, and should be invoked within the submodule.
+2. This function is **not** invoked by the RTD module, and should be invoked at the bottom of the submodule.
 
-#### code example
-here is a code example with both mandatory and optional functions:
+**Code Example**
+
+Here is a code example with both mandatory and optional functions:
 {% highlight text %}
 /** @type {RtdSubmodule} */
-export const submoduleObj = {
-  name: 'Sוubmodule name',
+export const subModuleObj = {
+  name: 'ExampleRTDModule',
   getData: sendDataToModule,
   auctionInit: onAuctionInit,
   auctionEnd: onAuctionEnd,
@@ -156,24 +169,26 @@ export const submoduleObj = {
   init: init
 };
 
-function onAuctionInit(obj, params) {
- //place code to run on auction init
+function onAuctionInit(auctionDetails, config) {
+ // inspect/update auction details
 }
 
-function onAuctionEnd(obj,params) {
-  //place code to run on auction end
+function onAuctionEnd(auctionDetails,config) {
+  // take note of auction end
 }
 
-function onUpdateBidRequest(obj,params) {
-  //place code to run on beforeRequestBids
+function onUpdateBidRequest(adUnitArray,config) {
+  //optionally update adUnits
 }
 
-function onUpdateBidResponse(obj) {
-  //place code to run on bidResponse
+function onUpdateBidResponse(bidResponse,config) {
+  //optionally update bidResponse
 }
 
 function init(params, gdprData, uspData) {
-  return gdprData.consentRequired;
+  // do init stuff
+  if (initfailed) return false;
+  return true;
 }
 
 function sendDataToModule(adUnits, callback) {
@@ -186,39 +201,52 @@ function sendDataToModule(adUnits, callback) {
 
 function beforeInit(){
   //take actions to get data as soon as possible
-  submodule('realTimeData', submoduleObj);
+  submodule('realTimeData', subModuleObj);
 }
 
 beforeInit();
 {% endhighlight %}
 
+#### Using event listeners
+1. The RTD-core module listens for 4 events - `auctionInit`, `auctionEnd`, `beforeRequestBids` and `bidResponse`.
+2. Each time one of the events fires, RTD-core will invoke the corresponding function on each sub-module, allowing the sub-module to make changes to the event object.
+3. To use this on your sub-module, define the required functions (`onAuctionInit` / `onAuctionEnd` / `updateBidRequest` / `updateBidResponse`).
 
 
-### Step 4: Add unit tests
+### Step 3: Add unit tests
 
 1. Create a JS file under `test/spec/modules` with the name of the bidder suffixed with 'RtdProvider_spec', e.g., `exRtdProvider_spec.js`
 
 2. Write great unit tests. See the other `RtdProvider_spec.js` files for examples.
 
-### Step 5: Submit the code
+### Step 4: Submit the code
 
 Once everything looks good, submit the code, tests, and markdown as a pull request to the [Prebid.js repo](https://github.com/prebid/Prebid.js).
 
-### Step 6: Website pull request
-
-There are two files that need to be updated to list your new RTD provider.
+### Step 5: Website pull request
 
 1. Create a fork of the [website repo](https://github.com/prebid/prebid.github.io) and a branch for your new adapter. (e.g. feature/exRtdProvider)
 
-*******not sure how we want to handle docs - do we want to have some category for it? *******
+2. Create a new file for your RTD sub-module in dev-docs/modules/ExampleRtdProvider.md. Take a look at the other *RtdProvider.md files in that directory for the important header values. Specifically it requires the following:
 
-2. Update `overview/analytics.md` to add your adapter alphabetically into the list.
-
-3. Update `download.md` to add your new adapter alphabetically into the li
-st of other analytics adapters.
-
-4. Submit the pull request to the prebid.github.io repo.
+    ```
+    ---
+    layout: page_v2
+    title: Example Module
+    description: Useful statement for what this does
+    page_type: module
+    module_type: rtd
+    module_code : example
+    enable_download : true
+    sidebarType : 1
+    ---
+    
+    # Example Module
+    
+    [Useful publisher-facing documentation]
+    ```
+3. Submit the pull request to the prebid.github.io repo.
 
 ### Step 6: Wait for Prebid volunteers to review
 
-We sometimes get pretty busy, so it can take a couple of weeks for the review process to complete, so while you're waiting, consider [joining Prebid.org](/partners/partners.html) to help us out with code reviews. (!)
+We sometimes get pretty busy, so it can take a couple of weeks for the review process to complete, so while you're waiting, consider [joining Prebid.org](https://prebid.org/membership/) to help us out with code reviews. (!)

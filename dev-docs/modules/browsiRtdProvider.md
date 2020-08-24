@@ -2,8 +2,9 @@
 layout: page_v2
 title: Browsi Viewability Module
 description: Browsi Real Time Viewability
+page_type: module
+module_type: rtd
 module_code : browsi
-display_name : Browsi
 enable_download : true
 sidebarType : 1
 ---
