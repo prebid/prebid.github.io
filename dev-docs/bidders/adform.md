@@ -27,3 +27,21 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 | `minp`      | optional | Minimum CPM price                             | `2.55`                     | `number`  |
 | `cdims`     | optional | Comma-separated creative dimentions           | `'300x250'`                | `string`  |
 | `url`       | optional | Custom targeting URL                          | `'https://some.app/?home'` | `string`  |
+
+Note: Spaces are not allowed between comma-separated list values. For example:
+```
+// valid params
+{
+  mid: 12345,
+  mkv: 'city:NY,city:London',
+  mkv: 'news,sport',
+  cdims: '300x250,250x300'
+}
+// invalid params
+{
+  mid: 12345,
+  mkv: 'city:NY, city:London',
+  mkv: 'news, sport',
+  cdims: '300x250, 250x300'
+}
+```
