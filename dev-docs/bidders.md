@@ -9,7 +9,7 @@ sidebarType: 1
 
 This page contains documentation on the specific parameters required by each supported bidder.
 These docs only apply to Prebid.js bidders. For Prebid Server, AMP, or Prebid Mobile, see the
-[Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.
+[Prebid Server Bidders](/dev-docs/pbs-bidders.html) page.
 
 For each bidder listed below, you'll find the following information:
 
