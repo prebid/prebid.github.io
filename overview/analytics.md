@@ -30,6 +30,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Media.net | <a href="mailto: prebid-support@media.net">Contact vendor</a>| [Website](https://media.net) |
 | PrebidAnalytics by Roxot | [Paid]( http://prebidanalytics.roxot.com/) | [Website](http://prebidanalytics.roxot.com/) |
 | [Prebid Manager](https://prebidmanager.com/) | Free trial and free up to a certain volume. See [pricing](http://prebidmanager.com/#pricing) | [Website](http://prebidmanager.com/) |
+| [Pubperf](https://www.pubperf.com/) | Free trial. See [pricing](https://www.pubperf.com/pricing) | [Website](http://www.pubperf.com/) |
 | [Pubstack](https://pubstack.io?source=prebid.org-analytics) ~ Real Time Analytics For Prebid and GAM | <a href="mailto: sales@pubstack.io">Start a free trial / Talk to the Sales Team</a> | [Website](https://pubstack.io?source=prebid.org-analytics) |
 | PubWise | Free & Paid, see [pricing](https://pubwise.io/pricing/) | [Website](https://www.pubwise.io/) |
 | PulsePoint | Contact vendor | [Website](https://www.pulsepoint.com/) |
@@ -44,7 +45,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Tercept Analytics | <a href="https://www.tercept.com/unified-analytics/">Contact vendor</a> | [Website](https://www.tercept.com/)|
 | ucfunnel | Contact vendor | [Website](https://www.ucfunnel.com/)|
 | Yieldone | Contact vendor | [Website](https://www.platform-one.co.jp/) |
-| YuktaMedia Analytics | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) |
+| YuktaOne Analytics by YuktaMedia | <a href="mailto:info@yuktamedia.com">Freemium \| Contact vendor</a> | [Website](https://yuktamedia.com/prebid/) |
 
 None of these analytics options are endorsed or supported by Prebid.org.
 

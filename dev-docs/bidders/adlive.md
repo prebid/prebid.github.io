@@ -2,7 +2,7 @@
 layout: bidder
 title: Adlive
 description: adlive bid adapter
-hide: true
+pbjs: true
 biddercode: adlive
 ---
 

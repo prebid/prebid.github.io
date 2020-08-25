@@ -2,7 +2,7 @@
 layout: bidder
 title: Peak226
 description: Prebid Peak Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: peak226
 ---
 

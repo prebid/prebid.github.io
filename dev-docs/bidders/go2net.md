@@ -2,7 +2,7 @@
 layout: bidder
 title: Go2Net
 description: Prebid Go2Net Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: go2net
 aliasCode: admixer
 media_types: video

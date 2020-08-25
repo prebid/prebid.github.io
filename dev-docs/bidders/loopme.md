@@ -2,7 +2,7 @@
 layout: bidder
 title: LoopMe
 description: Prebid LoopMe Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: loopme
 gdpr_supported: true
 media_types: banner, video

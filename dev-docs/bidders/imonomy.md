@@ -2,7 +2,7 @@
 layout: bidder
 title: Imonomy
 description: Prebid Imonomy Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: imonomy
 ---
 

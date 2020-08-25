@@ -3,7 +3,7 @@ layout: bidder
 title: Adot
 description: Prebid Adot Bidder Adapter
 biddercode: adot
-hide: true
+pbjs: true
 media_types: banner, video, native
 gdpr_supported: true
 ---

@@ -2,9 +2,12 @@
 layout: bidder
 title: 33Across
 description: Prebid 33Across Bidder Adapter
-hide: true
+pbjs: true
+pbs: true
 biddercode: 33across
 gdpr_supported: true
+schain_supported: true
+usp_supported: true
 ---
 
 

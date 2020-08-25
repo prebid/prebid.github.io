@@ -2,7 +2,8 @@
 layout: bidder
 title: ucfunnel
 description: Prebid ucfunnel Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: ucfunnel
 media_types: video, native
 gdpr_supported: true

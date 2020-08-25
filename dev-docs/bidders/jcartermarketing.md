@@ -2,7 +2,7 @@
 layout: bidder
 title: J Carter Marketing
 description: Prebid J Carter Marketing Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: jcm
 ---
 
