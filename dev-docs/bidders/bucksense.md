@@ -2,7 +2,7 @@
 layout: bidder
 title: Bucksense
 description: Prebid Bucksense Bidder Adapter
-hide: true
+pbjs: true
 biddercode: bucksense
 ---
 

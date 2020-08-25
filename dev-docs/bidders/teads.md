@@ -2,7 +2,7 @@
 layout: bidder
 title: Teads
 description: Prebid Teads Bidder Adapter
-hide: true
+pbjs: true
 biddercode: teads
 gdpr_supported: true
 tcf2_supported: true

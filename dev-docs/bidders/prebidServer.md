@@ -3,7 +3,7 @@ layout: bidder
 title: Prebid Server
 description: Prebid Server S2S Adaptor
 biddercode: prebidServer
-hide: true
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
 ---

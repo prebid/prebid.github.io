@@ -2,7 +2,7 @@
 layout: bidder
 title: E-volution tech
 description: Prebid E-volution tech Bidder Adapter
-hide: true
+pbjs: true
 biddercode: e_volution
 gdpr_supported: true
 media_types: banner, video

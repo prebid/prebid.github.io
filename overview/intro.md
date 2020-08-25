@@ -77,7 +77,7 @@ A simple Prebid.js process follows these steps:
 Prebid Server provides a server-side solution to header bidding. Built on the same core principles as Prebid.js, our server solution can reduce latency and improve page load time.
 Several Prebid.org members provide hosted solutions, enabling publishers to receive the benefits of server-side header bidding without the need to implement and manage the process themselves.
 
-If a publisher would prefer to implement their own solution, [source code](https://github.com/prebid/prebid-server) is available from our Github page and detailed instructions for configuring, deploying and testing your implementation can be found in the [Prebid Server section](/prebid-server/prebid-server-overview.html) of this site.  
+If a publisher would prefer to implement their own solution, [source code](https://github.com/prebid/prebid-server) is available from our Github page and detailed instructions for configuring, deploying and testing your implementation can be found in the [Prebid Server section](/prebid-server/overview/prebid-server-overview.html) of this site.  
 
 **Prebid Server process**
 
@@ -112,7 +112,7 @@ The PBM header bidding process follows these steps:
 ![Prebid Mobile Flowchart](/assets/images/flowcharts/pb-mobile.png)
 
 ## Further Reading
-+ [Prebid.js]({{site.baseurl}}/prebid/prebidjs.html)
-+ [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html)
-+ [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html)
++ [Prebid.js](/prebid/prebidjs.html)
++ [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
++ [Prebid Mobile](/prebid-mobile/prebid-mobile.html)
 + [Managed Prebid Solutions](/prebid/managed.html)

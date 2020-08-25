@@ -2,7 +2,7 @@
 layout: bidder
 title: SelectMedia Video
 description: SelectMedia Video Bidder Adapter
-hide: true
+pbjs: true
 biddercode: selectmediavideo
 aliasCode: aniview
 media_types: video
@@ -40,3 +40,4 @@ videoAdUnit = [
     }
   }]
 }];
+```
