@@ -15,6 +15,7 @@ safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
 pbs: true
+gvl_id: 52
 ---
 
 ### Registration

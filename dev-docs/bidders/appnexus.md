@@ -13,6 +13,7 @@ usp_supported: true
 tcf2_supported: true
 pbjs: true
 pbs: true
+gvl_id: 32
 ---
 
 ### Table of Contents

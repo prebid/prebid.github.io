@@ -10,6 +10,7 @@ usp_supported: true
 media_types: banner, native, video
 schain_supported: true
 tcf2_supported: true
+gvl_id: 253
 ---
 
 ### Bid params

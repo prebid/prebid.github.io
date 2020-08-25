@@ -10,6 +10,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 prebid_member: true
 tcf2_supported: true
 pbjs: true
+gvl_id: 142
 ---
 
 ### Bid Params
