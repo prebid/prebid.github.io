@@ -1002,6 +1002,7 @@ registerBidder(spec);
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
     - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+    - If you have an IAB Global Vendor List ID, add `gvl_id: ID`. There's no default.
     - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
@@ -1031,6 +1032,7 @@ bidder_supports_deals: true/false
 pbjs: true/false
 pbs: true/false
 prebid_member: true/false
+gvl_id: none
 ---
 ### Note:
 
