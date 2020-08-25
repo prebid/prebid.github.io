@@ -169,6 +169,39 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 
+## Supported Modules
+
+The GDPR Enforcement module requires the GVL ID for a module to be specified. If no GVL ID found, the module will be blocked by default unless it is specifically listed under `vendorExceptions`. The following is a list of modules which have listed their GVL IDs.
+
+| Modules that Support GVL ID   |
+|-------------------------------|
+| `aardvarkBidAdapter.js`       |
+| `adagioBidAdapter.js`         |
+| `adformBidAdapter.js`         |
+| `adformOpenRTBBidAdapter.js`  |
+| `adheseBidAdapter.js`         |
+| `adtelligentBidAdapter.js`    |
+| `aolBidAdapter.js`            |
+| `appnexusAnalyticsAdapter.js` |
+| `appnexusBidAdapter.js`       |
+| `apstreamBidAdapter.js`       |
+| `conversantBidAdapter.js`     |
+| `criteoBidAdapter.js`         |
+| `emx_digitalBidAdapter.js`    |
+| `fidelityBidAdapter.js`       |
+| `id5IdSystem.js`              |
+| `improvedigitalBidAdapter.js` |
+| `invibesBidAdapter.js`        |
+| `ixBidAdapter.js`             |
+| `medianetBidAdapter.js`       |
+| `openxBidAdapter.js`          |
+| `pubmaticBidAdapter.js`       |
+| `pulsepointBidAdapter.js`     |
+| `rubiconBidAdapter.js`        |
+| `spotxBidAdapter.js`          |
+| `sublimeBidAdapter.js`        |
+
+
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). Include the base consent management module and this enforcement module as additional options on the **gulp build** command:
