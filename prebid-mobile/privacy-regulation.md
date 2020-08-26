@@ -74,32 +74,32 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 <div>
 <pre>
 
-    /** * Set the consentRequired value in the SDK
-    *
-    * @param true if subject to GDPR regulations, false otherwise
-    */
-    Targeting.shared.subjectToGDPR = false;
+  /** * Set the consentRequired value in the SDK
+  *
+  * @param true if subject to GDPR regulations, false otherwise
+  */
+  Targeting.shared.subjectToGDPR = false;
 
-    /**
-    * Set the consent string in the SDK
-    *
-    * @param A valid Base64 encode consent string as per https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework
-    */
-    Targeting.shared.gdprConsentString = "BOMyQRvOMyQRvABABBAAABAAAAAAEA";
+  /**
+  * Set the consent string in the SDK
+  *
+  * @param A valid Base64 encode consent string as per https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework
+  */
+  Targeting.shared.gdprConsentString = "BOMyQRvOMyQRvABABBAAABAAAAAAEA";
 
-    /**
-    * Set the purpose consents in the SDK
-    *
-    * @param A valid Binary String: The '0' or '1' at position n – where n's indexing begins at 0 – indicates the consent status for purpose ID n+1; false and true respectively. eg. '1' at index 0 is consent true for purpose ID 1
-    */
-    Targeting.shared.purposeConsents = "100000000000000000000000";
+  /**
+  * Set the purpose consents in the SDK
+  *
+  * @param A valid Binary String: The '0' or '1' at position n – where n's indexing begins at 0 – indicates the consent status for purpose ID n+1; false and true respectively. eg. '1' at index 0 is consent true for purpose ID 1
+  */
+  Targeting.shared.purposeConsents = "100000000000000000000000";
 
 
-    /**
-    * Get the device consent extracted from the purpose1 consent provided
-    *
-    */
-    let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent();
+  /**
+  * Get the device consent extracted from the purpose1 consent provided
+  *
+  */
+  let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent();
 
 </pre>
 </div>
