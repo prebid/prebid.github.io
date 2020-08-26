@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: mediago
+title: MediaGo
 description: MediaGo Prebid Bidder Adapter
 biddercode: mediago
 media_types: banner
@@ -8,7 +8,7 @@ pbjs: true
 ---
 ### Note:
 
-The MediaGo Bidding adapter requires setup before beginning. Please contact us at ext_mediago_am@baidu.com
+The MediaGo Bidding adapter requires setup before beginning. Please contact us at <ext_mediago_cm@baidu.com>
 
 ### Bid Params
 
