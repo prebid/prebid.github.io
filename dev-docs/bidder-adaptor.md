@@ -1001,6 +1001,7 @@ registerBidder(spec);
   - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
+    - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
     - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
     - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
@@ -1021,6 +1022,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 gdpr_supported: true/false
 tcf2_supported: true/false
+gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
