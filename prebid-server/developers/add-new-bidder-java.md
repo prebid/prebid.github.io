@@ -188,6 +188,13 @@ To test user syncs, [call /setuid](/prebid-server/endpoints/pbs-endpoint-setuid.
 The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidder should have
 `BidRequest.User.BuyerUID` with the value you saved.
 
+## Document your bidder
+
+There are two documents required before we’ll accept your pull request:
+
+1. Repo metadata - create a new file https://github.com/prebid/prebid-server/blob/master/static/bidder-info/BIDDERCODE.yaml based on one of the other ones there. Note that you must provide an email that’s not a single individual – we need robust maintainer contact info read by multiple people like “support@example.com”.
+1. User documentation - required to appear in the [Prebid Server adapters page](/dev-docs/pbs-bidders.html). If you already have one of these files from having a PBS-Go adapter, you're done. Otherwise, see [that page](/prebid-server/developers/add-new-bidder-go.html#document-your-adapter) for details.
+
 ## Contribute
 
 Finally, [Contribute](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/contributing.md) your Bidder to the project.
