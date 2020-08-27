@@ -503,6 +503,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Instream Video Ads Tracking
+  link: /dev-docs/modules/instreamTracking.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: Freewheel Module
   link: /dev-docs/modules/freewheel.html
   isHeader: 0
