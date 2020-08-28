@@ -9,7 +9,7 @@ permalink: /blog/how-to-simplify-line-item-setup
 
 ---
 
-#### Let's do the math:
+## Let's do the math:
 
 * Per bidder per size: $0.01 increment, capped at $10 => 1000 line items
 * 10 creative sizes
@@ -19,7 +19,7 @@ permalink: /blog/how-to-simplify-line-item-setup
 
 <br>
 
-#### How to reduce the number of line items for header bidding?
+## How to reduce the number of line items for header bidding?
 
 > Prebid.js helps you use 1 set of line items for all bidders and all creatives.
 
@@ -33,10 +33,9 @@ By removing the size and bidder dimension, the number of line items now becomes:
 
 In this section, we'll learn how to remove the creative size dimension for header bidding. Before, a publisher would have to create different set of line items for different creative sizes. With Prebid.js, a publisher only need to create 1 set of line items for all creative sizes.
 
-Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In DFP, this looks like:
+Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In Google Ad Manager, this looks like:
 
-{: .pb-md-img :}
-![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png)
+![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png){: .pb-md-img :}
 
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.
@@ -52,7 +51,7 @@ There's a reason bidders recommend different set of line items for different cre
 
 Prebid.js can dynamically resize the returned creative to the right size. Here's the setup:
 
-* Submit a few creatives of size 1x1 and make them override the line items' sizes. ([How to do this]({{ site.github.url }}/adops.html#creatives-setup))
+* Submit a few creatives of size 1x1 and make them override the line items' sizes.
 * Your ad unit can accept both 300x250 and 300x600. A bidder bid $6.00 for the 300x600 size and has the highest price. Prebid.js passed the bid in, as well as a generated bid ID. 
 * The $6.00 line item got picked by the line item. 
 * Your ad server randomly choose a 1x1 creative. However, because all creatives have the same content, it does not make a difference.
@@ -95,7 +94,7 @@ This simplifies the setup and the right creative (with adId 65432) will get disp
 
 #### How about reporting?
 
-It's important to understand the fill rates and CPM from different bidders. Prebid.js therefore passes in `hb_bidder`: bidderCode. This enables DFP to report on query strings (After you've done [this step]({{ site.github.url }}/adops.html#query-strings)). You can therefore run queries like:
+It's important to understand the fill rates and CPM from different bidders. Prebid.js therefore passes in `hb_bidder`: bidderCode. This enables Google Ad Manager to report on query strings. You can therefore run queries like:
 
 * For bidder X, at what CPM does it fill?
 * For bidder X, what's the fill rate out of all the winning header bidding bids?

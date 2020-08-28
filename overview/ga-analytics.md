@@ -1,13 +1,14 @@
 ---
-layout: page
+layout: page_v2
 title: Prebid Analytics with GA
 description: Prebid.js Analytics with GA for Header Bidding
 pid: 10
 top_nav_section: overview
 nav_section: analytics
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Prebid Analytics with GA
 {:.no_toc}
@@ -91,4 +92,4 @@ Prebid.js has a seamless integration with Google Analytics and Google Spreadshee
 - [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
 
-</div>
+

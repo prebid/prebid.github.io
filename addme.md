@@ -1,11 +1,11 @@
 ---
 redirect_to: "/index.html"
-layout: page
+layout: page_v2
 title: Add me!
 description: 
 pid: 60
 isNew: true
-hide: false
+
 isNavParent: true
 ---
 
@@ -91,12 +91,12 @@ If you are a publisher that'd like to be contacted by bidders, or if you're a bi
 <!--
 ### Publisher Companies
 
-If you'd like to edit existing entries, email info@prebid.org. 
+If you'd like to edit existing entries, email support@prebid.org. 
 
 
 ### "Bidder" Companies
 
-If you'd like to edit existing entries, email info@prebid.org. 
+If you'd like to edit existing entries, email support@prebid.org. 
 
 -->
 

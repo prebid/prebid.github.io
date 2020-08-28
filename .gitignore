@@ -4,3 +4,6 @@ Gemfile.lock
 /dist/jquery
 /.idea
 .DS_Store
+/vendor
+/.bundle
+.jekyll-metadata

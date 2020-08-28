@@ -2,17 +2,16 @@
 layout: bidder
 title: adxcg
 description: Prebid adxcg bidder adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: adxcg
-biddercode_longer_than_12: false
+media_types: native, video
+gdpr_supported: true
+userIds: id5Id, identityLink, pubCommonId, unifiedId
 ---
 
-### bid params
+### Bid Params
 
-{: .table .table-bordered .table-striped } 
-
-| Name | Scope    | Description        | Example  |
-| :--- | :----    | :----------        | :------  |
-| adzoneid   | required | adxcg zone id | `"1"` |
+{: .table .table-bordered .table-striped }
+| Name     | Scope    | Description   | Example | Type     |
+|----------|----------|---------------|---------|----------|
+| adzoneid | required | adxcg zone id | `'1'`   | `string` |
