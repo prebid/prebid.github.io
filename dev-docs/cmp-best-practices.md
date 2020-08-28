@@ -8,7 +8,7 @@ sidebarType: 1
 # Prebid.js CMP Best Practices
 
 {: .alert.alert-info :}
-Work in progress. This documented is intented to be a repository for the
+Work in progress. This documente is intented to be a repository for the
 Prebid.org community to collect best practices regarding the integration
 of Prebid.js and Consent Management Platforms.
 
