@@ -14,6 +14,7 @@ safeframes_ok: true
 tcf2_supported: true
 pbjs: true
 pbs: true
+gvl_id: 76
 ---
 
 ### Prebid Server Note:

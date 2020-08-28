@@ -9,6 +9,7 @@ gdpr_supported: true
 usp_supported: true
 prebid_member: true
 tcf2_supported: true
+gvl_id: 91
 ---
 ### Note
 {: .alert.alert-warning :}
