@@ -1,4 +1,4 @@
----
+/--
 layout: page_v2
 title: How to Add a Prebid.js RTD submodule
 description: How to Add a Prebid.js RTD submodule
@@ -77,19 +77,19 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 |  param name | type  | Scope | Description | Params |
 | :------------ | :------------ | :------ | :------ | :------ |
 | name  | string  | required | must match the name provided by the publisher in the on-page config | n/a |
-|  getData  | function | required? | ? | adUnitArray, onDoneCallback |
-|  init | function | required | does any auction-level initialization required | config, gdpr, usp |
-|  auctionInit | function | optional | lets sub-module inspect and/or update the auction | auctionDetails, config |
-|  auctionEnd | function |optional | lets sub-module know when auction is done | auctionDetails, config |
-| updateBidRequest | function |optional | lets sub-module inspect and/or update adunits before the auction | adUnitArray, config |
-| updateBidResponse | function |optional | lets sub-module inspect and/or update bidresponses | bidResonse, config |
+|  init | function | required | defines the function that does any auction-level initialization required | config, gdpr, usp |
+|  getTargtingData  | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, onDoneCallback |
+|  auctionInit | function | optional | defines a function that lets the sub-module inspect and/or update the auction | auctionDetails, config |
+|  auctionEnd | function |optional | defines a function that lets the sub-module know when auction is done | auctionDetails, config |
+| updateBidRequest | function |optional | defines a function that lets a sub-module inspect and/or update adunits before the auction | adUnitArray, config |
+| updateBidResponse | function |optional | defines a function that lets a sub-module inspect and/or update bidresponses | bidResonse, config |
 
 For example:
 {% highlight text %}
 export const subModuleObj = {
   name: 'ExampleRTDModule',
-  getData: sendDataToModule,
-  init: init
+  init: init,
+  addTargeting: sendDataToModule
 };
 {% endhighlight %}
 
@@ -107,9 +107,9 @@ submodule('realTimeData', subModuleObject);
 
 See the [Building the Request](/dev-docs/bidder-adaptor.html#building-the-request) section of the Bid Adapter documentation for more details about GDPR and USP.
 
-####  The getData() function
+####  The addTargeting() function
 1. RTD-core will call this function with an array of adUnits and a callback function as parameters
-2. Your sub-module will respond with data that should be set as key values on the ad server targeting and bid requests.
+2. Your sub-module will respond with data that should be set as key values on the ad server targeting.
 3. For empty data, call the callback function with an empty object.
 4. The function should call the callback function with an object in the following structure:
 {% highlight text %}
@@ -129,8 +129,8 @@ See the [Building the Request](/dev-docs/bidder-adaptor.html#building-the-reques
 /** @type {RtdSubmodule} */
 export const subModuleObj = {
   name: 'ExampleRTDModule',
-  getData: sendDataToModule,
-  init: init
+  init: init,
+  addTargeting: sendDataToModule
 };
 
 function init(params, gdprData, uspData) {
@@ -161,12 +161,12 @@ Here is a code example with both mandatory and optional functions:
 /** @type {RtdSubmodule} */
 export const subModuleObj = {
   name: 'ExampleRTDModule',
-  getData: sendDataToModule,
+  init: init,
+  addTargeting: sendDataToModule,
   auctionInit: onAuctionInit,
   auctionEnd: onAuctionEnd,
   updateBidRequest: onUpdateBidRequest,
-  updateBidResponse: onUpdateBidResponse,
-  init: init
+  updateBidResponse: onUpdateBidResponse
 };
 
 function onAuctionInit(auctionDetails, config) {
