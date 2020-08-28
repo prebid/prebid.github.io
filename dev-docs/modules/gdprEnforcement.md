@@ -184,3 +184,4 @@ You can also use the [Prebid.js Download](/download.html) page.
 - [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
 - [IAB TCF2 Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md)
 - [Prebid TCF2 Support](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#)
+- [CMP Best Practices](/dev-docs/cmp-best-practices.html)
