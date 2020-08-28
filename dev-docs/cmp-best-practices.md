@@ -40,3 +40,7 @@ In these approaches, the publisher has to be aware of the geo and tell Prebid.js
 Community members are welcome to contribute more specific implementation
 approaches here. Please do not attempt to extoll the virtues of one CMP
 over another -- just help others with interface idiosyncacies.
+
+## Further Reading
+
+- [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
