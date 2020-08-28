@@ -21,6 +21,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 * **BritePool ID** - Britepool Identity Resolution userId submodule. Universal Identity resolution which does not depend on 3rd party cookies.
 * **Criteo ID for Exchanges** –  specific id for Criteo and its partners that enables optimal take rate on all web browsers.
+* **ID+** - a universal identity solution that aims to empower the marketing ecosystem with a privacy-compliant mechanism to overcome identity resolution challenges arising from ID fragmentation, cookie restrictions, and increasingly stringent privacy and security regulation. Powered by zeotap and built upon the extensive marketing identity graph, ID+ offers a solution for the future of marketing.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
 * **IntentIQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
@@ -70,14 +71,14 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`, or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
-| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "id5id": "ID5-12345" }` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": "ID5-12345" }` |
 
 ## User ID Sub-Modules
 
@@ -164,6 +165,38 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### ID+
+
+ID+, powered by zeotap, enables the marketing ecosystem to overcome challenges posed by the demise of identifiers and a fast-changing regulatory landscape. ID+ is an open invitation to the entire industry to build the future of identity together.
+
+This sub-module enables the user’s ID+ to be available in the bid request.
+
+More information on ID+ can be found here: [https://idplus.io/](https://idplus.io/)
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=zeotapIdPlusIdSystem
+
+#### ID+ Registration
+
+You can set up your ID+ account by contacting our support team at [support.idplus@zeotap.com](mailto:support.idplus@zeotap.com) or via [https://idplus.io/contact-us](https://idplus.io/contact-us.html) and we will get back to you.
+
+ID+ is covered under zeotap privacy policy: [Zeotap Privacy Policy](https://zeotap.com/website-privacy-policy).
+
+#### ID+ Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "zeotapIdPlus"
+        }]
+    }
+});
+{% endhighlight %}
+
 
 ### ID5 Universal ID
 
@@ -827,6 +860,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | --- | --- | --- | --- | --- | --- |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
+| ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
