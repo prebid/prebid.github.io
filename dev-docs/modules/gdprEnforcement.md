@@ -171,7 +171,7 @@ See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisin
 
 ## Modules that Support GVL ID
 
-The GDPR Enforcement module requires the GVL ID for a module to be specified. If no GVL ID is found the module will be blocked by default, unless it is specifically listed under `vendorExceptions`. The following modules have listed their GVL IDs.
+The GDPR Enforcement module requires the GVL ID for a module to be specified. If no GVL ID is found the module will be blocked by default unless it is specifically listed under `vendorExceptions`. The following modules have listed their GVL IDs.
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 
