@@ -61,7 +61,7 @@ Community members are welcome to contribute more specific implementation
 approaches here. Please do not attempt to extoll the virtues of one CMP
 over another -- just help others with interface idiosyncacies.
 
-## LiveRamp
+### LiveRamp
 
 LiveRamp has verified that they create the tcfapi functions and set gdprApplies=false when their CMP is removed from a geo.
 
