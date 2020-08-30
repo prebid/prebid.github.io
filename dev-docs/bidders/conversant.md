@@ -10,6 +10,7 @@ gdpr_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 tcf2_supported: true
+gvl_id: 24
 ---
 
 

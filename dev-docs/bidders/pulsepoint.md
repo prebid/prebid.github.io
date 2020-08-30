@@ -10,6 +10,7 @@ media_types: banner, video, native
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
 pbjs: true
 pbs: true
+gvl_id: 81
 ---
 
 
