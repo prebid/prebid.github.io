@@ -112,7 +112,7 @@ The PBM header bidding process follows these steps:
 ![Prebid Mobile Flowchart](/assets/images/flowcharts/pb-mobile.png)
 
 ## Further Reading
-+ [Prebid.js]({{site.baseurl}}/prebid/prebidjs.html)
-+ [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html)
-+ [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html)
++ [Prebid.js](/prebid/prebidjs.html)
++ [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
++ [Prebid Mobile](/prebid-mobile/prebid-mobile.html)
 + [Managed Prebid Solutions](/prebid/managed.html)

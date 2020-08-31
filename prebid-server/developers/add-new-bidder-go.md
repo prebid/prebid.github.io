@@ -46,6 +46,9 @@ Bidder implementations are scattered throughout several files.
 
 Bidder implementations may assume that any params have already been validated against the defined json-schema.
 
+{: .alert.alert-warning :}
+Prebid Server bid adapters must follow all required conventions defined in the [Module Rules](/dev-docs/module-rules.html). Not doing so could lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid Server issue](https://github.com/prebid/prebid-server/issues).
+
 ### Bid Response Metadata
 
 In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
@@ -206,6 +209,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 gdpr_supported: true/false
 tcf2_supported: true/false
+gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
@@ -233,6 +237,7 @@ Notes on the metadata fields:
 - Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
 - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
 - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+- If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.

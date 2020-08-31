@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: How to Add an Analytics Adapter
-description: How to add an analytics adapter
+title: How to Add a Prebid.js Analytics Adapter
+description: How to add a Prebid.js analytics adapter
 pid: 28
 top_nav_section: dev_docs
 nav_section: adapters
@@ -11,7 +11,7 @@ sidebarType: 1
 
 
 
-# How to Add an Analytics Adapter
+# How to Add a Prebid.js Analytics Adapter
 {:.no_toc}
 
 The Prebid Analytics API provides a way to get analytics data from `Prebid.js` and send it to the analytics provider of your choice, such as Google Analytics.  Because it's an open source API, you can write an adapter to send analytics data to any provider you like.  Integrating with the Prebid Analytics API has the following benefits:
@@ -45,9 +45,13 @@ Working with any Prebid project requires using Github. In general, we recommend 
 4. Open a [pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) to the appropriate repository's master branch with a good description of the feature/bug fix.
 5. If there's something that needs to change on the prebid.org website, follow the above steps for the [website repo](https://github.com/prebid/prebid.github.io).
 
+{: .alert.alert-warning :}
+Analytics adapters are subject to a number of specific technical rules. Please become familiar
+with the [module rules](/dev-docs/module-rules.html) that apply globally and to analytics adapters in particular.
+
 ### Step 1: Add a markdown file describing the module
 
-1. Create a markdown file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.md`
+Create a markdown file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.md`
 
 Example markdown file:
 {% highlight text %}
@@ -148,7 +152,7 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
 
 ### Step 5: Website pull request
 
-There are two files that need to be updated to list your new analytics adapter. 
+There are two files that need to be updated to list your new analytics adapter.
 
 1. Create a fork of the [website repo](https://github.com/prebid/prebid.github.io) and a branch for your new adapter. (e.g. feature/exAnalyticsAdapter)
 
@@ -165,7 +169,5 @@ We sometimes get pretty busy, so it can take a couple of weeks for the review pr
 
 ## Further Reading
 
-- [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
-- [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
-
-
+- [Analytics for Prebid](/overview/analytics.html) (Overview and list of analytics providers)
+- [Module Rules](/dev-docs/module-rules.html)
