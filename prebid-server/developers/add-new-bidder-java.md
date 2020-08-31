@@ -44,6 +44,9 @@ Bidder implementations are scattered throughout several files:
 
 Bidder implementations may assume that any params have already been validated against the defined json-schema.
 
+{: .alert.alert-warning :}
+Prebid Server bid adapters must follow all required conventions defined in the [Module Rules](/dev-docs/module-rules.html). Not doing so could lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid Server issue](https://github.com/prebid/prebid-server/issues).
+
 ### Generic OpenRTB Bidder
 
 There's an option to implement a bidder by using a pre-existing template.
@@ -184,6 +187,13 @@ If at least one `request.imp[i].ext.{bidder}` is defined in your Request, then y
 To test user syncs, [call /setuid](/prebid-server/endpoints/pbs-endpoint-setuid.html) using the FamilyName of your Bidder.
 The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidder should have
 `BidRequest.User.BuyerUID` with the value you saved.
+
+## Document your bidder
+
+There are two documents required before we’ll accept your pull request:
+
+1. Repo metadata - create a new file https://github.com/prebid/prebid-server/blob/master/static/bidder-info/BIDDERCODE.yaml based on one of the other ones there. Note that you must provide an email that’s not a single individual – we need robust maintainer contact info read by multiple people like “support@example.com”.
+1. User documentation - required to appear in the [Prebid Server adapters page](/dev-docs/pbs-bidders.html). If you already have one of these files from having a PBS-Go adapter, you're done. Otherwise, see [that page](/prebid-server/developers/add-new-bidder-go.html#document-your-adapter) for details.
 
 ## Contribute
 

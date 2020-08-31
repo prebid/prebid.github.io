@@ -12,6 +12,7 @@ schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
+gvl_id: 165
 ---
 
 ### Bid Params

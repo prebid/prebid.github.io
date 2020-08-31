@@ -28,7 +28,7 @@ The enforcement strategy changed significantly between TCF 1.1 and TCF 2.0. [TCF
 more nuanced and stricter policy.
 
 {: .alert.alert-info :}
-If a Prebid Server host company wants to support GDPR, they must [register for the IAB Global Vendor List](https://register.consensu.org/). 
+If a Prebid Server host company wants to support GDPR, they must currently [register for the IAB Global Vendor List](https://register.consensu.org/). 
 The user must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
 
 ### TCF 1.1
@@ -60,6 +60,18 @@ for each 'Purpose' with different consequences for each:
 | Pass the user’s precise geographic information into auctions | Special Feature 1 |
 
 More details are available in the [Prebid Support for TCF2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#) reference and in the [Prebid Server GDPR Reference](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#).
+
+### GDPR Configuration
+
+There are a number of configuration settings that PBS Host Companies need
+to consider:
+
+- Host company GVL ID
+- Default expiration time of the uids cookie set in the host company domain
+- GDPR enforcement flags for each Purpose and Vendor
+
+The specific details vary slightly between PBS-Go and PBS-Java, so check the
+version-specific documentation for more information.
 
 ## COPPA
 

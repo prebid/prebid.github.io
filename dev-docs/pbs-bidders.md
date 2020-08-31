@@ -49,8 +49,8 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 | **User IDs** | {% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %} | **GDPR TCF2 Support** | {% if page.tcf2_supported == true %}yes{% else %}no{% endif %} |
 | **SChain Support** | {% if page.schain_supported  == true %}yes{% else %}no{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% else %}no{% endif %} |
 | **Safeframes OK** | {% if page.safeframes_ok and page.safeframes_ok == false %}no{% elsif page.safeframes_ok and page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
-| **Supports Deals** | {% if page.bidder_supports_deals and page.bidder_supports_deals == false %}no{% else %}yes{% endif %} | **Prebid.js Adapter** | yes |
-| | | **Prebid Server Adapter** | {% if page.pbs == true %}yes{% else %}no{% endif %} |
+| **Supports Deals** | {% if page.bidder_supports_deals and page.bidder_supports_deals == false %}no{% else %}yes{% endif %} | **Prebid.js Adapter** | {% if page.pbjs == true %}yes{% else %}no{% endif %} |
+| | | **Prebid Server Adapter** | yes |
 
 
 <h3>"Send All Bids" Ad Server Keys</h3>
