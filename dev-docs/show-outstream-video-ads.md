@@ -91,7 +91,7 @@ pbjs.addAdUnit({
     },
     renderer: {
         url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
-        backupOnly: 'true', // prefer demand renderer
+        backupOnly: true, // prefer demand renderer
         render: function (bid) {
             adResponse = {
                 ad: {
