@@ -2,7 +2,7 @@
 layout: bidder
 title: Performax
 description: Prebid Performax Bidder Adaptor
-
+pbjs: true
 biddercode: performax
 media_types: banner
 ---

@@ -46,8 +46,7 @@ The following table details the Prebid.js activities that fall under the [Transp
 | Invoke user ID modules | Purpose 1 - Store and/or access information on a device | May prevent one or more UserID modules from activating. | 3.14+ |
 | Read and write data to device | Purpose 1 - Store and/or access information on a device | May prevent one or more adapters or modules from being able to read or write cookies or localstorage in the user's browser. | 3.14+ |
 | Perform header bidding auction | Purpose 2 - Basic ads | May prevent one or more bid adapters from participating in the auction. | 4.0+ |
-
-There are plans to add more TCF Purposes and activities in future releases.
+| Invoke analytics adapters | Purpose 7 - Measurement | May prevent one or more analytics adapters from participating in the auction. | 4.x+ |
 
 ## Page Integration
 
@@ -67,7 +66,7 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gdpr.rules | `Array of Objects` | Lets the publisher override the default behavior. | |
-| gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2) | "storage" |
+| gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2), "measurement" (Purpose 7) | "storage" |
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent. The default in Prebid.js 3.x is not to enforce purposes. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
@@ -95,6 +94,10 @@ pbjs.setConfig({
         enforceVendor: true
       },{
         purpose: "basicAds",
+        enforcePurpose: true,
+        enforceVendor: true
+      },{
+        purpose: "measurement",
         enforcePurpose: true,
         enforceVendor: true
       }]
@@ -136,6 +139,16 @@ pbjs.setConfig({
         enforceVendor: false
       }]
 
+5) Allow the user to suppress analtyics provider A, but make an exception for analytics provider B.
+
+      ...
+      rules: [{
+        purpose: "measurement",
+        enforcePurpose: true,
+        enforceVendor: true,
+	vendorExceptions: ["analyticsB"]
+      }]
+
 ## Basic Enforcement
 
 Prebid.js does not have access to the Global Vendor List (GVL), so it implements
@@ -156,6 +169,37 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 
+## Modules that Support GVL ID
+
+The GDPR Enforcement module requires the GVL ID for a module to be specified. If no GVL ID is found the module will be blocked by default unless it is specifically listed under `vendorExceptions`. The following modules have listed their GVL IDs.
+
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module Type</th>
+      <th>Module</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in bidder_pages %}{% unless page.gvl_id %}{% continue %}{% endunless %}
+    <tr>
+      <td>Bid Adapter</td>
+      <td>{{page.title}}</td>
+    </tr>
+{% endfor %}
+    <tr>
+      <td>Analytics Adapter</td>
+      <td>AppNexus</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>ID5</td>
+    </tr>
+</tbody>
+</table>
+
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). Include the base consent management module and this enforcement module as additional options on the **gulp build** command:
@@ -169,5 +213,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 ## Further Reading
 
 - [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
+- [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
 - [IAB TCF2 Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md)
 - [Prebid TCF2 Support](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#)
+- [CMP Best Practices](/dev-docs/cmp-best-practices.html)

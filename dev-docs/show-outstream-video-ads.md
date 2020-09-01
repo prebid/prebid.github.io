@@ -67,16 +67,17 @@ To display an outstream video, two things are needed:
 
 Prebid.js will select the `renderer` used to display the outstream video in the following way:
 
-1. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.
+1. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`. If that renderer is specified as backup only, it will only be used when no other renderer is found. 
 2. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.
 
 {: .alert.alert-warning :}
-At this time, since not all demand partners return a renderer with their video bid responses, we recommend that publishers associate a `renderer` with their Prebid video adUnits, if possible.  By doing so, any Prebid adapter that supports video will be able to provide demand for a given outstream slot.
+At this time, since not all demand partners return a renderer with their video bid responses, we recommend that publishers associate a `renderer` with their Prebid video adUnits, if possible.  By doing so, any Prebid adapter that supports video will be able to provide demand for a given outstream slot. Choosing a backup only renderer allows publishers to access demand with or without an attached renderer. 
 
-Renderers are associated with adUnits through the `adUnit.renderer` object.  This object contains two fields:
+Renderers are associated with adUnits through the `adUnit.renderer` object.  This object contains three fields:
 
 1. `url` -- Points to a file containing the renderer script.
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.
+3. `backupOnly` -- Optional field, if set to 'true', buyer or adapter renderer will be preferred
 
 {% highlight js %}
 
@@ -90,14 +91,26 @@ pbjs.addAdUnit({
     },
     renderer: {
         url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
+        backupOnly: 'true', // prefer demand renderer
         render: function (bid) {
-            ANOutstreamVideo.renderAd({
-                targetId: bid.adUnitCode,
-                adResponse: bid.adResponse,
+            adResponse = {
+                ad: {
+                    video: {
+                        content: bid.vastXml,
+                        player_height: bid.playerHeight,
+                        player_width: bid.playerWidth
+                    }
+                }
+            }
+            // push to render queue because ANOutstreamVideo may not be loaded yet.
+            bid.renderer.push(() => {
+                ANOutstreamVideo.renderAd({
+                    targetId: bid.adUnitCode, // target div id to render video.
+                    adResponse: adResponse
+                });
             });
         }
-    },
-    ...
+    }
 });
 
 {% endhighlight %}

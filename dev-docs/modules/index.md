@@ -38,6 +38,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Browsi Viewability**]({{site.baseurl}}/dev-docs/modules/browsiRtdProvider.html) | Browsi provider for real time data module.  |
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
 | [**Price Floors Module**](/dev-docs/modules/floors.html) | Configure and enforce minimum bids. |
+| [**GPT Pre-Auction Module**](/dev-docs/modules/gpt-pre-auction.html) | Adds a PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters. |
 
 ## Video Modules
 

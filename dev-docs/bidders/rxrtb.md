@@ -2,7 +2,7 @@
 layout: bidder
 title: rxrtb
 description: Prebid rxrtb Bidder Adaptor
-
+pbjs: true
 biddercode: rxrtb
 ---
 

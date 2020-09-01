@@ -10,6 +10,8 @@ tcf2_supported  : true
 title           : Sharethrough
 userIds         : unifiedId
 usp_supported   : true
+pbjs            : true
+pbs             : true
 ---
 
 ### Note:

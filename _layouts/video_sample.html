@@ -1,5 +1,7 @@
 {% if page.videoType == "pb-is-br" %}
 	{% include /video/pb-is-br.html %}
+{% elsif page.videoType == "pb-is-amp" %}
+	{% include /video/pb-is-amp.html %}
 {% elsif page.videoType == "pb-is-app" %}
 	{% include /video/pb-is-app.html %}
 {% elsif page.videoType == "pb-is-bc" %}
@@ -64,32 +66,32 @@
 {% include nav.html %}
 
 <div class="container bs-docs-container">
-	
+
 	<div class="row ">
-		
+
 		<div class="wrapper">
-		
+
 			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
-				
-				{% include left_nav.html %}							
-				
-			</div>	
-		
-		
+
+				{% include left_nav.html %}
+
+			</div>
+
+
 			<div class="col-sm-9 pb-content" markdown="1">
-			
+
 			{{ content }}
-			
+
 			{% if page.description == "Partners" %}
 				{% include partners.html %}
 			{% endif %}
-			
+
 			</div>
-				
+
 		</div>
 		<!--end wrapper-->
-	</div>	
-	<!--end row-->	
+	</div>
+	<!--end row-->
 </div>
 
 <p></p>
@@ -112,11 +114,3 @@
 </script>
 
 -->
-
-
- 
-
-    
-
-
-

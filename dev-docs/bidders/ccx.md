@@ -2,7 +2,7 @@
 layout: bidder
 title: Clickonometrics
 description: Prebid Clickonometrics Bidder Adaptor
-
+pbjs: true
 biddercode: ccx
 media_types: video
 gdpr_supported: true

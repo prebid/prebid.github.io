@@ -2,7 +2,7 @@
 layout: bidder
 title: VDO.AI
 description: Prebid vdo.ai Bidder Adaptor
-
+pbjs: true
 biddercode: vdo.ai
 ---
 

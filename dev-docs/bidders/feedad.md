@@ -2,7 +2,7 @@
 layout: bidder
 title: FeedAd
 description: Prebid FeedAd Bidder Adaptor
-
+pbjs: true
 biddercode: feedad
 media_types: banner, video
 ---
