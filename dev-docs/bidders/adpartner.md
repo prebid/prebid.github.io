@@ -2,7 +2,7 @@
 layout: bidder
 title: AdPartner
 description: Prebid AdPartner Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adpartner
 media_types: banner
 

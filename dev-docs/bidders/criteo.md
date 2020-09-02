@@ -2,13 +2,14 @@
 layout: bidder
 title: Criteo
 description: Prebid Criteo Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
 usp_supported: true
 prebid_member: true
 tcf2_supported: true
+gvl_id: 91
 ---
 ### Note
 {: .alert.alert-warning :}
@@ -22,7 +23,8 @@ See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                                                                          | Example                                       | Type       |
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
-| `networkId`       | required | The network ID from Criteo.Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
+| `zoneId`          | required | (deprecated) The zone ID from Criteo. Should be replaced by `networkId` when using zone matching.                                    | `234234`                                      | `integer`  |
+| `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
 | `nativeCallback`  | optional | Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
 | `integrationMode` | optional | Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
 

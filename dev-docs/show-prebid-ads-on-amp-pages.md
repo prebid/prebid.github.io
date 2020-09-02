@@ -5,8 +5,6 @@ description: Show Prebid Ads using Prebid Server and AMP RTC
 sidebarType: 2
 ---
 
-
-
 # Prebid AMP Implementation Guide
 {: .no_toc}
 
@@ -16,10 +14,10 @@ Through this implementation, [Prebid Server][PBS] fetches demand and returns key
 
 For more information about AMP RTC, see:
 
-+ [How Prebid on AMP Works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
-+ [Prebid Server AMP Endpoint](https://github.com/prebid/prebid-server/blob/master/docs/endpoints/openrtb2/amp.md)
++ [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
++ [Prebid Server AMP Endpoint Technical Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
 + [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [AMP RTC Overview][RTC-Overview]
++ [AMP RTC Overview][https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md]
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
@@ -37,7 +35,7 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 + An account with a [Prebid Server][PBS] instance
 + One or more Prebid Server Stored Bid Requests. A Stored Bid Request is a partial OpenRTB JSON request which:
-    + Specifies properties like timeout and price granularity
+    + Specifies properties like currency, schain, price granularity, etc.
     + Contains a list of demand partners and their respective parameters
 + An AMP page containing at least one amp-ad element for an AMP ad network that supports Fast Fetch and AMP RTC
 
@@ -52,19 +50,38 @@ To set up Prebid to serve ads into your AMP pages, you'll need:
 
 You will have to create at least one Stored Request for Prebid Server.  Valid Stored Requests for AMP pages must contain an `imp` array with exactly one element.  It is not necessary to include a `tmax` field in the Stored Request, as Prebid Server will always use the smaller of the AMP default timeout (1000ms) and the value passed via the `timeoutMillis` field of the `amp-ad.rtc-config` attribute (explained in the next section).
 
-An example Stored Request is given below:
+An example Stored Request is given below. You'll see that the Stored Request contains some important info
+that doesn't come from /amp parameters:
+
+- cur
+- schain
+- ext.prebid.cache.bids - needed to let Prebid Server know that you want it to store the result in PBC
+- ext.prebid.targeting.pricegranularity - needed to let Prebid Server know how to calculate the price bucket
+- ext.prebid.aliases
+- bidders and their parameters
 
 ```html
 
 {
     "id": "some-request-id",
+    "cur": ["USD"],
+    "source": {
+        "ext": {
+            "schain": {
+                ...
+            }
+        }
+    },
     "site": {
-        "page": "prebid.org"
+        "page": "prebid.org"  // will be overridden by the 'curl' parameter on /amp endpoint
     },
     "ext": {
         "prebid": {
+            "cache": {
+                "bids": {}
+            },
             "targeting": {
-                "pricegranularity": {  // This is equivalent to the deprecated "pricegranularity": "medium"
+                "pricegranularity": {  // This is equivalent to "pricegranularity": "medium"
                     "precision": 2,
                     "ranges": [{
                         "max": 20.00,
@@ -86,10 +103,10 @@ An example Stored Request is given below:
                 ]
             },
             "ext": {
-                "appnexus": {
+                "bidderA": {
                     // Insert parameters here
                 },
-                "rubicon": {
+                "bidderB": {
                     // Insert parameters here
                 }
             }
@@ -98,6 +115,7 @@ An example Stored Request is given below:
 }
 
 ```
+This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html).
 
 ### AMP content page
 
@@ -227,7 +245,7 @@ If you're using AppNexus' managed service, you would enter something like this:
 </amp-iframe>
 ```
 
-See the AppNexus bidder parameters page [for more details](/). 
+See the AppNexus bidder parameters page [for more details](/).
 
 If you are utilizing Rubicon Project's managed service, there's an extra parameter:
 ```html
@@ -268,19 +286,13 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 + Look for the network call from the Ad Server to ensure that key values are being passed. (For Google Ad Manager these are in the `scp` query string parameter in the network request)
 + Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present in the Prebid Server query string. AMP won't add this parameter, so you'll need to grab the Prebid Server URL and manually add it to see the additional information provided.
 
-## Related Topics
+## Further Reading
 
-+ [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)
-+ [Prebid Server AMP Endpoint](https://github.com/prebid/prebid-server/blob/master/docs/endpoints/openrtb2/amp.md)
-+ [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
-+ [AMP RTC Overview][RTC-Overview]
-+ [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
-
-</div>
++ [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
++ [Setting up Prebid for AMP in Google Ad Manager](/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
++ [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 
 <!-- Reference Links -->
 
-[PBS]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
-[RTC-Overview]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md
+[PBS]: /prebid-server/overview/prebid-server-overview.html
 [callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js

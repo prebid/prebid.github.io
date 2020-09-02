@@ -21,10 +21,12 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 
 * **BritePool ID** - Britepool Identity Resolution userId submodule. Universal Identity resolution which does not depend on 3rd party cookies.
 * **Criteo ID for Exchanges** –  specific id for Criteo and its partners that enables optimal take rate on all web browsers.
-* **DigiTrust ID** – an anonymous cryptographic ID generated in the user’s browser on a digitru.st subdomain and shared across member publisher sites.
+* **ID+** - a universal identity solution that aims to empower the marketing ecosystem with a privacy-compliant mechanism to overcome identity resolution challenges arising from ID fragmentation, cookie restrictions, and increasingly stringent privacy and security regulation. Powered by zeotap and built upon the extensive marketing identity graph, ID+ offers a solution for the future of marketing.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
+* **IntentIQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
 * **LiveIntent ID** – a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
+* **Lotame Panorama ID** - a people-based identifier available across all browsers -- including when third-party cookies are not available -- to connect and activate first, second, and third party data for programmatic advertising.
 * **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
@@ -43,6 +45,8 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
 
 Also note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
+
+As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
 
 ## User ID, GDPR, and Opt-Out
 
@@ -67,14 +71,14 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"digitrust"`, `"id5id"`, `identityLink`, `"liveIntentId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`,  or `"unifiedId"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
-| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "id5id": "ID5-12345" }` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": "ID5-12345" }` |
 
 ## User ID Sub-Modules
 
@@ -162,109 +166,64 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### ID+
 
-### DigiTrust
+ID+, powered by zeotap, enables the marketing ecosystem to overcome challenges posed by the demise of identifiers and a fast-changing regulatory landscape. ID+ is an open invitation to the entire industry to build the future of identity together.
 
-[DigiTrust](https://www.digitru.st) is a consortium of publishers, exchanges, and DSPs that provide a standard user ID for display advertising similar in concept to ID-for-Ads in the mobile world. Subscribers to the ID service get an anonymous, persistent and secure identifier for publishers and trusted third parties on all browser platforms, including those which do not support third party cookies by default.
+This sub-module enables the user’s ID+ to be available in the bid request.
+
+More information on ID+ can be found here: [https://idplus.io/](https://idplus.io/)
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=digiTrustIdSystem
+gulp build --modules=zeotapIdPlusIdSystem
 
-#### DigiTrust Registration
+#### ID+ Registration
 
-In order to utilize DigiTrust a publisher must register and be approved for membership. You may register online at: [https://www.digitru.st/signup/](https://www.digitru.st/signup/)
+You can set up your ID+ account by contacting our support team at [support.idplus@zeotap.com](mailto:support.idplus@zeotap.com) or via [https://idplus.io/contact-us](https://idplus.io/contact-us.html) and we will get back to you.
 
-In addition to general usage and configuration of the User Id module, follow the additional instructions for configuring and deploying
-DigiTrust as outlined in [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html).
+ID+ is covered under zeotap privacy policy: [Zeotap Privacy Policy](https://zeotap.com/website-privacy-policy).
 
-The DigiTrust privacy policy as at [https://www.digitru.st/privacy-policy/](https://www.digitru.st/privacy-policy/).
-
-#### DigiTrust Configuration
-
-{: .table .table-bordered .table-striped }
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | `"digitrust"` | `"digitrust"` |
-| params | Required for DigiTrust | Object | Details DigiTrust initialization. | |
-| params.init | Required for DigiTrust | Object | Defines the member and site | `{ member: 'example_member_id', site: 'example_site_id' }` |
-| params.callback | Optional for DigiTrust | Function | Allows init error handling | See example above |
-| value | Optional | Object | Used only if the page has a separate mechanism for storing the DigiTrust ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"digitrustid": {"data":{"id": "1111", ...}}}` |
-
-Please consult the [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html) page for details on
-DigiTrust parameters and usage. For more complete instructions please review the
-[Prebid Integration Guide for DigiTrust](https://github.com/digi-trust/dt-cdn/wiki/Prebid-Integration-for-DigiTrust-Id)
-
-#### DigiTrust Examples
-
-1) Publisher is a DigiTrust member and supports both PubCommonID and DigiTrust ID integrated with Prebid
+#### ID+ Example
 
 {% highlight javascript %}
-<script>
 pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: "pubCommonId",
-      storage: {
-        type: "cookie",
-        name: "_pubcid",       // create a cookie with this name
-        expires: 365           // expires in 1 years
-      }
-    }, {
-      name: "digitrust",
-      params: {
-        init: {
-          member: 'example_member_id',
-          site: 'example_site_id'
-        },
-        callback: function (digiTrustResult) {
-          if (digiTrustResult.success) {
-            console.log('Success in Digitrust init', digiTrustResult.identity.id);
-          } else {
-            console.error('Digitrust init failed');
-          }
-        }
-      },
-      storage: {
-        type: "html5",
-        name: "pbjsdigitrust",
-        expires: 60
-      }
-    }]
-  }});
-</script>
+    userSync: {
+        userIds: [{
+            name: "zeotapIdPlus"
+        }]
+    }
+});
 {% endhighlight %}
 
-Other examples:
-
-- [DigiTrust Example 1](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Simple.html)
-- [DigiTrust Example 2](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/digitrust_Full.html)
 
 ### ID5 Universal ID
 
-The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID, please visit [our documentation](https://console.id5.io/docs/public/prebid). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
+The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID and detailed integration docs, please visit [our documentation](https://console.id5.io/docs/public/prebid). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
 
 #### ID5 Universal ID Registration
 
 The ID5 Universal ID is free to use, but requires a simple registration with ID5. Please visit [id5.io/universal-id](https://id5.io/universal-id) to sign up and request your ID5 Partner Number to get started.
 
-The ID5 privacy policy as at [https://www.id5.io/platform-privacy-policy](https://www.id5.io/platform-privacy-policy).
+The ID5 privacy policy is at [https://www.id5.io/platform-privacy-policy](https://www.id5.io/platform-privacy-policy).
 
 #### ID5 Universal ID Configuration
 
 First, make sure to add the ID5 submodule to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=id5IdSystem
+gulp build --modules=id5IdSystem,userId
 
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
 | params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
+| params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/display/PD/Prebid.js+UserId+Module) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
@@ -279,16 +238,17 @@ pbjs.setConfig({
     userIds: [{
       name: "id5Id",
       params: {
-        partner: 173             // change to the Partner Number you received from ID5
+        partner: 173,            // change to the Partner Number you received from ID5
+        pd: "MT1iNTBjY..."       // optional, see param table above for a link to how to generate this string
       },
       storage: {
         type: "cookie",
-        name: "pbjs-id5id",      // create a cookie with this name
+        name: "id5id.1st",       // create a cookie with this name
         expires: 90,             // cookie lasts for 90 days
         refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
       }
     }],
-    syncDelay: 1000              // 1 second after the first bidRequest()
+    auctionDelay: 50             // 50ms maximum auction delay
   }
 });
 {% endhighlight %}
@@ -297,12 +257,12 @@ pbjs.setConfig({
 
 {% highlight javascript %}
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "id5Id",
-            value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
-        }]
-    }
+  userSync: {
+    userIds: [{
+      name: "id5Id",
+      value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
+    }]
+  }
 });
 {% endhighlight %}
 
@@ -369,6 +329,75 @@ pbjs.setConfig({
                 type: "html5",
                 name: "idl_env",    // set localstorage with this name
                 expires: 30
+            }
+        }],
+        syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+### IntentIQ ID
+
+The IntentIQ ID solution is provided by intentiq.com.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=intentIqIdSystem
+
+#### IntentIQ ID Registration
+
+You can set up IntentIQ ID by contacting our operations team at [IntentIQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
+
+The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
+
+#### IntentIQ ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"intentIqId"` | `"intentIqId"` |
+| params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
+| params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
+
+#### IntentIQ ID Examples
+
+1) Publisher has a partner ID from IntentIQ and cookies.
+
+{: .alert.alert-warning :}
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "cookie",
+                name: "intentIqId",       // create a cookie with this name
+                expires: 60                   // cookie can last for 60 days
+            }
+        }],
+        syncDelay: 3000              // 3 seconds after the first auction
+    }
+});
+{% endhighlight %}
+
+2) Publisher supports IntentIQ and HTML5 local storage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "html5",
+                name: "intentIqId",    // set localstorage with this name
+                expires: 60
             }
         }],
         syncDelay: 3000
@@ -530,6 +559,36 @@ pbjs.setConfig({
             value: {
                "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
             }
+        }]
+    }
+});
+{% endhighlight %}
+
+### Lotame Panorama ID
+
+Lotame Panorama is a suite of data-enrichment solutions for digital advertising that empowers marketers, agencies, publishers and media companies to transform consumer personas into addressable audiences. At the heart of Lotame Panorama is the Panorama ID, a people-based identifier powered by deterministic and probabilistic data, available across the cookie-challenged web and all browsers.
+
+The Lotame privacy policy is at [https://www.lotame.com/about-lotame/privacy/](https://www.lotame.com/about-lotame/privacy/).
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=lotamePanoramaId
+
+#### Lotame Panorama ID Configuration
+
+The Lotame Panorama ID module does not require any configuration parameters. It should work as-is provided that bidders use it in their adapters.
+
+{: .alert.alert-info :}
+NOTE: For optimal performance, the Lotame Panorama Id module should be called at every opportunity. It is best not to use `params.storage` with this module as the module has its own optimal caching mechanism.
+
+#### Lotame Panorama ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "lotamePanoramaId",
         }]
     }
 });
@@ -801,11 +860,13 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | --- | --- | --- | --- | --- | --- |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
-| DigiTrust | IAB | bidRequest.userId.digitrustid | `{data: {id: "DTID", keyv: 4, privacy: {optout: false}, producer: "ABC", version: 2}` |
+| ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
-| Parrable ID | Parrable | bidRequest.userId.parrableid | `"eidVersion.encryptionKeyReference.encryptedValue"` |
+| IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
+| Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
+| Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
@@ -850,7 +911,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
             {
                 source: "parrable.com",
                 uids: [{
-                    id: "01.1563917337.test-eid"
+                    id: "01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"
                 }]
             },{
                 "source": "identityLink",
@@ -873,6 +934,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "11111111"
                 }]
             },{
+                "source": "crwdcntrl.net",
+                "uids": [{
+                    "id": "e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"
+                }]
+            },{
                 "source": "netid.de",
                 "uids": [{
                     "id": "11111111"
@@ -885,11 +951,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                         "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
                     }
                 }]
-            }],
-            "digitrust": {              // DigiTrust is not in the eids section
-                "id": "11111111111",
-                "keyv": 4
-            }
+            }]
         }
     }
 }
@@ -900,6 +962,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
 If you're an ID provider that wants to get on this page:
 
 - Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+- Add your *IdSystem name into the modules/.submodules.json file
 - Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
 - Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
 - Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
@@ -947,4 +1010,3 @@ User IDs from Prebid User ID module can be passed to GAM for targeting in Google
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
 * [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
-* [DigiTrust Module Usage and Configration](/dev-docs/modules/digitrust.html)

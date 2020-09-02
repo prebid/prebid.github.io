@@ -2,7 +2,7 @@
 layout: bidder
 title: SekindoUM
 description: Prebid SekindoUM Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: sekindoUM
 media_types: video
 gdpr_supported: true

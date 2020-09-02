@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="_SMhyxJ4MnU9eTUQQNMUwU5W18T5tjNF7A6mumIci-A" />
+    <meta name="keywords" content="Header Bidding, Advanced Bidding, Header Bid, Pre-bid">
+    <meta name="description" content="{{page.description}}" />
+    
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    
+        
+    {% if page.head_title %}
+        <title>{{page.head_title}}</title>
+    {% else %}
+        <title>{{page.title}} for Header Bidding</title>
+    {% endif %}
+
+<!-- OneTrust Cookies Consent Notice start -->
+
+<script src="https://cdn.cookielaw.org/consent/53783db5-1614-43d4-bb1a-148e68e8c87b.js" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end -->
+
+    
+    <!--<link href="{{site.baseurl}}/assets/css/bootstrap.min.css" rel="stylesheet">-->
+    <!-- Latest compiled and minified Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="{{site.baseurl}}/assets/css/docs.min.css" rel="stylesheet">
+        
+    <link rel="stylesheet" href="/assets/css/prism.css">
+	<link href="{{site.baseurl}}/assets/css/style.css" rel="stylesheet">
+
+	    
+	<!-- Favicons -->
+	<link href="{{site.baseurl}}/assets/images/favicon.png" rel="icon">
+	<link href="{{site.baseurl}}/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+	
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,400i,700,700i>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed" />
+	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		
+    <style>
+        #content {
+            background:{{site.header.color1}};
+            background:linear-gradient(135deg, {{site.header.color1}}, {{site.header.color2}});
+        }
+    </style>
+
+	<script src="{{site.baseurl}}/assets/js/prism.js"></script>
+    <script src="{{site.baseurl}}/assets/js/jquery.min.js"></script>
+    <script src="{{site.baseurl}}/assets/js/bootstrap.js"></script>
+    <script src="{{site.baseurl}}/assets/js/bootbox.min.js"></script>
+    <script src="{{site.baseurl}}/assets/js/docs.min.js"></script>
+    <script src="{{site.baseurl}}/assets/js/easing.min.js"></script>
+    <script src="{{site.baseurl}}/assets/js/main.js"></script>
+    <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
+    
+    <!--production version of prebid.js-->
+    <script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+    
+        
+    <!--pbjs and player code and 3rd party js & css -->	
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"/>
+    <script type="text/javascript" src="https://mssl.fwmrm.net/libs/adm/6.24.0/AdManager-debug.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <!--style specific to the long-form demo-->
+	<style type="text/css">
+	
+    	#videoPlayer {
+    		height: 480px;
+    		width: 100%;
+    		background-color: #000;
+    	}
+
+		.outer {
+        	position: relative;
+		}
+
+		#skip {
+	        position: absolute;
+	        right: 20px;
+	        bottom: 20px;
+	        display: none;
+	        color: white;
+	        background-color: black;
+	        border: 1px solid gray;
+	      }
+
+	      #adCount {
+	        color:white;
+	        position: absolute;
+	        left: 20px;
+	        bottom: 20px;
+	        display: none;
+	      }
+
+	      #showad {
+	        color:white;
+	        position: absolute;
+	        left: 20px;
+	        top: 20px;
+	      }
+	      
+    </style>
+
+    
+	<script>
+      
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
+
+      var videoAdUnit = [{
+        code: 'sample-code',
+        sizes: [640,480],
+        mediaTypes: {
+          video: {
+            context: 'adpod',
+            playerSize: [640, 480],
+            adPodDurationSec: 300,
+            durationRangeSec: [15, 30],
+            requireExactDuration: true
+          }
+        },
+        bids: [
+          {
+            bidder: 'appnexus',
+            params: {
+              placementId: 14542875
+            }
+          }
+        ]
+      }];
+
+      pbjs.que.push(function(){
+        pbjs.addAdUnits(videoAdUnit);
+        pbjs.setConfig({ 
+          debug: true,
+          cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+          },
+          adpod: {
+            brandCategoryExclusion: true
+          }
+        });
+
+        pbjs.requestBids({
+            bidsBackHandler: function(bids) {
+              pbjs.adServers.freewheel.getTargeting({
+                callback: function(err, targeting) {
+                  loadKv(targeting);
+                  loadBids(targeting)
+                  console.log(targeting);
+                  var player = new tv.freewheel.DemoPlayer();
+                  player.requestAds(targeting);
+                  $('#start').bind('click', function(evt){
+                    player.play();
+                  });
+                }
+              });
+            }
+        });
+      });
+    </script>
+    
+    <script type="text/javascript">
+    $(function() {
+      $("#tabs").tabs();
+    });
+    var timerElm;
+    var showadElm;
+    window.onload = function() {
+      var player = document.getElementById('videoPlayer');
+      timerElm = document.getElementById('timer');
+      showadElm = document.getElementById('showad');
+      // player.controls = true;
+    }
+
+    function getIndustry(id) {
+      var mapping = window.localStorage.getItem('iabToFwMappingkey');
+      if (mapping) {
+        try {
+          mapping = JSON.parse(mapping);
+        } catch (error) {
+          //
+        }
+        var industry;
+        mapping = mapping['mapping'];
+        for (var v in mapping) {
+          if (mapping[v]['id'] == id) {
+            industry = mapping[v]['name'];
+            break;
+          }
+        }
+        return industry;
+      } 
+    }
+
+    function loadKv(targetingArr) {
+      var div = document.getElementById('tabs-3');
+      var html = '<table class="table"><tbody>';
+      Object.keys(targetingArr).forEach(adUnitCode => {
+        targetingArr[adUnitCode].forEach(function (targeting) {
+          Object.keys(targeting).forEach(function (key) {
+            html += '<tr id='+targeting[key]+'><td>'+key+'</td><td>'+targeting[key]+'</td></tr>'
+          });
+        });
+      });  
+      html += '</tbody></table>';
+      div.innerHTML = html;
+    }
+
+    function loadBids(targetingArr) {
+      var div = document.getElementById('tabs-2');
+      var html = '<table class="table"><thead><tr><th>#</th><th>CPM</th><th>Industry</th><th>Duration</th><th>Status</th><th>Comm Break #</th></tr></thead><tbody>';
+      var index = 1;
+      Object.keys(targetingArr).forEach(adUnitCode => {
+        targetingArr[adUnitCode].forEach(function (targeting) {
+          Object.keys(targeting).forEach(function (key) {
+            if (key !== 'hb_cache_id') {
+              var result = targeting[key].split('_');
+              html += '<tr id='+targeting[key]+'>';
+              html += '<td>'+index+'</td>';
+              html += '<td>'+result[0]+'</td>';
+              html += '<td>'+getIndustry(result[1])+'</td>';
+              html += '<td>'+result[2]+'</td>';
+              html += '<td></td>';
+              html += '<td></td>';
+              html += '</tr>';
+              index++;
+            }
+          });
+        });
+      });  
+      html += '</tbody></table>';
+      div.innerHTML = html;
+    }
+
+    function jump(sec) {
+      player = document.getElementById('videoPlayer');
+      player.currentTime = sec;
+    }
+
+    function parse(url) {
+        try {
+          var parsed = document.createElement('a');
+          parsed.href = url;
+          var uuid = parsed.search;
+          var str = uuid.substring(6, uuid.length).split('_');
+          return str[0]+'_'+str[1]+'_'+str[2];
+        } catch (e) {
+          // error
+        }
+      }
+
+    function highlight(cacheUrl) {
+      if (cacheUrl) {
+        var id = parse(cacheUrl);
+        if (id) {
+          var cells = document.getElementById(id).getElementsByTagName('td');
+          cells[4].innerHTML = '<img src="tick.png" style="width:20px; height:25px;">';
+          cells[5].innerHTML = comBreak;
+        }
+      }
+    }
+
+    function updatePodBreakup(podData) {
+      var div = document.getElementById('tabs-4');
+      var html = '<h6 class="font-weight-bold">Commercial Break'+comBreak+'</h6>';
+      html += '<table class="table"><thead><tr><th>#</th><th>CPM</th><th>Industry</th><th>Duration</th><th>Type</th></tr></thead><tbody>';
+      var index = 1;
+      podData.forEach(function(creative) {
+        var tempCreative = {
+          type: 'Direct Sold',
+          cpm: 'NA',
+          industry: 'NA',
+          duration: creative.duration
+        }
+        if (creative.cacheUrl) {
+          var url = parse(creative.cacheUrl);
+          var urlData = url.split('_');
+          tempCreative.type = 'Header Bidding';
+          tempCreative.cpm = urlData[0];
+          tempCreative.industry = getIndustry(urlData[1]);
+          tempCreative.duration = urlData[2];
+        }
+        html += '<tr>';
+        html += '<td>'+index+'</td>';
+        html += '<td>'+tempCreative.cpm+'</td>';
+        html += '<td>'+tempCreative.industry+'</td>';
+        html += '<td>'+tempCreative.duration+'</td>';
+        html += '<td>'+tempCreative.type+'</td>';
+        html += '</tr>';
+        index++;
+      });
+
+      html += '</tbody></table>';
+      div.innerHTML += html;
+    }
+
+    var slotPage;
+    var adCount;
+    var timerId;
+    var getDuration;
+    var comBreak = 1;
+
+    function updateAdCount(current, total) {
+      showadElm.innerHTML = 'Showing Ad '+current+' of '+total;
+    }
+
+    function initCreativeTimer() {
+      var duration = getDuration();
+      if (duration) {
+        timerElm.innerHTML = duration;
+        timerId = setInterval(function() {
+          duration--;
+          timerElm.innerHTML = duration;
+          if (duration === 0) {
+            clearInterval(timerId);
+            initCreativeTimer();
+          }
+        }, 1000);
+      } else {
+        comBreak++;
+      }
+    }
+    
+    function skipAd() {
+      clearInterval(timerId);
+      if (!adCount) {
+        adCount = slotPage.getAdCount();
+      }
+      if (adCount > 0) {
+        initCreativeTimer();
+        slotPage.playNextAdInstance();
+        adCount--;
+      }
+    }
+    </script>
+</head>
+
+<body>

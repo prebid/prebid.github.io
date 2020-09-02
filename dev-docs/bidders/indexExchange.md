@@ -3,12 +3,14 @@ layout: bidder
 title: Index Exchange
 description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
-hide: true
+pbjs: true
+pbs: true
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
 tcf2_supported: true
 media_types: banner, video
+gvl_id: 10
 ---
 
 ## Overview

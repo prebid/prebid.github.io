@@ -3,7 +3,7 @@ layout: bidder
 title: Nobid
 description: Prebid Nobid Bidder Adaptor
 biddercode: nobid
-hide: true
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
 usp_supported: true

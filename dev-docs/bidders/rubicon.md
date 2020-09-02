@@ -2,7 +2,6 @@
 layout: bidder
 title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adaptor
-hide: true
 biddercode: rubicon
 gdpr_supported: true
 tcf2_supported: true
@@ -10,13 +9,18 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: video
-userIds: digitrust, identityLink, liveIntentId, pubCommonId, unifiedId
+userIds: identityLink, liveIntentId, unifiedId
 prebid_member: true
 safeframes_ok: true
+bidder_supports_deals: true
+pbjs: true
+pbs: true
+gvl_id: 52
 ---
 
-### Note:
-The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
+### Registration
+
+For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or globalsupport@magnite.com for more information.
 
 ### Bid Params
 

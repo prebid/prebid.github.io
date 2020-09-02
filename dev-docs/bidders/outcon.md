@@ -2,7 +2,7 @@
 layout: bidder
 title: Outcon
 description: Prebid Outcon Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: outcon
 ---
 
