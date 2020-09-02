@@ -22,6 +22,8 @@ Several Prebid.org members will configure and host your Prebid implementations, 
 </td></tr>
 <tr><td><a href="https://rubiconproject.com/header-bidding-for-publishers/"><img src="/assets/images/partners/founders/rubicon.png" width="100"></a></td>
 <td>Rubicon Project's Prebid-as-a-service solution makes it easy for large publishers to deploy and control custom header bidding implementations without writing code. The combination of an intuitive UI and on-demand support from our Prebid and yield management experts enables publishers to make faster decisions and potentially capture more revenue. This solution supports display and video ads across desktop and mobile app environments via Prebid.js, Prebid SDK and Prebid Server.  Contact <a href="mailto: sales@rubiconproject.com">sales@rubiconproject.com</a> for more information.</td></tr>
+<tr><td><a href="https://www.openx.com/prebid"><img src="/assets/images/partners/leader/openx.png" width="100"></a></td>
+<td>Prebid gives publishers greater control over their programmatic revenue, but it can be hard to manage alone. OpenX Apollo offers an all-in-one solution for publishers to get the most out of Prebid. Featuring three tiers of service, OpenX Apollo makes it possible for publishers to fully control their Prebid setup and configurations while also having access to the level of service they need. Publishers can also effectively manage costs by using OpenX Apollo to outsource Prebid infrastructure, personnel, and tooling.  <a href="https://www.openx.com/prebid/">Contact Us</a></td></tr>
 </table>
 
 <h2>Community Prebid Members</h2>
