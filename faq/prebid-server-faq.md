@@ -101,4 +101,4 @@ the hosting company in some scenarios, but it's technically unavoidable and bett
 
 ## How does Prebid Server support privay signals?
 
-See the [Prebid Server Privacy Feature Page](/prebid-server/features/privacy/pbs-privacy.html)
+See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy.html)
