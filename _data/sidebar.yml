@@ -1795,7 +1795,7 @@
 
 - sbSecId: 5
   title: Privacy Support (GDPR, CCPA, etc)
-  link: /prebid-server/features/privacy/pbs-privacy.html
+  link: /prebid-server/features/pbs-privacy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
