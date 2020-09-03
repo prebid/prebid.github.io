@@ -115,4 +115,4 @@ The PBM header bidding process follows these steps:
 + [Prebid.js](/prebid/prebidjs.html)
 + [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
 + [Prebid Mobile](/prebid-mobile/prebid-mobile.html)
-+ [Managed Prebid Solutions](/prebid/managed.html)
++ [Managed Prebid Solutions](https://prebid.org/product-suite/managed-services/)

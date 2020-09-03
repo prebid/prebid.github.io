@@ -758,7 +758,7 @@ gulp build --modules=unifiedIdSystem
 You can set up Unified ID in one of these ways:
 
 - Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
-- Utilize a [managed services](/prebid/managed.html) company who can do this for you.
+- Utilize a [managed services](https://prebid.org/product-suite/managed-services/) company who can do this for you.
 
 The Unified ID privacy is covered under the [TradeDesk Services Privacy Policy](https://www.thetradedesk.com/general/privacy).
 

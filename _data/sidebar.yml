@@ -146,22 +146,6 @@
   sectionTitle:
   subgroup: 1
 
-- sbSecId: 0
-  title: '&nbsp;&nbsp;Managed Services'
-  link: /prebid/managed.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 0
-
-- sbSecId: 0
-  title: '&nbsp;&nbsp;Events'
-  link: /prebid/events.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 0
-
-
-
 #--------------Prebid.js--------------|
 
 - sbSecId: 1
