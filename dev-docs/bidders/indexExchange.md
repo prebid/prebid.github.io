@@ -11,6 +11,7 @@ usp_supported: true
 tcf2_supported: true
 media_types: banner, video
 gvl_id: 10
+prebid_member: yes
 ---
 
 ## Overview
