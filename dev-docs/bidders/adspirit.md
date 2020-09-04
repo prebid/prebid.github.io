@@ -2,7 +2,7 @@
 layout: bidder
 title: AdSpirit
 description: Prebid AdSpirit Bidder Adapter
-hide: true
+pbjs: true
 biddercode: adspirit
 ---
 

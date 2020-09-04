@@ -2,11 +2,15 @@
 layout: bidder
 title: Conversant
 description: Prebid Conversant Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: conversant
 media_types: video
 gdpr_supported: true
-userIds: pubCommon
+userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
+prebid_member: true
+tcf2_supported: true
+gvl_id: 24
 ---
 
 
@@ -26,6 +30,8 @@ userIds: pubCommon
 | `maxduration` | optional                    | Maximum duration in seconds for this video as an integer.                                                                 | `30`              | `integer`        |
 | `api`         | optional                    | Array of supported API frameworks. See details below.                                                                     | `[2]`             | `Array<integer>` |
 | `protocols`   | optional                    | Array of supported video protocols. See details below.                                                                    | `[2]`             | `Array<integer>` |
+| `white_label_url`| optional                  | Override the destination URL the request is sent to.                                                                       | `'https://mydomain.com/hbendpoint'`  | `string` |
+| `pubcid_name` | optional                    | Name of the pub common id. Conversant adapter can read the id directly if the UserID module is absent. Default is _pubcid.| `_pubcid`         | `string`         |
 
 
 The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf).

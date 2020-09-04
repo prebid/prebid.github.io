@@ -2,10 +2,12 @@
 layout: bidder
 title: Lifestreet
 description: Prebid Lifestreet Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: lifestreet
 media_types: video
 gdpr_supported: true
+usp_supported: true
 ---
 
 

@@ -2,7 +2,7 @@
 layout: bidder
 title: Padsquad
 description: Prebid Padsquad Bidder Adapter
-hide: true
+pbjs: true
 biddercode: padsquad
 gdpr_supported: true
 ---
