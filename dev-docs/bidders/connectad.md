@@ -27,4 +27,4 @@ Please reach out to your ConnectAd Account Manager before configuring the S2S ad
 |-------------|----------|--------------------------------|---------|-----------|
 | `siteId`    | required | The site ID from ConnectAd.    | 12345   | integer   |
 | `networkId` | required | The network ID from ConnectAd. | 10047   | integer   |
-| `floorprice`| optional | Requested Floorprice           | 0.15    | number    |
+| `bidfloor`  | optional | Requested Floorprice           | 0.15    | number    |
