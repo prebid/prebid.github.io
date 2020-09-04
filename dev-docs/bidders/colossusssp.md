@@ -9,12 +9,21 @@ schain_supported: true
 media_types: banner, video, native
 userIds: britepoolid, identityLink, unifiedId, id5Id
 gdpr: true
+pbjs: true
+pbs: true
 ---
 
-### Bid Params
+### Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
 | `placement_id` | required | Placement Id will be generated on Colossus SSP Platform. | `0`        | `integer` |
 | `traffic`      | optional | Type traffic                                             | `'banner'` | `string`  |
+
+### Prebid.Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name           | Scope    | Description                                              | Example    | Type      |
+|----------------|----------|----------------------------------------------------------|------------|-----------|
+| `TagID` | required | Placement Id will be generated on Colossus SSP Platform. | `'0'`        | `string` |
