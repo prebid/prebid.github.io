@@ -2,10 +2,12 @@
 layout: bidder
 title: OneVideo
 description: Prebid One Video Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: oneVideo
 media_types: video
 gdpr_supported: true
+tcf2_supported: true
+usp_supported: true
 ---
 
 ### Note:

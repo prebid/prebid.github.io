@@ -2,7 +2,7 @@
 layout: bidder
 title: Page Science
 description: Prebid Page Science Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: pagescience
 aliasCode : appnexus
 ---

@@ -17,4 +17,5 @@ choose to run Guaranteed ad campaigns through Prebid Server.
 
 ## Resources
 
-- Intro Presentation: [video](http://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](http://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
+- Intro Presentation: [video](https://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](https://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
+- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)

@@ -8,9 +8,10 @@ sidebarType: 0
 # Prebid.org Website Privacy Policy
 {:.no_toc}
 
-Last updated Dec 18, 2018
+Last updated Aug 5, 2020
 
-Prebid.org, Inc. respects your right to privacy.  This Privacy Notice explains who we are, how we collect, share and use personal information about you, and how you can exercise your privacy rights.  This Privacy Notice applies to personal information that we collect through our website at [http://prebid.org/](http://prebid.org/) and its subdomains ("**Website**") and via our marketing activities and events.  
+Prebid.org, Inc. respects your right to privacy.  This Privacy Notice explains who we are, how we collect, share and use personal information about you, and how you can exercise your privacy rights.  This Privacy Notice applies to personal information that we collect through our website at [https://prebid.org/](https://prebid.org/) and its subdomains ("**Website**") and via our marketing activities and events.  
+This Privacy Notice does not apply to any information collected by third parties using our open source software.
 
 If you have any questions or concerns about our use of your personal information, then please contact us using the contact details provided at the bottom of this Privacy Notice.
 
@@ -26,10 +27,11 @@ We recommend that you read this Privacy Notice in full to ensure you are fully i
 
 Prebid.org is an industry consortium that provides free and open source solutions to implement header bidding. We’re utilized globally and headquartered in the United States. We seek to ensure and promote fair, transparent, and efficient header bidding across the ad tech industry, representing all parts of the programmatic ecosystem, from ad tech vendors to publishers and others.
 
-The open source software products we make available may be utilized by third parties for the purposes of serving online advertisements. These third parties may configure the software to enable pseudonymized data included in bid requests to be transmitted within the online advertising ecosystem. However, Prebid.org has no involvement in these transactions and does not itself transmit, store or otherwise process the pseudonymized data in these transactions.  Prebid.org is not responsible for the privacy practices of such third parties and it is the responsibility of the third party concerned to handle data in accordance with applicable privacy laws.  
+The open source software products we make available may be utilized by third parties for the purposes of serving online advertisements. These third parties may configure the software to enable pseudonymized data included in bid requests to be transmitted within the online advertising ecosystem. However, Prebid.org has no involvement in these transactions and does not itself transmit, store or otherwise process the pseudonymized data in these transactions.  Prebid.org is not responsible for the privacy practices of third parties that use our software and it is the responsibility of the third party concerned to handle data in accordance with applicable privacy laws.  
 
-For more information about Prebid.org, please see the “About” section of our Website at [http://prebid.org/overview/what-is-prebid-org.html](http://prebid.org/overview/what-is-prebid-org.html). 
+For more information about Prebid.org, please see the “About” section of our Website at [https://prebid.org/overview/what-is-prebid-org.html](/overview/what-is-prebid-org.html). 
 
+<a name="what-personal-info"></a>
 ## What personal information does Prebid.org collect and why?
 
 The personal information that we may collect from our Website or through our marketing activities broadly falls into the following categories:
@@ -56,6 +58,7 @@ Collecting this information enables us to better understand the visitors who com
 
 Some of this information may be collected using cookies and similar tracking technology, as explained further in our [Cookies Notice](/cookies.html).
 
+<a name="share-personal-info"></a>
 ## Who does Prebid.org share my personal information with?
 
 We may disclose your personal information to the following categories of recipients:
@@ -92,7 +95,7 @@ We use appropriate technical and organisational measures to protect the personal
 
 Your personal information may be transferred to, and processed in, countries other than the country in which you are resident.  We are headquartered in the US, and our member companies and third party service providers and partners operate around the world. Therefore, when we collect your personal information, we may process it in countries that have data protection laws that are different to the laws of your country and in some cases, may not be as protective. 
 
-We will take appropriate safeguards to ensure that your personal information will remain protected in accordance with this Privacy Notice, including signing standard contractual clauses with our third party service providers, or engaging third party service providers that are Privacy Shield certified. Further details can be provided upon request – please write to us using the contact details further below.
+We will take appropriate safeguards to ensure that your personal information will remain protected in accordance with this Privacy Notice, including signing standard contractual clauses with our third party service providers. Further details can be provided upon request – please write to us using the contact details further below.
 
 ## Data retention
 
@@ -100,21 +103,39 @@ We retain personal information we collect from you where we have an ongoing legi
 
 When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymise it or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible. 
 
+<a name="data-protection-rights"></a>
 ## Your data protection rights
 
-If you are a resident of the European Economic Area, you have the following data protection rights:
+If you are a resident of the European Economic Area or California, you have the right to request to access or request deletion of your personal information. You may exercise this right at any time by using the contact details provided under the ["How to contact us"](#contact) heading below.  
 
-* If you wish to access, correct, update or request deletion of your personal information, you can do so at any time by using the contact details provided under the ["How to contact us"](#contact) heading below.  
+In addition, if you are a resident of the European Economic Area, you have the following additional data protection rights: 
 
-* In addition, you can object to processing of your personal information, ask us to restrict processing of your personal information or request portability of your personal information. Again, you can exercise these rights by contacting us using the contact details provided under the ["How to contact us"](#contact) heading below.
+* You may object to processing of your personal information, ask us to restrict processing of your personal information or request portability or correction of your personal information. Again, you can exercise these rights by contacting us using the contact details provided under the ["How to contact us"](#contact) heading below.
+* If we have collected and processed your personal information with your consent, then you can withdraw your consent at any time.  Withdrawing your consent will not affect the lawfulness of any processing we conducted prior to your withdrawal, nor will it affect processing of your personal information conducted in reliance on lawful processing grounds other than consent.
+* You have the right to complain to a data protection authority about our collection and use of your personal information.  For more information, please contact your local data protection authority. Contact details for data protection authorities in the European Economic Area are available [here](https://ec.europa.eu/justice/data-protection/article-29/structure/data-protection-authorities/index_en.htm).
 
-* You have the right to opt-out of marketing communications we send you at any time.  You can exercise this right by clicking on the "unsubscribe" or "opt-out" link in the marketing e-mails we send you.  Alternatively, you can opt out by using the contact details provided under the ["How to contact us"](#contact) heading below.
-
-* Similarly, if we have collected and processed your personal information with your consent, then you can withdraw your consent at any time.  Withdrawing your consent will not affect the lawfulness of any processing we conducted prior to your withdrawal, nor will it affect processing of your personal information conducted in reliance on lawful processing grounds other than consent.
-
-* You have the right to complain to a data protection authority about our collection and use of your personal information.  For more information, please contact your local data protection authority. Contact details for data protection authorities in the European Economic Area are available [here](http://ec.europa.eu/justice/data-protection/article-29/structure/data-protection-authorities/index_en.htm).
+Everyone has the right to opt-out of marketing communications we send you
+at any time. You can exercise this right by clicking on the "unsubscribe" or
+"opt-out" link in the marketing e-mails we send you. Alternatively, you can opt
+out by using the contact details provided under the ["How to contact us"](#contact) heading below.
 
 We respond to all requests we receive from individuals wishing to exercise their data protection rights in accordance with applicable data protection laws.
+
+## Additional information for California residents
+ 
+If you are a California resident, please review the following additional privacy disclosures under the California Consumer Privacy Act ("CCPA").
+
+You have the right to understand how we collect, use, and disclose your personal information, to access your information, to request that we delete certain information, and to not be discriminated against for exercising your privacy rights. You may exercise these rights as described in the ["Your data protection rights"](#data-protection-rights) section above. 
+
+You also have the right to understand what information we collect, for what purpose, and how we disclose personal information to third parties. As described in the [What personal information does Prebid.org collect and why?](#what-personal-info) section, we collect the categories of personal information listed below, and we use and disclose these categories of information for the business purposes described in that section. The categories are:
+
+* Identifiers, like your name, email address, IP address, device ID, cookie ID, and other similar identifiers.
+* Internet or other electronic network activity information, such as the usage data we receive when you access or use our Website. This includes information about your interactions with the Website and about the devices and computers you use to access the Website.
+* Professional or employment related information, including any information (like your name, email address, or similar information) that you provide about your employment or employer.
+* Other information that you choose to provide.
+
+We share these categories of personal information as described in the [Who does Prebid.org share my personal information with?](#share-personal-info) section. We never sell the personal information we collect.
+
 
 ## Updates to this Privacy Notice
 

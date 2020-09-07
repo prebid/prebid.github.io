@@ -2,8 +2,10 @@
 layout: bidder
 title: Trion Interactive
 description: Prebid Trion Interactive Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: trion
+usp_supported: true
+gdpr_supported: true
 ---
 
 
@@ -15,4 +17,3 @@ biddercode: trion
 |-------------|----------|--------------------------------------------|-------------------------------------|----------|
 | `pubId`     | required | publisher Id provided by Trion Interactive | `'111111'`                          | `string` |
 | `sectionId` | required | section Id provided by Trion Interactive   | `'11'`                              | `string` |
-| `re`        | optional | click through redirect                     | `'http://clicktrackingurl.com?re='` | `string` |
