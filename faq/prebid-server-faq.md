@@ -99,7 +99,7 @@ AppNexus' Prebid Server, it can read their 'uuid2' cookie. In other words, if th
 has the exchange cookie, the host company will have an ID one page-view sooner than the other bidders. This gives a slight edge to
 the hosting company in some scenarios, but it's technically unavoidable and better for both buyers and sellers to have one ID available rather than zero.
 
-## How does Prebid Server support privay signals?
+## How does Prebid Server support privacy signals?
 
 See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy.html)
 
