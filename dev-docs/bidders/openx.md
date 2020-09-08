@@ -2,17 +2,23 @@
 layout: bidder
 title: OpenX
 description: Prebid OpenX Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: openx
 media_types: banner, video
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 tcf2_supported: true
+gvl_id: 69
 ---
+
+### Registration
+
+If you have any questions regarding set up, please reach out to your account manager or support@openx.com.
 
 ### Bid Parameters
 #### Banner

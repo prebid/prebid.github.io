@@ -4,11 +4,8 @@ title: Send All Bids to the Ad Server
 head_title: Send All Bids to the Ad Server
 description: Send all bids to the ad server for reporting and data analysis.
 pid: 2
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
-
 
 
 # Send all bids to the ad server - Ad Ops setup
@@ -86,8 +83,9 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
 - Set it to be a **Third party** creative.
 - Make sure the creative size is set to 1x1.  This allows the creative to serve on all inventory sizes. When associating with the line item, just change the creative filter setting to show all creatives instead of 'Inventory filtered based on size'.
 - The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
-- Copy this creative code snippet and paste it into the **Code snippet** box.
+- Copy this creative code snippet for each bidder and paste it into the **Code snippet** box, replacing BIDDERCODE with the current bidder name.
 
+```
     <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
       var ucTagData = {};
@@ -101,13 +99,15 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
       ucTagData.env = "%%PATTERN:hb_env%%";
       ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
       ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
-
+      // mobileResize needed for mobile GAM only
+      ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
         console.log(e);
       }
     </script>
+```
 
 {% capture noteAlert %}
 Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`. IMPORTANT: Make sure that none of the values are
@@ -149,6 +149,8 @@ See note above in regards to replacing *BIDDERCODE* placeholders.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
+
+{% include adops/adops-creative-declaration.html %}
 
 For other ad servers:
 

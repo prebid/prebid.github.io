@@ -47,7 +47,7 @@ Follow the instructions for your ad server to create line items for instream vid
 If you already have a Prebid integration for banner, you don’t need to do anything differently for outstream video. Outstream units use the same creative and line item targeting setup as banner creatives. See the [Step by Step Guide to Google Ad Manager Setup]({{site.github.url}}/adops/step-by-step.html) for instructions. (If you’re not using Google Ad Manager as your ad server, follow your ad server’s guidelines for setting up your line items.)
 
 {: .alert.alert-info :}
-**Prebid Server** If you’ve decided to conduct your header bidding auctions server-side rather than on the client, you need to have a Prebid Server account. See [Get Started with Prebid Server]({{site.github.url}}/dev-docs/get-started-with-prebid-server.html) to begin your integration. After you’ve created an account, you’ll need to pass along the account ID to your developers.
+**Prebid Server** If you’ve decided to conduct your header bidding auctions server-side rather than on the client, you need to have a Prebid Server account or set up your own. See the [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html) to begin your integration.
 
 
 
@@ -180,7 +180,9 @@ This section contains working examples of instream and outstream video ads for v
 + [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
 + [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
+
 ## Further Reading
 
 -   [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)
 -   [What is Prebid?]({{site.github.url}}/overview/intro.html)
+

@@ -56,6 +56,26 @@
 	  writeDynamicTable({div: "memberTablePub", data: "memberDataPub", sort:"rowFirst", maxcols: 4, striped: false, fixedHeight: true});
 	</script>
 
+<!--
+	<div class="tableTitle"><h2>Prebid.org Buyer Members</h2></div>
+	<script type="text/javascript">
+	var memberDataBuyer=[];
+	var idx=0;
+	{% for item in site.data.partners %}
+		{% if item.type == "buyer" %}
+			memberDataBuyer[idx]={};
+			memberDataBuyer[idx].href="{{item.link}}";
+			memberDataBuyer[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+	<div id="memberTableBuyer"></div>
+	<script>
+	  writeDynamicTable({div: "memberTableBuyer", data: "memberDataBuyer", sort:"rowFirst", maxcols: 1, striped: false, fixedHeight: true});
+	</script>
+-->
+
 	<div class="tableTitle"><h2>Prebid.org Community Members</h2></div>
 	<script type="text/javascript">
 	var memberDataComm=[];

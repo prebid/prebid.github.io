@@ -2,15 +2,16 @@
 layout: bidder
 title: ConnectAd
 description: ConnectAd Prebid Adaptor
-hide: true
 biddercode: connectad
 media_types: banner
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-userIds: digitrust, id5Id, liveIntentId, parrableId, pubCommonId, unifiedId
+userIds: id5Id, liveIntentId, parrableId, pubCommonId, unifiedId
 prebid_member: true
+tcf2_supported: true
+pbjs: true
 ---
 
 

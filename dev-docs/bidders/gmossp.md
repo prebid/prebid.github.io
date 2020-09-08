@@ -2,7 +2,7 @@
 layout: bidder
 title: GMOSSP
 description: Prebid GMOSSP Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: gmossp
 media_types: banner
 ---

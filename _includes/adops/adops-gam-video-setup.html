@@ -49,13 +49,13 @@ bidders, you will need to have either:
 
 <p>If you’re using a single order for all bidders, then the VAST URL will be the same for each bidder:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_cache_id%%
+<figure class="highlight"><pre><code class="language-html" data-lang="html">   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
 or
    [other bidder cache location]</code></pre></figure>
 
 <p>If you’re using different orders for each bidder, the VAST URL for each will include the bidder-specific targeting variable:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_cache_id_BIDDERCODE%%
+<figure class="highlight"><pre><code class="language-html" data-lang="html">   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid_BIDDERCODE%%
 or
    [other bidder cache location]</code></pre></figure>
 

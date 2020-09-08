@@ -33,6 +33,14 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 - `periodMillis`: Integer defining the refresh time in milliseconds. Default = 0, meaning no auto refresh.
 - `keywords`: ArrayList containing keys and values.
 
+#### pbAdSlot
+
+PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
+
+`adUnit.pbAdSlot = "/1111111/homepage/med-rect-2"`
+
+---
+
 ## Methods
 
 ### fetchDemand
@@ -41,8 +49,10 @@ Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad uni
 
 **Parameters**
 
-- `adObj`: bid request object
+- `adObj`: This is the ad server request object (for [Google Ad Manager](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest) and for [Mopub](https://developers.mopub.com/publishers/reference/android/MoPubView/)). If you do not wish to add any additional /custom key values to the ad server after the Prebid auction, pass `adObj` to the fetchDemand function, where Prebid SDK will set all the Prebid targeting keys as well as any keys added prior to auction
+- As of Prebid SDK 1.7, a publisher can optionally pass the Google Ad Manager `builder` object of the [Google Ad Manager Mobile Ads SDK](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest.Builder) to pass custom keys to Google Ad Manager after the Prebid Auction
 - `onCompleteListener`: listener object
+
 
 
 
@@ -207,6 +217,19 @@ interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
     @Override
     public void onComplete(ResultCode resultCode) {
         dfpInterstitial.loadAd(publisherAdRequest);
+    }
+});
+
+//As of Prebid SDK 1.7, the fetchDemand method supports passing a request builder object to append custom key values to the build object. See fetchDemand above for furher details. 
+
+final PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
+
+adUnit.fetchDemand(builder, new OnCompleteListener() {
+    @Override
+    public void onComplete(ResultCode resultCode) {
+        builder.addCustomTargeting("key1", "value1");
+        PublisherAdRequest request = builder.build();
+        amBanner.loadAd(request);
     }
 });
 ```

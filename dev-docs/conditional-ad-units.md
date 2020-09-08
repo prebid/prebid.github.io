@@ -4,7 +4,7 @@ title: Conditional Ad Units
 description: Using labels for conditional ad units
 top_nav_section: dev_docs
 nav_section: features
-hide: false
+
 sidebarType: 1
 ---
 
@@ -30,7 +30,7 @@ See the [Publisher API reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 ## What if some bidders should be skipped for some devices?
 
 {: .alert.alert-info :}
-See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario.
+See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
 
 Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile
 to send them requests from display or tablets.
@@ -107,7 +107,7 @@ For instance, say that a given bidder wants to define different placements for d
 | Display | 1111 |
 | Phones and tablets | 2222 |
 
-### Using the Global sizeConfig Approach
+### Using the Global sizeConfig Approach (Banner only)
 
 Assuming the same `sizeConfig` as in the first use case above, the AdUnit would contain bids for both
 placements, but the conditional `labelAny` is added to them both. This will cause the bid to be fired only if one
@@ -191,7 +191,7 @@ var AdUnits = [{
 ## What if some ad unit auctions should be skipped entirely for some devices?
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
-on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. For example:
+on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the global sizeConfig approach (banner only):
 
 {% highlight js %}
 
@@ -218,6 +218,8 @@ var AdUnits = [{
        }
    ]
 }]
+
+See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if you need to do something like this for video.
 
 {% endhighlight %}
 

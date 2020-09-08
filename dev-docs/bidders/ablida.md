@@ -2,8 +2,8 @@
 layout: bidder
 title: ablida
 description: Prebid ablida Bidder Adaptor
-hide: true
-media_types: banner
+pbjs: true
+media_types: banner, native
 biddercode: ablida
 ---
 
