@@ -426,7 +426,7 @@ The adapters can be implemented to use the lipibid as the identifier and segment
 
 #### LiveIntent ID Registration
 
-Please register with us if you’re not a LiveIntent customer already: https://www.liveintent.com/prebid-registration/
+Please register with us if you’re not a LiveIntent customer already: [https://www.liveintent.com/prebid-registration/](https://www.liveintent.com/prebid-registration/)
 
 When adding LiveIntent’s ID to your Prebid.js package, you disclose or make available Personal Information to LiveIntent.  This information made available to LiveIntent is used to (i) connect with and reference data that already exists in LiveIntent’s graph (the “LiveIntent Graph”), and (ii) authenticate and validate data in aggregate to improve the performance of the services LiveIntent provides. By activating LiveIntent’s module, you hereby confirm that with regard to all individuals to whom Personal Information relates, you have, at or before the point of collecting Personal Information or making Personal Information available to LiveIntent, provided any legally required notices, obtained any legally required consents, and provided individuals with an opportunity to opt-out of the sharing of Personal Information, if such an opt-out is required under applicable laws, such that LiveIntent can provide service to you as described here and in LiveIntent’s privacy policies for the services which can be found at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/) 
 
