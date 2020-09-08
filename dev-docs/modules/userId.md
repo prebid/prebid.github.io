@@ -849,6 +849,40 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Audigent HaloId
+
+Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HaloId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](prebid@audigent.com).
+
+#### HaloId Configuration
+Add the Halo ID system to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,haloIdSystem
+
+Add HaloId to the userSync configuration.
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'haloId',
+            storage: {
+                name: 'haloId',
+                type: 'html5'
+            }
+        }]
+    }
+});
+```
+
+The `request.userId.haloId` will contain the Audigent HaloId and associated segments:
+```
+{
+  "haloId": "user-halo-id",
+  "auSeg": ["segment1", "segment2"]
+}
+```
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
