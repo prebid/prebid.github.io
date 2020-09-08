@@ -19,7 +19,7 @@ Prebid is more than a product; it's a product suite, a community, and an organiz
    - <span style="color:#EA9622">**Prebid Server:**</span> Provides a hosted or custom server-side solution for header bidding. Utilizing Prebid Server can reduce latency between bid request and ad selection, and speed the presentation of your site and ads.  
    - <span style="color:#EA9622">**Prebid Mobile:**</span> Our native iOS and Android solutions to enable header bidding within a mobile app.
 - **Community:** The developers that maintain and improve our products.  
-- **Organization:**  A collection of leaders within the ad tech industry that promotes our products, works with the ad tech community to expand the solutions our products can provide, and encourages the development of the platform.  
+- **Organization:**  A collection of leaders within the ad tech industry that promotes our products, works with the ad tech community to expand the solutions our products can provide, and encourages the development of the platform. For more about the organization, see the [Prebid.org](https://prebid.org/) website.  
 
 {% include alerts/alert_note.html content="Our flagship product, Prebid.js, is sometimes referred to as simply *Prebid*, but please be aware that the Prebid product line supports header bidding for web, AMP, and mobile apps, using both client- and server-side project components." %}
 

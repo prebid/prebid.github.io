@@ -169,7 +169,7 @@ st of other analytics adapters.
 
 ### Step 6: Wait for Prebid volunteers to review
 
-We sometimes get pretty busy, so it can take a couple of weeks for the review process to complete, so while you're waiting, consider [joining Prebid.org](/partners/partners.html) to help us out with code reviews. (!)
+We sometimes get pretty busy, so it can take a couple of weeks for the review process to complete, so while you're waiting, consider [joining Prebid.org](https://prebid.org/membership/) to help us out with code reviews. (!)
 
 ## Further Reading
 

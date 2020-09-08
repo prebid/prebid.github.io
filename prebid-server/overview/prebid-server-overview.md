@@ -60,4 +60,4 @@ If you're a demand source, we also have information about [creating your own ser
 If you need help with Prebid Server, the best ways to communicate with us are:
 
 - [Post an issue](https://github.com/prebid/prebid-server/issues) in the prebid-server GitHub repo.
-- [Join prebid.org](/partners/partners.html) and get access to our Slack workspace.
+- [Join prebid.org](https://prebid.org/membership/) and get access to our Slack workspace.
