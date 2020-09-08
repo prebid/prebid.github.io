@@ -7,6 +7,11 @@ biddercode: Brightroll
 prebid_member: true
 ---
 
+### Registration
+
+Brightroll requires registration for each Prebid Server host company
+and each publisher. Contact dsp-supply-prebid@verizonmedia.com
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }

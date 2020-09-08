@@ -101,4 +101,20 @@ the hosting company in some scenarios, but it's technically unavoidable and bett
 
 ## How does Prebid Server support privay signals?
 
-See the [Prebid Server Privacy Feature Page](/prebid-server/features/privacy/pbs-privacy.html)
+See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy.html)
+
+## Do you have any best practices and/or tips to increase the user-match rate?
+
+For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
+
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) is parsed. 
+- A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
+- Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
+
+[AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
+
+- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html`.
+- Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
+- In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
+
