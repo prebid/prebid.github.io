@@ -12,6 +12,9 @@ sidebarType: 0
 
 ## Overview
 
+{: .alert.alert-info :}
+If you're looking for a more high-level overview of Prebid.org, including product features, membership, events, and so on, visit [Prebid.org](https://prebid.org/).
+
 Prebid is more than a product; it's a product suite, a community, and an organization.
 
 - **Product Suite:** A free and open source suite of software products designed to enable publishers to implement header bidding on their websites and from within their apps. Our product line includes:  

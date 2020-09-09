@@ -2037,7 +2037,7 @@
 
 - sbSecId: 7
   title: Blog
-  link: /blog.html
+  link: https://prebid.org/blog/
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
