@@ -49,6 +49,20 @@ Bidder implementations may assume that any params have already been validated ag
 {: .alert.alert-warning :}
 Prebid Server bid adapters must follow all required conventions defined in the [Module Rules](/dev-docs/module-rules.html). Not doing so could lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid Server issue](https://github.com/prebid/prebid-server/issues).
 
+### Bid Request Standards
+
+Prebid clients ([Prebid.js](/use-cases/pbs-pbjs.html), [Prebid SDK](/use-cases/pbs-sdk.html), and [AMP](/use-cases/pbs-amp.html)) pass a number of parameters
+that bid adapters should take into account:
+
+- Currency: The publisher's desired bid currency is in the OpenRTB `cur` field. If your bid is in a different currency, you must set the bid currency in the response.
+- Bid Floor: `imp[].bidfloor` and `imp[].bidfloorcur` - please make use of this value before responding with a bid.
+- First Party Data: bidders should look in these locations for first party data: `imp[].ext.context.data.*`, `site.ext.data.*`, `app.ext.data.*`, and `user.ext.data.*`.
+- Supply Chain: `source.ext.schain`
+- GDPR: `regs.ext.gdpr` and `user.ext.consent`
+- CCPA: `regs.ext.us_privacy`
+- COPPA: `regs.coppa`
+- Test: Bidders should be aware that the OpenRTB `test` flag indicates non-production traffic.
+
 ### Bid Response Metadata
 
 In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
