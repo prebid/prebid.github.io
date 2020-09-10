@@ -627,6 +627,14 @@
   sectionTitle:
   subgroup: 8
 
+- sbSecId: 1
+  title: First Party Data
+  link: /features/firstPartyData.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
 
 #--------------Prebid Mobile--------------|
 
@@ -1796,6 +1804,14 @@
 - sbSecId: 5
   title: Deals
   link: /prebid-server/features/pbs-deals.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: First Party Data
+  link: /prebid-server/features/pbs-fpd.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
