@@ -1183,8 +1183,9 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 ### pbjs.getEvents() ⇒ `Array`
 
 The methods `onEvent` and `offEvent` are provided for you to register
-a callback to handle a Prebid.js event. While the method `getEvents` returns a copy of
-all emitted events.
+a callback to handle a Prebid.js event. 
+
+The `getEvents` method returns a copy of all emitted events.
 
 The optional `id` parameter provides more finely-grained event
 callback registration.  This makes it possible to register callback
