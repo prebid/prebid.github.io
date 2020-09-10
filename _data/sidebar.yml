@@ -28,32 +28,8 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: About Prebid.org
-  link: /overview/what-is-prebid-org.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
   title: Project Principles
   link: /principles.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: Membership
-  link: /partners/partners.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: Prebid Management Committees
-  link: /overview/prebid-management-committees.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -81,13 +57,6 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: '&nbsp;&nbsp;Community'
-  link: /overview/community-code-of-conduct.html
-  isHeader: 0
-  isSectionHeader: 0
   subgroup: 0
 
 - sbSecId: 0
@@ -137,14 +106,6 @@
   isSectionHeader: 0
   subgroup: 0
 
-- sbSecId: 0
-  title: "<span style='color:#EA9622;'>Other</span>"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
 
 #--------------Prebid.js--------------|
 
@@ -2076,7 +2037,7 @@
 
 - sbSecId: 7
   title: Blog
-  link: /blog.html
+  link: https://prebid.org/blog/
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
