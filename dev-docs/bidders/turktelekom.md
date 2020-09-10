@@ -2,7 +2,7 @@
 layout: bidder
 title: Türk Telekom
 description: Prebid Türk Telekom Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: turktelekom
 media_types: banner, video
 gdpr_supported: true

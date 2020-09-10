@@ -2,7 +2,7 @@
 layout: bidder
 title: Deepintent
 description: Prebid Deepintent Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: deepintent
 media_types: banner
 gdpr_supported: true

@@ -2,10 +2,12 @@
 layout: bidder
 title: E-Planning
 description: Prebid E-Planning Bidder Adapter
-hide: true
+pbjs: true
+pbs: true
 biddercode: eplanning
 usp_supported: true
 gdpr_supported: true
+tcf2_supported: true
 ---
 
 

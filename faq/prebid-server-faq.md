@@ -38,9 +38,14 @@ ported it to Java because they had more Java talent than Go.
 + [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java)
 
 Both versions are live in production, and they are kept identical in external APIs
-and quite close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
+and reasonably close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
 
-There are no plans at this point to stop development on either version.
+For demand partners, we recommend building new bid adapters in Go - the team will port it to Java for you within a couple of months.
+
+For those looking to host a Prebid Server:
+- If you plan to use long-form video, we recommend the Go version of the server.
+- Look over the features and see if there's any important to you.
+- Otherwise, just choose the language you're most comfortable with.
 
 ## How can I use Prebid Server in a mobile app post-bid scenario?
 
@@ -94,79 +99,22 @@ AppNexus' Prebid Server, it can read their 'uuid2' cookie. In other words, if th
 has the exchange cookie, the host company will have an ID one page-view sooner than the other bidders. This gives a slight edge to
 the hosting company in some scenarios, but it's technically unavoidable and better for both buyers and sellers to have one ID available rather than zero.
 
-## How does Prebid Server support privay signals?
+## How does Prebid Server support privacy signals?
 
-### Mobile 'Limit Ad Tracking' flag
+See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy.html)
 
-If PBS receives 'device.lmt' flag in the OpenRTB request, it does the following anonymization:
+## Do you have any best practices and/or tips to increase the user-match rate?
 
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
+For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
-### GDPR
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) is parsed. 
+- A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
+- Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
-Prebid Server host companies and publishers have the ability to control the enforcement
-activities that take place.
+[AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
 
-The enforcement strategy changed significantly between TCF 1.1 and TCF 2.0. [TCF2](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) is a 
-more nuanced and stricter policy.
-
-#### TCF 1.1
-
-If Prebid Server determines that the user is in GDPR scope and doesn't consent
-to *all* of the vendor's 'purposes' as declared in the Global Vendor List, it 'anonymizes'
-the request to the adapters:
-
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
-
-Full details are available [here](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/PrebidServerJava_GDPR_Requirements.pdf).
-
-#### TCF 2.0
-
-If Prebid server determines the user is in GDPR scope, then consent is independently tested
-for each 'Purpose' with different consequences for each:
-
-{: .table .table-bordered .table-striped }
-| TCF Purpose | Consequence of Not Obtaining Consent |
-| ----------- | ------------------------------------ |
-| 1 - Device Access | Prevents one or more usersync activities for one or more vendors. |
-| 2 - Basic Ads | May result in skipping one or more bid adapters in the auction. |
-| 4 - Personalized Ads | May result in removing the userIds before calling one or more bid adapters. |
-| 7 - Measure Ad Performance | May result in skipping one or more analytics adapters. |
-| Special Feature 1 - Use precise geolocation data | May result in rounding lat/long values and IP address before sending to server-side adapters. |
-
-{: .alert.alert-danger :}
-Note: Support for TCF purposes other than Device Access is still under development and is
-expected to be released in May 2020.
-
-More details are available [here](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#).
-
-### COPPA
-
-The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a law in the US which imposes certain requirements on operators of websites or online services directed to children under 13 years of age, and on operators of other websites or online services that have actual knowledge that they are collecting personal information online from a child under 13 years of age.
-If `regs.coppa` is set to '1' on the OpenRTB request, the following anonymization actions take place before going to the adapters:
-
-- Removes all ID fields: device.ifa, device.macsha1, device.macmd5, device.dpidsha1, device.dpidmd5, device.didsha1, device.didmd5
-- Truncate ip field - remove lowest 8 bits.
-- Truncate ipv6 field - remove lowest 32 bits.
-- Remove geo.lat, geo.lon. geo.metro, geo.city, and geo.zip
-- Remove user.id, user.buyeruid, user.yob, and user.gender
-
-### CCPA / US-Privacy
-
-The [California Consumer Privacy Act (CCPA)](https://oag.ca.gov/privacy/ccpa) is a law in the US. which covers consumer rights relating to the access to, deletion of, and sharing of personal information that is collected by businesses.
-The IAB has generalized
-this state-specific rule into a [US Privacy](https://iabtechlab.com/standards/ccpa/) compliance framework.
-If `regs.ext.us_privacy` is parsed to find that the user has opted-out of a "sale",
-the following anonymization steps are taken:
-
-- Mask the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
+- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html`.
+- Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
+- In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
 

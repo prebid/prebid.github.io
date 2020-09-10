@@ -2,7 +2,7 @@
 layout: bidder
 title: pubGENIUS
 description: Prebid pubGENIUS Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: pubgenius
 media_types: banner
 gdpr_supported: true

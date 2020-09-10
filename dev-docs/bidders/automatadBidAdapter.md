@@ -3,7 +3,7 @@ layout: bidder
 title: Automatad OpenRTB Bid Adapter
 description: Automatad OpenRTB Bid Adapter
 biddercode: automatad 
-hide: true
+pbjs: true
 media_types: banner
 ---
 

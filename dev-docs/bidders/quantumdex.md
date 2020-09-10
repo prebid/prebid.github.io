@@ -2,7 +2,7 @@
 layout: bidder
 title: Quantumdex
 description: Prebid Quantum Digital Exchange Bidder Adapter
-hide: true
+pbjs: true
 biddercode: quantumdex
 media_types: banner, video
 gdpr_supported: true

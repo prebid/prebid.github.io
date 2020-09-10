@@ -2,7 +2,7 @@
 layout: bidder
 title: Bidfluence
 description: Bidfluence Adaptor for Prebidjs
-hide: true
+pbjs: true
 biddercode: bidfluence
 gdpr_supported: true
 ---
