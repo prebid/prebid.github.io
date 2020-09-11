@@ -146,6 +146,14 @@
   subgroup: 0
 
 - sbSecId: 1
+  title: Consent Management Best Practices
+  link: /dev-docs/cmp-best-practices.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
   title: Examples
   link:
   isHeader: 1
