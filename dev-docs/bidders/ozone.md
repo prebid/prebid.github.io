@@ -3,7 +3,7 @@ layout: bidder
 title: Ozone Project
 description: Prebid Ozone Project Bidder Adaptor
 biddercode: ozone 
-hide: true
+pbjs: true
 media_types: banner
 gdpr_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId

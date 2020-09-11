@@ -2,11 +2,12 @@
 layout: bidder
 title: GumGum
 description: Prebid GumGum Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true
-userIds: digitrust, unifiedId
+userIds: unifiedId
 gdpr_supported: true
 usp_supported: true
 tcf2_supported: true

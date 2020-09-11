@@ -2,7 +2,7 @@
 layout: example
 title: Custom Price Granularity Buckets
 description: Custom Price Granularity Buckets
-hide: true
+
 sidebarType: 1
 
 about:

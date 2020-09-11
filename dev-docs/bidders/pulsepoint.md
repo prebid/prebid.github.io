@@ -2,13 +2,15 @@
 layout: bidder
 title: PulsePoint
 description: Prebid PulsePoint Bidder Adaptor
-hide: true
 biddercode: pulsepoint
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
+pbjs: true
+pbs: true
+gvl_id: 81
 ---
 
 

@@ -7,6 +7,7 @@ media_types: native
 gdpr_supported: true
 coppa_supported: true
 usp_supported: true
+pbjs: true
 ---
 
 ### Note

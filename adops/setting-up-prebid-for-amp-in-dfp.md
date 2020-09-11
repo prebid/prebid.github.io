@@ -3,10 +3,6 @@ layout: page_v2
 title: Setting up Prebid for AMP in Google Ad Manager
 head_title: Setting up Prebid for AMP in Google Ad Manager
 description: Setting up Prebid for AMP in Google Ad Manager
-pid: 3
-hide: false
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
 
@@ -75,6 +71,7 @@ order), the creative and targeting will be different from the example shown here
 {: .alert.alert-success :}
 You can always get the latest version of the creative code from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
 
+{% include adops/adops-creative-declaration.html %}
 
 ## Further Reading
 

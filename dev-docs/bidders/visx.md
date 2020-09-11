@@ -1,12 +1,14 @@
 ---
 layout: bidder
-title: VIS.X
-description: Prebid VIS.X Bidder Adaptor
-hide: true
+title: YOC VIS.X
+description: Prebid YOC VIS.X Bidder Adapter
+pbjs: true
+pbs: true
 biddercode: visx
 gdpr_supported: true
 schain_supported: true
-userIds: digitrust, id5Id, unifiedId
+tcf2_supported: true
+userIds: id5Id, unifiedId
 ---
 
 ### Note
@@ -16,7 +18,7 @@ To be able to use the full bandwidth of VIS.X high impact ad products, we strong
 
 If you require SafeFrames to be activated, please reach out to your YOC account manager to obtain further details.
 
-The YOC VIS.X adaptor requires setup and approval from your YOC account manager team, even for existing YOC publishers.
+The YOC VIS.X adapter requires setup and approval from your YOC account manager team, even for existing YOC publishers.
 Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Bid params
@@ -28,7 +30,7 @@ Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Configuration
 
-The VIS.X adaptor has the ability to work in different currencies. Currently this adaptor supports `EUR`, `USD`,
+The YOC VIS.X adapter has the ability to work in different currencies. Currently this adapter supports `EUR`, `USD`,
 `GBP`, `PLN`. Defaults to `EUR`. If your Ad Server uses `EUR`, you don't need any additional currency settings.
 If you would like to trade with VIS.X in a currency different from `EUR`, you should implement some additional settings.
 
@@ -38,7 +40,7 @@ If you would like to trade with VIS.X in a currency different from `EUR`, you sh
 
 2. Setup the currency in Currency config.
 
-a) If your Ad Server uses the currency from the list of VIS.X supported currencies (e.g. `GPB`), use the following settings:
+a) If your Ad Server uses the currency from the list of VIS.X supported currencies (e.g. `GBP`), use the following settings:
 
 ```javascript
 pbjs.setConfig({
@@ -65,6 +67,6 @@ pbjs.setConfig({
 ```
 
 Best practices:
-- Please make sure that currency module is set up and configured in order to trade with VIS.X in a currency that is not supported by VIS.X bidder.
+- Please make sure that currency module is set up and configured in order to trade with YOC in a currency that is not supported by YOC VIS.X bidder.
 - You should set `EUR` in `bidderCurrencyDefault` parameter if you use unsupported currency for VIS.X.
-- Feel free to reach out to your contact at VIS.X if you need additional support setting up Prebid.js and currency config.
+- Feel free to reach out to your contact at YOC if you need additional support setting up Prebid.js and currency config.
