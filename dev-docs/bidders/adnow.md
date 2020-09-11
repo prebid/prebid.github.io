@@ -15,4 +15,3 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
 | codeId | required | CodeId parameter in AdNow Network | 123456 | number |
-| mediaType | optional | banner or native (default: native) | native | string |
