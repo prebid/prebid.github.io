@@ -2278,11 +2278,11 @@ pbjs.setConfig({coppa: true});
 
 #### First Party Data
 
-A number of adapters support taking key/value pairs as arguments, but they're all different. For example:
+Historically, number of adapters supported taking key/value pairs as arguments, but they were all different. For example:
 
-- RubiconProject takes `keywords`, `inventory` and `visitor` parameters
-- AppNexus takes `keywords` and `user`
-- OpenX takes `customParams`
+- RubiconProject took `keywords`, `inventory` and `visitor` parameters
+- AppNexus took `keywords` and `user`
+- OpenX took `customParams`
 
 This feature allows publishers a way to specify key/value data in one place where each compatible bid adapter
 can read it.
@@ -2351,6 +2351,8 @@ pbjs.setBidderConfig({
 **Scenario 3** - See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 
 <a name="setConfig-vast-cache" />
+
+See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for details about passing data server-side.
 
 #### Client-side Caching of VAST XML
 

@@ -27,7 +27,7 @@ For a more general reference, see the [Prebid AMP Implementation Guide
 | curl | optional | `String` | Added to OpenRTB request as site.page |
 | slot | optional | `String` | Added to OpenRTB request as imp[0].tagid |
 | timeout | optional | `String` | Added to OpenRTB request as tmax |
-| targeting | optional | `String` | First Party Data |
+| targeting | optional | `String` | First Party Data (PBS-Java only) |
 | gdpr_consent | optional | `String` | Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
 | account | optional | `String` | Can be used to pass the Prebid-Server specific account ID. This is useful if `tag_id` parameters aren't unique across accounts. |
 | debug | optional | `integer` | If 1, returns additional debug info. |
@@ -81,6 +81,8 @@ An example Stored Request is given below:
 ```
 
 #### First Party Data
+
+(Currently only supported in PBS-Java)
 
 You can send first party data into an AMP request by encoding a JSON
 targeting block like this:
