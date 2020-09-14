@@ -426,9 +426,7 @@ The adapters can be implemented to use the lipibid as the identifier and segment
 
 #### LiveIntent ID Registration
 
-You are not required to register with LiveIntent to start using the LiveIntent ID sub-module. However, we do recommend reaching out to us at [peoplebased@liveintent.com](mailto:peoplebased@liveintent.com) so that we can guide you through the optimal setup and the ways you can benefit from LiveIntent identity solutions:
-1. Providing buyers a stable identifier, which can solve cross-browser and cross-channel frequency capping challenges.
-2. Leveraging your first-party audiences to increase the value of your inventory.
+Please register with us if you’re not a LiveIntent customer already: [https://www.liveintent.com/prebid-registration/](https://www.liveintent.com/prebid-registration/)
 
 When adding LiveIntent’s ID to your Prebid.js package, you disclose or make available Personal Information to LiveIntent.  This information made available to LiveIntent is used to (i) connect with and reference data that already exists in LiveIntent’s graph (the “LiveIntent Graph”), and (ii) authenticate and validate data in aggregate to improve the performance of the services LiveIntent provides. By activating LiveIntent’s module, you hereby confirm that with regard to all individuals to whom Personal Information relates, you have, at or before the point of collecting Personal Information or making Personal Information available to LiveIntent, provided any legally required notices, obtained any legally required consents, and provided individuals with an opportunity to opt-out of the sharing of Personal Information, if such an opt-out is required under applicable laws, such that LiveIntent can provide service to you as described here and in LiveIntent’s privacy policies for the services which can be found at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/) 
 
@@ -618,6 +616,12 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |
 | params.partner | Required | String | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
+| params.timezoneFilter | Optional | Object | Configures a timezone or timezone offset filter | |
+| params.timezoneFilter.allowedZones | Optional | Array[String] | description | `[ 'America/Anchorage' ]` |
+| params.timezoneFilter.allowedOffsets | Optional | Array[Number] | description | `[ -4 ]` |
+| params.timezoneFilter.blockedZones | Optional | Array[String] | description | `[ 'America/New_York' ]` |
+| params.timezoneFilter.blockedOffsets | Optional | Array[Number] | description | `[ -5 ]` |
+
 
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
@@ -626,6 +630,15 @@ The Parrable ID system manages a cookie with the name of `_parrable_id` containi
 This cookie is used also by standalone Parrable integrations outside of Prebid.
 It is for this reason that the cookie name is not configurable for the Parrable ID system.
 
+#### Timezone and Timezone Offset Filtering
+
+The Parrable ID system enables a publisher to configure lists of **allowed** timezones (eg. `Europe/Dublin`) and/or timezone offsets (eg. `-4`) as well as a lists of **blocked** timezones and timezone offsets.
+
+- With no configuration (`params.timezoneFilter` not set, or all of the lists are empty) all impressions are permitted.
+- With only allow lists configured a browser must match either a timezone or timezone offset for it to not be filtered.
+- With only block lists configured an impression will be filtered only if it is from a browser matching a blocked timezone or timezone offset.
+- An impression from a browser that matches any allowed timezone or timezone offset, but does not match a blocked timezone or timezone offset will engage in the Parrable ID syncronization process.
+- If a browser has a stored Parrable ID then it will not be filtered even if the browser is in a timezone or timezone offset that is blocked.
 
 #### Parrable ID Examples
 
@@ -760,7 +773,7 @@ gulp build --modules=unifiedIdSystem
 You can set up Unified ID in one of these ways:
 
 - Register with The Trade Desk from their [Unified ID page](https://www.thetradedesk.com/industry-initiatives/unified-id-solution).
-- Utilize a [managed services](/prebid/managed.html) company who can do this for you.
+- Utilize a [managed services](https://prebid.org/product-suite/managed-services/) company who can do this for you.
 
 The Unified ID privacy is covered under the [TradeDesk Services Privacy Policy](https://www.thetradedesk.com/general/privacy).
 
