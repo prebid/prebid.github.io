@@ -50,6 +50,7 @@ There are two basic ways of invoking AMP RTC:
     json='{ "targeting": {"site":{"keywords":"article, las vegas","cat":{"blah":"1"},"other-attribute":"other-value","ext":{"data":{"entry_group":["front-page","featured-stories"],"page_type":"AMP"}}},"user":{"gender":"m"},"bidders":["bidderA","bidderB"],"keywords":"las vegas hospitality employees","foo":{"bar":"baz"}}' >
   </amp-ad>
 ```
+
 {: .alert.alert-info :}
 **Note:** the `prebidrubicon` and `prebidappnexus` AMP vendor strings define slightly different parameters; AppNexus uses "PLACEMENT_ID" as the argument to rtc-config while Rubicon uses "REQUEST_ID". They both translate to `tag_id` when passed to Prebid Server.
 
@@ -168,7 +169,7 @@ Only a few dynamic parameters on the query string are integrated into the result
 #### First Party Data Support
 
 Any targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
-into the OpenRTB JSON and permissions are applied to each bidder if defined.
+into the OpenRTB JSON and permissions, if defined, are applied to each bidder.
 
 #### Auction and Response
 

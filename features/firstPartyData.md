@@ -1,19 +1,19 @@
 ---
 layout: page_v2
 title: Prebid.js First Party Data
-description: Prebid.js First Party Data
+description: First Party Data - Prebid.js
 sidebarType: 1
 ---
 
-# Prebid.js First Party Data
+# First Party Data - Prebid.js
 {: .no_toc}
 
 * TOC
 {:toc}
 
 Prebid allows publishers to supply attributes related to their content
-and users, and apply permissions so only certain bidders are allowed
-to access them.
+and users, and to apply permissions so only certain bidders are allowed
+to access those attributes.
 
 {: .alert.alert-warning :}
 These conventions aren't implemented by all adapters. Please
@@ -22,11 +22,11 @@ party data from the standard Prebid locations.
 
 ## How It Works
 
-Here's a summary of how it works:
+Here's a summary of how first party data (FPD) works:
 
 ![First Party Data Summary](/assets/images/flowcharts/FirstPartyData-Summary.png){: .pb-lg-img :}
 
-The page can provide:
+This diagram shows a page that can provide:
 
 - Global context (site) data that applies to all AdUnits and all bidders
 - Global user data that applies to all AdUnits and all bidders
@@ -38,7 +38,7 @@ The page can provide:
 
 The Prebid First Party Data JSON structure reflects the OpenRTB standard.
 Arbitrary values should go in fpd.context.data or fpd.user.data. Fields
-that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) values should be in fpd.context or fpd.user. Specfically, for `site` these are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For `user` these are: yob, gender, keywords.
+that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) values should be in fpd.context or fpd.user. Specfically, the standard values for `site` are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For `user` these are: yob, gender, keywords.
 
 {: .alert.alert-info :}
 'Context' corresponds to the OpenRTB 'site' object.
@@ -140,7 +140,7 @@ to be done manually by using an event handler -- [pbjs.onEvent('beforeRequestBid
 
 ## How Bid Adapters Should Read First Party Data
 
-All a Prebid.js bid adapter does to access global data is call [`getConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig). e.g.:
+To access global data, a Prebid.js bid adapter needs only to call [`getConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig), like this:
 
 {% highlight js %}
 config.getConfig('fpd.context'))
@@ -151,7 +151,7 @@ AdUnit-specific values must be parsed out of the AdUnit object.
 
 The assumption is that bid adapters will copy the values to the appropriate protocol location for their endpoint.
 
-Prebid Server bid adapters are discussed [elsewhere](/prebid-server/features/pbs-fpd.html).
+See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for a discussion of this feature for Prebid Server bid adapters.
 
 ## Further Reading
 

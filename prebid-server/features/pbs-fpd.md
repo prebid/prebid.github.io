@@ -1,21 +1,21 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Features | First Party Data
+title: First Party Data - Prebid Server
 ---
 
-# Prebid Server | Features | First Party Data
+# First Party Data - Prebid Server
 {: .no_toc}
 
 * TOC
 {:toc}
 
 Prebid allows publishers to supply attributes related to their content
-and users, and apply permissions so only certain bidders are allowed
-to access them.
+and users, and to apply permissions so only certain bidders are allowed
+to access those attributes.
 
 {: .alert.alert-warning :}
-For now this is only supported in PBS-Java and these conventions aren't implemented by all adapters. Please
+For now, this feature is only supported in PBS-Java and these conventions aren't implemented by all adapters. Please
 check with each of your bidders to make sure they're reading first
 party data from the standard Prebid locations.
 
@@ -31,7 +31,7 @@ First Party Data in the OpenRTB JSON in several places:
 | site.ext.data.ATTR | Any other site-related attributes should go here. | config.fpd.context.data | n/a | site.ext.data.ATTR |
 | app.ext.data.ATTR | Any app-related attributes should go here. | n/a | Targeting addContextData() | n/a |
 | user.ATTR | Only standard OpenRTB attributes should be here: yob, gender, keywords. | config.fpd.user.ATTR | n/a | user.ATTR |
-| user.ext.data.ATTR | Any other user-related attributes should go here. | config.fpd.user..data.ATTR | Targeting addUserData() | user.ext.data.ATTR |
+| user.ext.data.ATTR | Any other user-related attributes should go here. | config.fpd.user.data.ATTR | Targeting addUserData() | user.ext.data.ATTR |
 | imp[].ext.context.data.ATTR | AdUnit-specific attributes should go here. | AdUnit.fpd.context | AdUnit addContextData() | n/a |
 | ext.prebid.data.bidders[] | If specified, only these bidders are allowed to see fields in {site/app/user}.ext.data. | n/a | addBidderToAccessControlList() | bidders |
 | ext.prebid.bidderconfig | Bidder-specific config | [setBidderConfig()](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig) | n/a | n/a |
@@ -58,16 +58,16 @@ In this example, only BidderA has access to the global first party data:
          keywords: "",
          search: "",
          ext: {
-             data: { 
+             data: {
                  // only seen by bidderA as named in ext.prebid.data.bidders[]
                  GLOBAL CONTEXT DATA
-             } 
+             }
          }
     },
     user: {
-        keywords: "", 
-        gender: "", 
-        yob: 1999, 
+        keywords: "",
+        gender: "",
+        yob: 1999,
         geo: {},
         ext: {
             data: {
@@ -115,14 +115,14 @@ This example shows an array of bidder-specific config:
 
 ## How Server-Side Bid Adapters Read First Party Data
 
-Bid Adapters don't need to worry about whether the request came from
+Bid adapters don't need to worry about whether the request came from
 Prebid.js, the SDK, or AMP -- everything is merged into the OpenRTB JSON. If a bid adapter receives first party data on any of the fields noted in
 the table above, they can simply pass that data to their endpoint in
 the expected way.
 
 In other words, just be aware of site.ext.data.ATTR, app.ext.data.ATTR, user.ext.data.ATTR,
 and imp[].ext.context.data.ATTR and either pass them straight through or map
-attributes to where your endpoints expects them.
+attributes to where your endpoints expect them.
 
 ## Further Reading
 
