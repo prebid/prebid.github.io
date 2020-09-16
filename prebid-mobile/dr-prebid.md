@@ -40,7 +40,7 @@ Enter your test values on the Dr. Prebid Setup screen.
 
 **Dr. Prebid Setup Screen**
 
-![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-setup.png){: .pb-sm-img :}
+![Dr. Prebid Setup]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-setup-092020.png){: .pb-sm-img :}
 
 The following are descriptions of the fields available in Dr. Prebid. Tap on a field to change its value. All fields are required.
 
