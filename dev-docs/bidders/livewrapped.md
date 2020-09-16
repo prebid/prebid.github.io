@@ -4,7 +4,7 @@ title: Livewrapped
 description: Prebid Livewrapped Bidder Adaptor
 biddercode: livewrapped
 pbjs: true
-media_types: banner, video, native
+media_types: banner
 gdpr_supported: true
 userIds: id5Id, pubCommonId
 tcf2_supported: true
