@@ -34,18 +34,9 @@ All docs are under the license shown in the `LICENSE` file in this directory.
 
 The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](https://www.ruby-lang.org/en/) language.
 
-To follow the instructions in the next section, you will need to install the [Bundler](https://bundler.io/) Ruby gem.
-
-Try the following command:
-
-```
-$ gem install bundler
-```
-
-If you are on a Mac and the above command fails with a permissions error (e.g., `"ERROR:  While executing gem ... You don't have write permissions for the /Library/Ruby/Gems/... directory."`), try the following steps:
-
-1. Build your own `ruby` binary using [Homebrew](https://brew.sh/): `brew install ruby`.  The Homebrew-built Ruby should include its own version of the `gem` command which avoids modifying system libraries.
-2. Try `gem install bundler` again.  If it still fails, try `sudo gem install bundler`.  After that, you should be able to avoid any further use of `sudo` by running `bundler` with the arguments shown in the next section.
+1. follow the instructions at https://jekyllrb.com/docs/installation/ for your OS
+1. gem install github-pages
+1. start Jekyll as described below
 
 <a name="running-jekyll-locally" />
 
@@ -55,10 +46,7 @@ Before submitting a pull request, you should run the site locally to make sure y
 
 To get started editing the site and seeing your changes, clone this repo and enter the following commands in your terminal:
 
-- `cd /path/to/prebid.github.io`
-
-- `bundle install --path vendor/bundle`
-
+- `cd path/to/prebid.github.io`
 - `bundle exec jekyll serve`
 
 You should see output that looks something like this:

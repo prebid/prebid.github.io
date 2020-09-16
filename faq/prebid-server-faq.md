@@ -20,7 +20,7 @@ Nope. The only approval process is a code review. There are separate instruction
 - [Prebid Server - Go](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)
 - [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
 
-As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
 ## How can I debug Prebid Server requests?
@@ -38,9 +38,14 @@ ported it to Java because they had more Java talent than Go.
 + [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java)
 
 Both versions are live in production, and they are kept identical in external APIs
-and quite close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
+and reasonably close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
 
-There are no plans at this point to stop development on either version.
+For demand partners, we recommend building new bid adapters in Go - the team will port it to Java for you within a couple of months.
+
+For those looking to host a Prebid Server:
+- If you plan to use long-form video, we recommend the Go version of the server.
+- Look over the features and see if there's any important to you.
+- Otherwise, just choose the language you're most comfortable with.
 
 ## How can I use Prebid Server in a mobile app post-bid scenario?
 
@@ -65,30 +70,39 @@ pbjs.setConfig({
 ```
 ## How do user ID cookies and ID syncing work in Prebid Server?
 
-There are 3 answers here. The easy answer is for requests coming into Prebid Server from the Prebid SDK - there's no concept of cookies there, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
+For Prebid SDK there's no concept of cookies, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
 
-For other scenarios, Prebid Server sets up and manages a multi-vendor ID match table in the `uids` cookie in the host company's 
-domain. i.e. adnxs.com, rubiconproject.com, or whichever Prebid Server vendor you're utilizing. When the user has a `uids` cookie, 
-Prebid Server parses it and passes the vendor-specific IDs to the relevant server-side bid adapters.
+For Prebid.js and AMP, see [Prebid Server User ID sync](/prebid-server/developers/pbs-cookie-sync.html)
 
-Syncing in the AMP scenario uses the [load-cookie.html](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) file that's part of 
-the Prebid Universal Creative package. When placed into an AMP-iframe, this file will call /cookie-sync and initiate a sync that 
-creates or updates the `uids` cookie.
+## How does Prebid Server support privacy signals?
 
-The most common source of requests for Prebid Server is from Prebid.js:
+See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy.html)
 
-0) Assume that the user doesn't have any cookies for the Prebid Server domain.
-1) User loads a page with Prebid.js that's going to call Prebid Server -- i.e. the pub has set up s2sConfig.
-2) Immediately after seeing that s2sConfig is setup, Prebid.js calls Prebid Server's `/cookie-sync` endpoint to initiate syncing
-3) Prebid Server sees there no `uids` cookie, so responds to the browser with a list of pixel syncs for bidders that need to be synced.
-4) Prebid.js places all of the pixels on the page, but in the meantime, also initiates the auction.
-5) Because the syncs haven't completed yet, the auction call to Prebid Server doesn't yet contain the uids cookie.
-6) The first auction happens without IDs
-7) At some point later, the pixels come back to Prebid Server through a /setuid redirect, setting (or updating) the `uids` cookie.
-8) The second page view will have the IDs available.
+## Do you have any best practices and/or tips to increase the user-match rate?
 
-There's a nuance here: the company that's hosting Prebid Server can configure it to read and utilize their exchange's 
-native cookie. i.e. if you're using Rubicon Project's Prebid Server, it can read their 'khaos' cookie, and if you're using 
-AppNexus' Prebid Server, it can read their 'uuid2' cookie. In other words, if the host company is an exchange and the user 
-has the exchange cookie, the host company will have an ID one page-view sooner than the other bidders. This gives a slight edge to
-the hosting company in some scenarios, but it's technically unavoidable and better for both buyers and sellers to have one ID available rather than zero.
+For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
+
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) is parsed.
+- A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
+- Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
+
+[AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
+
+- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html`.
+- Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
+- In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
+
+## How does the Notice URL work for Prebid Server?
+
+**Banner**
+
+If a bidder adapter supplies 'nurl' in the bidResponse object, there are two paths:
+
+1) If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
+2) If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
+
+**Video**
+
+If a bidder adapter supplies 'nurl' in the bidResponse object instead of 'adm',
+this URL will be treated as the location of the VAST XML.

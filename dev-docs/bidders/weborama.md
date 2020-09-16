@@ -2,7 +2,7 @@
 layout: bidder
 title: Weborama
 description: Prebid Weborama Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: weborama
 ---
 

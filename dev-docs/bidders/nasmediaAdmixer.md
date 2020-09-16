@@ -2,7 +2,7 @@
 layout: bidder
 title: Nasmedia Admixer
 description: Prebid Nasmedia Admixer Bidder Adapter
-hide: true
+pbjs: true
 biddercode: nasmediaAdmixer
 ---
 

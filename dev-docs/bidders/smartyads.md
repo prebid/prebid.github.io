@@ -2,7 +2,7 @@
 layout: bidder
 title: SmartyAds
 description: Prebid SmartyAds Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: smartyads
 media_types: native
 ---

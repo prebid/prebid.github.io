@@ -2,10 +2,10 @@
 layout: bidder
 title: Emoteev
 description: Prebid Emoteev Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: emoteev
 gdpr_supported: true
-userIds: pubCommon
+userIds: pubCommonId
 ---
 
 ### Bid Params

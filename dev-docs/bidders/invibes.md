@@ -2,9 +2,11 @@
 layout: bidder
 title: Invibes
 description: Prebid Invibes Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: invibes
 gdpr_supported: true
+tcf2_supported: true
+pbs: true
 ---
 
 ### Bid Params

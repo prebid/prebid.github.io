@@ -1,9 +1,9 @@
 ---
 layout: bidder
 title: Appier
-description: Prebid Appier Bidder Adaptor
+description: Prebid Appier Bidder Adapter
 biddercode: appier
-hide: true
+pbjs: true
 media_types: banner
 gdpr_supported: true
 ---

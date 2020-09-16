@@ -2,7 +2,7 @@
 layout: bidder
 title: BizzClick
 description: Prebid BizzClick Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: bizzclick
 ---
 
