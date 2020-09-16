@@ -67,14 +67,16 @@ To display an outstream video, two things are needed:
 
 Prebid.js will select the `renderer` used to display the outstream video in the following way:
 
-1. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.
-2. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.
+1. If a `renderer` is associated with the Prebid adUnit's video mediaType, it will be used to display any outstream demand associated with that adUnit with a mediaType of "video".
+2. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.
+3. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.
 
 {: .alert.alert-warning :}
 At this time, since not all demand partners return a renderer with their video bid responses, we recommend that publishers associate a `renderer` with their Prebid video adUnits, if possible.  By doing so, any Prebid adapter that supports video will be able to provide demand for a given outstream slot.
 
-Renderers are associated with adUnits through the `adUnit.renderer` object.  This object contains two fields:
-
+Renderers are associated with adUnits in two ways.
+Primarily through the `adUnit.renderer` object. But also, especially for multiFormat adUnits, through the specified mediaType `adUnit.mediaTypes.video.renderer`.
+This object contains two fields:
 1. `url` -- Points to a file containing the renderer script.
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.
 
@@ -100,6 +102,36 @@ pbjs.addAdUnit({
     ...
 });
 
+{% endhighlight %}
+
+In a multiFormat adUnit, you might want the renderer to only apply to only one of the mediaTypes.  You can do this by defining the renderer on the media type itself.
+{% highlight js %}
+
+pbjs.addAdUnit({
+    code: 'video1',
+    // This renderer would work the same as it does above...
+    renderer: {
+        url: 'example.com/publishersCustomRenderer.js',
+        render: function(bid) { renderAdUnit(...)  }
+    },
+    mediaTypes: {
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480],
+            // but a renderer passed in here would apply only to this mediaType.
+            // It would override the above renderer.
+            renderer: {
+                url: 'example.com/videoRenderer.js',
+                render: function (bid) { renderVideo(...)  }
+            }
+        },
+        display: {
+            // With this renderer left out, it would use the renderer defined on the adUnit level.
+            ...,
+        },
+    },
+    ...
+});
 {% endhighlight %}
 
 Some demand partners that return a renderer with their video bid responses may support renderer configuration with the `adUnit.renderer.options` object. These configurations are bidder specific and may include options for skippability, player size, and ad text, for example. An example renderer configuration follows:
