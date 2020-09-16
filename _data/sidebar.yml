@@ -1113,6 +1113,14 @@
   subgroup: 0
 
 - sbSecId: 3
+  title: Setup Full Screen Video Line Items For MoPub
+  link: /prebid-mobile/adops-setup-full-screen-video-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
   title: Setup Native Ads
   link: /prebid-mobile/adops-native-setup.html
   isHeader: 0
