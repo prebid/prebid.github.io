@@ -50,5 +50,5 @@ Full-screen video creatives must have a *Vast tag* with the *Format* set to *Ful
 
 The `hb_cache_id` variable value is the cache id that will load the ad markup from the bid stored in Prebid Cache. Within each line item, for each ad unit size, there should be one creative with this content.
 
-## ## Step 4. Duplicate line items  
+## Step 4. Duplicate line items  
 Duplicate your line items according to your [price granularity](/prebid-mobile/adops-price-granularity.html) setting.
