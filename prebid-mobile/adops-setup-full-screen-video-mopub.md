@@ -39,7 +39,7 @@ Full-screen video creatives must have a *Vast tag* with the *Format* set to *Ful
   <Ad id="1">
     <Wrapper>
       <AdSystem>MoPub</AdSystem>
-      <VASTAdTagURI><![CDATA[https://%%KEYWORD:hb_cache_host%%%%KEYWORD:hb_cache_path%%?uuid=%%KEYWORD:hb_cache_id%%]]></VASTAdTagURI>
+      <VASTAdTagURI><![CDATA[https://%%KEYWORD:hb_cache_host%%%%KEYWORD:hb_cache_path%%?uuid=%%KEYWORD:hb_uuid%%]]></VASTAdTagURI>
       <Impression><![CDATA[{PATH TO CREATIVE}]]></Impression>
     </Wrapper>
   </Ad>
@@ -48,7 +48,7 @@ Full-screen video creatives must have a *Vast tag* with the *Format* set to *Ful
 <br>    
 <img src="/assets/images/ad-ops/mopub/full/mopub_lineitem_full_vasttag.png">&nbsp;&nbsp;
 
-The `hb_cache_id` variable value is the cache id that will load the ad markup from the bid stored in Prebid Cache. Within each line item, for each ad unit size, there should be one creative with this content.
+The `hb_uuid` variable value is the cache id that will load the ad markup from the bid stored in Prebid Cache. Within each line item, for each ad unit size, there should be one creative with this content.
 
 ## Step 4. Duplicate line items  
 Duplicate your line items according to your [price granularity](/prebid-mobile/adops-price-granularity.html) setting.

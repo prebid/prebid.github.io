@@ -38,7 +38,7 @@ Rewarded video creatives must have a *Vast tag* with the *Format* set to *Reward
   <Ad id="1">
     <Wrapper>
       <AdSystem>MoPub</AdSystem>
-      <VASTAdTagURI><! [CDATA[https://%%KEYWORD:hb_cache_host%%%%KEYWORD:hb_cache_path%%?uuid=%%KEYWORD:hb_cache_id%%]]></VASTAdTagURI>
+      <VASTAdTagURI><![CDATA[https://%%KEYWORD:hb_cache_host%%%%KEYWORD:hb_cache_path%%?uuid=%%KEYWORD:hb_uuid%%]]></VASTAdTagURI>
     </Wrapper>
   </Ad>
 </VAST>
@@ -46,7 +46,7 @@ Rewarded video creatives must have a *Vast tag* with the *Format* set to *Reward
 
 <br>
 <img src="/assets/images/ad-ops/mopub/rewarded/mopub_lineitem_vasttag2.png">&nbsp;&nbsp;  
-The `hb_cache_id` variable value is the cache id that will load the ad markup from the bid stored in Prebid Cache. Within each line item, for each ad unit size, there should be one creative with this content.
+The `hb_uuid` variable value is the cache id that will load the ad markup from the bid stored in Prebid Cache. Within each line item, for each ad unit size, there should be one creative with this content.
 
 The xml can be constructed by providing the vast tag URL as:
 `https://%%KEYWORD:hb_cache_host%%%%KEYWORD:hb_cache_path%%?uuid=%%KEYWORD:hb_uuid%%`
