@@ -20,9 +20,9 @@ This page provides step-by-step instructions to set up rewarded-video line items
   In the *Add a Line Item* section:
   1.  For the *Type and Priority* settings, select *Non-Guaranteed* as the type and set the priority to *12*. This ensures the line item will compete with all other demand.  
   2. Set the Rate to the price you want to target.&nbsp;  
-  <img src="/assets/images/ad-ops/mopub/rewarded/mopub-lineitem-rewarded.png" width="1000" height="544" alt="MoPub Line Item Settings">&nbsp;&nbsp;  
+  <img src="/assets/images/ad-ops/mopub/rewarded/mopub-lineitem-rewarded.png" width="1000" height="544" alt="For the Type and Priority settings, select Non-Guaranteed as the type and set the priority to 12">&nbsp;&nbsp;  
   3. In the *Advanced Targeting* section, set the target for *Keywords* to `hb_pb:0.50`&nbsp;
-  <img src="/assets/images/ad-ops/mopub/rewarded/mopub-lineitem-advanced.png" width="1000" height="254" alt="MoPub Line Item Advanced Settings">&nbsp;&nbsp;
+  <img src="/assets/images/ad-ops/mopub/rewarded/mopub-lineitem-advanced.png" width="1000" height="254" alt="In the Advanced Targeting section, set the target for Keywords to hb_pb:0.50">&nbsp;&nbsp;
 
 For each level of pricing granularity required, one line item/creative pairing will need to be set up.
 
