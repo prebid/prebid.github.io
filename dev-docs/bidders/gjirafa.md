@@ -4,7 +4,7 @@ title: Gjirafa
 description: Prebid Gjirafa Bidder Adaptor
 
 biddercode: gjirafa
-media_types: banner
+media_types: banner, video
 ---
 
 

@@ -4,7 +4,7 @@ title: MallTv
 description: Prebid MallTv Bidder Adaptor
 
 biddercode: malltv
-media_types: banner
+media_types: banner, video
 ---
 
 
