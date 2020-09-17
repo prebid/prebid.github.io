@@ -24,6 +24,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAdserverTargetingForAdUnitCode([adUnitCode])](#module_pbjs.getAdserverTargetingForAdUnitCode)
   * [.getBidResponses()](#module_pbjs.getBidResponses)
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
+  * [.getEvents()](#module_pbjs.onEvent)
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
@@ -1179,8 +1180,12 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 
 ### pbjs.offEvent(event, handler, id)
 
+### pbjs.getEvents() ⇒ `Array`
+
 The methods `onEvent` and `offEvent` are provided for you to register
-a callback to handle a Prebid.js event.
+a callback to handle a Prebid.js event. 
+
+The `getEvents` method returns a copy of all emitted events.
 
 The optional `id` parameter provides more finely-grained event
 callback registration.  This makes it possible to register callback
