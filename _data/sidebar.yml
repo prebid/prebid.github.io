@@ -456,6 +456,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Instream Video Ads Tracking
+  link: /dev-docs/modules/instreamTracking.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: Freewheel Module
   link: /dev-docs/modules/freewheel.html
   isHeader: 0
@@ -1099,6 +1107,22 @@
 - sbSecId: 3
   title: Setup Line Items For MoPub
   link: /prebid-mobile/adops-line-item-setup-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Setup Rewarded Video Line Items For MoPub
+  link: /prebid-mobile/adops-setup-rewarded-video-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Setup Full Screen Video Line Items For MoPub
+  link: /prebid-mobile/adops-setup-full-screen-video-mopub.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
