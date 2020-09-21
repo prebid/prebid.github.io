@@ -360,6 +360,8 @@ The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://w
 | name | Required | String | `"intentIqId"` | `"intentIqId"` |
 | params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
 | params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
+| params.pcid | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request. | `"g3hC52b"` |
+| params.pai | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request. | `"advertiser1"` |
 
 #### IntentIQ ID Examples
 
@@ -394,6 +396,30 @@ pbjs.setConfig({
             name: "intentIqId",
             params: {
                 parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "html5",
+                name: "intentIqId",    // set localstorage with this name
+                expires: 60
+            }
+        }],
+        syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+
+3) Publisher supports IntentIQ and HTML5 local storage with extra dynamic params such as 'pcid' and 'pai'.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+                pcid: PCID_VARIABLE		// string value, dynamically loaded into a variable before setting the configuration
+                pai: PAI_VARIABLE		// string value, dynamically loaded into a variable before setting the configuration
             },
             storage: {
                 type: "html5",
