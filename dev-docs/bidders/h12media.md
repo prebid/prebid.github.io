@@ -2,7 +2,7 @@
 layout: bidder
 title: H12 Media
 description: Prebid H12 Media Bidder Adaptor
-
+pbjs: true
 biddercode: h12media
 media_types: banner
 gdpr_supported: true

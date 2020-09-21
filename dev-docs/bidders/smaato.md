@@ -8,9 +8,11 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 media_types: banner, video
+pbjs: true
+pbs: true
 ---
 
-### Note
+### Registration
 
 The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or prebid@smaato.com for more information.
 
@@ -87,4 +89,34 @@ pbjs.setConfig({
             yob: 1984
         }
 });
+```
+
+### Test Parameters
+
+Following example includes sample `imp` object with publisherId and adSlot which can be used to test Smaato Adapter
+
+```
+"imp":[
+      {
+         "id":“1C86242D-9535-47D6-9576-7B1FE87F282C,
+         "banner":{
+            "format":[
+               {
+                  "w":300,
+                  "h":50
+               },
+               {
+                  "w":300,
+                  "h":250
+               }
+            ]
+         },
+         "ext":{
+            "smaato":{
+               "publisherId":"100042525",
+               "adspaceId":"130563103"
+            }
+         }
+      }
+   ]
 ```
