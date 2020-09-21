@@ -53,9 +53,9 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit.
 
-#### Mopub & GAM
+#### Mopub or GAM
 
-By default, Prebid SDK uses inflection to determine the publisher ad server, one of Mopub or Google Ad Manager (GAM), to convert the Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than Mopub or GAM, use the next section's 3rd party ad server support feature.
+By default, Prebid SDK uses inflection to determine the publisher ad server, one of Mopub or Google Ad Manager (GAM), to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than Mopub or GAM, use the next section's 3rd party ad server support feature.
 
 **Parameters**
 
@@ -66,7 +66,7 @@ By default, Prebid SDK uses inflection to determine the publisher ad server, one
 
 #### 3rd Party Ad Server
 
-As mentioned in the previous section the default ad servers for Prebid SDK are Mopub and GAM. For 3rd part ad server support, the fetchDemand function has been extended to return the Prebid Server bidder key / values to be passed to the ad server of choice. 
+The default ad servers for Prebid's Mobile SDK are MoPub and GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
 
 In this mode, the publisher will be responsible for the following actions:
 * Call fetchDemand with extended targetingDict callback
