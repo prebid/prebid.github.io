@@ -6,6 +6,10 @@ title: Prebid Server | Use Cases | Prebid.js
 ---
 
 # Use Case: Prebid Server | Prebid.js
+{: .no_toc}
+
+* TOC
+{:toc}
 
 When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
 

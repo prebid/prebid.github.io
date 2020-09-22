@@ -22,7 +22,7 @@ Nope. The only approval process is a code review. There are separate instruction
 - [adding a bidder in Prebid.js](/dev-docs/bidder-adaptor.html)
 - [adding an analytics adapter in Prebid.js](/dev-docs/integrate-with-the-prebid-analytics-api.html)
 
-As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
 ## When starting out, what should my timeouts be?

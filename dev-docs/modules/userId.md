@@ -27,8 +27,10 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **IntentIQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
 * **LiveIntent ID** – a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 * **Lotame Panorama ID** - a people-based identifier available across all browsers -- including when third-party cookies are not available -- to connect and activate first, second, and third party data for programmatic advertising.
+* **Merkle Merkury ID** - Merkury enables marketers, media owners, and publishers to own, build, and control a cookie-less Private Identity Graph. Merkury uses an organization’s first-party CRM data and valuable interactions such as logins, outbound email campaigns and media reach to create and grow a universe of person-based IDs for cross-channel targeting, personalization, measurement and more.
 * **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder.
 * **PubCommon ID** – an ID is generated on the user’s browser and stored for later use on this publisher’s domain.
+* **Quantcast ID** - an ID independent of third-party cookies for publishers with Quantcast Measure tag.      
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 * **netID** – provides an open, standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier Framework, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising bought through programmatic systems.
 
@@ -71,7 +73,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"parrableId"`, `"netId"`, `"pubCommonId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"parrableId"`, `"quantcastId"`, `"netId"`, `"pubCommonId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -592,6 +594,34 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Merkle ID
+
+[Merkury by Merkle](https://merkury.merkleinc.com/contact) enables marketers, media owners, and publishers to own, build, and control a cookie-less Private Identity Graph. Merkury uses an organization’s first-party CRM data and valuable interactions such as logins, outbound email campaigns and media reach to create and grow a universe of person-based IDs for cross-channel targeting, personalization, measurement and more.
+
+#### Merkury by Merkle ID Examples
+
+Publisher stores Merkury by Merkle in local storage for 30 days
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+        name: 'merkleId',
+        params: {
+          ptk: 'example',
+          pubid: 'EXAMPLE'
+        },
+        storage: {
+          type: 'html5',
+          name: 'merkleId',
+          expires: 30
+        }
+      }]
+    }
+});
+{% endhighlight %}
+
+
 ### Parrable ID
 
 The Parrable ID is a Full Device Identifier that can be used to identify a device across different browsers and webviews on a single device including browsers that have third party cookie restrictions.
@@ -714,6 +744,41 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Quantcast ID
+
+Quantcast ID enables publishers that use Quantcast Measure tag to uniquely identify
+their clients within Quantcast's extensive publisher network without relying on third party
+cookies. The Quantcast User ID submodule makes the existing Quantcast first party
+cookie available in the bid request. The first party cookie allows Quantcast to correlate
+the bid request with Quantcast's Measure dataset.
+
+Currently, Quantcast ID only works with the presence of Quantcast Measure tag. More information
+about Measure can be found in https://www.quantcast.com/measure.
+
+The Quantcast privacy policy is at https://www.quantcast.com/privacy/.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,quantcastIdSystem
+
+#### Quantcast ID Configuration
+
+Quantcast ID module does not require any configuration parameters at this time.
+
+#### Quantcast ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "quantcastId",
+        }]
+    }
+});
+{% endhighlight %}
+
 
 ### Shared ID User ID Submodule
 
@@ -848,6 +913,40 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Audigent HaloId
+
+Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HaloId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](prebid@audigent.com).
+
+#### HaloId Configuration
+Add the Halo ID system to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,haloIdSystem
+
+Add HaloId to the userSync configuration.
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'haloId',
+            storage: {
+                name: 'haloId',
+                type: 'html5'
+            }
+        }]
+    }
+});
+```
+
+The `request.userId.haloId` will contain the Audigent HaloId and associated segments:
+```
+{
+  "haloId": "user-halo-id",
+  "auSeg": ["segment1", "segment2"]
+}
+```
 
 ## Adapters Supporting the User ID Sub-Modules
 
