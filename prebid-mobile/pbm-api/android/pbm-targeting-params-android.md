@@ -131,12 +131,12 @@ This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.i
 Open Measurement partner name. 
 
 ```
-TargetingParams.setOmidPartnerName(string)
+TargetingParams.setOmidPartnerName()
 ```
 
 Examples:
 
-Swift
+Java
 ```java
 TargetingParams.setOmidPartnerName("Google")
 ```
@@ -149,12 +149,12 @@ The OMSDK version number the partner integrated with. See below for configuratio
 #### omidPartnerVersion
 Partner's OMSDK version number implementation
 ```
-TargetingParams.setOmidPartnerVersion(string);
+TargetingParams.setOmidPartnerVersion();
 ```
 
 Examples:
 
-Swift
+Java
 ```java
 TargetingParams.setOmidPartnerVersion("1.0");
 ```
