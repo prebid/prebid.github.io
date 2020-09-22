@@ -748,7 +748,7 @@ pbjs.setConfig({
 
 ### PubProvided ID
 
-The PubProvided Id module allows publishers to set and pass a first party user id into the bid stream. This module has 3 unique characteristics:
+The PubProvided Id module allows publishers to set and pass a first party user id into the bid stream. This module has several unique characteristics:
 
 1. The module supports a user defined function, that generates an eids-style object:
 
@@ -798,11 +798,17 @@ pbjs.setConfig({
 });
 ```
 
-In either case, bid adapters will receive the eid values after consent is validated
+In either case, bid adapters will receive the eid values after consent is validated.
 
 2. This design allows for the setting of any number of uuids in the eids object. Publishers may work with multiple ID providers and nest their own id within the same eids object.  The opportunity to link a 1st party uuid and a 3rd party generated UUID presents publishers with a unique ability to address their users in a way demand sources will understand.
 
 3. Finally, this module allows publishers to broadcast their user id, derived from in-house tech, directly to buyers within the confines of existing compliance (CCPA & GDPR) frameworks. 
+
+4. The `eids.uids.ext.stype` "source-type" extension helps downstream entities know what do with the data. Currently defined values are:
+
+- dmp - this uid comes from the in-page dmp named in eids.source
+- ppuid - this uid comes from the publisher named in eids.source
+- sha256email - this uid is based on an email hash from the entity named in eids.source
 
 
 ### Quantcast ID
