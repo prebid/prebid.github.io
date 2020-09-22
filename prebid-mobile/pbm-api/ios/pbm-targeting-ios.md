@@ -168,7 +168,7 @@ This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.i
 Open Measurement partner name. 
 
 ```
-Targeting.shared.omidPartnerName = "string"
+Targeting.shared.omidPartnerName
 ```
 
 Examples:
