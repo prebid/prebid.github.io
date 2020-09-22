@@ -1119,7 +1119,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                     "atype":1 //ADCOM- Type of user agent the match is from
                     "ext": {
-                        "stype": "DMP" //currently supported values (DMP,ppuid,sha256email)
+                        "stype": "DMP" //currently supported values (dmp,ppuid,sha256email)
                     }
                 }]
             }]
