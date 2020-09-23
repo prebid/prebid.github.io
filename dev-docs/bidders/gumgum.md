@@ -24,6 +24,10 @@ information.
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description | Example      | Type      |
 |----------------|----------|-------------|--------------|-----------|
+| `zone`         | optional | Tracking ID | `'ggumtest'` | `string`  |
+| `pubId`        | optional | Publisher ID| `123`        | `integer` |
+| `slot`         | optional | Slot ID     | `9`          | `integer` |
+| `native`       | optional | Native ID   | `19`         | `integer` |
 | `inScreen`     | optional | Tracking ID | `'ggumtest'` | `string`  |
 | `inScreenPubID`| optional | Publisher ID| `123`        | `integer` |
 | `inSlot`       | optional | Slot ID     | `9`          | `integer` |
