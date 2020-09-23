@@ -53,14 +53,88 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit.
 
+#### Mopub or GAM
+
+By default, Prebid SDK uses inflection to determine the publisher ad server, one of Mopub or Google Ad Manager (GAM), to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than Mopub or GAM, use the next section's 3rd party ad server support feature.
+
 **Parameters**
 
 `adObject`: adServer object to which the Prebid keys need to be attached.
 
 `completion`: Closure which receives one argument, the enum `ResultCode`. There is no return value.
 
-{% include alerts/alert_warning.html content="Ad Unit *User* keywords will be deprecated in favor of [targeting keywords](pbm-targeting-ios#user-keywords) for Prebid versions 1.2+. Support will continue for Ad Unit User Keywords as users migrate to targeting user keywords." %}
 
+#### 3rd Party Ad Server
+
+The default ad servers for Prebid's Mobile SDK are MoPub and GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
+
+In this mode, the publisher will be responsible for the following actions:
+* Call fetchDemand with extended targetingDict callback
+* Retrieve targeting keys from extended fetchDemand function
+* Convert targeting keys into the format for your ad server
+* Pass converted keys to your ad server
+* Render ad with Prebid Universal Creative or custom renderer
+
+
+**Function callbacks**
+
+* `ResultCode`: enum [result codes](https://docs.prebid.org/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
+* `targetingDict`: [Prebid Server Response targeting keys](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
+
+
+```
+func fetchDemand(completion: @escaping(_ result: ResultCode, _ kvResultDict: [String : String]?) -> Void)
+```
+
+Examples:
+
+Swift
+```swift
+func loadBanner() {
+    
+    //adUnit is BannerAdUnit type
+    adUnit.fetchDemand { [weak self] (resultCode: ResultCode, targetingDict: [String : String]?) in
+        
+        self?.adServerRequest.customTargeting = targetingDict
+        self?.adServerBanner.load(self?.adServerRequest)
+    }
+}
+
+
+func loadRewardedVideo() {
+    let adUnit = RewardedVideoAdUnit(configId: "1001-1")
+    adUnit.fetchDemand { [weak self] (resultCode: ResultCode, targetingDict: [String : String]?) in
+        
+        //Publisher should provide support for converting keys into format of 3rd party ad server and loading ads
+        let keywords = convertDictToAdServerKeywords(dict: targetingDict)
+        AdServerLoadAds.loadAd(withAdUnitID: "46d2ebb3ccd340b38580b5d3581c6434", keywords: keywords)
+    }
+}
+```
+
+Objective-C
+```objective-C
+-(void) loadAdServerBanner {
+
+    //adUnit is BannerAdUnit Type
+    [self.adUnit fetchDemandWithCompletion:^(enum ResultCode resultCode, NSDictionary<NSString *,NSString *> * _Nullable targetingDict) {
+        
+        [self.request setCustomTargeting:targetingDict];
+        [self.adServerView loadRequest:self.request];
+    }];
+}
+
+-(void) loadAdServerRewardedVideo {
+
+    //adUnit is RewardedVideoAdUnit Type
+    [adUnit fetchDemandWithCompletion:^(enum ResultCode resultCode, NSDictionary<NSString *,NSString *> * _Nullable targetingDict) {
+        
+        NSString *keywords = [Utils.shared convertDictToMoPubKeywordsWithDict:targetingDict];
+        [adServerRewardedVideo loadRewardedVideoAdWithAdUnitID:@"46d2ebb3ccd340b38580b5d3581c6434" keywords:keywords ];
+    
+    }];
+}
+```
 
 ### addUserKeyword
 

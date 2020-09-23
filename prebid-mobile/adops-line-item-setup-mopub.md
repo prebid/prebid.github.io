@@ -11,12 +11,12 @@ sidebarType: 3
 
 
 
-# Step by Step Line Item Setup for MoPub
+# Step-by-Step Line Item Setup for MoPub
 
 * TOC
 {:toc }
 
-This page describes step by step how to set up Prebid Mobile line items for MoPub to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
+This page provides step-by-step instructions to set up Prebid Mobile line items for MoPub to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 ## Step 1. Add a line item
 

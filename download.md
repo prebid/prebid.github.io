@@ -517,13 +517,13 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> User ID: BritePool ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
+<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> User ID: Halo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
@@ -535,10 +535,22 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> User ID: LiveIntent ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="lotamePanoramaId" class="bidder-check-box"> User ID: Lotame ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> User ID: Merkle ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> User ID: Parrable ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="quantcastId" class="bidder-check-box"> User ID: Quantcast ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> User ID: Shared ID</label>
@@ -547,7 +559,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
+<label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> User ID: Zeotap ID+</label>
 </div></div>
 </div>
 

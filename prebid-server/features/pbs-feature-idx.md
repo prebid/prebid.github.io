@@ -35,8 +35,8 @@ title: Prebid Server | Features
 | [Stored Requests](/prebid-server/features/pbs-storedreqs.html) | Core | Accepts a stored request ID in the OpenRTB, looks it up against a local data store, and merges with the OpenRTB request record. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Stored Responses | Stored Responses | Accepts a stored response ID in the OpenRTB, looks it up against a local data store, and merges with the OpenRTB response record. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | First Party Data | Core | Accepts core first party data attributes and supports ext.prebid.data.bidders. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| First Party Data | Bidder-specific data | Accepts bidder-specific first party data attributes. | | |
-| First Party Data | AMP first party data | Accepts first party data attributes on an AMP request. | | |
+| First Party Data | Bidder-specific data | Accepts bidder-specific first party data attributes. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+| First Party Data | AMP first party data | Accepts first party data attributes on an AMP request. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [Supply Chain](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#supply-chain-support) | Bidder-specific schains | Accepts bidder-specific schain | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Publisher Accounts | Core | Ability to enforce that requests coming in have a valid account ID. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Publisher Accounts | AMP account parameter | Accept the account parameter on the AMP request. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
@@ -61,3 +61,4 @@ title: Prebid Server | Features
 | Operations | Circuit breaker | Protects system performance during fault scenarios by detecting problems with external and internal endpoints, turning them off temporarily when a problem occurs. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Operations | [Server default request](/prebid-server/features/pbs-default-request.html) | Support global defaults for incoming requests. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | |
 | Operations | IPv6 | Support taking IPv6 addresses and forwarding them to bidders. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Operations | [Request Logging Admin Endpoints](/troubleshooting/pbs-troubleshooting.html#request-logging) | Log a limited number of requests to understand the raw data clients are sending. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |

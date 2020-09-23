@@ -151,6 +151,77 @@ Targeting.shared.itunesID
 Targeting.shared.itunesID = itunesID
 ```
 
+### Open Measurment SDK (OMSDK)
+
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is elligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+
+There three components to signaling support for OMSDK:
+* Partner Name
+* Partner Version
+* API code
+
+**Partner Name**
+
+This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
+
+#### omidPartnerName
+Open Measurement partner name. 
+
+```
+Targeting.shared.omidPartnerName
+```
+
+Examples:
+
+Swift
+```swift
+Targeting.shared.omidPartnerName = "Google"
+```
+
+Objective C
+```objective_c
+Targeting.shared.omidPartnerName = @"Google";
+```
+
+
+**Partner Version**
+
+The OMSDK version number the partner integrated with. See below for configuration and examples.
+
+
+#### omidPartnerVersion
+Partner's OMSDK version number implementation
+```
+Targeting.shared.omidPartnerVersion
+```
+
+Examples:
+
+Swift
+```swift
+Targeting.shared.omidPartnerVersion = "1.0"
+```
+
+Objective C
+```objective_c
+Targeting.shared.omidPartnerVersion = @"1.0";
+```
+
+**API Code**
+
+Per OpenRTB 2.5, support for OMSDK is signaled using the imp.[media type].api field represented in Prebid SDK withing each ad format type under the parameters object. Refer to the documentation of the respective ad unit class.
+
+Example:
+```
+let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
+let parameters = BannerAdUnit.Parameters()
+parameters.api = [Signals.Api(7)]
+adUnit.setParameters(parameters);
+```
+
+
+
+
 ## Inventory (Context) Keywords
 
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.

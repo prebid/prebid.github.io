@@ -92,3 +92,17 @@ For Prebid.js-initated server requests, we've found that cookie match rates are 
 - Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
 - The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
 - In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
+
+## How does the Notice URL work for Prebid Server?
+
+**Banner**
+
+If a bidder adapter supplies 'nurl' in the bidResponse object, there are two paths:
+
+1) If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
+2) If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
+
+**Video**
+
+If a bidder adapter supplies 'nurl' in the bidResponse object instead of 'adm',
+this URL will be treated as the location of the VAST XML.
