@@ -806,7 +806,7 @@ pbjs.setConfig({
                       id: "value read from cookie or local storage",
                       atype: 3,
                       ext: {
-                          stype: "sha256email"
+                          stype: "dmp"
                       }
                   }]
                 }]
@@ -826,7 +826,7 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 - dmp - this uid comes from the in-page dmp named in eids.source
 - ppuid - this uid comes from the publisher named in eids.source
-- sha256email - this uid is based on an email hash from the entity named in eids.source
+- other - TBD
 
 
 ### Quantcast ID
@@ -1130,7 +1130,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                     "atype":1 //ADCOM - Type of user agent the match is from
                     "ext": {
-                        "stype": "dmp" //currently supported values (dmp,ppuid,sha256email)
+                        "stype": "dmp" //currently supported values (dmp,ppuid,other)
                     }
                 }]
             }]
