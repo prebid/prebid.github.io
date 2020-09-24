@@ -2078,16 +2078,6 @@ Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/pu
 
 ##### Details on the allowTargetingKeys setting
 
-Below is an example config containing `allowTargetingKeys`:
-
-```javascript
-config.setConfig({
-  targetingControls: {
-    allowTargetingKeys: ['BIDDER', 'AD_ID', 'PRICE_BUCKET']
-  }
-});
-```
-
 When this property is set up, the `allowTargetingKeys` creates a default targeting key mask based on the default targeting keys defined in CONSTANTS.TARGETING_KEYS and CONSTANTS.NATIVE_KEYS. Any default keys that do not match the mask will not be sent to the adserver. This setting can be helpful if you find that your prebid implementation is by default sending key values that your adserver isn't configured to process. When extraneous key values are sent, the ad server request can be truncated, which can cause potential issues with the delivery or rendering of the ad.
 
 To accomplish this, Prebid does the following:
@@ -2096,6 +2086,49 @@ To accomplish this, Prebid does the following:
   * Custom targeting keys are always added to targeting.
   * Default targeting keys are added to targeting only if they match an allowed key named in `setConfig`.
 * New targeting replaces original targeting before targeting is flattened.
+
+The targeting key names and the associated prefix value filtered by `allowTargetingKeys`:
+{: .table .table-bordered .table-striped }
+| Name        | Value    |
+|------------+------------|
+| BIDDER | `hb_bidder` |
+| AD_ID | `hb_adid` |
+| PRICE_BUCKET | `hb_pb` |
+| SIZE | `hb_size` |
+| DEAL | `hb_deal` |
+| SOURCE | `hb_source` |
+| FORMAT | `hb_format` |
+| UUID | `hb_uuid` |
+| CACHE_ID | `hb_cache_id` |
+| CACHE_HOST | `hb_cache_host` |
+| title | `hb_native_title` |
+| body | `hb_native_body` |
+| body2 | `hb_native_body2` |
+| privacyLink | `hb_native_privacy` |
+| privacyIcon | `hb_native_privicon` |
+| sponsoredBy | `hb_native_brand` |
+| image | `hb_native_image` |
+| icon | `hb_native_icon` |
+| clickUrl | `hb_native_linkurl` |
+| displayUrl | `hb_native_displayurl` |
+| cta | `hb_native_cta` |
+| rating | `hb_native_rating` |
+| address | `hb_native_address` |
+| downloads | `hb_native_downloads` |
+| likes | `hb_native_likes` |
+| phone | `hb_native_phone` |
+| price | `hb_native_price` |
+| salePrice | `hb_native_saleprice` |
+
+Below is an example config containing `allowTargetingKeys` excluding all default targeting keys except `hb_bidder`, `hb_adid`, and `hb_pb`:
+
+```javascript
+config.setConfig({
+  targetingControls: {
+    allowTargetingKeys: ['BIDDER', 'AD_ID', 'PRICE_BUCKET']
+  }
+});
+```
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
