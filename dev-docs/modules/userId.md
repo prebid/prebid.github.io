@@ -924,9 +924,9 @@ The `request.userId.haloId` will contain the Audigent HaloId and associated segm
 
 Verizon Media's ID is a person based ID and doesn't depend on 3rd party cookies.
 
-Verizon Media's ID is designed to enable you to recognize and match users consistently across the open web. The Verizon Media ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
+Verizon Media's ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. The Verizon Media ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
 
-The Verizon Media ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html) and honoring global privacy acts.
+The Verizon Media ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
 
 Please reach out to VerizonMedia-UIDsupport@verizonmedia.com for assistance with setup.
 
