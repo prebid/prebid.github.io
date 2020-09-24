@@ -32,6 +32,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **Quantcast ID** - an ID independent of third-party cookies for publishers with Quantcast Measure tag.      
 * **Unified ID** – a simple cross-vendor approach – it calls out to a URL that responds with that user’s ID in one or more ID spaces (e.g. adsrvr.org).
 * **netID** – provides an open, standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier Framework, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising bought through programmatic systems.
+* **Verizon Media ID** - Verizon Media's ID is a person based ID and doesn't depend on 3rd party cookies.
 
 ## How It Works
 
@@ -919,6 +920,56 @@ The `request.userId.haloId` will contain the Audigent HaloId and associated segm
 }
 ```
 
+### Verizon Media ID
+
+Verizon Media's ID is a person based ID and doesn't depend on 3rd party cookies.
+
+Verizon Media's ID is designed to enable you to recognize and match users consistently across the open web. The Verizon Media ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
+
+The Verizon Media ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html) and honoring global privacy acts.
+
+Please reach out to VerizonMedia-UIDsupport@verizonmedia.com for assistance with setup.
+
+Add Verizon Media ID to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,verizonMediaIdSystem
+
+
+#### Verizon Media ID configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'verizonMedia'` |
+| params | Required | Object | Container of all module params. ||
+| params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
+| storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
+| storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
+| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'vmuid'` |
+| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
+
+#### Verizon Media ID examples
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "verizonMedia",
+            params: {
+              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
+            },
+            storage: {             
+            type: “cookie”,             
+            name: “vmuid”,            
+            expires: 1               
+            } 
+        }]
+    }
+})
+```
+
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -954,6 +1005,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
+| Verizon Media ID | Verizon Media | bidRequest.userId.vmuid | `72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472` |
 
 For example, the adapter code might do something like:
 
@@ -1034,6 +1086,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                         "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
                     }
                 }]
+            },{
+              "source": "verizonmedia.com",
+              "uids": [{
+                  "id": "61cef5656fb05f16d53938069f1684df4b2257e27"
+              }]
             }]
         }
     }
