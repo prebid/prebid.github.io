@@ -12,7 +12,7 @@ userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true
 bidder_supports_deals: true
-pbjs: false
+pbjs: true
 pbs: true
 ---
 
