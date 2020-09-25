@@ -828,6 +828,8 @@ In either case, bid adapters will receive the eid values after consent is valida
 - ppuid - this uid comes from the publisher named in eids.source
 - other - TBD
 
+5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
+
 
 ### Quantcast ID
 
