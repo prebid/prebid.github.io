@@ -178,10 +178,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
-{% for page in bidder_pages %}
-  {% if page.s2s_only == true %}
-    {% continue %}
-  {% endif %}
+{% for page in bidder_pages %}{% if page.pbjs == true %}
 <div class="col-md-4">
  <div class="checkbox">
   <label>
@@ -190,12 +187,10 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
   {% else %}
     <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% endif %}
-
-    </label>
-
+  </label>
 </div>
 </div>
-{% endfor %}
+{% endif %}{% endfor %}
 </div>
 </div>
 
