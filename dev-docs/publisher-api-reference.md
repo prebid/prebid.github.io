@@ -66,7 +66,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [cache](#setConfig-vast-cache)
     * [instreamTracking](#setConfig-instream-tracking) - requires [Instream Tracking Module](/dev-docs/modules/instreamTracking.html)
     * [site](#setConfig-site)
-    * [auctionTiming](#setConfig-auctionTiming)
+    * [auctionOptions](#setConfig-auctionOptions)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -2453,17 +2453,24 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-<a name="setConfig-auctionTiming" />
+<a name="setConfig-auctionOptions" />
 
-#### Auction Timing
+#### Auction Options
 
-This configuration will specify bidders in your Auction that Prebid should not wait for before declaring the Auction as Done, they are referred to as secondaryBidders. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation.
+The `auctionOptions` object passed to `pbjs.setConfig` provides a method to specify bidders that the Prebid auction will no longer wait for before determing the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation.
+
+{: .table .table-bordered .table-striped }
+| Field    | Scope   | Type   | Description                                                                           |
+|----------+---------+--------+---------------------------------------------------------------------------------------|
+| `secondaryBidders` | Required | Array of Strings | The bidders that will be removed from determining when an Auction has completed. |
+
+Example config:
 
 {% highlight js %}
 pbjs.setConfig({
-    'auctionTiming': {
+    'auctionOptions': {
         'secondaryBidders': ['doNotWaitForMe']
-     }
+    }
 });
 {% endhighlight %}
 
