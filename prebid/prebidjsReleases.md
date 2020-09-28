@@ -16,6 +16,15 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 4.8 | GDPR updates around modules and storage manager. |
+| 4.6 | Removed cmpuishown event for TCF2 logic |
+| 4.5 | Price Floors: Add bid object into cpmAdjustment function |
+| 4.4 | DFP Video Module supports VAST 4 |
+| 4.3 | DFP Video Module bug fixed |
+| 4.1.1 | Release of the [GPT Pre-Auction Module](https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html). Price Floors: new signals (location: noData + floorProvider) |
+| 4.0 | TCF Purpose 1 and Purpose 2 enforced by default when GDPR enforcement module turned on. Removed Digitrust userId module. Removed audienceNetworkBidAdapter. |
+| 3.27.1 | DFP Video Module bug fixed |
+| 3.27 | An important bug in the DFP Video Module was introduced with this release and fixed in 4.3 and 3.27.1. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive. |
 | 3.24 | PBS Bid Adapter allows setting site params |
 | 3.23 | If a server-side bid contains imp.ext.prebid.event.win, pbsBidAdapter listens to BidsWon events and hits the URL. |
 | 3.22 | Secure creatives use event.origin rather than a hard coded adServerDomain |

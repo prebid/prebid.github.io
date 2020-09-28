@@ -2,7 +2,7 @@
 layout: bidder
 title: Brightroll
 pbs: true
-media_types: video
+media_types: display, video
 biddercode: Brightroll
 prebid_member: true
 ---
