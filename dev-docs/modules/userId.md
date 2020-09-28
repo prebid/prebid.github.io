@@ -1021,8 +1021,8 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },{
                 "source": "audigent.com",
-		"atype": 1,
                 "uids": [{
+                    "atype": 1,
                     "id": "11111111"
                 }]
             },{
@@ -1089,7 +1089,7 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
 
-You can use `getUserIdsAsEids()` to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+You can use [`getUserIdsAsEids()`](https://docs.prebid.org/dev-docs/publisher-api-reference.html#userId.getUserIdsAsEids) to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
 ```
 pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
@@ -1109,6 +1109,17 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
           ext: {
               rtiPartner: 'TDID'
           }
+      }]
+  },
+
+  {
+      source: 'id5-sync.com',
+      uids: [{
+          id: 'ID5-12345',
+          atype: 1
+      },
+      ext: {
+          linkType: 2
       }]
   }
 ]
