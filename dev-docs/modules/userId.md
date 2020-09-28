@@ -58,7 +58,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"sharedId"`, `"unifiedId"`, `"verizonMedia"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"sharedId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -954,7 +954,7 @@ gulp build --modules=userId,verizonMediaIdSystem
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module. | `'verizonMedia'` |
+| name | Required | String | The name of this module. | `'verizonMediaId'` |
 | params | Required | Object | Container of all module params. ||
 | params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
 | storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
@@ -968,7 +968,7 @@ gulp build --modules=userId,verizonMediaIdSystem
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "verizonMedia",
+            name: "verizonMediaId",
             params: {
               he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
             },
@@ -1021,7 +1021,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
-| Verizon Media ID | Verizon Media | bidRequest.userId.vmuid | `72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472` |
+| Verizon Media ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 
 For example, the adapter code might do something like:
 
