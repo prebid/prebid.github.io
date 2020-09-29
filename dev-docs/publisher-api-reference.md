@@ -24,6 +24,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAdserverTargetingForAdUnitCode([adUnitCode])](#module_pbjs.getAdserverTargetingForAdUnitCode)
   * [.getBidResponses()](#module_pbjs.getBidResponses)
   * [.getBidResponsesForAdUnitCode(adUnitCode)](#module_pbjs.getBidResponsesForAdUnitCode)
+  * [.getEvents()](#module_pbjs.onEvent)
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
@@ -63,6 +64,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [COPPA](#setConfig-coppa)
     * [first party data](#setConfig-fpd)
     * [cache](#setConfig-vast-cache)
+    * [instreamTracking](#setConfig-instream-tracking) - requires [Instream Tracking Module](/dev-docs/modules/instreamTracking.html)
     * [site](#setConfig-site)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
@@ -1179,8 +1181,12 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 
 ### pbjs.offEvent(event, handler, id)
 
+### pbjs.getEvents() ⇒ `Array`
+
 The methods `onEvent` and `offEvent` are provided for you to register
-a callback to handle a Prebid.js event.
+a callback to handle a Prebid.js event. 
+
+The `getEvents` method returns a copy of all emitted events.
 
 The optional `id` parameter provides more finely-grained event
 callback registration.  This makes it possible to register callback
@@ -1211,6 +1217,7 @@ The available events are:
 | requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | None |
 | addAdUnits    | Ad units have been added to the auction | None |
 | adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
+| auctionDebug  | An error was logged to the console | Object containing 'type' and 'arguments' |
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 
@@ -1269,6 +1276,16 @@ Events example 3: Dynamically modify the auction
             // e.g. "remove any that haven't bid in the last 4 refreshes"
 	};
 	pbjs.onEvent('beforeRequestBids', bidderFilter);
+{% endhighlight %}
+
+Events example 4: Log errors and render fails to your own endpoint
+{% highlight js %}
+        pbjs.onEvent('adRenderFailed', function () {
+              // pub-specific logic to call their own endpoint
+            });
+	pbjs.onEvent('auctionDebug', function () {
+              // pub-specific logic to call their own endpoint
+            });
 {% endhighlight %}
 
 <hr class="full-rule" />
@@ -2267,14 +2284,13 @@ pbjs.setConfig({coppa: true});
 
 #### First Party Data
 
-A number of adapters support taking key/value pairs as arguments, but they're all different. For example:
+Historically, a number of adapters supported taking key/value pairs as arguments, but they were all different. For example:
 
-- RubiconProject takes `keywords`, `inventory` and `visitor` parameters
-- AppNexus takes `keywords` and `user`
-- OpenX takes `customParams`
+- RubiconProject took `keywords`, `inventory` and `visitor` parameters
+- AppNexus took `keywords` and `user`
+- OpenX took `customParams`
 
-This feature allows publishers a way to specify key/value data in one place where each compatible bid adapter
-can read it.
+First party data allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
 
 {: .alert.alert-warning :}
 Not all bid adapters currently support reading first party data in this way, but support should increase over time.
@@ -2341,6 +2357,8 @@ pbjs.setBidderConfig({
 
 <a name="setConfig-vast-cache" />
 
+See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for details about passing data server-side.
+
 #### Client-side Caching of VAST XML
 
 When serving video ads, VAST XML creatives must be cached on the network so the
@@ -2386,6 +2404,36 @@ pbjs.setConfig({
 Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtrack`
 Prebid Server endpoint with a couple of additional parameters needed
 by the analytics system to join the event to the original auction request.
+
+<a name="setConfig-instream-tracking" />
+
+#### Instream tracking
+
+{: .alert.alert-info :}
+To enable this tracking, include the `instreamTracking` module in your Prebid.js build.
+
+This configuration will allow Analytics Adapters and Bid Adapters to track `BID_WON` events for Instream video bids.
+
+{: .table .table-bordered .table-striped }
+| Field    | Scope   | Type   | Description                                                                           |
+|----------+---------+--------+---------------------------------------------------------------------------------------|
+| `instreamTracking` | Required | Object | Configuration object for instream tracking |
+| `instreamTracking.enabled` | Required | Boolean | Enable/disable the instream tracking feature. Default: `false`. |
+| `instreamTracking.maxWindow` | Optional | Integer | The time in ms after which polling for instream delivery stops. Default: `60000` i.e. 60 seconds |
+| `instreamTracking.pollingFreq` | Optional | Integer |The frequency of polling. Default: `500`ms |
+| `instreamTracking.urlPattern` | Optional | RegExp | Regex for cache url patterns, to avoid false positives. |
+
+#### Example
+
+{% highlight js %}
+pbjs.setConfig({
+        'instreamTracking': {
+            enabled: true,
+        }
+});
+{% endhighlight %}
+
+More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpattern).
 
 <a name="setConfig-site" />
 

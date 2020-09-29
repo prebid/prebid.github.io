@@ -11,6 +11,7 @@ prebid_member: true
 tcf2_supported: true
 pbjs: true
 gvl_id: 142
+schain_supported: true
 ---
 
 ### Bid Params

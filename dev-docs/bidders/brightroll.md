@@ -2,10 +2,15 @@
 layout: bidder
 title: Brightroll
 pbs: true
-media_types: video
+media_types: display, video
 biddercode: Brightroll
 prebid_member: true
 ---
+
+### Registration
+
+Brightroll requires registration for each Prebid Server host company
+and each publisher. Contact dsp-supply-prebid@verizonmedia.com
 
 ### Bid Params
 

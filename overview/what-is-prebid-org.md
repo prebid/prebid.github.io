@@ -13,7 +13,7 @@ Formed in September of 2017, Prebid.org is an independent organization designed 
 
 Prebid.org is open to all companies who are part of the programmatic ecosystem, from ad tech vendors to publishers and others. We believe strongly that by working together, we can do some great things in the industry.
 
-[Learn more](/partners/partners.html) about becoming a member of Prebid.org.
+[Learn more](https://prebid.org/membership/) about becoming a member of Prebid.org.
 
 ## Operations  
 Managed through Product Management Committees (PMCs)  
@@ -44,6 +44,6 @@ Prebid welcomes any contribution on these projects!
 
 Read more here:
 
-* [Prebid.org Members and Partners](/partners/partners.html)
+* [Prebid.org Members and Partners](https://prebid.org/membership/)
 * [The Drum reporting on Prebid.org](https://www.thedrum.com/news/2017/09/11/appnexus-and-rubicon-project-launch-prebidorg-hailing-open-source-approach-header)
-* [Current members of Prebid.org]({{site.baseurl}}/partners/partners.html)
+* [Current members of Prebid.org](https://prebid.org/membership/member-directory/)
