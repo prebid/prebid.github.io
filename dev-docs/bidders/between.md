@@ -3,6 +3,7 @@ layout: bidder
 title: Between
 description: Prebid Between Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: between
 media_types: banner
 ---
@@ -12,5 +13,5 @@ media_types: banner
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `host` | required |  between host url         | `ru.betweendigital.com/s2s`   | `string` |
+| `host` | required |  between host url prefix         | `eu`   | `string` |
 
