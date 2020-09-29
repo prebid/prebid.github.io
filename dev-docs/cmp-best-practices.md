@@ -29,6 +29,7 @@ Instead, here are some general guidelines:
 
 - You can't just automatically turn on the GDPR Enforcement Module when not in GDPR scope.
 - You need to understand how your CMP works, how you want to handle the "first page" scenario where the user hasn't yet had time to answer CMP questions, and how your site is laid out geographically.
+- We recommend that the page first load a CMP stub synchronously, then asynchronously load the CMP code and the Prebid code
 
 ## The Role & Relations of the CMP/TCF gdprApplies and Prebid gdpr.defaultGdprScope
 
