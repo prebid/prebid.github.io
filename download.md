@@ -178,10 +178,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 
 <h4>Select Bidder Adapters</h4>
 <div class="adapters">
-{% for page in bidder_pages %}
-  {% if page.s2s_only == true %}
-    {% continue %}
-  {% endif %}
+{% for page in bidder_pages %}{% if page.pbjs == true %}
 <div class="col-md-4">
  <div class="checkbox">
   <label>
@@ -190,12 +187,10 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
   {% else %}
     <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
   {% endif %}
-
-    </label>
-
+  </label>
 </div>
 </div>
-{% endfor %}
+{% endif %}{% endfor %}
 </div>
 </div>
 
@@ -553,7 +548,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="pubProvidedSystem" class="bidder-check-box"> User ID: PubProvided ID</label>
 </div></div>  
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="quantcastId" class="bidder-check-box"> User ID: Quantcast ID</label>
+<label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> User ID: Quantcast ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> User ID: Shared ID</label>

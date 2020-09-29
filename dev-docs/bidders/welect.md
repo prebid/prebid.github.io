@@ -4,7 +4,8 @@ title: Welect
 description: Prebid Welect Bidder Adapter
 biddercode: welect
 media_types: no-display, video
-gdpr_supported: true
+tcf2_supported: true
+gvlid: 282
 pbjs: true
 ---
 
