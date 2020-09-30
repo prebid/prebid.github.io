@@ -119,17 +119,28 @@
 					<div class="col-sm-4">
 						<div class="wpb_raw_code wpb_content_element wpb_raw_html footer__form" >
 							<div class="wpb_wrapper">
-								<div class="wpb_wrapper">
+								<div id="hubspot" class="wpb_wrapper">
 										<h4>Subscribe for Updates</h4>
 										<p>Please review our <a href="/privacy.html">privacy policy</a></p>
 								</div>
 								<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
-								<script>
+								<script type="text/javascript">
+								__tcfapi("checkConsent", 2, (data, success) => {
+								    if (data && success) {
 									hbspt.forms.create({
 											portalId: "7874009",
 											formId: "4180bae7-aece-4b05-accb-42f68977345f",
 											css: "text-align:center;"
 										});
+								    } else {
+									document.getElementById('hubspot').innerHTML += '(Cookie permissions required to sign up for our newsletter. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)<br/><br/>';
+								    }
+								}, {
+								    data: [{
+									vendorId: 10064,
+									purposeIds: [1]
+								    }]
+								});
 								</script>
 							</div>
 						</div>
