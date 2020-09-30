@@ -31,7 +31,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | Module              | Description  |
 |---------------------+--------------|
 | [**Currency**](/dev-docs/modules/currency.html) | Converts bid currency into ad server currency based on data in a supplied exchange rate file. |
-| **ConsentManagement** | Collecting and passing consent information in support of privacy regulations:{::nomarkdown}<ul><li><a href="/dev-docs/modules/consentManagement.html">EU GDPR</a> with optional <a href="/dev-docs/modules/gdprEnforcement.html">GDPR Enforcement</a> module</li><li><a href="/dev-docs/modules/consentManagementUsp.html">US Privacy</a> (CCPA)</li></ul>{:/} |
+| **ConsentManagement** | Collecting and passing consent information in support of privacy regulations:{::nomarkdown}<ul><li><a href="/dev-docs/modules/consentManagement.html">EU GDPR</a> with optional <a href="/dev-docs/modules/gdprEnforcement.html">GDPR Enforcement</a> module</li><li><a href="/dev-docs/modules/consentManagementUsp.html">US Privacy</a> (CCPA)</li></ul>{:/} See [CMP Best Practices.](/dev-docs/cmp-best-practices.html) |
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
 | [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches: Criteo RTUS, DigiTrust, ID5 Universal ID, IdentityLink, PubCommon ID, Unified ID and LiveIntent ID. |
@@ -49,6 +49,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Freewheel**](/dev-docs/modules/freewheel.html) | Passes key value targeting to Freewheel SDK |
 | [**Google Ad Manager Video**](/dev-docs/modules/dfp_video.html) | Required for serving instream video through Google Ad Manager. |
 | [**IAB Category Translation**](/dev-docs/modules/categoryTranslation.html) | Converts IAB sub category to Ad server category for long-form videos. |
+| [**Instream Video Ads Tracking**](/dev-docs/modules/instreamTracking.html) | Allow Analytics Adapters and Bid Adapters to track `BID_WON` events for Instream video bids. |
 | [**Konduit Accelerate**](/dev-docs/modules/konduit.html) | Provides Real Time Start Rate Performance per Bidder. |
 
 ## Testing and Debug Modules

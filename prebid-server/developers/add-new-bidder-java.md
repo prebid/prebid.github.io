@@ -88,6 +88,23 @@ Bidder response processing:
 1. Extract bids from response;
 2. Set each bid type and currency;
 
+### Bid Request Standards
+
+Prebid clients ([Prebid.js](/use-cases/pbs-pbjs.html), [Prebid SDK](/use-cases/pbs-sdk.html), and [AMP](/use-cases/pbs-amp.html)) pass a number of parameters
+that bid adapters should take into account:
+
+- Currency: The publisher's desired bid currency is in the OpenRTB `cur` field. I
+f your bid is in a different currency, you must set the bid currency in the respo
+nse.
+- Bid Floor: `imp[].bidfloor` and `imp[].bidfloorcur` - please make use of this v
+alue before responding with a bid.
+- First Party Data: bidders should look in these locations for first party data: `imp[].ext.context.data.*`, `site.ext.data.*`, `app.ext.data.*`, and `user.ext.data.*`.
+- Supply Chain: `source.ext.schain`
+- GDPR: `regs.ext.gdpr` and `user.ext.consent`
+- CCPA: `regs.ext.us_privacy`
+- COPPA: `regs.coppa`
+- Test: Bidders should be aware that the OpenRTB `test` flag indicates non-production traffic.
+
 ### Bid Response Metadata
 
 In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
