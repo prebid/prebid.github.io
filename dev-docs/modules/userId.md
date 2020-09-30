@@ -58,7 +58,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -380,6 +380,8 @@ The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://w
 | name | Required | String | `"intentIqId"` | `"intentIqId"` |
 | params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
 | params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
+| params.pcid | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request. | `"g3hC52b"` |
+| params.pai | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request. | `"advertiser1"` |
 
 #### IntentIQ ID Examples
 
@@ -414,6 +416,30 @@ pbjs.setConfig({
             name: "intentIqId",
             params: {
                 parnter: 123456			// valid partner id
+            },
+            storage: {
+                type: "html5",
+                name: "intentIqId",    // set localstorage with this name
+                expires: 60
+            }
+        }],
+        syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+
+3) Publisher supports IntentIQ and HTML5 local storage with extra dynamic params such as 'pcid' and 'pai'.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                parnter: 123456			// valid partner id
+                pcid: PCID_VARIABLE		// string value, dynamically loaded into a variable before setting the configuration
+                pai: PAI_VARIABLE		// string value, dynamically loaded into a variable before setting the configuration
             },
             storage: {
                 type: "html5",
@@ -764,6 +790,72 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### PubProvided ID
+
+The PubProvided Id module allows publishers to set and pass a first party user id into the bid stream. This module has several unique characteristics:
+
+1. The module supports a user defined function, that generates an eids-style object:
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "publisherProvided",
+            params: {
+                eidsFunction: getIdsFn   // any function that exists in the page
+            }
+        }]
+    }
+});
+```
+
+Or, the eids values can be passed directly into the `setConfig` call:
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "example.com",
+            params: {
+                eids: [{
+                    source: "domain.com",
+                    uids:[{
+                      id: "value read from cookie or local storage",
+                      atype: 1,
+                      ext: {
+                          stype: "ppuid"
+                      }
+
+                  }]
+                },{
+                    source: "3rdpartyprovided.com",
+                    uids:[{
+                      id: "value read from cookie or local storage",
+                      atype: 3,
+                      ext: {
+                          stype: "dmp"
+                      }
+                  }]
+                }]
+            }
+        }]
+    }
+});
+```
+
+In either case, bid adapters will receive the eid values after consent is validated.
+
+2. This design allows for the setting of any number of uuids in the eids object. Publishers may work with multiple ID providers and nest their own id within the same eids object.  The opportunity to link a 1st party uuid and a 3rd party generated UUID presents publishers with a unique ability to address their users in a way demand sources will understand.
+
+3. Finally, this module allows publishers to broadcast their user id, derived from in-house tech, directly to buyers within the confines of existing compliance (CCPA & GDPR) frameworks. 
+
+4. The `eids.uids.ext.stype` "source-type" extension helps downstream entities know what do with the data. Currently defined values are:
+
+- dmp - this uid comes from the in-page dmp named in eids.source
+- ppuid - this uid comes from the publisher named in eids.source
+- other - TBD
+
+5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
+
 ### Quantcast ID
 
 Quantcast ID enables publishers that use Quantcast Measure tag to uniquely identify
@@ -968,6 +1060,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
+| PubProvided ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
@@ -1055,6 +1148,16 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                     "ext": {
                         "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
+                    }
+                }]
+            },
+            {
+               "source": "pub.com",  // Publisher must configure their domain here
+                "uids": [{
+                    "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
+                    "atype":1 //ADCOM - Type of user agent the match is from
+                    "ext": {
+                        "stype": "dmp" //currently supported values (dmp,ppuid,other)
                     }
                 }]
             }]
