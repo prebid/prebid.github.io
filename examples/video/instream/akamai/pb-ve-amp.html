@@ -27,7 +27,6 @@ sidebarType: 4
         <div class="sample-player">
             <div id="akamai-player"></div>
         </div>
-
         <!--video code fencing-->
 
         <!--header code example-->
@@ -75,7 +74,13 @@ sidebarType: 4
 	        debug: true,
 	        cache: {
 	            url: 'https://prebid.adnxs.com/pbc/v1/cache'
-	        }
+	        },
+		consentManagement: {
+		    gdpr: {
+			cmpApi: 'iab',
+			defaultGdprScope: true
+		    }
+		}
 	    });
 
 	    pbjs.requestBids({
@@ -225,22 +230,33 @@ sidebarType: 4
 <!--video player code-->
 
 <script type="text/javascript">
-    invokeVideoPlayer = function (url) {
-        var config = {
-            plugins: {
-                ima: {
-                    resources: [{ src: "//imasdk.googleapis.com/js/sdkloader/ima3.js", type: "text/javascript", async: true }, { src: "${paths.plugins}ima/Ima.min.js", type: "text/javascript", async: true }],
-                    adTagUrl: url
-                }
-            },
-            autoplay: 'muted',
-            media: {
-                src: "https://mdtp-a.akamaihd.net/customers/akamai/video/VfE.mp4"
-            }
-        }
+    __tcfapi("checkConsent", 2, (consent, success) => {
+        if (consent && success) {
+	    invokeVideoPlayer = function (url) {
+		var config = {
+		    plugins: {
+			ima: {
+			    resources: [{ src: "//imasdk.googleapis.com/js/sdkloader/ima3.js", type: "text/javascript", async: true }, { src: "${paths.plugins}ima/Ima.min.js", type: "text/javascript", async: true }],
+			    adTagUrl: url
+			}
+		    },
+		    autoplay: 'muted',
+		    media: {
+			src: "https://mdtp-a.akamaihd.net/customers/akamai/video/VfE.mp4"
+		    }
+		}
 
-        akamai.amp.AMP.create('#akamai-player', config)
-    };
+		akamai.amp.AMP.create('#akamai-player', config)
+	    };
+
+        } else {
+            document.getElementById("akamai-player").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1]
+        }]
+    });
 </script>
 
 <script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

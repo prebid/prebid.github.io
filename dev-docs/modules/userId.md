@@ -856,7 +856,6 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
 
-
 ### Quantcast ID
 
 Quantcast ID enables publishers that use Quantcast Measure tag to uniquely identify
