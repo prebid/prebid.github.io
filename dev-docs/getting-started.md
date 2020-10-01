@@ -19,7 +19,24 @@ The easiest way to get started with Prebid.js is to use the example code below.
 
 {% include dev-docs/build-from-source-warning.md %}
 
-<iframe width="100%" height="1600" data-src="//jsfiddle.net/Prebid_Examples/bryzc7g6/3/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0" class="optanon-category-C0003"></iframe>
+<div id="jsfiddle">
+</div>
+
+<script type="text/javascript">
+    __tcfapi("checkConsent", 2, (data, success) => {
+        console.log("checkConsent");
+        if (data && success) {
+	    document.getElementById("jsfiddle").innerHTML += '<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/bryzc7g6/3/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>';
+        } else {
+            document.getElementById("jsfiddle").innerHTML += '<br/>(Cookie permissions for JSFiddle needed to run code demos. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            vendorId: 10376,
+            purposeIds: [1]
+        }]
+    });
+</script>
 
 ### Next Steps
 
