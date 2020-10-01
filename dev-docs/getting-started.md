@@ -20,12 +20,22 @@ The easiest way to get started with Prebid.js is to use the example code below.
 {% include dev-docs/build-from-source-warning.md %}
 
 <div id="jsfiddle">
-<h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/bryzc7g6/3/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
+    __tcfapi("checkConsent", 2, (data, success) => {
+        console.log("checkConsent");
+        if (data && success) {
+	    document.getElementById("jsfiddle").innerHTML += '<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/bryzc7g6/3/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>';
+        } else {
+            document.getElementById("jsfiddle").innerHTML += '<br/>(Cookie permissions for JSFiddle needed to run code demos. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            vendorId: 10376,
+            purposeIds: [1]
+        }]
+    });
 </script>
 
 ### Next Steps
