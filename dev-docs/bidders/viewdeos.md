@@ -2,7 +2,7 @@
 layout: bidder
 title: Viewdeos
 description: Prebid Viewdeos Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: viewdeosDX
 media_types: banner, video
 ---

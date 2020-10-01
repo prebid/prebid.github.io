@@ -2,7 +2,7 @@
 layout: bidder
 title: Tim Media
 description: Prebid Tim Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: tim
 ---
 

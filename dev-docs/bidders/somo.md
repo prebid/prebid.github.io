@@ -2,7 +2,7 @@
 layout: bidder
 title: Somo Audience
 description: Somo Audience Bidder Adapter
-hide: true
+pbjs: true
 biddercode: somo
 prevBiddercode: somoAudience
 ---

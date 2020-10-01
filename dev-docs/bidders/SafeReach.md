@@ -2,7 +2,7 @@
 layout: bidder
 title: SafeReach
 description: Prebid Safe Reach Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: safereach
 aliasCode : aardvark
 ---

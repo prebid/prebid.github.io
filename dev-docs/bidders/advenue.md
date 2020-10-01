@@ -2,7 +2,7 @@
 layout: bidder
 title: Advenue
 description: Prebid Advenue Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: advenue
 ---
 

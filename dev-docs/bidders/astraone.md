@@ -2,7 +2,7 @@
 layout: bidder
 title: AstraOne
 description: Prebid AstraOne Bidder Adapter
-hide: true
+pbjs: true
 media_types: banner
 biddercode: astraone
 gdpr_supported: true
