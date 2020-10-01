@@ -4,7 +4,7 @@ title: ablida
 description: Prebid ablida Bidder Adaptor
 pbjs: true
 biddercode: ablida
-media_types: banner, native
+media_types: banner, native, video
 gdpr_supported: true
 ---
 
