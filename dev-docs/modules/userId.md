@@ -65,7 +65,7 @@ of sub-objects. The table below has the options that are common across ID system
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
-| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": "ID5-12345" }` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 ## User ID Sub-Modules
 
@@ -324,6 +324,9 @@ The following configuration parameters are available:
 
 #### ID5 Universal ID Examples
 
+{: .alert.alert-warning :}
+**ATTENTION:** As of Prebid.js v4.XX.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js). If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
+
 1) Publisher wants to retrieve the ID5 Universal ID through Prebid.js
 
 {% highlight javascript %}
@@ -333,16 +336,16 @@ pbjs.setConfig({
       name: "id5Id",
       params: {
         partner: 173,            // change to the Partner Number you received from ID5
-        pd: "MT1iNTBjY..."       // optional, see param table above for a link to how to generate this string
+        pd: "MT1iNTBjY..."       // optional, see table above for a link to how to generate this
       },
       storage: {
-        type: "cookie",
-        name: "id5id.1st",       // create a cookie with this name
-        expires: 90,             // cookie lasts for 90 days
+        type: "html5",           // html5 is the required storage type
+        name: "id5id",           // the value "id5id" is required
+        expires: 90,             // storage lasts for 90 days
         refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
       }
     }],
-    auctionDelay: 50             // 50ms maximum auction delay
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
 });
 {% endhighlight %}
@@ -967,7 +970,7 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :} 
+{: .alert.alert-info :}
 gulp build --modules=pubProvidedId
 
 
@@ -1024,7 +1027,7 @@ The Shared ID User Module generates a UUID that can be utilized to improve user 
 #### Building Prebid with Shared Id Support
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :} 
+{: .alert.alert-info :}
 ex: $ gulp build --modules=sharedIdSystem
 
 #### Prebid Params
