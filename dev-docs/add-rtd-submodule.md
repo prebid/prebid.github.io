@@ -166,7 +166,7 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
     - callback: lets RTD-core know which auction the sub-module is done with.
     - config: the sub-module's config params provided by the publisher
     - userConsent object (see above)
-2. Your sub-module may update the reqBidsConfigObj and hit the callback with the auctionID.
+2. Your sub-module may update the reqBidsConfigObj and hit the callback.
 
 **Code Example**
 
@@ -186,7 +186,7 @@ function init(config, userConsent) {
 
 function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
   // do stuff
-  callback(reqBidsConfigObj.auctionId);
+  callback();
 }
 
 submodule('realTimeData', subModuleObj);
