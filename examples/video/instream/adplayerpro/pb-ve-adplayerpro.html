@@ -139,7 +139,9 @@ sidebarType: 4
 	<!--player div-->
 	<div id="playerContainerADP" style="width:640px; height:480px;"></div>
 	<script type="text/javascript">
-		invokeVideoPlayer = function(url) {
+		__tcfapi("checkConsent", 2, (hasConsent, success) => {
+       		    if (hasConsent && success) {
+			invokeVideoPlayer = function(url) {
 					AdPlayerPro('playerContainerADP').setup({
 						"file": "https://static.adplayer.pro/video/640.mp4",
 						"width": 640,
@@ -150,7 +152,14 @@ sidebarType: 4
 							"tag": url
 						}
 					});
-		};
+			};
+		    } else {
+			document.getElementById("playerContainerADP").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+		    }}, {
+			data: [{
+			    purposeIds: [1]
+			}]
+		    });
 
 		if (tempTag) {
 			invokeVideoPlayer(tempTag);

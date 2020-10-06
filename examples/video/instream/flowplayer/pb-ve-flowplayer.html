@@ -201,6 +201,8 @@ sidebarType: 4
 	
 <!--video player code-->
 	<script type="text/javascript">
+	__tcfapi("checkConsent", 2, (hasConsent, success) => {
+           if (hasConsent && success) {
 		var player = flowplayer('#player', {
 		src: "//edge.flowplayer.org/drive.mp4",
 		title: "Flowplayer demo",
@@ -228,6 +230,15 @@ sidebarType: 4
 		player.ads.on(flowplayer.AdEvents.AD_STARTED, toggleDisabled(false));
 		player.ads.on(flowplayer.AdEvents.AD_COMPLETED, toggleDisabled(true));
 		player.ads.on(flowplayer.AdEvents.AD_SKIPPED, toggleDisabled(true));
+
+	    } else { // doesn't have consent
+		    document.getElementById("player").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+		}
+	    }, {
+		data: [{
+		    purposeIds: [1] // asking for ability to set cookies
+		}]
+	    });
 	
 	</script>
 

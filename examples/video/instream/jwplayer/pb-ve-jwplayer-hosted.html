@@ -152,7 +152,19 @@ sidebarType: 4
 <!--video player code-->
 	<script>
 	    var jwPlayerInstance = jwplayer("playerContainerJW");
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       if (hasConsent && success) {
+	    hasVideoConsent();
+        } else { // doesn't have consent
+            document.getElementById("playerContainerJW").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1] // asking for ability to set cookies
+        }]
+    });
 	
+	function hasVideoConsent() {
 	    invokeVideoPlayer = function(url) {
 	        jwPlayerInstance.setup({
 	            "file": "http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4",
@@ -174,7 +186,7 @@ sidebarType: 4
 	        invokeVideoPlayer(tempTag);
 	        tempTag = false;
 	    }
-	
+	}
 	</script>
 
 	

@@ -199,6 +199,20 @@ the code you will copy-paste from Kaltura. --&gt;
     <script src="http://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"></script>
 
     <script>
+
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       if (hasConsent && success) {
+            videoHasConsent();
+        } else { // doesn't have consent
+            document.getElementById("myPlayer").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1] // asking for ability to set cookies
+        }]
+    });
+
+    function videoHasConsent() {
         invokeVideoPlayer = function(url) {
             /* EMBED KALTURA PLAYER
                Call `kWidget.embed()` and pass in a JSON object of your
@@ -269,6 +283,7 @@ the code you will copy-paste from Kaltura. --&gt;
             .catch(function() {
               invokeVideoPlayer(null);
             });
+	}
     </script>
 
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

@@ -108,9 +108,19 @@ sidebarType: 4
 	</div>
 </div>
 
-<!--video player code-->
-<div id='video1'>;
-	<p>Prebid Outstream Video Ad<p>
-</div>
+<script type="text/javascript">
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       if (hasConsent && success) {
+		// do nothing. Ad will be shown
+        } else { // doesn't have consent
+            document.getElementById("video1").innerHTML += '(Consent permissions needed to demo this outstream video ad. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a><br/>.)';
+        }
+    }, {
+        data: [{
+            vendorId: 32,
+            purposeIds: [1,2] // asking for ability to set cookies
+        }]
+    });
+</script>
 
 <script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
