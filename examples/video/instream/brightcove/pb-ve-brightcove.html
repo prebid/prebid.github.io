@@ -225,10 +225,24 @@ need to include this script on the page.  -->
 <script src="//players.brightcove.net/5530036758001/HJMTvh2YZ_default/index.min.js"></script>
 <script src="//players.brightcove.net/videojs-ima3/2/videojs.ima3.min.js"></script>
 
-<script type="text/JavaScript">
+<script type="text/javascript">
+__tcfapi("checkConsent", 2, (hasConsent, success) => {
+    if (hasConsent && success) {
+	hasConsentForVideo();
+    } else { // doesn't have consent
+            document.getElementById("myVideo").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1] // asking for ability to set cookies
+        }]
+    });
+
+
+function hasConsentForVideo() {
 
 	  // REDEFINE `invokeVideoPlayer`
-	function invokeVideoPlayer(url) {
+	invokeVideoPlayer = function (url) {
 
 		  // USE `bc()` TO REFERENCE VIDEO PLAYER, PASS OPTIONS INTO IMA3 PLUGIN
 		bc("myVideo").ima3({
@@ -296,6 +310,7 @@ need to include this script on the page.  -->
 	 	invokeVideoPlayer(tempTag);
 	 	tempTag = false;
 	}
+    }
   </script>
 	
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

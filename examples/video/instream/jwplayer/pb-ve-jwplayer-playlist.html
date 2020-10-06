@@ -186,6 +186,19 @@ sidebarType: 4
         var adTag = "";
         var playerInstance = jwplayer('myElement1');
 
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       if (hasConsent && success) {
+	    hasVideoConsent();
+        } else { // doesn't have consent
+            document.getElementById("myElement1").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1] // asking for ability to set cookies
+        }]
+    });
+
+    function hasVideoConsent() {
         invokeVideoPlayer = function(url) {
             adTag = url;
             console.log("MESSAGE: invoking the video player");
@@ -232,7 +245,7 @@ sidebarType: 4
             invokeVideoPlayer(tempTag);
             tempTag = false;
         }
-
+    }
     </script>
 	
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

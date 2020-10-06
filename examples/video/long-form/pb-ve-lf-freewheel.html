@@ -113,7 +113,20 @@ var videoAdUnit = [{
     // we initialize our player instance, specifying the div to load it into
     var playerInstance = jwplayer('myElement1');
 
-    function invokeVideoPlayer(url) {
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       if (hasConsent && success) {
+	    videoHasConsent();
+        } else { // doesn't have consent
+            document.getElementById("displayBase").innerHTML = '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1] // asking for ability to set cookies
+        }]
+    });
+
+function videoHasConsent() {
+    invokeVideoPlayer=function(url) {
         // this calls setup on the player we initialized
         // this will use the settings defined in the player we loaded above unless you override them here
         playerInstance.setup({
@@ -136,7 +149,7 @@ var videoAdUnit = [{
         invokeVideoPlayer(tempTag);
         tempTag = false;
     }
-
+}
 </script>   
 
 	

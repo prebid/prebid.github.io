@@ -167,6 +167,19 @@ sidebarType: 4
 	
 <!--video player code-->
 	<script type="text/javascript">
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       if (hasConsent && success) {
+	    videoHasConsent();
+        } else { // doesn't have consent
+            document.getElementById("myDiv").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1] // asking for ability to set cookies
+        }]
+    });
+
+    function videoHasConsent() {
       invokeVideoPlayer = function(url) {
         $bp("myDiv", {"id":"17041","width":"640","height":"360","video":"400684",
         "Ad": [
@@ -182,6 +195,7 @@ sidebarType: 4
             ]
         }); 
       }
+    }
     </script>
 	
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

@@ -273,6 +273,9 @@ sidebarType: 4
 			  });
 			});
 
+		 __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       		    if (hasConsent && success) {
+
 			/* here we re-define invokeVideoPlayer with Radiant Media Player set-up */
 			pbApp.invokeVideoPlayer = function (adTagUrl) {
 			  if (pbApp.playerSetup) {
@@ -325,5 +328,13 @@ sidebarType: 4
 			  }
 			  pbApp.invokeVideoPlayer(pbApp.fallbackAdTagUrl);
 			}, pbApp.playerSetupTimeout);
+		      } else { // doesn't have consent
+			    document.getElementById("rmpPlayer").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+			}
+		    }, {
+			data: [{
+			    purposeIds: [1] // asking for ability to set cookies
+			}]
+		    });
     </script>
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

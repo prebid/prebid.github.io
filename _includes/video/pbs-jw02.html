@@ -17,14 +17,7 @@
         <title>{{page.title}} for Header Bidding</title>
     {% endif %}
 
-<!-- OneTrust Cookies Consent Notice start -->
-
-<script src="https://cdn.cookielaw.org/consent/53783db5-1614-43d4-bb1a-148e68e8c87b.js" type="text/javascript" charset="UTF-8"></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- OneTrust Cookies Consent Notice end -->
-
+<script src="https://gdpr-wrapper.privacymanager.io/gdpr/ecfc0a48-9d2c-404e-a08c-e98135644bc2/gdpr-liveramp.js"></script>
     
     <!--<link href="{{site.baseurl}}/assets/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- Latest compiled and minified Bootstrap CSS -->
@@ -129,6 +122,12 @@ function OptanonWrapper() { }
                     cache: {
                         url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
+		    consentManagement: {
+			gdpr: {
+			    cmpApi: "iab",
+			    defaultGdprScope: true
+			}
+		    },
                     debug: true,
                     enableSendAllBids: true,
                     s2sConfig: {

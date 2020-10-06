@@ -230,8 +230,8 @@ sidebarType: 4
 <!--video player code-->
 
 <script type="text/javascript">
-    __tcfapi("checkConsent", 2, (consent, success) => {
-        if (consent && success) {
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+        if (hasConsent && success) {
 	    invokeVideoPlayer = function (url) {
 		var config = {
 		    plugins: {

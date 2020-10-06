@@ -23,7 +23,7 @@ sidebarType: 4
 		</div>
 		
 		<!--video placeholder | this should be formatted per the needs of each player-->
-		<div class="example-video-container">
+		<div class="example-video-container" id="example-video-container">
             <video id="vid1" class="video-js vjs-default-skin vjs-big-play-centered" controls data-setup='{}' width='640' height='480'>
                 <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
                 <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
@@ -236,7 +236,20 @@ sidebarType: 4
         page_load_time = new Date().getTime() - performance.timing.navigationStart;
         console.log(page_load_time + "ms -- Player loaded!");
 
-        function invokeVideoPlayer(url) {
+    __tcfapi("checkConsent", 2, (hasConsent, success) => {
+       if (hasConsent && success) {
+	    videoHasConsent();
+        } else { // doesn't have consent
+            document.getElementById("example-video-container").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
+        }
+    }, {
+        data: [{
+            purposeIds: [1] // asking for ability to set cookies
+        }]
+    });
+
+    function videoHasConsent() {
+        invokeVideoPlayer = function (url) {
 
             page_load_time = new Date().getTime() - performance.timing.navigationStart;
             console.log(page_load_time + "ms -- Prebid VAST url = " + url);
@@ -281,7 +294,7 @@ sidebarType: 4
 
             });
         }
-
+    }
     </script>
 
 
