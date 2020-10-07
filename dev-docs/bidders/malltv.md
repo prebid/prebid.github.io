@@ -1,9 +1,9 @@
 ---
 layout: bidder
-title: Gjirafa
-description: Prebid Gjirafa Bidder Adaptor
+title: MallTv
+description: Prebid MallTv Bidder Adaptor
 pbjs: true
-biddercode: gjirafa
+biddercode: malltv
 media_types: banner, video
 ---
 

@@ -175,3 +175,4 @@ We sometimes get pretty busy, so it can take a couple of weeks for the review pr
 
 - [Analytics for Prebid](/overview/analytics.html) (Overview and list of analytics providers)
 - [Module Rules](/dev-docs/module-rules.html)
+- [Instream Video Ads Tracking](/dev-docs/modules/instreamTracking.html)
