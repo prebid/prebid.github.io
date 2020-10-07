@@ -2,7 +2,7 @@
 layout: bidder
 title: OneTag
 description: Prebid OneTag Bidder Adaptor
-
+pbjs: true
 biddercode: onetag
 media_types: banner, video
 gdpr_supported: true
@@ -17,7 +17,8 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 
 | Name    | Scope    | Description                       | Example      | Type     |
 |---------|----------|-----------------------------------|--------------|----------|
-| `pubId` | required |                                   | `'386276e072'` | `string` |
+| `pubId` | required | The publisher's ID provided by OneTag | `'386276e072'` | `string` |
+| `ext`   | optional | A set of custom key-value pairs | `{ customKey: customValue }` | `object` |
 
 ### Video Additional Information
 

@@ -23,7 +23,7 @@ permalink: /blog/updated-website
   - [Product Management Committees](/overview/prebid-management-committees.html)
   - [Community Code of Conduct](/overview/community-code-of-conduct.html)
   - [Prebid Members and Partners](/partners/partners.html)
-  - [Prebid Members providing Managed Services](/prebid/managed.html)
+  - [Prebid Members providing Managed Services](https://prebid.org/product-suite/managed-services/)
   - [Format index page](/formats/formats.html)
 
 ### Coming Up:

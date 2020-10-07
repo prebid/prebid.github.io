@@ -2,7 +2,7 @@
 layout: bidder
 title: RTB Solutions
 description: Prebid RTB Solutions Bidder Adaptor
-
+pbjs: true
 biddercode: rtbsolutions
 media_types: banner
 

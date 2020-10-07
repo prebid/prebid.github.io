@@ -2,7 +2,7 @@
 layout: bidder
 title: Atomx
 description: Prebid Atomx Bidder Adaptor
-
+pbjs: true
 biddercode: atomx
 ---
 

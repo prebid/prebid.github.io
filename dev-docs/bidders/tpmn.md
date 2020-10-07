@@ -2,7 +2,7 @@
 layout: bidder
 title: TPMN
 description: Prebid TPMN Bidder Adaptor
-
+pbjs: true
 biddercode: tpmn
 gdpr_supported: false
 ---

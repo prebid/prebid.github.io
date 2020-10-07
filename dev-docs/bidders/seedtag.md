@@ -2,7 +2,7 @@
 layout: bidder
 title: seedtag
 description: Prebid Seedtag Bidder Adapter
-
+pbjs: true
 media_types: banner, video
 biddercode: seedtag
 ---

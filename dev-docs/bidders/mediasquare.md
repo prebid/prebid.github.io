@@ -2,7 +2,7 @@
 layout: bidder
 title: MediaSquare
 description: Prebid MediaSquare Bidder Adapter
-
+pbjs: true
 biddercode: mediasquare
 gdpr_supported: true
 tcf2_supported: true

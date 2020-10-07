@@ -2,7 +2,8 @@
 layout: bidder
 title: Advangelists
 description: Prebid Advangelists Bidder Adapter
-
+pbjs: true
+pbs: true
 biddercode: advangelists
 ---
 

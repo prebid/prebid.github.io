@@ -2,7 +2,7 @@
 layout: bidder
 title: AudienceRun
 description: Prebid AudienceRun Bidder Adaptor
-
+pbjs: true
 biddercode: audiencerun
 media_types: banner
 gdpr_supported: true
