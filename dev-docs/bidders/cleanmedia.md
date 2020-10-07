@@ -3,7 +3,7 @@ layout: bidder
 title: Clean Media
 description: Prebid CleanMedia Bidder Adaptor
 biddercode: cleanmedia
-
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
 schain_supported: true

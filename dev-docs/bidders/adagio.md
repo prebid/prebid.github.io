@@ -2,12 +2,15 @@
 layout: bidder
 title: Adagio
 description: Prebid Adagio Bidder Adaptor
-
+pbjs: true
 biddercode: adagio
 media_types: banner
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
 schain_supported: true
 tcf2_supported: true
+gvl_id: 617
 ---
 
 ### Note

@@ -2,7 +2,7 @@
 layout: bidder
 title: TapHype
 description: Prebid TapHype Bidder Adaptor
-
+pbjs: true
 biddercode: taphype
 ---
 
