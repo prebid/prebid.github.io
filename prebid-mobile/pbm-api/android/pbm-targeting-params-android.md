@@ -113,6 +113,66 @@ storeUrl = TargetingParams.getStoreUrl();
 TargetingParams.setStoreUrl(storeUrl);
 ```
 
+
+### Open Measurment SDK (OMSDK)
+
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is elligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+
+There three components to signaling support for OMSDK:
+* Partner Name
+* Partner Version
+* API code
+
+**Partner Name**
+
+This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
+
+#### omidPartnerName
+Open Measurement partner name. 
+
+```
+TargetingParams.setOmidPartnerName()
+```
+
+Examples:
+
+Java
+```java
+TargetingParams.setOmidPartnerName("Google")
+```
+
+**Partner Version**
+
+The OMSDK version number the partner integrated with. See below for configuration and examples.
+
+
+#### omidPartnerVersion
+Partner's OMSDK version number implementation
+```
+TargetingParams.setOmidPartnerVersion();
+```
+
+Examples:
+
+Java
+```java
+TargetingParams.setOmidPartnerVersion("1.0");
+```
+
+**API Code**
+
+Per OpenRTB 2.5, support for OMSDK is signaled using the imp.[media type].api field represented in Prebid SDK withing each ad format type under the parameters object. Refer to the documentation of the respective ad unit class.
+
+Example:
+```
+BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 300, 250);
+bannerAdUnit.setUserKeyword("my_key", "my_value");
+BannerBaseAdUnit.Parameters parameters = new BannerBaseAdUnit.Parameters();
+parameters.setApi(Arrays.asList(new Signals.Api(6, 7)));
+```
+
+
+
 ### Inventory (Context) Keywords
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
 
