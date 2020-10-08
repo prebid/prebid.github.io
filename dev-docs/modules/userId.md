@@ -153,7 +153,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### Neustar Fabrick ID
+### Fabrick ID by Neustar
 
 [Neustar Fabrick™](https://www.home.neustar/fabrick) is a unified identity ecosystem that powers connections between brands, publishers, and consumers to accelerate marketing performance across online and offline channels.
 
@@ -162,11 +162,11 @@ Add it to your Prebid.js package with:
 {: .alert.alert-info :}
 gulp build --modules=fabrickIdSystem
 
-#### Neustar Fabrick ID Registration
+#### Fabrick Registration
 
 Please reach out to [integrations@team.neustar](mailto:integrations@team.neustar) to request your `apiKey`.
 
-#### Neustar Fabrick ID Configuration
+#### Fabrick Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
@@ -182,7 +182,7 @@ Please reach out to [integrations@team.neustar](mailto:integrations@team.neustar
 | params.ia | | String | This is an identifier for advertising (IFA) used to link a user to their Fabrick ID. | |
 | params.iv | | String | This is an identifier for vendors (IFV) used to link a user to their Fabrick ID. | |
 
-#### Neustar Fabrick ID Examples
+#### Fabrick Examples
 
 1) Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
 
