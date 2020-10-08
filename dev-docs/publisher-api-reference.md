@@ -549,7 +549,7 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 
 <a name="userId.refreshUserIds"></a>
 
-### pbjs.refreshUserIds(options, callback) ⇒ undefined
+### pbjs.refreshUserIds(options, callback)
 
 {: .alert.alert-info :}
 To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
