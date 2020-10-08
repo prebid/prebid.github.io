@@ -58,7 +58,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -353,6 +353,38 @@ pbjs.setConfig({
             }
         }],
         syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+### IDx
+
+IDX is an alternative cookieless ID that uses anonymized and verified identifiers, provided by the users with explicit consent, which enables buy, sell, and measure targeted advertising at scale. IDX is created by Retargetly, a data company that owns the biggest consumer graph in Latin America.
+
+This sub-module enables the user’s IDx to be available in the bid request.
+
+More information of IDx can be found in [https://idx.lat/](https://idx.lat/)
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=idxIdSystem
+
+#### IDx Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"idx"` | `"idx"` |
+
+#### IDx Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "idx"
+        }]
     }
 });
 {% endhighlight %}
