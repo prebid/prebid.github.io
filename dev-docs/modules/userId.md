@@ -58,7 +58,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -148,6 +148,79 @@ pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "criteo",
+        }]
+    }
+});
+{% endhighlight %}
+
+### Fabrick ID by Neustar
+
+[Neustar Fabrick™](https://www.home.neustar/fabrick) is a unified identity ecosystem that powers connections between brands, publishers, and consumers to accelerate marketing performance across online and offline channels.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=fabrickIdSystem
+
+#### Fabrick Registration
+
+Please reach out to [integrations@team.neustar](mailto:integrations@team.neustar) to request your `apiKey`.
+
+#### Fabrick Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `"fabrickId"` |
+| params | Required | Object | Container of all module params. | |
+| params.apiKey | Required | String | This is your apiKey as provided by Neustar. | |
+| params.e | | String | This is a hashed email address used to link a user to their Fabrick ID. | |
+| params.p | | String | This is a hashed phone number used to link a user to their Fabrick ID. | |
+| params.i4 | | String | This is an IPv4 address used to link a user to their Fabrick ID. | |
+| params.i6 | | String | This is an IPv6 address used to link a user to their Fabrick ID. | |
+| params.m | | String | This is a mobile advertising ID (IDFA/AAID) used to link a user to their Fabrick ID. | |
+| params.ia | | String | This is an identifier for advertising (IFA) used to link a user to their Fabrick ID. | |
+| params.iv | | String | This is an identifier for vendors (IFV) used to link a user to their Fabrick ID. | |
+
+#### Fabrick Examples
+
+1) Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'fabrickId',
+            params: {
+                apiKey: '123456789', // provided to you by Neustar
+                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+            },
+            storage: {
+                name: 'pbjs_fabrickId',
+                type: 'cookie',
+                expires: 7
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
+2) Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'fabrickId',
+            params: {
+                apiKey: '123456789', // provided to you by Neustar
+                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+            },
+            storage: {
+                type: "html5",
+                name: "pbjs_fabrickId",
+                expires: 7
+            }
         }]
     }
 });
