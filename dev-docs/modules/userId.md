@@ -933,6 +933,20 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
 
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :} gulp build --modules=pubProvidedId
+
+#### PubProvided Configuration
+
+{: .table .table-bordered .table-striped }
+| Params under usersync.userIds[]| Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the ID module  | `"PubProvided"` |
+| params | Optional | Object | Details for syncing. | |
+| params.eidsFunction | Optional | function | any function that exists in the page | getIdsFn() |
+| uids.atype | optional | int | ADCOM - Type of user agent the match is from | `"1"` |
+| uids.ext.stype | Optional | String | Description of how the id was generated and by whom ('ppuid','DMP','other') | `DMP` |
 
 ### Quantcast ID
 
