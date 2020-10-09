@@ -935,7 +935,9 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :} gulp build --modules=pubProvidedId
+{: .alert.alert-info :} 
+gulp build --modules=pubProvidedId
+
 
 #### PubProvided Configuration
 
