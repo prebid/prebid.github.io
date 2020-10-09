@@ -4,6 +4,7 @@ title: Qwarry
 description: Prebid Qwarry Bidder Adaptor
 biddercode: qwarry
 media_types: banner, video
+pbjs: true
 ---
 
 
