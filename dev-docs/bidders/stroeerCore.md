@@ -35,6 +35,13 @@ const adUnits = [{
     }]
 }];
 ```
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description        | Example                      | Type     |
+|---------------|----------|--------------------|------------------------------|----------|
+| `sid`         | required | Slot ID            | `'06b782cc-091b-4f53-9cd2-0291679aa1ac'`| `string` |
+
 ### Config Notes
 
 * Slot id (`sid`) is required. The adapter will ignore bid requests from prebid if `sid` is not provided. This must be in the decoded form. For example, "1234" as opposed to "MTM0ODA=". 
