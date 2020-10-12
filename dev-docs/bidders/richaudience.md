@@ -2,12 +2,12 @@
 layout: bidder
 title: Rich Audience
 description: Prebid Rich Audience Bidder Adapter
-
 biddercode: richaudience
 userIds: criteo, id5Id, identityLink, liveIntentId, pubCommonId, unifiedId
 media_types: banner, video
 gdpr_supported: true
 tcf2_supported: true
+pbjs: true
 ---
 
 ### Bid Params

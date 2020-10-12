@@ -2,7 +2,7 @@
 layout: bidder
 title: Adnuntius
 description: Prebid Adnuntius Bidder Adaptor
-
+pbjs: true
 biddercode: adnuntius
 media_types: banner
 gdpr_supported: false

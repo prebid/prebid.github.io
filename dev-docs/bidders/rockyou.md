@@ -3,7 +3,7 @@ layout: bidder
 title: RockYou
 description: PreBid RockYou Bidder Adapter
 biddercode: rockyou
-
+pbjs: true
 media_types: video
 ---
 

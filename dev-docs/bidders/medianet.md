@@ -3,13 +3,15 @@ layout: bidder
 title: Media.net
 description: Prebid Media.net Bidder Adaptor
 biddercode: medianet
-
 gdpr_supported: true
 media_types: banner,native,video
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 tcf2_supported: true
+pbjs: true
+gvl_id: 142
+schain_supported: true
 ---
 
 ### Bid Params
