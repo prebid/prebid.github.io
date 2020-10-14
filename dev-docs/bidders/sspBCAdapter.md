@@ -2,11 +2,12 @@
 layout: bidder
 title: sspBC
 description: Prebid sspBC Bidder Adaptor
-
+pbjs: true
 biddercode: sspBC
 media_types: banner
 gdpr_supported: true
 tcf2_supported: true
+gvl_id: 676
 ---
 
 
@@ -19,4 +20,4 @@ tcf2_supported: true
 | `siteId`    | required | site id                    | `'235911'`                  | `string`  |
 | `domain`    | optional | site domain                | `'somesite.com'`            | `string`  |
 | `page`      | optional | page url                   | `'somesite.com/index.html'` | `string`  |
-| `tmax`      | optional | tmax for server connection | `250`                       | `integer` |
+| `tmax`      | optional | tmax for server connection | `400`                       | `integer` |
