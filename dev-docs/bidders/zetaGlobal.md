@@ -3,7 +3,7 @@ layout: bidder
 title: Zeta Global
 description: Zeta Global Prebid Bidder Adapter
 pbjs: true
-biddercode: Zeta Global
+biddercode: zeta_global
 bidder_supports_deals: false
 media_types: banner
 gdpr_supported: true
