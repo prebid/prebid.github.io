@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Select Media
+title: Select Media Display
 description: Prebid Select Media Bidder Adapter
 
 biddercode: selectmedia
