@@ -3,8 +3,6 @@ layout: page_v2
 title: Show Outstream Video Ads
 description: Show Outstream Video Ads with Prebid.js
 pid: 10
-top_nav_section: dev_docs
-nav_section: prebid-video
 sidebarType: 4
 ---
 
@@ -76,9 +74,11 @@ At this time, since not all demand partners return a renderer with their video b
 
 Renderers are associated with adUnits in two ways.
 Primarily through the `adUnit.renderer` object. But also, especially for multiFormat adUnits, through the specified mediaType `adUnit.mediaTypes.video.renderer`.
-This object contains two fields:
+This object contains these fields:
+
 1. `url` -- Points to a file containing the renderer script.
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.
+3. `backupOnly` -- Optional field, if set to true, buyer or adapter renderer will be preferred
 
 {% highlight js %}
 
@@ -92,14 +92,26 @@ pbjs.addAdUnit({
     },
     renderer: {
         url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
+        backupOnly: true, // prefer demand renderer
         render: function (bid) {
-            ANOutstreamVideo.renderAd({
-                targetId: bid.adUnitCode,
-                adResponse: bid.adResponse,
+            adResponse = {
+                ad: {
+                    video: {
+                        content: bid.vastXml,
+                        player_height: bid.playerHeight,
+                        player_width: bid.playerWidth
+                    }
+                }
+            }
+            // push to render queue because ANOutstreamVideo may not be loaded yet.
+            bid.renderer.push(() => {
+                ANOutstreamVideo.renderAd({
+                    targetId: bid.adUnitCode, // target div id to render video.
+                    adResponse: adResponse
+                });
             });
         }
-    },
-    ...
+    }
 });
 
 {% endhighlight %}
@@ -164,7 +176,7 @@ For more technical information about renderers, see [the pull request adding the
 
 Invoke your ad server for the outstream adUnit from the body of the page in the same way that you would for a display adUnit
 
-For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/outstream-dfp.html).
+For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html).
 
 {% highlight html %}
 
@@ -184,7 +196,7 @@ For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/e
 
 Prebid can serve outstream demand directly without going through a primary ad server.
 
-For a live example, see [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html).
+For a live example, see [Outstream without an Ad Server](/examples/video/outstream/pb-ve-outstream-no-server.html).
 
 In the Prebid.js event queue, you'll need to add a function that:
 

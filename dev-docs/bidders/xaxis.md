@@ -3,7 +3,7 @@ layout: bidder
 title: Xaxis
 description: Prebid Xaxis Bidder Adaptor
 biddercode: xhb
-hide: true
+pbjs: true
 media_types: video, native
 gdpr_supported: true
 ---

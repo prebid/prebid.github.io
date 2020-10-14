@@ -1,8 +1,13 @@
 ---
+layout: bidder
 title: RevContent
 description: RevContent Bidder Adaptor
 biddercode: revcontent
-media_types: banner
+media_types: native
+gdpr_supported: true
+coppa_supported: true
+usp_supported: true
+pbjs: true
 ---
 
 ### Note
