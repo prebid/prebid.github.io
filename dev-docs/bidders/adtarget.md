@@ -10,6 +10,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+tcf2_supported: true
 ---
 
 ### Bid params
