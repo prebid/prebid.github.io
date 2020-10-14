@@ -21,12 +21,13 @@ To refine the usage of cookies on prebid.org sites, please update the "Store and
 - Ad Server related: GoogleAdServingTest, __gads, _gat_gtag. There are pages which show an example ad delivered through Google Ad Manager. Prebid.org makes no money off of ads theser are all example ads.
 - Related to optional newletter signup: __hstc, __hssc, __hssrc, hubspotutk
 - Example Prebid.js User ID module cookie, set by code examples: _pbjs_userid_consent_data
-- Related to video examples -- we have pages which show you how to integrate various video players and Prebid.js onto your page. These players may set cookies in prebid.org or in their own domains.
+- Related to video examples -- we have pages which show you how to integrate various video players and Prebid.js onto your page. These players may set cookies in prebid.org.
 
 ## Cookies set on other Domains
 
-- Related to code examples -- we have pages which show various integration examples for Prebid.js using 'JSFiddle'. Super-helpful service, but they do set cookies.
-- Related to video examples -- we have pages which show you how to integrate various video players and Prebid.js onto your page. These players may set cookies in prebid.org or in their own domains.
+- Related to code examples -- we have pages which show various integration examples for Prebid.js using 'JSFiddle'. They set cookies in their own domain.
+- Related to video examples -- we have pages which show you how to integrate various video players and Prebid.js onto your page. These players may set cookies in their own domains.
+- Related to Consent Management -- our Consent Management platform is LiveRamp. They set cookies in their domain in order to track your privacy preferences.
 
 ## Further Reading
 
