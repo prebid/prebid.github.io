@@ -17,7 +17,7 @@ For more information about AMP RTC, see:
 + [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
 + [Prebid Server AMP Endpoint Technical Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
 + [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [AMP RTC Overview][https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md]
++ [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
