@@ -28,7 +28,7 @@ to Bid Adapters.
 
 `gulp build --modules=jwplayerRtdProvider`
 
-2) Publishers must register JW Player as a Real Time Data provider by using `setConfig` to load a Prebid Config containing a `realTimeData.dataProviders` object:
+2) Publishers must register JW Player as a Real Time Data provider by using `setConfig` to load a Prebid Config containing a `realTimeData.dataProviders` array:
 
 ```javascript
 const jwplayerRtdProvider = {
@@ -57,7 +57,7 @@ const jwplayerRtdProvider = {
 };
 ```
 
-**Note:** setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete.
+**Note:** setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete. The `auctionDelay` is the max time in ms that the auction will wait for the requested targeting information.
 
 **Config Syntax details:**
 
@@ -87,7 +87,7 @@ const jwplayerRtdProvider = {
    });
 ```
 
-**Note:** `waitForIt` is required to ensure the auction waits for prefetching to complete.
+**Note:** `waitForIt` is required to ensure the auction waits for prefetching to complete. It signals to prebid that you allow the module to delay the auction if necessary. 
 
 **AdUnit Syntax details:**
 
@@ -126,7 +126,7 @@ Each bid for which targeting information was found will conform to the following
 | jwTargeting | Object | | |
 | jwTargeting.segments | Array of Strings | jwpseg targeting segments | |
 | jwTargeting.content | Object | | |
-| content.id | String | Unique identifier for the specific media asset. | |
+| jwTargeting.content.id | String | Unique identifier for the specific media asset | |
   
 ## Example
 
