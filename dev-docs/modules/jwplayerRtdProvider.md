@@ -28,7 +28,7 @@ to Bid Adapters.
 
 `gulp build --modules=jwplayerRtdProvider`
 
-2) Publishers must register JW Player as a real time data provider by using `setConfig` to load a Prebid Config containing a `realTimeData.dataProviders` object:
+2) Publishers must register JW Player as a Real Time Data provider by using `setConfig` to load a Prebid Config containing a `realTimeData.dataProviders` object:
 
 ```javascript
 const jwplayerRtdProvider = {
@@ -38,6 +38,7 @@ const jwplayerRtdProvider = {
 pbjs.setConfig({
     ...,
     realTimeData: {
+      auctionDelay: 1000,
       dataProviders: [
           jwplayerRtdProvider
       ]
@@ -50,14 +51,13 @@ pbjs.setConfig({
 ```javascript
 const jwplayerRtdProvider = {
   name: "jwplayer",
-  auctionDelay: 1000,
   params: {
     mediaIDs: ['abc', 'def', 'ghi', 'jkl']
   }
 };
 ```
 
-**Note:** `auctionDelay` is required to ensure the auction waits for prefetching to complete.
+**Note:** setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete.
 
 **Config Syntax details:**
 
@@ -65,7 +65,6 @@ const jwplayerRtdProvider = {
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | name | String | Real time data module name | Always 'jwplayer' |
-| auctionDelay  | Number | Max time in ms that auction will wait for the requested targeting information | Optional. Default to 0. Required to ensure that the auction is delayed until prefetch is complete |
 | params | Object | | |
 | params.mediaIDs | Array of Strings | Media Ids for prefetching | Optional. |
 
