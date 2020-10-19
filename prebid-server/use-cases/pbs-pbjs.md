@@ -170,7 +170,7 @@ Next comes the auction and response:
 1. Enforce privacy regulations
 1. Call the bidders
 1. Collect responses
-1. Cache teh VAST XML as instructed (for video)
+1. Cache the VAST XML as instructed (for video)
 1. Prepare the OpenRTB response
 
 ### The Page Gets the Response

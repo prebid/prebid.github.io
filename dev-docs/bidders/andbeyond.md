@@ -8,7 +8,7 @@ biddercode: andbeyond
 
 ### Note:
 
-The andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
+The andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <performancedirect@andbeyond.media> for more details
 
 ### Bid Params
 
