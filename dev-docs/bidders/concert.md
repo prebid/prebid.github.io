@@ -3,6 +3,7 @@ layout: bidder
 title: Concert
 description: Prebid Concert Bidder Adaptor
 hide: true
+pbjs: true
 biddercode: concert
 media_types: banner
 gdpr_supported: true
