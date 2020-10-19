@@ -515,6 +515,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> User ID: Neustar Fabrick ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> User ID: Halo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
@@ -522,6 +525,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> User ID: IDx</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> User ID: IntentIQ ID</label>
