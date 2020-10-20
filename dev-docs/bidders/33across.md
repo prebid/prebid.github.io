@@ -113,7 +113,7 @@ var adUnits = [
 }
 ```
 
-### Ad Unit Setup for Mult-format: Banner, Video (Outstream only)
+### Ad Unit Setup for Mult-format: Banner, Video (Outstream)
 ```javascript
 var adUnits = [
 {
