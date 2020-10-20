@@ -86,7 +86,7 @@ var adUnits = [
     video: {                                // We recommend setting the following video params
                                             // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation. 
       playerSize: [300, 250],               // required
-      context: 'outstream',                 // required
+      context: 'intstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       placement: 1,                         // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 for instream
