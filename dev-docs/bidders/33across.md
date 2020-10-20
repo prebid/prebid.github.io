@@ -89,7 +89,7 @@ var adUnits = [
       context: 'intstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       placement: 1,                         // optional, defaults to 1 when context = instream
-      startdelay: 0,                        // optional, defaults to 0 for instream
+      startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
       skippable: true,                      // optional
@@ -106,7 +106,7 @@ var adUnits = [
     bidder: '33across',
     params: {
         siteId: 'examplePub123',     
-        productId: 'siab'     
+        productId: 'instream'     
     }
   }],
   ...
