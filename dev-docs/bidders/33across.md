@@ -17,7 +17,7 @@ usp_supported: true
 | Name        | Scope    | Description                                                                                                                    | Example    | Type     |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
 | `siteId`    | required | Publisher  GUID from 33Across                                                                                                  | `'examplePub123'` | `string` |
-| `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for standard supply, `'inview'` for renderer, `'instream'` for instream video) | `'siab'`   | `string` |
+| `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for Banner or Outstream Video , `'inview'` for Adhesion, `'instream'` for Instream Video) | `'siab'`   | `string` |
 
 ### Ad Unit Setup for Banner
 ```javascript
@@ -53,7 +53,7 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
-      protocols: [ 2, 3 ],                  // required, set at least 1 value in Array
+      protocols: [ 2, 3 ],                  // required, set at least 1 value in array
       placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
@@ -88,7 +88,7 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'instream',                  // required
       mimes: ['video/mp4','video/x-flv'],   // required
-      protocols: [ 2, 3 ],                  // required, set at least 1 value in Array
+      protocols: [ 2, 3 ],                  // required, set at least 1 value in array
       placement: 1,                         // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
@@ -130,7 +130,7 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
-      protocols: [ 2, 3 ],                  // required, set at least 1 value in Array
+      protocols: [ 2, 3 ],                  // required, set at least 1 value in array
       placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
