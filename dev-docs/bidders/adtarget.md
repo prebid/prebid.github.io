@@ -9,13 +9,14 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+tcf2_supported: true
 pbjs: true
 pbs: true
 ---
 
 ### Registration
 
-To use the Adtarget bidder you will need an aid from an exchange account on [https://console.adtarget.com.tr](adtarget.com.tr). For further information, please contact kamil@adtarget.com.tr.
+To use the Adtarget bidder you will need an aid from an exchange account on [https://adtarget.com.tr](https://adtarget.com.tr). For further information, please contact kamil@adtarget.com.tr.
 
 ### Bid params
 
