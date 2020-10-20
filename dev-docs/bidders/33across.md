@@ -42,7 +42,7 @@ var adUnits = [
 }
 ``` 
 
-### Ad Unit Setup for Video: Outstream
+### Ad Unit Setup for Outstream Video
 ```javascript
 var adUnits = [
 {
@@ -56,7 +56,7 @@ var adUnits = [
       placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
-      skippable: true,                      // optional
+      skip: 0,                              // optional
       minduration: 5,                       // optional
       maxduration: 30,                      // optional
       playbackmethod: [1,3],                // optional
@@ -77,7 +77,7 @@ var adUnits = [
 }
 ```
 
-### Ad Unit Setup for Video: Instream
+### Ad Unit Setup for Instream Video
 ```javascript
 var adUnits = [
 {
@@ -92,7 +92,7 @@ var adUnits = [
       startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
-      skippable: true,                      // optional
+      skip: 0,                              // optional
       minduration: 5,                       // optional
       maxduration: 30,                      // optional
       playbackmethod: [1,3],                // optional
@@ -133,7 +133,7 @@ var adUnits = [
       placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
-      skippable: true,                      // optional
+      skip: 0,                              // optional
       minduration: 5,                       // optional
       maxduration: 30,                      // optional
       playbackmethod: [1,3],                // optional
