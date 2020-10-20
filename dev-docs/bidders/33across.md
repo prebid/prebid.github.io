@@ -92,7 +92,6 @@ var adUnits = [
       placement: 1,                         // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
-      protocols: [ 2, 3 ],                  // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional
       maxduration: 30,                      // optional
@@ -134,7 +133,6 @@ var adUnits = [
       protocols: [ 2, 3 ],                  // required, set at least 1 value in Array
       placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
-      protocols: [ 2, 3 ],                  // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional
       maxduration: 30,                      // optional
