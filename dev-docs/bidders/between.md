@@ -5,7 +5,8 @@ description: Prebid Between Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: between
-media_types: banner
+schain_supported: true
+gdpr_supported: true
 ---
 
 ### Bid Params
@@ -14,4 +15,5 @@ media_types: banner
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `host` | required |  between host url prefix         | `eu`   | `string` |
+
 
