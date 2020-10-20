@@ -53,9 +53,9 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
+      protocols: [ 2, 3 ],                  // required, set at least 1 value in Array
       placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
-      protocols: [ 2, 3 ],                  // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional
       maxduration: 30,                      // optional
@@ -86,8 +86,9 @@ var adUnits = [
     video: {                                // We recommend setting the following video params
                                             // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation. 
       playerSize: [300, 250],               // required
-      context: 'intstream',                 // required
+      context: 'instream',                  // required
       mimes: ['video/mp4','video/x-flv'],   // required
+      protocols: [ 2, 3 ],                  // required, set at least 1 value in Array
       placement: 1,                         // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
@@ -130,6 +131,7 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
+      protocols: [ 2, 3 ],                  // required, set at least 1 value in Array
       placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
