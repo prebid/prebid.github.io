@@ -182,11 +182,8 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %}
-    <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% else %}
-    <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% endif %}
+  {% if page.aliasCode %} <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% else %} <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% endif %}
+  {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
   </label>
 </div>
 </div>
