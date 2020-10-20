@@ -35,8 +35,8 @@ var adUnits = [
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'cxBE0qjUir6iopaKkGJozW',    // required 
-        productId: 'siab|inview'             // required
+        siteId: 'examplePub123',    // required 
+        productId: 'siab|inview'    // required
     }
   }]
 }
@@ -53,7 +53,7 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
-      placement: 2,                         // optional defaults to 2 for outstream
+      placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
       skippable: true,                      // optional
@@ -62,7 +62,6 @@ var adUnits = [
       playbackmethod: [1,3],                // optional
       battr: [ 13, 14 ],                    // optional
       linearity: 1,                         // optional
-      placement: 2,                         // optional
       minbitrate: 10,                       // optional
       maxbitrate: 10                        // optional
     }   
@@ -70,7 +69,7 @@ var adUnits = [
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'cxBE0qjUir6iopaKkGJozW',     
+        siteId: 'examplePub123',     
         productId: 'siab'     
     }
   }],
@@ -89,7 +88,7 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
-      placement: 2,                         // optional, defaults to 1 for outstream
+      placement: 1,                         // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 for instream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
@@ -99,7 +98,6 @@ var adUnits = [
       playbackmethod: [1,3],                // optional
       battr: [ 13, 14 ],                    // optional
       linearity: 1,                         // optional
-      placement: 2,                         // optional
       minbitrate: 10,                       // optional
       maxbitrate: 10                        // optional
     }   
@@ -107,7 +105,7 @@ var adUnits = [
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'cxBE0qjUir6iopaKkGJozW',     
+        siteId: 'examplePub123',     
         productId: 'siab'     
     }
   }],
@@ -132,7 +130,7 @@ var adUnits = [
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
-      placement: 2,                         // optional defaults to 2 for outstream
+      placement: 2,                         // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       protocols: [ 2, 3 ],                  // optional
       skippable: true,                      // optional
@@ -141,7 +139,6 @@ var adUnits = [
       playbackmethod: [1,3],                // optional
       battr: [ 13, 14 ],                    // optional
       linearity: 1,                         // optional
-      placement: 2,                         // optional
       minbitrate: 10,                       // optional
       maxbitrate: 10                        // optional
     }   
@@ -149,7 +146,7 @@ var adUnits = [
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'cxBE0qjUir6iopaKkGJozW',     
+        siteId: 'examplePub123',     
         productId: 'siab'     
     }
   }],
