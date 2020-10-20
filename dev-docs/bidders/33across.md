@@ -69,8 +69,8 @@ var adUnits = [
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'examplePub123',     
-        productId: 'siab'     
+        siteId: 'examplePub123',    // required     
+        productId: 'siab'           // required     
     }
   }],
   ...
@@ -106,8 +106,8 @@ var adUnits = [
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'examplePub123',     
-        productId: 'instream'     
+        siteId: 'examplePub123',    // required    
+        productId: 'instream'       // required     
     }
   }],
   ...
@@ -148,8 +148,8 @@ var adUnits = [
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'examplePub123',     
-        productId: 'siab'     
+        siteId: 'examplePub123',    // required     
+        productId: 'siab'           // required     
     }
   }],
   ...
