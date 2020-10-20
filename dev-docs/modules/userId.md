@@ -325,7 +325,7 @@ The following configuration parameters are available:
 #### ID5 Universal ID Examples
 
 {: .alert.alert-warning :}
-**ATTENTION:** As of Prebid.js v4.XX.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js). If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
+**ATTENTION:** As of Prebid.js v4.13.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
 
 1) Publisher wants to retrieve the ID5 Universal ID through Prebid.js
 
@@ -339,8 +339,8 @@ pbjs.setConfig({
         pd: "MT1iNTBjY..."       // optional, see table above for a link to how to generate this
       },
       storage: {
-        type: "html5",           // html5 is the required storage type
-        name: "id5id",           // the value "id5id" is required
+        type: "html5",           // "html5" is the required storage type
+        name: "id5id",           // "id5id" is the required storage name
         expires: 90,             // storage lasts for 90 days
         refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
       }
