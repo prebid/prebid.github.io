@@ -1154,9 +1154,5 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 {: .table  }
 | Partners| Contact |
-<<<<<<< HEAD
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | Contact Magnite (Formerly Rubicon Project) support at [globalsupport@mangite.com](mailto:globalsupport@magnite.com) to use Magnite as a floor provider. |
-=======
 | <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | Contact Magnite (Formerly Rubicon Project) support at [globalsupport@mangite.com](mailto:globalsupport@magnite.com) to use Magnite as a floor provider. |
 | pubx.ai | Reach out to PubX at [hello@pubx.ai](mailto:hello@pubx.ai) to learn more about our AI-powered dynamic floor optimization. |
->>>>>>> 4a240846d7ebedf8ad0e35a4c790cdd39841ad8a
