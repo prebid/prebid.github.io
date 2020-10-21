@@ -1,6 +1,7 @@
 ---
 layout: page_v2
 title: Browsi Viewability Module
+display_name: Browsi Viewability
 description: Browsi Real Time Viewability
 page_type: module
 module_type: rtd
