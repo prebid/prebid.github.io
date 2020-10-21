@@ -1,0 +1,26 @@
+{
+  "name": "prebid.github.io",
+  "version": "1.0.0",
+  "description": "This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AtreNet/prebid.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AtreNet/prebid.github.io/issues"
+  },
+  "homepage": "https://github.com/AtreNet/prebid.github.io#readme",
+  "devDependencies": {
+    "laravel-mix": "^5.0.7"
+  }
+}
