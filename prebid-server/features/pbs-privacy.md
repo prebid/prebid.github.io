@@ -66,8 +66,8 @@ More details are available in the [Prebid Support for TCF2](https://docs.google.
 There are a number of configuration settings that PBS Host Companies need
 to consider:
 
-- Host company GVL ID
-- Default expiration time of the uids cookie set in the host company domain
+- Host company GVL ID. Currently PBS requires the host company to have a GVL-ID or the setting of the `uids` cookie in GDPR scope will fail.
+- The default expiration time of the uids cookie set in the host company domain should be defined to match what's in the TCF 2.1 `maxCookieAgeSeconds` GVL field.
 - GDPR enforcement flags for each Purpose and Vendor
 
 The specific details vary slightly between PBS-Go and PBS-Java, so check the

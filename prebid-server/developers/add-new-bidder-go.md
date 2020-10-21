@@ -49,6 +49,20 @@ Bidder implementations may assume that any params have already been validated ag
 {: .alert.alert-warning :}
 Prebid Server bid adapters must follow all required conventions defined in the [Module Rules](/dev-docs/module-rules.html). Not doing so could lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid Server issue](https://github.com/prebid/prebid-server/issues).
 
+### Bid Request Standards
+
+Prebid clients ([Prebid.js](/use-cases/pbs-pbjs.html), [Prebid SDK](/use-cases/pbs-sdk.html), and [AMP](/use-cases/pbs-amp.html)) pass a number of parameters
+that bid adapters should take into account:
+
+- Currency: The publisher's desired bid currency is in the OpenRTB `cur` field. If your bid is in a different currency, you must set the bid currency in the response.
+- Bid Floor: `imp[].bidfloor` and `imp[].bidfloorcur` - please make use of this value before responding with a bid.
+- First Party Data: bidders should look in these locations for first party data: `imp[].ext.context.data.*`, `site.ext.data.*`, `app.ext.data.*`, and `user.ext.data.*`.
+- Supply Chain: `source.ext.schain`
+- GDPR: `regs.ext.gdpr` and `user.ext.consent`
+- CCPA: `regs.ext.us_privacy`
+- COPPA: `regs.coppa`
+- Test: Bidders should be aware that the OpenRTB `test` flag indicates non-production traffic.
+
 ### Bid Response Metadata
 
 In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
@@ -209,6 +223,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 gdpr_supported: true/false
 tcf2_supported: true/false
+gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
@@ -236,6 +251,7 @@ Notes on the metadata fields:
 - Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
 - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
 - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+- If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.

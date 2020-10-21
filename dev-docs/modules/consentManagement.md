@@ -54,9 +54,11 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 ## Page Integration
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/all-news/the-iab-europe-transparency-consent-framework-tcf-steering-group-votes-to-extend-technical-support-for-tcf-v1-1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices.  
+Please start by understanding the IAB's [TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md).
 
-Though implementation details for the CMP are not covered by Prebid.org, we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes.
+To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/all-news/the-iab-europe-transparency-consent-framework-tcf-steering-group-votes-to-extend-technical-support-for-tcf-v1-1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
+
+In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html). 
 
 Once the CMP is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call.  Adapters that support this feature will then be able to retrieve the consent information and incorporate it in their requests.
 
@@ -471,5 +473,7 @@ var idx_gdpr=0;
 ## Further Reading
 
 - [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html)
+- [IAB TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
 - [IAB Transparancy and Consent Framework Policies](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
+- [CMP Best Practices](https://docs.prebid.org/dev-docs/cmp-best-practices.html)

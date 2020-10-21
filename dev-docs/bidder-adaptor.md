@@ -303,8 +303,9 @@ Referrer information should be passed to your endpoint in contexts where the ori
 - `referer`: a string containing the detected top-level URL.
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
-- `stack`: a string of comma-separated URLs of all origins.
+- `stack`: an array of URLs of all windows from the top window down to the current window.
 - `canonicalUrl`: a string containing the canonical (search engine friendly) URL defined in top-most window.
+- `isAmp`: a boolean specifying whether the detected referer was determined based on AMP page information.
 
 The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
@@ -1001,7 +1002,9 @@ registerBidder(spec);
   - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
+    - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
     - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+    - If you have an IAB Global Vendor List ID, add `gvl_id: ID`. There's no default.
     - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
@@ -1021,6 +1024,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 gdpr_supported: true/false
 tcf2_supported: true/false
+gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
@@ -1031,6 +1035,7 @@ bidder_supports_deals: true/false
 pbjs: true/false
 pbs: true/false
 prebid_member: true/false
+gvl_id: none
 ---
 ### Note:
 
