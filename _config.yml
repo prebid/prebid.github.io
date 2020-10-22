@@ -85,7 +85,10 @@ collections:
 
 port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor', 'node_modules', '_assets', 'mix-manifest.json', 'webpack.mix.js']
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor', 'node_modules', '_assets', 'mix-manifest.json', 'webpack.mix.js', 'assets/css/main-bundle.css']
+
+keep_files:
+  - assets/css/main-bundle.css
 
 plugins:
   - jekyll-mentions
