@@ -48,7 +48,7 @@ Appaloosa now supports adpod.
         bids: [{
           bidder: 'appaloosa',
           params: {
-            aid: 331133
+            aid: 472386
           }
         }]
       },
@@ -65,7 +65,7 @@ Appaloosa now supports adpod.
         bids: [{
           bidder: 'appaloosa',
           params: {
-            aid: 331133
+            aid: 472386
           }
         }]
       },
@@ -83,7 +83,7 @@ Appaloosa now supports adpod.
         bids: [{
           bidder: 'appaloosa',
           params: {
-            aid: 331133
+            aid: 472386
           }
         }]
       },
@@ -99,7 +99,7 @@ Appaloosa now supports adpod.
         bids: [{
           bidder: 'appaloosa',
           params: {
-            aid: 350975
+            aid: 529814
           }
         }]
       }
