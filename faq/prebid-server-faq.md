@@ -106,3 +106,14 @@ If a bidder adapter supplies 'nurl' in the bidResponse object, there are two pat
 
 If a bidder adapter supplies 'nurl' in the bidResponse object instead of 'adm',
 this URL will be treated as the location of the VAST XML.
+
+## How does ad server targeting work in Prebid Server?
+
+For OpenRTB responses, Prebid Server is always in "send all bids" mode -- it will return the top bid on each requested imp from each bidder.
+
+It will return ad server targeting in seatbid.bid.ext.prebid.targeting depending on the input scenario:
+
+- if request.ext.prebid.includewinner:true and this bid was declared the "winner" by Prebid Server, then seatbid.bid.ext.prebid.targeting will contain hb_pb, hb_size, and hb_bidder. If the bid was cached, there will also be hb_uuid and/or hb_cache_id
+- if request.ext.prebid.includebidderkeys:true, seatbid.bid.ext.prebid.targeting will contain hb_pb_BIDDER, hb_size_BIDDER, and hb_bidder_BIDDER. If the bid was cached, there will also be hb_uuid_BIDDER and/or hb_cache_id_BIDDER.
+
+The AMP endpoint is somewhat different because it doesn't receive the openrtb - just the targeting. PBS basically resolves the OpenRTB, and then merges all the seatbid.bid.ext.prebid.targeting sections.
