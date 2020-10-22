@@ -34,7 +34,9 @@
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "bourbon": "^7.0.0",
-    "include-media": "^1.4.9"
+    "include-media": "^1.4.9",
+    "popper.js": "^1.16.1"
   }
 }
