@@ -1,0 +1,9 @@
+.navbar {
+  background: $t-brand-color--dark;
+}
+
+.navbar-brand > img {
+  display: block;
+  max-width: 200px;
+  max-height: 35px;
+}
