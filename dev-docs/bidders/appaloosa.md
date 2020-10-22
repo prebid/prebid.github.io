@@ -13,8 +13,7 @@ tcf2_supported: true
 safeframes_ok: true
 prebid_member: true
 pbjs: true
-pbs: true
-gvl_id: 410
+pbs: false
 ---
 
 ### Bid params
