@@ -117,3 +117,28 @@ It will return ad server targeting in seatbid.bid.ext.prebid.targeting depending
 - if request.ext.prebid.includebidderkeys:true, seatbid.bid.ext.prebid.targeting will contain hb_pb_BIDDER, hb_size_BIDDER, and hb_bidder_BIDDER. If the bid was cached, there will also be hb_uuid_BIDDER and/or hb_cache_id_BIDDER.
 
 The AMP endpoint is somewhat different because it doesn't receive the openrtb - just the targeting. PBS basically resolves the OpenRTB, and then merges all the seatbid.bid.ext.prebid.targeting sections.
+
+## How does Prebid Server determine the winner of a given impression?
+
+**Decision 1**: best bid from each bidder on each impression
+
+Prebid Server returns one bid from each bidder for each impression object. If there
+are multiple bids from a given bidder for a given imp[], here how it chooses:
+
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
+
+**Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
+
+This is only done when ext.prebid.targeting is specified.
+This is most important for AMP, but other clients (e.g. app) may rely on Prebid Server
+choosing the "winner" header bid. That decision is made with the same process as the
+first decision:
+
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
+
