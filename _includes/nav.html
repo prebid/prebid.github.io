@@ -8,39 +8,50 @@
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
 
-        {% assign arrSideBarSections = site.data.sidebar | where: "isSectionHeader",  "1" %}
+        <!--get all the sections and subsections -->
+        {% assign arrSections = site.data.dropdown_v2 | where: "isHeader", "1" %}
 
-        {% for sectionHeader in arrSideBarSections %}
+        {% for item in arrSections %}
 
-        {% assign sectionIdx = forloop.index0 %}
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle pb-mobile-dropdown" data-prebidclickid="{{item.sectionId}}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="{{item.sectionId}}">
+              {{ item.sectionName }}
+              <span class="caret" />
+            </a>
 
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle pb-mobile-dropdown" data-prebidclickid="{{item.sectionid}}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="{{item.sectionid}}">
-            {{ sectionHeader.sectionTitle }}
-            <span class="caret" />
-          </a>
+            <!-- if there are submenus - should be true each time-->
+            {% if item.hasSubMenus == 1 %}
+              <div class="dropdown-menu" aria-labelledby="{{item.sectionId}}">
+                <!--get how many subsections-->
+                {% assign arrSubSections = item.submenus | where: "isSubSectionStart", "1" %}
 
-          <!--get subsections-->
-          {% assign arrSubSections = site.data.sidebar | where: "sbSecId", sectionIdx %}
+                {% for subSection in arrSubSections %}
 
-          <div class="dropdown-menu" aria-labelledby="{{item.sectionid}}">
+                  <!--get the items in each subsection-->
+                  {% assign idx = forloop.index0 %}
+                  {% assign arrSubItems = item.submenus | where: "subsectionId", idx %}
 
-            {% for subSection in arrSubSections %}
+                  <!--display subitem-->
+                  {% for subItem in arrSubItems %}
 
-            {% if subSection.isSectionHeader == 0 %}
+                    {% if subItem.isSubSectionStart == 1 %}
+                      <a href="{{subItem.link}}" class="dropdown-item pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a>
+                    {% else %}
+                      <a href="{{subItem.link}}" class="dropdown-item pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">&nbsp;&nbsp;{{subItem.title}}</a>
+                    {% endif %}
 
-            {% if subSection.isHeader == 1 %}
-            <span class="dropdown-item pb-mobile-dropdown-header">&nbsp;&nbsp;{{subSection.title}}</span>
-            {% else %}
-            <a href="{{subSection.link}}" class="dropdown-item pb-mobile-dropdown-item" data-prebidclickid="{{subSection.nbCollapseId}}">&nbsp;&nbsp;{{subSection.title}}</a>
+
+                    {% if subItem.needsDivider == 1 %}
+                      <hr>
+                    {% endif %}
+                  {% endfor %}
+
+
+                {% endfor %}
+              </div>
             {% endif %}
 
-            {% endif %}
-
-            {% endfor %}
-
-          </div>
-        </li>
+          </li>
 
         {% endfor %}
 
@@ -48,4 +59,3 @@
     </div>
   </div>
 </nav>
-
