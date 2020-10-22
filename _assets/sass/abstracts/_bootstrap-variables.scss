@@ -4,3 +4,8 @@ $container-max-widths: (
   lg: 960px,
   xl: 1100px
 );
+
+$spacer: 1rem;
+$spacers: (
+  6: ($spacer * 3.75)
+);
