@@ -12,7 +12,7 @@ userId: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableI
 media_types: banner, video, native
 safeframes_ok: true
 bidder_supports_deals: true
-pbjs: true
+pbjs: false
 pbs: true
 ---
 
