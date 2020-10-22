@@ -1,5 +1,11 @@
 let mix = require('laravel-mix');
 
+mix.webpackConfig({
+  externals: {
+    jquery: "jQuery"
+  }
+});
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
