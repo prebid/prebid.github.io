@@ -37,11 +37,9 @@ a {
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  &, &.vcex-heading {
-    color: $t-heading-color;
-  }
+  color: $t-heading-color;
 
-  .typography-white &, .typography-white &.vcex-heading {
+  .typography-white & {
     color: $t-text-reverse;
   }
 
@@ -57,7 +55,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 // Markup: <h1>A Main Heading</h1>
 //
 // Styleguide Typography.Headings
-h1, .h1, h1.vcex-heading {
+h1, .h1 {
   @include font-weight-bold;
   font-size: 12vw;
   line-height: 1.2;
@@ -79,15 +77,13 @@ h1, .h1, h1.vcex-heading {
 //
 // Styleguide Typography.Headings
 h2, .h2 {
-  &, &.vcex-heading {
-    @include font-weight-bold;
-    color: $t-heading-color--secondary;
-    font-size: 36px;
-    line-height: 1.1;
+  @include font-weight-bold;
+  color: $t-heading-color--secondary;
+  font-size: 36px;
+  line-height: 1.1;
 
-    @include media('>phone') {
-      font-size: 40px;
-    }
+  @include media('>phone') {
+    font-size: 40px;
   }
 }
 
