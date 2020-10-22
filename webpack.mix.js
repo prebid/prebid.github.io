@@ -18,12 +18,16 @@ mix.webpackConfig({
  */
 
 mix.js('_assets/js/main.js', 'assets/js/main-bundle.js')
+mix.copy('assets/js/main-bundle.js', '_site/assets/js/main-bundle.js');
 mix.sass('_assets/sass/main.scss', 'assets/css/main-bundle.css');
 mix.copy('assets/css/main-bundle.css', '_site/assets/css/main-bundle.css');
 
 mix.browserSync({
   proxy: 'localhost:8080',
-  files: 'assets/css/main-bundle.css'
+  files: [
+    'assets/css/main-bundle.css',
+    'assets/js/main-bundle.js',
+  ]
 });
 
 // Full API
