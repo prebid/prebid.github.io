@@ -21,7 +21,7 @@ pbs: false
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from Appaloosa.   | `350975` | `integer` |
+| `aid` | required | The source ID from Appaloosa.   | `529814` | `integer` |
 
 ### Description
 Get access to multiple demand partners across Appaloosa AdExchange and maximize your yield with Appaloosa header bidding adapter.
