@@ -27,7 +27,8 @@ mix.browserSync({
   files: [
     'assets/css/main-bundle.css',
     'assets/js/main-bundle.js',
-  ]
+  ],
+  browser: "google chrome"
 });
 
 // Full API
