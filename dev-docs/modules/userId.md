@@ -909,7 +909,7 @@ The PubProvided Id module allows publishers to set and pass a first party user i
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "publisherProvided",
+            name: "pubProvidedId",
             params: {
                 eidsFunction: getIdsFn   // any function that exists in the page
             }
