@@ -18,8 +18,8 @@ sidebarType: 1
 
 ## Overview
 
-The purpose of this Real Time Data Provider is to allow publishers to match impressions accross the supply chain.
-The purpose of Reconciliation SDK module is to collect supply chain structure information and vendor-specific impression IDs from suppliers participating in ad creative delivery and report it to the Reconciliation Service, allowing publishers, advertisers and other supply chain participants to match and reconcile ad server, SSP, DSP and veritifation system log file records. Reconciliation SDK was created as part of TAG DLT initiative ([https://www.tagtoday.net/pressreleases/dlt_9_7_2020](https://www.tagtoday.net/pressreleases/dlt_9_7_2020)).
+The purpose of Reconciliation Real Time Data Provider is to allow publishers to collect supply chain structure information and vendor-specific impression IDs from suppliers participating in ad creative delivery and report it to the Reconciliation Service, allowing publishers, advertisers and other supply chain participants to match and reconcile ad server, SSP, DSP and veritifation system log file records. 
+Reconciliation SDK was created as part of TAG DLT initiative ([https://www.tagtoday.net/pressreleases/dlt_9_7_2020](https://www.tagtoday.net/pressreleases/dlt_9_7_2020)).
 
 Implementation works like this:
 
