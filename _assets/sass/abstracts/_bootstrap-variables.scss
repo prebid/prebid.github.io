@@ -2,10 +2,19 @@ $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1100px
+  xl: 1090px
 );
 
 $spacer: 1rem;
 $spacers: (
-  6: ($spacer * 3.75)
+  6: ($spacer * 3.75),
+  7: ($spacer * 4.5),
+  8: ($spacer * 5),
 );
+
+$grid-gutter-width: 20px;
+$body-bg: #eceeef;
+
+$card-border-radius: 0;
+$card-spacer-x: 30px;
+

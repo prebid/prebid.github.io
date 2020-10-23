@@ -1,0 +1,12 @@
+.banner {
+  @include padding(4rem null 5.5rem);
+}
+
+.banner--medium {
+  background: #7e8c97;
+  color: $t-text-color--reverse;
+}
+
+.banner--light {
+  background: #fff;
+}
