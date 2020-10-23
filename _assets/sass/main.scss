@@ -17,6 +17,7 @@
 @import 'vendor/bootstrap';
 
 // Base Styles
+@import 'base/base';
 @import 'base/typography';
 
 // Core Layout
@@ -26,6 +27,7 @@
 @import 'components/card';
 @import 'components/banner';
 @import 'components/buttons';
+@import 'components/pb';
 
 // Pages
 @import 'pages/home';

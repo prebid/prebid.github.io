@@ -1,0 +1,30 @@
+.pb-lg-img {
+  width: 70%;
+  height: 70%;
+}
+
+.row > .wrapper {
+  @include make-row
+}
+
+.pb-content {
+  padding: 22px 30px;
+  background-color: $color--white;
+  font-size: 19px;
+  line-height: (30 / 19);
+
+  h1 {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid $t-divider-color;
+    font-size: 34px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+}
+
+.pb-docs-container {
+  margin-top: 65px;
+}
