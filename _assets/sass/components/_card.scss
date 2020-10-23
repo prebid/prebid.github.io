@@ -1,0 +1,99 @@
+.card {
+  .banner--medium & {
+    background: none;
+    border-color: adjust-color($color--white, $alpha: -0.2);
+  }
+}
+
+.card-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Card deck
+.card-deck--products {
+  .card-media {
+    min-height: 96px;
+    margin-top: 6px;
+  }
+
+  .card-title {
+    margin-top: 30px;
+  }
+}
+
+.card-deck--md {
+  .card {
+    margin-bottom: $card-deck-margin;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: -$card-deck-margin;
+    margin-left: -$card-deck-margin;
+
+    .card {
+      // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+      flex: 1 0 0%;
+      margin-right: $card-deck-margin;
+      margin-bottom: 0; // Override the default
+      margin-left: $card-deck-margin;
+    }
+  }
+}
+
+.card-deck--formats {
+  .card {
+    margin-bottom: $card-deck-margin;
+  }
+
+  .card-title {
+    margin-top: 30px;
+    margin-bottom: 0;
+    font-size: 22px;
+    line-height: 1.2;
+
+    h4 {
+      @include font-weight-semibold;
+      margin-bottom: 0;
+    }
+
+    a {
+      color: $color--blue;
+      text-decoration: none;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-right: -$card-deck-margin;
+    margin-left: -$card-deck-margin;
+
+    .card {
+      // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+      flex: 1 0 0%;
+      min-width: 180px;
+      max-width: 200px;
+      margin-right: $card-deck-margin;
+      margin-bottom: (2 * $card-deck-margin); // Override the default
+      margin-left: $card-deck-margin;
+    }
+  }
+}
+
+.card-deck {
+  .banner--medium & {
+    .card-title {
+
+      a {
+        color: $t-text-color--reverse;
+        font-size: 26px;
+        text-decoration: none;
+      }
+    }
+  }
+}
