@@ -38,7 +38,7 @@ const jwplayerRtdProvider = {
 pbjs.setConfig({
     ...,
     realTimeData: {
-      auctionDelay: 1000,
+      auctionDelay: 100,
       dataProviders: [
           jwplayerRtdProvider
       ]
@@ -46,16 +46,18 @@ pbjs.setConfig({
 });
 ``` 
 
-3) In order to prefetch targeting information for certain media, include the media IDs in the `jwplayerRtdProvider` var before calling `setConfig`:
+3) In order to prefetch targeting information for certain media, include the media IDs in the `jwplayerRtdProvider` var and set `waitForIt` to `true` before calling `setConfig`:
 
 ```javascript
 const jwplayerRtdProvider = {
   name: "jwplayer",
+  waitForIt: true,
   params: {
     mediaIDs: ['abc', 'def', 'ghi', 'jkl']
   }
 };
 ```
+**Note:** `waitForIt` is required to ensure the auction waits for the prefetching of the relvant targeting information to complete. It signals to prebid that you allow the module to delay the auction if necessary.
 
 **Note:** setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete. The `auctionDelay` is the max time in ms that the auction will wait for the requested targeting information.
 
@@ -65,19 +67,26 @@ const jwplayerRtdProvider = {
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | name | String | Real time data module name | Always 'jwplayer' |
+| waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
 | params | Object | | |
-| params.mediaIDs | Array of Strings | Media Ids for prefetching | Optional. |
+| params.mediaIDs | Array of Strings | Media Ids for prefetching | Optional |
 
-4) Include the content's media ID and/or the player's ID in the matching AdUnit before calling `addAdUnits`:
+4) Include the content's media ID and/or the player's ID in the matching AdUnit's `fpd.context.data.jwTargeting` before calling `addAdUnits`:
 
 ```javascript
    const adUnit = {
      code: '/19968336/prebid_native_example_1',
-     ...
-     jwTargeting: {
-       waitForIt: true,
-       playerID: 'abcd',
-       mediaID: '1234'
+     ...,
+     fpd: {
+       context: {
+         data: {
+           jwTargeting: {
+             // Note: the following Ids are placeholders and should be replaced with your Ids.
+             playerID: 'abcd',
+             mediaID: '1234'
+           }
+         }
+       }
      }
    };
    
@@ -86,8 +95,7 @@ const jwplayerRtdProvider = {
        pbjs.requestBids({...});
    });
 ```
-
-**Note:** `waitForIt` is required to ensure the auction waits for prefetching to complete. It signals to prebid that you allow the module to delay the auction if necessary. 
+**Note**: You may also include `jwTargeting` information in the prebid config's `fpd.context.data`. Information provided in the adUnit will always supersede the information in the config; use the config to set fallback information or information that applies to all adUnits.
 
 **AdUnit Syntax details:**
 
@@ -97,14 +105,13 @@ const jwplayerRtdProvider = {
 | jwTargeting | Object | | |
 | jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
 | jwTargeting.playerID | String | Id of the JW Player instance which will render the content associated to the Ad Unit | Optional but recommended |
-| jwTargeting.waitForIt | Boolean | Media Ids for prefetching | Optional. Defaults to false. Required to ensure that the auction is delayed until prefetch is complete |
 
 ## Implementation for Bid Adapters:
 
 Implement the `buildRequests` function. When it is called, the `bidRequests` param will be an array of bids.
 Each bid for which targeting information was found will conform to the following object structure:
 
-```javascript
+```json
 {
     adUnitCode: 'xyz',
     bidId: 'abc',
