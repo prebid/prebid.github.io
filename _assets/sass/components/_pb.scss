@@ -28,3 +28,31 @@
 .pb-docs-container {
   margin-top: 65px;
 }
+
+.sidebar {
+  a {
+    text-decoration: none;
+  }
+
+  .collapse.is-active {
+    display: block;
+  }
+
+  .list-group-item {
+    display: block;
+
+    &.is-active {
+    }
+  }
+
+  .pb-section-title {
+    color: $t-text-color;
+    font-size: 20px;
+
+    &.is-active {
+      color: $t-text-color--reverse;
+      background: #333;
+    }
+  }
+}
+
