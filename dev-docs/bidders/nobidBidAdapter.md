@@ -4,11 +4,16 @@ title: Nobid
 description: Prebid Nobid Bidder Adaptor
 biddercode: nobid
 pbjs: true
+pbs: true
 media_types: banner, video
 gdpr_supported: true
+tcf2_supported: true
+gvl_id: 816
 usp_supported: true
 schain_supported: true
 coppa_supported: true
+userId: all
+safeframes_ok: true
 ---
 
 ### Bid Params
