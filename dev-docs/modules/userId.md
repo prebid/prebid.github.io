@@ -899,6 +899,13 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+3) Publishers may include an additional call to id.sharedid.org/usync by changing SHAREDID_DEFAULT_STATE to `true`.  Calling to Shareid.org sets a user id in a 3rd party cookie under the sharedid.org domain. Anyone setting this additional identity should reference Sharedid.orgs optout policy here: https://sharedid.org/
+
+ex. 
+```
+const SHAREDID_DEFAULT_STATE = true;
+```
+
 ### PubProvided ID
 
 The PubProvided Id module allows publishers to set and pass a first party user id into the bid stream. This module has several unique characteristics:
