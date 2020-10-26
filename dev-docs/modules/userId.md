@@ -852,6 +852,17 @@ Add it to your Prebid.js package with:
 {: .alert.alert-info :}
 gulp build --modules=pubCommonIdSystem
 
+#### PubCommon ID Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following PubCommon specific configuration is available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| params | Optional | Object | Details for PubCommon ID. | |
+| params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` in Prebid.js 4.x. Will default to `true` in Prebid.js 5.0. | `true` |
+
+
 #### PubCommon ID Examples
 
 1) Publisher supports PubCommonID and first party domain cookie storage
@@ -888,9 +899,12 @@ pbjs.setConfig({
             }
         },{
             name: "pubCommonId",
+            params: {
+                enableSharedId: true  // optionally enable Prebid sharedID
+            },
             storage: {
                 type: "cookie",
-                name: "_pubcid",     // create a cookie with this name
+                name: "_pubcid",      // create a cookie with this name
                 expires: 180
             }
         }],
@@ -899,12 +913,9 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-3) Publishers may include an additional call to id.sharedid.org/usync by changing SHAREDID_DEFAULT_STATE to `true`.  Calling to Shareid.org sets a user id in a 3rd party cookie under the sharedid.org domain. Anyone setting this additional identity should reference Sharedid.orgs optout policy here: https://sharedid.org/
+{: .alert.alert-info :}
+When enableSharedId is true, the browser will make an additional call to id.sharedid.org/usync.  Calling to Shareid.org sets a user id in a 3rd party cookie under the sharedid.org domain. Anyone setting this additional identity should reference Sharedid.orgs optout policy at https://sharedid.org/. Prebid.js 5.0 will enable the enableSharedId option by default.
 
-ex. 
-```
-const SHAREDID_DEFAULT_STATE = true;
-```
 
 ### PubProvided ID
 
