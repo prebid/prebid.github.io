@@ -3,7 +3,6 @@ layout: bidder
 title: Adtarget
 description: Adtarget Bidder Adapter
 biddercode: adtarget
-aliasCode: adtelligent
 media_types: banner, video
 gdpr_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId

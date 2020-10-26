@@ -3,6 +3,7 @@ layout: bidder
 title: Appaloosa
 description: Prebid Appaloosa Bidder Adapter
 biddercode: appaloosa
+aliasCode: adtelligent
 media_types: video,banner
 gdpr_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
