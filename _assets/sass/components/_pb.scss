@@ -9,6 +9,7 @@
 
 .pb-content {
   padding: 22px 30px;
+  border: 1px solid $t-divider-color;
   background-color: $color--white;
   font-size: 19px;
   line-height: (30 / 19);
@@ -22,6 +23,24 @@
 
   h2 {
     font-size: 28px;
+  }
+
+  ul {
+    padding-left: 20px;
+    list-style: none;
+
+    li {
+      position: relative;
+
+      &::before {
+        @include position(absolute, 10px null null -20px);
+        @include size(7px);
+        border: 1px solid #707070;
+        border-radius: 50%;
+        background: #333;
+        content: '';
+      }
+    }
   }
 }
 
