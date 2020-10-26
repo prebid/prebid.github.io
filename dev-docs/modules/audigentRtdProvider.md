@@ -39,7 +39,7 @@ Configure Prebid to add the Audigent RTD Segment Handler:
 pbjs.setConfig(
     ...
     realTimeData: {
-        auctionDelay: 1000,
+        auctionDelay: 100,
         dataProviders: [
             {
                 name: "audigent",
@@ -61,22 +61,6 @@ The format of the segments is a per-SSP mapping:
 {
     'appnexus': ['anseg1', 'anseg2'],
     'google': ['gseg1', 'gseg2']
-}
-```
-
-If a given SSP's API backend supports segment fields, they can then be
-attached prior to the bid request being sent:
-
-```
-pbjs.requestBids({bidsBackHandler: addAudigentSegments});
-
-function addAudigentSegments() {
-    for (i = 0; i < adUnits.length; i++) {
-        let adUnit = adUnits[i];
-        for (j = 0; j < adUnit.bids.length; j++) {
-            adUnit.bids[j].userId.lipb.segments = adUnit.bids[j].audigent_segments['rubicon'];
-        }
-    }
 }
 ```
 
