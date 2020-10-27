@@ -21,7 +21,7 @@ $card-spacer-x: 30px;
 $table-accent-bg: $t-code-bg;
 $table-border-color: $t-divider-color;
 
-$navbar-padding-y: 22px;
+$navbar-padding-y: 0;
 $nav-link-padding-y: 0;
 $navbar-nav-link-padding-x: 0;
 $navbar-nav-link-padding-y: 0;
@@ -32,3 +32,5 @@ $dropdown-border-width: 0;
 $dropdown-link-color: $t-text-color;
 $dropdown-link-hover-bg: transparent;
 $dropdown-link-hover-color: $t-anchor-color;
+$dropdown-spacer: 0;
+$dropdown-padding-y: 24px;
