@@ -116,13 +116,40 @@
 
 .card-deck {
   .banner--medium & {
+    .card {
+      z-index: 2;
+    }
+
+    .card-body {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-around;
+    }
+
     .card-title {
+      margin-top: 24px;
+      margin-bottom: 0;
 
       a {
         color: $t-text-color--reverse;
         font-size: 26px;
         text-decoration: none;
+
+        &::before {
+          @include position(absolute, 0);
+          background-color: $t-brand-color--accent;
+          opacity: 0;
+          z-index: -1;
+          content: '';
+        }
+
+        &:hover {
+          &::before {
+            opacity: 1;
+          }
+        }
       }
     }
   }
 }
+
