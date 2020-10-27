@@ -2,7 +2,9 @@
 layout: page_v2
 title: Audigent Segmentation RTD Module
 description: Audigent Segmentation RTD Module
+display_name: Audigent Segmentation
 module_code : audigent
+module_type : rtd
 display_name : Audigent
 enable_download : true
 sidebarType : 1
@@ -32,18 +34,44 @@ the bid request cycle.
 
 Compile the audigent RTD module into your Prebid build:
 
-`gulp build --modules=userId,unifiedIdSystem,rtdModule,audigentRtdProvider,rubiconBidAdapter`
+`gulp build --modules=userId,unifiedIdSystem,rtdModule,audigentRtdProvider,appnexusBidAdapter`
 
-Configure Prebid to add the Audigent RTD Segment Handler:
+
+The format of returned segments is a segment type mapping.
+
 ```
+{
+    'appnexus': ['anseg1', 'anseg2'],
+    'pubmatic': ['pseg1', 'pseg2'],
+    'spotx': ['sseg1', 'sseg2']
+}
+```
+
+Define a function that will map segment types to a specific bidder's request
+format by name. Supply this function to the Audigent data provider as
+segmentMapper. In this example, we add segments to an appnexus bid request
+in the format accepted by their adapter.
+
+```
+var bidSegmentMappers = {
+    appnexus: function(bid, segments) {
+        if (bid.params.user.segments) {
+            existing_segments = bid.params.user.segments;
+        }
+        bid.params.user.segments = existing_segments.concat(segments);
+    }
+}
+
 pbjs.setConfig(
     ...
     realTimeData: {
-        auctionDelay: 100,
+        auctionDelay: auctionDelay,
         dataProviders: [
             {
                 name: "audigent",
-                waitForIt: true
+                waitForIt: true,
+                segmentMap: bidSegmentMappers,
+                segmentCache: false
             }
         ]
     }
@@ -51,25 +79,14 @@ pbjs.setConfig(
 }
 ```
 
-## Output
-Audigent segments will then be attached to each bid request objects in
-`bid.audigent_segments`
-
-The format of the segments is a per-SSP mapping:
-
-```
-{
-    'appnexus': ['anseg1', 'anseg2'],
-    'google': ['gseg1', 'gseg2']
-}
-```
-
 ### Testing
 
 To view an example of available segments returned by Audigent's backends:
 
-`gulp serve --modules=userId,unifiedIdSystem,rtdModule,audigentRtdProvider,rubiconBidAdapter`
+`gulp serve --modules=userId,unifiedIdSystem,rtdModule,audigentRtdProvider,appnexusBidAdapter`
 
 and then point your browser at:
 
 `http://localhost:9999/integrationExamples/gpt/audigentSegments_example.html`
+
+
