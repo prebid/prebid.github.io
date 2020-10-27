@@ -11,10 +11,19 @@
     display: block;
 
     &--level-0 {
+      position: relative;
       padding: 9px 12px 11px 14px;
       border-top: 1px solid $t-divider-color;
       color: $t-text-color;
       font-size: 20px;
+
+      &::after {
+        @include position(absolute, 50% 12px null null);
+        @include size(15px, 8px);
+        transform: translateY(-50%);
+        background: url(/assets/images/icons/down-carrot-0.svg) no-repeat 0 0;
+        content: '';
+      }
 
       &:last-of-type {
         border-bottom: 1px solid $t-divider-color;
@@ -23,6 +32,10 @@
       &.is-active {
         background-color: #333;
         color: $t-text-color--reverse;
+
+        &::after {
+          background-image: url(/assets/images/icons/up-carrot-0.svg);
+        }
 
         + .sidebar-submenu + .list-group-item {
           border-top: 0;
@@ -38,7 +51,18 @@
       font-size: 18px;
 
       &.is-active {
+        position: relative;
         color: $t-brand-color--accent;
+
+        &::after {
+          @include position(absolute, 50% 15px null null);
+          @include size(10px, 5px);
+          transform: translateY(-50%);
+          background-image: url(/assets/images/icons/up-carrot-1.svg);
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          content: '';
+        }
 
         + .sidebar-submenu {
           background-color: rgba(255, 255, 255, 0.25);
