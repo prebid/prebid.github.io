@@ -49,20 +49,49 @@
     margin-bottom: $card-deck-margin;
   }
 
+  .card-body {
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: space-around;
+  }
+
   .card-title {
-    margin-top: 30px;
+    @include font-weight-semibold;
+    margin-top: 24px;
     margin-bottom: 0;
     font-size: 22px;
     line-height: 1.2;
+    color: $color--blue;
+    text-decoration: none;
 
-    h4 {
-      @include font-weight-semibold;
-      margin-bottom: 0;
+    &:hover {
+      color: $t-text-color--reverse;
+      z-index: 2;
+
+      &::before {
+        @include position(absolute, 0);
+        z-index: -1;
+        background-color: $t-brand-color--accent;
+        content: '';
+      }
+
+      + .card-media {
+        cursor: pointer;
+        pointer-events: none;
+
+        path {
+          stroke: $t-text-color--reverse;
+
+          &[fill="#ff6f00"] {
+            fill: $t-text-color--reverse;
+          }
+        }
+      }
     }
 
-    a {
-      color: $color--blue;
-      text-decoration: none;
+    + .card-media {
+      position: relative;
+      z-index: 2;
     }
   }
 
