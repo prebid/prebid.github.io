@@ -14,19 +14,20 @@
 
         {% for item in arrSections %}
 
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle pb-mobile-dropdown" data-prebidclickid="{{item.sectionId}}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="{{item.sectionId}}">
+          <li class="nav-item dropdown nav-item--{{item.sectionClass}}">
+            <a href="#" class="nav-link dropdown-toggle pb-mobile-dropdown nav-link--{{item.sectionClass}}" data-prebidclickid="{{item.sectionId}}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="{{item.sectionId}}">
               {{ item.sectionName }}
             </a>
 
             <!-- if there are submenus - should be true each time-->
             {% if item.hasSubMenus == 1 %}
-              <div class="dropdown-menu" aria-labelledby="{{item.sectionId}}">
+              <div class="dropdown-menu dropdown-menu--{{item.sectionClass}}" aria-labelledby="{{item.sectionId}}">
                 <!--get how many subsections-->
                 {% assign arrSubSections = item.submenus | where: "isSubSectionStart", "1" %}
 
                 {% for subSection in arrSubSections %}
 
+                  {% assign sectionOpen = 0 %}
                   <!--get the items in each subsection-->
                   {% assign idx = forloop.index0 %}
                   {% assign arrSubItems = item.submenus | where: "subsectionId", idx %}
@@ -35,16 +36,20 @@
                   {% for subItem in arrSubItems %}
 
                     {% if subItem.isSubSectionStart == 1 %}
-                      <a href="{{subItem.link}}" class="dropdown-item pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a>
+                      {% if sectionOpen == 1 %}
+                        </div>
+                      {% endif %}
+                      {% assign sectionOpen = 1 %}
+                      <div class="dropdown-section">
+                      <a href="{{subItem.link}}" class="dropdown-item dropdown-item--heading pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a>
                     {% else %}
-                      <a href="{{subItem.link}}" class="dropdown-item pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">&nbsp;&nbsp;{{subItem.title}}</a>
+                      <a href="{{subItem.link}}" class="dropdown-item pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a>
                     {% endif %}
 
-
-                    {% if subItem.needsDivider == 1 %}
-                      <hr>
-                    {% endif %}
                   {% endfor %}
+                  {% if sectionOpen == 1 %}
+                    </div>
+                  {% endif %}
 
 
                 {% endfor %}
