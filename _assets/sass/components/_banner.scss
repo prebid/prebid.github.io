@@ -9,4 +9,12 @@
 
 .banner--light {
   background: #fff;
+  padding-bottom: 0;
+
+  hr {
+    margin-top: 30px;
+    border: 0;
+    border-top: 1px solid adjust-color($t-divider-color, $alpha: -0.51);
+    background: none;
+  }
 }
