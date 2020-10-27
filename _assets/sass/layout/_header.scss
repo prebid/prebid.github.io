@@ -1,9 +1,28 @@
-.navbar {
-  background: $t-brand-color--dark;
-}
+.pb-header {
+  .navbar {
+    background: $t-brand-color--dark;
+  }
 
-.navbar-brand > img {
-  display: block;
-  max-width: 140px;
-  max-height: 25px;
+  .navbar-brand > img {
+    display: block;
+    max-width: 140px;
+    max-height: 25px;
+  }
+
+  .dropdown-toggle::after {
+    content: none;
+  }
+
+  .nav-item {
+    margin-right: 32px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  .nav-link {
+    font-size: 16px;
+    text-decoration: none;
+  }
 }

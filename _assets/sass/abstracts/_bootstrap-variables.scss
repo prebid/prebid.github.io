@@ -20,3 +20,9 @@ $card-spacer-x: 30px;
 
 $table-accent-bg: $t-code-bg;
 $table-border-color: $t-divider-color;
+
+$navbar-padding-y: 22px;
+$nav-link-padding-y: 0;
+$navbar-nav-link-padding-x: 0;
+$navbar-nav-link-padding-y: 0;
+$navbar-dark-color: adjust-color($t-text-color--reverse, $alpha: -0.3);
