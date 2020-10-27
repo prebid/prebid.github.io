@@ -26,3 +26,9 @@ $nav-link-padding-y: 0;
 $navbar-nav-link-padding-x: 0;
 $navbar-nav-link-padding-y: 0;
 $navbar-dark-color: adjust-color($t-text-color--reverse, $alpha: -0.3);
+
+$dropdown-border-radius: 0;
+$dropdown-border-width: 0;
+$dropdown-link-color: $t-text-color;
+$dropdown-link-hover-bg: transparent;
+$dropdown-link-hover-color: $t-anchor-color;
