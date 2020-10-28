@@ -43,7 +43,7 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: "<span style='color:#EA9622;'>Codes of Conduct</span>"
+  title: "Codes of Conduct"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -67,7 +67,7 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: "<span style='color:#EA9622;'>Policies</span>"
+  title: "Policies"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -997,7 +997,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Prebid</span>"
+  title: "Prebid"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1039,7 +1039,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Google Ad Manager</span>"
+  title: "Google Ad Manager"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1096,7 +1096,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Mobile</span>"
+  title: "Mobile"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1153,7 +1153,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Freewheel</span>"
+  title: "Freewheel"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1170,7 +1170,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>AppNexus Publisher</span>"
+  title: "AppNexus Publisher"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1187,7 +1187,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Smart Ad Server</span>"
+  title: "Smart Ad Server"
   link:
 
   isHeader: 0
@@ -1333,7 +1333,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Instream</span>"
+  title: "Instream"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1439,7 +1439,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Prebid Server</span>"
+  title: "Prebid Server"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1520,7 +1520,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Cross Player</span>"
+  title: "Cross Player"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1561,7 +1561,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Outstream</span>"
+  title: "Outstream"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1602,7 +1602,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Long-Form (Ad Pods)</span>"
+  title: "Long-Form (Ad Pods)"
   link:
   isHeader: 0
   isSectionHeader: 0
