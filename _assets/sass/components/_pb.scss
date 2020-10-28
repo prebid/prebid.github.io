@@ -15,6 +15,12 @@
   font-size: 19px;
   line-height: (30 / 19);
 
+  > .pb-content {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
   h1 {
     margin-bottom: 20px;
     padding-bottom: 14px;
