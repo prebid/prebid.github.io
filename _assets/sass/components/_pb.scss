@@ -96,3 +96,19 @@
   margin-top: 65px;
 }
 
+.pb-alert {
+  @extend .alert;
+  margin-top: 10px;
+}
+
+.pb-alert-important {
+  @extend .alert-danger;
+}
+
+.pb-alert-warning {
+  @extend .alert-warning;
+}
+
+.pb-alert-tip {
+  @extend .alert-info;
+}
