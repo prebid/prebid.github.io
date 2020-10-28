@@ -109,7 +109,9 @@
           {% if subsectionIdx == 0 % || thisSubItem.isCatHeader == 1 %}
             <!--video example categories should not link-->
             {% if thisSubItem.isCatHeader == 1 %}
-              <span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
+              <span class="{{ item_classes | join: " " }}">
+                <span class="menu-collapsed pb-nav-item pb-first-item pb-nav-item--title">{{thisSubItem.title}}</span>
+              </span>
             {% else %}
               <a href="{{thisSubItem.link}}" class="{{ item_classes | join: " " }}">
                 {% if isPage == 1 %}
@@ -130,7 +132,9 @@
 
           {% else %}
             {% if thisSubItem.isCatHeader == 1 %}
-              <span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+              <span class="{{ item_classes | join: " " }}">
+                <span class="menu-collapsed pb-nav-item pb-nav-item--title">{{thisSubItem.title}}</span>
+              </span>
             {% else %}
               <a href="{{thisSubItem.link}}" class="{{ item_classes | join: " " }}">
                 {% if isPage == 1 %}

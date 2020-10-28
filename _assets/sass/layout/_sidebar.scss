@@ -80,13 +80,21 @@
       color: $t-text-color;
       font-size: 15px;
 
-      &:last-of-type {
+      &:last-child {
         padding-bottom: 11px;
         border-bottom: 1px solid $t-divider-color;
       }
 
       &.is-active {
         color: $t-brand-color--accent;
+      }
+
+      > .pb-nav-item--title {
+        display: block;
+        margin-bottom: -8px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #999;
+        color: #333;
       }
     }
   }
