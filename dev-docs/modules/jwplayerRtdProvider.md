@@ -46,11 +46,12 @@ pbjs.setConfig({
 });
 ``` 
 
-3) In order to prefetch targeting information for certain media, include the media IDs in the `jwplayer` var and set `waitForIt` to `true` before calling `setConfig`:
+3) Optionally, if you would like to prefetch the targeting information for certain media, you must include the media IDs in `params.mediaIDs`, as displayed above. You must also set `waitForIt` to `true` and make sure that a value is set to `realTimeData.auctionDelay`.
 
-**Note:** `waitForIt` is required to ensure the auction waits for the prefetching of the relvant targeting information to complete. It signals to Prebid that you allow the module to delay the auction if necessary.
+`waitForIt` is required to ensure the auction waits for the prefetching of the relvant targeting information to complete. It signals to Prebid that you allow the module to delay the auction if necessary.
+Setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete. The `auctionDelay` is the max time in ms that the auction will wait for the requested targeting information.
 
-**Note:** setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete. The `auctionDelay` is the max time in ms that the auction will wait for the requested targeting information.
+**Note:** Though prefetch is optional, we highly recommend enabling it to ensure that the targeting information is available before bids are requested.
 
 **Config Syntax details:**
 
@@ -104,19 +105,15 @@ Each bid for which targeting information was found will conform to the following
 
 ```json
 {
-    adUnitCode: 'xyz',
-    bidId: 'abc',
-    ...,
-    fpd: {
-      context: {
-         data: {
-           jwTargeting: {
-             segments: ['123', '456'],
-             content: {
-               id: 'jw_abc123'
-           }
-        }
-    }
+   adUnitCode: 'xyz',
+   bidId: 'abc',
+   ...,
+   jwTargeting: {
+     segments: ['123', '456'],
+     content: {
+       id: 'jw_abc123'
+     }
+   }
 }
 ```
   
