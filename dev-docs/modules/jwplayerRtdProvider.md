@@ -1,8 +1,8 @@
 ---
 layout: page_v2
 title: JW Player Real Time Data Provider
-description: makes JW Player's video ad targeting information accessible 
-             to Bid Adapters.
+display_name: JW Player video ad targeting
+description: makes JW Player's video ad targeting information accessible to Bid Adapters.
 page_type: module
 module_type: rtd
 module_code : jwplayer
@@ -31,33 +31,24 @@ to Bid Adapters.
 2) Publishers must register JW Player as a Real Time Data provider by using `setConfig` to load a Prebid Config containing a `realTimeData.dataProviders` array:
 
 ```javascript
-const jwplayerRtdProvider = {
-  name: "jwplayer"
-};
-
 pbjs.setConfig({
     ...,
     realTimeData: {
       auctionDelay: 100,
-      dataProviders: [
-          jwplayerRtdProvider
-      ]
+      dataProviders: [{
+          name: "jwplayer",
+          waitForIt: true,
+          params: {
+            mediaIDs: ['abc', 'def', 'ghi', 'jkl']
+          }
+      }]
     }
 });
 ``` 
 
-3) In order to prefetch targeting information for certain media, include the media IDs in the `jwplayerRtdProvider` var and set `waitForIt` to `true` before calling `setConfig`:
+3) In order to prefetch targeting information for certain media, include the media IDs in the `jwplayer` var and set `waitForIt` to `true` before calling `setConfig`:
 
-```javascript
-const jwplayerRtdProvider = {
-  name: "jwplayer",
-  waitForIt: true,
-  params: {
-    mediaIDs: ['abc', 'def', 'ghi', 'jkl']
-  }
-};
-```
-**Note:** `waitForIt` is required to ensure the auction waits for the prefetching of the relvant targeting information to complete. It signals to prebid that you allow the module to delay the auction if necessary.
+**Note:** `waitForIt` is required to ensure the auction waits for the prefetching of the relvant targeting information to complete. It signals to Prebid that you allow the module to delay the auction if necessary.
 
 **Note:** setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete. The `auctionDelay` is the max time in ms that the auction will wait for the requested targeting information.
 
@@ -102,9 +93,9 @@ const jwplayerRtdProvider = {
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| jwTargeting | Object | | |
-| jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
-| jwTargeting.playerID | String | Id of the JW Player instance which will render the content associated to the Ad Unit | Optional but recommended |
+| fpd.context.data.jwTargeting | Object | | |
+| fpd.context.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
+| fpd.context.data.jwTargeting.playerID | String | Id of the JW Player instance which will render the content associated to the Ad Unit | Optional but recommended |
 
 ## Implementation for Bid Adapters:
 
@@ -116,11 +107,15 @@ Each bid for which targeting information was found will conform to the following
     adUnitCode: 'xyz',
     bidId: 'abc',
     ...,
-    jwTargeting: {
-      segments: ['123', '456'],
-      content: {
-        id: 'jw_abc123'
-      }
+    fpd: {
+      context: {
+         data: {
+           jwTargeting: {
+             segments: ['123', '456'],
+             content: {
+               id: 'jw_abc123'
+           }
+        }
     }
 }
 ```
