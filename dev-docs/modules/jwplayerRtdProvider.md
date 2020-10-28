@@ -100,8 +100,10 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
 
 ## Implementation for Bid Adapters:
 
-Implement the `buildRequests` function. When it is called, the `bidRequests` param will be an array of bids.
-Each bid for which targeting information was found will conform to the following object structure:
+This section contains guidelines for bid adapters that are working with JW Player to utilize the additional targeting.
+
+Those bidders should implement the `buildRequests` function. When it is called, the `bidRequests` param will be an array of bids.
+Each bidRequest for which targeting information was found will conform to the following object structure:
 
 ```json
 {
@@ -116,8 +118,10 @@ Each bid for which targeting information was found will conform to the following
    }
 }
 ```
+
+Read the bidRequest.jwTargeting object and pass the values to your endpoint as appropriate.
   
-**Bid Syntax details:**
+**BidRequest Syntax details:**
 
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
