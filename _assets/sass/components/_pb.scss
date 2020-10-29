@@ -96,7 +96,11 @@
 }
 
 .pb-docs-container {
-  margin-top: 65px;
+  margin-top: 20px;
+
+  @include media('>=tablet') {
+    margin-top: 65px;
+  }
 }
 
 .pb-alert {
