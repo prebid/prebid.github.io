@@ -18,11 +18,15 @@
   }
 
   .nav-item {
-    @include padding(34px null 24px);
+    @include padding(5px null);
     margin-right: 32px;
 
     &:last-of-type {
       margin-right: 0;
+    }
+
+    @include media('>=tablet') {
+      @include padding(34px null 24px);
     }
   }
 
@@ -44,8 +48,11 @@
   .dropdown-menu {
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.16);
     column-rule: 1px solid $t-divider-color;
+    padding: 10px 0;
 
     @include media('>=tablet') {
+      padding: 24px 0;
+
       &--product {
         columns: 3;
         left: 50%;
