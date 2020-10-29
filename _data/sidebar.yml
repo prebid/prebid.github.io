@@ -43,68 +43,68 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: "Codes of Conduct"
+  title: Codes of Conduct
   link:
-  isHeader: 0
+  isHeader: 1
+  headerId: codes-of-conduct
   isSectionHeader: 0
-  isCatHeader: 1
   sectionTitle:
   subgroup: 1
 
 - sbSecId: 0
-  title: 'Header Bidding'
+  title: Header Bidding
   link: /wrapper_code_of_conduct.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: 'Module Rules'
-  link: /dev-docs/module-rules.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 0
-
-- sbSecId: 0
-  title: "Policies"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
   subgroup: 1
 
 - sbSecId: 0
-  title: 'Contributing'
+  title: Module Rules
+  link: /dev-docs/module-rules.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
+
+- sbSecId: 0
+  title: Policies
+  link:
+  isHeader: 1
+  headerId: policies
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 0
+  title: Contributing
   link: /contributing/contribute.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 0
-  title: 'Prebid.org IP Policy'
+  title: Prebid.org IP Policy
   link: /overview/ip-policy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 0
-  title: 'Privacy Policy'
+  title: Privacy Policy
   link: /privacy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 0
-  title: 'Cookies'
+  title: Cookies
   link: /cookies.html
   isHeader: 0
   isSectionHeader: 0
-  subgroup: 0
+  subgroup: 2
 
 
 #--------------Prebid.js--------------|
