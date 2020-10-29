@@ -27,7 +27,7 @@ Key links for publisher developers.
 
 + [How Prebid on AMP works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
 + [Prebid AMP Implementation Guide]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html)
-+ [Prebid Server AMP endpoint documentation]({{site.baseurl}}/prebid-server/endpoints/openrtb2/amp.html)
++ [Prebid Server AMP endpoint documentation]({{site.baseurl}}/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
 
 ### Prebid Mobile - integrating display, video, and native ads into iOS and Android apps
 
@@ -51,4 +51,4 @@ Key links for integrating into the Prebid ecosystem.
 
 ### Prebid Server - adding an adapter
 
-+ [Adding a new bid adapter]({{site.baseurl}}/prebid-server/developers/add-new-bidder.html)
++ [Adding a new bid adapter]({{site.baseurl}}/prebid-server/developers/add-new-bidder-go.html)

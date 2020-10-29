@@ -2,7 +2,7 @@
 layout: bidder
 title: DecenterAds
 description: Prebid DecenterAds Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: decenterads
 media_types: banner, native, video
 

@@ -2,7 +2,7 @@
 layout: bidder
 title: tribeOS
 description: Prebid tribeOS Bidder Adapter
-hide: true
+pbjs: true
 biddercode: tribeos
 ---
 

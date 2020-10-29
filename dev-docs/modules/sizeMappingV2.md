@@ -3,8 +3,8 @@ layout: page_v2
 page_type: module
 title: Module - Size Mapping
 description: Display Conditional and Responsive Ad Units
-module_code: sizeMapping
-display_name: Size Mapping
+module_code: sizeMappingV2
+display_name: Advanced Size Mapping
 enable_download: true
 sidebarType: 1
 ---
