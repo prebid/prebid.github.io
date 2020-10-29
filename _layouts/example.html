@@ -7,12 +7,21 @@
   <div class="row">
 
     <!-- Left nav -->
-    <div class="col-sm-3 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
-      {% include left_nav.html %}
-    </div>
+			<div class="col-lg-3 sidebar" id="sidebar">
+
+        <div>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse d-lg-block" id="sidebarContent">
+				    {% include left_nav.html %}
+          </div>
+        </div>
+
+			</div>
 
     <!-- Main content -->
-    <div class="col-sm-9">
+    <div class="col-lg-9">
       <div class="pb-content" markdown="1">
 
         <h1>{{ page.description }}</h1>
