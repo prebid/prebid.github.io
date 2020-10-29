@@ -2,39 +2,38 @@
 
 {% include nav.html %}
 
-		
-<div class="container bs-docs-container">
-	
-	 
-	
+
+<div class="container pb-docs-container">
+
+
+
 	<div class="row ">
-		
-		<div class="wrapper">
-			
-			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">		
+
+			<div class="col-sm-3 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
 				{% include left_nav.html %}
 			</div>
-		
-		
-			<div class="col-sm-9 pb-content" markdown="1">
-				
-				{% if page.is_full_screen %} 
+
+
+      <div class="col-sm-9">
+      <div class="pb-content" markdown="1">
+
+				{% if page.is_full_screen %}
 					{{content}}
 				{% else %}
-			
+
 				<div class="row">
-		
+
 		            <div class="col-md-9" role="main">
 		                <div class="bs-docs-section">
-		
+
 		                    <h3>{{ page.title }}</h3>
-		
+
 		                    {% if page.s2s_only == true %}
 								<div class="pb-bidder-s2">
 									<h3>Note:</h3> This is a S2S adapter only.</h3>
 								</div>
 							{% endif %}
-		
+
 <h3>Features</h3>
 
 <table>
@@ -63,43 +62,39 @@ This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but pre
 {% endif %}
 
 		                    {{content}}
-							
+
 		                </div>
-		
-		                {% if page.show_disqus %} 
-		                    {% include disqus_addon.html %} 
+
+		                {% if page.show_disqus %}
+		                    {% include disqus_addon.html %}
 		                {% endif %}
 		            </div>
-		
+
 		        </div>
-		        
+
 		        {% endif %}
 
 
         	</div>
 
-							
+
 		</div>
-		<!--end wrapper-->
-	</div>	
-	<!--end row-->	
-	
-	<p></p>
-	<hr>
+	</div>
+	<!--end row-->
 
 	{% if page.title != "Credits" %}
 		{% if page.layout != "home" %}
 			{% include footer.html %}
 		{% endif %}
 	{% endif %}
-	
+
 	</div>
 
 
 
 </body>
-		
-		
+
+
 
 
 
