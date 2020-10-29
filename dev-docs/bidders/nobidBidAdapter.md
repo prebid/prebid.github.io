@@ -23,7 +23,7 @@ safeframes_ok: true
 |---------------|----------|-------------|---------|----------|
 | `siteId` | required | siteId is provided by your NoBid account manager(s) |         | `integer` |
 | `placementId` | optional | placementId is provided by your NoBid account manager(s). This parameter allows to report on a specific ad unit |         | `integer` |
-| `video`| optional | Object containing video targeting parameters.  See [Video Object](#nobid-video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object`|
+| `video`| optional | Object containing video targeting parameters. Note that this parameter is not used in Prebid Server.  See [Video Object](#nobid-video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object`|
 
 
 ### Note
