@@ -2,35 +2,34 @@
 
 {% include nav.html %}
 
-<div class="container bs-docs-container">
-	
+<div class="container pb-docs-container">
+
 	<div class="row">
-		
-		<div class="wrapper">
 
 
 	        <!-- Left nav -->
-	        <div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
-					
-				{% include left_nav.html %}											
-				
+	        <div class="col-sm-3 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
+
+				{% include left_nav.html %}
+
 			</div>
-                
+
 	        <!-- Main content -->
-	        <div class="col-sm-9 pb-content" markdown="1">
-	            
-	
-	            <h1>{{ page.description }}</h1> 
-	
+          <div class="col-sm-9">
+           <div class="pb-content" markdown="1">
+
+
+	            <h1>{{ page.description }}</h1>
+
 	            {% if page.why_link %}
 	                <h4>Who should use this example:</h4>
 	                <ul>
 	                    <li>Please refer to the <a href="{{page.why_link}}" target="_blank">product feature launch notes</a>.</li>
 	                </ul>
 	            {% endif %}
-	
+
 	            <h4>This page contains:</h4>
-	
+
 	            <p>
 	                <ul>
 	                    {% for about_bullet in page.about %}
@@ -38,15 +37,15 @@
 	                    {% endfor %}
 	                </ul>
 	            </p>
-	
+
 	            <p>
 	                On the JSFiddle example below, click <strong>Result</strong> to see the result.
 	            </p>
-	
+
 	            <p>
 	                Click <strong>Edit in JSFiddle</strong> to open the example in a new tab.
 	            </p>
-	
+
 	            <p>
 	                For tips and troubleshooting info, see:
 	                <ul>
@@ -58,31 +57,31 @@
 	                    </li>
 	                </ul>
 	            </p>
-	
-	
+
+
 	            <div class="row">
-	
+
 	                <!-- Build warning -->
 	                <div class="col-md-12">
 	                    {% include dev-docs/build-from-source-warning.md %}
 	                </div>
-	
+
 	            </div>
-	
+
 	            <div class="row">
-	
+
 	                <!-- JSFiddle -->
 	                <div id="jsfiddle" class="col-md-12">
 			<h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
 			<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
 
 	                </div>
-	
+
 	            </div>
-		            
+
 	        </div>
 	        <!--end main content-->
-	        
+
     	</div>
 	</div>
 </div>
