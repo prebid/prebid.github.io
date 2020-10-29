@@ -352,7 +352,7 @@ for each Bidder by using the `/cookie_sync` endpoint, and calling the URLs that 
 
 #### Native Request
 
-For each native request, the `assets` object's `id` field must not be defined. Prebid Server will set this automatically, using the index of the asset in the array as the ID.
+For each native request, the `assets` object's `id` field is optional and if not defined, Prebid Server will set this automatically, using the index of the asset in the array as the ID.
 
 
 #### Bidder Aliases
