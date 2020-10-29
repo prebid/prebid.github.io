@@ -1,6 +1,10 @@
 .pb-header {
   .navbar {
     background: $t-brand-color--dark;
+
+    @include media('<tablet') {
+      @include padding(10px null);
+    }
   }
 
   .navbar-brand > img {
