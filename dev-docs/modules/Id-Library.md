@@ -37,14 +37,14 @@ In the idLibrary module, the persistant id is fetched from the page and synced w
 1. If the configuration defines `target`, get the element with the named id
    1. If a valid entry (ex. email) exists in the target element, MD5 hash the value and get the user ids from user id module and post data to the configured url
    1. If no valid value is found, add an observer/listener on the element
-       1. Once the observer/listener finds a valid value, the value is MD5 hashed
+       1. once the observer/listener finds a valid value, the value is MD5 hashed
        1. used ids are posted along side the resulting MD5 hash to the url provided
        1. listener is removed from the input element
 1. Else, check if an input element of type text/input has a valid email
    1. If the input listener gets a valid email, it is MD5 hashed 
       1. used ids are posted along side the resulting MD5 hash to the url provided
       1. listener is removed from the input element.
-   1. The mutation observer is called on every page reload and changes on the input element. Once the mutation observer finds a valid value in the body of the page, the hashed MD5 value and user ids are posted to configured url and mutation observer is disconnected from the body.
+   1. The mutation observer is called on every page reload and changes on the input element. Once the mutation observer finds a valid value in the body of the page, the hashed MD5 value and user ids are posted to url provided and mutation observer is disconnected from the body.
       1. If email is not found, add a listener on the input element and mutation observer on the body of the page
   
 ![Image of IDLibrary](/assets/images/dev-docs/IDlib.png)
