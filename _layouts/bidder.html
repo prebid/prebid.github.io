@@ -36,7 +36,7 @@
 
                 <h3>Features</h3>
 
-                <table>
+                <table class="table table-bordered">
                   <tr>
                     <th class="pbTh">Bidder Code</th>
                     <td class="pbTd">{{ page.biddercode }}</td>
@@ -61,7 +61,7 @@
 
                 <font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>
 
-                <table>
+                <table class="table table-bordered">
                   <tr>
                     <td class="pbTd"><code>{{ "hb_pb_" | append: page.biddercode | slice: 0,20 }}</code></td>
                     <td class="pbTd"><code>{{ "hb_bidder_" | append: page.biddercode | slice: 0,20 }}</code></td>
