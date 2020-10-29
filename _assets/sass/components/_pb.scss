@@ -117,3 +117,9 @@
 .pb-alert-tip {
   @extend .alert-info;
 }
+
+.pbTable {
+  @extend .table;
+  @extend .table-bordered;
+  @extend .table-striped;
+}
