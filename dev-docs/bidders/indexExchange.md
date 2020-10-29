@@ -320,7 +320,7 @@ pbjs.setBidderConfig({
                 bidders: ["ix"],
                 config: {
                     ix: {
-                        detectMissingSizes: true
+                        detectMissingSizes: false
                     }
                 }
             });
