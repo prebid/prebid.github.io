@@ -2,15 +2,14 @@
 layout: bidder
 title: Etarget
 description: Prebid Etarget Bidder Adaptor 
-hide: true
+pbjs: true
 biddercode: etarget
-biddercode_longer_than_12: false
 media_types: banner, video
 gdpr_supported: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

@@ -2,13 +2,12 @@
 layout: bidder
 title: ZEDO
 description: Prebid ZEDO Bidder Adapter
-hide: true
+pbjs: true
 biddercode: zedo
-biddercode_longer_than_12: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                                            | Example                     | Type      |

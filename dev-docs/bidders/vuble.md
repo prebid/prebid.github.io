@@ -2,10 +2,10 @@
 layout: bidder
 title: Vuble
 description: Prebid Vuble Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: vuble
-biddercode_longer_than_12: false
 media_types: video
+gdpr_supported: true
 ---
 
 ### Note:

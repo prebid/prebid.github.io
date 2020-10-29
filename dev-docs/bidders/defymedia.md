@@ -2,13 +2,12 @@
 layout: bidder
 title: Defy Media
 description: Prebid Defy Media Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: defymedia
 aliasCode : appnexus
-biddercode_longer_than_12: false
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |

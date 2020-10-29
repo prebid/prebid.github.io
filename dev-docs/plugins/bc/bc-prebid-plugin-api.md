@@ -55,7 +55,7 @@ This method is used to invoke the prebid process and/or the rendering of the sel
 
 If the creative argument is not present, then the plugin will invoke the prebid process using the options that are passed in. The plugin will then render the ad that was selected by the prebid process in the Brightcove player.
 
-If the results of the prebid process is being determined outside of the plugin, either via a third party ad server other than DFP or when the entire prebid process is being run in custom publisher code, then the publisher needs to pass in the creative argument when calling renderAd(). In this case, the plugin will simply render the selected ad in the Brightcove Player.
+If the results of the prebid process is being determined outside of the plugin, either via a third party ad server other than Google Ad Manager or when the entire prebid process is being run in custom publisher code, then the publisher needs to pass in the creative argument when calling renderAd(). In this case, the plugin will simply render the selected ad in the Brightcove Player.
 
 
 - Starts ad playback for the creative provided

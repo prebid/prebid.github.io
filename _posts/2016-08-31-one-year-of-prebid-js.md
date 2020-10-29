@@ -22,13 +22,13 @@ We knew how important this solution would be. Just like our forward-thinking pub
 
 Only one question remained... how would we distribute it? The ad tech market has always been so competitive on revenue and profit, and there were other companies selling their proprietary solutions at a premium price. However, at AppNexus, our ultimate goal has always been to make the Internet a better place. We believe header bidding is on the right track, and the best way to help publishers is to teach them everything we learned, including the code we wrote, the challenges that early adopters have faced, and the efficient ad ops setting we were experimenting with. We also do not believe our solution can fit all, or is the best yet - publishers are smart and they know their pages the most.
 
-Therefore, we open sourced the [Prebid.js](https://github.com/prebid/Prebid.js) code on GitHub and documented everything we learned on [Prebid.org](http://prebid.org). We wanted to help publishers unlock ideas and innovate faster, and to accelerate the growth and adoption of header bidding.
+Therefore, we open sourced the [Prebid.js](https://github.com/prebid/Prebid.js) code on GitHub and documented everything we learned on [Prebid.org](https://prebid.org). We wanted to help publishers unlock ideas and innovate faster, and to accelerate the growth and adoption of header bidding.
 
 And - gulp! - we sent our baby out into the world.
 
 ## The Response
 
-The first week after the launch of [Prebid.js](https://github.com/prebid/Prebid.js) we started receiving GitHub responses from publishers. The responses were positive - several key metrics were telling us publishers were deeply engaged with this product, even from day 1 with the minimum viable product. For example, users on average spent over 5 minutes on the site, and over 35% of the users came back to the [Prebid.org](http://prebid.org) site almost every day during the week - a sign suggesting they were reading and implementing [Prebid.js](https://github.com/prebid/Prebid.js).
+The first week after the launch of [Prebid.js](https://github.com/prebid/Prebid.js) we started receiving GitHub responses from publishers. The responses were positive - several key metrics were telling us publishers were deeply engaged with this product, even from day 1 with the minimum viable product. For example, users on average spent over 5 minutes on the site, and over 35% of the users came back to the [Prebid.org](https://prebid.org) site almost every day during the week - a sign suggesting they were reading and implementing [Prebid.js](https://github.com/prebid/Prebid.js).
 
 And the power of open source started kicking in. On GitHub, publishers started posting comments, fixing bugs, and contributing code, big chunks of code! For example, our first version of [Prebid.js](https://github.com/prebid/Prebid.js) didn't have a popular header bidding partner implemented. Within a week, we received 3 versions of it, submitted by 3 different publishers!
 
@@ -46,4 +46,4 @@ So, what's in store for the future of [Prebid.js](https://github.com/prebid/Preb
 
 We also want to make [Prebid.js](https://github.com/prebid/Prebid.js) excel on mobile pages, and we have a good plan for that. For the remainder of the year, we're going to invest heavily in those efforts so that publishers can enjoy faster page load, higher viewability rate, and much more efficient header bidding integrations.
 
-Ultimately, as we see the continued success of header bidding, we'll continue our commitment to the evolution of header bidding - and our community will see the fruits of this labor in the near future. Happy Birthday to [Prebid.org](http://prebid.org)! Be sure to stay tuned for more exciting developments in this space.
+Ultimately, as we see the continued success of header bidding, we'll continue our commitment to the evolution of header bidding - and our community will see the fruits of this labor in the near future. Happy Birthday to [Prebid.org](https://prebid.org)! Be sure to stay tuned for more exciting developments in this space.

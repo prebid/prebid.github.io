@@ -2,9 +2,8 @@
 layout: bidder
 title: MicroAd
 description: Prebid MicroAd SSP Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: microad
-biddercode_longer_than_12: false
 media_types: banner
 ---
 

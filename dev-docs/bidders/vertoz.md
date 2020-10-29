@@ -2,16 +2,15 @@
 layout: bidder
 title: Vertoz
 description: Prebid Vertoz Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: vertoz
-biddercode_longer_than_12: false
 ---
 
 ### Note:
 
 The Vertoz adapter currently doesn't support multiple sizes per ad placement and will favour the first one if multiple sizes exists.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description         | Example       | Type     |

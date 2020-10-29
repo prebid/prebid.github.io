@@ -1,14 +1,14 @@
 ---
 layout: bidder
 title: Underdog Media
-description: Prebid Underdog Media Bidder Adaptor
-hide: true
+description: Prebid Underdog Media Bidder Adapter
+pbjs: true
 biddercode: underdogmedia
-biddercode_longer_than_12: true
 gdpr_supported: true
+usp_supported: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description | Example | Type     |

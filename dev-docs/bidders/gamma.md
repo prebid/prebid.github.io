@@ -2,12 +2,13 @@
 layout: bidder
 title: Gamma
 description: Prebid Gamma Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: gamma
 media_types: video
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

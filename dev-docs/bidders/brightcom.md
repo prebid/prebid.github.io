@@ -4,9 +4,10 @@ title: Brightcom
 description: Prebid Brightcom Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
-hide: true
+pbjs: true
 biddercode: brightcom
-biddercode_longer_than_12: false
+gdpr_supported: true
+tcf2_supported: true
 ---
 
 ### Note:

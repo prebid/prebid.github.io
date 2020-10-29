@@ -2,15 +2,15 @@
 layout: bidder
 title: Inskin
 description: Inskin Media Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: inskin
-biddercode_longer_than_12: false
+gdpr_supported: true
 ---
 
 ### Note:
 The Inskin bidder adapter requires additional setup and approval from the Inskin Media Integrations team. Please reach out to your account manager for more information and to start using it.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                    | Example | Type      |

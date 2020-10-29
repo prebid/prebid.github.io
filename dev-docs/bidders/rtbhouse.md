@@ -3,14 +3,18 @@ layout: bidder
 title: RTBHouse
 description: Prebid RTB House Bidder Adapter
 gdpr_supported: true
-hide: true
+tcf2_supported: true
+pbjs: true
+pbs: true
 biddercode: rtbhouse
-biddercode_longer_than_12: false
+safeframes_ok: true
 media_types: banner, native
+schain_supported: true
+userIds: id5Id, identityLink
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description         | Example       | Type     |

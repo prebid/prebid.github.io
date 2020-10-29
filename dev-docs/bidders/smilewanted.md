@@ -2,9 +2,9 @@
 layout: bidder
 title: SmileWanted
 description: SmileWanted Bidder Adaptor
-hide: true
+media_types: banner, video
+pbjs: true
 biddercode: smilewanted
-biddercode_longer_than_12: false
 gdpr_supported: true
 
 ---

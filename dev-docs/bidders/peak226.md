@@ -2,12 +2,11 @@
 layout: bidder
 title: Peak226
 description: Prebid Peak Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: peak226
-biddercode_longer_than_12: false
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description         | Example  | Type      |

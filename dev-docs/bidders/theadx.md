@@ -2,14 +2,13 @@
 layout: bidder
 title: TheAdx
 description: Prebid TheAdx Bidder Adapter
-hide: true
-biddercode: theadx
-biddercode_longer_than_12: false
+pbjs: true
+biddercode: theAdx
 gdpr_supported: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                           | Example    | Type  |

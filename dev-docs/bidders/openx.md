@@ -2,13 +2,23 @@
 layout: bidder
 title: OpenX
 description: Prebid OpenX Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: openx
-biddercode_longer_than_12: false
-media_types: video
+media_types: banner, video
+schain_supported: true
 gdpr_supported: true
-userIds: pubcommon
+usp_supported: true
+coppa_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+prebid_member: true
+tcf2_supported: true
+gvl_id: 69
 ---
+
+### Registration
+
+If you have any questions regarding set up, please reach out to your account manager or support@openx.com.
 
 ### Bid Parameters
 #### Banner
@@ -77,12 +87,8 @@ var adUnits = [
       params: {
         unit: '1611023124',
         delDomain: 'PUBLISHER-d.openx.net',
-        openrtb: {
-          imp: [{
-            video: {
-              mimes: ['video/x-ms-wmv, video/mp4']
-            }
-          }]
+        video: { 
+          mimes: ['video/x-ms-wmv, video/mp4']
         }
       }
     }]

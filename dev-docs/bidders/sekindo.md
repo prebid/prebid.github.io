@@ -2,14 +2,13 @@
 layout: bidder
 title: SekindoUM
 description: Prebid SekindoUM Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: sekindoUM
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name      | Scope    | Description | Example | Type     |

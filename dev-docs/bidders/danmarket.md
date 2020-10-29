@@ -2,14 +2,13 @@
 layout: bidder
 title: DAN Marketplace
 description: Dentsu Aegis Network Marketplace Bidder Adapter
-hide: true
+pbjs: true
 biddercode: danmarket
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                                                                                                                           | Example   | Type      |

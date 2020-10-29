@@ -2,15 +2,19 @@
 layout: bidder
 title: Sovrn
 description: Prebid Sovrn Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: sovrn
-biddercode_longer_than_12: false
 gdpr_supported: true
+tcf2_supported: true
+usp_supported: true
+userIds: britepoolId, criteo, id5Id, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
+prebid_member: true
+schain_supported: true
+gvl_id: 13
 ---
 
-
-
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description          | Example    | Type     |

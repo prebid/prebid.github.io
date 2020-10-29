@@ -2,13 +2,12 @@
 layout: bidder
 title: GXOne
 description: GXOne Bidder Adapter
-hide: true
+pbjs: true
 biddercode: gxone
-biddercode_longer_than_12: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                                                                                                                 | Example   | Type      |

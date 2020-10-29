@@ -3,13 +3,14 @@ layout: bidder
 title: Orbidder
 description: Prebid Orbidder Bidder Adaptor
 biddercode: orbidder
-biddercode_longer_than_12: false
-hide: true
+pbjs: true
+pbs: true
 media_types: banner
 gdpr_supported: true
+tcf2_supported: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description             | Example            | Type     |

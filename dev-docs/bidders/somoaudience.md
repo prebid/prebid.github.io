@@ -2,13 +2,13 @@
 layout: bidder
 title: Somo Audience
 description: Somo Audience Bidder Adapter
-hide: true
 biddercode: somoaudience
-biddercode_longer_than_12: false
+media_types: banner, native, video
+pbs: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                            | Example                              | Type     |

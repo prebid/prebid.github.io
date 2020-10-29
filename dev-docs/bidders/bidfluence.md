@@ -2,13 +2,12 @@
 layout: bidder
 title: Bidfluence
 description: Bidfluence Adaptor for Prebidjs
-hide: true
+pbjs: true
 biddercode: bidfluence
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description  | Example                                  | Type     |

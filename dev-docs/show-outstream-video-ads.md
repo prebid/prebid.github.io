@@ -67,16 +67,17 @@ To display an outstream video, two things are needed:
 
 Prebid.js will select the `renderer` used to display the outstream video in the following way:
 
-1. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.
-2. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.
+1. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`. If that renderer is specified as backup only, it will only be used when no other renderer is found. 
+2. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.  Choosing a backup only renderer allows publishers to access demand with or without an attached renderer.
 
 {: .alert.alert-warning :}
 At this time, since not all demand partners return a renderer with their video bid responses, we recommend that publishers associate a `renderer` with their Prebid video adUnits, if possible.  By doing so, any Prebid adapter that supports video will be able to provide demand for a given outstream slot.
 
-Renderers are associated with adUnits through the `adUnit.renderer` object.  This object contains two fields:
+Renderers are associated with adUnits through the `adUnit.renderer` object.  This object contains three fields:
 
 1. `url` -- Points to a file containing the renderer script.
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.
+3. `backupOnly` -- Optional field, if set to true, buyer or adapter renderer will be preferred
 
 {% highlight js %}
 
@@ -89,15 +90,27 @@ pbjs.addAdUnit({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
+        backupOnly: true, // prefer demand renderer
         render: function (bid) {
-            ANOutstreamVideo.renderAd({
-                targetId: bid.adUnitCode,
-                adResponse: bid.adResponse,
+            adResponse = {
+                ad: {
+                    video: {
+                        content: bid.vastXml,
+                        player_height: bid.playerHeight,
+                        player_width: bid.playerWidth
+                    }
+                }
+            }
+            // push to render queue because ANOutstreamVideo may not be loaded yet.
+            bid.renderer.push(() => {
+                ANOutstreamVideo.renderAd({
+                    targetId: bid.adUnitCode, // target div id to render video.
+                    adResponse: adResponse
+                });
             });
         }
-    },
-    ...
+    }
 });
 
 {% endhighlight %}
@@ -132,7 +145,7 @@ For more technical information about renderers, see [the pull request adding the
 
 Invoke your ad server for the outstream adUnit from the body of the page in the same way that you would for a display adUnit
 
-For a live example, see [Outstream with DFP]({{site.github.url}}/examples/video/outstream/outstream-dfp.html).
+For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html).
 
 {% highlight html %}
 
@@ -152,7 +165,7 @@ For a live example, see [Outstream with DFP]({{site.github.url}}/examples/video/
 
 Prebid can serve outstream demand directly without going through a primary ad server.
 
-For a live example, see [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html).
+For a live example, see [Outstream without an Ad Server](/examples/video/outstream/pb-ve-outstream-no-server.html).
 
 In the Prebid.js event queue, you'll need to add a function that:
 
@@ -186,8 +199,7 @@ For more information, see the API documentation for:
 
 Below, find links to end-to-end "working examples" demonstrating Prebid Outstream:
 
-+ [Outstream with DFP]({{site.github.url}}/examples/video/outstream/outstream-dfp.html)
-+ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/outstream-no-adserver.html)
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
++ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
++ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
 
 </div>

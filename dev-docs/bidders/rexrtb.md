@@ -2,11 +2,11 @@
 layout: bidder
 title: REXRTB
 description: Prebid REXRTB Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: rexrtb
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

@@ -2,15 +2,14 @@
 layout: bidder
 title: AdSpend
 description: Prebid AdSpend Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adspend
-biddercode_longer_than_12: false
 media_types: banner
 gdpr_supported: false
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 

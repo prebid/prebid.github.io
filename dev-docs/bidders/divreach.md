@@ -2,14 +2,13 @@
 layout: bidder
 title: DivReach
 description: Prebid DivReach Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: divreach
 aliasCode: adbutler
-biddercode_longer_than_12: false
 media_types: banner
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description    | Example             | Type     |

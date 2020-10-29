@@ -2,13 +2,12 @@
 layout: bidder
 title: Oneplanetonly
 description: Prebid Oneplanetonly Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: oneplanetonly
-biddercode_longer_than_12: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description    | Example       | Type     |

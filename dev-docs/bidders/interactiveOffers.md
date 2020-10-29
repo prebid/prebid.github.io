@@ -2,9 +2,8 @@
 layout: bidder
 title: InteractiveOffers
 description: Prebid InteractiveOffers.com Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: interactiveOffers
-biddercode_longer_than_12: true
 gdpr_supported: false
 media_types: banner
 ---
@@ -12,7 +11,7 @@ media_types: banner
 ### Note:
 Module that connects to interactiveOffers demand sources. Param pubId is required.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description                                                          | Example                           | Type      |

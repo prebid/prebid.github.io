@@ -6,8 +6,11 @@ sidebarType: 1
 ---
 
 
-
 # Prebid.js External Plugins
+{: .no_toc}
+
+* TOC
+{:toc }
 
 Plugins are software components (that can consist of multiple modules) that allow you to extend the functionality of an application. Plugins can be used to enable an application, such as a video player, to work with Prebid.js to implement a pre-bidding solution.
 
@@ -27,6 +30,7 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Prebid Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)
     -   [Render Options Supported by the Brightcove Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)
     -   [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)
+    -   [Build An Adapter for Prebid Plugin]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter.html)
 
 -   **Samples**
     -   [Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)
@@ -36,3 +40,12 @@ The Brightcove Plugin for Prebid is a plugin for the [Brightcove Video Player](h
     -   [Brightcove Prebid Plugin - Sample Integration Using Configured Method via Brightcove Studio]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method.html)
     -   [Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)
 
+## Cross-Player Prebid Component
+
+The Cross-Player Prebid Component is a JavaScript component that you can use to simplify your integration process between Prebid.js and any video player.
+
+- [About]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html)
+- [API]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-api.html)
+- [Configuration]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-config.html)
+- [Communication with Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
+- [Download](https://github.com/prebid/cross-player-prebid-component)

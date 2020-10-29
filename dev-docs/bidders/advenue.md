@@ -2,12 +2,11 @@
 layout: bidder
 title: Advenue
 description: Prebid Advenue Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: advenue
-biddercode_longer_than_12: false
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope      | Description                                                    | Example            |type|
