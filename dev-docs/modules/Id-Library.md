@@ -15,16 +15,15 @@ Maintainer: eng-dmp@magnite.com
 # ID Library
 {:.no_toc}
 
-The ID Library module gathers and generates a map of identities present on the page.  The primary usecase for this adapter is for Publishers who have included multiple UserId subadapters in their prebid.js implementation, and want to store the resulting user ids serverside for modeling or graphing purposes.  The ID Library module, anchors the response of `refreshUserIds()` to a presistant identifier (md5 encrypted) and returns an map of uids.  This map of uids comes in the form of a POST message in JSON format and must be outputed to a publisher configured endpoint. 
+The ID Library module gathers and generates a map of identities present on the page.  The primary usecase for this adapter is for Publishers who have included multiple UserId subadapters in their prebid.js implementation, and want to store the resulting user ids serverside for modeling or graphing purposes.  The ID Library module, anchors the response of `refreshUserIds()` to a presistant identifier (md5 encrypted) and returns an map of uids.  This map of uids comes in the form of a POST message in JSON format and must be output to a publisher configured endpoint. 
 
-A presistant identifier can be extraced in the following ways:
+A persistant identifier can be extracted in the following ways:
 
 1. From a generic `<div>` element
-2. a publisher configured element, for example when configuration `target='username'`, the value is extracted from an element having id `'username'`
-3. from the `<input>` element of type text/email
+2. From a publisher configured HTML element id
+3. From an `<input>` element of type text/email
 
-To get started add the module to your prebid.js wrapper 
-
+To get started, add the module to your prebid.js wrapper. From the command line:
 
 {: .alert.alert-info :}
 gulp build --modules=idLibrary
@@ -32,18 +31,16 @@ gulp build --modules=idLibrary
 
 ## Application Flow
 
-In the idLibrary module, the presistant id is fetched from the page and synced with the user ids as follows:
+In the idLibrary module, the persistant id is fetched from the page and synced with the user ids as follows:
 
-1. Checks for a valid configurations
-   1. conf.url is a mandatory field
-   1. conf.target and conf.debounce is optional field
-1. If the configuration has conf.options.target, get the element with the target
-   1. If valid entry (ex. email) exists in the target element, MD5 hash the value and get the user ids from user id module and post data to the configured url
-1. If no valid value found, add an observer/listener on the element.
-   1. Once the observer/listener finds a valid value, the value is MD5 hashed
-   1. used ids are posted along side the resulting MD5 hash to the url provided
-   1. listener is removed from the input element.
-1. Check if the input element of type text/input has a valid email
+1. Check for a valid configurations
+1. If the configuration defines `target`, get the element with the named id
+   1. If a valid entry (ex. email) exists in the target element, MD5 hash the value and get the user ids from user id module and post data to the configured url
+   1. If no valid value is found, add an observer/listener on the element
+       1. Once the observer/listener finds a valid value, the value is MD5 hashed
+       1. used ids are posted along side the resulting MD5 hash to the url provided
+       1. listener is removed from the input element
+1. Else, check if an input element of type text/input has a valid email
    1. If the input listener gets a valid email, it is MD5 hashed 
       1. used ids are posted along side the resulting MD5 hash to the url provided
       1. listener is removed from the input element.
@@ -63,19 +60,18 @@ In the idLibrary module, the presistant id is fetched from the page and synced w
 ## Example
 
 ```javascript
-pbjs.enableAnalytics([
-          {
-            provider: 'detGraph',
-            options: {
-              url: 'url',
-              target: 'username',
-			  debounce: 250 
-            }
-          }
-        ]);
+ pbjs.setConfig({
+    idLibrary:{
+        url: 'url',
+        debounce: 250,
+        target: 'username'
+    }
+});
 ```
 
 ### Post data format
+
+After the data is collected, it will be POSTed to the configured URL in this format:
 
 ```json
 {
