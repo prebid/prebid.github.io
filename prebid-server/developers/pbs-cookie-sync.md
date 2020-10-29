@@ -62,6 +62,7 @@ Cookie sync for AMP works in a way quite similar to Prebid.js.
 
 Note that the only two values currently valid for 'endpoint' are 'appnexus' and 'rubicon' -- other host companies should update their copy to include their endpoint.
 
+See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for more information.
 
 2) The publisher places the 'load-cookie' script into the page:
 
@@ -74,6 +75,8 @@ Note that the only two values currently valid for 'endpoint' are 'appnexus' and 
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
+
+Note: if the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
 
 3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works the same as described for Prebid.js above.
 
