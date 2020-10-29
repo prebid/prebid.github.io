@@ -58,7 +58,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -1169,6 +1169,58 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Verizon Media ID
+
+Verizon Media's ID is a person based ID and doesn't depend on 3rd party cookies.
+
+Verizon Media's ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. The Verizon Media ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
+
+The Verizon Media ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
+
+Please reach out to VerizonMedia-UIDsupport@verizonmedia.com for assistance with setup.
+
+Add Verizon Media ID to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,verizonMediaIdSystem
+
+
+#### Verizon Media ID configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'verizonMediaId'` |
+| params | Required | Object | Container of all module params. ||
+| params.pixelId | Required | Number | The Verizon Media supplied publisher specific pixel Id  | `8976` |
+| params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
+| storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
+| storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
+| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'vmuid'` |
+| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
+
+#### Verizon Media ID examples
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "verizonMediaId",
+            params: {
+              pixelId: 8976,
+              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
+            },
+            storage: {             
+              type: "cookie",             
+              name: "vmuid",            
+              expires: 1               
+            } 
+        }]
+    }
+})
+```
+
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -1208,6 +1260,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
+| Verizon Media ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 
 For example, the adapter code might do something like:
 
@@ -1297,8 +1350,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                         "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
                     }
                 }]
-            },
-            {
+            },{
                "source": "pub.com",  // Publisher must configure their domain here
                 "uids": [{
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
@@ -1307,7 +1359,13 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                         "stype": "dmp" //currently supported values (dmp,ppuid,other)
                     }
                 }]
-            }]
+            },{
+               "source": "verizonmedia.com",
+               "uids": [{
+                   "id": "61cef5656fb05f16d53938069f1684df4b2257e27"
+               }]
+             }
+          ]
         }
     }
 }
