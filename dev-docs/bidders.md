@@ -9,7 +9,7 @@ sidebarType: 1
 
 This page contains documentation on the specific parameters required by each supported bidder.
 These docs only apply to Prebid.js bidders. For Prebid Server, AMP, or Prebid Mobile, see the
-[Prebid Server Bidders]({{site.baseurl}}/dev-docs/prebid-server-bidders.html) page.
+[Prebid Server Bidders](/dev-docs/pbs-bidders.html) page.
 
 For each bidder listed below, you'll find the following information:
 
@@ -50,7 +50,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 | **SChain Support** | {% if page.schain_supported  == true %}yes{% else %}no{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% else %}no{% endif %} |
 | **Safeframes OK** | {% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
 | **Supports Deals** | {% if page.bidder_supports_deals == false %}no{% elsif page.bidder_supports_deals == true %}yes{% else %}check with bidder{% endif %} | **Prebid.js Adapter** | yes |
-| | | **Prebid Server Adapter** | {% if page.pbs == true %}yes{% else %}no{% endif %} |
+| **IAB GVL ID** | {% if page.gvl_id %}{{page.gvl_id}}{% else %}check with bidder{% endif %} | **Prebid Server Adapter** | {% if page.pbs == true %}yes{% else %}no{% endif %} |
 
 <h3>"Send All Bids" Ad Server Keys</h3>
 

@@ -2,7 +2,6 @@
 layout: page_v2
 sidebarType: 5
 title: Prebid Server | Endpoints | OpenRTB2 | Auction
-
 ---
 
 # Prebid Server | Endpoints | /openrtb2/auction
@@ -16,10 +15,9 @@ title: Prebid Server | Endpoints | OpenRTB2 | Auction
 
 This endpoint runs an auction with the given OpenRTB 2.5 bid request.
 
-### Sample request
+### Sample Request
 
-This is a sample OpenRTB 2.5 bid request for a Xandr (formerly AppNexus) test placement. (Note, the Xandr Ad Server will only
-respond with a bid if the "test" field is set to 1.)
+This is a sample OpenRTB 2.5 bid request:
 
 ```
 {
@@ -108,6 +106,79 @@ This is the corresponding response to the above sample OpenRTB 2.5 bid request, 
   }
 }
 ```
+### OpenRTB Fields
+
+Prebid Server recognizes several standard OpenRTB2.5 fields.
+
+#### Currency
+
+The `cur` field is read and the first element of the array is taken to be the
+"Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html). 
+
+#### Expiration
+
+The OpenRTB2.5 `imp[].exp` field is an "Advisory as to the number of seconds that may elapse
+between the auction and the actual impression."
+
+This field is used in slightly different ways by PBS-Go and PBS-Java:
+
+##### PBS-Go
+{:.no_toc}
+
+How long an item is stored in Prebid Cache is determined by:
+
+1. bidResponse.seatbid[].bid[].exp + 60: as set by the bidder's adapter
+2. request.imp[].exp + 60: as set by the incoming request
+
+A 60-second buffer is added to make sure cache retrievals work towards the end of the
+cache period.
+
+##### PBS-Java
+{:.no_toc}
+
+How long an item is stored in Prebid Cache is determined by this hunt path:
+
+1. bidResponse.seatbid[].bid[].exp: set by the bidder's adapter
+2. request.imp[].exp: set by the incoming request
+3. request.ext.prebid.cache.{bids,vastxml}.ttlseconds
+4. account config: {banner,video}-cache-ttl
+5. global config: cache.{banner,video}-ttl-seconds
+
+#### Test
+
+This flag triggers Prebid Server to dump additional debug info into the OpenRTB response. e.g.
+
+```
+  "ext": {
+    "debug": {
+      "httpcalls": {
+        "bidderA": [
+          ...
+        ]
+      },
+      "resolvedrequest": {
+        ...
+      },
+      "responsetimemillis": {
+        ...
+      }
+      ...
+```
+
+#### Privacy fields
+
+Prebid Server reads the OpenRTB privacy fields:
+
+- regs.coppa
+- regs.ext.gdpr 
+- regs.ext.us_privacy
+- user.ext.consent
+- device.lmt
+
+#### Other OpenRTB Fields
+
+Prebid Server doesn't do any special processing on any other fields, but passes them 
+all to the bid and analytics adapters.
 
 ### OpenRTB Extensions
 
@@ -127,9 +198,8 @@ The only exception here is the top-level `BidResponse`, because it's bidder-inde
 
 Exceptions are made for extensions with "standard" recommendations:
 
-- `request.user.ext.digitrust` -- To support Digitrust
 - `request.regs.ext.gdpr` and `request.user.ext.consent` -- To support GDPR
-- `request.regs.us_privacy` -- To support CCPA
+- `request.regs.ext.us_privacy` -- To support CCPA
 - `request.site.ext.amp` -- To identify AMP as the request source
 - `request.app.ext.source` and `request.app.ext.version` -- To support identifying the displaymanager/SDK in mobile apps. If given, we expect these to be strings.
 
@@ -282,7 +352,7 @@ for each Bidder by using the `/cookie_sync` endpoint, and calling the URLs that 
 
 #### Native Request
 
-For each native request, the `assets` object's `id` field must not be defined. Prebid Server will set this automatically, using the index of the asset in the array as the ID.
+For each native request, the `assets` object's `id` field is optional and if not defined, Prebid Server will set this automatically, using the index of the asset in the array as the ID.
 
 
 #### Bidder Aliases
@@ -535,10 +605,43 @@ In this scenario, Prebid Server sends the first schain object to `bidderA` and t
 
 If there's already an source.ext.schain and a bidder is named in ext.prebid.schains (or covered by the wildcard condition), ext.prebid.schains takes precedent.
 
+#### User IDs
+
+Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid.org/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
+
+```
+{
+    "user": {
+        "ext": {
+            "eids": [{
+                "source": "adserver.org",
+                "uids": [{
+                    "id": "111111111111",
+                    "ext": {
+                        "rtiPartner": "TDID"
+                    }
+                }]
+            },
+            {
+                "source": "pubcommon",
+                "id":"11111111"
+            }
+            ]
+        }
+    }
+}
+```
+
 #### Rewarded Video (PBS-Java only)
 
 Rewarded video is a way to incentivize users to watch ads by giving them 'points' for viewing an ad. A Prebid Server
 client can declare a given adunit as eligible for rewards by declaring `imp.ext.prebid.is_rewarded_inventory:1`.
+
+#### Debug Flag (PBS-Java only)
+
+The OpenRTB `test` flag has a special meaning that bidders may react to: they may not perform a normal auction, or may not pay for test requests.
+
+You can turn on the extra Prebid Server debug log without the formal `test` behavior by instead setting `ext.prebid.debug:1`.
 
 #### Stored Responses (PBS-Java only)
 
@@ -665,37 +768,6 @@ Setting up the storedresponse DB entries is the responsibility of each Prebid Se
 See Prebid.org troubleshooting pages for how to utilize this feature within the context of the browser.
 
 
-#### User IDs
-
-Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid.org/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
-
-```
-{
-    "user": {
-        "ext": {
-            "eids": [{
-                "source": "adserver.org",
-                "uids": [{
-                    "id": "111111111111",
-                    "ext": {
-                        "rtiPartner": "TDID"
-                    }
-                }]
-            },
-            {
-                "source": "pubcommon",
-                "id":"11111111"
-            }
-            ],
-            "digitrust": {
-                "id": "11111111111",
-                "keyv": 4
-            }
-        }
-    }
-}
-```
-
 #### First Party Data Support (PBS-Java only)
 
 This is the Prebid Server version of the Prebid.js First Party Data feature. It's a standard way for the page (or app) to supply first party data and control which bidders have access to it.
@@ -746,6 +818,65 @@ Prebid Server enforces the data permissioning. So before passing the values to t
 
 Each adapter must be coded to read the values from these locations and pass it to their endpoints appropriately.
 
+#### Custom Targeting (PBS-Java only)
+
+An OpenRTB extension, whether in the the original request or the [stored-request](/prebid-server/features/pbs-storedreqs.html), can customize the ad server targeting generated by PBS.
+
+The OpenRTB field is `ext.prebid.adservertargeting`. Here's an example:
+
+```
+   ext.prebid.adservertargeting:  [{
+              "key": "hb_amp_ow",           // the targeting key
+              "source": "bidrequest",       // pull the value from the path specified in the bid request object
+              "value": "ext.prebid.amp.data.ow"  // path to value in the bidrequest
+            },{
+               "key": "hb_static_thing",
+               "source": "static",          // just use the 'value' provided
+               "value": "my-static-value"
+            },{
+               "key": "{{BIDDER}}_custom1", // {{BIDDER}} is a macro to be resolved
+               "source": "bidresponse",     // pull the value from the path specified in the bid response object
+               "value": "seatbid.bid.ext.custom1"
+            }
+   }]
+```
+`ext.prebid.adservertargeting` is an array objects. Each object has the following format:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| key | yes | Defines the key part of the targeting key-value-pair. May contain a ``{{BIDDER}}` macro which is resolved to the biddercode. | "hb_custom_thing" | string |
+| source | yes | Defines where to get the value part of the key-value-pair. Options are "static", "bidrequest", and "bidresponse". | "bidresponse" | string |
+| value | yes | Along with `source`, defines the value part of the targeting key-value-pair. If source=bidrequest or source=bidresponse, `value` is taken to be an openrtb path. | "seatbid.bid.ext.custom1" | string |
+
+In order to pull AMP parameters out into targeting, Prebid Server places AMP query string parameters in ext.prebid.amp.data. e.g.
+```
+    "ext": {
+	"prebid": {
+	    "amp": {
+		"data": {
+		    "adc": "GA1.2.662776284.1602172186",
+		    "curl": "https://example.com/index.html",
+		    "debug": "1",
+		    "pvid": "",  // page view ID
+		    "ms": "",    // multi-size
+		    "ow": "",    // override-width
+		    "oh": "",    // override-height
+		    "w": "300",
+		    "h": "50",
+		    "gdpr_consent": "",
+		    "purl": "https://example.com/index.html",
+		    "slot": "/11111/amp_test",
+		    "timeout": "1000",
+		    "targeting": "{\"site\":{\"attr\":\"val\"}}",
+		    "tag_id": "amp-AMP_Test-300x250",
+		    "account": "22222"
+		}
+	    }
+	}
+    }
+```
+
 ### OpenRTB Ambiguities
 
 This section describes the ways in which Prebid Server **implements** OpenRTB spec ambiguous parts.
@@ -786,6 +917,6 @@ In the OpenRTB spec, `request.imp[i].secure` says:
 In Prebid Server, an `https` request which does not define `secure` will be forwarded to Bidders with a `1`.
 Publishers who run `https` sites and want insecure ads can still set this to `0` explicitly.
 
-### See also
+### Further Reading
 
 - [The OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)

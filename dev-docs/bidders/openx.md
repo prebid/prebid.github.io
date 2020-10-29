@@ -13,6 +13,7 @@ coppa_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 tcf2_supported: true
+gvl_id: 69
 ---
 
 ### Registration
