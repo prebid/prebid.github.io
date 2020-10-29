@@ -7,10 +7,8 @@
   @include make-row
 }
 
-.pb-docs-container {
-  .sidebar, .pb-content {
-    margin-bottom: 180px;
-  }
+.pb-docs-container + .pb-footer {
+  margin-top: 180px;
 }
 
 .pb-content {
