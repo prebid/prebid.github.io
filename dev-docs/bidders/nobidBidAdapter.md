@@ -12,7 +12,7 @@ gvl_id: 816
 usp_supported: true
 schain_supported: true
 coppa_supported: true
-userId: all
+userId: criteo, unifiedId, id5Id
 safeframes_ok: true
 ---
 
