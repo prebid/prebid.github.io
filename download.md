@@ -334,6 +334,14 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="oolo" class="analytics-check-box" /> oolo Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
     </label>
   </div>
