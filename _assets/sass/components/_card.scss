@@ -47,6 +47,7 @@
 .card-deck--formats {
   .card {
     margin-bottom: $card-deck-margin;
+    z-index: 2;
   }
 
   .card-body {
