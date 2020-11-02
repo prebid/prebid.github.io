@@ -6,6 +6,10 @@ title: Prebid Server | Use Cases | Mobile SDK
 ---
 
 # Use Case: Prebid Server | Prebid Mobile SDK
+{: .no_toc}
+
+* TOC
+{:toc}
 
 Unlike Prebid.js, the [Prebid Mobile SDK](/prebid-mobile/prebid-mobile.html) doesn't make requests to demand sources directly. Instead, it relies entirely on Prebid Server to handle the bidder communication.
 

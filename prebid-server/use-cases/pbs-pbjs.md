@@ -6,6 +6,10 @@ title: Prebid Server | Use Cases | Prebid.js
 ---
 
 # Use Case: Prebid Server | Prebid.js
+{: .no_toc}
+
+* TOC
+{:toc}
 
 When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
 
@@ -166,7 +170,7 @@ Next comes the auction and response:
 1. Enforce privacy regulations
 1. Call the bidders
 1. Collect responses
-1. Cache teh VAST XML as instructed (for video)
+1. Cache the VAST XML as instructed (for video)
 1. Prepare the OpenRTB response
 
 ### The Page Gets the Response

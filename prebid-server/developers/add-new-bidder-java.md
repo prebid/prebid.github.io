@@ -88,6 +88,23 @@ Bidder response processing:
 1. Extract bids from response;
 2. Set each bid type and currency;
 
+### Bid Request Standards
+
+Prebid clients ([Prebid.js](/use-cases/pbs-pbjs.html), [Prebid SDK](/use-cases/pbs-sdk.html), and [AMP](/use-cases/pbs-amp.html)) pass a number of parameters
+that bid adapters should take into account:
+
+- Currency: The publisher's desired bid currency is in the OpenRTB `cur` field. I
+f your bid is in a different currency, you must set the bid currency in the respo
+nse.
+- Bid Floor: `imp[].bidfloor` and `imp[].bidfloorcur` - please make use of this v
+alue before responding with a bid.
+- First Party Data: bidders should look in these locations for first party data: `imp[].ext.context.data.*`, `site.ext.data.*`, `app.ext.data.*`, and `user.ext.data.*`.
+- Supply Chain: `source.ext.schain`
+- GDPR: `regs.ext.gdpr` and `user.ext.consent`
+- CCPA: `regs.ext.us_privacy`
+- COPPA: `regs.coppa`
+- Test: Bidders should be aware that the OpenRTB `test` flag indicates non-production traffic.
+
 ### Bid Response Metadata
 
 In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
@@ -187,6 +204,13 @@ If at least one `request.imp[i].ext.{bidder}` is defined in your Request, then y
 To test user syncs, [call /setuid](/prebid-server/endpoints/pbs-endpoint-setuid.html) using the FamilyName of your Bidder.
 The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidder should have
 `BidRequest.User.BuyerUID` with the value you saved.
+
+## Document your bidder
+
+There are two documents required before we’ll accept your pull request:
+
+1. Repo metadata - create a new file https://github.com/prebid/prebid-server/blob/master/static/bidder-info/BIDDERCODE.yaml based on one of the other ones there. Note that you must provide an email that’s not a single individual – we need robust maintainer contact info read by multiple people like “support@example.com”.
+1. User documentation - required to appear in the [Prebid Server adapters page](/dev-docs/pbs-bidders.html). If you already have one of these files from having a PBS-Go adapter, you're done. Otherwise, see [that page](/prebid-server/developers/add-new-bidder-go.html#document-your-adapter) for details.
 
 ## Contribute
 

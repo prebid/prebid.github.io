@@ -27,7 +27,7 @@ For a more general reference, see the [Prebid AMP Implementation Guide
 | curl | optional | `String` | Added to OpenRTB request as site.page |
 | slot | optional | `String` | Added to OpenRTB request as imp[0].tagid |
 | timeout | optional | `String` | Added to OpenRTB request as tmax |
-| targeting | optional | `String` | First Party Data |
+| targeting | optional | `String` | First Party Data (PBS-Java only) |
 | gdpr_consent | optional | `String` | Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
 | account | optional | `String` | Can be used to pass the Prebid-Server specific account ID. This is useful if `tag_id` parameters aren't unique across accounts. |
 | debug | optional | `integer` | If 1, returns additional debug info. |
@@ -77,6 +77,84 @@ An example Stored Request is given below:
             }
         }
     ]
+}
+```
+
+#### First Party Data
+
+(Currently only supported in PBS-Java)
+
+You can send first party data into an AMP request by encoding a JSON
+targeting block like this:
+
+```
+GET /openrtb2/amp?tag_id=7470-Eater_AMP_ROS_ATF&w=300&h=250&ow=&oh=&ms=&slot=%2F172968584%2Feater%2Fgoogle%2Famp_med_rec_02&targeting=%7B%22site%22%3A%7B%22keywords%22%3A%22article%2C%20las%20vegas%22%2C%22cat%22%3A%7B%22blah%22%3A%221%22%7D%2C%22other-attribute%22%3A%22other-value%22%2C%22ext%22%3A%7B%22data%22%3A%7B%22entry_group%22%3A%5B%22front-page%22%2C%22featured-stories%22%5D%2C%22page_type%22%3A%22AMP%22%7D%7D%7D%2C%22user%22%3A%7B%22gender%22%3A%22m%22%7D%2C%22bidders%22%3A%5B%22rubicon%22%2C%22appnexus%22%5D%2C%22keywords%22%3A%22las%20vegas%20hospitality%20employees%22%2C%22foo%22%3A%7B%22bar%22%3A%22baz%22%7D%7D...
+```
+
+Prebid Server will expand the targeting value and merge the data into
+the resulting OpenRTB JSON for the appropriate bidders.
+
+For example, if this AMP targeting is provided:
+```
+{
+    "site": {
+      "keywords": "article, las vegas", // (1)
+      "cat": { "blah": "1" }, // invalid data type, will be dropped
+      "other-attribute": "other-value", // not openrtb2, remove
+      "ext": {
+        "data": {
+          "entry_group": ["front-page","featured-stories"], // (4)
+          "page_type": "AMP" // (5)
+        } 
+     }
+    },
+    "user": {
+      "gender": "m", // (2)
+    },
+    "bidders": ["rubicon","appnexus"], // (3)
+    "keywords": "las vegas hospitality employees", // (6)
+    "foo": { // (7)
+      "bar": "baz"
+    }
+}
+```
+The numbered elements from the raw targeting data above are merged into the resulting OpenRTB like this:
+```
+{
+  "imp": [...],
+  "site": {
+    "publisher": { … },
+    "keywords": "article, las vegas" // (1)
+    "ext":{
+      "data": {
+        "entry_group": ["front-page","featured-stories"], // (4)
+        "page_type": "AMP" // (5)
+      }
+    }
+  },
+  "user": {
+    "gender": "m" // (2)
+  },
+  "ext": {
+    "prebid": {
+      "data": {
+        "bidders": ["rubicon",appnexus"], // (3)
+      }
+    }
+  },
+  "imp": [
+    ...
+    "ext": {
+       "context": {
+         "data": {
+           "keywords": "las vegas hospitality employees", // (6)
+           "foo": { // (7)
+             "bar": "baz"
+           }
+         }
+       }
+    }
+  ]
 }
 ```
 
@@ -198,3 +276,4 @@ Specifically:
 ## Further Reading
 - [Prebid and AMP](/formats/amp.html)
 - [Prebid Server AMP Use Case Overview](/prebid-server/use-cases/pbs-amp.html)
+- [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html)

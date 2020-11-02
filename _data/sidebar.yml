@@ -28,32 +28,8 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: About Prebid.org
-  link: /overview/what-is-prebid-org.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
   title: Project Principles
   link: /principles.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: Membership
-  link: /partners/partners.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: Prebid Management Committees
-  link: /overview/prebid-management-committees.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -81,13 +57,6 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: '&nbsp;&nbsp;Community'
-  link: /overview/community-code-of-conduct.html
-  isHeader: 0
-  isSectionHeader: 0
   subgroup: 0
 
 - sbSecId: 0
@@ -137,30 +106,6 @@
   isSectionHeader: 0
   subgroup: 0
 
-- sbSecId: 0
-  title: "<span style='color:#EA9622;'>Other</span>"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 0
-  title: '&nbsp;&nbsp;Managed Services'
-  link: /prebid/managed.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 0
-
-- sbSecId: 0
-  title: '&nbsp;&nbsp;Events'
-  link: /prebid/events.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 0
-
-
 
 #--------------Prebid.js--------------|
 
@@ -195,6 +140,14 @@
 - sbSecId: 1
   title: Getting Started
   link: /dev-docs/getting-started.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
+  title: Consent Management Best Practices
+  link: /dev-docs/cmp-best-practices.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -398,6 +351,14 @@
   subgroup: 4
 
 - sbSecId: 1
+  title: How to Add A Real Time Data submodule
+  link: /dev-docs/add-rtd-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
   title: Prebid Modules
   link:
   isHeader: 1
@@ -497,6 +458,14 @@
 - sbSecId: 1
   title: Google Ad Manager Video
   link: /dev-docs/modules/dfp_video.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Instream Video Ads Tracking
+  link: /dev-docs/modules/instreamTracking.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -638,6 +607,14 @@
 - sbSecId: 1
   title: Prebid Ad Slot
   link: /features/pbAdSlot.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: First Party Data
+  link: /features/firstPartyData.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1138,6 +1115,22 @@
 - sbSecId: 3
   title: Setup Line Items For MoPub
   link: /prebid-mobile/adops-line-item-setup-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Setup Rewarded Video Line Items For MoPub
+  link: /prebid-mobile/adops-setup-rewarded-video-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: Setup Full Screen Video Line Items For MoPub
+  link: /prebid-mobile/adops-setup-full-screen-video-mopub.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1795,7 +1788,7 @@
 
 - sbSecId: 5
   title: Privacy Support (GDPR, CCPA, etc)
-  link: /prebid-server/features/privacy/pbs-privacy.html
+  link: /prebid-server/features/pbs-privacy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1804,6 +1797,22 @@
 - sbSecId: 5
   title: Stored Requests
   link: /prebid-server/features/pbs-storedreqs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Deals
+  link: /prebid-server/features/pbs-deals.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: First Party Data
+  link: /prebid-server/features/pbs-fpd.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2084,7 +2093,7 @@
 
 - sbSecId: 7
   title: Blog
-  link: /blog.html
+  link: https://prebid.org/blog/
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

@@ -12,6 +12,9 @@ sidebarType: 0
 
 ## Overview
 
+{: .alert.alert-info :}
+If you're looking for a more high-level overview of Prebid.org, including product features, membership, events, and so on, visit [Prebid.org](https://prebid.org/).
+
 Prebid is more than a product; it's a product suite, a community, and an organization.
 
 - **Product Suite:** A free and open source suite of software products designed to enable publishers to implement header bidding on their websites and from within their apps. Our product line includes:  
@@ -19,7 +22,7 @@ Prebid is more than a product; it's a product suite, a community, and an organiz
    - <span style="color:#EA9622">**Prebid Server:**</span> Provides a hosted or custom server-side solution for header bidding. Utilizing Prebid Server can reduce latency between bid request and ad selection, and speed the presentation of your site and ads.  
    - <span style="color:#EA9622">**Prebid Mobile:**</span> Our native iOS and Android solutions to enable header bidding within a mobile app.
 - **Community:** The developers that maintain and improve our products.  
-- **Organization:**  A collection of leaders within the ad tech industry that promotes our products, works with the ad tech community to expand the solutions our products can provide, and encourages the development of the platform.  
+- **Organization:**  A collection of leaders within the ad tech industry that promotes our products, works with the ad tech community to expand the solutions our products can provide, and encourages the development of the platform. For more about the organization, see the [Prebid.org](https://prebid.org/) website.  
 
 {% include alerts/alert_note.html content="Our flagship product, Prebid.js, is sometimes referred to as simply *Prebid*, but please be aware that the Prebid product line supports header bidding for web, AMP, and mobile apps, using both client- and server-side project components." %}
 
@@ -112,7 +115,7 @@ The PBM header bidding process follows these steps:
 ![Prebid Mobile Flowchart](/assets/images/flowcharts/pb-mobile.png)
 
 ## Further Reading
-+ [Prebid.js]({{site.baseurl}}/prebid/prebidjs.html)
-+ [Prebid Server]({{site.baseurl}}/dev-docs/get-started-with-prebid-server.html)
-+ [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html)
-+ [Managed Prebid Solutions](/prebid/managed.html)
++ [Prebid.js](/prebid/prebidjs.html)
++ [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
++ [Prebid Mobile](/prebid-mobile/prebid-mobile.html)
++ [Managed Prebid Solutions](https://prebid.org/product-suite/managed-services/)

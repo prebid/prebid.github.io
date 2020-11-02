@@ -20,7 +20,7 @@ Nope. The only approval process is a code review. There are separate instruction
 - [Prebid Server - Go](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)
 - [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
 
-As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
 ## How can I debug Prebid Server requests?
@@ -70,35 +70,75 @@ pbjs.setConfig({
 ```
 ## How do user ID cookies and ID syncing work in Prebid Server?
 
-There are 3 answers here. The easy answer is for requests coming into Prebid Server from the Prebid SDK - there's no concept of cookies there, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
+For Prebid SDK there's no concept of cookies, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
 
-For other scenarios, Prebid Server sets up and manages a multi-vendor ID match table in the `uids` cookie in the host company's 
-domain. i.e. adnxs.com, rubiconproject.com, or whichever Prebid Server vendor you're utilizing. When the user has a `uids` cookie, 
-Prebid Server parses it and passes the vendor-specific IDs to the relevant server-side bid adapters.
+For Prebid.js and AMP, see [Prebid Server User ID sync](/prebid-server/developers/pbs-cookie-sync.html)
 
-Syncing in the AMP scenario uses the [load-cookie.html](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) file that's part of 
-the Prebid Universal Creative package. When placed into an AMP-iframe, this file will call /cookie-sync and initiate a sync that 
-creates or updates the `uids` cookie.
+## How does Prebid Server support privacy signals?
 
-The most common source of requests for Prebid Server is from Prebid.js in a scenario where the user doesn't have any cookies for the Prebid Server domain.
-1. The user loads a page with Prebid.js that's going to call Prebid Server -- i.e. the pub has set up s2sConfig.
-2. Immediately after confirming that s2sConfig is setup, Prebid.js calls Prebid Server's /cookie-sync endpoint to initiate syncing
-3. Prebid Server determines there is no `uids` cookie and responds to the browser with a list of pixel syncs for bidders that need to be synced.
-4. Prebid.js places all of the pixels on the page and initiates the auction.
-5. Because the syncs haven't completed, the auction call to Prebid Server will not contain the uids cookie.
-6. The first auction occurs without IDs
-7. At some point later, the pixels come back to Prebid Server through a /setuid redirect, setting (or updating) the uids cookie.
-8. The second page view will have the IDs available.
+See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy.html)
 
+## Do you have any best practices and/or tips to increase the user-match rate?
 
+For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
-{: .alert.alert-info :}
-Note: the company that's hosting Prebid Server can configure it to read and utilize their exchange's 
-native cookie. i.e. if you're using Rubicon Project's Prebid Server, it can read their 'khaos' cookie, and if you're using 
-AppNexus' Prebid Server, it can read their 'uuid2' cookie. In other words, if the host company is an exchange and the user 
-has the exchange cookie, the host company will have an ID one page-view sooner than the other bidders. This gives a slight edge to
-the hosting company in some scenarios, but it's technically unavoidable and better for both buyers and sellers to have one ID available rather than zero.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) is parsed.
+- A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
+- Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
-## How does Prebid Server support privay signals?
+[AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
 
-See the [Prebid Server Privacy Feature Page](/prebid-server/features/privacy/pbs-privacy.html)
+- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html`.
+- Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
+- In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
+
+## How does the Notice URL work for Prebid Server?
+
+**Banner**
+
+If a bidder adapter supplies 'nurl' in the bidResponse object, there are two paths:
+
+1) If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
+2) If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
+
+**Video**
+
+If a bidder adapter supplies 'nurl' in the bidResponse object instead of 'adm',
+this URL will be treated as the location of the VAST XML.
+
+## How does ad server targeting work in Prebid Server?
+
+For OpenRTB responses, Prebid Server is always in "send all bids" mode -- it will return the top bid on each requested imp from each bidder.
+
+It will return ad server targeting in seatbid.bid.ext.prebid.targeting depending on the input scenario:
+
+- if request.ext.prebid.includewinner:true and this bid was declared the "winner" by Prebid Server, then seatbid.bid.ext.prebid.targeting will contain hb_pb, hb_size, and hb_bidder. If the bid was cached, there will also be hb_uuid and/or hb_cache_id
+- if request.ext.prebid.includebidderkeys:true, seatbid.bid.ext.prebid.targeting will contain hb_pb_BIDDER, hb_size_BIDDER, and hb_bidder_BIDDER. If the bid was cached, there will also be hb_uuid_BIDDER and/or hb_cache_id_BIDDER.
+
+The AMP endpoint is somewhat different because it doesn't receive the openrtb - just the targeting. PBS basically resolves the OpenRTB, and then merges all the seatbid.bid.ext.prebid.targeting sections.
+
+## How does Prebid Server determine the winner of a given impression?
+
+**Decision 1**: best bid from each bidder on each impression
+
+Prebid Server returns one bid from each bidder for each impression object. If there
+are multiple bids from a given bidder for a given imp[], here how it chooses:
+
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
+
+**Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
+
+This is only done when ext.prebid.targeting is specified.
+This is most important for AMP, but other clients (e.g. app) may rely on Prebid Server
+choosing the "winner" header bid. That decision is made with the same process as the
+first decision:
+
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
+

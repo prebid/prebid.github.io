@@ -4,11 +4,8 @@ title: Send All Bids to the Ad Server
 head_title: Send All Bids to the Ad Server
 description: Send all bids to the ad server for reporting and data analysis.
 pid: 2
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
-
 
 
 # Send all bids to the ad server - Ad Ops setup
@@ -152,6 +149,8 @@ See note above in regards to replacing *BIDDERCODE* placeholders.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
+
+{% include adops/adops-creative-declaration.html %}
 
 For other ad servers:
 
