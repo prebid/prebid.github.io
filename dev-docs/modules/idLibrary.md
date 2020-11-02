@@ -38,7 +38,7 @@ In the idLibrary module, the persistant id is fetched from the page and synced w
    1. If a valid ID entry (e.g. email) exists in the target element, we're good, go on to step 5.
    1. Otherwise if no valid value is found, add a listener on the element
        1. Once the listener finds a valid value, go on to step 5.
-1. Else, scan the values of all text and input elements on the page. If one of them has a valid persistent ID value, we found it. Go on to step 5.
+1. Else, scan the values of all text and email input elements on the page. If one of them has a valid persistent ID value, we found it. Go on to step 5.
 1. Else, scan the whole body tag for a valid persistent ID value. If one is found go on to step 5.
 1. If a valid persistent ID value has been found, then MD5 hash it, combine it with user IDs from the user ID module and POST to the specified endpoint.
   
