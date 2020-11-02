@@ -19,9 +19,9 @@ The ID Library module gathers and generates a map of identities present on the p
 
 A persistant identifier can be extracted in the following ways:
 
-1. From a generic `<div>` element
-2. From a publisher configured HTML element id
-3. From an `<input>` element of type text/email
+1. From a publisher defined target element
+2. Searches for HTML input (text/email) element
+3. Searches entire document for email using regex
 
 To get started, add the module to your prebid.js wrapper. From the command line:
 
