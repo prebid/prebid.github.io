@@ -1176,23 +1176,23 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### Verizon Media ID
+### Verizon Media's Unified ID
 
-Verizon Media's ID is a person based ID and doesn't depend on 3rd party cookies.
+Verizon Media's Unified ID is a person based ID and doesn't depend on 3rd party cookies.
 
-Verizon Media's ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. The Verizon Media ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
+Verizon Media's Unified ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. Verizon Media's Unified ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
 
-The Verizon Media ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
+Verizon Media's Unified ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
 
 Please reach out to VerizonMedia-UIDsupport@verizonmedia.com for assistance with setup.
 
-Add Verizon Media ID to your Prebid.js package with:
+Add support for Verizon Media's Unified ID to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,verizonMediaIdSystem
 
 
-#### Verizon Media ID configuration
+#### Verizon Media's Unified ID configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
@@ -1206,7 +1206,7 @@ gulp build --modules=userId,verizonMediaIdSystem
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'vmuid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
 
-#### Verizon Media ID examples
+#### Verizon Media's Unified ID examples
 
 ```
 pbjs.setConfig({
@@ -1267,7 +1267,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
-| Verizon Media ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
+| Verizon Media's Unified ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 
 For example, the adapter code might do something like:
 
