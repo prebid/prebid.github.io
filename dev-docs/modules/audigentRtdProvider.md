@@ -70,7 +70,7 @@ pbjs.setConfig(
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| name | String | Real time data module name | Always 'jwplayer' |
+| name | String | Real time data module name | Always 'audigent' |
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
 | params | Object | | |
 | params.mapSegments | Boolean | Dictionary of bidders you would like to supply Audigent segments for. Maps to boolean values, but also allows functions for custom mapping logic. The function signature is (bid, segments) => {}. | Required |
