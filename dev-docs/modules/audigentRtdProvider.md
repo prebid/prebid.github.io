@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Audigent Segmentation RTD Module
+title: Audigent Segmentation Real-time Data Module
 description: Audigent Segmentation RTD Module
 display_name: Audigent Segmentation
 module_code : audigent
@@ -22,13 +22,13 @@ across desktop, mobile and social platforms.
 
 This real-time data module provides quality user segmentation that can be
 attached to bid request objects destined for different SSPs in order to optimize
-targeting. Audigent maintains a large database of first-party Tradedesk Unified
-ID, Audigent Halo ID and other id provider mappings to various third-party
-segment types that are utilizable across different SSPs.  With this module,
-these segments can be retrieved and supplied to the SSP in real-time during
-the bid request cycle.
+targeting and increase publisher revenue. Audigent maintains a large database
+of first-party Tradedesk Unified ID, Audigent Halo ID and other id provider
+mappings to various third-party segment types that are utilizable across
+different SSPs. With this module, these segments can be retrieved and supplied
+to the SSP in real-time during the bid request cycle.
 
-### Publisher Usage
+## Publisher Usage
 
 Compile the audigent RTD module into your Prebid build:
 
@@ -65,25 +65,19 @@ pbjs.setConfig(
 }
 ```
 
-### Parameter Descriptions for the Audigent `dataProviders` Configuration Section
+**Config Syntax details:**
 
-params.mapSegments | Required | Object
-Dictionary of bidders you would like to supply Audigent segments for.
-Maps to boolean values, but also allows functions for custom mapping logic.
-The function signature is (bid, segments) => {}.
+{: .table .table-bordered .table-striped }
+| Name  |Type | Description   | Notes  |
+| :------------ | :------------ | :------------ |:------------ |
+| name | String | Real time data module name | Always 'jwplayer' |
+| waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
+| params | Object | | |
+| params.mapSegments | Boolean | Dictionary of bidders you would like to supply Audigent segments for. Maps to boolean values, but also allows functions for custom mapping logic. The function signature is (bid, segments) => {}. | Required |
+| params.segmentCache | Boolean | This parameter tells the Audigent RTD module to attempt reading segments from a local storage cache instead of always requesting them from the Audigent server. | Optional |
+| params.requestParams | Boolean | Publisher partner specific configuration options, such as optional publisher id and other segment query related metadata to be submitted to Audigent's backend with each request.  Contact prebid@audigent.com for more information. | Optional |
 
-params.segmentCache | Optional | Boolean
-This parameter tells the Audigent RTD module to attempt reading segments
-from a local storage cache instead of always requesting them from the
-Audigent server.
-
-params.requestParams | Optional | Object
-Publisher partner specific configuration options, such as optional publisher id
-and other segment query related metadata to be submitted to Audigent's
-backend with each request.  Contact prebid@audigent.com for more information.
-
-
-### Testing
+## Testing
 
 To view an example of available segments returned by Audigent's backends:
 
