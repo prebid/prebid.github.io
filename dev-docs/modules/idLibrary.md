@@ -51,8 +51,9 @@ In the idLibrary module, the persistant id is fetched from the page and synced w
 | url | yes | The url endpoint is used to post the MD5 hasheds|
 | target | no | Contains the element id from which the presistant value is to be read.|
 | debounce | no | Time in milliseconds the module will wait before searching for the presistant value and user ids|
+| fullscan | no | Allows the publisher to turn off the full page scan |
 
-Please note, A full scan (step 4) of the body element is configured on by default but can be disabled by setting `"fullscan=false"`
+Please note, A full scan (Step 4 above) of the body element is configured on by default but can be disabled by setting `"fullscan: false"`
 
 ## Example
 
