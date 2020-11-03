@@ -69,7 +69,7 @@ pbjs.setConfig(
 }
 ```
 
-### Overriding & Adding Segment Mappers
+## Overriding & Adding Segment Mappers
 As indicated above, it is possible to provide your own bid augmentation
 functions.  This is useful if you know a bid adapter's API supports segment
 fields which aren't specifically being added to request objects in the Prebid
