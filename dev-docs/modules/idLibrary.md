@@ -17,13 +17,13 @@ Maintainer: eng-dmp@magnite.com
 
 The ID Library module gathers and generates a map of identities present on the page.  The primary usecase for this adapter is for Publishers who have included multiple UserId subadapters in their prebid.js implementation, and want to store the resulting user ids serverside for modeling or graphing purposes.  The ID Library module, anchors the response of `refreshUserIds()` to a presistant identifier (md5 encrypted) and returns an map of uids.  This map of uids comes in the form of a POST message in JSON format and must be output to a publisher configured endpoint. 
 
-A persistant identifier can be extracted in the following ways:
+The module attempts to extract a persistant identifier in the following ways:
 
 1. From a publisher defined target element
 2. Searches for HTML input (text/email) element
 3. Searches entire document for email using regex
 
-To get started, add the module to your prebid.js wrapper. From the command line:
+To get started, add the module to your Prebid.js wrapper. From the command line:
 
 {: .alert.alert-info :}
 gulp build --modules=idLibrary
@@ -58,8 +58,8 @@ In the idLibrary module, the persistant id is fetched from the page and synced w
  pbjs.setConfig({
     idLibrary:{
         url: 'url',
-        debounce: 250,
-        target: 'username'
+        target: 'username',
+	debounce: 250
     }
 });
 ```
