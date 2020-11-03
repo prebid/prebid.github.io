@@ -51,7 +51,7 @@ var videoAdUnit = {
   code: 'video1',
   mediaTypes: {
     video: {
-      context: "outstream",
+      context: "instream",
       playerSize: [640, 480]
     }
   },
