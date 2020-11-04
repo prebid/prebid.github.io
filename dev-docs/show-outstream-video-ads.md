@@ -65,8 +65,8 @@ To display an outstream video, two things are needed:
 
 Prebid.js will select the `renderer` used to display the outstream video in the following way:
 
-1. If a `renderer` is associated with the Prebid adUnit's video mediaType, it will be used to display any outstream demand associated with that adUnit with a mediaType of "video".
-2. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.
+1. If a `renderer` is associated with the Prebid adUnit's video mediaType, it will be used to display any outstream demand associated with that adUnit with a mediaType of "video". (This is the preferred method.)
+2. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.  This is legacy, and number 1 is the preferred way.
 3. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.
 
 {: .alert.alert-warning :}
@@ -80,48 +80,13 @@ This object contains these fields:
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.
 3. `backupOnly` -- Optional field, if set to true, buyer or adapter renderer will be preferred
 
-{% highlight js %}
-
-pbjs.addAdUnit({
-    code: 'video1',
-    mediaTypes: {
-        video: {
-            context: 'outstream',
-            playerSize: [640, 480]
-        }
-    },
-    renderer: {
-        url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
-        backupOnly: true, // prefer demand renderer
-        render: function (bid) {
-            adResponse = {
-                ad: {
-                    video: {
-                        content: bid.vastXml,
-                        player_height: bid.playerHeight,
-                        player_width: bid.playerWidth
-                    }
-                }
-            }
-            // push to render queue because ANOutstreamVideo may not be loaded yet.
-            bid.renderer.push(() => {
-                ANOutstreamVideo.renderAd({
-                    targetId: bid.adUnitCode, // target div id to render video.
-                    adResponse: adResponse
-                });
-            });
-        }
-    }
-});
-
-{% endhighlight %}
 
 In a multiFormat adUnit, you might want the renderer to only apply to only one of the mediaTypes.  You can do this by defining the renderer on the media type itself.
 {% highlight js %}
 
 pbjs.addAdUnit({
     code: 'video1',
-    // This renderer would work the same as it does above...
+    // This renderer would apply to all prebid creatives...
     renderer: {
         url: 'example.com/publishersCustomRenderer.js',
         render: function(bid) { renderAdUnit(...)  }
@@ -131,14 +96,15 @@ pbjs.addAdUnit({
             context: 'outstream',
             playerSize: [640, 480],
             // but a renderer passed in here would apply only to this mediaType.
-            // It would override the above renderer.
+            // This renderer would override the above renderer if it exists.
             renderer: {
                 url: 'example.com/videoRenderer.js',
                 render: function (bid) { renderVideo(...)  }
             }
         },
         display: {
-            // With this renderer left out, it would use the renderer defined on the adUnit level.
+            // With the renderer property excluded here, the display bids would
+            // use the renderer defined on the adUnit level.
             ...,
         },
     },
@@ -168,7 +134,7 @@ pbjs.addAdUnit({
 
 {% endhighlight %}
 
-For more technical information about renderers, see [the pull request adding the 'Renderer' type](https://github.com/prebid/Prebid.js/pull/1082)
+For more technical information about renderers, see [the pull request originally adding the 'Renderer' type](https://github.com/prebid/Prebid.js/pull/1082) and [the pull request allowing the 'renderer' type in the mediaType](https://github.com/prebid/Prebid.js/pull/5760).
 
 ## Step 2: Show ads in the page body
 
