@@ -2119,6 +2119,7 @@ To accomplish this, Prebid does the following:
 * New targeting replaces original targeting before targeting is flattened.
 
 The targeting key names and the associated prefix value filtered by `allowTargetingKeys`:
+
 {: .table .table-bordered .table-striped }
 | Name        | Value    |
 |------------+------------|
