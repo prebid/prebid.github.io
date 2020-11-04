@@ -16,16 +16,17 @@ add data to bid requests or add targeting values for the primary ad server.
 {:toc }
 
 ## Overview
-1. RTD module is a generic core module, allowing sub-modules to register and use it to modify bid request/response and set targeting data for the publisher’s ad server.
-2. This is done using hooks (with optional auction delay) and events.
-3. Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc.
-4. Sub-module functions are invoked by the RTD core module.
-5. As a rule, sub-modules should delay the auction as little as possible.
+The point of the Real Time Data (RTD) infrastructure is to make configuration consistent for publishers. Rather than having dozens of different modules with disparate config approaches, being a Real-Time Data sub-module means plugging into a framework 
+for publishers to control how sub-modules behave. For example, publishers can define how long the auction can be delayed and give some 
+sub-modules priority over others.
+
+The RTD infrustruture is a generic module, not useful by itself. Instead, it allows sub-modules to register and modify bid request/response and/or set targeting data for the publisher’s ad server.
+
+Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc. They will set limits on how long sub-modules are allowed to delay the auction, which will most likely be in the tens of milliseconds.
 
 ## Architecture
 
-The RTD module using hooks and event listeners to genrate the flow for the data modificatios.
-On each step it calls the submodules to retrive the data.
+The RTD-core infrastructure uses hooks and event listeners to call the appropriate sub-modules to retrieve the data.
 Here is the flow for how the RTD-core module interacts with its sub-modules:
 
 ![Prebid RTD Architecture Diagram](/assets/images/prebid-rtd-architecture.jpg){: .pb-xlg-img :}
@@ -34,6 +35,11 @@ The activities performed by the RTD-core module are on the left-hand side, while
 that can be provided by your RTD sub-module are on the right-hand side. Note that you don't need to implement all of the functions - you'll want to plan out your functionality and develop the appropriate functions.
 
 ## Creating a Sub-Module
+
+When you create a Real-Time Data sub-module, you will be operating under the umbrella of the Real-Time Data core module. Here are the services core provides:
+- your sub-module will be initialized as soon as pbjs.setConfig({realTimeData}) is called. If you can initialize at the time of code load, that can be done at the bottom of your javascript file.
+- whenever any of your functions is called, it will be passed the config params provided by the publisher. As a result, you should not call getConfig().
+- your functions will also be passed all available privacy information. As a result, you do not need to query to get GDPR, US Privacy, or any other consent parameters.
 
 Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:
 
