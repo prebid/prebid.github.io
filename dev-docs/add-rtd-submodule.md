@@ -166,7 +166,9 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
     - callback: lets RTD-core know which auction the sub-module is done with.
     - config: the sub-module's config params provided by the publisher
     - userConsent object (see above)
-2. Your sub-module may update the reqBidsConfigObj and hit the callback.
+2. Your sub-module may update the reqBidsConfigObj and hit the callback. When you update the bidRequest, you must follow one of these conventions:
+    - Use [First Party Data](/features/firstPartyData.html) conventions, setting AdUnit.fpd.context.data.ATTRIBUTES or AdUnit.fpd.user.data.ATTRIBUTES
+    - Place your data in bidRequest.realTimeData.RTDPROVIDERCODE.ATTRIBUTES
 
 **Code Example**
 
@@ -186,6 +188,7 @@ function init(config, userConsent) {
 
 function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
   // do stuff
+  // put data in AdUnit.fpd.* or realTimeData.RTDPROVIDERCODE.*
   callback();
 }
 
