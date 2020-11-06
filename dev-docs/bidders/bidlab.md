@@ -6,6 +6,7 @@ pbjs: true
 biddercode: bidlab
 gdpr_supported: true
 media_types: banner, video
+tcf2_supported: true
 ---
 
 ### Note:

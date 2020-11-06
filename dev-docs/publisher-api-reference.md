@@ -66,6 +66,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [cache](#setConfig-vast-cache)
     * [instreamTracking](#setConfig-instream-tracking) - requires [Instream Tracking Module](/dev-docs/modules/instreamTracking.html)
     * [site](#setConfig-site)
+    * [auctionOptions](#setConfig-auctionOptions)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -78,6 +79,7 @@ Functions added by optional modules
   * [.adServers.freewheel.getTargeting(options)](#module_pbjs.getTargeting) - requires [Freewheel Module](/dev-docs/modules/freewheel.html)
   * [.getUserIds()](#userId.getUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
   * [.getUserIdsAsEids()](#userId.getUserIdsAsEids) - requires [User Id Module](/dev-docs/modules/userId.html)
+  * [.refreshUserIds(options, callback)](#userId.refreshUserIds) - requires [User Id Module](/dev-docs/modules/userId.html)
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
@@ -542,6 +544,30 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
       }]
   }
 ]
+```
+
+<hr class="full-rule">
+
+<a name="userId.refreshUserIds"></a>
+
+### pbjs.refreshUserIds(options, callback)
+
+{: .alert.alert-info :}
+To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
+
+The `refreshUserIds` function allows you to force either all or a subset of userId submodules to reinitialize their id values. You might want to do this if an event on your page occurred that would change the id value of a submodule. For example, a user logging in.
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| options | optional | Object | Options object |
+| options.submoduleNames | optional | Array of strings | The userId submodule names that should be refreshed. If this option is omitted, all userId submodules are refreshed. |
+| callback | optional | Function | Callback that is called after refreshing user ids has completed |
+
+
+```
+pbjs.refreshUserIds();
+pbjs.refreshUserIds({ submoduleNames: ['britepoolId'] }, () => console.log("Done!"));
 ```
 
 <hr class="full-rule">
@@ -1184,7 +1210,7 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 ### pbjs.getEvents() ⇒ `Array`
 
 The methods `onEvent` and `offEvent` are provided for you to register
-a callback to handle a Prebid.js event. 
+a callback to handle a Prebid.js event.
 
 The `getEvents` method returns a copy of all emitted events.
 
@@ -2037,6 +2063,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 |------------+---------+---------------------------------|
 | auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
 | alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
+| allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control).
@@ -2060,19 +2087,19 @@ Specifically, Prebid will go through the following steps with this feature:
 * Collect all the available targeting keys that were generated naturally by the auction.  The keys are grouped by each of the adUnits that participated in the auction.
 * Prioritize these groups of targeting keys based on the following factors:
   * Bids with deals are prioritized before bids without deals.
-  * Bids with higher CPM are ranked before lower CPM bids.  
+  * Bids with higher CPM are ranked before lower CPM bids.
   **Note** - The sorting follows this order specifically, so a bid with a deal that had a $10 CPM would be sorted before a bid with no deal that had a $15 CPM.
 * Convert the keys for each group into the format that they are passed to the ad server (i.e., an encoded query string) and count the number of characters that are used.
 * If the count is below the running threshold set in the `setConfig` call, that set of targeting keys will be passed along.  If the keys exceed the limit, then they are excluded.
 
- If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.  
+ If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.
 
 ##### Finding the right value
 
 Given the varying nature of how sites are set up for advertising and the varying mechanics and data-points needed by ad servers, providing a generic threshold setting is tricky.  If you plan to enable this setting, it's recommended you review your own setup to determine the ideal value.  The following steps provide some guidance on how to start this process:
 
 * Use Prebid to set up a test page that uses the typical setup for your site (in terms of the number of ad slots, etc.).
-* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.  
+* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.
   * You can do this by enabling the Prebid debug mode, enabling this setting in your `setConfig` with a high value, and then opening the browser's console to review the Console Logs section.
 * Also in the browser console, find your ad server's ad URL in the Network tab and review the details of the request to obtain information about the query data (specifically the number of characters used).
   * You can copy the data to another tool to count the number of characters that are present.
@@ -2081,6 +2108,60 @@ Between these two values (Prebid's targeting key count and the overall ad URL qu
 
 Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
 
+##### Details on the allowTargetingKeys setting
+
+When this property is set up, the `allowTargetingKeys` creates a default targeting key mask based on the default targeting keys defined in CONSTANTS.TARGETING_KEYS and CONSTANTS.NATIVE_KEYS. Any default keys that do not match the mask will not be sent to the adserver. This setting can be helpful if you find that your prebid implementation is by default sending key values that your adserver isn't configured to process. When extraneous key values are sent, the ad server request can be truncated, which can cause potential issues with the delivery or rendering of the ad.
+
+To accomplish this, Prebid does the following:
+* Collect original targeting generated by the auction.
+* Generate new targeting filtered against allowed keys.
+  * Custom targeting keys are always added to targeting.
+  * Default targeting keys are added to targeting only if they match an allowed key named in `setConfig`.
+* New targeting replaces original targeting before targeting is flattened.
+
+The targeting key names and the associated prefix value filtered by `allowTargetingKeys`:
+
+{: .table .table-bordered .table-striped }
+| Name        | Value    |
+|------------+------------|
+| BIDDER | `hb_bidder` |
+| AD_ID | `hb_adid` |
+| PRICE_BUCKET | `hb_pb` |
+| SIZE | `hb_size` |
+| DEAL | `hb_deal` |
+| SOURCE | `hb_source` |
+| FORMAT | `hb_format` |
+| UUID | `hb_uuid` |
+| CACHE_ID | `hb_cache_id` |
+| CACHE_HOST | `hb_cache_host` |
+| title | `hb_native_title` |
+| body | `hb_native_body` |
+| body2 | `hb_native_body2` |
+| privacyLink | `hb_native_privacy` |
+| privacyIcon | `hb_native_privicon` |
+| sponsoredBy | `hb_native_brand` |
+| image | `hb_native_image` |
+| icon | `hb_native_icon` |
+| clickUrl | `hb_native_linkurl` |
+| displayUrl | `hb_native_displayurl` |
+| cta | `hb_native_cta` |
+| rating | `hb_native_rating` |
+| address | `hb_native_address` |
+| downloads | `hb_native_downloads` |
+| likes | `hb_native_likes` |
+| phone | `hb_native_phone` |
+| price | `hb_native_price` |
+| salePrice | `hb_native_saleprice` |
+
+Below is an example config containing `allowTargetingKeys` excluding all default targeting keys except `hb_bidder`, `hb_adid`, and `hb_pb`:
+
+```javascript
+config.setConfig({
+  targetingControls: {
+    allowTargetingKeys: ['BIDDER', 'AD_ID', 'PRICE_BUCKET']
+  }
+});
+```
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
@@ -2366,9 +2447,9 @@ video player can retrieve them when it's ready. Players don't obtain the VAST XM
 the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
 be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
 
-- Server-side caching:  
+- Server-side caching:
   Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do.
-- Client-side caching:  
+- Client-side caching:
   Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. In this scenario, Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
 
 For client-side caching, set the Prebid Cache URL as shown here (substituting the correct URL for the one shown here):
@@ -2449,6 +2530,27 @@ pbjs.setConfig({
            language: "en"
        }
    }
+});
+{% endhighlight %}
+
+<a name="setConfig-auctionOptions" />
+
+#### Auction Options
+
+The `auctionOptions` object passed to `pbjs.setConfig` provides a method to specify bidders that the Prebid auction will no longer wait for before determing the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation.
+
+{: .table .table-bordered .table-striped }
+| Field    | Scope   | Type   | Description                                                                           |
+|----------+---------+--------+---------------------------------------------------------------------------------------|
+| `secondaryBidders` | Required | Array of Strings | The bidders that will be removed from determining when an Auction has completed. |
+
+Example config:
+
+{% highlight js %}
+pbjs.setConfig({
+    'auctionOptions': {
+        'secondaryBidders': ['doNotWaitForMe']
+    }
 });
 {% endhighlight %}
 

@@ -100,6 +100,23 @@ For instructions on setting up pre-bid with one set of line items for each bidde
 
 {% include alerts/alert_tip.html content=successNote %}
 
+## Safeframes
+
+[SafeFrames are defined by the IAB](https://www.iab.com/guidelines/safeframe/) as a "managed API-enabled iframe that opens a line of communication between the publisher page and the iframe-contained ad creative."
+
+When setting up line items in your ad server, you'll need to consider whether to make the creatives safeframes or not. In general, for standard banner and native, safeframes are a good idea. Certain special mediatypes cannot use safeframes.
+
+### Bidders known to be incompatible with safeframes
+
+{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "safeframes_ok", false %}
+<ul>
+{% for page in bidder_pages %}
+<li>{{ page.title }}</li>
+{% endfor %}
+</ul>
+
+There may be others, please check with bidders directly if you have questions about their support.
+
 ## Work together with your dev team
 
 Implementing header bidding requires much more collaboration with your dev team than normal Ad Ops setup. For example:

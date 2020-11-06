@@ -182,11 +182,8 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %}
-    <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% else %}
-    <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% endif %}
+  {% if page.aliasCode %} <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% else %} <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% endif %}
+  {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
   </label>
 </div>
 </div>
@@ -330,6 +327,14 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="medianet" class="analytics-check-box"> Media.net Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="oolo" class="analytics-check-box" /> oolo Analytics
     </label>
   </div>
 </div>
@@ -499,9 +504,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="row">
  <h4>Modules</h4>
  {% for page in module_pages %}
-  {% if page.enable_download == false %}
-    {% continue %}
-  {% endif %}
+  {% if page.enable_download == false %}{% continue %}{% endif %}
  <div class="col-md-4">
  <div class="checkbox">
   <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
@@ -515,6 +518,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> User ID: Neustar Fabrick ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> User ID: Halo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
@@ -522,6 +528,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> User ID: IDx</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> User ID: IntentIQ ID</label>
@@ -545,6 +554,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> User ID: PubProvided ID</label>
+</div></div>  
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> User ID: Quantcast ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
@@ -552,6 +564,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> User ID: Verizon Media ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> User ID: Zeotap ID+</label>
