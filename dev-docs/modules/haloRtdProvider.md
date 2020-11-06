@@ -1,16 +1,15 @@
 ---
 layout: page_v2
-title: Audigent Segmentation Real-time Data Module
-description: Audigent Segmentation RTD Module
-display_name: Audigent Segmentation
-module_code : audigent
+title: Audigent Halo Real-time Data Module
+description: Audigent Halo RTD Segment Module
+display_name: Audigent Halo Segmentation
+module_code : halo
 module_type : rtd
-display_name : Audigent
 enable_download : true
 sidebarType : 1
 ---
 
-# Audigent Segmentation RTD Module
+# Audigent Halo  RTD Segmentation Module
 {:.no_toc}
 
 * TOC
@@ -30,11 +29,11 @@ to the SSP in real-time during the bid request cycle.
 
 ## Publisher Usage
 
-Compile the audigent RTD module into your Prebid build:
+Compile the halo RTD module into your Prebid build:
 
-`gulp build --modules=userId,unifiedIdSystem,rtdModule,audigentRtdProvider,appnexusBidAdapter`
+`gulp build --modules=userId,unifiedIdSystem,rtdModule,haloRtdProvider,appnexusBidAdapter`
 
-Add the Audigent RTD provider to your Prebid config.  For any adapters
+Add the Audigent Halo RTD provider to your Prebid config.  For any adapters
 that you would like to retrieve segments for, add a mapping in the 'mapSegments'
 parameter.  In this example we will configure publisher 1234 to retrieve
 appnexus segments from Audigent. See the "Parameter Descriptions" below for
@@ -51,7 +50,7 @@ pbjs.setConfig(
         auctionDelay: auctionDelay,
         dataProviders: [
             {
-                name: "audigent",
+                name: "halo",
                 waitForIt: true,
                 params: {
                     mapSegments: {
@@ -74,7 +73,7 @@ As indicated above, it is possible to provide your own bid augmentation
 functions.  This is useful if you know a bid adapter's API supports segment
 fields which aren't specifically being added to request objects in the Prebid
 bid adapter.  You can also override segment mappers by passing a function
-instead of a boolean to the Audigent RTD segment module.  This might be useful
+instead of a boolean to the Halo RTD segment module.  This might be useful
 if you'd like to use custom logic to determine which segments are sent
 to a specific backend.
 
@@ -88,7 +87,7 @@ pbjs.setConfig(
         auctionDelay: auctionDelay,
         dataProviders: [
             {
-                name: "audigent",
+                name: "halo",
                 waitForIt: true,
                 params: {
                     mapSegments: {
@@ -125,11 +124,11 @@ pbjs.setConfig(
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| name | String | Real time data module name | Always 'audigent' |
+| name | String | Real time data module name | Always 'halo' |
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
 | params | Object | | |
 | params.mapSegments | Boolean | Dictionary of bidders you would like to supply Audigent segments for. Maps to boolean values, but also allows functions for custom mapping logic. The function signature is (bid, segments) => {}. | Required |
-| params.segmentCache | Boolean | This parameter tells the Audigent RTD module to attempt reading segments from a local storage cache instead of always requesting them from the Audigent server. | Optional. Defaults to false. |
+| params.segmentCache | Boolean | This parameter tells the Halo RTD module to attempt reading segments from a local storage cache instead of always requesting them from the Audigent server. | Optional. Defaults to false. |
 | params.requestParams | Object | Publisher partner specific configuration options, such as optional publisher id and other segment query related metadata to be submitted to Audigent's backend with each request.  Contact prebid@audigent.com for more information. | Optional |
 
 ## Overriding & Adding Segment Mappers
@@ -137,7 +136,7 @@ As indicated above, it is possible to provide your own bid augmentation
 functions.  This is useful if you know a bid adapter's API supports segment
 fields which aren't specifically being added to request objects in the Prebid
 bid adapter.  You can also override segment mappers by passing a function
-instead of a boolean to the Audigent RTD segment module.  This might be useful
+instead of a boolean to the Halo RTD segment module.  This might be useful
 if you'd like to use custom logic to determine which segments are sent
 to a specific backend.
 
@@ -151,7 +150,7 @@ pbjs.setConfig(
         auctionDelay: auctionDelay,
         dataProviders: [
             {
-                name: "audigent",
+                name: "halo",
                 waitForIt: true,
                 params: {
                     mapSegments: {
@@ -187,11 +186,11 @@ pbjs.setConfig(
 
 To view an example of available segments returned by Audigent's backends:
 
-`gulp serve --modules=userId,unifiedIdSystem,rtdModule,audigentRtdProvider,appnexusBidAdapter`
+`gulp serve --modules=userId,unifiedIdSystem,rtdModule,haloRtdProvider,appnexusBidAdapter`
 
 and then point your browser at:
 
-`http://localhost:9999/integrationExamples/gpt/audigentSegments_example.html`
+`http://localhost:9999/integrationExamples/gpt/haloRtdProvider_example.html`
 
 
 
