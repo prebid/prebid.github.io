@@ -1,17 +1,14 @@
 ---
 
 layout: page_v2
-title: About Prebid.js
-description: An overview of Prebid.js
+title: Prebid.js Native Implementation Guide
+description: Prebid.js Native Implementation Guide
 sidebarType: 1
 
 ---
 
 # Prebid.js Native Implementation Guide
 {: .no_toc}
-
-* TOC
-{:toc}
 
 {% capture version2 %}
 This document replaces the original native documentation that described how Prebid.js supported native creatives. That documentation is still valid, but the approach described here is better in every way, so we recommend that all new and revised implementations should follow this approach. Here are the key differences between the original approach and the new, preferred approach:
@@ -24,6 +21,9 @@ This document replaces the original native documentation that described how Preb
 {:/}
 {% endcapture %}
 {% include alerts/alert_important.html content=version2 %}
+
+* TOC
+{:toc}
 
 
 ## Overview
@@ -44,7 +44,7 @@ To determine whether a bidder can supply native demand, check the [bidder parame
 
 ## 1. Set up your ad server ad slot and HTML div
 
-Create your ad server in-page implementation as usual. See the [Prebid Native GAM Implementation Guide](TBD) for instructions for how to do this with Google Ad Manager.
+Create your ad server in-page implementation as usual. See [Setting Up Prebid Native in GAM](/adops/gam-native.html) for instructions for how to do this with Google Ad Manager.
 
 ## 2. Determine where the native template will be defined
 
@@ -57,6 +57,7 @@ There are three options for defining the native template:
 This table summarizes how the 3 approaches work:
 
 **Table 1: Native Implementation Approaches**
+
 {: .table .table-bordered .table-striped }
 | Component | AdServer-Defined Creative Scenario | AdUnit-Defined Creative Scenario | Custom Renderer Scenario |
 | --- | --- |--- |--- |
@@ -71,6 +72,7 @@ This table summarizes how the 3 approaches work:
 The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders which assets are required. This table defines all attributes that could be included in AdUnit.mediatypes.native. Specific examples of the three different scenarios follow.
 
 **Table 2: Prebid.js AdUnit Native MediaType Options**
+
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
@@ -89,6 +91,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 
 
 **Table 3: Native Assets Recognized by Prebid.js**
+
 {% include dev-docs/native-assets.md %}
 
 {: .alert.alert-warning :}
@@ -421,7 +424,7 @@ A few details that may help understand and debug your setup:
 
 ## AdServer Implementation Details
 
-There are detailed [instructions for setting up native in GAM](TBD), but none of the Prebid functionality is specific to GAM. The requirements to use any of these approaches in a different ad server are:
+There are detailed [instructions for setting up native in GAM](/adops/gam-native.html), but none of the Prebid functionality is specific to GAM. The requirements to use any of these approaches in a different ad server are:
 
 1. Put the creative in an iframe and load native-render.js
 1. Invoke the renderNativeAd() function with a hash that includes the following values:
@@ -434,5 +437,5 @@ There are detailed [instructions for setting up native in GAM](TBD), but none of
 
 ## Further Reading
 
-- [Native Format](/formats/native.html)
-- [Implementing Native in GAM](TBD)
+- [Prebid Native Format](/formats/native.html)
+- [Setting Up Prebid Native in GAM](/adops/gam-native.html)
