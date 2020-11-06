@@ -9,7 +9,7 @@ enable_download : true
 sidebarType : 1
 ---
 
-# Audigent Halo  RTD Segmentation Module
+# Audigent Halo RTD Segmentation Module
 {:.no_toc}
 
 * TOC
@@ -29,7 +29,7 @@ to the SSP in real-time during the bid request cycle.
 
 ## Publisher Usage
 
-Compile the halo RTD module into your Prebid build:
+Compile the Halo RTD module into your Prebid build:
 
 `gulp build --modules=userId,unifiedIdSystem,rtdModule,haloRtdProvider,appnexusBidAdapter`
 
