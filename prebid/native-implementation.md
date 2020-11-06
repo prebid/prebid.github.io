@@ -11,7 +11,7 @@ sidebarType: 1
 {: .no_toc}
 
 {% capture version2 %}
-This document replaces the original native documentation that described how Prebid.js supported native creatives. That documentation is still valid, but the approach described here is better in every way, so we recommend that all new and revised implementations should follow this approach. Here are the key differences between the original approach and the new, preferred approach:
+This document replaces the [original native documentation](/dev-docs/show-native-ads.html) that described how Prebid.js supported native creatives. That documentation is still valid, but the approach described here is better in every way, so we recommend that all new and revised implementations should follow this approach. Here are the key differences between the original approach and the new, preferred approach:
 {::nomarkdown}
 <ul>
 <li>The macro format is different: instead of using AdServer-defined macros, Prebid.js now has its own macro format.
