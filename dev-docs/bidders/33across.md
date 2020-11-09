@@ -10,7 +10,7 @@ schain_supported: true
 usp_supported: true
 ---
 ### Prebid Server Note:
-The 33Across Adapter in Prebid Server operates under the assumption of only one item in `$.imp[]` in the request. If more than one `imp` present, the exchange server will responde with a 400 level response since we do not support multi-impression requests.
+The 33Across Adapter in Prebid Server does not support multi-impression requests, and will respond with a 400 level response if more than one impression is present in `$.imp[]` in the request.
 
 ### Bid Params
 
