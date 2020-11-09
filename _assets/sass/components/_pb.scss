@@ -49,6 +49,12 @@
     font-size: (1.25 * $lt-content-font-size);
   }
 
+  h5 {
+    margin-top: 16px;
+    font-size: $lt-content-font-size;
+    font-style: italic;
+  }
+
   ul {
     padding-left: 20px;
     list-style: none;
