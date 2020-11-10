@@ -9,7 +9,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: video
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
+userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, intentiqId, idx, liveIntentId, lotamePanoramaId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 safeframes_ok: true
 bidder_supports_deals: true
