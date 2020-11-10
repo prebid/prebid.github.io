@@ -110,11 +110,15 @@ Each bidRequest for which targeting information was found will conform to the fo
    adUnitCode: 'xyz',
    bidId: 'abc',
    ...,
-   jwTargeting: {
-     segments: ['123', '456'],
-     content: {
-       id: 'jw_abc123'
-     }
+   rtd: {
+       jwplayer: {
+           targeting: {
+               segments: ['123', '456'],
+               content: {
+                   id: 'jw_abc123'
+               }
+           }
+       }   
    }
 }
 ```
@@ -126,10 +130,10 @@ Read the bidRequest.jwTargeting object and pass the values to your endpoint as a
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| jwTargeting | Object | | |
-| jwTargeting.segments | Array of Strings | jwpseg targeting segments | |
-| jwTargeting.content | Object | | |
-| jwTargeting.content.id | String | Unique identifier for the specific media asset | |
+| rtd.jwplayer.targeting | Object | | |
+| rtd.jwplayer.targeting.segments | Array of Strings | jwpseg targeting segments | |
+| rtd.jwplayer.targeting.content | Object | | |
+| rtd.jwplayer.targeting.content.id | String | Unique identifier for the specific media asset | |
   
 ## Example
 
