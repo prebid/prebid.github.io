@@ -18,9 +18,8 @@ sidebarType : 1
 
 ## Overview
 
-The purpose of this Real Time Data Provider is to allow publishers to target against their JW Player media without 
-being forced to integrate with the Player Bidding product. This prebid module makes JW Player's video ad targeting information accessible 
-to Bid Adapters.
+The JW Player RTD module passes contextual and performance based information about individual video impression opportunities to bid adapters in order to increase monetization. 
+To use this module, you'll need to work with [JW Player](https://www.jwplayer.com/video-monetization/) to get an account and discuss the best integration path.
 
 ## Implementation for Publishers:
 
