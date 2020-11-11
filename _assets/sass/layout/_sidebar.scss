@@ -42,6 +42,11 @@
         border-bottom: 1px solid $t-divider-color;
       }
 
+      > .pb-section-title {
+        display: inline-block;
+        padding-right: 20px;
+      }
+
       &.is-active {
         background-color: #333;
         color: $t-text-color--reverse;
@@ -75,6 +80,11 @@
           background-repeat: no-repeat;
           background-position: 0 0;
           content: '';
+        }
+
+        > .pb-section-subtitle {
+          display: inline-block;
+          padding-right: 15px;
         }
 
         + .sidebar-submenu {
