@@ -7,6 +7,18 @@
   @include make-row
 }
 
+@include media('>=tablet') {
+  .pb-docs-container > .row > .col-lg-3.sidebar {
+    flex: 0 0 22%;
+    max-width: 22%;
+
+    + .col-lg-9 {
+      flex: 0 0 78%;
+      max-width: 78%;
+    }
+  }
+}
+
 .pb-docs-container + .pb-footer {
   margin-top: 180px;
 }
