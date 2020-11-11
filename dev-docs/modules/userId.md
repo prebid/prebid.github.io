@@ -1184,7 +1184,7 @@ Verizon Media ConnectID is designed to enable ad tech platforms to recognize and
 
 Verizon Media ConnectID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
 
-Please reach out to VerizonMedia-UIDsupport@verizonmedia.com for assistance with setup.
+Please reach out to VZM-ConnectIDSupport@verizonmedia.com for assistance with setup.
 
 Add support for Verizon Media ConnectID to your Prebid.js package with:
 
