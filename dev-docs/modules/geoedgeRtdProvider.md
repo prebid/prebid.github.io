@@ -21,6 +21,9 @@ sidebarType : 1
 The Geoedge Realtime module lets publishers block bad ads such as automatic redirects, malware, offensive creatives and landing pages.
 To use this module, you'll need to work with [Geoedge](https://www.geoedge.com/publishers-real-time-protection/) to get an account and cutomer key.
 
+{: .alert.alert-warning :}
+Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+
 ## Integration
 
 1) Build the geoedge RTD module into the Prebid.js package with:
