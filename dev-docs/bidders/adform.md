@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Adform
-description: Prebid.js Adform Bidder Adaptor
+description: Prebid Adform Bidder Adaptor
 biddercode: adform
 media_types: banner, video
 gdpr_supported: true
