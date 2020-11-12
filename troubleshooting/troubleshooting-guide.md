@@ -50,7 +50,7 @@ This will add two types of messages to your browser’s developer console:
 ## Verify your config
 
 In your browser Console tab, insert `pbjs.getConfig()` in the command line. Check for basic setup in the output, including:
- - selected timeout,  
+ - selected timeout,
  - selected priceGranularity.
 
 ![Verfiy your config](/assets/images/troubleshooting/pbjs-check-config.png "Verfiy your config"){: height="70%"  width="70%" :}
@@ -96,7 +96,7 @@ You can review what ad units have been configured for Prebid by opening your bro
 
 ![Check ad units](/assets/images/troubleshooting/pbjs-check-adunits.png){: height="70%"  width="70%" :}
 
-**Expanded view of bid responses**  
+**Expanded view of bid responses**
 
 ![Check ad units](/assets/images/troubleshooting/pbjs-list-bidders.png){: height="50%"  width="50%" :}
 
@@ -385,11 +385,11 @@ If you're using DFP, you can verify this by using the [Google Publisher Console]
 
 To make sure your ad server is set up correctly, answer the following questions:
 
-+ **How many ads have been fetched for an ad unit?** Ideally, only 1 ad will be requested on page load. If not, check for unnecessary extra calls to the ad server in your page's source code.  
++ **How many ads have been fetched for an ad unit?** Ideally, only 1 ad will be requested on page load. If not, check for unnecessary extra calls to the ad server in your page's source code.
 
   ![Google Publisher Console Ad fetch count](/assets/images/overview/prebid-troubleshooting-guide/ad-server-1.png "Google Publisher Console Ad fetch count"){: .pb-sm-img :}
 
-+ **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.  
++ **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.
 
   ![DFP Delivery Troubleshooting](/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting"){: .pb-lg-img :}
 
@@ -434,6 +434,127 @@ The following parameters in the `bidResponse` object are common across all bidde
 | `height` | Integer | Height of the bid creative in pixels                                                                                                                              | `250`                                                                   |
 | `adTag`  | String  | Creative's payload in HTML                                                                                                                                        | `"<html><body><img src=\"https://cdn.com/creative.png\"></body></html>"` |
 
+<hr>
+
+## Configure Auction Options with Logging
+
+The below snippet can be added to your page to better understand the Auction when including secondary bidders. This will help visualize when and if secondary bidders return with bids in time or outside of the auction.
+
+```javascript
+pbjs.que.push(function() {
+  pbjs.addAdUnits(adUnits);
+  pbjs.aliasBidder('appnexus', 'waitForMe');
+  pbjs.aliasBidder('rubicon', 'doNotWaitForMe');
+  pbjs.setConfig({
+      'auctionOptions': {
+          'secondaryBidders': ['doNotWaitForMe']
+      }
+  })
+  auctionOptionsLogging(); // include for logging
+  pbjs.requestBids({
+      bidsBackHandler: sendAdserverRequest,
+      timeout: PREBID_TIMEOUT
+  });
+});
+
+// must run before requestBids is invoked
+function auctionOptionsLogging() {
+    pbjs.onEvent('auctionInit', auction => {
+        console.log(`Auction Options: Auction Start at ${auction.timestamp} - ${auction.auctionId}`);
+    })
+
+    pbjs.onEvent('bidRequested', bidderRequest => {
+        console.log(`Auction Options: Bid Requested from ${bidderRequest.bidderCode} at ${bidderRequest.start} - ${bidderRequest.auctionId}`);
+    })
+
+    pbjs.onEvent('bidResponse', bid => {
+        console.log(`Auction Options: Bid Response from ${bid.bidderCode} at ${Date.now()} in ${bid.responseTimestamp - bid.requestTimestamp}ms - ${bid.auctionId}`);
+    })
+
+    pbjs.onEvent('noBid', bid => {
+        console.log(`Auction Options: No Bid from ${bid.bidder} - ${bid.auctionId}`);
+    })
+
+    pbjs.onEvent('bidderDone', bidderRequest => {
+        console.log(`Auction Options: Bidder ${bidderRequest.bidderCode} Done in ${Date.now() - bidderRequest.start}ms - ${bidderRequest.auctionId}`);
+    })
+
+    pbjs.onEvent('bidTimeout', timedOutBidders => {
+        let auctionId = timedOutBidders.length > 0 ? timedOutBidders[0].auctionId : 0
+        console.log(`Auction Options: Auction End! Timed Out! Bidders: ${Array.from(new Set(timedOutBidders.map(each => each.bidder))).join(',')} - ${auctionId}`);
+    })
+
+    pbjs.onEvent('auctionEnd', auction => {
+        let auctionId = auction.bidderRequests.length > 0 ? auction.bidderRequests[0].auctionId : 0
+        let auctionStart = auction.bidderRequests.length > 0 ? auction.bidderRequests[0].auctionStart : 0
+        console.log(`Auction Options: Auction End! After ${Date.now() - auctionStart}ms - ${auctionId}`);
+        auctionOptionsLog(auctionId)
+    })
+
+    function auctionOptionsLog(auctionId) {
+        let winners = pbjs.getAllWinningBids();
+        let output = [];
+        let auctionTime = pbjs.getConfig('bidderTimeout');
+        const config = pbjs.getConfig('auctionOptions');
+
+        populateData();
+        displayData();
+
+        function populateData() {
+            function forEach(responses, cb) {
+                Object.keys(responses).forEach(function (adUnitCode) {
+                    var response = responses[adUnitCode];
+                    response.bids.forEach(function (bid) {
+                        cb(adUnitCode, bid);
+                    });
+                });
+            }
+
+            forEach(pbjs.getBidResponses(), function (code, bid) {
+                output.push({
+                    "Auction Options": auctionId,
+                    bid: bid,
+                    adunit: code,
+                    adId: bid.adId,
+                    bidder: bid.bidder,
+                    secondary: !config.secondaryBidders.includes(bid.bidder),
+                    time: bid.timeToRespond,
+                    auctionTimeout: auctionTime,
+                    cpm: bid.cpm,
+                    msg: bid.statusMessage,
+                    rendered: !!winners.find(function (winner) {
+                        return winner.adId == bid.adId;
+                    })
+                });
+            });
+
+
+            forEach(pbjs.getNoBids && pbjs.getNoBids() || {}, function (code, bid) {
+                output.push({
+                    "Auction Options": auctionId,
+                    msg: "no bid",
+                    adunit: code,
+                    adId: bid.bidId,
+                    bidder: bid.bidder,
+                    secondary: !config.secondaryBidders.includes(bid.bidder),
+                });
+            });
+        }
+
+        function displayData() {
+            if (output.length) {
+                if (console.table) {
+                    console.table(output);
+                } else {
+                    for (var j = 0; j < output.length; j++) {
+                        console.log(output[j]);
+                    }
+                }
+            }
+        }
+    }
+}
+```
 
 ## Related Topics
 
