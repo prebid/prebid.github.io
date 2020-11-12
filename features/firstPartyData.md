@@ -51,16 +51,25 @@ to first party data that might be useful in ad targeting:
 pbjs.setConfig({
    fpd: {
        context: {
-           keywords: "power tools", // keywords is a standard OpenRTB field
-           search: "drill",         // same with search and content
+           name: "example",
+           domain: "page.example.com",
+           cat: ["IAB2"],
+           sectioncat: ["IAB2-2"],
+           pagecat: ["IAB2-2"],
+           page: "https://page.example.com/here.html",
+           ref: "https://ref.example.com",
+           keywords: "power tools, drills",
+           search: "drill",
            content: { userrating: 4 },
-           data: {
+           data: {   // fields that aren't part of openrtb 2.5
                pageType: "article",
-               category: "tools"
+               category: "repair"
            }
         },
         user: {
-           keywords: "a,b", // keywords is a standard OpenRTB field
+           yob: 1985,
+           gender: "m",
+           keywords: "a,b",
            data: {
               registered: true,
               interests: ["cars"]
@@ -88,9 +97,11 @@ pbjs.addAdUnits({
         }
     },
     fpd: {
-         context: {
+        context: {
             pbAdSlot: "homepage-top-rect",
-            adUnitSpecificContextAttribute: "123"
+            data: {
+                adUnitSpecificAttribute: "123"
+            }
          }
     },
     ...

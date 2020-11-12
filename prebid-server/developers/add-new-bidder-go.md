@@ -77,16 +77,17 @@ provide additional metadata in their bid response:
         "prebid": {
           "meta": {
             "networkId": NETWORK_ID,
-            "networkName": NETWORK_NAME
+            "networkName": NETWORK_NAME,
             "agencyId": AGENCY_ID,
             "agencyName": AGENCY_NAME,
             "advertiserId": ADVERTISER_ID,
             "advertiserName": ADVERTISER_NAME,
-            "advertiserDomains": [ARRAY_OF_ADVERTISER_DOMAINS]
+            "advertiserDomains": [ARRAY_OF_ADVERTISER_DOMAINS],
             "brandId": BRAND_ID,
             "brandName": BRAND_NAME,
             "primaryCatId": IAB_CATEGORY,
             "secondaryCatIds": [ARRAY_OF_IAB_CATEGORIES],
+            "mediaType": MEDIATYPE
           }
         }
       }
@@ -99,6 +100,7 @@ Notes:
 
 - `advertiserDomains` is the same as the OpenRTB 2.5 `bid.adomain` field but replicated here for downstream convenience
 - See the [Prebid.js Bidder Adapter](/dev-docs/bidder-adaptor.html) page for details about the requested values for each field.
+- The following fields are going to be enforced in an upcoming version of Prebid.js: advertiserDomains and mediaType.
 
 {: .alert.alert-info :}
 Please provide as much information as possible in the meta object. Publishers use this data for tracking down bad creatives and ad blocking. The advertiserDomains field is particularly useful. Some of these fields may become required in a future release.

@@ -65,7 +65,7 @@ of sub-objects. The table below has the options that are common across ID system
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
-| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": "ID5-12345" }` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 ## User ID Sub-Modules
 
@@ -324,6 +324,9 @@ The following configuration parameters are available:
 
 #### ID5 Universal ID Examples
 
+{: .alert.alert-warning :}
+**ATTENTION:** As of Prebid.js v4.14.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
+
 1) Publisher wants to retrieve the ID5 Universal ID through Prebid.js
 
 {% highlight javascript %}
@@ -333,16 +336,16 @@ pbjs.setConfig({
       name: "id5Id",
       params: {
         partner: 173,            // change to the Partner Number you received from ID5
-        pd: "MT1iNTBjY..."       // optional, see param table above for a link to how to generate this string
+        pd: "MT1iNTBjY..."       // optional, see table above for a link to how to generate this
       },
       storage: {
-        type: "cookie",
-        name: "id5id.1st",       // create a cookie with this name
-        expires: 90,             // cookie lasts for 90 days
+        type: "html5",           // "html5" is the required storage type
+        name: "id5id",           // "id5id" is the required storage name
+        expires: 90,             // storage lasts for 90 days
         refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
       }
     }],
-    auctionDelay: 50             // 50ms maximum auction delay
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
 });
 {% endhighlight %}
@@ -859,7 +862,11 @@ In addition to the parameters documented above in the Basic Configuration sectio
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| params | Optional | Object | Details for PubCommon ID. | |
+| name | Required | String | The name of this module. | `'pubCommonId'` |
+| params | Optional | Object | Customized parameters | |
+| params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the PubCommon ID cookie.  Default is true. | `true` |
+| params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
+| params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
 | params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` in Prebid.js 4.x. Will default to `true` in Prebid.js 5.0. | `true` |
 
 
@@ -985,7 +992,7 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :} 
+{: .alert.alert-info :}
 gulp build --modules=pubProvidedId
 
 
@@ -1042,7 +1049,7 @@ The Shared ID User Module generates a UUID that can be utilized to improve user 
 #### Building Prebid with Shared Id Support
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :} 
+{: .alert.alert-info :}
 ex: $ gulp build --modules=sharedIdSystem
 
 #### Prebid Params
@@ -1169,23 +1176,23 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### Verizon Media ID
+### Verizon Media's Unified ID
 
-Verizon Media's ID is a person based ID and doesn't depend on 3rd party cookies.
+Verizon Media's Unified ID is a person based ID and doesn't depend on 3rd party cookies.
 
-Verizon Media's ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. The Verizon Media ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
+Verizon Media's Unified ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. Verizon Media's Unified ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
 
-The Verizon Media ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
+Verizon Media's Unified ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
 
 Please reach out to VerizonMedia-UIDsupport@verizonmedia.com for assistance with setup.
 
-Add Verizon Media ID to your Prebid.js package with:
+Add support for Verizon Media's Unified ID to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,verizonMediaIdSystem
 
 
-#### Verizon Media ID configuration
+#### Verizon Media's Unified ID configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
@@ -1199,7 +1206,7 @@ gulp build --modules=userId,verizonMediaIdSystem
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'vmuid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
 
-#### Verizon Media ID examples
+#### Verizon Media's Unified ID examples
 
 ```
 pbjs.setConfig({
@@ -1260,7 +1267,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
-| Verizon Media ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
+| Verizon Media's Unified ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 
 For example, the adapter code might do something like:
 
