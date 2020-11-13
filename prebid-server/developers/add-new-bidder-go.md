@@ -134,7 +134,7 @@ Your bid adapter might require extra information from the publisher to make a re
 
 Publishers will provide extra information using an OpenRTB 2.5 Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's choice of location.
 
-We request that you do not duplicate information that is already present in the [OpenRTB 2.5 Bid Request specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) or is already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF.
+We request that you do not duplicate information that is already present in the [OpenRTB 2.5 Bid Request specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) or is already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.5 Bid Request standard of `request.imp[].video`.
 
 {: .alert.alert-warning :}
 You may not use an endpoint domain as a bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a portion of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may decide to disable your adapter if it uses a dynamically configured domain.
@@ -518,6 +518,10 @@ An Impression may define multiple sizes and/or multiple ad formats. If your bidd
 </details>
 <p></p>
 
+If your bidding server supports multiple currencies, please be sure to pass it the `request.cur` field. If your bidding server only ever bids in a single currency, such as USD or EUR, that's fine. Prebid Server will convert your bid to the request currency if you include it in the bid response, otherwise we assume its USD and conversion will not occur correctly.
+
+Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) to your bidding server and enforce it. You'll soon have access to currency conversion helpers methods if your endpoint only supports floors in a single currency.
+
 There are a several values of a bid that publishers expect to be populated. Some are defined by the OpenRTB 2.5 specification and some are defined by Prebid conventions.
 
 | Parameter | Definer | Description | Path |
@@ -531,6 +535,7 @@ There are a several values of a bid that publishers expect to be populated. Some
 | Site or App | OpenRTB |The publisher will provide either the site or app (not both) representing the client's device. | `request.site`, `request.app` | 
 | Supply Chain | OpenRTB |The publisher's declaration of all parties who are selling or reselling the bid request. | `request.source.ext.schain` |
 | Test | OpenRTB | The publisher is sending non-production traffic which also enabled verbose debugging information from Prebid Server. | `request.test` |
+| Video Parameters | OpenRTB | The publisher is specifying video ad requirements or preferences. | `request.imp[].video` |
 
 {: .alert.alert-warning :}
 For simplicity, adapters are expected to net-price bids (e.g. "If this ad wins, what will the publisher make?"), not gross-price bids. Publishers can correct for gross-price bids by setting [Bid Adjustments](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) to account for fees.
@@ -544,7 +549,7 @@ This method is called for each response received from your bidding server within
 {: .alert.alert-info :}
 It's *imperative* to include all required information in the response for your bid to be accepted. Please avoid common mistakes, such as not specifying the bid currency and not detecting the media type from the bidding server response.
 
-The first argument, `request`, is the exact same OpenRTB 2.5 Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful as part of detecting the media type and is necessary for enforcing bid floors. Yes, please make use of the `request.imp[].bidfloor` and `reqquest.imp[].bidfloorcur` values before responding with a bid.
+The first argument, `request`, is the exact same OpenRTB 2.5 Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful as part of detecting the media type.
 
 The second argument, `requestData`, is the exact same `adapters.RequestData` object returned by the `MakeRequests` method. It's rare for adapters to make use of this information, but it's provided for potential edge cases.
 
@@ -597,6 +602,9 @@ We encourage bidders to provide metadata in the bid response to aid publishers i
 | `.PrimaryCategoryID` | Primary IAB category id. |
 | `.SecondaryCategoryIDs` | Secondary IAB category ids. |
 | `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`. |
+
+{: .alert.alert-danger :}
+Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw away the bid.
 
 <details>
   <summary>Example: Setting metadata.</summary>
