@@ -17,7 +17,7 @@ sidebarType: 3
 
 {% capture version1 %}
 The procedures in this document still work, but we strongly recommend
-using the improved [Guide for Setting up Prebid Native in GAM](/adops/gam-native.html) support.
+using the improved [Guide for Setting up Prebid Native in GAM](/adops/gam-native.html).
 {% endcapture %}
 {% include alerts/alert_warning.html content=version1 %}
 
