@@ -334,6 +334,14 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="oolo" class="analytics-check-box" /> oolo Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
     </label>
   </div>
@@ -556,6 +564,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> User ID: Verizon Media ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> User ID: Zeotap ID+</label>
