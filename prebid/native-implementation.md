@@ -50,9 +50,9 @@ Create your ad server in-page implementation as usual. See [Setting Up Prebid Na
 
 There are three options for defining the native template:
 
-- If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#4-implementing-adserver-defined-creative).
-- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#5-implementing-adunit-defined-creative)
-- If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#6-implementing-the-custom-renderer-scenario).
+- If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Template](#41-implementing-adserver-defined-template).
+- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Template](#42-implementing-adunit-defined-template).
+- If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#43-implementing-the-custom-renderer-scenario).
 
 This table summarizes how the 3 approaches work:
 
@@ -97,15 +97,21 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 {: .alert.alert-warning :}
 Specific bidders may not support all of the fields listed below or may return differing responses for the assets that are requested.
 
-### Two ways to define image sizes
+### 3.1. Two ways to define image sizes
 
 {% include dev-docs/native-image-asset-sizes.md %}
 
-## 4. Implementing AdServer-Defined Creative
+## 4. Implementing the Native Template
 
-In this scenario, the body of the native creative is managed within the ad server and includes special Prebid.js macros.
+- If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#4-implementing-adserver-defined-creative).
+- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#5-implementing-adunit-defined-creative)
+- If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#6-implementing-the-custom-renderer-scenario).
 
-### Turn Targeting Keys off in Prebid.js
+### 4.1. Implementing AdServer-Defined Template
+
+In this scenario, the body of the native creative template is managed within the ad server and includes special Prebid.js macros.
+
+#### Turn Targeting Keys off in Prebid.js
 
 When the native AdUnit is defined in the page, declare `sendTargetingKeys: false` in the native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 
@@ -164,7 +170,7 @@ const adUnits = [{
     }]
 }];
 ```
-### Native Template in AdServer
+#### Native Template in AdServer
 
 There are three key aspects of the native template:
 
@@ -247,16 +253,16 @@ p {
     padding: 4px;
 }
 ```
-## 5. Implementing AdUnit-Defined Creative
+### 4.2 Implementing AdUnit-Defined Template
 
-In this scenario, the body of the native creative is managed within the Prebid.js AdUnit and includes special Prebid.js macros.
+In this scenario, the body of the native creative template is managed within the Prebid.js AdUnit and includes special Prebid.js macros.
 
-### Prebid.js AdUnit Setup
+#### Prebid.js AdUnit Setup
 
 When the Native AdUnit is defined in the page:
 
 - Declare `sendTargetingKeys: false` in the native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
-- Define the adTemplate as an escaped ES5 string using Prebid.js ##macros##. (See the appendix for an exhaustive list of assets and macros.) Note that this approach only affects the HTML body. Any CSS definitions need to be defined in the body with
+- Define the adTemplate as an escaped ES5 string using Prebid.js ##macros##. (See the appendix for an exhaustive list of assets and macros.) Note that this approach only affects the HTML body. Any CSS definitions need to be defined in the body of the template or in the AdServer.
 
 Example AdUnit:
 ```
@@ -282,7 +288,7 @@ var adUnits = [{
     }
 }];
 ```
-### Native Template in the AdServer
+#### Native Template in the AdServer
 
 Even though the body of the native creative is defined in the AdUnit, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
 
@@ -308,11 +314,11 @@ Example Creative HTML
 {: .alert.alert-warning :}
 When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative
 
-## 6. Implementing the Custom Renderer Scenario
+### 4.3 Implementing the Custom Renderer Scenario
 
 In this scenario, the body of the native creative is managed from an external JavaScript file. 
 
-### Prebid.js AdUnit Setup
+#### Prebid.js AdUnit Setup
 
 When the Native AdUnit is defined in the page:
 
@@ -344,7 +350,7 @@ var adUnits = [{
 }];
 ```
 
-### Native Template in the AdServer
+#### Native Template in the AdServer
 
 Even though the body of the native creative is defined in the external JavaScript, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
 
@@ -370,7 +376,7 @@ Example creative HTML:
 {: .alert.alert-warning :}
 When using `Send All Bids` you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_biddercode%%";` for each bidder’s creative
 
-### The Render JavaScript
+#### The Render JavaScript
 
 Requirements for a native rendering function:
 
@@ -412,7 +418,7 @@ window.renderAd=function(data){
 {: .alert.alert-info :}
 Note that the format of any macros in external render JavaScript is totally up to you. The data object coming in will be keyed according to the Key column in the table in the appendix, e.g. privacyLink and not hb_native_privacy.
 
-## Technical Details
+## 5. Technical Details
 
 A few details that may help understand and debug your setup:
 
@@ -421,8 +427,9 @@ A few details that may help understand and debug your setup:
 1. When the window.pbNativeTag.renderNativeAd() function is called, an HTML5 postmessage is made. Prebid.js is listening for this message, and responds with the native assets. Again, the assets are keyed on the original asset type, e.g. `clickUrl`.
 1. If the template was defined in the AdServer, the body of the iframe will be replaced. Otherwise, if the template was defined in the AdUnit or external JavaScript, the body of the iframe will be appended with resolved creative HTML.
 1. If the AdServer supports it, CSS styles can be defined in the iframe head. Otherwise, they must be defined in the body of the template, for example with <style> tags.
+1. Note that native iframes will be resized to the height of the creative after render.
 
-## AdServer Implementation Details
+## 6. AdServer Implementation Details
 
 There are detailed [instructions for setting up native in GAM](/adops/gam-native.html), but none of the Prebid functionality is specific to GAM. The requirements to use any of these approaches in a different ad server are:
 
