@@ -2,7 +2,7 @@
 layout: bidder
 title: Doceree
 description: Prebid DivReach Bidder Adapter
-
+pbjs: true
 biddercode: doceree
 aliasCode: adbutler
 media_types: banner
