@@ -504,15 +504,6 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Browsi Viewability Module
-  link: /dev-docs/modules/browsiRtdProvider.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
   title: GPT Pre-Auction Module
   link: /dev-docs/modules/gpt-pre-auction.html
   isLastSubSectionItem: 1
