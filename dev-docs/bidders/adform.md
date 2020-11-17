@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Adform
-description: Prebid.js Adform Bidder Adaptor
+description: Prebid Adform Bidder Adaptor
 biddercode: adform
 media_types: banner, video
 gdpr_supported: true
@@ -9,7 +9,7 @@ usp_supported: true
 tcf2_supported: true
 prebid_member: true
 pbjs: true
-pbs: false
+pbs: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
 gvl_id: 50
 ---
