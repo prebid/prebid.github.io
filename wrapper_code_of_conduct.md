@@ -78,7 +78,7 @@ The guidelines in this section apply to open source software written for the Pre
 1. Users, Publishers and Advertisers deserve a reliable ad serving environment. Prebid software should facilitate data that helps determine if an impression is fraudulent or undisplayable for any reason.
 1. Publishers should be able to utilize Prebid software while adhering to their privacy policies. 
 
-1. Adapter Conduct
+### Adapter Conduct
 
 Prebid software supports different types of ‘plugin’ modules, including for example bid adapters, analytics adapters, user ID modules, real-time-data modules, and others.
 
