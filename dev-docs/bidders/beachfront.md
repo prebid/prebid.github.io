@@ -6,7 +6,7 @@ biddercode: beachfront
 media_types: video
 gdpr_supported: true
 usp_supported: true
-userIds: unifiedId
+userIds: unifiedId, identityLink
 prebid_member: true
 pbjs: true
 pbs: true
