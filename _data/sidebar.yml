@@ -43,68 +43,68 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: "<span style='color:#EA9622;'>Codes of Conduct</span>"
+  title: Codes of Conduct
   link:
-  isHeader: 0
+  isHeader: 1
+  headerId: codes-of-conduct
   isSectionHeader: 0
-  isCatHeader: 1
   sectionTitle:
   subgroup: 1
 
 - sbSecId: 0
-  title: '&nbsp;&nbsp;Header Bidding'
+  title: Header Bidding
   link: /wrapper_code_of_conduct.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
-- sbSecId: 0
-  title: '&nbsp;&nbsp;Module Rules'
-  link: /dev-docs/module-rules.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 0
-
-- sbSecId: 0
-  title: "<span style='color:#EA9622;'>Policies</span>"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
   subgroup: 1
 
 - sbSecId: 0
-  title: '&nbsp;&nbsp;Contributing'
+  title: Module Rules
+  link: /dev-docs/module-rules.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
+
+- sbSecId: 0
+  title: Policies
+  link:
+  isHeader: 1
+  headerId: policies
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 0
+  title: Contributing
   link: /contributing/contribute.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 0
-  title: '&nbsp;&nbsp;Prebid.org IP Policy'
+  title: Prebid.org IP Policy
   link: /overview/ip-policy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 0
-  title: '&nbsp;&nbsp;Privacy Policy'
+  title: Privacy Policy
   link: /privacy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 0
-  title: '&nbsp;&nbsp;Cookies'
+  title: Cookies
   link: /cookies.html
   isHeader: 0
   isSectionHeader: 0
-  subgroup: 0
+  subgroup: 2
 
 
 #--------------Prebid.js--------------|
@@ -1023,7 +1023,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Prebid</span>"
+  title: "Prebid"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1065,7 +1065,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Google Ad Manager</span>"
+  title: "Google Ad Manager"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1122,7 +1122,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Mobile</span>"
+  title: "Mobile"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1179,7 +1179,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Freewheel</span>"
+  title: "Freewheel"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1196,7 +1196,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>AppNexus Publisher</span>"
+  title: "AppNexus Publisher"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1213,7 +1213,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: "<span style='color:#EA9622;'>Smart Ad Server</span>"
+  title: "Smart Ad Server"
   link:
 
   isHeader: 0
@@ -1359,7 +1359,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Instream</span>"
+  title: "Instream"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1368,7 +1368,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Akamai AMP'
+  title: 'Akamai AMP'
   link: /examples/video/instream/akamai/pb-ve-amp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1376,7 +1376,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;AdPlayer.Pro'
+  title: 'AdPlayer.Pro'
   link: /examples/video/instream/adplayerpro/pb-ve-adplayerpro.html
   isHeader: 0
   isSectionHeader: 0
@@ -1384,7 +1384,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Brid'
+  title: 'Brid'
   link: /examples/video/instream/brid/pb-ve-brid.html
   isHeader: 0
   isSectionHeader: 0
@@ -1392,7 +1392,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Brightcove'
+  title: 'Brightcove'
   link: /examples/video/instream/brightcove/pb-ve-brightcove.html
   isHeader: 0
   isSectionHeader: 0
@@ -1400,7 +1400,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Flowplayer'
+  title: 'Flowplayer'
   link: /examples/video/instream/flowplayer/pb-ve-flowplayer.html
   Item: 1
   isHeader: 0
@@ -1409,7 +1409,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player (Platform)'
+  title: 'JW Player (Platform)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html
   isHeader: 0
   isSectionHeader: 0
@@ -1417,7 +1417,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player (Hosted)'
+  title: 'JW Player (Hosted)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html
   isHeader: 0
   isSectionHeader: 0
@@ -1425,7 +1425,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player (Playlist)'
+  title: 'JW Player (Playlist)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html
   isHeader: 0
   isSectionHeader: 0
@@ -1433,7 +1433,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Kaltura'
+  title: 'Kaltura'
   link: /examples/video/instream/kaltura/pb-ve-kaltura.html
   isHeader: 0
   isSectionHeader: 0
@@ -1441,7 +1441,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Ooyala'
+  title: 'Ooyala'
   link: /examples/video/instream/ooyala/pb-ve-ooyala.html
   isHeader: 0
   isSectionHeader: 0
@@ -1449,7 +1449,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Radiant'
+  title: 'Radiant'
   link: /examples/video/instream/radiant/pb-ve-radiant.html
   isHeader: 0
   isSectionHeader: 0
@@ -1457,7 +1457,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;VideoJS'
+  title: 'VideoJS'
   link: /examples/video/instream/videojs/pb-ve-videojs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1465,7 +1465,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Prebid Server</span>"
+  title: "Prebid Server"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1474,7 +1474,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Brid'
+  title: 'Brid'
   link: /examples/video/server/brid/pbs-ve-brid.html
   isHeader: 0
   isSectionHeader: 0
@@ -1482,7 +1482,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player (Platform)'
+  title: 'JW Player (Platform)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html
   isHeader: 0
   isSectionHeader: 0
@@ -1490,7 +1490,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player (Hosted)'
+  title: 'JW Player (Hosted)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
   isHeader: 0
   isSectionHeader: 0
@@ -1498,7 +1498,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player (Playlist)'
+  title: 'JW Player (Playlist)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html
   isHeader: 0
   isSectionHeader: 0
@@ -1506,7 +1506,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player (Player 7)'
+  title: 'JW Player (Player 7)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html
   isHeader: 0
   isSectionHeader: 0
@@ -1514,7 +1514,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Kaltura'
+  title: 'Kaltura'
   link: /examples/video/server/kaltura/pbs-ve-kaltura.html
   isHeader: 0
   isSectionHeader: 0
@@ -1522,7 +1522,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Ooyala'
+  title: 'Ooyala'
   link: /examples/video/server/ooyala/pbs-ve-ooyala.html
   isHeader: 0
   isSectionHeader: 0
@@ -1530,7 +1530,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Radiant'
+  title: 'Radiant'
   link: /examples/video/server/radiant/pbs-ve-radiant.html
   isHeader: 0
   isSectionHeader: 0
@@ -1538,7 +1538,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;VideoJS'
+  title: 'VideoJS'
   link: /examples/video/server/videojs/pbs-ve-videojs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1546,7 +1546,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Cross Player</span>"
+  title: "Cross Player"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1555,7 +1555,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Flowplayer'
+  title: 'Flowplayer'
   link: /examples/video/crossplayer/flowplayer/pb-cp-flowplayer.html
   isHeader: 0
   isSectionHeader: 0
@@ -1563,7 +1563,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;JW Player'
+  title: 'JW Player'
   link: /examples/video/crossplayer/jwplayer/pb-cp-jwplayer.html
   isHeader: 0
   isSectionHeader: 0
@@ -1571,7 +1571,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Kaltura'
+  title: 'Kaltura'
   link: /examples/video/crossplayer/kaltura/pb-cp-kaltura.html
   isHeader: 0
   isSectionHeader: 0
@@ -1579,7 +1579,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;VideoJS'
+  title: 'VideoJS'
   link: /examples/video/crossplayer/videojs/pb-cp-videojs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1587,7 +1587,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Outstream</span>"
+  title: "Outstream"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1596,7 +1596,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Google Ad Manager'
+  title: 'Google Ad Manager'
   link: /examples/video/outstream/pb-ve-outstream-dfp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1604,7 +1604,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Radiant'
+  title: 'Radiant'
   link: /examples/video/outstream/pb-ve-outstream-radiant.html
   isHeader: 0
   isSectionHeader: 0
@@ -1612,7 +1612,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;AdPlayer.Pro'
+  title: 'AdPlayer.Pro'
   link: /examples/video/outstream/pb-ve-outstream-app.html
   isHeader: 0
   isSectionHeader: 0
@@ -1620,7 +1620,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;No Server'
+  title: 'No Server'
   link: /examples/video/outstream/pb-ve-outstream-no-server.html
   isHeader: 0
   isSectionHeader: 0
@@ -1628,7 +1628,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: "<span style='color:#EA9622;'>Long-Form (Ad Pods)</span>"
+  title: "Long-Form (Ad Pods)"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1637,7 +1637,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: '&nbsp;&nbsp;Freewheel'
+  title: 'Freewheel'
   link: /examples/video/long-form/pb-ve-lf-freewheel.html
   isHeader: 0
   isSectionHeader: 0
@@ -1675,7 +1675,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;PBS+Prebid.js'
+  title: 'PBS+Prebid.js'
   link: /prebid-server/use-cases/pbs-pbjs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1683,7 +1683,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;PBS+SDK'
+  title: 'PBS+SDK'
   link: /prebid-server/use-cases/pbs-sdk.html
   isHeader: 0
   isSectionHeader: 0
@@ -1691,7 +1691,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;PBS+AMP'
+  title: 'PBS+AMP'
   link: /prebid-server/use-cases/pbs-amp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1699,7 +1699,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;PBS+Long-Form Video'
+  title: 'PBS+Long-Form Video'
   link: /prebid-server/use-cases/pbs-lfv.html
   isHeader: 0
   isSectionHeader: 0
@@ -1707,7 +1707,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Managed Solutions'
+  title: 'Managed Solutions'
   link: /prebid-server/hosting/hosted-servers.html
   isHeader: 0
   isSectionHeader: 0
@@ -1715,7 +1715,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Hosting Your Own PBS'
+  title: 'Hosting Your Own PBS'
   link: /prebid-server/hosting/pbs-hosting.html
   isHeader: 0
   isSectionHeader: 0
@@ -1723,7 +1723,7 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Bid Adapter List'
+  title: 'Bid Adapter List'
   link: /dev-docs/pbs-bidders.html
   isHeader: 0
   isSectionHeader: 0
@@ -1740,7 +1740,7 @@
   subgroup: 2
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Overview'
+  title: 'Overview'
   link: /prebid-server/versions/pbs-versions-overview.html
   isHeader: 0
   isSectionHeader: 0
@@ -1748,7 +1748,7 @@
   subgroup: 2
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Go'
+  title: 'Go'
   link: /prebid-server/versions/pbs-versions-go.html
   isHeader: 0
   isSectionHeader: 0
@@ -1756,7 +1756,7 @@
   subgroup: 2
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Java'
+  title: 'Java'
   link: /prebid-server/versions/pbs-versions-java.html
   isHeader: 0
   isSectionHeader: 0
@@ -1895,7 +1895,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/info'
+  title: '/info'
   link: /prebid-server/endpoints/info/pbs-endpoint-info.html
   isHeader: 0
   isSectionHeader: 0
@@ -1903,7 +1903,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/cookie_sync'
+  title: '/cookie_sync'
   link: /prebid-server/endpoints/pbs-endpoint-cookieSync.html
   isHeader: 0
   isSectionHeader: 0
@@ -1911,7 +1911,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/openrtb2/auction'
+  title: '/openrtb2/auction'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html
   isHeader: 0
   isSectionHeader: 0
@@ -1919,7 +1919,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/openrtb2/amp'
+  title: '/openrtb2/amp'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html
   isHeader: 0
   isSectionHeader: 0
@@ -1927,7 +1927,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/openrtb2/video'
+  title: '/openrtb2/video'
   link: /prebid-server/endpoints/openrtb2/pbs-endpoint-video.html
   isHeader: 0
   isSectionHeader: 0
@@ -1935,7 +1935,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/setuid'
+  title: '/setuid'
   link: /prebid-server/endpoints/pbs-endpoint-setuid.html
   isHeader: 0
   isSectionHeader: 0
@@ -1943,7 +1943,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/getuids'
+  title: '/getuids'
   link: /prebid-server/endpoints/pbs-endpoint-getuids.html
   isHeader: 0
   isSectionHeader: 0
@@ -1951,7 +1951,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;/status'
+  title: '/status'
   link: /prebid-server/endpoints/pbs-endpoint-status.html
   Item: 1
   isHeader: 0
@@ -1960,7 +1960,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Event Endpoints'
+  title: 'Event Endpoints'
   link: /prebid-server/endpoints/pbs-endpoint-event.html
   Item: 1
   isHeader: 0
@@ -1969,7 +1969,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Admin Endpoints'
+  title: 'Admin Endpoints'
   link: /prebid-server/endpoints/pbs-endpoint-admin.html
   Item: 1
   isHeader: 0
@@ -1978,7 +1978,7 @@
   subgroup: 6
 
 - sbSecId: 5
-  title: '&nbsp;&nbsp;Prebid Cache Endpoints'
+  title: 'Prebid Cache Endpoints'
   link: /prebid-server/endpoints/pbs-endpoints-pbc.html
   Item: 1
   isHeader: 0
