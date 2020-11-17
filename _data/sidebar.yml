@@ -522,6 +522,15 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: ID Library
+  link: /dev-docs/modules/idLibrary.html
+  isLastSubSectionItem: 0
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: External Interfaces
   link:
   isHeader: 1
