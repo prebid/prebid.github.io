@@ -5,6 +5,7 @@ description: Prebid Adman Bidder Adapter
 hide: true
 biddercode: adman
 gdpr_supported: true
+usp_supported: true
 media_types: banner, video
 tcf2_supported: true
 ---
