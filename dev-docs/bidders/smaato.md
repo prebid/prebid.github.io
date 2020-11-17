@@ -8,8 +8,10 @@ tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 media_types: banner, video
+userIds: criteo, pubCommonId, unifiedId
 pbjs: true
 pbs: true
+prebid_member: true
 ---
 
 ### Table of Contents

@@ -6,7 +6,10 @@ pbjs: true
 biddercode: aol
 gdpr_supported: true
 usp_supported: true
+tcf2_supported: true
 gvl_id: 25
+userIds: verizonMediaId
+
 ---
 
 ### Note:
