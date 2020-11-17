@@ -746,6 +746,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+
+- sbSecId: 2
+  title: Video Instream Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-video-instream-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
 - sbSecId: 2
   title: Video interstitial Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html
