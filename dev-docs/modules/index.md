@@ -91,6 +91,5 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 ## Further Reading
 
 + [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
-+ [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html)
-
-
++ [Bidders' Params](/dev-docs/bidders.html)
++ [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)
