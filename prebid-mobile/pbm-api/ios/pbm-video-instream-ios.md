@@ -26,7 +26,7 @@ Video instream is only supported with Google Ad Manager.
 
  See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
- `VideoAdUnit(configId: String)`
+ `VideoAdUnit(configId: String, size: CGSize(width: Int, height: Int))`
 
  **Parameters**
 
