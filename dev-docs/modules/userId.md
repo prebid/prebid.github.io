@@ -164,7 +164,7 @@ gulp build --modules=fabrickIdSystem
 
 #### Fabrick Registration
 
-Please reach out to [integrations@team.neustar](mailto:integrations@team.neustar) to request your `apiKey`.
+Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegrations@team.neustar) to request your `apiKey`.
 
 #### Fabrick Configuration
 
