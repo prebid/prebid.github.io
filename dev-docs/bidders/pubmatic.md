@@ -8,6 +8,7 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
+getFloor: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 safeframes_ok: true
