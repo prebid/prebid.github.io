@@ -8,6 +8,7 @@ gdpr_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
 pbs: true
+tcf2_supported: true
 ---
 
 ### Note:
