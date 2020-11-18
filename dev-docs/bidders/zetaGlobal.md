@@ -21,7 +21,6 @@ To use this bidder you will need a valid definerId.  For further information, pl
 | Name        | Scope    | Description                                                                                                         | Example   | Type      |
 |-------------|----------|---------------------------------------------------------------------------------------------------------------------|-----------|-----------|
 | `ip`        | required | The client IP                                                                                                       | `0.0.0.0` | `string`  |
-| `user`      | required | The exchange's user id                                                                                              | `12345`   | `string`  |
 | `buyeruid`  | required | Zeta's user id                                                                                                      | `12345`   | `string`  |
 | `definerId` | required | The Definer ID from Zeta Global                                                                                     | `12345`   | `string`  |
 | `test`      | optional | Flag which will induce a sample bid response when true; only set to true for testing purposes (1 = true, 0 = false) | `1`       | `integer` |
