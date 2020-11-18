@@ -17,8 +17,8 @@ This page has answers to some frequently asked questions about Prebid Server. If
 
 Nope. The only approval process is a code review. There are separate instructions for:
 
-- [Prebid Server - Go](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)
-- [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
+- [Prebid Server - Go](/prebid-server/developers/add-new-bidder-go.html)
+- [Prebid Server - Java](/prebid-server/developers/add-new-bidder-java.html)
 
 As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
@@ -35,10 +35,10 @@ The original version of Prebid Server was the Go-Lang version. Rubicon Project
 ported it to Java because they had more Java talent than Go.
 
 + [Prebid Server - Go](https://github.com/prebid/prebid-server)
-+ [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java)
++ [Prebid Server - Java](https://github.com/prebid/prebid-server-java)
 
 Both versions are live in production, and they are kept identical in external APIs
-and reasonably close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
+and reasonably close in functionality. See the [Prebid Server feature list](/prebid-server/features/pbs-feature-idx.html) for the list of differences.
 
 For demand partners, we recommend building new bid adapters in Go - the team will port it to Java for you within a couple of months.
 
