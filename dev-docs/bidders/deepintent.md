@@ -3,6 +3,7 @@ layout: bidder
 title: Deepintent
 description: Prebid Deepintent Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: deepintent
 media_types: banner
 gdpr_supported: true
@@ -19,6 +20,11 @@ usp_supported: true
 | `custom`      | optional | custom key value params| `'{"position":"right-box"}''`| `object` |
 | `user`        | optional | user params according to IAB standards | `'{"gender":"F"}''`| `object` |
 | `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
+
+
+
+### Prebid Server Note:
+While using prebid server mode, "banner.h" and "banner.w" should be passed. Support for the format is not present at the moment. 
 
 ### Configuration
 
