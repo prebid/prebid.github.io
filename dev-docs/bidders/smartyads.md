@@ -25,6 +25,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `host`      | required | Region id               | `'ns1'`    | `string` |
-| `sourceid`      | required | Partner id | `'smartyads'`    | `string` |
-| `accountid`      | required | Endpoint id | `'hash'`    | `string` |
+| `placementId` | required (for prebid.js) | placement Id | `'0'` | `string` |
+| `host`      | required (for prebid-server) | Region id               | `'ns1'`    | `string` |
+| `sourceid`      | required  (for prebid-server) | Partner id | `'smartyads'`    | `string` |
+| `accountid`      | required  (for prebid-server) | Endpoint id | `'hash'`    | `string` |
