@@ -593,6 +593,8 @@ Returns bid requests that resulted in a NO_BID for the specified adUnitCode.  Se
 
 **Returns**: `Object` - NO_BID bidResponse object
 
+**Request Params:**
+
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
