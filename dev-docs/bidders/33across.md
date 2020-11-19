@@ -6,6 +6,7 @@ hide: true
 biddercode: 33across
 media_types: banner, video
 gdpr_supported: true
+getFloor: true
 schain_supported: true
 usp_supported: true
 ---
