@@ -2,8 +2,9 @@
 layout: bidder
 title: Somo Audience
 description: Somo Audience Bidder Adapter
-hide: true
 biddercode: somoaudience
+media_types: banner, native, video
+pbs: true
 ---
 
 

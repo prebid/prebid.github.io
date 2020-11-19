@@ -2,13 +2,13 @@
 layout: bidder
 title: andbeyond
 description: Prebid andbeyond Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: andbeyond
 ---
 
 ### Note:
 
-The andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
+The andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <performancedirect@andbeyond.media> for more details
 
 ### Bid Params
 

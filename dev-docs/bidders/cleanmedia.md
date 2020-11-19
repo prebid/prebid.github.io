@@ -2,14 +2,13 @@
 layout: bidder
 title: Clean Media
 description: Prebid CleanMedia Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
 biddercode: cleanmedia
+pbjs: true
 media_types: banner, video
+gdpr_supported: true
+schain_supported: true
+usp_supported: true
+userIds: id5Id, unifiedId
 aliasCode: gamoshi
 ---
 

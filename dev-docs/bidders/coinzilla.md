@@ -2,7 +2,7 @@
 layout: bidder
 title: Coinzilla
 description: Prebid Coinzilla Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: coinzilla
 ---
 

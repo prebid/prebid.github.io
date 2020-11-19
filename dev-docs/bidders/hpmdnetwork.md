@@ -2,7 +2,7 @@
 layout: bidder
 title: HPMD Network
 description: Prebid HPMD Network Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: hpmdnetwork
 media_types: banner
 ---
