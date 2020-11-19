@@ -41,8 +41,8 @@ pbjs.setConfig({
 });
 ```
 
-To use multiple prebid servers, set the following configuration. 
-The same bidder cannot be set in both configs
+To use multiple prebid servers, just define `s2sConfig` as an array. 
+The same bidder cannot be set in both configs. For example:
 
 ```
 pbjs.setConfig({
