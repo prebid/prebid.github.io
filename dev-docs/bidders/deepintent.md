@@ -23,9 +23,6 @@ usp_supported: true
 
 
 
-### Prebid Server Note:
-While using prebid server mode, "banner.h" and "banner.w" should be passed. Support for the format is not present at the moment. 
-
 ### Configuration
 
 Deepintent recommends the UserSync configuration below.  Without it, the Deepintent adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
