@@ -77,7 +77,7 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 
 ```yaml
 maintainer:
-  email: foo@foo.com
+  email: prebid-maintainer@example.com
 modifyingVastXmlAllowed: false
 capabilities:
   app:
@@ -692,7 +692,7 @@ The heavy lifting is handled by the `adapters.NewSyncer` method. You just need t
 
 ### Register With The Core
 
-Prebid Server does not use reflection or any other automagic technology to recongize your new bid adapter. You must manually register it with the core framework. It's just a few lines of code.
+Prebid Server does not use reflection or any other automagic technology to recognize your new bid adapter. You must manually register it with the core framework. It's just a few lines of code.
 
 {% capture alertNote %}
 You will need to add an `import` statement for your bid adapter package in these files. Modern code editors such as Visual Studio Code and JetBrain's GoLand will do that for you.
