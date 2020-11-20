@@ -57,7 +57,7 @@ If you're ready to host a global high-performance cluster, check out these refer
 - [Becoming a PG Host Company](/prebid-server/features/pg/pbs-pg-host.html)
 
 
-### List of PG Managed Services
+## List of PG Managed Services
 
 If you're a publisher looking to try Programmatic Guaranteed or a PG bidder that wants to integrate into an existing cluster, here's a list:
 
@@ -67,3 +67,4 @@ If you're a publisher looking to try Programmatic Guaranteed or a PG bidder that
 
 - Intro Presentation: [video](https://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](https://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
 - [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
+- [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)
