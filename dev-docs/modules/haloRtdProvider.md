@@ -1,10 +1,11 @@
 ---
 layout: page_v2
-title: Audigent Halo Real-time Data Module
-description: Audigent Halo RTD Segment Module
-display_name: Audigent Halo Segmentation
+title: Audigent Halo Real Time Data Provider
+display_name: Audigent Halo Real-time Segmentation Module
+description: Audigent Halo Real-time Segmentation Module
+page_type: module
+module_type: rtd
 module_code : halo
-module_type : rtd
 enable_download : true
 sidebarType : 1
 ---
@@ -55,57 +56,6 @@ pbjs.setConfig(
                 params: {
                     mapSegments: {
                         appnexus: true,
-                    },
-                    segmentCache: false,
-                    requestParams: {
-                        publisherId: 1234
-                    }
-                }
-            }
-        ]
-    }
-    ...
-}
-```
-
-## Overriding & Adding Segment Mappers
-As indicated above, it is possible to provide your own bid augmentation
-functions.  This is useful if you know a bid adapter's API supports segment
-fields which aren't specifically being added to request objects in the Prebid
-bid adapter.  You can also override segment mappers by passing a function
-instead of a boolean to the Halo RTD segment module.  This might be useful
-if you'd like to use custom logic to determine which segments are sent
-to a specific backend.
-
-Please see the following example, which provides a function to modify bids for
-a bid adapter called adBuzz and overrides the appnexus segment mapper.
-
-```
-pbjs.setConfig(
-    ...
-    realTimeData: {
-        auctionDelay: auctionDelay,
-        dataProviders: [
-            {
-                name: "halo",
-                waitForIt: true,
-                params: {
-                    mapSegments: {
-                        // adding an adBuzz segment mapper
-                        adBuzz: function(bid, segments) {
-                            bid.params.adBuzzCustomSegments = [];
-                            for (var i = 0; i < segments.length; i++) {
-                                bid.params.adBuzzCustomSegments.push(segments[i].id);
-                            }
-                        },
-                        // overriding the appnexus segment mapper to exclude certain segments
-                        appnexus: function(bid, segments) {
-                            for (var i = 0; i < segments.length; i++) {
-                                if (segments[i].id != 'exclude_segment') {
-                                    bid.params.user.segments.push(segments[i].id);
-                                }
-                            }
-                        }
                     },
                     segmentCache: false,
                     requestParams: {
