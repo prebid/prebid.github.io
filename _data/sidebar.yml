@@ -376,146 +376,32 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Currency
-  link: /dev-docs/modules/currency.html
+  title: General Modules
+  link: /dev-docs/modules/index.html#general-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
 
 - sbSecId: 1
-  title: Google Ad Manager Express
-  link: /dev-docs/modules/dfp_express.html
+  title: Real Time Data Providers
+  link: /dev-docs/modules/index.html#real-time-data-providers
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
 
 - sbSecId: 1
-  title: Consent Management - GDPR
-  link: /dev-docs/modules/consentManagement.html
+  title: Video Modules
+  link: /dev-docs/modules/index.html#video-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 5
 
 - sbSecId: 1
-  title: GDPR Enforcement
-  link: /dev-docs/modules/gdprEnforcement.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Consent Management - US Privacy (CCPA)
-  link: /dev-docs/modules/consentManagementUsp.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Floors Module
-  link: /dev-docs/modules/floors.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Supply Chain Object
-  link: /dev-docs/modules/schain.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: User ID
-  link: /dev-docs/modules/userId.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Server To Server Testing
-  link: /dev-docs/modules/s2sTesting.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Advanced Size Mapping
-  link: /dev-docs/modules/sizeMappingV2.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Google Ad Manager Video
-  link: /dev-docs/modules/dfp_video.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Instream Video Ads Tracking
-  link: /dev-docs/modules/instreamTracking.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Freewheel Module
-  link: /dev-docs/modules/freewheel.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Ad Pod Module
-  link: /dev-docs/modules/adpod.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Category Translation
-  link: /dev-docs/modules/categoryTranslation.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Konduit Accelerate Module
-  link: /dev-docs/modules/konduit.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Browsi Viewability Module
-  link: /dev-docs/modules/browsiRtdProvider.html
-  isLastSubSectionItem: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: GPT Pre-Auction Module
-  link: /dev-docs/modules/gpt-pre-auction.html
-  isLastSubSectionItem: 1
+  title: Testing and Debug Modules
+  link: /dev-docs/modules/index.html#testing-and-debug-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -746,6 +632,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+
+- sbSecId: 2
+  title: Video Instream Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-video-instream-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
 - sbSecId: 2
   title: Video interstitial Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html

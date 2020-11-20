@@ -9,6 +9,7 @@ media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
+getFloor: true
 userIds: id5Id, unifiedId, liveIntentId, criteo, identityLink, digitrust
 tcf2_supported: true
 ---

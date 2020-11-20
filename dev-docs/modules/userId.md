@@ -164,7 +164,7 @@ gulp build --modules=fabrickIdSystem
 
 #### Fabrick Registration
 
-Please reach out to [integrations@team.neustar](mailto:integrations@team.neustar) to request your `apiKey`.
+Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegrations@team.neustar) to request your `apiKey`.
 
 #### Fabrick Configuration
 
@@ -617,6 +617,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
+| params.emailHash |Optional| String |The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha2.|`1a79a4d60de6718e8e5b326e338ae533`|
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
 | params.liCollectConfig.fpiStorageStrategy |Optional| String |This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
@@ -862,7 +863,11 @@ In addition to the parameters documented above in the Basic Configuration sectio
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| params | Optional | Object | Details for PubCommon ID. | |
+| name | Required | String | The name of this module. | `'pubCommonId'` |
+| params | Optional | Object | Customized parameters | |
+| params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the PubCommon ID cookie.  Default is true. | `true` |
+| params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
+| params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
 | params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` in Prebid.js 4.x. Will default to `true` in Prebid.js 5.0. | `true` |
 
 
@@ -1172,23 +1177,23 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### Verizon Media ID
+### Verizon Media's Unified ID
 
-Verizon Media's ID is a person based ID and doesn't depend on 3rd party cookies.
+Verizon Media's Unified ID is a person based ID and doesn't depend on 3rd party cookies.
 
-Verizon Media's ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. The Verizon Media ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
+Verizon Media's Unified ID is designed to enable ad tech platforms to recognize and match users consistently across the open web. Verizon Media's Unified ID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
 
-The Verizon Media ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
+Verizon Media's Unified ID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
 
 Please reach out to VerizonMedia-UIDsupport@verizonmedia.com for assistance with setup.
 
-Add Verizon Media ID to your Prebid.js package with:
+Add support for Verizon Media's Unified ID to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,verizonMediaIdSystem
 
 
-#### Verizon Media ID configuration
+#### Verizon Media's Unified ID configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
@@ -1202,7 +1207,7 @@ gulp build --modules=userId,verizonMediaIdSystem
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'vmuid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
 
-#### Verizon Media ID examples
+#### Verizon Media's Unified ID examples
 
 ```
 pbjs.setConfig({
@@ -1263,7 +1268,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
-| Verizon Media ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
+| Verizon Media's Unified ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 
 For example, the adapter code might do something like:
 

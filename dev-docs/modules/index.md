@@ -38,6 +38,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
 | [**Price Floors Module**](/dev-docs/modules/floors.html) | Configure and enforce minimum bids. |
 | [**GPT Pre-Auction Module**](/dev-docs/modules/gpt-pre-auction.html) | Adds a PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters. |
+| [**ID Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
 
 ## Real-Time Data Providers
 
@@ -90,6 +91,5 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 ## Further Reading
 
 + [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
-+ [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html)
-
-
++ [Bidders' Params](/dev-docs/bidders.html)
++ [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)
