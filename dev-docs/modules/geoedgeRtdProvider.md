@@ -44,7 +44,7 @@ pbjs.setConfig({
         dataProviders: [{
             name: 'geoedge',
             params: {
-                key: '123123', 
+                key: '123123',       // obtain your key from Geoedge support
                 bidders: {
                     'bidderA': true, // monitor bids form this bidder
                     'bidderB': false // do not monitor bids form this bidder.
