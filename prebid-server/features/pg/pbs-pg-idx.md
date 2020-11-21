@@ -1,10 +1,10 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Features | Programmatic Guaranteed
+title: Programmatic Guaranteed
 ---
 
-# Prebid Server | Features | Programmatic Guaranteed (PBS-Java only)
+# Programmatic Guaranteed (PBS-Java only)
 {: .no_toc}
 
 * TOC
@@ -63,7 +63,7 @@ If you're a publisher looking to try Programmatic Guaranteed or a PG bidder that
 
 - Magnite - contact your account representative or globalsupport@magnite.com
 
-## Resources
+## Related Topics
 
 - Intro Presentation: [video](https://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](https://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
 - [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)

@@ -1,10 +1,10 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Features | Programmatic Guaranteed | Adding a PG Bidder
+title: Adding a PG Bidder
 ---
 
-# Prebid Server | Features | Programmatic Guaranteed | Adding a PG Bidder
+# Adding a Programmatic Guaranteed Bidder
 {: .no_toc}
 
 * TOC
@@ -16,7 +16,7 @@ The architecture of Prebid Programmatic Guaranteed (PG) is inherently multi-vend
 is called the `General Planner`. The General Planner can connect out to multiple sources of PG Line Items, and that's where you come in -- as a PG Bidder, you can contribute PG Line Items into the auction ecosystem for the publishers who utilize the Host Company's installation.
 Here's a diagram from the [white paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf). This reference outlines the steps needed to build "PG Bidder 1" or "PG Bidder 2" in the diagram.
 
-![PG High Level Framework](/assets/images/prebid-server/pg/pg-arch-2.png){: .pb-md-img :}
+![PG High Level Framework](/assets/images/prebid-server/pg/pg-arch-2.png){: .pb-lg-img :}
 
 1. The PG Host Company runs clusters of Prebid Servers that receive requests from publishers.
 2. Prebid Servers look up additional data for use in targeting.
@@ -31,7 +31,7 @@ Notes:
 - It will be your responsibility to manage the finances with each Publisher.
 - It's possible that the Host Company may charge a fee to deliver PG Line Items through their infrastructure.
 
-## What does it take to build a PG Bidder?
+## What's Involved in building a PG Bidder?
 
 These are the high level steps for how to develop a PG Bidder and plug it into a Host Company's implementation.
 
@@ -43,7 +43,7 @@ These are the high level steps for how to develop a PG Bidder and plug it into a
 1. Develop an external API that can respond to requests from the Host Company's General Planner for line item data.
 1. Contact the Host Company to begin integration testing.
 
-### Get targeting dimensions
+### Obtain Targeting Dimensions
 
 The Host Company will give you access to their 'Dimension Value API' which will let you know what attributes and values their Prebid Servers can target at runtime for particular clients.
 The values used will differ between Host Companies and publishers. For example, there may be different geographic and device info services. Publisher AdSlot and First Party Data fields will also vary.
@@ -53,39 +53,56 @@ Once granted authenticated access to the Dimension Value endpoint, you'll use th
 - GET /dim-val/api/v2/attr/names?account=1001
 - GET /dim-val/api/v2/attr/values?account=1001
 
-There are various options for filtering data. See TBD-DimValueAPI(https://github.rp-core.com/ContainerTag/pg-dim-val-api/blob/master-rubicon/docs/server_endpoints.md) for more details.
+There are various options for filtering data. See the [Dimension Value API documentation](https://github.rp-core.com/ContainerTag/pg-dim-val-api/blob/master-rubicon/docs/server_endpoints.md) for more details.
 
-Notes:
-- In order to access client-specific targeting data, you'll need to know the account ID the Host Company uses for each publisher. You'll need to store a mapping of your internal account ID to the Host Company's internal account ID.
+{: .alert.alert-info :}
+In order to access client-specific targeting data, you'll need to know the account ID the Host Company uses for each publisher.
 
-### Getting data from the Delivery Stats service
+### Getting data from the Delivery Stats Service
 
 There are two reasons you'll want data from the Host Company's PG Delivery Stats Service:
 
-1. Line Item reporting: you can get detailed info about where in the delivery funnel each Line Item is getting attention or running into problems. See TBD-Funnel-Stats to see which statistics you can expect.
-1. Pacing algorithm: in order to write a robust and responsive pacing algorithm, you're going to need fresh data. If your bidder's impression data stream is real-time, that may be enough. If not, the Host Company's Delivery Stats server can provide recent (5-minute) summaries of important metrics like tokens spend and bidsWon. See the TBD-pacing-primer for more details.
+1. **Line Item reporting**: you can get detailed info about where in the delivery funnel each Line Item is getting attention or running into problems. See TBD-Funnel-Stats to see which statistics you can expect.
+1. **Inform the pacing algorithm**: in order to write a robust and responsive pacing algorithm, you're going to need fresh data. If your bidder's impression data stream is real-time, that may be enough. If not, the Host Company's Delivery Stats server can provide recent (5-minute) summaries of important metrics like tokens spend and bidsWon. See the TBD-pacing-primer for more details.
 
 Some example Delivery Stats queries:
 
-- GET /del-stats-summ/api/v1/report/line-item-summary?startTime=YYYY-MM-DDT00:00:00.000Z -- this returns an hourly aggregration for all of your line items since the specified time.
-- GET /del-stats-pa/api/v2/report/delivery?bidderCode=pgExample&startTime=YYYY-MM-DDT00:00:00.000Z -- this returns 5-minute aggregations for all of your line items since the specified time.
+- GET /del-stats-summ/api/v1/report/line-item-summary?startTime=YYYY-MM-DDT00:00:00.000Z -- this returns an hourly aggregration for all of your line items since the specified time. See the [Line Item Summary Report endpoint documentation](https://github.rp-core.com/ContainerTag/pg-del-stats-svc/blob/master-rubicon/docs/line_item_summary_endpoint.md) for more info.
+- GET /del-stats-pa/api/v2/report/delivery?bidderCode=pgExample&startTime=YYYY-MM-DDT00:00:00.000Z -- this returns 5-minute aggregations for all of your line items since the specified time. See the [Delivery Report endpoint documentation](https://github.rp-core.com/ContainerTag/pg-del-stats-svc/blob/master-rubicon/docs/delivery_report_endpoints.md)
 
-There are many other options for querying the data. See TBD-DelStats(https://github.rp-core.com/ContainerTag/pg-del-stats-svc/tree/master-rubicon/docs) for more details.
 
-### Answering General Planner requests
+### Answering General Planner Requests
 
-When you're ready for integration with the Host Company, you'll provide them an authenticated secure endpoint that will answer requests from the Host Company's General Planner:
+When you're ready for integration with the Host Company, you'll provide an authenticated secure endpoint that will answer requests from the Host Company's General Planner.
+The path of this endpoint can be anything you'd like. You may receive these query string parameters:
 
-- /planner-adapter/api/v1/plans
+{: .table .table-bordered .table-striped }
+| Parameter | Format | Required? | Description |
+| --- | --- | --- | --- |
+| since | string | no |  Timestamp in ISO-8601 format. For example, 2019-02-01T03:00:00.000Z. Service should respond with all meta data for active or nearly-active line items and schedules that got updated since this timestamp. Absence of this parameter signals request to return all active or nearly-active line items. |
+| hours | string | no |  Number of hours of plans desired i.e. provide the next 3 hours worth of plans |
 
-At this point, your pacing algorithm needs to respond quickly with the most recently calculated set of line item pacing "plans". A plan is just a set
-of instructions to Prebid Server saying "serve me X1 times from noon-12:05, X2 times from 12:05-12:10, ..."
+Here's an [example JSON response](https://github.rp-core.com/ContainerTag/pg-general-planner/blob/master-rubicon/docs/samples/pa_rsp.json) that might come from your bidder planner.
 
-See TBD https://github.rp-core.com/ContainerTag/pg-general-planner/blob/master-rubicon/docs/remote_endpoints.md for more details.
+At this point, your endpoint needs to respond quickly with the most recently calculated set of line item pacing "plans". A plan is a set
+of instructions to Prebid Server that tells the system how often to serve
+a line item in a given period. e.g. "serve LineA 50 times from noon-12:05, 55 times from 12:05-12:10, ..."
+
+The General Planner will be configured to call your endpoint every 1-10 minutes depending on the Host Company.
+
+See [PG Plan Definition](/prebid-server/features/pg/pbs-pg-plan.html) for more details on what should be returned.
 
 ### General notes on writing a pacing algorithm
 
-## Resources
+At a high level, pacing a line item can be simple:
 
-- Prebid PG Intro Presentation: [recording](https://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](https://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
-- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
+```
+NumberOfImpressionsEachHour=TotalImpressionsRemaining / NumberOfHoursRemaining
+```
+
+How it works at a Prebid Server level
+
+## Related Topics
+
+- [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
+- [PG Plan Definition](/prebid-server/features/pg/pbs-pg-plan.html)

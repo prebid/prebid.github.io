@@ -1,10 +1,10 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Features | Programmatic Guaranteed | Glossary
+title: Programmatic Guaranteed Glossary
 ---
 
-# Prebid Server | Features | Programmatic Guaranteed | Glossary
+# Programmatic Guaranteed Glossary
 {: .no_toc}
 
 * TOC
@@ -14,11 +14,12 @@ title: Prebid Server | Features | Programmatic Guaranteed | Glossary
 
 - **Programmatic Ad** - an ad request that flows through the multi-vendor ad tech ecosystem
 - **Guaranteed** - A buyer and seller have entered into a contract: to deliver a certain amount of impressions to a particular target over a particular date range. If contract isn't met, there may be financial penalties or extra impressions.
+- **PG Host Company** - the entity running the Prebid PG software: Prebid Servers, General Planner, Delivery Stats, and Dimension Value API.
 - **Prebid Ad Slot** - the "hole in the page" that's requesting an ad (note: this is not currently standard Prebid.org terminology).
 - **Prebid Ad Unit** - a package of bidding parameters that defines which bidders and bid parameters are to be used for a specific "hole in the page".
 - **Client Requests** - OpenRTB-like network calls from a client to the Prebid Server requesting one or more auctions.
 - **Auction Requests** - a single OpenRTB ad request may contain 1 or more 'imp' blocks that define different auction scenarios. Each of these blocks is an "auction". Auctions are sent to one or more bidders and are associated with auction parameters for each bidder.
-- **Bidder** - the ad exchange, demand side platform, or other bid source that directly or indirectly connects the Auction Request to a bid. Example bidders include Rubicon, Criteo, etc.
+- **PG Bidder** - the ad exchange, demand side platform, or other bid source that directly or indirectly connects the Auction Request to a bid. Example bidders include Magnite, Criteo, etc.
 - **Bidder Parameters** - the specific parameters required by the bidder describing the auction to take place. The Rubicon account, site, and zone are example parameters.
 - **PG Line Item** - the base unit of ad delivery has a goal, date range, target, creatives, deal ID, and pacing options.
 - **AdServer Line Item** - corresponding to the PG Line Item, the AdServer has a similar line item which prioritizes the PG Line Item in relation to other direct-sold agreements. It may also have a goal and date range, but the targeting will be just to the deal ID, not the full PG target. The creative is the Prebid-standard creative instead of the actual creative.
