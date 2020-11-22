@@ -30,6 +30,7 @@ pbjs: true
 | `maxDuration`    | optional | Maximum video ad duration in seconds. | `30` | `integer` |
 | `skippable`      | optional | Skippability of the inventory. Possible values: `true` - only skippable inventory is allowed, `false` - skippable inventory is not allowed, null/missing - all inventory is allowed (default value). | `true` | `boolean` |
 
+Supported from version 3.27.0 and above
 
 ### Configuration
 
