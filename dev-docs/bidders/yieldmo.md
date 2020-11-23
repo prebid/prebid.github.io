@@ -22,7 +22,7 @@ tcf2_supported: true
 | `bidFloor`    | optional |      Bid Floor       |         `0.1`          |  `float` |
 
 ### video parameters
-The Yieldmo adapter supports video as of Prebid vXXXXX.
+The Yieldmo adapter supports video as of Prebid v4.18.
 
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                            | Example         | Type      |
