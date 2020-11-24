@@ -11,7 +11,7 @@ pbjs: true
 pbs: false
 ---
 
-### Prebid.Server Bid Params
+### Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
