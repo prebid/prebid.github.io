@@ -4,7 +4,7 @@ title: PubWise
 description: PubWise Bidder Adaptor
 pbjs: true
 biddercode: pubwise
-media_types: banner
+media_types: banner, native
 gdpr_supported: true
 ---
 
@@ -17,24 +17,26 @@ The PubWise bid adapter requires approval. Visit http://www.PubWise.io/ to get s
 | Name         | Scope    | Description                                                                                       | Example                  | Type      |
 |--------------|----------|---------------------------------------------------------------------------------------------------|--------------------------|-----------|
 | `siteId`     | required | The site ID provided by the PubWise systesm                                                       | `'XXXXXX'`               | `string`  |
-| `spotId`     | required | The ID of the bid placement                                                                       | `'12345678'`             | `string`  |
-| `isTest`     | required | A boolean to indicate 100% fill test placement request                                            | `false`                  | `boolean` |
+| `bidFloor`   | optional | Value to pass as the bidfloor for this bid                                                        | `2.50`                   | `currency` |
+| `isTest`     | optional | A boolean to indicate 100% fill test placement request                                            | `false`                  | `boolean` |
 
 ### Example
 
 ```
 var adUnits = [
     {
-        code: "banner-div",
+        code: "div-gpt-ad-1460505748561-0",
         mediaTypes: {
         banner: {
             sizes: [[300, 250]]
         }
         },
         bids: [{
-            siteId: "XXXXXX",
-            spotId: "12345678",
-            isTest: false
+            bidder: 'pubwise',
+            params: {
+                siteId: "xxxxxx",
+                isTest: true
+            }
         }]
     }
 ]
