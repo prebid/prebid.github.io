@@ -708,7 +708,7 @@ The Lotame privacy policy is at [https://www.lotame.com/about-lotame/privacy/](h
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=lotamePanoramaId
+gulp build --modules=lotamePanoramaIdSystem
 
 #### Lotame Panorama ID Configuration
 
