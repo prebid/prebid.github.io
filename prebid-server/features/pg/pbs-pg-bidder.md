@@ -92,17 +92,45 @@ The General Planner will be configured to call your endpoint every 1-10 minutes 
 
 See [PG Plan Definition](/prebid-server/features/pg/pbs-pg-plan.html) for more details on what should be returned.
 
-### General notes on writing a pacing algorithm
+### General notes on Writing a Pacing Algorithm
 
-At a high level, pacing a line item can be simple:
+At a high level, pacing a line item could be simple:
 
 ```
-NumberOfImpressionsEachHour=TotalImpressionsRemaining / NumberOfHoursRemaining
+NumberOfImpressionsEach5MinPeriod=TotalImpressionsRemaining+3percentBuffer / NumberOf5MinPeriodsRemaining
 ```
 
-How it works at a Prebid Server level
+But this approach wouldn't perform well:
+- When the line falls behind, it won't take advantage of higher traffic periods to catch up. It will fall behind during normal low-traffic periods.
+- As covered in the description of [tokens](/prebid-server/features/pg/pbs-pg-plan.html#tokens), a PG line item cannot assume that it'll be chosen every time it's offered to the ad server. Prebid PG paces based on tokens, not impressions, so the pacing algorithm needs to estimate how many times each line item needs to be offered to the ad server in order to land a final certified impression.
+
+Likewise, another naive approach is to try and immediately catch up to the "even delivery" line:
+```
+ImpressionDeficit=TotalImpressions+3percentBuffer - TotalImpressionsShouldHaveByNow
+
+NumberOfImpressionsThis5MinPeriod=ImpressionDeficit * NoiseFactor
+```
+
+Potential problems with this algorithm:
+- If it falls far behind, it could be overly aggressive in trying to catch up, affecting the delivery of other line items.
+- If it gets ahead somehow, it will stop delivering entirely until time catches up to the delivery curve.
+
+Here are some examples of desirable delivery patterns:
+
+![Desirable delivery patterns](/assets/images/prebid-server/pg/pg-good-delivery.png){: .pb-lg-img :}
+
+And these are examples of delivery patterns to avoid:
+
+![Undesirable delivery patterns](/assets/images/prebid-server/pg/pg-bad-delivery.png){: .pb-lg-img :}
+
+For more information, see the "Plans" section of the [Intro to PG Whitepaper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf).
+
+{: .alert.alert-warning :}
+Your PG Host Company may require periodic of testing with your pacing algorithm because undesirable
+token management from on PG Bidder could affect line item delivery from other PG Bidders.
 
 ## Related Topics
 
 - [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
-- [PG Plan Definition](/prebid-server/features/pg/pbs-pg-plan.html)
+- [PG Plans](/prebid-server/features/pg/pbs-pg-plan.html)
+- [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)

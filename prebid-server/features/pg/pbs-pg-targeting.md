@@ -13,7 +13,10 @@ title: Programmatic Guaranteed Targeting Syntax
 ## Targeting Syntax
 
 
+
+
 ## Related Topics
 
-- Intro Presentation: [video](https://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](https://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
-- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
+- [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
+- [PG Plan Definition](/prebid-server/features/pg/pbs-pg-plan.html)
+- [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)
