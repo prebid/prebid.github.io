@@ -212,6 +212,15 @@ none
 void clearStoredBidResponses()
 ```
 
+### pbsDebug
+
+`pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
+```java
+pbsDebug(Boolean)
+```
+
+Example:
+PrebidMobile.setPbsDebug(true);
 
 ## Related Topics
 

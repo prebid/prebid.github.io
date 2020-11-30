@@ -2,14 +2,16 @@
 layout: bidder
 title: Synacor Media
 description: Prebid Synacor Media Bidder Adapter
-hide: true
+pbjs: true
+pbs: true
 biddercode: synacormedia
 media_types: banner, video
 gdpr_supported: false
 schain_supported: true
+usp_supported: true
 ---
 
-### Note
+### Note:
 
 The Synacor Media bidder adapter requires setup and approval from Synacor. Please reach out to your account manager for more information and to start using it.
 
@@ -32,8 +34,8 @@ pbjs.setConfig({
 });
 ```
 
-### Google Ad Manager Video Creative
-To use video, setup a `VAST redirect` creative within Google Ad Manager (formerly DFP) with the following VAST tag URL:
+### DFP Video Creative
+To use video, setup a `VAST redirect` creative within Google AdManager (DFP) with the following VAST tag URL:
 
 ```
 https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm%%&AUCTION_PRICE=%%PATTERN:hb_pb_synacormedia%%
@@ -51,7 +53,6 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm
 | `video` | optional | Optional properties specific to video, see next table | `{ }` | Object |
 
 ### Example Ad Unit
-
 ```javascript
 var adUnits = [{
     "code": "test-div",
@@ -79,11 +80,11 @@ var adUnits = [{
 }]
 ```
 
-### Video Parameters (see OpenRTB 2.5 spec, all are optional)
+### Video Parameters (see openrtb 2.5 spec)
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Default | Type |
-| ---- | ------ | ----------- | ------- | ---- |
+| ---- | ----- | ----------- | ------- | ---- |
 | `minduration` | optional | Minimum ad duration in seconds | `2` | `int` |
 | `maxduration` | optional | Maximum ad duration in seconds | `60` | `int` |
 | `startdelay` | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.  | `0` | `int` |

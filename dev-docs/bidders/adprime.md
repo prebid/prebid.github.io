@@ -2,10 +2,13 @@
 layout: bidder
 title: Adprime
 description: Prebid Adprime Bidder Adapter
-hide: true
 biddercode: adprime
 gdpr_supported: true
+usp_supported: true
 media_types: banner, video
+tcf2_supported: true
+pbjs: true
+pbs: true
 ---
 
 ### Note:
@@ -17,5 +20,6 @@ The Adprime Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `id`      | required | Adprime placement id         | `'1234asdf'`    | `string` |
+| `placementId`      | required | Adprime placement id         | `'1234asdf'`    | `string` |
+| `keywords`    | optional | page context keywords | ['car','sport'] | `array` |
 

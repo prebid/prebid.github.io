@@ -24,7 +24,7 @@ For ad ops and other ad server-related information, see [our Ad Ops documentatio
 |---------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------|
 | *Multi-Format (banner, native, outstream video all in one ad unit)* | [Show Multi-Format Ads with Prebid.js]({{site.baseurl}}/dev-docs/show-multi-format-ads.html) (Engineering setup)                  |
 |                                                                     | [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html) (Ad ops setup)         |
-| *AMP*                                                               | [How Prebid on AMP Works]({{site.github.url}}/dev-docs/how-prebid-on-amp-works.html)                                             |
+| *AMP*                                                               | [How Prebid on AMP Works](/prebid-server/use-cases/pbs-amp.html)                                             |
 |                                                                     | [Show Prebid Ads on AMP Pages (Alpha)]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html)                           |
 | *Video* (instream)                                                  | [Show Video Ads with a Google Ad Manager Video Tag]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html) (With lots of examples) |
 |                                                                     | [How to Add a New Video Bidder Adapter]({{site.github.url}}/dev-docs/how-to-add-a-new-video-bidder-adaptor.html)                 |

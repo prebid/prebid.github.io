@@ -2,7 +2,7 @@
 layout: bidder
 title: TrustX
 description: Prebid Trustx Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: trustx
 media_types: banner, video
 gdpr_supported: true

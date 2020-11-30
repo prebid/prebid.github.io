@@ -2,10 +2,11 @@
 layout: bidder
 title: Logicad for Publishers
 description: Prebid Logicad for Publishers Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: logicad
 bidder_supports_deals: false
-media_types: banner
+media_types: banner, native
 gdpr_supported: false
 prebid_member: false
 ---
