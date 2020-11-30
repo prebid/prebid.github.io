@@ -13,7 +13,7 @@ tcf2_supported: true
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description          | Example    | Type     |
 |------------|----------|----------------------|------------|----------|
-| `publisherId` | required | Publisher ID from WMG Dashboard | `'5cebea3c9eea646c7b623d5e'`` | `string` |
+| `publisherId` | required | Publisher ID from WMG Dashboard | `'5cebea3c9eea646c7b623d5e'` | `string` |
 | `IABCategories` | optional |IAB ad categories for adUnit | `['IAB1', 'IAB5']` | `array of strings` |
 
 ### Ad Unit Setup for Banner
