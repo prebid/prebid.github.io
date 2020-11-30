@@ -1,10 +1,10 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Programmatic Guaranteed Plan Definition
+title: Programmatic Guaranteed Plans
 ---
 
-# Programmatic Guaranteed Plan Definition
+# Programmatic Guaranteed Plans
 {: .no_toc}
 
 * TOC
@@ -12,13 +12,13 @@ title: Programmatic Guaranteed Plan Definition
 
 ## What is a Plan?
 
-A Plan is a set of instructions to Prebid Server that tells it how often to serve a line item in a given period.
+A Plan is a set of instructions to Prebid Server that tells it how often to serve a PG line item in a given period.
 
 1. Plans are created by each [PG Bidder](/prebid-server/features/pg/pbs-pg-bidder.html) as an output of their bidder-specific pacing algorithm.
 1. The 'General Planner' run by the Host Company will spread the Plan out across the cluster of Prebid Servers.
 1. Each Prebid Server works to deliver its part of the Plan.
 
-Here's what it looks like at a high level:
+Here's what one looks like at a high level:
 
 ```
 [
@@ -50,40 +50,41 @@ The key parts of the Plan are:
 
 ### Tokens
 
-A token is an ad impression scaled to overcome delivery obstacles.
+A `token` is an ad impression scaled up to overcome delivery obstacles.
 
 When Prebid Server (PBS) sends a PG line item to the ad server, it might be
-chosen to win, or maybe not. In any case, the act of sending a
+chosen to win, or maybe not. In either case, the act of sending a
 line item to the ad server causes PBS to create a "cool down" period for that
 line item. This is what pacing is all about -- making sure that delivery of the
 daily impression goal doesn't complete 20 minutes after midnight. PG delivery
 needs to be spread through the day, through the hour, and through each 5-minute period.
 
 If we could guarantee that the ad server would choose the PG line item to win every time,
-we wouldn't need tokens... PG could just use impressions. But that's not the case. There are many reasons why a candidate PG line item might not end up
+we wouldn't need tokens... PG could just use impressions. But that's not the case. There are several reasons why a candidate PG line item might not end up
 getting a final certified ad impression:
 - competing line items in the ad server
 - competing PG line items from another vendor
 - user leaves the page before ad render
 - the impression may be discounted as non-human traffic
 
-Basically, the pacing algorithm is working in a "noisy" environment. Not only are there
+Basically, the pacing algorithms are working in a "noisy" environment. Not only are there
 many things that can get in the way of delivering a certified an ad impression,
-conditions can change rapidly, e.g. competing line items may start or stop, or the DSP may change it's bidding pattern.
+conditions can change rapidly, e.g. competing line items may start or stop, or the DSP may change its bidding pattern.
 
 So a "token" is Prebid PG's way of dealing with noise in the system.
 Instead of being satifisfied with offering a PG line item to the ad server
-and assuming that it will become a certified impression, PG operates in tokens instead, knowing that some of those opportunities to serve won't materialize.
+and assuming that it will become a certified impression, PG operates in tokens instead, knowing that some of those opportunities won't materialize.
 You can think of it in terms of this basic formula:
 
 ```
-TokensToSpend = ImpressionsNeeded * Noise
+Tokens = ImpressionsNeeded * Noise
 ```
 
-Where the noise factor is how many tokens it's currently taking to get an ad
+Where the "noise" factor is how many tokens it's currently taking to get an ad
 impression through the gauntlet of challenges. Determining this noise factor
 is part of what the pacing algorithm needs to do -- adjusting it in real time
-as needed.
+as needed. e.g. if it's been taking 2 trips to the ad server to get a "bid won", the noise factor is 2, so in a plan that requires 50 impressions, there would be 100 tokens.
+You might wonder "why doesn't Prebid Server just take care of this?" Because Prebid Server is stateless... useful statistics are forwarded from hundreds of front-end servers and it's the job of the backend servers to aggregate and use that data.
 
 Of course noise could be infinite. For example, if there's a 'roadblock'
 ad in the ad server, it's possible that a PG line item will just stop delivering
@@ -93,7 +94,7 @@ but the best strategy for the infinite noise scenario is to give up and use a
 very small token count, waiting for when the problem has lifted.
 
 A good real-time way to monitor noise is to compare two fields
-in the Delivery Stats reports: sentToClientAsTopMatch vs events.bidsWon. (See the [glossary.](/prebid-server/features/pg/pbs-pg-glossary.html) These values
+in the Delivery Stats reports: sentToClientAsTopMatch vs events.bidsWon. (See the [glossary.](/prebid-server/features/pg/pbs-pg-glossary.html#metrics)) These values
 are indications of how many times the line item was offered to the ad server
 and accepted. But this value may also be tempered with data from your
 clean financial pipeline that compares certified impressions with events.bidsWon.
@@ -118,7 +119,7 @@ These are the attributes that are part of a Plan. See below for an [annotated ex
 | frequencyCaps.count | no | How many impressions can be served | integer |
 | frequencyCaps.periods | no | Over how many periods | integer |
 | frequencyCaps.periodType | no | Period length. E.g. "day" or "hour" | string |
-| targeting | yes | Defines which ad requests are of interest to this line item. | object |
+| targeting | yes | Defines which ad requests are of interest to this line item. See [PG Targeting](/prebid-server/features/pg/pbs-pg-targeting.html) | object |
 | startTimeStamp | yes | Line start time in UTC. e.g. 2020-08-28T07:22:14.000Z | string |
 | endTimeStamp | yes | Line end time in UTC. | string |
 | updatedTimeStamp | no | When this plan was last modified. | string |
@@ -137,7 +138,7 @@ Even though it will be contacted frequently, they should still generate
 several hours worth of the delivery schedule in case communication breaks down somehow. 
 
 Once it receives the Plan, the General Planner will split up the tokens across 
-Prebid Servers. At first it does this in a really blunt way: just divides them evenly across the servers. But it will soon start adjusting for geographic differences
+Prebid Servers. When a line item first starts, it does this in a really blunt way: just divides them evenly across the servers. But it will soon start adjusting for geographic differences
 in line item delivery. e.g. if a line item only serves tokens in Europe, the Prebid Servers in Europe will get all the tokens within a few cycles.
 
 ## Plans and Prebid Server
@@ -146,7 +147,7 @@ Each PBS polls the General Planner once per minute, getting new and updated Plan
 Here's how it works:
 
 1. When an auction request comes in, check to see if the account has any active PG line items. If it doesn't, process the request normally.
-2. Enhance the request with geographic, device, user, and frequency capping information
+2. If it is an account with active PG line items, enhance the request with geographic, device, user, and frequency capping information
 3. Find out which PG line items have targets that match the current request
 4. Loop through the matching line items
     1. Increment the "targetMatched" metric.
@@ -157,12 +158,14 @@ Here's how it works:
 6. Take the first 3 PG line items for each PG Bidder and send them the relevant bid adapter, incrementing the "sentToBidder" metric for each, and the "sentToBidderAsTopMatch" metric for one of them.
 7. Wait for the auction delay for the results. Increment "receivedFromBidder" and "receivedFromBidderInvalidated" metrics as appropriate.
 8. Take the highest priority bid from each PG Bidder and prepare ad server targeting. Increment the "sentToClient" metric.
-9. If there's more than one bid from a PG Bidder, randomly choose one to be the overall winner and increment the "sentToClientAsTopMatch" metric. Only this line item is considered to have "spent" a token and is put into "cool-down". PBS calculates how many milliseconds it needs to wait before offering this line item to the ad server again.
+9. If there's more than one bid from a PG Bidder, randomly choose one to be the overall winner and increment the "sentToClientAsTopMatch" metric. Only this line item is considered to have spent a token and is put into "cool-down": PBS calculates how many milliseconds it needs to wait before offering this line item to the ad server again.
 
 {: .alert.alert-info :}
 Random numbers are used at a couple of points in the PG algorithm. This is to avoid choosing the same aggressive-but-blocked line item every time.
 
 ## Annotated Plan Example
+
+Here's a complete example of a Plan with all line item and delivery schedule fields.
 
 ```
 [				// each line item has a plan entry
@@ -277,5 +280,6 @@ Random numbers are used at a couple of points in the PG algorithm. This is to av
 
 - [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
 - [Adding a PG Bidder](/prebid-server/features/pg/pbs-pg-bidder.html)
+- [PG Targeting](/prebid-server/features/pg/pbs-pg-targeting.html)
 - [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)
 
