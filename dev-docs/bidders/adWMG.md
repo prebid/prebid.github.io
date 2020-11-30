@@ -31,7 +31,7 @@ var adUnits = [
   bids: [{
     bidder: 'adWMG',
     params: {
-        publisherId: 'examplePub123',
+        publisherId: '5cebea3c9eea646c7b623d5e',
         IABCategories: "['IAB1', 'IAB5']"
     }
   }]
