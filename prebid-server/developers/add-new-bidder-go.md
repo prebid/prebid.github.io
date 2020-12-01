@@ -786,7 +786,7 @@ If you implemented a user syncer, you'll need to provide a default endpoint. Edi
 ```go
 func (cfg *Configuration) setDerivedDefaults() {
   ...
-  setDefaultUsersync(cfg.Adapters, openrtb_ext.Bidder{Bidder}, "https://your.url/sync?r="+url.QueryEscape(externalURL)+"%2Fsetuid%3Fbidder%3D{bidder}%26gdpr%3D{{.GDPR}}%26gdpr_consent%3D{{.GDPRConsent}}%26uid%3D%5BUUID%5D")
+  setDefaultUsersync(cfg.Adapters, openrtb_ext.Bidder{Bidder}, "https://your.url/sync?r="+url.QueryEscape(externalURL)+"%2Fsetuid%3Fbidder%3D{bidder}%26gdpr%3D{%raw%}{{.GDPR}}%26gdpr_consent%3D{{.GDPRConsent}}{%endraw%}%26uid%3D%5BUUID%5D")
   ...
 }
 ```
@@ -807,9 +807,9 @@ Yes, you're right. That url value is quite complicated. You can find further det
 The user sync endpoint is composed of two main parts, the url of your user syncer and a redirect url back to Prebid Server. The url of your user syncer is responsible for reading the user id from the client's cookie and redirecting to Prebid Server with a user id macro resolved.
 
 The url of your user syncer can make use of the following privacy policy macros which will be resolved by Prebid Server before sending the url to your server:
-- `{{.USPrivacy}}`: Client's CCPA consent string.
-- `{{.GDPR}}`: Client's GDPR TCF enforcement flag.
-- `{{.GDPRConsent}}`: Client's GDPR TCF consent string.
+- `{%raw%}{{.USPrivacy}}{%endraw%}`: Client's CCPA consent string.
+- `{%raw%}{{.GDPR}}{%endraw%}`: Client's GDPR TCF enforcement flag.
+- `{%raw%}{{.GDPRConsent}}{%endraw%}`: Client's GDPR TCF consent string.
 
 <details>
   <summary>Example: Bidding server url with no macros.</summary>
@@ -823,14 +823,14 @@ The url of your user syncer can make use of the following privacy policy macros 
   <summary>Example: Bidding server url with CCPA privacy consent.</summary>
 
   ```go
-  "https://your.url/sync?usp={{.USPrivacy}}&r="
+  "https://your.url/sync?usp={%raw%}{{.USPrivacy}}{%endraw%}&r="
   ```
 </details>
 <p></p>
 
 The redirect url for Prebid Server must follow this format:
 ```
-{host}/setuid?bidder={bidder}&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&uid=[UUID]
+{host}/setuid?bidder={bidder}&gdpr={%raw%}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}{%endraw%}&uid=[UUID]
 ```
 
 - `{host}` is a placeholder for the Prebid Server host url. In code, you would use `url.QueryEscape(externalURL)`. 
@@ -840,7 +840,7 @@ The redirect url for Prebid Server must follow this format:
 The final value of the redirect url is encoded for safe use within a query string:
 
 ```
-{host}%2Fsetuid%3Fbidder%3D{bidder}%26gdpr%3D{{.GDPR}}%26gdpr_consent%3D{{.GDPRConsent}}%26uid%3D%5BUUID%5D
+{host}%2Fsetuid%3Fbidder%3D{bidder}%26gdpr%3D{%raw%}{{.GDPR}}%26gdpr_consent%3D{{.GDPRConsent}}{%endraw%}%26uid%3D%5BUUID%5D
 ```
 
 ## Test Your Adapter
@@ -941,7 +941,7 @@ If your adapter supports template parsing, we recommend adding this failure test
 ```go
 func TestEndpointTemplateMalformed(t *testing.T) {
   _, buildErr := Builder(openrtb_ext.Bidder{Bidder}, config.Adapter{
-    Endpoint: "{{Malformed}}"})
+    Endpoint: "{%raw%}{{Malformed}}{%endraw%}"})
     
   assert.Error(t, buildErr)
 }
