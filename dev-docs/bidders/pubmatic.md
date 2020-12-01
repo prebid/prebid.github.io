@@ -9,7 +9,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 getFloor: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, intentiqId, idx, liveIntentId, lotamePanoramaId, netId, parrableId, pubCommonId, quantcastId, sharedId, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 safeframes_ok: true
 tcf2_supported: true
