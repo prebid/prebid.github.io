@@ -42,27 +42,24 @@ contact one of the companies hosting a PG cluster. They'll explain how it all wo
 
 ### List of PG Managed Services
 
-If you're a publisher looking to try Programmatic Guaranteed or a PG bidder that wants to integrate into an existing cluster, here's a list:
+If you're a publisher looking to try Programmatic Guaranteed or a PG bidder that wants to integrate into an existing cluster, here's a list of Prebid.org members to consider:
 
 - Magnite - contact your account representative or globalsupport@magnite.com
 
 ## PG for Bidders
 
-If you have a demand source and are ready to implement a guaranteed delivery algorithm, check out these references:
-
-- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
-- [Becoming a PG Bidder](/prebid-server/features/pg/pbs-pg-bidder.html)
+If you have a demand source and are ready to implement a guaranteed delivery algorithm, learn how to [become a PG Bidder](/prebid-server/features/pg/pbs-pg-bidder.html).
 
 ## Hosting your own PG Cluster
 
-If you're ready to host a global high-performance cluster, check out these references:
-
-- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
-- [Becoming a PG Host Company](/prebid-server/features/pg/pbs-pg-host.html)
+If you're ready to host a global high-performance cluster, learn how to [become a PG Host Company](/prebid-server/features/pg/pbs-pg-host.html).
 
 
 ## Related Topics
 
-- PG Introductory Presentation: [video](https://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](https://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
-- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
+- Intro to PG: [video](https://files.prebid.org/pg/PG_in_Prebid.mp4), [pdf](https://files.prebid.org/pg/PG_in_Prebid_Overview.pdf)
+- [PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
+- [Becoming a PG Bidder](/prebid-server/features/pg/pbs-pg-bidder.html)
+- [Becoming a PG Host Company](/prebid-server/features/pg/pbs-pg-host.html)
+- [PG Targeting](/prebid-server/features/pg/pbs-pg-targeting.html)
 - [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)

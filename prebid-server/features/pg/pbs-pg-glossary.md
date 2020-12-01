@@ -76,5 +76,5 @@ Here's a graphical representation showing what point in the delivery funnel each
 
 ## Related Topics
 
-- [Prebid PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
-- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
+- [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
+- [PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)

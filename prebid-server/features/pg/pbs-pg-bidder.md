@@ -1,10 +1,10 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Adding a PG Bidder
+title: Building a PG Bidder
 ---
 
-# Adding a Programmatic Guaranteed Bidder
+# Building a Programmatic Guaranteed Bidder
 {: .no_toc}
 
 * TOC
@@ -58,6 +58,9 @@ There are various options for filtering data. See the [Dimension Value API docum
 
 {: .alert.alert-info :}
 In order to access client-specific targeting data, you'll need to know the account ID the Host Company uses for each publisher.
+
+See [PG Targeting Syntax](/prebid-server/features/pg/pbs-pg-targeting.html) for a list of targeting attributes you may be able
+to get from the PG Host Company and how to format them as part of the [PG Plan](/prebid-server/features/pg/pbs-pg-plan.html).
 
 ### Getting data from the Delivery Stats Service
 
@@ -130,8 +133,9 @@ For more information, see the "Plans" section of the [Intro to PG Whitepaper](ht
 The PG Host Company may require periodic of testing with your pacing algorithm because undesirable
 token management from on PG Bidder could affect line item delivery from other PG Bidders.
 
-## Related topics
+## Related Topics
 
 - [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
 - [PG Plans](/prebid-server/features/pg/pbs-pg-plan.html)
 - [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)
+- [PG Targeting](/prebid-server/features/pg/pbs-pg-targeting.html)

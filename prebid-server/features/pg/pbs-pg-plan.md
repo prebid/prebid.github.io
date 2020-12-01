@@ -4,13 +4,13 @@ sidebarType: 5
 title: Programmatic Guaranteed Plans
 ---
 
-# Programmatic Guaranteed Plans
+# Programmatic Guaranteed 'Plans'
 {: .no_toc}
 
 * TOC
 {:toc}
 
-## What is a Plan?
+## What is a 'PG Plan'?
 
 A Plan is a set of instructions to Prebid Server that tells it how often to serve a PG line item in a given period.
 
@@ -279,7 +279,6 @@ Here's a complete example of a Plan with all line item and delivery schedule fie
 ## Related Topics
 
 - [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
-- [Adding a PG Bidder](/prebid-server/features/pg/pbs-pg-bidder.html)
+- [Becoming a PG Bidder](/prebid-server/features/pg/pbs-pg-bidder.html)
 - [PG Targeting](/prebid-server/features/pg/pbs-pg-targeting.html)
 - [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)
-

@@ -40,10 +40,15 @@ In general, the syntax is:
   ]
 }
 ```
-Where OPERATOR can be:
-- "$matches" - true if the ATTRIBUTE is the same as the CONDITION. Supports an asterisk wildcard
-- "$in" - true if the scalar ATTRIBUTE is on the CONDITION's array
-- "$intersects" - true if at least one value from the ATTRIBUTE's array is on the CONDITION's array
+Here are the supported OPERATORs:
+
+{: .table .table-bordered .table-striped }
+| Operator | Description | Attribute Datatype | Condition Datatype | Example |
+| --- | --- | --- | --- |
+| $matches | True if the scalar ATTRIBUTE is the same as the CONDITION, or matches with an asterisk wildcard. | string | string | "$matches": "{::nomarkdown}*sports*{:/}" |
+| $in | True if the scalar ATTRIBUTE is on the CONDITION's array. | string | array of strings | "$in": ["a","b"] |
+| $intersects | True if at least one value from the ATTRIBUTE's array is on the CONDITION's array | array of strings | array of strings | "$intersects": ["hockey","soccer"] |
+| $within | True if user's lat/long are available and within the circle defined by the CONDITION. | from geolookup service | object with attributes: lat, lon, and radiusMiles | "$within": {"lat": 123.456,"lon": 789.123,"radiusMiles": 50} |
 
 ## Targeting Attributes
 
@@ -59,6 +64,7 @@ The full list of attributes supported by Prebid Server may differ by PG Host Com
 | site.referrer | Referring URL | string | OpenRTB | site.page | in, matches |
 | app.bundle | Mobile application bundle | string | OpenRTB | app.bundle | in, matches |
 | pos | Page position | 0=unknown, 1=ATF, 3=BTF | OpenRTB | imp.banner.pos | in |
+| geo.distance | User's lat/lon is within a defined circle | none | Geo vendor | device.geo.lat, device.geo.lon | within |
 | device.geo.ext.VENDOR.country | Country | string | Geo vendor | device.geo.ext.VENDOR.country | in|
 | device.geo.ext.VENDOR.region | Region | string | Geo vendor | device.geo.ext.VENDOR.region | in|
 | device.geo.ext.VENDOR.metro | Metro (DMA) | string | Geo vendor | device.geo.ext.VENDOR.metro | in|
@@ -129,7 +135,7 @@ attributes and specific geographic and device info services:
       "device.geo.ext.netacuity.city": {"$in": ["444","555"]}
     },
     {
-      "geo.distance": {"$within": {"lat": 123.456,"lon": 789.123,"radiusMiles": 10}}
+      "geo.distance": {"$within": {"lat": 123.456,"lon": 789.123,"radiusMiles": 50}}
     },
     {
       "device.ext.deviceatlas.type": {"$in": ["tablet","phone"]}
@@ -168,4 +174,4 @@ attributes and specific geographic and device info services:
 ## Related Topics
 
 - [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
-- [PG Plan Definition](/prebid-server/features/pg/pbs-pg-plan.html)
+- [PG Plans](/prebid-server/features/pg/pbs-pg-plan.html)

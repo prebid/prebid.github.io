@@ -63,5 +63,5 @@ have their contact info added to the list of [PG Managed Services](/prebid-serve
 ## Related Topics
 
 - [PG Home Page](/prebid-server/features/pg/pbs-pg-idx.html)
-- [Prebid PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
+- [PG White Paper](https://files.prebid.org/pg/Prebid_Programmatic_Guaranteed_White_Paper.pdf)
 - [PG Glossary](/prebid-server/features/pg/pbs-pg-glossary.html)
