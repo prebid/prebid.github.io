@@ -32,7 +32,7 @@ var adUnits = [
     bidder: 'adWMG',
     params: {
         publisherId: '5cebea3c9eea646c7b623d5e',
-        IABCategories: "['IAB1', 'IAB5']"
+        IABCategories: ['IAB1', 'IAB5']
     }
   }]
  }
