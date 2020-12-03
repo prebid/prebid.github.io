@@ -4,7 +4,7 @@ sidebarType: 5
 title: Programmatic Guaranteed
 ---
 
-# Programmatic Guaranteed (PBS-Java only)
+# Programmatic Guaranteed
 {: .no_toc}
 
 * TOC
