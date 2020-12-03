@@ -5,7 +5,10 @@ description: Prebid Adagio Bidder Adaptor
 pbjs: true
 biddercode: adagio
 media_types: banner
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
 schain_supported: true
 tcf2_supported: true
 gvl_id: 617

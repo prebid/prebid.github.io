@@ -29,6 +29,7 @@ Instead, here are some general guidelines:
 
 - You can't just automatically turn on the GDPR Enforcement Module when not in GDPR scope.
 - You need to understand how your CMP works, how you want to handle the "first page" scenario where the user hasn't yet had time to answer CMP questions, and how your site is laid out geographically.
+- We recommend that the page first load a CMP stub synchronously, then asynchronously load the CMP code and the Prebid code
 
 ## The Role & Relations of the CMP/TCF gdprApplies and Prebid gdpr.defaultGdprScope
 
@@ -63,6 +64,10 @@ In these approaches, the publisher has to be aware of the geo and tell Prebid.js
 Community members are welcome to contribute more specific implementation
 approaches here. Please do not attempt to extoll the virtues of one CMP
 over another -- just help others with interface idiosyncacies.
+
+### Didomi
+
+Please follow the guidelines in the [Didomi documentation](https://developers.didomi.io/cmp/web-sdk/third-parties/custom-integrations/no-tag-manager) to make sure that the CMP is loaded before the ad server and Prebid.js.
 
 ### LiveRamp
 
