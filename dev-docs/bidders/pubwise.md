@@ -17,7 +17,7 @@ The PubWise bid adapter requires approval. Visit http://www.PubWise.io/ to get s
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                                                                       | Example                  | Type      |
 |--------------|----------|---------------------------------------------------------------------------------------------------|--------------------------|-----------|
-| `siteId`     | required | The site ID provided by the PubWise systesm                                                       | `'XXXXXX'`               | `string`  |
+| `siteId`     | required | The site ID provided by the PubWise system                                                       | `'XXXXXX'`               | `string`  |
 | `bidFloor`   | optional | Value to pass as the bidfloor for this bid                                                        | `2.50`                   | `currency` |
 | `isTest`     | optional | A boolean to indicate 100% fill test placement request                                            | `false`                  | `boolean` |
 
