@@ -8,7 +8,6 @@ biddercode: fidelity
 media_types: banner
 gdpr_supported: true
 usp_supported: true
-gvl_id: 408
 ---
 
 ### Bid Params
