@@ -1204,7 +1204,7 @@ gulp build --modules=userId,verizonMediaIdSystem
 | params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
 | storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
-| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'vmconnectid'` |
+| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
 
 #### Verizon Media ConnectID examples
@@ -1219,8 +1219,8 @@ pbjs.setConfig({
               he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
             },
             storage: {             
-              type: "cookie",             
-              name: "vmconnectid",            
+              type: "html5",             
+              name: "connectid",            
               expires: 1               
             } 
         }]
@@ -1268,7 +1268,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
-| Verizon Media ConnectID | Verizon Media | bidRequest.userId.vmconnectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
+| Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 
 For example, the adapter code might do something like:
 
