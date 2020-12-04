@@ -3,7 +3,7 @@ layout: bidder
 title: PubWise
 description: PubWise Bidder Adaptor
 pbjs: true
-biddercode: pubwise
+biddercode: pwbid
 media_types: banner, native
 gdpr_supported: true
 gvl_id: 842
