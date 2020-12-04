@@ -6,6 +6,7 @@ pbjs: true
 biddercode: pubwise
 media_types: banner, native
 gdpr_supported: true
+gvl_id: 842
 ---
 
 ### Note:
