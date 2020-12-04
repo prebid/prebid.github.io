@@ -37,10 +37,10 @@
 		            				<!--display subsection headers-->
 		            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 0 %}
 		            							
-		            					<!-- check to see if we are on this page-->            				
-			            				<!--display subsection items with links-->
+		            				<!-- check to see if we are on this page-->            				
+			            			<!--display subsection items with links-->
 									{% assign isPage = 0 %}
-				            				{% if sectionItem.link == page.url %}
+				            		{% if sectionItem.link == page.url %}
 										{% assign isPage = 1 %}
 									{% endif %}
 			            				

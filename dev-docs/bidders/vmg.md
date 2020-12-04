@@ -2,7 +2,7 @@
 layout: bidder
 title: VMG
 description: Connects Google Ad Manager to the VMG Predict engine.
-hide: true
+pbjs: true
 biddercode: vmg
 ---
 

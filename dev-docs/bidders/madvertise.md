@@ -2,7 +2,7 @@
 layout: bidder
 title: Madvertise
 description: Prebid Madvertise Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: madvertise
 gdpr_supported: true
 ---

@@ -2,7 +2,7 @@
 layout: bidder
 title: FreeWheel-ssp
 description: Freewheel Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: freewheel-ssp
 gdpr_supported: true
 usp_supported: true

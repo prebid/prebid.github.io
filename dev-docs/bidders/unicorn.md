@@ -2,7 +2,7 @@
 layout: bidder
 title: UNICORN
 description: Prebid UNICORN Bidder Adaptor
-hide: true
+pbjs: true
 media_types: banner
 biddercode: unicorn
 ---

@@ -2,7 +2,8 @@
 layout: bidder
 title: 33Across
 description: Prebid 33Across Bidder Adapter
-hide: true
+pbjs: true
+pbs: true
 biddercode: 33across
 media_types: banner, video
 gdpr_supported: true

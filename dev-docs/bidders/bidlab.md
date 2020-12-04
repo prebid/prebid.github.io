@@ -2,10 +2,11 @@
 layout: bidder
 title: Bidlab
 description: Prebid Bidlab Bidder Adapter
-hide: true
+pbjs: true
 biddercode: bidlab
 gdpr_supported: true
 media_types: banner, video
+tcf2_supported: true
 ---
 
 ### Note:
