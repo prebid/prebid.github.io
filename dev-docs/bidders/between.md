@@ -10,14 +10,16 @@ gdpr_supported: true
 tcf2_supported: true
 ---
 
-### Prebid-js bid params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `s` | required |  Section ID from Between SSP control panel | 999999 | `integer` |
+| `w`        | required | width of placement(Number)                | 240       |
+| `h`        | required | height of placement(Number)               | 400       |
 
-### Prebid-server bid params
+### Prebid-Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
