@@ -39,7 +39,7 @@ The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](ht
 1. gem install github-pages
 1. start Jekyll as described below
 
-For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. For JavaScript, the site uses Laravel Mix to build JS from JS source files. Under the hood Laravel Mix uses Webpack.
+For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
 
 1. follow the instructions at https://nodejs.dev to install Node.js for your OS
 1. `npm install` to install packages for building assets
@@ -79,9 +79,9 @@ Open the `Server address` URL in your browser, and you should see a locally runn
 
 ## Building Assets
 
-- `npm run dev` to build unminified CSS/JS for development
-- `npm run prod` to build minified CSS/JS for production
-- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS/JS on demand and reload the browser
+- `npm run dev` to build unminified CSS for development
+- `npm run prod` to build minified CSS for production
+- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
 
 ## The Downloads Page
 
