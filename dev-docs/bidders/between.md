@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Between
-description: Prebid Between Bidder Adaptor
+description: Prebid Between Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: between
@@ -10,7 +10,14 @@ gdpr_supported: true
 tcf2_supported: true
 ---
 
-### Bid Params
+### Prebid-js bid params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description | Example | Type     |
+|---------------|----------|-------------|---------|----------|
+| `s` | required |  Section ID from Between SSP control panel | 999999 | `integer` |
+
+### Prebid-server bid params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
