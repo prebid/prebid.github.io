@@ -99,7 +99,7 @@ Modify this template for your bid adapter:
 - Change the `modifyingVastXmlAllowed` value to `true` if you'd like to opt-in for [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 
-<details>
+<details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
 
   ```yaml
@@ -112,7 +112,7 @@ Modify this template for your bid adapter:
   ```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Website or app with banner or video ads and video impression tracking.</summary>
 
   ```yaml
@@ -170,7 +170,7 @@ When choosing your parameter names, please consider aligning with the OpenRTB 2.
 
 In addition to the examples listed below, please refer to [existing bidder parameter files](https://github.com/prebid/prebid-server/tree/master/static/bidder-params) for guidance.
 
-<details>
+<details markdown="1">
   <summary>Example: No parameters.</summary>
 
   ```json
@@ -185,7 +185,7 @@ In addition to the examples listed below, please refer to [existing bidder param
   ```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Required integer placement id.</summary>
 
   ```json
@@ -208,7 +208,7 @@ In addition to the examples listed below, please refer to [existing bidder param
   ```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Required access token and an optional hexadecimal account.</summary>
 
   ```json
@@ -235,7 +235,7 @@ In addition to the examples listed below, please refer to [existing bidder param
   ```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Required access token or secret.</summary>
 
   ```json
@@ -395,7 +395,7 @@ The second argument, `config`, is all configuration values set for your adapter.
 
 The `Builder` method is expected to return an error if either the `config.Endpoint` or the `config.ExtraAdapterInfo` values are invalid or cannot be parsed. Errors will be surfaced to the host during application startup as a fatal error. 
 
-<details>
+<details markdown="1">
   <summary>Example: Builder using endpoint macros.</summary>
 
   ```go
@@ -418,7 +418,7 @@ The `Builder` method is expected to return an error if either the `config.Endpoi
   ```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Builder using extra adapter info.</summary>
 
   ```go
@@ -470,7 +470,7 @@ This method is called once by the core framework for bid requests which have at 
 
 The first argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension information is stored as `json.RawMessage` byte arrays and must be unmarshalled and/or marshalled to be read and/or mutated. It is *critical* to understand that the `request` object contains pointers to shared memory. If your adapter needs to alter any data referenced by a pointer then you *must* first make a shallow copy. The only exception is for `request.Imp` and its elements, as these are already shallow copies. The exact same instance of the `request` object is also passed to the `MakeBids` method, so please be careful when mutating. It's safe to assume that `request.Imp[]` always contains at least one elements and that the `request.Imp[].ext.bidder` was successfully validated by your bidder parameter JSON Schema.
 
-<details>
+<details markdown="1">
   <summary>Example: Mutating banner shared memory (make a copy).</summary>
 
   ```go
@@ -495,7 +495,7 @@ HTTP calls to your bidding server will automatically prefer GZIP compression. Yo
 
 An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
 
-<details>
+<details markdown="1">
   <summary>Example: Impression splitting.</summary>
 
   ```go
@@ -616,7 +616,7 @@ Bid metadata will be *required* in a coming Prebid.js release, specifically for 
 
 
 
-<details>
+<details markdown="1">
   <summary>Example: Setting metadata.</summary>
 
   ```go
@@ -811,7 +811,7 @@ The url of your user syncer can make use of the following privacy policy macros 
 - `{%raw%}{{.GDPR}}{%endraw%}`: Client's GDPR TCF enforcement flag.
 - `{%raw%}{{.GDPRConsent}}{%endraw%}`: Client's GDPR TCF consent string.
 
-<details>
+<details markdown="1">
   <summary>Example: Bidding server url with no macros.</summary>
 
   ```go
@@ -819,7 +819,7 @@ The url of your user syncer can make use of the following privacy policy macros 
   ```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Bidding server url with CCPA privacy consent.</summary>
 
   ```go
