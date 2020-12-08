@@ -9,6 +9,8 @@ tcf2_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video
+gvl_id: 132
+bidder_supports_deals: true
 ---
 
 ### Note:

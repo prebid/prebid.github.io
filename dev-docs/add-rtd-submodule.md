@@ -172,9 +172,12 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
     - callback: lets RTD-core know which auction the sub-module is done with.
     - config: the sub-module's config params provided by the publisher
     - userConsent object (see above)
-2. Your sub-module may update the reqBidsConfigObj and hit the callback. When you update the bidRequest, you must follow one of these conventions:
-    - Use [First Party Data](/features/firstPartyData.html) conventions, setting AdUnit.fpd.context.data.ATTRIBUTES or AdUnit.fpd.user.data.ATTRIBUTES
-    - Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES
+2. Your sub-module may update the reqBidsConfigObj and hit the callback. To inject data into the bid requests, you should follow one of these conventions:
+    - Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
+        - For AdUnit-specific first party data, set AdUnit.fpd.context.data.ATTRIBUTES
+        - For global first party data, call 'pbjs.[getConfig](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig)({fpd.context})' or 'pbjs.getConfig({fpd.user})', merge in the new global data, and update with `pbjs.[setConfig](/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)()'.
+        - If the data is not meant to go to all bidders, the module should use 'pbjs.[setBidderConfig](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
+    - Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
 
 **Code Example**
 
