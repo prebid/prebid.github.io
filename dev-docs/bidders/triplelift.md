@@ -6,11 +6,13 @@ gdpr_supported: true
 tcf2_supported: true
 usp_supported: true
 schain_supported: true
+getFloor: true
 coppa_supported: true
 biddercode: triplelift
 userIds: criteo, identityLink, unifiedId
 pbjs: true
 pbs: true
+pbjs_version_notes: avoid 4.3 - 4.14
 ---
 
 ### Bid Params

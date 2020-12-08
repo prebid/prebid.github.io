@@ -9,7 +9,8 @@ media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
-userIds: id5Id, unifiedId, liveIntentId, digitrust
+getFloor: true
+userIds: id5Id, unifiedId, liveIntentId, criteo, identityLink, digitrust
 tcf2_supported: true
 ---
 
@@ -21,4 +22,4 @@ tcf2_supported: true
 |----------------|----------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
 | `uid`          | required | Represents the MediaGrid bidder system Ad Slot ID associated with the respective div id from the site page. | `1`                                       | `integer` |
 | `keywords`     | optional | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                          | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
-| `useNewFormat` | optional | Indicates to use the new ad request format                                                                  | `true`                                    | `boolean` |
+| `bidFloor`     | optional | Floor of the impression opportunity. If present in the request overrides XML info.                          | `0.8`                                     | `float`   |

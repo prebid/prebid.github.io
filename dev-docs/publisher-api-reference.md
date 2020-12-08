@@ -29,6 +29,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.getNoBids()](#module_pbjs.getNoBids)
+  * [.getNoBidsForAdUnitCode(adUnitCode)](#module_pbjs.getNoBidsForAdUnitCode)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
@@ -66,6 +67,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [cache](#setConfig-vast-cache)
     * [instreamTracking](#setConfig-instream-tracking) - requires [Instream Tracking Module](/dev-docs/modules/instreamTracking.html)
     * [site](#setConfig-site)
+    * [auctionOptions](#setConfig-auctionOptions)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -573,11 +575,30 @@ pbjs.refreshUserIds({ submoduleNames: ['britepoolId'] }, () => console.log("Done
 
 <a name="module_pbjs.getNoBids"></a>
 
-### pbjs.getNoBids() ⇒ `Array`
+### pbjs.getNoBids() ⇒ `Object`
 
 Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](/dev-docs/troubleshooting-tips.html).
 
 + `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getNoBidsForAdUnitCode"></a>
+
+### pbjs.getNoBidsForAdUnitCode(adUnitCode) ⇒ `Object`
+
+Returns bid requests that resulted in a NO_BID for the specified adUnitCode.  See full documentation at [pbjs.getNoBids()](#module_pbjs.getNoBids).
+
+**Kind**: static method of [pbjs](#module_pbjs)
+
+**Returns**: `Object` - NO_BID bidResponse object
+
+**Request Params:**
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| adUnitCode | Required | `String` | adUnitCode |
 
 <hr class="full-rule">
 
@@ -1209,7 +1230,7 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 ### pbjs.getEvents() ⇒ `Array`
 
 The methods `onEvent` and `offEvent` are provided for you to register
-a callback to handle a Prebid.js event. 
+a callback to handle a Prebid.js event.
 
 The `getEvents` method returns a copy of all emitted events.
 
@@ -2086,19 +2107,19 @@ Specifically, Prebid will go through the following steps with this feature:
 * Collect all the available targeting keys that were generated naturally by the auction.  The keys are grouped by each of the adUnits that participated in the auction.
 * Prioritize these groups of targeting keys based on the following factors:
   * Bids with deals are prioritized before bids without deals.
-  * Bids with higher CPM are ranked before lower CPM bids.  
+  * Bids with higher CPM are ranked before lower CPM bids.
   **Note** - The sorting follows this order specifically, so a bid with a deal that had a $10 CPM would be sorted before a bid with no deal that had a $15 CPM.
 * Convert the keys for each group into the format that they are passed to the ad server (i.e., an encoded query string) and count the number of characters that are used.
 * If the count is below the running threshold set in the `setConfig` call, that set of targeting keys will be passed along.  If the keys exceed the limit, then they are excluded.
 
- If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.  
+ If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.
 
 ##### Finding the right value
 
 Given the varying nature of how sites are set up for advertising and the varying mechanics and data-points needed by ad servers, providing a generic threshold setting is tricky.  If you plan to enable this setting, it's recommended you review your own setup to determine the ideal value.  The following steps provide some guidance on how to start this process:
 
 * Use Prebid to set up a test page that uses the typical setup for your site (in terms of the number of ad slots, etc.).
-* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.  
+* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.
   * You can do this by enabling the Prebid debug mode, enabling this setting in your `setConfig` with a high value, and then opening the browser's console to review the Console Logs section.
 * Also in the browser console, find your ad server's ad URL in the Network tab and review the details of the request to obtain information about the query data (specifically the number of characters used).
   * You can copy the data to another tool to count the number of characters that are present.
@@ -2119,6 +2140,7 @@ To accomplish this, Prebid does the following:
 * New targeting replaces original targeting before targeting is flattened.
 
 The targeting key names and the associated prefix value filtered by `allowTargetingKeys`:
+
 {: .table .table-bordered .table-striped }
 | Name        | Value    |
 |------------+------------|
@@ -2445,9 +2467,9 @@ video player can retrieve them when it's ready. Players don't obtain the VAST XM
 the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
 be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
 
-- Server-side caching:  
+- Server-side caching:
   Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do.
-- Client-side caching:  
+- Client-side caching:
   Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. In this scenario, Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
 
 For client-side caching, set the Prebid Cache URL as shown here (substituting the correct URL for the one shown here):
@@ -2528,6 +2550,27 @@ pbjs.setConfig({
            language: "en"
        }
    }
+});
+{% endhighlight %}
+
+<a name="setConfig-auctionOptions" />
+
+#### Auction Options
+
+The `auctionOptions` object passed to `pbjs.setConfig` provides a method to specify bidders that the Prebid auction will no longer wait for before determing the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation.
+
+{: .table .table-bordered .table-striped }
+| Field    | Scope   | Type   | Description                                                                           |
+|----------+---------+--------+---------------------------------------------------------------------------------------|
+| `secondaryBidders` | Required | Array of Strings | The bidders that will be removed from determining when an Auction has completed. |
+
+Example config:
+
+{% highlight js %}
+pbjs.setConfig({
+    'auctionOptions': {
+        'secondaryBidders': ['doNotWaitForMe']
+    }
 });
 {% endhighlight %}
 

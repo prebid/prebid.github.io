@@ -7,7 +7,7 @@ usp_supported: true
 schain_supported: true
 media_types: banner, video, native
 gdpr: true
-pbjs: false
+pbjs: true
 pbs: true
 ---
 
