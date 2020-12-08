@@ -1203,9 +1203,9 @@ gulp build --modules=userId,verizonMediaIdSystem
 | params.pixelId | Required | Number | The Verizon Media supplied publisher specific pixel Id  | `8976` |
 | params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
 | storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
-| storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
+| storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectid'` |
-| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
+| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
 
 #### Verizon Media ConnectID examples
 
