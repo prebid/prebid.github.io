@@ -20,6 +20,7 @@ pbs: true
 
 
 ### Prebid.Server Bid Params
+Currently adapter doesn't support multiimpression, so only the first impression will be delivered
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
