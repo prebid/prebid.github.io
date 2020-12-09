@@ -1248,7 +1248,7 @@ pbjs.setConfig({
 
 Bidders that want to support the User ID module in Prebid.js, need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
 
-{: .table .table-bordered .table-striped }
+<div class="table-responsive" markdown="1">
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
@@ -1269,6 +1269,8 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | Verizon Media's Unified ID | Verizon Media | bidRequest.userId.vmuid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
+{: .table .table-bordered .table-striped }
+</div>
 
 For example, the adapter code might do something like:
 
