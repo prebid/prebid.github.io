@@ -34,7 +34,7 @@ var adUnits = [
         }
         },
         bids: [{
-            bidder: 'pubwise',
+            bidder: 'pwbid',
             params: {
                 siteId: "xxxxxx",
                 isTest: true
@@ -72,7 +72,7 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'pubwise',
+            bidder: 'pwbid',
             params: {
                 siteId: "xxxxxx",
                 isTest: true,
