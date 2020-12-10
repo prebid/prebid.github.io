@@ -170,7 +170,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 {: .alert.alert-danger :}
 **Note:** an important bug in the [DFP Video Module](/dev-docs/modules/dfp_video.html) was introduced with 3.27 and fixed in 4.3. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive.
 
-<form>
+<form class="download-form">
 <div class="row">
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
@@ -194,391 +194,393 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <br>
 <div class="row">
   <h4>Analytics Adapters</h4>
+  <div class="adapters">
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+        </label>
+      </div>
+    </div>
 
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
-    </label>
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="adomik" class="analytics-check-box"> Adomik Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="adWMG" class="analytics-check-box"> adWMG Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="adxcg" class="analytics-check-box"> Adxcg Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="adxpremium" class="analytics-check-box"> AdxPremium Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="ats" class="analytics-check-box"> ATS Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="datablocks" class="analytics-check-box"> Datablocks Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> Finteza Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="invisibly" class="analytics-check-box"> Invisibly Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="konduit" class="analytics-check-box"> Konduit Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="medianet" class="analytics-check-box"> Media.net Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="oolo" class="analytics-check-box" /> oolo Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="pubstack" class="analytics-check-box" /> Pubstack Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="pubxai" class="analytics-check-box"> PubXAi
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="pubperf" class="analytics-check-box" /> Pubperf Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="sortable" class="analytics-check-box" /> Sortable Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="tercept" class="analytics-check-box" /> Tercept Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="ucfunnel" class="analytics-check-box" /> ucfunnel Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="yieldone" class="analytics-check-box"> Platform One Analytics
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaOne Analytics by YuktaMedia
+        </label>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adomik" class="analytics-check-box"> Adomik Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adWMG" class="analytics-check-box"> adWMG Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adxcg" class="analytics-check-box"> Adxcg Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adxpremium" class="analytics-check-box"> AdxPremium Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="ats" class="analytics-check-box"> ATS Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="datablocks" class="analytics-check-box"> Datablocks Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> Finteza Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="invisibly" class="analytics-check-box"> Invisibly Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="konduit" class="analytics-check-box"> Konduit Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="medianet" class="analytics-check-box"> Media.net Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="oolo" class="analytics-check-box" /> oolo Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pubstack" class="analytics-check-box" /> Pubstack Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pubxai" class="analytics-check-box"> PubXAi
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pubperf" class="analytics-check-box" /> Pubperf Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sortable" class="analytics-check-box" /> Sortable Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="tercept" class="analytics-check-box" /> Tercept Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="ucfunnel" class="analytics-check-box" /> ucfunnel Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="yieldone" class="analytics-check-box"> Platform One Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaOne Analytics by YuktaMedia
-    </label>
-  </div>
-</div>
-
 </div>
 <br/>
 <div class="row">
  <h4>Modules</h4>
- {% for page in module_pages %}
-  {% if page.enable_download == false %}{% continue %}{% endif %}
- <div class="col-md-4">
- <div class="checkbox">
-  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
-</div>
-</div>
- {% endfor %}
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> User ID: BritePool ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> User ID: Neustar Fabrick ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> User ID: Halo ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> User ID: IDx</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> User ID: IntentIQ ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> User ID: LiveIntent ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="lotamePanoramaId" class="bidder-check-box"> User ID: Lotame ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> User ID: Merkle ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> User ID: Parrable ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> User ID: PubProvided ID</label>
-</div></div>  
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> User ID: Quantcast ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> User ID: Shared ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> User ID: Verizon Media ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> User ID: Zeotap ID+</label>
-</div></div>
+ <div class="adapters">
+  {% for page in module_pages %}
+    {% if page.enable_download == false %}{% continue %}{% endif %}
+    <div class="col-md-4">
+      <div class="checkbox">
+        <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
+      </div>
+    </div>
+  {% endfor %}
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> User ID: BritePool ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> User ID: Neustar Fabrick ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> User ID: Halo ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> User ID: IDx</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> User ID: IntentIQ ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> User ID: LiveIntent ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="lotamePanoramaId" class="bidder-check-box"> User ID: Lotame ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> User ID: Merkle ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> User ID: Parrable ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> User ID: PubProvided ID</label>
+  </div></div>  
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> User ID: Quantcast ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> User ID: Shared ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> User ID: Verizon Media ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> User ID: Zeotap ID+</label>
+  </div></div>
+ </div>
 </div>
 
 <br>
