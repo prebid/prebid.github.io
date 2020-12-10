@@ -14,6 +14,6 @@ gdpr_supported: true
 | Name          | Scope    | Description                                            | Example                     | Type |
 | :---          | :----    | :----------------------------------------------------  | :-------------------------  | --- |
 | widgetId           | required | Widget ID, provided by Engageya.                   | `85610`    | integer |
-| websiteId           | required | Widget ID, provided by Engageya.                   | `91140`    | integer |
+| websiteId           | required | Website ID, provided by Engageya.                   | `91140`    | integer |
 | pageUrl       |  optional        | Pass current user URL.                      |  `'https://engageya.com'`       | String |
 
