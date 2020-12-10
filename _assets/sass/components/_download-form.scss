@@ -10,3 +10,11 @@
     flex-flow: row wrap;
   }
 }
+
+.download-form__modal {
+  opacity: 0;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
