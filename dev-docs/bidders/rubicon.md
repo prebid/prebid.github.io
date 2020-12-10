@@ -8,6 +8,7 @@ tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
+getFloor: true
 media_types: video
 userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, intentiqId, idx, liveIntentId, lotamePanoramaId, netId, parrableId, pubCommonId, pubProvidedId, quantcastId, sharedId, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
