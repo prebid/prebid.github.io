@@ -6,9 +6,9 @@ biddercode: smartx
 media_types: no-display, video
 gdpr_supported: true
 tcf2_supported: true
-userIds: id5Id, pubCommonId
+userIds: none
 prebid_member: true
-schain_supported: true
+schain_supported: false
 usp_supported: true
 safeframes_ok: false
 pbjs: true

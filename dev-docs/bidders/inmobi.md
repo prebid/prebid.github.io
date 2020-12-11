@@ -5,7 +5,7 @@ description: InMobi Bidder Adapter
 biddercode: inmobi
 gdpr_supported: true
 tcf2_supported: true
-usp_supported: true
+usp_supported: false
 gvl_id: 333
 coppa_supported: true
 media_types: banner, video

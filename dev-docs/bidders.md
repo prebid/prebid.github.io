@@ -51,6 +51,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 | **Safeframes OK** | {% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
 | **Supports Deals** | {% if page.bidder_supports_deals == false %}no{% elsif page.bidder_supports_deals == true %}yes{% else %}check with bidder{% endif %} | **Prebid.js Adapter** | yes |
 | **IAB GVL ID** | {% if page.gvl_id %}{{page.gvl_id}}{% else %}check with bidder{% endif %} | **Prebid Server Adapter** | {% if page.pbs == true %}yes{% else %}no{% endif %} |
+| **Floors Module Support** | {% if page.getFloor  == true %}yes{% else %}no{% endif %} |
 
 <h3>"Send All Bids" Ad Server Keys</h3>
 

@@ -26,6 +26,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | Konduit Accelerate | Contact vendor | [Website](https://konduitvideo.com/) |
 | Livewrapped Analytics | Contact vendor | [Website](https://livewrapped.com/) |
 | LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
+| oolo | Contact vendor | [Website](https://www.oolo.io) |
 | OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) |
 | Media.net | <a href="mailto: prebid-support@media.net">Contact vendor</a>| [Website](https://media.net) |
 | PrebidAnalytics by Roxot | [Paid]( http://prebidanalytics.roxot.com/) | [Website](http://prebidanalytics.roxot.com/) |
@@ -33,6 +34,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | [Pubperf](https://www.pubperf.com/) | Free trial. See [pricing](https://www.pubperf.com/pricing) | [Website](http://www.pubperf.com/) |
 | [Pubstack](https://pubstack.io?source=prebid.org-analytics) ~ Real Time Analytics For Prebid and GAM | <a href="mailto: sales@pubstack.io">Start a free trial / Talk to the Sales Team</a> | [Website](https://pubstack.io?source=prebid.org-analytics) |
 | PubWise | Free & Paid, see [pricing](https://pubwise.io/pricing/) | [Website](https://www.pubwise.io/) |
+| PubXAi | Contact vendor | [Website](http://pubx.ai/) |
 | PulsePoint | Contact vendor | [Website](https://www.pulsepoint.com/) |
 | RealVu | Contact vendor | [Website](https://www.realvu.com/rvaa/) |
 | Rivr Analytics | Contact vendor | [Website](https://www.rivr.ai/)|
