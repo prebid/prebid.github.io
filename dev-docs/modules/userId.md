@@ -1193,9 +1193,9 @@ Add support for Verizon Media ConnectID to your Prebid.js package with:
 gulp build --modules=userId,verizonMediaIdSystem
 
 
-#### Verizon Media ConnectID configuration
+#### Verizon Media ConnectID Configuration
 
-{: .table .table-bordered .table-striped }
+<div class="table-responsive" markdown="1">
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'verizonMediaId'` |
@@ -1206,8 +1206,10 @@ gulp build --modules=userId,verizonMediaIdSystem
 | storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
+{: .table .table-bordered .table-striped }
+</div>
 
-#### Verizon Media ConnectID examples
+#### Verizon Media ConnectID Examples
 
 ```
 pbjs.setConfig({
@@ -1222,7 +1224,7 @@ pbjs.setConfig({
               type: "html5",             
               name: "connectid",            
               expires: 1               
-            } 
+            }
         }]
     }
 })
