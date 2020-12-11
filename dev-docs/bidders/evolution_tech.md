@@ -2,10 +2,11 @@
 layout: bidder
 title: E-volution tech
 description: Prebid E-volution tech Bidder Adapter
-hide: true
+pbjs: true
 biddercode: e_volution
 gdpr_supported: true
 media_types: banner, video
+tcf2_supported: true
 ---
 
 ### Note:
@@ -17,5 +18,4 @@ The E-volution Bidding adapter requires setup before beginning. Please contact u
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `id`      | required | E-volution tech placement id         | `1234asdf`    | `string` |
-
+| `placementId`      | required | E-volution tech placement id         | `'1234asdf'`    | `'string'` |

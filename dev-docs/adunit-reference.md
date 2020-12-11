@@ -564,4 +564,4 @@ Notes:
 [setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig
 [configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
-[pbServer]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
+[pbServer]: {{site.baseurl}}/prebid-server/overview/prebid-server-overview.html

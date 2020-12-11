@@ -1,0 +1,37 @@
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px
+);
+
+$spacer: 1rem;
+$spacers: (
+  6: ($spacer * 3.75),
+  7: ($spacer * 4.5),
+  8: ($spacer * 5),
+);
+
+$grid-gutter-width: 20px;
+$body-bg: #eceeef;
+
+$card-border-radius: 0;
+$card-spacer-x: 30px;
+
+$table-accent-bg: $t-code-bg;
+$table-border-color: $t-divider-color;
+$table-color: $t-text-color;
+
+$navbar-padding-y: 0;
+$nav-link-padding-y: 0;
+$navbar-nav-link-padding-x: 0;
+$navbar-nav-link-padding-y: 0;
+$navbar-dark-color: adjust-color($t-text-color--reverse, $alpha: -0.3);
+
+$dropdown-border-radius: 0;
+$dropdown-border-width: 0;
+$dropdown-link-color: $t-text-color;
+$dropdown-link-hover-bg: transparent;
+$dropdown-link-hover-color: $t-anchor-color;
+$dropdown-spacer: 0;
+$dropdown-padding-y: 24px;

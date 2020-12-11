@@ -2,11 +2,13 @@
 layout: bidder
 title: Sonobi
 description: Prebid Sonobi Bidder Adaptor
-hide: true
 biddercode: sonobi
 media_types: video
 gdpr_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs: true
+pbs: true
+tcf2_supported: true
 ---
 
 ### Note:

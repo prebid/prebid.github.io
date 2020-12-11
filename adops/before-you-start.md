@@ -19,18 +19,6 @@ This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}
 
 {% include alerts/alert_important.html content=importantNote %}
 
-{% capture tip-choosing %}
-
-Including this module in your Prebid.js build adds about 12KB to the package size. It's
-meant for publishers that have complex site designs:
-
-  - if the site needs to alter different AdUnits at different screen widths. e.g. the left-nav changes sizes-supported at 600 pixels, but the footer's size behavior changes at 620 pixels.
-  - if the site needs to alter different mediaTypes at different screen widths
-  - if some bidders or mediaTypes should be included (or removed) at overlapping size ranges.
-
-{% endcapture %}
-{% include alerts/alert_tip.html content=tip-choosing %}
-
 * TOC
 {: toc }
 
@@ -111,6 +99,23 @@ For instructions on setting up pre-bid with one set of line items for each bidde
 {% endcapture %}
 
 {% include alerts/alert_tip.html content=successNote %}
+
+## Safeframes
+
+[SafeFrames are defined by the IAB](https://www.iab.com/guidelines/safeframe/) as a "managed API-enabled iframe that opens a line of communication between the publisher page and the iframe-contained ad creative."
+
+When setting up line items in your ad server, you'll need to consider whether to make the creatives safeframes or not. In general, for standard banner and native, safeframes are a good idea. Certain special mediatypes cannot use safeframes.
+
+### Bidders known to be incompatible with safeframes
+
+{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "safeframes_ok", false %}
+<ul>
+{% for page in bidder_pages %}
+<li>{{ page.title }}</li>
+{% endfor %}
+</ul>
+
+There may be others, please check with bidders directly if you have questions about their support.
 
 ## Work together with your dev team
 
