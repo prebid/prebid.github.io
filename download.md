@@ -171,13 +171,12 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 **Note:** an important bug in the [DFP Video Module](/dev-docs/modules/dfp_video.html) was introduced with 3.27 and fixed in 4.3. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive.
 
 <form>
-<div class="row">
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
 </select>
-
+<br>
 <h4>Select Bidder Adapters</h4>
-<div class="adapters">
+<div class="row adapters">
 {% for page in bidder_pages %}{% if page.pbjs == true %}
 <div class="col-md-4">
  <div class="checkbox">
@@ -189,12 +188,10 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div>
 {% endif %}{% endfor %}
 </div>
-</div>
 
 <br>
-<div class="row">
-  <h4>Analytics Adapters</h4>
-
+<h4>Analytics Adapters</h4>
+<div class="row">  
 <div class="col-md-4">
   <div class="checkbox">
     <label>
@@ -509,8 +506,8 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 
 </div>
 <br/>
-<div class="row">
- <h4>Modules</h4>
+<h4>Modules</h4>
+<div class="row"> 
  {% for page in module_pages %}
   {% if page.enable_download == false %}{% continue %}{% endif %}
  <div class="col-md-4">
