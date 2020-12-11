@@ -42,3 +42,7 @@ information.
 | `video`        | optional | Tracking ID       | `'ggumtest'`           | `string`  |
 | `videoPubID`   | optional | Publisher ID      | `123`                  | `integer` |
 | `inVideo`      | optional | Tracking ID       | `'ggumtest'`           | `string`  |
+
+
+Please note that both video and in-video products require a mediaType of video. 
+All other products (in-screen, slot, native) should have a mediaType of banner.
