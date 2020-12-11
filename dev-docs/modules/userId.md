@@ -1266,7 +1266,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
-| PubProvided ID | n/a | bidRequest.userId.pubcid | `"1111"` |
+| PubProvided ID | n/a | bidRequest.userId.ppuid | `"1111"` |
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
