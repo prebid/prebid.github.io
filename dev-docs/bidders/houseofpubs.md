@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: HouseOfPubs
-description: House of Pubs bidder Adapter.
+description: House of Pubs Bid Adapter
 pbjs: true
 pbs: true
 biddercode: houseofpubs
