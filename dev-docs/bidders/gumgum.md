@@ -36,6 +36,7 @@ information.
 | `slot`         | optional | Slot ID           | `9`                    | `integer` |
 | `native`       | optional | Native ID         | `19`                   | `integer` |
 | `iriscat`      | optional | Iris.tv segments  | `'segment1,segment2'`  | `string`  |
+| `irisid`       | optional | Iris.tv ID        | `'123'`                | `string`  |
 | `inScreen`     | optional | Tracking ID       | `'ggumtest'`           | `string`  |
 | `inScreenPubID`| optional | Publisher ID      | `123`                  | `integer` |
 | `inSlot`       | optional | Slot ID           | `9`                    | `integer` |
