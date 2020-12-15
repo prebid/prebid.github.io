@@ -39,7 +39,8 @@ For further information, please contact adops@beachfront.com.
 |------------------|----------|------------------------------------------------|-------------------------------------------|-----------------|
 | `appId`          | optional | Beachfront Exchange ID for video bids. | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
 | `bidfloor`       | optional | Bid floor for video bids. | `0.01` | `float` |
-| `tagid`          | optional | Tag ID | `'7cd7a7b4-ef3f-4aeb-9565-3627f255fa10'` | `string` |
+| `tagid`          | optional | Tag ID | `'placement-name'` | `string` |
+| `responseType`   | optional | Video response type.<br/>`both`: VAST URL and VAST XML<br/>`nurl`: VAST URL only<br/>`adm`: VAST XML only | `'both'` | `string` |
 | `mimes`          | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` | `Array<string>` |
 | `playbackmethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play<br/>`4`: Mouse-over | `1` | `integer` |
 | `maxduration`    | optional | Maximum video ad duration in seconds. | `30` | `integer` |
@@ -57,6 +58,7 @@ For further information, please contact adops@beachfront.com.
 |------------|----------|-----------------------------------------|------------------------------------------|----------|
 | `appId`    | optional | Beachfront Exchange ID for banner bids. | `'3b16770b-17af-4d22-daff-9606bdf2c9c3'` | `string` |
 | `bidfloor` | optional | Bid floor for banner bids. | `0.01` | `float` |
+| `tagid`    | optional | Tag ID | `'placement-name'` | `string` |
 
 <a name="beachfront-player"></a>
 
