@@ -8,6 +8,7 @@ media_types: banner, video
 gdpr_supported: true
 tcf2_supported: true
 pbjs: true
+gvl_id: 108
 ---
 
 ### Bid Params

@@ -1731,7 +1731,7 @@
   subgroup: 5
 
 - sbSecId: 5
-  title: Building a Bidder Adapter
+  title: Building a Bid Adapter
   link: /prebid-server/developers/add-new-bidder-go.html
   isHeader: 0
   isSectionHeader: 0

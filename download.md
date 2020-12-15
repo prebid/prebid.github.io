@@ -170,14 +170,13 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 {: .alert.alert-danger :}
 **Note:** an important bug in the [DFP Video Module](/dev-docs/modules/dfp_video.html) was introduced with 3.27 and fixed in 4.3. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive.
 
-<form class="download-form">
-<div class="row">
+<form>
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
 </select>
-
+<br>
 <h4>Select Bidder Adapters</h4>
-<div class="adapters">
+<div class="row adapters">
 {% for page in bidder_pages %}{% if page.pbjs == true %}
 <div class="col-md-4">
  <div class="checkbox">
@@ -189,27 +188,17 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div>
 {% endif %}{% endfor %}
 </div>
-</div>
 
 <br>
-<div class="row">
-  <h4>Analytics Adapters</h4>
-  <div class="adapters">
-    <div class="col-md-4">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
-        </label>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
-        </label>
-      </div>
-    </div>
+<h4>Analytics Adapters</h4>
+<div class="row">  
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
+    </label>
+  </div>
+</div>
 
     <div class="col-md-4">
       <div class="checkbox">
@@ -509,78 +498,13 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
   </div>
 </div>
 <br/>
-<div class="row">
- <h4>Modules</h4>
- <div class="adapters">
-  {% for page in module_pages %}
-    {% if page.enable_download == false %}{% continue %}{% endif %}
-    <div class="col-md-4">
-      <div class="checkbox">
-        <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
-      </div>
-    </div>
-  {% endfor %}
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> User ID: BritePool ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> User ID: Neustar Fabrick ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> User ID: Halo ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> User ID: IDx</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> User ID: IntentIQ ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> User ID: LiveIntent ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="lotamePanoramaId" class="bidder-check-box"> User ID: Lotame ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> User ID: Merkle ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> User ID: Parrable ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> User ID: PubProvided ID</label>
-  </div></div>  
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> User ID: Quantcast ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> User ID: Shared ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> User ID: Verizon Media ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> User ID: Zeotap ID+</label>
-  </div></div>
- </div>
+<h4>Modules</h4>
+<div class="row"> 
+ {% for page in module_pages %}
+  {% if page.enable_download == false %}{% continue %}{% endif %}
+ <div class="col-md-4">
+ <div class="checkbox">
+  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
 </div>
 
 <br>
