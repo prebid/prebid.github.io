@@ -3,7 +3,6 @@ layout: bidder
 title: AdBlender
 description: Prebid AdBlender Bidder Adaptor
 pbjs: true
-pbs: true
 biddercode: adblender
 aliasCode: admixer
 media_types: video
