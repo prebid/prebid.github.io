@@ -9,6 +9,7 @@ gdpr_supported: true
 tcf2_supported: true
 usp_supported: true
 userIds: all
+prebid_member: true
 schain_supported: true
 gvl_id: 13
 ---
