@@ -1,20 +1,20 @@
 ---
 layout: bidder
 title: Inmar
-description: Inmar Bidder Adapter
+description: Prebid Inmar Bidder Adaptor
 
 biddercode: inmar
-userIds: identityLink, pubCommonId
+usp_supported: true
+userIds: inmarId, identityLink, liveIntentId, unifiedId, pubProvidedId
 media_types: banner, video
 safeframes_ok: false
+bidder_supports_deals: true
 ---
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                          | Example                                                   | Type      |
-|-------------|----------|--------------------------------------|-----------------------------------------------------------|-----------|
-| `pid`       | required | The placement ID from Inmar.         | `'ADb1f40rmi'`                                            | `string`  |
-| `supplyType`| required | Define if site or app.               | `'site / app'`                                            | `string`  |
-| `ifa`       | optional | Identifier For Advertisers           | `'AAAAAAAAA-BBBB-CCCC-1111-222222220000234234234234234'`  | `string`  |
-| `bidfloor`  | optional | Bid Floor                            | `0.80`                                                    | `float`   |
+| Name        | Scope    | Description                                                                                                    | Example | Type      |
+|-------------|----------|----------------------------------------------------------------------------------------------------------------|---------|-----------|
+| `partnerId` | required | The partner ID from Inmar.                                                                                     | `12345` | `integer` |
+| `position`  | optional | Ad position on screen.  Supported values: `0` - Unknown (default), `1` - Above the fold, `3` - Below the fold. | `1`     | `integer` |
