@@ -2,7 +2,7 @@
 layout: bidder
 title: PubNX 
 description: Prebid PubNX Bidder Adaptor
-
+pbjs: true
 biddercode: pubnx
 ---
 

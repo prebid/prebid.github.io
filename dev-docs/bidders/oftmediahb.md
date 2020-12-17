@@ -2,7 +2,7 @@
 layout: bidder
 title: 152MediaHB
 description: Prebid 152MediaHB Bidder Adaptor
-
+pbjs: true
 media_types: video
 gdpr_supported: true
 biddercode: oftmediahb

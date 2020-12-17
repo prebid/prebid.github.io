@@ -2,7 +2,7 @@
 layout: bidder
 title: envivo
 description: Prebid envivo Bidder Adapter
-
+pbjs: true
 biddercode: envivo
 ---
 

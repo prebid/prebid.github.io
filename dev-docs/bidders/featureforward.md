@@ -4,7 +4,7 @@ title: Feature Forward
 description: Prebid Feature Forward Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
-
+pbjs: true
 biddercode: featureforward
 ---
 

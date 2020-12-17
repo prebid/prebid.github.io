@@ -2,7 +2,7 @@
 layout: bidder
 title: OTM
 description: OTM Bidder Adapter
-
+pbjs: true
 biddercode: otm
 ---
 

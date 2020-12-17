@@ -3,7 +3,7 @@ layout: bidder
 title: Sortable
 description: Prebid Sortable Bidder Adaptor
 biddercode: sortable
-
+pbjs: true
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true

@@ -121,6 +121,22 @@ Could result in this response, assuming that the IDs exist in the database table
 }
 {% endhighlight %}
 
+## Request Logging
+
+(PBS-Java only)
+
+Sometimes you want to see what's coming into the server before being processed by PBS.
+If the admin endpoints are enabled and you have the admin endpoint password, you can 
+hit these two URLs with the desired parameter values:
+
+- https://HOST/logging/[changelevel](/prebid-server/endpoints/pbs-endpoint-admin.html#loggingchangelevel)?level=debug&duration=10000
+- https://HOST/logging/[httpinteraction](/prebid-server/endpoints/pbs-endpoint-admin.html#logginghttpinteraction)?limit=100&endpoint=auction&account=1111
+
+Then you can check server logs for output like:
+```
+http-interaction : Requested URL: "/openrtb2/auction?debug=1", request body: "{ ... }"
+```
+
 ## Related Topics
 {:.no_toc}
 
