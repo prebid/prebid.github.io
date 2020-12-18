@@ -318,51 +318,47 @@ The following configuration parameters are available:
 | params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
 | params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/x/BIAZ) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
+| params.abTesting | Optional | Object | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default |
+| params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
+| params.abTesting.controlGroupPct | Optional | Number | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1` |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+
+##### A Note on A/B Testing
+
+Publishers may want to test the value of the ID5 ID with their downstream partners. While there are various ways to do this, A/B testing is a standard approach. Instead of publishers manually enabling or disabling the ID5 User ID Module based on their control group settings (which leads to fewer calls to ID5, reducing our ability to recognize the user), we have baked this in to our module directly.
+
+To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of requests you would like to set for the control group. The control group is the set of requests where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the request was in the control group or not. It's important to note that the control group is request based, and not user based. In other words, from one page view to another, a user may be in or out of the control group.
 
 #### ID5 Universal ID Examples
 
 {: .alert.alert-warning :}
 **ATTENTION:** As of Prebid.js v4.14.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
 
-1) Publisher wants to retrieve the ID5 Universal ID through Prebid.js
+Publisher wants to retrieve the ID5 Universal ID through Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
   userSync: {
     userIds: [{
-      name: "id5Id",
+      name: 'id5Id',
       params: {
         partner: 173,            // change to the Partner Number you received from ID5
-        pd: "MT1iNTBjY..."       // optional, see table above for a link to how to generate this
+        pd: 'MT1iNTBjY...',      // optional, see table below for a link to how to generate this
+        abTesting: {             // optional
+          enabled: true,         // false by default
+          controlGroupPct: 0.1   // valid values are 0.0 - 1.0 (inclusive)
+        }
       },
       storage: {
-        type: "html5",           // "html5" is the required storage type
-        name: "id5id",           // "id5id" is the required storage name
+        type: 'html5',           // "html5" is the required storage type
+        name: 'id5id',           // "id5id" is the required storage name
         expires: 90,             // storage lasts for 90 days
         refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
       }
     }],
     auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
-  }
-});
-{% endhighlight %}
-
-2) Publisher has integrated with ID5 on their own (e.g. via the [ID5 API](https://github.com/id5io/id5-api.js)) and wants to pass the ID5 Universal ID directly through to Prebid.js
-
-{% highlight javascript %}
-pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: "id5Id",
-      value: {
-        id5id: {
-          uid: "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA"
-        }
-      }
-    }]
   }
 });
 {% endhighlight %}
@@ -1220,10 +1216,10 @@ pbjs.setConfig({
               pixelId: 8976,
               he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
             },
-            storage: {             
-              type: "html5",             
-              name: "connectid",            
-              expires: 1               
+            storage: {
+              type: "html5",
+              name: "connectid",
+              expires: 1
             }
         }]
     }
