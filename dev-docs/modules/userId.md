@@ -35,7 +35,7 @@ Also note that not all bidder adapters support all forms of user ID. See the tab
 
 As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
 
-## User ID, GDPR, and Opt-Out
+## User ID, GDPR, Permissions, and Opt-Out
 
 When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
 
@@ -67,7 +67,60 @@ of sub-objects. The table below has the options that are common across ID system
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
+
 ## User ID Sub-Modules
+
+## Permissions
+Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
+
+In this example the SharedId sub adapter is only allowed to be sent to the Rubicon.
+```
+userIds: [
+  {
+    name: "sharedId",
+    bidders: [
+      'rubicon'
+    ],
+    params: {
+      syncTime: 60//inseconds,
+      defaultis24hours
+    },
+    storage: {
+      type: "cookie",
+      name: "sharedid",
+      expires: 28
+    }
+  }
+]
+```
+The Rubicon bid adapter would then receive 
+```
+{
+  "bidder": "rubicon",
+  ...
+  "userId": {
+    "sharedid": {
+      "id": "01*******",
+      "third": "01E*******"
+    }
+  },
+  "userIdAsEids": [
+    {
+      "source": "sharedid.org",
+      "uids": [
+        {
+          "id": "01**********",
+          "atype": 1,
+          "ext": {
+            "third": "01***********"
+          }
+        }
+      ]
+    }
+  ],
+  ...
+}
+```
 
 ### BritePool
 
