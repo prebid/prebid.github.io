@@ -78,7 +78,7 @@ In this example the SharedId sub adapter is only allowed to be sent to the Rubic
 userIds: [
   {
     name: "sharedId",
-    bidders: [
+    pbjs_bidders: [
       'rubicon'
     ],
     params: {
