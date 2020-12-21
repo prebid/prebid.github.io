@@ -7,6 +7,7 @@ pbs: true
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true
+getFloor: true
 userIds: unifiedId
 gdpr_supported: true
 usp_supported: true
@@ -41,3 +42,7 @@ information.
 | `video`        | optional | Tracking ID       | `'ggumtest'`           | `string`  |
 | `videoPubID`   | optional | Publisher ID      | `123`                  | `integer` |
 | `inVideo`      | optional | Tracking ID       | `'ggumtest'`           | `string`  |
+
+
+Please note that both video and in-video products require a mediaType of video. 
+All other products (in-screen, slot, native) should have a mediaType of banner.

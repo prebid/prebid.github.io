@@ -17,8 +17,8 @@ This page has answers to some frequently asked questions about Prebid Server. If
 
 Nope. The only approval process is a code review. There are separate instructions for:
 
-- [Prebid Server - Go](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)
-- [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
+- [Prebid Server - Go](/prebid-server/developers/add-new-bidder-go.html)
+- [Prebid Server - Java](/prebid-server/developers/add-new-bidder-java.html)
 
 As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
@@ -35,10 +35,10 @@ The original version of Prebid Server was the Go-Lang version. Rubicon Project
 ported it to Java because they had more Java talent than Go.
 
 + [Prebid Server - Go](https://github.com/prebid/prebid-server)
-+ [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java)
++ [Prebid Server - Java](https://github.com/prebid/prebid-server-java)
 
 Both versions are live in production, and they are kept identical in external APIs
-and reasonably close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
+and reasonably close in functionality. See the [Prebid Server feature list](/prebid-server/features/pbs-feature-idx.html) for the list of differences.
 
 For demand partners, we recommend building new bid adapters in Go - the team will port it to Java for you within a couple of months.
 
@@ -106,3 +106,39 @@ If a bidder adapter supplies 'nurl' in the bidResponse object, there are two pat
 
 If a bidder adapter supplies 'nurl' in the bidResponse object instead of 'adm',
 this URL will be treated as the location of the VAST XML.
+
+## How does ad server targeting work in Prebid Server?
+
+For OpenRTB responses, Prebid Server is always in "send all bids" mode -- it will return the top bid on each requested imp from each bidder.
+
+It will return ad server targeting in seatbid.bid.ext.prebid.targeting depending on the input scenario:
+
+- if request.ext.prebid.includewinner:true and this bid was declared the "winner" by Prebid Server, then seatbid.bid.ext.prebid.targeting will contain hb_pb, hb_size, and hb_bidder. If the bid was cached, there will also be hb_uuid and/or hb_cache_id
+- if request.ext.prebid.includebidderkeys:true, seatbid.bid.ext.prebid.targeting will contain hb_pb_BIDDER, hb_size_BIDDER, and hb_bidder_BIDDER. If the bid was cached, there will also be hb_uuid_BIDDER and/or hb_cache_id_BIDDER.
+
+The AMP endpoint is somewhat different because it doesn't receive the openrtb - just the targeting. PBS basically resolves the OpenRTB, and then merges all the seatbid.bid.ext.prebid.targeting sections.
+
+## How does Prebid Server determine the winner of a given impression?
+
+**Decision 1**: best bid from each bidder on each impression
+
+Prebid Server returns one bid from each bidder for each impression object. If there
+are multiple bids from a given bidder for a given imp[], here how it chooses:
+
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
+
+**Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
+
+This is only done when ext.prebid.targeting is specified.
+This is most important for AMP, but other clients (e.g. app) may rely on Prebid Server
+choosing the "winner" header bid. That decision is made with the same process as the
+first decision:
+
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
+

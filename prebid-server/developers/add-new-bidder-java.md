@@ -18,7 +18,7 @@ Publishers can correct for gross-price bids by setting [Bid Adjustments](/prebid
 
 ## Choose a Bidder Name
 
-This name must be unique. Existing BidderNames can be found [here](https://github.com/rubicon-project/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
+This name must be unique. Existing BidderNames can be found [here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
@@ -50,7 +50,7 @@ Prebid Server bid adapters must follow all required conventions defined in the [
 ### Generic OpenRTB Bidder
 
 There's an option to implement a bidder by using a pre-existing template.
-OpenrtbBidder(https://github.com/rubicon-project/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/OpenrtbBidder.java) is an abstract class that
+OpenrtbBidder(https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/OpenrtbBidder.java) is an abstract class that
 implements Bidder<BidRequest> interface and provides a default implementation of its methods.
 
 This class provides a fixed algorithm with number of certain access points(so called hook-methods) that
@@ -195,7 +195,7 @@ We expect to see at least 90% code coverage on each bidder.
 
 ### Manual Tests
 
-[Configure](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/config.md), [build](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/build.md) and [start](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/run.md) your server.
+[Configure](https://github.com/prebid/prebid-server-java/blob/master/docs/config.md), [build](https://github.com/prebid/prebid-server-java/blob/master/docs/build.md) and [start](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md) your server.
 
 Then `POST` an OpenRTB Request to `http://localhost:8000/openrtb2/auction`.
 
@@ -214,4 +214,4 @@ There are two documents required before we’ll accept your pull request:
 
 ## Contribute
 
-Finally, [Contribute](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/contributing.md) your Bidder to the project.
+Finally, [Contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/contributing.md) your Bidder to the project.
