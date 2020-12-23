@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Zemanta
-description: Zemanta Prebid Bidder Adapter
+title: Outbrain
+description: Outbrain Prebid Bidder Adapter
 biddercode: zemanta
 gdpr_supported: true
 gvl_id: 210
@@ -15,13 +15,13 @@ pbjs: true
 
 ### Registration
 
-The Zemanta Adapter requires setup before beginning. Please contact us at prebid.org@outbrain.com.
+The Outbrain Adapter requires setup before beginning. Please contact us at prebid.org@outbrain.com.
 
 ### Configuration
 
 #### Bidder and usersync URLs
 
-The Zemanta adapter does not work without setting the correct bidder and usersync URLs.
+The Outbrain adapter does not work without setting the correct bidder and usersync URLs.
 You will receive the URLs when contacting us.
 
 ```
