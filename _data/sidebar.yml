@@ -1148,6 +1148,24 @@
   sectionTitle:
   subgroup: 2
 
+- sbSecId: 3
+  title: "Other Tools"
+  link:
+
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 3
+  title: 'Automated Line Item Setup'
+  link: /adops/automated-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
 #--------------Prebid Video--------------|
 
 - sbSecId: 4
