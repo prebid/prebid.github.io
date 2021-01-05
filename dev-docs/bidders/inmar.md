@@ -5,7 +5,7 @@ description: Prebid Inmar Bidder Adapter
 
 biddercode: inmar
 usp_supported: true
-userIds: identityLink, liveIntentId, unifiedId, pubProvidedId
+userIds: identityLink, liveIntentId, unifiedId, pubCommonId, pubProvidedId
 media_types: banner, video
 safeframes_ok: false
 bidder_supports_deals: true
