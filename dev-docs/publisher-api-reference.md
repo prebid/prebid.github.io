@@ -2154,6 +2154,7 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | UUID | `hb_uuid` |
 | CACHE_ID | `hb_cache_id` |
 | CACHE_HOST | `hb_cache_host` |
+| ADOMAIN | `hb_adomain` |
 | title | `hb_native_title` |
 | body | `hb_native_body` |
 | body2 | `hb_native_body2` |
