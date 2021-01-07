@@ -60,7 +60,7 @@ of sub-objects. The table below has the options that are common across ID system
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
-| pbjs_bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
+| bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
@@ -74,14 +74,14 @@ of sub-objects. The table below has the options that are common across ID system
 ## Permissions
 Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
 
-Use the optional `pbjs_bidders` parameter to define an array of bidder codes to which this user ID may be sent.
+Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
 In this example the SharedId sub adapter is only allowed to be sent to the Rubicon adapter.
 ```
 userIds: [
   {
     name: "sharedId",
-    pbjs_bidders: [
+    bidders: [
       'rubicon'
     ],
     params: {
