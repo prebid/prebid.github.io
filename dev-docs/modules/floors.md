@@ -1039,8 +1039,8 @@ The price floors module will do this by leveraging the already existing implemen
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| "rubicon" |
 | location | String | Where the Floors Module derived the rule set. Values are one of 'adUnit', 'setConfig', 'fetch' or 'noData'. If the Floors Module code is invoked and no floors object is able to be found (either by error or other condition) the floorsModule will set  location to 'noData'. When on data is found, it is up to the analtyics adapter to decide what to log. All available values will be provided in teh bidRequest object. | ‘fetch’ |
 | modelVersion | String | The name of the model| ‘floor-model-4.3’ |
-| modelWeight | int | The weight of the model selected (for schema 2 version only)| 50 |
-| modelTimestamp | int | Epoch timestamp associated with the modelVersion to be used for post auction analysis.| 1607126814 |
+| modelWeight | integer | The weight of the model selected (for schema 2 version only)| 50 |
+| modelTimestamp | integer | Epoch timestamp associated with the modelVersion to be used for post auction analysis.| 1607126814 |
 | skipRate | integer | skipRate will be populated when a skip rate is configured in the Prebid Floors Module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 | skipped | Boolean | Whether the skipRate resolved to be true or false| true |
 
@@ -1053,7 +1053,8 @@ The price floors module will do this by leveraging the already existing implemen
 | enforcements | object | The input floor enforcements object. Keys are enforceJS, enforcePBS, floorDeald, bidAdjustment | { enforceJS: true, enforcePBS: false, floorDeals: false, bidAdjustment: true } |
 | floorCurrency | string | Currency of the matched floor | ‘USD’ |
 | floorRule | String | The matching rule for the given bidResponse | ‘div-1\|300x250\|\*’ |
-| floorRuleValue | number | The value of the floor chosen | 2.33 |
+| floorRuleValue | float | Rule floor selected. This is to differentiate between the floor bound to the selected rule and floorMin, where floorValue will be the selected floor between the two for enforcement. | 2.33 |
+| floorValue | float | The value of the floor enforced. This will be the greater of floorMin and floorRuleValue.| 2.33 |
 | matchedFields | object | Fields of the prebid auction used to match against the floorData.schema.fields. | { mediaType: ‘banner’, Size: ‘300x250, Domain: ‘www.prebid.org’, gptSlot: ‘/12345/prebid/sports’ } |
 
 ### Prebid Server Interface
