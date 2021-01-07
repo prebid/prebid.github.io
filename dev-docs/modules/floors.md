@@ -1040,7 +1040,7 @@ The price floors module will do this by leveraging the already existing implemen
 | location | String | Where the Floors Module derived the rule set. Values are one of 'adUnit', 'setConfig', 'fetch' or 'noData'. If the Floors Module code is invoked and no floors object is able to be found (either by error or other condition) the floorsModule will set  location to 'noData'. When on data is found, it is up to the analtyics adapter to decide what to log. All available values will be provided in teh bidRequest object. | ‘fetch’ |
 | modelVersion | String | The name of the model| ‘floor-model-4.3’ |
 | modelWeight | integer | The weight of the model selected (for schema 2 version only)| 50 |
-| modelTimestamp | inter | Epoch timestamp associated with the modelVersion to be used for post auction analysis.| 1607126814 |
+| modelTimestamp | integer | Epoch timestamp associated with the modelVersion to be used for post auction analysis.| 1607126814 |
 | skipRate | integer | skipRate will be populated when a skip rate is configured in the Prebid Floors Module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 | skipped | Boolean | Whether the skipRate resolved to be true or false| true |
 
