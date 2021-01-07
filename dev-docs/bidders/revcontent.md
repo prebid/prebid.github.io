@@ -15,14 +15,14 @@ pbs: true
 
 To use RevContent bidder, you need to have an existing RevContent account. To create a new account visit https://www.RevContent.com. If you are an existing user, contact the account rep for api access and information. 
 
-If you are using prebid server, Revcontent will provide you with a custom endpoint that will contain your account details that you will specify in your adapater configuration. For example, your pbs.yaml would contain the following:
+For prebid server, Revcontent only uses basic OpenRTB requests, so only the endpoint will need to be customized. Your request must contain either `app.name` or `site.domain` to be considered valid. Revcontent will provide you with a custom endpoint that will contain your account details that you will specify in your adapater configuration. For example, your pbs.yaml would contain the following:
 ```
 adapters:
   revcontent:
     endpoint: https://trends.revcontent.com/rtb?apiKey=<api key here>&userId=<account user id here>
 ```
 
-### Bid Params
+### Prebid.js Bid Params
 
 
 {: .table .table-bordered .table-striped }
