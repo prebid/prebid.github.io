@@ -4,15 +4,23 @@ title: RevContent
 description: RevContent Bidder Adaptor
 biddercode: revcontent
 media_types: native
-gdpr_supported: true
-coppa_supported: true
-usp_supported: true
+gdpr_supported: false
+coppa_supported: false
+usp_supported: false
 pbjs: true
+pbs: true
 ---
 
 ### Note
 
-To use RevContent bidder, you need to have an existing RevContent account. To create a new account visit https://www.RevContent.com. If you are an existing user, contact the account rep for api access and information.
+To use RevContent bidder, you need to have an existing RevContent account. To create a new account visit https://www.RevContent.com. If you are an existing user, contact the account rep for api access and information. 
+
+If you are using prebid server, Revcontent will provide you with a custom endpoint that will contain your account details that you will specify in your adapater configuration. For example, your pbs.yaml would contain the following:
+```
+adapters:
+  revcontent:
+    endpoint: https://trends.revcontent.com/rtb?apiKey=<api key here>&userId=<account user id here>
+```
 
 ### Bid Params
 
