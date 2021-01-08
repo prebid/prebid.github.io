@@ -19,6 +19,7 @@ For prebid server, Revcontent only uses basic OpenRTB requests, so only the endp
 ```
 adapters:
   revcontent:
+    disabled: false
     endpoint: https://trends.revcontent.com/rtb?apiKey=<api key here>&userId=<account user id here>
 ```
 
