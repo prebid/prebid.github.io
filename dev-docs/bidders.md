@@ -28,7 +28,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 <ul>
 {% for page in bidder_pages %}
 <li>
-<a href="#{{ page.biddercode }}">{{ page.title }}</a>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
 </li>
 {% endfor %}
 </ul>
