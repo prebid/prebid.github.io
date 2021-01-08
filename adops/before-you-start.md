@@ -11,7 +11,7 @@ sbUUID: 3.2
 # Ad Ops and Prebid
 {: .no_toc }
 
-Prebid products are designed to integrate with the ad ops line item configuration on the publisher's selected ad server. Whether using Prebid.js, Prebid Server or Prebid Mobile, bid targeting parameters are passed to the ad server. The ad server then attempts to  match the targeting parameters to a preset line item. If successful, that line item is compared to other line items and if the Prebid bid wins the auction, the creative is returned to the web page or app for display. 
+Prebid products are designed to integrate with the ad ops line item configuration on the publisher's selected ad server. Whether using Prebid.js, Prebid Server or Prebid Mobile, bid targeting parameters are passed to the ad server. The ad server then attempts to  match the targeting parameters to a preset line item. If successful, that line item is compared to other line items and if the Prebid bid wins the auction, the creative is returned to the web page or app for display.
 
 {% capture importantNote %}
 This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
@@ -24,7 +24,7 @@ This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}
 
 ## Supported ad servers
 
-The table below lists ad servers supported by Prebid and provides links to step by step documentation for the configurations those ad servers support. 
+The table below lists ad servers supported by Prebid and provides links to step by step documentation for the configurations those ad servers support.
 
 {: .table .table-bordered .table-striped }  
 | Server       | Page                                                                                                                                    |
@@ -40,7 +40,7 @@ The table below lists ad servers supported by Prebid and provides links to step 
 
 ## Decide on price bucket granularity
 
-On a publisher's selected server the ad ops team will need to setup line items. These line items provide targeting information for the ad server, to include the CPM per impression. Prebid will pass in a bid's targeting parameters via key-values. The ad server will read these incoming targeting parameters and search through the line items for a match. 
+On a publisher's selected server the ad ops team will need to setup line items. These line items provide targeting information for the ad server, to include the CPM per impression. Prebid will pass in a bid's targeting parameters via key-values. The ad server will read these incoming targeting parameters and search through the line items for a match.
 
 Example:
 
@@ -70,7 +70,7 @@ One set of line items for all bidders is the recommended way of setting up your 
 - It's easier to maintain because adding more bidders requires no change to your line item setup.
 - It's less error-prone because you only need to maintain 3 keywords:
 
-{% include default-keyword-targeting.md %} 
+{% include default-keyword-targeting.md %}
 
 
 {% capture successNote %}
@@ -92,13 +92,30 @@ Choose one set of line items for each bidder if you:
 
 - Requires setting more keyword targeting within your ad server. The table below lists the required and optional keys for targeting with each of your header bidder partners.
 
-{% include send-all-bids-keyword-targeting.md %} 
+{% include send-all-bids-keyword-targeting.md %}
 
 {% capture successNote %}
 For instructions on setting up pre-bid with one set of line items for each bidder, see [Send all bids to the ad server - Ad Ops setup](/adops/send-all-bids-adops.html).
 {% endcapture %}
 
 {% include alerts/alert_tip.html content=successNote %}
+
+## Safeframes
+
+[SafeFrames are defined by the IAB](https://www.iab.com/guidelines/safeframe/) as a "managed API-enabled iframe that opens a line of communication between the publisher page and the iframe-contained ad creative."
+
+When setting up line items in your ad server, you'll need to consider whether to make the creatives safeframes or not. In general, for standard banner and native, safeframes are a good idea. Certain special mediatypes cannot use safeframes.
+
+### Bidders known to be incompatible with safeframes
+
+{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "safeframes_ok", false %}
+<ul>
+{% for page in bidder_pages %}
+<li>{{ page.title }}</li>
+{% endfor %}
+</ul>
+
+There may be others, please check with bidders directly if you have questions about their support.
 
 ## Work together with your dev team
 

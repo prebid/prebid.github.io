@@ -10,7 +10,8 @@
 //   data is the name of variable containing the data
 //   sort can be "colFirst" (the default) or "rowFirst"
 //   maxcols can set a max number of columns
-//   striped is boolean defining whether to set the table-striped class. defaults to yes.
+//   striped is boolean defining whether to set the table-striped class. defaults to true.
+//   fixedHeight is boolean defining whether to set the fixed height class. defaults to false
 //
 //   Structure of the data-array:
 //   dynamicTableContents[{{x}}]={};
@@ -58,24 +59,36 @@ function writeDynamicTable(args) {
 
   var tbl = document.createElement('table');
   tbl.style.width = '100%';
-  var striped;
-  if (typeof args.striped === 'undefined') {
-    striped=true;
+  var striped=true;
+  if (typeof args.striped === 'boolean') {
+    striped=args.striped;
   }
   if (striped) {
     tbl.setAttribute('class', 'table-bordered table-striped centered');
   } else {
     tbl.setAttribute('class', 'table-bordered centered');
   }
+  var fixedHeight=false;
+  if (typeof args.fixedHeight === 'boolean') {
+    fixedHeight=args.fixedHeight;
+  }
   var tbdy = document.createElement('tbody');
   tbdy.setAttribute('class','centered');
   var idx=0;
   for (var r = 0; r < numRows; r++) {
     var tr = document.createElement('tr');
-    tr.setAttribute('class','centered');
+    if (fixedHeight) {
+      tr.setAttribute('class','centeredFixedHeight');
+    } else {
+      tr.setAttribute('class','centered');
+    }
     for (var c = 0; c < numCols; c++) {
         var td = document.createElement('td');
-	td.setAttribute('class','centered');
+	if (fixedHeight) {
+	  td.setAttribute('class','centeredFixedHeight');
+	} else {
+	  td.setAttribute('class','centered');
+	}
 	if (sortType == "colFirst") {
 		idx=(r + (c*numRows));
 	} else {

@@ -1,19 +1,25 @@
 ---
 layout: bidder
-title: andbeyond
-description: Prebid andbeyond Bidder Adaptor
-hide: true
+title: Andbeyond Media
+description: Andbeyond Media
+pbjs: true
+pbs: true
 biddercode: andbeyond
+media_types: banner, native, video
+gdpr_supported: true
+usp_supported: true
+schain_supported: true
+aliasCode : adkernel
 ---
 
 ### Note:
 
-The andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
+The andbeyond Bidding adaptor requires setup and approval before beginning. Please reach out to <performancedirect@andbeyond.media> for more details
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | Ad network's RTB host | `'cpm.metaadserving.com'` | `string` |
-| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |
+| `host`   | required | Our Host | `'cpm.andbeyond.media'` | `string` |
+| `zoneId` | required | Example RTB zone id           | `'12345'`                 | `string` |
