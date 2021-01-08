@@ -23,6 +23,10 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true %}
 
+### Find a bidder
+
+<input type="text">
+
 ## Bidder List
 
 <ul>
