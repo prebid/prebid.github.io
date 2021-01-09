@@ -7,21 +7,11 @@ biddercode: temedya
 media_types: banner,native
 ---
 
-### Table of Contents
-
-- [Description](#bid-desc)
-- [Bid Params](#bid-params)
-- [Test Params](#test-params)
-
-<a name="bid-desc" />
-
 ### Description
 
 One of the easiest way to gain access to TE Medya demand sources  - TE Medya header bidding adapter.
 
 TE Medya header bidding adapter connects with TE Medya demand sources to fetch bids for display placements. Please reach out to your account manager or <prebid@temedya.com> for more information.
-
-<a name="bid-params" />
 
 ### Bid params
 
@@ -29,9 +19,6 @@ TE Medya header bidding adapter connects with TE Medya demand sources to fetch b
 |--------------|----------|------------------------------------|------------|----------|
 | `widgetId`  | required | The widget ID from Vidyome           | `753497`    | `number` |
 | `count`| optional | Ad Count         | `1` | `number` |
-
-
-<a name="test-params" />
 
 ### Test Parameters
 
