@@ -66,12 +66,3 @@ pbjs.setConfig({
     }
   }
 });
-
-For Prebid.js v1.14.0 and before:
-
-pbjs.setConfig({
-  userSync: {
-    iframeEnabled: true,
-    enabledBidders: ['rise']
-  }
-});
