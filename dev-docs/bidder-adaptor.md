@@ -534,6 +534,46 @@ Sample data received by this function:
 }
 {% endhighlight %}
 
+### Adding adapter aliases
+
+Use alias names if you want to reuse your adapter using other name for your partner/client, or just a shortcut name.
+
+{% highlight js %}
+
+export const spec = {
+    code: 'appnexus',
+    aliases: [
+        'apnx',
+        {
+            code:'apx',
+            gvlid: 1,
+            skipPbsAliasing: false
+        }
+    ],
+    isBidRequestValid()=>{}
+    buildRequests()=>{}
+    interpretResponse()=>{}
+    getUserSyncs()=>{}
+    onTimeout()=>{}
+    onBidWon()=>{}
+    onSetTargeting()=>{}
+}
+
+{% endhighlight %}
+
+spec.aliases can be an array of strings or objects.
+
+### Alias object description
+
+{: .table .table-bordered .table-striped }
+| Name  | Scope | Description   | Type      |
+|-------|-------|---------------|-----------|
+| `code` | required | shortcode/partner name | `string` |
+| `gvlid` | optional | lobal vendor list id of company scoped to alias | `integer` |
+| `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension.
+ In case you own prebid server adapter with the name same as alias/shortcode. Default value: `false` | `boolean` |
+
+
 ## Supporting Video
 
 Follow the steps in this section to ensure that your adapter properly supports video.
