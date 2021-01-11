@@ -755,6 +755,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Video Intream Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-video-instream-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: Video Interstitial Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-videointerstitialadunit-android.html
   isHeader: 0
