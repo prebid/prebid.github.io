@@ -1353,7 +1353,7 @@ pbjs.enableAnalytics([{
         providerSpecificParams: ...
         sampling: 0.25          // only call the analytics adapter this percent of the time
     }
-});
+}]);
 ```
 
 To learn how to build an analytics adapter, see [How to Add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html).
