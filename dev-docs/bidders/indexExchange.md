@@ -91,7 +91,7 @@ var adUnits = [{
 | Type   | Support |
 | ------ | ------- |
 | `Banner` | Fully supported for all IX approved sizes. |
-| `Video`  | Not supported. |
+| `Video`  | Fully supported for all IX approved sizes. |
 | `Native` | Not supported. |
 
 ## Bid Parameters
