@@ -1340,11 +1340,23 @@ Events example 4: Log errors and render fails to your own endpoint
 
 ### pbjs.enableAnalytics(config)
 
-Enable sending analytics data to the analytics provider of your choice.
+Enables sending analytics data to the analytics provider of your choice. For a list of analytics adapters, see [Analytics for Prebid](/overview/analytics.html).
 
-For usage, see [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html).
+Note that each analytics adapter has it's own invocation parameters. Analytics adapters that are built in the standard way should
+support a `sampling` option. You'll need to check with your analytics provider to confirm
+whether their system recommends the use of this parameter. They may have alternate methods of sampling.
 
-For a list of analytics adapters, see [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html).
+```
+pbjs.enableAnalytics([{
+    provider: "analyticsA",
+    options: {
+        providerSpecificParams: ...
+        sampling: 0.25          // only call the analytics adapter this percent of the time
+    }
+}]);
+```
+
+To learn how to build an analytics adapter, see [How to Add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html).
 
 <hr class="full-rule" />
 
