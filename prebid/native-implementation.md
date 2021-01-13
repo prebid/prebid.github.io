@@ -60,8 +60,8 @@ This table summarizes how the 3 approaches work:
 
 {: .table .table-bordered .table-striped }
 | Component | AdServer-Defined Creative Scenario | AdUnit-Defined Creative Scenario | Custom Renderer Scenario |
-| --- | --- |--- |--- |
-| Prebid.js | mediaTypes.native.sendTargetingKeys:false | sendTargetingKeys:false and mediaTypes.native.adTemplate contains ##macros## | sendTargetingKeys:false and mediaTypes.native.rendererUrl |
+| --- | --- |--- | --- |
+| Prebid.js | mediaTypes. native.sendTargetingKeys: false | sendTargetingKeys:false and mediaTypes.native.adTemplate contains ##macros## | sendTargetingKeys:false and mediaTypes.native.rendererUrl |
 | Ad Server Key Value Pairs | hb_adid | hb_adid | hb_adid |
 | Ad Server | Native template loads native-render.js and calls renderNativeAd(). Uses Prebid ##macro## format. | Native creative loads native-render.js and calls renderNativeAd() with requestAllAssets: true | Native creative loads native-render.js and calls renderNativeAd(), with requestAllAssets:true |
 | Prebid Universal Creative | renderNativeAd resolves macros in the creative body and CSS. | renderNativeAd resolves ##macros## in adTemplate and CSS, appending the adTemplate to the creative body | renderNativeAd loads javascript from renderUrl, calls the renderAd function, appending the results to the creative body. |
