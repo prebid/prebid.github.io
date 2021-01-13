@@ -29,6 +29,7 @@ The module provides several ways for Prebid floors to be defined, that are used 
 - MediaType
 - Ad Size
 - Domain
+- "custom dimensions"
 
 {: .alert.alert-warning :}
 When using GPT Slot name, the gpt library is required to load first. Failing to do so may yield unexpected results and could impact revenue performance.
@@ -302,6 +303,9 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 | data.values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.values."rule floor value" | float | The floor value for this key. | - |
 | data.default | float | Floor used if no matching rules are found. | - |
+| additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields | - |
+| additionalSchemaFields."custom key" | string | custom key name | - |
+| additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
 
 
@@ -354,6 +358,9 @@ While some attributes are common in both schema versions, for completeness, all 
 | data.modelGroups[].values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.modelGroups[].values."rule floor value" | float | The floor value for this key. | - |
 | data.modelGroups[].default | float | Floor used if no matching rules are found. | - |
+| additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields | - |
+| additionalSchemaFields."custom key" | string | custom key name | - |
+| additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
 
 *Example 1*
@@ -473,6 +480,77 @@ Additionally skipRate is supplied at model group level where model1 will skip fl
 
 }
 {% endhighlight %}
+
+## Custom Schema Fields
+
+Custom schema fields are fields the Floors Module does not support out of the box. To use a custom schema field, one needs to perform twp steps:
+
+1. Create lookup function to give the Floors Module context of the value of custom fields for that given auction
+1. Define, Set and Map Custom Schema Attributes
+
+### Create Lookup Function
+
+Create a function to allow the Floors Module to understand context of a given auction. In the below example, we must create a lookup function to give the Floors Module what deviceType this auction is. 
+
+Here is an example lookup function:
+
+{% highlight js %}
+
+  function deviceTypes (bidRequest, bidResponse) {
+      //while bidRequest and bidResponse are not required for this function, they are available for custom attribute mapping
+      
+      let deviceType = getDeviceTypeFromUserAgent(navigator.userAgent);
+
+      if(deviceType = 'mobile')
+          return 'mobile'
+      else if (deviceType = 'tablet')
+          return 'tablet'
+      else if (deviceType = 'desktop')
+          return 'desktop'
+  }
+
+{% endhighlight %}
+
+
+### Define, Set and Map Custom Schema Attributes
+
+After defining a lookup function for the given context of the auction, the custom schema field(s) need to be defined in the `floors.schema.fields` array. Once your custom field is defined you can assign rule values in `floors.data.values` derived from said field(s). The last step would be to supply the lookup function(s) that map from each custom field to a value of the context wthin that auction by using the `floors.additionalSchemaFields` attribute as seen below.
+
+In the below example, `deviceType` is a custom field not currently supported by default in the Floors Module whose values are one of "mobile", "desktop" or "tablet".
+
+{% highlight js %}
+
+  pbjs.setConfig({
+      floors: {
+          enforcement: {
+             floorDeals: false //default to false
+          },
+          floorMin: 0.05,
+          data: {
+              floorProvider : 'rubicon',
+              skipRate : 0,
+              currency: 'USD',
+              schema: {
+                  fields: ['mediaType', 'deviceType']
+              },
+              modelVersion : 'testAddtionalFields',
+              values : {
+                  'banner|mobile' : 0.10,
+                  'banner|desktop' : .15,
+                  'banner|tablet' : 0.16,
+                  'banner|*' : 0.16,
+                  '*|*' : 0.03
+              }
+          },
+          additionalSchemaFields : {
+              deviceType : deviceTypes // where deviceTypes is the function reference for your lookup function
+          }
+      }
+  });
+
+{% endhighlight %}
+
+
 
 
 ## Rule Handling
@@ -677,6 +755,7 @@ Size = 300x600
 Domain context = www.website.com  
 
 {% highlight js %}
+
 {
     "banner|300x600|www.website.com",   // Fails due to website.com does not match with banner and 300x600
     "banner|300x600|*",    //  Banner, 300x600 * matches first       
@@ -688,6 +767,7 @@ Domain context = www.website.com
     "*|*|www.website.com",
     "*|*|*"                                                       
   }
+
 {% endhighlight %}
 
 Matching rule: "banner|300x600|\*"  
@@ -702,6 +782,7 @@ Domain context = www.website.com.
 Price Floor internal possible permutations sorted by priority:
 
 {% highlight js %}
+
 {
     "video|640x480|www.website.com",    //Fails to match due to no video specific rule
     "video|640x480|*",        //Fails to match due to no video specific rule
@@ -712,6 +793,7 @@ Price Floor internal possible permutations sorted by priority:
     "*|*|www.website.com",
     "*|*|*"
   }
+
 {% endhighlight %}
 
 Matching rule: "video\|\*\|\*"  
@@ -772,6 +854,7 @@ On rule creation, we recommend supplying various rules with catch all \(“\*”
 #### Example Dynamic fetch
 
 {% highlight js %}
+
 pbjs.setConfig({
     floors: {
         enforcement: {
@@ -783,6 +866,7 @@ pbjs.setConfig({
         }
     }
 });
+
 {% endhighlight %}
 
 #### Example Response 1
@@ -790,6 +874,7 @@ pbjs.setConfig({
 floor determined by AdUnit code and Media Type:
 
 {% highlight js %}
+
 {
     floorProvider: 'floorProviderName',
     currency: 'USD',
@@ -815,6 +900,7 @@ floor determined by AdUnit code and Media Type:
 floor determined by Domain, GPT Slot, Media Type and Size:
 
 {% highlight js %}
+
 {
     currency: 'EU',
     skipRate: 20,
@@ -833,6 +919,7 @@ floor determined by Domain, GPT Slot, Media Type and Size:
     },
     default: 0.75
 }
+
 {% endhighlight %}
 
 
@@ -841,6 +928,7 @@ floor determined by Domain, GPT Slot, Media Type and Size:
 Floors Schema version 2
 
 {% highlight js %}
+
 {
     "currency": "USD",
     "floorsSchemaVersion":2,
@@ -883,6 +971,7 @@ Floors Schema version 2
     ]
 
 }
+
 {% endhighlight %}
 
 
@@ -903,11 +992,13 @@ Intended changes for bid adapters:
 getFloor takes in a single object with the following params:
 
 {% highlight js %}
-getFloor({
-    currency: string,
-    mediaType: string  //Required
-    size : [ w, h] OR "*"
-});
+
+  getFloor({
+      currency: string,
+      mediaType: string  //Required
+      size : [ w, h] OR "*"
+  });
+
 {% endhighlight %}
 
 {: .table .table-bordered .table-striped }
@@ -921,16 +1012,20 @@ getFloor({
 #### getFloor Response
 
 {% highlight js %}
+
 {
     currency: string,
     floor: float
 }
+
 {% endhighlight %}
 
 Or empty object if a floor was not found for a given input
 
 {% highlight js %}
+
 { }
+
 {% endhighlight %}
 
 #### Example getFloor scenarios
@@ -938,22 +1033,24 @@ Or empty object if a floor was not found for a given input
 Example rules file used for getFloor
 
 {% highlight js %}
-{
-    "data": {
-            "currency": "USD",
-            "schema": {
-                "fields": [ "gptSlot", "mediaType", "size"]
-            },
-            "values": {
-                "/1111/homepage/top-rect|banner|300x250": 0.60,
-                "/1111/homepage/top-rect|banner|300x600": 1.78,
-                "/1111/homepage/top-rect|banner|*": 1.10,
-                "/1111/homepage/top-rect|video|480x600": 3.20,
-                "/1111/homepage/top-leaderboard|banner|728x90": 1.50
-            },
-            "default": 0.75
-        }
-}
+
+  {
+      "data": {
+              "currency": "USD",
+              "schema": {
+                  "fields": [ "gptSlot", "mediaType", "size"]
+              },
+              "values": {
+                  "/1111/homepage/top-rect|banner|300x250": 0.60,
+                  "/1111/homepage/top-rect|banner|300x600": 1.78,
+                  "/1111/homepage/top-rect|banner|*": 1.10,
+                  "/1111/homepage/top-rect|video|480x600": 3.20,
+                  "/1111/homepage/top-leaderboard|banner|728x90": 1.50
+              },
+              "default": 0.75
+          }
+  }
+
 {% endhighlight %}
 
 **Example getFloor 1**
@@ -961,11 +1058,12 @@ Example rules file used for getFloor
 getFloor for media type Banner for a bid request in the context of the gpt slot “/1111/homepage/top-rect” where the bid adapter does not support floors per size.
 
 {% highlight js %}
-getFloor({
-    currency: 'USD',
-    mediatype: ‘banner’,
-    Size: ‘*’
-});
+
+  getFloor({
+      currency: 'USD',
+      mediatype: ‘banner’,
+      Size: ‘*’
+  });
 {% endhighlight %}
 
 **Response**
