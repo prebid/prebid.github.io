@@ -535,7 +535,7 @@ Here is an example lookup function:
   function deviceTypes (UA) {
       if(UA = mobile)
           return 'mobile'
-      else (UA = tablet)
+      else if (UA = tablet)
           return 'tablet'
       else if (UA = desktop)
           return 'desktop'
