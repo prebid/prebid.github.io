@@ -514,7 +514,7 @@ Here is an example lookup function:
 
 ### Define, Set and Map Custom Schema Attributes
 
-After defining a lookup function for the given context of the auction, the custom schema field(s) need to be defined in the `floors.schema.fields` array. Once your custom field is defined you can assign rule values in `floors.data.value` derived from said field(s). The last step would be to supply the lookup function(s) that map from each custom field to a value of the context wthin that auction by using the `floors.additionalSchemaFields` attribute as seen below.
+After defining a lookup function for the given context of the auction, the custom schema field(s) need to be defined in the `floors.schema.fields` array. Once your custom field is defined you can assign rule values in `floors.data.values` derived from said field(s). The last step would be to supply the lookup function(s) that map from each custom field to a value of the context wthin that auction by using the `floors.additionalSchemaFields` attribute as seen below.
 
 In the below example, `deviceType` is a custom field not currently supported by default in the Floors Module whose values are one of "mobile", "desktop" or "tablet".
 
