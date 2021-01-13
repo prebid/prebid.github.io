@@ -483,7 +483,7 @@ Additionally skipRate is supplied at model group level where model1 will skip fl
 
 ## Custom Schema Fields
 
-Custom schema fields are fields the Floors Module does support out of the box. To use a custom schema field, one needs to perform twp steps:
+Custom schema fields are fields the Floors Module does not support out of the box. To use a custom schema field, one needs to perform twp steps:
 
 1. Create lookup function to give the Floors Module context of the value of custom fields for that given auction
 1. Define, Set and Map Custom Schema Attributes
