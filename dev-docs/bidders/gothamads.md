@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: gothamAds
-description: Prebid gothamAds Bidder Adaptor
-biddercode: gothamAds
+title: gothamads
+description: Prebid gothamads Bidder Adaptor
+biddercode: gothamads
 gdpr_supported: true
 tcf2_supported: true
 usp_supported: true
