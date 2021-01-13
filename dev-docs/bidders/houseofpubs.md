@@ -3,7 +3,6 @@ layout: bidder
 title: HouseOfPubs
 description: House of Pubs Bid Adapter
 pbjs: true
-pbs: true
 biddercode: houseofpubs
 media_types: banner, native, video
 gdpr_supported: true
