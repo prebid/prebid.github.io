@@ -483,72 +483,40 @@ Additionally skipRate is supplied at model group level where model1 will skip fl
 
 ## Custom Schema Fields
 
-Custom schema fields are fields the Floors Module does support out of the box. To use a custom schema field, one needs to perform three steps:
+Custom schema fields are fields the Floors Module does support out of the box. To use a custom schema field, one needs to perform twp steps:
 
-1. Define your custom field(s)
 1. Create lookup function to give the Floors Module context of the value of custom fields for that given auction
-1. Supply the lookup function to the Floors Module
-
-### Define Custom Schema Attributes
-
-The fist step to using a custom schema field is to define the field you wish to use in the `floors.schema.fields` array. You may define one or more custom schema field. Once your custom field is define you can assign rule values derived from said field. 
-
-In the below example, `deviceType` is a custom field not currently supported by default in the Floors Module whose values are one of "mobile", "desktop" or "tablet".
-
-{% highlight js %}
-
-  pbjs.setConfig({
-      floors: {
-          enforcement: {
-             floorDeals: false //default to false
-          },
-          floorMin: 0.05,
-          data: {
-              floorProvider : 'rubicon',
-              skipRate : 0,
-              currency: 'USD',
-              schema: {
-                  fields: ['mediaType', 'deviceType']
-              },
-              modelVersion : 'testAddtionalFields',
-              values : {
-                  'banner|mobile' : 0.10,
-                  'banner|desktop' : .15,
-                  'banner|tablet' : 0.16,
-                  'banner|*' : 0.16,
-                  '*|*' : 0.03
-              }
-          }
-      }
-  });
-
-{% endhighlight %}
+1. Define, Set and Map Custom Schema Attributes
 
 ### Create Lookup Function
 
-After defining the custom schema field name(s) and usage of values to map to floors, you must create a function to allow the Floors Module to understand context of a given auction. In the above example, we must create a lookup function to give the Floors Module what deviceType this auction is. 
+Create a function to allow the Floors Module to understand context of a given auction. In the below example, we must create a lookup function to give the Floors Module what deviceType this auction is. 
 
 Here is an example lookup function:
 
 {% highlight js %}
 
-  function deviceTypes (UA) {
-      if(UA = mobile)
+  function deviceTypes (bidRequest, bidResponse) {
+      //while bidRequest and bidResponse are not required for this function, they are available for custom attribute mapping
+      
+      let deviceType = getDeviceTypeFromUserAgent(navigator.userAgent);
+
+      if(deviceType = 'mobile')
           return 'mobile'
-      else if (UA = tablet)
+      else if (deviceType = 'tablet')
           return 'tablet'
-      else if (UA = desktop)
+      else if (deviceType = 'desktop')
           return 'desktop'
   }
 
 {% endhighlight %}
 
 
-### Supply Lookup Function
+### Define, Set and Map Custom Schema Attributes
 
-The last step to using a custom schema field is to supply the Floors Module the lookup function using the `additionalSchemaFields` object.
+After defining a lookup function for the given context of the auction, the custom schema field(s) need to be defined in the `floors.schema.fields` array. Once your custom field is defined you can assign rule values in `data.value` derived from said field(s). The last step would be to supply the lookup function(s) that map from each custom field to a value of the context wthin that auction by using the `additionalSchemaFields` attribute as seen below.
 
-Example:
+In the below example, `deviceType` is a custom field not currently supported by default in the Floors Module whose values are one of "mobile", "desktop" or "tablet".
 
 {% highlight js %}
 
@@ -575,12 +543,15 @@ Example:
                         }
                     },
                     additionalSchemaFields : {
-                        deviceType : (userAgent) => deviceTypes 
+                        deviceType : deviceTypes 
                     }
                 }
             });
 
 {% endhighlight %}
+
+
+
 
 ## Rule Handling
 
