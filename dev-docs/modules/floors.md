@@ -543,7 +543,7 @@ In the below example, `deviceType` is a custom field not currently supported by 
               }
           },
           additionalSchemaFields : {
-              deviceType : deviceTypes 
+              deviceType : deviceTypes // where deviceTypes is the function reference for your lookup function
           }
       }
   });
