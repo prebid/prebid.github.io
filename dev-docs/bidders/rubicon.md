@@ -16,6 +16,7 @@ safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 gvl_id: 52
 ---
 

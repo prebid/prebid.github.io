@@ -564,10 +564,17 @@ pbjs.setConfig({
 
 LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 
-Add LiveIntent ID to your Prebid.js package with:
+There are two ways to build your Prebid.js package to include the LiveIntent ID:
+* the standard version which allows publishers to include the module with full functionalities, like hashing email adresses and id resolution
+* the minimal version, which allows publishers to deploy a smaller bundle with minimal features, including identity resolution.
 
+Add the **full** LiveIntent ID to your Prebid.js package with:
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
+
+Add the **minimal** LiveIntent ID to your Prebid.js package with:
+{: .alert.alert-info :}
+LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
 
 The `request.userId.lipb` object would look like:
 ```
