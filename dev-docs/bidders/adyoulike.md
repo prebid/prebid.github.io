@@ -2,7 +2,7 @@
 layout: bidder
 title: Adyoulike
 description: Prebid Adyoulike Bidder Adaptor
-hide: true
+pbjs: true
 media_types: banner, native
 biddercode: adyoulike
 gdpr_supported: true
