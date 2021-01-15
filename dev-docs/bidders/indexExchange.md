@@ -5,6 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
+pbs_app_supported: true
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
