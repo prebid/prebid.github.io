@@ -91,7 +91,7 @@ var adUnits = [{
 | Type   | Support |
 | ------ | ------- |
 | `Banner` | Fully supported for all IX approved sizes. |
-| `Video`  | Not supported. |
+| `Video`  | Fully supported for all IX approved sizes. |
 | `Native` | Not supported. |
 
 ## Bid Parameters
@@ -306,7 +306,7 @@ pbjs.setConfig({
 ```
 
 #### The **detectMissingSizes** feature
-With a recent update, the IX bid adapter bids on all banner sizes available in an ad unit, if IX is configured for at least one banner size in that ad unit. This default behavior if not required, can be turned off by using the `detectMissingSizes` flag.
+By default, the IX bidding adapter bids on all banner sizes available in the ad unit when configured to at least one banner size. If you want the IX bidding adapter to only bid on the banner size it’s configured to, switch off this feature using `detectMissingSizes`.
 ```
 pbjs.setConfig({
                 ix: {

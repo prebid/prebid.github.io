@@ -8,13 +8,15 @@ tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
+getFloor: true
 media_types: video
-userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, intentiqId, idx, liveIntentId, lotamePanoramaId, netId, parrableId, pubCommonId, pubProvidedId, quantcastId, sharedId, unifiedId, verizonMediaId, zeotapIdPlus
+userIds: all
 prebid_member: true
 safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 gvl_id: 52
 ---
 
@@ -31,13 +33,13 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `siteId`       | required           | The site ID                                                                                                                 | `'13945'`                                                                           | `string`         |
 | `zoneId`       | required           | The zone ID                                                                                                                 | `'23948'`                                                                           | `string`         |
 | `sizes`        | optional           | Array of Rubicon Project size IDs. If not specified, the system will try to convert from the AdUnit's mediaTypes.banner.sizes.        | `[15]`                                                                              | `Array<integer>` |
-| `keywords`     | optional           | Array of page-specific keywords. May be referenced in Rubicon Project reports.                                              | `['travel', 'tourism']`                                                             | `Array<string>`  |
-| `inventory`   | optional           | An object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
-| `visitor`      | optional           | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays.        | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
 | `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
 | `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
 | `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
 | `latLong`     | optional           | Sets the latitude and longitude for the visitor (avail since PBJS 1.10)                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
+| `inventory`   | optional           |  Please consider using the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.ATTR. This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
+| `visitor`      | optional           | Please consider using the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.user.data.ATTR. This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
+| `keywords`     | optional           | Deprecated - please use the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.keywords. This is a legacy parameter that only works for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters.  | `['travel', 'tourism']`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
 
 <a name="rubicon-video"></a>

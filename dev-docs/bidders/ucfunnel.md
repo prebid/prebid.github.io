@@ -5,10 +5,13 @@ description: Prebid ucfunnel Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: ucfunnel
-media_types: video, native
+media_types: banner, video, native
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId
+tcf2_supported: true
+coppa_supported: true
+schain_supported: true
 ---
 
 ### Bid params
