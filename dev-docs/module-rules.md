@@ -104,7 +104,8 @@ The use of the terms "must" and "should" in this document is deliberate.  Howeve
 
 ### Real Time Data Module Rules
 
-1. All global rules apply.
+1. All global rules apply with one exception:
+    - A Real-Time Data module may load external code if it requires publisher registration and there's a prominent disclosure on the module documentation. The idea is that a publisher will not include the module if they don't approve of the external code, and since they've registered for the service, they must approve. The text of the disclosure may differ if the vendor allows Prebid to do regular reviews of a strictly versioned proprietary library.
 1. Real Time Data (RTD) modules must not bid. That functionality is reserved for bid adapters.
 1. RTD modules must not supply privacy-sensitive user information (including IDs) into the auction. That functionality is reserved for User ID modules.
 1. RTD modules should make data available in a cross-bidder way when possible. For example, passing data through existing mechanisms like First Party Data.

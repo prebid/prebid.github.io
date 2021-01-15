@@ -18,7 +18,7 @@ Publishers can correct for gross-price bids by setting [Bid Adjustments](/prebid
 
 ## Choose a Bidder Name
 
-This name must be unique. Existing BidderNames can be found [here](https://github.com/rubicon-project/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
+This name must be unique. Existing BidderNames can be found [here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
@@ -50,7 +50,7 @@ Prebid Server bid adapters must follow all required conventions defined in the [
 ### Generic OpenRTB Bidder
 
 There's an option to implement a bidder by using a pre-existing template.
-OpenrtbBidder(https://github.com/rubicon-project/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/OpenrtbBidder.java) is an abstract class that
+OpenrtbBidder(https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/OpenrtbBidder.java) is an abstract class that
 implements Bidder<BidRequest> interface and provides a default implementation of its methods.
 
 This class provides a fixed algorithm with number of certain access points(so called hook-methods) that
@@ -87,6 +87,23 @@ Bidder response processing:
 
 1. Extract bids from response;
 2. Set each bid type and currency;
+
+### Bid Request Standards
+
+Prebid clients ([Prebid.js](/use-cases/pbs-pbjs.html), [Prebid SDK](/use-cases/pbs-sdk.html), and [AMP](/use-cases/pbs-amp.html)) pass a number of parameters
+that bid adapters should take into account:
+
+- Currency: The publisher's desired bid currency is in the OpenRTB `cur` field. I
+f your bid is in a different currency, you must set the bid currency in the respo
+nse.
+- Bid Floor: `imp[].bidfloor` and `imp[].bidfloorcur` - please make use of this v
+alue before responding with a bid.
+- First Party Data: bidders should look in these locations for first party data: `imp[].ext.context.data.*`, `site.ext.data.*`, `app.ext.data.*`, and `user.ext.data.*`.
+- Supply Chain: `source.ext.schain`
+- GDPR: `regs.ext.gdpr` and `user.ext.consent`
+- CCPA: `regs.ext.us_privacy`
+- COPPA: `regs.coppa`
+- Test: Bidders should be aware that the OpenRTB `test` flag indicates non-production traffic.
 
 ### Bid Response Metadata
 
@@ -178,7 +195,7 @@ We expect to see at least 90% code coverage on each bidder.
 
 ### Manual Tests
 
-[Configure](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/config.md), [build](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/build.md) and [start](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/run.md) your server.
+[Configure](https://github.com/prebid/prebid-server-java/blob/master/docs/config.md), [build](https://github.com/prebid/prebid-server-java/blob/master/docs/build.md) and [start](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md) your server.
 
 Then `POST` an OpenRTB Request to `http://localhost:8000/openrtb2/auction`.
 
@@ -197,4 +214,4 @@ There are two documents required before we’ll accept your pull request:
 
 ## Contribute
 
-Finally, [Contribute](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/contributing.md) your Bidder to the project.
+Finally, [Contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/contributing.md) your Bidder to the project.

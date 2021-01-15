@@ -12,3 +12,4 @@ biddercode: adoppler
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
 | adunit | required | AdUnit to bid against | 'test' | string |
+| client | optional | Client name | 'ads' | string |

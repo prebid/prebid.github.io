@@ -17,7 +17,7 @@ For more information about AMP RTC, see:
 + [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
 + [Prebid Server AMP Endpoint Technical Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
 + [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [AMP RTC Overview][https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md]
++ [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
@@ -123,7 +123,7 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
 
 + `data-slot`: Identifies the ad slot for the auction.
 + `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
-    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js][callout-vendors.js]. We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
+    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js](https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js). We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
     + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
 e.g. for the AppNexus cluster of Prebid Servers:

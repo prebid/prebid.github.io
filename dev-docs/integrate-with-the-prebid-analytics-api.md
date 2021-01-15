@@ -135,6 +135,10 @@ The callback will receive an object with the following attributes:
 }
 ```
 
+#### Listening for errors
+
+There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID)
+
 #### Analytics adapter best practices
 
 + listen only to the events required
@@ -165,9 +169,10 @@ st of other analytics adapters.
 
 ### Step 6: Wait for Prebid volunteers to review
 
-We sometimes get pretty busy, so it can take a couple of weeks for the review process to complete, so while you're waiting, consider [joining Prebid.org](/partners/partners.html) to help us out with code reviews. (!)
+We sometimes get pretty busy, so it can take a couple of weeks for the review process to complete, so while you're waiting, consider [joining Prebid.org](https://prebid.org/membership/) to help us out with code reviews. (!)
 
 ## Further Reading
 
 - [Analytics for Prebid](/overview/analytics.html) (Overview and list of analytics providers)
 - [Module Rules](/dev-docs/module-rules.html)
+- [Instream Video Ads Tracking](/dev-docs/modules/instreamTracking.html)

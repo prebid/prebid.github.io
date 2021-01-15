@@ -6,20 +6,25 @@ hide: true
 schain_supported: false
 gdpr_supported: true
 usp_supported: true
-tcf2_supported: false
+coppa_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+tcf2_supported: true
 biddercode: amx
 safeframes_ok: true
 media_types: banner, video
 pbjs: true
+pbs: true
+gvl_id: 737
 ---
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                          | Example                         | Type     |
-|-------------|----------|--------------------------------------|---------------------------------|----------|
-| `testMode`  | optional | Activate 100% fill ads               | `true`                          | `boolean`|
-| `tagId`     | optional | Tag ID                               | `'cHJlYmlkLm9yZw'`              | `string` |
+| Name        | Scope    | Description                                                     | Example                         | Type     |
+|-------------|----------|-----------------------------------------------------------------|---------------------------------|----------|
+| `testMode`  | optional | Activate 100% fill ads                                          | `true`                          | `boolean`|
+| `tagId`     | optional | Tag ID                                                          | `'cHJlYmlkLm9yZw'`              | `string` |
+| `adUnitId`  | optional | Ad Unit ID used in reporting. Will default to `bid.adUnitCode`  | `'sticky_banner'`               | `string` |
 
 ### Test Parameters
 
