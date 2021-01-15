@@ -524,58 +524,28 @@ Prebid has historically struggled with sharing granular bid response data with p
 Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
-| Path | Description
-| - | -
-| `.NetworkID` | Bidder-specific network/DSP id.
-| `.NetworkName` | Bidder-specific network/DSP name.
-| `.AgencyID` | Bidder-specific agency id.
-| `.AgencyName` | Bidder-specific agency name.
-| `.AdvertiserID` | Bidder-specific advertiser id.
-| `.AdvertiserName` | Bidder-specific advertiser name.
-| `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain`.
-| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
-| `.BrandName` | Bidder-specific brand name.
-| `.PrimaryCategoryID` | Primary IAB category id.
-| `.SecondaryCategoryIDs` | Secondary IAB category ids.
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`.
+| Path | Description |
+| - | - |
+| `.NetworkID` | Bidder-specific network/DSP id |
+| `.NetworkName` | Bidder-specific network/DSP name |
+| `.AgencyID` | Bidder-specific agency id |
+| `.AgencyName` | Bidder-specific agency name |
+| `.AdvertiserID` | Bidder-specific advertiser id |
+| `.AdvertiserName` | Bidder-specific advertiser name |
+| `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain` |
+| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands |
+| `.BrandName` | Bidder-specific brand name |
+| `.PrimaryCategoryID` | Primary IAB category id |
+| `.SecondaryCategoryIDs` | Secondary IAB category ids |
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType` |
+
 <p></p>
 
-In addition to the standard OpenRTB2.5 response fields, Prebid encourages bidders to
-provide additional metadata in their bid response:
+### Simple Bidder Creation
+Remember if your bidder does not have much specific logic beyond standard OpenRTB 2.5, you don't have to implement `Bidder<BidRequest>`
+but could choose to extend OpenrtbBidder<T>(where T is ImpExt type), which already implements Bidder<BidRequest> and has a default implementation of different methods. You can override each of them with your own implementation as needed.
 
-{% highlight js %} {
-"seatbid": [{
-"bid": [{ ...
-"ext": {
-"prebid": {
-"meta": {
-"networkId": NETWORK_ID,
-"networkName": NETWORK_NAME
-"agencyId": AGENCY_ID,
-"agencyName": AGENCY_NAME,
-"advertiserId": ADVERTISER_ID,
-"advertiserName": ADVERTISER_NAME,
-"advertiserDomains": [ARRAY_OF_ADVERTISER_DOMAINS]
-"brandId": BRAND_ID,
-"brandName": BRAND_NAME,
-"primaryCatId": IAB_CATEGORY,
-"secondaryCatIds": [ARRAY_OF_IAB_CATEGORIES], } } } }]
-}]
-} {% endhighlight %}
-
-Notes:
-
-- `advertiserDomains` is the same as the OpenRTB 2.5 `bid.adomain` field but replicated here for downstream convenience
-
-{: .alert.alert-info :}
-Please provide as much information as possible in the meta object. Publishers use this data for tracking down bad creatives and ad blocking. The advertiserDomains field is particularly useful. Some of these fields may become required in a future release.
-
-
-### Simple bidder creation
-Remember if your bidder does not have much specific code, you can not implement `Bidder<BidRequest>`
-but extend OpenrtbBidder<T>(where T is ImpExt type), which already implements Bidder<BidRequest> and have default implementation of different methods. You can override each of them with your own implementation.
-
-Here is the list of methods in OpenrtbBidder which you can override 
+Here is the list of methods in OpenrtbBidder which you can override:
 
 1) `void validateRequest(BidRequest bidRequest)` 
    
@@ -600,7 +570,7 @@ Using this class, you can define should it be only one request or request per-im
 
 Check this class to find how not overridable methods works and uses overridable methods.
 
-### Create config class 
+### Create Config Class 
 
 Go to `org.prebid.server.spring.config.bidder` and create new class `Configuration{bidder}`
 with the following content 
@@ -674,7 +644,7 @@ mvn clean package
 
 This command will prepare code style checks, compile, run test and create jar file from your code
 
-### Bidder unit tests
+### Bidder Unit Tests
 
 Create class `{bidder}BidderTest` in the same package as your `{bidder}Bidder` class, but in test directory. Here you should add unit tests to your bid code.
 Try to create models by using following methods specified to your case in your test class
@@ -715,7 +685,7 @@ private static BidRequest givenBidRequest(
     }
 ```
 
-### Bidder integration tests
+### Bidder Integration Tests
 Go to `test-application.properties` file and add folowing properties
 ```yaml
 adapters.{bidder}.enabled=true
@@ -1097,6 +1067,7 @@ safeframes_ok: true/false
 bidder_supports_deals: true/false
 pbjs: true/false
 pbs: true/false
+pbs_app_supported: true/false
 prebid_member: true/false
 ---
 
@@ -1122,6 +1093,7 @@ Notes on the metadata fields:
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
+- If your bidder supports mobile apps, set `pbs_app_supported`: true. No default value.
 - If your bidder supports deals, set `bidder_supports_deals: true`. No default value.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
