@@ -9,6 +9,7 @@ media_types: banner, video, native
 gdpr: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 ---
 
 ### Prebid.JS Bid Params
