@@ -12,6 +12,8 @@ userIds: unifiedId
 tcf2_supported: true
 coppa_supported: true
 schain_supported: true
+gvl_id: 607
+pbs_app_supported: true
 ---
 
 ### Bid params
