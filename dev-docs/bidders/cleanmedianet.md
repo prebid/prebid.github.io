@@ -5,7 +5,7 @@ description: Clean Media Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
 biddercode: cleanmedianet
-hide: true
+pbjs: true
 prebid_1_0_supported: true
 media_types: banner, video
 gdpr_supported: true

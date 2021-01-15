@@ -4,7 +4,7 @@ title: Setting up Prebid Multi-Format in Google Ad Manager
 head_title: Setting up Prebid Multi-Format in Google Ad Manager
 description: Setting up Prebid Multi-Format in Google Ad Manager
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3
@@ -81,6 +81,5 @@ Follow the instructions for creating line items, creatives, custom native format
 
 <!-- Reference Links -->
 
-[bannerAdSetup]: {{site.baseurl}}/adops/send-all-bids-adops.html
-[nativeAdSetup]: {{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html
-[createCustomNativeFormat]: {{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html#create-a-custom-native-ad-format
+[bannerAdSetup]: /adops/send-all-bids-adops.html
+[nativeAdSetup]: /adops/gam-native.html

@@ -31,9 +31,8 @@ Companies join Prebid.org because they want to take an active role in supporting
 
 ## How To Join
 
-1. Download and review the [Prebid.org Bylaws](http://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
-2. Complete the [Prebid.org Membership Agreement](https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=9c0dbc9c-3583-46af-a226-240b3e9fcea3&env=na2
-).
+1. Download and review the [Prebid.org Bylaws](https://files.prebid.org/docs/Prebid_org_bylaws_jun_2019.pdf).  
+2. Complete the [Prebid.org Membership Agreement](https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=610f838a-3001-4999-aca0-6682cbcac66c&env=na3-eu1&acct=2160069d-b42e-4c0a-9528-3a58d1c58bf9&v=2).
 3. Prebid will consider your membership application.
 
 <hr>
@@ -45,8 +44,9 @@ Companies join Prebid.org because they want to take an active role in supporting
 |---------------------|-----------------------------------------------------------------------|-------------------|------------------------|----------------------------------|--------------------------|----------------------------|-------------|
 | Leader Members     | <span style="color:#32CD32;">✓</span>                                                                    | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                               | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $40,000     |
 | Technology Partners | As a Group,  Technology members  elect a representative  to the board | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $25,000     |
-| Publishers          | As a Group,  Publisher members elect  a representative to  the board  | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $5,000      |
-| Community           | <span style="color:#B22222">✖</span>                                                                     | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#B22222">✖</span>                         | <span style="color:#32CD32;">✓</span>                           | Free        |
+| Publishers          | As a Group, Publisher members elect  a representative to  the board  | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $5,000      |
+| Buyers          | As a Group, Buyer members elect  a representative to  the board  | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#32CD32;">✓</span>                        | <span style="color:#32CD32;">✓</span>                          | $5,000      |
+| Community           | <span style="color:#B22222">✖</span>                                                                     | <span style="color:#32CD32;">✓</span>                 | <span style="color:#32CD32;">✓</span>                      | <span style="color:#32CD32;">✓</span>                                | <span style="color:#B22222">✖</span>                         | <span style="color:#B22222;">✖</span>                           | Free        |
 
 Have questions about becoming a member, email us at [membership@prebid.org](mailto:membership@prebid.org).
 

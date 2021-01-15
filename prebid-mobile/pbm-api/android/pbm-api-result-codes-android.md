@@ -17,7 +17,7 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a `ResultCod
 - **Description**: Prebid Mobile received at least one valid bid from Prebid Server and successfully associated Prebid key-values with the appropriate ad server request.
 
 
-## Prebid Server Error 
+## Prebid Server Error
 
 - **Return Code**: PREBID_SERVER_ERROR  
 - **Description**: * General result code for an unknown error returned from Prebid Server.  The actual Prebid Server error message will be exposed to the developer.  
@@ -33,14 +33,14 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a `ResultCod
 - **Return Code**: INVALID_CONFIG_ID
 - **Description**: Prebid Server did not recognize the configuration ID that was passed in on your banner or interstitial ad unit object. Be sure you've passed in a non-empty configuration ID and that the ID is correct.
 - **More Information**:  
-  - [BannerAdUnit]({{site.github.url}}/prebid-mobile/pbm-api/android/banneradunit-android.html)  
-  - [InterstitialAdUnit]({{site.github.url}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+  - [BannerAdUnit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)  
+  - [InterstitialAdUnit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 
 ## Invalid size
 
 - **Return Code**: INVALID_SIZE
 - **Description**: Attempted to add an invalid size to a banner ad unit. This error usually occurs if you've attempted to add multiple sizes on a request to Mopub; Mopub allows only a single size.
-- **More Information**: [BannerAdUnit]({{site.github.url}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
+- **More Information**: [BannerAdUnit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
 
 ## Network error
 
@@ -66,9 +66,9 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a `ResultCod
 ## Related Topics
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+- [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
+- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
