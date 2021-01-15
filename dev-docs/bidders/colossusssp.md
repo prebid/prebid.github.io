@@ -19,5 +19,6 @@ pbs: false
 |----------------|----------|----------------------------------------------------------|------------|-----------|
 | `placement_id` | required | Placement Id will be generated on Colossus SSP Platform. | `0`        | `integer` |
 | `traffic`      | optional | Type traffic                                             | `'banner'` | `string`  |
+| `bidfloor`     | optional | Will be used instead of configured on platform           | `0.2`      | `integer` |
 
 *For colossus prebid server parametres, look into colossus.md*
