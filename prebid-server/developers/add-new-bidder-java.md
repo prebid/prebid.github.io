@@ -547,26 +547,23 @@ but could choose to extend OpenrtbBidder<T>(where T is ImpExt type), which alrea
 
 Here is the list of methods in OpenrtbBidder which you can override:
 
-1) `void validateRequest(BidRequest bidRequest)` 
-   
-   A hook for bidder-specific request validation if any is required.
-   
+1) `void validateRequest(BidRequest bidRequest)`
+    - A hook for bidder-specific request validation if any is required.
+
 
 2) `Imp modifyImp(Imp imp, T impExt)`
-   
-   A hook for bidder-specific impression changes, impression validation and impression extension validation if any are required
-   
+    - A hook for bidder-specific impression changes, impression validation and impression extension validation if any are required
 
-3) `void modifyRequest(BidRequest bidRequest, BidRequest.BidRequestBuilder requestBuilder, List<ImpWithExt<T>> impsWithExts)`  
-   
-   A hook for any request changes other than Imps (although Impressions can be modified as well)
-   
+
+3) `void modifyRequest(BidRequest bidRequest, BidRequest.BidRequestBuilder requestBuilder, List<ImpWithExt<T>> impsWithExts)`
+    - A hook for any request changes other than Imps (although Impressions can be modified as well)
+
 
 4) `BidType getBidType(String impId, List<Imp> imps)`
-   
-   A hook for resolving bidder-specific bid type.
+    - A hook for resolving bidder-specific bid type.
 
-Using this class, you can define should it be only one request or request per-impression.
+---
+Using this class(OpenrtbBidder), you can define should it be only one request (`RequestCreationStrategy.SINGLE_REQUEST`) or request per-impression (`RequestCreationStrategy.REQUEST_PER_IMP`), by passing one of this values to parent constructor as second argument.
 
 Check this class to find how not overridable methods works and uses overridable methods.
 
