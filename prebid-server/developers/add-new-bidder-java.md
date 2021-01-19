@@ -563,9 +563,10 @@ Here is the list of methods in OpenrtbBidder which you can override:
     - A hook for resolving bidder-specific bid type.
 
 ---
-Using this class(OpenrtbBidder), you can define should it be only one request (`RequestCreationStrategy.SINGLE_REQUEST`) or request per-impression (`RequestCreationStrategy.REQUEST_PER_IMP`), by passing one of this values to parent constructor as second argument.
+Using this class(OpenrtbBidder), you can define whether the outgoing
+requests can contain multiple impressions (`RequestCreationStrategy.SINGLE_REQUEST`) or whether each each request should have only one impression (`RequestCreationStrategy.REQUEST_PER_IMP`). Pass this value to parent constructor as the second argument.
 
-Check this class to find how not overridable methods works and uses overridable methods.
+Check the class file to find which methods are overridable.
 
 ### Create Config Class 
 
