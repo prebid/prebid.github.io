@@ -42,6 +42,14 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 
 ## Real-Time Data Providers
 
+All of the modules that fall under the "Real-Time Data" category conform to 
+a consistent set of publisher controls. The pub can choose to run multiple
+RTD modules, define an overall amount of time they're willing to wait for
+results, and even flag some of the modules as being more "important"
+than others.
+
+See [the realTimeData setConfig](/dev-docs/publisher-api-reference.html#setConfig-realTimeData) reference for more details.
+
 {% assign module_pages = site.pages | where: "page_type", "module" | where: "module_type", "rtd" %}
 
 <table class="table table-bordered table-striped">

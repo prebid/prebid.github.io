@@ -68,6 +68,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [instreamTracking](#setConfig-instream-tracking) - requires [Instream Tracking Module](/dev-docs/modules/instreamTracking.html)
     * [site](#setConfig-site)
     * [auctionOptions](#setConfig-auctionOptions)
+    * [realTimeData](#setConfig-realTimeData)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -2585,6 +2586,57 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+<a name="setConfig-realTimeData" />
+
+#### Real-Time Data Modules
+
+All of the modules that fall under the ["Real-Time Data" category](/dev-docs/modules/index.html#real-time-data-providers) conform to
+a consistent set of publisher controls. The pub can choose to run multiple
+RTD modules, define an overall amount of time they're willing to wait for
+results, and even flag some of the modules as being more "important" 
+than others.
+
+```
+pbjs.setConfig({
+    ...,
+    realTimeData: {
+      auctionDelay: 100,     // REQUIRED: applies to all RTD modules
+      dataProviders: [{
+          name: "RTD-MODULE-1",
+          waitForIt: true,   // OPTIONAL: flag this module as important
+          params: {
+	    ... module-specific parameters ...
+          }
+      },{
+          name: "RTD-MODULE-2",
+          waitForIt: false,   // OPTIONAL: flag this module as less important
+          params: {
+	    ... module-specific parameters ...
+          }
+      }]
+    }
+});
+
+```
+
+The controls publishers have over the RTD modules:
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description | 
+|---|---|---|---|
+| realTimeData.auctionDelay | no | integer | Defines the maxiumum for how long the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. |
+| realTimeData.dataProviders[].waitForIt | no | boolean | Flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. |
+
+The idea behind the `waitForIt` flag is that publishers can decide which
+modules are worth waiting for and which better hustle. Imagine a bus stop:
+the bus driver will wait up to 100ms for a few important passengers: A, J, and X.
+Once these 3 passengers are on the bus, it will leave immediately, even if 100ms hasn't been reached. Other potential passengers need to be on before these 3 or they will be left behind.
+
+This may not seem fair, but keep in mind that speed has a significant impact 
+on ad performance: header bidding gets only a small amount of time to run the auction before the ad server is called.
+Some publishers carefully manage these precious milliseconds, balancing impact
+of the real-time data with the revenue loss from auction delay.
 
 <a name="setConfig-Generic-Configuration" />
 

@@ -24,6 +24,15 @@ The RTD infrustruture is a generic module, not useful by itself. Instead, it all
 
 Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc. They will set limits on how long sub-modules are allowed to delay the auction, which will most likely be in the tens of milliseconds.
 
+By utilizing the RTD infrastructure, you are giving publishers consistent control
+over the timing: you will need to respond within the allotted time or the auction will proceed without the data.
+
+See the [Publisher RealTimeData Configuration](/dev-docs/publisher-api-reference.html#setConfig-realTimeData) reference to see the world from their perspective.
+
+Your module must not look at the values of the auctionDelay or waitForIt flags - just do what you need to do as fast as you can. It's ok to *ask* publishers in your documentation
+to give you a certain amount of time or to flag your module as important, but
+it's not ok for the code to require it.
+
 ## Architecture
 
 The RTD-core infrastructure uses hooks and event listeners to call the appropriate sub-modules to retrieve the data.
@@ -33,6 +42,7 @@ Here is the flow for how the RTD-core module interacts with its sub-modules:
 
 The activities performed by the RTD-core module are on the left-hand side, while the functions
 that can be provided by your RTD sub-module are on the right-hand side. Note that you don't need to implement all of the functions - you'll want to plan out your functionality and develop the appropriate functions.
+
 
 ## Creating a Sub-Module
 
