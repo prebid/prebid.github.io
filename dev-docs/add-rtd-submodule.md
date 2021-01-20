@@ -24,12 +24,9 @@ The RTD infrustruture is a generic module, not useful by itself. Instead, it all
 
 Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc. They will set limits on how long sub-modules are allowed to delay the auction, which will most likely be in the tens of milliseconds.
 
-By utilizing the RTD infrastructure, you are giving publishers consistent control
-over the timing: you will need to respond within the allotted time or the auction will proceed without the data.
-
 See the [Publisher RealTimeData Configuration](/dev-docs/publisher-api-reference.html#setConfig-realTimeData) reference to see the world from their perspective.
 
-Your module must not look at the values of the auctionDelay or waitForIt flags - just do what you need to do as fast as you can. It's ok to *ask* publishers in your documentation
+Your module should not look at the values of the auctionDelay or waitForIt flags - just do what needs to be done as fast as possible. It's ok to *ask* publishers in your documentation
 to give you a certain amount of time or to flag your module as important, but
 it's not ok for the code to require it.
 
