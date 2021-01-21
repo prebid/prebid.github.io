@@ -44,7 +44,7 @@ Client side and server side parameters differ slightly. For Server side (Prebid 
 | `pubId`        | pubId or zone required for all bid requests| Publisher ID      | `123`                  | `integer` |
 | `slot`         | required for slot placement only           | Slot ID           | `9`                    | `integer` |
 | `iriscat`      | optional                                   | Iris.tv segments  | `'segment1,segment2'`  | `string`  |
-| `irisid`       | optional | Iris.tv ID                      | Iris.tv IDs       | `'123'`                | `string`  |
+| `irisid`       | optional                                   | Iris.tv ID        | `'123'`                | `string`  |
 | `bidfloor`     | optional                                   | CPM bidfloor      | `0.03`                 | `float`   |
 
 ### Legacy Client Side Bid Params
