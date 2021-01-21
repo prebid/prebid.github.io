@@ -8,7 +8,7 @@ gdpr_supported: true
 schain_supported: true
 tcf2_supported: true
 usp_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
 pbs: true
 ---

@@ -31,7 +31,7 @@ Before you begin using Prebid Mobile in your apps, you need to prepare your end-
 
 ### Implement Your Own Prebid Server Host
 
-Prebid Server is an open source project. This allows you to host your own implementation of Prebid Server, though it's not as easy as downloading Prebid.js, because it needs to be hosted. The source code is available under the [Prebid organization on GitHub](https://github.com/prebid/prebid-server). There's also a [Java version of Prebid Server](https://github.com/rubicon-project/prebid-server-java).
+Prebid Server is an open source project. This allows you to host your own implementation of Prebid Server, though it's not as easy as downloading Prebid.js, because it needs to be hosted. The source code is available under the [Prebid organization on GitHub](https://github.com/prebid/prebid-server). There's also a [Java version of Prebid Server](https://github.com/prebid/prebid-server-java).
 
 See the [Prebid Server docs on GitHub](https://github.com/prebid/prebid-server/tree/master/docs/developers) for more information on setting up your own server host.
 
