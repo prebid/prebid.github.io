@@ -4,6 +4,7 @@ title: GumGum
 description: Prebid GumGum Bidder Adaptor
 pbjs: true
 pbs: true
+pbs_app_supported: true
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true
