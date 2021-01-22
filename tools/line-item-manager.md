@@ -14,7 +14,8 @@ The goal of this tool is to allow publishers to save time, and prevent issues wh
 
 ## Installation
 
-**Note: This tool requires Python 3 to be installed on your machine, and support is for Python>=3.6.**
+**Note:** This tool requires Python 3 to be installed on your machine, and support is for Python>=3.6.
+
 From your command line run:
 
 ```
