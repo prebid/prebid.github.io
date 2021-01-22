@@ -1993,3 +1993,32 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+ #-------------- Tools --------------|
+
+- sbSecId: 8
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Tools
+  sectionId: tools
+  subgroup: 1000
+  sbCollapseId: tools
+
+- sbSecId: 8
+  title: 
+  link:
+  isHeader: 1
+  headerId: toolsinvis
+  isSectionHeader:
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 8
+  title: Line Item Manager
+  link: /tools/line-item-manager.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
