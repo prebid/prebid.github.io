@@ -2625,8 +2625,8 @@ The controls publishers have over the RTD modules:
 {: .table .table-bordered .table-striped }
 | Field | Required? | Type | Description |
 |---|---|---|---|
-| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. |
-| realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. |
+| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
+| realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. The default is `false`. |
 
 The idea behind the `waitForIt` flag is that publishers can decide which
 modules are worth waiting for and which better hustle. For example, imagine a bus stop:
@@ -2637,6 +2637,10 @@ This may not seem fair, but keep in mind that speed has a significant impact
 on ad performance: header bidding gets only a small amount of time to run the auction before the ad server is called.
 Some publishers carefully manage these precious milliseconds, balancing impact
 of the real-time data with the revenue loss from auction delay.
+
+Notes:
+- The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
+- Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
 
 <a name="setConfig-Generic-Configuration" />
 
