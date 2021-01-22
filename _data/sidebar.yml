@@ -1592,14 +1592,6 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: 'Managed Solutions'
-  link: /prebid-server/hosting/hosted-servers.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 5
   title: 'Hosting Your Own PBS'
   link: /prebid-server/hosting/pbs-hosting.html
   isHeader: 0
