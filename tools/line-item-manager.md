@@ -14,7 +14,7 @@ The goal of this tool is to allow publishers to save time, and prevent issues wh
 
 ## Installation
 
-**Note: This tool requires Python 3 to be installed on your machine, and support is for python>=3.6.**
+**Note: This tool requires Python 3 to be installed on your machine, and support is for Python>=3.6.**
 From your command line run:
 
 ```
@@ -44,14 +44,14 @@ This tool uses a base (default) configuration as a starting point to create line
 ```
 $ line_item_manager show config
 ```
-You can look at the full config [here](https://github.com/prebid/line-item-manager/blob/master/line_item_manager/conf.d/line_item_manager.yml))
-To save time and build on the default config, create a new config file of your own using the following command:
+You can look at the full config [here](https://github.com/prebid/line-item-manager/blob/master/line_item_manager/conf.d/line_item_manager.yml). To save time and build on the default config, create a new config file of your own using the following command:
 ```
 $ line_item_manager show config > my_config.yml
 ```
 
 Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. Options like `granularity`, `sizes`, `mediatypes`, `priority` etc can all be input there. Please ensure you are using YAML syntax to make your updates.
-__Note: The GAM Network ID, can also be input at runtime and will override the default Network ID in the config file.__
+
+__Note:__ The GAM Network ID, can also be input at runtime and will override the default Network ID in the config file.
 
 ## Line Item creation
 
@@ -62,7 +62,7 @@ When you are ready with the config file you can now use the create command to ru
 $ line_item_manager create my_config.yml --[bidder-code|--single-order]
 ```
 
-### Example:
+### Examples:
 ```
 $ line_item_manager create my_config.yml -b rubicon
 ```
@@ -86,10 +86,11 @@ This would create a single set of orders with bidder agnostic key value targetin
 
 ![Line Item Results 3](/assets/images/tools/line-item-mgmt-img3.png){:class="pb-xlg-img"}
 
-### Modifiers for create
+### Modifiers for _create_
 The create function has certain modifiers that can be used to do dry runs and test runs for line item creation. Here are all the modifiers that can be used:
 
 {: .table .table-bordered .table-striped }
+
 | Modifier | Type | Description |
 |----------|------|-------------|
 |--network-code | INTEGER | GAM network code, must reconcile with the network name.|
@@ -103,7 +104,7 @@ The create function has certain modifiers that can be used to do dry runs and te
 -v, --verbose||Verbose logging; use multiple times to increase verbosity. [default: False]
 --skip-auto-archive||Upon failure or interruption, do NOT auto-archive already created orders. [default:False]
 
-### Commands for line_item_manager
+### Commands for _line_item_manager_
 
 {: .table .table-bordered .table-striped }
 
