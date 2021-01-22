@@ -36,7 +36,7 @@ Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that
 
 ### Hosted
 
-The simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members](/prebid-server/hosting/hosted-servers.html) host up-to-date server software with a global footprint, and provide tools to manage stored requests.
+The simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) host up-to-date server software with a global footprint, and provide tools to manage stored requests.
 
 ### DIY
 
