@@ -565,7 +565,7 @@ If the alias entry is an object, the following attributes are supported:
 | Name  | Scope | Description   | Type      |
 |-------|-------|---------------|-----------|
 | `code` | required | shortcode/partner name | `string` |
-| `gvlid` | optional | lobal vendor list id of company scoped to alias | `integer` |
+| `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
 
 
