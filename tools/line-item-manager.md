@@ -12,6 +12,7 @@ sidebarType: 8
 The Prebid Line Item Manager is a command line tool built in Python to aid in creation of line items for Prebid header bidding integrations.
 The goal of this tool is to allow publishers to save time, and prevent issues when creating the required Prebid line-item set up manually.
 
+
 ## Installation
 
 **Note:** This tool requires Python 3 to be installed on your machine, and support is for Python>=3.6.
@@ -22,20 +23,11 @@ From your command line run:
 $ pip install line-item-manager
 ```
 
-**Currently this is not in prod, so please use:**
-```
-pip install --extra-index-url https://pypi.org/simple -i https://test.pypi.org/simple/ line-item-manager
-```
-
 If you already have it installed you can upgrade it using
 ```
 $ pip install --upgrade line-item-manager
 ```
 
-**Currently this is not in prod, so please use:**
-```
-pip install --upgrade --extra-index-url https://pypi.org/simple -i https://test.pypi.org/simple/ line-item-manager
-```
 
 ## Usage
 
@@ -53,6 +45,7 @@ $ line_item_manager show config > my_config.yml
 Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. Options like `granularity`, `sizes`, `mediatypes`, `priority` etc can all be input there. Please ensure you are using YAML syntax to make your updates.
 
 __Note:__ The GAM Network ID, can also be input at runtime and will override the default Network ID in the config file.
+
 
 ## Line Item creation
 
@@ -99,7 +92,7 @@ The create function has certain modifiers that can be used to do dry runs and te
 |-k, --private-key-file |PATH |Path to json GAM credentials file. [default: gam_creds.json; required]
 |-s, --single-order||Create a single set of orders instead of orders per bidder. [default: False]
 -b, --bidder-code |TEXT |Bidder code may be used multiple times.
--t, --test-run||Execute a limited number of line_items for testing and manual review which will be auto-archived. [default: False]
+-t, --test-run||Execute a limited number of line_items for testing and manual review. Please ensure that you archive the orders so as not to clash with the actual production orders and line items you wish to create. [default: False]
 -n, --dry-run||Print commands that would be executed, but do not execute them. [default: False]
 -q, --quiet||Logging is limited to warnings and errors. [default: False]
 -v, --verbose||Verbose logging; use multiple times to increase verbosity. [default: False]
@@ -116,7 +109,9 @@ The create function has certain modifiers that can be used to do dry runs and te
 
 All commands can use the `--help` modifier to see various options for the command
 
+
 ## Troubleshooting (Coming soon!)
+
 
 ## Git Repository
 
