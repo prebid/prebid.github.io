@@ -301,4 +301,4 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 <!-- Reference Links -->
 
 [PBS]: /prebid-server/overview/prebid-server-overview.html
-[callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js
+[callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js
