@@ -40,7 +40,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.onEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
-  * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
+  * [.aliasBidder(adapterName, aliasedName, options)](#module_pbjs.aliasBidder)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
@@ -1363,19 +1363,17 @@ To learn how to build an analytics adapter, see [How to Add an Analytics Adapter
 
 <a name="module_pbjs.aliasBidder"></a>
 
-### pbjs.aliasBidder(adapterName, aliasedName)
+### pbjs.aliasBidder(adapterName, aliasedName, options)
 
 To define an alias for a bidder adapter, call this method at runtime:
 
 {% highlight js %}
 
-pbjs.aliasBidder('appnexus', 'newAlias');
+pbjs.aliasBidder('appnexus', 'newAlias', options: { gvlid: 111111} );
 
 {% endhighlight %}
 
 Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexus"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexus"` adapter to serve their own unique demand).
-
-It's not technically necessary to define an alias, since each copy of an adapter with the same name gets a different ID in the internal bidder registry so Prebid.js can still tell them apart.
 
 If you define an alias and are using `pbjs.sendAllBids`, you must also set up additional line items in the ad server with keyword targeting that matches the name of the alias.  For example:
 
@@ -1383,6 +1381,13 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 + `hb_adid_newalias`
 + `hb_size_newalias`
 + `hb_deal_newalias`
+
+The options object supports these parameters:
+
+{: .table .table-bordered .table-striped }
+| Option Parameter    | Type    | Description             |
+|------------|---------|---------------------------------|
+| gvlid | integer | IAB Global Vendor List ID for this alias for use with the [GDPR Enforcement module](/dev-docs/modules/gdprEnforcement.html). |
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
