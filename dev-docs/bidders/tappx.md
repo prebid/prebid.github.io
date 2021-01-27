@@ -2,6 +2,7 @@
 layout: bidder
 title: Tappx
 pbs: true
+pbjs: true
 media_types: banner, video
 biddercode: tappx
 gdpr_supported: true
