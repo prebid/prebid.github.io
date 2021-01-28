@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - GPT Pre-Auction
 description: Adds PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters
-module_code : gptAPreAuction
+module_code : gptPreAuction
 display_name : GPT Pre-Auction
 enable_download : true
 sidebarType : 1
