@@ -13,11 +13,15 @@ sidebarType: 3
 
 This page describes how to set up a line item and creative to serve on AMP pages with Prebid.js.
 
-{: .alert.alert-success :}
-For engineering setup instructions, see [Show Prebid Ads on AMP Pages]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html).
-
 * TOC
 {:toc}
+
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our [official command line tool](/tools/line-item-manager.html) to create the setup - it may save time and avoid manual mistakes.
+ 
+{: .alert.alert-success :}
+For engineering setup instructions, see [Show Prebid Ads on AMP Pages]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html).
 
 ## Line Item Setup
 

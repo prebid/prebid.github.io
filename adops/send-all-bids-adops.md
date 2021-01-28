@@ -33,8 +33,9 @@ See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 
 {% include send-all-bids-keyword-targeting.md %}
 
-{: .bg-info :}
-In this example we will use Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our [official command line tool](/tools/line-item-manager.html) to create the setup - it may save time and avoid manual mistakes.
 
 ## Step 1. Add an order
 
