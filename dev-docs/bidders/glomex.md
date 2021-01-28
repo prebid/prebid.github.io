@@ -7,10 +7,8 @@ media_types: banner
 gdpr_supported: true
 tcf2_supported: true
 schain_supported: false
-userIds: /
 prebid_member: false
 pbjs: true
-pbs: true
 ---
 
 
