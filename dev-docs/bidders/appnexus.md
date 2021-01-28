@@ -6,7 +6,7 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, unifiedId
+userIds: criteo, unifiedId, netId
 schain_supported: true
 coppa_supported: true
 usp_supported: true
@@ -163,7 +163,7 @@ keywords: {
 
 #### User Sync in AMP
 
-If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code>
+If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code> or if the AMP page has a CMP, <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie-with-consent.html</code>
 
 <a name="appnexus-debug-auction" />
 
