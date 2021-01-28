@@ -22,7 +22,7 @@ This optional module will trigger a BID_VIEWABLE event which can be consumed by 
 Notes:
 - The module does not work with adservers other than GAM and only with GPT integration.
 - The GPT API is used to find when a bid is viewable, See https://developers.google.com/publisher-tag/reference#googletag.events.impressionviewableevent .
-- This event is fired when an impression becomes viewable, according to Active View criteria. See: https://support.google.com/admanager/answer/4524488
+- This event is fired when an impression becomes viewable, according to [Active View criteria](https://support.google.com/admanager/answer/4524488).
 - Logic used to find a matching Prebid.js bid for a GPT slot is ` (slot.getAdUnitPath() === bid.adUnitCode || slot.getSlotElementId() === bid.adUnitCode) ` this logic can be changed by using param ` customMatchFunction `
 - When a rendered PBJS bid is viewable the module will trigger BID_VIEWABLE event, which can be consumed by the winning bidder and analytics adapters
 - The module works with Banner, Outsteam and Native creatives
