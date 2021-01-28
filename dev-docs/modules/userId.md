@@ -1396,7 +1396,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "11111111"
                 }]
             },{
-                "source": "crwdcntrl.net",
+                "source": "crwdcntrl.net", // Lotame Panorama ID
                 "uids": [{
                     "id": "e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"
                 }]
