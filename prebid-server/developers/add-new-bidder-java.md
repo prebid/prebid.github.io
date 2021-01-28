@@ -632,7 +632,7 @@ public class {bidder}Configuration {
 }
 ```
 
-### Converting floor prices (optional)
+### Converting Floor Prices (optional)
 If you need to convert floor prices from one currency into something your endpoint expects, you can use the convertCurrency function from CurrencyConversionService component.
 
 1) Inject CurrencyConversionService to your {bidder}Configuration class and pass it to your bidder constructor.
