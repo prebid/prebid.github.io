@@ -13,6 +13,9 @@ biddercode: amx
 safeframes_ok: true
 media_types: banner, video
 pbjs: true
+pbs: true
+pbs_app_supported: true
+gvl_id: 737
 ---
 
 ### Bid Params

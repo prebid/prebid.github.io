@@ -29,6 +29,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
   * [.getNoBids()](#module_pbjs.getNoBids)
+  * [.getNoBidsForAdUnitCode(adUnitCode)](#module_pbjs.getNoBidsForAdUnitCode)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
   * [.setTargetingForAst()](#module_pbjs.setTargetingForAst)
   * [.renderAd(doc, id)](#module_pbjs.renderAd)
@@ -39,7 +40,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.onEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
-  * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
+  * [.aliasBidder(adapterName, aliasedName, options)](#module_pbjs.aliasBidder)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
@@ -66,6 +67,8 @@ This page has documentation for the public API methods of Prebid.js.
     * [cache](#setConfig-vast-cache)
     * [instreamTracking](#setConfig-instream-tracking) - requires [Instream Tracking Module](/dev-docs/modules/instreamTracking.html)
     * [site](#setConfig-site)
+    * [auctionOptions](#setConfig-auctionOptions)
+    * [realTimeData](#setConfig-realTimeData)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -573,11 +576,30 @@ pbjs.refreshUserIds({ submoduleNames: ['britepoolId'] }, () => console.log("Done
 
 <a name="module_pbjs.getNoBids"></a>
 
-### pbjs.getNoBids() ⇒ `Array`
+### pbjs.getNoBids() ⇒ `Object`
 
 Use this method to get all of the bid requests that resulted in a NO_BID.  These are bid requests that were sent to a bidder but, for whatever reason, the bidder decided not to bid on.  Used by debugging snippet in [Tips for Troubleshooting](/dev-docs/troubleshooting-tips.html).
 
 + `pbjs.getNoBids()`: returns an array of bid request objects that were deliberately not bid on by a bidder.
+
+<hr class="full-rule">
+
+<a name="module_pbjs.getNoBidsForAdUnitCode"></a>
+
+### pbjs.getNoBidsForAdUnitCode(adUnitCode) ⇒ `Object`
+
+Returns bid requests that resulted in a NO_BID for the specified adUnitCode.  See full documentation at [pbjs.getNoBids()](#module_pbjs.getNoBids).
+
+**Kind**: static method of [pbjs](#module_pbjs)
+
+**Returns**: `Object` - NO_BID bidResponse object
+
+**Request Params:**
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| adUnitCode | Required | `String` | adUnitCode |
 
 <hr class="full-rule">
 
@@ -1209,7 +1231,7 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 ### pbjs.getEvents() ⇒ `Array`
 
 The methods `onEvent` and `offEvent` are provided for you to register
-a callback to handle a Prebid.js event. 
+a callback to handle a Prebid.js event.
 
 The `getEvents` method returns a copy of all emitted events.
 
@@ -1319,29 +1341,39 @@ Events example 4: Log errors and render fails to your own endpoint
 
 ### pbjs.enableAnalytics(config)
 
-Enable sending analytics data to the analytics provider of your choice.
+Enables sending analytics data to the analytics provider of your choice. For a list of analytics adapters, see [Analytics for Prebid](/overview/analytics.html).
 
-For usage, see [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html).
+Note that each analytics adapter has it's own invocation parameters. Analytics adapters that are built in the standard way should
+support a `sampling` option. You'll need to check with your analytics provider to confirm
+whether their system recommends the use of this parameter. They may have alternate methods of sampling.
 
-For a list of analytics adapters, see [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html).
+```
+pbjs.enableAnalytics([{
+    provider: "analyticsA",
+    options: {
+        providerSpecificParams: ...
+        sampling: 0.25          // only call the analytics adapter this percent of the time
+    }
+}]);
+```
+
+To learn how to build an analytics adapter, see [How to Add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html).
 
 <hr class="full-rule" />
 
 <a name="module_pbjs.aliasBidder"></a>
 
-### pbjs.aliasBidder(adapterName, aliasedName)
+### pbjs.aliasBidder(adapterName, aliasedName, options)
 
 To define an alias for a bidder adapter, call this method at runtime:
 
 {% highlight js %}
 
-pbjs.aliasBidder('appnexus', 'newAlias');
+pbjs.aliasBidder('appnexus', 'newAlias', options: { gvlid: 111111} );
 
 {% endhighlight %}
 
 Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexus"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexus"` adapter to serve their own unique demand).
-
-It's not technically necessary to define an alias, since each copy of an adapter with the same name gets a different ID in the internal bidder registry so Prebid.js can still tell them apart.
 
 If you define an alias and are using `pbjs.sendAllBids`, you must also set up additional line items in the ad server with keyword targeting that matches the name of the alias.  For example:
 
@@ -1349,6 +1381,13 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 + `hb_adid_newalias`
 + `hb_size_newalias`
 + `hb_deal_newalias`
+
+The options object supports these parameters:
+
+{: .table .table-bordered .table-striped }
+| Option Parameter    | Type    | Description             |
+|------------|---------|---------------------------------|
+| gvlid | integer | IAB Global Vendor List ID for this alias for use with the [GDPR Enforcement module](/dev-docs/modules/gdprEnforcement.html). |
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
@@ -2086,19 +2125,19 @@ Specifically, Prebid will go through the following steps with this feature:
 * Collect all the available targeting keys that were generated naturally by the auction.  The keys are grouped by each of the adUnits that participated in the auction.
 * Prioritize these groups of targeting keys based on the following factors:
   * Bids with deals are prioritized before bids without deals.
-  * Bids with higher CPM are ranked before lower CPM bids.  
+  * Bids with higher CPM are ranked before lower CPM bids.
   **Note** - The sorting follows this order specifically, so a bid with a deal that had a $10 CPM would be sorted before a bid with no deal that had a $15 CPM.
 * Convert the keys for each group into the format that they are passed to the ad server (i.e., an encoded query string) and count the number of characters that are used.
 * If the count is below the running threshold set in the `setConfig` call, that set of targeting keys will be passed along.  If the keys exceed the limit, then they are excluded.
 
- If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.  
+ If you want to review the particular details about which sets of keys are passed/rejected, you can find them in the Prebid console debug log.
 
 ##### Finding the right value
 
 Given the varying nature of how sites are set up for advertising and the varying mechanics and data-points needed by ad servers, providing a generic threshold setting is tricky.  If you plan to enable this setting, it's recommended you review your own setup to determine the ideal value.  The following steps provide some guidance on how to start this process:
 
 * Use Prebid to set up a test page that uses the typical setup for your site (in terms of the number of ad slots, etc.).
-* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.  
+* Once it's working, look for the average number of characters Prebid uses for the auction targeting keys.
   * You can do this by enabling the Prebid debug mode, enabling this setting in your `setConfig` with a high value, and then opening the browser's console to review the Console Logs section.
 * Also in the browser console, find your ad server's ad URL in the Network tab and review the details of the request to obtain information about the query data (specifically the number of characters used).
   * You can copy the data to another tool to count the number of characters that are present.
@@ -2119,6 +2158,7 @@ To accomplish this, Prebid does the following:
 * New targeting replaces original targeting before targeting is flattened.
 
 The targeting key names and the associated prefix value filtered by `allowTargetingKeys`:
+
 {: .table .table-bordered .table-striped }
 | Name        | Value    |
 |------------+------------|
@@ -2132,6 +2172,7 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | UUID | `hb_uuid` |
 | CACHE_ID | `hb_cache_id` |
 | CACHE_HOST | `hb_cache_host` |
+| ADOMAIN | `hb_adomain` |
 | title | `hb_native_title` |
 | body | `hb_native_body` |
 | body2 | `hb_native_body2` |
@@ -2445,9 +2486,9 @@ video player can retrieve them when it's ready. Players don't obtain the VAST XM
 the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
 be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
 
-- Server-side caching:  
+- Server-side caching:
   Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do.
-- Client-side caching:  
+- Client-side caching:
   Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. In this scenario, Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
 
 For client-side caching, set the Prebid Cache URL as shown here (substituting the correct URL for the one shown here):
@@ -2530,6 +2571,82 @@ pbjs.setConfig({
    }
 });
 {% endhighlight %}
+
+<a name="setConfig-auctionOptions" />
+
+#### Auction Options
+
+The `auctionOptions` object passed to `pbjs.setConfig` provides a method to specify bidders that the Prebid auction will no longer wait for before determing the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation.
+
+{: .table .table-bordered .table-striped }
+| Field    | Scope   | Type   | Description                                                                           |
+|----------+---------+--------+---------------------------------------------------------------------------------------|
+| `secondaryBidders` | Required | Array of Strings | The bidders that will be removed from determining when an Auction has completed. |
+
+Example config:
+
+{% highlight js %}
+pbjs.setConfig({
+    'auctionOptions': {
+        'secondaryBidders': ['doNotWaitForMe']
+    }
+});
+{% endhighlight %}
+
+<a name="setConfig-realTimeData" />
+
+#### Real-Time Data Modules
+
+All of the modules that fall under the [Real-Time Data (RTD) category](/dev-docs/modules/index.html#real-time-data-providers) conform to
+a consistent set of publisher controls. The pub can choose to run multiple
+RTD modules, define an overall amount of time they're willing to wait for
+results, and even flag some of the modules as being more "important"
+than others.
+
+```
+pbjs.setConfig({
+    ...,
+    realTimeData: {
+      auctionDelay: 100,     // REQUIRED: applies to all RTD modules
+      dataProviders: [{
+          name: "RTD-MODULE-1",
+          waitForIt: true,   // OPTIONAL: flag this module as important
+          params: {
+	    ... module-specific parameters ...
+          }
+      },{
+          name: "RTD-MODULE-2",
+          waitForIt: false,   // OPTIONAL: flag this module as less important
+          params: {
+	    ... module-specific parameters ...
+          }
+      }]
+    }
+});
+
+```
+
+The controls publishers have over the RTD modules:
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
+| realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. The default is `false`. |
+
+The idea behind the `waitForIt` flag is that publishers can decide which
+modules are worth waiting for and which better hustle. For example, imagine a bus stop:
+the bus driver will wait up to 100ms for a few important passengers: A, J, and X.
+Once these three passengers are on the bus, it will leave immediately, even if 100ms hasn't been reached. Other potential passengers need to be on before these three or they will be left behind. If A, J, or X doesn't get on the bus before the 100ms are up, they, too, will be left behind.
+
+This may not seem fair, but keep in mind that speed has a significant impact
+on ad performance: header bidding gets only a small amount of time to run the auction before the ad server is called.
+Some publishers carefully manage these precious milliseconds, balancing impact
+of the real-time data with the revenue loss from auction delay.
+
+Notes:
+- The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
+- Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
 
 <a name="setConfig-Generic-Configuration" />
 

@@ -5,6 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
+pbs_app_supported: true
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
@@ -91,7 +92,7 @@ var adUnits = [{
 | Type   | Support |
 | ------ | ------- |
 | `Banner` | Fully supported for all IX approved sizes. |
-| `Video`  | Not supported. |
+| `Video`  | Fully supported for all IX approved sizes. |
 | `Native` | Not supported. |
 
 ## Bid Parameters
@@ -303,6 +304,27 @@ pbjs.setConfig({
         }
     }
 });
+```
+
+#### The **detectMissingSizes** feature
+By default, the IX bidding adapter bids on all banner sizes available in the ad unit when configured to at least one banner size. If you want the IX bidding adapter to only bid on the banner size it’s configured to, switch off this feature using `detectMissingSizes`.
+```
+pbjs.setConfig({
+                ix: {
+                    detectMissingSizes: false
+                }
+            });
+```
+OR
+```
+pbjs.setBidderConfig({
+                bidders: ["ix"],
+                config: {
+                    ix: {
+                        detectMissingSizes: false
+                    }
+                }
+            });
 ```
 
 ### 2. Include `ixBidAdapter` in your build process
