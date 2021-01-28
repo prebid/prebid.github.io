@@ -40,7 +40,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.onEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.offEvent(event, handler, id)](#module_pbjs.onEvent)
   * [.enableAnalytics(config)](#module_pbjs.enableAnalytics)
-  * [.aliasBidder(adapterName, aliasedName)](#module_pbjs.aliasBidder)
+  * [.aliasBidder(adapterName, aliasedName, options)](#module_pbjs.aliasBidder)
   * [.markWinningBidAsUsed(markBidRequest)](#module_pbjs.markWinningBidAsUsed)
   * [.setConfig(options)](#module_pbjs.setConfig)
     * [debugging](#setConfig-Debugging)
@@ -68,6 +68,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [instreamTracking](#setConfig-instream-tracking) - requires [Instream Tracking Module](/dev-docs/modules/instreamTracking.html)
     * [site](#setConfig-site)
     * [auctionOptions](#setConfig-auctionOptions)
+    * [realTimeData](#setConfig-realTimeData)
     * [Generic Configuration](#setConfig-Generic-Configuration)
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
@@ -1362,19 +1363,17 @@ To learn how to build an analytics adapter, see [How to Add an Analytics Adapter
 
 <a name="module_pbjs.aliasBidder"></a>
 
-### pbjs.aliasBidder(adapterName, aliasedName)
+### pbjs.aliasBidder(adapterName, aliasedName, options)
 
 To define an alias for a bidder adapter, call this method at runtime:
 
 {% highlight js %}
 
-pbjs.aliasBidder('appnexus', 'newAlias');
+pbjs.aliasBidder('appnexus', 'newAlias', options: { gvlid: 111111} );
 
 {% endhighlight %}
 
 Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexus"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexus"` adapter to serve their own unique demand).
-
-It's not technically necessary to define an alias, since each copy of an adapter with the same name gets a different ID in the internal bidder registry so Prebid.js can still tell them apart.
 
 If you define an alias and are using `pbjs.sendAllBids`, you must also set up additional line items in the ad server with keyword targeting that matches the name of the alias.  For example:
 
@@ -1382,6 +1381,13 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 + `hb_adid_newalias`
 + `hb_size_newalias`
 + `hb_deal_newalias`
+
+The options object supports these parameters:
+
+{: .table .table-bordered .table-striped }
+| Option Parameter    | Type    | Description             |
+|------------|---------|---------------------------------|
+| gvlid | integer | IAB Global Vendor List ID for this alias for use with the [GDPR Enforcement module](/dev-docs/modules/gdprEnforcement.html). |
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
@@ -2166,6 +2172,7 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | UUID | `hb_uuid` |
 | CACHE_ID | `hb_cache_id` |
 | CACHE_HOST | `hb_cache_host` |
+| ADOMAIN | `hb_adomain` |
 | title | `hb_native_title` |
 | body | `hb_native_body` |
 | body2 | `hb_native_body2` |
@@ -2585,6 +2592,61 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+<a name="setConfig-realTimeData" />
+
+#### Real-Time Data Modules
+
+All of the modules that fall under the [Real-Time Data (RTD) category](/dev-docs/modules/index.html#real-time-data-providers) conform to
+a consistent set of publisher controls. The pub can choose to run multiple
+RTD modules, define an overall amount of time they're willing to wait for
+results, and even flag some of the modules as being more "important"
+than others.
+
+```
+pbjs.setConfig({
+    ...,
+    realTimeData: {
+      auctionDelay: 100,     // REQUIRED: applies to all RTD modules
+      dataProviders: [{
+          name: "RTD-MODULE-1",
+          waitForIt: true,   // OPTIONAL: flag this module as important
+          params: {
+	    ... module-specific parameters ...
+          }
+      },{
+          name: "RTD-MODULE-2",
+          waitForIt: false,   // OPTIONAL: flag this module as less important
+          params: {
+	    ... module-specific parameters ...
+          }
+      }]
+    }
+});
+
+```
+
+The controls publishers have over the RTD modules:
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
+| realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. The default is `false`. |
+
+The idea behind the `waitForIt` flag is that publishers can decide which
+modules are worth waiting for and which better hustle. For example, imagine a bus stop:
+the bus driver will wait up to 100ms for a few important passengers: A, J, and X.
+Once these three passengers are on the bus, it will leave immediately, even if 100ms hasn't been reached. Other potential passengers need to be on before these three or they will be left behind. If A, J, or X doesn't get on the bus before the 100ms are up, they, too, will be left behind.
+
+This may not seem fair, but keep in mind that speed has a significant impact
+on ad performance: header bidding gets only a small amount of time to run the auction before the ad server is called.
+Some publishers carefully manage these precious milliseconds, balancing impact
+of the real-time data with the revenue loss from auction delay.
+
+Notes:
+- The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
+- Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
 
 <a name="setConfig-Generic-Configuration" />
 
