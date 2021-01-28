@@ -632,6 +632,62 @@ public class {bidder}Configuration {
 }
 ```
 
+### Converting floor prices (optional)
+If you need to convert floor prices from one currency into something your endpoint expects, you can use the convertCurrency function from CurrencyConversionService component.
+
+1) Inject CurrencyConversionService to your {bidder}Configuration class and pass it to your bidder constructor.
+
+```java
+@Autowired
+private CurrencyConversionService currencyConversionService;
+
+... 
+
+.bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), currencyConversionService, mapper))
+```
+
+2) Create additional class variable `private final CurrencyConversionService currencyConversionService;` and update constructor in your {bidder}Bidder class to set this variable.
+
+```java
+private final CurrencyConversionService currencyConversionService;
+private final String endpointUrl;
+private final JacksonMapper mapper;
+
+public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyConversionService, JacksonMapper mapper) {
+        this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
+        this.currencyConversionService = Objects.requireNonNull(currencyConversionService);
+        this.mapper = Objects.requireNonNull(mapper);
+    }
+```
+
+3) Use `currencyConversionService.convertCurrency(BigDecimal price, BidRequest bidRequest, String fromCurrency, String toCurrency)` for currency converting in {bidder}Bidder class.
+
+<details markdown="1">
+  <summary>Example: Updating bidFloor currency.</summary>
+
+```java
+  private Imp makeImp(Imp imp, BidRequest bidRequest) {
+        return imp.toBuilder().bidfloor(resolveBidFloor(imp, bidRequest)).build();
+    }
+
+  private BigDecimal resolveBidFloor(Imp imp, BidRequest bidRequest) {
+        final String bidFloorCurrency = resolveBidFloorCurrency(imp);
+        final BigDecimal bidFloor = imp.getBidfloor();
+        return convertBidFloorCurrency(imp, bidRequest, bidFloor, bidFloorCurrency);
+    }
+    
+  private BigDecimal convertBidFloorCurrency(Imp imp, BidRequest bidRequest, BigDecimal bidFloor, String bidFloorCurrency) {
+      try {
+            return currencyConversionService.convertCurrency(bidFloor, bidRequest,
+                    bidFloorCurrency, "NEEDED_CURRENCY");
+      } catch (PreBidException ex) {
+            throw new PreBidException(String.format("Failed to convert bidfloor with a reason: %s", ex.getMessage()));
+      }
+  }
+```
+</details>
+<p></p>
+
 ## Test Your Adapter
 
 This chapter will guide you through the creation of automated unit and integration tests to cover your bid adapter code. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
