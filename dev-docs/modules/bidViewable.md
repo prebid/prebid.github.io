@@ -16,16 +16,21 @@ sidebarType : 1
 {:toc}
 
 ## Overview
-- This module, when included, will trigger a BID_VIEWABLE event which can be consumed by Bidders and Analytics adapters
-- GPT API is used to find when a bid is viewable, https://developers.google.com/publisher-tag/reference#googletag.events.impressionviewableevent . This event is fired when an impression becomes viewable, according to the Active View criteria.
-Refer: https://support.google.com/admanager/answer/4524488
-- The module does not work with adserver other than GAM with GPT integration
-- Logic used to find a matching pbjs-bid for a GPT slot is ` (slot.getAdUnitPath() === bid.adUnitCode || slot.getSlotElementId() === bid.adUnitCode) ` this logic can be changed by using param ` customMatchFunction `
-- When a rendered PBJS bid is viewable the module will trigger BID_VIEWABLE event, which can be consumed by bidders and analytics adapters
-- For the viewable bid if ` bid.vurls [type array] ` param is and module config ` firePixels: true ` is set then the URLs mentioned in bid.vurls will be executed. Please note that GDPR and USP related parameters will be added to the given URLs, here we have assumed that URLs will always have `?` symbol included.
-{: .alert.alert-warning :}
+
+This optional module will trigger a BID_VIEWABLE event which can be consumed by Bidders and Analytics adapters.
+
+Notes:
+- The module does not work with adservers other than GAM and only with GPT integration.
+- The GPT API is used to find when a bid is viewable, See https://developers.google.com/publisher-tag/reference#googletag.events.impressionviewableevent .
+- This event is fired when an impression becomes viewable, according to Active View criteria. See: https://support.google.com/admanager/answer/4524488
+- Logic used to find a matching Prebid.js bid for a GPT slot is ` (slot.getAdUnitPath() === bid.adUnitCode || slot.getSlotElementId() === bid.adUnitCode) ` this logic can be changed by using param ` customMatchFunction `
+- When a rendered PBJS bid is viewable the module will trigger BID_VIEWABLE event, which can be consumed by the winning bidder and analytics adapters
 - The module works with Banner, Outsteam and Native creatives
-- Doesn't seems to work with Instream Video, https://docs.prebid.org/dev-docs/examples/instream-banner-mix.html as GPT's impressionViewable event is not triggered for instream-video-creative
+
+Instead of listening for events, bidders may supply a ` bid.vurls ` array and this module may fire those pixels when the viewability signal is received. Publishers can control this with module config ` firePixels: true `. Please note that GDPR and USP related parameters will be added to the given URLs, here we have assumed that URLs will always have `?` symbol included.
+
+{: .alert.alert-warning :}
+This feature doesn't seem to work with [Instream Video](/dev-docs/examples/instream-banner-mix.html), as GPT's impressionViewable event is not triggered for instream-video-creative
 
 ## Configuration
 
@@ -35,7 +40,8 @@ Refer: https://support.google.com/admanager/answer/4524488
 | `bidViewability` | Optional | Object | Configuration object for instream tracking |
 | `bidViewability.firePixels` | Optional | Boolean | when set to true, will fire the urls mentioned in `bid.vurls` which should be array of URLs. We have assumed that URLs will always have `?` symbol included. Default: `false` |
 | `bidViewability.customMatchFunction` | Optional | function(bid, slot) | when passed this function will be used to `find` the matching winning bid for the GPT slot. Default value is ` (bid, slot) => (slot.getAdUnitPath() === bid.adUnitCode || slot.getSlotElementId() === bid.adUnitCode) ` |
-As both params are optional, you do not need to set config if you do not want to set value for any param
+
+As both params are optional, publishers do not need to set any config at all... the existence of this module in the Prebid.js package enables the functionality.
 
 ## Example of setting module config
 {% highlight js %}
