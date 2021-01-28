@@ -58,7 +58,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
@@ -68,6 +68,54 @@ of sub-objects. The table below has the options that are common across ID system
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 ## User ID Sub-Modules
+
+### AdmixerID
+
+Admixer ID, provided by [Admixer](https://admixer.com/), is a universal ID solution that doesn’t rely on 3rd party cookies and gives publishers access to a wide range of Admixer’s demand sources, amplifying audience segmentation, targeting and measurement.
+This sub-module enables the Admixer ID to be available in the bid request.
+
+The Admixer privacy policy is at https://admixer.com/privacy/ 
+
+Add Admixer ID module to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=admixerIdSystem
+
+#### AdmixerID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"admixerId"` | `"admixerId"` |
+| params | Required | Object | Details for admixer initialization. | |
+| params.pid | Required | String | id provided by admixer | "458frgde-djd7-3ert-gyhu-12fghy76dnmko" |
+| params.e | Optional | String | The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha256. | "3d400b57e069c993babea0bd9efa79e5dc698e16c042686569faae20391fd7ea" |
+| params.p | Optional | String | The hashed phone number of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha256. | "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" |
+
+#### AdmixerID Examples
+
+1) Individual params may be set for the Admixer ID Submodule.
+
+{% highlight javascript %}
+   pbjs.setConfig({
+       userSync: {
+           userIds: [{
+               name: "admixerId",
+               storage: {
+                   name: "__adm__admixer",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   pid: "4D393FAC-B6BB-4E19-8396-0A4813607316", // example id
+                   e: "3d400b57e069c993babea0bd9efa79e5dc698e16c042686569faae20391fd7ea", // example hashed email (sha256)
+                   p: "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" //example hashed phone (sha256)
+               }
+           }],
+           syncDelay: 3000 // 3 seconds after the first auction
+       }
+   });
+{% endhighlight %}
 
 ### BritePool
 
