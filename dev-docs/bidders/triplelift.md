@@ -12,6 +12,7 @@ biddercode: triplelift
 userIds: criteo, identityLink, unifiedId
 pbjs: true
 pbs: true
+pbs_app_supported: true
 pbjs_version_notes: avoid 4.3 - 4.14
 ---
 
