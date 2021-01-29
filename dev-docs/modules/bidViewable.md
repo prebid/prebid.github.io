@@ -17,7 +17,8 @@ sidebarType : 1
 
 ## Overview
 
-This optional module will trigger a BID_VIEWABLE event which can be consumed by Bidders and Analytics adapters.
+This optional module will trigger a BID_VIEWABLE event which can be consumed by Analytics adapters, bidders will need to implement `onBidViewable` method to capture this event
+
 
 Notes:
 - The module does not work with adservers other than GAM and only with GPT integration.
