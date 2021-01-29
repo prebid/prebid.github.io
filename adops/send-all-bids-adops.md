@@ -35,7 +35,7 @@ See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 
 {: .alert.alert-info :}
 Manually configuring GAM for Prebid can be a fair amount of work.
-Consider using our [official command line tool](/tools/line-item-manager.html) to create the setup - it may save time and avoid manual mistakes.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
 
 ## Step 1. Add an order
 
