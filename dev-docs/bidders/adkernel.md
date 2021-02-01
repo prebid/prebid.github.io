@@ -8,6 +8,7 @@ biddercode: adkernel
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
+pbs_app_supported: true
 ---
 
 ### Note:

@@ -6,7 +6,7 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, unifiedId
+userIds: criteo, unifiedId, netId
 schain_supported: true
 coppa_supported: true
 usp_supported: true
@@ -70,7 +70,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 |`context` | A string that indicates the type of video ad requested.  Allowed values: `"pre_roll"`; `"mid_roll"`; `"post_roll"`; `"outstream"`. | `string` |
 | `skippable` | Boolean which, if `true`, means the user can click a button to skip the video ad.  Defaults to `false`. | `boolean` |
 |`skipoffset`| Integer that defines the number of seconds until an ad can be skipped.  Assumes `skippable` setting was set to `true`. | `integer` |
-| `playback_method` | A string that sets the playback method supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouseover"`; `"auto_play_sound_unknown"`. | `string` |
+| `playback_method` | A string that sets the playback method supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouse_over"`; `"auto_play_sound_unknown"`. | `string` |
 | `frameworks` | Array of integers listing API frameworks supported by the publisher.  Allowed values: None: `0`; VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; MRAID 2.0: `4`; ORMMA: `5`; OMID 1.0 `6`. | `Array<integer>` |
 
 
@@ -163,7 +163,7 @@ keywords: {
 
 #### User Sync in AMP
 
-If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code>
+If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code> or if the AMP page has a CMP, <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie-with-consent.html</code>
 
 <a name="appnexus-debug-auction" />
 
