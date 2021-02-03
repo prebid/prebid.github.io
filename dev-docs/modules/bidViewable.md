@@ -38,16 +38,16 @@ This feature doesn't seem to work with [Instream Video](/dev-docs/examples/instr
 {: .table .table-bordered .table-striped }
 | Field    | Scope   | Type   | Description                                                                           |
 |----------+---------+--------+---------------------------------------------------------------------------------------|
-| `bidViewability` | Optional | Object | Configuration object for instream tracking |
-| `bidViewability.firePixels` | Optional | Boolean | when set to true, will fire the urls mentioned in `bid.vurls` which should be array of URLs. We have assumed that URLs will always have `?` symbol included. Default: `false` |
+| `bidViewability` | Required | Object | Configuration object for instream tracking |
+| `bidViewability.enabled` | Required | Boolean | when set to true, the module will emit BID_VIEWABLE when applicable. Default: `false` |
+| `bidViewability.firePixels` | Optional | Boolean | when set to true, will fire the urls mentioned in `bid.vurls` which should be array of URLs. Default: `false` |
 | `bidViewability.customMatchFunction` | Optional | function(bid, slot) | when passed this function will be used to `find` the matching winning bid for the GPT slot. Default value is ` (bid, slot) => (slot.getAdUnitPath() === bid.adUnitCode || slot.getSlotElementId() === bid.adUnitCode) ` |
-
-As both params are optional, publishers do not need to set any config at all... the existence of this module in the Prebid.js package enables the functionality.
 
 ## Example of setting module config
 {% highlight js %}
 	pbjs.setConfig({
         bidViewability: {
+            enabled: true,
             firePixels: true,
             customMatchFunction: function(bid, slot){
                 console.log('using custom match function....');
