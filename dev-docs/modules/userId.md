@@ -329,7 +329,7 @@ The following configuration parameters are available:
 
 Publishers may want to test the value of the ID5 ID with their downstream partners. While there are various ways to do this, A/B testing is a standard approach. Instead of publishers manually enabling or disabling the ID5 User ID Module based on their control group settings (which leads to fewer calls to ID5, reducing our ability to recognize the user), we have baked this in to our module directly.
 
-To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of requests you would like to set for the control group. The control group is the set of requests where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the request was in the control group or not. It's important to note that the control group is request based, and not user based. In other words, from one page view to another, a user may be in or out of the control group.
+To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of users you would like to set for the control group. The control group is the set of user where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the user was in the control group or not. It's important to note that the control group is user based, and not request based. In other words, from one page view to another, a user will always be in or out of the control group.
 
 #### ID5 Universal ID Examples
 
@@ -1307,7 +1307,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
 | Halo ID | Audigent | bidRequest.userId.haloId | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
 | ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
-| ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2 } }` |
+| ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
@@ -1360,7 +1360,8 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 "uids": [{
                     "id": "ID5-12345",
                     "ext": {
-                      "linkType": 2
+                      "linkType": 2,
+                      "abTestingControlGroup": false
                     }
                 }]
             },
@@ -1483,7 +1484,8 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
           id: 'ID5-12345',
           atype: 1,
           ext: {
-              linkType: 2
+              linkType: 2,
+              abTestingControlGroup: false
           }
       }]
   }
