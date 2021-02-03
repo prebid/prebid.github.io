@@ -26,7 +26,7 @@ The module attempts to extract a persistant identifier in the following ways:
 To get started, add the module to your Prebid.js wrapper. From the command line:
 
 {: .alert.alert-info :}
-gulp build --modules=idLibrary
+gulp build --modules=idImportLibrary
 
 
 ## Application Flow
@@ -59,7 +59,7 @@ Please note, A full scan (Step 4 above) of the body element is configured on by 
 
 ```javascript
  pbjs.setConfig({
-    idLibrary:{
+    idImportLibrary:{
         url: 'url',
         target: 'username',
 	debounce: 250
