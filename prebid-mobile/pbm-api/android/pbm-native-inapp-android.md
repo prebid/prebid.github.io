@@ -18,7 +18,7 @@ At a high level the in app rendering process works like this:
 
 1. The publisher configures a native ad unit.
 2. PBM fetches native demand, however, instead of caching the native assets on the server, the assets are cached locally in the SDK.
-3. Bid request are made to Prebid bidders.
+3. Bid request are made to Google Ad Manager/MoPub.
 4. Upon receiving results from Google Ad Manager/MoPub PBM determines if any of the received items are from Prebid server.
 5. If there are Prebid ads, the cached assets are then rendered.
 
