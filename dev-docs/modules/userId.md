@@ -1358,11 +1358,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
             {
                 "source": "id5-sync.com",
                 "uids": [{
-                    "id": "ID5-12345"
-                }],
-                "ext": {
-                    "linkType": 2
-                }
+                    "id": "ID5-12345",
+                    "ext": {
+                      "linkType": 2
+                    }
+                }]
             },
             {
                 source: "parrable.com",
@@ -1481,10 +1481,10 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
       source: 'id5-sync.com',
       uids: [{
           id: 'ID5-12345',
-          atype: 1
-      },
-      ext: {
-          linkType: 2
+          atype: 1,
+          ext: {
+              linkType: 2
+          }
       }]
   }
 ]
