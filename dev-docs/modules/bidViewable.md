@@ -28,7 +28,7 @@ Notes:
 - When a rendered PBJS bid is viewable the module will trigger BID_VIEWABLE event, which can be consumed by the winning bidder and analytics adapters
 - The module works with Banner, Outsteam and Native creatives
 
-Instead of listening for events, bidders may supply a ` bid.vurls ` array and this module may fire those pixels when the viewability signal is received. Publishers can control this with module config ` firePixels: true `. Please note that GDPR and USP related parameters will be added to the given URLs, here we have assumed that URLs will always have `?` symbol included.
+Instead of listening for events, bidders may supply a ` bid.vurls ` array and this module may fire those pixels when the viewability signal is received. Publishers can control this with module config ` firePixels: true `. Please note that GDPR and USP related parameters will be added to the given URLs.
 
 {: .alert.alert-warning :}
 This feature doesn't seem to work with [Instream Video](/dev-docs/examples/instream-banner-mix.html), as GPT's impressionViewable event is not triggered for instream-video-creative
