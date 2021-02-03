@@ -72,7 +72,6 @@ of sub-objects. The table below has the options that are common across ID system
 ### AdmixerID
 
 Admixer ID, provided by [Admixer](https://admixer.com/), is a universal ID solution that doesn’t rely on 3rd party cookies and gives publishers access to a wide range of Admixer’s demand sources, amplifying audience segmentation, targeting and measurement.
-This sub-module enables the Admixer ID to be available in the bid request.
 
 The Admixer privacy policy is at https://admixer.com/privacy/ 
 
