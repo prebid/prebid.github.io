@@ -12,7 +12,6 @@ schain_supported: true
 usp_supported: true
 ---
 
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
