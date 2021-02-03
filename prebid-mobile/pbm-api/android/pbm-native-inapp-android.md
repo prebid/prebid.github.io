@@ -14,7 +14,7 @@ This document describes Prebid Mobile's (PBM) Native In App Rendering capability
 
 ## Overview
 
-At a high level the process works like this:
+At a high level the in app rendering process works like this:
 
 1. The publisher configures a native ad unit.
 2. PBM fetches native demand, however, instead of caching the native assets on the server, the assets are cached locally in the SDK.

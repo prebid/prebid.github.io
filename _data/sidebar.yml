@@ -739,6 +739,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: In AppNative Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-native-inapp-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: Banner Interstitial Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html
   isHeader: 0
@@ -2007,7 +2015,7 @@
   sbCollapseId: tools
 
 - sbSecId: 8
-  title: 
+  title:
   link:
   isHeader: 1
   headerId: toolsinvis
