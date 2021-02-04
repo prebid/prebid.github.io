@@ -14,6 +14,6 @@ The Missena Bidding adapter requires setup before beginning. Please contact us a
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                  | Example    | Type     |
-|------------|----------|------------------------------|------------|----------|
-| `apiKey`   | required | Missena's publisher token  | `PA-34745704`  | `string`|
+| Name       | Scope    | Description                | Example         | Type     |
+|------------|----------|----------------------------|-----------------|----------|
+| `apiKey`   | required | Missena's publisher token  | `'PA-34745704'` | `string` |
