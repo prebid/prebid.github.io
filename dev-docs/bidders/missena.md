@@ -2,9 +2,11 @@
 layout: bidder
 title: Missena
 description: Prebid Missena Bidder Adapter
-hide: true
 biddercode: missena
-gdpr_supported: true
+gvl_id: 867
+pbjs: true
+tcf2_supported: true
+safeframes_ok: false
 ---
 
 ### Note
