@@ -213,7 +213,7 @@ The GDPR Enforcement module requires the GVL ID for a module to be specified. If
     </tr>
     <tr>
       <td>User ID</td>
-      <td>parrableIdSystem</td>
+      <td>Parrable ID</td>
     </tr>
 </tbody>
 </table>
