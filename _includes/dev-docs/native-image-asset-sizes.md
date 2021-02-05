@@ -34,6 +34,3 @@ mediaTypes: {
 }
 
 {% endhighlight %}
-
-{: .alert.alert-success :}
-NOTE: If you're using `aspect_ratios` in a native request sent to Prebid Server, the `min_width` and `min_height` fields become required instead of optional.  If these fields are not included, that native request will be rejected.

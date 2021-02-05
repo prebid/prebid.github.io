@@ -3,12 +3,17 @@ layout: bidder
 title: Nobid
 description: Prebid Nobid Bidder Adaptor
 biddercode: nobid
-hide: true
+pbjs: true
+pbs: true
 media_types: banner, video
 gdpr_supported: true
+tcf2_supported: true
+gvl_id: 816
 usp_supported: true
 schain_supported: true
 coppa_supported: true
+userId: criteo, unifiedId, id5Id
+safeframes_ok: true
 ---
 
 ### Bid Params
@@ -18,7 +23,13 @@ coppa_supported: true
 |---------------|----------|-------------|---------|----------|
 | `siteId` | required | siteId is provided by your NoBid account manager(s) |         | `integer` |
 | `placementId` | optional | placementId is provided by your NoBid account manager(s). This parameter allows to report on a specific ad unit |         | `integer` |
-| `video`| optional | Object containing video targeting parameters.  See [Video Object](#nobid-video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object`|
+| `video`| optional | Object containing video targeting parameters. Note that this parameter is not used in Prebid Server.  See [Video Object](#nobid-video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object`|
+
+
+### Note
+If you are using Google Ad Manager (GAM), it is highly recommended to make sure the “Serve in Safeframe” box in creative settings is unchecked. 
+If you absolutely want to run NoBid in a Saferame creative, please contact your Nobid repsentative to coordinate this setup.
+
 
 # Test Parameters
 ```

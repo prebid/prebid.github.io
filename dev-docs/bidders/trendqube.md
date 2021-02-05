@@ -2,7 +2,7 @@
 layout: bidder
 title: Trendqube
 description: Prebid Trendqube Bidder Adapter
-hide: true
+pbjs: true
 biddercode: trendqube
 gdpr_supported: true
 media_types: banner, video
@@ -17,4 +17,4 @@ The Trendqube Bidding adapter requires setup before beginning. Please contact us
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `id`      | required | Adprime placement id         | `1234asdf`    | `string` |
+| `placementId`      | required | Adprime placement id         | `'1234asdf'`    | `'string'` |

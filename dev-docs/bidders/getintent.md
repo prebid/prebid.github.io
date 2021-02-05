@@ -2,7 +2,7 @@
 layout: bidder
 title: GetIntent
 description: Prebid GetIntent Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: getintent
 media_types: video
 ---

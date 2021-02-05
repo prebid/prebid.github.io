@@ -3,12 +3,16 @@ layout: bidder
 title: Index Exchange
 description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
-hide: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
 tcf2_supported: true
 media_types: banner, video
+gvl_id: 10
+prebid_member: yes
 ---
 
 ## Overview
@@ -21,16 +25,18 @@ Maintainer: prebid.support@indexexchange.com
 
 ## Description
 
-This module connects publishers to Index Exchange's (IX) network of demand
-sources through Prebid.js. This module is GDPR and CCPA compliant.
+Publishers may access Index Exchange's (IX) network of demand
+sources through our Prebid.js and Prebid Server adapters. Both of these modules are GDPR and CCPA compliant.
 
-It is compatible with both the older ad unit format where the `sizes` and
+### IX Prebid.js Adapter
+
+Our Prebid.js adapter is compatible with both the older ad unit format where the `sizes` and
 `mediaType` properties are placed at the top-level of the ad unit, and the newer
 format where this information is encapsulated within the `mediaTypes` object. We
 recommend that you use the newer format when possible as it will be better able
 to accommodate new feature additions.
 
-If a mix of properties from both formats are present within an ad unit, the
+If a mix of properties from both formats is present within an ad unit, the
 newer format's properties will take precedence.
 
 Here are examples of both formats.
@@ -71,7 +77,16 @@ var adUnits = [{
 }];
 ```
 
-### Supported Media Types
+### Supported Media Types (Prebid.js)
+
+{: .table .table-bordered .table-striped }
+| Type   | Support |
+| ------ | ------- |
+| `Banner` | Fully supported for all IX approved sizes. |
+| `Video`  | Fully supported for all IX approved sizes. |
+| `Native` | Not supported. |
+
+### Supported Media Types (Prebid Server)
 
 {: .table .table-bordered .table-striped }
 | Type   | Support |
@@ -101,7 +116,7 @@ object are detailed here.
 | ---- | ----- | ----------- | ------- | ---- |
 | `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` |
 | `size` | Required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. | `[300, 600]` | `Array<integer>` |
-| `video` | Required | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes`, `protocols`, `minduration`, `maxduration` are required. | `video: { startdelay: 0 }` | `object` |
+| `video` | Required | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes`, `protocols`, `minduration`, `maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level. | `video: { startdelay: 0 }` | `object` |
 | `video.mimes` | Required | Array list of content MIME types supported. | `['video/mp4', 'video/x-flv']` | `Array<string>` |
 | `video.minduration` | Required | Minimum video ad duration in seconds. | `0` | `integer` |
 | `video.maxduration` | Required | Maximum video ad duration in seconds. | `300` | `integer` |
@@ -291,6 +306,27 @@ pbjs.setConfig({
 });
 ```
 
+#### The **detectMissingSizes** feature
+By default, the IX bidding adapter bids on all banner sizes available in the ad unit when configured to at least one banner size. If you want the IX bidding adapter to only bid on the banner size it’s configured to, switch off this feature using `detectMissingSizes`.
+```
+pbjs.setConfig({
+                ix: {
+                    detectMissingSizes: false
+                }
+            });
+```
+OR
+```
+pbjs.setBidderConfig({
+                bidders: ["ix"],
+                config: {
+                    ix: {
+                        detectMissingSizes: false
+                    }
+                }
+            });
+```
+
 ### 2. Include `ixBidAdapter` in your build process
 
 When running the build command, include `ixBidAdapter` as a module, as well as `dfpAdServerVideo` if you require video support.
@@ -319,12 +355,12 @@ gulp build --modules=bidderModules.json
 
 ## Setting First Party Data (FPD)
 
-FPD allows you to specify key-value pairs which will be passed as part of the
+FPD allows you to specify key-value pairs that are passed as part of the
 query string to IX for use in Private Marketplace Deals which rely on query
 string targeting for activation. For example, if a user is viewing a
 news-related page, you can pass on that information by sending `category=news`.
-Then in the IX Private Marketplace setup screens you can create Deals which
-activate only on pages which contain `category=news`. Please reach out to your
+Then in the IX Private Marketplace setup screens, you can create Deals which
+activate only on pages that contain `category=news`. Please reach out to your
 IX representative if you have any questions or need help setting this up.
 
 To include FPD in a bid request, it must be set before `pbjs.requestBids` is
@@ -360,12 +396,40 @@ such:
 ```javascript
 pbjs.setConfig({
     ix: {
-        timeout: 250
+        timeout: 50
     }
 });
 ```
 
 The timeout value must be a positive whole number in milliseconds.
+
+## IX Prebid Server Adapter
+
+Publishers who would like to retrieve IX demand via a Prebid Server instance can do so by adding IX to the list of bidders for a Prebid Server bid request, with a valid site ID. For example:
+
+```javascript
+"imp": [
+  {
+    "id": "test2",
+    "banner": {
+      "format": [
+        {
+          "w": 300,
+          "h": 600
+        }
+      ]
+    },
+    "ext": {
+      "ix": {
+        "siteId": "12345"
+      }
+    }
+  }
+]
+```
+
+### Important Prebid Server Note
+Any party operating their own hosted Prebid Server instances must reach out to IX (prebid.support@indexexchange.com) to receive approval and customized setup instructions. Please do not send Prebid Server requests without first contacting us -- you will not receive bid responses.
 
 ## Additional Information
 
@@ -399,9 +463,9 @@ unit we require the size to be explicitly stated.
 2. An ad unit may have sizes that IX does not support. By explicitly stating the
 size, you can choose not to have IX bid on certain sizes that are invalid.
 
-### How do I view IX's bid request in the network?
+### How can I view the bid request sent to IX by Prebid.js?
 
 In your browser of choice, create a new tab and open the developer tools. In
 developer tools, select the network tab. Then, navigate to a page where IX is
-setup to bid. Now, in the network tab, search for requests to
+set up to bid. Now, in the network tab, search for requests to
 `casalemedia.com/cygnus`. These are the bid requests.

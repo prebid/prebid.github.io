@@ -21,7 +21,7 @@ by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-a
 the web development team makes a manual update.
 
 Publishers may continue to use the bidCpmAdjustment approach, or may begin using this optional module, gaining automatic updates as currency exchange rates fluctuate. Here's how it works at a high level:
- 
+
 1. A Prebid.js package is built that contains the extra currency module code
 1. Config in the page defines the currency used by the Publisher's ad server and other configuration parameters.
 1. The existence of this configuration causes the Prebid platform to load a
@@ -126,7 +126,7 @@ low granularity bucket hb_pb=162.
 ### 5. Ad Request and Decision
 
 Finally, the scaled and quantized bids are sent to the ad server, where they will match
-the line items set up initially. 
+the line items set up initially.
 
 {: .alert.alert-success :}
 No other part of the Prebid process has changed due to currency support: creation of AdUnits, creative display, analytics, etc.
@@ -216,18 +216,18 @@ pbjs.setConfig({
 ### Step 1: Bundle the module code
 
 Follow the basic build instructions on the Gihub repo's main README. To include the module, an additional option must be added to the the gulp build command:
- 
+
 {% highlight js %}
 gulp build --modules=currency,exampleBidAdapter
 {% endhighlight %}
- 
+
 This command will build the following files:
- 
+
 - build/dist/prebid-core.js - the base Prebid code
 - build/dist/currency.js - additional code for the currency feature
 - build/dist/exampleBidAdapter.js - a specified bidder adapter
 - build/dist/prebid.js - a combined file with the base Prebid core code, bidder adapter code, and the currency module code.
- 
+
 ### Step 2: Publish the package(s) to the CDN
 
 After testing, get your javascript file(s) out to your Content Delivery Network (CDN) as normal.
@@ -317,5 +317,3 @@ If there's a currency conversion you need that's not included, there are several
 1. Use the 'defaultRates` feature
 1. Build and host a currency conversion file that includes the desired currencies
 1. Find a reliable, free, no-strings source of conversation data that we can integrate into our hosted file, then post an issue on the github forum.
-
-

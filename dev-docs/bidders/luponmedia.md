@@ -2,7 +2,7 @@
 layout: bidder
 title: LuponMedia
 description: LuponMedia Bidder Adapter
-hide: true
+pbjs: true
 biddercode: luponmedia
 gdpr_supported: true
 usp_supported: true

@@ -4,11 +4,8 @@ title: Send All Bids to the Ad Server
 head_title: Send All Bids to the Ad Server
 description: Send all bids to the ad server for reporting and data analysis.
 pid: 2
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
-
 
 
 # Send all bids to the ad server - Ad Ops setup
@@ -36,8 +33,9 @@ See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 
 {% include send-all-bids-keyword-targeting.md %}
 
-{: .bg-info :}
-In this example we will use Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
 
 ## Step 1. Add an order
 
@@ -82,12 +80,13 @@ This line item will target the bids in the range from $0.50 to $1.00 from the bi
 
 Next, add a creative to this $0.50 line item; we will duplicate the creative later.
 
-Choose the same advertiser we've assigned the line item to.
+- Choose the same advertiser we've assigned the line item to.
+- Set it to be a **Third party** creative.
+- Make sure the creative size is set to 1x1.  This allows the creative to serve on all inventory sizes. When associating with the line item, just change the creative filter setting to show all creatives instead of 'Inventory filtered based on size'.
+- The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
+- Copy this creative code snippet for each bidder and paste it into the **Code snippet** box, replacing BIDDERCODE with the current bidder name.
 
-Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
-
-Copy this creative code snippet and paste it into the **Code snippet** box.
-
+```
     <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
       var ucTagData = {};
@@ -101,23 +100,24 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.env = "%%PATTERN:hb_env%%";
       ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
       ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
-
+      // mobileResize needed for mobile GAM only
+      ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
         console.log(e);
       }
     </script>
+```
 
 {% capture noteAlert %}
-Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`
+Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`. IMPORTANT: Make sure that none of the values are
+longer than 20 characters. e.g. you'll need to truncate hb_cache_host_triplelift to hb_cache_host_triple. GAM doesn't support attributes longer than 20 chars, so all Prebid software truncates attributes to that length.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
 
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
-
-Make sure the creative size is set to 1x1.  This allows Prebid to set up size override, which enables this creative to serve on all inventory sizes.
 
 **Prebid universal creative code for other ad servers**
 
@@ -150,6 +150,8 @@ See note above in regards to replacing *BIDDERCODE* placeholders.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
+
+{% include adops/adops-creative-declaration.html %}
 
 For other ad servers:
 

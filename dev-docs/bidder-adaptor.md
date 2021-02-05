@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: How to Add a New Bidder Adapter
-description: Documentation on how to add a new bidder adapter
+title: How to Add a New Prebid.js Bidder Adapter
+description: Documentation on how to add a Prebid.js new bidder adapter
 top_nav_section: dev_docs
 nav_section: adapters
 sidebarType: 1
@@ -9,7 +9,7 @@ sidebarType: 1
 
 
 
-# How to Add a New Bidder Adapter
+# How to Add a New Prebid.js Bidder Adapter
 {:.no_toc}
 
 At a high level, a bidder adapter is responsible for:
@@ -24,35 +24,24 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 ## Planning your Adapter
 
-+ [Required Adapter Conventions](#bidder-adaptor-Required-Adapter-Conventions)
++ [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
 + [Required Files](#bidder-adaptor-Required-Files)
 + [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
-### Required Adapter Conventions
+### Required Adapter Rules
 
-In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the following required conventions:
+In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/module-rules.html). Here are additional details specific to Prebid.js:
 
-* *Support multiple instances*: All adapters must support the creation of multiple concurrent instances. This means, for example, that adapters cannot rely on mutable global variables.
-* *No loading of external libraries*: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
-* *Must support HTTPS*: Within a secure page context, the request to the bidder's server must also be secure.
-* *Compressed responses*: All bid responses from the bidder's server must be gzipped.
-* *Bid responses may not use JSONP*: All requests must be AJAX with JSON responses.
-* *All user-sync activity must be registered via the provided functions*: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
-* *Adapters may not create or trigger any network requests or pixels* outside of the requests that wrapper creates on behalf of the adapter from the return values of `buildRequests()` and `getUserSyncs()` or are included in a winning and rendered creative.
-* *Adapters may not use the `$$PREBID_GLOBAL$$` variable*: Instead, they must load any necessary functions and call them directly.
-* *Adapters may not modify ad slots directly*: e.g. Accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
-* *Adapters may not override standard ad server targeting*: Do not override, or set default values for any of the standard targeting variables: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
+* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
+* **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
+* **Adapters may not create or trigger any network requests or pixels** outside of the requests the wrapper creates on behalf of the adapter (from the return values of `buildRequests()` and `getUserSyncs()`) or that are included in a winning and rendered creative.
+* **Adapters may not modify ad slots directly**: For example, accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
+* **All parameter conventions must be followed**: Video params must be read from AdUnit.mediaTypes.video when available; however, bidder config can override the ad unit.
 
 {: .alert.alert-danger :}
-Failure to follow any of the above conventions could lead to delays in approving your adapter for inclusion in Prebid.js.
-
-{: .alert.alert-danger :}
-Pull requests for non-1.0 compatible adapters will not be reviewed or accepted on the legacy branch.
-
-{: .alert.alert-danger :}
-Prebid.org does not support any version of Prebid.js prior to version 1.0.
+The above list is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/module-rules.html) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
 
 <a name="bidder-adaptor-Required-Files" />
 
@@ -242,6 +231,8 @@ Here is a sample array entry for `validBidRequests[]`:
   bidRequestsCount: 1
   bidderRequestsCount: 1
   bidderWinsCount: 0
+  userId: {...}
+  schain: {...}
   mediaTypes: {banner: {...}}
   params: {...}
   src: "client"
@@ -256,6 +247,8 @@ Other notes:
 - **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
 
@@ -263,43 +256,45 @@ Here is a sample bidderRequest object:
 
 {% highlight js %}
 {
-  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
-  auctionStart: 1579746300522
-  bidderCode: "myBidderCode"
-  bidderRequestId: "15246a574e859f"
-  userId: {...}
-  schain: {...}
-  bids: [{...}]
-  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true}
-  refererInfo:
-    canonicalUrl: undefined
-    numIframes: 0
-    reachedTop: true
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+  auctionStart: 1579746300522,
+  bidderCode: "myBidderCode",
+  bidderRequestId: "15246a574e859f",
+  bids: [{...}],
+  gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+  refererInfo: {
+    canonicalUrl: undefined,
+    numIframes: 0,
+    reachedTop: true,
     referer: "http://mypage?pbjs_debug=true"
+  }
 }
 {% endhighlight %}
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
-- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
-- **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module
+- **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
 
-#### Prebid Config
+<a name="std-param-location"></a>
 
-There are a number of important values that a publisher can set in the page that your bid adapter may need to take
-into account:
+#### Prebid Standard Parameter Locations
+
+There are a number of important values that a publisher expects to be handled in a standard way across all Prebid.js adapters:
 
 {: .table .table-bordered .table-striped }
-| Value | Description                                   | Example               |
+| Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
-| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
-| First Party Data | The publisher may provide first party data (e.g. page type). | config.getConfig('fpd'); |
+| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
+| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
+| Page Referrer | Intead of building your own function to find the page referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.referer |
+| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
+| [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
+| Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
 
 #### Referrers
 
@@ -308,8 +303,9 @@ Referrer information should be passed to your endpoint in contexts where the ori
 - `referer`: a string containing the detected top-level URL.
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
-- `stack`: a string of comma-separated URLs of all origins.
+- `stack`: an array of URLs of all windows from the top window down to the current window.
 - `canonicalUrl`: a string containing the canonical (search engine friendly) URL defined in top-most window.
+- `isAmp`: a boolean specifying whether the detected referer was determined based on AMP page information.
 
 The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
@@ -538,6 +534,41 @@ Sample data received by this function:
 }
 {% endhighlight %}
 
+### Adding adapter aliases
+
+Use aliases if you want to reuse your adapter using other name for your partner/client, or just a shortcut name.
+
+{% highlight js %}
+
+export const spec = {
+    code: 'appnexus',
+    aliases: [
+        'apnx',
+        {
+            code:'apx',
+            gvlid: 1,
+            skipPbsAliasing: false
+        }
+    ],
+    ...
+}
+
+{% endhighlight %}
+
+spec.aliases can be an array of strings or objects.
+
+### Alias object description
+
+If the alias entry is an object, the following attributes are supported:
+
+{: .table .table-bordered .table-striped }
+| Name  | Scope | Description   | Type      |
+|-------|-------|---------------|-----------|
+| `code` | required | shortcode/partner name | `string` |
+| `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
+| `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
+
+
 ## Supporting Video
 
 Follow the steps in this section to ensure that your adapter properly supports video.
@@ -561,7 +592,24 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 ### Step 2: Accept video parameters and pass them to your server
 
-Video parameters are often passed in from the ad unit in a `video` object.
+Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
+
+| parameter |
+|-|
+| mimes |
+| minduration |
+| maxduration |
+| protocols |
+| startdelay |
+| placement |
+| skip |
+| skipafter |
+| minbitrate |
+| maxbitrate |
+| delivery |
+| playbackmethod |
+| api |
+| linearity |
 
 The design of these parameters may vary depending on what your server-side bidder accepts.  If possible, we recommend using the video parameters in the [OpenRTB specification](https://iabtechlab.com/specifications-guidelines/openrtb/).
 
@@ -675,7 +723,7 @@ Adapter must add following new properties to bid response
 {% highlight js %}
 {
   meta: {
-    iabSubCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
+    primaryCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
   },
   video: {
     context: 'adpod',
@@ -734,7 +782,7 @@ getIabSubCategory(bidderCode, pCategory)
 {% highlight js %}
 
 import { getIabSubCategory } from '../src/adapters/bidderFactory';
-let iabSubCatId = getIabSubCategory(bidderCode, pCategory)
+let primaryCatId = getIabSubCategory(bidderCode, pCategory)
 
 {% endhighlight %}
 
@@ -772,7 +820,7 @@ function createBid(status, reqBid, response) {
 ### Deals in Ad Pods
 
 To do deals for long-form video (`adpod` ad unit) just add the `dielTier` integer value to `bid.video.dealTier`. For more details on conducting deals in ad pods see our [ad pod module documentation](/dev-docs/modules/adpod.html).
- 
+
 ## Supporting Native
 
 In order for your bidder to support the native media type:
@@ -986,14 +1034,62 @@ registerBidder(spec);
 - [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
-  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
+    - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
+    - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
+    - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
+    - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+    - If you have an IAB Global Vendor List ID, add `gvl_id: ID`. There's no default.
+    - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
+    - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
+    - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
+    - If you support COPPA, add `coppa_supported: true`. Default is false.
+    - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+    - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
+    - If you support deals, set `bidder_supports_deals: true`. No default value..
+    - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
+
+For example:
+```
+---
+layout: bidder
+title: example
+description: Prebid example Bidder Adapter
+biddercode: example
+gdpr_supported: true/false
+tcf2_supported: true/false
+gvl_id: 111
+usp_supported: true/false
+coppa_supported: true/false
+schain_supported: true/false
+userId: (list of supported vendors)
+media_types: banner, video, native
+safeframes_ok: true/false
+bidder_supports_deals: true/false
+pbjs: true/false
+pbs: true/false
+prebid_member: true/false
+gvl_id: none
+---
+### Note:
+
+The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placement`      | required | Placement id         | `'11111'`    | `string` |
+```
 
 Within a few days, the code pull request will be assigned to a developer for review.
 Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
 
-The Prebid.org [download page]({{site.baseurl}}/download.html) will automatically be updated with your adapter once everything's been merged.
+The Prebid.org [download page](/download.html) will automatically be updated with your adapter once everything's been merged.
 
 ## Further Reading
 
-+ [The bidder adapter sources in the repo](https://github.com/prebid/Prebid.js/tree/master/modules)
++ [Prebid.js Repo - Bidder Adapter Sources](https://github.com/prebid/Prebid.js/tree/master/modules)
++ [Module Rules](/dev-docs/module-rules.html)

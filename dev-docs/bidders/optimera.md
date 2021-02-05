@@ -2,7 +2,7 @@
 layout: bidder
 title: Optimera
 description: Optimera Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: optimera
 ---
 

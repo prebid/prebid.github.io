@@ -2,7 +2,7 @@
 layout: bidder
 title: AdGlare Ad Server
 description: Prebid Adapter for AdGlare Ad Server
-hide: true
+pbjs: true
 biddercode: adglare
 media_types: banner
 ---

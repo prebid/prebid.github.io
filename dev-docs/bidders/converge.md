@@ -2,7 +2,7 @@
 layout: bidder
 title: Converge
 description: Prebid Converge Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: converge
 media_types: banner, video
 gdpr_supported: true
