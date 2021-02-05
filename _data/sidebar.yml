@@ -739,7 +739,7 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: In AppNative Ad Unit
+  title: In App Native Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-native-inapp-android.html
   isHeader: 0
   isSectionHeader: 0
