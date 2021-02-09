@@ -10,16 +10,16 @@ sidebarType: 2
 # Native In App Rendering
 {: .notoc}
 
-This document describes Prebid Mobile's (PBM) Native In App Rendering capability. Though PBM currently has the ability to render native add components through it's Banner Ad object, PBM's  Native In App Rendering solution enables publishers to render the native assets in native code.
+This document describes the Prebid Mobile (PBM) Native In App Rendering capability. Though PBM has the ability to render native ad components through its Banner Ad object, PBM's  Native In App Rendering solution enables publishers to render the native assets in native code.
 
 ## Overview
 
 At a high level the in app rendering process works like this:
 
 1. The publisher configures a native ad unit.
-2. PBM fetches native demand, however, instead of caching the native assets on the server, the assets are cached locally in the SDK.
+2. PBM fetches native demand. However, instead of caching the native assets on the server, the assets are cached locally in the SDK.
 3. Bid request are made to Google Ad Manager/MoPub.
-4. Upon receiving results from Google Ad Manager/MoPub PBM determines if any of the received items are from Prebid server.
+4. Upon receiving results from Google Ad Manager/MoPub, PBM determines if any of the received items are from Prebid Server.
 5. If there are Prebid ads, the cached assets are then rendered.
 
 {% capture importantNote %}
@@ -30,7 +30,7 @@ The cached assets might expire. If this occurs the publisher will receive a noti
 
 ## Ad Ops Setup
 
-These instructions will enable you to create a creative template in either Google Ad Manager or MoPub which can then be applied to native ads in your app.
+These instructions will enable you to create a creative template in either Google Ad Manager or MoPub that can then be applied to native ads in your app.
 
 ### Google Ad Manager
 
@@ -38,7 +38,7 @@ These instructions will enable you to create a creative template in either Googl
 2. Create an ad unit with fluid ad size.
 3. Click `Delivery` and then `Native`
 4. Click `Create native ad`.
-5. Click `Android & iOS app code`
+5. Click `Android & iOS app code`.
 6. Name your new format.
 7. Choose `ADD VARIABLE` and add the following variable names and placeholders.  
 
@@ -47,29 +47,27 @@ These instructions will enable you to create a creative template in either Googl
   |---------------------+----------------------------------|
   | isPrebid            | [%isPrebid%]                     |
   | hb_cache_id_local   | [%hb_cache_id_local%]            |
-  |                     |                                  |
 
-  Make sure to indicate that they are required.
+  Make sure to indicate that the variables are required.
 
-8. Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choose the template you just created. In the user-defined variables you just created, set the following values:
+8. Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the template you created. In the user-defined variables you just created, set the following values:
 
   {: .table .table-bordered .table-striped }  
   | Variable Name       | Value                            |
   |---------------------+----------------------------------|
   | isPrebid            | 1                                |
   | hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
-  |                     |                                  |
 
-9. Now create a Prebid line items with price priority and a display ad type that are targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (make sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
+9. Now create Prebid line items with price priority and a display ad type that are targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
 
 ### MoPub
 
 1. Sign in to MoPub.
 2. Select the order for the Prebid line items.  
-3. Create a line item that targets a `hb_pb key-value`.
-4. Save your the line item.
-5. Create the creative and at the prompt input a name and choose the format to be `Native`.
-6. Instead of `Easy Form` choose `Manual JSON`
+3. Create a line item that targets an `hb_pb key-value`.
+4. Save your line item.
+5. Create the creative. When prompted, input a name and choose the format `Native`.
+6. Instead of `Easy Form` choose `Manual JSON`.
 7. In the JSON input field insert the following content:
 <pre>
 <code>
@@ -99,31 +97,30 @@ The `PrebidNativeAdListener` interface provides three methods to handle the disp
 
 ##### Methods
 
-  onPrebidNativeLoaded
+  **onPrebidNativeLoaded**
 
   Use this method to pass a `PrebidNativeAd` to inflate.
 
-**Parameters**
+*Parameters*
 
   {: .table .table-bordered .table-striped }  
   |  Name           | Scope    | Type     | Description           |
   |-----------------+----------+----------+-----------------------|
   | PrebidnativeAd  | Required | ad       | A PrebidNativeAd      |
-  |                 |          |          |                       |
 
-  onPrebidNativeNotFound
+  **onPrebidNativeNotFound**
 
   Use this method when a Prebid Native is not found in the server returned response. The ad should be displayed as a regular AdUnit type.
 
-  onPrebidNativeNotValid
+  **onPrebidNativeNotValid**
 
-  Use this method when a Prebid native ad was returned, however a `PrebidNativeAd` object was not able to be created from the cached assets. Display different content.
+  Use this method when a Prebid native ad was returned, but a `PrebidNativeAd` object was not able to be created from the cached assets. Display different content.
 
 ### Classes
 
 #### PrebidNativeAd
 
-An object representing the PrebidNativeAd to be displayed.
+An object representing the `PrebidNativeAd` to be displayed.
 
 ##### Methods
 
@@ -131,7 +128,7 @@ An object representing the PrebidNativeAd to be displayed.
 
   Takes a `View` that will handle the display of the native asset image and a `listener` object.
 
-  **Parameters**
+  *Parameters*
 
   {: .table .table-bordered .table-striped }  
   |  Name           | Scope    | Type     | Description                                      |
@@ -150,9 +147,8 @@ An object representing the PrebidNativeAd to be displayed.
   | view            | Required | View     | The view to display the native asset image in.   |
   | viewList        | Required | List     | A list of views                                  |
   | final           | Required | Listener | A `PrebidNativeAdListener` object.               |
-  |                 |          |          |                                                  |
 
-  *unregister*
+  **unregister**
 
   Unregisters the `View` stored for displaying the native asset's image.
 
@@ -169,8 +165,6 @@ An object representing the PrebidNativeAd to be displayed.
   | getImageUrl     | String   | Returns the path for the  image of the native ad.|
   | getCallToAction | String   | Returns the type of action of the native ad      |
   | getClickUrl     | String   | Returns the click url of the native ad           |
-  |                 |          |                                                  |
-
 
 #### Util
 
@@ -178,31 +172,29 @@ This object provides methods for searching for a `PrebidNativeAd` in the respons
 
 ##### Methods
 
-findNative
+**findNative**
 
-This method searches for the variable `isPrebid` in the native response. If the variable is located and its value is `true` the `PrebidNativeAd` instance is created and passed back to `PrebidNativeAdListener`
+This method searches for the variable `isPrebid` in the native response. If the variable is located and its value is `true` the `PrebidNativeAd` instance is created and passed back to `PrebidNativeAdListener`.
 
-**Parameters**
+*Parameters*
 
   {: .table .table-bordered .table-striped }  
   |  Name                  | Scope    | Type     | Description                                                                       |
   |------------------------+----------+----------+-----------------------------------------------------------------------------------|
-  | Object                 | Required | Object   |                                                                                   |
+  | Object                 | Required | Object |                                                                                   |
   | PrebidNativeAdListener | Required | Listener | `PrebidNativeAdListener` to pass the `PrebidNativeAd` if `isPrebid` = true.       |
-  |                        |          |          |                                                                                   |
 
-loadImage
+**loadImage**
 
-This method displays the image from a url in the native response in a imageView supplied by the publisher.
+This method displays the image from a url in the native response in an imageView supplied by the publisher.
 
-**Parameters**
+*Parameters*
 
 {: .table .table-bordered .table-striped }  
 |  Name                  | Scope    | Type      | Description                                                                       |
 |------------------------+----------+-----------+-----------------------------------------------------------------------------------|
-| imageView              | Required | ImageView | The view that theimage will be displayed in.                                      |
+| imageView              | Required | ImageView | The view that the image will be displayed in.                                      |
 | imageUrl               | Required | String    | The path of the image to be displayed.                                            |
-|                  
 
 ### Examples
 
