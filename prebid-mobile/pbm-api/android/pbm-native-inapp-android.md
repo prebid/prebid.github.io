@@ -127,21 +127,7 @@ An object representing the PrebidNativeAd to be displayed.
 
 ##### Methods
 
-  *create*
-
-  Creates a PrebidNativeAd with the assets stored in the cache.
-
-  **Parameters**
-
-  {: .table .table-bordered .table-striped }  
-  |  Name           | Scope    | Type     | Description                                      |
-  |-----------------+----------+----------+--------------------------------------------------|
-  | cacheId         | Required | String   | The id of the cache storing the ad assets.       |
-  |                 |          |          |                                                  |
-
-Returns a PrebidNativeAd object.
-
-  *registerViews*
+  *registerView*
 
   Takes a `View` that will handle the display of the native asset image and a `listener` object.
 
@@ -151,6 +137,18 @@ Returns a PrebidNativeAd object.
   |  Name           | Scope    | Type     | Description                                      |
   |-----------------+----------+----------+--------------------------------------------------|
   | view            | Required | View     | The view to display the native asset image in.   |
+  | final           | Required | Listener | A `PrebidNativeAdListener` object.               |
+  |                 |          |          |                                                  |
+
+  *registerViewList*
+
+  **Parameters**
+
+  {: .table .table-bordered .table-striped }  
+  |  Name           | Scope    | Type     | Description                                      |
+  |-----------------+----------+----------+--------------------------------------------------|
+  | view            | Required | View     | The view to display the native asset image in.   |
+  | viewList        | Required | List     | A list of views                                  |
   | final           | Required | Listener | A `PrebidNativeAdListener` object.               |
   |                 |          |          |                                                  |
 
