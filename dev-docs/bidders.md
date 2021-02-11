@@ -23,7 +23,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true %}
 
-### Find a bidder
+### Search a bidder
 
 <input type="text" id="bidder-filter">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
