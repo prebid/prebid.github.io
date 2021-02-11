@@ -28,10 +28,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 <input type="text" id="bidder-filter" class="bidder-filter">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
 <script>
-var BidderList = [
-{% for page in bidder_pages %}{ label: '{{ page.title }}', value: '/dev-docs/bidders/{{ page.biddercode }}' },
-{% endfor %}
-];
+var BidderList = [{% for page in bidder_pages %}{ label: '{{ page.title }}', value: '/dev-docs/bidders/{{ page.biddercode }}' },{% endfor %}];
 var input = document.getElementById('bidder-filter');
 new Awesomplete(input, { 
   list: BidderList,
