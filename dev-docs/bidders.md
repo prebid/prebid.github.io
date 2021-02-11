@@ -25,7 +25,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 
 ### Search a bidder
 
-<input type="text" id="bidder-filter">
+<input type="text" id="bidder-filter" class="bidder-filter">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.base.min.css" integrity="sha512-t0hUJOPdC9TpmRKiSn6Y16wYcQeTMDzUl5cp7QAankOkk2H0NPh7nbrBndyJao/1pCphzbbQ0Fhtci+ZliQBJg==" crossorigin="anonymous" />
 <script>
