@@ -4,6 +4,7 @@ title: Atomx
 description: Prebid Atomx Bidder Adaptor
 pbjs: true
 biddercode: atomx
+list_group: 0a
 ---
 
 ### Bid Params

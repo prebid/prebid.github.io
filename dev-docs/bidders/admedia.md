@@ -6,6 +6,7 @@ pbjs: true
 biddercode: admedia
 media_types: banner
 gdpr_supported: false
+list_group: 0a
 ---
 
 

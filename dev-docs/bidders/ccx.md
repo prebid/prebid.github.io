@@ -6,6 +6,7 @@ pbjs: true
 biddercode: ccx
 media_types: video
 gdpr_supported: true
+list_group: bc
 ---
 
 

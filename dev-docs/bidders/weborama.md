@@ -4,6 +4,7 @@ title: Weborama
 description: Prebid Weborama Bidder Adaptor
 pbjs: true
 biddercode: weborama
+list_group: uz
 ---
 
 ### Bid Params

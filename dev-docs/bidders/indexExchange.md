@@ -12,6 +12,7 @@ tcf2_supported: true
 media_types: banner, video
 gvl_id: 10
 prebid_member: yes
+list_group: hl
 ---
 
 ## Overview

@@ -13,6 +13,7 @@ userIds: criteo, identityLink, unifiedId
 pbjs: true
 pbs: true
 pbjs_version_notes: avoid 4.3 - 4.14
+list_group: st
 ---
 
 ### Bid Params

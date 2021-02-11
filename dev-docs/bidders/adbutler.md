@@ -4,6 +4,7 @@ title: AdButler
 description: Prebid AdButler Bidder Adaptor
 pbjs: true
 biddercode: adbutler
+list_group: 0a
 ---
 
 

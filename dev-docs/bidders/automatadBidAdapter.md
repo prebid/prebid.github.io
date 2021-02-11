@@ -5,6 +5,7 @@ description: Automatad OpenRTB Bid Adapter
 biddercode: automatad 
 pbjs: true
 media_types: banner
+list_group: 0a
 ---
 
 #### Bid Params

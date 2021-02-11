@@ -5,6 +5,7 @@ description: Prebid EngageBDR Bidder Adaptor
 biddercode: ebdr
 pbjs: true
 media_types: video
+list_group: dg
 ---
 
 ### Bid params

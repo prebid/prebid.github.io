@@ -5,6 +5,7 @@ description: Prebid OPEN8 Bidder Adaptor
 pbjs: true
 biddercode: open8
 media_types: video, banner
+list_group: mo
 ---
 
 ### Bid Params

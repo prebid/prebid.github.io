@@ -5,6 +5,7 @@ description: Prebid Advangelists Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: advangelists
+list_group: 0a
 ---
 
 ### Note:

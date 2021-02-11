@@ -8,6 +8,7 @@ biddercode: between
 schain_supported: true
 gdpr_supported: true
 tcf2_supported: true
+list_group: bc
 ---
 
 ### Prebid.js Bid Params

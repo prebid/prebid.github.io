@@ -4,6 +4,7 @@ title: LEMMA
 description: Prebid Lemma Bidder Adapter
 pbjs: true
 biddercode: lemma
+list_group: hl
 ---
 
 ### Integration Note:

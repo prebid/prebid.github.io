@@ -7,6 +7,7 @@ pbjs: true
 media_types: banner
 gdpr_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId
+list_group: mo
 ---
 
 #### Bid Params

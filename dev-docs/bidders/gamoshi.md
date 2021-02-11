@@ -10,6 +10,7 @@ gdpr_supported: true
 schain_supported: true
 usp_supported: true
 userIds: id5Id, unifiedId
+list_group: dg
 ---
 
 ### Bid params

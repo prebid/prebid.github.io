@@ -12,6 +12,7 @@ media_types: banner, video, native
 safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
+list_group: bc
 ---
 
 ### Note:

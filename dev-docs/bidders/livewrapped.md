@@ -9,6 +9,7 @@ gdpr_supported: true
 userIds: id5Id, pubCommonId
 tcf2_supported: true
 schain_supported: true
+list_group: hl
 ---
 
 ### Note:

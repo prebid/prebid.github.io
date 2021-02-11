@@ -14,6 +14,7 @@ safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
 pbs: true
+list_group: st
 ---
 
 ### Note:

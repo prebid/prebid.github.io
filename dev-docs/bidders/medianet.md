@@ -12,6 +12,7 @@ tcf2_supported: true
 pbjs: true
 gvl_id: 142
 schain_supported: true
+list_group: mo
 ---
 
 ### Bid Params

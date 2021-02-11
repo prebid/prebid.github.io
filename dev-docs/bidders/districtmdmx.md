@@ -10,6 +10,7 @@ getFloor: true
 usp_supported: true
 coppa_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+list_group: dg
 ---
 
 

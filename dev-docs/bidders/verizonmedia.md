@@ -5,6 +5,7 @@ pbs: true
 media_types: banner
 biddercode: verizonmedia
 prebid_member: true
+list_group: uz
 ---
 
 ### Bid Params

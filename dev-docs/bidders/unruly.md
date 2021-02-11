@@ -7,6 +7,7 @@ media_types: native, video
 gdpr_supported: true
 pbjs: true
 pbs: true
+list_group: uz
 ---
 
 ### Bid Params

@@ -7,6 +7,7 @@ biddercode: adxcg
 media_types: native, video
 gdpr_supported: true
 userIds: id5Id, identityLink, pubCommonId, unifiedId
+list_group: 0a
 ---
 
 ### Bid Params

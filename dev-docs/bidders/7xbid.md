@@ -5,6 +5,7 @@ description: Prebid 7xbid Bidder Adaptor
 pbjs: true
 biddercode: 7xbid
 media_types: banner, native
+list_group: 0a
 ---
 
 ### Bid Params

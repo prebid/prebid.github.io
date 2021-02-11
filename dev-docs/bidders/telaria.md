@@ -6,6 +6,7 @@ pbjs: true
 biddercode: telaria
 media_types: video
 gdpr_supported: true
+list_group: st
 ---
 
 ### Overview

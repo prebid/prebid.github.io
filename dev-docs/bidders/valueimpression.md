@@ -11,6 +11,7 @@ tcf2_supported: true
 schain_supported: true
 usp_supported: true
 pbs: true
+list_group: uz
 ---
 
 

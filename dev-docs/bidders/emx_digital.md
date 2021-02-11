@@ -11,6 +11,7 @@ gvl_id: 183
 tcf2_supported: true
 usp_supported: true
 schain_supported: true
+list_group: dg
 ---
 
 ### Registration

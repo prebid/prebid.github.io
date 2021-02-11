@@ -10,6 +10,7 @@ gdpr_supported: true
 getFloor: true
 schain_supported: true
 usp_supported: true
+list_group: 0a
 ---
 ### Prebid Server Note:
 The 33Across Adapter in Prebid Server does not support multi-impression requests, and will respond with a 400 level response if more than one impression is present in `$.imp[]` of the request.

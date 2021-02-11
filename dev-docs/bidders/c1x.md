@@ -5,6 +5,7 @@ description: Prebid C1X Bidder Adaptor
 pbjs: true
 biddercode: c1x
 gdpr_supported: true
+list_group: bc
 ---
 
 ### Note:

@@ -4,6 +4,7 @@ title: Bucksense
 description: Prebid Bucksense Bidder Adapter
 pbjs: true
 biddercode: bucksense
+list_group: bc
 ---
 
 ### Bid params

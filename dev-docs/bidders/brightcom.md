@@ -8,6 +8,7 @@ pbjs: true
 biddercode: brightcom
 gdpr_supported: true
 tcf2_supported: true
+list_group: bc
 ---
 
 ### Note:

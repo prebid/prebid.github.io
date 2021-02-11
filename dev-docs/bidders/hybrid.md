@@ -6,6 +6,7 @@ pbjs: true
 media_types: banner, video
 biddercode: hybrid
 gdpr_supported: true
+list_group: hl
 ---
 
 ### Note

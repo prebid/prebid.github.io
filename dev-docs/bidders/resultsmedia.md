@@ -7,6 +7,7 @@ biddercode: resultsmedia
 media_types: video, banner
 gdpr_supported: true
 schain_supported: true
+list_group: pr
 ---
 
 ### Bid Params

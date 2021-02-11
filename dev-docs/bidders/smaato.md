@@ -12,6 +12,7 @@ userIds: criteo, pubCommonId, unifiedId
 pbjs: true
 pbs: true
 prebid_member: true
+list_group: st
 ---
 
 ### Table of Contents

@@ -5,6 +5,7 @@ description: Prebid GetIntent Bidder Adaptor
 pbjs: true
 biddercode: getintent
 media_types: video
+list_group: dg
 ---
 
 

@@ -12,6 +12,7 @@ userIds: britepoolId, criteo, id5Id, liveIntentId, netId, parrableId, pubCommonI
 prebid_member: true
 schain_supported: true
 gvl_id: 13
+list_group: st
 ---
 
 ### Bid Params

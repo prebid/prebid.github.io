@@ -9,6 +9,7 @@ media_types: banner
 gdpr_supported: true
 usp_supported: true
 gvl_id: 408
+list_group: dg
 ---
 
 ### Bid Params

@@ -6,6 +6,7 @@ pbjs: true
 biddercode: loopme
 gdpr_supported: true
 media_types: banner, video
+list_group: hl
 ---
 
 ### Bid params

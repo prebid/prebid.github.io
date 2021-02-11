@@ -4,6 +4,7 @@ title: newborntownWeb
 description: Prebid newborntownWeb Bidder Adaptor
 pbjs: true
 biddercode: newborntownWeb
+list_group: mo
 ---
 
 ### Bid Params

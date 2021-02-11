@@ -9,6 +9,7 @@ media_types: video, native
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId
+list_group: uz
 ---
 
 ### Bid params

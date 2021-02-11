@@ -9,6 +9,7 @@ coppa_supported: false
 usp_supported: false
 schain_supported: false
 pbjs: true
+list_group: bc
 ---
 
 ### Bid Params

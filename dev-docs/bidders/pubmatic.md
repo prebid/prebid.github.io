@@ -16,6 +16,7 @@ tcf2_supported: true
 pbjs: true
 pbs: true
 gvl_id: 76
+list_group: pr
 ---
 
 ### Prebid Server Note:

@@ -4,6 +4,7 @@ title: Innity
 description: Prebid Innity Bidder Adapter
 pbjs: true
 biddercode: innity
+list_group: hl
 ---
 
 ### Note:

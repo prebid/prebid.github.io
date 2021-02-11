@@ -4,6 +4,7 @@ title: Collectcent
 description: Prebid Collectcent Bidder Adaptor
 pbjs: true
 biddercode: collectcent
+list_group: bc
 ---
 
 ### Bid Params

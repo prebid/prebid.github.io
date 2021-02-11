@@ -8,6 +8,7 @@ pbs: true
 media_types: banner
 gdpr_supported: true
 tcf2_supported: true
+list_group: mo
 ---
 
 ### Bid Params

@@ -4,6 +4,7 @@ title: Reload
 description: Reload Prebid Adaptor
 pbjs: true
 biddercode: reload
+list_group: pr
 ---
 
 

@@ -7,6 +7,7 @@ media_types: video
 gdpr_supported: true
 biddercode: oftmediahb
 aliasCode : adkernel
+list_group: mo
 ---
 
 ### Bid Params

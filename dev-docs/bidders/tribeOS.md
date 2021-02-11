@@ -4,6 +4,7 @@ title: tribeOS
 description: Prebid tribeOS Bidder Adapter
 pbjs: true
 biddercode: tribeos
+list_group: st
 ---
 
 ### Note

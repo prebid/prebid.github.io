@@ -5,6 +5,7 @@ description: Prebid Adsparc Bidder Adaptor
 pbjs: true
 biddercode: adsparc
 aliasCode: aardvark
+list_group: 0a
 ---
 
 ### bid params

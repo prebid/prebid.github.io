@@ -6,6 +6,7 @@ pbjs: true
 biddercode: rtbsolutions
 media_types: banner
 
+list_group: pr
 ---
 
 ### Bid Params

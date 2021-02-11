@@ -7,6 +7,7 @@ media_types: no-display, video
 tcf2_supported: true
 gvlid: 282
 pbjs: true
+list_group: uz
 ---
 
 ### Note:

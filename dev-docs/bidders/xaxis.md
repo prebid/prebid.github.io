@@ -6,6 +6,7 @@ biddercode: xhb
 pbjs: true
 media_types: video, native
 gdpr_supported: true
+list_group: uz
 ---
 
 ### Bid Params

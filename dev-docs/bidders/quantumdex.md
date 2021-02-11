@@ -10,6 +10,7 @@ gdpr_supported: true
 tcf2_supported: true
 schain_supported: true
 usp_supported: true
+list_group: pr
 ---
 
 

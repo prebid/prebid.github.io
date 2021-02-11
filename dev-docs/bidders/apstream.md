@@ -8,6 +8,7 @@ media_types: banner
 gdpr_supported: true
 tcf2_supported: true
 gvl_id: 394
+list_group: 0a
 ---
 
 ### Bid Params

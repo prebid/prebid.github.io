@@ -4,6 +4,7 @@ title: COSMOS
 description: Prebid COSMOS Bidder Adapter
 pbjs: true
 biddercode: cosmos
+list_group: bc
 ---
 
 ### Integration Note:

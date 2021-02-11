@@ -12,6 +12,7 @@ userIds: unifiedId
 gdpr_supported: true
 usp_supported: true
 tcf2_supported: true
+list_group: dg
 ---
 
 ### Note:

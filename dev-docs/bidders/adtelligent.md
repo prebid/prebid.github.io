@@ -15,6 +15,7 @@ prebid_member: true
 pbjs: true
 pbs: true
 gvl_id: 410
+list_group: 0a
 ---
 
 ### Bid params

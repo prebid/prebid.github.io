@@ -5,6 +5,7 @@ description: Prebid Gourmet Ads Bidder Adaptor
 pbjs: true
 biddercode: gourmetads
 aliasCode : appnexus
+list_group: dg
 ---
 
 ### Bid Params

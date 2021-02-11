@@ -5,6 +5,7 @@ description: Bidfluence Adaptor for Prebidjs
 pbjs: true
 biddercode: bidfluence
 gdpr_supported: true
+list_group: bc
 ---
 
 ### Bid Params

@@ -7,6 +7,7 @@ pbs: true
 biddercode: beintoo
 aliasCode : appnexus
 gvl_id: 618
+list_group: bc
 ---
 
 ### Bid Params

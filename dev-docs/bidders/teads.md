@@ -11,6 +11,7 @@ schain_supported: true
 media_types: banner, video
 gvl_id: 132
 bidder_supports_deals: true
+list_group: st
 ---
 
 ### Note:

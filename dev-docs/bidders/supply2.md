@@ -5,6 +5,7 @@ description: Prebid Media Donuts Bidder Adaptor
 pbjs: true
 biddercode: supply2
 gdpr_supported: true
+list_group: st
 ---
 
 

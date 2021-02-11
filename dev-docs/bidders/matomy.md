@@ -5,6 +5,7 @@ description: Prebid Matomy Bidder Adaptor
 pbjs: true
 biddercode: matomy
 aliasCode : appnexus
+list_group: mo
 ---
 
 ### Bid Params

@@ -5,6 +5,7 @@ description: Prebid Madvertise Bidder Adaptor
 pbjs: true
 biddercode: madvertise
 gdpr_supported: true
+list_group: mo
 ---
 
 ### Bid Params

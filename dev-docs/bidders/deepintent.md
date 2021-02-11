@@ -8,6 +8,7 @@ biddercode: deepintent
 media_types: banner
 gdpr_supported: true
 usp_supported: true
+list_group: dg
 ---
 
 ### Bid Params

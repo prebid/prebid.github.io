@@ -5,6 +5,7 @@ description: Readpeak Bidder Adaptor
 pbjs: true
 biddercode: readpeak
 media_types: native
+list_group: pr
 ---
 
 ### Bid Params

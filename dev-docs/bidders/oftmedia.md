@@ -11,6 +11,7 @@ coppa_supported: true
 usp_supported: true
 pbs: true
 schain_supported: true
+list_group: mo
 ---
 
 ### Bid Params

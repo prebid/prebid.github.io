@@ -12,6 +12,7 @@ media_types: banner, native, video
 schain_supported: true
 tcf2_supported: true
 gvl_id: 253
+list_group: hl
 ---
 
 ### Bid params

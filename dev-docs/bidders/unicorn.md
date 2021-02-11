@@ -5,6 +5,7 @@ description: Prebid UNICORN Bidder Adaptor
 pbjs: true
 media_types: banner
 biddercode: unicorn
+list_group: uz
 ---
 
 ### bid params

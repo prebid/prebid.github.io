@@ -10,6 +10,7 @@ schain_supported: true
 usp_supported: true
 userIds: id5Id, unifiedId
 aliasCode: gamoshi
+list_group: mo
 ---
 
 ### Bid params

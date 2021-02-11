@@ -4,6 +4,7 @@ title: Peak226
 description: Prebid Peak Bidder Adaptor
 pbjs: true
 biddercode: peak226
+list_group: pr
 ---
 
 ### Bid Params

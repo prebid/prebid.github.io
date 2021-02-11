@@ -5,7 +5,7 @@ description: Prebid DecenterAds Bidder Adaptor
 pbjs: true
 biddercode: decenterads
 media_types: banner, native, video
-
+list_group: dg
 ---
 
 ### Bid Params Prebid 0.34

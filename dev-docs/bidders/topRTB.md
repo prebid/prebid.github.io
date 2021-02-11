@@ -4,6 +4,7 @@ title: TOPRTB
 description: Prebid topRTB Bidder Adapter
 pbjs: true
 biddercode: topRTB
+list_group: st
 ---
 
 

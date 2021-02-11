@@ -15,6 +15,7 @@ media_types: banner, video
 pbjs: true
 pbs: true
 gvl_id: 737
+list_group: 0a
 ---
 
 ### Bid Params

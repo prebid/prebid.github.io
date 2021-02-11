@@ -5,6 +5,7 @@ description: Prebid Rakuten Bidder Adaptor
 pbjs: true
 biddercode: rakuten
 prebid_member: true
+list_group: pr
 ---
 
 

@@ -5,6 +5,7 @@ pbs: true
 media_types: banner
 biddercode: tappx
 gdpr_supported: true
+list_group: st
 ---
 
 ### Registration

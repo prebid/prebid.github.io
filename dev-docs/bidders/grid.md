@@ -12,6 +12,7 @@ schain_supported: true
 getFloor: true
 userIds: id5Id, unifiedId, liveIntentId, criteo, identityLink, digitrust
 tcf2_supported: true
+list_group: dg
 ---
 
 

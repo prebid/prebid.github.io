@@ -5,6 +5,7 @@ description: Somo Audience Bidder Adapter
 pbjs: true
 biddercode: somo
 prevBiddercode: somoAudience
+list_group: st
 ---
 
 

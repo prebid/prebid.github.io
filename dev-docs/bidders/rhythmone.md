@@ -8,6 +8,7 @@ biddercode: rhythmone
 media_types: video
 gdpr_supported: true
 schain_supported: true
+list_group: pr
 ---
 
 

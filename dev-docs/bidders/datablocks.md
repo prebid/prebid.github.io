@@ -7,6 +7,7 @@ biddercode: datablocks
 prebid_member: true
 gdpr_supported: true
 tcf2_supported: true
+list_group: dg
 ---
 
 ### Bid Params

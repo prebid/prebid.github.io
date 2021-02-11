@@ -4,6 +4,7 @@ title: DistrictM DMX
 pbs: true
 media_types: banner, video
 biddercode: dmx
+list_group: dg
 ---
 
 ### Bid Params

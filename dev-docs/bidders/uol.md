@@ -6,6 +6,7 @@ pbjs: true
 biddercode: uol
 gdpr_supported: false
 media_types: banner
+list_group: uz
 ---
 
 

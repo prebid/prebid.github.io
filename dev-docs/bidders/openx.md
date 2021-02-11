@@ -15,6 +15,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 prebid_member: true
 tcf2_supported: true
 gvl_id: 69
+list_group: mo
 ---
 
 ### Registration

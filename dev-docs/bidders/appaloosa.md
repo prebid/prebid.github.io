@@ -15,6 +15,7 @@ safeframes_ok: true
 prebid_member: true
 pbjs: true
 pbs: false
+list_group: 0a
 ---
 
 ### Bid params

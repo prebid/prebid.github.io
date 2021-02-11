@@ -9,6 +9,7 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 prebid_member: true
+list_group: st
 ---
 
 **Table of Contents**

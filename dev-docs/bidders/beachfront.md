@@ -10,6 +10,7 @@ userIds: unifiedId, identityLink
 prebid_member: true
 pbjs: true
 pbs: true
+list_group: bc
 ---
 
 ### Registration

@@ -13,6 +13,7 @@ usp_supported: true
 safeframes_ok: false
 pbjs: true
 gvl_id: 165
+list_group: st
 ---
 
 ### Bid Params

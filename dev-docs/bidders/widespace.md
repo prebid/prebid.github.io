@@ -5,6 +5,7 @@ description: Prebid Widespace Bidder Adaptor
 pbjs: true
 biddercode: widespace
 gdpr_supported: true
+list_group: uz
 ---
 
 ### Bid params

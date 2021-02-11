@@ -6,6 +6,7 @@ pbjs: true
 biddercode: adfinity
 media_types: banner, video, native
 gdpr_supported: true
+list_group: 0a
 ---
 
 ### Bid Params

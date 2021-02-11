@@ -5,6 +5,7 @@ description: Prebid Quantum Bidder Adaptor
 pbjs: true
 biddercode: quantum
 media_types: native
+list_group: pr
 ---
 
 

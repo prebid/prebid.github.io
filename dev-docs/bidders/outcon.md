@@ -4,6 +4,7 @@ title: Outcon
 description: Prebid Outcon Bidder Adaptor
 pbjs: true
 biddercode: outcon
+list_group: mo
 ---
 
 ### Bid Params

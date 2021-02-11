@@ -5,6 +5,7 @@ description: Prebid Adrelevantis (adrelevantis.xyz) Bidder Adaptor
 biddercode: adrelevantis
 media_types: banner, video, native
 pbjs: true
+list_group: 0a
 ---
 
 ### Note:

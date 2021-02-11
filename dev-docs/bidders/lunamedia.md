@@ -5,6 +5,7 @@ description: Prebid Luna Media Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: lunamedia
+list_group: hl
 ---
 
 ### Note:

@@ -6,6 +6,7 @@ pbjs: true
 biddercode: buzzoola
 media_types: banner, video
 gdpr_supported: false
+list_group: bc
 ---
 
 ### Note:

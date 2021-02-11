@@ -6,6 +6,7 @@ media_types: banner
 biddercode: kidoz
 gdpr_supported: true
 coppa_supported: true
+list_group: hl
 ---
 
 ### Registration

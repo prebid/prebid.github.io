@@ -5,6 +5,7 @@ description: Prebid Optimatic Bidder Adaptor
 pbjs: true
 biddercode: optimatic
 media_types: video
+list_group: mo
 ---
 
 ### Note:

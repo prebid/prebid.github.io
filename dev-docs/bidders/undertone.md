@@ -8,6 +8,7 @@ gdpr_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
+list_group: uz
 ---
 
 

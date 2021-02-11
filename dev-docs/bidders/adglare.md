@@ -5,6 +5,7 @@ description: Prebid Adapter for AdGlare Ad Server
 pbjs: true
 biddercode: adglare
 media_types: banner
+list_group: 0a
 ---
 
 ### Bid Params

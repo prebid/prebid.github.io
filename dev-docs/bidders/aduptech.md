@@ -6,6 +6,7 @@ pbjs: true
 biddercode: aduptech
 media_types: banner
 gdpr_supported: true
+list_group: 0a
 ---
 
 ### Note:

@@ -5,6 +5,7 @@ description: Prebid Trafficroots Bidder Adapter
 pbjs: true
 biddercode: trafficroots
 gdpr_supported: true
+list_group: st
 ---
 
 ### Bid Params

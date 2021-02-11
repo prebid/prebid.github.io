@@ -12,6 +12,7 @@ userIds         : pubCommonId, unifiedId
 usp_supported   : true
 pbjs            : true
 pbs             : true
+list_group: st
 ---
 
 ### Note:

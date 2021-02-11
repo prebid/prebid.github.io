@@ -4,6 +4,7 @@ title: Nasmedia Admixer
 description: Prebid Nasmedia Admixer Bidder Adapter
 pbjs: true
 biddercode: nasmediaAdmixer
+list_group: mo
 ---
 
 

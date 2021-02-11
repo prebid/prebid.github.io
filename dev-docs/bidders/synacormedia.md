@@ -9,6 +9,7 @@ media_types: banner, video
 gdpr_supported: false
 schain_supported: true
 usp_supported: true
+list_group: st
 ---
 
 ### Note:

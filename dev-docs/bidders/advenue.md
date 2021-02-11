@@ -4,6 +4,7 @@ title: Advenue
 description: Prebid Advenue Bidder Adaptor
 pbjs: true
 biddercode: advenue
+list_group: 0a
 ---
 
 ### Bid Params

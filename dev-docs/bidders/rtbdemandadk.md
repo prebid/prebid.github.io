@@ -4,6 +4,7 @@ title: Rtbdemandadk
 description: Prebid RtbdemandAdk Bidder Adaptor
 pbjs: true
 biddercode: rtbdemandadk
+list_group: pr
 ---
 
 ### Note:

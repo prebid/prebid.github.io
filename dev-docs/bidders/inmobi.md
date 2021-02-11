@@ -10,6 +10,7 @@ gvl_id: 333
 coppa_supported: true
 media_types: banner, video
 pbs: true
+list_group: hl
 ---
 
 ### Note:

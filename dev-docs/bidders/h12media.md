@@ -6,6 +6,7 @@ pbjs: true
 biddercode: h12media
 media_types: banner
 gdpr_supported: true
+list_group: hl
 ---
 
 

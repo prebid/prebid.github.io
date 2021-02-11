@@ -9,6 +9,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 pbjs: true
 pbs: true
 tcf2_supported: true
+list_group: st
 ---
 
 ### Note:

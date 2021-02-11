@@ -10,6 +10,7 @@ gdpr_supported: true
 tcf2_supported: true
 userIds: id5Id
 gvl_id: 553
+list_group: 0a
 ---
 
 ### Registration

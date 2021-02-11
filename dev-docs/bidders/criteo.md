@@ -11,6 +11,7 @@ prebid_member: true
 tcf2_supported: true
 getFloor: false*
 gvl_id: 91
+list_group: bc
 ---
 ### Note
 {: .alert.alert-warning :}

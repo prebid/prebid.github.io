@@ -5,6 +5,7 @@ description: Prebid Padsquad Bidder Adapter
 pbjs: true
 biddercode: padsquad
 gdpr_supported: true
+list_group: pr
 ---
 
 ### Note:
