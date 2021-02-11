@@ -45,13 +45,87 @@ input.addEventListener('awesomplete-select', function(event) {
 });
 </script>
 
-## Bidder List
+<div class="c-bidder-list-group" markdown="1">
 
-<ul>
-{% for page in bidder_pages %}
+### Full List
+
+{% assign a_bidder_pages = bidder_pages | where: "list_group", "0a" %}
+#### #-A
+<ul class="c-bidder-list">
+{% for page in a_bidder_pages %}
 <li>
 <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
 </li>
 {% endfor %}
 </ul>
 
+{% assign bc_bidder_pages = bidder_pages | where: "list_group", "bc" %}
+#### B-C
+<ul class="c-bidder-list">
+{% for page in bc_bidder_pages %}
+<li>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+
+{% assign dg_bidder_pages = bidder_pages | where: "list_group", "dg" %}
+#### D-G
+<ul class="c-bidder-list">
+{% for page in dg_bidder_pages %}
+<li>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+
+{% assign hl_bidder_pages = bidder_pages | where: "list_group", "hl" %}
+#### H-L
+<ul class="c-bidder-list">
+{% for page in hl_bidder_pages %}
+<li>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+
+{% assign mo_bidder_pages = bidder_pages | where: "list_group", "mo" %}
+#### M-O
+<ul class="c-bidder-list">
+{% for page in mo_bidder_pages %}
+<li>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+
+{% assign pr_bidder_pages = bidder_pages | where: "list_group", "pr" %}
+#### P-R
+<ul class="c-bidder-list">
+{% for page in pr_bidder_pages %}
+<li>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+
+{% assign st_bidder_pages = bidder_pages | where: "list_group", "st" %}
+#### S-T
+<ul class="c-bidder-list">
+{% for page in st_bidder_pages %}
+<li>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+
+{% assign uz_bidder_pages = bidder_pages | where: "list_group", "uz" %}
+#### U-Z
+<ul class="c-bidder-list">
+{% for page in uz_bidder_pages %}
+<li>
+<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+</div>
