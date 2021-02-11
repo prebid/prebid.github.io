@@ -68,8 +68,8 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
    const adUnit = {
      code: '/19968336/prebid_native_example_1',
      ...,
-     fpd: {
-       context: {
+     ortb2Imp: {
+       ext: {
          data: {
            jwTargeting: {
              // Note: the following Ids are placeholders and should be replaced with your Ids.
@@ -86,16 +86,16 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
        pbjs.requestBids({...});
    });
 ```
-**Note**: You may also include `jwTargeting` information in the prebid config's `fpd.context.data`. Information provided in the adUnit will always supersede the information in the config; use the config to set fallback information or information that applies to all adUnits.
+**Note**: You may also include `jwTargeting` information in the prebid config's `ortb2.site.ext.data`. Information provided in the adUnit will always supersede the information in the config; use the config to set fallback information or information that applies to all adUnits.
 
 **AdUnit Syntax details:**
 
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| fpd.context.data.jwTargeting | Object | | |
-| fpd.context.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
-| fpd.context.data.jwTargeting.playerID | String | Id of the JW Player instance which will render the content associated to the Ad Unit | Optional but recommended |
+| ortb2Imp.ext.data.jwTargeting | Object | | |
+| ortb2Imp.ext.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
+| ortb2Imp.ext.data.jwTargeting.playerID | String | Id of the JW Player instance which will render the content associated to the Ad Unit | Optional but recommended |
 
 ## Implementation for Bid Adapters:
 
