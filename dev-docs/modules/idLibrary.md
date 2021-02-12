@@ -26,7 +26,7 @@ The module attempts to extract a persistant identifier in the following ways:
 To get started, add the module to your Prebid.js wrapper. From the command line:
 
 {: .alert.alert-info :}
-gulp build --modules=idLibrary
+gulp build --modules=idImportLibrary
 
 
 ## Application Flow
