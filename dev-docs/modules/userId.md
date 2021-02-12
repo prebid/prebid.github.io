@@ -866,7 +866,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |
-| params.partner | Required | String | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
+| params.partners | Required | Array[String] | A list of one or more Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `[ '30182847-e426-4ff9-b2b5-9ca1324ea09b' ]` |
 | params.timezoneFilter | Optional | Object | Configures a timezone or timezone offset filter | |
 | params.timezoneFilter.allowedZones | Optional | Array[String] | description | `[ 'America/Anchorage' ]` |
 | params.timezoneFilter.allowedOffsets | Optional | Array[Number] | description | `[ -4 ]` |
@@ -899,7 +899,10 @@ pbjs.setConfig({
         userIds: [{
             name: `'parrableId'`,
             params: {
-                partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+                partners: `[
+                '30182847-e426-4ff9-b2b5-9ca1324ea09b',
+                'b07cf20d-8b55-4cd7-9e84-d804ed66b644'
+                ]` // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
             }
         }],
         syncDelay: 1000
