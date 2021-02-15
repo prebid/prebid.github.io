@@ -127,7 +127,7 @@ The Rubicon bid adapter would then receive
 
 ### AdmixerID
 
-Admixer ID, provided by [Admixer](https://admixer.com/), is a universal ID solution that doesn’t rely on 3rd party cookies and gives publishers access to a wide range of Admixer’s demand sources, amplifying audience segmentation, targeting and measurement.
+Admixer ID, provided by [Admixer] (https://admixer.com/), is a universal ID solution that doesn't rely on 3rd party cookies and helps publishers and advertisers to recognize users across various browsers and environments.  Our sub adapter takes deterministic signals like email and phone as input and returns an anonymous id that unlocks access to a wide range of Admixer's demand sources, amplifying audience segmentation, targeting and measurement.
 
 The Admixer privacy policy is at https://admixer.com/privacy/ 
 
