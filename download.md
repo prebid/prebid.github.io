@@ -395,6 +395,14 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="relevant" class="analytics-check-box" /> Relevant Yield
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
     </label>
   </div>
@@ -566,6 +574,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> Shared ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>
