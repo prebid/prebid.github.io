@@ -24,4 +24,4 @@ The Epom Bidding adapter requires setup before beginning. Please contact us at s
 
 ### Bid Params
 
-Currently, Epom Bidding server do not support any bid parameters. We get all we need from pare URL
+Currently, Epom Bidding server do not support any bid parameters. We get all we need from the referring URL
