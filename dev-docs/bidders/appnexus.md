@@ -163,7 +163,7 @@ keywords: {
 
 #### User Sync in AMP
 
-If you are syncing user id's with Prebid Server and are using AppNexus' managed service, use the following URL for the source:<br> <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html</code> or if the AMP page has a CMP, <code>https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie-with-consent.html</code>
+If you are syncing user id's with Prebid Server and are using AppNexus' managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
 
 <a name="appnexus-debug-auction" />
 
