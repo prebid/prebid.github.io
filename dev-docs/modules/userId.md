@@ -35,7 +35,7 @@ Also note that not all bidder adapters support all forms of user ID. See the tab
 
 As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
 
-## User ID, GDPR, and Opt-Out
+## User ID, GDPR, Permissions, and Opt-Out
 
 When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
 
@@ -60,6 +60,7 @@ of sub-objects. The table below has the options that are common across ID system
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
+| bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
@@ -67,7 +68,62 @@ of sub-objects. The table below has the options that are common across ID system
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
+
 ## User ID Sub-Modules
+
+## Permissions
+Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
+
+Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
+
+In this example the SharedId sub adapter is only allowed to be sent to the Rubicon adapter.
+```
+userIds: [
+  {
+    name: "sharedId",
+    bidders: [
+      'rubicon'
+    ],
+    params: {
+      syncTime: 60,      // in seconds
+      defaultis24hours
+    },
+    storage: {
+      type: "cookie",
+      name: "sharedid",
+      expires: 28        // in days
+    }
+  }
+]
+```
+The Rubicon bid adapter would then receive 
+```
+{
+  "bidder": "rubicon",
+  ...
+  "userId": {
+    "sharedid": {
+      "id": "01*******",
+      "third": "01E*******"
+    }
+  },
+  "userIdAsEids": [
+    {
+      "source": "sharedid.org",
+      "uids": [
+        {
+          "id": "01**********",
+          "atype": 1,
+          "ext": {
+            "third": "01***********"
+          }
+        }
+      ]
+    }
+  ],
+  ...
+}
+```
 
 ### BritePool
 
@@ -329,7 +385,7 @@ The following configuration parameters are available:
 
 Publishers may want to test the value of the ID5 ID with their downstream partners. While there are various ways to do this, A/B testing is a standard approach. Instead of publishers manually enabling or disabling the ID5 User ID Module based on their control group settings (which leads to fewer calls to ID5, reducing our ability to recognize the user), we have baked this in to our module directly.
 
-To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of requests you would like to set for the control group. The control group is the set of requests where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the request was in the control group or not. It's important to note that the control group is request based, and not user based. In other words, from one page view to another, a user may be in or out of the control group.
+To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of users you would like to set for the control group. The control group is the set of user where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the user was in the control group or not. It's important to note that the control group is user based, and not request based. In other words, from one page view to another, a user will always be in or out of the control group.
 
 #### ID5 Universal ID Examples
 
@@ -435,16 +491,20 @@ pbjs.setConfig({
 
 ### IDx
 
-IDX is an alternative cookieless ID that uses anonymized and verified identifiers, provided by the users with explicit consent, which enables buy, sell, and measure targeted advertising at scale. IDX is created by Retargetly, a data company that owns the biggest consumer graph in Latin America.
+IDx, a universal ID solution provided by [Retargetly](https://retargetly.com), is the evolution of digital identifiers for the Latin American region. Through a proprietary identity graph, it allows publishers, advertisers, and ad tech platforms to recognize users across domains and devices even where third party cookies aren't available.
 
-This sub-module enables the user’s IDx to be available in the bid request.
-
-More information of IDx can be found in [https://idx.lat/](https://idx.lat/)
+The IDx platform is designed with privacy at its core and allows for nearly every conceivable digital use case including but not limited to audience targeting, retargeting, frequency management, personalization, and total reach reporting.
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=idxIdSystem
+
+#### IDx Registration
+
+If you are a publisher or an advertiser, then IDx is free to use but requires a simple registration process. To do this, please send an email to [idx-partners@retargetly.com](mailto:idx-partners@retargetly.com) to request your IDx Partner ID.
+
+We may ask for some basic information from you before approving your request. For more information on IDx, please visit [retargetly.com/idx](http://retargetly.com/idx).
 
 #### IDx Configuration
 
@@ -806,7 +866,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |
-| params.partner | Required | String | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
+| params.partners | Required | Array[String] | A list of one or more Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `[ '30182847-e426-4ff9-b2b5-9ca1324ea09b' ]` |
 | params.timezoneFilter | Optional | Object | Configures a timezone or timezone offset filter | |
 | params.timezoneFilter.allowedZones | Optional | Array[String] | description | `[ 'America/Anchorage' ]` |
 | params.timezoneFilter.allowedOffsets | Optional | Array[Number] | description | `[ -4 ]` |
@@ -841,10 +901,13 @@ pbjs.setConfig({
         userIds: [{
             name: `'parrableId'`,
             params: {
-                partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
-                timezoneFilter: {
+              partners: [
+                '30182847-e426-4ff9-b2b5-9ca1324ea09b',
+                'b07cf20d-8b55-4cd7-9e84-d804ed66b644'
+              ], // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+              timezoneFilter: {
                   allowedZones: ['America/New_York', 'Europe/Madrid']
-                }
+              }
             }
         }],
         syncDelay: 1000
@@ -1312,7 +1375,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
 | Halo ID | Audigent | bidRequest.userId.haloId | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
 | ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
-| ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2 } }` |
+| ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
@@ -1363,11 +1426,12 @@ Bidders that want to support the User ID module in Prebid Server, need to update
             {
                 "source": "id5-sync.com",
                 "uids": [{
-                    "id": "ID5-12345"
-                }],
-                "ext": {
-                    "linkType": 2
-                }
+                    "id": "ID5-12345",
+                    "ext": {
+                      "linkType": 2,
+                      "abTestingControlGroup": false
+                    }
+                }]
             },
             {
                 source: "parrable.com",
@@ -1486,10 +1550,11 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
       source: 'id5-sync.com',
       uids: [{
           id: 'ID5-12345',
-          atype: 1
-      },
-      ext: {
-          linkType: 2
+          atype: 1,
+          ext: {
+              linkType: 2,
+              abTestingControlGroup: false
+          }
       }]
   }
 ]
