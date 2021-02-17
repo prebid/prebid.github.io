@@ -5,6 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
+userIds: identityLink, netId, fabrickId, zeotapIdPlus
 pbs_app_supported: true
 schain_supported: true
 gdpr_supported: true
