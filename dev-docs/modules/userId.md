@@ -891,6 +891,8 @@ The Parrable ID system enables a publisher to configure lists of **allowed** tim
 - An impression from a browser that matches any allowed timezone or timezone offset, but does not match a blocked timezone or timezone offset will engage in the Parrable ID syncronization process.
 - If a browser has a stored Parrable ID then it will not be filtered even if the browser is in a timezone or timezone offset that is blocked.
 
+All configured timezones should follow the `TZ database name` column from the [IANA tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
 #### Parrable ID Examples
 
 {% highlight javascript %}
@@ -899,10 +901,13 @@ pbjs.setConfig({
         userIds: [{
             name: `'parrableId'`,
             params: {
-                partners: `[
+              partners: [
                 '30182847-e426-4ff9-b2b5-9ca1324ea09b',
                 'b07cf20d-8b55-4cd7-9e84-d804ed66b644'
-                ]` // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+              ], // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+              timezoneFilter: {
+                  allowedZones: ['America/New_York', 'Europe/Madrid']
+              }
             }
         }],
         syncDelay: 1000
