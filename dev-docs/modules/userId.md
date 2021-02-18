@@ -1058,7 +1058,7 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 - dmp - this uid comes from the in-page dmp named in eids.source
 - ppuid - this uid comes from the publisher named in eids.source
-- other - TBD
+- other - for setting other id origin signals please use the [adCOM!](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list_agenttypes) `atype` spec 
 
 5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
 
