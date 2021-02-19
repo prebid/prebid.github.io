@@ -28,6 +28,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
 | oolo | Contact vendor | [Website](https://www.oolo.io) |
 | OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) |
+| [Optimon.io](https://optimon.io/?utm_source=prebid-org&utm_medium=analytics-adapters-list) - Robust Alerting & Reporting Platform for Prebid and GAM | [Free trial, contact us to get started](mailto:hello@optimon.io) | [Website](https://optimon.io/?utm_source=prebid-org&utm_medium=analytics-adapters-list) |
 | Media.net | <a href="mailto: prebid-support@media.net">Contact vendor</a>| [Website](https://media.net) |
 | PrebidAnalytics by Roxot | [Paid]( http://prebidanalytics.roxot.com/) | [Website](http://prebidanalytics.roxot.com/) |
 | [Prebid Manager](https://prebidmanager.com/) | Free trial and free up to a certain volume. See [pricing](http://prebidmanager.com/#pricing) | [Website](http://prebidmanager.com/) |
