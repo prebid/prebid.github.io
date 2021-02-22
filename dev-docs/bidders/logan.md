@@ -8,8 +8,6 @@ schain_supported: true
 media_types: banner, video, native
 gdpr: true
 pbjs: true
-pbs: true
-pbs_app_supported: true
 ---
 
 ### Bid Params
