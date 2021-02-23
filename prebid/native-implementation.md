@@ -101,6 +101,30 @@ Specific bidders may not support all of the fields listed below or may return di
 
 {% include dev-docs/native-image-asset-sizes.md %}
 
+### 3.2 Native custom assets
+
+Prebid.js allows custom assets in order to fit some bidder's requirements through the special `mediaTypes.native.ext` key. The assets under this key will be whitelisted and could be retrieved during the rendering.
+
+The custom assets are declared in the same way as the Prebid standard ones.
+
+Note: on the rendering side, `native-render.js::renderNativeAd()` must be called with `requestAllAssets: true`.
+
+BidderAdapter should declare which custom assets they support in their own documentation. It is recommended to prefix the asset name with the bidderCode to avoid collision issues.
+
+```javascript
+mediaTypes {
+  native: {
+    body: {
+      required: true
+    },
+    ext: {
+      bidderCode_customAssetName: {
+        required: false
+      }
+  }
+}
+```
+
 ## 4. Implementing the Native Template
 
 - If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#4-implementing-adserver-defined-creative).
