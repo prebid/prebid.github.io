@@ -142,11 +142,11 @@ An object representing the `PrebidNativeAd` to be displayed.
   **Parameters**
 
   {: .table .table-bordered .table-striped }  
-  |  Name           | Scope    | Type     | Description                                      |
-  |-----------------+----------+----------+--------------------------------------------------|
-  | view            | Required | View     | The view to display the native asset image in.   |
-  | viewList        | Required | List     | A list of views                                  |
-  | final           | Required | Listener | A `PrebidNativeAdListener` object.               |
+  |  Name           | Scope    | Type     | Description                                             |
+  |-----------------+----------+----------+---------------------------------------------------------|
+  | view            | Required | View     | The view to display the native asset image in.          |
+  | viewList        | Required | List     | A list of component views of native assets (title etc.) |
+  | final           | Required | Listener | A `PrebidNativeAdListener` object.                      |
 
   **unregister**
 
