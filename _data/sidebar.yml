@@ -460,7 +460,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /dev-docs/show-native-ads.html
+  link: /prebid/native-implementation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -755,6 +755,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Video Intream Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-video-instream-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: Video Interstitial Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-videointerstitialadunit-android.html
   isHeader: 0
@@ -951,7 +959,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: 'Guide to Ad Manager'
+  title: 'Guide to Prebid in Ad Manager'
   link: /adops/step-by-step.html
   isHeader: 0
   isSectionHeader: 0
@@ -959,7 +967,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: 'Setting up for AMP'
+  title: 'Setting up for AMP in GAM'
   link: /adops/setting-up-prebid-for-amp-in-dfp.html
   isHeader: 0
   isSectionHeader: 0
@@ -967,7 +975,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: 'Setting up Multi-Format'
+  title: 'Setting up Multi-Format in GAM'
   link: /adops/setting-up-prebid-multi-format-in-dfp.html
   isHeader: 0
   isSectionHeader: 0
@@ -975,15 +983,15 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: 'Setting up Native (Alpha)'
-  link: /adops/setting-up-prebid-native-in-dfp.html
+  title: 'Setting up Native in GAM'
+  link: /adops/gam-native.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
 - sbSecId: 3
-  title: 'Setting up Video'
+  title: 'Setting up Video in GAM'
   link: /adops/setting-up-prebid-video-in-dfp.html
   isHeader: 0
   isSectionHeader: 0
@@ -991,7 +999,7 @@
   subgroup: 0
 
 - sbSecId: 3
-  title: 'Setting up Long-Form Video'
+  title: 'Setting up Long-Form Video in GAM'
   link: /adops/setting-up-prebid-ott-video-in-gam.html
   isHeader: 0
   isSectionHeader: 0
@@ -1584,14 +1592,6 @@
   subgroup: 0
 
 - sbSecId: 5
-  title: 'Managed Solutions'
-  link: /prebid-server/hosting/hosted-servers.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 5
   title: 'Hosting Your Own PBS'
   link: /prebid-server/hosting/pbs-hosting.html
   isHeader: 0
@@ -1989,6 +1989,35 @@
 - sbSecId: 7
   title: Blog
   link: https://prebid.org/blog/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+ #-------------- Tools --------------|
+
+- sbSecId: 8
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Tools
+  sectionId: tools
+  subgroup: 1000
+  sbCollapseId: tools
+
+- sbSecId: 8
+  title: 
+  link:
+  isHeader: 1
+  headerId: toolsinvis
+  isSectionHeader:
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 8
+  title: Line Item Manager
+  link: /tools/line-item-manager.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

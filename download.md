@@ -392,13 +392,21 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
-        </label>
-      </div>
-    </div>
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="relevant" class="analytics-check-box" /> Relevant Yield
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
+    </label>
+  </div>
+</div>
 
     <div class="col-md-4">
       <div class="checkbox">
@@ -498,13 +506,79 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
   </div>
 </div>
 <br/>
-<h4>Modules</h4>
+<h4>General Modules</h4>
 <div class="row"> 
- {% for page in module_pages %}
-  {% if page.enable_download == false %}{% continue %}{% endif %}
- <div class="col-md-4">
- <div class="checkbox">
+ {% for page in module_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
   <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
+</div></div>{% endfor %}
+</div>
+
+
+<h4>User ID Modules</h4>
+<div class="row">  
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> BritePool ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> Criteo ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> Halo ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> ID5 ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> IdentityLink ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> LiveIntent ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="lotamePanoramaIdSystem" class="bidder-check-box"> Lotame ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> Merkle ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> netID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
+</div></div>  
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> Quantcast ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> Shared ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> Verizon Media ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> Zeotap ID+</label>
+</div></div>
 </div>
 
 <br>
