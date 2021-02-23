@@ -1801,6 +1801,10 @@ a price granularity override. If it doesn't find 'video-outstream' defined, it w
 
 #### Server to Server
 
+{: .alert.alert-info :}
+Use of this config option requires the `prebidServerBidAdapter` module.
+
+
 Prebid.js can be configured to connect to one or more [Prebid Servers](/prebid-server/overview/prebid-server-overview.html) for one or more bidders.
 
 Example config:
