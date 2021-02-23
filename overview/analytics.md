@@ -37,6 +37,7 @@ There are several analytics adapter plugins available to track header bidding pe
 | PubXAi | Contact vendor | [Website](http://pubx.ai/) |
 | PulsePoint | Contact vendor | [Website](https://www.pulsepoint.com/) |
 | RealVu | Contact vendor | [Website](https://www.realvu.com/rvaa/) |
+| [Relevant Yield](https://www.relevant-digital.com/relevantyield) | <a href="mailto:sales@relevant-digital.com">Contact vendor</a> | [Website](https://www.relevant-digital.com/relevantyield) |
 | Rivr Analytics | Contact vendor | [Website](https://www.rivr.ai/)|
 | Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) |
 | Scaleable.ai Analytics | Free & Paid | [Website](https://scaleable.ai) |

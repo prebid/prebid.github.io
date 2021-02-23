@@ -8,7 +8,7 @@ media_types     : native
 schain_supported: true
 tcf2_supported  : true
 title           : Sharethrough
-userIds         : pubCommonId, unifiedId, identityLink
+userIds         : pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
 usp_supported   : true
 pbjs            : true
 pbs             : true
