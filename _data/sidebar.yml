@@ -634,6 +634,14 @@
   subgroup: 1
 
 - sbSecId: 2
+  title: In App Native Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-native-inapp-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
   title: Video Outstream Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-videooutstreamadunit-ios.html
   isHeader: 0
@@ -741,6 +749,14 @@
 - sbSecId: 2
   title: Native Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: In App Native Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-native-inapp-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2015,7 +2031,7 @@
   sbCollapseId: tools
 
 - sbSecId: 8
-  title: 
+  title:
   link:
   isHeader: 1
   headerId: toolsinvis
