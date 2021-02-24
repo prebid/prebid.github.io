@@ -2404,13 +2404,7 @@ pbjs.setConfig({coppa: true});
 
 #### First Party Data
 
-Historically, a number of adapters supported taking key/value pairs as arguments, but they were all different. For example:
-
-- RubiconProject took `keywords`, `inventory` and `visitor` parameters
-- AppNexus took `keywords` and `user`
-- OpenX took `customParams`
-
-First party data allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
+The First Party Data feature allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
 
 {: .alert.alert-warning :}
 Not all bid adapters currently support reading first party data in this way, but support should increase over time.
@@ -2419,14 +2413,16 @@ Not all bid adapters currently support reading first party data in this way, but
 
 {% highlight js %}
 pbjs.setConfig({
-   fpd: {
-       context: {
+   ortb2: {
+       site: {
            keywords: "power tools",
            search: "drill",
            content: { userrating: 4 },
-           data: {
-               pageType: "article",
-               category: "tools"
+           ext: {
+               data: {
+                   pageType: "article",
+                   category: "tools"
+               }
            }
         },
         user: {
@@ -2434,9 +2430,11 @@ pbjs.setConfig({
            gender: "M",
            yob: 1984,
            geo: { country: "ca" },
-           data: {
-              registered: true,
-              interests: ["cars"]
+           ext: {
+               data: {
+                  registered: true,
+                  interests: ["cars"]
+               }
            }
         }
     }
@@ -2444,40 +2442,18 @@ pbjs.setConfig({
 {% endhighlight %}
 
 {: .alert.alert-info :}
-The First Party Data JSON structure reflects the OpenRTB standard. Arbitrary values should go in context.data or
-user.data. Keywords, search, content, gender, yob, and geo are special values in OpenRTB.
+The First Party Data JSON structure reflects the OpenRTB standard. Arbitrary values should go in site.ext.data or
+user.ext.data. Keywords, search, content, gender, yob, and geo are special values in OpenRTB.
 
 **Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
 
-If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](#module_pbjs.setBidderConfig) function like this:
-
-{% highlight js %}
-pbjs.setBidderConfig({
-   bidders: ['bidderA', 'bidderB'],
-   config: {
-       fpd: {
-           context: {
-               data: {
-                  pageType: "article",
-                  category: "tools"
-               }
-            },
-            user: {
-               data: {
-                  registered: true,
-                  interests: ["cars"]
-               }
-          }
-      }
-   }
-});
-{% endhighlight %}
+If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](#module_pbjs.setBidderConfig) function.
 
 **Scenario 3** - See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 
-<a name="setConfig-vast-cache" />
-
 See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for details about passing data server-side.
+
+<a name="setConfig-vast-cache" />
 
 #### Client-side Caching of VAST XML
 
@@ -2693,20 +2669,45 @@ The page usage is:
 
 {% highlight js %}
 pbjs.setBidderConfig({
-   bidders: ["bidderA"],  // one or more bidders
-   config: {              // the bidder-specific config
-      bidderA: {
-         customArg: 'value'
+   bidders: ['bidderA'],
+   config: {
+      customArg: "customVal"
+   }
+});
+{% endhighlight %}
+or
+{% highlight js %}
+pbjs.setBidderConfig({
+   bidders: ['bidderB'],
+   config: {
+       ortb2: {
+           site: {
+               ext: {
+                   data: {
+                      pageType: "article",
+                      category: "tools"
+                   }
+               }
+            },
+            user: {
+               ext: {
+                   data: {
+                      registered: true,
+                      interests: ["cars"]
+                   }
+               }
+          }
       }
    }
 });
 {% endhighlight %}
 
-When 'bidderA' calls `getConfig('bidderA')`, it will receive the object that contains 'customArg'.
-If any other bidder calls `getConfig('bidderA')`, it will receive nothing.
+How to interpret these examples:
+- When 'bidderA' calls `getConfig('customArg')`, it will receive the object that contains 'customArg'. If any other bidder calls `getConfig('customArg')`, it will receive nothing.
+- When 'bidderB' calls `getConfig('ortb2')`, it will receive this override definition rather than whatever else might have been defined globally.
 
 {: .alert.alert-info :}
-This function is currently used by the `schain` feature. Refer to the [schain]({{site.baseurl}}/dev-docs/modules/schain.html) documentation for examples.
+This function is also used by the `schain` feature. Refer to the [schain](/dev-docs/modules/schain.html) documentation for examples.
 
 <a name="module_pbjs.getConfig"></a>
 
