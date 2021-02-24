@@ -40,9 +40,9 @@ bidders will actually timeout at 960ms.
 
 ### Prebid SDK Timeouts
 
-Apps using the Prebid SDK can set the Prebid Server `tmax` value with the `setTimeoutMillis()` function.
+The SDK `setTimeoutMillis()` function is a "failsafe" timeout on the app side.
 
-This value will override the default that's set in the top level stored request.
+The Prebid Server timeout value comes from `tmax` in the top level stored request.
 
 There is no "Timeout Buffer" in the SDK scenario, but Prebid Server will shave
 off the Timeout Adjustment.
