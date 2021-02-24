@@ -29,7 +29,7 @@ See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-refere
 
 + Your developers may optionally add `enableSendAllBids: true` to `pbjs.setConfig()`.  This is not strictly necessary, as `enableSendAllBids` defaults to `true`.  For details, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids).
 
-+ From the ad ops side, you may choose to set up one order per bidder, so that each order can have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon]({{site.baseurl}}/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
++ From the ad ops side, you may choose to set up one order per bidder, so that each order can have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon](/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
 
 {% include send-all-bids-keyword-targeting.md %}
 
