@@ -39,16 +39,16 @@
 <h2 id="creative-setup">Creative Setup</h2>
 
 When setting up video creatives, it's important to understand where the VAST XML is stored for each of your bidders. The most common place to store VAST XML is AppNexus' cache, but some bidders (such as RubiconProject and SpotX) use their own cache services. To support such
-bidders, you will need to choose an approach:
+bidders, you will need to choose one of the following approaches:
 <ul>
-<li>a separate line item for each bidder, or</li>
-<li>a creative for each cache service utilized by your implementation.</li>
-<li>use the <a href="/dev-docs/publisher-api-reference.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache})</li>
+<li>Create a separate line item for each bidder.</li>
+<li>Include a creative for each cache service utilized by your implementation.</li>
+<li>Use the <a href="/dev-docs/publisher-api-reference.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}).</li>
 </ul>
 
 <h3 id="creative-single-cache">Single Cache Location</h3>
 
-If you only use bidders that provide full VAST responses, no special setup is needed.
+If you only use bidders that provide full VAST responses, no special setup is needed. Otherwise, do the following:
 
 <p>1. For each line item you create, click on the <b>Creatives</b> tab, click the <b>ADD CREATIVE</b> button, and choose the size you're entering.</p>
 
@@ -86,7 +86,7 @@ or
 If you're utilizing any bidders that cache their own VAST, you have two options:
 
 <ul>
-<li>If you're using Prebid.js 4.28 or later, you can specify the <a href="/dev-docs/publisher-api-reference.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}) - this will cause the browser to generate a VAST wrapper and cache it in your standard location. Then you can use the instructions
+<li>If you're using Prebid.js 4.28 or later, you can specify the <a href="/dev-docs/publisher-api-reference.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}). This will cause the browser to generate a VAST wrapper and cache it in your standard location. Then you can use the instructions
 above for "Single Cache Location". The tradeoff is that this approach requires
 the video player to unwrap one extra level of VAST.</li>
 <li>Utilize creative-level targeting in the ad server. Keep reading for more details.</li>
