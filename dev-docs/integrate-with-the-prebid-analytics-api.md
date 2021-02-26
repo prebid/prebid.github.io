@@ -156,16 +156,29 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
 
 ### Step 5: Website pull request
 
-There are two files that need to be updated to list your new analytics adapter.
+Add a documentation file for your new analytics adapter.
 
-1. Create a fork of the [website repo](https://github.com/prebid/prebid.github.io) and a branch for your new adapter. (e.g. feature/exAnalyticsAdapter)
+1. Create a fork of the [website repo](https://github.com/prebid/prebid.github.io) and a branch for your new adapter. (e.g. feature/exampleAnalyticsAdapter)
 
-2. Update `overview/analytics.md` to add your adapter alphabetically into the list.
+2. Copy one of the '.md' files in `dev-docs/analytics` to a file for your adapter. e.g. example.md
 
-3. Update `download.md` to add your new adapter alphabetically into the li
-st of other analytics adapters.
+3. Update the metadata fields at the top of the file to suit your needs:
 
-4. Submit the pull request to the prebid.github.io repo.
+- layout: analytics
+- title: Your Company Name
+- description: Your Company Analytics Adapter
+- modulecode: exampleAnalyticsAdapter
+- gdpr_supported: true/false   (EU GDPR support)
+- usp_supported: true/false    (US Privacy support)
+- coppa_supported: true/false  (COPPA support)
+- prebid_member: true/false
+- gvl_id:                      (IAB Global Vendor List ID)
+- enable_download: false       (in case you don't want users of the website to download your adapter)
+
+4. Update the body of the file to describe the options publishers have when
+configuring your adapter. See other adapters (e.g. rubicon.md) for a template.
+
+5. Submit the pull request to the prebid.github.io repo.
 
 ### Step 6: Wait for Prebid volunteers to review
 
