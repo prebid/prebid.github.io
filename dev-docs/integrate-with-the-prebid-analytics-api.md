@@ -164,16 +164,18 @@ Add a documentation file for your new analytics adapter.
 
 3. Update the metadata fields at the top of the file to suit your needs:
 
-- layout: analytics
-- title: Your Company Name
-- description: Your Company Analytics Adapter
-- modulecode: exampleAnalyticsAdapter
-- gdpr_supported: true/false   (EU GDPR support)
-- usp_supported: true/false    (US Privacy support)
-- coppa_supported: true/false  (COPPA support)
-- prebid_member: true/false
-- gvl_id:                      (IAB Global Vendor List ID)
-- enable_download: false       (in case you don't want users of the website to download your adapter)
+```
+layout: analytics
+title: Your Company Name
+description: Your Company Analytics Adapter
+modulecode: exampleAnalyticsAdapter
+gdpr_supported: true/false   (EU GDPR support)
+usp_supported: true/false    (US Privacy support)
+coppa_supported: true/false  (COPPA support)
+prebid_member: true/false
+gvl_id:                      (IAB Global Vendor List ID)
+enable_download: false       (in case you don't want users of the website to download your adapter)
+```
 
 4. Update the body of the file to describe the options publishers have when
 configuring your adapter. See other adapters (e.g. rubicon.md) for a template.
