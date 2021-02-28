@@ -2,7 +2,7 @@
 layout: example
 title: Native Ad Unit
 description: Native Ad Units
-hide: true
+
 sidebarType: 1
 
 about:

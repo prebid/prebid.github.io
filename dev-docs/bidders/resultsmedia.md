@@ -2,7 +2,7 @@
 layout: bidder
 title: ResultsMedia
 description: Prebid ResultsMedia Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: resultsmedia
 media_types: video, banner
 gdpr_supported: true

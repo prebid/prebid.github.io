@@ -2,7 +2,7 @@
 layout: bidder
 title: FairTrade
 description: FairTrade Bidder Adapter
-hide: true
+pbjs: true
 biddercode: fairtrade
 ---
 

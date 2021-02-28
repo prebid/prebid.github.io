@@ -158,49 +158,40 @@ function get_form_data() {
 # Customize and Download Prebid.js
 
 {: .lead :}
-To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
+
+{: .alert.alert-warning :}
+Prebid.js is open source software that is offered for free as a convenience. While it is designed to help companies address legal requirements associated with header bidding, we cannot and do not warrant that your use of Prebid.js will satisfy legal requirements. You are solely responsible for ensuring that your use of Prebid.js complies with all applicable laws.  We strongly encourage you to obtain legal advice when using Prebid.js to ensure your implementation complies with all laws where you operate.
 
 ### Option 1: Customize your download here
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
 
-{: .alert.alert-success :}
-Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
+{: .alert.alert-danger :}
+**Note:** an important bug in the [DFP Video Module](/dev-docs/modules/dfp_video.html) was introduced with 3.27 and fixed in 4.3. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive.
 
 <form>
-<div class="row">
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
 </select>
-
+<br>
 <h4>Select Bidder Adapters</h4>
-<div class="adapters">
-{% for page in bidder_pages %}
-  {% if page.s2s_only == true %}
-    {% continue %}
-  {% endif %}
+<div class="row adapters">
+{% for page in bidder_pages %}{% if page.pbjs == true %}
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %}
-    <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% else %}
-    <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% endif %}
-
-    </label>
-
+  {% if page.aliasCode %} <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% else %} <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% endif %}
+  {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+  </label>
 </div>
 </div>
-{% endfor %}
-</div>
+{% endif %}{% endfor %}
 </div>
 
 <br>
-<div class="row">
-  <h4>Analytics Adapters</h4>
-
+<h4>Analytics Adapters</h4>
+<div class="row">  
 <div class="col-md-4">
   <div class="checkbox">
     <label>
@@ -221,6 +212,14 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="adomik" class="analytics-check-box"> Adomik Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="adWMG" class="analytics-check-box"> adWMG Analytics
     </label>
   </div>
 </div>
@@ -252,7 +251,7 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="atsAnalytics" class="analytics-check-box"> ATS Analytics
+      <input type="checkbox" analyticscode="ats" class="analytics-check-box"> ATS Analytics
     </label>
   </div>
 </div>
@@ -300,6 +299,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="konduit" class="analytics-check-box"> Konduit Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
     </label>
   </div>
@@ -317,6 +324,14 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="medianet" class="analytics-check-box"> Media.net Analytics
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="oolo" class="analytics-check-box" /> oolo Analytics
     </label>
   </div>
 </div>
@@ -356,6 +371,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="pubxai" class="analytics-check-box"> PubXAi
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
     </label>
   </div>
@@ -372,6 +395,14 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
+      <input type="checkbox" analyticscode="relevant" class="analytics-check-box" /> Relevant Yield
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
       <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
     </label>
   </div>
@@ -381,6 +412,14 @@ Note: If you receive an error during download you most likely selected a configu
   <div class="checkbox">
     <label>
       <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" analyticscode="pubperf" class="analytics-check-box" /> Pubperf Analytics
     </label>
   </div>
 </div>
@@ -468,54 +507,85 @@ Note: If you receive an error during download you most likely selected a configu
 <div class="col-md-4">
   <div class="checkbox">
     <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaMedia Analytics
+      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> YuktaOne Analytics by YuktaMedia
     </label>
   </div>
 </div>
 
 </div>
 <br/>
-<div class="row">
- <h4>Modules</h4>
- {% for page in module_pages %}
-  {% if page.enable_download == false %}
-    {% continue %}
-  {% endif %}
- <div class="col-md-4">
- <div class="checkbox">
+<h4>General Modules</h4>
+<div class="row"> 
+ {% for page in module_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
   <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
+</div></div>{% endfor %}
 </div>
-</div>
- {% endfor %}
+
+
+<h4>User ID Modules</h4>
+<div class="row">  
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> User ID: BritePool ID</label>
+<label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> BritePool ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="digiTrustIdSystem" class="bidder-check-box"> User ID: DigiTrust ID</label>
+<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> Criteo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> User ID: ID5 ID</label>
+<label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> User ID: Criteo ID</label>
+<label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> Halo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> User ID: IdentityLink ID</label>
+<label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> ID5 ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> User ID: LiveIntent ID</label>
+<label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> IdentityLink ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> User ID: Parrable ID</label>
+<label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> User ID: PubCommon ID</label>
+<label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> User ID: Unified ID</label>
+<label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> LiveIntent ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> User ID: netID</label>
+<label><input type="checkbox" moduleCode="lotamePanoramaIdSystem" class="bidder-check-box"> Lotame ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> Merkle ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> netID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
+</div></div>  
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> Quantcast ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> Shared ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> Verizon Media ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> Zeotap ID+</label>
 </div></div>
 </div>
 
@@ -528,6 +598,11 @@ Note: If you receive an error during download you most likely selected a configu
 </div>
 
 </form>
+
+{: .alert.alert-info :}
+Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,
+Prebid only supports the most recent major version. Within a month or so after a major release (e.g. 3.x), we won't patch the previous major release (e.g. 2.x).
+
 
 </div>
 
