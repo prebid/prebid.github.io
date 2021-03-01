@@ -58,7 +58,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiq"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 ## User ID Sub-Modules
 
 ## Permissions
-Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
+Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
@@ -96,7 +96,7 @@ userIds: [
   }
 ]
 ```
-The Rubicon bid adapter would then receive
+The Rubicon bid adapter would then receive 
 ```
 {
   "bidder": "rubicon",
@@ -842,42 +842,6 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### Novatiq Snowflake ID
-
-Novatiq proprietary dynamic snowflake ID is a unique, non sequential and single use identifier for marketing activation. Only the snowflake ID moves beyond the firewall, keeping all customer data (publisher / brand and telco) private, secure and under control. Our in network solution matches verification requests to the telco network ID, safely and securely behind the telco firewall .
-
-#### Novatiq Snowflake ID Configuration
-
-Enable by adding the Novatiq submodule to your Prebid.js package with:
-
-```
-gulp build --modules=novatiqIdSystem,userId
-```
-
-Module activation and configuration:
-
-```javascript
-pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: 'novatiq',
-      params: {
-        sourceid '1a3',            // change to the Partner Number you received from Novatiq
-        }
-      }
-    }],
-    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
-  }
-});
-```
-
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
-| params | Required | Object | Configuration specifications for the Novatiq module. | |
-| params.sourceid | Required | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
-
-If you have any questions, please reach out to us at prebid@novatiq.com.
 
 ### Parrable ID
 
@@ -1384,6 +1348,7 @@ pbjs.setConfig({
 })
 ```
 
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -1510,12 +1475,6 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "11111111"
                 }]
             },{
-               "source": "novatiq.com",
-               "uids": [{
-                   "id": "81b001ec-8914-488c-a96e-8c220d4ee08895ef",
-                   "atype":1
-               }]
-             },{
                "source": "sharedid.org",  // Shared ID
                 "uids": [{
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
@@ -1537,7 +1496,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                "uids": [{
                    "id": "61cef5656fb05f16d53938069f1684df4b2257e27"
                }]
-            }
+             }
           ]
         }
     }
