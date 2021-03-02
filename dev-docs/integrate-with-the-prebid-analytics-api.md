@@ -177,6 +177,14 @@ gvl_id:                      (IAB Global Vendor List ID)
 enable_download: false       (in case you don't want users of the website to download your adapter)
 ```
 
+What does it mean to "support" the privacy protocols? At a high level, it means you have
+specifically discussed privacy policy actions and rules with your lawyers and implemented the results of that discussion.
+Some specific examples:
+
+- GDPR support means: the analytics endpoint respects GDPR consent, Special Feature 1, and deals with any other Purposes declared in the vendor's Global Vendor List
+- COPPA support means: analytics companies should not be building targeting profiles for users on sites flagged as COPPA
+- USP/CCPA support means: analytics adapters cannot share user information if that user has opted out of sale
+
 4. Update the body of the file to describe the options publishers have when
 configuring your adapter. See other adapters (e.g. rubicon.md) for a template.
 
