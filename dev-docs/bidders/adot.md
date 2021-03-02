@@ -32,8 +32,6 @@ pbs: true
 | `protocols`       | required                                  | Array of supported video protocols, e.g., `[2, 3]`                                                                                                                                                                                           | `Array<integer>` |
 | `container`       | optional                                  | Selector used for finding the element in which the video player will be displayed, e.g., `#div-1`. The `ad unit code` will be used if no `container` is provided.                                                                            | `string`         |
 | `instreamContext` | required if `video.context` is `instream` | String used to define the type of instream video. Allowed values: Pre-roll: `pre-roll`; Mid-roll: `mid-roll` ; Post-roll: `post-roll`.                                                                                                       | `string`         |
-<<<<<<< HEAD
-=======
 
 
 ### Prebid server
@@ -148,4 +146,3 @@ server-side adot adapter. This is a mobile Bid-request example.
 ```
 
 Please contact <admin@we-are-adot.com> if you would like to build and deploy Prebid server and use it with Adot.
->>>>>>> upstream/dev
