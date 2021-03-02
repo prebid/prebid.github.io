@@ -29,11 +29,7 @@ which can be used for more than just First Party Data.
 ## How It Works
 
 Publishers supply First Party Data (FPD) by specifying attributes as
-configuration or on a Prebid.js AdUnit. Here's a summary of how it works:
-
-![First Party Data Summary](/assets/images/flowcharts/FirstPartyData-Summary.png){: .pb-lg-img :}
-
-This diagram highlights the scenarios a page can implement:
+configuration or on a Prebid.js AdUnit:
 
 - Global site or user data that applies to all AdUnits and all bidders. Use [`setConfig()`](/dev-docs/publisher-api-reference.html#setConfig-fpd)
 - AdUnit-specific data that applies to all bidders. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data)
