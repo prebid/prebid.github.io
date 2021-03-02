@@ -7,6 +7,7 @@ gvl_id: 867
 pbjs: true
 tcf2_supported: true
 safeframes_ok: false
+list_group: mo
 ---
 
 ### Note

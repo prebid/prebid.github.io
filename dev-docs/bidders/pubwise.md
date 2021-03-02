@@ -14,6 +14,7 @@ tcf1_supported: true
 tcf2_supported: true
 getFloor: false
 gvl_id: 842
+list_group: pr
 ---
 
 ### Note:
