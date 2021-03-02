@@ -3,6 +3,7 @@ layout: bidder
 title: OneTag
 description: Prebid OneTag Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: onetag
 media_types: banner, video
 gdpr_supported: true

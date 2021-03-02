@@ -1,20 +1,20 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Developers | Adding a New Bidder
+title: Prebid Server | Developers | Building a Bid Adapter (Go)
 
 ---
 
-# Prebid Server - Adding a New Bidder in Go
+# Prebid Server - New Bid Adapter (Go)
 {: .no_toc}
 
 Thank you for contributing a bid adapter to the open source Prebid Server project. Each new adapter gives publishers more options for monetizing their inventory and strengthens the header bidding community.
 
 This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
-{% capture alertNote %}
-There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
-{% endcapture %}
+{: .alert.alert-info :}
+**NOTE:** There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
+
 
 * TOC
 {:toc }
@@ -29,17 +29,17 @@ An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `general`, `context`, or `prebid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L29).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `general`, `prebid`, or `skadn` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
 
-We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager. There's no need to manually check, as this constraint is enforced by the [`TestBidderUniquenessGatekeeping`](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders_test.go#L70) test. 
+We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager. There's no need to manually check, as this constraint is enforced by the [`TestBidderUniquenessGatekeeping`](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders_test.go#L61) test. 
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
 ### Respect The Rules
 
-We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://docs.prebid.org/wrapper_code_of_conduct.html) and [module rules](https://docs.prebid.org/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues and code reviews.
+We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://docs.prebid.org/wrapper_code_of_conduct.html) and [module rules](https://docs.prebid.org/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
-Please take the time to read our rules in full. Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
+**Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
   - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
   - Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
   - Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
@@ -99,49 +99,49 @@ Modify this template for your bid adapter:
 - Change the `modifyingVastXmlAllowed` value to `true` if you'd like to opt-in for [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 
-<details>
+<details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
 
-  ```yaml
-  maintainer:
-    email: foo@foo.com
-  capabilities:
-    site:
-      mediaTypes:
-        - banner
-  ```
+```yaml
+maintainer:
+  email: foo@foo.com
+capabilities:
+  site:
+    mediaTypes:
+      - banner
+```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Website or app with banner or video ads and video impression tracking.</summary>
 
-  ```yaml
-  maintainer:
-    email: foo@foo.com
-  modifyingVastXmlAllowed: true
-  capabilities:
-    app:
-      mediaTypes:
-        - banner
-        - video
-    site:
-      mediaTypes:
-        - banner
-        - video
-  ```
+```yaml
+maintainer:
+  email: foo@foo.com
+modifyingVastXmlAllowed: true
+capabilities:
+  app:
+    mediaTypes:
+      - banner
+      - video
+  site:
+    mediaTypes:
+      - banner
+      - video
+```
 </details>
 <p></p>
 
 ### Bidder Parameters
 
-Your bid adapter might require extra information from the publisher to make a request to your bidding server. The bidder parameters JSON Schema codifies this information to allow Prebid Server to verify requests and to provide an API for third party configuration systems.
+Your bid adapter might require extra information from the publisher to form a request to your bidding server. The bidder parameters JSON Schema codifies this information to allow Prebid Server to verify requests and to provide an API for third party configuration systems.
 
-Publishers will provide extra information using an OpenRTB 2.5 Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's choice of location.
+Publishers will provide extra information using an OpenRTB 2.5 Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's chosen location.
 
 We request that you do not duplicate information that is already present in the [OpenRTB 2.5 Bid Request specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) or is already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.5 Bid Request standard of `request.imp[].video`.
 
 {: .alert.alert-warning :}
-You may not use an endpoint domain as a bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a portion of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
+**ENDPOINT NOTE:** You may not use an endpoint domain as a bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a portion of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
 
 Create a file with the path `static/bidder-params/{bidder}.json` using [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
 
@@ -164,104 +164,104 @@ Let's start with this example which defines one required `placementId` string pa
   "required": ["placementId"]
 }
 ```
-We encourage you to utilize the full features of [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to narrowly define your bidder parameter data types. If you copy and paste these examples, please remember to change the  `title` and `description` to refer to your bidder name instead of our fictional `Foo` example.
+We encourage you to utilize the full features of [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to narrowly define your bidder parameter data types. If you copy and paste these examples, please remember to change the  `title` and `description` to refer to your bidder name instead of our fictional Foo example.
 
-When choosing your parameter names, please consider aligning with the OpenRTB 2.5 standards by using lower case letters without camel casing or special characters. 
+When choosing your parameter names, please consider aligning with the OpenRTB 2.5 standard by using lower case letters without camel casing or special characters. 
 
 In addition to the examples listed below, please refer to [existing bidder parameter files](https://github.com/prebid/prebid-server/tree/master/static/bidder-params) for guidance.
 
-<details>
+<details markdown="1">
   <summary>Example: No parameters.</summary>
 
-  ```json
-  {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Foo Adapter Params",
-    "description": "A schema which validates params accepted by the Foo adapter",
-    "type": "object",
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Foo Adapter Params",
+  "description": "A schema which validates params accepted by the Foo adapter",
+  "type": "object",
 
-    "properties": {}
-  }
-  ```
+  "properties": {}
+}
+```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Required integer placement id.</summary>
 
-  ```json
-  {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Foo Adapter Params",
-    "description": "A schema which validates params accepted by the Foo adapter",
-    "type": "object",
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Foo Adapter Params",
+  "description": "A schema which validates params accepted by the Foo adapter",
+  "type": "object",
 
-    "properties": {
-      "placementId": {
-        "type": "integer",
-        "minimum": 1,
-        "description": "Placement ID"
-      }
-    },
+  "properties": {
+    "placementId": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Placement ID"
+    }
+  },
 
-    "required": ["placementId"]
-  }
-  ```
+  "required": ["placementId"]
+}
+```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Required access token and an optional hexadecimal account.</summary>
 
-  ```json
-  {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Foo Adapter Params",
-    "description": "A schema which validates params accepted by the Foo adapter",
-    "type": "object",
-    
-    "properties": {
-      "token": {
-        "type": "string",
-        "description": "Token"
-      },
-      "account": {
-        "type": "string",
-        "description": "Account",
-        "pattern": "^([a-fA-F\\d]+)$"
-      }
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Foo Adapter Params",
+  "description": "A schema which validates params accepted by the Foo adapter",
+  "type": "object",
+  
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "Token"
     },
+    "account": {
+      "type": "string",
+      "description": "Account",
+      "pattern": "^([a-fA-F\\d]+)$"
+    }
+  },
 
-    "required": ["token"]
-  }
-  ```
+  "required": ["token"]
+}
+```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Required access token or secret.</summary>
 
-  ```json
-  {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Foo Adapter Params",
-    "description": "A schema which validates params accepted by the Foo adapter",
-    "type": "object",
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Foo Adapter Params",
+  "description": "A schema which validates params accepted by the Foo adapter",
+  "type": "object",
 
-    "properties": {
-      "token": {
-        "type": "string",
-        "description": "Token"
-      },
-      "secret": {
-        "secret": "string",
-        "description": "Secret"
-      }
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "Token"
     },
+    "secret": {
+      "secret": "string",
+      "description": "Secret"
+    }
+  },
 
-    "oneOf": [
-      { "required": ["token"] },
-      { "required": ["secret"] }
-    ]
-  }
-  ```
+  "oneOf": [
+    { "required": ["token"] },
+    { "required": ["secret"] }
+  ]
+}
+```
 </details>
 <p></p>
 
@@ -270,7 +270,7 @@ In addition to the examples listed below, please refer to [existing bidder param
 {: .alert.alert-info :}
 You can skip this step if your adapter has no bidder parameters.
 
-You also need to represent your bidder parameters in code. The core framework uses the JSON Schema file for validation, but your adapter code needs a data structure to support unmarshalling / deserialization. These data structures are organized in a shared path using a standard naming convention, which also serves as documentation of all adapter parameters.
+If you've defined bidder parameters for your adapter, you also need to represent your bidder parameters in code. The core framework uses the JSON Schema file for validation, but your adapter code needs a data structure to support JSON unmarshalling / deserialization. These data structures are organized in a shared path using a standard naming convention, which also serves as documentation of all adapter parameters.
 
 Create a file with the path `openrtb_ext/imp_{bidder}.go` containing an exported (must start with an upper case letter) data structure named `ImpExt{Bidder}`. All required and optional bidder parameters from the JSON Schema should be represented as fields.
 
@@ -284,20 +284,20 @@ type ImpExtFoo struct {
 }
 ```
 
-Please follow [Go's standard naming convention](https://golang.org/doc/effective_go.html) for the field names (particularly for acronyms) and use `json` attributes to specify the JSON name, matching exactly what you defined in the bidder parameters JSON Schema.
+Please follow [Go's standard naming convention](https://golang.org/doc/effective_go.html) for the field names (particularly for acronyms) and use `` `json:...` `` attributes to specify the JSON name, matching exactly what you defined in the bidder parameters JSON Schema. Please keep in mind that JSON is case sensitive.
 
 ### Adapter Code
 
 Now it's time to write the bulk of your bid adapter code.
 
-Each adapter has its own directory (a 'package' in Go parlance) for all code and tests associated with translating an OpenRTB 2.5 Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.5 Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and the freedom to organize files as you best see fit (although we make suggestions in this guide).
+Each adapter has its own directory (a 'package' in Go parlance) for all code and tests associated with translating an OpenRTB 2.5 Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.5 Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
 
 Create a file with the path `adapters/{bidder}/{bidder}.go`. Your bid adapter code will need to implement and export:
 - The `adapters.Builder` method to create a new instance of the adapter based on the host configuration.
 - The `adapters.Bidder` interface consisting of the `MakeRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
 
-{: .alert.alert-warning :}
-Go has only two kinds of access modifiers, exported and private, which are scoped at the package level. The access modifier is encoded into the name of the type or method. Names starting with an upper case letter are exported whereas names starting with a lower case letter are private. Please only export the three required methods and keep everything else private.
+{: .alert.alert-info :}
+**ACCESS MODIFIERS:** Go has only two kinds of access modifiers, exported and private, which are scoped at the package level. The access modifier is encoded into the name of the type or method. Names starting with an upper case letter are exported whereas names starting with a lower case letter are private. Please only export the three required methods and keep everything else private.
 
 Here is a reference implementation for a bidding server which uses the OpenRTB 2.5 protocol:
 
@@ -387,78 +387,78 @@ The `Builder` method is responsible for validating the adapter configuration, pe
 
 This method may be called multiple times if the host has configured aliases of your adapter. On the other hand, it will never be called if your bid adapter is disabled by the host. Please be aware the same instance of the adapter will be used to process all bid requests for each bidder or alias. To ensure thread safety, all runtime state must be stored in the `adapter` instance and the adapter may not mutate any global or package scoped variables.
 
-The first argument, `bidderName`, is the name of the bidder being built. This may be the bidder name you've chosen or it may be an alias. Most adapters ignore the `bidderName`, but its provided by the core framework for situations where the adapter might need to do something special for aliases.
+The first argument, `bidderName`, is the name of the bidder being built. This may be the bidder name you've chosen or it may be an alias. Most adapters don't make use of the `bidderName`, but its provided by the core framework for situations where the adapter might need to do something special for aliases.
 
-The second argument, `config`, is all configuration values set for your adapter. However, not all of this information is intended for use by the `Builder` method. The only two fields relevant here are `config.Endpoint` and `config.ExtraAdapterInfo`:
+The second argument, `config`, is all the configuration values set for your adapter. However, not all of this information is intended for use by the `Builder` method. The only two fields relevant here are `config.Endpoint` and `config.ExtraAdapterInfo`:
 - `config.Endpoint` is the base url of your bidding server and may be interpreted as either a literal address or as a templated macro to support dynamic domains or dynamic paths.
 - `config.ExtraAdapterInfo` may be used for any other values your adapter may need, such as an application token or publisher allow/deny list. You may interpret this string however you like, although JSON is a common choice.
 
 The `Builder` method is expected to return an error if either the `config.Endpoint` or the `config.ExtraAdapterInfo` values are invalid or cannot be parsed. Errors will be surfaced to the host during application startup as a fatal error. 
 
-<details>
+<details markdown="1">
   <summary>Example: Builder using endpoint macros.</summary>
 
-  ```go
-  type adapter struct {
-    endpointTemplate template.Template
-  }
+```go
+type adapter struct {
+  endpointTemplate template.Template
+}
 
-  // Builder builds a new instance of the Foo adapter for the given bidder with the given config.
-  func Builder(bidderName openrtb_ext.BidderName, config config.Adapter) (adapters.Bidder, error) {
-    template, err := template.New("endpointTemplate").Parse(config.Endpoint)
-    if err != nil {
-      return nil, fmt.Errorf("unable to parse endpoint url template: %v", err)
-    }
-    
-    bidder := &adapter{
-      endpointTemplate: *template,
-    }
-    return bidder, nil
+// Builder builds a new instance of the Foo adapter for the given bidder with the given config.
+func Builder(bidderName openrtb_ext.BidderName, config config.Adapter) (adapters.Bidder, error) {
+  template, err := template.New("endpointTemplate").Parse(config.Endpoint)
+  if err != nil {
+    return nil, fmt.Errorf("unable to parse endpoint url template: %v", err)
   }
-  ```
+  
+  bidder := &adapter{
+    endpointTemplate: *template,
+  }
+  return bidder, nil
+}
+```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Builder using extra adapter info.</summary>
 
-  ```go
-  type extraInfo struct {
-    token string
+```go
+type extraInfo struct {
+  token string
+}
+
+// Builder builds a new instance of the Foo adapter for the given bidder with the given config.
+func Builder(bidderName openrtb_ext.BidderName, config config.Adapter) (adapters.Bidder, error) {
+  info, err := parseExtraInfo(config.ExtraAdapterInfo)
+  if err != nil {
+    return nil, err
+  }
+  
+  bidder := &adapter{
+    endpoint: config.Endpoint,
+    token:    info.token,
+  }
+  return bidder, nil
+}
+
+func parseExtraInfo(v string) (extraInfo, error) {
+  if len(v) == 0 {
+    return buildDefaultExtraInfo(), nil
   }
 
-  // Builder builds a new instance of the Foo adapter for the given bidder with the given config.
-  func Builder(bidderName openrtb_ext.BidderName, config config.Adapter) (adapters.Bidder, error) {
-    info, err := parseExtraInfo(config.ExtraAdapterInfo)
-    if err != nil {
-	    return nil, err
-    }
-    
-    bidder := &adapter{
-      endpoint: config.Endpoint,
-      token:    info.token,
-    }
-    return bidder, nil
+  var info extraInfo
+  if err := json.Unmarshal([]byte(v), &info); err != nil {
+    return nil, fmt.Errorf("invalid extra info: %v", err)
   }
 
-  func parseExtraInfo(v string) (extraInfo, error) {
-    if len(v) == 0 {
-      return buildDefaultExtraInfo(), nil
-    }
+  return info, nil
+}
 
-    var info extraInfo
-    if err := json.Unmarshal([]byte(v), &info); err != nil {
-      return nil, fmt.Errorf("invalid extra info: %v", err)
-    }
-
-    return info, nil
+func buildDefaultExtraInfo() extraInfo {
+  return extraInfo{
+    token: "all your base are belong to us",
   }
-
-  func buildDefaultExtraInfo() extraInfo {
-    return extraInfo{
-      token: "all your base are belong to us",
-    }
-  }
-  ```
+}
+```
 </details>
 <p></p>
 
@@ -468,203 +468,206 @@ The `MakeRequests` method is responsible for returning none, one, or many HTTP r
 
 This method is called once by the core framework for bid requests which have at least one valid Impression for your adapter. Impressions not configured for your adapter will be removed and are not accessible. 
 
-The first argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension information is stored as `json.RawMessage` byte arrays and must be unmarshalled and/or marshalled to be read and/or mutated. It is *critical* to understand that the `request` object contains pointers to shared memory. If your adapter needs to alter any data referenced by a pointer then you *must* first make a shallow copy. The only exception is for `request.Imp` and its elements, as these are already shallow copies. The exact same instance of the `request` object is also passed to the `MakeBids` method, so please be careful when mutating. It's safe to assume that `request.Imp[]` always contains at least one elements and that the `request.Imp[].ext.bidder` was successfully validated by your bidder parameter JSON Schema.
+The first argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension information is stored as `json.RawMessage` byte arrays and must be unmarshalled and/or marshalled to be read and/or mutated. It is *critical* to understand that the `request` object contains pointers to shared memory. If your adapter needs to alter any data referenced by a pointer then you *must* first make a shallow copy. The only exception is for `request.Imp` and its elements, as these are already shallow copies. The exact same instance of the `request` object is also passed to the `MakeBids` method, so please be careful when mutating. It's safe to assume that `request.Imp[]` always contains at least one element and that the `request.Imp[].ext.bidder` was successfully validated by your bidder parameter JSON Schema.
 
-<details>
+<details markdown="1">
   <summary>Example: Mutating banner shared memory (make a copy).</summary>
 
-  ```go
-  // Populate the top level width and height of a banner request if it's not set by the publisher.
+```go
+// Populate the top level width and height of a banner request if it's not set by the publisher.
 
-  if request.Imp[i].W == nil && request.Imp[i].H == nil && len(request.Imp[i].Format) > 0 {
-    bannerCopy := *request.Imp[i].Banner
-    bannerCopy.W = &(request.Imp[i].Banner.Format[0].W)
-    bannerCopy.H = &(request.Imp[i].Banner.Format[0].H)
-    request.Imp[i].Banner = &bannerCopy
-  }
-  ```
+if request.Imp[i].W == nil && request.Imp[i].H == nil && len(request.Imp[i].Format) > 0 {
+  bannerCopy := *request.Imp[i].Banner
+  bannerCopy.W = &(request.Imp[i].Banner.Format[0].W)
+  bannerCopy.H = &(request.Imp[i].Banner.Format[0].H)
+  request.Imp[i].Banner = &bannerCopy
+}
+```
 </details>
 <p></p>
 
 The second argument, `requestInfo`, is for extra information and helper methods provided by the core framework. For now, this just includes `requestInfo.PbsEntryPoint` which is commonly used to determine if the request is for AMP or Long Form Video Ad Pods. This object will be expanded in the future to also include currency conversion and extension unmarshalling helper methods.
 
-The `MakeRequests` method is expected to return a slice (similar to a C# `List`) of `adapters.RequestData` objects representing the HTTP calls to be sent to your bidding server and a slice of type `error` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please return `nil` for both return values. Neither slices may contain `nil` elements.
+The `MakeRequests` method is expected to return a slice (similar to a C# `List` or a Java `ArrayList`) of `adapters.RequestData` objects representing the HTTP calls to be sent to your bidding server and a slice of type `error` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please return `nil` for both return values. Neither slices may contain `nil` elements.
 
 {: .alert.alert-info :}
 HTTP calls to your bidding server will automatically prefer GZIP compression. You should not specify it yourself using headers. You don't have to worry about decompressing the response in `MakeBids` either, as that will be taken care of automatically.
 
 An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
 
-<details>
+<details markdown="1">
   <summary>Example: Impression splitting.</summary>
 
-  ```go
-  func (a *adapter) MakeRequests(request *openrtb.BidRequest, requestInfo *adapters.ExtraRequestInfo) (*adapters.RequestData, []error) {
-    var requests []*adapters.RequestData
-    var errors []error
-    
-    requestCopy := *request
-    for _, imp := range request.Imp {
-      requestCopy.Imp = []openrtb.Imp{imp}
+```go
+func (a *adapter) MakeRequests(request *openrtb.BidRequest, requestInfo *adapters.ExtraRequestInfo) (*adapters.RequestData, []error) {
+  var requests []*adapters.RequestData
+  var errors []error
+  
+  requestCopy := *request
+  for _, imp := range request.Imp {
+    requestCopy.Imp = []openrtb.Imp{imp}
 
-      requestJSON, err := json.Marshal(request)
-      if err != nil {
-        errors = append(errors, err)
-        continue
-      }
-    
-      requestData := &adapters.RequestData{
-        Method: "POST",
-        Uri:    a.endpoint,
-        Body:   requestJSON,
-      }
-      requests = append(requests, requestData)
+    requestJSON, err := json.Marshal(request)
+    if err != nil {
+      errors = append(errors, err)
+      continue
     }
-    return requests, errors
+  
+    requestData := &adapters.RequestData{
+      Method: "POST",
+      Uri:    a.endpoint,
+      Body:   requestJSON,
+    }
+    requests = append(requests, requestData)
   }
-  ```
+  return requests, errors
+}
+```
 </details>
 <p></p>
 
-If your bidding server supports multiple currencies, please be sure to pass it the `request.cur` field. If your bidding server only ever bids in a single currency, such as USD or EUR, that's fine. Prebid Server will convert your bid to the request currency if you include it in the bid response, otherwise we assume USD and conversion will not occur correctly.
+If your bidding server supports multiple currencies, please be sure to pass through the `request.cur` field. If your bidding server only bids in a single currency, such as USD or EUR, that's fine. Prebid Server will convert your bid to the request currency if you include it in the bid response, otherwise we assume USD and conversion will not occur.
 
 Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You'll soon have access to currency conversion helper methods if your endpoint only supports floors in a single currency.
 
 There are a several values of a bid that publishers expect to be populated. Some are defined by the OpenRTB 2.5 specification and some are defined by Prebid conventions.
 
-| Parameter | Definer | Description | Path |
-| - | - | - | - |
-| CCPA | OpenRTB | The publisher is specifying the California Consumer Privacy Act consent string | `request.regs.ext.us_privacy` |
-| COPPA | OpenRTB |The publisher is specifying the Children's Online Privacy Protection flag. | `request.regs.coppa` |
-| Currency | OpenRTB |The publisher is specifying the desired bid currency. The Prebid Server default is `"USD"`. | `request.cur` | 
-| [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | The publisher is requesting verbose debugging information from Prebid Server | `request.ext.prebid.debug` |
-| [First Party Data](https://docs.prebid.org/prebid-server/features/pbs-fpd.html) | Prebid | The publisher may provide first party data (ex: keywords). | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*` |
-| GDPR | OpenRTB |The publisher is specifying the European General Data Protection Regulation flag and TCF consent string | `request.regs.ext.gdpr`, `request.user.ext.consent`|
-| Site or App | OpenRTB |The publisher will provide either the site or app (not both) representing the client's device. | `request.site`, `request.app` | 
-| Supply Chain | OpenRTB |The publisher's declaration of all parties who are selling or reselling the bid request. | `request.source.ext.schain` |
-| Test | OpenRTB | The publisher is sending non-production traffic which also enabled verbose debugging information from Prebid Server. | `request.test` |
-| Video Parameters | OpenRTB | The publisher is specifying video ad requirements or preferences. | `request.imp[].video` |
+{: .table .table-bordered .table-striped }
+| Parameter | Definer | Path & Description
+| - | - | - | -
+| CCPA | OpenRTB | `request.regs.ext.us_privacy` <br/> The publisher is specifying the California Consumer Privacy Act consent string.
+| COPPA | OpenRTB | `request.regs.ext.us_privacy`<br/> The publisher is specifying the Children's Online Privacy Protection flag.
+| Currency | OpenRTB |`request.cur` <br/> The publisher is specifying the desired bid currency. The Prebid Server default is USD.
+| [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | `request.ext.prebid.debug` <br/> The publisher is requesting verbose debugging information from Prebid Server.
+| [First Party Data (FPD)](https://docs.prebid.org/prebid-server/features/pbs-fpd.html)| Prebid | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*` <br/> The publisher may provide first party data (e.g. keywords).
+| GDPR | OpenRTB |  `request.regs.ext.gdpr`, `request.user.ext.consent` <br/> The publisher is specifying the European General Data Protection Regulation flag and TCF consent string.
+| Site or App | OpenRTB | `request.site`, `request.app` <br/> The publisher will provide either the site or app, but not both, representing the client's device. 
+| Supply Chain | OpenRTB | `request.source.ext.schain` <br/> The publisher's declaration of all parties who are selling or reselling the bid request.
+| Test | OpenRTB | `request.test` <br/> The publisher is sending non-production traffic which also enables verbose debugging information from Prebid Server.
+| Video | OpenRTB | `request.imp[].video` <br/> The publisher is specifying video ad requirements or preferences.
 
 {: .alert.alert-warning :}
 For simplicity, adapters are expected to make net-price bids (e.g. "If this ad wins, what will the publisher make?"), not gross-price bids. Publishers can correct for gross-price bids by setting [Bid Adjustments](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) to account for fees.
 
 #### Response
 
-The `MakeBids` method is responsible for parsing the bidding server's response and mapping it to the OpenRTB 2.5 Bid Response object model.
+The `MakeBids` method is responsible for parsing the bidding server's response and mapping it to the [OpenRTB 2.5 Bid Response object model](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
 
 This method is called for each response received from your bidding server within the bidding window (`request.tmax`). If there are no requests or if all requests time out, the `MakeBids` method will not be called.
 
 {: .alert.alert-info :}
-It's *imperative* to include all required information in the response for your bid to be accepted. Please avoid common mistakes, such as not specifying the bid currency and not detecting the media type from the bidding server response.
+It's *imperative* to include all required information in the response for your bid to be accepted. Please avoid common mistakes, such as not specifying the bid currency and not properly detecting the media type from the bidding server response.
 
-The first argument, `request`, is the exact same OpenRTB 2.5 Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful as part of detecting the media type.
+The first argument, `request`, is the exact same OpenRTB 2.5 Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful when detecting the media type.
 
 The second argument, `requestData`, is the exact same `adapters.RequestData` object returned by the `MakeRequests` method. It's rare for adapters to make use of this information, but it's provided for potential edge cases.
 
 The third argument, `responseData`, is the HTTP response received from your bidding server and contains the status code, body, and headers. If your bidding server replies with a GZIP encoded body, it will be automatically decompressed. 
 
-The `MakeBids` method is expected to return an `adapters.BidderResponse` object with one or more bids mapped from your bidding server's response. This may be as simple as decorating an OpenRTB 2.5 Bid Response with a some Prebid Server metadata, such as the media type, or more complicated mapping logic depending on your server's response format.
+The `MakeBids` method is expected to return an `adapters.BidderResponse` object with one or more bids mapped from your bidding server's response. This may be as simple as decorating an OpenRTB 2.5 Bid Response with a some Prebid Server metadata (such as the media type) or more complicated mapping logic depending on your server's response format.
 
 Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32) documentation to fully understand the response object model and expectations. We've summarized some common fields below. Data which is listed as required is enforced by the core framework and cannot be omitted.
 
-| Path | Scope | Description |
-| - | - | - |
-| `.Currency` | Required | [3-letter ISO 4217 code](https://www.iso.org/iso-4217-currency-codes.html) defining the currency of the bid. Defaults to USD. |
-| `.Bids[].BidType` | Required | Prebid Server defined value which identifies the media type as either `banner`, `video`, `audio`, or `native`. Should be mapped from the bidding server response. | 
-| `.Bids[].Bid.ADomain` | Optional | Advertiser domain for block list checking. |
-| `.Bids[].Bid.AdM` | Optional | Ad markup to serve the creative if the bid wins. May be HTML, Native, or VAST/VMAP formats. |
-| `.Bids[].Bid.CrID` | Required | Unique id of the creative. |
-| `.Bids[].Bid.ID` | Required | Bidder generated id to assist with logging/tracking. |
-| `.Bids[].Bid.ImpID` | Required | Id of the corresponding bid request Impression. Prebid Server validates this id is actually found in the bid request.  |
-| `.Bids[].Bid.Price` | Required | Net price CPM of the bid, not gross price. Publishers can correct for gross price bids by setting Bid Adjustments to account for fees. We recommend the most granular price a bidder can provide. |
-| `.Bids[].Bid.W` | Optional | Width of the creative in pixels. |
-| `.Bids[].Bid.H` | Optional | Height of the creative in pixels. |
-| `.Bids[].Bid.Ext` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information. |
+{: .table .table-bordered .table-striped }
+| BidderResponse Path | Scope | Description
+| - | - | -
+| `.Currency` | Required | [3-letter ISO 4217 code](https://www.iso.org/iso-4217-currency-codes.html) defining the currency of the bid. The Prebid Server default is USD.
+| `.Bids[].BidType` | Required | Prebid Server defined value identifying the media type as `banner`, `video`, `audio`, or `native`. Should be mapped from the bidding server response.
+| `.Bids[].Bid.ADomain` | Optional | Advertiser domain for block list checking.
+| `.Bids[].Bid.AdM` | Optional | Ad markup to serve the creative if the bid wins. May be HTML, Native, or VAST/VMAP formats.
+| `.Bids[].Bid.CrID` | Required | Unique id of the creative.
+| `.Bids[].Bid.ID` | Required | Bidder generated id to assist with logging and tracking.
+| `.Bids[].Bid.ImpID` | Required | ID of the corresponding bid request Impression. Prebid Server validates the id is actually found in the bid request.
+| `.Bids[].Bid.Price` | Required | Net price CPM of the bid, not gross price. Publishers can correct for gross price bids by setting Bid Adjustments to account for fees. We recommend the most granular price a bidder can provide.
+| `.Bids[].Bid.W` | Optional | Width of the creative in pixels.
+| `.Bids[].Bid.H` | Optional | Height of the creative in pixels.
+| `.Bids[].Bid.Ext` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
 
 If you'd like to support Long Form Video Ad Pods, then you'll need to provide the followings information:
 
-| Path | Description |
-| - | - |
-| `.Bids[].BidVideo.PrimaryCategory` | Category for the bid. Should be able to be translated to the primary ad server format. |
-| `.Bids[].Bid.Cat` | Category for the bid. Should be able to be translated to the primary ad server format. |
-| `.Bids[].BidVideo.Duration` | Length of the video in integer seconds. |
-| `.Bids[].DealPriority` | Deal tier integer value. Defaults to 0. |
+{: .table .table-bordered .table-striped }
+| BidderResponse Path | Description
+| - | -
+| `.Bids[].BidVideo.PrimaryCategory` | Category for the bid. Should be able to be translated to the primary ad server format.
+| `.Bids[].Bid.Cat` | Category for the bid. Should be able to be translated to the primary ad server format.
+| `.Bids[].BidVideo.Duration` | Length of the video in integer seconds.
+| `.Bids[].DealPriority` | Deal tier integer value. Defaults to 0.
 
-{% capture alertNote %}
+{: .alert.alert-info :}
 Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provided.
-{% endcapture %}
 
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response. 
 
 {: .alert.alert-danger :}
 Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
-| Path | Description |
-| - | - |
-| `.NetworkID` | Bidder-specific network/DSP id. |
-| `.NetworkName` | Bidder-specific network/DSP name. |
-| `.AgencyID` | Bidder-specific agency id.	|
-| `.AgencyName` | Bidder-specific agency name |
-| `.AdvertiserID` | Bidder-specific advertiser id |
-| `.AdvertiserName` | Bidder-specific advertiser name. |
+{: .table .table-bordered .table-striped }
+| Path | Description
+| - | -
+| `.NetworkID` | Bidder-specific network/DSP id.
+| `.NetworkName` | Bidder-specific network/DSP name.
+| `.AgencyID` | Bidder-specific agency id.
+| `.AgencyName` | Bidder-specific agency name.
+| `.AdvertiserID` | Bidder-specific advertiser id.
+| `.AdvertiserName` | Bidder-specific advertiser name.
 | `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain`. 
-| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands. | 
-| `.BrandName` | Bidder-specific brand name. |
-| `.PrimaryCategoryID` | Primary IAB category id. |
-| `.SecondaryCategoryIDs` | Secondary IAB category ids. |
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`. |
+| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
+| `.BrandName` | Bidder-specific brand name.
+| `.PrimaryCategoryID` | Primary IAB category id.
+| `.SecondaryCategoryIDs` | Secondary IAB category ids.
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`.
 
+<p></p>
 
-
-<details>
+<details markdown="1">
   <summary>Example: Setting metadata.</summary>
 
-  ```go
-  func (a *adapter) MakeBids(request *openrtb.BidRequest, requestData *adapters.RequestData, responseData *adapters.ResponseData) (*adapters.BidderResponse, []error) {
-    ...
-    for _, seatBid := range response.SeatBid {
-      for _, bid := range seatBid.Bid {
-        b := &adapters.TypedBid{
-          Bid:     &bid,
-          BidType: getMediaTypeForBid(bid),
-        }
-
-        if meta, err := buildMeta(b); err != nil {
-          errs = append(errs, metaErr)
-        } else {
-          b.Bid.Ext = meta
-          bidResponse.Bids = append(bidResponse.Bids, b)
-        }
-    }
-    ...
-  }
-
-  func buildMeta(bid *adapters.TypedBid) (json.RawMessage, error) {
-    metaExt := openrtb_ext.ExtBidPrebid {
-      Meta: &openrtb_ext.ExtBidPrebidMeta {
-        NetworkID:            1,
-        NetworkName:          "Some Network Name",
-        AgencyID:             2,
-        AgencyName:           "Some Agency Name",
-        AdvertiserID:         3,
-        AdvertiserName:       "Some Advertiser Name",
-        AdvertiserDomains:    bid.ADomain,
-        BrandID:              4,
-        BrandName:            "Some Brand Name",
-        PrimaryCategoryID:    "IAB-1",
-        SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
-        MediaType:            b.BidType,
+```go
+func (a *adapter) MakeBids(request *openrtb.BidRequest, requestData *adapters.RequestData, responseData *adapters.ResponseData) (*adapters.BidderResponse, []error) {
+  ...
+  for _, seatBid := range response.SeatBid {
+    for _, bid := range seatBid.Bid {
+      b := &adapters.TypedBid{
+        Bid:     &bid,
+        BidType: getMediaTypeForBid(bid),
       }
-    }
-    return json.Marshal(meta)
+
+      if meta, err := buildMeta(b); err != nil {
+        errs = append(errs, metaErr)
+      } else {
+        b.Bid.Ext = meta
+        bidResponse.Bids = append(bidResponse.Bids, b)
+      }
   }
-  ```
+  ...
+}
+
+func buildMeta(bid *adapters.TypedBid) (json.RawMessage, error) {
+  metaExt := openrtb_ext.ExtBidPrebid {
+    Meta: &openrtb_ext.ExtBidPrebidMeta {
+      NetworkID:            1,
+      NetworkName:          "Some Network Name",
+      AgencyID:             2,
+      AgencyName:           "Some Agency Name",
+      AdvertiserID:         3,
+      AdvertiserName:       "Some Advertiser Name",
+      AdvertiserDomains:    bid.ADomain,
+      BrandID:              4,
+      BrandName:            "Some Brand Name",
+      PrimaryCategoryID:    "IAB-1",
+      SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
+      MediaType:            b.BidType,
+    }
+  }
+  return json.Marshal(meta)
+}
+```
 </details>
 <p></p>
 
 ### Create A User Syncer (Optional)
 
-Prebid Server offers a federated [user sync solution](https://docs.prebid.org/prebid-server/developers/pbs-cookie-sync.html) to store user ids in a single cookie within the host's domain. If your bidding server supports the protocol, you may add support with a relatively small amount of code.
+Prebid Server offers a federated [user sync solution](https://docs.prebid.org/prebid-server/developers/pbs-cookie-sync.html) to store user ids in a single cookie under the host's domain. You may add support with a relatively small amount of code if your bidding server supports this protocol.
 
 Create a file with the path `adatpers/{bidder}/usersync.go` using the following template:
 
@@ -685,18 +688,20 @@ func NewSyncer(template *template.Template) usersync.Usersyncer {
 
 The heavy lifting is handled by the `adapters.NewSyncer` method. You just need to provide a few arguments:
 
-1. `familyName`: Name used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
-1. `vendorID`: ID for your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
-1. `urlTemplate`: Pass through the `template` argument.
-1. `syncType`: Type of user sync supported by your bidding server. The valid options are `SyncTypeRedirect` and `SyncTypeIframe`.
+{: .table .table-bordered .table-striped }
+| Argument | Description
+| - | -
+| `familyName` | Name used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
+| `vendorID` | Id for your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
+| `urlTemplate` | Pass through the `template` argument.
+| `syncType` | Type of user sync supported by your bidding server. The valid options are `SyncTypeRedirect` and `SyncTypeIframe`.
 
 ### Register With The Core
 
-Prebid Server does not use reflection or any other automagic technology to recognize your new bid adapter. You must manually register it with the core framework. It's just a few lines of code.
+Prebid Server does not use reflection or any other automagic technology to recognize your new bid adapter. You must manually register it with the core framework.
 
-{% capture alertNote %}
-You will need to add an `import` statement for your bid adapter package in these files. Modern code editors such as Visual Studio Code and JetBrain's GoLand will do that for you.
-{% endcapture %}
+{: .alert.alert-info :}
+You will need to add an `import` statement for your bid adapter package in these files. Modern code editors such as Visual Studio Code and JetBrain's GoLand will automatically do that for you.
 
 Edit the file `openrtb_ext/bidders.go` to add your bidder name constant and include it alphabetically in the `CoreBidderNames` list:
 
@@ -749,10 +754,10 @@ func NewSyncerMap(cfg *config.Configuration) map[openrtb_ext.BidderName]usersync
 
 ### Set Adapter Defaults
 
-Finally, you need to provide default settings for your bid adapter. You can decide if you'd like your bid adapter to be enabled out of the box, and if so, you'll need to provide a default endpoint and default extra adapter info if applicable. If your bid adapter requires host specific information to function properly, such as a security token or host account, then it's best to leave the adapter disabled.
+Lastly, you need to provide default settings for your bid adapter. You can decide if you'd like your bid adapter to be enabled out of the box, and if so, you'll need to provide a default endpoint and default extra adapter info if applicable. If your bid adapter requires host specific information to function properly, such as a security token or host account, then it's best to leave the adapter disabled.
 
 {: .alert.alert-warning :}
-The default endpoint should not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
+**HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
 
 #### Enabled By Default
 
@@ -804,27 +809,27 @@ func (cfg *Configuration) setDerivedDefaults() {
 
 Yes, you're right. That url value is quite complicated. You can find further details in our [user sync documentation](https://docs.prebid.org/prebid-server/developers/pbs-cookie-sync.html).
 
-The user sync endpoint is composed of two main parts, the url of your user syncer and a redirect url back to Prebid Server. The url of your user syncer is responsible for reading the user id from the client's cookie and redirecting to Prebid Server with a user id macro resolved.
+The user sync endpoint is composed of two main parts, the url of your user syncer and a redirect back to Prebid Server. The url of your user syncer is responsible for reading the user id from the client's cookie and redirecting to Prebid Server with a user id macro resolved.
 
 The url of your user syncer can make use of the following privacy policy macros which will be resolved by Prebid Server before sending the url to your server:
 - `{%raw%}{{.USPrivacy}}{%endraw%}`: Client's CCPA consent string.
 - `{%raw%}{{.GDPR}}{%endraw%}`: Client's GDPR TCF enforcement flag.
 - `{%raw%}{{.GDPRConsent}}{%endraw%}`: Client's GDPR TCF consent string.
 
-<details>
+<details markdown="1">
   <summary>Example: Bidding server url with no macros.</summary>
 
-  ```go
-  "https://your.url/sync?r="
-  ```
+```go
+"https://your.url/sync?r="
+```
 </details>
 
-<details>
+<details markdown="1">
   <summary>Example: Bidding server url with CCPA privacy consent.</summary>
 
-  ```go
-  "https://your.url/sync?usp={%raw%}{{.USPrivacy}}{%endraw%}&r="
-  ```
+```go
+"https://your.url/sync?usp={%raw%}{{.USPrivacy}}{%endraw%}&r="
+```
 </details>
 <p></p>
 
@@ -833,9 +838,12 @@ The redirect url for Prebid Server must follow this format:
 {host}/setuid?bidder={bidder}&gdpr={%raw%}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}{%endraw%}&uid=[UUID]
 ```
 
-- `{host}` is a placeholder for the Prebid Server host url. In code, you would use `url.QueryEscape(externalURL)`. 
-- `{bidder}` is a placeholder for the name of your bid adapter.
-- `[UUID]` is a macro defined by your user sync server which will be replaced with the user's id.
+{: .table .table-bordered .table-striped }
+| Token | Description
+| - | -
+| `{host}` | Placeholder for the Prebid Server host url. In code, you would substitute it with `url.QueryEscape(externalURL)`. 
+| `{bidder}` | Placeholder for the name of your bid adapter.
+| `[UUID]` | Macro defined by your user sync server which will be replaced with the user's id.
 
 The final value of the redirect url is encoded for safe use within a query string:
 
@@ -882,9 +890,11 @@ func TestJsonSamples(t *testing.T) {
 }
 ```
 
-You should use an obviously fake endpoint for your tests. There is no reason to use a real endpoint value. Please also note the `_test.go` file suffix is a required Go idiom enforced by Go tools. The Go test runner will look in these files for tests and the Go compiler will exclude this code from production binaries.
+You should use an obviously fake endpoint for your tests. There's no reason to use a real endpoint value. Please also note the `_test.go` file suffix is a required Go idiom. The Go test runner will look in these files for tests and the Go compiler will exclude test code from production binaries.
 
-Each test case should be written in its own JSON file with a succinct, yet descriptive, name of what's being tested. The files should be located in either `adapters/{bidder}/{bidder}test/exemplary/` for straight forward "happy path" tests or `adapters/{bidder}/{bidder}test/supplemental` for tests which produce errors or cover more complicated scenarios. We expect to see 'exemplary' tests for each supported media type.
+Each test case should be written in its own JSON file with a succinct, yet descriptive, name of what's being tested. The files should be located in either:
+* `adapters/{bidder}/{bidder}test/exemplary/` for straight forward "happy path" tests. We expect to see tests here for each supported media type.
+* `adapters/{bidder}/{bidder}test/supplemental` for tests which produce errors or cover more complicated scenarios.
 
 The format of a JSON test is as follows:
 ```json
@@ -974,7 +984,7 @@ func TestEmptyConfig(t *testing.T) {
 
 ### Adapter Race Condition Tests
 
-You must define race condition tests for each media type supported by your bid adapter. We don't expect bid adapters to run concurrent code. Rather, these tests attempt to verify that your bid adapter doesn't modify shared memory. We use Go's [race detector](https://golang.org/doc/articles/race_detector.html) which is a great line of defense, but it may produce false negatives. It will not produce false positives, so please investigate further if these tests ever fail.
+You must define race condition tests for each media type supported by your bid adapter. We don't expect bid adapters to run concurrent code. Rather, these tests attempt to verify your bid adapter doesn't modify shared memory. We use Go's [race detector](https://golang.org/doc/articles/race_detector.html) which is a great line of defense, but it may produce false negatives. It will not produce false positives, so please investigate further if these tests ever fail.
 
 Create a file with the path `adapters/{bidder}/{bidder}test/params/race/{mediaType}.json` for each `banner`, `video`, `audio`, and `native` media type supported by your adapter. Include all required and optional bidder parameters defined by your JSON Schema.
 
@@ -1173,6 +1183,7 @@ safeframes_ok: true/false
 bidder_supports_deals: true/false
 pbjs: true/false
 pbs: true/false
+pbs_app_supported: true/false
 prebid_member: true/false
 ---
 
@@ -1198,6 +1209,7 @@ Notes on the metadata fields:
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
+- If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
 - If your bidder supports deals, set `bidder_supports_deals: true`. No default value.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 

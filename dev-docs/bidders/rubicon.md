@@ -10,12 +10,13 @@ coppa_supported: true
 schain_supported: true
 getFloor: true
 media_types: video
-userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, intentiqId, idx, liveIntentId, lotamePanoramaId, netId, parrableId, pubCommonId, pubProvidedId, quantcastId, sharedId, unifiedId, verizonMediaId, zeotapIdPlus
+userIds: all
 prebid_member: true
 safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 gvl_id: 52
 list_group: pr
 ---
@@ -39,7 +40,7 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `latLong`     | optional           | Sets the latitude and longitude for the visitor (avail since PBJS 1.10)                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
 | `inventory`   | optional           |  Please consider using the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.ATTR. This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
 | `visitor`      | optional           | Please consider using the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.user.data.ATTR. This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
-| `keywords`     | optional           | Deprecated - please use the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.keywords. This is a legacy parameter that only works for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters.  | `['travel', 'tourism']`                                                             | `Array<string>`  |
+| `keywords`     | optional           | Deprecated - please use the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.keywords. This is a legacy parameter that only works for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. The order of precedence for banner is: params.keywords, AdUnit.fpd.context.data.keywords, config.fpd.keywords. | `['travel', 'tourism']`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
 
 <a name="rubicon-video"></a>
