@@ -2405,6 +2405,7 @@ pbjs.setConfig({coppa: true});
 #### First Party Data
 
 The First Party Data feature allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
+See the [First Party Data Feature](/features/firstPartyData.html) for more detailed examples.
 
 {: .alert.alert-warning :}
 Not all bid adapters currently support reading first party data in this way, but support should increase over time.
@@ -2415,35 +2416,20 @@ Not all bid adapters currently support reading first party data in this way, but
 pbjs.setConfig({
    ortb2: {
        site: {
-           keywords: "power tools",
-           search: "drill",
-           content: { userrating: 4 },
-           ext: {
-               data: {
-                   pageType: "article",
-                   category: "tools"
-               }
-           }
-        },
-        user: {
-           keywords: "a,b",
-           gender: "M",
-           yob: 1984,
-           geo: { country: "ca" },
-           ext: {
-               data: {
-                  registered: true,
-                  interests: ["cars"]
-               }
-           }
-        }
+	 ...
+       },
+       user: {
+         ...
+       }
     }
 });
 {% endhighlight %}
 
-{: .alert.alert-info :}
-The First Party Data JSON structure reflects the OpenRTB standard. Arbitrary values should go in site.ext.data or
-user.ext.data. Keywords, search, content, gender, yob, and geo are special values in OpenRTB.
+The `ortb2` JSON structure reflects the OpenRTB standard:
+- Fields that like keywords, search, content, gender, yob, and geo are values defined in OpenRTB, so should go directly under the site or user objects.
+- Arbitrary values should go in site.ext.data or user.ext.data.
+- Segments should go in site.content.data[] or user.data[].
+- Any other OpenRTB 2.5 field could be added here as well, e.g. site.content.language.
 
 **Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
 

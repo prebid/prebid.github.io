@@ -40,6 +40,7 @@ configuration or on a Prebid.js AdUnit:
 The Prebid First Party Data JSON structure reflects the OpenRTB standard.
 - Arbitrary attributes should go in `ortb2.site.ext.data` or `ortb2.user.data`.
 - Fields that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) should be in `ortb2.site` or `ortb2.user`. Specfically, the standard values for 'site' are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For 'user' these are: yob, gender, keywords.
+- Segment taxonomy values go in `ortb2.site.content.data` or `ortb2.user.data` using the IAB standard representation.
 
 ### Supplying Global Data
 
@@ -58,7 +59,17 @@ pbjs.setConfig({
            ref: "https://ref.example.com",
            keywords: "power tools, drills",
            search: "drill",
-           content: { userrating: 4 },
+           content: {
+		userrating: 4,
+		data: [{
+          	    "name": "www.dataprovider1.com",
+          	    "ext": { "taxonomyname": "iab_content_taxonomy" },
+		    "segment": [
+            		{ "id": "687" }, 
+            		{ "id": "123" }
+		    ]
+                }]
+	   },
 	   ext: {
                data: {   // fields that aren't part of openrtb 2.5
                    pageType: "article",
@@ -72,7 +83,7 @@ pbjs.setConfig({
            keywords: "a,b",
 	   data: [{
 	       name: "dataprovider.com",
-	       ext: { taxonomyname: "IAB" },
+	       ext: { taxonomyname: "iab_audience_taxonomy" },
                segment: [
 		  { id: "1" }
                ]
