@@ -21,7 +21,7 @@ For each bidder listed below, you'll find the following information:
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.
 
 
-{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true | sort_natural: "title" %}
 
 ### Search a bidder
 
