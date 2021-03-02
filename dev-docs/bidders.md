@@ -35,83 +35,91 @@ var BidderList = [{% for page in bidder_pages %}{ label: '{{ page.title }}', val
 
 ### Full List
 
-{% assign a_bidder_pages = bidder_pages | where: "list_group", "0a" %}
 #### #-A
 <ul class="c-bidder-list">
-{% for page in a_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "0" or firstletter == "1" or firstletter == "2" or firstletter == "3" or firstletter == "4" or firstletter == "5" or firstletter == "6" or firstletter == "7" or firstletter == "8" or firstletter == "9" or firstletter == "a" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-{% assign bc_bidder_pages = bidder_pages | where: "list_group", "bc" %}
 #### B-C
 <ul class="c-bidder-list">
-{% for page in bc_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "b" or firstletter == "c" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-{% assign dg_bidder_pages = bidder_pages | where: "list_group", "dg" %}
 #### D-G
 <ul class="c-bidder-list">
-{% for page in dg_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "d" or firstletter == "e" or firstletter == "f" or firstletter == "g" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-{% assign hl_bidder_pages = bidder_pages | where: "list_group", "hl" %}
 #### H-L
 <ul class="c-bidder-list">
-{% for page in hl_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "h" or firstletter == "i" or firstletter == "j" or firstletter == "k" or firstletter == "l" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-{% assign mo_bidder_pages = bidder_pages | where: "list_group", "mo" %}
 #### M-O
 <ul class="c-bidder-list">
-{% for page in mo_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "m" or firstletter == "n" or firstletter == "o" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-{% assign pr_bidder_pages = bidder_pages | where: "list_group", "pr" %}
 #### P-R
 <ul class="c-bidder-list">
-{% for page in pr_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "p" or firstletter == "q" or firstletter == "r" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-{% assign st_bidder_pages = bidder_pages | where: "list_group", "st" %}
 #### S-T
 <ul class="c-bidder-list">
-{% for page in st_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "s" or firstletter == "t" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-{% assign uz_bidder_pages = bidder_pages | where: "list_group", "uz" %}
 #### U-Z
 <ul class="c-bidder-list">
-{% for page in uz_bidder_pages %}
-<li>
-<a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "u" or firstletter == "v" or firstletter == "w" or firstletter == "x" or firstletter == "y" or firstletter == "z" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 </div>
