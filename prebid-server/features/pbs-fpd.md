@@ -27,11 +27,11 @@ First Party Data in the OpenRTB JSON in several places:
 {: .table .table-bordered .table-striped }
 | OpenRTB Attribute | Description | PBJS Source | SDK Source | AMP Source |
 | --- | --- | --- | --- | --- |
-| site.ATTR | Only standard OpenRTB attributes should be here: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. | config.ortb2.site.ATTR | n/a | site.ATTR |
-| site.ext.data.ATTR | Any other site-related attributes should go here. | config.ortb2.site.ext.data | n/a | site.ext.data.ATTR |
+| site.ATTR | Only standard OpenRTB attributes should be here: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. | config ortb2.site.ATTR | n/a | site.ATTR |
+| site.ext.data.ATTR | Any other site-related attributes should go here. | config ortb2.site.ext.data | n/a | site.ext.data.ATTR |
 | app.ext.data.ATTR | Any app-related attributes should go here. | n/a | Targeting addContextData() | n/a |
-| user.ATTR | Only standard OpenRTB attributes should be here: yob, gender, keywords. | config.ortb2.user.ATTR | n/a | user.ATTR |
-| user.ext.data.ATTR | Any other user-related attributes should go here. | config.ortb2.user.ext.data.ATTR | Targeting addUserData() | user.ext.data.ATTR |
+| user.ATTR | Only standard OpenRTB attributes should be here: yob, gender, keywords. | config ortb2.user.ATTR | n/a | user.ATTR |
+| user.ext.data.ATTR | Any other user-related attributes should go here. | config ortb2.user.ext.data.ATTR | Targeting addUserData() | user.ext.data.ATTR |
 | imp[].ext.data.ATTR | AdUnit-specific attributes should go here. | AdUnit.ortb2.ext.data | AdUnit addContextData() | n/a |
 | ext.prebid.data.bidders[] | If specified, only these bidders are allowed to see fields in {site/app/user}.ext.data. | n/a | addBidderToAccessControlList() | bidders |
 | ext.prebid.bidderconfig | Bidder-specific config | [setBidderConfig()](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig) | n/a | n/a |
