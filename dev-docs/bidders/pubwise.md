@@ -7,6 +7,7 @@ biddercode: pwbid
 media_types: banner, native
 gdpr_supported: true
 gvl_id: 842
+list_group: pr
 ---
 
 ### Note:

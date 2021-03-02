@@ -7,6 +7,7 @@ biddercode: adWMG
 media_types: banner
 gdpr_supported: true
 tcf2_supported: true
+list_group: 0a
 ---
 
 ### BidParams

@@ -8,6 +8,7 @@ media_types: no-display, video
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
+list_group: pr
 ---
 
 ### Note
