@@ -88,6 +88,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 | ASSETCODE. aspect_ratios.min_height | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 75 | integer |
 | ASSETCODE. aspect_ratios.ratio_width | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 2 | integer |
 | ASSETCODE. aspect_ratios.ratio_height | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 3 | integer |
+| ext.CUSTOMASSET | optional | Non-standard or bidder-specific assets can be supplied on the `ext` here. Attributes on custom assets are documented by the vendor. | | |
 
 
 **Table 3: Native Assets Recognized by Prebid.js**
@@ -101,15 +102,16 @@ Specific bidders may not support all of the fields listed below or may return di
 
 {% include dev-docs/native-image-asset-sizes.md %}
 
-### 3.2 Native custom assets
+### 3.2 Custom native assets
 
-Prebid.js allows custom assets in order to fit some bidder's requirements through the special `mediaTypes.native.ext` key. The assets under this key will be whitelisted and could be retrieved during the rendering.
+In order to fit special bidder requirements, Prebid.js supports assets beyond the standard set. Define custom attributes at mediaTypes.native.ext. When `sendTargetingKeys` is false, the assets under the `native.ext` key can be retrieved during the render.
 
-The custom assets are declared in the same way as the Prebid standard ones.
+Other than being under the `ext` object, custom assets are declared in the same way as the standard ones.
 
-Note: on the rendering side, `native-render.js::renderNativeAd()` must be called with `requestAllAssets: true`.
+{: .alert.alert-success :}
+Note: The `native-render.js::renderNativeAd()` function must be called with `requestAllAssets: true`.
 
-BidderAdapter should declare which custom assets they support in their own documentation. It is recommended to prefix the asset name with the bidderCode to avoid collision issues.
+Bid adapters will declare which custom assets they support in their documentation. It is recommended to prefix the asset name with the bidderCode to avoid collision issues.
 
 ```javascript
 mediaTypes {
@@ -118,11 +120,20 @@ mediaTypes {
       required: true
     },
     ext: {
-      bidderCode_customAssetName: {
+      bidderA_specialtracking: {    // custom asset
         required: false
       }
   }
 }
+```
+
+In the native template, simply access the custom value with the normal Prebid ##macro## format assuming `hb_native_` as the prefix. For example:
+
+```
+    <div id="mytemplate">
+    ... render a lovely creative ...
+    ... refer to ##hb_native_bidderA_specialtracking## when appropriate ...
+    </div>
 ```
 
 ## 4. Implementing the Native Template
