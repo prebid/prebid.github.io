@@ -2449,7 +2449,9 @@ user.ext.data. Keywords, search, content, gender, yob, and geo are special value
 
 If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](#module_pbjs.setBidderConfig) function.
 
-**Scenario 3** - See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
+**Scenario 3** - AdUnit-specific First Party Data
+
+See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 
 See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for details about passing data server-side.
 
@@ -2704,7 +2706,7 @@ pbjs.setBidderConfig({
 
 How to interpret these examples:
 - When 'bidderA' calls `getConfig('customArg')`, it will receive the object that contains 'customArg'. If any other bidder calls `getConfig('customArg')`, it will receive nothing.
-- When 'bidderB' calls `getConfig('ortb2')`, it will receive this override definition rather than whatever else might have been defined globally.
+- When 'bidderB' calls `getConfig('ortb2')`, it will receive this override definition rather than whatever else might have been defined globally. If any other bidder calls `getConfig('ortb2')`, it will receive the globally defined objects.
 
 {: .alert.alert-info :}
 This function is also used by the `schain` feature. Refer to the [schain](/dev-docs/modules/schain.html) documentation for examples.

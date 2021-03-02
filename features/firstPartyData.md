@@ -21,15 +21,15 @@ check with each of your bidders to make sure they're reading first
 party data from the standard Prebid locations.
 
 {: .alert.alert-warning :}
-This document covers the new way of specifying First Party Data (as of Prebid.js 4.xx), which
-we recommend all publishers move towards. Previously, the interface was
-to set `fpd` values, but we are now using the more generic `ortb2` interface,
-which can be used for more than First Party Data.
+This document covers the method of specifying First Party Data as of Prebid.js 4.xx, which
+we recommend all publishers use. In previous versions of Prebid.js, the interface was
+to set `fpd` values. We now use the more generic `ortb2` interface,
+which can be used for more than just First Party Data.
 
 ## How It Works
 
 Publishers supply First Party Data (FPD) by specifying attributes as
-configuration or on a PBJS AdUnit. Here's a summary of how it works:
+configuration or on a Prebid.js AdUnit. Here's a summary of how it works:
 
 ![First Party Data Summary](/assets/images/flowcharts/FirstPartyData-Summary.png){: .pb-lg-img :}
 
@@ -122,7 +122,7 @@ pbjs.addAdUnits({
 {% endhighlight %}
 
 {: .alert.alert-info :}
-Prebid does not support AdUnit-Specific **user** data, nor does it support
+Prebid does not support AdUnit-specific **user** data, nor does it support
 bidder-specific AdUnit First Party Data. You could implement either of
 these scenarios with a publisher-specific callback on the [`requestBids` event](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
 
