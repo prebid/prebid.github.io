@@ -17,7 +17,6 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 76
-list_group: pr
 ---
 
 ### Prebid Server Note:

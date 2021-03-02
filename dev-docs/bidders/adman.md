@@ -9,7 +9,6 @@ gdpr_supported: true
 usp_supported: true
 media_types: banner, video
 tcf2_supported: true
-list_group: 0a
 ---
 
 ### Note:

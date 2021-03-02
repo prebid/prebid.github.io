@@ -5,7 +5,6 @@ description: Prebid FeedAd Bidder Adaptor
 pbjs: true
 biddercode: feedad
 media_types: banner, video
-list_group: dg
 ---
 
 ### Bid Params

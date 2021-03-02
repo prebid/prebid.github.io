@@ -6,7 +6,6 @@ pbjs: true
 biddercode: readpeak
 media_types: native
 gvl_id: 290
-list_group: pr
 ---
 
 ### Bid Params

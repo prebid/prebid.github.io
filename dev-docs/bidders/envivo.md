@@ -4,7 +4,6 @@ title: envivo
 description: Prebid envivo Bidder Adapter
 pbjs: true
 biddercode: envivo
-list_group: dg
 ---
 
 

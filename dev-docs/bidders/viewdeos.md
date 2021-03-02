@@ -5,7 +5,6 @@ description: Prebid Viewdeos Bidder Adaptor
 pbjs: true
 biddercode: viewdeosDX
 media_types: banner, video
-list_group: uz
 ---
 
 ### Bid params

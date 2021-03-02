@@ -5,7 +5,6 @@ description: Prebid Videonow Bidder Adaptor
 biddercode: videonow
 pbjs: true
 media_types: banner
-list_group: uz
 ---
 
 ### Note:

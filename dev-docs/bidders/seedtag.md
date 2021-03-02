@@ -5,7 +5,6 @@ description: Prebid Seedtag Bidder Adapter
 pbjs: true
 media_types: banner, video
 biddercode: seedtag
-list_group: st
 ---
 
 ### Note

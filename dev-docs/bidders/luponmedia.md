@@ -9,7 +9,6 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 userIds: digitrust, identityLink, liveIntentId, pubCommonId
-list_group: hl
 ---
 
 ### Note:

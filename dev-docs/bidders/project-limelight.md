@@ -5,7 +5,6 @@ description: Prebid Project Limelight Bidder Adaptor
 pbjs: true
 biddercode: project-limelight
 aliasCode: projectLimeLight
-list_group: pr
 ---
 
 ### Bid Params

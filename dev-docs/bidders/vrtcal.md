@@ -7,7 +7,6 @@ pbs: true
 media_ytpes: banner
 gdpr_supported: false
 biddercode: vrtcal
-list_group: uz
 ---
 
 ### Bid Params

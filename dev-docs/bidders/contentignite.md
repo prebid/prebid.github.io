@@ -4,7 +4,6 @@ title: Content Ignite
 description: Prebid Contnent Ignite Adaptor
 pbjs: true
 biddercode: contentignite
-list_group: bc
 ---
 
 

@@ -6,7 +6,6 @@ pbjs: true
 biddercode: mobsmart
 media_types: banner
 userIds: pubCommonId
-list_group: mo
 ---
 
 ### Note:

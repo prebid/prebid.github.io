@@ -6,7 +6,6 @@ pbjs: true
 biddercode: kargo
 userIds: unifiedId
 usp_supported: true
-list_group: hl
 ---
 
 ### Note:

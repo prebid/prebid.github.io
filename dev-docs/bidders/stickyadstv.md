@@ -8,5 +8,4 @@ pbjs: true
 biddercode: stickyadstv
 media_types: native
 
-list_group: st
 ---

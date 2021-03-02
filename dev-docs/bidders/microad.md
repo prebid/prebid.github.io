@@ -5,7 +5,6 @@ description: Prebid MicroAd SSP Bidder Adaptor
 pbjs: true
 biddercode: microad
 media_types: banner
-list_group: mo
 ---
 
 Note:

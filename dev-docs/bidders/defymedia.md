@@ -5,7 +5,6 @@ description: Prebid Defy Media Bidder Adaptor
 pbjs: true
 biddercode: defymedia
 aliasCode : appnexus
-list_group: dg
 ---
 
 ### Bid Params

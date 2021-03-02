@@ -12,7 +12,6 @@ userIds: all
 prebid_member: true
 schain_supported: true
 gvl_id: 13
-list_group: st
 ---
 
 ### Bid Params

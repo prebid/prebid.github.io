@@ -11,7 +11,6 @@ coppa_supported: true
 media_types: banner, video
 pbs: true
 pbs_app_supported: true
-list_group: hl
 ---
 
 ### Note:

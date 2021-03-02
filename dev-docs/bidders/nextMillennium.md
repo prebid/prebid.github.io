@@ -4,7 +4,6 @@ title: NextMillennium
 description: NextMillennium bid adapter
 pbjs: true
 biddercode: nextMillennium
-list_group: mo
 ---
 
 ### bid params

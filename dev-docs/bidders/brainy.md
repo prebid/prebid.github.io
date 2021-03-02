@@ -4,7 +4,6 @@ title: brainy
 description: Prebid brainy Bidder Adaptor
 pbjs: true
 biddercode: brainy
-list_group: bc
 ---
 
 ### Bid Params

@@ -4,7 +4,6 @@ title: OTM
 description: OTM Bidder Adapter
 pbjs: true
 biddercode: otm
-list_group: mo
 ---
 
 ### Bid Params

@@ -6,7 +6,6 @@ pbjs: true
 biddercode: selectmedia
 aliasCode: adtelligent
 media_types: banner, video
-list_group: st
 ---
 
 ### Bid params

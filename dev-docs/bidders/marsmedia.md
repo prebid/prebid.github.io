@@ -8,7 +8,6 @@ biddercode: marsmedia
 media_types: video, banner
 gdpr_supported: true
 schain_supported: true
-list_group: mo
 ---
 
 ### Bid Params

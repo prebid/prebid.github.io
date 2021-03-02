@@ -11,7 +11,6 @@ gdpr_supported: true
 usp_supported: true
 tcf2_supported: true
 gvl_id: 794
-list_group: hl
 ---
 
 ### Note:

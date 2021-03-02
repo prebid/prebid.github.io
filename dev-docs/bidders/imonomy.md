@@ -4,7 +4,6 @@ title: Imonomy
 description: Prebid Imonomy Bidder Adaptor
 pbjs: true
 biddercode: imonomy
-list_group: hl
 ---
 
 

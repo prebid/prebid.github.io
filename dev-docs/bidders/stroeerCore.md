@@ -15,7 +15,6 @@ pbjs: true
 pbs: false
 gvl_id: 136
 bidder_supports_deals: true
-list_group: st
 ---
 
 ### Bid Params

@@ -7,7 +7,6 @@ biddercode: seedingAlliance
 media_types: native
 gdpr_supported: true
 tcf2_supported: true
-list_group: st
 ---
 
 ### Bid params

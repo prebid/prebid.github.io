@@ -6,7 +6,6 @@ pbjs: true
 biddercode: rads
 media_types: banner, video 
 gdpr_supported: false
-list_group: pr
 ---
 
 

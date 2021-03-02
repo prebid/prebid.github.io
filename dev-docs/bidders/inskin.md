@@ -5,7 +5,6 @@ description: Inskin Media Bidder Adaptor
 pbjs: true
 biddercode: inskin
 gdpr_supported: true
-list_group: hl
 ---
 
 ### Note:

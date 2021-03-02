@@ -10,7 +10,6 @@ media_types: banner, video
 safeframes_ok: false
 bidder_supports_deals: true
 pbjs: true
-list_group: hl
 ---
 ### Note:
 

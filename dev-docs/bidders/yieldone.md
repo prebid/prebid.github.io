@@ -6,7 +6,6 @@ pbjs: true
 pbs: true
 biddercode: yieldone
 media_types: banner, video
-list_group: uz
 ---
 
 ### Note:

@@ -5,7 +5,6 @@ description: Polymorph Prebid Adaptor
 pbjs: true
 biddercode: polymorph
 media_types: native, video, banner
-list_group: pr
 ---
 
 ### Note:

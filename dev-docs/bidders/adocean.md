@@ -7,7 +7,6 @@ pbs: true
 biddercode: adocean
 gdpr_supported: true
 tcf2_supported: true
-list_group: 0a
 ---
 
 ### Note

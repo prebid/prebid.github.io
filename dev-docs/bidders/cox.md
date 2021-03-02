@@ -4,7 +4,6 @@ title: Cox
 description: Prebid Cox Bidder Adaptor
 pbjs: true
 biddercode: cox
-list_group: bc
 ---
 
 ### Bid Params

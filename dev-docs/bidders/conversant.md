@@ -11,7 +11,6 @@ userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, uni
 prebid_member: true
 tcf2_supported: true
 gvl_id: 24
-list_group: bc
 ---
 
 

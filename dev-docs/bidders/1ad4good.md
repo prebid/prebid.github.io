@@ -4,7 +4,6 @@ title: 1ad4good
 description: Prebid One Ad for Good(1ad4good.org) Bidder Adaptor
 pbjs: true
 biddercode: 1ad4good
-list_group: 0a
 ---
 
 ### Note:

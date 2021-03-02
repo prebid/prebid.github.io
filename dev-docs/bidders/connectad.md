@@ -16,7 +16,6 @@ getFloor: true
 pbjs: true
 pbs: true
 gvl_id: 138
-list_group: bc
 ---
 
 ### Prebid Server Note:

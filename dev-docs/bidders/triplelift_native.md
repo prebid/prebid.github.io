@@ -4,7 +4,6 @@ title: TripleLift Native
 pbs: true
 media_types: native
 biddercode: triplelift_native
-list_group: st
 ---
 
 ### Bid Params

@@ -11,7 +11,6 @@ schain_supported: true
 userIds: id5Id
 media_types: banner, video, native
 glv_id: 791
-list_group: mo
 ---
 
 

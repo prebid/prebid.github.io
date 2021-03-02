@@ -4,7 +4,6 @@ title: REXRTB
 description: Prebid REXRTB Bidder Adaptor
 pbjs: true
 biddercode: rexrtb
-list_group: pr
 ---
 
 ### Bid Params

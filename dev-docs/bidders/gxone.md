@@ -4,7 +4,6 @@ title: GXOne
 description: GXOne Bidder Adapter
 pbjs: true
 biddercode: gxone
-list_group: dg
 ---
 
 

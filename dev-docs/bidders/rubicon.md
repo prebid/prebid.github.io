@@ -18,7 +18,6 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 52
-list_group: pr
 ---
 
 ### Registration

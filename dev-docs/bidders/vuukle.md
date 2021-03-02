@@ -4,7 +4,6 @@ title: Vuukle
 description: vuukle bid adapter
 pbjs: true
 biddercode: vuukle
-list_group: uz
 ---
 
 ### Bid Params

@@ -5,7 +5,6 @@ description: Prebid Clickforce Bidder Adaptor
 pbjs: true
 biddercode: clickforce
 media_types: native
-list_group: bc
 ---
 
 ### Bid Params (display ad)

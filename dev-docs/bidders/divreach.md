@@ -6,7 +6,6 @@ pbjs: true
 biddercode: divreach
 aliasCode: adbutler
 media_types: banner
-list_group: dg
 ---
 
 ### Bid Params

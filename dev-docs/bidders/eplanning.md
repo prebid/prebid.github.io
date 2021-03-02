@@ -8,7 +8,6 @@ biddercode: eplanning
 usp_supported: true
 gdpr_supported: true
 tcf2_supported: true
-list_group: dg
 ---
 
 

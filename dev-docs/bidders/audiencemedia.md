@@ -7,7 +7,6 @@ media_types: banner, video
 gdpr_supported: true
 biddercode: audiencemedia
 aliasCode : adkernel
-list_group: 0a
 ---
 
 ### Bid Params

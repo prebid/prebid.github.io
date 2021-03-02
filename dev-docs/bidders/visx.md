@@ -10,7 +10,6 @@ schain_supported: true
 tcf2_supported: true
 userIds: id5Id, unifiedId
 pbs_app_supported: true
-list_group: uz
 ---
 
 ### Note

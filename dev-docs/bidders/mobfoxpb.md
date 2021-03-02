@@ -10,7 +10,6 @@ gdpr: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
-list_group: mo
 ---
 
 ### Prebid.JS Bid Params

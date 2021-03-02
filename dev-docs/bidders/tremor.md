@@ -6,7 +6,6 @@ top_nav_section: dev_docs
 nav_section: reference
 pbjs: true
 biddercode: tremor
-list_group: st
 ---
 
 ### Bid Params

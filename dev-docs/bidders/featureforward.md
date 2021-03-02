@@ -6,7 +6,6 @@ top_nav_section: dev_docs
 nav_section: reference
 pbjs: true
 biddercode: featureforward
-list_group: dg
 ---
 
 ### Bid Params

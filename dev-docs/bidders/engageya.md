@@ -6,7 +6,6 @@ media_type: banner, native
 biddercode: engageya
 pbjs: true
 gdpr_supported: true
-list_group: dg
 ---
 
 ### Bid params

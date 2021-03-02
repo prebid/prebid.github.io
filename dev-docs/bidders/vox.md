@@ -6,7 +6,6 @@ pbjs: true
 media_types: banner, video
 biddercode: vox
 gdpr_supported: true
-list_group: uz
 ---
 
 ### Note

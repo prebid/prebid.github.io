@@ -6,7 +6,6 @@ pbjs: true
 biddercode: sekindoUM
 media_types: video
 gdpr_supported: true
-list_group: st
 ---
 
 ### Bid Params

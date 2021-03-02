@@ -4,7 +4,6 @@ title: Orbitsoft
 description: Prebid Orbitsoft Bidder Adaptor
 pbjs: true
 biddercode: orbitsoft
-list_group: mo
 ---
 
 

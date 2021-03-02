@@ -4,7 +4,6 @@ title: Oneplanetonly
 description: Prebid Oneplanetonly Bidder Adaptor
 pbjs: true
 biddercode: oneplanetonly
-list_group: mo
 ---
 
 

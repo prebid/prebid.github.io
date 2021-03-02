@@ -5,7 +5,6 @@ description: Somo Audience Bidder Adapter
 biddercode: somoaudience
 media_types: banner, native, video
 pbs: true
-list_group: st
 ---
 
 

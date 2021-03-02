@@ -4,7 +4,6 @@ title: J Carter Marketing
 description: Prebid J Carter Marketing Bidder Adaptor
 pbjs: true
 biddercode: jcm
-list_group: hl
 ---
 
 ### Bid Params

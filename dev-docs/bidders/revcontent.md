@@ -9,7 +9,6 @@ coppa_supported: false
 usp_supported: false
 pbjs: true
 pbs: true
-list_group: pr
 ---
 
 ### Note

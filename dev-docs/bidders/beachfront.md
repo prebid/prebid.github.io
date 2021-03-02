@@ -11,7 +11,6 @@ prebid_member: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
-list_group: bc
 ---
 
 ### Registration

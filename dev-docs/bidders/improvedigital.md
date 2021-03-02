@@ -13,7 +13,6 @@ schain_supported: true
 tcf2_supported: true
 gvl_id: 253
 pbs_app_supported: true
-list_group: hl
 ---
 
 ### Bid params

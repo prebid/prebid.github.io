@@ -6,7 +6,6 @@ pbjs: true
 biddercode: ablida
 media_types: banner, native, video
 gdpr_supported: true
-list_group: 0a
 ---
 
 

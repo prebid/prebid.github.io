@@ -7,7 +7,6 @@ biddercode: videofy
 media_types: video
 gdpr_supported: true
 usp_supported: true
-list_group: uz
 ---
 
 ### Note:

@@ -10,7 +10,6 @@ aliasCode : appnexus
 sidebarType: 1
 isBidder: true
 gvl_id: 144
-list_group: dg
 ---
 
 ### Bid Params

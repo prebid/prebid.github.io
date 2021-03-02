@@ -5,7 +5,6 @@ description: Prebid Relaido Bidder Adapter
 biddercode: relaido
 pbjs: true
 media_types: banner, video
-list_group: pr
 ---
 
 ### Bid Params

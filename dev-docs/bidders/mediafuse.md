@@ -7,7 +7,6 @@ pbs: true
 biddercode: mediafuse
 aliasCode: adtelligent
 media_types: banner, video
-list_group: mo
 ---
 
 ### Bid params

@@ -4,7 +4,6 @@ title: Yieldbot
 description: Prebid Yieldbot Bidder Adaptor
 pbjs: true
 biddercode: yieldbot
-list_group: uz
 ---
 
 

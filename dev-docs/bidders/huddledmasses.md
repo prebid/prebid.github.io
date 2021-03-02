@@ -4,7 +4,6 @@ title: Huddled Masses
 description: Prebid Huddled Masses Bidder Adaptor
 pbjs: true
 biddercode: huddledmasses
-list_group: hl
 ---
 
 ### Bid Params

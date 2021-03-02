@@ -8,7 +8,6 @@ biddercode: jixie
 bidder_supports_deals: false
 media_types: banner, video
 gdpr_supported: false
-list_group: hl
 ---
 
 ### Registration

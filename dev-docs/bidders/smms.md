@@ -5,7 +5,6 @@ description: Prebid SMMS Bidder Adaptor
 pbjs: true
 biddercode: smms
 media_types: banner, native
-list_group: st
 ---
 
 ### Bid Params

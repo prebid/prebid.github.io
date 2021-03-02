@@ -4,7 +4,6 @@ title: Meazy
 description: Prebid Meazy Bidder Adaptor
 pbjs: true
 biddercode: meazy
-list_group: mo
 ---
 
 ### Bid params

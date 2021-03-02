@@ -6,7 +6,6 @@ pbjs: true
 biddercode: trion
 usp_supported: true
 gdpr_supported: true
-list_group: st
 ---
 
 

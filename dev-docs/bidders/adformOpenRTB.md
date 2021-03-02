@@ -11,7 +11,6 @@ prebid_member: true
 pbjs: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
 gvl_id: 50
-list_group: 0a
 ---
 
 ### Bid params

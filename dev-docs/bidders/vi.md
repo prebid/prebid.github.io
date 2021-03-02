@@ -4,7 +4,6 @@ title: vi
 description: vi bid adapter
 pbjs: true
 biddercode: vi
-list_group: uz
 ---
 
 ### bid params

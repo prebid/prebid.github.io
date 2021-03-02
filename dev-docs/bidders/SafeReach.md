@@ -5,7 +5,6 @@ description: Prebid Safe Reach Bidder Adaptor
 pbjs: true
 biddercode: safereach
 aliasCode : aardvark
-list_group: st
 ---
 
 ### bid params

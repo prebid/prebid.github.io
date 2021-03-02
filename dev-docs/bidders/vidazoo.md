@@ -7,7 +7,6 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 gdpr_supported: true
 usp_supported: true
 pbjs: true
-list_group: uz
 ---
 
 ### Bid Params

@@ -12,7 +12,6 @@ ccpa_supported: true
 prebid_member: true
 tcf2_supported: true
 pbs_app_supported: true
-list_group: mo
 ---
 
 ### Bid Params

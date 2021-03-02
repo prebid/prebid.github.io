@@ -9,7 +9,6 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 aliasCode : adkernel
-list_group: hl
 ---
 
 ### Note:

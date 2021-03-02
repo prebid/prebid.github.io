@@ -7,7 +7,6 @@ biddercode: kidoz
 gdpr_supported: true
 coppa_supported: true
 pbs_app_supported: true
-list_group: hl
 ---
 
 ### Registration

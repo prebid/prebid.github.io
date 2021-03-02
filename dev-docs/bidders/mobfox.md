@@ -5,7 +5,6 @@ description: Prebid MobFox Bidder Adaptor
 pbjs: true
 biddercode: mobfox
 media_types: video
-list_group: mo
 ---
 
 ### Bid Params

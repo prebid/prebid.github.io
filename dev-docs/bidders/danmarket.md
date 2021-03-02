@@ -5,7 +5,6 @@ description: Dentsu Aegis Network Marketplace Bidder Adapter
 pbjs: true
 biddercode: danmarket
 gdpr_supported: true
-list_group: dg
 ---
 
 

@@ -9,7 +9,6 @@ usp_supported: true
 nav_section: reference
 pbjs: true
 biddercode: cedato
-list_group: bc
 ---
 
 ### Bid params

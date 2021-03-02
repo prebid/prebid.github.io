@@ -6,7 +6,6 @@ biddercode: yieldnexus
 pbjs: true
 media_types: banner, video
 gdpr_supported: true
-list_group: uz
 ---
 
 ### Bid params

@@ -5,7 +5,6 @@ description: Prebid Vertamedia Bidder Adaptor
 pbjs: true
 biddercode: vertamedia
 media_types: video
-list_group: uz
 ---
 
 ### Bid params

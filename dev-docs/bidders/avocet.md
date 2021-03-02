@@ -10,7 +10,6 @@ media_types: banner, video
 schain_supported: true
 usp_supported: true
 tcf2_supported: true
-list_group: 0a
 ---
 
 ### Registration

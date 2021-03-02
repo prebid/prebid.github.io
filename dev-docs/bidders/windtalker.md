@@ -6,7 +6,6 @@ pbjs: true
 biddercode: windtalker
 media_types: native, video
 gdpr_supported: true
-list_group: uz
 ---
 
 ### Bid Params

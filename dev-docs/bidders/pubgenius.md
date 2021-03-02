@@ -10,7 +10,6 @@ usp_supported: true
 schain_supported: true
 coppa_supported: true
 userIds: unifiedId
-list_group: pr
 ---
 
 ### Bid Params

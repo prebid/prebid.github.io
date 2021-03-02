@@ -19,7 +19,6 @@ pbs: true
 pbs_app_supported: true
 gvl_id: 28
 pbjs_version_notes: avoid 4.3 - 4.14
-list_group: st
 ---
 
 ### Bid Params

@@ -9,7 +9,6 @@ tcf2_supported: true
 schain_supported: false
 prebid_member: false
 pbjs: true
-list_group: dg
 ---
 
 

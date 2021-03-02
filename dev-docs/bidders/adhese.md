@@ -11,7 +11,6 @@ tcf2_supported: true
 userIds: id5Id
 gvl_id: 553
 pbs_app_supported: true
-list_group: 0a
 ---
 
 ### Registration

@@ -5,7 +5,6 @@ description: Prebid TE Medya Bidder Adapter.
 pbjs: true
 biddercode: temedya
 media_types: banner,native
-list_group: st
 ---
 
 ### Description

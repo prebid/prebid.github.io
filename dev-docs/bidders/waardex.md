@@ -6,7 +6,6 @@ hide: true
 biddercode: waardex
 media_types: banner, video
 pbjs: true
-list_group: uz
 ---
 
 ### Bid Params

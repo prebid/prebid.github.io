@@ -6,7 +6,6 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 biddercode: consumable
-list_group: bc
 ---
 
 ### Note:

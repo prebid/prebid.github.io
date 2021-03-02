@@ -6,7 +6,6 @@ pbjs: true
 pbs: true
 biddercode: aja
 media_types: video, native
-list_group: 0a
 ---
 
 ### Note:

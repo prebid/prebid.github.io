@@ -9,7 +9,6 @@ gdpr_supported: true
 tcf2_supported: true
 pbjs: true
 gvl_id: 108
-list_group: pr
 ---
 
 ### Bid Params

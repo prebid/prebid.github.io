@@ -9,7 +9,6 @@ media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 pbs_app_supported: true
-list_group: 0a
 ---
 
 ### Note:

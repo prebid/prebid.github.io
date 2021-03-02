@@ -12,7 +12,6 @@ coppa_supported: true
 schain_supported: true
 tcf2_supported: true
 gvl_id: 617
-list_group: 0a
 ---
 
 ### Note

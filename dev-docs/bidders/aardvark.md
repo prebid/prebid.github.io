@@ -10,7 +10,6 @@ usp_supported: true
 schain_supported: true
 userIds: unifiedId
 gvl_id: 52
-list_group: 0a
 ---
 
 ### Bid Params

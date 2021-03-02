@@ -14,7 +14,6 @@ coppa_supported: true
 schain_supported: true
 gvl_id: 607
 pbs_app_supported: true
-list_group: uz
 ---
 
 ### Bid params

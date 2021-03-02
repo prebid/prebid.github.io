@@ -7,7 +7,6 @@ biddercode: waardex_ak
 aliasCode: adkernel
 media_types: display, video
 gdpr_supported: true
-list_group: uz
 ---
 
 ### Note:

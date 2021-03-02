@@ -7,7 +7,6 @@ biddercode: sublime
 gdpr_supported: true
 tcf2_supported: true
 gvl_id: 114
-list_group: st
 ---
 
 ### Note

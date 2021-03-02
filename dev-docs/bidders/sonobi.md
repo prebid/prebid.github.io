@@ -12,7 +12,6 @@ tcf2_supported: true
 usp_supported: true
 schain_supported: true
 pbs_app_supported: true
-list_group: st
 ---
 
 ### Note:

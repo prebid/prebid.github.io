@@ -4,7 +4,6 @@ title: ZEDO
 description: Prebid ZEDO Bidder Adapter
 pbjs: true
 biddercode: zedo
-list_group: uz
 ---
 
 

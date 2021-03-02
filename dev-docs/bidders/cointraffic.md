@@ -4,7 +4,6 @@ title: Cointraffic
 description: Prebid Cointraffic Bidder Adaptor
 pbjs: true
 biddercode: cointraffic
-list_group: bc
 ---
 
 

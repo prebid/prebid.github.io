@@ -7,7 +7,6 @@ pbjs: true
 biddercode: smilewanted
 gdpr_supported: true
 
-list_group: st
 ---
 
 ### Note

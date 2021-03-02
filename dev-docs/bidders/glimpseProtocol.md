@@ -7,7 +7,6 @@ pbjs: true
 gdpr_supported: true
 tcf2_supported: true
 media_types: banner
-list_group: dg
 ---
 
 ## Overview

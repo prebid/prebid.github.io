@@ -6,7 +6,6 @@ pbjs: true
 biddercode: interactiveOffers
 gdpr_supported: false
 media_types: banner
-list_group: hl
 ---
 
 ### Note:

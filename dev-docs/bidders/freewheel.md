@@ -7,7 +7,6 @@ biddercode: freewheel-ssp
 gdpr_supported: true
 usp_supported: true
 media_types: video
-list_group: dg
 ---
 
 ### Bid Params

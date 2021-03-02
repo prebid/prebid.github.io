@@ -6,7 +6,6 @@ pbjs: true
 biddercode: turktelekom
 media_types: banner, video
 gdpr_supported: true
-list_group: st
 ---
 
 

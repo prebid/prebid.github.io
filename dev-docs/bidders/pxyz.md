@@ -8,7 +8,6 @@ pbjs: true
 biddercode: pxyz
 prevBiddercode: playgroundxyz
 aliasBiddercode: playgroundxyz
-list_group: pr
 ---
 
 ### Bid Params

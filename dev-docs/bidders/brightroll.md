@@ -12,7 +12,6 @@ coppa_supported: true
 ccpa_supported: true
 schain_supported: true
 pbs_app_supported: false
-list_group: bc
 ---
 
 ### Registration

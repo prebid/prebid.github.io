@@ -6,7 +6,6 @@ pbjs: true
 biddercode: dailyhunt
 media_types: display, native, video
 gdpr_supported: true
-list_group: dg
 ---
 
 ### Bid Params

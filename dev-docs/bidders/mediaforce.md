@@ -6,7 +6,6 @@ media_types: banner, native
 biddercode: mediaforce
 pbjs: true
 gdpr_supported: false
-list_group: mo
 ---
 
 ### Bid params

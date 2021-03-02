@@ -4,7 +4,6 @@ title: Tim Media
 description: Prebid Tim Bidder Adaptor
 pbjs: true
 biddercode: tim
-list_group: st
 ---
 
 ### Bid Params

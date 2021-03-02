@@ -12,7 +12,6 @@ coppa_supported: true
 media_types: banner, native
 safeframes_ok: true
 pbjs: true
-list_group: mo
 ---
 
 ### Registration

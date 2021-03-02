@@ -4,7 +4,6 @@ title: Vertoz
 description: Prebid Vertoz Bidder Adaptor
 pbjs: true
 biddercode: vertoz
-list_group: uz
 ---
 
 ### Note:

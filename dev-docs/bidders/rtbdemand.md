@@ -6,7 +6,6 @@ top_nav_section: dev_docs
 nav_section: reference
 pbjs: true
 biddercode: rtbdemand
-list_group: pr
 ---
 
 ### Bid Params

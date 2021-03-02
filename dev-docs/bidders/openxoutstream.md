@@ -8,7 +8,6 @@ media_types: native
 prebid_member: true
 coppa_supported: true
 gvl_id: 69
-list_group: mo
 ---
 
 

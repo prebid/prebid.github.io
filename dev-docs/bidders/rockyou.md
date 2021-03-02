@@ -5,7 +5,6 @@ description: PreBid RockYou Bidder Adapter
 biddercode: rockyou
 pbjs: true
 media_types: video
-list_group: pr
 ---
 
 ### Bid Params

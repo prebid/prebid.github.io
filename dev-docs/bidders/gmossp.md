@@ -5,7 +5,6 @@ description: Prebid GMOSSP Bidder Adaptor
 pbjs: true
 biddercode: gmossp
 media_types: banner
-list_group: dg
 ---
 
 

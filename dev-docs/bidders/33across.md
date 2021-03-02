@@ -10,7 +10,6 @@ gdpr_supported: true
 getFloor: true
 schain_supported: true
 usp_supported: true
-list_group: 0a
 ---
 
 ### Bid Params

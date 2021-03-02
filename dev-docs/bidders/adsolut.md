@@ -5,7 +5,6 @@ description: Prebid adsolut Bidder Adaptor
 pbjs: true
 biddercode: adsolut
 aliasCode: adkernel
-list_group: 0a
 ---
 
 ### Note:

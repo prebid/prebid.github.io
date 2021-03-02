@@ -12,7 +12,6 @@ schain_supported: false
 usp_supported: true
 safeframes_ok: false
 pbjs: true
-list_group: st
 ---
 
 ### Registration

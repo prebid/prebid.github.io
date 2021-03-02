@@ -5,7 +5,6 @@ description: Prebid Segmento Bidder Adaptor
 pbjs: true
 biddercode: segmento
 media_types: banner
-list_group: st
 ---
 
 ### Bid Params

@@ -6,7 +6,6 @@ pbjs: true
 biddercode: arteebee
 gdpr_supported: true
 coppa_supported: true
-list_group: 0a
 ---
 
 ### Bid Params

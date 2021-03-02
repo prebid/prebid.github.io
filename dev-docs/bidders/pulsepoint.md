@@ -11,7 +11,6 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, parrableId, pub
 pbjs: true
 pbs: true
 gvl_id: 81
-list_group: pr
 ---
 
 

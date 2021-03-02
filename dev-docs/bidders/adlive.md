@@ -4,7 +4,6 @@ title: Adlive
 description: adlive bid adapter
 pbjs: true
 biddercode: adlive
-list_group: 0a
 ---
 
 ### Bid Params

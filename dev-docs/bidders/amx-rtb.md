@@ -16,7 +16,6 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 737
-list_group: 0a
 ---
 
 ### Bid Params

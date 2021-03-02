@@ -6,7 +6,6 @@ pbjs: true
 biddercode: slimcut
 media_types: video, banner
 gdpr_supported: true
-list_group: st
 ---
 
 ### Overview

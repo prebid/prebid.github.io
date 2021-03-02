@@ -4,7 +4,6 @@ title: iQM
 description: Prebid iQM Bidder Adaptor
 pbjs: true
 biddercode: iqm
-list_group: hl
 ---
 
 

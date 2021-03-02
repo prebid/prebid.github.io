@@ -7,7 +7,6 @@ pbs: true
 biddercode: nanointeractive
 media_types: banner
 gdpr_supported: true
-list_group: mo
 ---
 
 ### Requirements:

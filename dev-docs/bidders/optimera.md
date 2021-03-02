@@ -4,7 +4,6 @@ title: Optimera
 description: Optimera Bidder Adaptor
 pbjs: true
 biddercode: optimera
-list_group: mo
 ---
 
 ### Bid Params

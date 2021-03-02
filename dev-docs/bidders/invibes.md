@@ -7,7 +7,6 @@ biddercode: invibes
 gdpr_supported: true
 tcf2_supported: true
 pbs: true
-list_group: hl
 ---
 
 ### Bid Params

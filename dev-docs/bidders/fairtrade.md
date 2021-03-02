@@ -4,7 +4,6 @@ title: FairTrade
 description: FairTrade Bidder Adapter
 pbjs: true
 biddercode: fairtrade
-list_group: dg
 ---
 
 

@@ -4,7 +4,6 @@ title: Xendiz
 description: Prebid Xendiz Bidder Adaptor
 pbjs: true
 biddercode: xendiz
-list_group: uz
 ---
 
 ### Bid params

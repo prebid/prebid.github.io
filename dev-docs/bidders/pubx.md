@@ -9,7 +9,6 @@ coppa_supported: false
 usp_supported: false
 schain_supported: true
 pbjs: true
-list_group: pr
 ---
 
 

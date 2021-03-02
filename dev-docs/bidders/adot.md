@@ -8,7 +8,6 @@ gdpr_supported: true
 tcf2_supported: true
 pbjs: true
 pbs: true
-list_group: 0a
 ---
 
 ### Prebid JS

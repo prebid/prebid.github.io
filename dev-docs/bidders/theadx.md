@@ -5,7 +5,6 @@ description: Prebid TheAdx Bidder Adapter
 pbjs: true
 biddercode: theAdx
 gdpr_supported: false
-list_group: st
 ---
 
 

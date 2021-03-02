@@ -12,7 +12,6 @@ userIds         : pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveInt
 usp_supported   : true
 pbjs            : true
 pbs             : true
-list_group: st
 ---
 
 ### Note:

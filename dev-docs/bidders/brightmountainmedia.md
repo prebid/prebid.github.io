@@ -5,7 +5,6 @@ description: Prebid Bright Mountain Media Bidder Adapter
 pbjs: true
 biddercode: brightmountainmedia
 media_types: banner
-list_group: bc
 ---
 
 ### Bid Params
