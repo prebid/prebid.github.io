@@ -16,6 +16,39 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 4.25 | Extended ID permissions |
+| 4.24 | Support Multiple Prebid Servers |
+| 4.23 | Added skipPbsAliasing feature |
+| 4.22 | Improve US Privacy API behavior in iframe |
+| 4.17 | Added [getNoBidsForAdUnitCode()](/dev-docs/publisher-api-reference.html#module_pbjs.getNoBidsForAdUnitCode) function |
+| 4.16 | Bug fix: delete pubcommon test cookie, fix auctionDelay for user ID submodules with callbacks |
+| 4.15 | MediaType-specific renderers, added auctionOptions.secondaryBidders |
+| 4.13 | Floors Module: update to include floorMin |
+| 4.11 | targetingControls.allowTargetingKeys feature |
+| 4.10 | PubProvided Id UserId Submodule |
+| 4.8 | GDPR updates around modules and storage manager |
+| 4.6 | Removed cmpuishown event for TCF2 logic |
+| 4.5 | Price Floors: Add bid object into cpmAdjustment function |
+| 4.4 | DFP Video Module supports VAST 4 |
+| 4.3 | DFP Video Module bug fixed |
+| 4.1.1 | Release of the [GPT Pre-Auction Module](https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html). Price Floors: new signals (location: noData + floorProvider) |
+| 4.0 | TCF Purpose 1 and Purpose 2 enforced by default when GDPR enforcement module turned on. Removed Digitrust userId module. Removed audienceNetworkBidAdapter. |
+| 3.27.1 | DFP Video Module bug fixed |
+| 3.27 | An important bug in the DFP Video Module was introduced with this release and fixed in 4.3 and 3.27.1. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive. |
+| 3.24 | PBS Bid Adapter allows setting site params |
+| 3.23 | If a server-side bid contains imp.ext.prebid.event.win, pbsBidAdapter listens to BidsWon events and hits the URL. |
+| 3.22 | Secure creatives use event.origin rather than a hard coded adServerDomain |
+| 3.21 | Price Floors Module: New Analytics signals |
+| 3.17 | UserID module also exports IDs as eids |
+| 3.16 | isSafariBrowser fixed for Chrome and Firefox on iOS |
+| 3.15 | Advanced Size Mapping module support adunits of the same name |
+| 3.14 | New [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) supports enforcing Purpose 1 - DeviceAccess |
+| 3.13 | GDPR module supports defaultGdprScope option |
+| 3.12 | Initial support for TCF2 - reading and passing consent strings, added [DeviceAccess](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess) configuration setting |
+| 3.11 | [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) |
+| 3.10 | UserId module provide sub-module ids in ORTB eids format |
+| 3.8 | [First Party Data](/dev-docs/publisher-api-reference.html#setConfig-fpd) convention |
+| 3.3 | [Prebid Ad Slot](/features/pbAdSlot.html) support |
 | 3.2 | [Bidder-specific Supply Chain](/dev-docs/modules/schain.html#bidder-specific-supply-chains) support, added [static API option](/dev-docs/modules/consentManagementUsp.html) to the CCPA/USP module |
 | 3.1 | pbsBidAdapter: fix for handling response currency |
 | 3.0 | [Prebid.js 3.0](/blog/pbjs-3) |

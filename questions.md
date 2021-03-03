@@ -2,7 +2,7 @@
 layout: page_v2
 title: Questions & FAQ
 description: 
-hide: true
+
 ---
 
 <div class="bs-docs-section" markdown="1">
