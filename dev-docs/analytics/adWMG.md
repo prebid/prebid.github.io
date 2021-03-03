@@ -10,21 +10,22 @@ prebid_member: true
 gvl_id: 959
 ---
 
-### BidParams
+#### Analytics Options
+
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Description                     | Example                      | Type               |
-|-----------------|----------|---------------------------------|------------------------------|--------------------|
-| `publisher_id`  | required | Publisher ID from WMG Dashboard | `'5abd0543ba45723db49d97ea'` | `string`           |
-| `site`          | required | Domain where Prebid.js working  | `'test.com'`                 | `string`           |
+| Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
+|-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
+| publisher_id | required  | Publisher ID from WMG Dashboard | `'5abd0543ba45723db49d97ea'`  | string |
+| site | required | Domain where Prebid.js working   | `'test.com'` | string |
 
 
-### Analytics Unit Setup
-```javascript
-{
+### Example Configuration
+
+```
+  pbjs.enableAnalytics({
   provider: 'adWMG',
     options : {
           site: 'test.com',
           publisher_id: '5abd0543ba45723db49d97ea'
-    }
-}
+  }});
 ```
