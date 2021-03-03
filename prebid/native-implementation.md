@@ -104,9 +104,7 @@ Specific bidders may not support all of the fields listed below or may return di
 
 ### 3.2 Custom native assets
 
-In order to fit special bidder requirements, Prebid.js supports assets beyond the standard set. Define custom attributes at mediaTypes.native.ext. When `sendTargetingKeys` is false, the assets under the `native.ext` key can be retrieved during the render.
-
-Other than being under the `ext` object, custom assets are declared in the same way as the standard ones.
+In order to fit special bidder requirements, Prebid.js supports defining assets beyond the standard set. Simply define custom attributes in mediaTypes.native.ext, and they can be retrieved at render time. Other than being under the `ext` object, custom assets are declared in the same way as the standard ones.
 
 {: .alert.alert-success :}
 Note: The `native-render.js::renderNativeAd()` function must be called with `requestAllAssets: true`.
