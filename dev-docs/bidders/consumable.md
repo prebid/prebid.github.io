@@ -2,7 +2,9 @@
 layout: bidder
 title: Consumable
 description: Prebid Consumable Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
 biddercode: consumable
 ---
 

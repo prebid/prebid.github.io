@@ -113,6 +113,66 @@ storeUrl = TargetingParams.getStoreUrl();
 TargetingParams.setStoreUrl(storeUrl);
 ```
 
+
+### Open Measurment SDK (OMSDK)
+
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is elligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+
+There three components to signaling support for OMSDK:
+* Partner Name
+* Partner Version
+* API code
+
+**Partner Name**
+
+This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
+
+#### omidPartnerName
+Open Measurement partner name. 
+
+```
+TargetingParams.setOmidPartnerName()
+```
+
+Examples:
+
+Java
+```java
+TargetingParams.setOmidPartnerName("Google")
+```
+
+**Partner Version**
+
+The OMSDK version number the partner integrated with. See below for configuration and examples.
+
+
+#### omidPartnerVersion
+Partner's OMSDK version number implementation
+```
+TargetingParams.setOmidPartnerVersion();
+```
+
+Examples:
+
+Java
+```java
+TargetingParams.setOmidPartnerVersion("1.0");
+```
+
+**API Code**
+
+Per OpenRTB 2.5, support for OMSDK is signaled using the imp.[media type].api field represented in Prebid SDK withing each ad format type under the parameters object. Refer to the documentation of the respective ad unit class.
+
+Example:
+```
+BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 300, 250);
+bannerAdUnit.setUserKeyword("my_key", "my_value");
+BannerBaseAdUnit.Parameters parameters = new BannerBaseAdUnit.Parameters();
+parameters.setApi(Arrays.asList(new Signals.Api(6, 7)));
+```
+
+
+
 ### Inventory (Context) Keywords
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
 
@@ -246,24 +306,49 @@ TargetingParams.addBidderToAccessControlList(TargetingParams.BIDDER_NAME_RUBICON
 
 ## Global GDPR Targeting
 
-Prebid Mobile supports the [IAB GDPR recommendations](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.github.url}}/prebid-mobile/gdpr.html)
+Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/privacy-regulation.html)
+
+### Subject To GPDR
 
 Enable (true) or disable (false) the ability to provide consent.
+
+#### Retrieve subjectToGDPR
+
+```
+TargetingParams.isSubjectToGDPR();
+```
+#### Set subjectToGDPR
 
 ```
 TargetingParams.setSubjectToGDPR(context, true);
 ```
 
-Retrieve the consent string.
+### GDPR Consent String
+
+#### Retrieve gdprConsentString
 
 ```
 context = TargetingParams.getGDPRConsentString();
 ```
 
-Enable publishers to set the consent string.
+#### Set gdprConsentString
 
 ```
-TargetingParams.setGDPRConsentString(context, "consent_string");
+TargetingParams.setGDPRConsentString(string);
+```
+
+### Purpose Consent
+
+#### Retrieve purposeConsent
+
+```
+TargetingParams.getPurposeConsents();
+```
+
+#### Set purposeConsent
+
+```
+TargetingParams.setPurposeConsents(string);
 ```
 
 Prebid mobile also checks if the values are present in the [SharedPreferences](https://developer.android.com/training/data-storage/shared-preferences) keys specified by the IAB. If the values are also set in these objects they will be passed in the OpenRTB request object.

@@ -9,7 +9,7 @@ sidebarType: 1
 
 # What is Prebid.js?
 
-Prebid.js is a feature-rich header bidding platform for the web, including more than 150 demand sources and 15 analytics adapters. It supports currency conversion, GDPR, common ID systems, and multiple ad servers.
+Prebid.js is a feature-rich header bidding platform for the web, including more than 200 demand sources and 15 analytics adapters. It supports currency conversion, GDPR, common ID systems, and multiple ad servers.
 
 ## How Does Prebid.js Work?
 
@@ -40,15 +40,13 @@ The Prebid.js Core is intended to be lightweight, while achieving all the founda
 
 We want Prebid.js Core to be fast, fair, and open because it represents the header bidding wrapper itself.
 
-Before you can add a header bidding adapter, publishers need at least the Prebid.js Core installed on their website or app.
-
 ## Prebid.js Adapters
 
-The Prebid.js Adapters plug into Prebid.js Core and are meant to be interchangeable depending on who the publisher wants to work with. There are two types of adapters: demand and analytics.
+The Prebid.js Adapters plug into Prebid.js Core and are meant to be interchangeable depending on who the publisher wants to work with. There are two types of adapters: bidder and analytics.
 
-Demand Adapters are supposed to represent the SSPs & Exchanges you want to work with. There are currently over 60 demand adapters. This set of working header bidding integrations is part of what makes Prebid.js so special. Each company maintains their own Prebid.js adapter to provide the freshest code for publishers, rather than a proprietary wrapper solution trying to reverse engineer another company's adapter. It's a win-win for everyone.
+Bidder Adapters are supposed to represent the SSPs & Exchanges you want to work with. There are currently over 200 bidder adapters. This set of working header bidding integrations is part of what makes Prebid.js so special. Each company maintains their own Prebid.js adapter to provide the freshest code for publishers, rather than a proprietary wrapper solution trying to reverse engineer another company's adapter. It's a win-win for everyone.
 
-Analytics adapters are relatively new, but offer the ability to learn more about latency, revenues, bid rates, etc. Please see our [analytics page]({{site.github.url}}/dev-docs/integrate-with-the-prebid-analytics-api.html) for more information.
+Analytics adapters offer the ability to learn more about latency, revenues, bid rates, etc. Please see our [analytics page]({{site.github.url}}/dev-docs/integrate-with-the-prebid-analytics-api.html) for more information.
 
 ## Prebid.js Modules
 
@@ -62,4 +60,6 @@ in the Core that not every publisher needs. Example modules:
 
 ## Further Reading
 
-+ [Getting Started With Prebid.js]({{site.github.url}}/overview/getting-started.html)
++ [Getting Started With Prebid.js](/overview/getting-started.html)
++ [How to Add a Bidder Adapter](/dev-docs/bidder-adaptor.html)
++ [How to Add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)

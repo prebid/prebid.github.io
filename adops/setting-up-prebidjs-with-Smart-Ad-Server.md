@@ -3,12 +3,8 @@ layout: page_v2
 title: Setting up Prebid.js with Smart Ad Server
 head_title: Setting up Prebid.js with Smart Ad Server
 description: Setting up Prebid.js with Smart Ad Server
-pid: 3
-hide: false
-top_nav_section: adops
-nav_section: tutorials
-sidebarType: 3
 
+sidebarType: 3
 ---
 
 
@@ -31,7 +27,7 @@ For some of the setup steps described below, you need to have a login to [Smart 
 ## Setup
 ### Step 1 - Implement the wrapper
 Proceed as follows:
-- Go to the [Prebid.js download page](http://prebid.org/download.html).
+- Go to the [Prebid.js download page](/download.html).
 - Select the relevant **Bidder Adapter(s)**, an **Analytics Adapter** (optional) and **Module(s)** (optional).
 - Download the code.
 - Consult the [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html) to get help for filling the parameters.

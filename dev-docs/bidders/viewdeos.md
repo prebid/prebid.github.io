@@ -2,10 +2,9 @@
 layout: bidder
 title: Viewdeos
 description: Prebid Viewdeos Bidder Adaptor
-hide: true
-biddercode: viewdeos
+pbjs: true
+biddercode: viewdeosDX
 media_types: banner, video
-aliasCode: gamoshi
 ---
 
 ### Bid params

@@ -2,9 +2,6 @@
 layout: page_v2
 title: Ad Unit Reference
 description: Ad Unit Reference
-top_nav_section: dev_docs
-nav_section: reference
-pid: 10
 sidebarType: 1
 ---
 
@@ -13,8 +10,9 @@ sidebarType: 1
 
 The ad unit object is where you configure what kinds of ads you will show in a given ad slot on your page, including:
 
-+ Allowed sizes
 + Allowed media types (e.g., banner, native, and/or video)
++ Allowed sizes
++ AdUnit-specific first party data
 
 It's also where you will configure bidders, e.g.:
 
@@ -26,19 +24,20 @@ This page describes the properties of the `adUnit` object.
 * TOC
 {:toc}
 
-## adUnit
+## AdUnit
 
 See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#adUnit-examples) below.
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Type                                  | Description                                                                                                                                                                                |
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`       | Required | String                                | Unique identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference.html#module_pbjs.setTargetingForGPTAsync) to match which auction is for which ad slot. |
+| `code`       | Required | String                                | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference.html#module_pbjs.setTargetingForGPTAsync) to match which auction is for which ad slot. |
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, define sizes within the appropriate `mediaTypes.{banner,native,video}` object. |
 | `bids`       | Required | Array[Object]                         | Array of bid objects representing demand partners and associated parameters for a given ad unit.  See [Bids](#adUnit.bids) below.                                                          |
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
+| `fpd`   | Optional | Object                         | Similar to [global first party data configuration](/dev-docs/publisher-api-reference.html#setConfig-fpd), but specific to this adunit. |
 
 <a name="adUnit.bids" />
 
@@ -113,6 +112,7 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Type    | Description                                                                                          |
 |----------------+----------+---------+------------------------------------------------------------------------------------------------------|
+| `min_height`   | Optional | Integer | The minimum height required for an image to serve (in pixels).                                       |
 | `min_width`    | Optional | Integer | The minimum width required for an image to serve (in pixels).                                        |
 | `ratio_height` | Required | Integer | This, combined with `ratio_width`, determines the required aspect ratio for an image that can serve. |
 | `ratio_width`  | Required | Integer | See above.                                                                                           |
@@ -218,6 +218,8 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
   - [Adpod (Long-Form)](#adUnit-video-example-adpod)
 + [Native](#adUnit-native-example)
 + [Multi-Format](#adUnit-multi-format-example)
++ [Twin Codes](#adUnit-twin-codes-example)
++ [First Party Data](#adUnit-fpd-example)
 
 <a name="adUnit-banner-example">
 
@@ -248,7 +250,7 @@ pbjs.addAdUnits({
 
 ### Video
 
-<a name="adUnit-video-example-instream"> 
+<a name="adUnit-video-example-instream">
 
 #### Instream
 
@@ -292,7 +294,7 @@ pbjs.addAdUnits({
         }
     },
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
         render: function(bid) {
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
@@ -313,11 +315,11 @@ For an example of an adpod video ad unit, see below.  For more detailed instruct
 var longFormatAdUnit = {
     video: {
        // required params
-       context: 'adpod', 
+       context: 'adpod',
        playerSize: [640, 480],
        adPodDurationSec: 300,
        durationRangeSec: [15, 30],
-   
+
        // optional params
        requireExactDuration: true,
        tvSeriesName: 'TvName',
@@ -458,6 +460,91 @@ pbjs.addAdUnits([{
 
 {% endhighlight %}
 
+<a name="adUnit-twin-codes-example">
+
+### Twin AdUnit Codes
+
+It's ok to have multiple AdUnits with the same `code`. This can be useful in scenarios
+where bidders have different capabilities for the same spot on the page. e.g.
+
+- BidderA should receive both media types, while BidderB gets only one
+- BidderA gets one size while BidderB gets another
+
+In this example, bidderA gets both banner and outstream, while bidderB gets only banner.
+{% highlight js %}
+    var adUnits = [
+           {
+               code: 'test-div',
+                mediaTypes: {
+                    video: {
+                        context: "outstream",
+                        playerSize: [[300,250]]
+                    }
+                },
+               bids: [
+                   {
+                        bidder: 'bidderA',
+                        params: {
+                             ...
+                        }
+                   }
+               ]
+           },
+           {
+               code: 'test-div',
+                mediaTypes: {
+                    banner: {
+                        sizes: [[300,250],[300,600],[728,90]]
+                    }
+                },
+               bids: [
+                   {
+                       bidder: 'bidderB',
+                       params: {
+                           ...
+                       }
+                   },{
+                        bidder: 'bidderA',
+                        params: {
+                           ...
+                        }
+                   }
+               ]
+           }
+       ];
+{% endhighlight %}
+
+In this example, bidderA receives 2 bidRequest objects while bidderB receives one. If a bidder provides more than one bid for the same AdUnit.code, Prebid.js will use the highest bid when it's
+time to set targeting.
+
+<a name="adUnit-fpd-example">
+
+### First Party Data
+
+Example of an adunit-specific block of first party data:
+
+{% highlight js %}
+pbjs.addAdUnits({
+    code: "test-div",
+    mediaTypes: {
+        banner: {
+            sizes: [[300,250]]
+        }
+    },
+    fpd: {
+         context: {
+            pbAdSlot: "homepage-top-rect",
+            adUnitSpecificContextAttribute: "123"
+         }
+    },
+    ...
+});
+{% endhighlight %}
+
+Notes:
+- Only contextual data is supported on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd).
+- For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
+
 ## Related Topics
 
 + [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html)
@@ -467,7 +554,7 @@ pbjs.addAdUnits([{
 + [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
 + [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html)
 + [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
-+ [Prebid.org Native Examples]({{site.baseurl}}/examples/native/)
++ [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 
 
 
@@ -477,4 +564,4 @@ pbjs.addAdUnits([{
 [setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig
 [configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
-[pbServer]: {{site.baseurl}}/dev-docs/get-started-with-prebid-server.html
+[pbServer]: {{site.baseurl}}/prebid-server/overview/prebid-server-overview.html
