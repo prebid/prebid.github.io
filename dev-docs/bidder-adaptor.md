@@ -370,11 +370,11 @@ The `interpretResponse` function will be called when the browser has received th
             brandId: BRAND_ID,
             brandName: BRAND_NAME,
             dchain: DEMAND_CHAIN_OBJECT,
-            mediaType: MEDIA_TYPE
+            mediaType: MEDIA_TYPE,
             networkId: NETWORK_ID,
             networkName: NETWORK_NAME,
             primaryCatId: IAB_CATEGORY,
-            secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
+            secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES]
         }
     };
     bidResponses.push(bidResponse);
