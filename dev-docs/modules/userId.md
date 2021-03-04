@@ -210,6 +210,45 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### DMD ID by DMD Marketing Corp
+
+DMD is the preeminent supplier of US-based healthcare professional (HCP) identity data to the pharmaceutical, health system and medical publishing industries. DMD is the only data provider that has acquired its deterministic identity data through a fully consented, first-party, opt-in process. DMD’s privacy policy that can be found at [Privacy Policy](https://hcn.health/privacy-policy). 
+
+For assistance setting up your module, please contact us at prebid@dmdconnects.com
+
+Add the DMD ID to your Prebid.js Package with:
+
+{: .alert.alert-info :}
+gulp build --modules=dmdIdSystem
+
+#### DMD ID Registration
+
+Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to request your `partnerId`
+
+#### DMD ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of Module | `"dmdId"` |
+| params | Required | Object | Container of all module params. |  |
+| params.partnerId | Required | String | This is your `partnerId` as provided by DMD Marketing Corp. | `123-45-67AK89` |
+
+#### DMD ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'dmdId',
+            params: {
+                partnerId: '123-45-67AK89' // provided to you by DMD
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Fabrick ID by Neustar
 
 [Neustar Fabrick™](https://www.home.neustar/fabrick) is a unified identity ecosystem that powers connections between brands, publishers, and consumers to accelerate marketing performance across online and offline channels.
