@@ -19,4 +19,8 @@ To use this bidder you will need an account and a valid unit from us. For furthe
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                                                                          | Example                                       | Type       |
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
-| `unit`           | required | The unit from jixie Digital.                                                                                         | `1000012-VyuoGmDF0A`                                       | `string`   |
+| `unit`            | required | The unit from jixie                                                                                                  | `'1000012-VyuoGmDQQQ'`                          | `string`   |
+| `accountid`       | optional | The accountid from jixie                                                                                             | `'12345678901234567890'`                        | `string`   |
+| `jxprop1`         | optional | special property #1                                                                                                  | `'somethingspecial1'`                           | `string`   |
+| `jxprop2`         | optional | special property #2                                                                                                  | `'somethingspecial2'`                           | `string`   |
+

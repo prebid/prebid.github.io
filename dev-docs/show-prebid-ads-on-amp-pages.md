@@ -234,7 +234,7 @@ The following examples include a transparent image as a placeholder which will a
 {% include alerts/alert_tip.html content=tipNote %}
 
 {% capture consentNote %}
- The load-cookie-with-consent.html file has the same argument syntax as load-cookie.html. It's a different file because it's larger and depends on the existence of an AMP Consent Management Platform.
+ The load-cookie-with-consent.html file has the same argument syntax as load-cookie.html. It's a different file because it's larger and depends on the existence of an AMP Consent Management Platform. Note that the `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
 {% endcapture %}
 {% include alerts/alert_tip.html content=consentNote %}
 
@@ -242,7 +242,7 @@ If you're using AppNexus' managed service, you would enter something like this:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
-  sandbox="allow-scripts"
+  sandbox="allow-scripts allow-same-origin"
   frameborder="0"
   src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=appnexus&max_sync_count=5">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
@@ -253,7 +253,7 @@ If you are utilizing Magnite's managed service, there's an extra parameter:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
-  sandbox="allow-scripts"
+  sandbox="allow-scripts allow-same-origin"
   frameborder="0"
   src="https://PROVIDED_BY_MAGNITE/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:MAGNITE_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
@@ -301,4 +301,4 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 <!-- Reference Links -->
 
 [PBS]: /prebid-server/overview/prebid-server-overview.html
-[callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js
+[callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js

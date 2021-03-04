@@ -5,6 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
+userIds: identityLink, netId, fabrickId, zeotapIdPlus
 pbs_app_supported: true
 schain_supported: true
 gdpr_supported: true
@@ -116,7 +117,7 @@ object are detailed here.
 | ---- | ----- | ----------- | ------- | ---- |
 | `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` |
 | `size` | Required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. | `[300, 600]` | `Array<integer>` |
-| `video` | Required | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes`, `protocols`, `minduration`, `maxduration` are required. | `video: { startdelay: 0 }` | `object` |
+| `video` | Required | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes`, `protocols`, `minduration`, `maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level. | `video: { startdelay: 0 }` | `object` |
 | `video.mimes` | Required | Array list of content MIME types supported. | `['video/mp4', 'video/x-flv']` | `Array<string>` |
 | `video.minduration` | Required | Minimum video ad duration in seconds. | `0` | `integer` |
 | `video.maxduration` | Required | Maximum video ad duration in seconds. | `300` | `integer` |

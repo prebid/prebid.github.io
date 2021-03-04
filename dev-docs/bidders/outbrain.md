@@ -1,10 +1,11 @@
 ---
 layout: bidder
-title: Zemanta
-description: Zemanta Prebid Bidder Adapter
-biddercode: zemanta
+title: Outbrain
+description: Outbrain Prebid Bidder Adapter
+biddercode: outbrain
+aliasCode : zemanta
 gdpr_supported: true
-gvl_id: 210
+gvl_id: 164
 tcf2_supported: true
 usp_supported: true
 coppa_supported: true
@@ -15,20 +16,25 @@ pbjs: true
 
 ### Registration
 
-The Zemanta Adapter requires setup before beginning. Please contact us at prebid.org@outbrain.com.
+The Outbrain Adapter requires setup before beginning. Please contact us at prebid.org@outbrain.com.
 
 ### Configuration
 
 #### Bidder and usersync URLs
 
-The Zemanta adapter does not work without setting the correct bidder and usersync URLs.
+The Outbrain adapter does not work without setting the correct bidder and usersync URLs.
 You will receive the URLs when contacting us.
 
+Also note that the Outbrain adapter is an aliased adapter and for usersync to work you also need to enable it as shown below 
+on the `usersync` config object.
 ```
 pbjs.setConfig({
-    zemanta: {
+    outbrain: {
       bidderUrl: 'https://bidder-url.com',
       usersyncUrl: 'https://usersync-url.com'
+    },
+    userSync: {
+        aliasSyncEnabled: true
     }
 });
 ```
@@ -75,7 +81,7 @@ var adUnits = [
         }
     },
     bids: [{
-        bidder: 'zemanta',
+        bidder: 'outbrain',
         params: {
             publisher: {
               id: '2706',
@@ -98,7 +104,7 @@ var adUnits = [
       } 
     },
     bids: [{
-        bidder: 'zemanta',
+        bidder: 'outbrain',
         params: {
             publisher: {
               id: '2706',
