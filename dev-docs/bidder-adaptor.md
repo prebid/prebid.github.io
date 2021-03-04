@@ -362,18 +362,19 @@ The `interpretResponse` function will be called when the browser has received th
         ad: CREATIVE_BODY,
         dealId: DEAL_ID,
         meta: {
-            networkId: NETWORK_ID,
-            networkName: NETWORK_NAME
-            agencyId: AGENCY_ID,
-            agencyName: AGENCY_NAME,
+            advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS],        
             advertiserId: ADVERTISER_ID,
             advertiserName: ADVERTISER_NAME,
-            advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS]
+            agencyId: AGENCY_ID,
+            agencyName: AGENCY_NAME,
             brandId: BRAND_ID,
             brandName: BRAND_NAME,
+            dchain: DEMAND_CHAIN_OBJECT,
+            mediaType: MEDIA_TYPE
+            networkId: NETWORK_ID,
+            networkName: NETWORK_NAME,
             primaryCatId: IAB_CATEGORY,
             secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
-            mediaType: MEDIA_TYPE
         }
     };
     bidResponses.push(bidResponse);
@@ -383,8 +384,8 @@ The `interpretResponse` function will be called when the browser has received th
 
 {: .alert.alert-info :}
 Please provide as much information as possible in the `meta` object. Publishers use this
-data for tracking down bad creatives and ad blocking. The advertiserDomains field is
-particularly useful. Some of these fields may become required in a future release.
+data for tracking down bad creatives and ad blocking. The advertiserDomains field and the Demand Chain Object are
+particularly useful. Publishers may have analytics or security vendors with the capability to parse and validate complicated demand chain objects. meta.advertiserDomains is proposed as required in 5.X+; Additional examples of these fields may become required in a future release.
 
 The parameters of the `bidResponse` object are:
 
@@ -414,6 +415,7 @@ The parameters of the `bidResponse` object are:
 | `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
 | `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
+| `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
