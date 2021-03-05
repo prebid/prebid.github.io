@@ -2,7 +2,7 @@
 layout: analytics
 title: Tercept
 description: Tercept Analytics Adapter
-modulecode: terceptAnalyticsAdapter
+modulecode: tercept
 ---
 
 #### Registration

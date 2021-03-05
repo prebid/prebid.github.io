@@ -2,7 +2,7 @@
 layout: analytics
 title: Yukta Media
 description: Yukta Media Analytics Adapter
-modulecode: yuktamediaAnalyticsAdapter
+modulecode: yuktamedia
 ---
 
 #### Registration

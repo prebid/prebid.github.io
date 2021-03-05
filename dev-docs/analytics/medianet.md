@@ -2,7 +2,7 @@
 layout: analytics
 title: MediaNet
 description: MediaNet Analytics Adapter
-modulecode: medianetAnalyticsAdapter
+modulecode: medianet
 prebid_member: true
 ---
 
