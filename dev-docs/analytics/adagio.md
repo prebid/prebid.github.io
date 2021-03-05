@@ -2,7 +2,7 @@
 layout: analytics
 title: Adagio
 description: Adagio Analytics Adapter
-modulecode: adagioAnalyticsAdapter
+modulecode: adagio
 prebid_member: true
 ---
 

@@ -2,7 +2,7 @@
 layout: analytics
 title: adWMG
 description: adWMG Analytics Adapter
-modulecode: adWMGAnalyticsAdapter
+modulecode: adWMG
 ---
 
 #### Registration
