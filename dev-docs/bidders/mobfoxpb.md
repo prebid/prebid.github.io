@@ -9,6 +9,7 @@ media_types: banner, video, native
 gdpr: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 ---
 
 ### Prebid.JS Bid Params
@@ -25,4 +26,5 @@ Currently adapter doesn't support multiimpression, so only the first impression 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `TagID` | required | Placement Id will be generated on Mobfox Platform. | `'0'`        | `string` |
+| `TagID` | required | Placement Id will be generated on Mobfox Platform. For direct integration | `'0'`        | `string` |
+| `key` | required | Endpoint id will be generated on Mobfox Platform. For s2s integration | `'0'`        | `string` |
