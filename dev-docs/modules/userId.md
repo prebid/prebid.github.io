@@ -53,7 +53,7 @@ In addition, individual users may opt-out of receiving cookies and HTML5 local s
 
 Without third-party cookies, mechanisms like the [NAI](https://optout.networkadvertising.org) don't work, so some publishers may want to implement a first party opt-out so their users aren't tagged with first party cookies containing IDs.
 
-Publishers that want to do this should design their workflow and then just set `_pbjs_id_optout` cookie or HTML5 local storage. For instance:
+Publishers that want to do this should design their workflow and then set `_pbjs_id_optout` cookie or HTML5 local storage. For instance:
 
 - read from an in-page javascript variable and set `_pbjs_id_optout` to any value.
 - call an in-page function and use the results to create a `_pbjs_id_optout` cookie with any value.
