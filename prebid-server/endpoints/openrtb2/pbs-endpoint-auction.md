@@ -205,7 +205,7 @@ Exceptions are made for extensions with "standard" recommendations:
 
 #### Bid Adjustments
 
-Bidders [are encouraged](/prebid-server/bidders/pbs-build-a-bid-adapter.html) to make Net bids. However, there's no way for Prebid to enforce this.
+Bidders are encouraged to make Net bids. However, there's no way for Prebid to enforce this.
 If you find that some bidders use Gross bids, publishers can adjust for it with `request.ext.prebid.bidadjustmentfactors`:
 
 ```

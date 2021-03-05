@@ -28,6 +28,11 @@ This document replaces the [original documentation](/adops/setting-up-prebid-nat
 * TOC
 {:toc}
 
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
+
+
 ## 1. Create a native ad
 
 From Google Ad Manager, select **Delivery > Native**. Click **Create Native Ad**.
