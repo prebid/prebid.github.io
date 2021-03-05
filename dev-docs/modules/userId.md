@@ -47,7 +47,7 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagement.ht
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
 * `_pbjs_id_optout` cookie or HTML5 local storage. The value can be anything -- if it exists, the user is considered opted out and no userId modules will fire.
-* `_pubcid_optout` cookie or HTML5 local storage (for backwards compatibility with the original PubCommonID module.
+* `_pubcid_optout` cookie or HTML5 local storage. This is for backwards compatibility with the original PubCommonID module. Likewise, the value can be anything.
 
 ### Publisher First Party Opt-Out
 
