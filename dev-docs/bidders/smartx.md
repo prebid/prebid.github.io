@@ -44,7 +44,7 @@ Please reach out to your smartclip business contact for any questions and assist
 | Name            | Scope    | Description                                                                                  | Example          | Type        |
 | --------------- | -------- | -------------------------------------------------------------------------------------------- | ---------------- | ----------- |
 | `slot`          | required | ID of element that video ad should be rendered into.                                         | `'adSlot1'`      | `string`    |
-| `minAdWidth`    | optional | Minimum of space the player needs to expand.                                                 | `290`            | `integer`   |
+| `minAdWidth`    | optional | Minimum amount of space the player needs to expand.                                          | `290`            | `integer`   |
 | `maxAdWidth`    | optional | Maximum size of the player.                                                                  | `900`            | `integer`   |
 | `title`         | optional | Makes a defined advertising text appear in the below right corner. `[remainingTime]` can be used to display the remaining time of the advertisement. | `'Advertisement [remainingTime]s'` | `string`    |
 | `skipOffset`    | optional | Define whenever the advertisement can be skipped. 0 = never                                  | `0`              | `integer`   |
