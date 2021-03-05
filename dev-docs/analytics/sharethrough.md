@@ -2,7 +2,7 @@
 layout: analytics
 title: Sharethrough
 description: Sharethrough Analytics Adapter
-modulecode: sharethroughAnalyticsAdapter
+modulecode: sharethrough
 ---
 
 #### Registration
