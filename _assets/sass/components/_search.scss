@@ -7,6 +7,10 @@
 .c-search {
   position: relative;
 
+  @include media('<=990px') {
+    float: left;
+  }
+
   &::after {
     @include position(absolute, 50% 10px null null);
     @include size(20px);
