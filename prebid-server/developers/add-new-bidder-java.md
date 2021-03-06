@@ -464,6 +464,8 @@ There are a several values of a bid that publishers expect to be populated. Some
 | - | - | - | -
 | CCPA | OpenRTB | `request.regs.ext.us_privacy` <br/> The publisher is specifying the California Consumer Privacy Act consent string.
 | COPPA | OpenRTB | `request.regs.ext.us_privacy`<br/> The publisher is specifying the Children's Online Privacy Protection flag.
+| ATTS | OpenRTB | `request.device.ext.atts`<br/> The [App Tracking Transparency Status](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/extensions/community_extensions/skadnetwork.md#object-bidrequestdeviceext) set on the device (iOS only).
+| SKAdNetwork | OpenRTB | `request.imp[].ext.skadn` <br/> The [SKAdNetwork](https://github.com/prebid/prebid-mobile-ios/issues/342) signaling to support mobile attribution when a user's IDFA is unavailable for iOS traffic. 
 | Currency | OpenRTB |`request.cur` <br/> The publisher is specifying the desired bid currency. The Prebid Server default is USD.
 | [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | `request.ext.prebid.debug` <br/> The publisher is requesting verbose debugging information from Prebid Server.
 | [First Party Data (FPD)](https://docs.prebid.org/prebid-server/features/pbs-fpd.html)| Prebid | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*` <br/> The publisher may provide first party data (e.g. keywords).
@@ -472,6 +474,7 @@ There are a several values of a bid that publishers expect to be populated. Some
 | Supply Chain | OpenRTB | `request.source.ext.schain` <br/> The publisher's declaration of all parties who are selling or reselling the bid request.
 | Test | OpenRTB | `request.test` <br/> The publisher is sending non-production traffic which also enables verbose debugging information from Prebid Server.
 | Video | OpenRTB | `request.imp[].video` <br/> The publisher is specifying video ad requirements or preferences.
+| Rewarded inventory | OpenRTB | `request.imp[].ext.prebid.is_rewarded_inventory` <br/> Signal to indicate the inventory is rewarded. 
 
 #### Response
 
