@@ -418,6 +418,7 @@ To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
     }
   }
 });
+```
 
 #### Bidder Response Times
 
@@ -890,6 +891,88 @@ In order to pull AMP parameters out into targeting, Prebid Server places AMP que
 	    }
 	}
     }
+```
+
+#### MultiBid (PBS-Java only)
+
+Allows a single bidder to bid more than once into an auction and have extra bids passed
+back to the client.
+
+See the [Prebid.js MultiBid Module](/dev-docs/modules/multibid.html) for background information and use cases.
+
+The Prebid extension to the OpenRTB protocol is `ext.prebid.multibid`. For example:
+
+```
+{
+  ext: {
+    prebid: {
+      multibid: [{
+        bidder: "bidderA",
+        maxbids: 2,
+        targetbiddercodeprefix: "bidA"
+      },{
+        bidder: "bidderB",
+        maxbids: 3,
+        targetbiddercodeprefix: "bidB"
+      },{
+        bidders: ["bidderC", "bidderD"]
+        maxbids: 2
+      }]
+    }
+  }
+}
+```
+
+MultiBid parameter details
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| bidder | either this or the next | A biddercode | 'bidderA' | string |
+| bidders | either this or the previous | Multiple biddercodes | ['bidderB','bidderC'] | array of strings |
+| maxBids | yes | How many bids the named bidder(s) may supply. Max of 9. | 2 | integer |
+| targetBiddercodePrefix | no | An alternate (short) bidder code to send to the ad server. A number will be appended, starting from 2. e.g hb_pb_PREFIX2. If not provided, the extra bids will not go to the ad server. | 'bidA' | string |
+
+Prebid Server core does the following when it sees ext.prebid.multibid:
+
+1. Before sending the request to bid adapters, removes all entries from the multibid array except the one for that particular bid adapter. This lets the bid adapters be aware of how many bids they're going to be allowed to submit into the auction.
+2. Let any additional bids through the OpenRTB response on seatbid[].bid[].
+3. Add the additional specified targeting on seatbid[].bid[].ext.prebid.targeting and repeats the biddercode used for targeting on seatbid[].bid[].ext.prebid.targetbiddercode.
+
+Here's an example response:
+```
+{
+seatbid: [{
+  seat: "bidderA",
+  bid: [{
+    id: "bid1",
+    impid: "imp1",
+    price: 1.04,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidderA: 1.00
+            },
+            targetbiddercode: "bidderA"
+        }
+    }
+    ...
+  },{
+    id: "bid2",
+    impid: "imp1",   // same imp as above
+    price:0.8,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidA2: 0.50
+            },
+            targetbiddercode: "bidA2"
+        }
+    }
+    ...
+  }]
+}]
+}
 ```
 
 ### OpenRTB Ambiguities
