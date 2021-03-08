@@ -8,5 +8,5 @@ prebid_member: true
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://www.media.net/](https://www.media.net/) for more information.
 
