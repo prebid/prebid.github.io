@@ -371,6 +371,7 @@ func (a *adapter) MakeBids(request *openrtb.BidRequest, requestData *adapters.Re
   bidResponse.Currency = response.Cur
   for _, seatBid := range response.SeatBid {
     for _, bid := range seatBid.Bid {
+      bid := bid // pin https://github.com/kyoh86/scopelint#whats-this
       b := &adapters.TypedBid{
         Bid:     &bid,
         BidType: getMediaTypeForBid(bid),
@@ -627,6 +628,7 @@ func (a *adapter) MakeBids(request *openrtb.BidRequest, requestData *adapters.Re
   ...
   for _, seatBid := range response.SeatBid {
     for _, bid := range seatBid.Bid {
+      bid := bid // pin https://github.com/kyoh86/scopelint#whats-this
       b := &adapters.TypedBid{
         Bid:     &bid,
         BidType: getMediaTypeForBid(bid),
