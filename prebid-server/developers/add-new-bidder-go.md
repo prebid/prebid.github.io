@@ -71,13 +71,14 @@ Please do not ignore errors from method calls made in your bid adapter code. Eve
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your maintainer email address, specifies the ad formats your adapter will accept, and allows you to opt-in to video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your maintainer email address, your [GDPR Global Vendor List (GVL) id](https://iabeurope.eu/vendor-list-tcf-v2-0/), specifies the ad formats your adapter will accept, and allows you to opt-in to video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
 ```yaml
 maintainer:
   email: prebid-maintainer@example.com
+gvlVendorID: 42
 modifyingVastXmlAllowed: false
 capabilities:
   app:
@@ -96,11 +97,26 @@ capabilities:
 
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
+- Change the `gvlVendorID` from the sample value of `108` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
 - Change the `modifyingVastXmlAllowed` value to `true` if you'd like to opt-in for [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 
 <details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
+
+```yaml
+maintainer:
+  email: foo@foo.com
+gvlVendorID: 42
+capabilities:
+  site:
+    mediaTypes:
+      - banner
+```
+</details>
+
+<details markdown="1">
+  <summary>Example: Website with banner ads only not registered with IAB Europe.</summary>
 
 ```yaml
 maintainer:
@@ -118,6 +134,7 @@ capabilities:
 ```yaml
 maintainer:
   email: foo@foo.com
+gvlVendorID: 42
 modifyingVastXmlAllowed: true
 capabilities:
   app:
@@ -682,7 +699,7 @@ import (
 )
 
 func NewSyncer(template *template.Template) usersync.Usersyncer {
-  return adapters.NewSyncer("{bidder}", 0, template, adapters.SyncTypeRedirect)
+  return adapters.NewSyncer("{bidder}", template, adapters.SyncTypeRedirect)
 }
 ```
 
@@ -692,7 +709,6 @@ The heavy lifting is handled by the `adapters.NewSyncer` method. You just need t
 | Argument | Description
 | - | -
 | `familyName` | Name used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
-| `vendorID` | Id for your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
 | `urlTemplate` | Pass through the `template` argument.
 | `syncType` | Type of user sync supported by your bidding server. The valid options are `SyncTypeRedirect` and `SyncTypeIframe`.
 
@@ -1090,7 +1106,6 @@ func TestSyncer(t *testing.T) {
   assert.NoError(t, err)
   assert.Equal(t, "<syncURL With Macros Resolved>", syncInfo.URL)
   assert.Equal(t, "redirect", syncInfo.Type)
-  assert.Equal(t, 0, syncer.GDPRVendorID())
 }
 ```
 
