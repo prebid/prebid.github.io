@@ -2,7 +2,7 @@
 layout: analytics
 title: LiveYield
 description: LiveYield Analytics Adapter
-modulecode: liveyieldAnalyticsAdapter
+modulecode: liveyield
 enable_download: false
 ---
 

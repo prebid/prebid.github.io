@@ -2,7 +2,7 @@
 layout: analytics
 title: Rubicon Project
 description: Rubicon Project Prebid Analytics Adapter
-modulecode: rubiconAnalyticsAdapter
+modulecode: rubicon
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true

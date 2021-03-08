@@ -2,7 +2,7 @@
 layout: analytics
 title: Adkernel
 description: Adkernel Analytics Adapter
-modulecode: adkernelAdnAnalyticsAdapter
+modulecode: adkernelAdn
 ---
 
 #### Registration

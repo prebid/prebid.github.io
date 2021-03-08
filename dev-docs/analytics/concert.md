@@ -2,7 +2,7 @@
 layout: analytics
 title: Concert
 description: Concert Analytics Adapter
-modulecode: concertAnalyticsAdapter
+modulecode: concert
 enable_download: false
 ---
 
