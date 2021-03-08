@@ -385,7 +385,7 @@ The `interpretResponse` function will be called when the browser has received th
 {: .alert.alert-info :}
 Please provide as much information as possible in the `meta` object. Publishers use this
 data for tracking down bad creatives and ad blocking. The advertiserDomains field and the Demand Chain Object are
-particularly useful. Publishers may have analytics or security vendors with the capability to parse and validate complicated demand chain objects. meta.advertiserDomains is proposed as required in 5.X+; Additional examples of these fields may become required in a future release.
+particularly useful. Publishers may have analytics or security vendors with the capability to parse and validate complicated demand chain objects. The meta.advertiserDomains field is proposed as required in 5.0; other fields may become required in a future release.
 
 The parameters of the `bidResponse` object are:
 
