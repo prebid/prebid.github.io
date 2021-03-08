@@ -61,6 +61,7 @@ var videoAdUnit = {
     bidder: 'medianet',
     params: {
       cid: '8CUX0H51C',
+      crid: '776755783',  
       video: {
         mimes: ['video/mp4'],
         placement: 1
