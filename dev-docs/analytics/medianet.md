@@ -2,11 +2,11 @@
 layout: analytics
 title: MediaNet
 description: MediaNet Analytics Adapter
-modulecode: medianetAnalyticsAdapter
+modulecode: medianet
 prebid_member: true
 ---
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://www.media.net/](https://www.media.net/) for more information.
 

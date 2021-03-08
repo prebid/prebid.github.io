@@ -2,7 +2,7 @@
 layout: analytics
 title: ePlanning
 description: ePlanning Analytics Adapter
-modulecode: eplanningAnalyticsAdapter
+modulecode: eplanning
 ---
 
 #### Registration
