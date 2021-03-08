@@ -418,6 +418,7 @@ To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
     }
   }
 });
+```
 
 #### Bidder Response Times
 
