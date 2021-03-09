@@ -6,7 +6,6 @@ description: Prebid Sharethrough Adaptor
 gdpr_supported: true
 media_types: native
 schain_supported: true
-tcf2_supported: true
 userIds: pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
 usp_supported: true
 pbjs: true

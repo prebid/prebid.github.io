@@ -4,7 +4,6 @@ title: Smaato
 description: Prebid Smaato Bidder Adaptor
 biddercode: smaato
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 media_types: banner, video
