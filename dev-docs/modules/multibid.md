@@ -105,5 +105,3 @@ array returned from `interpretResponse` function.
 ## Related Topics
 
 - [MultiBid in the Prebid Server]() /openrtb2/auction endpoint
-- AMP
-- Mobile
