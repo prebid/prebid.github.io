@@ -5,6 +5,7 @@ description: Prebid Avocet Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: avct
+aliasBiddercode: avocet
 gdpr_supported: true
 media_types: banner, video
 schain_supported: true

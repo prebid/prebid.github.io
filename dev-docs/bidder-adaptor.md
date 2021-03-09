@@ -1034,7 +1034,9 @@ registerBidder(spec);
 - [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
-  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
+    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. This needs to be the same name as the docs file!
+    - Add 'aliasBiddercode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
@@ -1057,6 +1059,7 @@ layout: bidder
 title: example
 description: Prebid example Bidder Adapter
 biddercode: example
+aliasBiddercode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 gdpr_supported: true/false
 tcf2_supported: true/false
 gvl_id: 111
