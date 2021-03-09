@@ -5,7 +5,7 @@ pbs: true
 media_types: video
 biddercode: datablocks
 prebid_member: true
-gdpr_supported: false
+gdpr_supported: true
 ---
 
 ### Bid Params

@@ -6,7 +6,7 @@ pbjs: true
 biddercode: valueimpression
 aliasCode: apacdex
 media_types: banner, video
-gdpr_supported: false
+gdpr_supported: true
 schain_supported: true
 usp_supported: true
 pbs: true

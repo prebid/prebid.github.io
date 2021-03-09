@@ -3,7 +3,7 @@ layout: bidder
 title: SmartyAds
 description: Prebid SmartyAds Bidder Adaptor
 biddercode: smartyads
-gdpr_supported: false
+gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
