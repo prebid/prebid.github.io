@@ -5,7 +5,7 @@ title: Prebid Server | Developers | Default Request
 
 ---
 
-# Server Based Global Default Request (PBS-Go only)
+# Server Based Global Default Request
 
 This allows a defaut stored request to be defined that allows the server to set up some defaults for all incoming requests. A request specified stored request will override these defaults, and of course any options specified directly in the stored request override both. The default stored request is only read on server startup, it is meant as an installation static default rather than a dynamic tuning option.
 
@@ -14,15 +14,24 @@ A common use case is to "hard code" aliases into the server. This saves having t
 ## Config Options
 
 Three config options are exposed to support this feature.
-```
+
+### For PBS-Go
+```yaml
 default_request:
-    type: "file"
-    file:
-        name : /path/to/aliases.json
-    alias_info     : false
+  type: "file"
+  file:
+    name : /path/to/aliases.json
+  alias_info: false
 ```
 
-The `filename` option is the path/filename of a JSON file containing the default stored request JSON as documented in the [openrtb2 docs](/prebid-server/endpoints/openrtb2/auction.html) and [stored request docs](/prebid-server/developers/stored-requests.html)
+### For PBS-Java
+```yaml
+default-request:
+  file:
+    path : path/to/default/request.json
+```
+
+The `filename` (PBS-Go) / `filepath` (PBS-Java) option is the path/filename of a JSON file containing the default stored request JSON as documented in the [openrtb2 docs](/prebid-server/endpoints/openrtb2/auction.html) and [stored request docs](/prebid-server/developers/stored-requests.html)
 ```
 {
     "tmax": "<auction_timeouts_ms.default>",
@@ -47,3 +56,6 @@ The `info` option determines if the alised bidders will be exposed on the `/info
 `"alias_of": "{coreBidder}"` to indicate that it is an aliases, and of which core bidder. Turning the info support on may be useful for hosts
 that want to support automation around the `/info` endpoints that will include the predefined aliases.  This config option may be deprecated in a future
 version to promote a consistency in the endpoint functionality, depending on the perceived need for the option.
+
+{: .alert.alert-danger :}
+Note that PBS-Java does not contain `default_request.type` and `default_request.alias_info` properties.
