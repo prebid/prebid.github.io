@@ -12,7 +12,6 @@ schain_supported: true
 prebid_member: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 tcf1_supported: true
-tcf2_supported: true
 getFloor: false
 gvl_id: 842
 ---

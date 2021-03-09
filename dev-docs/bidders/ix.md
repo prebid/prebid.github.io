@@ -10,7 +10,6 @@ pbs_app_supported: true
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
-tcf2_supported: true
 media_types: banner, video
 gvl_id: 10
 prebid_member: yes

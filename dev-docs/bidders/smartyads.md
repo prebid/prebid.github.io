@@ -4,11 +4,9 @@ title: SmartyAds
 description: Prebid SmartyAds Bidder Adaptor
 biddercode: smartyads
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true
 bidder_supports_deals: true

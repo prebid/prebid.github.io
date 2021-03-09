@@ -5,7 +5,6 @@ description: Glimpse Protocol Bidder Adapter
 biddercode: glimpse
 pbjs: true
 gdpr_supported: true
-tcf2_supported: true
 media_types: banner
 ---
 

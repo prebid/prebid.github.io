@@ -1038,9 +1038,8 @@ registerBidder(spec);
     - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. This needs to be the same name as the docs file!
     - Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
-    - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
-    - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+    - If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
     - If you have an IAB Global Vendor List ID, add `gvl_id: ID`. There's no default.
     - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
@@ -1061,7 +1060,6 @@ description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 gdpr_supported: true/false
-tcf2_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false

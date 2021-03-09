@@ -8,7 +8,6 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
-tcf2_supported: true
 biddercode: amx
 safeframes_ok: true
 media_types: banner, video
