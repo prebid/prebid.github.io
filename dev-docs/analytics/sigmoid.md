@@ -2,7 +2,7 @@
 layout: analytics
 title: Sigmoid
 description: Sigmoid Analytics Adapter
-modulecode: sigmoidAnalyticsAdapter
+modulecode: sigmoid
 ---
 
 #### Registration

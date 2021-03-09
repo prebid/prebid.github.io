@@ -2,7 +2,7 @@
 layout: analytics
 title: adWMG
 description: adWMG Analytics Adapter
-modulecode: adWMGAnalyticsAdapter
+modulecode: adWMG
 gdpr_supported: true
 usp_supported: false
 coppa_supported: false

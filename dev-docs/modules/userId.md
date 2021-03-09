@@ -46,8 +46,18 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagement.ht
 
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
-* `_pbjs_id_optout` cookie or HTML5 local storage
-* `_pubcid_optout` cookie or HTML5 local storage (for backwards compatibility with the original PubCommonID module.
+* `_pbjs_id_optout` cookie or HTML5 local storage. The value can be anything -- if it exists, the user is considered opted out and no userId modules will fire.
+* `_pubcid_optout` cookie or HTML5 local storage. This is for backwards compatibility with the original PubCommonID module. Likewise, the value can be anything.
+
+### Publisher First Party Opt-Out
+
+Without third-party cookies, mechanisms like the [NAI](https://optout.networkadvertising.org) don't work, so some publishers may want to implement a first party opt-out so their users aren't tagged with first party cookies containing IDs.
+
+Publishers that want to do this should design their workflow and then set `_pbjs_id_optout` cookie or HTML5 local storage. For instance:
+
+- read from an in-page javascript variable and set `_pbjs_id_optout` to any value.
+- call an in-page function and use the results to create a `_pbjs_id_optout` cookie with any value.
+
 
 ## Basic Configuration
 
@@ -127,7 +137,8 @@ The Rubicon bid adapter would then receive
 
 ### BritePool
 
-BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies.
+The [BritePool]((https://britepool.com)) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated 
+integration partners (such as PubMatic), are able to maximize revenues without cookies. As addressable individuals visit publisher websites and mobile apps, the BritePool IDs associated with these identities are passed into the bidstream; enabling advertisers to transact against these BritePool ID's and publishers to maximize the revenues associated with their inventory and audience. The BritePool ID combines consumer privacy with easy, rapid integration for publishers and does not significantly increase the computing resources required of DSPs and SSPs.
 
 Add it to your Prebid.js package with:
 
@@ -939,7 +950,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the PubCommon ID cookie.  Default is true. | `true` |
 | params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
-| params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` in Prebid.js 4.x. Will default to `true` in Prebid.js 5.0. | `true` |
+| params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` | `true` |
 
 
 #### PubCommon ID Examples

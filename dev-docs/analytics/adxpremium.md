@@ -2,7 +2,7 @@
 layout: analytics
 title: AdxPremium
 description: AdxPremium Analytics Adapter
-modulecode: adxpremiumAnalyticsAdapter
+modulecode: adxpremium
 ---
 
 #### Registration

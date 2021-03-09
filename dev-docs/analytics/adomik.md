@@ -2,7 +2,7 @@
 layout: analytics
 title: Adomik
 description: Adomik Analytics Adapter
-modulecode: adomikAnalyticsAdapter
+modulecode: adomik
 prebid_member: true
 ---
 

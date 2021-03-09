@@ -2,7 +2,7 @@
 layout: analytics
 title: Sovrn
 description: Sovrn Analytics Adapter
-modulecode: sovrnAnalyticsAdapter
+modulecode: sovrn
 prebid_member: true
 ---
 
