@@ -29,3 +29,6 @@ gvl_id: 959
           publisher_id: '5abd0543ba45723db49d97ea'
   }});
 ```
+#### Registration
+
+Please visit [https://adwmg.com/](https://adwmg.com/) for more information.
