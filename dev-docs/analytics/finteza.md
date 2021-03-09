@@ -2,7 +2,7 @@
 layout: analytics
 title: Finteza
 description: Finteza Analytics Adapter
-modulecode: fintezaAnalyticsAdapter
+modulecode: finteza
 ---
 
 #### Registration

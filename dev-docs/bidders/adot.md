@@ -6,6 +6,7 @@ biddercode: adot
 media_types: banner, video, native
 gdpr_supported: true
 tcf2_supported: true
+gvl_id: 272
 pbjs: true
 pbs: true
 ---

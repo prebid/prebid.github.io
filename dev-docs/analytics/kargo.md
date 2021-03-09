@@ -2,7 +2,7 @@
 layout: analytics
 title: Kargo
 description: Kargo Analytics Adapter
-modulecode: kargoAnalyticsAdapter
+modulecode: kargo
 enable_download: false
 ---
 
