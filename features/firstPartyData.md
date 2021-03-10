@@ -21,7 +21,7 @@ check with each of your bidders to make sure they're reading first
 party data from the standard Prebid locations.
 
 {: .alert.alert-warning :}
-This document covers the method of specifying First Party Data as of Prebid.js 4.xx, which
+This document covers the method of specifying First Party Data as of Prebid.js 4.30, which
 we recommend all publishers use. In previous versions of Prebid.js, the interface was
 to set `fpd` values. We now use the more generic `ortb2` interface,
 which can be used for more than just First Party Data.
@@ -45,7 +45,7 @@ The Prebid First Party Data JSON structure reflects the OpenRTB standard.
 ### Supplying Global Data
 
 Here's how a publisher can let all bid adapters have access
-to first party data that might be useful in ad targeting:
+to first party data that might be useful in ad targeting that's good in PBJS 4.30 and later:
 {% highlight js %}
 pbjs.setConfig({
    ortb2: {
@@ -104,6 +104,9 @@ Note that supplying first party **user** data may require special
 consent in certain regions. Prebid.js does **not** police the passing
 of user data as part of its GDPR or CCPA modules.
 
+{: .alert.alert-warning :}
+If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb' with 'fpd', 'site' with 'context' and 'site.ext.data' with 'context.data'.
+
 ### Supplying AdUnit-Specific Data
 
 If an attribute is specific to an AdUnit, it can be passed this way:
@@ -132,6 +135,9 @@ pbjs.addAdUnits({
 Prebid does not support AdUnit-specific **user** data, nor does it support
 bidder-specific AdUnit First Party Data. You could implement either of
 these scenarios with a publisher-specific callback on the [`requestBids` event](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
+
+{: .alert.alert-warning :}
+If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb2Imp.ext.data' with 'fpd.context.data'.
 
 ### Supplying Bidder-Specific Data
 
