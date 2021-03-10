@@ -6,7 +6,7 @@ modulecode: adWMG
 gdpr_supported: true
 usp_supported: false
 coppa_supported: false
-prebid_member: true
+prebid_member: false
 gvl_id: 959
 ---
 
