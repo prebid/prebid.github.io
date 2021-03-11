@@ -617,7 +617,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response. 
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
@@ -631,6 +631,7 @@ Bid metadata will be *required* in a coming Prebid.js release, specifically for 
 | `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain`. 
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
+| `.dchain` | Demand Chain Object. 
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
 | `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`.
@@ -671,6 +672,7 @@ func buildMeta(bid *adapters.TypedBid) (json.RawMessage, error) {
       AdvertiserID:         3,
       AdvertiserName:       "Some Advertiser Name",
       AdvertiserDomains:    bid.ADomain,
+      dchain:               bid.ext.dchain,      
       BrandID:              4,
       BrandName:            "Some Brand Name",
       PrimaryCategoryID:    "IAB-1",
