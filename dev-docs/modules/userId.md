@@ -857,6 +857,12 @@ pbjs.setConfig({
 
 NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID helps publishers access unique demand in cookieless environments.
 
+#### NextRoll ID Registration
+
+To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
+
+The NextRoll ID is governed by the NextRoll Privacy Policy found at: [www.nextroll.com/privacy](https://www.nextroll.com/privacy).
+
 #### NextRoll ID Configuration
 
 Add it to your Prebid.js package with:
@@ -864,7 +870,7 @@ Add it to your Prebid.js package with:
 {: .alert.alert-info :}
 gulp build --modules=nextrollIdSystem
 
-Enable the module in configuration, with your partnerId:
+Enable the module in configuration, with your Partner ID:
 
 {% highlight javascript %}
 pbjs.setConfig({
