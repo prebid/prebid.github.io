@@ -617,7 +617,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response. 
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
@@ -631,6 +631,7 @@ Bid metadata will be *required* in a coming Prebid.js release, specifically for 
 | `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain`. 
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
+| `.dchain` | Demand Chain Object. 
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
 | `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`.
@@ -671,6 +672,7 @@ func buildMeta(bid *adapters.TypedBid) (json.RawMessage, error) {
       AdvertiserID:         3,
       AdvertiserName:       "Some Advertiser Name",
       AdvertiserDomains:    bid.ADomain,
+      dchain:               bid.ext.dchain,      
       BrandID:              4,
       BrandName:            "Some Brand Name",
       PrimaryCategoryID:    "IAB-1",
@@ -1193,6 +1195,7 @@ gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
+dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
@@ -1223,6 +1226,7 @@ Notes on the metadata fields:
 - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+- If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
 - If your bidder supports deals, set `bidder_supports_deals: true`. No default value.

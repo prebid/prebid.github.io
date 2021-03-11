@@ -1048,6 +1048,7 @@ registerBidder(spec);
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     - If you support COPPA, add `coppa_supported: true`. Default is false.
     - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+    - If you support passing a demadn chain on the response, add `dchain_supported: true`. Default is false.
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     - If you support deals, set `bidder_supports_deals: true`. No default value..
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
@@ -1066,6 +1067,7 @@ gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
+dchain_supported: true/false
 userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true/false
