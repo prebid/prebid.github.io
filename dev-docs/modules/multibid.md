@@ -17,21 +17,21 @@ sidebarType : 1
 
 ## Overview
 
-This module allows a single bidder to bid more than once into an auction and have it passed
+This module allows a configured bidders to pass than one bid per AdUnit 
 through to the ad server.
 
-Without this module, a bid adapter that supplies more than one bid response for a given ad unit will have those bids placed on the bid cache (if activated), but only the
+Without this module, bidders can place multiple bids on the bid cache, but only the
 highest bid will be considered for sending to the ad server.
 
 ## Use Cases
 
 - Allows a bidder to provide both outstream and banner.
 - Supports one bidder providing multiple video bids for the fallback scenario.
-- Allows one bid to be blocked in the ad server and a second one still considered.
+- Allows bids to be blocked in ad server targeting logic while allowing other bids from the same bidder to be considered.
 
 There are two specific actions enabled by this module:
 
-1) Let bidders know how many bids will be considered. If [useBidCache](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Use-Bid-Cache) is on, more than one bid response per adapter can be registered. Note that this is already the case even without this module, but bid adapters might not know they can supply extra bids without the `multibid` config.
+1) Let bidders know how many bids will be considered. If [useBidCache](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Use-Bid-Cache) is on, more than one bid response per adapter can be registered. Note that this is the case even without this module, but bid adapters might not know they can supply extra bids without the `multibid` config.
 2) Expand the number of ad server targeting values going to the ad server.
 
 Here's an example configuration:
