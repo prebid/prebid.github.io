@@ -464,6 +464,8 @@ There are a several values of a bid that publishers expect to be populated. Some
 | - | - | - | -
 | CCPA | OpenRTB | `request.regs.ext.us_privacy` <br/> The publisher is specifying the California Consumer Privacy Act consent string.
 | COPPA | OpenRTB | `request.regs.ext.us_privacy`<br/> The publisher is specifying the Children's Online Privacy Protection flag.
+| ATTS | OpenRTB | `request.device.ext.atts`<br/> The [App Tracking Transparency Status](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/extensions/community_extensions/skadnetwork.md#object-bidrequestdeviceext) set on the device (iOS only).
+| SKAdNetwork | OpenRTB | `request.imp[].ext.skadn` <br/> The [SKAdNetwork](https://github.com/prebid/prebid-mobile-ios/issues/342) signaling to support mobile attribution when a user's IDFA is unavailable for iOS traffic. 
 | Currency | OpenRTB |`request.cur` <br/> The publisher is specifying the desired bid currency. The Prebid Server default is USD.
 | [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | `request.ext.prebid.debug` <br/> The publisher is requesting verbose debugging information from Prebid Server.
 | [First Party Data (FPD)](https://docs.prebid.org/prebid-server/features/pbs-fpd.html)| Prebid | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*` <br/> The publisher may provide first party data (e.g. keywords).
@@ -472,6 +474,7 @@ There are a several values of a bid that publishers expect to be populated. Some
 | Supply Chain | OpenRTB | `request.source.ext.schain` <br/> The publisher's declaration of all parties who are selling or reselling the bid request.
 | Test | OpenRTB | `request.test` <br/> The publisher is sending non-production traffic which also enables verbose debugging information from Prebid Server.
 | Video | OpenRTB | `request.imp[].video` <br/> The publisher is specifying video ad requirements or preferences.
+| Rewarded inventory | OpenRTB | `request.imp[].ext.prebid.is_rewarded_inventory` <br/> Signal to indicate the inventory is rewarded. 
 
 #### Response
 
@@ -1110,7 +1113,6 @@ title: {bidder}
 description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
 gdpr_supported: true/false
-tcf2_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
@@ -1138,9 +1140,8 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 ```
 Notes on the metadata fields:
 - Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
-- If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
-- If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
 - If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
+- If you support GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.

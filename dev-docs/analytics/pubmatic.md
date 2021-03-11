@@ -2,7 +2,7 @@
 layout: analytics
 title: PubMatic
 description: PubMatic Analytics Adapter
-modulecode: pubmaticAnalyticsAdapter
+modulecode: pubmatic
 prebid_member: true
 gvl_id: 76
 enable_download: false

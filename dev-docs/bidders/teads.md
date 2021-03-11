@@ -5,7 +5,6 @@ description: Prebid Teads Bidder Adapter
 pbjs: true
 biddercode: teads
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video

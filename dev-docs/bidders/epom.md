@@ -4,7 +4,6 @@ title: Epom
 description: Prebid Epom Bidder Adapter
 biddercode: epom
 gdpr_supported: false
-tcf2_supported: false
 gvl_id: 849
 usp_supported: false
 coppa_supported: true

@@ -6,7 +6,6 @@ biddercode: outbrain
 aliasCode : zemanta
 gdpr_supported: true
 gvl_id: 164
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 media_types: banner, native
