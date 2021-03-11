@@ -1308,19 +1308,18 @@ pbjs.setConfig({
 
 ### Verizon Media ConnectID
 
-Verizon Media ConnectID is a person based ID and doesn't depend on 3rd party cookies.
+Verizon Media ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of Verizon Media’s robust and proprietary ID Graph it delivers a higher find rate of audiences on publishers’ sites user targeting that respects privacy.
 
-Verizon Media ConnectID is designed to enable ad tech platforms to recognize and match users consistently across the open web. Verizon Media ConnectID is built on top of Verizon Media's robust and proprietary ID Graph, delivering a higher find rate of audiences on publishers' sites user targeting that respects privacy.
-
-Verizon Media ConnectID honors privacy choices from our own [Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html), as well as global privacy acts.
-
-Please reach out to VZM-ConnectIDSupport@verizonmedia.com for assistance with setup.
+Verizon Media ConnectID honors privacy choices from the [Verizon Media Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html) as well as global privacy acts.
 
 Add support for Verizon Media ConnectID to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,verizonMediaIdSystem
 
+#### Verizon Media ConnectID Registration
+
+A Verizon Media supplied publisher specific pixel Id is required. Reach out to your account manager for assistance with setup.
 
 #### Verizon Media ConnectID Configuration
 
@@ -1331,8 +1330,8 @@ gulp build --modules=userId,verizonMediaIdSystem
 | params | Required | Object | Container of all module params. ||
 | params.pixelId | Required | Number | The Verizon Media supplied publisher specific pixel Id  | `8976` |
 | params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
-| storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
-| storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
+| storage | Required | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
+| storage.type | Required | String | Defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
 {: .table .table-bordered .table-striped }
