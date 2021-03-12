@@ -506,6 +506,14 @@
   sectionTitle:
   subgroup: 8
 
+- sbSecId: 1
+  title: Timeouts
+  link: /features/timeouts.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
 
 #--------------Prebid Mobile--------------|
 
@@ -626,6 +634,14 @@
   subgroup: 1
 
 - sbSecId: 2
+  title: In App Native Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-native-inapp-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
   title: Video Outstream Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-videooutstreamadunit-ios.html
   isHeader: 0
@@ -733,6 +749,14 @@
 - sbSecId: 2
   title: Native Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: In App Native Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-native-inapp-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2007,7 +2031,7 @@
   sbCollapseId: tools
 
 - sbSecId: 8
-  title: 
+  title:
   link:
   isHeader: 1
   headerId: toolsinvis
@@ -2022,3 +2046,41 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+#-------------- Prebid Identity --------------|
+
+- sbSecId: 9
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Identity
+  sectionId: prebid-identity
+  subgroup: 1000
+  sbCollapseId: prebid-identity
+
+- sbSecId: 9
+  title: invis
+  link:
+  isHeader: 1
+  headerId: invis
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 9
+  title: Identity Overview
+  link: /identity/prebid-identity.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 9
+  title: SharedID and PubCommon ID
+  link: /identity/sharedIdPubCommon.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+

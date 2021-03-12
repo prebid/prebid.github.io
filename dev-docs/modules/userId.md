@@ -46,8 +46,18 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagement.ht
 
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
-* `_pbjs_id_optout` cookie or HTML5 local storage
-* `_pubcid_optout` cookie or HTML5 local storage (for backwards compatibility with the original PubCommonID module.
+* `_pbjs_id_optout` cookie or HTML5 local storage. The value can be anything -- if it exists, the user is considered opted out and no userId modules will fire.
+* `_pubcid_optout` cookie or HTML5 local storage. This is for backwards compatibility with the original PubCommonID module. Likewise, the value can be anything.
+
+### Publisher First Party Opt-Out
+
+Without third-party cookies, mechanisms like the [NAI](https://optout.networkadvertising.org) don't work, so some publishers may want to implement a first party opt-out so their users aren't tagged with first party cookies containing IDs.
+
+Publishers that want to do this should design their workflow and then set `_pbjs_id_optout` cookie or HTML5 local storage. For instance:
+
+- read from an in-page javascript variable and set `_pbjs_id_optout` to any value.
+- call an in-page function and use the results to create a `_pbjs_id_optout` cookie with any value.
+
 
 ## Basic Configuration
 
@@ -68,8 +78,6 @@ of sub-objects. The table below has the options that are common across ID system
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
-
-## User ID Sub-Modules
 
 ## Permissions
 Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
@@ -125,9 +133,12 @@ The Rubicon bid adapter would then receive
 }
 ```
 
+## User ID Sub-Modules
+
 ### BritePool
 
-BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies.
+The [BritePool]((https://britepool.com)) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated 
+integration partners (such as PubMatic), are able to maximize revenues without cookies. As addressable individuals visit publisher websites and mobile apps, the BritePool IDs associated with these identities are passed into the bidstream; enabling advertisers to transact against these BritePool ID's and publishers to maximize the revenues associated with their inventory and audience. The BritePool ID combines consumer privacy with easy, rapid integration for publishers and does not significantly increase the computing resources required of DSPs and SSPs.
 
 Add it to your Prebid.js package with:
 
@@ -939,7 +950,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the PubCommon ID cookie.  Default is true. | `true` |
 | params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
-| params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` in Prebid.js 4.x. Will default to `true` in Prebid.js 5.0. | `true` |
+| params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` | `true` |
 
 
 #### PubCommon ID Examples
@@ -1058,7 +1069,7 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 - dmp - this uid comes from the in-page dmp named in eids.source
 - ppuid - this uid comes from the publisher named in eids.source
-- other - TBD
+- other - for setting other id origin signals please use the [adCOM!](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#object--extended-identifier-uids-) `atype` spec 
 
 5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
 
