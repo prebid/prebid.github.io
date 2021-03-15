@@ -30,6 +30,7 @@ selected a MASS enabled bid as a winner.
 
 Find out more [here](https://massplatform.net).
 
+{: .alert.alert-warning :}
 ## Disclosure
 
 - This module loads external JavaScript to render creatives
