@@ -6,6 +6,7 @@ hide: true
 biddercode: invibes
 gdpr_supported: true
 tcf2_supported: true
+userIds: pubCommonId, pubProvidedId
 ---
 
 ### Bid Params
