@@ -11,6 +11,10 @@ gvl_id: 93
 enable_download: false
 ---
 
+#### Disclosure
+
+The adapter adds an HTML `<script>` tag to load Adloox's post-buy verification JavaScript (`https://j.adlooxtracking.com/ads/js/tfav_adl_X.js` at ~25kiB gzipped) when the [`bidWon` event](https://docs.prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.onEvent) for each ad slot.
+
 #### Registration
 
 The [Adloox](https://adloox.com/) analytics adapter requires on-boarding and configuration
