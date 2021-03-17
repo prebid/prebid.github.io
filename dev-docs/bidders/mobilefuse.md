@@ -10,7 +10,7 @@ coppa_supported: true
 biddercode: mobilefuse
 ccpa_supported: true
 prebid_member: true
-tcf2_supported: true
+pbs_app_supported: true
 ---
 
 ### Bid Params

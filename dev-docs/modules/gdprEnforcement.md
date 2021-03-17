@@ -207,6 +207,14 @@ The GDPR Enforcement module requires the GVL ID for a module to be specified. If
       <td>User ID</td>
       <td>ID5</td>
     </tr>
+    <tr>
+      <td>User ID</td>
+      <td>Lotame Panorama Id</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>Parrable ID</td>
+    </tr>
 </tbody>
 </table>
 

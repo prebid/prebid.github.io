@@ -38,9 +38,17 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
 | [**Price Floors Module**](/dev-docs/modules/floors.html) | Configure and enforce minimum bids. |
 | [**GPT Pre-Auction Module**](/dev-docs/modules/gpt-pre-auction.html) | Adds a PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters. |
-| [**ID Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
+| [**ID Import Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
 
 ## Real-Time Data Providers
+
+All of the modules that fall under the Real-Time Data (RTD) category conform to 
+a consistent set of publisher controls. The pub can choose to run multiple
+RTD modules, define an overall amount of time they're willing to wait for
+results, and even flag some of the modules as being more "important"
+than others.
+
+See [the realTimeData setConfig](/dev-docs/publisher-api-reference.html#setConfig-realTimeData) reference for more details.
 
 {% assign module_pages = site.pages | where: "page_type", "module" | where: "module_type", "rtd" %}
 

@@ -362,18 +362,19 @@ The `interpretResponse` function will be called when the browser has received th
         ad: CREATIVE_BODY,
         dealId: DEAL_ID,
         meta: {
-            networkId: NETWORK_ID,
-            networkName: NETWORK_NAME
-            agencyId: AGENCY_ID,
-            agencyName: AGENCY_NAME,
+            advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS],        
             advertiserId: ADVERTISER_ID,
             advertiserName: ADVERTISER_NAME,
-            advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS]
+            agencyId: AGENCY_ID,
+            agencyName: AGENCY_NAME,
             brandId: BRAND_ID,
             brandName: BRAND_NAME,
+            dchain: DEMAND_CHAIN_OBJECT,
+            mediaType: MEDIA_TYPE,
+            networkId: NETWORK_ID,
+            networkName: NETWORK_NAME,
             primaryCatId: IAB_CATEGORY,
-            secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES],
-            mediaType: MEDIA_TYPE
+            secondaryCatIds: [ARRAY_OF_IAB_CATEGORIES]
         }
     };
     bidResponses.push(bidResponse);
@@ -383,8 +384,8 @@ The `interpretResponse` function will be called when the browser has received th
 
 {: .alert.alert-info :}
 Please provide as much information as possible in the `meta` object. Publishers use this
-data for tracking down bad creatives and ad blocking. The advertiserDomains field is
-particularly useful. Some of these fields may become required in a future release.
+data for tracking down bad creatives and ad blocking. The advertiserDomains field and the Demand Chain Object are
+particularly useful. Publishers may have analytics or security vendors with the capability to parse and validate complicated demand chain objects. The meta.advertiserDomains field is proposed as required in 5.0; other fields may become required in a future release.
 
 The parameters of the `bidResponse` object are:
 
@@ -414,6 +415,7 @@ The parameters of the `bidResponse` object are:
 | `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
 | `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
+| `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
@@ -533,6 +535,41 @@ Sample data received by this function:
   }
 }
 {% endhighlight %}
+
+### Adding adapter aliases
+
+Use aliases if you want to reuse your adapter using other name for your partner/client, or just a shortcut name.
+
+{% highlight js %}
+
+export const spec = {
+    code: 'appnexus',
+    aliases: [
+        'apnx',
+        {
+            code:'apx',
+            gvlid: 1,
+            skipPbsAliasing: false
+        }
+    ],
+    ...
+}
+
+{% endhighlight %}
+
+spec.aliases can be an array of strings or objects.
+
+### Alias object description
+
+If the alias entry is an object, the following attributes are supported:
+
+{: .table .table-bordered .table-striped }
+| Name  | Scope | Description   | Type      |
+|-------|-------|---------------|-----------|
+| `code` | required | shortcode/partner name | `string` |
+| `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
+| `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
+
 
 ## Supporting Video
 
@@ -999,17 +1036,19 @@ registerBidder(spec);
 - [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
-  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
+    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. This needs to be the same name as the docs file!
+    - Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
-    - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
-    - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
+    - If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
     - If you have an IAB Global Vendor List ID, add `gvl_id: ID`. There's no default.
     - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     - If you support COPPA, add `coppa_supported: true`. Default is false.
     - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+    - If you support passing a demadn chain on the response, add `dchain_supported: true`. Default is false.
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     - If you support deals, set `bidder_supports_deals: true`. No default value..
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
@@ -1022,12 +1061,13 @@ layout: bidder
 title: example
 description: Prebid example Bidder Adapter
 biddercode: example
+aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 gdpr_supported: true/false
-tcf2_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
+dchain_supported: true/false
 userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true/false
