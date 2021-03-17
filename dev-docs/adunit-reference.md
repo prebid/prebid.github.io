@@ -37,7 +37,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `fpd`   | Optional | Object                         | Similar to [global first party data configuration](/dev-docs/publisher-api-reference.html#setConfig-fpd), but specific to this adunit. |
+| `ortb2Imp`   | Optional | Object                         | Similar to [global first party data configuration](/dev-docs/publisher-api-reference.html#setConfig-fpd), but specific to this adunit. Note that the setConfig data is global to the logical OpenRTB object, but AdUnit-specific data is defined in the scope of a particular imp object. |
 
 <a name="adUnit.bids" />
 
@@ -531,10 +531,12 @@ pbjs.addAdUnits({
             sizes: [[300,250]]
         }
     },
-    fpd: {
-         context: {
-            pbAdSlot: "homepage-top-rect",
-            adUnitSpecificContextAttribute: "123"
+    ortb2Imp: {
+         ext: {
+	    data: {
+                pbAdSlot: "homepage-top-rect",
+                adUnitSpecificContextAttribute: "123"
+	    }
          }
     },
     ...
@@ -542,7 +544,7 @@ pbjs.addAdUnits({
 {% endhighlight %}
 
 Notes:
-- Only contextual data is supported on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd).
+- Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd) config.
 - For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
 
 ## Related Topics

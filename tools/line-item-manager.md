@@ -42,8 +42,62 @@ You can look at the full config [here](https://github.com/prebid/line-item-manag
 $ line_item_manager show config > my_config.yml
 ```
 
-Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. Options like `granularity`, `sizes`, `mediatypes`, `priority` etc can all be input there. Please ensure you are using YAML syntax to make your updates.
+Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. You can do things like `creative`, `line item`, `order` setups, as well as options like `granularity` and `targeting`, etc. can all be input there. Please ensure you are using __YAML__ syntax to make your updates.
 
+### Examples (the \# indicates comments in the YAML syntax)
+#### Creative setup
+```
+creative: # at least one of the following types is required {video, banner}
+    banner:
+        # safe_frame: False # optional: defaults to True
+        # size_override: False # optional: defaults to True with a 1x1 creative
+        sizes: # list
+            - height: 250
+            width: 300
+        snippet:
+            <script src = "https://..."></script>
+            <script>
+                ...
+            </script>
+    video:
+        sizes: # list
+            - height: 480
+            width: 640
+        vast_xml_url: "https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:{{ hb_cache_id }}%%"
+```
+#### Order setup
+```
+order:
+    name: "Prebid-{{ bidder_name }}-{{ media_type }}-{{ time }} {{ cpm_min }}-{{ cpm_max }}"
+```
+
+#### Line Item setup
+```
+line_item:
+    name: "Prebid-{{ bidder_name }}-{{ media_type }}-{{ time }} @ {{ cpm }}"
+    item_type: "price_priority"
+    # Optional
+    # priority: 12 # default is 12
+    # start_datetime: "11/17/20 21:28"
+    # end_datetime: "12/17/20 21:28"
+    # timezone: "UTC"
+```
+#### Custom Granularity setup
+```
+rate: 
+    currency: "USD" # required
+    granularity:
+        type: "custom" # required, choices: "low", "med", "high", "auto", "dense", "custom"
+        custom: # optional, requires type "custom" above
+            - min: 0.10
+              max: 30.00
+              interval: 0.10
+            - min: 30.50
+              max: 50.00
+              interval: 0.50
+    # optional properties
+    # vcpm: 100000 # viewable impressions will be enabled
+```
 __Note:__ The GAM Network ID, can also be input at runtime and will override the default Network ID in the config file.
 
 
