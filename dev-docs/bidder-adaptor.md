@@ -361,6 +361,7 @@ The `interpretResponse` function will be called when the browser has received th
         ttl: TIME_TO_LIVE,
         ad: CREATIVE_BODY,
         dealId: DEAL_ID,
+        mediaType: MEDIA_TYPE,
         meta: {
             advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS],        
             advertiserId: ADVERTISER_ID,
