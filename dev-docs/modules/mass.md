@@ -52,7 +52,7 @@ pbjs.que.push(function() {
   pbjs.setConfig({
     mass: {
       enabled: true,
-      bootloaderUrl: 'https://cdn.massplatform.net/bootloader.js',
+      renderUrl: 'https://cdn.massplatform.net/bootloader.js',
       dealIdPattern: /^MASS/i
     }
   });
@@ -64,7 +64,7 @@ Parameters details:
 |Name |Type |Description |Default |
 | :------------ | :------------ | :------------ |:------------ |
 |enabled | Boolean |Enable/disable the module |`true` |
-|bootloaderUrl | String |The MASS bootloader to use |https://cdn.massplatform.net/bootloader.js |
+|renderUrl | String |The render script to use | |
 |dealIdPattern | RegExp |The pattern used to identify MASS deal IDs |`/^MASS/i` |
 
 ## Example
