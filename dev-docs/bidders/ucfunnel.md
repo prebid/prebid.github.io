@@ -9,7 +9,6 @@ media_types: banner, video, native
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId
-tcf2_supported: true
 coppa_supported: true
 schain_supported: true
 gvl_id: 607
