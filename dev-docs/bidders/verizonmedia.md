@@ -5,6 +5,8 @@ pbs: true
 media_types: banner
 biddercode: verizonmedia
 prebid_member: true
+gdpr_supported: true
+gvl_id: 25
 ---
 
 ### Bid Params

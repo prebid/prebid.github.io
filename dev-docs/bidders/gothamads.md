@@ -4,7 +4,6 @@ title: gothamads
 description: Prebid gothamads Bidder Adaptor
 biddercode: gothamads
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

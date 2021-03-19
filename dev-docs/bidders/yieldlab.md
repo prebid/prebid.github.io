@@ -5,7 +5,6 @@ description: Prebid Yieldlab Bidder Adapter
 biddercode: yieldlab
 media_types: video
 gdpr_supported: true
-tcf2_supported: true
 schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true

@@ -9,6 +9,7 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 prebid_member: true
+gvl_id: 145
 ---
 
 **Table of Contents**

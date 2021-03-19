@@ -12,7 +12,6 @@ getFloor: true
 userIds: all
 prebid_member: true
 safeframes_ok: true
-tcf2_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
