@@ -830,7 +830,7 @@ In order for your bidder to support the native media type:
 
 1. Your (server-side) bidder needs to return a response that contains native assets.
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
-3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads](/prebid/native-implementation.html).
 
 The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
@@ -855,14 +855,15 @@ else if (rtbBid.rtb.native) {
         icon: nativeResponse.icon && nativeResponse.icon.url,
         clickUrl: nativeResponse.link.url,
         impressionTrackers: nativeResponse.impression_trackers,
+        ... many other possible native assets ...
     };
 }
 
 {% endhighlight %}
 
-As of the [0.34.1 release](https://github.com/prebid/Prebid.js/releases/tag/0.34.1), a bidder may optionally return the height and width of a native `image` or `icon` asset.
+The full list of assets your bidder can set are defined in [Table 3: Native Assets Recognized by Prebid.js](/prebid/native-implementation.html). All assets can be returned as strings, or images can be returned as objects with attributes `url`, `height`, and `width`.
 
-If your bidder does return the image size, you can expose the image dimensions on the bid response object as shown below.
+Here's an example of returning image sizes:
 
 ```javascript
     /* Does the bidder respond with native assets? */
