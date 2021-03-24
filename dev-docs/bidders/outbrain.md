@@ -42,12 +42,14 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 
-| Name               | Scope    | Description                                       | Example                | Type     |
-|--------------------|----------|---------------------------------------------------|------------------------|----------|
-| `publisher.id`     | required | The publisher account ID                          | `'2706'`               | `string` |
-| `publisher.name`   | optional | The publisher name                                | `'Publisher Name'`     | `string` |
-| `publisher.domain` | optional | The publisher domain                              | `'publisher.com'`      | `string` |
-| `tagid`            | optional | Identifier for specific ad placement or ad tag    | `'tag-id'`             | `string` |
+| Name               | Scope    | Description                                                    | Example            | Type           |
+|--------------------|----------|----------------------------------------------------------------|--------------------|----------------|
+| `publisher.id`     | required | The publisher account ID                                       | `'2706'`           | `string`       |
+| `publisher.name`   | optional | The publisher name                                             | `'Publisher Name'` | `string`       |
+| `publisher.domain` | optional | The publisher domain                                           | `'publisher.com'`  | `string`       |
+| `tagid`            | optional | Identifier for specific ad placement or ad tag                 | `'tag-id'`         | `string`       |
+| `bcat`             | optional | Blocked advertiser categories using the IAB content categories | `['IAB1-1']`       | `string array` |
+| `badv`             | optional | Block list of advertisers by their domains                     | `['example.com]'`  | `string array` |
 
 ### Native example
 
@@ -87,7 +89,9 @@ var adUnits = [
               name: 'Publishers Name',
               domain: 'publisher.com'
             },
-            tagid: 'tag-id'
+            tagid: 'tag-id',
+            bcat: ['IAB1-1'],
+            badv: ['example.com']
         }
     }]
 ];
@@ -111,6 +115,8 @@ var adUnits = [
               domain: 'publisher.com'
             },
             tagid: 'tag-id',
+            bcat: ['IAB1-1'],
+            badv: ['example.com']
         }
     }]
 ];
