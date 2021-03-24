@@ -3,7 +3,7 @@ layout: blog
 title: Blog
 head_title: Prebid.org - Blog for Header Bidding
 description: All about Prebid and header bidding
-hide: true
+
 sidebarType: 7
 ---
 

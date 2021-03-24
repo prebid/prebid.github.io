@@ -3,7 +3,7 @@ layout: bidder
 title: Prebid Server
 description: Prebid Server S2S Adaptor
 biddercode: prebidServer
-hide: true
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
 ---
@@ -40,6 +40,28 @@ pbjs.setConfig({
     }
 });
 ```
+
+To use multiple prebid servers, just define `s2sConfig` as an array. 
+The same bidder cannot be set in both configs. For example:
+
+```
+pbjs.setConfig({
+    s2sConfig: [
+    {
+        accountId: '12345',
+        bidders: ['appnexus','rubicon'],
+        defaultVendor: 'appnexus',
+        timeout: 300,
+    },
+    {
+        accountId: '678910',
+        bidders: ['pubmatic'],
+        defaultVendor: 'rubicon',
+        timeout: 300,
+    },
+    ],
+});
+```
 Configuration options
 
 {: .table .table-bordered .table-striped }
@@ -60,7 +82,7 @@ Configuration options
 ### Examples
 
 **Video (Outstream):**
-Note that currently, outstream video rendering must be configured by the publisher. In the adUnit, a `renderer` object must be defined, which includes a `url` pointing to the video rendering script, and a `render` function for creating the video player. See http://prebid.org/dev-docs/show-outstream-video-ads.html for more information.
+Note that currently, outstream video rendering must be configured by the publisher. In the adUnit, a `renderer` object must be defined, which includes a `url` pointing to the video rendering script, and a `render` function for creating the video player. See https://prebid.org/dev-docs/show-outstream-video-ads.html for more information.
 
 ```javascript
 var adUnits = [{
@@ -86,7 +108,7 @@ var adUnits = [{
         }
     ],
     renderer: {
-        url: 'http://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
+        url: 'https://cdn.adnxs.com/renderer/video/ANOutstreamVideo.js',
         render: function (bid) {
             adResponse = {
                 ad: {

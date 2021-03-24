@@ -2,7 +2,7 @@
 layout: bidder
 title: GXOne
 description: GXOne Bidder Adapter
-hide: true
+pbjs: true
 biddercode: gxone
 ---
 

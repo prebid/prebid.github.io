@@ -21,9 +21,9 @@ permalink: /blog/updated-website
 - **New Content**:
   - [Prebid Server docs](/prebid-server/prebid-server-overview.html)
   - [Product Management Committees](/overview/prebid-management-committees.html)
-  - [Community Code of Conduct](/overview/community-code-of-conduct.html)
+  - [Community Code of Conduct](https://prebid.org/code-of-conduct/#community)
   - [Prebid Members and Partners](/partners/partners.html)
-  - [Prebid Members providing Managed Services](/prebid/managed.html)
+  - [Prebid Members providing Managed Services](https://prebid.org/product-suite/managed-services/)
   - [Format index page](/formats/formats.html)
 
 ### Coming Up:
