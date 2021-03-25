@@ -648,6 +648,34 @@ Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid
 }
 ```
 
+#### EID Permissions
+
+Publishers can constrain which bidders receive which user.ext.eids entries. See the [Prebid.js user ID permissions](/dev-docs/modules/userId.html#permissions) reference for background.
+
+```
+{
+    ext: {
+        prebid: {
+            data: {
+                eidpermissions: [   // prebid server will use this to filter user.ext.eids
+                   {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
+                   {"source": "neustar.biz", "bidders": ["bidderB"]},
+                   {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
+                ]
+            }
+        }
+    }
+}
+```
+
+ext.prebid.data.eidpermissions is an array of objects that can contain these attributes:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| source | Yes | Which user.ext.eids.source is receiving the permissions | "sharedid.org" | string |
+| bidders | Yes | Which bidders are allowed to receive the named eid source | ["bidderA", "bidderC"] | array of strings |
+
 #### Rewarded Video (PBS-Java only)
 
 Rewarded video is a way to incentivize users to watch ads by giving them 'points' for viewing an ad. A Prebid Server
