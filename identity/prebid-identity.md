@@ -7,8 +7,6 @@ sidebarType: 9
 
 # Prebid User Identity Overview
 
-`DRAFT`
-
 Prebid's aim is to enable the protection of user privacy while still supporting publisher's ability to make revenue,
 keeping the Open Web healthy.
 

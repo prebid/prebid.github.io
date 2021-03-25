@@ -8,8 +8,6 @@ sidebarType: 9
 # Prebid SharedID and PubCommon ID
 {: .no_toc}
 
-`DRAFT`
-
 * TOC
 {:toc}
 
