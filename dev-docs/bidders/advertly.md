@@ -2,7 +2,7 @@
 layout: bidder
 title: advertly
 description: Prebid ADVERTLY Bidder Adapter
-
+pbjs: true
 biddercode: advertly
 ---
 

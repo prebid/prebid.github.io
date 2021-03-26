@@ -8,7 +8,6 @@ userIds: pubCommonId, unifiedId, criteo
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
-tcf2_supported: true
 prebid_member: true
 pbjs: true
 pbs: true

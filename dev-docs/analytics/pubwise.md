@@ -2,7 +2,7 @@
 layout: analytics
 title: PubWise
 description: PubWise Analytics Adapter
-modulecode: pubwiseAnalyticsAdapter
+modulecode: pubwise
 prebid_member: true
 ---
 
