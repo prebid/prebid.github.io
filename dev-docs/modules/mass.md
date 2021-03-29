@@ -75,7 +75,7 @@ pbjs.que.push(function() {
 | :------------ | :------------ | :------------ |:------------ |
 |enabled | Boolean |Enable/disable the module |Defaults to `true` |
 |dealIdPattern | RegExp |The pattern used to identify MASS deal IDs |Defaults to `/^MASS/i` |
-|renderUrl | String |The MASS render script to load |Must be set to `https://cdn.massplatform.net/bootloader.js` |
+|renderUrl | String |The MASS render script to load |`https://cdn.massplatform.net/bootloader.js` |
 |custom | Array |Add custom renderers | |
 |custom[].dealIdPattern | RegExp |A pattern used to identify matching deal IDs |Either this parameter or `custom[].match` must be specified |
 |custom[].renderUrl | String |The render script to load |Either this parameter or `custom[].render` must be specified |
