@@ -4,12 +4,12 @@ title: YuktaMedia
 description: YuktaMedia Analytics Adapter
 modulecode: yuktamedia
 prebid_member: false
-enable_download: false
+enable_download: true
 --- 
 
 #### Registration
 
-Please visit www.yuktamedia.com or contact us on info@yuktamedia.com for more information.
+Please visit [https://yuktamedia.com/prebid/](https://yuktamedia.com/prebid/) for more information.
 The YuktaMedia Analytics adapter requires setup and approval from the YuktaMedia team. 
 Please reach out at info@yuktamedia.com for more information.
 

@@ -1,15 +1,10 @@
 ---
 layout: bidder
-title: Valueimpression
-description: Prebid Valueimpression Bidder Adapter
+title: Proxistore
+description: Prebid Proxistore Bidder Adapter
 pbjs: true
-biddercode: valueimpression
-aliasCode: apacdex
-media_types: banner, video
+biddercode: proxistore
 gdpr_supported: true
-schain_supported: true
-usp_supported: true
-pbs: true
 ---
 
 
@@ -18,4 +13,5 @@ pbs: true
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                                    | Example    | Type     |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
-| `siteId`    | required | Publisher site ID from Valueimpression                                                                                         | `'vi-site-id'` | `string` |
+| `website`    | required | Publisher  referrer                                                                                                  | `'example.com'` | `string` |
+| `language` | required | Publisher language for the advertisement | `'fr'`   | `string` |
