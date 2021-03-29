@@ -163,6 +163,12 @@ If you're the type that likes to skip to the answer instead of going through a t
 
 The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`.
 
+Here are some guidelines for choosing a bidder code:
+- The bidder code must be lower case alphanumeric. The only special character allowed is underscore.
+- The bidder code must be unique - make sure none of the other bid adapters is using the same code.
+- The bidder code should be unique for the first 6 characters - this consideration helps with generating unique targeting keys for use by some ad exchanges, such as Google Ad Manager.
+- There are several reserved words that cannot be used as bidder names: all, context, data, general, prebid, and skadn.
+
 Compared to previous versions of Prebid, the new `BaseAdapter` model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the `BaseAdapter` approach defines the following entry points:
 
 * `isBidRequestValid` - Verify the the `AdUnits.bids`, respond with `true` (valid) or `false` (invalid).
