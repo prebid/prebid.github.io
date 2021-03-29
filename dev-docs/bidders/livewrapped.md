@@ -6,7 +6,7 @@ biddercode: livewrapped
 pbjs: true
 media_types: banner, video, native
 gdpr_supported: true
-userIds: all
+userIds: id5Id, pubCommonId
 schain_supported: true
 gvl_id: 919
 ---

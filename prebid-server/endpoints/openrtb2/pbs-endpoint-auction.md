@@ -1019,6 +1019,27 @@ In order to pull AMP parameters out into targeting, Prebid Server places AMP que
     }
 ```
 
+#### EID Permissions (PBS-Go only)
+
+This feature allows publishers to specify ext.prebid.eidpermissions, defining which extended ID
+in user.ext.eids is allowed to be passed to which bid adapter. For example:
+
+```
+{
+    ext: {
+        prebid: {
+            data: {
+                eidpermissions: [   // prebid server will use this to filter user.ext.eids
+                   {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
+                   {"source": "neustar.biz", "bidders": ["bidderB"]},
+                   {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
+                ]
+            }
+        }
+    }
+}
+```
+
 ### OpenRTB Ambiguities
 
 This section describes the ways in which Prebid Server **implements** OpenRTB spec ambiguous parts.
