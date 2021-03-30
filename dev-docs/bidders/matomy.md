@@ -2,7 +2,7 @@
 layout: bidder
 title: Matomy
 description: Prebid Matomy Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: matomy
 aliasCode : appnexus
 ---

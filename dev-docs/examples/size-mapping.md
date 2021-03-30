@@ -4,7 +4,7 @@ title: Filter Sizes Dynamically with Labels
 description: Filter Sizes Dynamically with Labels
 sidebarType: 1
 
-hide: true
+
 
 about:
 - Dynamic filtering on ad unit sizes

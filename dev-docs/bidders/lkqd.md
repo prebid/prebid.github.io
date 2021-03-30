@@ -2,7 +2,7 @@
 layout: bidder
 title: LKQD
 description: Prebid LKQD Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: lkqd
 ---
 
