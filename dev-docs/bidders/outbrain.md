@@ -11,7 +11,7 @@ coppa_supported: true
 media_types: banner, native
 safeframes_ok: true
 pbjs: true
-prebid member: true
+prebid_member: true
 ---
 
 ### Registration
