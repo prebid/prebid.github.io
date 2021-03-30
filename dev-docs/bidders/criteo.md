@@ -3,6 +3,7 @@ layout: bidder
 title: Criteo
 description: Prebid Criteo Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
@@ -20,6 +21,9 @@ That means, `sendId: true` becomes mandatory for all fields receiving URLs, nota
 *Criteo currently only supports getFloor if floors are in Euros and if the publisher is enabling the Criteo Publisher Tag external js call. 
 
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
+
+{: .alert.alert-warning :}
+For Prebid-server activation, please reach to your Criteo point of contact, activation requires action on Criteo side.
 
 ### Bid Params
 
