@@ -4,6 +4,8 @@ title: DistrictM DMX
 pbs: true
 media_types: banner, video
 biddercode: dmx
+gvl_id: 144
+gdpr_supported: true
 ---
 
 ### Bid Params

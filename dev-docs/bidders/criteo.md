@@ -7,8 +7,8 @@ biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
 usp_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
-tcf2_supported: true
 getFloor: false*
 gvl_id: 91
 ---

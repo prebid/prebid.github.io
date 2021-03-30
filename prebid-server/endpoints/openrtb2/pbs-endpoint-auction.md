@@ -205,7 +205,7 @@ Exceptions are made for extensions with "standard" recommendations:
 
 #### Bid Adjustments
 
-Bidders [are encouraged](/prebid-server/bidders/pbs-build-a-bid-adapter.html) to make Net bids. However, there's no way for Prebid to enforce this.
+Bidders are encouraged to make Net bids. However, there's no way for Prebid to enforce this.
 If you find that some bidders use Gross bids, publishers can adjust for it with `request.ext.prebid.bidadjustmentfactors`:
 
 ```
@@ -403,6 +403,22 @@ For example, if the Request defines an alias like this:
 
 then any `imp.ext.appnexus` params will actually go to the **rubicon** adapter.
 It will become impossible to fetch bids from AppNexus within that Request.
+
+#### Bidder Alias GVL IDs (PBS-Java only)
+
+For environments that have turned on [GDPR enforcement](/prebid-server/features/pbs-privacy.html#gdpr), it can be important to define the Global Vendor List (GVL) ID with an alias.
+
+To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
+
+```
+"ext":
+  "prebid": {
+      "aliases": { "newAlias": "originalBidderCode" },
+      "aliasgvlids": { "newAlias": 11111 }
+    }
+  }
+});
+```
 
 #### Bidder Response Times
 
@@ -632,12 +648,40 @@ Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid
 }
 ```
 
+#### EID Permissions
+
+Publishers can constrain which bidders receive which user.ext.eids entries. See the [Prebid.js user ID permissions](/dev-docs/modules/userId.html#permissions) reference for background.
+
+```
+{
+    ext: {
+        prebid: {
+            data: {
+                eidpermissions: [   // prebid server will use this to filter user.ext.eids
+                   {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
+                   {"source": "neustar.biz", "bidders": ["bidderB"]},
+                   {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
+                ]
+            }
+        }
+    }
+}
+```
+
+ext.prebid.data.eidpermissions is an array of objects that can contain these attributes:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| source | Yes | Which user.ext.eids.source is receiving the permissions | "sharedid.org" | string |
+| bidders | Yes | Which bidders are allowed to receive the named eid source | ["bidderA", "bidderC"] | array of strings |
+
 #### Rewarded Video (PBS-Java only)
 
 Rewarded video is a way to incentivize users to watch ads by giving them 'points' for viewing an ad. A Prebid Server
 client can declare a given adunit as eligible for rewards by declaring `imp.ext.prebid.is_rewarded_inventory:1`.
 
-#### Debug Flag (PBS-Java only)
+#### Debug Flag
 
 The OpenRTB `test` flag has a special meaning that bidders may react to: they may not perform a normal auction, or may not pay for test requests.
 
@@ -817,6 +861,104 @@ Prebid Server enforces the data permissioning. So before passing the values to t
     1. copy other objects as normal
 
 Each adapter must be coded to read the values from these locations and pass it to their endpoints appropriately.
+
+#### MultiBid (PBS-Java only)
+
+By default, Prebid Server returns one bid from each bidder for each impression object.
+With the 'multibid' feature, the request can specify that certain bidders are allowed to
+supply more than one bid response.
+
+The extension is `ext.prebid.multibid`:
+
+```
+{
+  ...
+  ext: {
+    prebid: {
+      multibid: [{
+        bidder: "bidderA",
+        maxbids: 2,
+        targetbiddercodeprefix: "bidA"
+      },{
+        bidder: "bidderB",
+        maxbids: 3,
+        targetbiddercodeprefix: "bidB"
+      },{
+        bidders: ["bidderC", "bidderD"]
+        maxbids: 2
+      }]
+    }
+  }
+}
+```
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| bidder | Yes, unless bidders is specified | bidder adapter code | 'bidderA' | string |
+| bidders | Yes, unless bidder is specified | bidder adapter codes | ['bidderB','bidderC'] | array of strings |
+| maxbids | Yes | The number of bids the named bidder(s) can supply. Max of 9. | 2 | integer |
+| targetbiddercodeprefix | No | An alternate (short) bidder code to send to the ad server. A number will be appended, starting from 2, e.g. hb_pb_PREFIX2. If not provided, the extra bids will not go to the ad server. | `'bidA'` | string |
+
+So for example, if a request came in with the above ext.prebid.multibid, and bidderA supplies 3 bids, the system would limit them to the first 2 and the output would look like:
+
+```
+{
+seatbid: [{
+  seat: "bidderA",
+  bid: [{
+    id: "bid1",
+    impid: "imp1",
+    price: 1.04,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidderA: 1.00
+            },
+            targetbiddercode: "bidderA"
+        }
+    }
+    ...
+  },{
+    id: "bid2",
+    impid: "imp1",   // same imp as above
+    price:0.8,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidA2: 0.50
+            },
+            targetbiddercode: "bidA2"
+        }
+    }
+    ...
+  }]
+},{
+  seat: "bidderC",
+  bid: [{
+    id: "bid1",
+    impid: "imp1",
+    price: 1.17,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidderC: 1.10
+            },
+            targetbiddercode: "bidderC"
+        }
+    }
+
+    ...
+  },{
+    id: "bid2",
+    impid: "imp1",
+    // no targeting on extra bids for this bidder because
+    // targetbiddercodepattern wasn't specified in ext.prebid.multibid
+    ...
+    },{
+}]
+}
+```
 
 #### Custom Targeting (PBS-Java only)
 
