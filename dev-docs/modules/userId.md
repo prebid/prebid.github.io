@@ -1360,7 +1360,7 @@ pbjs.setConfig({
 
 ### MediaWallah OpenLinkID
 
---- Write content here ---
+MediaWallah's openLink is an anonymous person based ID that enables buyers and sellers of media to connect a person and their devices across the web and mobile apps. openLink facilities the buying of media between DSPs, SSPs and publishers.
 
 Add support for MediaWallah OpenLinkID to your Prebid.js package with:
 
@@ -1369,7 +1369,7 @@ gulp build --modules=userId,mwOpenLinkIdSystem
 
 #### MediaWallah OpenLinkID Registration
 
---- Write how to registrate the ID here ---
+MediaWallah requires the creation of an accountId a partnerId in order to take advantage of openLink. Please contact your partner resource to get these Ids provisioned.
 
 #### MediaWallah OpenLinkID Configuration
 
