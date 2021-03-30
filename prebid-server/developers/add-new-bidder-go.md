@@ -29,7 +29,7 @@ An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `general`, `prebid`, or `skadn` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, or `skadn` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager. There's no need to manually check, as this constraint is enforced by the [`TestBidderUniquenessGatekeeping`](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders_test.go#L61) test. 
 
@@ -71,14 +71,15 @@ Please do not ignore errors from method calls made in your bid adapter code. Eve
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your maintainer email address, specifies the ad formats your adapter will accept, and allows you to opt-in to video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your maintainer email address, your [GDPR Global Vendor List (GVL) id](https://iabeurope.eu/vendor-list-tcf-v2-0/), specifies the ad formats your adapter will accept, and allows you to opt-out of video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
 ```yaml
 maintainer:
   email: prebid-maintainer@example.com
-modifyingVastXmlAllowed: false
+gvlVendorID: 42
+modifyingVastXmlAllowed: true
 capabilities:
   app:
     mediaTypes:
@@ -96,11 +97,26 @@ capabilities:
 
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
-- Change the `modifyingVastXmlAllowed` value to `true` if you'd like to opt-in for [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
+- Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
+- Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 
 <details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
+
+```yaml
+maintainer:
+  email: foo@foo.com
+gvlVendorID: 42
+capabilities:
+  site:
+    mediaTypes:
+      - banner
+```
+</details>
+
+<details markdown="1">
+  <summary>Example: Website with banner ads only and not registered with IAB Europe.</summary>
 
 ```yaml
 maintainer:
@@ -118,6 +134,7 @@ capabilities:
 ```yaml
 maintainer:
   email: foo@foo.com
+gvlVendorID: 42
 modifyingVastXmlAllowed: true
 capabilities:
   app:
@@ -600,7 +617,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response. 
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
@@ -614,6 +631,7 @@ Bid metadata will be *required* in a coming Prebid.js release, specifically for 
 | `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain`. 
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
+| `.dchain` | Demand Chain Object. 
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
 | `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`.
@@ -654,6 +672,7 @@ func buildMeta(bid *adapters.TypedBid) (json.RawMessage, error) {
       AdvertiserID:         3,
       AdvertiserName:       "Some Advertiser Name",
       AdvertiserDomains:    bid.ADomain,
+      dchain:               bid.ext.dchain,      
       BrandID:              4,
       BrandName:            "Some Brand Name",
       PrimaryCategoryID:    "IAB-1",
@@ -684,7 +703,7 @@ import (
 )
 
 func NewSyncer(template *template.Template) usersync.Usersyncer {
-  return adapters.NewSyncer("{bidder}", 0, template, adapters.SyncTypeRedirect)
+  return adapters.NewSyncer("{bidder}", template, adapters.SyncTypeRedirect)
 }
 ```
 
@@ -694,7 +713,6 @@ The heavy lifting is handled by the `adapters.NewSyncer` method. You just need t
 | Argument | Description
 | - | -
 | `familyName` | Name used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
-| `vendorID` | Id for your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
 | `urlTemplate` | Pass through the `template` argument.
 | `syncType` | Type of user sync supported by your bidding server. The valid options are `SyncTypeRedirect` and `SyncTypeIframe`.
 
@@ -1092,7 +1110,6 @@ func TestSyncer(t *testing.T) {
   assert.NoError(t, err)
   assert.Equal(t, "<syncURL With Macros Resolved>", syncInfo.URL)
   assert.Equal(t, "redirect", syncInfo.Type)
-  assert.Equal(t, 0, syncer.GDPRVendorID())
 }
 ```
 
@@ -1174,11 +1191,11 @@ title: {bidder}
 description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
 gdpr_supported: true/false
-tcf2_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
+dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
@@ -1202,14 +1219,14 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 ```
 Notes on the metadata fields:
 - Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
-- If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
-- If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
 - If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
+- If you support the GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+- If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
 - If your bidder supports deals, set `bidder_supports_deals: true`. No default value.

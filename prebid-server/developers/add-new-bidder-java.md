@@ -524,7 +524,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.x+ release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description |
@@ -538,6 +538,7 @@ Bid metadata will be *required* in a coming Prebid.js release, specifically for 
 | `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain` |
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands |
 | `.BrandName` | Bidder-specific brand name |
+| `.dchain` | Demand Chain Object
 | `.PrimaryCategoryID` | Primary IAB category id |
 | `.SecondaryCategoryIDs` | Secondary IAB category ids |
 | `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType` |
@@ -1113,11 +1114,11 @@ title: {bidder}
 description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
 gdpr_supported: true/false
-tcf2_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
+dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
@@ -1141,14 +1142,14 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 ```
 Notes on the metadata fields:
 - Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
-- If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`. Default is false.
-- If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`. Default is false.
 - If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
+- If you support GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+- If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported`: true. No default value.
 - If your bidder supports deals, set `bidder_supports_deals: true`. No default value.

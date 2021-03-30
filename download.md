@@ -205,7 +205,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div>
 <br/>
 <h4>General Modules</h4>
-<div class="row"> 
+<div class="row">
  {% for page in module_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
   <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
 </div></div>{% endfor %}
@@ -254,6 +254,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> Nextroll ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Snowflake ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
@@ -274,6 +277,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>
 </div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="uid2IdSystem" class="bidder-check-box"> Unified ID 2</label>
+</div></div>  
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> Verizon Media ID</label>
 </div></div>
