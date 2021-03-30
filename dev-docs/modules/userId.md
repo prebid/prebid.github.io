@@ -855,13 +855,11 @@ pbjs.setConfig({
 
 ### NextRoll ID
 
-NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID helps publishers access unique demand in cookieless environments.
+NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID is a cookieless identifier built from NextRoll’s proprietary identity graph. Publishers, ad tech platforms, and NextRoll’s brands (AdRoll and RollWorks) leverage the NextRoll ID to access unique demand in cookieless environments. The NextRoll ID respects user privacy preferences and enables users to opt out through multiple web based mechanisms found in [Section 8 of NextRoll’s Privacy Policy](https://nextroll.com/privacy#service-8).
 
 #### NextRoll ID Registration
 
 To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
-
-The NextRoll ID is governed by the NextRoll Privacy Policy found at: [www.nextroll.com/privacy](https://www.nextroll.com/privacy).
 
 #### NextRoll ID Configuration
 
