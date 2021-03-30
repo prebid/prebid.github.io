@@ -23,7 +23,7 @@ That means, `sendId: true` becomes mandatory for all fields receiving URLs, nota
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
 {: .alert.alert-warning :}
-For Prebid-server activation, please reach to your Criteo point of contact, activation requires action on Criteo side.
+Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
 
 ### Bid Params
 
