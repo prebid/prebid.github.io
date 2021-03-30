@@ -11,7 +11,7 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 getFloor: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, idxId, intentIqId, liveIntentId, lotamePanoramaId, merkleId, netId, parrableId, pubCommonId, quantcastId, sharedId, tapadId, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 gvl_id: 69
 ---
