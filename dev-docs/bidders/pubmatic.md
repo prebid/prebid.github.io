@@ -9,12 +9,12 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 getFloor: true
-userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, intentiqId, idx, liveIntentId, lotamePanoramaId, netId, parrableId, pubCommonId, quantcastId, sharedId, unifiedId, verizonMediaId, zeotapIdPlus
+userIds: all
 prebid_member: true
 safeframes_ok: true
-tcf2_supported: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 gvl_id: 76
 ---
 

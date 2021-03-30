@@ -11,6 +11,7 @@ getFloor: true
 schain_supported: true
 usp_supported: true
 userIds: all
+gvl_id: 58
 ---
 
 ### Bid Params

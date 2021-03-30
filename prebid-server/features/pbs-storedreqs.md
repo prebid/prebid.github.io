@@ -33,4 +33,6 @@ See the [AMP Use Case reference](/prebid-server/use-cases/pbs-amp.html) for spec
 
 ## Creating Stored Requests
 
-Details for setting up [PBS-Go Stored Requests](/prebid-server/features/pbs-storedreqs-go.html) are available.
+Details for setting up:
+- [PBS-Go Stored Requests](/prebid-server/features/pbs-storedreqs-go.html)
+- [PBS-Java Stored Requests](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/stored-requests.md)
