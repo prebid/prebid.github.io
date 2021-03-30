@@ -875,11 +875,6 @@ pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "nextroll",
-            storage: {
-                type: 'html5',
-                name: '_nextroll_id',
-                expires: 1
-            },
             params: {
                 partnerId: 'YOUR_PARTNER_ID'
             }
