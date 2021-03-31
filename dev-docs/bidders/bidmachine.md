@@ -25,6 +25,6 @@ The Bidmachine Bidding adapter requires setup before beginning. Please contact u
 
 | Name          | Scope    | Description                                     | Example                                |
 | :------------ | :------- | :---------------------------------------------- | :------------------------------------- |
-| `host`        | required | DC region                                       | `'api-eu'`                             |
+| `host`        | required | DC region                                       | `api-eu`                             |
 | `path`        | required | URL path, will be provided by manager           | `auction/rtb/v2`                       |
 | `seller_id`   | required | Your ID in Bidmachine system                    | `1`                                    |
