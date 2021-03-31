@@ -21,6 +21,11 @@ That means, `sendId: true` becomes mandatory for all fields receiving URLs, nota
 
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
+### Disclosure
+
+This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
+of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
