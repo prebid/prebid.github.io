@@ -32,8 +32,8 @@ Prebid-server activation requires setup and approval before beginning. Please re
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
 | `zoneId`          | required | (deprecated) The zone ID from Criteo. Should be replaced by `networkId` when using zone matching.                                    | `234234`                                      | `integer`  |
 | `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
-| `nativeCallback`  | optional | Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
-| `integrationMode` | optional | Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
+| `nativeCallback`  | optional | (PrebidJS only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
+| `integrationMode` | optional | (PrebidJS only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
 
 ### Video Object
 
