@@ -874,7 +874,7 @@ Enable the module in configuration, with your Partner ID:
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "nextroll",
+            name: "nextrollId",
             params: {
                 partnerId: 'YOUR_PARTNER_ID'
             }
@@ -1501,7 +1501,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | merkleID | Merkle | bidRequest.userId.merkleId | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
-| NextRoll ID | NextRoll | bidRequest.userId.nextroll | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
+| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
