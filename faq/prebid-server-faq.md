@@ -130,6 +130,9 @@ are multiple bids from a given bidder for a given imp[], here how it chooses:
 - highest CPM
 - random tiebreaker
 
+Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only), then several bid responses from the same bidder may
+be returned to the client.
+
 **Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
 
 This is only done when ext.prebid.targeting is specified.
@@ -142,3 +145,16 @@ first decision:
 - highest CPM
 - random tiebreaker
 
+## Can I host Prebid Server for myself or others?
+
+Yes. See the [PBS Hosting](/prebid-server/hosting/pbs-hosting.html) page to get started.
+
+You don't need to be a [Prebid.org member](https://prebid.org/membership/), but joining would help in case you need extra
+support with any technical hurdles.
+
+## I'm hosting Prebid Server - how can I get in the loop?
+
+The best way would be to [join Prebid.org](https://prebid.org/membership/) and
+participate in the [Prebid Server PMC](https://prebid.org/project-management-committees/).
+
+Another way is to [register for our host company mailing list](/prebid-server/hosting/pbs-hosting.html#optional-registration).

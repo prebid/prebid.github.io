@@ -163,6 +163,12 @@ If you're the type that likes to skip to the answer instead of going through a t
 
 The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`.
 
+Here are some guidelines for choosing a bidder code:
+- The bidder code must be lower case alphanumeric. The only special character allowed is underscore.
+- The bidder code must be unique - make sure none of the other bid adapters is using the same code.
+- The bidder code should be unique for the first 6 characters - this consideration helps with generating unique targeting keys for use by some ad exchanges, such as Google Ad Manager.
+- There are several reserved words that cannot be used as bidder names: all, context, data, general, prebid, and skadn.
+
 Compared to previous versions of Prebid, the new `BaseAdapter` model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the `BaseAdapter` approach defines the following entry points:
 
 * `isBidRequestValid` - Verify the the `AdUnits.bids`, respond with `true` (valid) or `false` (invalid).
@@ -361,6 +367,7 @@ The `interpretResponse` function will be called when the browser has received th
         ttl: TIME_TO_LIVE,
         ad: CREATIVE_BODY,
         dealId: DEAL_ID,
+        mediaType: MEDIA_TYPE,
         meta: {
             advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS],        
             advertiserId: ADVERTISER_ID,
@@ -829,7 +836,7 @@ In order for your bidder to support the native media type:
 
 1. Your (server-side) bidder needs to return a response that contains native assets.
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
-3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads](/prebid/native-implementation.html).
 
 The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
@@ -854,14 +861,15 @@ else if (rtbBid.rtb.native) {
         icon: nativeResponse.icon && nativeResponse.icon.url,
         clickUrl: nativeResponse.link.url,
         impressionTrackers: nativeResponse.impression_trackers,
+        ... many other possible native assets ...
     };
 }
 
 {% endhighlight %}
 
-As of the [0.34.1 release](https://github.com/prebid/Prebid.js/releases/tag/0.34.1), a bidder may optionally return the height and width of a native `image` or `icon` asset.
+The full list of assets your bidder can set are defined in [Table 3: Native Assets Recognized by Prebid.js](/prebid/native-implementation.html). All assets can be returned as strings, or images can be returned as objects with attributes `url`, `height`, and `width`.
 
-If your bidder does return the image size, you can expose the image dimensions on the bid response object as shown below.
+Here's an example of returning image sizes:
 
 ```javascript
     /* Does the bidder respond with native assets? */
@@ -1048,6 +1056,7 @@ registerBidder(spec);
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     - If you support COPPA, add `coppa_supported: true`. Default is false.
     - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+    - If you support passing a demadn chain on the response, add `dchain_supported: true`. Default is false.
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     - If you support deals, set `bidder_supports_deals: true`. No default value..
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
@@ -1066,6 +1075,7 @@ gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
+dchain_supported: true/false
 userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true/false
