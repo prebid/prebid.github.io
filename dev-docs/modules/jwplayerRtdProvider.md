@@ -5,7 +5,7 @@ display_name: JW Player video ad targeting
 description: makes JW Player's video ad targeting information accessible to Bid Adapters.
 page_type: module
 module_type: rtd
-module_code : jwplayer
+module_code : jwplayerRtdProvider
 enable_download : true
 sidebarType : 1
 ---
