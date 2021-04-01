@@ -8,11 +8,6 @@ media_types: video
 gdpr_supported: true
 ---
 
-### Disclosure
-
-This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
-of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
-
 ### Overview
 This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found under [tremor](/dev-docs/bidders/bidders.html#tremor)
 
