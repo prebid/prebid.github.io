@@ -573,7 +573,7 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456     // valid partner id
+                partner: 123456     // valid partner id
             },
             storage: {
                 type: "cookie",
@@ -594,7 +594,7 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456     // valid partner id
+                partner: 123456     // valid partner id
             },
             storage: {
                 type: "html5",
@@ -616,7 +616,7 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456     // valid partner id
+                partner: 123456     // valid partner id
                 pcid: PCID_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
                 pai: PAI_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
             },
