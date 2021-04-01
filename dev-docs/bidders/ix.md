@@ -9,6 +9,7 @@ userIds: identityLink, netId, fabrickId, zeotapIdPlus
 pbs_app_supported: true
 schain_supported: true
 gdpr_supported: true
+getFloor: true
 usp_supported: true
 media_types: banner, video
 gvl_id: 10
