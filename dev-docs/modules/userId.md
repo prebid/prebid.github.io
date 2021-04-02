@@ -807,18 +807,26 @@ pbjs.setConfig({
 
 [Merkury by Merkle](https://merkury.merkleinc.com/contact) enables marketers, media owners, and publishers to own, build, and control a cookie-less Private Identity Graph. Merkury uses an organization’s first-party CRM data and valuable interactions such as logins, outbound email campaigns and media reach to create and grow a universe of person-based IDs for cross-channel targeting, personalization, measurement and more.
 
+Enable by adding the Merkle submodule by contacting Merkle or your prefered demand source and add it to your Prebid.js package with:
+
+```
+gulp build --modules=merkleIdSystem
+```
+
 #### Merkury by Merkle ID Examples
 
 Publisher stores Merkury by Merkle in local storage for 30 days
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
         name: 'merkleId',
         params: {
-          ptk: 'example',
-          pubid: 'EXAMPLE'
+          vendor: 'example',
+          sv_cid: 'example',
+          sv_pubid:'example',
+          sv_domain:'example.com'
         },
         storage: {
           type: 'html5',
@@ -828,7 +836,17 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
+```
+####Configurable parameters
+
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | name of the module | `"merkleId"` |
+| vendor | Required | String | used my Merkle to determine output formatting and rules | `idsv2` |
+| sv_cid | Required | String | network client code | `123` |
+| sv_pubid | Required | String | The publisher ID is a required parameter that is used to separate identifiers by publisher. This publisher ID will be assigned by the Merkle tech team. | `123` |
+| sv_domain | Required | String | Set to the website’s root domain, i.e. accuweather.com. We are asking for this because Origin and Referrer headers are starting to be suppressed by site configurations and browsers. Our JS can get this for us. For SSPs, we utilize the domain along with the sv_session for our unique 1P graph identity key. | `123` |
+| sv_session | optional | String | Set with the value read from the _svsid local storage or cookie, if it exists, otherwise do not provide. When not provided, the response will contain an additional attribute “c” which will contain the _svsid local storage or cookie value to be set on the website’s root domain. | `123` |
 
 ### netID
 
@@ -1362,7 +1380,6 @@ Each publisher’s privacy policy should take UnifiedId 2 into account
 
 #### Unified ID 2 Configuration
 
-{: .table .table-bordered .table-striped }
 The below parameters apply only to the UID 2.0 User ID Module integration.
 
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
