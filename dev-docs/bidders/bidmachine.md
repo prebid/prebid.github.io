@@ -23,8 +23,9 @@ The Bidmachine Bidding adapter requires setup before beginning. Please contact u
 
 ### Bid Params
 
-| Name          | Scope    | Description                                     | Example                                |
-| :------------ | :------- | :---------------------------------------------- | :------------------------------------- |
-| `host`        | required | DC region                                       | `api-eu`                             |
-| `path`        | required | URL path, will be provided by manager           | `auction/rtb/v2`                       |
-| `seller_id`   | required | Your ID in Bidmachine system                    | `1`                                    |
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description                                     | Example                                | Type     |
+| :------------ | :------- | :---------------------------------------------- | :------------------------------------- |----------|
+| `host`        | required | DC region                                       | `"api-eu"`                             | `string` |
+| `path`        | required | URL path, will be provided by manager           | `"auction/rtb/v2"`                     | `string` |
+| `seller_id`   | required | Your ID in Bidmachine system                    | `"1"`                                  | `string` |
