@@ -13,6 +13,7 @@ safeframes_ok: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+prebid_member: true
 ---
 
 ## Registration
