@@ -157,7 +157,7 @@ gulp build --modules=admixerIdSystem
            userIds: [{
                name: "admixerId",
                storage: {
-                   name: "__adm__admixer",
+                   name: "admixerId",
                    type: "cookie",
                    expires: 30
                },
@@ -1413,7 +1413,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 <div class="table-responsive" markdown="1">
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
-| Admixer ID | Admixer | bidRequest.userId.__adm__admixer | `"1111"` |
+| Admixer ID | Admixer | bidRequest.userId.admixerId | `"1111"` |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
 | Halo ID | Audigent | bidRequest.userId.haloId | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
