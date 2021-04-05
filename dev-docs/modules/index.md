@@ -35,10 +35,11 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
 | [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches. |
+| [**ID Import Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
 | [**Price Floors Module**](/dev-docs/modules/floors.html) | Configure and enforce minimum bids. |
 | [**GPT Pre-Auction Module**](/dev-docs/modules/gpt-pre-auction.html) | Adds a PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters. |
-| [**ID Import Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
+| [**MultiBid Module**](/dev-docs/modules/multibid.html) | Allows bidders to send multiple bids to the ad server. |
 
 ## Real-Time Data Providers
 
@@ -63,7 +64,7 @@ See [the realTimeData setConfig](/dev-docs/publisher-api-reference.html#setConfi
 {% for page in module_pages %}
   {% if page.enable_download == false %}{% continue %}{% endif %}
     <tr>
-      <td><a href="/dev-docs/modules/{{page.module_code}}RtdProvider.html"><strong>{{page.title}}</strong></a></td>
+      <td><a href="/dev-docs/modules/{{page.module_code}}.html"><strong>{{page.title}}</strong></a></td>
       <td>{{page.description}}</td>
     </tr>
 {% endfor %}

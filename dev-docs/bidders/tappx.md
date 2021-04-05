@@ -2,10 +2,10 @@
 layout: bidder
 title: Tappx
 pbs: true
+pbjs: true
 media_types: banner, video
 biddercode: tappx
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

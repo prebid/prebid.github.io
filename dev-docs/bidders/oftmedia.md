@@ -6,7 +6,6 @@ pbjs: true
 biddercode: oftmedia
 aliasCode : appnexus
 gdpr_supported: true
-tcf2_supported: true
 coppa_supported: true
 usp_supported: true
 pbs: true

@@ -7,6 +7,7 @@ biddercode: nextroll
 media_types: display, native
 gdpr_supported: false
 usp_supported: true
+prebid_member: true
 ---
 
 ### Bid Params
