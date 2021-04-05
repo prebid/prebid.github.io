@@ -16,6 +16,6 @@ The Nativo Bidder adapter requires setup before beginning. Please contact us at 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                             | Example      | Type     |
-|---------------|----------|---------------------------------------------------------|--------------|----------|
-| `placementId` | required | Publication placement ID value from the Nativo Platform | `'13144370'` | `string` |
+| Name          | Scope    | Description                                             | Example      | Type      |
+|---------------|----------|---------------------------------------------------------|--------------|-----------|
+| `placementId` | required | Publication placement ID value from the Nativo Platform |  `13144370`  | `integer` |
