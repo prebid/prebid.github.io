@@ -29,7 +29,7 @@ An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `general`, `prebid`, or `skadn` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, or `skadn` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager. There's no need to manually check, as this constraint is enforced by the [`TestBidderUniquenessGatekeeping`](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders_test.go#L61) test. 
 
@@ -617,7 +617,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response. 
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in a coming Prebid.js release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
@@ -631,6 +631,7 @@ Bid metadata will be *required* in a coming Prebid.js release, specifically for 
 | `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain`. 
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
+| `.dchain` | Demand Chain Object. 
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
 | `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`.
@@ -671,6 +672,7 @@ func buildMeta(bid *adapters.TypedBid) (json.RawMessage, error) {
       AdvertiserID:         3,
       AdvertiserName:       "Some Advertiser Name",
       AdvertiserDomains:    bid.ADomain,
+      dchain:               bid.ext.dchain,      
       BrandID:              4,
       BrandName:            "Some Brand Name",
       PrimaryCategoryID:    "IAB-1",
@@ -1193,6 +1195,7 @@ gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
+dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
@@ -1223,6 +1226,7 @@ Notes on the metadata fields:
 - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+- If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
 - If your bidder supports deals, set `bidder_supports_deals: true`. No default value.

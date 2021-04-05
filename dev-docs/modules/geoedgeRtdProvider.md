@@ -5,7 +5,7 @@ display_name: Geoedge Realtime
 description: Geoedge realtime blocking of bad ads - malware, redirect and offensive content
 page_type: module
 module_type: rtd
-module_code : geoedge
+module_code : geoedgeRtdProvider
 enable_download : true
 sidebarType : 1
 ---
