@@ -10,6 +10,7 @@ media_types: banner, video
 userIds: criteo, pubCommonId, unifiedId
 pbjs: true
 pbs: true
+pbs_app_supported: true
 prebid_member: true
 ---
 

@@ -63,7 +63,7 @@ See [the realTimeData setConfig](/dev-docs/publisher-api-reference.html#setConfi
 {% for page in module_pages %}
   {% if page.enable_download == false %}{% continue %}{% endif %}
     <tr>
-      <td><a href="/dev-docs/modules/{{page.module_code}}RtdProvider.html"><strong>{{page.title}}</strong></a></td>
+      <td><a href="/dev-docs/modules/{{page.module_code}}.html"><strong>{{page.title}}</strong></a></td>
       <td>{{page.description}}</td>
     </tr>
 {% endfor %}

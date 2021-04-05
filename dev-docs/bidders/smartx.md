@@ -45,8 +45,8 @@ Please reach out to your smartclip business contact for any questions and assist
 | `slot`          | required | ID of element that video ad should be rendered into.                                         | `'adSlot1'`      | `string`    |
 | `minAdWidth`    | optional | Minimum amount of space the player needs to expand.                                          | `290`            | `integer`   |
 | `maxAdWidth`    | optional | Maximum size of the player.                                                                  | `900`            | `integer`   |
-| `headerText`    | optional | An advertising text string that will appear in the upper left corner.                        | `'Advertisement'`| `string`    |
-| `skipOffset`    | optional | The number of seconds an advertisement must run before it can be skipped. 0 = never          | `0`              | `integer`   |
-| `startOpen`     | optional | Define whether the player should be initialized open (true) or open when it is within view (false).      | `'false'`        | `string`    |
-| `endingScreen`  | optional | Define whether the player should stay open after advertising.                                | `'true'`         | `string`    |
-| `desiredBitrate`| optional | Define the desired bitrate of the mediafile.                                                 | `1600`           | `integer`   |
+| `title`         | optional | Makes a defined advertising text appear in the below right corner. `[remainingTime]` can be used to display the remaining time of the advertisement. | `'Advertisement [remainingTime]s'` | `string`    |
+| `skipOffset`    | optional | Define whenever the advertisement can be skipped. 0 = never                                  | `0`              | `integer`   |
+| `startOpen`     | optional | Define whether the player should be initialized open or open when it is within view.         | `false`          | `bool`      |
+| `endingScreen`  | optional | Define whether the player should stay open after advertising or not.                         | `true`           | `bool`      |
+| `desiredBitrate`| optional | Define the desired bitrate of the mediafile.                                                 | `800`            | `integer`   |
