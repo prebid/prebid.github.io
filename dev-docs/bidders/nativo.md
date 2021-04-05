@@ -3,6 +3,7 @@ layout: bidder
 title: Nativo
 description: Prebid Nativo Bidder Adapter
 pbjs: false
+gvl_id: 263
 gdpr_supported: true
 usp_supported: true
 biddercode: nativo
