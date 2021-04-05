@@ -29,9 +29,9 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
-| `accountId`    | required           | The publisher account ID                                                                                                    | `'4934'`                                                                            | `string`         |
-| `siteId`       | required           | The site ID                                                                                                                 | `'13945'`                                                                           | `string`         |
-| `zoneId`       | required           | The zone ID                                                                                                                 | `'23948'`                                                                           | `string`         |
+| `accountId`    | required           | The publisher account ID                                                                                                    | `4934`                                                                            | `integer`         |
+| `siteId`       | required           | The site ID                                                                                                                 | `13945`                                                                           | `integer`         |
+| `zoneId`       | required           | The zone ID                                                                                                                 | `23948`                                                                           | `integer`         |
 | `sizes`        | optional           | Array of Rubicon Project size IDs. If not specified, the system will try to convert from the AdUnit's mediaTypes.banner.sizes.        | `[15]`                                                                              | `Array<integer>` |
 | `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
 | `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
@@ -80,9 +80,9 @@ var videoAdUnit = {
     bids: [{
         bidder: 'rubicon',                         // replace bidders
         params: {
-            accountId: '7780',                     // and params
-            siteId: '87184',
-            zoneId: '413290',
+            accountId: 7780,                     // and params
+            siteId: 87184,
+            zoneId: 413290,
             video: {
                 language: 'en'
             }
