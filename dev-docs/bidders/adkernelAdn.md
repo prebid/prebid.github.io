@@ -11,7 +11,6 @@ usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
 gvl_id: 14
-schain_supported: true
 ---
 
 ### Note:
