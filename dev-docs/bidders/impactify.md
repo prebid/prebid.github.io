@@ -16,20 +16,20 @@ gvl_id: 606
 
 ### Note:
 
-The Impactify adaptator requires setup & validation from the Impactify team. Simply email us your contact details at support@impactify.io and we'll make sure we'll connect you within 48h.
+The Impactify adaptator requires setup and validation from the Impactify team. Simply email us your contact details at support@impactify.io and we'll make sure we'll connect you within 48h.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                        | Example        | Type      |
 |---------------|----------|----------------------------------------------------|----------------|-----------|
-| `appId`       | required | Impactify publisher id  (Contact us)               | `example.com`  | `string`  |
-| `format`      | required | Impactify ad format (screen or display)            | `screen`       | `string`  |
-| `style`       | required | Impactify ad style (inline, impact or static)      | `impact`       | `string`  |
+| `appId`       | required | Impactify publisher id  (Contact us)               | `'example.com'`  | `string`  |
+| `format`      | required | Impactify ad format (screen or display)            | `'screen'`       | `string`  |
+| `style`       | required | Impactify ad style (inline, impact or static)      | `'impact'`       | `string`  |
 
 ### Configuration
 
-Impactify recommends the UserSync configuration below. Without it, the Impactify adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
+Impactify recommends the UserSync configuration below. Without it, the Impactify adapter will not be able to perform user syncs, which lowers match rate and reduces monetization.
 
 For Prebid.js v1.15.0 and later:
 
@@ -56,4 +56,4 @@ pbjs.setConfig({
  }});
 ```
 
-Note: Combine the above the configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
+Note: Combine the above configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only the last call for a given attribute will take effect.
