@@ -8,6 +8,7 @@ pbs_app_supported: true
 biddercode: logicad
 bidder_supports_deals: false
 media_types: banner, native
+userIds: all
 gdpr_supported: false
 prebid_member: false
 ---
