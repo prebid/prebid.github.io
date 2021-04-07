@@ -5,7 +5,7 @@ description: Prebid FeedAd Bidder Adaptor
 pbjs: true
 biddercode: feedad
 gdpr_supported: true
-media_types: banner, video
+media_types: banner
 ---
 
 ### Bid Params
