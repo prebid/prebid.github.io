@@ -3,7 +3,7 @@ layout: bidder
 title: Prebid Server
 description: Prebid Server S2S Adaptor
 biddercode: prebidServer
-
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
 ---
@@ -38,6 +38,28 @@ pbjs.setConfig({
         defaultVendor: 'appnexus',
         timeout: 300
     }
+});
+```
+
+To use multiple prebid servers, just define `s2sConfig` as an array. 
+The same bidder cannot be set in both configs. For example:
+
+```
+pbjs.setConfig({
+    s2sConfig: [
+    {
+        accountId: '12345',
+        bidders: ['appnexus','rubicon'],
+        defaultVendor: 'appnexus',
+        timeout: 300,
+    },
+    {
+        accountId: '678910',
+        bidders: ['pubmatic'],
+        defaultVendor: 'rubicon',
+        timeout: 300,
+    },
+    ],
 });
 ```
 Configuration options

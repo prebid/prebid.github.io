@@ -1,0 +1,156 @@
+.card {
+  .banner--medium & {
+    background: none;
+    border-color: adjust-color($color--white, $alpha: -0.2);
+  }
+}
+
+.card-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Card deck
+.card-deck--products {
+  .card-media {
+    min-height: 96px;
+    margin-top: 6px;
+  }
+
+  .card-title {
+    margin-top: 30px;
+  }
+}
+
+.card-deck--md {
+  .card {
+    margin-bottom: $card-deck-margin;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: -$card-deck-margin;
+    margin-left: -$card-deck-margin;
+
+    .card {
+      // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+      flex: 1 0 0%;
+      margin-right: $card-deck-margin;
+      margin-bottom: 0; // Override the default
+      margin-left: $card-deck-margin;
+    }
+  }
+}
+
+.card-deck--formats {
+  .card {
+    margin-bottom: $card-deck-margin;
+    z-index: 2;
+  }
+
+  .card-body {
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: space-around;
+  }
+
+  .card-title {
+    @include font-weight-semibold;
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-size: 22px;
+    line-height: 1.2;
+    color: $color--blue;
+    text-decoration: none;
+
+    &:hover {
+      color: $t-text-color--reverse;
+      z-index: 2;
+
+      &::before {
+        @include position(absolute, 0);
+        z-index: -1;
+        background-color: $t-brand-color--accent;
+        content: '';
+      }
+
+      + .card-media {
+        cursor: pointer;
+        pointer-events: none;
+
+        path {
+          stroke: $t-text-color--reverse;
+
+          &[fill="#ff6f00"] {
+            fill: $t-text-color--reverse;
+          }
+        }
+      }
+    }
+
+    + .card-media {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-right: -$card-deck-margin;
+    margin-left: -$card-deck-margin;
+
+    .card {
+      // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+      flex: 1 0 0%;
+      min-width: 180px;
+      max-width: 200px;
+      margin-right: $card-deck-margin;
+      margin-bottom: (2 * $card-deck-margin); // Override the default
+      margin-left: $card-deck-margin;
+    }
+  }
+}
+
+.card-deck {
+  .banner--medium & {
+    .card {
+      z-index: 2;
+    }
+
+    .card-body {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-around;
+    }
+
+    .card-title {
+      margin-top: 24px;
+      margin-bottom: 0;
+
+      a {
+        color: $t-text-color--reverse;
+        font-size: 26px;
+        text-decoration: none;
+
+        &::before {
+          @include position(absolute, 0);
+          background-color: $t-brand-color--accent;
+          opacity: 0;
+          z-index: -1;
+          content: '';
+        }
+
+        &:hover {
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
