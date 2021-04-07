@@ -1,67 +1,112 @@
 ---
 
 layout: page_v2
-title: Prebid Mobile Rendering
+title: Rendering Module
 description: Description of how Prebid SDK supports rendering
 sidebarType: 2
 
 ---
 
-# Prebid Mobile Rendering Overview
+# Rendering Module Overview
 
-> ⚠️ NOTE: Open Beta Fatire
+> ⚠️ NOTE: Rendering is an Open Beta Feature
 
+Prebid SDK introduces the rendering facilities as a standalone module. Adding this module won't change anything in your current integration. 
 
-## Benefits and Features
+![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/modularization-roadmap-open-beta.png){: .pb-lg-img :}
 
-Some of the benefits to using the Prebid Mobile header bidding solution include:
+In the scope of the Open Beta release, you can use the Core and Rendering modules alongside each other. The current integration will work as is without changes but if you want to add or switch to the rendering integration you will have to make significant changes in the codebase.  
 
--   Provides a single integration point with Prebid Server, enabling direct access to more mobile buyers.
--   Allows for server-side configuration management; no need for developers to update the app to make configuration changes.
--   Provides a transparent, open source header bidding solution.
--   Flattens mediation layers, reducing ad ops burden for managing mediation partners.
--   Reduces latency compared to mediation.
--   Designed to integrate with any deployment of the open-source Prebid Server code. (Vendor must be registered in Prebid Mobile as a Prebid Server host.)
+The rendering module consist of three libraries:
 
-## Requirements
+- **PrebidSDKRendering**, which introduces the classes for integration into UI and rendering engine
+- **PrebidSDKGAMEventHandlers**, which wraps GAM classes in order to support GAM integration
+- **PrebidSDKMoPubAdapters**, which wraps MoPub Adapters for Prebid Rendering module
 
--   Prebid Server Configuration
+Using rendering module you can integrate next ad formats:
 
-    You must have a Prebid Server account in order to use Prebid Mobile. Prebid Server is a server-based host that communicates bid requests and responses between Prebid Mobile and demand partners.  
+- **Dispaly** - Banner/Interstitial
+- **Outsrteam Video** - Banner/Interstitial/Rewarded
+- **Native** - Disaply / Video
 
-    To set up your Prebid Server account for Prebid Mobile, refer to [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
+Intefration steps are convinient and described in the respective docs for [iOS](TBD) and [Android](TBD). 
 
--   Primary Ad Server Setup
+## Motivation and Benefits 
 
-    Prebid Mobile enables you to retrieve bids simultaneously from multiple demand partners outside of a single ad server. This header bidding process does not determine a final winning bid. Ad ops users need to set up line items associated with each ad unit on a primary ad server. Prebid Mobile will send bids (via the primary ad server SDK) to the primary ad server. This ad server will include the bids from the header bidding process in determining a winning bid. (See "How It Works" below.)
+Rendering serves the general Prebid's aim - to be a trusted, transparent, and configurable monetization solution and gives a lot of benefits to both sides publishers and demand partners. 
 
--   Prebid Mobile SDK
+- Monitizaion without Ad Server. Publishers can monitize the apps through pure In-App bidding without additional ad requests.
+- Support of Prebid Server distinct features like PG, omni-channel, floors, etc.  
+- Flexibility in supporting new features of serving ads.
 
-    Mobile app developers implement header bidding through the Prebid Mobile SDK integration. SDKs are available for [iOS](https://github.com/prebid/prebid-mobile-ios) and [Android](https://github.com/prebid/prebid-mobile-android).
+In comparising with no-rendering approach the new module gives next benefits:
+
+- Faster ad delivery. As soon as bid is recieved it can be displayed. It is applayed to both kind of integration with ad server  or without it.
+- Litle infrastructure. Since the rendering moduel doesn't need Prebid Cache it can be ommited. 
+- Less discrepancy, better analytics. Rendering module is able to track all needed events in the proper time according to the industry standard or demand side custom requrements. 
+- Full support of SKAdNetworks and similar frameworks 
+- MRAID 3.0 support
+- Better measurement. Ability to use any measurement provider. SDK implements the support of Open Measurement, the certification is scheduled to the upcoming releases.  
+- Open for improvements and adding exclusive features 
 
 ## How It Works
 
-The following diagram shows how the Prebid Mobile header bidding solution works.
+The following diagrams show how the Rendering Module works. So far it supports three integration scenarious:
 
-![How Prebid Mobile Works - Diagram]({{site.baseurl}}/assets/images/prebid-mobile/pbm-overview-flow.png){: .pb-lg-img :}
+- **Pure In-App** bidding without Primary Ad Server
+- **With Google** Ad Manger as a primary Ad Server
+- **With MoPub** as a primary ad Server
 
-1.  Prebid Mobile sends a request to Prebid Server. This request consists of the Prebid Server account ID and config ID for each tag included in the request.
+### Pure In-App bidding
 
-2.  Prebid Server constructs an OpenRTB bid request and passes it to the demand partners.  
+![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/prebid-in-app-bidding-overview-pure-prebid.png){: .pb-lg-img :}
 
-3.  Each demand partner returns a bid response to Prebid Server. The bid response includes the bid price and the creative content.
+1. Prebid SDK sends the bid request to the Prebid Server.
+1. Prebid Server runs the header bidding auction among preconfigured demand partners.
+1. Prebid Server responses with the winning bid.
+1. Prebid SDK renders the creative from recieved bid.
 
-4.  Prebid Server sends the bid responses to Prebid Mobile.
+### GAM Integration
 
-5.  Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK. This targeting will activate one or more of Prebid line items that were previously configured in the primary ad server.
+![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/prebid-in-app-bidding-overview-gam.png){: .pb-lg-img :}
 
-6.  If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Mobile creative JavaScript to the ad server's SDK.
+1. Prebid SDK makes a bid request. 
+1. Prebid Server runs the header bidding auction among preconfigured demand partners.
+1. Prebid SDK, via GAM Event Handler, sets up the targeting keywords into the GAM's ad request.
+1. GAM SDK makes an ad request and recieves the set of ad sources. 
+1. Basing on the creative the GAM Event Handler decides whether it's a Prebid Ad or no.
+1. The winner is displayed in the App with the respective rendering engine - prebid or GAM. GAM event handler manages the ad views.
 
-7.  The Prebid Mobile creative JavaScript will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
+GAM Event Handlers determines that Prebid won basing on the next GAM features:
 
-## Mobile Analytics
+- [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) for the display and video ads. It means that creative should contain App Event tag.
+- [VAST Metadata Changes](https://firebase.google.com/docs/reference/swift/googlemobileads/api/reference/Classes/GADRewardedAd#admetadatadelegate) for the Rewarded Video. It means that VAST should contain special metainformation.
 
-Currently Prebid Mobile SDK doesn't offer direct analytics capabilities. While we build out analytics in Prebid Server to support the SDK, some options are:
+Make sure that you use correct creatives. For now, If the prebid Line Item contains Universal Creative it will be rendered by GAM. 
 
-- Generate analytics from the ad server, as key metrics are available there if the line items are broken out by bidder.
-- Integrate an analytics package directly into the app. You may have one already that can accomodate header bidding metrics.
+### MoPub Integration
+
+![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/prebid-in-app-bidding-overview-mopub.png){: .pb-lg-img :}
+
+1. Prebid SDK makes a bid request. 
+2. Prebid Server runs the header bidding auction among preconfigured demand partners.
+1. Prebid SDK sets up the targeting keywords into the MoPub's ad unit.
+1. MoPub SDK makes an ad request. 
+1. Basing on the creative the MoPub SDK decides whether it's a Prebid Ad or no.
+1. The winner is displayed in the App with the respective rendering engine - prebid or GAM.
+
+Prebid SDK uses the Mediation feature for the integration into MoPub monetization since it is the most convenient approach from the publisher's perspective and doesn't require any modifications for ad unit integration in the codebase.
+
+Make sure that you use correct creatives. For now, If the prebid Line Item contains Universal Creative it will be rendered by MoPub. 
+
+## Future Modularization
+
+Prebid is going to migrate SDK to a modular structure in order to give publishers a more convenient API and customizable set of features. Here is a draft diagram of the long-term perspective plan of modularization. 
+
+![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/modularization-roadmap-new-api-with-complete-modularization.png){: .pb-lg-img :}
+
+So that you can use the single solution for any kind of demand and inventory. 
+
+
+
+
