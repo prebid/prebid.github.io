@@ -50,7 +50,7 @@ From there, you can download the Prebid Mobile [Android](https://github.com/preb
 
 Moving forward, we will focus on adding additional support in two key areas:
 
-- **Ad types**: The initial Prebid Mobile rollout includes support for banner and interstitial ads running through the DFP and MoPub ad server SDKs. We are working to add support for additional ad types in each of these ad server SDKs, including interstitial video, rewarded video and native ads.
+- **Ad types**: The initial Prebid Mobile rollout includes support for banner and interstitial ads running through the Google Ad Manager and MoPub ad server SDKs. We are working to add support for additional ad types in each of these ad server SDKs, including interstitial video, rewarded video and native ads.
 
 - **Demand partners**: In parallel, we are working to increase the available set of Prebid Mobile demand partners, focusing initially on mobile-first SSPs as well as the set of demand partners already integrated with Prebid Server for display.
 

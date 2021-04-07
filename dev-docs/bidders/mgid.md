@@ -2,10 +2,12 @@
 layout: bidder
 title: Mgid
 description: Prebid Mgid Bidder Adapter.
-hide: true
+pbjs: true
+pbs: true
 biddercode: mgid
-media_types: banner
+media_types: banner,native
 gdpr_supported: true
+gvl_id: 358
 ---
 
 ### Table of Contents
@@ -30,7 +32,7 @@ MGID header bidding adapter connects with MGID demand sources to fetch bids for 
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
 | `accountId`  | required | The account ID from Mgid           | `'123'`    | `string` |
-| `placementId`| required | The placement ID from Mgid         | `'123456'` | `string` |
+| `placementId`| optional | The placement ID from Mgid         | `'123456'` | `string` |
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
 | `currency`   | optional | Currency of request and response   | `'GBP'`    | `string` |
 
@@ -52,8 +54,7 @@ var adUnits = [{
   bids: [{
     bidder: 'mgid',
     params : {
-      accountId : "219", //test accountId, please replace after test
-      placementId : "331749" // 300x600 test placementId, please replace after test
+      accountId : "219" //test accountId, please replace after test
     }
   }]
 }];
@@ -72,8 +73,7 @@ var adUnits = [{
   bids: [{
     bidder: 'mgid',
     params : {
-      accountId : "219", //test accountId, please replace after test
-      placementId : "331748" // 300x250 test placementId, please replace after test
+      accountId : "219" //test accountId, please replace after test
     }
   }]
 }];
@@ -107,8 +107,7 @@ var adUnits = [{
   bids: [{
     bidder: 'mgid',
     params : {
-        accountId : "219", //test accountId, please replace after test
-        placementId : "350971" // 300x250 test placementId, please replace after test
+        accountId : "219" //test accountId, please replace after test
     }
   }]
 }];

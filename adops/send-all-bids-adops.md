@@ -4,11 +4,8 @@ title: Send All Bids to the Ad Server
 head_title: Send All Bids to the Ad Server
 description: Send all bids to the ad server for reporting and data analysis.
 pid: 2
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
-
 
 
 # Send all bids to the ad server - Ad Ops setup
@@ -16,37 +13,39 @@ sidebarType: 3
 
 This page shows how to set up your ad server so that you can send all bids and report on them.
 
-As a publisher, you may wish to have your ad server see **all** header bidding bids (instead of seeing only the winning bids in each auction).  Reasons you might want this behavior include:
-
-+ You want your ad server to see all header bidding bids, so that your ad server can report on bid prices, instead of only winning prices
-
-+ You have a contractual agreement with your header bidding partner
-
-{: .alert.alert-success :}
-See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) for more details.
-
 * TOC
 {: toc }
 
 ## Overview
 
-+ Your developers may optionally add `enableSendAllBids: true` to `pbjs.setConfig()`.  This is not strictly necessary, as `enableSendAllBids` defaults to `true`.  For details, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids).
+As a publisher, you may want to have your ad server see **all** header bidding bids (instead of seeing only the winning bids in each auction).  Reasons you might want this behavior include:
 
-+ From the ad ops side, you may choose to set up one order per bidder, so that each order can have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon]({{site.baseurl}}/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
++ You want your ad server to see all header bidding bids so that your ad server can report on bid prices instead of only winning prices.
+
++ You have a contractual agreement with your header bidding partner.
+
+{: .alert.alert-success :}
+See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) for more details.
+
+
+If you decide to send all bids to the ad sever, your developers have the option of explicity adding `enableSendAllBids: true` to `pbjs.setConfig()`.  However, since the default value is `true` this addition is not strictly necessary.  For details, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids).
+
+From the ad ops side, you can choose to set up one order per bidder, which allows for each order to have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon](/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
 
 {% include send-all-bids-keyword-targeting.md %}
 
-{: .bg-info :}
-In this example we will use DFP setup to illustrate, but the steps are basically the same for any ad server.
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
 
 ## Step 1. Add an order
 
-In DFP, create a new order for one of the header bidding partners. Each header bidding partner should have its own DFP order. Repeat this step and the following when you are adding a new header bidding partner.
+In Google Ad Manager, create a new order for one of the header bidding partners. Each header bidding partner should have its own Google Ad Manager order. Repeat this step and the following when you are adding a new header bidding partner.
 
 
 ## Step 2. Add a line item
 
-In DFP, create a new order with a $0.50 line item.
+In Google Ad Manager, create a new order with a $0.50 line item.
 
 Enter all of the inventory sizes that your website has.
 
@@ -82,12 +81,13 @@ This line item will target the bids in the range from $0.50 to $1.00 from the bi
 
 Next, add a creative to this $0.50 line item; we will duplicate the creative later.
 
-Choose the same advertiser we've assigned the line item to.
+- Choose the same advertiser we've assigned the line item to.
+- Set it to be a **Third party** creative.
+- Make sure the creative size is set to 1x1.  This allows the creative to serve on all inventory sizes. When associating with the line item, just change the creative filter setting to show all creatives instead of 'Inventory filtered based on size'.
+- The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
+- Copy this creative code snippet for each bidder and paste it into the **Code snippet** box, replacing BIDDERCODE with the current bidder name.
 
-Note that this has to be a **Third party** creative. The **"Serve into a Safeframe"** box can be **UNCHECKED** or **CHECKED** (Prebid universal creative is SafeFrame compatible).
-
-Copy this creative code snippet and paste it into the **Code snippet** box.
-
+```
     <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
     <script>
       var ucTagData = {};
@@ -101,27 +101,28 @@ Copy this creative code snippet and paste it into the **Code snippet** box.
       ucTagData.env = "%%PATTERN:hb_env%%";
       ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
       ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
-
+      // mobileResize needed for mobile GAM only
+      ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
       try {
         ucTag.renderAd(document, ucTagData);
       } catch (e) {
         console.log(e);
       }
     </script>
+```
 
 {% capture noteAlert %}
-Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`
+Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`. IMPORTANT: Make sure that none of the values are
+longer than 20 characters. e.g. you'll need to truncate hb_cache_host_triplelift to hb_cache_host_triple. GAM doesn't support attributes longer than 20 chars, so all Prebid software truncates attributes to that length.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
 
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
-Make sure the creative size is set to 1x1.  This allows Prebid to set up size override, which enables this creative to serve on all inventory sizes.
-
 **Prebid universal creative code for other ad servers**
 
-If you're using an ad server other than DFP, your code snippet will look similar to one of the following:
+If you're using an ad server other than Google Ad Manager, your code snippet will look similar to one of the following:
 
 For Mopub:
 
@@ -150,6 +151,8 @@ See note above in regards to replacing *BIDDERCODE* placeholders.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
+
+{% include adops/adops-creative-declaration.html %}
 
 For other ad servers:
 
@@ -195,19 +198,19 @@ In the pop-up dialog that appears, click **Show All** to remove the default size
 
 Back in the line item, go into the **Creatives** tab again, and click into the creative you just added.
 
-Then, in the creative's **Settings** tab, override all sizes in the **Size overrides** field.
+Then, in the creative's **Settings** tab, enable the **Size overrides** field and set all your line item's potential sizes.
 
 Save the creative and go back to the line item.
 
 ## Step 5. Duplicate Creatives
 
-DFP has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
+Google Ad Manager has a constraint that one creative can be served to at most one ad unit in a page under GPT's single request mode.
 
-Let's say your page has 4 ad units.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
+Let's say your page has 4 ad slots.  We need to have at least 4 creatives attached to the line item in case more than 2 bids are within the $0.50 range.
 
 Therefore, we need to duplicate our Prebid creative 4 times.
 
-Once that's done, we have a fully functioning line item with 4 creatives attached.
+Once that's done, we have a fully functioning line item with 4 creatives attached that can potentially fill 4 ad slots of varying sizes during a single pageview.
 
 ## Step 6. Duplicate Line Items
 

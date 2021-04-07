@@ -22,21 +22,23 @@ Nope. The only approval process is a code review. There are separate instruction
 - [adding a bidder in Prebid.js](/dev-docs/bidder-adaptor.html)
 - [adding an analytics adapter in Prebid.js](/dev-docs/integrate-with-the-prebid-analytics-api.html)
 
-As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
-## When starting out, what should my timeouts be?
+## What should my timeouts be?
 
 Below is a set of recommended best practice starting points for your timeout settings:
 
 - 1,000 milliseconds or less for the internal auction timeout
-- 3,000 milliseconds or less for the prebid tag's overall failsafe timeout
+- 3,000 milliseconds or less for the Prebid tag's overall failsafe timeout
 
 The former setting is used to track the auction once it started; if it expires, we will use whichever bidders have responded and select the winner(s) accordingly.
 
 The latter setting is used when for some reason Prebid did not load (or there's some other serious issue); if it expires, we will default to the adserver.
 
 For examples of setting up these timeouts, please refer to the [Basic Example]({{site.baseurl}}/dev-docs/examples/basic-example.html) page.
+
+See the [Prebid Timeouts Reference](/features/timeouts.html) for more information about timeouts in general.
 
 ## How many header bidders should I have?
 
@@ -64,7 +66,7 @@ The "limited bid caching" feature applies only:
 Since the storage is in the browser, cached bids only apply to a single page context. If the user refreshes the page, the bid is lost.
 
 Each bid adapter defines the amount of time their bids can be cached and reconsidered.
-This setting is called “Time to Live” (TTL), documented [here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
+This setting is called “Time to Live” (TTL), documented in the <code>pbjs.getBidResponse</code> [parameter table here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
 
 Examples of scenarios where a bid may be reconsidered in Prebid.js:
 
@@ -76,8 +78,9 @@ Here's how it works:
 
 1. Bid responses are stored in an AdUnit-specific bid pool.
 1. When the same AdUnit is called, Prebid.js calls the bidder again regardless of whether there's a bid in that AdUnit's bid pool.
-1. When all the new bids are back or the timeout is reached, Prebid.js considers both the new bids on that AdUnit and previous bids on the AdUnit that haven't reached their TTL.
-1. The cached bid is only used if its CPM beats the new bid.
+1. When all the new bids are back or the timeout is reached, Prebid.js considers both the new bids on that AdUnit and previously cached bids.
+1. Previously cached bids will be discarded if they've reached their TTL or if they have status `targetingSet` or `rendered`.
+1. A cached bid may be used if its CPM beats the new bids.
 1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.markWinningBidAsUsed) function.
 
 ## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
@@ -104,7 +107,7 @@ Here are a couple of alternative workarounds:
 
 - **Option 2:**
 
-	Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with DFP/AdX, but they can still compete with each other.  For more information, see [What is post-bid?]({{site.baseurl}}/overview/what-is-post-bid.html).
+	Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with Google Ad Manager/AdX, but they can still compete with each other.  For more information, see [What is post-bid?]({{site.baseurl}}/overview/what-is-post-bid.html).
 
 ## How do I use Prebid.js on secure (HTTPS) pages?
 
@@ -120,11 +123,11 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 ## How often is Prebid.js updated?
 
-See [the github release schedule](https://github.com/prebid/Prebid.js/blob/master/README.md) for more details.
+See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/master/RELEASE_SCHEDULE.md) for more details.
 
 ## When do I have to upgrade my version of Prebid.js?
 
-Prebid.org does not support any version of Prebid.js prior to version 1.0. If you want continued support through updates and documentation you should upgrade to a newer version.
+Prebid.org does not support any version of Prebid.js prior to the previous version. e.g. if the current version is 4.x, we'll help debug 3.x, but not 2.x. If you want continued support through updates and documentation you should upgrade to a newer version.
 
 ## How can I change the price granularity for different ad units?
 
@@ -138,6 +141,24 @@ If you need different [price granularities]({{site.baseurl}}/dev-docs/publisher-
    1. Initiate the second auction with `requestBids`
 
 The handling of this scenario will be improved in a future release.
+
+## How can I control how many targeting variables are sent to my ad server?
+
+One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) option. However, there are optimization and reporting
+benefits for sending more than one bid.
+
+Once you find the right balance for your application, you can specify
+what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
+
+## Can I run multiple different versions of Prebid.js concurrently?
+
+It's technically possible, but we don't recommend doing this:
+
+- The code isn't small. For performance reasons you don't want to run two versions if you can help it
+- We don't test concurrent versions
+- We won't specifically support debugging problems caused by running two concurrent versions. But will take take PRs if someone finds an issue.
+
+If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/master/package.json#L20)
 
 ## Related Reading
 

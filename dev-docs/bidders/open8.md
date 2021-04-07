@@ -2,7 +2,7 @@
 layout: bidder
 title: OPEN8
 description: Prebid OPEN8 Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: open8
 media_types: video, banner
 ---

@@ -10,19 +10,21 @@ sidebarType: 6
 # Prebid Video Ads
 {:.no_toc}
 
-Video ads are supported by Prebid.js. Prebid Server support is coming soon.
+Video ads are supported by both Prebid.js and Prebid Server.
 
 ## Prebid.js
 
 ### Adops
 
 - [Prebid.js video overview](/prebid-video/video-overview.html)
-- [Show video ads in DFP](/dev-docs/show-video-with-a-dfp-video-tag.html)
+- [Show video ads in Google Ad Manager](/dev-docs/show-video-with-a-dfp-video-tag.html)
 
 ### Developers
 
 - [Getting started with video](/prebid-video/video-getting-started.html)
 - [Outstream video ads](/dev-docs/show-outstream-video-ads.html)
+- [Prebid Server video ads](/use-cases/pbs-pbjs.html)
+- [Prebid Server Long Form Video](r/use-cases/pbs-lfv.html)
 
 ### Prebid.js bid adapters that support instream and outstream video ads
 

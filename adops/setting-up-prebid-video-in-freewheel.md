@@ -4,7 +4,7 @@ title: Setting up Prebid Video in FreeWheel
 head_title: Setting up Prebid Video in FreeWheel
 description: Setting up Prebid Video in FreeWheel
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3
@@ -14,7 +14,7 @@ sidebarType: 3
 
 This page describes how to set up Campaigns for long form video using FreeWheel's ad server.
 
-As with DFP for digital ads, ad ops will need to configure their FreeWheel server account so that the server can provide the correct creatives for the video player. If you do not have an account visit [FreeWheel](https://www.FreeWheel.tv) to create one.  
+As with Google Ad Manager for digital ads, ad ops will need to configure their FreeWheel server account so that the server can provide the correct creatives for the video player. If you do not have an account visit [FreeWheel](https://www.FreeWheel.tv) to create one.  
 
 Once your account is set up log in to the FreeWheel site. You will be presented with a dashboard area. Click on either the Advertising button in the top navigation bar or the Campaign link in the main body.
 

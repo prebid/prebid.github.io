@@ -1,0 +1,125 @@
+
+
+<script type="text/javascript">
+	
+	
+	var arrData = [];
+		
+	$(document).ready(function() {
+		
+		var queryItems = getUrlVars()
+		var searchTerm = queryItems[0][1];
+		console.log(queryItems);
+		var strDisplay = "<div class=\"pb-api-doc-title\">Search results for: " + searchTerm + "</div><div style=\"float:right\"><a href=\"/sandbox/prebid-api-guide.html?apiDocTarget=About\">Return to API</a></div><br><hr>";
+		var arrAPIFiles = [];
+		
+		var itemsProcessed = 0;
+		
+		$.get("/sandbox/apiDocs/text/pb-api-filenames.txt", function(data) {
+	    	var arrAPIFiles = data.split("\n");
+	    	
+	    	for(i=0; i<arrAPIFiles.length; i++) { 
+		    	getFileContents(arrAPIFiles[i], searchTerm, strDisplay, i, arrAPIFiles.length-1);
+		   	}
+	    });
+	    
+	});
+	
+	
+	function getFileContents(apiFile, searchTerm, strDisplay, idx, fileCount) {
+		$.get("/sandbox/apiDocs/html/" + apiFile, function(data) {
+			
+			if (data.search(searchTerm) != -1) {
+				arrData.push(getSearchResults(apiFile, data, searchTerm));
+			} else { 
+			}
+			
+			if(idx == fileCount) { 
+				displayHTML(strDisplay, arrData, searchTerm);
+			}
+			
+		}); 
+		
+	}
+	
+	function displayHTML(strDisplay, arrData, searchTerm) {
+		var element = document.getElementById("pb-api-search-results");
+		
+		if (arrData.length > 0) { 
+			for (i=0; i<arrData.length; i++) { 
+				strDisplay += arrData[i];
+			}
+		} else { 
+			strDisplay += "<div class=\"pb-api-doc-description\">There were no results for " + searchTerm + ".</div>";
+		}
+		
+		element.innerHTML = strDisplay;
+	}
+	
+	function getSearchResults(fileName, fileContents, searchTerm) { 
+		
+		//get title
+		var strTitle = getTitle(fileContents);
+		var strDescription = getDescription(fileContents);
+		var strAPIDocTarget = getAPIDocTarget(fileContents);
+		var strAPIDefinition = fileName.replace(/\.[^/.]+$/, "")
+		
+		///sandbox/prebid-api-guide.html?apiDocTarget=configuration&apiDefinition=bidderOrder
+		
+		var strAPIPage =  "<div class=\"pb-api-doc-sub-title\"><a href=\"/sandbox//prebid-api-guide.html?apiDocTarget=" + strAPIDocTarget + "&apiDefinition=" + strAPIDefinition + "\">" + getTitle(fileContents) + "</a></div><div class=\"pb-api-doc-description\">" + getDescription(fileContents) + "</div></div><div class=\"pb-api-doc-description\"><hr>";
+		return strAPIPage;
+		
+	}
+
+	
+	function getTitle(fileContents) { 
+		
+		var titleStart = fileContents.split("<div class=\"pb-api-doc-title\" data-apiDpcType=");
+		var titleClose = titleStart[1].split(">");
+		var titleEnd = titleClose[1].split("</div>");
+		var title = titleClose[1].split("</div");
+		console.log(title[0]);
+		return title[0];
+	}
+	
+	function getDescription(fileContents) { 
+		var descriptionStart = fileContents.split("<div class=\"pb-api-doc-description\">");
+		var descriptionEnd = descriptionStart[1].split("</div>");
+		return descriptionEnd[0];
+	}
+	
+	function getAPIDocTarget(fileContents) { 
+		
+		var arrDataSplit = fileContents.split("data-apiDpcType=\"")
+		var arrDocType = arrDataSplit[1].split("\"");
+		return arrDocType[0];
+		
+	}
+		
+	function getUrlVars() {
+	    var qsParams = [];
+	    var arrParams = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < arrParams.length; i++) {
+	        qsParams.push(arrParams[i].split("="));
+	    }
+    	return qsParams;
+	}
+	
+	function getText(src){
+		
+    	
+	}
+	
+</script>
+
+<div class="pb-api-container">
+	<div class="pb-api-sub-title" id="pb-api-search-results">Searching...</div>
+</div>
+
+
+
+
+
+
+
+

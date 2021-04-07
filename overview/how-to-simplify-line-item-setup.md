@@ -41,7 +41,7 @@ By removing the size and bidder dimension, the number of line items now becomes:
 
 In this section, we'll learn how to remove the creative size dimension for header bidding. Before, a publisher would have to create different set of line items for different creative sizes. With Prebid.js, a publisher only need to create 1 set of line items for all creative sizes.
 
-Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In DFP, this looks like:
+Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In Google Ad Manager, this looks like:
 
 ![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png){: .pb-md-img :}
 
@@ -102,12 +102,12 @@ This simplifies the setup and the right creative (with adId 65432) will get disp
 
 #### How about reporting?
 
-It's important to understand the fill rates and CPM from different bidders. Prebid.js therefore passes in `hb_bidder`: bidderCode. This enables DFP to report on query strings.  You can run queries like:
+It's important to understand the fill rates and CPM from different bidders. Prebid.js therefore passes in `hb_bidder`: bidderCode. This enables Google Ad Manager to report on query strings.  You can run queries like:
 
 * For bidder X, at what CPM does it fill?
 * For bidder X, what's the fill rate out of all the winning header bidding bids?
 
-Note that because Prebid.js only sends in the highest price bid, DFP does not see the rest of the lost bids. However, from working with publishers, we conclude that the rest of the bids do NOT matter that much. Let's say one bidder always fills at 1 penny and bids 100% of the time. Is that information helpful? Not really, only the winning bids count. We belive the above 2 queries well serve the reporting and analytics needs. 
+Note that because Prebid.js only sends in the highest price bid, Google Ad Manager does not see the rest of the lost bids. However, from working with publishers, we conclude that the rest of the bids do NOT matter that much. Let's say one bidder always fills at 1 penny and bids 100% of the time. Is that information helpful? Not really, only the winning bids count. We belive the above 2 queries well serve the reporting and analytics needs. 
 
 ### Conclusion
 

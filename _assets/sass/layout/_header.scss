@@ -1,0 +1,92 @@
+.pb-header {
+  .navbar {
+    background: $t-brand-color--dark;
+
+    @include media('<tablet') {
+      @include padding(10px null);
+    }
+  }
+
+  .navbar-brand > img {
+    display: block;
+    max-width: 140px;
+    max-height: 25px;
+  }
+
+  .dropdown-toggle::after {
+    content: none;
+  }
+
+  .nav-item {
+    @include padding(5px null);
+    margin-right: 32px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    @include media('>=tablet') {
+      @include padding(34px null 24px);
+    }
+  }
+
+  .nav-link {
+    font-size: 16px;
+    text-decoration: none;
+
+    @include media('>=tablet') {
+      &[aria-expanded="true"]::after {
+        @include position(absolute, null null 0 50%);
+        @include triangle('up', 11px, 8px, $color--white);
+        transform: translateX(-50%) translateY(0);
+        z-index: 5;
+        content: '';
+      }
+    }
+  }
+
+  .dropdown-menu {
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.16);
+    column-rule: 1px solid $t-divider-color;
+    padding: 10px 0;
+
+    @include media('>=tablet') {
+      padding: 24px 0;
+
+      &--product {
+        columns: 3;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &--support {
+        columns: 2;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &--resources {
+        right: 0;
+        left: auto;
+      }
+
+      .dropdown-section {
+        break-inside: avoid-column;
+      }
+    }
+  }
+
+  .dropdown-item {
+    font-size: 15px;
+    text-decoration: none;
+
+    &--heading {
+      @include font-weight-semibold;
+      color: #333;
+
+      &:hover {
+        color: $t-anchor-color;
+      }
+    }
+  }
+}

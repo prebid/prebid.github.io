@@ -89,8 +89,8 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
      };
      options.biddersSpec = params;
 
-     // set the DFP Parameters
-     // use this only if you want to use DFP as your primary ad server
+     // set the Google Ad Manager Parameters
+     // use this only if you want to use Google Ad Manager as your primary ad server
         var dfpParams = {
             params : {
                 iu : '/1234456/prebid_cache_video_ad_unit_test',

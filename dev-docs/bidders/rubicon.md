@@ -2,33 +2,43 @@
 layout: bidder
 title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adaptor
-hide: true
 biddercode: rubicon
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+getFloor: true
 media_types: video
-userIds: unifiedId/tradedesk
+userIds: all
+prebid_member: true
+safeframes_ok: true
+bidder_supports_deals: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
+gvl_id: 52
 ---
 
+### Registration
 
-### Note:
-The Rubicon Project adapter requires setup and approval from the Rubicon Project team, even for existing Rubicon Project publishers. Please reach out to your account team or globalsupport@rubiconproject.com for more information.
+For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or globalsupport@magnite.com for more information.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
-| `accountId`    | required           | The publisher account ID                                                                                                    | `'4934'`                                                                            | `string`         |
-| `siteId`       | required           | The site ID                                                                                                                 | `'13945'`                                                                           | `string`         |
-| `zoneId`       | required           | The zone ID                                                                                                                 | `'23948'`                                                                           | `string`         |
+| `accountId`    | required           | The publisher account ID                                                                                                    | `4934`                                                                            | `integer`         |
+| `siteId`       | required           | The site ID                                                                                                                 | `13945`                                                                           | `integer`         |
+| `zoneId`       | required           | The zone ID                                                                                                                 | `23948`                                                                           | `integer`         |
 | `sizes`        | optional           | Array of Rubicon Project size IDs. If not specified, the system will try to convert from the AdUnit's mediaTypes.banner.sizes.        | `[15]`                                                                              | `Array<integer>` |
-| `keywords`     | optional           | Array of page-specific keywords. May be referenced in Rubicon Project reports.                                              | `['travel', 'tourism']`                                                             | `Array<string>`  |
-| `inventory`   | optional           | An object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
-| `visitor`      | optional           | An object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays.        | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
 | `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
 | `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
 | `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
 | `latLong`     | optional           | Sets the latitude and longitude for the visitor (avail since PBJS 1.10)                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
+| `inventory`   | optional           |  Use this for First Party Data before PBJS 4.26. Between 4.26 and 4.29 (inclusive) use the `fpd` method of [First Party Data](/features/firstPartyData.html). In release 4.30 and later, use the `ortb2` method of setting First Party Data. In 4.25 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
+| `visitor`      | optional           | Use this for First Party Data before PBJS 4.26. Between 4.26 and 4.29 (inclusive) use the `fpd` method of [First Party Data](/features/firstPartyData.html). In release 4.30 and later, use the `ortb2` method of setting First Party Data. In 4.25 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
+| `keywords`     | optional           | Deprecated - please use the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.keywords. This is a legacy parameter that only works for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. The order of precedence for banner is: params.keywords, AdUnit.fpd.context.data.keywords, config.fpd.keywords. | `['travel', 'tourism']`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
 
 <a name="rubicon-video"></a>
@@ -42,7 +52,7 @@ The following video parameters are supported:
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `playerWidth`  | optional | Video player width in pixels. If not specified, takes width set in mediaTypes.video.playerSize                                                                                                                                                                             | `'640'` | `string`  |
 | `playerHeight` | optional | Video player height in pixels. If not specified, takes height set in mediaTypes.video.playerSize                                                                                                                                                                            | `'360'` | `string`  |
-| `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, infers from mediaTypes.video.context | `201`   | `integer` |
+| `size_id`      | optional for Prebid.js, required for Prebid Server |  Integer indicating the Rubicon Project video ad format ID. If not set, Prebid.js can infer from mediaTypes.video.context | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
 {: .alert.alert-warning :}
@@ -59,19 +69,19 @@ var videoAdUnit = {
         video: {
             context: 'instream',
             playerSize: [640, 480],
-            mimes: ['video/mp4', 'video/x-ms-wmv']
-            protocols: [2,5],
-            maxduration:30,
-            linearity: 1,
-            api: [2]
+            mimes: ['video/mp4', 'video/x-ms-wmv'] // you must review all video
+            protocols: [2,3,5,6],                  // parameters to ensure validity
+            api: [2],                              // for your player and DSPs
+            maxduration:30,          
+            linearity: 1
         }
     },
     bids: [{
-        bidder: 'rubicon',
+        bidder: 'rubicon',                         // replace bidders
         params: {
-            accountId: '7780',
-            siteId: '87184',
-            zoneId: '413290',
+            accountId: 7780,                     // and params
+            siteId: 87184,
+            zoneId: 413290,
             video: {
                 language: 'en'
             }
@@ -134,4 +144,16 @@ pbjs.setConfig({
 
 ### Notes
 
-There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+1) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+
+<a name="rubicon-revenue-type"></a>
+
+2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for Rubicon Project clients to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+
+For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net). 
+
+It’s important to note that what the Rubicon Prebid bid adapter reports is not directly related to the setting with the Rubicon Project exchange. If you are a publisher who has set your Rubicon exchange revenue type set to ‘gross’ and you'd like the Rubicon bid adapter to also report 'gross', you can change the 2.35+ default 'net' setting in Prebid.js with:
+
+```
+pbjs.setConfig({ rubicon: {netRevenue: false} });
+```

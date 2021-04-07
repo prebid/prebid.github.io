@@ -2,15 +2,14 @@
 layout: bidder
 title: Telaria
 description: Telaria Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: telaria
 media_types: video
 gdpr_supported: true
 ---
 
 ### Overview
-This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found under [tremor]({{site.baseurl}}/dev-docs/bidders/bidders.html#tremor)
-
+This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found under [tremor](/dev-docs/bidders/bidders.html#tremor)
 
 ### Bid Params
 Please refer to the **Tag Parameters** section in the  [Telaria Console](https://console.telaria.com)
@@ -30,12 +29,65 @@ var adUnit = {
         "params": {
             "supplyCode": "ssp-demo-rm6rh",
             "adCode": "ssp-!demo!-lufip",
-            "videoId": "MyCoolVideo"    
-            // Other params go here       
+            "videoId": "MyCoolVideo"     
         }
     }]
 }
-``` 
+```
+### Supply Chain Object:
+```javascript
+// There are two ways of passing the SupplyChain Object to our adapter:
+// 1) set it in the config
+pbjs.setConfig({
+    "schain": {
+        "ver":"1.0",
+        "complete": 1,
+        "nodes": [
+            {
+                "asi":"indirectseller.com",
+                "sid":"00001",
+                "hp":1
+            }
+        ]     
+    }
+});
+
+// 2) pass it in the params object of the adunit:
+var adUnit = {
+    "code": "video1",
+    "mediaTypes": {
+        "video": {
+            "playerSize": [640, 480],
+            "context": "instream"
+        }
+    },
+    "bids": [{
+        "bidder": "telaria",
+        "params": {
+            "supplyCode": "ssp-demo-rm6rh",
+            "adCode": "ssp-!demo!-lufip",
+            "videoId": "MyCoolVideo",
+// Other params go here,
+            "schain" : {
+                "ver":"1.0",
+                "complete":1,
+                "nodes":[
+                    {
+                        "asi":"exchange1.com",
+                        "sid":"1234",
+                        "hp":1
+                    },
+                    {
+                        "asi":"exchange2.com",
+                        "sid":"abcd",
+                        "hp":1
+                    }
+                ]
+            }
+        }
+    }]
+}
+```
 [Telaria Prebid Example](https://console.telaria.com/examples/hb/headerbidding.jsp)
 
 ### Delivery
@@ -51,3 +103,6 @@ var adUnit = {
 + `1` : Streaming
 + `2` : Progressive
 + `3` : Download
+
+### Supply Chain Object
+The adapter has been enhanced to accept the supply chain object (schain) if provided. Please refer to [SupplyChain for Non RTB Requests](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md#supplychain-for-non-openrtb-requests) for more information
