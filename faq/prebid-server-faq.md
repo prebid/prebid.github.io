@@ -38,9 +38,14 @@ ported it to Java because they had more Java talent than Go.
 + [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java)
 
 Both versions are live in production, and they are kept identical in external APIs
-and quite close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
+and reasonably close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
 
-There are no plans at this point to stop development on either version.
+For demand partners, we recommend building new bid adapters in Go - the team will port it to Java for you within a couple of months.
+
+For those looking to host a Prebid Server:
+- If you plan to use long-form video, we recommend the Go version of the server.
+- Look over the features and see if there's any important to you.
+- Otherwise, just choose the language you're most comfortable with.
 
 ## How can I use Prebid Server in a mobile app post-bid scenario?
 

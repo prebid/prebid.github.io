@@ -53,7 +53,7 @@ There are several places where the Floor module changes the behavior of the Preb
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
 3. Bid Adapters are responsible for utilizing the getFloors() from the bidRequest object for each ad slot media type, size combination. The Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
-5. Bid adapters will submit bids to back to Prebid core, where the Floors Module will perform enforcement on each bid 
+5. Bid adapters will submit bids to back to Prebid core, where the Floors Module will perform enforcement on each bid
 6. The Floors Module will mark all bids below the floor as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
     - a. The Floors module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
 
@@ -249,6 +249,7 @@ pbjs.setConfig({
             url: 'https://floorprovider.com/a1001-mysite.json'
         },
         data: {     // default if endpoint doesn't return in time
+            floorProvider: 'floorProviderName',
             currency: 'USD',
              skipRate: 5,
             modelVersion: ‘new model 1.0’
@@ -265,31 +266,210 @@ pbjs.setConfig({
 {% endhighlight %}
 
 
-### Floors Syntax
+## Floors Syntax
 
-The examples above covered several different scenarios. Here are all the options supported by the Floors module.
+The examples above covered several different scenarios where floors can be applied. Below we will cover the syntax and definition of the floors data schema. As of Prebid.js version 3.24, the Floors module supports a second data schema with the ability to add new schemas to future-proof the needs of additional design changes while keeping backwards compatibility.
+
+
+### Schema 1
+
+Schema 1 restricts floors providers or publishers to applying only one data group. To test more than one floor group, floor providers or publishers are required to reset the data set with new rules after each request bids.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
+| floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | enforcement | object | Controls the enforcement behavior within the Floors Module.| - |
-| enforcement.enforceJS | boolean | If set to true, the floor module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the prebid floors module will still provide floors for bid adapters, there will be no floor enforcement.| true |
-| enforcement.enforcePBS | boolean | If set to true, the prebid js floors module will signal to PBS to pass floors to it’s bid adapters and enforce floors. If set to false, the pbjs should still pass matched bid request floor data to PBS, however no enforcement will take place. | false |
-| enforcement.floorDeals | boolean | Enforce floors for deal bid requests | false |
-| enforcement.bidAdjustment | boolean | Adjust floors passed to Bid Aapters. If bid adjustment is passed to PBS and flag set is not set to false | true |
-| endpoint | object | Controls behavior for dynamically retrieving floors  | - |
-| endpoint.url | string | URL of endpoint to retrieve dynamic floor data  | - |
-| data | object (required) | Floor data used by the Floors Module to pass floor data to bidders and floor enforcement | - |
-| data.currency | string |Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
-| data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. | 0 |
+| skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
+| enforcement.enforceJS | boolean | If set to true, the floors module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the prebid floors module will still provide floors for bid adapters, there will be no floor enforcement.| true |
+| enforcement.enforcePBS | boolean | If set to true, the Prebid.js floors module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, the pbjs should still pass matched bid request floor data to PBS, however no enforcement will take place. | false |
+| enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
+| enforcement.bidAdjustment | boolean | If true, the Floors Module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
+| endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
+| endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
+| data | object (required) | Floor data used by the Floors Module to pass floor data to bidders and floor enforcement. | - |
+| data.floorProvider | string | Optional atribute (as of prebid version 4.2) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
+| data.currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
+| data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
+| data.floorsSchemaVersion | string | The Floors Module supports two versions of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the Floors Module will assume version 1 for the sake of backwards compatiblity. For schema version 2 see the next section. | 1 |
 | data.modelVersion | string | Used by floor providers to train on model version performance. The expectation is a floor provider’s analytics adapter will pass the model verson back for algorithm training. | - |
 | data.schema | object |allows for flexible definition of how floor data is formatted. | - |
-| data.schema.delimiter | string | Character separating the floor keys | '\|' |
-| data.schema.fields | array of strings | supported values are: gptSlot, adUnitCode, mediaType, size | - |
-| data.values | key / values | a series of attributes representing a hash of floor data in a format defined by the schema object. | - |
-| data.values."rule key" | string | delimited field of attribute values that define a floor | - |
-| data.values."floor" | float | the floor value for this key | - |
-| data.default | float | Floor used if no matching rules are found | - |
+| data.schema.delimiter | string | Character separating the floor keys. | '\|' |
+| data.schema.fields | array of strings | Supported values are: gptSlot, adUnitCode, mediaType, size | - |
+| data.values | key / values | A series of attributes representing a hash of floor data in a format defined by the schema object. | - |
+| data.values."rule key" | string | Delimited field of attribute values that define a floor. | - |
+| data.values."rule floor value" | float | The floor value for this key. | - |
+| data.default | float | Floor used if no matching rules are found. | - |
+
+
+
+### Schema 2
+
+Schema 2 allows floors providers to A / B one or more floor groups, determined at auction time.
+
+The following principles apply to schema 2:
+- The below attributes are required:
+    - data.floorsSchemaVersion to be set to 2
+    - A valid modelGroups object must be set
+    - The field modelGroups.modelWeight is required for each model group
+        - If one of the model weights is missing, no schema 2 floor will be set and the Floors Module will look in other locations for floor definitions
+- If common attributes are set in both the modelGroups and root level of the data object, modelGroups attributes prevail
+- The Schema 2 data model can only be applied in Package level (i.e. directly in setConfig) or Dynamic level
+- Sampling weights are applied at the auction level. Each new auction the dice will be rolled
+- If the data.modelGroups object and the data.values (schema 1 field) are set, the data.floorsSchemaVersion will dictate what schema version is applied
+
+
+While some attributes are common in both schema versions, for completeness, all valid schema 2 attributes are provided:
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description | Default |
+|---+---+---+---+---|
+| floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
+| enforcement | object | Controls the enforcement behavior within the Floors Module.| - |
+| skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
+| enforcement.enforceJS | boolean | If set to true, the floors module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the prebid floors module will still provide floors for bid adapters, but there will be no floor enforcement.| true |
+| enforcement.enforcePBS | boolean | If set to true, the Prebid.js floors module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, Prebid.js should still pass matched bid request floor data to Prebid Server, however no enforcement will take place. | false |
+| enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
+| enforcement.bidAdjustment | boolean | If true, the Floors Module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
+| endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
+| endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
+| data | object (required) | Floor data used by the Floors Module to pass floor data to bidders and floor enforcement. | - |
+| data.floorProvider | string | Optional atribute (as of prebid version 4.2) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
+| data.currency | string | Currency of floor data. Floors Module will convert currency where necessary. See Currency section for more details. | 'USD' |
+| data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail.| 0 |
+| data.floorsSchemaVersion | string | The Floors Module supports two version of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the Floors Module will assume version 1 for the sake of backwards compatiblity.| 1 |
+| data.modelGroups | array of objects | Array of model objects to be used for A/B sampling multiple models. This field is only used when data.floorsSchemaVersion = 2 | - |
+| data.modelGroups[].currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
+| data.modelGroups[].skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will have access to model version (if defined) when skipped is true to signal the Floors Module is in floors mode. | 0 |
+| data.modelGroups[].modelVersion | string | Used by floor providers to train on model version performance. The expectation is a floor provider’s analytics adapter will pass the model verson back for algorithm training. | - |
+| data.modelGroups[].modelWeight | integer | Used by the Floors Module to determine when to apply the specific model. All weights will be normalized and appllied at runtime. Futher clarification will be provided in examples below. | - |
+| data.schema | object | Allows for flexible definition of how floor data is formatted. | - |
+| data.modelGroups[].schema.delimiter | string | Character separating the floor keys. | '\|' |
+| data.modelGroups[].schema.fields | array of strings | Supported pre-defined values are: gptSlot, adUnitCode, mediaType, size | - |
+| data.modelGroups[].values | key / values | A series of attributes representing a hash of floor data in a format defined by the schema object. | - |
+| data.modelGroups[].values."rule key" | string | Delimited field of attribute values that define a floor. | - |
+| data.modelGroups[].values."rule floor value" | float | The floor value for this key. | - |
+| data.modelGroups[].default | float | Floor used if no matching rules are found. | - |
+
+
+*Example 1*
+Model weights add up to 100 and are sampled at a 25%, 25%, 50% distribution. Additionally, each model group has diffirent schema fields:
+
+{% highlight js %}
+{
+    "currency": "EU",
+    "skipRate": 20,
+    "floorsSchemaVersion":2,
+    "modelGroups": [
+        {
+            "modelWeight":25,
+            "modelVersion": "Model1",
+            "schema": {
+                "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 25,
+            "modelVersion": "Model2",
+            "schema": {
+                "fields": [ "domain", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|banner|728x90": 1.00,
+                "www.publisher.com|banner|300x250": 1.20,
+                "www.publisher.com|banner|300x600": 1.80,
+                ...
+                "www.domain.com|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "modelVersion": "Model3",
+            "schema": {
+                "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "/1111/homepage/top-banner|banner|728x90": 1.00,
+                "/1111/homepage/top-rect|banner|300x250": 1.20,
+                "/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+    ]
+
+}
+{% endhighlight %}
+
+*Example 2*
+Model weights do not equal 100 and are normalized. Weights will be applied in the following method: Model weight / (sum of all weights)
+model1 = 20  -> 20 / (20 + 50) = 29% of auctions model 1 will be applied
+model2 = 50  -> 50 / (20 + 50) = 71% of auctions model 2 will be applied
+
+Additionally skipRate is supplied at model group level where model1 will skip floors 20% of times when model1 is selected, whereas model2 will skip 50% of auctions when model2 is selected.
+
+{% highlight js %}
+{
+    "currency": "EU",
+    "floorsSchemaVersion":2,
+    "modelGroups": [
+        {
+            "modelWeight":25,
+            "skipRate": 20,
+            "modelVersion": "Model1",
+            "schema": {
+                "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "skipRate": 50,
+            "modelVersion": "Model2",
+            "schema": {
+                "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "/1111/homepage/top-banner|banner|728x90": 1.00,
+                "/1111/homepage/top-rect|banner|300x250": 1.20,
+                "/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+    ]
+
+}
+{% endhighlight %}
+
 
 ## Rule Handling
 
@@ -306,9 +486,9 @@ The Floors Module will use the below prioritization scheme on determining which 
 
 ### Rule Selection Process
 
-The job of the Prebid floors module is to select a matching Prebid floor rule for enforcement \(when a bid adapter bids in the auction\) given the context of each Ad Unit. With the usage of “\*” values in rules definitions \(where “\*” applies when no specific value matches\) multiple Prebid floor rules can match for a given ad unit auction. 
+The job of the Prebid floors module is to select a matching Prebid floor rule for enforcement \(when a bid adapter bids in the auction\) given the context of each Ad Unit. With the usage of “\*” values in rules definitions \(where “\*” applies when no specific value matches\) multiple Prebid floor rules can match for a given ad unit auction.
 
-The Prebid Floors module algorithm will produce a list of every possible permutation for each ad unit auction based on the defined schema types. The best matching rule for each enforced bid request and getFloor is based on specificity of values \(meaning match an exact value\) weighted from left to right, where the specificity of a value in the left most column would match over a rule with it’s “\*” equivalent if “\*” is supplied. 
+The Prebid Floors module algorithm will produce a list of every possible permutation for each ad unit auction based on the defined schema types. The best matching rule for each enforced bid request and getFloor is based on specificity of values \(meaning match an exact value\) weighted from left to right, where the specificity of a value in the left most column would match over a rule with it’s “\*” equivalent if “\*” is supplied.
 
 Priority order behavior where “\_” is a specific value, and the “\*” is a catch all
 
@@ -317,14 +497,14 @@ Priority order for one column rule sets:
  \_   
  \*   
 
-Priority order for two column rule set: 
+Priority order for two column rule set:
 
  \_ \| \_  
  \_ \| \*  
  \* \|\_   
  \* \| \*   
 
-Priority order for three column rule sets: 
+Priority order for three column rule sets:
 
  \_ \| \_ \| \_  
  \_ \| \_ \| \*  
@@ -380,8 +560,8 @@ Floor provider rule definition
 mediaType = banner  
 Size = 300x600  
 Domain context = www.website.com  
- 
-The Price Floor Module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The Floors Module attempt to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set. 
+
+The Price Floor Module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The Floors Module attempt to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set.
 
 {% highlight js %}
 {
@@ -513,7 +693,7 @@ Floor enforced: 4.01
 
 mediaType = video  
 Size = 640x480  
-Domain context = www.website.com. 
+Domain context = www.website.com.
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -571,7 +751,7 @@ Data providers can optionally build Analytics Adapters to ingest bid data within
 
 {% capture warning_note %}
 As a floor provider, your goal is to provide effective floors, with minimal page impact. If you are performing a Dynamic fetch to retrieve data prior to auctions, the following recommendations are advised to reduce page performance issues:  
-  
+
 - Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services  
 - Work with publishers on setting appropriate auction delays to retrieve dynamic data  
 - Implement client-side caching (such as max-age headers) whenever possible  
@@ -607,8 +787,9 @@ floor determined by AdUnit code and Media Type:
 
 {% highlight js %}
 {
+    floorProvider: 'floorProviderName',
     currency: 'USD',
-      skipRate: 5,
+    skipRate: 5,
     modelVersion: ‘new model 1.0’
     schema: {
         fields: [ 'gptSlot', 'mediaType' ]
@@ -647,6 +828,56 @@ floor determined by Domain, GPT Slot, Media Type and Size:
         'www.publisher.com|*|*|*': 0.80,
     },
     default: 0.75
+}
+{% endhighlight %}
+
+
+#### Example Response 3
+
+Floors Schema version 2
+
+{% highlight js %}
+{
+    "currency": "USD",
+    "floorsSchemaVersion":2,
+    "skipRate": 5,
+    "modelGroups": [
+        {
+            "modelWeight":50,
+            "modelVersion": "Model1",
+            "schema": {
+                "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+                "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.15
+        },
+        {
+            "modelWeight": 50,
+            "modelVersion": "Model3",
+            "schema": {
+                "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+                "/1111/homepage/top-banner|banner|728x90": 1.00,
+                "/1111/homepage/top-rect|banner|300x250": 1.20,
+                "/1111/homepage/top-rect|banner|300x600": 1.80,
+                ...
+                "/1111/homepage/top-banner|banner|728x90": 2.11
+                ...
+                "*|banner|*": 0.80,
+            },
+            "default": 0.05
+        }
+    ]
+
 }
 {% endhighlight %}
 
@@ -801,7 +1032,7 @@ The price floors module will do this by leveraging the already existing implemen
 |---+---+---+---+---|
 | skipped | Boolean | Whether the skipRate resolved to be true or false| true |
 | modelVersion | String | The name of the model| ‘floor-model-4.3’ |
-| location | String | Where the Floors Module derived the rule set. Values are one of 'adUnit', 'setConfig' or 'fetch' | ‘fetch’ |
+| location | String | Where the Floors Module derived the rule set. Values are one of 'adUnit', 'setConfig', 'fetch' or 'noData'. If the Floors Module code is invoked and no floors object is able to be found (either by error or other condition) the floorsModule will set  location to 'noData'. When on data is found, it is up to the analtyics adapter to decide what to log. All available values will be provided in teh bidRequest object. | ‘fetch’ |
 | fetchStatus | String | Provides details on the status of a fetch for a JSON floors file when fetches are attempted. Valid values are: 'success' (when fetch returns an http 200 status), 'timeout' (when fetch results not returned before either auction delay or prebid timeout) or 'error' (any http status other than 200 or other error condition). To determine if fetch succeeds but returns invalid floors data, refer to the location field to infer invalid data if 'fetch' is not resultant value. | ‘success’ |
 | skipRate | integer | skipRate will be populated when a skip rate is configured in the Prebid Floors Module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 
@@ -848,10 +1079,10 @@ currency = ‘USD’,
 ‘banner|300x250’: 1.00
 
 {% highlight js %}
-getFloor({ 
-  currency: ‘EUR’, 
-  mediaType: ‘banner’, 
-  size: [300, 250] 
+getFloor({
+  currency: ‘EUR’,
+  mediaType: ‘banner’,
+  size: [300, 250]
 });
 {% endhighlight %}
 
@@ -859,7 +1090,7 @@ If successfully returned the requested currency:
 
 {% highlight js %}
 {
-  floor: 0.85, 
+  floor: 0.85,
   currency: ‘EUR’
 }
 {% endhighlight %}
@@ -868,7 +1099,7 @@ If unsuccessfully returned the requested currency:
 
 {% highlight js %}
 {
-  floor:1.0, 
+  floor:1.0,
   currency: ‘USD’
 }
 {% endhighlight %}
@@ -885,7 +1116,7 @@ Currency conversion can fail for the following reasons:
 
 **Enforcement**
 
-Enforcement in the Floors module occurs when bidders respond (i.e. bid) with a bidResponse object into the Prebid auction. The Floors Module will read the bid submitted within each valid bidResponse and its associated currency, performing currency conversion where necessary. 
+Enforcement in the Floors module occurs when bidders respond (i.e. bid) with a bidResponse object into the Prebid auction. The Floors Module will read the bid submitted within each valid bidResponse and its associated currency, performing currency conversion where necessary.
 
 There exist three locations where currencies can differ within enforcement:
 

@@ -562,7 +562,24 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 ### Step 2: Accept video parameters and pass them to your server
 
-Video parameters are often passed in from the ad unit in a `video` object.
+Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
+
+| parameter |
+|-|
+| mimes |
+| minduration |
+| maxduration |
+| protocols |
+| startdelay |
+| placement |
+| skip |
+| skipafter |
+| minbitrate |
+| maxbitrate |
+| delivery |
+| playbackmethod |
+| api |
+| linearity |
 
 The design of these parameters may vary depending on what your server-side bidder accepts.  If possible, we recommend using the video parameters in the [OpenRTB specification](https://iabtechlab.com/specifications-guidelines/openrtb/).
 
@@ -987,7 +1004,16 @@ registerBidder(spec);
 - [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
-  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify
+  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and modify. Add the following metadata to the header of your .md file:
+    - If you support the GDPR consentManagement module and TCF1, add `gdpr_supported: true`
+    - If you support the GDPR consentManagement module and TCF2, add `tcf2_supported: true`
+    - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`
+    - If you support one or more userId modules, add `userId: (list of supported vendors)`
+    - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`
+    - If you support COPPA, add `coppa_supported: true`
+    - If you support SChain, add `schain_supported: true`
+    - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder.
+    - If you're a member of Prebid.org, add `prebid_member: true`
 - Submit both the code and docs pull requests
 
 Within a few days, the code pull request will be assigned to a developer for review.

@@ -2,7 +2,7 @@
 layout: bidder
 title: 1ad4good
 description: Prebid One Ad for Good(1ad4good.org) Bidder Adaptor
-hide: true
+
 biddercode: 1ad4good
 ---
 

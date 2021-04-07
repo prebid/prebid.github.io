@@ -2,7 +2,7 @@
 layout: bidder
 title: TheMediaGridNM
 description: Prebid TheMediaGridNM Bidder Adapter
-hide: true
+
 biddercode: gridNM
 media_types: video
 gdpr_supported: true

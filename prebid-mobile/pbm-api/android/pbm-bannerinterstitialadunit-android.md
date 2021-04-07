@@ -41,6 +41,23 @@ Prebid Server will send the eligible size list to each bidder to solicit a bid. 
 InterstitialAdUnit(@NonNull String configId, int minWidthPerc, int minHeightPerc)
 ```
 
+#### Parameters
+
+
+Parameters is a sub class of BannerAdUnit. Create a new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
+
+`api: [int]`: OpenRTB placement
+
+**Parameters**
+
+Array of integers or a predefined constant representing the supported [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Frameworks. While OpenRTB allows additional API Frameworks, they were intentionally left out as constants since they do not make sense in a banner context. If there is a desire to pass API Frameworks that are not represented as a constants within Parameters, they can be passed an integer, where Prebid SDK will pass Prebid Server whatever is present:
+
+* `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
+* `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
+* `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
+* `7` or `Signals.Api.OMID_1` :  signals OMSDK support
+
+
 ## Methods
 
 `InterstitialAdUnit` inherits all methods from the [AdUnit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html) object.
@@ -49,6 +66,10 @@ InterstitialAdUnit(@NonNull String configId, int minWidthPerc, int minHeightPerc
 
 ```java
 AdUnit interstitialAdUnit = new InterstitialAdUnit("12345", 50, 70);
+BannerBaseAdUnit.Parameters parameters = new BannerBaseAdUnit.Parameters();
+parameters.setApi(Arrays.asList(new Signals.Api(6, 7)));
+// alternate representation using an enum parameters.setApi(Arrays.asList(Signals.Api.MRAID_3, Signals.Api.OMID_1));
+interstitialAdUnit.setParameters(parameters);
 interstitialAdUnit.fetchDemand(publisherAdRequest, new onCompleteListener() {
     @Override
     public void onComplete(ResultCode resultCode) {
