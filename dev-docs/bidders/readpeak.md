@@ -7,6 +7,7 @@ biddercode: readpeak
 media_types: native
 gdpr_supported: true
 tcf2_supported: true
+gvl_id: 290
 ---
 
 ### Bid Params
