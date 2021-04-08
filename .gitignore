@@ -8,4 +8,4 @@ Gemfile.lock
 /.bundle
 .jekyll-metadata
 *ads.txt.bkp*
-
+.sass-cache
