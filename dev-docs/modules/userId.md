@@ -25,14 +25,18 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem". You also need to add the `userId` module to your Prebid.js distribution.
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
-   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userId.
-1. An object containing one or more IDs (bidRequest.userId) is made available to Prebid.js adapters and Prebid Server S2S adapters.
-1. In addition to bidRequest.userId, bidRequest.userIdAsEids is made available to Prebid.js adapters and Prebid Server S2S adapters. bidRequest.userIdAsEids has userIds in ORTB EIDS format.
+   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into `bidRequest.userId`.
+   1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
+1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
+1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
 
+{: .alert.alert-info :}
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
 
-Also note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
+{: .alert.alert-info :}
+Note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
 
+{: .alert.alert-info :}
 As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
 
 ## User ID, GDPR, Permissions, and Opt-Out
@@ -82,7 +86,7 @@ of sub-objects. The table below has the options that are common across ID system
 ## User ID Sub-Modules
 
 ## Permissions
-Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
+Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
@@ -106,7 +110,7 @@ userIds: [
   }
 ]
 ```
-The Rubicon bid adapter would then receive 
+The Rubicon bid adapter would then receive
 ```
 {
   "bidder": "rubicon",
@@ -139,7 +143,7 @@ The Rubicon bid adapter would then receive
 
 Admixer ID, provided by [Admixer] (https://admixer.com/), is a universal ID solution that doesn't rely on 3rd party cookies and helps publishers and advertisers to recognize users across various browsers and environments.  Our sub adapter takes deterministic signals like email and phone as input and returns an anonymous id that unlocks access to a wide range of Admixer's demand sources, amplifying audience segmentation, targeting and measurement.
 
-The Admixer privacy policy is at https://admixer.com/privacy/ 
+The Admixer privacy policy is at https://admixer.com/privacy/
 
 Add Admixer ID module to your Prebid.js package with:
 
@@ -184,7 +188,7 @@ gulp build --modules=admixerIdSystem
 
 ### BritePool
 
-The [BritePool]((https://britepool.com)) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated 
+The [BritePool]((https://britepool.com)) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated
 integration partners (such as PubMatic), are able to maximize revenues without cookies. As addressable individuals visit publisher websites and mobile apps, the BritePool IDs associated with these identities are passed into the bidstream; enabling advertisers to transact against these BritePool ID's and publishers to maximize the revenues associated with their inventory and audience. The BritePool ID combines consumer privacy with easy, rapid integration for publishers and does not significantly increase the computing resources required of DSPs and SSPs.
 
 Add it to your Prebid.js package with:
@@ -1152,7 +1156,7 @@ In either case, bid adapters will receive the eid values after consent is valida
 
 - dmp - this uid comes from the in-page dmp named in eids.source
 - ppuid - this uid comes from the publisher named in eids.source
-- other - for setting other id origin signals please use the [adCOM!](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#object--extended-identifier-uids-) `atype` spec 
+- other - for setting other id origin signals please use the [adCOM!](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#object--extended-identifier-uids-) `atype` spec
 
 5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
 
