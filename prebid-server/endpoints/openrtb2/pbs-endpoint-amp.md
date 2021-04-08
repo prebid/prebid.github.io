@@ -80,6 +80,12 @@ An example Stored Request is given below:
 }
 ```
 
+Note that other ext.prebid extensions can be specified in the stored request such as:
+- [ext.prebid.currency](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support)
+- [ext.prebid.aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases)
+- [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only)
+- etc.
+
 #### First Party Data
 
 (Currently only supported in PBS-Java)
