@@ -68,7 +68,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"`, `"mwOpenLinkId"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -620,7 +620,7 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456			// valid partner id
+                partner: 123456     // valid partner id
             },
             storage: {
                 type: "cookie",
@@ -641,7 +641,7 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456			// valid partner id
+                partner: 123456     // valid partner id
             },
             storage: {
                 type: "html5",
@@ -663,9 +663,9 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456			// valid partner id
-                pcid: PCID_VARIABLE		// string value, dynamically loaded into a variable before setting the configuration
-                pai: PAI_VARIABLE		// string value, dynamically loaded into a variable before setting the configuration
+                partner: 123456     // valid partner id
+                pcid: PCID_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
+                pai: PAI_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
             },
             storage: {
                 type: "html5",
@@ -1484,6 +1484,48 @@ pbjs.setConfig({
 })
 ```
 
+### MediaWallah OpenLinkID
+
+MediaWallah's openLink is an anonymous person based ID that enables buyers and sellers of media to connect a person and their devices across the web and mobile apps. openLink facilities the buying of media between DSPs, SSPs and publishers.
+
+Add support for MediaWallah OpenLinkID to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,mwOpenLinkIdSystem
+
+#### MediaWallah OpenLinkID Registration
+
+MediaWallah requires the creation of an accountId a partnerId in order to take advantage of openLink. Please contact your partner resource to get these Ids provisioned.
+
+#### MediaWallah OpenLinkID Configuration
+
+<div class="table-responsive" markdown="1">
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'mwOpenLinkId'` |
+| params | Required | Object | Details for mwOLID syncing. ||
+| params.accountId | Required | String | The MediaWallah assigned Account Id  | `1000` |
+| params.partnerId | Required | String | The MediaWallah assign partner Id |`'1001'`|
+| params.uid | Optional | String | Your unique Id for the user or browser. Used for matching. | `'u-123xyz'` |
+{: .table .table-bordered .table-striped }
+</div>
+
+#### MediaWallah OpenLinkID Examples
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'mwOpenLinkId',
+            params: {
+                accountId: '1000',
+                partnerId: '1001',
+                uid: 'u-123xyz'
+            }
+        }]
+    }
+})
+```
 
 ## Adapters Supporting the User ID Sub-Modules
 
@@ -1527,6 +1569,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
+| MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | `"1111"` |
 {: .table .table-bordered .table-striped }
 </div>
 
@@ -1639,7 +1682,13 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                "uids": [{
                    "id": "61cef5656fb05f16d53938069f1684df4b2257e27"
                }]
-             }
+            },{
+              "source": "mediawallahscript.com",
+              "uids": [{
+                "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
+                "atype": 1
+              }]
+            }
           ]
         }
     }
