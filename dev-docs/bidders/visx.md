@@ -7,8 +7,8 @@ pbs: true
 biddercode: visx
 gdpr_supported: true
 schain_supported: true
-tcf2_supported: true
 userIds: id5Id, unifiedId
+pbs_app_supported: true
 ---
 
 ### Note

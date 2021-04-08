@@ -27,12 +27,12 @@ First Party Data in the OpenRTB JSON in several places:
 {: .table .table-bordered .table-striped }
 | OpenRTB Attribute | Description | PBJS Source | SDK Source | AMP Source |
 | --- | --- | --- | --- | --- |
-| site.ATTR | Only standard OpenRTB attributes should be here: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. | config.fpd.context.ATTR | n/a | site.ATTR |
-| site.ext.data.ATTR | Any other site-related attributes should go here. | config.fpd.context.data | n/a | site.ext.data.ATTR |
+| site.ATTR | Only standard OpenRTB attributes should be here: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. | config ortb2.site.ATTR | n/a | site.ATTR |
+| site.ext.data.ATTR | Any other site-related attributes should go here. | config ortb2.site.ext.data | n/a | site.ext.data.ATTR |
 | app.ext.data.ATTR | Any app-related attributes should go here. | n/a | Targeting addContextData() | n/a |
-| user.ATTR | Only standard OpenRTB attributes should be here: yob, gender, keywords. | config.fpd.user.ATTR | n/a | user.ATTR |
-| user.ext.data.ATTR | Any other user-related attributes should go here. | config.fpd.user.data.ATTR | Targeting addUserData() | user.ext.data.ATTR |
-| imp[].ext.context.data.ATTR | AdUnit-specific attributes should go here. | AdUnit.fpd.context | AdUnit addContextData() | n/a |
+| user.ATTR | Only standard OpenRTB attributes should be here: yob, gender, keywords. | config ortb2.user.ATTR | n/a | user.ATTR |
+| user.ext.data.ATTR | Any other user-related attributes should go here. | config ortb2.user.ext.data.ATTR | Targeting addUserData() | user.ext.data.ATTR |
+| imp[].ext.data.ATTR | AdUnit-specific attributes should go here. | AdUnit.ortb2.ext.data | AdUnit addContextData() | n/a |
 | ext.prebid.data.bidders[] | If specified, only these bidders are allowed to see fields in {site/app/user}.ext.data. | n/a | addBidderToAccessControlList() | bidders |
 | ext.prebid.bidderconfig | Bidder-specific config | [setBidderConfig()](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig) | n/a | n/a |
 
@@ -79,13 +79,9 @@ In this example, only BidderA has access to the global first party data:
     imp: [
         ...
         ext: {
-            context: {
-                keywords: "",
-                search: "",
-                data: {
-                    // everyone sees this data
-                    ADUNIT SPECIFIC CONTEXT DATA
-                }
+            data: {
+                // everyone sees this data
+                ADUNIT SPECIFIC CONTEXT DATA
             }
          }
     ]
@@ -100,12 +96,12 @@ This example shows an array of bidder-specific config:
            bidderconfig: [ {
                bidders: [ 'bidderA', 'bidderB' ],
                config: {
-                  fpd: { site: { ... }, user: { ...} }
+                  ortb2: { site: { ... }, user: { ...} }
                }
             },{
                bidders: [ 'bidderC' ],
                config: {
-                  fpd: { site: { ... }, user: { ...} }
+                  ortb2: { site: { ... }, user: { ...} }
                }
             }]
        }
@@ -121,7 +117,7 @@ the table above, they can simply pass that data to their endpoint in
 the expected way.
 
 In other words, just be aware of site.ext.data.ATTR, app.ext.data.ATTR, user.ext.data.ATTR,
-and imp[].ext.context.data.ATTR and either pass them straight through or map
+and imp[].ext.data.ATTR and either pass them straight through or map
 attributes to where your endpoints expect them.
 
 ## Further Reading
