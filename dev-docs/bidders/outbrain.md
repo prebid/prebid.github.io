@@ -3,7 +3,6 @@ layout: bidder
 title: Outbrain
 description: Outbrain Prebid Bidder Adapter
 biddercode: outbrain
-aliasCode : zemanta
 gdpr_supported: true
 gvl_id: 164
 usp_supported: true
@@ -24,54 +23,29 @@ The Outbrain Adapter requires setup before beginning. Please contact us at prebi
 
 #### Prebid.js
 
-##### Bidder and usersync URLs
-
 The Outbrain adapter does not work without setting the correct bidder and usersync URLs.
 You will receive the URLs when contacting us.
-
-Also note that the Outbrain adapter is an aliased adapter and for usersync to work you also need to enable it as shown below 
-on the `usersync` config object.
 ```
 pbjs.setConfig({
     outbrain: {
       bidderUrl: 'http://bidder-url.com',
       usersyncUrl: 'http://usersync-url.com'
-    },
-    userSync: {
-        aliasSyncEnabled: true
     }
 });
 ```
 
 #### Prebid server
 
-Because Outbrain is an alias for Zemanta, the prebid server bidder configuration in `pbs.yaml` for Outbrain needs to reference the Zemanta bidder.
-
-Similar to the Prebid.js part above, our prebid server adapter requires you to configure the bidder and usersync URLs.
+Similar to the Prebid.js configuration described above, our prebid server adapter requires you to configure the bidder and usersync URLs.
 You will receive the URLs when contacting us. 
 
 Please note that you need to replace the `<PREBID_SERVER_EXTERNAL_URL>` part with the actual external URL of the prebid server host.
 ```
 adapters:
-  zemanta:
+  outbrain:
     endpoint: http://bidder-url.com
-    syncurl: http://usersync-url.com?gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb=<PREBID_SERVER_EXTERNAL_URL>%2Fsetuid%3Fbidder%3Dzemanta%26uid%3D__ZUID__
+    syncurl: http://usersync-url.com?gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb=<PREBID_SERVER_EXTERNAL_URL>%2Fsetuid%3Fbidder%3Doutbrain%26uid%3D__ZUID__
 
-```
-In addition to the configuration above, support for aliased bidders in prebid server is enabled via some info in stored requests.
-So please add the following JSON snippet to the stored request you will use to call our bidder.
-```
-{
-  ...
-  "ext": {
-    "prebid": {
-      "aliases": {
-        "outbrain": "zemanta"
-      }
-    }
-  }
-  ...
-}
 ```
 
 ### Bid Params
