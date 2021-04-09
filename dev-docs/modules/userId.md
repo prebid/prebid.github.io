@@ -500,7 +500,7 @@ The IdentityLink privacy policy is at [https://liveramp.com/privacy/service-priv
 | name | Required | String | `"identityLink"` | `"identityLink"` |
 | params | Required for Id Link | Object | Details for identityLink initialization. | |
 | params.pid | This parameter is required for IdentityLink | String | This is the placementId, value needed for obtaining user’s IdentityLink envelope
-
+| params.use3P | This parameter is not required for IdentityLink | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get IdentityLink envelope
 
 #### IdentityLink Examples
 
@@ -513,7 +513,8 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999'             // Set your real identityLink placement ID here
+                pid: '999',             // Set your real identityLink placement ID here
+                // use3P: true/false    // If you want to use 3P endpoint to retrieve envelope. If you do not set this property to true, 3p endpoint will not be fired. By default this property is undefined and 3p request will not be fired.
             },
             storage: {
                 type: "cookie",
@@ -534,7 +535,8 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999'          // Set your real identityLink placement ID here
+                pid: '999',          // Set your real identityLink placement ID here
+                // use3P: true/false    // If you want to use 3P endpoint to retrieve envelope. If you do not set this property to true, 3p endpoint will not be fired. By default this property is undefined and 3p request will not be fired.
             },
             storage: {
                 type: "html5",
