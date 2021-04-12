@@ -13,5 +13,4 @@ pbjs: true
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                       | Example                    | Type     |
 | -------------- | -------- | ----------------------------------------------------------------- | -------------------------- | -------- |
-| `placement_id` | required | Placement Id will be generated on Bright Mountain Media Platform. | `'5f21784949be81002079d08c'` | `string` |
-| `traffic`      | required | Type traffic                                                      | `'banner'`                 | `string` |
+| `placement_id` | required | Placement ID will be generated on Bright Mountain Media Platform | `1` | `integer` |
