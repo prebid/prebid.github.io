@@ -5,6 +5,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: overview
   submenus:
 
   - subsectionId: 0
@@ -43,6 +44,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: product
   submenus:
 
   - subsectionId: 0
@@ -110,7 +112,7 @@
     sectionId: 1
     sectionName: Product
     title: Prebid Server
-    link: /prebid-server/prebid-server-overview.html
+    link: /prebid-server/overview/prebid-server-overview.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
@@ -203,6 +205,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: support
   submenus:
 
   - subsectionId: 0
@@ -293,6 +296,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: download
   submenus:
 
   - subsectionId: 0
@@ -338,6 +342,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: resources
   submenus:
 
   - subsectionId: 0

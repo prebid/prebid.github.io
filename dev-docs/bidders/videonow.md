@@ -2,7 +2,8 @@
 layout: bidder
 title: videonow
 description: Prebid Videonow Bidder Adaptor
-
+biddercode: videonow
+pbjs: true
 media_types: banner
 ---
 

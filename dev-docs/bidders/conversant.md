@@ -2,13 +2,14 @@
 layout: bidder
 title: Conversant
 description: Prebid Conversant Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: conversant
 media_types: video
 gdpr_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
 prebid_member: true
-tcf2_supported: true
+gvl_id: 24
 ---
 
 

@@ -133,7 +133,7 @@ A string indicating the type of content being displayed in the video player. The
                 mimes: ['video/mp4'],
   </pre>
 
-  <p>For more on Prebid Server ad unit requirements, see <a href="{{site.github.url}}/dev-docs/get-started-with-prebid-server.html#using-prebid-server-to-show-video-ads">Getting Started with Prebid Server – Video</a>.</p>
+  <p>For more on Prebid Server ad unit requirements, see <a href="/prebid-server/use-cases/pbs-pbjs.html">Getting Started with Prebid Server – Video</a>.</p>
 
 </div>
 

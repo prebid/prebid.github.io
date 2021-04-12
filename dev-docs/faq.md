@@ -22,21 +22,23 @@ Nope. The only approval process is a code review. There are separate instruction
 - [adding a bidder in Prebid.js](/dev-docs/bidder-adaptor.html)
 - [adding an analytics adapter in Prebid.js](/dev-docs/integrate-with-the-prebid-analytics-api.html)
 
-As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
-## When starting out, what should my timeouts be?
+## What should my timeouts be?
 
 Below is a set of recommended best practice starting points for your timeout settings:
 
 - 1,000 milliseconds or less for the internal auction timeout
-- 3,000 milliseconds or less for the prebid tag's overall failsafe timeout
+- 3,000 milliseconds or less for the Prebid tag's overall failsafe timeout
 
 The former setting is used to track the auction once it started; if it expires, we will use whichever bidders have responded and select the winner(s) accordingly.
 
 The latter setting is used when for some reason Prebid did not load (or there's some other serious issue); if it expires, we will default to the adserver.
 
 For examples of setting up these timeouts, please refer to the [Basic Example]({{site.baseurl}}/dev-docs/examples/basic-example.html) page.
+
+See the [Prebid Timeouts Reference](/features/timeouts.html) for more information about timeouts in general.
 
 ## How many header bidders should I have?
 

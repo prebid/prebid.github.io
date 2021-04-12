@@ -471,19 +471,19 @@ hr {
 	margin-top: 10px;
 }
 
-.pb-video-list-title { 
+.pb-video-list-title {
 	margin-top: 15px;
 	font-weight: 700;
 }
 
-.pb-video-list { 
+.pb-video-list {
 	margin-top: 5px;
 	padding-top: 0;
 	list-style-type:none;
 	font-weight:400;
 }
 
-.pb-video-link { 
+.pb-video-link {
 	font-weight: 400;
 }
 
@@ -660,7 +660,7 @@ pre {
 	text-align: center;
 }
 
-.pb-message-box { 
+.pb-message-box {
 	display: inline-block;
 	width: 70%;
 	border: 1px solid gray;
@@ -670,39 +670,39 @@ pre {
 	padding: 4px;
 }
 
-.pb-message-box a:link { 
+.pb-message-box a:link {
 	color: #dd9e21;
 }
 
-.pb-message-box a:hover { 
+.pb-message-box a:hover {
 	color: #855a09;
 }
 
-.pb-message-box a:visited { 
+.pb-message-box a:visited {
 	color: #1689db;
 }
 
-.pb-align-left { 
+.pb-align-left {
 	text-align: start;
 }
 
-.pb-align-right { 
+.pb-align-right {
 	text-align: right;
 }
 
-.pb-margin-top { 
+.pb-margin-top {
 	margin-top:20px;
 }
 
-.pb-outline { 
+.pb-outline {
 	border: 1px dashed purple;
 }
 
-.pb-rule { 
+.pb-rule {
 	padding-top: 10px;
 }
 
-.pb-link-title { 
+.pb-link-title {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 700;
 	padding-top: 5px;
@@ -1315,7 +1315,7 @@ pre {
 
 /************ Was This Helpful Form ****************/
 
-.wthHeader { 
+.wthHeader {
 	background-color: #EA9622;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -1324,7 +1324,7 @@ pre {
 	margin-bottom: 15px;
 }
 
-.wthBordered { 
+.wthBordered {
 	border: 1px solid #cccccc;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -1332,22 +1332,22 @@ pre {
 	padding-left: 7px;
 }
 
-.wthForm { 
+.wthForm {
 	padding-left: 15px;
 }
 
-.wthForm.input { 
+.wthForm.input {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
-.wthSubmit { 
+.wthSubmit {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
-.wthLabel { 
-	
+.wthLabel {
+
 	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	font-size:18px;
@@ -1356,8 +1356,8 @@ pre {
 	margin-bottom: 5px;
 }
 
-.wthTitle { 
-	
+.wthTitle {
+
 	font-family: 'Lato', sans-serif;
 	font-weight: 700;
 	font-size:24px;
@@ -1366,7 +1366,7 @@ pre {
 
 
 
-/* 
+/*
 	Responsive
 	There are 3 trigger levels, 1024, 768 and 480
 
@@ -2168,20 +2168,3 @@ div.pl-doc-entry{
   right: 10px;
   left: auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-

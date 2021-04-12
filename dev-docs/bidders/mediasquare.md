@@ -2,14 +2,14 @@
 layout: bidder
 title: MediaSquare
 description: Prebid MediaSquare Bidder Adapter
-
+pbjs: true
 biddercode: mediasquare
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 schain_supported: true
 userIds: id5Id
-media_types: banner
+media_types: banner, video, native
+glv_id: 791
 ---
 
 

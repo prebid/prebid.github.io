@@ -13,7 +13,7 @@ Formed in September of 2017, Prebid.org is an independent organization designed 
 
 Prebid.org is open to all companies who are part of the programmatic ecosystem, from ad tech vendors to publishers and others. We believe strongly that by working together, we can do some great things in the industry.
 
-[Learn more](/partners/partners.html) about becoming a member of Prebid.org.
+[Learn more](https://prebid.org/membership/) about becoming a member of Prebid.org.
 
 ## Operations  
 Managed through Product Management Committees (PMCs)  
@@ -36,7 +36,7 @@ We support wrappers based on Prebid technology with rights to the **Powered by P
 ## Current Projects
 All Prebid projects are open source and licensed under Apache License 2.0.  
 - [Prebid.js](/prebid/prebidjs.html), including [Prebid Video](/prebid-video/video-overview.html) and [Prebid Native](/dev-docs/examples/native-ad-example.html): Header bidding on desktop and mobile web.
-- [Prebid Server](/prebid-server/prebid-server-overview.html): Server-to-server header bidding.
+- [Prebid Server](/prebid-server/overview/prebid-server-overview.html): Server-to-server header bidding.
 - [Prebid Mobile](/prebid-mobile/prebid-mobile.html): SDK for mobile app header bidding on iOS and Android. Works in conjunction with Prebid Server.
 - Continuing work on our tools, website, and documentation.
 Prebid welcomes any contribution on these projects!
@@ -44,6 +44,6 @@ Prebid welcomes any contribution on these projects!
 
 Read more here:
 
-* [Prebid.org Members and Partners](/partners/partners.html)
+* [Prebid.org Members and Partners](https://prebid.org/membership/)
 * [The Drum reporting on Prebid.org](https://www.thedrum.com/news/2017/09/11/appnexus-and-rubicon-project-launch-prebidorg-hailing-open-source-approach-header)
-* [Current members of Prebid.org]({{site.baseurl}}/partners/partners.html)
+* [Current members of Prebid.org](https://prebid.org/membership/member-directory/)

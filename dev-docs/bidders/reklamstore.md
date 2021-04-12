@@ -3,7 +3,7 @@ layout: bidder
 title: ReklamStore
 description: Prebid ReklamStore Bidder Adaptor
 biddercode: reklamstore
-
+pbjs: true
 gdpr_supported: true
 media_types: banner
 ---
