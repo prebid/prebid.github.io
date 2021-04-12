@@ -16,15 +16,15 @@ pbs_app_supported: true
 prebid_member: true
 ---
 
-## Registration
+### Registration
 
 The Outbrain Adapter requires setup before beginning. Please contact us at prebid.org@outbrain.com.
 
-## Configuration
+### Configuration
 
-### Prebid.js
+#### Prebid.js
 
-#### Bidder and usersync URLs
+##### Bidder and usersync URLs
 
 The Outbrain adapter does not work without setting the correct bidder and usersync URLs.
 You will receive the URLs when contacting us.
@@ -43,7 +43,7 @@ pbjs.setConfig({
 });
 ```
 
-### Prebid server
+#### Prebid server
 
 Because Outbrain is an alias for Zemanta, the prebid server bidder configuration in `pbs.yaml` for Outbrain needs to reference the Zemanta bidder.
 
@@ -74,7 +74,7 @@ So please add the following JSON snippet to the stored request you will use to c
 }
 ```
 
-## Bid Params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -87,7 +87,7 @@ So please add the following JSON snippet to the stored request you will use to c
 | `bcat`             | optional | Blocked advertiser categories using the IAB content categories | `['IAB1-1']`       | `string array` |
 | `badv`             | optional | Block list of advertisers by their domains                     | `['example.com]'`  | `string array` |
 
-### Native example
+#### Native example
 
 ```
 var adUnits = [
@@ -133,7 +133,7 @@ var adUnits = [
 ];
 ```
 
-### Banner example
+#### Banner example
 ```
 var adUnits = [
     code: '/19968336/prebid_display_example_1',
