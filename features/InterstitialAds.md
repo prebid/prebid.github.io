@@ -16,7 +16,7 @@ Interstitails ads are high engagement ads often placed at natural transition poi
 This document covers how to setup interstitial ad units.
 
 {: .alert.alert-warning :}
-Please check with each of your bidders to ensure they're the interstitial flag from the standard Prebid location. Prebid web interstitials are available as of Prebid.js version x.xx.
+Please check with each of your bidders to ensure they're reading the interstitial flag from the standard Prebid location.
 
 
 ## How It Works
