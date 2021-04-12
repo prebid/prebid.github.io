@@ -15,13 +15,13 @@ Prebid SDK introduces the rendering facilities as a standalone module. Adding th
 
 ![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/modularization-roadmap-open-beta.png){: .pb-lg-img :}
 
-In the scope of the Open Beta release, you can use the Core and Rendering modules alongside each other. The current integration will work as is without changes but if you want to add or switch to the rendering integration you will have to make significant changes in the codebase.  
+In the scope of the Open Beta release, you can use the Core and Rendering modules alongside each other. The current integration will work as is without changes but if you want to add or switch to the rendering integration you will have to make changes in the codebase.  
 
 The rendering module consist of three libraries:
 
 - **PrebidSDKRendering**, which introduces the classes for integration into UI and rendering engine
-- **PrebidSDKGAMEventHandlers**, which wraps GAM classes in order to support GAM integration
-- **PrebidSDKMoPubAdapters**, which wraps MoPub Adapters for Prebid Rendering module
+- [OPTIONAL] **PrebidSDKGAMEventHandlers**, which wraps GAM classes in order to support GAM integration. 
+- [OPTIONAL] **PrebidSDKMoPubAdapters**, which wraps MoPub Adapters for Prebid Rendering module
 
 Using rendering module you can integrate next ad formats:
 
@@ -35,19 +35,17 @@ Intefration steps are convinient and described in the respective docs for [iOS](
 
 Rendering serves the general Prebid's aim - to be a trusted, transparent, and configurable monetization solution and gives a lot of benefits to both sides publishers and demand partners. 
 
-- Monitizaion without Ad Server. Publishers can monitize the apps through pure In-App bidding without additional ad requests.
-- Support of Prebid Server distinct features like PG, omni-channel, floors, etc.  
-- Flexibility in supporting new features of serving ads.
-
 In comparising with no-rendering approach the new module gives next benefits:
 
+- Monitizaion without Ad Server. Publishers can monitize the apps through pure In-App bidding without additional ad requests.
 - Faster ad delivery. As soon as bid is recieved it can be displayed. It is applayed to both kind of integration with ad server  or without it.
-- Litle infrastructure. Since the rendering moduel doesn't need Prebid Cache it can be ommited. 
+- Litle infrastructure. Since the rendering module doesn't need Prebid Cache it can be ommited. 
 - Less discrepancy, better analytics. Rendering module is able to track all needed events in the proper time according to the industry standard or demand side custom requrements. 
 - Full support of SKAdNetworks and similar frameworks 
 - MRAID 3.0 support
 - Better measurement. Ability to use any measurement provider. SDK implements the support of Open Measurement, the certification is scheduled to the upcoming releases.  
 - Open for improvements and adding exclusive features 
+- Support of Prebid Server distinct features like PG, omni-channel, floors, etc.  
 
 ## How It Works
 
