@@ -3,6 +3,7 @@ layout: bidder
 title: Criteo
 description: Prebid Criteo Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
@@ -21,6 +22,9 @@ That means, `sendId: true` becomes mandatory for all fields receiving URLs, nota
 
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
+{: .alert.alert-warning :}
+Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -28,8 +32,8 @@ See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
 | `zoneId`          | required | (deprecated) The zone ID from Criteo. Should be replaced by `networkId` when using zone matching.                                    | `234234`                                      | `integer`  |
 | `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
-| `nativeCallback`  | optional | Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
-| `integrationMode` | optional | Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
+| `nativeCallback`  | optional | (Prebid.js only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
+| `integrationMode` | optional | (Prebid.js only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
 
 ### Video Object
 
