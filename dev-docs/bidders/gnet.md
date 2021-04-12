@@ -11,4 +11,6 @@ biddercode: gnet
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                | Example                             | Type     |
 |---------------|----------|--------------------------------------------|-------------------------------------|----------|
-| `clientId`      | required | The Gnet Client ID                            | `'123456'`                           | `string` |
+| `websiteId`      | required | The Gnet website ID                            | `'4'`                                    | `string` |
+| `externalId`      | required | The Gnet external ID                          | `'4d52cccf30309282256012cf30309282'`     | `string` |
+
