@@ -215,6 +215,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <h4>User ID Modules</h4>
 <div class="row">  
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> BritePool ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
@@ -275,10 +278,16 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="uid2IdSystem" class="bidder-check-box"> Unified ID 2</label>
+</div></div>  
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> Verizon Media ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> Zeotap ID+</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="mwOpenLinkIdSystem" class="bidder-check-box"> MediaWallah OpenLink ID</label>
 </div></div>
 </div>
 
