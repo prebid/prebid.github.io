@@ -44,7 +44,7 @@ Please note that you need to replace the `<PREBID_SERVER_EXTERNAL_URL>` part wit
 adapters:
   outbrain:
     endpoint: http://bidder-url.com
-    syncurl: http://usersync-url.com?gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb=<PREBID_SERVER_EXTERNAL_URL>%2Fsetuid%3Fbidder%3Doutbrain%26uid%3D__ZUID__
+    syncurl: http://usersync-url.com?gdpr={%raw%}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}{%endraw%}&cb=<PREBID_SERVER_EXTERNAL_URL>%2Fsetuid%3Fbidder%3Doutbrain%26uid%3D__ZUID__
 
 ```
 
