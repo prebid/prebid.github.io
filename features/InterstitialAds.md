@@ -11,7 +11,7 @@ sidebarType: 1
 * TOC
 {:toc}
 
-Interstitails ads often placed at natural transition points of the user's experince, such as moving from one page to the next. Interstitial ads are generally center aligned overlaying user content. 
+Interstitails ads are often placed at natural transition points of the user's experince, such as moving from one page to the next. These ads are generally center aligned overlaying user content. 
 
 This document covers how to setup interstitial ad units.
 
