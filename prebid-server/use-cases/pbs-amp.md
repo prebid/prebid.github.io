@@ -39,7 +39,7 @@ As described in the [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-
 
 There are two basic ways of invoking AMP RTC:
 
-- One option is to use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js).
+- One option is to use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js).
 
 ```
   <amp-ad width="300" height="50"
@@ -168,8 +168,8 @@ Only a few dynamic parameters on the query string are integrated into the result
 
 #### First Party Data Support
 
-Any targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
-into the OpenRTB JSON and permissions, if defined, are applied to each bidder.
+Ad Server targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
+into the OpenRTB JSON in imp[].ext.data for each bidder if permissions allow.
 
 #### Auction and Response
 
