@@ -11,7 +11,7 @@ sidebarType: 1
 * TOC
 {:toc}
 
-Interstitails ads are high engagement ads often placed at natural transition points of the user's experince, such as moving from one page to the next. Interstitial ads are generally center aligned overlaying user content, where the user is forced to close the ad to progress in their user experience to view content. Because the ad interupts the user's flow, marketers often pay a premium for such ads. 
+Interstitails ads often placed at natural transition points of the user's experince, such as moving from one page to the next. Interstitial ads are generally center aligned overlaying user content. 
 
 This document covers how to setup interstitial ad units.
 
