@@ -12,6 +12,10 @@ gdpr_supported: true
 userIds: id5Id, identityLink, pubCommonId, unifiedId
 ---
 
+### Note
+Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or info@adxcg.com for more details.
+
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
