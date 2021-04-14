@@ -2,6 +2,7 @@
 biddercode      : sharethrough
 description     : Prebid Sharethrough Adaptor
 gdpr_supported  : true
+coppa_supported : true
 hide            : true
 layout          : bidder
 media_types     : native
