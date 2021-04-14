@@ -73,6 +73,10 @@ Please follow the guidelines in the [Didomi documentation](https://developers.di
 
 LiveRamp has verified that they create the tcfapi functions and set gdprApplies=false when their CMP is removed from a geo.
 
+### Sirdata
+
+Please follow the guidelines in the [Sirdata documentation](https://cmp.docs.sirdata.net/v/en/script-management/tag-conditioning) to make sure that the CMP is loaded and the user's choice exposed through the `__tcfapi()` function before the ad server and Prebid.js are invoked.
+
 ## Further Reading
 
 - [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
