@@ -1652,10 +1652,10 @@ pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
 
 #### Page URL
 
-Override the Prebid.js page referrer algorithm.
+Override the Prebid.js page referrer for some bidders.
 
-a{% highlight js %}
-pbjs.setConfig({ pageUrl: "https://example.com/index.html" )
+{% highlight js %}
+pbjs.setConfig({ pageUrl: "https://example.com/index.html" })
 {% endhighlight %}
 
 <a name="setConfig-Publisher-Domain" />
