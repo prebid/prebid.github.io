@@ -2,7 +2,7 @@
 layout: bidder
 title: Collectcent
 description: Prebid Collectcent Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: collectcent
 ---
 

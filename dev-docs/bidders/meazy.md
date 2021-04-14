@@ -2,7 +2,7 @@
 layout: bidder
 title: Meazy
 description: Prebid Meazy Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: meazy
 ---
 

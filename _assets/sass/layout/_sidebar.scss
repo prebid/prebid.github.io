@@ -1,0 +1,126 @@
+.sidebar {
+  @include media('<tablet') {
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .navbar-toggler {
+    color: $navbar-light-color;
+    border-color: $navbar-light-toggler-border-color;
+  }
+
+  .navbar-toggler-icon {
+    background-image: escape-svg($navbar-light-toggler-icon-bg);
+  }
+
+  .collapse.is-active {
+    display: block;
+  }
+
+  .list-group-item {
+    display: block;
+
+    &--level-0 {
+      position: relative;
+      padding: 9px 12px 11px 14px;
+      border-top: 1px solid $t-divider-color;
+      color: $t-text-color;
+      font-size: 20px;
+
+      &::after {
+        @include position(absolute, 50% 12px null null);
+        @include size(15px, 8px);
+        transform: translateY(-50%);
+        background: url(/assets/images/icons/down-carrot-0.svg) no-repeat 0 0;
+        content: '';
+      }
+
+      &:last-of-type {
+        border-bottom: 1px solid $t-divider-color;
+      }
+
+      > .pb-section-title {
+        display: inline-block;
+        padding-right: 20px;
+      }
+
+      &.is-active {
+        background-color: #333;
+        color: $t-text-color--reverse;
+
+        &::after {
+          background-image: url(/assets/images/icons/up-carrot-0.svg);
+        }
+
+        + .sidebar-submenu + .list-group-item {
+          border-top: 0;
+        }
+      }
+    }
+
+    &--level-1 {
+      padding: 8px 14px 9px;
+      background-color: rgba(255, 255, 255, 0.25);
+      border-bottom: 1px solid $t-divider-color;
+      color: $t-text-color;
+      font-size: 18px;
+
+      &.is-active {
+        position: relative;
+        color: $t-brand-color--accent;
+
+        &::after {
+          @include position(absolute, 50% 15px null null);
+          @include size(10px, 5px);
+          transform: translateY(-50%);
+          background-image: url(/assets/images/icons/up-carrot-1.svg);
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          content: '';
+        }
+
+        > .pb-section-subtitle {
+          display: inline-block;
+          padding-right: 15px;
+        }
+
+        + .sidebar-submenu {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+      }
+
+      > .menu-collapsed.pb-nav-item.is-active {
+        color: $t-brand-color--accent;
+      }
+    }
+
+    &--level-2 {
+      padding: 11px 14px 4px;
+      background-color: rgba(255, 255, 255, 0.5);
+      color: $t-text-color;
+      font-size: 15px;
+
+      &:last-child {
+        padding-bottom: 11px;
+        border-bottom: 1px solid $t-divider-color;
+      }
+
+      &.is-active {
+        color: $t-brand-color--accent;
+      }
+
+      > .pb-nav-item--title {
+        display: block;
+        margin-bottom: -8px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #999;
+        color: #333;
+      }
+    }
+  }
+}
+
+

@@ -2,7 +2,7 @@
 layout: bidder
 title: COSMOS
 description: Prebid COSMOS Bidder Adapter
-hide: true
+pbjs: true
 biddercode: cosmos
 ---
 
