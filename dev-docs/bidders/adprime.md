@@ -6,9 +6,9 @@ biddercode: adprime
 gdpr_supported: true
 usp_supported: true
 media_types: banner, video
-tcf2_supported: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 ---
 
 ### Note:

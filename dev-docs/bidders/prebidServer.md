@@ -40,6 +40,28 @@ pbjs.setConfig({
     }
 });
 ```
+
+To use multiple prebid servers, just define `s2sConfig` as an array. 
+The same bidder cannot be set in both configs. For example:
+
+```
+pbjs.setConfig({
+    s2sConfig: [
+    {
+        accountId: '12345',
+        bidders: ['appnexus','rubicon'],
+        defaultVendor: 'appnexus',
+        timeout: 300,
+    },
+    {
+        accountId: '678910',
+        bidders: ['pubmatic'],
+        defaultVendor: 'rubicon',
+        timeout: 300,
+    },
+    ],
+});
+```
 Configuration options
 
 {: .table .table-bordered .table-striped }

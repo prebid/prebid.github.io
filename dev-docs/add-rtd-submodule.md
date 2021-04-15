@@ -16,13 +16,19 @@ add data to bid requests or add targeting values for the primary ad server.
 {:toc }
 
 ## Overview
-The point of the Real Time Data (RTD) infrastructure is to make configuration consistent for publishers. Rather than having dozens of different modules with disparate config approaches, being a Real-Time Data sub-module means plugging into a framework 
-for publishers to control how sub-modules behave. For example, publishers can define how long the auction can be delayed and give some 
+The point of the Real Time Data (RTD) infrastructure is to make configuration consistent for publishers. Rather than having dozens of different modules with disparate config approaches, being a Real-Time Data sub-module means plugging into a framework
+for publishers to control how sub-modules behave. For example, publishers can define how long the auction can be delayed and give some
 sub-modules priority over others.
 
-The RTD infrustruture is a generic module, not useful by itself. Instead, it allows sub-modules to register and modify bid request/response and/or set targeting data for the publisher’s ad server.
+The RTD infrastructure is a generic module, not useful by itself. Instead, it allows sub-modules to register and modify bid request/response and/or set targeting data for the publisher’s ad server.
 
 Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc. They will set limits on how long sub-modules are allowed to delay the auction, which will most likely be in the tens of milliseconds.
+
+See the [Publisher Real-Time Data Configuration](/dev-docs/publisher-api-reference.html#setConfig-realTimeData) reference for more information.
+
+Your module should not look at the values of the auctionDelay or waitForIt flags - just do what needs to be done as fast as possible. It's ok to *ask* publishers in your documentation
+to give you a certain amount of time or to flag your module as important, but
+it's not ok for the code to require it.
 
 ## Architecture
 
@@ -33,6 +39,7 @@ Here is the flow for how the RTD-core module interacts with its sub-modules:
 
 The activities performed by the RTD-core module are on the left-hand side, while the functions
 that can be provided by your RTD sub-module are on the right-hand side. Note that you don't need to implement all of the functions - you'll want to plan out your functionality and develop the appropriate functions.
+
 
 ## Creating a Sub-Module
 
@@ -99,7 +106,7 @@ export const subModuleObj = {
 };
 {% endhighlight %}
 
-#### Register the submodule 
+#### Register the submodule
 
 Register submodule to RTD-core:
 
@@ -172,9 +179,12 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
     - callback: lets RTD-core know which auction the sub-module is done with.
     - config: the sub-module's config params provided by the publisher
     - userConsent object (see above)
-2. Your sub-module may update the reqBidsConfigObj and hit the callback. When you update the bidRequest, you must follow one of these conventions:
-    - Use [First Party Data](/features/firstPartyData.html) conventions, setting AdUnit.fpd.context.data.ATTRIBUTES or AdUnit.fpd.user.data.ATTRIBUTES
-    - Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES
+2. Your sub-module may update the reqBidsConfigObj and hit the callback. To inject data into the bid requests, you should follow one of these conventions:
+    - Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
+        - For AdUnit-specific first party data, set AdUnit.fpd.context.data.ATTRIBUTES
+        - For global first party data, call 'pbjs.[getConfig](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig)({fpd.context})' or 'pbjs.getConfig({fpd.user})', merge in the new global data, and update with `pbjs.[setConfig](/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)()'.
+        - If the data is not meant to go to all bidders, the module should use 'pbjs.[setBidderConfig](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
+    - Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
 
 **Code Example**
 
@@ -277,9 +287,9 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
     enable_download : true
     sidebarType : 1
     ---
-    
+
     # Example Module
-    
+
     [Useful publisher-facing documentation]
     ```
 3. Submit the pull request to the prebid.github.io repo.
