@@ -11,40 +11,40 @@ sidebarType: 2
 
 > ⚠️ NOTE: Rendering is an Open Beta Feature
 
-Prebid SDK introduces the rendering facilities as a standalone module. Adding this module won't change anything in your current integration. 
+Prebid SDK is introducing full ad rendering capabilities into the full suite of product features through an Open Beta as we design, introduce and test various rendering capabilities and interfaces. The Rendering Open Beta features will be available through our Modular structure, leaving intact existing functionality and interface API. All Rendering features will introduce new APIs tied strictly to rendering and will change over time as align the rendering APIs with the existing Prebid SDK APIs.
 
 ![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/modularization-roadmap-open-beta.png){: .pb-lg-img :}
 
-In the scope of the Open Beta release, you can use the Core and Rendering modules alongside each other. The current integration will work as is without changes but if you want to add or switch to the rendering integration you will have to make changes in the codebase.  
+In the scope of the Open Beta release, you can use the Core and Rendering modules alongside each other. The current integration will work as is without changes but if you want to add or switch to the rendering integration you will have to make changes in the codebase.
+ 
+The rendering module consists of three libraries:
 
-The rendering module consist of three libraries:
-
-- **PrebidSDKRendering**, which introduces the classes for integration into UI and rendering engine
-- [OPTIONAL] **PrebidSDKGAMEventHandlers**, which wraps GAM classes in order to support GAM integration. 
+- **PrebidSDKRendering**, which introduces the classes for integration into the UI and rendering engine
+- [OPTIONAL] **PrebidSDKGAMEventHandlers**, which wraps the GAM classes in order to support the GAM integration.. 
 - [OPTIONAL] **PrebidSDKMoPubAdapters**, which wraps MoPub Adapters for Prebid Rendering module
 
-Using rendering module you can integrate next ad formats:
+The rendering module will have the following ad formats available:
 
 - **Dispaly** - Banner/Interstitial
 - **Outsrteam Video** - Banner/Interstitial/Rewarded
 - **Native** - Disaply / Video
 
-Intefration steps are convinient and described in the respective docs for [iOS](TBD) and [Android](TBD). 
+Integration steps are described in the respective environment docs for [iOS](TBD) and [Android](TBD). 
 
 ## Motivation and Benefits 
 
 Rendering serves the general Prebid's aim - to be a trusted, transparent, and configurable monetization solution and gives a lot of benefits to both sides publishers and demand partners. 
 
-In comparising with no-rendering approach the new module gives next benefits:
+Prebid SDK rendering offers the following benefits:
 
-- Monitizaion without Ad Server. Publishers can monitize the apps through pure In-App bidding without additional ad requests.
-- Faster ad delivery. As soon as bid is recieved it can be displayed. It is applayed to both kind of integration with ad server  or without it.
-- Litle infrastructure. Since the rendering module doesn't need Prebid Cache it can be ommited. 
-- Less discrepancy, better analytics. Rendering module is able to track all needed events in the proper time according to the industry standard or demand side custom requrements. 
+- Monetization without an Ad Server: Publishers who do not have a direct sales force or do not have use for an ad server, but wish to access Prebid's mobile demand stack can render ads directly without relying on any 3rd party SDKs.
+- Reduced ad delivery latency: With the Prebid rendering module, Prebid SDK can render ads immediately when demand is returned from Prebid Server or when receiving the render signal from an ad server. The full render process should vastly reduce ad delivery speeds.
+- Less infrastructure: The Prebid SDK does not rely on Prebid Server's Cache server, reducing the cost and utility of Prebid Server Cache. 
+- Less discrepancy: Having full control of the rendering process has the potential to reduce discrepancy with ads instantly available (less http calls, less infrastructure, less setup). Additionally, having control of ad rendering allows the publisher to follow open and transparent industry standards or even potentially custom requirements from buyers. 
 - Full support of SKAdNetworks and similar frameworks 
 - MRAID 3.0 support
-- Better measurement. Ability to use any measurement provider. SDK implements the support of Open Measurement, the certification is scheduled to the upcoming releases.  
-- Open for improvements and adding exclusive features 
+- Flexible measurement configuration: Owning the rendering and Open Measurement process allows publishers to potentially configure any measurement provider in a transparent and open source process. Prebid SDK will eventually be IAB Open Measurement certified and listed on the IAB site once complete.  
+- Community driven: Being a part of Prebid, there is the ability to add features not readily or easily available either through the Ad Server or other SDKs. 
 - Support of Prebid Server distinct features like PG, omni-channel, floors, etc.  
 
 ## How It Works
@@ -59,23 +59,23 @@ The following diagrams show how the Rendering Module works. So far it supports t
 
 ![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/prebid-in-app-bidding-overview-pure-prebid.png){: .pb-lg-img :}
 
-1. Prebid SDK sends the bid request to the Prebid Server.
+1. Prebid SDK makes a bid request to Prebid Server.
 1. Prebid Server runs the header bidding auction among preconfigured demand partners.
 1. Prebid Server responses with the winning bid.
-1. Prebid SDK renders the creative from recieved bid.
+1. Prebid SDK renders an ad.
 
 ### GAM Integration
 
 ![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/prebid-in-app-bidding-overview-gam.png){: .pb-lg-img :}
 
-1. Prebid SDK makes a bid request. 
+1. Prebid SDK makes a bid request to Prebid Server. 
 1. Prebid Server runs the header bidding auction among preconfigured demand partners.
 1. Prebid SDK, via GAM Event Handler, sets up the targeting keywords into the GAM's ad request.
 1. GAM SDK makes an ad request and recieves the set of ad sources. 
 1. Basing on the creative the GAM Event Handler decides whether it's a Prebid Ad or no.
 1. The winner is displayed in the App with the respective rendering engine - prebid or GAM. GAM event handler manages the ad views.
 
-GAM Event Handlers determines that Prebid won basing on the next GAM features:
+GAM Event Handlers determines if a Prebid Line Item was selected in the ad server using the following GAM features:
 
 - [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) for the display and video ads. It means that creative should contain App Event tag.
 - [VAST Metadata Changes](https://firebase.google.com/docs/reference/swift/googlemobileads/api/reference/Classes/GADRewardedAd#admetadatadelegate) for the Rewarded Video. It means that VAST should contain special metainformation.
@@ -86,7 +86,7 @@ Make sure that you use correct creatives. For now, If the prebid Line Item conta
 
 ![How Prebid Mobile Works]({{site.baseurl}}/assets/images/prebid-mobile/rendering/prebid-in-app-bidding-overview-mopub.png){: .pb-lg-img :}
 
-1. Prebid SDK makes a bid request. 
+1. Prebid SDK makes a bid request to Prebid Server. 
 2. Prebid Server runs the header bidding auction among preconfigured demand partners.
 1. Prebid SDK sets up the targeting keywords into the MoPub's ad unit.
 1. MoPub SDK makes an ad request. 
