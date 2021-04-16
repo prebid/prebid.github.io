@@ -379,7 +379,7 @@ Any identity vendor's details in local storage will be sent over to Prebid Serve
 
 ### Prebid SDK API Access
 
-Prebid SDK supports passing an array of UserID(s) at auction time ing the field setExternalUserIds, that is globably scopped. It is sufficient enough to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+Prebid SDK supports passing an array of UserID(s) at auction time in the field setExternalUserIds, that is globably scopped. It is sufficient enough to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
 
 
 ```java
