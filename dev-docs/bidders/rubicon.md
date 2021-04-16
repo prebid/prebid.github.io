@@ -48,7 +48,7 @@ The following video parameters are supported here so publishers may fully declar
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | context | required | instream or outstream |"outstream" | string | 
-| playerSize| required | width x height of the player in pixels | [640,360] - will be tranlslated to w and h in bid request | array<integers> |
+| playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
 | mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
 | protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
 | api | required | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  array<integers> |
@@ -66,7 +66,7 @@ The following video parameters are supported here so publishers may fully declar
 
 #### bids.params.video
 
-The following Rubicon sspecific video parameters are supported:
+The following Rubicon specific video parameters are supported:
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
@@ -75,7 +75,7 @@ The following Rubicon sspecific video parameters are supported:
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
 {: .alert.alert-warning :}
-For Prebid.js 2.5 and later, the Rubicon adapter has greater support in MediaTypes. See the example below.
+For Prebid.js 2.5 and later, the Rubicon adapter has greater support in MediaTypes.
 
 Here's a video example for Prebid.js 2.5 or later:
 
@@ -107,7 +107,7 @@ var videoAdUnit = {
 };
 ```
 
-This example adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols, maxduration, linearity, and api are not required.
+This example adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols and api are not required.
 
 We recommend discussing video demand with your Rubicon Project account representative.
 
@@ -116,7 +116,28 @@ Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/
 
 #### Outstream Video
 
-Rubicon Project supports outstream video:
+Rubicon Project supports outstream video either by returning an outstream renderer if a publisher does not have their own player or simply returning outstream responses to publishers that do own a player. 
+
+#### Outstream Renderer
+
+The Rubicon outstream renderer is a JavaScript tag that will load our Outstream video player and render it when it is 50% or more in view for the user, pause when it’s more than 50% out of view, and close when the ad has completed playing.
+
+The renderer appearance can be configured with the following parameters, all of them are optional. If any parameter is missing, the default value will be used. All options are case-sensitive. Unknown options will be ignored. Additional advanced options are available by calling your Rubicon Project account representative.
+
+```
+pbjs.setConfig({
+  rubicon: {
+    rendererConfig: {
+      align: 'center',   // player placement: left|center|right (default is center)
+      position: 'append'   // player position relative to ad unit: append|prepend|before|after (default is after)
+      closeButton: true,   // display 'Close' button (default is false)
+      label: 'Advertisement',   // custom text to display above the player (default is '-')
+      collapse: true   // remove the player from the page after ad playback (default is true)
+    }
+  }
+});
+```
+
 
 * Rubicon Project does not make concurrent banner and video requests. The Rubicon adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
