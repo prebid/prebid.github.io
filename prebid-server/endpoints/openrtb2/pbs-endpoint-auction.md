@@ -113,7 +113,7 @@ Prebid Server recognizes several standard OpenRTB2.5 fields.
 #### Currency
 
 The `cur` field is read and the first element of the array is taken to be the
-"Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html). 
+"Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html).
 
 #### Expiration
 
@@ -170,14 +170,14 @@ This flag triggers Prebid Server to dump additional debug info into the OpenRTB 
 Prebid Server reads the OpenRTB privacy fields:
 
 - regs.coppa
-- regs.ext.gdpr 
+- regs.ext.gdpr
 - regs.ext.us_privacy
 - user.ext.consent
 - device.lmt
 
 #### Other OpenRTB Fields
 
-Prebid Server doesn't do any special processing on any other fields, but passes them 
+Prebid Server doesn't do any special processing on any other fields, but passes them
 all to the bid and analytics adapters.
 
 ### OpenRTB Extensions
@@ -261,7 +261,7 @@ One of "includewinners" or "includebidderkeys" must be true (both default to tru
 
 The parameter "includeformat" indicates the type of the bid (banner, video, etc) for multiformat requests. It will add the key `hb_format` and/or `hb_format_{bidderName}` as per "includewinners" and "includebidderkeys" above.
 
-MediaType PriceGranularity (PBS-Java only) - when a single OpenRTB request contains multiple impressions with different mediatypes, or a single impression supports multiple formats, the different mediatypes may need different price granularities. If `mediatypepricegranularity` is present, `pricegranularity` would only be used for any mediatypes not specified. 
+MediaType PriceGranularity (PBS-Java only) - when a single OpenRTB request contains multiple impressions with different mediatypes, or a single impression supports multiple formats, the different mediatypes may need different price granularities. If `mediatypepricegranularity` is present, `pricegranularity` would only be used for any mediatypes not specified.
 
 ```
 {
@@ -418,6 +418,7 @@ To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
     }
   }
 });
+```
 
 #### Bidder Response Times
 
@@ -647,6 +648,34 @@ Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid
 }
 ```
 
+#### EID Permissions
+
+Publishers can constrain which bidders receive which user.ext.eids entries. See the [Prebid.js user ID permissions](/dev-docs/modules/userId.html#permissions) reference for background.
+
+```
+{
+    ext: {
+        prebid: {
+            data: {
+                eidpermissions: [   // prebid server will use this to filter user.ext.eids
+                   {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
+                   {"source": "neustar.biz", "bidders": ["bidderB"]},
+                   {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
+                ]
+            }
+        }
+    }
+}
+```
+
+ext.prebid.data.eidpermissions is an array of objects that can contain these attributes:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| source | Yes | Which user.ext.eids.source is receiving the permissions | "sharedid.org" | string |
+| bidders | Yes | Which bidders are allowed to receive the named eid source | ["bidderA", "bidderC"] | array of strings |
+
 #### Rewarded Video (PBS-Java only)
 
 Rewarded video is a way to incentivize users to watch ads by giving them 'points' for viewing an ad. A Prebid Server
@@ -741,7 +770,7 @@ In contrast to what's outlined above, this approach lets some real auctions take
                   { "bidder": "BidderA", "id": "333333" },
                   { "bidder": "BidderB", "id": "444444" },
              ]
-           } 
+           }
       }
     },
     {
@@ -752,7 +781,7 @@ In contrast to what's outlined above, this approach lets some real auctions take
                   { "bidder": "BidderA", "id": "5555555" },
                   { "bidder": "BidderB", "id": "6666666" },
              ]
-           } 
+           }
       }
     }
   ]
@@ -804,9 +833,9 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
          }
     },
     "user": {
-        "keywords": "", 
-        "gender": "", 
-        "yob": 1999, 
+        "keywords": "",
+        "gender": "",
+        "yob": 1999,
         "geo": {},
         "ext": {
             data: { GLOBAL USER DATA }  // only seen by bidders named in ext.prebid.data.bidders[]
@@ -832,6 +861,104 @@ Prebid Server enforces the data permissioning. So before passing the values to t
     1. copy other objects as normal
 
 Each adapter must be coded to read the values from these locations and pass it to their endpoints appropriately.
+
+#### MultiBid (PBS-Java only)
+
+By default, Prebid Server returns one bid from each bidder for each impression object.
+With the 'multibid' feature, the request can specify that certain bidders are allowed to
+supply more than one bid response.
+
+The extension is `ext.prebid.multibid`:
+
+```
+{
+  ...
+  ext: {
+    prebid: {
+      multibid: [{
+        bidder: "bidderA",
+        maxbids: 2,
+        targetbiddercodeprefix: "bidA"
+      },{
+        bidder: "bidderB",
+        maxbids: 3,
+        targetbiddercodeprefix: "bidB"
+      },{
+        bidders: ["bidderC", "bidderD"]
+        maxbids: 2
+      }]
+    }
+  }
+}
+```
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| bidder | Yes, unless bidders is specified | bidder adapter code | 'bidderA' | string |
+| bidders | Yes, unless bidder is specified | bidder adapter codes | ['bidderB','bidderC'] | array of strings |
+| maxbids | Yes | The number of bids the named bidder(s) can supply. Max of 9. | 2 | integer |
+| targetbiddercodeprefix | No | An alternate (short) bidder code to send to the ad server. A number will be appended, starting from 2, e.g. hb_pb_PREFIX2. If not provided, the extra bids will not go to the ad server. | `'bidA'` | string |
+
+So for example, if a request came in with the above ext.prebid.multibid, and bidderA supplies 3 bids, the system would limit them to the first 2 and the output would look like:
+
+```
+{
+seatbid: [{
+  seat: "bidderA",
+  bid: [{
+    id: "bid1",
+    impid: "imp1",
+    price: 1.04,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidderA: 1.00
+            },
+            targetbiddercode: "bidderA"
+        }
+    }
+    ...
+  },{
+    id: "bid2",
+    impid: "imp1",   // same imp as above
+    price:0.8,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidA2: 0.50
+            },
+            targetbiddercode: "bidA2"
+        }
+    }
+    ...
+  }]
+},{
+  seat: "bidderC",
+  bid: [{
+    id: "bid1",
+    impid: "imp1",
+    price: 1.17,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidderC: 1.10
+            },
+            targetbiddercode: "bidderC"
+        }
+    }
+
+    ...
+  },{
+    id: "bid2",
+    impid: "imp1",
+    // no targeting on extra bids for this bidder because
+    // targetbiddercodepattern wasn't specified in ext.prebid.multibid
+    ...
+    },{
+}]
+}
+```
 
 #### Custom Targeting (PBS-Java only)
 
@@ -890,6 +1017,88 @@ In order to pull AMP parameters out into targeting, Prebid Server places AMP que
 	    }
 	}
     }
+```
+
+#### MultiBid (PBS-Java only)
+
+Allows a single bidder to bid more than once into an auction and have extra bids passed
+back to the client.
+
+See the [Prebid.js MultiBid Module](/dev-docs/modules/multibid.html) for background information and use cases.
+
+The Prebid extension to the OpenRTB protocol is `ext.prebid.multibid`. For example:
+
+```
+{
+  ext: {
+    prebid: {
+      multibid: [{
+        bidder: "bidderA",
+        maxbids: 2,
+        targetbiddercodeprefix: "bidA"
+      },{
+        bidder: "bidderB",
+        maxbids: 3,
+        targetbiddercodeprefix: "bidB"
+      },{
+        bidders: ["bidderC", "bidderD"]
+        maxbids: 2
+      }]
+    }
+  }
+}
+```
+
+MultiBid parameter details:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| bidder | Yes, unless bidders is specified | A biddercode | `'bidderA'` | string |
+| bidders | Yes, unless bidder is specified | Multiple biddercodes | `['bidderB','bidderC']` | array of strings |
+| maxBids | Yes | The number of bids the named bidder(s) can supply. Max of 9. | `2` | integer |
+| targetBiddercodePrefix | No | An alternate (short) bidder code to send to the ad server. A number will be appended, starting from 2, e.g. hb_pb_PREFIX2. If not provided, the extra bids will not go to the ad server. | `'bidA'` | string |
+
+Prebid Server core does the following when it sees `ext.prebid.multibid`:
+
+1. Before sending the request to bid adapters, it removes all entries from the multibid array except the one for that particular bid adapter. This lets the bid adapters be aware of how many bids they're going to be allowed to submit into the auction.
+2. Lets any additional bids through the OpenRTB response on `seatbid[].bid[]`.
+3. Adds the additional specified targeting on `seatbid[].bid[].ext.prebid.targeting` and repeats the biddercode used for targeting on `seatbid[].bid[].ext.prebid.targetbiddercode`.
+
+Here's an example response:
+```
+{
+seatbid: [{
+  seat: "bidderA",
+  bid: [{
+    id: "bid1",
+    impid: "imp1",
+    price: 1.04,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidderA: 1.00
+            },
+            targetbiddercode: "bidderA"
+        }
+    }
+    ...
+  },{
+    id: "bid2",
+    impid: "imp1",   // same imp as above
+    price:0.8,
+    ext: {
+        prebid: {
+            targeting: {
+                hb_pb_bidA2: 0.50
+            },
+            targetbiddercode: "bidA2"
+        }
+    }
+    ...
+  }]
+}]
+}
 ```
 
 ### OpenRTB Ambiguities
