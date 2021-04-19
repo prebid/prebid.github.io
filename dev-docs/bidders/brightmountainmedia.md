@@ -3,7 +3,7 @@ layout: bidder
 title: Bright Mountain Media
 description: Prebid Bright Mountain Media Bidder Adapter
 pbjs: true
-biddercode: brightmountainmedia
+biddercode: bmtm
 media_types: banner
 ---
 
