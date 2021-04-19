@@ -3,6 +3,7 @@ layout: bidder
 title: Outbrain
 description: Outbrain Prebid Bidder Adapter
 biddercode: outbrain
+aliasCode: zemanta
 gdpr_supported: true
 gvl_id: 164
 usp_supported: true
