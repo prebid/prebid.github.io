@@ -20,7 +20,7 @@ sidebarType : 1
 Instream tracking module allows Analytics Adapters and Bid Adapters to track `BID_WON` events for Instream video bids.
 
 {: .alert.alert-warning :}
-This module uses `window.getEntriesByType('resource')` to check the presence of Video Cache URL.
+This module uses `window.performance.getEntriesByType('resource')` to check the presence of Video Cache URL.
 
 ## Configuration
 

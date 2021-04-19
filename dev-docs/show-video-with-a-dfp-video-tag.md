@@ -193,7 +193,7 @@ If you have [set up your ad server line items and creatives correctly]({{site.ba
 Below, find links to end-to-end "working examples" integrating Prebid.js demand with various video players:
 
 ### Using client-side adapters
-
++ [Akamai AMP]({{site.github.url}}/examples/video/instream/akamai/pb-ve-amp.html)
 + [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
 + [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
 + [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)

@@ -7,7 +7,6 @@ usp_supported: true
 pbjs: true
 biddercode: pxyz
 prevBiddercode: playgroundxyz
-aliasBiddercode: playgroundxyz
 ---
 
 ### Bid Params

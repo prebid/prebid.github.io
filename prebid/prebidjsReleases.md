@@ -16,7 +16,17 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
-| 4.8 | GDPR updates around modules and storage manager. |
+| 4.25 | Extended ID permissions |
+| 4.24 | Support Multiple Prebid Servers |
+| 4.23 | Added skipPbsAliasing feature |
+| 4.22 | Improve US Privacy API behavior in iframe |
+| 4.17 | Added [getNoBidsForAdUnitCode()](/dev-docs/publisher-api-reference.html#module_pbjs.getNoBidsForAdUnitCode) function |
+| 4.16 | Bug fix: delete pubcommon test cookie, fix auctionDelay for user ID submodules with callbacks |
+| 4.15 | MediaType-specific renderers, added auctionOptions.secondaryBidders |
+| 4.13 | Floors Module: update to include floorMin |
+| 4.11 | targetingControls.allowTargetingKeys feature |
+| 4.10 | PubProvided Id UserId Submodule |
+| 4.8 | GDPR updates around modules and storage manager |
 | 4.6 | Removed cmpuishown event for TCF2 logic |
 | 4.5 | Price Floors: Add bid object into cpmAdjustment function |
 | 4.4 | DFP Video Module supports VAST 4 |

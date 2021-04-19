@@ -6,7 +6,6 @@ biddercode: adform
 media_types: banner, video
 gdpr_supported: true
 usp_supported: true
-tcf2_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
