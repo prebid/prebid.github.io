@@ -2,6 +2,7 @@
 layout: bidder
 title: InteractiveOffers
 description: Prebid InteractiveOffers.com Bidder Adapter
+pbs: true
 pbjs: true
 biddercode: interactiveOffers
 gdpr_supported: false
