@@ -298,28 +298,6 @@ The messsages YML file is used to construct the message displayed on the Prebid 
 **Code Use**  
 This data file is read in the home.html file using Liquid.
 
-<a name="Partners></a>
-
-### Partners
-
-There are three locations important for adding a new partner onto the [Partners Page](/partners/partners.html)
-
-1) The logo asset in /assets/images/partners
-2) The '\_data/partners.yml' file, which has these fields:
-
-```Markdown
-- company: CompanyName
-  link: CLICK_DESTINATION
-  imgURL: /assets/images/partners/PATH_TO_LOGO
-  type: founder|leader|technology|publisher|community
-```
-
-3) The '\_includes/partners.html' file
-
-This is the Liquid script that reads the partners.yml file and draws the boxes and logos. In order to make
-the boxes look good, the `maxcols` argument to `writeDynamicTable()` has been added to any table that fewer than 4 entries.
-Once there are more than 4 entries for a given group, it's recommended to remove that argument.
-
 ## Bidder Files
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
@@ -356,3 +334,12 @@ with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode fo
 2) change the biddercode to the shorter name as it's the new preferred code
 3) add aliasCode so the Download page will pull in the right module
 4) optionally add prevBiddercode to add a note to the page about the legacy value
+
+## Algolia Search
+
+(Under construction)
+
+We use Algolia for site search. 
+
+- The configuration defining the search parameters is at https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json
+- Only elements p, th, td, li, code, and h1-h3 are indexed

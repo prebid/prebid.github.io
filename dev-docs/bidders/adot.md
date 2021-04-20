@@ -33,6 +33,42 @@ pbs: true
 | `container`       | optional                                  | Selector used for finding the element in which the video player will be displayed, e.g., `#div-1`. The `ad unit code` will be used if no `container` is provided.                                                                            | `string`         |
 | `instreamContext` | required if `video.context` is `instream` | String used to define the type of instream video. Allowed values: Pre-roll: `pre-roll`; Mid-roll: `mid-roll` ; Post-roll: `post-roll`.                                                                                                       | `string`         |
 
+#### Bid Config
+#### PublisherId
+
+You can set a publisherId using `pbjs.setBidderConfig` for the bidder `adot`
+
+#### Example
+
+```javascript
+pbjs.setBidderConfig({
+    bidders: ['adot'],
+    config: {
+        adot: {
+            publisherId: '__MY_PUBLISHER_ID__'
+        }
+    }
+});
+```
+
+#### Specific publisher path
+
+You can set a specific publisher path using `pbjs.setBidderConfig` for the bidder `adot`
+The bidrequest will add this path to the bidder endpoint
+
+#### Example
+
+```javascript
+pbjs.setBidderConfig({
+    bidders: ['adot'],
+    config: {
+        adot: {
+            publisherPath: '__MY_PUBLISHER_PATH__'
+        }
+    }
+});
+```
+
 
 ### Prebid server
 

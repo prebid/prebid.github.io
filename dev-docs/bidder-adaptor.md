@@ -163,6 +163,12 @@ If you're the type that likes to skip to the answer instead of going through a t
 
 The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`.
 
+Here are some guidelines for choosing a bidder code:
+- The bidder code must be lower case alphanumeric. The only special character allowed is underscore.
+- The bidder code must be unique - make sure none of the other bid adapters is using the same code.
+- The bidder code should be unique for the first 6 characters - this consideration helps with generating unique targeting keys for use by some ad exchanges, such as Google Ad Manager.
+- There are several reserved words that cannot be used as bidder names: all, context, data, general, prebid, and skadn.
+
 Compared to previous versions of Prebid, the new `BaseAdapter` model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the `BaseAdapter` approach defines the following entry points:
 
 * `isBidRequestValid` - Verify the the `AdUnits.bids`, respond with `true` (valid) or `false` (invalid).
@@ -360,7 +366,6 @@ The `interpretResponse` function will be called when the browser has received th
         netRevenue: true,
         ttl: TIME_TO_LIVE,
         ad: CREATIVE_BODY,
-        dealId: DEAL_ID,
         mediaType: MEDIA_TYPE,
         meta: {
             advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS],        
@@ -466,12 +471,12 @@ See below for an example implementation.  For more examples, search for `getUser
 
 ### Registering on Timeout
 
-The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end.
+The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end.
 
-Sample data received to this function:
+Sample data passed to this function:
 
 {% highlight js %}
-{
+[{
   "bidder": "example",
   "bidId": "51ef8751f9aead",
   "params": {
@@ -480,7 +485,7 @@ Sample data received to this function:
   "adUnitCode": "div-gpt-ad-1460505748561-0",
   "timeout": 3000,
   "auctionId": "18fd8b8b0bd757"
-}
+}]
 {% endhighlight %}
 
 ### Registering on Bid Won

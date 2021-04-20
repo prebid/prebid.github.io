@@ -8,6 +8,7 @@ media_types: video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+prebid_member: true
 ---
 
 ### Bid Params

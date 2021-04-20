@@ -122,7 +122,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
 	    data: {
-                pbAdSlot: "homepage-top-rect",
+                pbadslot: "homepage-top-rect",
                 adUnitSpecificAttribute: "123"
             }
         }
