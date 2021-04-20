@@ -31,7 +31,6 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `accountId`    | required           | The publisher account ID                                                                                                    | `4934`                                                                            | `integer`         |
 | `siteId`       | required           | The site ID                                                                                                                 | `13945`                                                                           | `integer`         |
 | `zoneId`       | required           | The zone ID                                                                                                                 | `23948`                                                                           | `integer`         |
-| `sizes`        | optional           | Array of Rubicon Project size IDs. If not specified, the system will try to convert from the AdUnit's mediaTypes.banner.sizes.        | `[15]`                                                                              | `Array<integer>` |
 | `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
 | `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
 | `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
@@ -41,24 +40,42 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `keywords`     | optional           | Deprecated - please use the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.keywords. This is a legacy parameter that only works for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. The order of precedence for banner is: params.keywords, AdUnit.fpd.context.data.keywords, config.fpd.keywords. | `['travel', 'tourism']`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
 
-<a name="rubicon-video"></a>
+#### mediaTypes.video
 
-#### Video
-
-The following video parameters are supported:
+The following video parameters are supported here so publishers may fully declare their video inventory:
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| `playerWidth`  | optional | Video player width in pixels. If not specified, takes width set in mediaTypes.video.playerSize                                                                                                                                                                             | `'640'` | `string`  |
-| `playerHeight` | optional | Video player height in pixels. If not specified, takes height set in mediaTypes.video.playerSize                                                                                                                                                                            | `'360'` | `string`  |
-| `size_id`      | optional for Prebid.js, required for Prebid Server |  Integer indicating the Rubicon Project video ad format ID. If not set, Prebid.js can infer from mediaTypes.video.context | `201`   | `integer` |
+| context | required | instream or outstream |"outstream" | string | 
+| playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
+| mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
+| protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
+| api | required | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  array<integers> |
+| maxduration | recommended | Maximum video ad duration in seconds. | 30 | integer |
+| minduration | recommended | Minimum video ad duration in seconds | 6 | integer |
+| playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| [2]| array<integers> |
+| skip | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes. | 1 | integer |
+| skipafter| optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 6 | integer|
+| minbitrate | optional | Minimum bit rate in Kbps. | 300 | integer |
+| maxbitrate | optional | Maximum bit rate in Kbps. | 9600 | integer |
+| startdelay* | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.<br /> >0: Mid-Roll (value indicates start delay in second)<br /> 0: Pre-Roll<br />-1: Generic Mid-Roll<br />-2: Generic Post-Roll | 0 | integer |
+| placement* | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
+| | | | | |
+
+
+#### bids.params.video
+
+The following Rubicon specific video parameters are supported:
+
+{: .table .table-bordered .table-striped }
+| Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
+|----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
+| `size_id`      | optional for Prebid.js, required for Prebid Server |  Integer indicating the Rubicon Project video ad format ID. If not set, Prebid.js can infer from mediaTypes.video.context, placement, startDelay | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
 {: .alert.alert-warning :}
-For Prebid.js 2.5 and later, the Rubicon Project adapter for video requires more parameters in the AdUnit's `mediaTypes.video` definition than required for version 2.4 and earlier. 
-We are requiring these parameters for publishers to fully declare their video inventory to be transparent to bidders, getting the best chance at a high value and technically compatible bid.
-Specifically, we're requiring: `mimes`, `protocols`, `maxduration`, `linearity`, and `api`. See the example below.
+For Prebid.js 2.5 and later, the Rubicon adapter has greater support in MediaTypes.
 
 Here's a video example for Prebid.js 2.5 or later:
 
@@ -90,43 +107,38 @@ var videoAdUnit = {
 };
 ```
 
-This example adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols, maxduration, linearity, and api are not required.
+This example adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols and api are not required.
 
 We recommend discussing video demand with your Rubicon Project account representative.
 
-Lists of api, protocol, and linearity values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation, copied here for convenience:
-
-##### api
-
-+ `1` : VPAID 1.0
-+ `2` : VPAID 2.0
-+ `3` : MRAID 1.0
-+ `4` : ORMMA
-+ `5` : MRAID 2.0
-+ `6` : MRAID 3.0
-
-##### linearity
-+ `1` : Linear / In-Stream
-+ `2` : Non-Linear / Overlay
-
-##### protocols
-+ `1` : VAST 1.0
-+ `2` : VAST 2.0
-+ `3` : VAST 3.0
-+ `4` : VAST 1.0 Wrapper
-+ `5` : VAST 2.0 Wrapper
-+ `6` : VAST 3.0 Wrapper
-+ `7` : VAST 4.0
-+ `8` : VAST 4.0 Wrapper
-+ `9` : DAAST 1.0
-+ `10` : DAAST 1.0 Wrapper
+Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation as referenced above.
 
 
 #### Outstream Video
 
-Rubicon Project supports outstream video with these restrictions:
+Rubicon Project supports outstream video either by returning an outstream renderer if a publisher does not have their own player or simply returning outstream responses to publishers that do own a player. 
 
-* The publisher must [provide their own renderer](/dev-docs/show-outstream-video-ads.html#renderers).
+#### Outstream Renderer
+
+The Rubicon outstream renderer is a JavaScript tag that will load our Outstream video player and render it when it is 50% or more in view for the user, pause when it’s more than 50% out of view, and close when the ad has completed playing.
+
+The renderer appearance can be configured with the following parameters, all of them are optional. If any parameter is missing, the default value will be used. All options are case-sensitive. Unknown options will be ignored. Additional advanced options are available by calling your Rubicon Project account representative.
+
+```
+pbjs.setConfig({
+  rubicon: {
+    rendererConfig: {
+      align: 'center',   // player placement: left|center|right (default is center)
+      position: 'append'   // player position relative to ad unit: append|prepend|before|after (default is after)
+      closeButton: true,   // display 'Close' button (default is false)
+      label: 'Advertisement',   // custom text to display above the player (default is '-')
+      collapse: true   // remove the player from the page after ad playback (default is true)
+    }
+  }
+});
+```
+
+
 * Rubicon Project does not make concurrent banner and video requests. The Rubicon adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
 ### Configuration
