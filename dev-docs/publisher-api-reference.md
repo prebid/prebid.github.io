@@ -2592,6 +2592,19 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+<a name="setConfig-maxNestedIframes" />
+
+#### maxNestedIframes
+
+Prebid.js will loop upward through nested iframes to find the top-most referrer. This setting limits how many iterations
+it will attempt before giving up and not setting referrer.
+
+```
+pbjs.setConfig({
+    maxNestedIframes: 5   // default is 10
+});
+```
+
 <a name="setConfig-realTimeData" />
 
 #### Real-Time Data Modules
