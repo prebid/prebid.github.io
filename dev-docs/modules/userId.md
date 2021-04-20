@@ -902,6 +902,36 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### NextRoll ID
+
+NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID is a cookieless identifier built from NextRoll’s proprietary identity graph. Publishers, ad tech platforms, and NextRoll’s brands (AdRoll and RollWorks) leverage the NextRoll ID to access unique demand in cookieless environments. The NextRoll ID respects user privacy preferences and enables users to opt out through multiple web based mechanisms found in [Section 8 of NextRoll’s Privacy Policy](https://nextroll.com/privacy#service-8).
+
+#### NextRoll ID Registration
+
+To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
+
+#### NextRoll ID Configuration
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=nextrollIdSystem
+
+Enable the module in configuration, with your Partner ID:
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "nextrollId",
+            params: {
+                partnerId: 'YOUR_PARTNER_ID'
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Novatiq Snowflake ID
 
 Novatiq proprietary dynamic snowflake ID is a unique, non sequential and single use identifier for marketing activation. Our in network solution matches verification requests to telco network IDs, safely and securely inside telecom infrastructure. Novatiq snowflake ID can be used for identity validation and as a secured 1st party data delivery mechanism.
@@ -1563,6 +1593,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | merkleID | Merkle | bidRequest.userId.merkleId | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
+| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
