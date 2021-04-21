@@ -84,7 +84,7 @@ adapters:
     pbs-enforces-ccpa: true
     modifying-vast-xml-allowed: true
     deprecated-names:
-    aliases:
+    aliases: {}
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -123,6 +123,63 @@ The url of your user syncer can make use of the following privacy policy macros 
 - `{%raw%}{{gdpr_consent}}{%endraw%}`: Client's GDPR TCF consent string.
 
 - Change the `usersync:type` value to `redirect` or `iframe` specific to your bidder.
+
+### Create bidder alias
+If you want to add bidder that is an alias of existing bidder, you need just to update configuration of parent bidder:
+
+Example of adding bidder alias:
+```yaml
+adapters:
+  {bidder}:
+    enabled: false
+    endpoint: http://possible.endpoint
+    pbs-enforces-gdpr: true
+    pbs-enforces-ccpa: true
+    modifying-vast-xml-allowed: true
+    deprecated-names:
+    aliases: 
+      {bidderAlias}:
+        endpoint: http://possible.alias/endpoint
+        app-media-types:
+          - banner
+          - video
+        site-media-types:
+          - banner
+          - video
+        usersync:
+          cookie-family-name: {bidderAlias}
+    meta-info:
+      maintainer-email: maintainer@email.com
+      app-media-types:
+        - banner
+        - video
+        - audio
+        - native
+      site-media-types:
+        - banner
+        - video
+        - audio
+        - native
+      supported-vendors:
+      vendor-id: your_vendor_id
+    usersync:
+      url: your_bid_adapter_usersync_url
+      redirect-url: /setuid?bidder={bidder}&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
+      cookie-family-name: {bidder}
+      type: redirect
+      support-cors: false
+```
+
+Aliases are configured by adding child configuration object at `adapters.{bidder}.aliases.{bidderAlias}`
+
+Aliases support the same configuration options that their bidder counterparts support except `aliases` (i.e. it's not possible
+to declare alias of an alias). 
+
+{: .alert.alert-warning :}
+**Aliases cannot declare support for media types not supported by their parent bidders**<br />
+However aliases could narrow down media types they support.<br />
+For example: if the bidder is written to not support native site requests, then an alias cannot magically decide to change that;
+However, if a bidder supports native site requests, and the alias does not want to for some reason, it has the ability to remove that support.
 
 ### Bidder Parameters
 
