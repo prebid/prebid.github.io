@@ -3,6 +3,7 @@ layout: bidder
 title: adriver
 description: Adriver adapter
 biddercode: adriver
+pbjs: true
 bidder_supports_deals: true
 ---
 
