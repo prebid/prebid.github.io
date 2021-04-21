@@ -5,7 +5,6 @@ description: Prebid SpotX Bidder Adaptor
 biddercode: spotx
 media_types: no-display, video
 gdpr_supported: true
-tcf2_supported: true
 userIds: id5Id, pubCommonId, unifiedId
 prebid_member: true
 schain_supported: true
@@ -13,7 +12,13 @@ usp_supported: true
 safeframes_ok: false
 pbjs: true
 gvl_id: 165
+pbjs_version_notes: avoid 4.31-4.35
 ---
+
+### Note:
+
+There was an issue in the SpotX adapter in PBJS 4.31 that assumed all publishers had already set the [`ignoreVideoCacheKey`](/dev-docs/publisher-api-reference.html#setConfig-vast-cache).
+Publishers using SpotX that haven't yet updated their ad server line items and turned on the ignoreVideoCacheKey option should avoid Prebid.js 4.31 - 4.35.
 
 ### Bid Params
 
