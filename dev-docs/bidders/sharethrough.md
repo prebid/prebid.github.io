@@ -4,6 +4,7 @@ title: Sharethrough
 biddercode: sharethrough
 description: Prebid Sharethrough Adaptor
 gdpr_supported: true
+coppa_supported: true
 media_types: native
 schain_supported: true
 tcf2_supported: true
