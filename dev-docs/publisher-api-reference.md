@@ -73,7 +73,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
-  * [installedModules](#installedModules)
+  * [.installedModules](#installedModules)
 
 Functions added by optional modules
 
