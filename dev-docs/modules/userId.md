@@ -219,11 +219,11 @@ For assistance setting up your module, please contact us at prebid@dmdconnects.c
 Add the DMD ID to your Prebid.js Package with:
 
 {: .alert.alert-info :}
-gulp build --modules=dmdIdSystem
+gulp build --modules=userId,dmdIdSystem
 
 #### DMD ID Registration
 
-Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to request your `partnerId`
+Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to request your `api_key`
 
 #### DMD ID Configuration
 
@@ -232,7 +232,7 @@ Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to r
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of Module | `"dmdId"` |
 | params | Required | Object | Container of all module params. |  |
-| params.partnerId | Required | String | This is your `partnerId` as provided by DMD Marketing Corp. | `123-45-67AK89` |
+| params.api_key | Required | String | This is your `api_key` as provided by DMD Marketing Corp. | `3fdbe297-3690-4f5c-9e11-ee9186a6d77c` |
 
 #### DMD ID Example
 
@@ -242,7 +242,7 @@ pbjs.setConfig({
         userIds: [{
             name: 'dmdId',
             params: {
-                partnerId: '123-45-67AK89' // provided to you by DMD
+                api_key: '3fdbe297-3690-4f5c-9e11-ee9186a6d77c' // provided to you by DMD
             }
         }]
     }
