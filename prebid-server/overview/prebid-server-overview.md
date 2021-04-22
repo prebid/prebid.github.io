@@ -12,7 +12,7 @@ Prebid Server is an open-source solution for server-to-server header bidding. It
 
 ![Prebid Server Architecture](/assets/images/flowcharts/prebid-server/pbs-basic-flow.png){:class="pb-xlg-img"}
 
-Prebid Server is an intelligent proxy server with a growing list of features. At a high level, it works like this:
+Prebid Server is a header bidding server with a growing list of features. At a high level, it works like this:
 
 1. Prebid Server completes and validates incoming requests
   - Resolves dynamic stored requests
@@ -36,7 +36,7 @@ Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that
 
 ### Hosted
 
-The simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members](/prebid-server/hosting/hosted-servers.html) host up-to-date server software with a global footprint, and provide tools to manage stored requests.
+The simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) host up-to-date server software with a global footprint, and provide tools to manage stored requests.
 
 ### DIY
 
@@ -53,7 +53,7 @@ To choose between them, see the [Prebid Server version overview](/prebid-server/
 
 We've provided a [full list of Prebid Server bidders](/dev-docs/pbs-bidders.html), including various details about those bidders, such as media types supported and contact info.
 
-If you're a demand source, we also have information about [creating your own server-side adapter](/prebid-server/bidders/pbs-build-a-bid-adapter.html).
+If you're a demand source, we also have information about [creating your own server-side adapter](/prebid-server/developers/add-new-bidder-go.html).
 
 ## Where to Find Help
 

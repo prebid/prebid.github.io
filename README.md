@@ -6,6 +6,7 @@ Please see the sections below for more information.
 + [License](#license)
 + [Prerequisites](#prerequisites)
 + [Running Jekyll Locally](#running-jekyll-locally)
++ [Building Assets](#building-assets)
 + [The Downloads Page](#the-downloads-page)
 + [Thanks](#thanks)
 
@@ -38,6 +39,12 @@ The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](ht
 1. gem install github-pages
 1. start Jekyll as described below
 
+For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
+
+1. follow the instructions at https://nodejs.dev to install Node.js for your OS
+1. `npm install` to install packages for building assets
+1. build assets as described below
+
 <a name="running-jekyll-locally" />
 
 ## Running Jekyll Locally
@@ -67,6 +74,14 @@ Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml
 ```
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
+
+<a name="building-assets"/>
+
+## Building Assets
+
+- `npm run dev` to build unminified CSS for development
+- `npm run prod` to build minified CSS for production
+- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
 
 ## The Downloads Page
 

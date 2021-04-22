@@ -9,7 +9,7 @@ title: Prebid Server | Developers | Code Reviews
 
 ## Standards
 Anyone is free to review and comment on any [open pull requests](https://github.com/prebid/prebid-server/pulls).
-for either [PBS-Go](https://github.com/prebid/prebid-server/pulls) or [PBS-Java](https://github.com/rubicon-project/prebid-server-java/pulls)
+for either [PBS-Go](https://github.com/prebid/prebid-server/pulls) or [PBS-Java](https://github.com/prebid/prebid-server-java/pulls)
 
 All pull requests must be reviewed and approved by at least one core member before merge.
 
