@@ -77,14 +77,14 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 
 ```yaml
 adapters:
-  {bidder}:
+  yourBidderCode:
     enabled: false
     endpoint: http://possible.endpoint
     pbs-enforces-gdpr: true
     pbs-enforces-ccpa: true
     modifying-vast-xml-allowed: true
     deprecated-names:
-    aliases: {}
+    aliases:
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -101,8 +101,8 @@ adapters:
       vendor-id: your_vendor_id
     usersync:
       url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder={bidder}&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
-      cookie-family-name: {bidder}
+      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
+      cookie-family-name: yourBidderCode
       type: redirect
       support-cors: false
 ```
@@ -130,7 +130,7 @@ If you want to add bidder that is an alias of existing bidder, you need just to 
 Example of adding bidder alias:
 ```yaml
 adapters:
-  {bidder}:
+  yourBidderCode:
     enabled: false
     endpoint: http://possible.endpoint
     pbs-enforces-gdpr: true
@@ -138,7 +138,7 @@ adapters:
     modifying-vast-xml-allowed: true
     deprecated-names:
     aliases: 
-      {bidderAlias}:
+      yourBidderAlias:
         endpoint: http://possible.alias/endpoint
         app-media-types:
           - banner
@@ -147,7 +147,7 @@ adapters:
           - banner
           - video
         usersync:
-          cookie-family-name: {bidderAlias}
+          cookie-family-name: yourBidderCode
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -164,13 +164,13 @@ adapters:
       vendor-id: your_vendor_id
     usersync:
       url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder={bidder}&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
-      cookie-family-name: {bidder}
+      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
+      cookie-family-name: yourBidderCode
       type: redirect
       support-cors: false
 ```
 
-Aliases are configured by adding child configuration object at `adapters.{bidder}.aliases.{bidderAlias}`
+Aliases are configured by adding child configuration object at `adapters.yourBidderCode.aliases.yourBidderAlias`
 
 Aliases support the same configuration options that their bidder counterparts support except `aliases` (i.e. it's not possible
 to declare alias of an alias). 
