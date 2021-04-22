@@ -33,10 +33,11 @@ Find out more [here](https://massplatform.net).
 {: .alert.alert-warning :}
 ## Disclosure
 
-- This module loads external JavaScript to render creatives
+This module loads external JavaScript to render creatives
 
-## Generic Mode
-- You can specify your our own renderUrl using the module configuration option. When specifying a custom renderer, quality assurance is your responsibility.
+## Custom Mode
+
+You can specify your own `dealIdPattern` and `renderUrl` by adding one or more entries into the `custom` configuration option (see [Configuration Parameters](#configuration-parameters) below). When specifying a custom renderer, quality assurance is your responsibility.
 
 ## Integration
 
@@ -55,23 +56,90 @@ pbjs.que.push(function() {
     mass: {
       enabled: true,
       renderUrl: 'https://cdn.massplatform.net/bootloader.js',
-      dealIdPattern: /^MASS/i
+      dealIdPattern: /^MASS/i,
+      custom: [
+        {
+          dealIdPattern: /xyz/,
+          renderUrl: 'https://my.domain.com/render.js',
+          namespace: 'xyz'
+        }
+      ]
     }
   });
 });
 ```
 
-Parameters details:
+### Configuration Parameters
 
-|Name |Type |Description |Default |
+|Name |Type |Description |Notes |
 | :------------ | :------------ | :------------ |:------------ |
-|enabled | Boolean |Enable/disable the module |`true` |
-|renderUrl | String |The render script to use | |
-|dealIdPattern | RegExp |The pattern used to identify MASS deal IDs |`/^MASS/i` |
+|enabled | Boolean |Enable/disable the module |Defaults to `true` |
+|dealIdPattern | RegExp |The pattern used to identify MASS deal IDs |Defaults to `/^MASS/i` |
+|renderUrl | String |The MASS render script to load |`https://cdn.massplatform.net/bootloader.js` |
+|custom | Array |Add custom renderers | |
+|custom[].dealIdPattern | RegExp |A pattern used to identify matching deal IDs |Either this parameter or `custom[].match` must be specified |
+|custom[].renderUrl | String |The render script to load |Either this parameter or `custom[].render` must be specified |
+|custom[].namespace | String |The namespace (i.e.: object) created on `window` to pass parameters to the render script |Required with `custom[].renderUrl` |
+|custom[].match | Function(bid) |A custom function to identify matching bids |Either this parameter or `custom[].dealIdPattern` must be specified |
+|custom[].render | Function(payload) |A custom function to render the matchig/winning bid |Either this parameter or `custom[].renderUrl` must be specified. The `payload` parameter contains: `payload.bid`, `payload.bidRequest`, `payload.adm` |
 
-## Example
+### Example Configurations
 
-To view an integration example:
+### Only (official) MASS support enabled
+
+```js
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    mass: {
+      renderUrl: 'https://cdn.massplatform.net/bootloader.js'
+    }
+  });
+});
+```
+
+### MASS support disabled, custom renderer enabled
+
+```js
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    mass: {
+      custom: [
+        {
+          dealIdPattern: /xyz/,
+          renderUrl: 'https://my.domain.com/render.js',
+          namespace: 'xyz'
+        }
+      ]
+    }
+  });
+});
+```
+
+### Custom `match` and `render`
+
+```js
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    mass: {
+      custom: [
+        {
+          match: function(bid) {
+            // return true/false if matching/non-matching bid
+          },
+
+          render: function(payload) {
+            console.log(payload);
+          }
+        }
+      ]
+    }
+  });
+});
+```
+
+## Integration Example
+
+To view the integration example:
  
 1) in your cli run:
 
