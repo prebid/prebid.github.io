@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Adf
+title: AdformOpenRTB
 description: Prebid Adf Bidder Adaptor
 biddercode: adf
 media_types: no-display, native
