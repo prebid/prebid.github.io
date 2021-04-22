@@ -73,6 +73,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
+  * [installedModules](#installedModules)
 
 Functions added by optional modules
 
@@ -2935,3 +2936,19 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | --- | --- | --- |
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
+
+<a name="installedModules"></a>
+
+### pbjs.installedModules
+
+When a Prebid.js package is built, the list of modules compiled
+into it are placed in the pbjs.installedModules array.
+
+e.g. if this builds the package:
+```
+gulp build --modules=a,b,c
+```
+
+pbjs.installedModules would have the value ['a','b','c'].
+
+If you happen to compile in all 400+ modules (not a good idea!), the value of pbjs.installedModules will be an empty array.
