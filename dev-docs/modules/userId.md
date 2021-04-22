@@ -24,7 +24,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 * **ID+** - a universal identity solution that aims to empower the marketing ecosystem with a privacy-compliant mechanism to overcome identity resolution challenges arising from ID fragmentation, cookie restrictions, and increasingly stringent privacy and security regulation. Powered by zeotap and built upon the extensive marketing identity graph, ID+ offers a solution for the future of marketing.
 * **ID5 Universal ID** - a neutral identifier for digital advertising that can be used by publishers, brands and ad tech platforms (SSPs, DSPs, DMPs, Data Providers, etc.) to eliminate the need for cookie matching.
 * **Identity Link** – provided by LiveRamp, this module calls out to the ATS (Authenticated Traffic Solution) library or a URL to obtain the user’s IdentityLink envelope.
-* **IntentIQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
+* **Intent IQ ID** – An identity resolution pioneer, Intent IQ enables its partners to confidently identify clients and prospects who interact with their sites, apps and their brick and mortar establishments, whether across their various screens or in person.
 * **LiveIntent ID** – a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 * **Lotame Panorama ID** - a people-based identifier available across all browsers -- including when third-party cookies are not available -- to connect and activate first, second, and third party data for programmatic advertising.
 * **Parrable ID** - an encrypted pseudonymous ID that is consistent across all browsers and webviews on a device for every publisher the device visits.  This module contacts Parrable to obtain the Parrable EID belonging to the specific device which can then be used by the bidder.
@@ -337,33 +337,54 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### IntentIQ ID
+### Intent IQ ID
 
-The IntentIQ ID solution is provided by intentiq.com.
+Intent IQ’s universal ID with its unparalleled coverage of over 80% of ad inventory, protects publishers’ ability to rely on advertising as their main revenue source while preserving user privacy in a third party cookieless world.
+
+The universal ID is an Intent IQ generated alphanumeric characters ID representing a person. This ID is not matched with personal information and remains anonymous to Intent IQ.
+
+Intent IQ universal ID enables partners - publishers, SSPs, DSPs, DMPs and advertisers to support, in a privacy-friendly way, and on a person level, core elements of the advertising business model -
+
+- Targeting across sites and devices
+- Frequency capping
+- Attribution measurement across sites and devices
+
+Intent IQ's universal ID works across IP addresses and user-agent changes.
+
+Intent IQ's universal ID truly stands out in the coverage and accuracy it provides. Intent IQ's universal ID covers over 80% of ad inventory with 90% accuracy. By contrast, third-party cookies offer 56% coverage and log-in solutions offer coverage of less than 20%.
+
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=intentIqIdSystem
 
-#### IntentIQ ID Registration
+#### Intent IQ ID Registration
 
-You can set up IntentIQ ID by contacting our operations team at [IntentIQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
+You can set up Intent IQ ID by contacting our operations team at [Intent IQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
 
-The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
+The Intent IQ ID privacy is covered under the [Intent IQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
 
-#### IntentIQ ID Configuration
+#### Intent IQ ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"intentIqId"` | `"intentIqId"` |
 | params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
-| params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
+| params.partner | Required | String | This is the partner ID value obtained from registering with Intent IQ. | `"1177538"` |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
+| storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"html5"` |
+| storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_intentIqId"` |
+| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `60` |
+| storage.refreshInSeconds | Recommended | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 
-#### IntentIQ ID Examples
+{: .alert.alert-info :}
+**NOTE:** The Intent IQ ID is encrypted with a key that changes every several hours. Demand partners utilize the latest key to decrypt the ID and use it. Therefore, to enable demand partners have an ID they can use, we highly recommend calling Intent IQ every 4 hours by setting storage.refreshInSeconds to 4 hours (4*3600 seconds)
 
-1) Publisher has a partner ID from IntentIQ and cookies.
+#### Intent IQ ID Examples
+
+1) Publisher has a partner ID from Intent IQ and cookies.
 
 {: .alert.alert-warning :}
 {% highlight javascript %}
@@ -372,20 +393,21 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456			// valid partner id
+                partner: 123456             // valid partner id
             },
             storage: {
                 type: "cookie",
-                name: "intentIqId",       // create a cookie with this name
-                expires: 60                   // cookie can last for 60 days
-            }
+                name: "intentIqId",         // create a cookie with this name
+                expires: 60,                // cookie can last for 60 days
+                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
+}
         }],
         syncDelay: 3000              // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
 
-2) Publisher supports IntentIQ and HTML5 local storage.
+2) Publisher supports Intent IQ and HTML5 local storage.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -393,12 +415,13 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456			// valid partner id
+                partner: 123456			    // valid partner id
             },
             storage: {
                 type: "html5",
-                name: "intentIqId",    // set localstorage with this name
-                expires: 60
+                name: "intentIqId",         // set localstorage with this name
+                expires: 60,
+                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
             }
         }],
         syncDelay: 3000
@@ -947,7 +970,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
-| IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
+| Intent IQ ID | Intent IQ | bidRequest.userId.intentiqid | `"1111"` |
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
