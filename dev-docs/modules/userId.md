@@ -86,7 +86,7 @@ Publishers can control which user ids are shared with the bid adapters they choo
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
-In this example the SharedId sub adapter is only allowed to be sent to the Rubicon adapter.
+In this example the SharedID sub adapter is only allowed to be sent to the Rubicon adapter.
 ```
 userIds: [
   {
@@ -1339,11 +1339,11 @@ pbjs.setConfig({
 
 
 
-### Shared ID User ID Submodule
+### SharedID User ID Submodule
 
-The Shared ID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedId.org. This module does not require any registration.
+The SharedID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedid.org. This module does not require any registration.
 
-#### Building Prebid with Shared Id Support
+#### Building Prebid with SharedID Support
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
@@ -1351,7 +1351,7 @@ ex: $ gulp build --modules=sharedIdSystem
 
 #### Prebid Params
 
-Individual params may be set for the Shared ID User ID Submodule.
+Individual params may be set for the SharedID User ID Submodule.
 ```
 pbjs.setConfig({
     userSync: {
@@ -1370,12 +1370,12 @@ pbjs.setConfig({
 });
 ```
 
-#### SharedId Configuration
+#### SharedID Configuration
 
 {: .table .table-bordered .table-striped }
 | Params under usersync.userIds[]| Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
+| name | Required | String | ID value for the SharedID module - `"sharedId"` | `"sharedId"` |
 | params | Optional | Object | Details for sharedId syncing. | |
 | params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
 | storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
@@ -1651,7 +1651,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Tapad ID | Tapad | bidRequest.userId.tapadId | `"1111"` |
-| Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
+| SharedID | Prebid | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 | MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | `"1111"` |
@@ -1746,7 +1746,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                    "atype":1
                }]
              },{
-               "source": "sharedid.org",  // Shared ID
+               "source": "sharedid.org",  // SharedID
                 "uids": [{
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                     "ext": {
