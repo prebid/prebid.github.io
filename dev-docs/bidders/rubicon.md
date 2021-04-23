@@ -67,16 +67,13 @@ The following video parameters are supported here so publishers may fully declar
 
 #### bids.params.video
 
-The following Rubicon specific video parameters are supported:
+The following Rubicon Project-specific video parameters are supported:
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `size_id`      | optional for Prebid.js, required for Prebid Server |  Integer indicating the Rubicon Project video ad format ID. If not set, Prebid.js can infer from mediaTypes.video.context, placement, startDelay | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
-
-{: .alert.alert-warning :}
-For Prebid.js 2.5 and later, the Rubicon adapter has greater support in MediaTypes.
 
 Here's a video example for Prebid.js 2.5 or later:
 
@@ -108,39 +105,39 @@ var videoAdUnit = {
 };
 ```
 
-This example adunit will also work Prebid.js 2.4 and earlier, but mimes, protocols and api are not required.
+This example adunit will also work in Prebid.js 2.4 and earlier, but mimes, protocols and api are not required.
 
-We recommend discussing video demand with your Rubicon Project account representative.
+We recommend discussing video demand with your Magnite account representative.
 
 Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation as referenced above.
 
 
 #### Outstream Video
 
-Rubicon Project supports outstream video either by returning an outstream renderer if a publisher does not have their own player or simply returning outstream responses to publishers that do own a player. 
+Magnite's Rubicon Project adapter supports outstream video in two ways: using your own renderer or using ours. See the [Prebid.org Outstream documentation](/dev-docs/show-outstream-video-ads.html) for more information on using your own renderer.
 
 #### Outstream Renderer
 
-The Rubicon outstream renderer is a JavaScript tag that will load our Outstream video player and render it when it is 50% or more in view for the user, pause when it’s more than 50% out of view, and close when the ad has completed playing.
+The Magnite outstream renderer is a JavaScript tag that will load our outstream video player and render when it is 50% or more in view, pause when it’s more than 50% out of view, and close when the ad has completed playing.
 
-The renderer appearance can be configured with the following parameters, all of them are optional. If any parameter is missing, the default value will be used. All options are case-sensitive. Unknown options will be ignored. Additional advanced options are available by calling your Rubicon Project account representative.
+The renderer appearance can be configured with the following parameters, all of them optional. If any parameter is missing, the default value will be used. All options are case-sensitive and unknown options will be ignored. Additional advanced options are available by calling your Magnite account representative.
 
 ```
 pbjs.setConfig({
   rubicon: {
     rendererConfig: {
-      align: 'center',   // player placement: left|center|right (default is center)
-      position: 'append'   // player position relative to ad unit: append|prepend|before|after (default is after)
-      closeButton: true,   // display 'Close' button (default is false)
-      label: 'Advertisement',   // custom text to display above the player (default is '-')
-      collapse: true   // remove the player from the page after ad playback (default is true)
+      align: 'center',         // player placement: left|center|right (default is center)
+      position: 'append'       // position relative to ad unit: append|prepend|before|after (default is after)
+      closeButton: true,       // display 'Close' button (default is false)
+      label: 'Advertisement',  // custom text to display above the player (default is '-')
+      collapse: true           // remove the player from the page after ad playback (default is true)
     }
   }
 });
 ```
 
 
-* Rubicon Project does not make concurrent banner and video requests. The Rubicon adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
+* The Rubicon Project adapter does not make concurrent banner and video requests. Instead, the adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
 ### Configuration
 
@@ -161,9 +158,9 @@ pbjs.setConfig({
 
 <a name="rubicon-revenue-type"></a>
 
-2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for Rubicon Project clients to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
 
-For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net). 
+For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net).
 
 It’s important to note that what the Rubicon Prebid bid adapter reports is not directly related to the setting with the Rubicon Project exchange. If you are a publisher who has set your Rubicon exchange revenue type set to ‘gross’ and you'd like the Rubicon bid adapter to also report 'gross', you can change the 2.35+ default 'net' setting in Prebid.js with:
 
