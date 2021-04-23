@@ -114,7 +114,7 @@ Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/
 
 #### Outstream Video
 
-Magnite's Rubicon Project adapter supports outstream video in two ways: using your own renderer or using ours. See the [Prebid.org Outstream documentation](/dev-docs/show-outstream-video-ads.html) for more information on using your own renderer.
+As of Prebid.js 4.37 Magnite's Rubicon Project adapter supports outstream video in two ways: using your own renderer or using ours. See the [Prebid.org Outstream documentation](/dev-docs/show-outstream-video-ads.html) for more information on using your own renderer.
 
 #### Outstream Renderer
 
