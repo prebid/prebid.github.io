@@ -269,12 +269,11 @@ pbjs.setConfig({
 
 ### Deepintent DPES ID by Deepintent
 
-The Deepintent Id  is a shared, healthcare identifier which helps publisher in absence of the 3rd Party cookie matching. Deepintent lets users protect their privacy through advertising value chain, where Healthcare identity when setting the identity takes in consideration of users choices, as well as when passing identity on the cookie itself privacy consent strings are checked. The healthcare identity when set is not stored on Deepintent's servers but is stored on users browsers itself. User can still opt out of the ads by https://option.deepintent.com/adchoices
+DeepIntent’s DPES ID is a shared user identifier built for healthcare marketers and publishers integrated within DeepIntent’s Healthcare Marketplace. The DPES ID lets users protect and manage their privacy throughout the advertising value chain. User data written and associated with the DPES ID is not stored on DeepIntent’s servers. Instead this data is stored in a decentralized way on a user’s browser. User can still opt out of the ads by navigating to https://option.deepintent.com/adchoices
 
 #### Deepintent DPES ID Registration
 
-The Deepintent DPES ID is free to use, but requires a simple registration with Deepintent. Please reach to prebid@deepintent.com to get started.
-Once publisher registers with deepintents platform for healthcare identity Deepintent provides the Tag code to be placed on the page, this tag code works to capture and store information as per publishers and users agreement. DPES User ID module uses this stored id and passes it on the deepintent prebid adapter.
+DPES ID is free to use but requires a simple registration with DeepIntent. Please reach out to DeepIntent’s Publisher Development team at prebid@deepintent.com to learn more and get started. Once a publisher registers with DeepIntent’s platform, DeepIntent will provide a simple code snippet to be integrated with the publisher’s website. This code snippet will capture and store information per the publisher’s end user agreement. The DPES User ID module uses the DPES ID by passing it within the DeepIntent prebid adapter.
 
 #### Deepintent DPES ID Configuration
 
