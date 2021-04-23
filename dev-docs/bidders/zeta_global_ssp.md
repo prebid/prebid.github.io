@@ -1,21 +1,19 @@
 ---
 layout: bidder
-title: Zeta Global
-description: Zeta Global Prebid Bidder Adapter
+title: Zeta Global Ssp
+description: Zeta Global Ssp Prebid Bidder Adapter
 pbjs: true
-biddercode: zeta_global
+biddercode: zeta_global_ssp
 bidder_supports_deals: false
 media_types: banner
 gdpr_supported: true
-tcf2_supported: true
-gvl_id: 469
+gvl_id: 833
 ---
 
 ### Registration
 
 All references to the OpenRTB spec refer to OpenRtb v2.5 (https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
 
-To use this bidder you will need a valid definerId.  For further information, please contact jzirbel@disqus.com.
 
 ### Bid Params
 
@@ -28,7 +26,7 @@ To use this bidder you will need a valid definerId.  For further information, pl
 | `device.ip`          | required | The client IP                                                                                                       | `"0.0.0.0"`  | `string`  |
 | `device.geo`         | required | The object containing geo data (See OpenRTB spec)                                                                   | `geo: {}`    | `object`  |
 | `device.geo.country` | required | The country code pertinent to the request data                                                                      | `"USA"`      | `string`  |
-| `definerId`          | required | The Definer ID from Zeta Global                                                                                     | `"12345"`    | `string`  |
+| `tags`               | optional | The object containing set of custom tags provided by publisher                                                      | `tags: {}`   | `object`  |
 | `site`               | optional | The object containing site data (See OpenRTB spec)                                                                  | `site: {}`   | `object`  |
 | `app`                | optional | The object containing app data (See OpenRTB spec)                                                                   | `app: {}`    | `object`  |
 | `test`               | optional | Flag which will induce a sample bid response when true; only set to true for testing purposes (1 = true, 0 = false) | `1`          | `integer` |

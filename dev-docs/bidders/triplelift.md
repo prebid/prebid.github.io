@@ -4,7 +4,6 @@ title: TripleLift
 description: Prebid TripleLift Bidder Adapter
 biddercode: triplelift
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -18,7 +17,6 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 28
-pbjs_version_notes: avoid 4.3 - 4.14
 ---
 
 ### Bid Params

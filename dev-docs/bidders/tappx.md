@@ -6,12 +6,12 @@ pbjs: true
 media_types: banner, video
 biddercode: tappx
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
 pbs_app_supported: true
 gvl_id: 628
+userId: all
 ---
 
 ### Registration
