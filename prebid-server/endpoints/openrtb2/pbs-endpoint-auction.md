@@ -566,7 +566,7 @@ Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid
                 }]
             },
             {
-                "source": "pubcommon",
+                "source": "pubcid.org",
                 "id":"11111111"
             }
             ]
