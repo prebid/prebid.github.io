@@ -42,6 +42,7 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**ID Import Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
 | [**MASS**](/dev-docs/modules/mass.html) | Enables the MASS protocol for Prebid and custom renderers by DealID |  
 | [**MultiBid Module**](/dev-docs/modules/multibid.html) | Allows bidders to send multiple bids to the ad server. |
+| [**Bid Viewability**](/dev-docs/modules/bidViewable.html) | Triggers an event which can be consumed by analytics and bid adapters. |
 
 ## Real-Time Data Providers
 
