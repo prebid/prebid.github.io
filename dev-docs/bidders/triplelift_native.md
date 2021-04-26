@@ -1,9 +1,23 @@
 ---
 layout: bidder
 title: TripleLift Native
-pbs: true
-media_types: native
+description: Prebid TripleLift Native Bidder Adapter
 biddercode: triplelift_native
+gdpr_supported: true
+tcf2_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+getFloor: true
+media_types: banner, video, native
+userIds: criteo, identityLink, unifiedId
+prebid_member: true
+safeframes_ok: true
+bidder_supports_deals: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
+gvl_id: 28
 ---
 
 ### Bid Params

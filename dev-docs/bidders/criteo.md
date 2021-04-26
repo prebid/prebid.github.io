@@ -7,14 +7,17 @@ biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
 usp_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
-tcf2_supported: true
+getFloor: false*
 gvl_id: 91
 ---
 ### Note
 {: .alert.alert-warning :}
 For Native Ads, in order to avoid further decoding issues of special characters, the assets need to be sent as placeholders. 
 That means, `sendId: true` becomes mandatory for all fields receiving URLs, notably: `icon`, `image`, `clickUrl`, `privacyLink`, `privacyIcon`.
+
+*Criteo currently only supports getFloor if floors are in Euros and if the publisher is enabling the Criteo Publisher Tag external js call. 
 
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 

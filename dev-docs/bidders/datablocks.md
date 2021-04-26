@@ -6,7 +6,6 @@ media_types: video
 biddercode: datablocks
 prebid_member: true
 gdpr_supported: true
-tcf2_supported: true
 ---
 
 ### Bid Params

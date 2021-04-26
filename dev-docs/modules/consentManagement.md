@@ -74,7 +74,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr | `Object` | | |
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
-| gdpr.defaultGdprScope | `boolean` | (TCF v2.0 only) Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time. | `true` |
+| gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.allowAuctionWithoutConsent | `boolean` | (TCF v1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
@@ -420,53 +420,29 @@ This should be false if there was some error in the consent data; otherwise set 
 **_cmpLoaded_**  
 This should be be set to true once the parameters listed above are processed.
 
-## Adapters Supporting TCF v1.1
+## Adapters Supporting GDPR
 
-Bidders on this list have self-declared their TCF 1.1 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true".
+Bidders on this list have self-declared their GDPR support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-var adaptersSupportingGdpr1=[];
+var adaptersSupportingGdpr=[];
 var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
     {% if item.gdpr_supported == true %}
-	adaptersSupportingGdpr1[idx_gdpr]={};
-	adaptersSupportingGdpr1[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingGdpr1[idx_gdpr].text="{{item.title}}";
+	adaptersSupportingGdpr[idx_gdpr]={};
+	adaptersSupportingGdpr[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+	adaptersSupportingGdpr[idx_gdpr].text="{{item.title}}";
 	idx_gdpr++;
     {% endif %}
 {% endfor %}
 </script>
 
-<div id="adaptersTableGdpr1">
+<div id="adaptersTableGdpr">
         <script>
-           writeDynamicTable({div: "adaptersTableGdpr1", data: "adaptersSupportingGdpr1", sort: "rowFirst", striped: false} );
-        </script>
-</div>
-
-## Adapters Supporting TCF v2.0
-
-Bidders on this list have self-declared their TCF 2.0 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "tcf2_supported: true".
-
-<script type="text/javascript">
-var adaptersSupportingGdpr2=[];
-var idx_gdpr=0;
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for item in bidder_pages %}
-    {% if item.tcf2_supported == true %}
-	adaptersSupportingGdpr2[idx_gdpr]={};
-	adaptersSupportingGdpr2[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingGdpr2[idx_gdpr].text="{{item.title}}";
-	idx_gdpr++;
-    {% endif %}
-{% endfor %}
-</script>
-
-<div id="adaptersTableGdpr2">
-        <script>
-           writeDynamicTable({div: "adaptersTableGdpr2", data: "adaptersSupportingGdpr2", sort: "rowFirst", striped: false} );
+           writeDynamicTable({div: "adaptersTableGdpr", data: "adaptersSupportingGdpr", sort: "rowFirst", striped: false} );
         </script>
 </div>
 

@@ -10,9 +10,9 @@ schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+getFloor: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
-tcf2_supported: true
 gvl_id: 69
 ---
 

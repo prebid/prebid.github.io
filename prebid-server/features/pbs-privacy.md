@@ -14,7 +14,7 @@ title: Prebid Server | Features | Privacy
 
 If PBS receives 'device.lmt' flag in the OpenRTB request, it does the following anonymization:
 
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
+- Mask take off the last byte of the IPv4 address and anonymize IPv6 addresses
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
@@ -37,12 +37,12 @@ If Prebid Server determines that the user is in GDPR scope and doesn't consent
 to *all* of the vendor's 'purposes' as declared in the Global Vendor List, it 'anonymizes'
 the request to the adapters:
 
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
+- Mask take off the last byte of the IPv4 address and anonymize IPv6 addresses
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
 
-Full details are available [here](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/PrebidServerJava_GDPR_Requirements.pdf).
+Full details are available [here](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit).
 
 ### TCF 2.0
 
@@ -92,7 +92,7 @@ this state-specific rule into a [US Privacy](https://iabtechlab.com/standards/cc
 If `regs.ext.us_privacy` is parsed to find that the user has opted-out of a "sale",
 the following anonymization steps are taken:
 
-- Mask the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
+- Mask the last byte of the IPv4 address and anonymize IPv6 addresses
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
@@ -102,3 +102,15 @@ the following anonymization steps are taken:
 Prebid Server does **not** recognize the Do-Not-Track header. The committee determined that it's obsolete in general and not supported on Safari specifically. We prefer not to implement, test, and document unsupported privacy flags. Prebid Server is not going to make a dent in the overall problems with DNT.
 
 We may reconsider this position if community members provide evidence that the flag is meaningful to their customers or lawyers.
+
+## Anonymizing IPv6 Addresses
+
+IPv6 addresses may be anonymized differently for Prebid Server host companies depending on how they've configured the server:
+
+- There's a setting to mask the network portion of the IPv6 address when anonymization is called for. It defaults to 56 bits, meaning the rightmost 8 bits of the network is removed in these scenarios.
+- There's another setting to remove a number of bits in the MAC address portion of the IPv6 address regardless of whether it's a situation that calls for explicit privacy or not. This setting defaults to removing all 64 bits of the MAC address.
+
+## Related Topics
+
+- [Prebid Server Feature Matrix](/prebid-server/features/pbs-feature-idx.html)
+- [Prebid Server GDPR Requirements](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#)
