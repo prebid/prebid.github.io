@@ -266,16 +266,13 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID</label>
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> SharedID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
 </div></div>  
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> Quantcast ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> Shared ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
