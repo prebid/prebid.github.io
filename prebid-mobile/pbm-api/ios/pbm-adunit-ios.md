@@ -42,7 +42,7 @@ Create a new Banner Ad Unit or Interstitial Ad Unit with a Prebid Server configu
 
 PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
 
-`adUnit.pbAdSlot = "/1111111/homepage/med-rect-2"`
+`adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
 
 ---
 
@@ -259,7 +259,7 @@ func clearContextData()
  func loadDFPBanner(bannerUnit : AdUnit){
 
      let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
-     bannerUnit.pbAdSlot = "/1111111/homepage/med-rect-2"`
+     bannerUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
 
     let dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
     dfpBanner.adUnitID = "/19968336/PriceCheck_300x250"

@@ -88,7 +88,7 @@ For Prebid.js-initated server requests, we've found that cookie match rates are 
 
 [AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
 
-- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html`.
+- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html` or `load-cookie-with-consent.html`.
 - Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
 - The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
 - In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
@@ -130,6 +130,9 @@ are multiple bids from a given bidder for a given imp[], here how it chooses:
 - highest CPM
 - random tiebreaker
 
+Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only), then several bid responses from the same bidder may
+be returned to the client.
+
 **Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
 
 This is only done when ext.prebid.targeting is specified.
@@ -142,3 +145,16 @@ first decision:
 - highest CPM
 - random tiebreaker
 
+## Can I host Prebid Server for myself or others?
+
+Yes. See the [PBS Hosting](/prebid-server/hosting/pbs-hosting.html) page to get started.
+
+You don't need to be a [Prebid.org member](https://prebid.org/membership/), but joining would help in case you need extra
+support with any technical hurdles.
+
+## I'm hosting Prebid Server - how can I get in the loop?
+
+The best way would be to [join Prebid.org](https://prebid.org/membership/) and
+participate in the [Prebid Server PMC](https://prebid.org/project-management-committees/).
+
+Another way is to [register for our host company mailing list](/prebid-server/hosting/pbs-hosting.html#optional-registration).
