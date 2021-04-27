@@ -49,7 +49,7 @@ There are several places where the Floor module changes the behavior of the Preb
 
 ![Floors Module Flow](/assets/images/floors/floors_flow.png)
 
-1. When building the Prebid.js package, the Floors module (and any analytics adapters) needs to be included with 'gulp build --modules=floors,...'
+1. When building the Prebid.js package, the Floors module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
 3. Bid Adapters are responsible for utilizing the getFloors() from the bidRequest object for each ad slot media type, size combination. The Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.

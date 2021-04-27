@@ -366,7 +366,6 @@ The `interpretResponse` function will be called when the browser has received th
         netRevenue: true,
         ttl: TIME_TO_LIVE,
         ad: CREATIVE_BODY,
-        dealId: DEAL_ID,
         mediaType: MEDIA_TYPE,
         meta: {
             advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS],        
@@ -472,12 +471,12 @@ See below for an example implementation.  For more examples, search for `getUser
 
 ### Registering on Timeout
 
-The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end.
+The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end.
 
-Sample data received to this function:
+Sample data passed to this function:
 
 {% highlight js %}
-{
+[{
   "bidder": "example",
   "bidId": "51ef8751f9aead",
   "params": {
@@ -486,7 +485,7 @@ Sample data received to this function:
   "adUnitCode": "div-gpt-ad-1460505748561-0",
   "timeout": 3000,
   "auctionId": "18fd8b8b0bd757"
-}
+}]
 {% endhighlight %}
 
 ### Registering on Bid Won

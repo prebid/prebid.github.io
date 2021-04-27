@@ -73,6 +73,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
+  * [.installedModules](#installedModules)
 
 Functions added by optional modules
 
@@ -1652,10 +1653,10 @@ pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
 
 #### Page URL
 
-Override the Prebid.js page referrer algorithm.
+Override the Prebid.js page referrer for some bidders.
 
-a{% highlight js %}
-pbjs.setConfig({ pageUrl: "https://example.com/index.html" )
+{% highlight js %}
+pbjs.setConfig({ pageUrl: "https://example.com/index.html" })
 {% endhighlight %}
 
 <a name="setConfig-Publisher-Domain" />
@@ -2592,6 +2593,19 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+<a name="setConfig-maxNestedIframes" />
+
+#### maxNestedIframes
+
+Prebid.js will loop upward through nested iframes to find the top-most referrer. This setting limits how many iterations
+it will attempt before giving up and not setting referrer.
+
+```
+pbjs.setConfig({
+    maxNestedIframes: 5   // default is 10
+});
+```
+
 <a name="setConfig-realTimeData" />
 
 #### Real-Time Data Modules
@@ -2922,3 +2936,19 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | --- | --- | --- |
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
+
+<a name="installedModules"></a>
+
+### pbjs.installedModules
+
+When a Prebid.js package is built, the list of modules compiled
+into it are placed in the pbjs.installedModules array.
+
+e.g. if this builds the package:
+```
+gulp build --modules=a,b,c
+```
+
+pbjs.installedModules would have the value ['a','b','c'].
+
+If you happen to compile in all 400+ modules (not a good idea!), the value of pbjs.installedModules will be an empty array.
