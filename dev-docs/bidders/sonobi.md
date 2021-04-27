@@ -9,6 +9,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 pbjs: true
 pbs: true
 usp_supported: true
+coppa_supported: true
 schain_supported: true
 pbs_app_supported: true
 ---
