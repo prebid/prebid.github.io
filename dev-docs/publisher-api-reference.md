@@ -1061,7 +1061,7 @@ you'll need to fully manage the targeting -- the default `hb_` targeting variabl
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
 Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
-In addition, video will receive additional keys: `hb_cache_id`, `hb_uuid`, and `hb_cache_host`.
+In addition, video will receive additional keys: `hb_uuid`, and `hb_cache_host`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
@@ -1112,7 +1112,7 @@ pbjs.bidderSettings = {
 {% endhighlight %}
 
 {: .alert.alert-warning :}
-Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, hb_source, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
+Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, hb_source, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
 
 <a name="key-targeting-specific-bidder"></a>
 **Keyword targeting for a specific bidder**
@@ -2176,8 +2176,8 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | DEAL | `hb_deal` | yes | |
 | SOURCE | `hb_source` | no | 'client' or 's2s' |
 | FORMAT | `hb_format` | yes | 'banner', 'video', or 'native' |
-| UUID | `hb_uuid` | no | Network cache ID for video |
-| CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
+| UUID | `hb_uuid` | yes | Network cache ID for video |
+| CACHE_ID | `hb_cache_id` | no | Network cache ID for AMP or Mobile; Network cache ID for video if set in JS |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
 | title | `hb_native_title` | yes | |
