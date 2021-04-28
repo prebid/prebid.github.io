@@ -1780,18 +1780,6 @@ Bidders that want to support the User ID module in Prebid Server, need to update
 }
 {% endhighlight %}
 
-### ID Providers
-
-If you're an ID provider that wants to get on this page:
-
-- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
-- Add your *IdSystem name into the modules/.submodules.json file
-- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
-- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
-
-<a name="getUserIds"></a>
-
 ### Exporting User IDs
 
 If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
@@ -1836,6 +1824,18 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
   }
 ]
 ```
+
+## ID Providers
+
+If you're an ID provider that wants to get on this page:
+
+- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+- Add your *IdSystem name into the modules/.submodules.json file
+- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
+- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
+
+<a name="getUserIds"></a>
 
 ## Passing UserIds to Google Ad Manager for targeting
 
