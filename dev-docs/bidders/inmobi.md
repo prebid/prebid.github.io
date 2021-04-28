@@ -10,6 +10,7 @@ coppa_supported: true
 media_types: banner, video
 pbs: true
 pbs_app_supported: true
+pbs_site_supported: true
 ---
 
 ### Note:
