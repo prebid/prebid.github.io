@@ -66,7 +66,7 @@ var adUnit = {
 };
 ```
 
-In release 4.30 and later, we recommend using the `ortb2` method of setting [First Party Data](/features/firstPartyData.html). This can be done in two ways: global (cross-bidder) or bidder-specific.
+In release 4.30 and later, we recommend using the ortb2 method of setting First Party Data. This can be done in two ways: global (cross-bidder) or bidder-specific.  For Inventory, you will need to use site.ext.data, and For Visitor, you will need to use the user.ext.data. For More information about Audience Segments in Magnite: https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/
 
 Example first party data available to all bidders and all adunits:
 ```
