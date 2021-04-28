@@ -1115,7 +1115,7 @@ For a bid adapter who does not wish to handle making a request for each size in 
       let floorInfo = bidRequest.getFloor({
         currency: 'USD',
         mediaType: 'banner',
-        size: '\*'
+        size: '*'
       });
       data['adapter_floor'] = floorInfo.currency === 'USD' ? floorInfo.floor : undefined;
     }
