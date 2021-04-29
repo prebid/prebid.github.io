@@ -99,65 +99,12 @@ The JS directory contains the Javascript files required for the Prebid.org site.
 
 #### CSS
 
-**style.css**
-
-This file contains custom CSS classes and modifications to Bootstrap classes. The file is broken up into the various sections relating to navigaton, homepage and content pages.
-
-*Navbar*  
-The navbar class is a Bootstrap class. It controls the formatting of the top level navigation. Portions of it have been modified specifically for Prebid formatting.
-
-*Dropdown*  
-The dropdown class is a Boostrap class. It controls the formatting and functionality of the dropdown items of the top navigation. Portions of it have been modified specifically for Prebid formatting.
-
-*Sidebar*  
-The sidebar class is a Boostrap class. It controls the formatting and functionality of the dropdown items of the top navigation. Portions of it have been modified specifically for Prebid formatting. Additional custom classes have been created for specific formatting or functionality required by Prebid.
-
-*Homepage*  
-The classes in the homepage secton are custom classes created to format the top portion of the Prebid website homepage.
-
-*Container*  
-A custom container class created for the Prebid website.
-
-*Hover Effect*  
-A custom series of classes created to control the formatting functionalty of the icon buttons on the Prebid website homepage.
-
-*Message*
-A custom series of classes created to control the formatting of the message box on the Prebid website homepage.
-
-*Benfits*
-A custom series of classes created to control the formatting of the Benefits section of the Prebid website homepage.
-
-*Carousel*  
-The carousel class is a Bootstrap class. It controls the formatting and functionality of the carousel displayed on the homepage. Portions of it have been modified specifically for Prebid formatting. Additional custom classes have been created for specific formatting or functionality required by Prebid.
-
-*Partners*  
-A custom series of classes created to control the formatting of the [partners](/partners/partners.html) page.
-
-*Blog*  
-A custom series of classes created to control the formatting of the blog pages.
-
-*Content Pages*  
-A custom series of classes created to control the formatting of the content on the interior pages.
-
-*Footer*  
-A custom class created to control the formatting of the footer.
-
-**Responsivenes**
-
-The CSS file has multiple @media sections that handle the formatting of the website pages at specific screen widths. Those widths (in pixels) are:
-
-| Width | Device |
-| --- | --- |
-| 1300 | Small browsers |
-| 1024 | Large tablets e.g. iPadPro |
-| 768 | Regular tablets e.g. iPads |
-| 414 | Large phones e.g. iPhone 8 Plus |
-| 375 | Newer phones e.g. iPhone X |
-| 360 | Older phones e.g. Galaxy S5 |
-| 320 | Very old phones e.g. iPhone 5 |
-
-
-***
+1. Styles all come from /assets/css/main-bundle.css
+1. These are generated from /_assets/sass
+1. To make a change, edit the relevant sass file
+1. Generate the css file from sass with 'npm run dev/prod'
+1. Commit all the changes including assets/css/main-bundle.css
+1. the _assets directory is not part of the _site tree
 
 ## Data Models
 
@@ -298,28 +245,6 @@ The messsages YML file is used to construct the message displayed on the Prebid 
 **Code Use**  
 This data file is read in the home.html file using Liquid.
 
-<a name="Partners></a>
-
-### Partners
-
-There are three locations important for adding a new partner onto the [Partners Page](/partners/partners.html)
-
-1) The logo asset in /assets/images/partners
-2) The '\_data/partners.yml' file, which has these fields:
-
-```Markdown
-- company: CompanyName
-  link: CLICK_DESTINATION
-  imgURL: /assets/images/partners/PATH_TO_LOGO
-  type: founder|leader|technology|publisher|community
-```
-
-3) The '\_includes/partners.html' file
-
-This is the Liquid script that reads the partners.yml file and draws the boxes and logos. In order to make
-the boxes look good, the `maxcols` argument to `writeDynamicTable()` has been added to any table that fewer than 4 entries.
-Once there are more than 4 entries for a given group, it's recommended to remove that argument.
-
 ## Bidder Files
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
@@ -356,3 +281,11 @@ with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode fo
 2) change the biddercode to the shorter name as it's the new preferred code
 3) add aliasCode so the Download page will pull in the right module
 4) optionally add prevBiddercode to add a note to the page about the legacy value
+
+## Algolia Search
+
+We use Algolia for site search. 
+
+- The configuration defining the search parameters is at https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json
+- Only elements p, th, td, li, code, and h1-h3 are indexed
+- Code implementation in _includes/body-end.html and a the 'site-search' div in the header.

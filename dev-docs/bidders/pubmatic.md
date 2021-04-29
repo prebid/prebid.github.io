@@ -8,12 +8,13 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+getFloor: true
+userIds: all
 prebid_member: true
 safeframes_ok: true
-tcf2_supported: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 gvl_id: 76
 ---
 

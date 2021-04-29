@@ -35,7 +35,7 @@ Also note that not all bidder adapters support all forms of user ID. See the tab
 
 As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
 
-## User ID, GDPR, and Opt-Out
+## User ID, GDPR, Permissions, and Opt-Out
 
 When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
 
@@ -46,8 +46,18 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagement.ht
 
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
-* `_pbjs_id_optout` cookie or HTML5 local storage
-* `_pubcid_optout` cookie or HTML5 local storage (for backwards compatibility with the original PubCommonID module.
+* `_pbjs_id_optout` cookie or HTML5 local storage. The value can be anything -- if it exists, the user is considered opted out and no userId modules will fire.
+* `_pubcid_optout` cookie or HTML5 local storage. This is for backwards compatibility with the original PubCommonID module. Likewise, the value can be anything.
+
+### Publisher First Party Opt-Out
+
+Without third-party cookies, mechanisms like the [NAI](https://optout.networkadvertising.org) don't work, so some publishers may want to implement a first party opt-out so their users aren't tagged with first party cookies containing IDs.
+
+Publishers that want to do this should design their workflow and then set `_pbjs_id_optout` cookie or HTML5 local storage. For instance:
+
+- read from an in-page javascript variable and set `_pbjs_id_optout` to any value.
+- call an in-page function and use the results to create a `_pbjs_id_optout` cookie with any value.
+
 
 ## Basic Configuration
 
@@ -58,20 +68,124 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"britepoolId"`, `"criteo"`, `"haloId"`, `"id5id"`, `identityLink`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"sharedId"`, `"unifiedId"`, `"zeotapIdPlus"` | `"unifiedId"` |
+| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"`, `"mwOpenLinkId"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
+| bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
-| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": "ID5-12345" }` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
+
 
 ## User ID Sub-Modules
 
+## Permissions
+Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
+
+Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
+
+In this example the SharedID sub adapter is only allowed to be sent to the Rubicon adapter.
+```
+userIds: [
+  {
+    name: "sharedId",
+    bidders: [
+      'rubicon'
+    ],
+    params: {
+      syncTime: 60,      // in seconds
+      defaultis24hours
+    },
+    storage: {
+      type: "cookie",
+      name: "sharedid",
+      expires: 28        // in days
+    }
+  }
+]
+```
+The Rubicon bid adapter would then receive 
+```
+{
+  "bidder": "rubicon",
+  ...
+  "userId": {
+    "sharedid": {
+      "id": "01*******",
+      "third": "01E*******"
+    }
+  },
+  "userIdAsEids": [
+    {
+      "source": "sharedid.org",
+      "uids": [
+        {
+          "id": "01**********",
+          "atype": 1,
+          "ext": {
+            "third": "01***********"
+          }
+        }
+      ]
+    }
+  ],
+  ...
+}
+```
+
+### AdmixerID
+
+Admixer ID, provided by [Admixer] (https://admixer.com/), is a universal ID solution that doesn't rely on 3rd party cookies and helps publishers and advertisers to recognize users across various browsers and environments.  Our sub adapter takes deterministic signals like email and phone as input and returns an anonymous id that unlocks access to a wide range of Admixer's demand sources, amplifying audience segmentation, targeting and measurement.
+
+The Admixer privacy policy is at https://admixer.com/privacy/ 
+
+Add Admixer ID module to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=admixerIdSystem
+
+#### AdmixerID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"admixerId"` | `"admixerId"` |
+| params | Required | Object | Details for admixer initialization. | |
+| params.pid | Required | String | id provided by admixer | "458frgde-djd7-3ert-gyhu-12fghy76dnmko" |
+| params.e | Optional | String | The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha256. | "3d400b57e069c993babea0bd9efa79e5dc698e16c042686569faae20391fd7ea" |
+| params.p | Optional | String | The hashed phone number of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha256. | "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" |
+
+#### AdmixerID Examples
+
+1) Individual params may be set for the Admixer ID Submodule.
+
+{% highlight javascript %}
+   pbjs.setConfig({
+       userSync: {
+           userIds: [{
+               name: "admixerId",
+               storage: {
+                   name: "admixerId",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   pid: "4D393FAC-B6BB-4E19-8396-0A4813607316", // example id
+                   e: "3d400b57e069c993babea0bd9efa79e5dc698e16c042686569faae20391fd7ea", // example hashed email (sha256)
+                   p: "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" //example hashed phone (sha256)
+               }
+           }],
+           syncDelay: 3000 // 3 seconds after the first auction
+       }
+   });
+{% endhighlight %}
+
 ### BritePool
 
-BritePool ID, provided by [BritePool](https://britepool.com) is a Universal Identity resolution which does not depend on 3rd party cookies. 
+The [BritePool]((https://britepool.com)) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated 
+integration partners (such as PubMatic), are able to maximize revenues without cookies. As addressable individuals visit publisher websites and mobile apps, the BritePool IDs associated with these identities are passed into the bidstream; enabling advertisers to transact against these BritePool ID's and publishers to maximize the revenues associated with their inventory and audience. The BritePool ID combines consumer privacy with easy, rapid integration for publishers and does not significantly increase the computing resources required of DSPs and SSPs.
 
 Add it to your Prebid.js package with:
 
@@ -80,7 +194,7 @@ gulp build --modules=britepoolIdSystem
 
 #### BritePool Registration
 
-Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`. 
+Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`.
 
 The BritePool privacy policy is at [https://britepool.com/services-privacy-notice/](https://britepool.com/services-privacy-notice/).
 
@@ -148,6 +262,131 @@ pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "criteo",
+        }]
+    }
+});
+{% endhighlight %}
+
+### Deepintent DPES ID by Deepintent
+The Deepintent Id  is a shared, healthcare identifier which helps publisher in absence of the 3rd Party cookie matching. This lets publishers set and bid with healthcare identity . Deepintent lets users protect their privacy through advertising value chain, where Healthcare identity when setting the identity takes in consideration of users choices, as well as when passing identity on the cookie itself privacy consent strings are checked. The healthcare identity when set is not stored on Deepintent's servers but is stored on users browsers itself. User can still opt out of the ads by https://option.deepintent.com/adchoices
+
+#### Deepintent DPES ID Registration
+The Deepintent DPES ID is free to use, but requires a simple registration with Deepintent. Please reach to prebid@deepintent.com to get started.
+Once publisher registers with deepintents platform for healthcare identity Deepintent provides the Tag code to be placed on the page, this tag code works to capture and store information as per publishers and users agreement. DPES User ID module uses this stored id and passes it on the deepintent prebid adapter.
+
+#### Deepintent DPES ID Configuration
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module: `"deepintentId"` | `"deepintentId"` |
+| storage | Required | Object | Storage settings for how the User Id module will cache the Deepintent ID locally | |
+| storage.type | Required | String | This is where the results of the user ID will be stored. Deepintent`"html5"` or `"cookie"`. | `"html5"` |
+| storage.name | Optional | String | The name of the local storage where the user ID will be stored. Deepintent | `"_dpes_id"` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Deepintent recommends `90`. | `90` |
+
+#### Deepintent DPES ID Examples
+1) Publisher stores the hashed identity from healthcare identity in cookie
+{% highlight javascript %}
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'deepintentId',
+      storage: {
+        type: 'cookie',           // "html5" is the required storage type option is "html5"
+        name: '_dpes_id',            
+        expires: 90             // storage lasts for 90 days, optional if storage type is html5
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+{% endhighlight %}
+
+2) Publisher stores the hashed identity from healthcare identity in localstorage
+{% highlight javascript %}
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'deepintentId',
+      storage: {
+        type: 'html5'           // "html5" is the required storage type option is "html5"
+        name: '_dpes_id'
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+{% endhighlight %}
+
+
+### Fabrick ID by Neustar
+
+[Neustar Fabrick™](https://www.home.neustar/fabrick) is a unified identity ecosystem that powers connections between brands, publishers, and consumers to accelerate marketing performance across online and offline channels.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=fabrickIdSystem
+
+#### Fabrick Registration
+
+Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegrations@team.neustar) to request your `apiKey`.
+
+#### Fabrick Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `"fabrickId"` |
+| params | Required | Object | Container of all module params. | |
+| params.apiKey | Required | String | This is your apiKey as provided by Neustar. | |
+| params.e | | String | This is a hashed email address used to link a user to their Fabrick ID. | |
+| params.p | | String | This is a hashed phone number used to link a user to their Fabrick ID. | |
+| params.i4 | | String | This is an IPv4 address used to link a user to their Fabrick ID. | |
+| params.i6 | | String | This is an IPv6 address used to link a user to their Fabrick ID. | |
+| params.m | | String | This is a mobile advertising ID (IDFA/AAID) used to link a user to their Fabrick ID. | |
+| params.ia | | String | This is an identifier for advertising (IFA) used to link a user to their Fabrick ID. | |
+| params.iv | | String | This is an identifier for vendors (IFV) used to link a user to their Fabrick ID. | |
+
+#### Fabrick Examples
+
+1) Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'fabrickId',
+            params: {
+                apiKey: '123456789', // provided to you by Neustar
+                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+            },
+            storage: {
+                name: 'pbjs_fabrickId',
+                type: 'cookie',
+                expires: 7
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
+2) Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'fabrickId',
+            params: {
+                apiKey: '123456789', // provided to you by Neustar
+                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+            },
+            storage: {
+                type: "html5",
+                name: "pbjs_fabrickId",
+                expires: 7
+            }
         }]
     }
 });
@@ -221,7 +460,7 @@ pbjs.setConfig({
 
 ### ID5 Universal ID
 
-The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID and detailed integration docs, please visit [our documentation](https://console.id5.io/docs/public/prebid). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
+The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID and detailed integration docs, please visit [our documentation](https://wiki.id5.io/x/BIAZ). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
 
 #### ID5 Universal ID Registration
 
@@ -244,45 +483,48 @@ The following configuration parameters are available:
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
 | params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
-| params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/display/PD/Prebid.js+UserId+Module) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
+| params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/x/BIAZ) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
+| params.abTesting | Optional | Object | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default |
+| params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
+| params.abTesting.controlGroupPct | Optional | Number | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1` |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
 
+##### A Note on A/B Testing
+
+Publishers may want to test the value of the ID5 ID with their downstream partners. While there are various ways to do this, A/B testing is a standard approach. Instead of publishers manually enabling or disabling the ID5 User ID Module based on their control group settings (which leads to fewer calls to ID5, reducing our ability to recognize the user), we have baked this in to our module directly.
+
+To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of users you would like to set for the control group. The control group is the set of user where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the user was in the control group or not. It's important to note that the control group is user based, and not request based. In other words, from one page view to another, a user will always be in or out of the control group.
+
 #### ID5 Universal ID Examples
 
-1) Publisher wants to retrieve the ID5 Universal ID through Prebid.js
+{: .alert.alert-warning :}
+**ATTENTION:** As of Prebid.js v4.14.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
+
+Publisher wants to retrieve the ID5 Universal ID through Prebid.js
 
 {% highlight javascript %}
 pbjs.setConfig({
   userSync: {
     userIds: [{
-      name: "id5Id",
+      name: 'id5Id',
       params: {
         partner: 173,            // change to the Partner Number you received from ID5
-        pd: "MT1iNTBjY..."       // optional, see param table above for a link to how to generate this string
+        pd: 'MT1iNTBjY...',      // optional, see table below for a link to how to generate this
+        abTesting: {             // optional
+          enabled: true,         // false by default
+          controlGroupPct: 0.1   // valid values are 0.0 - 1.0 (inclusive)
+        }
       },
       storage: {
-        type: "cookie",
-        name: "id5id.1st",       // create a cookie with this name
-        expires: 90,             // cookie lasts for 90 days
+        type: 'html5',           // "html5" is the required storage type
+        name: 'id5id',           // "id5id" is the required storage name
+        expires: 90,             // storage lasts for 90 days
         refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
       }
     }],
-    auctionDelay: 50             // 50ms maximum auction delay
-  }
-});
-{% endhighlight %}
-
-2) Publisher has integrated with ID5 on their own (e.g. via the [ID5 API](https://github.com/id5io/id5-api.js)) and wants to pass the ID5 Universal ID directly through to Prebid.js
-
-{% highlight javascript %}
-pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: "id5Id",
-      value: { "id5id": "ID5-8ekgswyBTQqnkEKy0ErmeQ1GN5wV4pSmA-RE4eRedA" }
-    }]
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
 });
 {% endhighlight %}
@@ -310,7 +552,7 @@ The IdentityLink privacy policy is at [https://liveramp.com/privacy/service-priv
 | name | Required | String | `"identityLink"` | `"identityLink"` |
 | params | Required for Id Link | Object | Details for identityLink initialization. | |
 | params.pid | This parameter is required for IdentityLink | String | This is the placementId, value needed for obtaining user’s IdentityLink envelope
-
+| params.notUse3P | This parameter is not required for IdentityLink | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get IdentityLink envelope
 
 #### IdentityLink Examples
 
@@ -323,7 +565,8 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999'             // Set your real identityLink placement ID here
+                pid: '999',             // Set your real identityLink placement ID here
+                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
                 type: "cookie",
@@ -344,7 +587,8 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999'          // Set your real identityLink placement ID here
+                pid: '999',          // Set your real identityLink placement ID here
+                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
                 type: "html5",
@@ -353,6 +597,42 @@ pbjs.setConfig({
             }
         }],
         syncDelay: 3000
+    }
+});
+{% endhighlight %}
+
+### IDx
+
+IDx, a universal ID solution provided by [Retargetly](https://retargetly.com), is the evolution of digital identifiers for the Latin American region. Through a proprietary identity graph, it allows publishers, advertisers, and ad tech platforms to recognize users across domains and devices even where third party cookies aren't available.
+
+The IDx platform is designed with privacy at its core and allows for nearly every conceivable digital use case including but not limited to audience targeting, retargeting, frequency management, personalization, and total reach reporting.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=idxIdSystem
+
+#### IDx Registration
+
+If you are a publisher or an advertiser, then IDx is free to use but requires a simple registration process. To do this, please send an email to [idx-partners@retargetly.com](mailto:idx-partners@retargetly.com) to request your IDx Partner ID.
+
+We may ask for some basic information from you before approving your request. For more information on IDx, please visit [retargetly.com/idx](http://retargetly.com/idx).
+
+#### IDx Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"idx"` | `"idx"` |
+
+#### IDx Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "idx"
+        }]
     }
 });
 {% endhighlight %}
@@ -380,6 +660,8 @@ The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://w
 | name | Required | String | `"intentIqId"` | `"intentIqId"` |
 | params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
 | params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
+| params.pcid | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request. | `"g3hC52b"` |
+| params.pai | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request. | `"advertiser1"` |
 
 #### IntentIQ ID Examples
 
@@ -392,7 +674,7 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456			// valid partner id
+                partner: 123456     // valid partner id
             },
             storage: {
                 type: "cookie",
@@ -413,7 +695,7 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                parnter: 123456			// valid partner id
+                partner: 123456     // valid partner id
             },
             storage: {
                 type: "html5",
@@ -426,14 +708,45 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### LiveIntent ID
 
-LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent ID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
+3) Publisher supports IntentIQ and HTML5 local storage with extra dynamic params such as 'pcid' and 'pai'.
 
-Add LiveIntent ID to your Prebid.js package with:
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                partner: 123456     // valid partner id
+                pcid: PCID_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
+                pai: PAI_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
+            },
+            storage: {
+                type: "html5",
+                name: "intentIqId",    // set localstorage with this name
+                expires: 60
+            }
+        }],
+        syncDelay: 3000
+    }
+});
+{% endhighlight %}
 
+### LiveIntent nonID
+
+LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
+
+There are two ways to build your Prebid.js package to include the LiveIntent nonID:
+* The standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution
+* The minimal version, which allows publishers to deploy a smaller bundle with minimal features, including identity resolution.
+
+Add the **full** LiveIntent Identity module to your Prebid.js package with:
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
+
+Add the **minimal** LiveIntent Identity module to your Prebid.js package with:
+{: .alert.alert-info :}
+LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
 
 The `request.userId.lipb` object would look like:
 ```
@@ -443,27 +756,27 @@ The `request.userId.lipb` object would look like:
 }
 ```
 
-The adapters can be implemented to use the lipibid as the identifier and segments to which that identifier is associated with. To enable identity resolution for a specific publisher, LiveIntent builds a model on the backend with data collected via an additional call issued on each page load.
+The adapters can be implemented to use the lipbid as the identifier and segments to which that identifier is associated with. To enable identity resolution for a specific publisher, LiveIntent builds a model on the backend with data collected via an additional call issued on each page load.
 
 #### LiveIntent ID Registration
 
-Please register with us if you’re not a LiveIntent customer already: [https://www.liveintent.com/prebid-registration/](https://www.liveintent.com/prebid-registration/)
+Please register with us if you’re not already a LiveIntent customer: [https://www.liveintent.com/prebid-registration/](https://www.liveintent.com/prebid-registration/)
 
-When adding LiveIntent’s ID to your Prebid.js package, you disclose or make available Personal Information to LiveIntent.  This information made available to LiveIntent is used to (i) connect with and reference data that already exists in LiveIntent’s graph (the “LiveIntent Graph”), and (ii) authenticate and validate data in aggregate to improve the performance of the services LiveIntent provides. By activating LiveIntent’s module, you hereby confirm that with regard to all individuals to whom Personal Information relates, you have, at or before the point of collecting Personal Information or making Personal Information available to LiveIntent, provided any legally required notices, obtained any legally required consents, and provided individuals with an opportunity to opt-out of the sharing of Personal Information, if such an opt-out is required under applicable laws, such that LiveIntent can provide service to you as described here and in LiveIntent’s privacy policies for the services which can be found at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/) 
+LiveIntent’s privacy policies for the services rendered can be found at [https://www.liveintent.com/services-privacy-policy/](https://www.liveintent.com/services-privacy-policy/)
 
 #### How does LiveIntent ID work
 
-The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier (nonID). In order to provide resolution one or more first-party cookies are used to create a stable identifier. 
+The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier - the nonID. In order to provide resolution one or more first-party cookies are used to create a stable identifier.
 
 How does LiveIntent ID sub-module decide, which first-party cookies to use:
 1. By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
 2. A publisher can also define in the configuration which additional first-party cookies should be used. These can be used in a combination with the LiveIntent first-party cookie.
 
-The LiveIntent ID sub-module sends the defined identifiers to the identity graph, which processes them and creates a stable identifier (nonID). The detailed description of the parameters being sent is described here: [Collector parameters](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md)
+The LiveIntent ID sub-module sends the defined identifiers to the identity graph, which processes them and creates a nonID. The parameters being sent are described [here](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md)
 
-For the identity resolution the LiveIntent ID sub-module makes a request to the LiveIntent’s identity resolution API, which returns a stable identifier and the audience segment(s) a user belongs to. The identifier and the segment are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to any buyers targeting the segment via a deal.
+For the identity resolution the LiveIntent ID sub-module makes a request to LiveIntent’s identity resolution API, which returns a nonID and the audience segment(s) a user belongs to. The nonID and the segment ID are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to any buyers targeting the segment.
 
-The first-party cookie generation and identity resolution functionality is provided by the LiveConnect JS library, included within the LiveIntent ID sub-module. LiveIntent has created a shared library that is open source, available at [https://www.npmjs.com/package/live-connect-js](https://www.npmjs.com/package/live-connect-js)
+The first-party cookie generation and identity resolution functionality is provided by the LiveConnect JS library, included within the LiveIntent ID sub-module. LiveIntent has created a shared library that is open source, available at [https://www.npmjs.com/package/live-connect-js](https://www.npmjs.com/package/live-connect-js).
 
 The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
@@ -479,6 +792,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
+| params.emailHash |Optional| String |The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha2.|`1a79a4d60de6718e8e5b326e338ae533`|
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
 | params.liCollectConfig.fpiStorageStrategy |Optional| String |This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
@@ -501,11 +815,11 @@ pbjs.setConfig({
             params: {
               publisherId: "9896876"
             },
-            storage: {             
-            type: “cookie”,             
-            name: “pbjs_li_nonid”,    //create a cookie with this name             
-            expires: 1                // cookie is stored for 1 day          
-            } 
+            storage: {
+            type: “cookie”,
+            name: “pbjs_li_nonid”,    //create a cookie with this name
+            expires: 1                // cookie is stored for 1 day
+            }
         }]
     }
 })
@@ -521,11 +835,11 @@ pbjs.setConfig({
               publisherId: "9896876",
               identifiersToResolve: ["my-own-cookie"]
             },
-            storage: {             
-            type: “cookie”,             
-            name: “pbjs_li_nonid”,    //create a cookie with this name             
-            expires: 1                // cookie is stored for 1 day          
-            } 
+            storage: {
+            type: “cookie”,
+            name: “pbjs_li_nonid”,    //create a cookie with this name
+            expires: 1                // cookie is stored for 1 day
+            }
         }]
     }
 })
@@ -550,11 +864,11 @@ pbjs.setConfig({
                 appId: "a-0012"
               }
             },
-            storage: {             
-            type: “cookie”,             
-            name: “pbjs_li_nonid”,    //create a cookie with this name             
-            expires: 1                // cookie is stored for 1 day          
-            } 
+            storage: {
+            type: “cookie”,
+            name: “pbjs_li_nonid”,    //create a cookie with this name
+            expires: 1                // cookie is stored for 1 day
+            }
         }]
     }
 })
@@ -569,7 +883,7 @@ The Lotame privacy policy is at [https://www.lotame.com/about-lotame/privacy/](h
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=lotamePanoramaId
+gulp build --modules=lotamePanoramaIdSystem
 
 #### Lotame Panorama ID Configuration
 
@@ -640,6 +954,72 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### NextRoll ID
+
+NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID is a cookieless identifier built from NextRoll’s proprietary identity graph. Publishers, ad tech platforms, and NextRoll’s brands (AdRoll and RollWorks) leverage the NextRoll ID to access unique demand in cookieless environments. The NextRoll ID respects user privacy preferences and enables users to opt out through multiple web based mechanisms found in [Section 8 of NextRoll’s Privacy Policy](https://nextroll.com/privacy#service-8).
+
+#### NextRoll ID Registration
+
+To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
+
+#### NextRoll ID Configuration
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=nextrollIdSystem
+
+Enable the module in configuration, with your Partner ID:
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "nextrollId",
+            params: {
+                partnerId: 'YOUR_PARTNER_ID'
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
+### Novatiq Snowflake ID
+
+Novatiq proprietary dynamic snowflake ID is a unique, non sequential and single use identifier for marketing activation. Our in network solution matches verification requests to telco network IDs, safely and securely inside telecom infrastructure. Novatiq snowflake ID can be used for identity validation and as a secured 1st party data delivery mechanism.
+
+#### Novatiq Snowflake ID Configuration
+
+Enable by adding the Novatiq submodule to your Prebid.js package with:
+
+```
+gulp build --modules=novatiqIdSystem,userId
+```
+
+Module activation and configuration:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'novatiq',
+      params: {
+        sourceid '1a3',            // change to the Partner Number you received from Novatiq
+        }
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+```
+
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
+| params | Required | Object | Configuration specifications for the Novatiq module. | |
+| params.sourceid | Required | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
+
+If you have any questions, please reach out to us at prebid@novatiq.com.
 
 ### Parrable ID
 
@@ -664,7 +1044,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |
-| params.partner | Required | String | A list of one or more comma-separated Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `'30182847-e426-4ff9-b2b5-9ca1324ea09b'` |
+| params.partners | Required | Array[String] | A list of one or more Parrable Partner Client IDs for the Parrable-aware bid adapters you are using.  Please obtain Parrable Partner Client IDs from them and/or obtain your own. | `[ '30182847-e426-4ff9-b2b5-9ca1324ea09b' ]` |
 | params.timezoneFilter | Optional | Object | Configures a timezone or timezone offset filter | |
 | params.timezoneFilter.allowedZones | Optional | Array[String] | description | `[ 'America/Anchorage' ]` |
 | params.timezoneFilter.allowedOffsets | Optional | Array[Number] | description | `[ -4 ]` |
@@ -689,6 +1069,8 @@ The Parrable ID system enables a publisher to configure lists of **allowed** tim
 - An impression from a browser that matches any allowed timezone or timezone offset, but does not match a blocked timezone or timezone offset will engage in the Parrable ID syncronization process.
 - If a browser has a stored Parrable ID then it will not be filtered even if the browser is in a timezone or timezone offset that is blocked.
 
+All configured timezones should follow the `TZ database name` column from the [IANA tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
 #### Parrable ID Examples
 
 {% highlight javascript %}
@@ -697,7 +1079,13 @@ pbjs.setConfig({
         userIds: [{
             name: `'parrableId'`,
             params: {
-                partner: `'30182847-e426-4ff9-b2b5-9ca1324ea09b'`  // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+              partners: [
+                '30182847-e426-4ff9-b2b5-9ca1324ea09b',
+                'b07cf20d-8b55-4cd7-9e84-d804ed66b644'
+              ], // change to the Parrable Partner Client ID(s) you received from the Parrable Partners you are using
+              timezoneFilter: {
+                  allowedZones: ['America/New_York', 'Europe/Madrid']
+              }
             }
         }],
         syncDelay: 1000
@@ -716,6 +1104,21 @@ Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=pubCommonIdSystem
+
+#### PubCommon ID Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following PubCommon specific configuration is available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'pubCommonId'` |
+| params | Optional | Object | Customized parameters | |
+| params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the PubCommon ID cookie.  Default is true. | `true` |
+| params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
+| params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
+| params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` | `true` |
+
 
 #### PubCommon ID Examples
 
@@ -753,9 +1156,12 @@ pbjs.setConfig({
             }
         },{
             name: "pubCommonId",
+            params: {
+                enableSharedId: true  // optionally enable Prebid sharedID
+            },
             storage: {
                 type: "cookie",
-                name: "_pubcid",     // create a cookie with this name
+                name: "_pubcid",      // create a cookie with this name
                 expires: 180
             }
         }],
@@ -763,6 +1169,93 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+{: .alert.alert-info :}
+When enableSharedId is true, the browser will make an additional call to id.sharedid.org/usync.  Calling to Shareid.org sets a user id in a 3rd party cookie under the sharedid.org domain. Anyone setting this additional identity should reference Sharedid.orgs optout policy at https://sharedid.org/. Prebid.js 5.0 will enable the enableSharedId option by default.
+
+
+### PubProvided ID
+
+The PubProvided Id module allows publishers to set and pass a first party user id into the bid stream. This module has several unique characteristics:
+
+1. The module supports a user defined function, that generates an eids-style object:
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "pubProvidedId",
+            params: {
+                eidsFunction: getIdsFn   // any function that exists in the page
+            }
+        }]
+    }
+});
+```
+
+Or, the eids values can be passed directly into the `setConfig` call:
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "example.com",
+            params: {
+                eids: [{
+                    source: "domain.com",
+                    uids:[{
+                      id: "value read from cookie or local storage",
+                      atype: 1,
+                      ext: {
+                          stype: "ppuid"
+                      }
+
+                  }]
+                },{
+                    source: "3rdpartyprovided.com",
+                    uids:[{
+                      id: "value read from cookie or local storage",
+                      atype: 3,
+                      ext: {
+                          stype: "dmp"
+                      }
+                  }]
+                }]
+            }
+        }]
+    }
+});
+```
+
+In either case, bid adapters will receive the eid values after consent is validated.
+
+2. This design allows for the setting of any number of uuids in the eids object. Publishers may work with multiple ID providers and nest their own id within the same eids object.  The opportunity to link a 1st party uuid and a 3rd party generated UUID presents publishers with a unique ability to address their users in a way demand sources will understand.
+
+3. Finally, this module allows publishers to broadcast their user id, derived from in-house tech, directly to buyers within the confines of existing compliance (CCPA & GDPR) frameworks.
+
+4. The `eids.uids.ext.stype` "source-type" extension helps downstream entities know what do with the data. Currently defined values are:
+
+- dmp - this uid comes from the in-page dmp named in eids.source
+- ppuid - this uid comes from the publisher named in eids.source
+- other - for setting other id origin signals please use the [adCOM!](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#object--extended-identifier-uids-) `atype` spec 
+
+5. Bid adapters listening for "userIds.pubProvidedId" will not receive a string, please use the userIdAsEids value/function to return the userid as a string.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=pubProvidedId
+
+
+#### PubProvided Configuration
+
+{: .table .table-bordered .table-striped }
+| Params under usersync.userIds[]| Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the ID module  | `"PubProvided"` |
+| params | Optional | Object | Details for syncing. | |
+| params.eidsFunction | Optional | function | any function that exists in the page | getIdsFn() |
+| uids.atype | optional | int | ADCOM - Type of user agent the match is from | `"1"` |
+| uids.ext.stype | Optional | String | Description of how the id was generated and by whom ('ppuid','DMP','other') | `DMP` |
 
 ### Quantcast ID
 
@@ -799,22 +1292,69 @@ pbjs.setConfig({
 {% endhighlight %}
 
 
-### Shared ID User ID Submodule
+### Tapad ID
 
-The Shared ID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedId.org. This module does not require any registration.  
+Tapad's ID module provides access to a universal identifier that publishers, ad tech platforms and advertisers can use for data collection and collation without reliance on third-party cookies.
+Tapad's ID module is free to use and promotes collaboration across the industry by facilitating interoperability between DSPs, SSPs and publishers.
 
-#### Building Prebid with Shared Id Support
-Your Prebid build must include the modules for both **userId** and **sharedId** submodule. 
+To register as an authorized user of the Tapad ID module, or for more information, documentation and access to Tapad’s Terms and Conditions please contact  [prebid@tapad.com](mailto:prebid@tapad.com).
+
+Tapad’s Privacy landing page containing links to region-specific Privacy Notices may be found here: [https://tapad.com/privacy.html](https://tapad.com/privacy.html).
+
 Add it to your Prebid.js package with:
 
-ex: $ gulp build --modules=userId,sharedIdSystem
+{: .alert.alert-info :}
+gulp build --modules=userId,tapadIdSystem
+
+#### Tapad ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"tapadId"` | `"tapadId"` |
+| params | Required | Object | Details for Tapad initialization. | |
+| params.company_id | Required | Number | Tapad Company Id provided by Tapad | 1234567890 |
+
+#### Tapad ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+      userIds: [
+        {
+          name: "tapadId",
+          params: {
+            companyId: 1234567890
+          },
+          storage: {
+            type: "cookie",
+            name: "tapad_id",
+            expires: 1
+          }
+        }
+      ]
+    }
+});
+{% endhighlight %}
+
+
+
+### SharedID User ID Submodule
+
+The SharedID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedid.org. This module does not require any registration.
+
+#### Building Prebid with SharedID Support
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+ex: $ gulp build --modules=sharedIdSystem
 
 #### Prebid Params
 
-Individual params may be set for the Shared ID User ID Submodule. 
+Individual params may be set for the SharedID User ID Submodule.
 ```
 pbjs.setConfig({
-    usersync: {
+    userSync: {
         userIds: [{
             name: 'sharedId',
             params: {
@@ -830,12 +1370,12 @@ pbjs.setConfig({
 });
 ```
 
-#### SharedId Configuration
+#### SharedID Configuration
 
 {: .table .table-bordered .table-striped }
 | Params under usersync.userIds[]| Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
+| name | Required | String | ID value for the SharedID module - `"sharedId"` | `"sharedId"` |
 | params | Optional | Object | Details for sharedId syncing. | |
 | params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
 | storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
@@ -933,6 +1473,144 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Unified ID 2.0
+
+Unified ID 2 is an email based id solution that is owned and operated by the prebid community.  Unified ID 2, relies on user consent before an id can be added to the bid stream.  Consent can be gathered by SSO providers who have integrated against the UID 2 framework, or Publishers own login & consent mechaninism.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=uid2IdSystem
+
+#### Unified ID Registration
+
+You can set up Unified ID 2 in one of these ways:
+
+- Include the module to your pb.js wrapper, no registration is required
+- Utilize a [managed services](https://prebid.org/product-suite/managed-services/) company who can do this for you.
+
+Each publisher’s privacy policy should take UnifiedId 2 into account
+
+#### Unified ID 2 Configuration
+
+{: .table .table-bordered .table-striped }
+The below parameters apply only to the UID 2.0 User ID Module integration.
+
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the UID20 module - `"uid2"` | `"uid2"` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing the UID 2.O ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
+
+#### Unified ID 2 Example
+
+Publisher has a integrated with an SSO provider that sets a cookie called __uid2_advertising_token when user consent is granted.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'uid2'
+        }]
+    }
+});
+{% endhighlight %}
+
+
+### Verizon Media ConnectID
+
+Verizon Media ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of Verizon Media’s robust and proprietary ID Graph it delivers a higher find rate of audiences on publishers’ sites user targeting that respects privacy.
+
+Verizon Media ConnectID honors privacy choices from the [Verizon Media Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html) as well as global privacy acts.
+
+Add support for Verizon Media ConnectID to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,verizonMediaIdSystem
+
+#### Verizon Media ConnectID Registration
+
+A Verizon Media supplied publisher specific pixel Id is required. Reach out to your account manager for assistance with setup.
+
+#### Verizon Media ConnectID Configuration
+
+<div class="table-responsive" markdown="1">
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'verizonMediaId'` |
+| params | Required | Object | Container of all module params. ||
+| params.pixelId | Required | Number | The Verizon Media supplied publisher specific pixel Id  | `8976` |
+| params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
+| storage | Required | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
+| storage.type | Required | String | Defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
+| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectid'` |
+| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
+{: .table .table-bordered .table-striped }
+</div>
+
+#### Verizon Media ConnectID Examples
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "verizonMediaId",
+            params: {
+              pixelId: 8976,
+              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
+            },
+            storage: {
+              type: "html5",
+              name: "connectid",
+              expires: 1
+            }
+        }]
+    }
+})
+```
+
+### MediaWallah OpenLinkID
+
+MediaWallah's openLink is an anonymous person based ID that enables buyers and sellers of media to connect a person and their devices across the web and mobile apps. openLink facilities the buying of media between DSPs, SSPs and publishers.
+
+Add support for MediaWallah OpenLinkID to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,mwOpenLinkIdSystem
+
+#### MediaWallah OpenLinkID Registration
+
+MediaWallah requires the creation of an accountId a partnerId in order to take advantage of openLink. Please contact your partner resource to get these Ids provisioned.
+
+#### MediaWallah OpenLinkID Configuration
+
+<div class="table-responsive" markdown="1">
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'mwOpenLinkId'` |
+| params | Required | Object | Details for mwOLID syncing. ||
+| params.accountId | Required | String | The MediaWallah assigned Account Id  | `1000` |
+| params.partnerId | Required | String | The MediaWallah assign partner Id |`'1001'`|
+| params.uid | Optional | String | Your unique Id for the user or browser. Used for matching. | `'u-123xyz'` |
+{: .table .table-bordered .table-striped }
+</div>
+
+#### MediaWallah OpenLinkID Examples
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'mwOpenLinkId',
+            params: {
+                accountId: '1000',
+                partnerId: '1001',
+                uid: 'u-123xyz'
+            }
+        }]
+    }
+})
+```
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -952,25 +1630,33 @@ pbjs.setConfig({
 
 Bidders that want to support the User ID module in Prebid.js, need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
 
-{: .table .table-bordered .table-striped }
+<div class="table-responsive" markdown="1">
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
+| Admixer ID | Admixer | bidRequest.userId.admixerId | `"1111"` |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
 | Halo ID | Audigent | bidRequest.userId.haloId | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
 | ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
-| ID5 ID | ID5 | bidRequest.userId.id5id | `"1111"` |
+| ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
 | IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | merkleID | Merkle | bidRequest.userId.merkleId | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
+| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
+| PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
-| Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
+| Tapad ID | Tapad | bidRequest.userId.tapadId | `"1111"` |
+| SharedID | Prebid | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
+| Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
+| MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | `"1111"` |
+{: .table .table-bordered .table-striped }
+</div>
 
 For example, the adapter code might do something like:
 
@@ -1005,7 +1691,11 @@ Bidders that want to support the User ID module in Prebid Server, need to update
             {
                 "source": "id5-sync.com",
                 "uids": [{
-                    "id": "ID5-12345"
+                    "id": "ID5-12345",
+                    "ext": {
+                      "linkType": 2,
+                      "abTestingControlGroup": false
+                    }
                 }]
             },
             {
@@ -1015,7 +1705,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },{
                 "source": "audigent.com",
-		"atype": 1,
+                "atype": 1,
                 "uids": [{
                     "id": "11111111"
                 }]
@@ -1040,7 +1730,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "11111111"
                 }]
             },{
-                "source": "crwdcntrl.net",
+                "source": "crwdcntrl.net", // Lotame Panorama ID
                 "uids": [{
                     "id": "e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"
                 }]
@@ -1050,30 +1740,45 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                     "id": "11111111"
                 }]
             },{
-               "source": "sharedid.org",  // Shared ID
+               "source": "novatiq.com",
+               "uids": [{
+                   "id": "81b001ec-8914-488c-a96e-8c220d4ee08895ef",
+                   "atype":1
+               }]
+             },{
+               "source": "sharedid.org",  // SharedID
                 "uids": [{
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                     "ext": {
                         "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
                     }
                 }]
-            }]
+            },{
+               "source": "pub.com",  // Publisher must configure their domain here
+                "uids": [{
+                    "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
+                    "atype":1 //ADCOM - Type of user agent the match is from
+                    "ext": {
+                        "stype": "dmp" //currently supported values (dmp,ppuid,other)
+                    }
+                }]
+            },{
+               "source": "verizonmedia.com",
+               "uids": [{
+                   "id": "61cef5656fb05f16d53938069f1684df4b2257e27"
+               }]
+            },{
+              "source": "mediawallahscript.com",
+              "uids": [{
+                "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
+                "atype": 1
+              }]
+            }
+          ]
         }
     }
 }
 {% endhighlight %}
-
-### ID Providers
-
-If you're an ID provider that wants to get on this page:
-
-- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
-- Add your *IdSystem name into the modules/.submodules.json file
-- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
-- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
-
-<a name="getUserIds"></a>
 
 ### Exporting User IDs
 
@@ -1083,9 +1788,9 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
 
-You can use `getUserIdsAsEids()` to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+You can use [`getUserIdsAsEids()`](https://docs.prebid.org/dev-docs/publisher-api-reference.html#userId.getUserIdsAsEids) to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
 ```
-pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g. 
+pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
   {
       source: 'pubcid.org',
@@ -1104,13 +1809,37 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
               rtiPartner: 'TDID'
           }
       }]
+  },
+
+  {
+      source: 'id5-sync.com',
+      uids: [{
+          id: 'ID5-12345',
+          atype: 1,
+          ext: {
+              linkType: 2,
+              abTestingControlGroup: false
+          }
+      }]
   }
 ]
-``` 
+```
+
+## ID Providers
+
+If you're an ID provider that wants to get on this page:
+
+- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+- Add your *IdSystem name into the modules/.submodules.json file
+- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
+- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
+
+<a name="getUserIds"></a>
 
 ## Passing UserIds to Google Ad Manager for targeting
 
-User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or to pass ahead in Google Exchange Bidding using ```userIdTargeting``` module. More details can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
+User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or could be passed ahead to Google Open Bidding using ```userIdTargeting``` module. Note Google deprecated the ability to pass key values, including identifiers, to OB partners and then later began a closed beta to resume it with details non-public (see  https://developers.google.com/authorized-buyers/rtb/request-guide ). More details on the user id module can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
 
 ## Further Reading
 
