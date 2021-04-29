@@ -1934,7 +1934,7 @@
 
 - sbSecId: 6
   title: Native
-  link: /dev-docs/show-native-ads.html
+  link: /prebid/native-implementation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
