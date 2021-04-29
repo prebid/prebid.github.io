@@ -62,11 +62,11 @@ pbjs.setConfig({
            content: {
 		userrating: "4",
 		data: [{
-          	    "name": "www.dataprovider1.com",
-          	    "ext": { "taxonomyname": "iab_content_taxonomy" },
-		    "segment": [
-            		{ "id": "687" }, 
-            		{ "id": "123" }
+          	    name: "www.dataprovider1.com",
+          	    ext: { "segtax": 1 },
+		    segment: [
+            		{ id: "687" }, 
+            		{ id: "123" }
 		    ]
                 }]
 	   },
@@ -83,7 +83,7 @@ pbjs.setConfig({
            keywords: "a,b",
 	   data: [{
 	       name: "dataprovider.com",
-	       ext: { taxonomyname: "iab_audience_taxonomy" },
+	       ext: { segtax: 3 },
                segment: [
 		  { id: "1" }
                ]
