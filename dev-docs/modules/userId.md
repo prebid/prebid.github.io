@@ -86,7 +86,7 @@ Publishers can control which user ids are shared with the bid adapters they choo
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
-In this example the SharedId sub adapter is only allowed to be sent to the Rubicon adapter.
+In this example the SharedID sub adapter is only allowed to be sent to the Rubicon adapter.
 ```
 userIds: [
   {
@@ -267,6 +267,57 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Deepintent DPES ID by Deepintent
+The Deepintent Id  is a shared, healthcare identifier which helps publisher in absence of the 3rd Party cookie matching. This lets publishers set and bid with healthcare identity . Deepintent lets users protect their privacy through advertising value chain, where Healthcare identity when setting the identity takes in consideration of users choices, as well as when passing identity on the cookie itself privacy consent strings are checked. The healthcare identity when set is not stored on Deepintent's servers but is stored on users browsers itself. User can still opt out of the ads by https://option.deepintent.com/adchoices
+
+#### Deepintent DPES ID Registration
+The Deepintent DPES ID is free to use, but requires a simple registration with Deepintent. Please reach to prebid@deepintent.com to get started.
+Once publisher registers with deepintents platform for healthcare identity Deepintent provides the Tag code to be placed on the page, this tag code works to capture and store information as per publishers and users agreement. DPES User ID module uses this stored id and passes it on the deepintent prebid adapter.
+
+#### Deepintent DPES ID Configuration
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module: `"deepintentId"` | `"deepintentId"` |
+| storage | Required | Object | Storage settings for how the User Id module will cache the Deepintent ID locally | |
+| storage.type | Required | String | This is where the results of the user ID will be stored. Deepintent`"html5"` or `"cookie"`. | `"html5"` |
+| storage.name | Optional | String | The name of the local storage where the user ID will be stored. Deepintent | `"_dpes_id"` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Deepintent recommends `90`. | `90` |
+
+#### Deepintent DPES ID Examples
+1) Publisher stores the hashed identity from healthcare identity in cookie
+{% highlight javascript %}
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'deepintentId',
+      storage: {
+        type: 'cookie',           // "html5" is the required storage type option is "html5"
+        name: '_dpes_id',            
+        expires: 90             // storage lasts for 90 days, optional if storage type is html5
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+{% endhighlight %}
+
+2) Publisher stores the hashed identity from healthcare identity in localstorage
+{% highlight javascript %}
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'deepintentId',
+      storage: {
+        type: 'html5'           // "html5" is the required storage type option is "html5"
+        name: '_dpes_id'
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+{% endhighlight %}
+
 ### DMD ID by DMD Marketing Corp
 
 DMD is the preeminent supplier of US-based healthcare professional (HCP) identity data to the pharmaceutical, health system and medical publishing industries. DMD is the only data provider that has acquired its deterministic identity data through a fully consented, first-party, opt-in process. DMD’s privacy policy that can be found at [Privacy Policy](https://hcn.health/privacy-policy). 
@@ -288,6 +339,9 @@ Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to r
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of Module | `"dmdId"` |
+| storage | Required | Object |  |
+| storage.name | Required | String | `dmd-dgid` |
+| params | Required | Object | Container of all module params. |  |
 | params | Required | Object | Container of all module params. |  |
 | params.api_key | Required | String | This is your `api_key` as provided by DMD Marketing Corp. | `3fdbe297-3690-4f5c-9e11-ee9186a6d77c` |
 
@@ -941,6 +995,36 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### NextRoll ID
+
+NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID is a cookieless identifier built from NextRoll’s proprietary identity graph. Publishers, ad tech platforms, and NextRoll’s brands (AdRoll and RollWorks) leverage the NextRoll ID to access unique demand in cookieless environments. The NextRoll ID respects user privacy preferences and enables users to opt out through multiple web based mechanisms found in [Section 8 of NextRoll’s Privacy Policy](https://nextroll.com/privacy#service-8).
+
+#### NextRoll ID Registration
+
+To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
+
+#### NextRoll ID Configuration
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=nextrollIdSystem
+
+Enable the module in configuration, with your Partner ID:
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "nextrollId",
+            params: {
+                partnerId: 'YOUR_PARTNER_ID'
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Novatiq Snowflake ID
 
 Novatiq proprietary dynamic snowflake ID is a unique, non sequential and single use identifier for marketing activation. Our in network solution matches verification requests to telco network IDs, safely and securely inside telecom infrastructure. Novatiq snowflake ID can be used for identity validation and as a secured 1st party data delivery mechanism.
@@ -1296,11 +1380,11 @@ pbjs.setConfig({
 
 
 
-### Shared ID User ID Submodule
+### SharedID User ID Submodule
 
-The Shared ID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedId.org. This module does not require any registration.
+The SharedID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedid.org. This module does not require any registration.
 
-#### Building Prebid with Shared Id Support
+#### Building Prebid with SharedID Support
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
@@ -1308,7 +1392,7 @@ ex: $ gulp build --modules=sharedIdSystem
 
 #### Prebid Params
 
-Individual params may be set for the Shared ID User ID Submodule.
+Individual params may be set for the SharedID User ID Submodule.
 ```
 pbjs.setConfig({
     userSync: {
@@ -1327,12 +1411,12 @@ pbjs.setConfig({
 });
 ```
 
-#### SharedId Configuration
+#### SharedID Configuration
 
 {: .table .table-bordered .table-striped }
 | Params under usersync.userIds[]| Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
+| name | Required | String | ID value for the SharedID module - `"sharedId"` | `"sharedId"` |
 | params | Optional | Object | Details for sharedId syncing. | |
 | params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
 | storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
@@ -1602,12 +1686,13 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | merkleID | Merkle | bidRequest.userId.merkleId | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
+| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Tapad ID | Tapad | bidRequest.userId.tapadId | `"1111"` |
-| Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
+| SharedID | Prebid | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 | MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | `"1111"` |
@@ -1702,7 +1787,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                    "atype":1
                }]
              },{
-               "source": "sharedid.org",  // Shared ID
+               "source": "sharedid.org",  // SharedID
                 "uids": [{
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                     "ext": {
