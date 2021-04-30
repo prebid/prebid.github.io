@@ -16,6 +16,17 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 4.36 | Introduced pbjs.installedModules array |
+| 4.35 | Introduced pbjs.pbjs.getHighestUnusedBidResponseForAdUnitCode function |
+| 4.34 | Bug fix: canBidderRegisterSync ignoring iframe sync disabled by default |
+| 4.33 | [MultiBid Module](/dev-docs/modules/multibid.html) |
+| 4.32 | [MASS Module](/dev-docs/modules/mass.html) introduces a custom deal render approach |
+| 4.31 | PBS Bid Adapter: FPD2.0 bug fix for first party data issue |
+| 4.30 | [First Party Data 2.0](/features/firstPartyData.html) changed to `ortb2`, added demand chain object to PBS Bid Adapter |
+| 4.29 | PBS Bid Adapter: cooperative sync flag |
+| 4.28 | Prebid Server Bid Adapter: use floors module to obtain OpenRTB floor, Support for [ignoreBidderCacheKey](/dev-docs/publisher-api-reference.html#setConfig-vast-cache) |
+| 4.27 | Update TTL logic |
+| 4.26 | [Bid Viewability Module](dev-docs/modules/bidViewable.html) |
 | 4.25 | Extended ID permissions |
 | 4.24 | Support Multiple Prebid Servers |
 | 4.23 | Added skipPbsAliasing feature |
