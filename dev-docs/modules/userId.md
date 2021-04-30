@@ -268,13 +268,17 @@ pbjs.setConfig({
 {% endhighlight %}
 
 ### Deepintent DPES ID by Deepintent
-The Deepintent Id  is a shared, healthcare identifier which helps publisher in absence of the 3rd Party cookie matching. This lets publishers set and bid with healthcare identity . Deepintent lets users protect their privacy through advertising value chain, where Healthcare identity when setting the identity takes in consideration of users choices, as well as when passing identity on the cookie itself privacy consent strings are checked. The healthcare identity when set is not stored on Deepintent's servers but is stored on users browsers itself. User can still opt out of the ads by https://option.deepintent.com/adchoices
+
+The DeepIntent Healthcare Marketing Platform is the first and only DSP that combines real-world health data, premium partnerships, and custom integrations to reach patients and providers across any device.  DeepIntent empowers publishers to maximize their inventory, collaborate and transact directly with advertisers, and grow their business in a safe, controlled, transparent, and privacy-compliant way. Our publisher partners sell inventory on every channel via real-time bidding or conducting one-to-one trading with hundreds of the country’s leading healthcare brands and agencies.
+ 
+DeepIntent’s DPES ID is a shared user identifier built for healthcare marketers and publishers integrated within DeepIntent’s Healthcare Marketplace. The DPES ID lets users protect and manage their privacy throughout the advertising value chain. User data written and associated with the DPES ID is not stored on DeepIntent’s servers. Instead, this data is stored in a decentralized way on a user’s browser. Users can still opt out of the ads by navigating to https://option.deepintent.com/adchoices
 
 #### Deepintent DPES ID Registration
-The Deepintent DPES ID is free to use, but requires a simple registration with Deepintent. Please reach to prebid@deepintent.com to get started.
-Once publisher registers with deepintents platform for healthcare identity Deepintent provides the Tag code to be placed on the page, this tag code works to capture and store information as per publishers and users agreement. DPES User ID module uses this stored id and passes it on the deepintent prebid adapter.
+
+DPES ID is free to use and requires a simple registration with DeepIntent. Please reach out to DeepIntent’s Publisher Development team at prebid@deepintent.com to learn more and get started. Once a publisher registers with DeepIntent’s platform, DeepIntent will provide a simple code snippet to be integrated with the publisher’s website. This code snippet will capture and store information per the publisher’s end user agreement. The DPES User ID module uses the DPES ID by passing it within the DeepIntent Prebid adapter.
 
 #### Deepintent DPES ID Configuration
+
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
@@ -285,6 +289,7 @@ Once publisher registers with deepintents platform for healthcare identity Deepi
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Deepintent recommends `90`. | `90` |
 
 #### Deepintent DPES ID Examples
+
 1) Publisher stores the hashed identity from healthcare identity in cookie
 {% highlight javascript %}
 pbjs.setConfig({
@@ -678,22 +683,35 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### IntentIQ ID
+### Intent IQ ID
 
-The IntentIQ ID solution is provided by intentiq.com.
+Intent IQ’s universal ID with its unparalleled coverage of over 80% of ad inventory, protects publishers’ ability to rely on advertising as their main revenue source while preserving user privacy in a third party cookieless world.
+
+The universal ID is an Intent IQ generated alphanumeric characters ID representing a person. This ID is not matched with personal information and remains anonymous to Intent IQ.
+
+Intent IQ universal ID enables partners - publishers, SSPs, DSPs, DMPs and advertisers to support, in a privacy-friendly way, and on a person level, core elements of the advertising business model -
+
+- Targeting across sites and devices
+- Frequency capping
+- Attribution measurement across sites and devices
+
+Intent IQ's universal ID works across IP addresses and user-agent changes.
+
+Intent IQ's universal ID truly stands out in the coverage and accuracy it provides. Intent IQ's universal ID covers over 80% of ad inventory with 90% accuracy. By contrast, third-party cookies offer 56% coverage and log-in solutions offer coverage of less than 20%.
+
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=intentIqIdSystem
 
-#### IntentIQ ID Registration
+#### Intent IQ ID Registration
 
-You can set up IntentIQ ID by contacting our operations team at [IntentIQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
+You can set up Intent IQ ID by contacting our operations team at [Intent IQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
 
-The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
+The Intent IQ ID privacy is covered under the [Intent IQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
 
-#### IntentIQ ID Configuration
+#### Intent IQ ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
@@ -704,9 +722,12 @@ The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://w
 | params.pcid | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request. | `"g3hC52b"` |
 | params.pai | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request. | `"advertiser1"` |
 
-#### IntentIQ ID Examples
+{: .alert.alert-info :}
+**NOTE:** The Intent IQ ID is encrypted with a key that changes every several hours. Demand partners utilize the latest key to decrypt the ID and use it. Therefore, to enable demand partners have an ID they can use, we highly recommend calling Intent IQ every 4 hours by setting storage.refreshInSeconds to 4 hours (4*3600 seconds)
 
-1) Publisher has a partner ID from IntentIQ and cookies.
+#### Intent IQ ID Examples
+
+1) Publisher has a partner ID from Intent IQ and cookies.
 
 {: .alert.alert-warning :}
 {% highlight javascript %}
@@ -715,20 +736,21 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                partner: 123456     // valid partner id
+                partner: 123456             // valid partner id
             },
             storage: {
                 type: "cookie",
-                name: "intentIqId",       // create a cookie with this name
-                expires: 60                   // cookie can last for 60 days
-            }
+                name: "intentIqId",         // create a cookie with this name
+                expires: 60,                // cookie can last for 60 days
+                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
+}
         }],
         syncDelay: 3000              // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
 
-2) Publisher supports IntentIQ and HTML5 local storage.
+2) Publisher supports Intent IQ and HTML5 local storage.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -736,12 +758,13 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                partner: 123456     // valid partner id
+                partner: 123456			    // valid partner id
             },
             storage: {
                 type: "html5",
-                name: "intentIqId",    // set localstorage with this name
-                expires: 60
+                name: "intentIqId",         // set localstorage with this name
+                expires: 60,
+                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
             }
         }],
         syncDelay: 3000
@@ -1681,7 +1704,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
-| IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
+| Intent IQ ID | Intent IQ | bidRequest.userId.intentiqid | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | merkleID | Merkle | bidRequest.userId.merkleId | `"1111"` |
@@ -1821,18 +1844,6 @@ Bidders that want to support the User ID module in Prebid Server, need to update
 }
 {% endhighlight %}
 
-### ID Providers
-
-If you're an ID provider that wants to get on this page:
-
-- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
-- Add your *IdSystem name into the modules/.submodules.json file
-- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
-- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
-
-<a name="getUserIds"></a>
-
 ### Exporting User IDs
 
 If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
@@ -1877,6 +1888,18 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
   }
 ]
 ```
+
+## ID Providers
+
+If you're an ID provider that wants to get on this page:
+
+- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+- Add your *IdSystem name into the modules/.submodules.json file
+- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
+- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
+
+<a name="getUserIds"></a>
 
 ## Passing UserIds to Google Ad Manager for targeting
 
