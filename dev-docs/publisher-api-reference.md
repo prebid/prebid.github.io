@@ -28,6 +28,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
+  * [.getHighestUnusedBidResponseForAdUnitCode([adUnitCode])](#module_pbjs.getHighestUnused)
   * [.getNoBids()](#module_pbjs.getNoBids)
   * [.getNoBidsForAdUnitCode(adUnitCode)](#module_pbjs.getNoBidsForAdUnitCode)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
@@ -468,6 +469,15 @@ Use this method to get all of the bids that have won their respective auctions b
 + `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
 
 <hr class="full-rule">
+
+<a name="module_pbjs.getHighestUnused"></a>
+
+### pbjs.getHighestUnusedBidResponseForAdUnitCode(adUnitCode) ⇒ `bid object`
+
+Use this method to retrieve the highest unused bid for the specified adUnit. Unused means not it's not rendered.
+
+This differs from [`getHighestCpmBids()`](#module_pbjs.getHighestCpmBids) in that 
+getHighestCpmBids only considers bids for auctions that have completed (and are also unused), this function considers bids for ongoing auctions as well.
 
 <a name="module_pbjs.getTargeting"></a>
 
