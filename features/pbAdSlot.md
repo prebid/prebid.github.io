@@ -9,7 +9,7 @@ sidebarType: 1
 
 The Prebid AdUnit 'code' is a mixed attribute that's generally either the GPT slot name or the HTML div ID. The undecided nature of the 'code' makes it harder to utilize for reporting and auction targeting.
 
-The `Prebid Ad Slot` is an optional inventory management convention allowing publishers to supply a descriptive and stable label for each ad on the page. This makes it possible to have more granular reporting and better deal targeting.
+The `Prebid Ad Slot` is an optional inventory management convention allowing publishers to supply a descriptive and stable label for each ad on the page. This makes it possible to have more granular reporting and better deal targeting. This is also the place bidders may look for a global placement id that some buyers use to examine their supply paths both across supply side platforms and across multiple points of integration (eg Amazon TAM, Google Open Bidding, and Prebid). 
 
 {: .alert.alert-info :}
 The Prebid Ad Slot was introduced with Prebid.js 3.x.
