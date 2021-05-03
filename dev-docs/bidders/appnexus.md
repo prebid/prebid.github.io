@@ -10,6 +10,7 @@ userIds: criteo, unifiedId, netId, identityLink
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+pbadslot_supported: true
 pbjs: true
 pbs: true
 gvl_id: 32
