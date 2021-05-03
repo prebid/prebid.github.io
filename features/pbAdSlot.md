@@ -88,10 +88,11 @@ The Prebid Ad Slot is just a convention -- it's a form of adunit-specific first 
 stored under `adunit.ortb2Imp.ext.data.pbadslot`. 
 It can be utilized by any code ready to look for it.
 
-It's intended to be specified via Prebid.js in one of two ways:
+It's intended to be specified via Prebid.js in one of three ways:
 
 1. Either directly on the AdUnit itself
-2. Or defined during the run of a function before the auction
+2. Defined during the run of a function before the auction
+3. Automatically set by the [Prebid GPT Pre-Auction Module](/dev-docs/modules/gpt-pre-auction.md)
 
 The function could determine the pbadslot in any way that produces a stable value useful for targeting and reporting.
 Some scenarios that could be supported:
@@ -112,4 +113,5 @@ The OpenRTB location for the Prebid Ad Slot is `imp[].ext.data.pbadslot`:
 ## Further Reading
 
 - The [onEvent()](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent) function
+- [Prebid GPT Pre-Auction Module](/dev-docs/modules/gpt-pre-auction.md)
 
