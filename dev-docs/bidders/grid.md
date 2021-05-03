@@ -13,6 +13,7 @@ getFloor: true
 userIds: all
 tcf2_supported: true
 coppa_supported: true
+pbadslot_supported: true
 ---
 
 
