@@ -22,13 +22,13 @@ To use this bidder you will need a valid definerId.  For further information, pl
 {: .table .table-bordered .table-striped }
 | Name                 | Scope    | Description                                                                                                                | Example                 | Type           |
 |----------------------|----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------|----------------|
+| `definerId`          | required | The Definer ID provided by Zeta Global                                                                                     | `"12345"`               | `string`       |
 | `user`               | required | The object containing user data (See OpenRTB spec)                                                                         | `user: {}`              | `object`       |
 | `user.buyeruid`      | required | Zeta's user id                                                                                                             | `"12345"`               | `string`       |
 | `device`             | required | The object containing device data (See OpenRTB spec)                                                                       | `device: {}`            | `object`       |
 | `device.ip`          | required | The client IP                                                                                                              | `"0.0.0.0"`             | `string`       |
 | `device.geo`         | required | The object containing geo data (See OpenRTB spec)                                                                          | `geo: {}`               | `object`       |
 | `device.geo.country` | required | The country code pertinent to the request data                                                                             | `"USA"`                 | `string`       |
-| `definerId`          | required | The Definer ID from Zeta Global                                                                                            | `"12345"`               | `string`       |
 | `site`               | optional | The object containing site data (See OpenRTB spec)                                                                         | `site: {}`              | `object`       |
 | `app`                | optional | The object containing app data (See OpenRTB spec)                                                                          | `app: {}`               | `object`       |
 | `test`               | optional | Flag which will induce a sample bid response when true; only set to true for testing purposes (1 = true, 0 = false)        | `1`                     | `integer`      |
@@ -40,5 +40,6 @@ To use this bidder you will need a valid definerId.  For further information, pl
 | `wlang`              | optional | White list of languages for creatives                                                                                      | `wlang: ["ENG"]`        | `string array` |
 | `bcat`               | optional | Blocked advertiser categories using the IAB content categories                                                             | `bcat: ["123"]`         | `string array` |
 | `badv`               | optional | Block list of advertisers by their domains                                                                                 | `badv: ["blocked.com"]` | `string array` |
-| `bapp`               | optional | Block list of applications by their platform-specific exchangeindependent application identifiers                          | `badv: ["com.blocked"]` | `string array` |
+| `bapp`               | optional | Block list of applications by their platform-specific exchange independent application identifiers                         | `badv: ["com.blocked"]` | `string array` |
 | `source`             | optional | A Source object that provides data about the inventory source and which entity makes the final decision (See OpenRTB spec) | `source: {}`            | `object`       |
+| `ext`                | optional | An extension object that allows for custom fields and objects to be sent  (See OpenRTB spec)                               | `ext: {}`               | `object`       |
