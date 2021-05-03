@@ -13,6 +13,7 @@ userIds: criteo, identityLink, unifiedId
 prebid_member: true
 safeframes_ok: true
 bidder_supports_deals: true
+pbadslot_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
