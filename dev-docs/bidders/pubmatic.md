@@ -15,6 +15,7 @@ safeframes_ok: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+pbadslot_supported: true
 gvl_id: 76
 ---
 
