@@ -88,7 +88,6 @@ pbjs.setConfig({
 | Name  | Scope    | Description                         | Example    | Type     |
 |-------|----------|-------------------------------------|------------|----------|
 | `uid`   | required | The publisher's Ad unit ID in VIS.X. | `'903536'` | `string` |
-| `video` | optional | The video object. | `'{skip: 1}'` | `object` |
 
 ### Media type Banner object params
 
@@ -96,15 +95,6 @@ pbjs.setConfig({
 | Name  | Scope    | Description                         | Example    | Type     |
 |-------|----------|-------------------------------------|------------|----------|
 | `sizes`  | required | All sizes this ad unit can accept. | `[[300, 250], [300, 600]]` | `array of integer arrays` |
-
-### Video object params
-
-{: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `minduration` | optional | Minimum video ad duration in seconds. | `5` | `integer` |
-| `maxduration` | optional | Maximum video ad duration in seconds. | `30` | `integer` |
-| `skip`        | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes. | `1` | `integer` |
 
 ### Media type Video object params
 
@@ -116,6 +106,9 @@ pbjs.setConfig({
 | `mimes`       | required | Content MIME types supported. | `['video/mp4', 'video/x-ms-wmv']` | `string array` |
 | `protocols`   | required | Array of supported video protocols. Refer to List 5.8 of IAB OpenRTB 2.5 (e.g., VAST 3.0 Wrapper). | `[2,3,5,6]` | `integer array` |
 | `api`         | optional | List of supported API frameworks for this impression. Refer to List 5.6 of IAB OpenRTB 2.5 (e.g., VPAID 2.0). If an API is not explicitly listed, it is assumed not to be supported. | `[2]` | `integer array` |
+| `minduration` | optional | Minimum video ad duration in seconds. | `5` | `integer` |
+| `maxduration` | optional | Maximum video ad duration in seconds. | `30` | `integer` |
+| `skip`        | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes. | `1` | `integer` |
 
 ### Example of Banner Ad unit
 
@@ -147,18 +140,16 @@ var videoAdUnit = {
             playerSize: [400, 300],                    // required
             mimes: ['video/mp4', 'video/x-ms-wmv'],    // required
             protocols: [2, 3, 5, 6],                   // required
-            api: [2]                                   // optional
+            api: [2],                                  // optional
+            minduration: 5,                            // optional
+            maxduration: 30,                           // optional
+            skip: 1                                    // optional
         }
     },
     bids: [{
         bidder: 'visx',
         params: {
-            uid: '921068',          // required
-            video: {
-                minduration: 5,     // optional
-                maxduration: 30,    // optional
-                skip: 1             // optional
-            }
+            uid: '921068'           // required
         }
     }]
 };
