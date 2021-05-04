@@ -25,10 +25,56 @@ pbs_app_supported: true
 | `locale`     | optional | Locale                                                                                                  | `'fr'`                                  | `string`  |
 | `floor`      | optional | Bid floor                                                                                               | `1.0`                                   | `float`   |
 
+#### Example
 
+```
+{
+    bidder: 'madvertise',
+    params: { 
+            s: "/4543756/prebidadaptor/madvertiseHB",
+            tgt:'aa=a;bb=b'
+    }
+}
+```
 ### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                                                                             | Example                                 | Type      |
 |--------------|----------|---------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------|
-|`placementId` | required | The placement’s ID provided by Madvertise.                                                              | `'/1111111/banner'`                     | `string`  |
+|`zoneId`      | required | The zone ID provided by Madvertise.                                                                     | `'/1111111/banner'`                     | `string`  |
+
+
+#### Example
+
+```
+{
+    "id": "some-request-id",
+    "test": 1,
+    "site": {
+        "page": "prebid.org"
+    },
+    "imp": [
+        {
+            "id": "some-impression-id",
+            "banner": {
+                "format": [
+                    {
+                        "w": 320,
+                        "h": 50
+                    }
+                ]
+            },
+            "ext": {
+                "prebid": {
+                    "bidder": {
+                        "madvertise": {
+                            "zoneId": "/1111111/banner"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "tmax": 1000
+}
+```
