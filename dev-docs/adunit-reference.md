@@ -37,7 +37,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) and the [insterstitial](#adUnit-interstitial-example) signal |
+| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [insterstitial](#adUnit-interstitial-example) signal. |
 
 <a name="adUnit.bids" />
 
@@ -190,6 +190,29 @@ The `native` object contains the following properties that correspond to the ass
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
 | `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                            |
 | `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                     |
+| `minduration`      | Recommended    | Integer         | Minimum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
+| `maxduration`      | Recommended    | Integer         | Maximum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
+| `w`      | Recommended    | Integer         | 
+Width of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
+| `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
+| `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB spec][openRTB].           |
+| `placement`      | Optional    | Integer         | Placement type for the impression, see [OpenRTB spec][openRTB].           |
+| `linearity`      | Optional    | Integer         | Indicates if the impression must be linear, nonlinear, etc, see [OpenRTB spec][openRTB].           |
+| `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped,
+where 0 = no, 1 = yes., see [OpenRTB spec][openRTB].           |
+| `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds
+can be skippable; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
+| `skipafter`      | Optional    | Integer         | Number of seconds a video must play before skipping is
+enabled; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
+| `minbitrate`      | Optional    | Integer         | Minimum bit rate in Kbps., see [OpenRTB spec][openRTB].           |
+| `maxbitrate`      | Optional    | Integer         | Maximum bit rate in Kbps., see [OpenRTB spec][openRTB].           |
+| `delivery`      | Optional    | Array[Integer]         | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB spec][openRTB].           |
+| `pos`      | Optional    | Integer         | Ad position on screen, see [OpenRTB spec][openRTB].           |
+| `playbackend`      | Optional    | Integer         | The event that causes playback to end, see [OpenRTB spec][openRTB].           |
+
+
+
+
 
 If `'video.context'` is set to `'adpod'` then the following parameters are also available.  
 
@@ -263,16 +286,16 @@ pbjs.addAdUnits({
         video: {
             context: 'instream',
             playerSize: [640, 480],
+	    w: 640,
+	    h: 480,
+	    skip: 1,
+	    playbackmethod: [2]
         },
     },
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: 13232361,
-            video: {
-                skippable: true,
-                playback_methods: ['auto_play_sound_off']
-            }
+            placementId: 13232361
         }
     }]
 });
