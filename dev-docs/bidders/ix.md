@@ -84,18 +84,18 @@ var adUnits = [{
 {: .table .table-bordered .table-striped }
 | Type   | Support |
 | ------ | ------- |
-| `Banner` | Fully supported for all IX approved sizes. |
-| `Video`  | Fully supported for all IX approved sizes. |
-| `Native` | Not supported. |
+| `Banner` | Fully supported for all IX approved sizes |
+| `Video`  | Fully supported for all IX approved sizes |
+| `Native` | Not supported |
 
 ### Supported Media Types (Prebid Server)
 
 {: .table .table-bordered .table-striped }
 | Type   | Support |
 | ------ | ------- |
-| `Banner` | Fully supported for all IX approved sizes. |
-| `Video`  | Fully supported for all IX approved sizes. |
-| `Native` | Not supported. |
+| `Banner` | Fully supported |
+| `Video`  | Fully supported, including ad pods for OTT |
+| `Native` | Not supported |
 
 ## Bid Parameters
 
