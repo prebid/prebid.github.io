@@ -666,7 +666,7 @@ gulp build --modules=intentIqIdSystem
 
 #### Intent IQ ID Registration
 
-You can set up Intent IQ ID by contacting our operations team at [Intent IQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
+You can set up Intent IQ ID by contacting our operations team at [Intent IQ Contact Us](https://www.intentiq.com/contact-us) and getting your partner id.
 
 The Intent IQ ID privacy is covered under the [Intent IQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
 
