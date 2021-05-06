@@ -10,6 +10,7 @@ prebid_member: true
 gdpr_supported: true
 pbs_app_supported: true
 schain_supported: true
+usp_supported: true
 userIds: criteo,unifiedId,netId,pubcid
 ---
 
@@ -19,5 +20,6 @@ userIds: criteo,unifiedId,netId,pubcid
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
 | sourceId | required | Website Source Id | 111 | integer |
-| host | required | Network Host to request from | 'host1' | string |
+| host | optional | Network Host to request from | 'host1' | string |
 | tagid | optional | Placement ID | 'leaderboard_1' | string |
+| vis_optout | optional | Opt out of visibility metric | false | boolean |
