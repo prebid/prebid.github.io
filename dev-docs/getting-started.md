@@ -1,14 +1,11 @@
 ---
-layout: page
+layout: page_v2
 title: Getting Started
 description: Dev docs for getting started with Prebid.js for header bidding
-pid: 0
-is_top_nav: yeah
-top_nav_section: dev_docs
-nav_section: quick-start
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Getting Started for Developers
 {: .no_toc }
@@ -22,11 +19,19 @@ The easiest way to get started with Prebid.js is to use the example code below.
 
 {% include dev-docs/build-from-source-warning.md %}
 
-<iframe width="100%" height="1600" src="//jsfiddle.net/prebid_org/rq7qhcgq/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<!-- JSFiddle -->
+<div id="jsfiddle" class="col-md-12">
+<h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
+<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+</div>
+
+<script type="text/javascript">
+Optanon.InsertHtml('<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/bryzc7g6/3/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
+</script>
 
 ### Next Steps
 
 1. Set up your ad server using the [corresponding Ad Ops setup instructions]({{site.baseurl}}/adops/send-all-bids-adops.html)
 2. Once you're comfortable with the basic setup, check out [the examples showing other use cases]({{site.baseurl}}/dev-docs/examples/basic-example.html)
 
-</div>
+

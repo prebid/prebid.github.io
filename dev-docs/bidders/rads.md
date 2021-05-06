@@ -1,0 +1,19 @@
+---
+layout: bidder
+title: Rads
+description: Prebid Rads Bidder Adaptor
+pbjs: true
+biddercode: rads
+media_types: banner, video 
+gdpr_supported: true
+gvl_id: 602
+---
+
+
+### bid params
+
+{: .table .table-bordered .table-striped }
+
+| Name          | Scope    | Description                                                                | Example                | Type            |
+|---------------|----------|----------------------------------------------------------------------------|------------------------|-----------------|
+| `placement`   | required | Placement ID from Rads.                                                    | `'101'`                  | `string`        |

@@ -10,8 +10,7 @@ permalink: /blog/first-open-header-bidding-solution-for-video-now-available-on-p
 
 Late last year, Prebid.js took an important first step beyond traditional display advertising formats with a release of formal [support for instream video](http://productblog.appnexus.com/first-open-header-bidding-solution-for-video-now-available-on-prebid-js/). Today, Prebid.js is doubling down on its focus on formats with the release of outstream video support.
 
-{: .pb-md-img :}
-![Outstream Prebid]({{ site.github.url }}/assets/images/blog/outstream-prebid.png)
+![Outstream Prebid]({{ site.github.url }}/assets/images/blog/outstream-prebid.png){: .pb-md-img :}
 
 Given the high cost of creating true instream video inventory and the inherent constraints that this places on supply, outstream video formats are proving extremely valuable for publishers looking for video monetization alternatives, and for marketers looking for more available video supply.
 

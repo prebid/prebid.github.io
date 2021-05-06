@@ -1,31 +1,35 @@
 ---
 layout: bidder
 title: Adtelligent
-description: Prebid Adtelligent Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+description: Prebid Adtelligent Bidder Adapter
 biddercode: adtelligent
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
-media_types: video
+media_types: video,banner
+gdpr_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+schain_supported: true
+coppa_supported: true
+usp_supported: true
+safeframes_ok: true
+prebid_member: true
+pbjs: true
+pbs: true
+gvl_id: 410
 ---
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
-
-| Name | Scope    | Description                   | Example  |
-| :--- | :----    | :----------                   | :------  |
-| `aid`| required | The source ID from Adtelligent.| 350975   | 
-
+| Name  | Scope    | Description                     | Example  | Type      |
+|-------|----------|---------------------------------|----------|-----------|
+| `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
 
 ### Description
 Get access to multiple demand partners across Adtelligent AdExchange and maximize your yield with Adtelligent header bidding adapter.
 
 Adtelligent header bidding adapter connects with Adtelligent demand sources in order to fetch bids.
-This adapter provides a solution for accessing Video demand and display demand
+This adapter provides a solution for accessing Video demand and display demand.
+
+Adtelligent now supports adpod. 
 
 ### Test Parameters
 ```
@@ -33,11 +37,11 @@ This adapter provides a solution for accessing Video demand and display demand
 
       // Video instream adUnit
       {
-        code: 'div-test-div',
-        sizes: [[640, 480]],
+        code: 'test-div',
         mediaTypes: {
           video: {
-            context: 'instream'
+            context: 'instream',
+            playerSize: [640, 480]
           }
         },
         bids: [{
@@ -50,11 +54,29 @@ This adapter provides a solution for accessing Video demand and display demand
 
       // Video outstream adUnit
       {
-        code: 'outstream-test-div',
+        code: 'test-div',
+        mediaTypes: {
+          video: {
+            context: 'outstream',
+            playerSize: [640, 480]
+          }
+        },
+        bids: [{
+          bidder: 'adtelligent',
+          params: {
+            aid: 331133
+          }
+        }]
+      },
+
+       // Video ADPOD adUnit
+      {
+        code: 'test-div',
         sizes: [[640, 480]],
         mediaTypes: {
           video: {
-            context: 'outstream'
+            context: 'adpod',
+            playerSize: [640, 480]            
           }
         },
         bids: [{
@@ -67,8 +89,12 @@ This adapter provides a solution for accessing Video demand and display demand
 
       // Banner adUnit
       {
-        code: 'div-test-div',
-        sizes: [[300, 250]],
+        code: 'test-div',
+        mediaTypes:{
+            banner:{
+                sizes: [[300, 250]]
+            }
+        }
         bids: [{
           bidder: 'adtelligent',
           params: {
@@ -77,4 +103,19 @@ This adapter provides a solution for accessing Video demand and display demand
         }]
       }
     ];
+```
+
+### Additional Configuration
+
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+(default value is 10).
+
+```
+    pbjs.setBidderConfig({
+        config: {              
+            adtelligent: {
+                chunkSize: 1   // makes 1 http request per 1 adunit configured
+            }
+        }
+    });
 ```

@@ -1,14 +1,15 @@
 {% include head.html %}
-{% include main_nav.html %}
 
-<div class="container bs-docs-container">
+{% include nav.html %}
 
-    {% if page.is_full_screen %} 
-    	{{content}} 
-    {% else %} 
-    	{{content}} 
+<div class="container pb-docs-container">
+
+    {% if page.is_full_screen %}
+    	{{content}}
+    {% else %}
+    	{{content}}
     {% endif %}
 
 </div>
 
-{% include foot.html %}
+{% include footer.html %}

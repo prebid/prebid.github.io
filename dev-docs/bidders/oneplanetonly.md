@@ -2,25 +2,22 @@
 layout: bidder
 title: Oneplanetonly
 description: Prebid Oneplanetonly Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: oneplanetonly
-biddercode_longer_than_12: true
-prebid_1_0_supported : true
 ---
 
 
-### bid params
+### Bid Params
 
-| Name   | Scope    | Description | Example         |
-| :---   | :----    | :---------- | :------         |
-| siteId   | required | The site id     | '5'     |
-| adUnitId | required | The ad unit id  | '5-4587544'     |
-
+{: .table .table-bordered .table-striped }
+| Name       | Scope    | Description    | Example       | Type     |
+|------------|----------|----------------|---------------|----------|
+| `siteId`   | required | The site id    | `'5'`         | `string` |
+| `adUnitId` | required | The ad unit id | `'5-4587544'` | `string` |
 
 Example:
-```javascript
+
+``` bash
 {
     bidder: 'oneplanetonly',
     params: {

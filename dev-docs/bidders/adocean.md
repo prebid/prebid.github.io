@@ -2,19 +2,20 @@
 layout: bidder
 title: AdOcean
 description: Prebid AdOcean Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
+pbs: true
 biddercode: adocean
-prebid_1_0_supported : true
+gdpr_supported: true
 ---
 
-### bid params
+### Note
+The AdOcean bid adapter may require an additional setup from the AdOcean team. Please contact with your local Technical Support team or by visiting [AdOcean website](https://adocean-global.com/en/contact/).
+
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-
-| Name       | Scope    | Description       | Type    | Example                                           |
-| :--------- | :------- | :---------------- | :------ | :------------------------------------------------ |
-| slaveId    | required | slave ID          | string  |`'adoceanmyaozpniqismex'`                          |
-| masterId   | required | master ID         | string  |`'tmYF.DMl7ZBq.Nqt2Bq4FutQTJfTpxCOmtNPZoQUDcL.G7'` |
-| emiter     | required | traffic source id | string  |`'myao.adocean.pl'`                                |
+| Name     | Scope    | Description       | Example                                            | Type     |
+|----------|----------|-------------------|----------------------------------------------------|----------|
+| slaveId  | required | slave ID          | `'adoceanmyaozpniqismex'`                          | `string` |
+| masterId | required | master ID         | `'tmYF.DMl7ZBq.Nqt2Bq4FutQTJfTpxCOmtNPZoQUDcL.G7'` | `string` |
+| emiter   | required | traffic source id | `'myao.adocean.pl'`                                | `string` |

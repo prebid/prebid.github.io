@@ -1,54 +1,62 @@
 ---
-layout: page
-title: Setting up Prebid Native in DFP (Alpha)
-head_title: Setting up Prebid Native in DFP
-description: Setting up Prebid Native in DFP
+layout: page_v2
+title: Setting up Prebid Native in Google Ad Manager (Alpha)
+head_title: Setting up Prebid Native in Google Ad Manager
+description: Setting up Prebid Native in Google Ad Manager
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
+sidebarType: 3
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Setting up Prebid Native in DFP (Alpha)
+
+# Setting up Prebid Native in Google Ad Manager (Alpha)
 {: .no_toc}
 
-This page describes how to set up native creatives in DFP for use with Prebid.js.
+{% capture version1 %}
+The procedures in this document still work, but we strongly recommend
+using the improved [Guide for Setting up Prebid Native in GAM](/adops/gam-native.html).
+{% endcapture %}
+{% include alerts/alert_warning.html content=version1 %}
 
-For more information about DFP native ad setup, see the [DFP native ads documentation](https://support.google.com/dfp_premium/answer/6366845?hl=en).
+This page describes how to set up native creatives in Google Ad Manager for use with Prebid.js.
+
+For more information about Google Ad Manager native ad setup, see the [Google Ad Manager native ads documentation](https://support.google.com/admanager/answer/6366845).
 
 * TOC
 {:toc}
 
-## 1. Add a native ad unit
+## 1. Create a native ad
 
-You can specify a size for the ad unit, or specify the "fluid" size.  In this case we'll go with **Fluid**.
+From Google Ad Manager, select **Delivery > Native**. Click **Create Native Ad**.
 
-{: .pb-img.pb-md-img :}
-![prebid native adunit]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_adunit.png)
+![native delivery]({{site.github.url}}/assets/images/ad-ops/dfp-native/create_prebid_native.png){: .pb-md-img :}
 
-## 2. Create a custom native ad format
+Select the **HTML & CSS editor** option.
 
-For Prebid, create a [custom native ad format](https://support.google.com/dfp_sb/answer/6366911?hl=en).
+![HTML editor option]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_html_option.png){: .pb-md-img :}
 
-Make sure to remove all variables except **Click-through URL**.
+## 2. Define ad settings
 
-{: .pb-img.pb-md-img :}
-![prebid native format]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid-native-format.png)
+For **Ad size** you can specify a specific size for the ad unit or specify the "fluid" size.  In this case we'll go with **Fluid**.
 
-## 3. Create new native style
+Select **New format** under **Custom format**. (If you've already created an ad unit with the format you want, you can select **Existing format** and select the format to apply to this ad unit.)
 
-In this example, we're targeting `"prebid_native_adunit"`, so the *Size* is set to **Fluid**.
+![native adunit settings]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_settings.png){: .pb-md-img :}
 
-Add the HTML and CSS that define your native ad template. Note that `%%PATTERN%%` macros can be included in either field, and the HTML can contain JavaScript.  For more information, see the [DFP native styles docs](https://support.google.com/dfp_premium/answer/6366914).
+## 3. Style your native ad
+
+You can add HTML and CSS to define your native ad template. To allow for native impression trackers, click trackers, and [automatic placeholder value replacement]({{site.github.url}}/dev-docs/show-native-ads.html#sending-asset-placeholders) within a Prebid native creative template, you'll need to include a CDN-hosted script in the HTML, as shown here (see Example HTML below for the full script):
+
+![native ad styling]({{site.github.url}}/assets/images/ad-ops/dfp-native/prebid_native_styling.png){: .pb-md-img :}
 
 {: .alert.alert-danger :}
-**Native impression tracking requirements**  
-You must include the `postMessage` code snippet as shown in the screenshot and example code below so impression trackers will fire.
+**Native impression and click tracking requirements**  
+Any link that should fire a click tracker needs to include a `pbAdId` attribute set to `hb_adid`. This attribute is required because the script needs the bidId/adId, which can be filled in only by the targeting key on the ad server, not from within the script.
 
-{: .pb-img.pb-lg-img :}
-![Native ad content]({{site.github.url}}/assets/images/ad-ops/dfp-native/native-content-ad.png)
+If this creative is served, it will fire impression trackers on load. Clicking the link will fire the click tracker and the link will work as normal, in this case going to the `hb_native_linkurl` destination.
 
 Example HTML and CSS:
 
@@ -57,17 +65,16 @@ Example HTML and CSS:
 <div class="sponsored-post">
   <div class="thumbnail"></div>
   <div class="content">
-    <h1><a href="%%CLICK_URL_UNESC%%%%PATTERN:hb_native_linkurl%%" target="_blank">%%PATTERN:hb_native_title%%</a></h1>
+    <h1><a href="%%CLICK_URL_UNESC%%%%PATTERN:hb_native_linkurl%%" target="_blank" class="pb-click" pbAdId="%%PATTERN:hb_adid%%">%%PATTERN:hb_native_title%%</a></h1>
     <p>%%PATTERN:hb_native_body%%</p>
     <div class="attribution">%%PATTERN:hb_native_brand%%</div>
   </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-trk.js"></script>
 <script>
-window.parent.postMessage(JSON.stringify({
-  message: 'Prebid Native',
-  adId: '%%PATTERN:hb_adid%%'
-}), '*');
+  	let pbNativeTagData = {};
+  	pbNativeTagData.pubUrl = "%%PATTERN:url%%";
+  	window.pbNativeTag.startTrackers(pbNativeTagData);
 </script>
 
 {% endhighlight %}
@@ -127,27 +134,21 @@ p {
 1. Add the native format created in **Step 1** under **Inventory Sizes** (in this case, "Prebid Native Format")
 2. Be sure to set inventory targeting and key-value targeting on `hb_pb` corresponding to the line item's CPM.
 
-{: .pb-img.pb-md-img :}
-![create a native order and line item]({{site.github.url}}/assets/images/ad-ops/dfp-native/new-order-and-line-item.png)
+![create a native order and line item]({{site.github.url}}/assets/images/ad-ops/dfp-native/new-order-and-line-item.png){: .pb-md-img :}
 
-{: .pb-img.pb-md-img :}
-![add targeting]({{site.github.url}}/assets/images/ad-ops/dfp-native/add-targeting.png)
+![add targeting]({{site.github.url}}/assets/images/ad-ops/dfp-native/add-targeting.png){: .pb-md-img :}
 
 ## 5. Create a new native creative
 
 1. Be sure to select the format you created in **Step 1** (in this case, "Prebid Native Format")
 2. Under **Click-through URL**, add any value.  This will be overwritten by Prebid.
 
-{: .pb-img.pb-md-img :}
-![create a new native creative]({{site.github.url}}/assets/images/ad-ops/dfp-native/new-creative.png)
+![create a new native creative]({{site.github.url}}/assets/images/ad-ops/dfp-native/new-creative.png){: .pb-md-img :}
 
-{: .pb-img.pb-md-img :}
-![creative click-through URL]({{site.github.url}}/assets/images/ad-ops/dfp-native/creative-click-through-url.png)
+![creative click-through URL]({{site.github.url}}/assets/images/ad-ops/dfp-native/creative-click-through-url.png){: .pb-md-img :}
 
 ## Related Topics
 
 + [Show Native Ads with Prebid.js]({{site.github.url}}/dev-docs/show-native-ads.html) (Engineering setup instructions)
-+ [Step by Step Guide to DFP Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
++ [Step by Step Guide to Google Ad Manager Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
 + [Send all bids to the ad server]({{site.github.url}}/adops/send-all-bids-adops.html)
-
-</div>
