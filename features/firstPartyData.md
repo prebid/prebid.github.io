@@ -60,7 +60,7 @@ pbjs.setConfig({
            keywords: "power tools, drills",
            search: "drill",
            content: {
-		userrating: "4",
+		userrating: 4,
 		data: [{
           	    name: "www.dataprovider1.com",
           	    ext: { "segtax": 1 },

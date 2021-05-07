@@ -3,7 +3,7 @@ layout: bidder
 title: AMX RTB
 description: AMX RTB Prebid Bid Adapter
 hide: true
-schain_supported: true
+schain_supported: false
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true

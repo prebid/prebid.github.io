@@ -79,8 +79,6 @@ of sub-objects. The table below has the options that are common across ID system
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 
-## User ID Sub-Modules
-
 ## Permissions
 Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with. 
 
