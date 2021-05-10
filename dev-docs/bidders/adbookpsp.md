@@ -163,7 +163,6 @@ pbjs.setConfig({
   adbookpsp: {
     orgId: 'example-org-id',
     winTrackingEnabled: true,
-    coppa: false,
   },
   userSync: {
     filterSettings: {
