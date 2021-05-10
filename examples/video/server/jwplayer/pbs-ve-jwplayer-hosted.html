@@ -1,6 +1,6 @@
 ---
 layout: video_sample
-title: Prebid Video | Prebid Server Example with  JW Player (Hosted) 
+title: Prebid Video | Prebid Server Example with JW Player (Self-Hosted) 
 description: An example of a pre-roll ad using Prebid Server and JW Player (Hosted).  
 videoType: pbs-jw02
 isVideo: true
@@ -39,7 +39,7 @@ sidebarType: 4
 &lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
-    jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key<br>
+    jwplayer.key = "YOUR_JW_PLAYER_KEY"; //Test Key - replace this with your own valid JWPlayer license key<br>
 &lt;/script&gt;
 
 &lt;script&gt;
@@ -112,7 +112,6 @@ sidebarType: 4
 
         pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
 
-
         pbjs.requestBids({
             bidsBackHandler: function(bids) {
                 console.log("got some bids");
@@ -153,7 +152,7 @@ sidebarType: 4
         console.log("starting player with url " + url);
         jwPlayerInstance.setup({
            
-           "file": "http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4",
+           "file": "https://vjs.zencdn.net/v/oceans.mp4",
             "width": 640,
             "height": 480,
             "autostart": true,
@@ -188,13 +187,13 @@ sidebarType: 4
         invokeVideoPlayer = function(url) {
             console.log("starting player with url " + url);
             jwPlayerInstance.setup({
-                "file": "http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4",
+                "file": "https://vjs.zencdn.net/v/oceans.mp4",
                 "width": 640,
                 "height": 480,
                 "autostart": true,
                 "mute": true,
                 "advertising": {
-                    client: "vast",
+                    client: "vast"
                 }
             });
 
