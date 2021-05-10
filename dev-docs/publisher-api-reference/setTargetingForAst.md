@@ -1,13 +1,13 @@
 ---
 layout: api_prebidjs
 title: pbjs.setTargetingForAst(adUnitCode)
-description: 
+description:
 ---
 
 
 Set query string targeting for AST ([Seller Tag](https://docs.xandr.com/bundle/seller-tag/page/seller-tag.html)) ad unit(s).  Note that this function has to be called after all ad units on page are defined.  For working example code, see [Using Prebid.js with AppNexus Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html). If the function is invoked without arguments it will set targeting for all adUnits defined.
 
-**Kind**: static method of [pbjs](#module_pbjs)
+**Kind**: static method of pbjs API
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |

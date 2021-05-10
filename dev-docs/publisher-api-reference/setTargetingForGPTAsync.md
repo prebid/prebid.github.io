@@ -1,13 +1,13 @@
 ---
 layout: api_prebidjs
 title: pbjs.setTargetingForGPTAsync([codeArr], customSlotMatching)
-description: 
+description:
 ---
 
 
 Set query string targeting on GPT ad units after the auction.
 
-**Kind**: static method of [pbjs](#module_pbjs)
+**Kind**: static method of pbjs API
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
@@ -22,7 +22,7 @@ Here's how it works:
 1. For each AdUnit code that's returned from auction or is specified in the `codeArr` parameter:
 2. For each GPT ad slot on the page:
 3. If the `customSlotMatching` function is defined, call it. Else, try to match the AdUnit `code` with the GPT slot name. Else try to match the AdUnit `code` with the ID of the HTML div containing the slot.
-4. On the first slot that matches, add targeting from the bids on the AdUnit. Exactly which targets are added depends on the status of [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) and [auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls).
+4. On the first slot that matches, add targeting from the bids on the AdUnit. Exactly which targets are added depends on the status of [enableSendAllBids](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control) and [auctionKeyMaxChars](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls).
 
 {% capture tipAlert %} To see which targeting key/value pairs are being added to each slot, you can use the GPT Console. From the javascript console, run `googletag.openConsole();` {% endcapture %}
 
