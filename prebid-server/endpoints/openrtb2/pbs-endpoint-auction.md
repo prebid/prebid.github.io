@@ -577,7 +577,7 @@ If there's already an source.ext.schain and a bidder is named in ext.prebid.scha
 
 ##### User IDs
 
-Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid.org/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
+Prebid Server adapters can support the [Prebid.js User ID modules](/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
 
 ```
 {

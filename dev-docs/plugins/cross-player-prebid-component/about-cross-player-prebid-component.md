@@ -15,7 +15,7 @@ The [Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebi
 The Component is a JavaScript file that is loaded via URL.  It can be loaded into the header of the HTML document for header bidding or it can be loaded by a player for "just-in-time" Prebid.  You can use the default location of the Component or, because it is an open-source project, you can download the source for the Component, modify it (if needed) to meet your needs, and build it, then host your custom build on your own site.
 
 {% capture noteAlert %}
-Users have the option of running a localized version of the Cross-Player Prebid Component by either downloading or checking out the current build from our Github repo at [https://github.com/prebid/cross-player-prebid-component](https://github.com/prebid/cross-player-prebid-component) or loading the most current production version from our CDN located at [http://acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js](http://acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js)
+Users have the option of running a localized version of the Cross-Player Prebid Component by either downloading or checking out the current build from our Github repo at [https://github.com/prebid/cross-player-prebid-component](https://github.com/prebid/cross-player-prebid-component) or loading the most current production version from our CDN located at [https://acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js](https://acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js)
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
