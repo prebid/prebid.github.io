@@ -62,11 +62,11 @@ pbjs.setConfig({
            content: {
 		userrating: "4",
 		data: [{
-          	    "name": "www.dataprovider1.com",
-          	    "ext": { "taxonomyname": "iab_content_taxonomy" },
-		    "segment": [
-            		{ "id": "687" }, 
-            		{ "id": "123" }
+          	    name: "www.dataprovider1.com",
+          	    ext: { "segtax": 1 },
+		    segment: [
+            		{ id: "687" }, 
+            		{ id: "123" }
 		    ]
                 }]
 	   },
@@ -83,7 +83,7 @@ pbjs.setConfig({
            keywords: "a,b",
 	   data: [{
 	       name: "dataprovider.com",
-	       ext: { taxonomyname: "iab_audience_taxonomy" },
+	       ext: { segtax: 3 },
                segment: [
 		  { id: "1" }
                ]
@@ -176,6 +176,41 @@ pbjs.setBidderConfig({ // different bidders can receive different data
    }
 });
 {% endhighlight %}
+
+## Segments and Taxonomy
+
+The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in the examples above.
+
+{: .alert.alert-warning :}
+Segment support is still under development. You can follow the [Prebid.js discussion](https://github.com/prebid/Prebid.js/issues/6057) if you'd like.
+
+```
+        user: {
+	   data: [{
+	       name: "dataprovider.com", // who resolved the segments
+	       ext: { segtax: 3 },       // taxonomy used to encode the segments
+               segment: [
+		  { id: "1" }
+               ]
+	   }],
+```
+
+The new extension is `segtax`, which identifies the specific taxonomy used to
+determine the provided segments. This model supports using taxonomies other
+than IAB taxonomies, but all taxonomies must be registered with the IAB to be
+assigned a number. Once the IAB finalizes the process, we'll place a link
+here to their page. For now, here's the beta table defining the segtax values:
+
+{: .table .table-bordered .table-striped }
+| Segtax ID | Taxonomy Type | Version | Description |
+|-----------+---------------+---------+-------------|
+| 1 | Content | 2.1 | [IAB - Content Taxonomy version 2.1](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Content-Taxonomy-2.1-Final.xlsx) |
+| 2 | Content | 2.2 | [IAB - Content Taxonomy version 2.2](https://iabtechlab.com/wp-content/uploads/2020/12/IABTechLab_Content_Taxonomy_2-2_Final.xlsx) |
+| 3 | Audience | 1.0 | [IAB - Audience Taxonomy version 1.0](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Audience-Taxonomy-1.1-Final.xlsx) |
+
+{: .alert.alert-info :}
+Publishers need to check with their SSPs and DSPs to confirm which
+segment taxonomies they support.
 
 ## How Bid Adapters Should Read First Party Data
 

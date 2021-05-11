@@ -349,7 +349,7 @@
     sectionId: 4
     sectionName: Resources
     title: Prebid.org
-    link:  http://www.prebid.org
+    link:  https://www.prebid.org
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
@@ -358,7 +358,7 @@
     sectionId: 4
     sectionName: Resources
     title: Blog
-    link:  http://www.prebid.org/blog
+    link:  https://www.prebid.org/blog
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
