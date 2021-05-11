@@ -1,8 +1,9 @@
 ---
 layout: bidder
-title: Outbrain
+title: Outbrain - Old
 description: Outbrain Prebid Bidder Adapter
 biddercode: outbrain
+aliasCode: zemanta
 gdpr_supported: true
 gvl_id: 164
 usp_supported: true
@@ -13,7 +14,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
-pbjs_version_notes: for versions 4.35+
+pbjs_version_notes: for versions 4.20-4.34
 ---
 
 ### Registration

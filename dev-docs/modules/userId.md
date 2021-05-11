@@ -86,7 +86,7 @@ Publishers can control which user ids are shared with the bid adapters they choo
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
-In this example the SharedId sub adapter is only allowed to be sent to the Rubicon adapter.
+In this example the SharedID sub adapter is only allowed to be sent to the Rubicon adapter.
 ```
 userIds: [
   {
@@ -266,6 +266,63 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Deepintent DPES ID by Deepintent
+
+The DeepIntent Healthcare Marketing Platform is the first and only DSP that combines real-world health data, premium partnerships, and custom integrations to reach patients and providers across any device.  DeepIntent empowers publishers to maximize their inventory, collaborate and transact directly with advertisers, and grow their business in a safe, controlled, transparent, and privacy-compliant way. Our publisher partners sell inventory on every channel via real-time bidding or conducting one-to-one trading with hundreds of the country’s leading healthcare brands and agencies.
+ 
+DeepIntent’s DPES ID is a shared user identifier built for healthcare marketers and publishers integrated within DeepIntent’s Healthcare Marketplace. The DPES ID lets users protect and manage their privacy throughout the advertising value chain. User data written and associated with the DPES ID is not stored on DeepIntent’s servers. Instead, this data is stored in a decentralized way on a user’s browser. Users can still opt out of the ads by navigating to https://option.deepintent.com/adchoices
+
+#### Deepintent DPES ID Registration
+
+DPES ID is free to use and requires a simple registration with DeepIntent. Please reach out to DeepIntent’s Publisher Development team at prebid@deepintent.com to learn more and get started. Once a publisher registers with DeepIntent’s platform, DeepIntent will provide a simple code snippet to be integrated with the publisher’s website. This code snippet will capture and store information per the publisher’s end user agreement. The DPES User ID module uses the DPES ID by passing it within the DeepIntent Prebid adapter.
+
+#### Deepintent DPES ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module: `"deepintentId"` | `"deepintentId"` |
+| storage | Required | Object | Storage settings for how the User Id module will cache the Deepintent ID locally | |
+| storage.type | Required | String | This is where the results of the user ID will be stored. Deepintent`"html5"` or `"cookie"`. | `"html5"` |
+| storage.name | Optional | String | The name of the local storage where the user ID will be stored. Deepintent | `"_dpes_id"` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. Deepintent recommends `90`. | `90` |
+
+#### Deepintent DPES ID Examples
+
+1) Publisher stores the hashed identity from healthcare identity in cookie
+{% highlight javascript %}
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'deepintentId',
+      storage: {
+        type: 'cookie',           // "html5" is the required storage type option is "html5"
+        name: '_dpes_id',            
+        expires: 90             // storage lasts for 90 days, optional if storage type is html5
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+{% endhighlight %}
+
+2) Publisher stores the hashed identity from healthcare identity in localstorage
+{% highlight javascript %}
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'deepintentId',
+      storage: {
+        type: 'html5'           // "html5" is the required storage type option is "html5"
+        name: '_dpes_id'
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+{% endhighlight %}
+
 
 ### Fabrick ID by Neustar
 
@@ -585,22 +642,35 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### IntentIQ ID
+### Intent IQ ID
 
-The IntentIQ ID solution is provided by intentiq.com.
+Intent IQ’s universal ID with its unparalleled coverage of over 80% of ad inventory, protects publishers’ ability to rely on advertising as their main revenue source while preserving user privacy in a third party cookieless world.
+
+The universal ID is an Intent IQ generated alphanumeric characters ID representing a person. This ID is not matched with personal information and remains anonymous to Intent IQ.
+
+Intent IQ universal ID enables partners - publishers, SSPs, DSPs, DMPs and advertisers to support, in a privacy-friendly way, and on a person level, core elements of the advertising business model -
+
+- Targeting across sites and devices
+- Frequency capping
+- Attribution measurement across sites and devices
+
+Intent IQ's universal ID works across IP addresses and user-agent changes.
+
+Intent IQ's universal ID truly stands out in the coverage and accuracy it provides. Intent IQ's universal ID covers over 80% of ad inventory with 90% accuracy. By contrast, third-party cookies offer 56% coverage and log-in solutions offer coverage of less than 20%.
+
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=intentIqIdSystem
 
-#### IntentIQ ID Registration
+#### Intent IQ ID Registration
 
-You can set up IntentIQ ID by contacting our operations team at [IntentIQ Contact Us] (https://www.intentiq.com/contact-us) and getting your partner id.
+You can set up Intent IQ ID by contacting our operations team at [Intent IQ Contact Us](https://www.intentiq.com/contact-us) and getting your partner id.
 
-The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
+The Intent IQ ID privacy is covered under the [Intent IQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
 
-#### IntentIQ ID Configuration
+#### Intent IQ ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
@@ -611,9 +681,12 @@ The IntentIQ ID privacy is covered under the [IntentIQ Privacy Policy](https://w
 | params.pcid | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request. | `"g3hC52b"` |
 | params.pai | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request. | `"advertiser1"` |
 
-#### IntentIQ ID Examples
+{: .alert.alert-info :}
+**NOTE:** The Intent IQ ID is encrypted with a key that changes every several hours. Demand partners utilize the latest key to decrypt the ID and use it. Therefore, to enable demand partners have an ID they can use, we highly recommend calling Intent IQ every 4 hours by setting storage.refreshInSeconds to 4 hours (4*3600 seconds)
 
-1) Publisher has a partner ID from IntentIQ and cookies.
+#### Intent IQ ID Examples
+
+1) Publisher has a partner ID from Intent IQ and cookies.
 
 {: .alert.alert-warning :}
 {% highlight javascript %}
@@ -622,20 +695,21 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                partner: 123456     // valid partner id
+                partner: 123456             // valid partner id
             },
             storage: {
                 type: "cookie",
-                name: "intentIqId",       // create a cookie with this name
-                expires: 60                   // cookie can last for 60 days
-            }
+                name: "intentIqId",         // create a cookie with this name
+                expires: 60,                // cookie can last for 60 days
+                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
+}
         }],
         syncDelay: 3000              // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
 
-2) Publisher supports IntentIQ and HTML5 local storage.
+2) Publisher supports Intent IQ and HTML5 local storage.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -643,12 +717,13 @@ pbjs.setConfig({
         userIds: [{
             name: "intentIqId",
             params: {
-                partner: 123456     // valid partner id
+                partner: 123456			    // valid partner id
             },
             storage: {
                 type: "html5",
-                name: "intentIqId",    // set localstorage with this name
-                expires: 60
+                name: "intentIqId",         // set localstorage with this name
+                expires: 60,
+                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
             }
         }],
         syncDelay: 3000
@@ -866,8 +941,10 @@ pbjs.setConfig({
         userIds: [{
         name: 'merkleId',
         params: {
-          ptk: 'example',
-          pubid: 'EXAMPLE'
+          vendor:'example_vendor',
+          sv_cid:'example_cid',
+          sv_pubid:'example_pubid',
+          sv_domain:'example.com'
         },
         storage: {
           type: 'html5',
@@ -896,6 +973,36 @@ pbjs.setConfig({
             name: "netId",
             value: {
                "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
+### NextRoll ID
+
+NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID is a cookieless identifier built from NextRoll’s proprietary identity graph. Publishers, ad tech platforms, and NextRoll’s brands (AdRoll and RollWorks) leverage the NextRoll ID to access unique demand in cookieless environments. The NextRoll ID respects user privacy preferences and enables users to opt out through multiple web based mechanisms found in [Section 8 of NextRoll’s Privacy Policy](https://nextroll.com/privacy#service-8).
+
+#### NextRoll ID Registration
+
+To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
+
+#### NextRoll ID Configuration
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=nextrollIdSystem
+
+Enable the module in configuration, with your Partner ID:
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "nextrollId",
+            params: {
+                partnerId: 'YOUR_PARTNER_ID'
             }
         }]
     }
@@ -1257,11 +1364,11 @@ pbjs.setConfig({
 
 
 
-### Shared ID User ID Submodule
+### SharedID User ID Submodule
 
-The Shared ID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedId.org. This module does not require any registration.
+The SharedID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedid.org. This module does not require any registration.
 
-#### Building Prebid with Shared Id Support
+#### Building Prebid with SharedID Support
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
@@ -1269,7 +1376,7 @@ ex: $ gulp build --modules=sharedIdSystem
 
 #### Prebid Params
 
-Individual params may be set for the Shared ID User ID Submodule.
+Individual params may be set for the SharedID User ID Submodule.
 ```
 pbjs.setConfig({
     userSync: {
@@ -1288,12 +1395,12 @@ pbjs.setConfig({
 });
 ```
 
-#### SharedId Configuration
+#### SharedID Configuration
 
 {: .table .table-bordered .table-striped }
 | Params under usersync.userIds[]| Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | ID value for the Shared ID module - `"sharedId"` | `"sharedId"` |
+| name | Required | String | ID value for the SharedID module - `"sharedId"` | `"sharedId"` |
 | params | Optional | Object | Details for sharedId syncing. | |
 | params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
 | storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
@@ -1558,17 +1665,18 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
 | ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
 | IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
-| IntentIQ ID | IntentIQ | bidRequest.userId.intentiqid | `"1111"` |
+| Intent IQ ID | Intent IQ | bidRequest.userId.intentiqid | `"1111"` |
 | LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
 | Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
 | merkleID | Merkle | bidRequest.userId.merkleId | `"1111"` |
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
+| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
 | PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Tapad ID | Tapad | bidRequest.userId.tapadId | `"1111"` |
-| Shared ID | SharedId | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
+| SharedID | Prebid | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 | MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | `"1111"` |
@@ -1663,7 +1771,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                    "atype":1
                }]
              },{
-               "source": "sharedid.org",  // Shared ID
+               "source": "sharedid.org",  // SharedID
                 "uids": [{
                     "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                     "ext": {
@@ -1696,18 +1804,6 @@ Bidders that want to support the User ID module in Prebid Server, need to update
     }
 }
 {% endhighlight %}
-
-### ID Providers
-
-If you're an ID provider that wants to get on this page:
-
-- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
-- Add your *IdSystem name into the modules/.submodules.json file
-- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
-- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
-
-<a name="getUserIds"></a>
 
 ### Exporting User IDs
 
@@ -1753,6 +1849,18 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
   }
 ]
 ```
+
+## ID Providers
+
+If you're an ID provider that wants to get on this page:
+
+- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+- Add your *IdSystem name into the modules/.submodules.json file
+- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
+- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
+
+<a name="getUserIds"></a>
 
 ## Passing UserIds to Google Ad Manager for targeting
 
