@@ -267,7 +267,7 @@ it will respond to that request with the actual asset values for that `adId` in 
     },
     {
       "key": "clickUrl",
-      "value": "http://prebid.org/dev-docs/show-native-ads.html"
+      "value": "https://prebid.org/dev-docs/show-native-ads.html"
     }
   ]
 }
