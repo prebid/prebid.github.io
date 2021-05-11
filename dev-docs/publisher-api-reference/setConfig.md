@@ -23,7 +23,6 @@ Core config:
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the page URL](#setConfig-Page-URL)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
-+ [Set a delay before requesting cookie sync](#setConfig-Cookie-Sync-Delay)
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
@@ -1163,6 +1162,9 @@ More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpat
 <a name="setConfig-site" />
 
 #### Site Configuration
+
+{: .alert.alert-info :}
+This setting is obsolete as of Prebid.js 4.30. Please set site fields in `ortb2.site` as [First Party Data](#setConfig-fpd).
 
 Adapters, including Prebid Server adapters, can support taking site parameters like language.
 The structure here is OpenRTB; the site object will be available to client- and server-side adapters.
