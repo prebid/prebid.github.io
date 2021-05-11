@@ -33,6 +33,8 @@ pbjs.setConfig({
 
 ## Validations
 
+This module does its checks only once at the first auction. The checks can be re-run anytime by calling `pbjs.refreshFpd()`.
+
 When a data field doesn't meet the defined validations, it will be removed. In addition, the module will look for the _pubcid_optout cookie (or local storage),
 and if it exists, certain fields will be removed.
 
