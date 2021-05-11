@@ -76,7 +76,7 @@ Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/
 
 <a name="apacdex-sample-banner-ad-unit" />
 
-# Sample Banner Ad Unit
+### Sample Banner Ad Unit
 ```
 var adUnits = [
   {
@@ -101,7 +101,7 @@ var adUnits = [
 
 <a name="apacdex-sample-instream-ad-unit" />
 
-# Sample Video Ad Unit: Instream
+### Sample Video Ad Unit: Instream
 ```
 var instreamAdUnit = {
   code: 'test-div',
@@ -138,7 +138,7 @@ You must review all video parameters to ensure validity for your player and DSPs
 
 <a name="apacdex-sample-outstream-ad-unit" />
 
-# Sample Video Ad Unit: Outstream
+### Sample Video Ad Unit: Outstream
 ```
 var outstreamAdUnit = {
   code: 'test-div',
@@ -156,8 +156,6 @@ var outstreamAdUnit = {
       playbackmethod: [6],
       startdelay: 0,
       protocols: [1, 2, 3, 4, 5, 6]
-      ... // Aditional ORTB video params
-      // you must review all video parameters to ensure validity for your player and DSPs
     },
   },
   bids: [
