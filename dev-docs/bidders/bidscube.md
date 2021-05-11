@@ -12,7 +12,7 @@ pbs_app_supported: true
 
 ### Note:
 
-The Example Bidding adapter requires setup before beginning. Please contact us at support@bidscube.com
+The BidsCube Bidding adapter requires setup before beginning. Please contact us at support@bidscube.com
 
 ### Bid Params
 
