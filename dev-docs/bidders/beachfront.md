@@ -4,6 +4,7 @@ title: Beachfront
 description: Prebid Beachfront Bidder Adapter
 biddercode: beachfront
 media_types: video
+getFloor: true
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId, identityLink
