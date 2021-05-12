@@ -1184,15 +1184,16 @@ pbjs.setConfig({
 
 #### Auction Options
 
-The `auctionOptions` object passed to `pbjs.setConfig` provides a method to specify bidders that the Prebid auction will no longer wait for before determing the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation.
+The `auctionOptions` object controls aspects related to auctions.
 
 {: .table .table-bordered .table-striped }
 | Field    | Scope   | Type   | Description                                                                           |
 |----------+---------+--------+---------------------------------------------------------------------------------------|
-| `secondaryBidders` | Required | Array of Strings | The bidders that will be removed from determining when an Auction has completed. |
+| `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
+| `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false.
 
-Example config:
-
+##### Examples
+Exclude status of bidder _doNotWaitForMe_ when checking auction completion.
 {% highlight js %}
 pbjs.setConfig({
     'auctionOptions': {
@@ -1200,6 +1201,25 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+Render winning bids only once.
+{% highlight js %}
+pbjs.setConfig({
+    'auctionOptions': {
+        'suppressStaleRender': true
+    }
+});
+{% endhighlight %}
+
+##### More on Stale Rendering
+When auto-refreshing is done incorrectly, it could cause the same bids to be rendered repeatedly. For instance, when googletag.pubads.refresh() is called directly without removing the PBJS targeting, the same hb_ variables get re-sent to GAM, re-chosen, and re-rendered. Over and over without ever asking PBJS for updated targeting variables.
+
+PBJS performs following actions when stale rendering is detected.
+* Log a warning in the browser console if pbjs_debug=true.
+* Emit a `STALE_RENDER` event before `BID_WON` event.
+
+Stale winning bids will continue to be rendered unless `suppressStaleRender` is set to true.
+
 
 <a name="setConfig-maxNestedIframes" />
 
