@@ -8,10 +8,9 @@ function loadVideoData {
 	    // this calls setup on the player we initialized
 	    // this will use the settings defined in the player we loaded above unless you override them here
 	    playerInstance.setup({
-	        // this line loads a playlist from your jwplatform account (in either json or rss format)
-	        // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-	        // Replace this with the correct url for your playlist
-	        "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+                "file": "https://vjs.zencdn.net/v/oceans.mp4",
+                // or "file" could be replaced with "playlist" and a URL
+                // from your JW Platform account in either json or rss format.
 	        "width": 640,
 	        "height": 480,
 	        // we enable vast advertising for this player
