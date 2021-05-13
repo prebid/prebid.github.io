@@ -1698,6 +1698,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | --- | --- | --- | --- | --- | --- |
 | Admixer ID | Admixer | bidRequest.userId.admixerId | `"1111"` |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
+| DMD ID | DMD | bidRequest.userId.dmdId | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
 | Halo ID | Audigent | bidRequest.userId.haloId | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
 | ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
@@ -1779,6 +1780,13 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },{
                 "source": "criteo.com",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+            },{
+                "source": "hcn.health",
+                atype: 3,
                 "uids": [{
                     "id": "11111111"
                 }]
