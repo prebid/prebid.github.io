@@ -15,9 +15,9 @@ gdpr_supported: true
 |------------|----------|------------------------|---------|----------|
 | seller_id | required | Represent DMX Partner when you get onboarded, this is for specific setup BURL, NURL or ADM support | 'seller_id' | string |
 | publisher_id | required | Represent boost MemberId from DistrictM UI | 'member1' | string |
-| memberid | required | Represent boost MemberId from DistrictM UI *legacy replace by publisher_id| 'member1' | string |
 | tagid | required | Represent the placement ID from DistrictM or your own  | '123abc' | string |
-| dmxid | required | Represent the placement ID from DistrictM or your own *legacy replace by tagid | '123abc' | string |
+| memberid | optional | Represent boost MemberId from DistrictM UI *legacy replace by publisher_id| 'member1' | string |
+| dmxid | optional | Represent the placement ID from DistrictM or your own *legacy replace by tagid | '123abc' | string |
 | bidfloor | optional | The minimum price acceptable for a bid | '1.0' | string |
 
 (See [districtmDMX](/dev-docs/bidders.html#districtmDMX) for Prebid.js)
