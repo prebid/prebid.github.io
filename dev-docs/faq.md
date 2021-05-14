@@ -50,7 +50,7 @@ In both scenarios, your goal should be to see your inventory fill at the highest
 
 There is an analysis from the Prebid team here which may be useful:
 
-[How many bidders should I work with?]({{site.baseurl}}/blog/how-many-bidders-for-header-bidding)
+[How many bidders should I work with?](https://prebid.org/blog/how-many-bidders-for-header-bidding)
 
 ## Does Prebid.js cache bids?
 
