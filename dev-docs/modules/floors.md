@@ -1004,6 +1004,11 @@ getFloor takes in a single object with the following params:
 
 {% endhighlight %}
 
+
+{: .alert.alert-warning :}
+Consider how floors will behave in multi-currency scenarios. A common pitfall is requesting floors without specifying currency, or specifying the wrong currency back to the bid adapter's platform. This may lead to bidders requesting one currency and bidding in an alternate currency.
+
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---|
