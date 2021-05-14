@@ -1,13 +1,13 @@
 ---
 layout: api_prebidjs
 title: pbjs.getBidResponses()
-description: 
+description:
 ---
 
 
 This function returns the bid responses at the given moment.
 
-**Kind**: static method of [pbjs](#module_pbjs).
+**Kind**: static method of `pbjs`.
 
 **Returns**: `object` - map | object that contains the bidResponses.
 

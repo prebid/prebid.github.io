@@ -1,13 +1,13 @@
 ---
 layout: api_prebidjs
 title: pbjs.getNoBidsForAdUnitCode(adUnitCode)
-description: 
+description:
 ---
 
 
-Returns bid requests that resulted in a NO_BID for the specified adUnitCode.  See full documentation at [pbjs.getNoBids()](#module_pbjs.getNoBids).
+Returns bid requests that resulted in a NO_BID for the specified adUnitCode.  See full documentation at [pbjs.getNoBids()](/dev-docs/publisher-api-reference/getNoBids.html).
 
-**Kind**: static method of [pbjs](#module_pbjs)
+**Kind**: static method of `pbjs`
 
 **Returns**: `Object` - NO_BID bidResponse object
 

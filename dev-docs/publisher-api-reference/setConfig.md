@@ -24,6 +24,7 @@ Core config:
 + [Set the page URL](#setConfig-Page-URL)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
 + [Set price granularity](#setConfig-Price-Granularity)
++ [Set media type price granularity](#setConfig-MediaType-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
 + [Configure targeting controls](#setConfig-targetingControls)

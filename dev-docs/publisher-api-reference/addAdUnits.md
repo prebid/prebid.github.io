@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.addAdUnits(Array|Object)
-description: 
+description:
 ---
 
 
@@ -23,8 +23,8 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
 | `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
 | `mediaTypes` | Optional | Object                                | Defines one or multiple media types the ad unit supports.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
-| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
-| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
+| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 
 <a name="addAdUnits-Bids" />
 
@@ -36,10 +36,10 @@ See the table below for the list of properties in the `bids` array of the ad uni
 
 | Name     | Scope    | Type          | Description                                                                                                                                                                       |
 |----------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](bidders.html).                                                                                          |
-| `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](bidders.html).                                                  |
-| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
-| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig).  |
+| `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](/dev-docs/bidders.html).                                                                                          |
+| `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](/dev-docs/bidders.html).                                                  |
+| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
+| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 
 <a name="addAdUnits-MediaTypes" />
 

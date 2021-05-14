@@ -54,7 +54,7 @@ Our recommendation is to start with $1 or 10 cent granularity until you're more 
 
 {% capture dfpNote %}
 
-[Google Ad Manager has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity).
+[Google Ad Manager has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity).
 {% endcapture %}
 
 {% include alerts/alert_note.html content= dfpNote %}

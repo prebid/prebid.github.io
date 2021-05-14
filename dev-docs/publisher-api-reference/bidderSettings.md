@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.bidderSettings
-description: 
+description:
 ---
 
 
@@ -142,13 +142,13 @@ pbjs.bidderSettings = {
 {% endhighlight %}
 
 
-In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the documentation of bidResponse object [here](bidders.html#common-bidresponse).
+In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the bidResponse object documentation [here](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters).
 
 Note that sendStandardTargeting is set to false so that the standard Prebid targeting (hb_bidder, etc.) aren't also sent to the ad server.
 
 **Price Buckets**
 
-Now let's say you would like to define a bidder-specific price bucket function rather than use the ones available by default in prebid.js. Even the [priceGranularity config](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) option applies to all bidders -- with this approach you can overwrite price buckets.
+Now let's say you would like to define a bidder-specific price bucket function rather than use the ones available by default in prebid.js. Even the [priceGranularity config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) option applies to all bidders -- with this approach you can overwrite price buckets.
 
 *Note: this will only impact the price bucket sent to the ad server for targeting. It won't actually impact the cpm value used for ordering the bids.*
 

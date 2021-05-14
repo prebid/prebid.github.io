@@ -1,13 +1,13 @@
 ---
 layout: api_prebidjs
 title: pbjs.getAdserverTargetingForAdUnitCode([adunitCode])
-description: 
+description:
 ---
 
 
-This function returns the query string targeting parameters available at this moment for a given ad unit. For full documentation see function [pbjs.getAdserverTargeting()](#module_pbjs.getAdserverTargeting).
+This function returns the query string targeting parameters available at this moment for a given ad unit. For full documentation see function [pbjs.getAdserverTargeting()](/dev-docs/publisher-api-reference/getAdserverTargeting.html).
 
-**Kind**: static method of [pbjs](#module_pbjs)
+**Kind**: static method of `pbjs`
 
 **Returns**: `object` - returnObj return bids
 

@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.aliasBidder(adapterName, aliasedName, options)
-description: 
+description:
 ---
 
 
@@ -31,6 +31,6 @@ The options object supports these parameters:
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
-config in the [`s2sConfig`](#setConfig-Server-to-Server) object.
+config in the [`s2sConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) object.
 
 <hr class="full-rule" />

@@ -11,7 +11,7 @@ title: Prebid Server | Use Cases | Prebid.js
 * TOC
 {:toc}
 
-When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
+When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
 
 ## Workflow
 
@@ -49,7 +49,7 @@ The following sections give additional details of the steps provided in the work
 
 ### Prebid.js s2sConfig is Placed in the Page
 
-Here's a page example assuming that you're running your own Prebid Server. See [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) for more information. Note that this config would handle both banner and video auctions server-side for bidderA and bidderB.
+Here's a page example assuming that you're running your own Prebid Server. See [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) for more information. Note that this config would handle both banner and video auctions server-side for bidderA and bidderB.
 
 ```
 pbjs.setConfig({
