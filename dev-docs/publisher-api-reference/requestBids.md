@@ -1,13 +1,13 @@
 ---
 layout: api_prebidjs
 title: pbjs.requestBids(requestObj)
-description: 
+description:
 ---
 
 
 Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids for all ad units added.
 
-**Kind**: static method of [pbjs](#module_pbjs)
+**Kind**: static method of pbjs API
 
 
 {: .table .table-bordered .table-striped }

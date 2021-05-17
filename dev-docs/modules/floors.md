@@ -49,7 +49,7 @@ There are several places where the Floor module changes the behavior of the Preb
 
 ![Floors Module Flow](/assets/images/floors/floors_flow.png)
 
-1. When building the Prebid.js package, the Floors module (and any analytics adapters) needs to be included with 'gulp build --modules=floors,...'
+1. When building the Prebid.js package, the Floors module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
 3. Bid Adapters are responsible for utilizing the getFloors() from the bidRequest object for each ad slot media type, size combination. The Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
@@ -1115,7 +1115,7 @@ For a bid adapter who does not wish to handle making a request for each size in 
       let floorInfo = bidRequest.getFloor({
         currency: 'USD',
         mediaType: 'banner',
-        size: '\*'
+        size: '*'
       });
       data['adapter_floor'] = floorInfo.currency === 'USD' ? floorInfo.floor : undefined;
     }
@@ -1256,6 +1256,7 @@ If the currency function is unable to derive the correct cpm in any of the scena
 ## Floors Providers
 
 {: .table  }
-| Partners| Contact |
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | Contact Magnite (Formerly Rubicon Project) support at [globalsupport@mangite.com](mailto:globalsupport@magnite.com) to use Magnite as a floor provider. |
-| pubx.ai | Reach out to PubX at [hello@pubx.ai](mailto:hello@pubx.ai) to learn more about our AI-powered dynamic floor optimization. |
+| Partner | Contact | About |
+| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | Contact Magnite (Formerly Rubicon Project) support at [globalsupport@mangite.com](mailto:globalsupport@magnite.com) to use Magnite as a floor provider. | |
+| pubx.ai | Reach out to PubX at [hello@pubx.ai](mailto:hello@pubx.ai) to learn more about our AI-powered dynamic floor optimization. | |
+| Assertive Yield | [assertiveyield.com] | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |

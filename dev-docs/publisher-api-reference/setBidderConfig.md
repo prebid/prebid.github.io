@@ -1,13 +1,13 @@
 ---
 layout: api_prebidjs
 title: pbjs.setBidderConfig(options)
-description: 
+description:
 ---
 
 
-This function is similar to [`setConfig`](#module_pbjs.setConfig), but is designed to support certain bidder-specific scenarios.
+This function is similar to [`setConfig`](/dev-docs/publisher-api-reference/setConfig.html), but is designed to support certain bidder-specific scenarios.
 
-Configuration provided through the [`setConfig`](#module_pbjs.setConfig) function is
+Configuration provided through the [`setConfig`](/dev-docs/publisher-api-reference/setConfig.html) function is
 globally available to all bidder adapters. This makes sense because
 most of these settings are global in nature. However, there are use cases where different bidders require different data, or where certain parameters apply only to a given
 bidder. Use `setBidderConfig` when you need to support these cases.

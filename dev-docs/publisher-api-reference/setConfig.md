@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.setConfig(options)
-description: 
+description:
 ---
 
 
@@ -23,8 +23,8 @@ Core config:
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the page URL](#setConfig-Page-URL)
 + [Set the publisher's domain](#setConfig-Publisher-Domain)
-+ [Set a delay before requesting cookie sync](#setConfig-Cookie-Sync-Delay)
 + [Set price granularity](#setConfig-Price-Granularity)
++ [Set media type price granularity](#setConfig-MediaType-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
 + [Configure targeting controls](#setConfig-targetingControls)
@@ -227,7 +227,7 @@ pbjs.setConfig({
 When this property is set, the value assigned to `bidLimit` is the maximum number of bids that will be sent to the ad server. If `bidLimit` is set to 0, sendAllBids will have no maximum bid limit and *all* bids will be sent. This setting can be helpful if you know that your ad server has a finite limit to the amount of query characters it will accept and process.
 
 {: .alert.alert-info :}
-Note that this feature overlaps and can be used in conjunction with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls). Please see that section for tips on controlling the number of characters being sent to the ad server.
+Note that this feature overlaps and can be used in conjunction with [targetingControls.auctionKeyMaxChars](#setConfig-targetingControls). Please see that section for tips on controlling the number of characters being sent to the ad server.
 
 #### Use Bid Cache
 
@@ -258,10 +258,10 @@ pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
 
 #### Page URL
 
-Override the Prebid.js page referrer algorithm.
+Override the Prebid.js page referrer for some bidders.
 
-a{% highlight js %}
-pbjs.setConfig({ pageUrl: "https://example.com/index.html" )
+{% highlight js %}
+pbjs.setConfig({ pageUrl: "https://example.com/index.html" })
 {% endhighlight %}
 
 <a name="setConfig-Publisher-Domain" />
@@ -715,7 +715,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 
 {: .alert.alert-info :}
-Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control).
+Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
 
 ##### Details on the auctionKeyMaxChars setting
 
@@ -755,13 +755,13 @@ Given the varying nature of how sites are set up for advertising and the varying
 
 Between these two values (Prebid's targeting key count and the overall ad URL query character count), you will find the average number of characters that are used by your ad server.  It's likely that these ad server values will remain consistent given that type of setup.  So if you know your ad server has a particular character limit, you can assume that these ad server characters will be reserved and the difference is what you could allot to Prebid.
 
-Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
+Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
 
 ##### Details on the allowTargetingKeys setting
 
 The `allowTargetingKeys` config creates a targeting key mask based on the default targeting keys defined in CONSTANTS.TARGETING_KEYS and CONSTANTS.NATIVE_KEYS. Any default keys that do not match the mask will not be sent to the adserver. This setting can be helpful if you find that your default Prebid.js implementation is sending key values that your adserver isn't configured to process; extraneous key values may lead to the ad server request being truncated, which can cause potential issues with the delivery or rendering ads.
 
-Prebid.js introduced the concept of optional targeting keys with 4.23. CONSTANTS.DEFAULT_TARGETING_KEYS is defined as a subset of CONSTANTS.TARGETING_KEYS. When a publisher defines targetingControls.allowTargetingKeys, this replaces the constant CONSTANTS.DEFAULT_TARGETING_KEYS and can include optional keys defined in CONSTANTS.TARGETING_KEYS. One example of this would be to make `hb_adomain` part of the default set. 
+Prebid.js introduced the concept of optional targeting keys with 4.23. CONSTANTS.DEFAULT_TARGETING_KEYS is defined as a subset of CONSTANTS.TARGETING_KEYS. When a publisher defines targetingControls.allowTargetingKeys, this replaces the constant CONSTANTS.DEFAULT_TARGETING_KEYS and can include optional keys defined in CONSTANTS.TARGETING_KEYS. One example of this would be to make `hb_adomain` part of the default set.
 
 To accomplish this, Prebid does the following:
 * Collect original targeting generated by the auction.
@@ -777,7 +777,7 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 |------------+-----------+-------------+------------|
 | BIDDER | `hb_bidder` | yes | |
 | AD_ID | `hb_adid` | yes | Required for displaying a winning creative. |
-| PRICE_BUCKET | `hb_pb` | yes | The results of the [price granularity](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) calculation. |
+| PRICE_BUCKET | `hb_pb` | yes | The results of the [price granularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) calculation. |
 | SIZE | `hb_size` | yes | '300x250' |
 | DEAL | `hb_deal` | yes | |
 | SOURCE | `hb_source` | yes | 'client' or 's2s' |
@@ -924,7 +924,7 @@ There are two parts to defining responsive and conditional ad units with labels:
 Labels may be defined in two ways:
 
 1. Through [`sizeConfig`](#setConfig-Configure-Responsive-Ads)
-2. As an argument to [`pbjs.requestBids`](#module_pbjs.requestBids)
+2. As an argument to [`pbjs.requestBids`](/dev-docs/publisher-api-reference/requestBids.html)
 
 {% highlight js %}
 pbjs.requestBids({labels: []});
@@ -1056,7 +1056,7 @@ The `ortb2` JSON structure reflects the OpenRTB standard:
 
 **Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
 
-If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](#module_pbjs.setBidderConfig) function.
+If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](/dev-docs/publisher-api-reference/setBidderConfig.html) function.
 
 **Scenario 3** - AdUnit-specific First Party Data
 
@@ -1164,6 +1164,9 @@ More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpat
 
 #### Site Configuration
 
+{: .alert.alert-info :}
+This setting is obsolete as of Prebid.js 4.30. Please set site fields in `ortb2.site` as [First Party Data](#setConfig-fpd).
+
 Adapters, including Prebid Server adapters, can support taking site parameters like language.
 The structure here is OpenRTB; the site object will be available to client- and server-side adapters.
 
@@ -1197,6 +1200,18 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+<a name="setConfig-maxNestedIframes" />
+
+#### maxNestedIframes
+
+Prebid.js will loop upward through nested iframes to find the top-most referrer. This setting limits how many iterations it will attempt before giving up and not setting referrer.
+
+```
+pbjs.setConfig({
+    maxNestedIframes: 5   // default is 10
+});
+```
 
 <a name="setConfig-realTimeData" />
 
