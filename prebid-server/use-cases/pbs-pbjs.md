@@ -25,7 +25,7 @@ Here are workflows diagramming how this works.
 1. Prebid Server parses the request and holds the auction.
 1. The response, including the body of the winning creative(s), is sent back to the browser.
 1. Prebid.js passes ad server targeting variables to the page, which forwards it to the ad server.
-1. When a header bidding ad wins, the ad server responds to the page with the [Prebid Universal Creative](overview/prebid-universal-creative.html).
+1. When a header bidding ad wins, the ad server responds to the page with the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative).
 1. Which calls the render function in Prebid.js to display the creative.
 
 ### Video

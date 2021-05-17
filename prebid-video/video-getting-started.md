@@ -86,11 +86,8 @@ The mediaTypes.video.playerSize field is where you define the player size that w
             video: {
                 context: 'instream', // or 'outstream'
                 playerSize: [640, 480],
-                mimes: ['video/mp4'],
+                mimes: ['video/mp4']
   </pre>
-
-  <p>For more on Prebid Server ad unit requirements, see <a href="{{site.github.url}}/dev-docs/get-started-with-prebid-server.html#using-prebid-server-to-show-video-ads">Getting Started with Prebid Server – Video</a>.</p>
-
 </div>
 
 In your ad unit you also need to define your list of bidders. For example, including AppNexus as a bidder would look something like this:

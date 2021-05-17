@@ -591,7 +591,7 @@ pbjs.addAdUnits({
 });
 {% endhighlight %}
 
-For more information on Interstitial ads, reference the [Interstitial feature page](/dev-docs/InterstitialAds.html).
+For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html).
 
 ## Related Topics
 

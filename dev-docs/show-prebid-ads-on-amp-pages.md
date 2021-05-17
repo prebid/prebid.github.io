@@ -229,7 +229,7 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your AMP pages referring to `load-cookie.html` or if you're running an IAB-compliant AMP CMP you can use `load-cookie-with-consent.html`.
 
 {% capture tipNote %}
-The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
 {% endcapture %}
 {% include alerts/alert_tip.html content=tipNote %}
 
