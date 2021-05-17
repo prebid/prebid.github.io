@@ -592,7 +592,7 @@ Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-conte
 | `.Currency` | Required | [3-letter ISO 4217 code](https://www.iso.org/iso-4217-currency-codes.html) defining the currency of the bid. The Prebid Server default is USD.
 | `.Bids[].BidType` | Required | Prebid Server defined value identifying the media type as `banner`, `video`, `audio`, or `native`. Should be mapped from the bidding server response.
 | `.Bids[].Bid.ADomain` | Optional | Advertiser domain for block list checking.
-| `.Bids[].Bid.AdM` | Optional | Ad markup to serve the creative if the bid wins. May be HTML, Native, or VAST/VMAP formats.
+| `.Bids[].Bid.AdM` | Optional | Ad markup to serve if the bid wins. May be HTML, Native, or VAST/VMAP formats. You should resolve any AUCTION_PRICE macros.
 | `.Bids[].Bid.CrID` | Required | Unique id of the creative.
 | `.Bids[].Bid.ID` | Required | Bidder generated id to assist with logging and tracking.
 | `.Bids[].Bid.ImpID` | Required | ID of the corresponding bid request Impression. Prebid Server validates the id is actually found in the bid request.
@@ -600,6 +600,9 @@ Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-conte
 | `.Bids[].Bid.W` | Optional | Width of the creative in pixels.
 | `.Bids[].Bid.H` | Optional | Height of the creative in pixels.
 | `.Bids[].Bid.Ext` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
+
+{: .alert.alert-info :}
+We recommend resolving creative OpenRTB macros in your adapter. Otherwise, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity.
 
 If you'd like to support Long Form Video Ad Pods, then you'll need to provide the followings information:
 
@@ -613,7 +616,6 @@ If you'd like to support Long Form Video Ad Pods, then you'll need to provide th
 
 {: .alert.alert-info :}
 Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provided.
-
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response. 
 
 {: .alert.alert-danger :}

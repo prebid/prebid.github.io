@@ -28,6 +28,7 @@ This page has documentation for the public API methods of Prebid.js.
   * [.getHighestCpmBids([adUnitCode])](#module_pbjs.getHighestCpmBids)
   * [.getAllWinningBids()](#module_pbjs.getAllWinningBids)
   * [.getAllPrebidWinningBids()](#module_pbjs.getAllPrebidWinningBids)
+  * [.getHighestUnusedBidResponseForAdUnitCode([adUnitCode])](#module_pbjs.getHighestUnused)
   * [.getNoBids()](#module_pbjs.getNoBids)
   * [.getNoBidsForAdUnitCode(adUnitCode)](#module_pbjs.getNoBidsForAdUnitCode)
   * [.setTargetingForGPTAsync([codeArr], customSlotMatching)](#module_pbjs.setTargetingForGPTAsync)
@@ -73,6 +74,7 @@ This page has documentation for the public API methods of Prebid.js.
     * [Troubleshooting your config](#setConfig-Troubleshooting-your-configuration)
   * [.setBidderConfig(options)](#module_pbjs.setBidderConfig)
   * [.getConfig([string])](#module_pbjs.getConfig)
+  * [.installedModules](#installedModules)
 
 Functions added by optional modules
 
@@ -467,6 +469,15 @@ Use this method to get all of the bids that have won their respective auctions b
 + `pbjs.getAllPrebidWinningBids()`: returns an array of bid objects that have won their respective auctions but not rendered on the page.
 
 <hr class="full-rule">
+
+<a name="module_pbjs.getHighestUnused"></a>
+
+### pbjs.getHighestUnusedBidResponseForAdUnitCode(adUnitCode) ⇒ `bid object`
+
+Use this method to retrieve the highest unused bid for the specified adUnit. Unused means not it's not rendered.
+
+This differs from [`getHighestCpmBids()`](#module_pbjs.getHighestCpmBids) in that 
+getHighestCpmBids only considers bids for auctions that have completed (and are also unused), this function considers bids for ongoing auctions as well.
 
 <a name="module_pbjs.getTargeting"></a>
 
@@ -2592,6 +2603,19 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+<a name="setConfig-maxNestedIframes" />
+
+#### maxNestedIframes
+
+Prebid.js will loop upward through nested iframes to find the top-most referrer. This setting limits how many iterations
+it will attempt before giving up and not setting referrer.
+
+```
+pbjs.setConfig({
+    maxNestedIframes: 5   // default is 10
+});
+```
+
 <a name="setConfig-realTimeData" />
 
 #### Real-Time Data Modules
@@ -2922,3 +2946,19 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | --- | --- | --- |
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
+
+<a name="installedModules"></a>
+
+### pbjs.installedModules
+
+When a Prebid.js package is built, the list of modules compiled
+into it are placed in the pbjs.installedModules array.
+
+e.g. if this builds the package:
+```
+gulp build --modules=a,b,c
+```
+
+pbjs.installedModules would have the value ['a','b','c'].
+
+If you happen to compile in all 400+ modules (not a good idea!), the value of pbjs.installedModules will be an empty array.

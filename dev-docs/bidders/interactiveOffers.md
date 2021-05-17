@@ -2,6 +2,7 @@
 layout: bidder
 title: InteractiveOffers
 description: Prebid InteractiveOffers.com Bidder Adapter
+pbs: true
 pbjs: true
 biddercode: interactiveOffers
 gdpr_supported: false
@@ -17,7 +18,6 @@ Module that connects to interactiveOffers demand sources. Param pubid is require
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `pubid` | required |  Publisher id          | 35   | `integer` |
-| `tmax`         | optional | Max time in milliseconds            |   250      | `integer`  |
 
 Example:
 
@@ -25,8 +25,7 @@ Example:
 {
     bidder: "interactiveOffers",
     params: {
-        pubid: 35,
-        tmax: 250
+        pubid: 35
     }
 }
 ```
