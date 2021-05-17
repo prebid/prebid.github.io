@@ -25,14 +25,18 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem". You also need to add the `userId` module to your Prebid.js distribution.
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
-   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into bidRequest.userId.
-1. An object containing one or more IDs (bidRequest.userId) is made available to Prebid.js adapters and Prebid Server S2S adapters.
-1. In addition to bidRequest.userId, bidRequest.userIdAsEids is made available to Prebid.js adapters and Prebid Server S2S adapters. bidRequest.userIdAsEids has userIds in ORTB EIDS format.
+   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into `bidRequest.userId`.
+   1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
+1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
+1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
 
+{: .alert.alert-info :}
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
 
-Also note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
+{: .alert.alert-info :}
+Note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
 
+{: .alert.alert-info :}
 As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
 
 ## User ID, GDPR, Permissions, and Opt-Out
@@ -132,6 +136,8 @@ The Rubicon bid adapter would then receive
   ...
 }
 ```
+
+## User ID Sub-Modules
 
 ### AdmixerID
 
@@ -321,6 +327,46 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### DMD ID by DMD Marketing Corp
+
+DMD is the preeminent supplier of US-based healthcare professional (HCP) identity data to the pharmaceutical, health system and medical publishing industries. DMD is the only data provider that has acquired its deterministic identity data through a fully consented, first-party, opt-in process. DMD’s privacy policy that can be found at [Privacy Policy](https://hcn.health/privacy-policy). 
+
+For assistance setting up your module, please contact us at prebid@dmdconnects.com
+
+Add the DMD ID to your Prebid.js Package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,dmdIdSystem
+
+#### DMD ID Registration
+
+Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to request your `api_key`
+
+#### DMD ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of Module | `"dmdId"` |
+| storage | Required | Object |  |
+| storage.name | Required | String | `dmd-dgid` |
+| params | Required | Object | Container of all module params. |  |
+| params.api_key | Required | String | This is your `api_key` as provided by DMD Marketing Corp. | `3fdbe297-3690-4f5c-9e11-ee9186a6d77c` |
+
+#### DMD ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'dmdId',
+            params: {
+                api_key: '3fdbe297-3690-4f5c-9e11-ee9186a6d77c' // provided to you by DMD
+            }
+        }]
+    }
+});
+{% endhighlight %}
 
 ### Fabrick ID by Neustar
 
@@ -939,8 +985,10 @@ pbjs.setConfig({
         userIds: [{
         name: 'merkleId',
         params: {
-          ptk: 'example',
-          pubid: 'EXAMPLE'
+          vendor:'example_vendor',
+          sv_cid:'example_cid',
+          sv_pubid:'example_pubid',
+          sv_domain:'example.com'
         },
         storage: {
           type: 'html5',
@@ -1656,6 +1704,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | --- | --- | --- | --- | --- | --- |
 | Admixer ID | Admixer | bidRequest.userId.admixerId | `"1111"` |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
+| DMD ID | DMD | bidRequest.userId.dmdId | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
 | Halo ID | Audigent | bidRequest.userId.haloId | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
 | ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
@@ -1737,6 +1786,13 @@ Bidders that want to support the User ID module in Prebid Server, need to update
                 }]
             },{
                 "source": "criteo.com",
+                "uids": [{
+                    "id": "11111111"
+                }]
+            },{
+            },{
+                "source": "hcn.health",
+                atype: 3,
                 "uids": [{
                     "id": "11111111"
                 }]

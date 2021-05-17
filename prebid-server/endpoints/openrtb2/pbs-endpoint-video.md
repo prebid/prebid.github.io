@@ -243,7 +243,7 @@ Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to 
     ]
   },
   "site": {
-    "page": "http://www.foobar.com/1234.html"
+    "page": "https://www.foobar.com/1234.html"
   },
   "user": {
     "yob": 1982,
