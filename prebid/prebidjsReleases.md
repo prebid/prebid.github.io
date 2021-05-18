@@ -62,7 +62,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 3.3 | [Prebid Ad Slot](/features/pbAdSlot.html) support |
 | 3.2 | [Bidder-specific Supply Chain](/dev-docs/modules/schain.html#bidder-specific-supply-chains) support, added [static API option](/dev-docs/modules/consentManagementUsp.html) to the CCPA/USP module |
 | 3.1 | pbsBidAdapter: fix for handling response currency |
-| 3.0 | [Prebid.js 3.0](/blog/pbjs-3) |
+| 3.0 | [Prebid.js 3.0](https://prebid.org/blog/pbjs-3) |
 | 2.44 | Stopped duplicate alias user syncs |
 | 2.43 | [US Privacy/CCPA Consent Module](/dev-docs/modules/consentManagementUsp.html) |
 | 2.39 | Made originalCpm and originalCurrency fields in bid object always available |
