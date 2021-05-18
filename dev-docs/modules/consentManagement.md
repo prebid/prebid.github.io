@@ -22,7 +22,7 @@ sidebarType : 1
 {% include /alerts/alert_important.html content=legalNotice %}
 
 {: .alert.alert-warning :}
-Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](/blog/tcf2) for timelines.
+Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](https://prebid.org/blog/tcf2) for timelines.
 
 ## Overview
 
