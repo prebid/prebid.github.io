@@ -9,6 +9,7 @@ pbs: true
 userIds: identityLink, netId, fabrickId, zeotapIdPlus
 pbs_app_supported: true
 schain_supported: true
+coppa_supported: true
 gdpr_supported: true
 usp_supported: true
 media_types: banner, video
