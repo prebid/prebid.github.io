@@ -18,7 +18,7 @@ For a more general reference, see the [Prebid AMP Implementation Guide
  {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| tag_id | Required | `String` |  The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/features/pbs-storedreqs.html). For a thorough description of bid request JSON, see the [/openrtb2/auction](./auction.html) docs. |
+| tag_id | Required | `String` |  The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/features/pbs-storedreqs.html). For a thorough description of bid request JSON, see the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) docs. |
 | w | recommended | `String` | Comes from the amp-ad.width attribute. The stored request may contain width already, but this parameter reflects what's actually in the page. It replaces imp.banner.format[0].w |
 | h | recommended | `String` | Comes from the amp-ad.height attribute. The stored request may contain height already, but this parameter reflects what's actually in the page. It replaces imp.banner.format[0].h |
 | ms | optional | `String` | Comes from the amp-ad.data-multi-size attribute. e.g. "970x90, 728x90". Sizes are parsed and added to imp.banner.format |

@@ -21,13 +21,13 @@ As a **publisher**, you can look forward to the following when adopting Prebid.j
 
 - Universal adunit type support for Native, Video and banner.
 - Faster performance due to cutting out of additional JS libraries and simplified adapter code.
-- Module integration support for things like [*multiple currency support*](/dev-docs/modules/currency.html), [*user syncing*](/dev-docs/publisher-api-reference.html#module_pbjs.userSync), [*simplified config APIs*](/dev-docs/publisher-api-reference.html#module_pbjs.setConfig). 
+- Module integration support for things like [*multiple currency support*](/dev-docs/modules/currency.html), [*user syncing*](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [*simplified config APIs*](/dev-docs/publisher-api-reference/setConfig.html).
 - Better support for single page applications/sites (concurrency).
 - Better size mapping and responsive site support.
 
 **If you have a Demand Adapter that works with Prebid.js -  we need your help to work with Prebid 1.0!**
 
-- Once you update your adapter to work with the base adapter in 1.0 - you will be able to integrate with more ad formats easier such as Native and Video. 
+- Once you update your adapter to work with the base adapter in 1.0 - you will be able to integrate with more ad formats easier such as Native and Video.
 - We have broken down the parts of what an adapter does into separate functions - this will make it easier to integrate and test your adapter.
 - We have some additional requirements on what needs to be returned and what kind of endpoints are supporteed (only XHR). Please see the full [adapter guide](/dev-docs/bidder-adapter-1.html) for details.
 
@@ -37,7 +37,7 @@ We've released [Prebid 1.0!](https://github.com/prebid/Prebid.js/releases/tag/1.
 
 ## How to get involved
 
-We **need** the community's help to successfully launch Prebid.js 1.0. We have been working hard to make sure that it will be as painless as possible to transition, while still being able to make some needed breaking changes. 
+We **need** the community's help to successfully launch Prebid.js 1.0. We have been working hard to make sure that it will be as painless as possible to transition, while still being able to make some needed breaking changes.
 
 Please let us know your feedback and how we can make Prebid.js and the Prebid community even better!
 
@@ -46,6 +46,6 @@ Prebid 1.0 Documentation:
 - [Prebid publisher guide](/dev-docs/publisher-api-reference.html)
 - [Prebid adapter guide](/dev-docs/bidder-adaptor.html)
 
-As always, we love PRs. Thanks for contributing. 
+As always, we love PRs. Thanks for contributing.
 
-By [Matt Kendall](https://github.com/mkendall07), PMC Chair:Prebid.js & Engineering Manager, AppNexus. 
+By [Matt Kendall](https://github.com/mkendall07), PMC Chair:Prebid.js & Engineering Manager, AppNexus.
