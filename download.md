@@ -168,9 +168,6 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 {% assign module_pages = site.pages | where: "page_type", "module" %}
 {% assign analytics_pages = site.pages | where: "layout", "analytics" %}
 
-{: .alert.alert-danger :}
-**Note:** an important bug in the [DFP Video Module](/dev-docs/modules/dfp_video.html) was introduced with 3.27 and fixed in 4.3. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive.
-
 <form>
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
