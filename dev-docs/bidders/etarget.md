@@ -24,5 +24,6 @@ gdpr_supported: true
 
 | Name | Scope | Description | Example |
 | :--- | :---- | :---------- | :------ |
-| `refid` | required | | `12345` |
+| `refid` | required | Placement ID | `12345` |
 | `country` | required | Country domain | `1` |
+| `options` | optional | Additional data | `{site:'example.com'}` |
