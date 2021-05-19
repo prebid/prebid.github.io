@@ -6,6 +6,7 @@ Please see the sections below for more information.
 + [License](#license)
 + [Prerequisites](#prerequisites)
 + [Running Jekyll Locally](#running-jekyll-locally)
++ [Building Assets](#building-assets)
 + [The Downloads Page](#the-downloads-page)
 + [Thanks](#thanks)
 
@@ -34,18 +35,15 @@ All docs are under the license shown in the `LICENSE` file in this directory.
 
 The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](https://www.ruby-lang.org/en/) language.
 
-To follow the instructions in the next section, you will need to install the [Bundler](https://bundler.io/) Ruby gem.
+1. follow the instructions at https://jekyllrb.com/docs/installation/ for your OS
+1. gem install github-pages
+1. start Jekyll as described below
 
-Try the following command:
+For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
 
-```
-$ gem install bundler
-```
-
-If you are on a Mac and the above command fails with a permissions error (e.g., `"ERROR:  While executing gem ... You don't have write permissions for the /Library/Ruby/Gems/... directory."`), try the following steps:
-
-1. Build your own `ruby` binary using [Homebrew](https://brew.sh/): `brew install ruby`.  The Homebrew-built Ruby should include its own version of the `gem` command which avoids modifying system libraries.
-2. Try `gem install bundler` again.  If it still fails, try `sudo gem install bundler`.  After that, you should be able to avoid any further use of `sudo` by running `bundler` with the arguments shown in the next section.
+1. follow the instructions at https://nodejs.dev to install Node.js for your OS
+1. `npm install` to install packages for building assets
+1. build assets as described below
 
 <a name="running-jekyll-locally" />
 
@@ -55,10 +53,7 @@ Before submitting a pull request, you should run the site locally to make sure y
 
 To get started editing the site and seeing your changes, clone this repo and enter the following commands in your terminal:
 
-- `cd /path/to/prebid.github.io`
-
-- `bundle install --path vendor/bundle`
-
+- `cd path/to/prebid.github.io`
 - `bundle exec jekyll serve`
 
 You should see output that looks something like this:
@@ -79,6 +74,14 @@ Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml
 ```
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
+
+<a name="building-assets"/>
+
+## Building Assets
+
+- `npm run dev` to build unminified CSS for development
+- `npm run prod` to build minified CSS for production
+- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
 
 ## The Downloads Page
 

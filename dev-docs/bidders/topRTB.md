@@ -2,7 +2,7 @@
 layout: bidder
 title: TOPRTB
 description: Prebid topRTB Bidder Adapter
-hide: true
+pbjs: true
 biddercode: topRTB
 ---
 
