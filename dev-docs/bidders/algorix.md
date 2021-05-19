@@ -22,6 +22,5 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description   | Example                              | Type     |
 |---------------|----------|---------------|--------------------------------------|----------|
-| `host`        | required | host endpoint | `'use for US, apac for SG'`          | `string` |
 | `sid`         | required | Sid           | `'30014'`                            | `string` |
 | `token`       | required | Token         | `'028bca2d3b5c4f0ba155fa34864b0c4d'` | `string` |
