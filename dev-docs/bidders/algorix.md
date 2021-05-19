@@ -15,7 +15,7 @@ pbs_app_supported: true
 
 ### Note:
 
-The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
+The Algorix Prebid adapter requires setup to create Sid and Token. Please contact your Algorix partner manager for setup assistance.
 
 ### Bid Params
 
