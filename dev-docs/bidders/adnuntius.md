@@ -5,7 +5,7 @@ description: Prebid Adnuntius Bidder Adaptor
 pbjs: true
 biddercode: adnuntius
 media_types: banner
-gdpr_supported: false
+gdpr_supported: true
 ---
 
 ### Bid Params
@@ -46,4 +46,18 @@ Here's an example of sending targeting information about categories to adnuntius
         }
     ]
 }
+```
+
+### Sending segments to the ad server
+
+There's an option to send segment id in the bidder config that will be picked up and sent to the ad server. Below is an example on how to do this:
+
+```
+pbjs.setBidderConfig({
+    bidders: ['adnuntius'],
+    config: {
+        segments: ["segmentId1", 'segmentId2']
+    }
+});
+´´´
 ```
