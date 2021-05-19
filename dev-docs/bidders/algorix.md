@@ -1,0 +1,27 @@
+---
+layout: bidder
+title: AlgoriX
+description: Prebid AlgoriX Bidder Adapter
+biddercode: algorix
+gdpr_supported: false
+gvl_id:
+usp_supported: false
+coppa_supported: false
+media_types: banner, video, native
+pbjs: false
+pbs: true
+pbs_app_supported: true
+---
+
+### Note:
+
+The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description   | Example                              | Type     |
+|---------------|----------|---------------|--------------------------------------|----------|
+| `host`        | required | host endpoint | `'use for US, apac for SG'`          | `string` |
+| `sid`         | required | Sid           | `'30014'`                            | `string` |
+| `token`       | required | Token         | `'028bca2d3b5c4f0ba155fa34864b0c4d'` | `string` |
