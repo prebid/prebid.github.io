@@ -21,7 +21,7 @@ userIds: unifiedId
 | `adUnitId` | required | pubGENIUS ad unit ID.                                                                                           | `'1234'` | `string`  |
 | `position` | optional | Ad position on the page. Supported values: `0` - unknown (default), `1` - above the fold, `3` - below the fold. | `1`      | `integer` |
 | `test`     | optional | Indicates bidding for testing purposes                                                                          | `true`   | `boolean` |
-| `video`    | optional | Contains properties of the video ad. Any fields of `Video` object in OpenRTB v2.5 are accepted.             | `{ skip: 1 }` | `object`  |
+| `video`    | optional | Contains properties of the video ad. Any fields of `Video` object in OpenRTB v2.5 are accepted.            | `{ skip: 1 }` | `object`  |
 
 #### Video
 
