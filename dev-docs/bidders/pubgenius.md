@@ -25,6 +25,7 @@ userIds: unifiedId
 
 #### Video
 
+Video parameters are read from the ad unit as in `mediaTypes.video`, and can be overridden in bid params.
 The following properties are required in `mediaTypes.video` of the ad unit:
 
 {: .table .table-bordered .table-striped }
