@@ -7,8 +7,8 @@ media_types: video
 getFloor: true
 gdpr_supported: true
 usp_supported: true
+userIds: unifiedId, identityLink, uid2
 schain_supported: true
-userIds: unifiedId, identityLink
 prebid_member: true
 pbjs: true
 pbs: true
