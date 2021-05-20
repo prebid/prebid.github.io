@@ -29,7 +29,7 @@
   <li>In the <b>New line item</b> dialog, choose "Video".</li>
   <li>Select the appropriate Line Item Type, etc.</li>
   <li>In the <b>Expected creatives</b> section, choose your video size, e.g., 640x480v.</li>
-  <li>Set the dates, rate, limit, and targeting as desired. For example, for <a href="/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids">SendAllBids</a> include targeting for "hb_bidder_rubicon=rubicon" as well as the hb_pb_rubicon targeting. This isn't needed if only creating one set of orders for all bidders.</li>
+  <li>Set the dates, rate, limit, and targeting as desired. For example, for <a href="/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids">SendAllBids</a> include targeting for "hb_bidder_rubicon=rubicon" as well as the hb_pb_rubicon targeting. This isn't needed if only creating one set of orders for all bidders.</li>
   <li>Remember to set the hb_pb=BUCKET targeting for each line item, or hb_pb_BIDDER=BUCKET if using separate line items for each bidder.</li>
   <li>Save the line item.</li>
 </ol>
@@ -43,7 +43,7 @@ bidders, you will need to choose one of the following approaches:
 <ul>
 <li>Create a separate line item for each bidder.</li>
 <li>Include a creative for each cache service utilized by your implementation.</li>
-<li>Use the <a href="/dev-docs/publisher-api-reference.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}).</li>
+<li>Use the <a href="/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}).</li>
 </ul>
 
 <h3 id="creative-single-cache">Single Cache Location</h3>
@@ -86,7 +86,7 @@ or
 If you're utilizing any bidders that cache their own VAST, you have two options:
 
 <ul>
-<li>If you're using Prebid.js 4.28 or later, you can specify the <a href="/dev-docs/publisher-api-reference.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}). This will cause the browser to generate a VAST wrapper and cache it in your standard location. Then you can use the instructions
+<li>If you're using Prebid.js 4.28 or later, you can specify the <a href="/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}). This will cause the browser to generate a VAST wrapper and cache it in your standard location. Then you can use the instructions
 above for "Single Cache Location". The tradeoff is that this approach requires
 the video player to unwrap one extra level of VAST.</li>
 <li>Utilize creative-level targeting in the ad server. Keep reading for more details.</li>

@@ -50,7 +50,7 @@ go build .
 ./prebid-server
 ```
 
-And then `POST` to [`/openrtb2/auction`](../endpoints/openrtb2/auction.md) with your chosen ID.
+And then `POST` to [`/openrtb2/auction`](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) with your chosen ID.
 
 ```json
 {
