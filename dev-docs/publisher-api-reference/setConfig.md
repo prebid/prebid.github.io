@@ -713,6 +713,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
 | alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
+| allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -824,6 +825,19 @@ config.setConfig({
 });
 ```
 
+##### Details on the allowSendAllBidsTargetingKeys setting
+
+The `allowSendAllBidsTargetingKeys` is similar to `allowTargetingKeys` except it limits any default bidder specific keys sent to the adserver when sendAllBids is enabled. Any default bidder specific keys that do not match the mask will not be sent to the adserver. This setting can be helpful if you find that your default Prebid.js implementation is sending key values that your adserver isn't configured to process; extraneous key values may lead to the ad server request being truncated, which can cause potential issues with the delivery or rendering ads.
+
+Below is an example config of `allowSendAllBidsTargetingKeys` excluding all default send all bids targeting keys except `hb_adid_biddercode`, `hb_pb_biddercode`:
+
+```javascript
+config.setConfig({
+  targetingControls: {
+    allowSendAllBidsTargetingKeys: ['AD_ID', 'PRICE_BUCKET'],
+  },
+});
+```
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
