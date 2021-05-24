@@ -194,8 +194,8 @@ If you find that some bidders use Gross bids, publishers can adjust for it with 
   "ext": {
     "prebid": {
       "bidadjustmentfactors": {
-        "appnexus": 0.8,
-        "rubicon": 0.7
+        "bidderA": 0.9,
+        "bidderB": 0.8
       }
     }
   }
@@ -203,6 +203,33 @@ If you find that some bidders use Gross bids, publishers can adjust for it with 
 ```
 
 This may also be useful for publishers who want to account for different discrepancies with different bidders.
+
+It's also possible to define different bid adjustment factors by mediatype, which can be helpful to adjust discrepancies that differ across mediatypes (PBS-Java only):
+```
+{
+  "ext": {
+    "prebid": {
+      "bidadjustmentfactors": {
+        "bidderA": 0.9,
+        "bidderB": 0.8
+        "mediatypes": {
+          "banner": {
+            "bidderA": 0.8,
+          },
+          "video-outstream": {
+            "bidderC": 0.9
+          },
+          "video": {
+            "bidderB": 0.85
+          }
+       }
+      }
+    }
+  }
+}
+```
+
+Note that video-outstream is defined to be imp[].video requests where imp[].video.placement is greater than 1.
 
 ##### Targeting
 
@@ -536,7 +563,7 @@ If a currency rate doesn't exist in the request, the external file will be used.
 
 Basic supply chains are passed to Prebid Server on `source.ext.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
 
-Bidder-specific schains (PBS-Java only):
+Bidder-specific schains:
 
 ```
 ext.prebid.schains: [
@@ -550,7 +577,7 @@ If there's already an source.ext.schain and a bidder is named in ext.prebid.scha
 
 ##### User IDs
 
-Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid.org/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
+Prebid Server adapters can support the [Prebid.js User ID modules](/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
 
 ```
 {
@@ -1008,6 +1035,10 @@ It is only returned on `test` bids for performance reasons, but may be useful du
 
 This contains the request after the resolution of stored requests and implicit information (e.g. site domain, device user agent).
 
+##### Original Bid CPM (PBS-Java only)
+
+`response.seatbid[].bid[].ext.origbidcpm` will contain the original bid price from the bidder.
+The value in seatbid[].bid[].price may be converted for currency and adjusted with a [bid adjustment factor](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments).
 
 ### OpenRTB Ambiguities
 

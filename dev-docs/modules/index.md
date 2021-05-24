@@ -42,16 +42,17 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**ID Import Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
 | [**MASS**](/dev-docs/modules/mass.html) | Enables the MASS protocol for Prebid and custom renderers by DealID |  
 | [**MultiBid Module**](/dev-docs/modules/multibid.html) | Allows bidders to send multiple bids to the ad server. |
+| [**Bid Viewability**](/dev-docs/modules/bidViewable.html) | Triggers an event which can be consumed by analytics and bid adapters. |
 
 ## Real-Time Data Providers
 
-All of the modules that fall under the Real-Time Data (RTD) category conform to 
+All of the modules that fall under the Real-Time Data (RTD) category conform to
 a consistent set of publisher controls. The pub can choose to run multiple
 RTD modules, define an overall amount of time they're willing to wait for
 results, and even flag some of the modules as being more "important"
 than others.
 
-See [the realTimeData setConfig](/dev-docs/publisher-api-reference.html#setConfig-realTimeData) reference for more details.
+See [the realTimeData setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData) reference for more details.
 
 {% assign module_pages = site.pages | where: "page_type", "module" | where: "module_type", "rtd" %}
 

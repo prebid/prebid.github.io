@@ -124,7 +124,7 @@ Define some behaviors for the platform and specific adapters. The basic structur
 
 **Acceptable Values:**
 
-When you are defining all options to the prebid plugin directly on the page, you may use a JSON object using same syntax described under “bidderSettings” in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings)
+When you are defining all options to the prebid plugin directly on the page, you may use a JSON object using same syntax described under “bidderSettings” in the [Publisher API Reference](/dev-docs/publisher-api-reference/bidderSettings.html)
 
 **Required?**
 
@@ -181,7 +181,7 @@ Additional options that are passed in to the prebid.js `setConfig()` method.
 
 JSON object.
 
-Supported fields are documented in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)
+Supported fields are documented in the [Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html)
 
 **Required?**
 
@@ -202,7 +202,7 @@ None
 
 Parameters used when using Google Ad Manager (formerly DFP) as the ad server.
 
-See documentation for [buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl) for more information.
+See documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) for more information.
 
 **Acceptable Values:**
 
