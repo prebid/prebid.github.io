@@ -59,7 +59,7 @@ The server can be reached at `http://localhost:8000`.
 
 ## Contributing
 
-Want to [add a bidding adapter](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)?
+Want to [add a bidding adapter](/prebid-server/developers/add-new-bidder-go.html)?
 
 Report bugs, request features, and suggest improvements [on Github](https://github.com/prebid/prebid-server/issues).
 

@@ -24,14 +24,14 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 4.31 | PBS Bid Adapter: FPD2.0 bug fix for first party data issue |
 | 4.30 | [First Party Data 2.0](/features/firstPartyData.html) changed to `ortb2`, added demand chain object to PBS Bid Adapter |
 | 4.29 | PBS Bid Adapter: cooperative sync flag |
-| 4.28 | Prebid Server Bid Adapter: use floors module to obtain OpenRTB floor, Support for [ignoreBidderCacheKey](/dev-docs/publisher-api-reference.html#setConfig-vast-cache) |
+| 4.28 | Prebid Server Bid Adapter: use floors module to obtain OpenRTB floor, Support for [ignoreBidderCacheKey](/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache) |
 | 4.27 | Update TTL logic |
-| 4.26 | [Bid Viewability Module](dev-docs/modules/bidViewable.html) |
+| 4.26 | [Bid Viewability Module](dev-docs/modules/bidviewable.html) |
 | 4.25 | Extended ID permissions |
 | 4.24 | Support Multiple Prebid Servers |
 | 4.23 | Added skipPbsAliasing feature |
 | 4.22 | Improve US Privacy API behavior in iframe |
-| 4.17 | Added [getNoBidsForAdUnitCode()](/dev-docs/publisher-api-reference.html#module_pbjs.getNoBidsForAdUnitCode) function |
+| 4.17 | Added [getNoBidsForAdUnitCode()](/dev-docs/publisher-api-reference/getNoBidsForAdUnitCode.html) function |
 | 4.16 | Bug fix: delete pubcommon test cookie, fix auctionDelay for user ID submodules with callbacks |
 | 4.15 | MediaType-specific renderers, added auctionOptions.secondaryBidders |
 | 4.13 | Floors Module: update to include floorMin |
@@ -55,20 +55,20 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 3.15 | Advanced Size Mapping module support adunits of the same name |
 | 3.14 | New [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) supports enforcing Purpose 1 - DeviceAccess |
 | 3.13 | GDPR module supports defaultGdprScope option |
-| 3.12 | Initial support for TCF2 - reading and passing consent strings, added [DeviceAccess](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess) configuration setting |
+| 3.12 | Initial support for TCF2 - reading and passing consent strings, added [DeviceAccess](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) configuration setting |
 | 3.11 | [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) |
 | 3.10 | UserId module provide sub-module ids in ORTB eids format |
-| 3.8 | [First Party Data](/dev-docs/publisher-api-reference.html#setConfig-fpd) convention |
+| 3.8 | [First Party Data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) convention |
 | 3.3 | [Prebid Ad Slot](/features/pbAdSlot.html) support |
 | 3.2 | [Bidder-specific Supply Chain](/dev-docs/modules/schain.html#bidder-specific-supply-chains) support, added [static API option](/dev-docs/modules/consentManagementUsp.html) to the CCPA/USP module |
 | 3.1 | pbsBidAdapter: fix for handling response currency |
-| 3.0 | [Prebid.js 3.0](/blog/pbjs-3) |
+| 3.0 | [Prebid.js 3.0](https://prebid.org/blog/pbjs-3) |
 | 2.44 | Stopped duplicate alias user syncs |
 | 2.43 | [US Privacy/CCPA Consent Module](/dev-docs/modules/consentManagementUsp.html) |
 | 2.39 | Made originalCpm and originalCurrency fields in bid object always available |
 | 2.37 | Fixed userSync endpoint getting called with bidder alias names |
-| 2.35 | Support for delaying auctions to obtain user IDs, [sendBidsControl feature](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control) |
-| 2.31 | [Supply Chain Module](/dev-docs/modules/schain.html) released | 
+| 2.35 | Support for delaying auctions to obtain user IDs, [sendBidsControl feature](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control) |
+| 2.31 | [Supply Chain Module](/dev-docs/modules/schain.html) released |
 | 2.29 | Fix to ensure native keys are not seen as custom targeting keys |
 | 2.26 | PrebidServer Adapter fix to add [cur property](https://github.com/prebid/Prebid.js/issues/3951) to oRTB |
 | 2.24 | User ID Module: added method pbjs.getUserIds() to retrieve userIds for use in external codes |
@@ -77,13 +77,13 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 2.21 | Standardized COPPA support |
 | 2.20 | AuctionEnd event now always execute when auction completes even when there's no callback handler |
 | 2.18 | Currency Module: always adding originalCpm and originalCurrency to bid object |
-| 2.17 | Ability to limit the size of keys sent to ad server via [targeting controls](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) |
+| 2.17 | Ability to limit the size of keys sent to ad server via [targeting controls](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) |
 | 2.16 | [User ID module](/dev-docs/modules/userId.html) refactored to support external sub-modules |
 | 2.10 | [User ID module](/dev-docs/modules/userId.html) released with support for PubCommon ID and Unified ID |
 | 2.10 | A bidder which responded in time is now considered a timely bidder, even if it responded with no bids. See [PR 3696](https://github.com/prebid/Prebid.js/pull/3696) |
 | 2.9 | Add 'hb_cache_host' targeting for video bids when cache is set to support upcoming video cache redirector |
 | 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698)
-| 2.8 | Added [s2sConfig](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) `syncUrlModifier` option to modify userSync URLs |
+| 2.8 | Added [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) `syncUrlModifier` option to modify userSync URLs |
 | 2.8 | Add hb_uuid and hb_cache_id back to dfp module after having been removed in 2.7 |
 | 2.6 | Update auction algorithm logic for long-form. See [PR 3625](https://github.com/prebid/Prebid.js/pull/3625) |
 | 2.6 | In case Prebid.js is called from within an iFrame, matchMedia is applied to window.top, not the containing iFrame. |
