@@ -364,7 +364,7 @@ As of Prebid.js 4.30, use the more generic `ortb2` interface, which can be used 
 
 The First Party Data feature allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
 
-To supply global data, use the [`setConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) function as illustrated below:
+To supply global data, use the [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html) function as illustrated below:
 
 ```
 pbjs.setConfig({
@@ -379,7 +379,7 @@ pbjs.setConfig({
 });
 ```
 
-Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig) function to supply bidder-specific data.
+Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data.
 
 For more information about the standard or more detailed examples, refer to [First Party Data Feature](/features/firstPartyData.html).
 
