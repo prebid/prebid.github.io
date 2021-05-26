@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: AdformOpenRTB
-description: Prebid Adf Bidder Adaptor
+title: Adform
+description: Prebid Adform Bidder Adaptor
 biddercode: adf
 media_types: banner, native, video
 gdpr_supported: true
