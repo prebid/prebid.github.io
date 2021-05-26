@@ -43,7 +43,7 @@ In this section, we'll learn how to remove the creative size dimension for heade
 
 Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In Google Ad Manager, this looks like:
 
-![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png){: .pb-md-img :}
+![Header Bidding Normal Line Item Creative](/assets/images/blog/line-item-creative.png){: .pb-md-img :}
 
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.
@@ -59,7 +59,7 @@ There's a reason bidders recommend different set of line items for different cre
 
 Prebid.js can dynamically resize the returned creative to the right size. Here's the setup:
 
-* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item]({{ site.github.url }}/adops/step-by-step.html#step-3-attach-the-creative-to-the-line-item).
+* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item](/adops/step-by-step.html#step-3-attach-the-creative-to-the-line-item).
 * Your ad unit can accept both 300x250 and 300x600. A bidder bid $6.00 for the 300x600 size and has the highest price. Prebid.js passed the bid in, as well as a generated bid ID. 
 * The $6.00 line item got picked by the line item. 
 * Your ad server randomly choose a 1x1 creative. However, because all creatives have the same content, it does not make a difference.

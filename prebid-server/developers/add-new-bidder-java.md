@@ -77,7 +77,7 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 
 ```yaml
 adapters:
-  {bidder}:
+  yourBidderCode:
     enabled: false
     endpoint: http://possible.endpoint
     pbs-enforces-gdpr: true
@@ -101,8 +101,8 @@ adapters:
       vendor-id: your_vendor_id
     usersync:
       url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder={bidder}&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
-      cookie-family-name: {bidder}
+      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
+      cookie-family-name: yourBidderCode
       type: redirect
       support-cors: false
 ```
@@ -123,6 +123,63 @@ The url of your user syncer can make use of the following privacy policy macros 
 - `{%raw%}{{gdpr_consent}}{%endraw%}`: Client's GDPR TCF consent string.
 
 - Change the `usersync:type` value to `redirect` or `iframe` specific to your bidder.
+
+### Create bidder alias
+If you want to add bidder that is an alias of existing bidder, you need just to update configuration of parent bidder:
+
+Example of adding bidder alias:
+```yaml
+adapters:
+  yourBidderCode:
+    enabled: false
+    endpoint: http://possible.endpoint
+    pbs-enforces-gdpr: true
+    pbs-enforces-ccpa: true
+    modifying-vast-xml-allowed: true
+    deprecated-names:
+    aliases: 
+      yourBidderAlias:
+        endpoint: http://possible.alias/endpoint
+        app-media-types:
+          - banner
+          - video
+        site-media-types:
+          - banner
+          - video
+        usersync:
+          cookie-family-name: yourBidderCode
+    meta-info:
+      maintainer-email: maintainer@email.com
+      app-media-types:
+        - banner
+        - video
+        - audio
+        - native
+      site-media-types:
+        - banner
+        - video
+        - audio
+        - native
+      supported-vendors:
+      vendor-id: your_vendor_id
+    usersync:
+      url: your_bid_adapter_usersync_url
+      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
+      cookie-family-name: yourBidderCode
+      type: redirect
+      support-cors: false
+```
+
+Aliases are configured by adding child configuration object at `adapters.yourBidderCode.aliases.yourBidderAlias`
+
+Aliases support the same configuration options that their bidder counterparts support except `aliases` (i.e. it's not possible
+to declare alias of an alias). 
+
+{: .alert.alert-warning :}
+**Aliases cannot declare support for media types not supported by their parent bidders**<br />
+However aliases could narrow down media types they support.<br />
+For example: if the bidder is written to not support native site requests, then an alias cannot magically decide to change that;
+However, if a bidder supports native site requests, and the alias does not want to for some reason, it has the ability to remove that support.
 
 ### Bidder Parameters
 
@@ -499,7 +556,7 @@ Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-conte
 | `.Currency` | Required | [3-letter ISO 4217 code](https://www.iso.org/iso-4217-currency-codes.html) defining the currency of the bid. The Prebid Server default is USD.
 | `.Bids[].BidType` | Required | Prebid Server defined value identifying the media type as `banner`, `video`, `audio`, or `native`. Should be mapped from the bidding server response.
 | `.Bids[].Bid.ADomain` | Optional | Advertiser domain for block list checking.
-| `.Bids[].Bid.AdM` | Optional | Ad markup to serve the creative if the bid wins. May be HTML, Native, or VAST/VMAP formats.
+| `.Bids[].Bid.AdM` | Optional | Ad markup to serve if the bid wins. May be HTML, Native, or VAST/VMAP formats. You should resolve any AUCTION_PRICE macros.
 | `.Bids[].Bid.CrID` | Required | Unique id of the creative.
 | `.Bids[].Bid.ID` | Required | Bidder generated id to assist with logging and tracking.
 | `.Bids[].Bid.ImpID` | Required | ID of the corresponding bid request Impression. Prebid Server validates the id is actually found in the bid request.
@@ -507,6 +564,9 @@ Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-conte
 | `.Bids[].Bid.W` | Optional | Width of the creative in pixels.
 | `.Bids[].Bid.H` | Optional | Height of the creative in pixels.
 | `.Bids[].Bid.Ext` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
+
+{: .alert.alert-info :}
+We recommend resolving creative OpenRTB macros in your adapter. Otherwise, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity.
 
 If you'd like to support Long Form Video Ad Pods, then you'll need to provide the followings information:
 

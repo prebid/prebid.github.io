@@ -13,6 +13,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
+pbjs_version_notes: for versions 4.35+
 ---
 
 ### Registration
