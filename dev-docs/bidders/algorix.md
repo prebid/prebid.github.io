@@ -15,7 +15,7 @@ pbs_app_supported: true
 
 ### Note:
 
-The Algorix Prebid adapter requires setup to create Sid and Token. Please contact your Algorix partner manager for setup assistance.
+Algorix adapter requires setup and approval from the Algorix team, even for existing in-app developers and publishers. Please reach out to your account team or email to prebid@algorix.co for more information.
 
 ### Bid Params
 
