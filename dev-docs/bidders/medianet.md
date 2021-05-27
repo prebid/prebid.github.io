@@ -11,6 +11,7 @@ prebid_member: true
 pbjs: true
 gvl_id: 142
 schain_supported: true
+getFloor: true
 ---
 
 ### Bid Params
