@@ -4,15 +4,18 @@ title: Show Native Ads with Prebid.js
 description: Show Native Ads with Prebid.js
 pid: 0
 is_top_nav: yeah
-top_nav_section: dev_docs
-nav_section: prebid-native
 sidebarType: 1
 ---
 
-
-
 # Show Native Ads with Prebid.js
 {: .no_toc }
+
+{% capture change-notice %}
+The procedures in this document still work, but we strongly recommend
+using the [improved Prebid.js native ad](/prebid/native-implementation.html) support.
+{% endcapture %}
+
+{% include alerts/alert_warning.html content=change-notice %}
 
 In this tutorial, we'll set up Prebid.js to show native ads.
 
@@ -84,28 +87,7 @@ The native object (shown [below](#native-object)) contains the following keys th
 {: .alert.alert-danger :}
 Specific bidders may not support all of the fields listed below or may return differing responses for the assets that are requested.
 
-{: .table .table-bordered .table-striped }
-| Key           | Description                                                                          | Ad Server Key Value   |
-|---------------+--------------------------------------------------------------------------------------|-----------------------|
-| `title`       | The title of the ad, usually a call to action or a brand name.                       | `hb_native_title`     |
-| `body`        | Text of the ad copy.                                                                 | `hb_native_body`      |
-| `body2`       | Additional Text of the ad copy.                                                      | `hb_native_body2`     |
-| `sponsoredBy` | The name of the brand associated with the ad.                                        | `hb_native_brand`     |
-| `icon`        | The brand icon that will appear with the ad.                                         | `hb_native_icon`      |
-| `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `hb_native_image`     |
-| `clickUrl`    | Where the user will end up if they click the ad.                                     | `hb_native_linkurl`   |
-| `displayUrl`  | Text that can be displayed instead of the raw click URL. e.g, "Example.com/Specials" | `hb_native_displayUrl`|
-| `privacyLink` | Link to the Privacy Policy of the Buyer, e.g. http://example.com/privacy             | `hb_native_privacy`   |
-| `privacyIcon` | Icon to display for the privacy link, e.g. http://example.com/privacy_icon.png       | `hb_native_privicon`  |
-| `cta`         | *Call to Action* text, e.g., "Click here for more information".                      | `hb_native_cta`       |
-| `rating`      | Rating information, e.g., "4" out of 5.                                              | `hb_native_rating`    |
-| `downloads`   | The total downloads of the advertised application/product                            | `hb_native_downloads` |
-| `likes`       | The total number of individuals who like the advertised application/product          | `hb_native_likes`     |
-| `price`       | The non-sale price of the advertised application/product                             | `hb_native_price`     |
-| `salePrice`   | The sale price of the advertised application/product                                 | `hb_native_saleprice` |
-| `address`     | Address of the Buyer/Store. e.g, "123 Main Street, Anywhere USA"                     | `hb_native_address`   |
-| `phone`       | Phone Number of the Buyer/Store. e.g, "(123) 456-7890"                               | `hb_native_phone`     |
-
+{% include dev-docs/native-assets.md %}
 
 Each key's value is an object with several fields.  Most important is the `required` field, which says whether that asset should be filled in by the bid response.  Specifically, bids that do not have all of the native assets marked as required will be dropped from the auction and will not be sent to the ad server.
 
@@ -285,7 +267,7 @@ it will respond to that request with the actual asset values for that `adId` in 
     },
     {
       "key": "clickUrl",
-      "value": "http://prebid.org/dev-docs/show-native-ads.html"
+      "value": "https://prebid.org/dev-docs/show-native-ads.html"
     }
   ]
 }

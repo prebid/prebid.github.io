@@ -62,4 +62,4 @@ Please contact your Prebid Mobile host company for details about how to implemen
 
 ## Further Reading
 
-- [Prebid.js MediaTypePriceGranularity](/dev-docs/publisher-api-reference.html#setConfig-MediaType-Price-Granularity)
+- [Prebid.js MediaTypePriceGranularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-MediaType-Price-Granularity)

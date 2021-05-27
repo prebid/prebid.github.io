@@ -9,7 +9,7 @@ title: Prebid Server | Developers | Code Reviews
 
 ## Standards
 Anyone is free to review and comment on any [open pull requests](https://github.com/prebid/prebid-server/pulls).
-for either [PBS-Go](https://github.com/prebid/prebid-server/pulls) or [PBS-Java](https://github.com/rubicon-project/prebid-server-java/pulls)
+for either [PBS-Go](https://github.com/prebid/prebid-server/pulls) or [PBS-Java](https://github.com/prebid/prebid-server-java/pulls)
 
 All pull requests must be reviewed and approved by at least one core member before merge.
 
@@ -44,7 +44,7 @@ Code reviews should focus on things which cannot be validated by machines.
 Some examples include:
 
 - Can we improve the user's experience in any way?
-- Have the relevant [docs](..) been added or updated? If not, add the `needs docs` label.
+- Have the relevant docs been added or updated? If not, add the `needs docs` label.
 - Do you believe that the code works by looking at the unit tests? If not, suggest more tests until you do!
 - Is the motivation behind these changes clear? If not, there must be [an issue](https://github.com/prebid/prebid-server/issues) explaining it. Are there better ways to achieve those goals?
 - Does the code use any global, mutable state? [Inject dependencies](https://en.wikipedia.org/wiki/Dependency_injection) instead!

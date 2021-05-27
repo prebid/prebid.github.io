@@ -27,7 +27,7 @@ We focus on providing value-add to publishers and encourage the industry to depl
 Prebid takes two approaches to accomplish this:
 
 ### Wrapper Code of Conduct
-Prebid members must agree to support the [Wrapper Code of Conduct](http://prebid.org/wrapper_code_of_conduct.html
+Prebid members must agree to support the [Wrapper Code of Conduct](/wrapper_code_of_conduct.html
 ). This ensures that all wrapper providers are operating within the same principles.
 
 ### Trademark  
