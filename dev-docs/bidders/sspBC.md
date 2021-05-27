@@ -5,6 +5,7 @@ description: Prebid sspBC Bidder Adaptor
 pbjs: true
 biddercode: sspBC
 media_types: banner
+getFloor: true
 gdpr_supported: true
 gvl_id: 676
 ---
