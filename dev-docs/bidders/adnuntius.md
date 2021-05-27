@@ -13,9 +13,9 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |-------------|----------|----------------------------------------------------------------------|----------|----------|
-| `auId` | required | The ad unit ID `'0000000000072345'` leading zeros can be omitted. | `string` | |
-| `network` | optional | Used if you want to make requests to multiple networks in adnuntius. | `string` | |
-| `targeting` | optional | Targeting to be sent through to adnuntius with the request. | `string` | |
+| `auId` | required | The ad unit ID `'0000000000072345'` leading zeros can be omitted. | `'0000000000072345'` | `string` |
+| `network` | optional | Used if you want to make requests to multiple networks in adnuntius. | `'adnuntius'` | `string`|
+| `targeting` | optional | Targeting to be sent through to adnuntius with the request. | `{ c: ['prebids'] }` | `string`|
 
 #### Targeting
 
