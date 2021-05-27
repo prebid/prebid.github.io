@@ -9,7 +9,7 @@ media_types: banner
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-userIds: sharedId
+userIds: all
 prebid_member: true
 gvl_id: 833
 ---
