@@ -53,11 +53,23 @@ Here's an example of sending targeting information about categories to adnuntius
 There's an option to send segment id in the bidder config that will be picked up and sent to the ad server. Below is an example on how to do this:
 
 ```
-pbjs.setBidderConfig({
-    bidders: ['adnuntius'],
-    config: {
-        segments: ["segmentId1", 'segmentId2']
-    }
-});
+
+			pbjs.setBidderConfig({
+				bidders: ['adnuntius', 'bidderB'],
+				config: {
+					ortb2: {
+						user: {
+							data: [{
+								name: "adnuntius",
+								segment: [
+									{ id: "1" },
+									{ id: "2" }
+								]
+							}]
+						}
+					}
+				}
+			});
+
 ´´´
 ```
