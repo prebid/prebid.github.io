@@ -38,3 +38,7 @@ pbjs.setConfig({
   }
 });
 ```
+
+### Multi-format ads
+
+Adform bid adapter does not support multi-format ad unit setup. Please use [twin ad unit codes]({{site.baseurl}}/dev-docs/adunit-reference.html#twin-adunit-codes) to enable multi-format auctions.
