@@ -5,7 +5,7 @@ description: How to Use the Dr. Prebid App
 pid: 4
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
-sidebarType: 2
+sidebarType: 3
 ---
 
 # Dr. Prebid
@@ -19,11 +19,18 @@ Dr. Prebid is a validation and troubleshooting app for publishers implementing P
 
 ## Get the App
 
-This app is available for [download for iOS](https://itunes.apple.com/us/app/dr-prebid/id1442614692?mt=8).
+This app is available for iOS and Android:
 
-System Requirements: Requires iOS 12.0 or later. Compatible with iPhone, iPad, and iPod touch.
+- [Download for iOS](https://itunes.apple.com/us/app/dr-prebid/id1442614692?mt=8)  
+  System Requirements: Requires iOS 12.0 or later. Compatible with iPhone, iPad, and iPod touch.
 
-Dr. Prebid is an open source app. You can [find the source on the Prebid GitHub site](https://github.com/prebid/prebid-mobile-ios/tree/master/tools/PrebidValidator).
+- [Download for Android](https://play.google.com/store/apps/details?id=org.prebid.validation.drprebid)  
+  System Requirements: Requires Android 4.2 and up.
+
+Dr. Prebid is an open source app. You can find the source on the Prebid GitHub site:
+
+- [Source for iOS](https://github.com/prebid/prebid-mobile-ios/tree/master/tools/PrebidValidator)
+- [Source for Android](https://github.com/prebid/prebid-mobile-android/tree/master/tools/drprebid)
 
 **Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).**
 
@@ -48,6 +55,8 @@ The type of ad you want to test. This will be the ad type that is associated wit
 Select from:
 -	*Banner*
 -	*Interstitial*
+-    *Native*
+-    *Video*
 
 **Ad Size**
 
@@ -87,6 +96,10 @@ Select your Prebid Server host:
 
 -	*AppNexus*
 -	*Rubicon*
+-    *Custom*
+
+**Custom Server Host**
+Provide the url of the custom hosted prebid server 
 
 **Account ID**
 
@@ -246,7 +259,7 @@ Some general things to check if this test fails include:
 
 Here are some more specific things to look for and actions to take based on which step(s) of the validation failed.
 -	**Ad unit registered**  
-  Be sure you’ve implemented your ad unit code correctly. See [Ad Unit Setup for iOS]({{site.github.url}}/prebid-mobile/code-integration-ios.html) for information.
+  Be sure you’ve implemented your ad unit code correctly. See [Ad Unit Setup for iOS]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html) or [Ad Unit Setup for Android]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html) for information.
 -	**Request to Prebid Server sent**  
   Make sure your account ID and configuration ID were entered correctly on the Setup screen. For more on integrating with Prebid Server see [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
 -	**Prebid Server response received**  

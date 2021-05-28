@@ -2,7 +2,7 @@
 layout: bidder
 title: C1X
 description: Prebid C1X Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: c1x
 gdpr_supported: true
 ---

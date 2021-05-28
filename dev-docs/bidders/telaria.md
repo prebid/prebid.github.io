@@ -2,15 +2,14 @@
 layout: bidder
 title: Telaria
 description: Telaria Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: telaria
 media_types: video
 gdpr_supported: true
 ---
 
 ### Overview
-This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found under [tremor]({{site.baseurl}}/dev-docs/bidders/bidders.html#tremor)
-
+This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found under [tremor](/dev-docs/bidders/tremor)
 
 ### Bid Params
 Please refer to the **Tag Parameters** section in the  [Telaria Console](https://console.telaria.com)
@@ -37,7 +36,7 @@ var adUnit = {
 ```
 ### Supply Chain Object:
 ```javascript
-// There are two ways of passing the SupplyChain Object to our adapter: 
+// There are two ways of passing the SupplyChain Object to our adapter:
 // 1) set it in the config
 pbjs.setConfig({
     "schain": {
@@ -88,7 +87,7 @@ var adUnit = {
         }
     }]
 }
-``` 
+```
 [Telaria Prebid Example](https://console.telaria.com/examples/hb/headerbidding.jsp)
 
 ### Delivery
