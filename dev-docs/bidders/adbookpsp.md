@@ -13,7 +13,7 @@ pbjs: true
 pbs: false
 ---
 
-*NOTE*: The AdBookPSP Bidder Adapter requires setup and approval before use. Please reach out to your AdbookPSP representative for more details.
+*NOTE*: The AdBookPSP Bidder Adapter requires setup and approval before use. The adapter uses custom targeting keys that require a dedicated Google Ad Manager setup to work. Please reach out to your AdbookPSP representative for more details. 
 
 ### Bid Params
 
