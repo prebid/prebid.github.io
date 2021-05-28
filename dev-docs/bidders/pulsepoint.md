@@ -2,13 +2,21 @@
 layout: bidder
 title: PulsePoint
 description: Prebid PulsePoint Bidder Adaptor
-hide: true
 biddercode: pulsepoint
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
 media_types: banner, video, native
-userIds: pubcommonId, unifiedId, digitrustId, id5Id
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId
+pbjs: true
+pbs: true
+gvl_id: 81
 ---
 
+### Disclosure
+
+This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
+of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
 
 ### Bid Params
 
