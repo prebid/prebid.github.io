@@ -12,9 +12,9 @@ enable_download: false
 
 #### Registration
 
-The ID5 Analytics Adapter is free to use during our Beta period, but requires a simple registration with ID5. Please visit [id5.io/universal-id](https://id5.io/universal-id) to sign up and request your ID5 Partner Number to get started. If you're already using the ID5 Universal ID, you may use your existing Partner Number with the analytics adapter.
+The ID5 Analytics Adapter is free to use during our Beta period, but requires a simple registration with ID5. Please visit [id5.io/solutions](https://id5.io/solutions#publishers) to sign up and request your ID5 Partner Number to get started. If you're already using the ID5 Universal ID, you may use your existing Partner Number with the analytics adapter.
 
-The ID5 privacy policy is at [https://www.id5.io/platform-privacy-policy](https://www.id5.io/platform-privacy-policy).
+The ID5 privacy policy is at [https://id5.io/platform-privacy-policy](https://id5.io/platform-privacy-policy).
 
 #### Analytics Options
 
@@ -32,8 +32,7 @@ The ID5 privacy policy is at [https://www.id5.io/platform-privacy-policy](https:
 pbjs.enableAnalytics({
     provider: 'id5Analytics',
     options: {
-        partnerId: 1234, // change to the Partner Number you received from ID5
-        eventsToTrack: ['auctionEnd','bidWon']
+        partnerId: 173    // change to the Partner Number you received from ID5
     }
 });
 ```
