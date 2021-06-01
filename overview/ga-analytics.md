@@ -24,7 +24,7 @@ It includes:
 
 - Bidder bid/win price analysis by geo, domain, with price range distribution.
 - Bid latency by bidder, geo, and domain.
-- Seamless integration with your Google Analytics account and scheduled reports delivered to your mailbox. 
+- Seamless integration with your Google Analytics account and scheduled reports delivered to your mailbox.
 
 <br />
 
@@ -32,15 +32,15 @@ It includes:
 
 The day starts from making sure the bidders are not generating less revenue:
 
-![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/blog/analytics/revenue-by-date.png)
+![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/overview/analytics/revenue-by-date.png)
 
 Something is not right here - total revenue from yesterday dropped quite a bit. This could be caused by certain bidders were down or experienced technical issues. Let's take a look at the bidder timeout rate:
 
-![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/blog/analytics/timeout-by-date.png)
+![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/overview/analytics/timeout-by-date.png)
 
 Bidder timeout seems okay. The problem might then be caused by bidders' lower bid rate:
 
-![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/blog/analytics/bidrate-by-date.png)
+![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/overview/analytics/bidrate-by-date.png)
 
 Here we go. Bidder 1 and 4 bid much less than usual. You may want to drill down even further - Prebid.js Analytics also provides:
 
@@ -59,7 +59,7 @@ To understand exactly how much time per bidder spent, the Analytics Platform all
 
 <br />
 
-![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/blog/analytics/loadtime-histogram.png)
+![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/overview/analytics/loadtime-histogram.png)
 
 You might derive:
 
@@ -72,7 +72,7 @@ Similar query for bidders' bid CPM:
 
 <br />
 
-![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/blog/analytics/cpm-histogram.png)
+![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/overview/analytics/cpm-histogram.png)
 
 > **Try out the product and explore the demo dashboard <a href="https://docs.google.com/spreadsheets/d/11czzvF5wczKoWGMrGgz0NFEOM7wsnAISbp_MpmGzogU/edit?usp=sharing" target="_blank">here</a>!** This will be the base of your dashboard!
 
@@ -91,5 +91,3 @@ Prebid.js has a seamless integration with Google Analytics and Google Spreadshee
 
 - [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
-
-
