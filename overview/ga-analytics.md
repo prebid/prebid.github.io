@@ -40,7 +40,7 @@ Something is not right here - total revenue from yesterday dropped quite a bit. 
 
 Bidder timeout seems okay. The problem might then be caused by bidders' lower bid rate:
 
-![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/blog/analytics/bidrate-by-date.png)
+![Blocking Ad Calls 1]({{ site.baseurl }}/assets/images/overview/analytics/bidrate-by-date.png)
 
 Here we go. Bidder 1 and 4 bid much less than usual. You may want to drill down even further - Prebid.js Analytics also provides:
 
