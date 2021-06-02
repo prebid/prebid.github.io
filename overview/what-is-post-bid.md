@@ -11,7 +11,7 @@ sidebarType: 1
 > Post-bid allows a publisher’s demand sources to compete in one auction based on price after the ad server has declined to choose a direct-sold or exchange-based line item.
 
 `Post-bid` is the configuration scenario where a publisher loads and runs Prebid.js
-in a winning line item's creative. In a post-bid setup, 
+in a winning line item's creative. In a post-bid setup,
 demand sources compete _after_ the ad server has chosen the post-bid line item. Compare this to:
 
 - header bidding, where demand sources compete _before_ the ad server has seen
@@ -21,7 +21,7 @@ they all compete in one single line item based on price.
 
 This diagram summarizes the post-bid scenario:
 
-![Add Creative to Line Item]({{ site.github.url }}/assets/images/blog/postbid-diagram.png){: .pb-lg-img :}
+![Add Creative to Line Item]({{ site.github.url }}/assets/images/overview/postbid-diagram.png){: .pb-lg-img :}
 
 Steps:
 
@@ -62,7 +62,7 @@ already loaded.
 
 #### 3. Reporting is harder.
 
-In the ad server's post-bid line item report, you’d only get an aggregated report of all demand sources. You may need to rely on a 3rd party reporting service to record which demand partner wins how much inventory. 
+In the ad server's post-bid line item report, you’d only get an aggregated report of all demand sources. You may need to rely on a 3rd party reporting service to record which demand partner wins how much inventory.
 
 ### Comparison of Monetization Solutions
 
@@ -85,10 +85,9 @@ Yes. Check out the [example](/dev-docs/examples/postbid.html).
 
 #### 2. Can post-bid be used for mobile apps?
 
-Yes, it works the same as for browsers. When utilizing a server-to-server architecture, the [app](/dev-docs/publisher-api-reference.html#setConfig-app) config option can be used to forward the mobile app details.
+Yes, it works the same as for browsers. When utilizing a server-to-server architecture, the [app](/dev-docs/publisher-api-reference/setConfig.html#setConfig-app) config option can be used to forward the mobile app details.
 
 
 ## Getting Started
 
 Please refer to the [example](/dev-docs/examples/postbid.html).
-

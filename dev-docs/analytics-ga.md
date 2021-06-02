@@ -48,7 +48,7 @@ pbjs.que.push(function() {
 
 ##### Distribution Data
 
-Note: we recommend disabling `enableDistribution` if you are using more than 4 bidders. This is because GA throttles the number of events that can be logged (20 initial + 2/second). Distribution data provides you with a histogram of CPM distribution and bid load time (latency) for each bidder. See distribution data [demo here](/blog/header-bidding-analytics-coming-soon/#histogram-analysis-of-latency-and-cpm-distribution).
+Note: we recommend disabling `enableDistribution` if you are using more than 4 bidders. This is because GA throttles the number of events that can be logged (20 initial + 2/second). Distribution data provides you with a histogram of CPM distribution and bid load time (latency) for each bidder. See distribution data [demo here](https://prebid.org/blog/header-bidding-analytics-coming-soon/#histogram-analysis-of-latency-and-cpm-distribution).
 
 See [this link](https://developers.google.com/analytics/devguides/collection/protocol/v1/limits-quotas) for details on GA's throttling.
 

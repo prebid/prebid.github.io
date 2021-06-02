@@ -170,7 +170,7 @@ The `Line Item` is now prepared for bidding on publisher’s inventory.
 
 
 ## Further Reading
-[Video Solutions advertising overview:]( https://support.google.com/admanager/answer/1711021?hl=en)  
+[GAM Video Solutions advertising overview](https://support.google.com/admanager/answer/1711021?hl=en)  
 [Traffic in-stream video redirects](
 https://support.google.com/dcm/answer/6286181?hl=en)  
 [Media Planner for in-stream video creatives. A best practice guide:](https://support.google.com/dcm/answer/4348108)  

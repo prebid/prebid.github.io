@@ -34,7 +34,7 @@ If in doubt, contact the company hosting Prebid Server and ask if they're GDPR-r
 
 ### Sample request
 
-`GET http://prebid.site.com/setuid?bidder=adnxs&uid=12345&gdpr=1&gdpr_consent=BONciguONcjGKADACHENAOLS1rAHDAFAAEAASABQAMwAeACEAFw`
+`GET https://prebid.site.com/setuid?bidder=adnxs&uid=12345&gdpr=1&gdpr_consent=BONciguONcjGKADACHENAOLS1rAHDAFAAEAASABQAMwAeACEAFw`
 
 ### Return Values
 

@@ -17,7 +17,7 @@ sidebarType : 1
 
 This module supports the conversion of multiple bidder currencies into a single currency
 used by the publisher's ad server. In previous versions of Prebid, this was accomplished
-by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings), but that's a static value not changed except when
+by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference/bidderSettings.html), but that's a static value not changed except when
 the web development team makes a manual update.
 
 Publishers may continue to use the bidCpmAdjustment approach, or may begin using this optional module, gaining automatic updates as currency exchange rates fluctuate. Here's how it works at a high level:
