@@ -24,3 +24,5 @@ Algorix adapter requires setup and approval from the Algorix team, even for exis
 |---------------|----------|---------------|--------------------------------------|----------|
 | `sid`         | required | Sid           | `'30014'`                            | `string` |
 | `token`       | required | Token         | `'028bca2d3b5c4f0ba155fa34864b0c4d'` | `string` |
+
+Note: prebid-server adapter only check and use first imp bid params. ignored rest imp bid params.
