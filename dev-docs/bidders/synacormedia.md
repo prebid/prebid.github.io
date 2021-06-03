@@ -6,6 +6,7 @@ pbjs: true
 pbs: true
 biddercode: synacormedia
 media_types: banner, video
+userIds: identityLink, verizonMediaId, pubCommonId, nextrollId
 gdpr_supported: false
 schain_supported: true
 usp_supported: true
