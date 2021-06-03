@@ -40,6 +40,9 @@ The Yieldmo adapter supports in-stream video as of Prebid v4.18. Out-stream will
 | `playbackmethod`  | required | Playback methods that may be in use; see [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.10 for more details. Out-stream is only always `2` | `[2,6]`  | `Array<integer>` |
 | `skippable`       | optional | If 'true', user can skip ad                            | `true`          | `boolean` |
 | `skipafter`       | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is `skippable` | `5`  | `integer` |
+| `mimes`           | required | List of the content MIME types supported by the player | `["video/mp4"]` | `Array<string>`  |
+
+Following video parameters might be also defined in `mediaTypes.video` in order to simplify bidders configuration. If the same parameters was also defined in `params.video` it will be overriten by `params.video`. More details - https://docs.prebid.org/dev-docs/adunit-reference.html
 
 In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.video` definition of the video ad-units, namely:
 
@@ -48,7 +51,6 @@ In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.v
 |-------------------|----------|--------------------------------------------------------|-----------------|------------------|
 | `playerSize`      | required | Width and height of the player                         | `[640, 480]`    | `Array<integer>` |
 | `context`         | required | `instream` or `outstream ` are only supported                           | `instream`      | `string`         |
-| `mimes`           | required | List of the content MIME types supported by the player | `["video/mp4"]` | `Array<string>`  |
 
 ### Example of in-stream Video Ad-unit
 ```javascript
