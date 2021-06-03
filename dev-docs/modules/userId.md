@@ -181,7 +181,7 @@ gulp build --modules=admixerIdSystem
                    p: "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" //example hashed phone (sha256)
                }
            }],
-           syncDelay: 3000 // 3 seconds after the first auction
+           auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
        }
    });
 {% endhighlight %}
