@@ -15,6 +15,6 @@ media_types: banner, video
 
 | Name     | Scope    | Description | Example                            | Type     |
 |----------|----------|-------------|------------------------------------|----------|
-| `pubId` | required |    Publisher account id         | `123pubid` | `string` |
-| `zoneId` | optional |   Ad zone specific id if provided          | `456zoneId` | `string` |
+| `pubId` | required |    Publisher account id         | `'123pubid'` | `string` |
+| `zoneId` | optional |   Ad zone specific id if provided          | `'456zoneId'` | `string` |
 | `forceBid` | optional | Returns test bid | true | `boolean` |
