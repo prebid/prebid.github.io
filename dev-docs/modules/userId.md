@@ -456,7 +456,12 @@ To include the FLoC user id module use:
 `$ gulp build --modules=flocIdSystem`
 
 {: .alert.alert-info :}
-Note: FLoC is still in a trial period. [How to take part in the FLoC origin trial](https://developer.chrome.com/blog/floc/)
+Note: FLoC is still in a trial period. [How to take part in the FLoC origin trial](https://developer.chrome.com/blog/floc/). During the trial, a token is
+required. Publishers may get their own token or use sharedid's token if they choose. Use this without the line breaks:
+A3dHTSoNUMjjERBLlrvJSelNnwWUCwVQhZ5tNQ+sll7y+LkPPVZXtB77u2y7CweRIxiYaGw
+GXNlW1/dFp8VMEgIAAAB+eyJvcmlnaW4iOiJodHRwczovL3NoYXJlZGlkLm9yZzo0NDMiLC
+JmZWF0dXJlIjoiSW50ZXJlc3RDb2hvcnRBUEkiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU
+3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9
 
 
 #### FLoC ID Configuration
@@ -476,8 +481,8 @@ pbjs.setConfig({
         userIds: [{
             name: "flocId",
             params: {
-"token": "Registered token or default sharedid.org token" // Default sharedid.org token: "A3dHTSo..."
-                    }
+              "token": "Registered token" // see above for sharedId's FLoC token
+            }
         }],
         syncDelay: 3000              // 3 seconds after the first auction
     }
