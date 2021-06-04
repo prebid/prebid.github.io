@@ -4,6 +4,7 @@ title: Smile Wanted
 description: SmileWanted Bidder Adapter
 media_types: banner, video
 pbjs: true
+pbs: true
 biddercode: smilewanted
 gdpr_supported: true
 usp_supported: true
