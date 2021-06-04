@@ -456,7 +456,7 @@ To include the FLoC user id module use:
 `$ gulp build --modules=flocIdSystem`
 
 {: .alert.alert-info :}
-[How to take part in the FLoC origin trial](https://developer.chrome.com/blog/floc/)
+Note: FLoC is still in a trial period. [How to take part in the FLoC origin trial](https://developer.chrome.com/blog/floc/)
 
 
 #### FLoC ID Configuration
@@ -466,7 +466,7 @@ To include the FLoC user id module use:
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `"flocId"` |
 | params | Required | Object | Container of all module params. | |
-| params.token | Required | String | This is your apiKey as provided by Chrome. This value is required during the origin trial phase but will be optional once the origin trial ends. Publishers may use sharedid's registered token if they choose. | `A3dHTSoNUMjjERBLlrvJSelNnwWUCwVQhZ5tNQ+sll7y+LkPPVZXtB77u2y7CweRIxiYaGwGXNlW1/dFp8VMEgIAAAB+eyJvcmlnaW4iOiJodHRwczovL3NoYXJlZGlkLm9yZzo0NDMiLCJmZWF0dXJlIjoiSW50ZXJlc3RDb2hvcnRBUEkiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9`|
+| params.token | Required | String | This is your apiKey as provided by Chrome. This value is required during the origin trial phase but will be optional once the origin trial ends. Publishers may use sharedid's registered token if they choose. | `A3dHTSo...`|
 
 #### FLoC Example
 
@@ -476,7 +476,7 @@ pbjs.setConfig({
         userIds: [{
             name: "flocId",
             params: {
-"token": "Registered token or default sharedid.org token" // Default sharedid.org token: "A3dHTSoNUMjjERBLlrvJSelNnwWUCwVQhZ5tNQ+sll7y+LkPPVZXtB77u2y7CweRIxiYaGwGXNlW1/dFp8VMEgIAAAB+eyJvcmlnaW4iOiJodHRwczovL3NoYXJlZGlkLm9yZzo0NDMiLCJmZWF0dXJlIjoiSW50ZXJlc3RDb2hvcnRBUEkiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"
+"token": "Registered token or default sharedid.org token" // Default sharedid.org token: "A3dHTSo..."
                     }
         }],
         syncDelay: 3000              // 3 seconds after the first auction
