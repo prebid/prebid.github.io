@@ -227,6 +227,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="flocIdSystem" class="bidder-check-box">FLoC Cohort ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> Halo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
