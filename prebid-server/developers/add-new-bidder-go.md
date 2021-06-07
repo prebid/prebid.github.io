@@ -672,7 +672,7 @@ func buildMeta(bid *adapters.TypedBid) (json.RawMessage, error) {
       AgencyName:           "Some Agency Name",
       AdvertiserID:         3,
       AdvertiserName:       "Some Advertiser Name",
-      DChain:               DEMAND_CHAIN_JSON,
+      DChain:               json.RawMessage(`{Some Demand Chain JSON}`),
       BrandID:              4,
       BrandName:            "Some Brand Name",
       PrimaryCategoryID:    "IAB-1",
