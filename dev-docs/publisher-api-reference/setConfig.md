@@ -1218,7 +1218,7 @@ PBJS performs following actions when stale rendering is detected.
 * Log a warning in the browser console if pbjs_debug=true.
 * Emit a `STALE_RENDER` event before `BID_WON` event.
 
-Stale winning bids will continue to be rendered unless `suppressStaleRender` is set to true.
+Stale winning bids will continue to be rendered unless `suppressStaleRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
 
 
 <a name="setConfig-maxNestedIframes" />
