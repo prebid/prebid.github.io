@@ -31,13 +31,13 @@ See the table below for the list of properties on the ad unit.  For example ad u
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Type                                  | Description                                                                                                                                                                                |
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`       | Required | String                                | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference.html#module_pbjs.setTargetingForGPTAsync) to match which auction is for which ad slot. |
+| `code`       | Required | String                                | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) to match which auction is for which ad slot. |
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, define sizes within the appropriate `mediaTypes.{banner,native,video}` object. |
 | `bids`       | Required | Array[Object]                         | Array of bid objects representing demand partners and associated parameters for a given ad unit.  See [Bids](#adUnit.bids) below.                                                          |
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [insterstitial](#adUnit-interstitial-example) signal. |
+| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [insterstitial](#adUnit-interstitial-example) signal. |
 
 <a name="adUnit.bids" />
 
@@ -192,7 +192,7 @@ The `native` object contains the following properties that correspond to the ass
 | `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                     |
 | `minduration`      | Recommended    | Integer         | Minimum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
 | `maxduration`      | Recommended    | Integer         | Maximum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
-| `w`      | Recommended    | Integer         | 
+| `w`      | Recommended    | Integer         |
 Width of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
 | `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
 | `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB spec][openRTB].           |
@@ -567,7 +567,7 @@ pbjs.addAdUnits({
 {% endhighlight %}
 
 Notes:
-- Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd) config.
+- Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
 - For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
 
 <a name="adUnit-interstitial-example">
@@ -591,11 +591,11 @@ pbjs.addAdUnits({
 });
 {% endhighlight %}
 
-For more information on Interstitial ads, reference the [Interstitial feature page](/dev-docs/InterstitialAds.html).
+For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html).
 
 ## Related Topics
 
-+ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html)
++ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/)
 + [Conditional Ad Units][conditionalAds]
 + [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html)
 + [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
@@ -609,7 +609,7 @@ For more information on Interstitial ads, reference the [Interstitial feature pa
 <!-- Reference Links -->
 
 [conditionalAds]: {{site.baseurl}}/dev-docs/conditional-ad-units.html
-[setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig
-[configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads
+[setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html
+[configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: {{site.baseurl}}/prebid-server/overview/prebid-server-overview.html

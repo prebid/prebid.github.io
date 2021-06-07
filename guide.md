@@ -73,10 +73,6 @@ The layout directory contains HTML files that, in conjunction with CSS and JS fi
 
 The includes directory contains HTML files that can be included within files, such as a file for the header and footer.
 
-**_posts**  
-
-The posts directory contains the files that make up the content of the blog section of the site. Unlike the layouts and includes directories, the posts files are written in Markdown. A blog.html file in the layout directory provides the formatting for these Markdown files.
-
 **_bidders**
 
 The bidders directory is not a standard part of Jekyll; it’s a special use directory specifically for the Prebid.org site. The files in this directory are used to construct the table of partners on the partners/partners.html page.
@@ -223,24 +219,6 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 
 **Code Use**  
 This data file is read in the page_v2.html file using Liquid.
-
-<a name="Messages></a>
-
-### Messages
-
-The messsages YML file is used to construct the message displayed on the Prebid homepage. Each message is represented in the YML map as a collection of key value pairs, each collection is prefixed with a dash (-).
-
-```Markdown
-- messageId: 1
-  messageText: Prebid.org has a new look! See the <a href="/blog/updated-website">blog entry</a> for more info.
-  messageCreateDt: 01_08_2019
-```  
-
-| Key | Type | Example | Use |
-| ----- | ------ | ------ | ------ |
-| messageId | int | 0 | A unique identifier for each message |
-| messageText | string | A message | The displayed text. (Use HTML formatting for links.)  |
-| messageCreateDt | string | 01_08_2019 | Date the message was created, for historical purposes. |
 
 **Code Use**  
 This data file is read in the home.html file using Liquid.

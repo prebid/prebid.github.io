@@ -31,7 +31,7 @@ decides to add another identifier... the Prebid Ad Slot.
 Example page function:
 {% highlight js %}
 
-// Use adunit.ortb2Imp.ext.data.pbadslot if it exists. Otherwise, if the 
+// Use adunit.ortb2Imp.ext.data.pbadslot if it exists. Otherwise, if the
 // the adunit.code is a div ID, then look for a data-adslotid attribute, then look a matching slot in GPT
 // Otherwise, just use the AdUnit.code
 var setPbAdSlot = function setPbAdSlot(adUnits) {
@@ -85,7 +85,7 @@ pbjs.onEvent('beforeRequestBids', setPbAdSlot);
 ## How It Works
 
 The Prebid Ad Slot is just a convention -- it's a form of adunit-specific first party data
-stored under `adunit.ortb2Imp.ext.data.pbadslot`. 
+stored under `adunit.ortb2Imp.ext.data.pbadslot`.
 It can be utilized by any code ready to look for it.
 
 It's intended to be specified via Prebid.js in one of two ways:
@@ -111,5 +111,4 @@ The OpenRTB location for the Prebid Ad Slot is `imp[].ext.data.pbadslot`:
 
 ## Further Reading
 
-- The [onEvent()](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent) function
-
+- The [onEvent()](/dev-docs/publisher-api-reference/onEvent.html) function

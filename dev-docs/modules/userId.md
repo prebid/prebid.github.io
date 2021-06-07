@@ -181,14 +181,14 @@ gulp build --modules=admixerIdSystem
                    p: "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" //example hashed phone (sha256)
                }
            }],
-           syncDelay: 3000 // 3 seconds after the first auction
+           auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
        }
    });
 {% endhighlight %}
 
 ### BritePool
 
-The [BritePool]((https://britepool.com)) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated
+The [BritePool](https://britepool.com) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated
 integration partners (such as PubMatic), are able to maximize revenues without cookies. As addressable individuals visit publisher websites and mobile apps, the BritePool IDs associated with these identities are passed into the bidstream; enabling advertisers to transact against these BritePool ID's and publishers to maximize the revenues associated with their inventory and audience. The BritePool ID combines consumer privacy with easy, rapid integration for publishers and does not significantly increase the computing resources required of DSPs and SSPs.
 
 Add it to your Prebid.js package with:
@@ -274,7 +274,7 @@ pbjs.setConfig({
 ### Deepintent DPES ID by Deepintent
 
 The DeepIntent Healthcare Marketing Platform is the first and only DSP that combines real-world health data, premium partnerships, and custom integrations to reach patients and providers across any device.  DeepIntent empowers publishers to maximize their inventory, collaborate and transact directly with advertisers, and grow their business in a safe, controlled, transparent, and privacy-compliant way. Our publisher partners sell inventory on every channel via real-time bidding or conducting one-to-one trading with hundreds of the country’s leading healthcare brands and agencies.
- 
+
 DeepIntent’s DPES ID is a shared user identifier built for healthcare marketers and publishers integrated within DeepIntent’s Healthcare Marketplace. The DPES ID lets users protect and manage their privacy throughout the advertising value chain. User data written and associated with the DPES ID is not stored on DeepIntent’s servers. Instead, this data is stored in a decentralized way on a user’s browser. Users can still opt out of the ads by navigating to https://option.deepintent.com/adchoices
 
 #### Deepintent DPES ID Registration
@@ -443,7 +443,7 @@ pbjs.setConfig({
 
 ### Halo ID from Audigent
 
-Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HaloId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](prebid@audigent.com).
+Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HaloId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](mailto:prebid@audigent.com).
 
 #### HaloId Configuration
 Add the Halo ID system to your Prebid.js package with:
@@ -509,7 +509,7 @@ pbjs.setConfig({
 
 ### ID5 Universal ID
 
-The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID and detailed integration docs, please visit [our documentation](https://wiki.id5.io/x/BIAZ). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
+The ID5 Universal ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 Universal ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 Universal ID and detailed integration docs, please visit [our documentation](https://support.id5.io/portal/en/kb/articles/prebid-js-user-id-module). We also recommend that you sign up for our [release notes](https://id5.io/universal-id/release-notes) to stay up-to-date with any changes to the implementation of the ID5 Universal ID in Prebid.
 
 #### ID5 Universal ID Registration
 
@@ -532,13 +532,13 @@ The following configuration parameters are available:
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
 | params | Required | Object | Details for the ID5 Universal ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
-| params.pd | Optional | String | Publisher-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/x/BIAZ) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
+| params.pd | Optional | String | Partner-supplied data used for linking ID5 IDs across domains. See [our documentation](https://support.id5.io/portal/en/kb/articles/passing-partner-data-to-id5) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
 | params.abTesting | Optional | Object | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default |
 | params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
 | params.abTesting.controlGroupPct | Optional | Number | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1` |
 
 {: .alert.alert-info :}
-**NOTE:** The ID5 Universal ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+**NOTE:** The ID5 Universal ID that is delivered to Prebid is encrypted by ID5 with a rotating key to enforce privacy requirements and avoid unauthorized usage. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
 
 ##### A Note on A/B Testing
 
@@ -560,7 +560,7 @@ pbjs.setConfig({
       name: 'id5Id',
       params: {
         partner: 173,            // change to the Partner Number you received from ID5
-        pd: 'MT1iNTBjY...',      // optional, see table below for a link to how to generate this
+        pd: 'MT1iNTBjY...',      // optional, see table above for a link to how to generate this
         abTesting: {             // optional
           enabled: true,         // false by default
           controlGroupPct: 0.1   // valid values are 0.0 - 1.0 (inclusive)
@@ -943,9 +943,9 @@ pbjs.setConfig({
 
 ### Lotame Panorama ID
 
-Lotame Panorama is a suite of data-enrichment solutions for digital advertising that empowers marketers, agencies, publishers and media companies to transform consumer personas into addressable audiences. At the heart of Lotame Panorama is the Panorama ID, a people-based identifier powered by deterministic and probabilistic data, available across the cookie-challenged web and all browsers.
+[Lotame Panorama](https://www.lotame.com/panorama/) is a suite of data-enrichment solutions for digital advertising that empowers marketers, agencies, publishers and media companies to transform consumer personas into addressable audiences. At the heart of Lotame Panorama is the [Panorama ID](https://www.lotame.com/panorama/id/), a people-based identifier powered by deterministic and probabilistic data, available across the cookie-challenged web and all browsers.
 
-The Lotame privacy policy is at [https://www.lotame.com/about-lotame/privacy/](https://www.lotame.com/about-lotame/privacy/).
+The Lotame privacy policy is at [https://www.lotame.com/about-lotame/privacy/](https://www.lotame.com/about-lotame/privacy/). If you have any questions about Panorama ID, please reach out by emailing [prebid@lotame.com](mailto:prebid@lotame.com).
 
 Add it to your Prebid.js package with:
 
@@ -1865,7 +1865,7 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
 
-You can use [`getUserIdsAsEids()`](https://docs.prebid.org/dev-docs/publisher-api-reference.html#userId.getUserIdsAsEids) to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+You can use [`getUserIdsAsEids()`](/dev-docs/publisher-api-reference/getUserIds.html) to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
 ```
 pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
@@ -1920,5 +1920,5 @@ User IDs from Prebid User ID module can be passed to GAM for targeting in Google
 
 ## Further Reading
 
-* [Prebid.js Usersync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
+* [Prebid.js Usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
 * [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)

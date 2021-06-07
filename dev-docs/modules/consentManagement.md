@@ -22,7 +22,7 @@ sidebarType : 1
 {% include /alerts/alert_important.html content=legalNotice %}
 
 {: .alert.alert-warning :}
-Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](/blog/tcf2) for timelines.
+Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](https://prebid.org/blog/tcf2) for timelines.
 
 ## Overview
 
@@ -58,7 +58,7 @@ Please start by understanding the IAB's [TCF Implementation Guide](https://githu
 
 To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/all-news/the-iab-europe-transparency-consent-framework-tcf-steering-group-votes-to-extend-technical-support-for-tcf-v1-1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
 
-In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html). 
+In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html).
 
 Once the CMP is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call.  Adapters that support this feature will then be able to retrieve the consent information and incorporate it in their requests.
 
@@ -318,8 +318,8 @@ Here are some things that publishers can do to control various activities:
 
 1. If the current page view is known to be in GDPR scope, make sure the adapters are aware of it even on the first page where CMP hasn't been activated by setting the defaultGdprScope: `consentManagement.gdpr.defaultGdprScope: true`
 2. If the user hasn't consented to Purpose 1:
-  - Set [deviceAccess: false](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess)
-  - Don't enable [userSync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
+  - Set [deviceAccess: false](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess)
+  - Don't enable [userSync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
   - Don't enable [userId](/dev-docs/modules/userId.html) modules
 
 3. If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
