@@ -10,8 +10,8 @@ media_types: banner, video
 
 ### Bid Params
 
-| Name          | Scope    | Example            | Type      |
-|---------------|----------|--------------------|-----------|
-| `propertyId`  | required | `"12345"`          | `string`  |
-| `placementId` | required | `"54321"`          | `string`  |
-| `data`        | optional | `{catalogs: [{ catalogId: "699229", items: ["193", "4", "1"] }], inventory: { category: ["tech"], query: ["iphone 12"] }}` | `object` |
+| Name          | Scope    |Description                                                             | Example            | Type      |
+|---------------|----------|------------------------------------------------------------------------|--------------------|-----------|
+| `propertyId`  | required |Property id                                                             | `"12345"`          | `string`  |
+| `placementId` | required |Placement id                                                            | `"54321"`          | `string`  |
+| `data`        | optional |Catalog data (contents) and/or inventory data (custom key/value pairs)  | `{catalogs: [{ catalogId: "699229", items: ["193", "4", "1"] }], inventory: { category: ["tech"], query: ["iphone 12"] }}` | `object` |
