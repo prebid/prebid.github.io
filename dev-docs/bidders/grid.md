@@ -10,7 +10,7 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 getFloor: true
-userIds: all
+userIds: id5Id, unifiedId, liveIntentId, criteo, identityLink
 tcf2_supported: true
 ---
 

@@ -3,7 +3,7 @@ layout: bidder
 title: AMX RTB
 description: AMX RTB Prebid Bid Adapter
 hide: true
-schain_supported: true
+schain_supported: false
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
@@ -14,7 +14,6 @@ safeframes_ok: true
 media_types: banner, video
 pbjs: true
 pbs: true
-pbs_app_supported: true
 gvl_id: 737
 ---
 

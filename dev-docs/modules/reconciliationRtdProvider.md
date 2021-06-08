@@ -4,7 +4,7 @@ title: Reconciliation SDK Module
 description: Reconciliation Real Time Data Module
 page_type: module
 module_type: rtd
-module_code: reconciliationRtdProvider
+module_code: reconciliation
 display_name: Reconciliation
 enable_download: true
 sidebarType: 1
