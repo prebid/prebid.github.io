@@ -7,6 +7,7 @@ media_types: banner, video
 getFloor: true
 schain_supported: true
 pbjs: true
+pbs: true
 ---
 
 ### Bid Params
