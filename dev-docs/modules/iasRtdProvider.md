@@ -21,7 +21,7 @@ Integral Ad Science(IAS) Real Time Data Module. Please contact [Integral Ad Scie
 1) Compile Integral Ad Science(IAS) RTD Provider into your Prebid build:
 
 ```
-`gulp build --modules=iasRtdProvider`...
+`gulp build --modules=iasBidAdapter,iasRtdProvider`...
 ```
 
 2) Use `setConfig` to instruct Prebid.js to initilize the IAS module, as specified below.
@@ -49,18 +49,6 @@ Configuration example for using RTD module with the `ias` provider:
 
 Parameters details:
 
-{: .table .table-bordered .table-striped }
-
 |  param name | type  |Scope | Description |
 | :------------ | :------------ | :------- | :------- |
-| pubId  | string  | required | IAS pubId |
-
-## Example
-
-To view an integration example:
- 
-1) in your cli run:
-
-```
-gulp serve --modules=iasBidAdapter,iasRtdProvider`
-```
+| pubId  | string  | required | IAS publisher ID |
