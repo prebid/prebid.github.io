@@ -74,7 +74,7 @@ gulp serve --modules=appnexusBidAdapter,optimeraRtdProvider`
 2) in your browser, navigate to:
 
 ```
-http://localhost:9999integrationExamples/gpt/optimeraRtdProvider_example.html
+http://localhost:9999/integrationExamples/gpt/optimeraRtdProvider_example.html
 ```
 
 You will be able to see targeting set for each ad request with the 'optimera' key name.
