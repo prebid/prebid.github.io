@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Adform
+title: AdformOpenRTB
 description: Prebid Adform Bidder Adaptor
 biddercode: adf
 media_types: banner, native, video
