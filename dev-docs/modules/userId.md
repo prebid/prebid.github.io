@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"`, `"mwOpenLinkId"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"`, `"mwOpenLinkId"`, `"amxId"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -488,6 +488,43 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### AMX RTB ID
+
+The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](prebid@amxrtb.com)
+
+### AMX RTB ID Configuration
+
+First, add the AMX RTB ID module to your Prebid.js build:
+
+```shell
+gulp build --modules=userId,amxIdSystem
+```
+
+Then configure the amxId in your `userSync` configuration:
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'amxId',
+            storage: {
+                name: 'amxId',
+                type: 'html5',
+                expires: 14,
+            }
+        }]
+    }
+});
+```
+
+This will add a `userId.amxId` property to all bidRequests. This will be read by the AMX RTB bid adapter, and any other adapters that support EIDs:
+
+```javascript
+{
+  amxId: { id: '3ca11058-ecbc-419f-bda7-b52fe7baf02a', version: '1.0' }
+}
+```
 
 ### Halo ID from Audigent
 
@@ -1773,6 +1810,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
 | Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
 | MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | `"1111"` |
+| AMX RTB ID | AMX RTB | bidRequest.userId.amxId | `"3ca11058-ecbc-419f-bda7-b52fe7baf02a"` |
 {: .table .table-bordered .table-striped }
 </div>
 
@@ -1896,6 +1934,13 @@ Bidders that want to support the User ID module in Prebid Server, need to update
               "source": "mediawallahscript.com",
               "uids": [{
                 "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
+                "atype": 1
+              }]
+            },
+            {
+              "source": "amxrtb.com",
+              "uids": [{
+                "id": "5d947552-16f3-4752-8e2f-c8ed29068a31",
                 "atype": 1
               }]
             }
