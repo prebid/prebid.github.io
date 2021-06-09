@@ -1,6 +1,6 @@
 ---
 layout: video_sample
-title: Prebid Video | Instream Example with  JW Player (Hosted) 
+title: Prebid Video | Instream Example with JW Player (Self-Hosted) 
 description: An example of an instream pre-roll ad using Prebid.js and JW Player (Hosted).  
 videoType: pb-is-jw02
 isVideo: true
@@ -40,9 +40,9 @@ sidebarType: 4
 
 <!--put javascript code here-->
 &lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
-	jwplayer.key = "YEUwUA9wRFeDcydr"; //Test Key - replace this with your own valid JWPlayer license key<br>
+	jwplayer.key = "YOUR_JW_PLAYER_KEY"; //Test Key - replace this with your own valid JWPlayer license key<br>
 &lt;/script&gt;
 &lt;script&gt;
 	var pbjs = pbjs || {};
@@ -120,7 +120,7 @@ sidebarType: 4
 	
 	invokeVideoPlayer = function(url) {
 	    jwPlayerInstance.setup({
-	        "file": "http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4",
+	        "file": "https://vjs.zencdn.net/v/oceans.mp4",
 	        "width": 640,
 	        "height": 480,
 	        "autostart": true,
@@ -155,7 +155,7 @@ sidebarType: 4
 	
 	    invokeVideoPlayer = function(url) {
 	        jwPlayerInstance.setup({
-	            "file": "http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4",
+	            "file": "https://vjs.zencdn.net/v/oceans.mp4",
 	            "width": 640,
 	            "height": 480,
 	            "autostart": true,
