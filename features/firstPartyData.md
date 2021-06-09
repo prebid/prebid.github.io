@@ -31,9 +31,9 @@ which can be used for more than just First Party Data.
 Publishers supply First Party Data (FPD) by specifying attributes as
 configuration or on a Prebid.js AdUnit:
 
-- Global site or user data that applies to all AdUnits and all bidders. Use [`setConfig()`](/dev-docs/publisher-api-reference.html#setConfig-fpd)
+- Global site or user data that applies to all AdUnits and all bidders. Use [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd)
 - AdUnit-specific data that applies to all bidders. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data)
-- Bidder-specific site or user data that applies to all AdUnits. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig)
+- Bidder-specific site or user data that applies to all AdUnits. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html)
 
 ## In-Page Examples
 
@@ -65,7 +65,7 @@ pbjs.setConfig({
           	    name: "www.dataprovider1.com",
           	    ext: { "segtax": 1 },
 		    segment: [
-            		{ id: "687" }, 
+            		{ id: "687" },
             		{ id: "123" }
 		    ]
                 }]
@@ -134,14 +134,14 @@ pbjs.addAdUnits({
 {: .alert.alert-info :}
 Prebid does not support AdUnit-specific **user** data, nor does it support
 bidder-specific AdUnit First Party Data. You could implement either of
-these scenarios with a publisher-specific callback on the [`requestBids` event](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
+these scenarios with a publisher-specific callback on the [`requestBids` event](/dev-docs/publisher-api-reference/onEvent.html)
 
 {: .alert.alert-warning :}
 If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb2Imp.ext.data' with 'fpd.context.data'.
 
 ### Supplying Bidder-Specific Data
 
-Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig) function to supply bidder-specific data. In this example, only bidderA and bidderB will get access to the supplied
+Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data. In this example, only bidderA and bidderB will get access to the supplied
 global data.
 
 {% highlight js %}
@@ -214,7 +214,7 @@ segment taxonomies they support.
 
 ## How Bid Adapters Should Read First Party Data
 
-To access global data, a Prebid.js bid adapter needs only to call [`getConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig), like this:
+To access global data, a Prebid.js bid adapter needs only to call [`getConfig()`](/dev-docs/publisher-api-reference/getConfig.html), like this:
 
 {% highlight js %}
 config.getConfig('ortb2'))

@@ -146,7 +146,7 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 {% capture ccpaNote %}
 
 In order for publishers to meet their notice and opt out obligations under the CCPA,
-Prebid Mobile supports the IAB US Privacy signal as defined in the in-app section of the [IAB US Privacy signal for CCPA](https://iabtechlab.com/wp-content/uploads/2019/11/US-Privacy-USER-SIGNAL-API-SPEC-v1.0.pdf).  
+Prebid Mobile supports the IAB US Privacy signal as defined in the in-app section of the [IAB US Privacy signal for CCPA](https://iabtechlab.com/standards/ccpa/).  
 
   This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in California, United States, passing notice and opt out signals where necessary, to demand sources and their vendors.    
 
@@ -156,9 +156,9 @@ Prebid Mobile supports the IAB US Privacy signal as defined in the in-app sectio
 
 ### Notice and Opt out signal
 
-Prebid mobile supports the [IAB US Privacy signal](https://iabtechlab.com/wp-content/uploads/2019/11/US-Privacy-USER-SIGNAL-API-SPEC-v1.0.pdf) implementation for CCPA. Publishers will be required perform the following actions:
+Prebid mobile supports the [IAB US Privacy signal](https://iabtechlab.com/standards/ccpa/) implementation for CCPA. Publishers will be required perform the following actions:
 - Collect notice and opt out signals from eligible CCPA users
-- Translate notice and opt-out signals into [IAB US Privacy String format](https://iabtechlab.com/wp-content/uploads/2019/11/U.S.-Privacy-String-v1.0-IAB-Tech-Lab.pdf)
+- Translate notice and opt-out signals into [IAB US Privacy String format](https://iabtechlab.com/standards/ccpa/)
 - Store IAB US Privacy signal in NSUserDefaults for iOS or SharedPreferences for Android for persistent storage allowing access for vendors per IAB recommendations
 
 The job of the Prebid SDK will:

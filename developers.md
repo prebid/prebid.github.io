@@ -25,7 +25,7 @@ Key links for publisher developers.
 
 **Prebid for AMP** - integrating display ads into AMP pages:
 
-+ [How Prebid on AMP works](/dev-docs/how-prebid-on-amp-works.html)
++ [How Prebid on AMP works](/prebid-server/use-cases/pbs-amp.html)
 + [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-on-amp-pages.html)
 + [Prebid Server AMP endpoint documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
 

@@ -188,9 +188,9 @@ pbjs.que.push(function () {
 
 For more information, see the API documentation for:
 
-+ [requestBids]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids)
-+ [getHighestCpmBids]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.getHighestCpmBids)
-+ [renderAd]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.renderAd)
++ [requestBids](/dev-docs/publisher-api-reference/requestBids.html)
++ [getHighestCpmBids](/dev-docs/publisher-api-reference/getHighestCpmBids.html)
++ [renderAd](/dev-docs/publisher-api-reference/renderAd.html)
 
 ## Working Examples
 
