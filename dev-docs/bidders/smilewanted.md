@@ -24,12 +24,12 @@ To use us as a bidder you must have an account and an active "zoneId" on our Smi
 
 ### Testing
 
-You can add `#sw_test_campaign` at the end of any url, this will have the effect of responding with a Smile Wanted creative, with a high CPM which allows to win every auctions and see if the ad displays correctly.
-(Please note that impressions and revenues of this test ad this will not be recorded and not be paid)
+You can add `#sw_test_campaign` to the end of any URL. This will have the effect of responding with a Smile Wanted creative with a high CPM, which means you'll win every auction so you can see if the ad displays correctly.
+(Please note that impressions and revenues of this test ad will *not* be recorded and *not* be paid.)
 
 ### User Sync
 
-Add the following code to enable user sync. Smile Wanted strongly recommends enabling user syncing through iFrames. This functionality improves partners user match rates and increases the Smile Wanted bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+Add the following code to enable user sync. Smile Wanted strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Smile Wanted bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
 
 ```
 pbjs.setConfig({
