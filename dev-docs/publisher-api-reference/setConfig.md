@@ -827,7 +827,7 @@ config.setConfig({
 
 ##### Details on the allowSendAllBidsTargetingKeys setting
 
-The `allowSendAllBidsTargetingKeys` is similar to `allowTargetingKeys` except it limits any default bidder specific keys sent to the adserver when sendAllBids is enabled. Any default bidder specific keys that do not match the mask will not be sent to the adserver. This setting can be helpful if you find that your default Prebid.js implementation is sending key values that your adserver isn't configured to process; extraneous key values may lead to the ad server request being truncated, which can cause potential issues with the delivery or rendering ads.
+The `allowSendAllBidsTargetingKeys` is similar to `allowTargetingKeys` except it limits any default bidder specific keys sent to the adserver when sendAllBids is enabled. Any default bidder specific keys that do not match the mask will not be sent to the adserver. This setting can be helpful if you find that your default Prebid.js implementation is sending key values that your adserver isn't configured to process; extraneous key values may lead to the ad server request being truncated, which can cause potential issues with the delivery or rendering ads. An example of an extraneous key value many publishers may find redudnant and want to remove is `hb_bidder_biddercode = biddercode`.
 
 Below is an example config of `allowSendAllBidsTargetingKeys` excluding all default send all bids targeting keys except `hb_adid_biddercode`, `hb_pb_biddercode`:
 
@@ -838,6 +838,7 @@ config.setConfig({
   },
 });
 ```
+
 
 <a name="setConfig-Configure-Responsive-Ads" />
 
