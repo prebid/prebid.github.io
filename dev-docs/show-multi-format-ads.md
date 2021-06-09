@@ -34,7 +34,7 @@ Prebid multi-format ad units allow direct competition between banner, native, an
 
 At a high level, Prebid.js supports multi-format ads as follows:
 
-1. An ad unit may define a [`mediaTypes`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
+1. An ad unit may define a [`mediaTypes`](/dev-docs/publisher-api-reference/addAdUnits.html#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
 2. Each bidder specified on a given ad unit will be eligible to bid if the bidder supports at least one of the media types specified via `adUnit.mediaTypes`.
 3. Prebid.js sends bid requests to each eligible bidder.
 
