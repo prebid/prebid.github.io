@@ -19,7 +19,7 @@ sidebarType : 1
 
 This module enables targeting and tracking at the ad server adunit level.
 
-Enabled by default if compiled into your package, this module will add the [Prebid Ad Slot](/features/pbAdSlot.html) and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters.
+Enabled by default if compiled into your package, this module will add the [Prebid Ad Slot](/features/pbAdSlot.html) and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters. The [Prebid Ad Slot](/features/pbAdSlot.html) is a popular method of setting a 'Global Placement ID' that can be synced across Prebid and other bidding integrations, eg Google Open Bidding, and across Prebid integrations, to help buyers identify unique supply paths or compare inventory with multiple supply paths. 
 
 * **Prebid.js Adapters** - will be able to utilize these values as:
     * AdUnit.ortb2imp.ext.data.adserver.name="gam"
@@ -80,3 +80,4 @@ If there's no customPbAdSlot, a default algorithm is used to determine ortb2imp.
 
 # Further Reading
 - [Prebid Ad Slot](/features/pbAdSlot.html)
+

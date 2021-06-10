@@ -9,7 +9,7 @@ sidebarType: 1
 
 The Prebid AdUnit 'code' is a mixed attribute that's generally either the GPT slot name or the HTML div ID. The undecided nature of the 'code' makes it harder to utilize for reporting and auction targeting.
 
-The `Prebid Ad Slot` is an optional inventory management convention allowing publishers to supply a descriptive and stable label for each ad on the page. This makes it possible to have more granular reporting and better deal targeting.
+The `Prebid Ad Slot` is an optional inventory management convention allowing publishers to supply a descriptive and stable label for each ad on the page. This makes it possible to have more granular reporting and better deal targeting. This is also the place bidders may look for a global placement id that some buyers use to examine their supply paths both across supply side platforms and across multiple points of integration (eg Amazon TAM, Google Open Bidding, and Prebid). 
 
 {: .alert.alert-info :}
 The Prebid Ad Slot was introduced with Prebid.js 3.x.
@@ -88,10 +88,11 @@ The Prebid Ad Slot is just a convention -- it's a form of adunit-specific first 
 stored under `adunit.ortb2Imp.ext.data.pbadslot`.
 It can be utilized by any code ready to look for it.
 
-It's intended to be specified via Prebid.js in one of two ways:
+It's intended to be specified via Prebid.js in one of three ways:
 
 1. Either directly on the AdUnit itself
-2. Or defined during the run of a function before the auction
+2. Defined during the run of a function before the auction
+3. Automatically set by the [Prebid GPT Pre-Auction Module](/dev-docs/modules/gpt-pre-auction.md)
 
 The function could determine the pbadslot in any way that produces a stable value useful for targeting and reporting.
 Some scenarios that could be supported:
@@ -111,4 +112,7 @@ The OpenRTB location for the Prebid Ad Slot is `imp[].ext.data.pbadslot`:
 
 ## Further Reading
 
+
+- [Prebid GPT Pre-Auction Module](/dev-docs/modules/gpt-pre-auction.md)
 - The [onEvent()](/dev-docs/publisher-api-reference/onEvent.html) function
+

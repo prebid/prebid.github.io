@@ -7,6 +7,7 @@ pbs: true
 biddercode: sovrn
 gdpr_supported: true
 usp_supported: true
+pbadslot_supported: true
 userIds: all
 prebid_member: true
 schain_supported: true
