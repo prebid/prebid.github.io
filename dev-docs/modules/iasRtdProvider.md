@@ -49,6 +49,7 @@ Configuration example for using RTD module with the `ias` provider:
 
 Parameters details:
 
-| param name | type  |Scope | Description |
+{: .table .table-bordered .table-striped }
+| Name | Type  | Scope | Description |
 | :------------ | :------------ | :------- | :------- |
 | pubId  | string  | required | IAS publisher ID |
