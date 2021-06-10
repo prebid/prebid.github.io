@@ -6,6 +6,7 @@ biddercode: welect
 media_types: no-display, video
 gvlid: 282
 pbjs: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:
