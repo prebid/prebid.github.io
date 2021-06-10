@@ -13,6 +13,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 gvl_id: 50
 ---
 
+**Adform bid adapter is deprecated since Prebid 5.0. Please refer to [AdformOpenRTB adapter](#adf) documentation to fetch bids from Adform demand sources.**
 
 ### Bid Params
 
