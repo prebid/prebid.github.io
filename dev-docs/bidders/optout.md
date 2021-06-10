@@ -13,4 +13,4 @@ gdpr_supported: true
 | Name        | Scope    | Description          | Example        | Type      |
 |-------------|----------|----------------------|----------------|-----------|
 | `publisher` | required | Opt Out publisher ID | `8`            | `string`  |
-| `adslot     | required | Opt Out Adslot       | `prebid_demo`  | `string`  |
+| `adslot`    | required | Opt Out Adslot       | `prebid_demo`  | `string`  |
