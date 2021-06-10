@@ -356,7 +356,7 @@ In this scenario, the body of the native creative is managed from an external Ja
 When the Native AdUnit is defined in the page:
 
 - Declare`sendTargetingKeys: false` in the Native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
-- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. <style> tags) or in the AdServer creative.
+- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. `<style>` tags) or in the AdServer creative.
 
 Example AdUnit setup:
 ```
