@@ -8,6 +8,9 @@ biddercode: between
 schain_supported: true
 gdpr_supported: true
 pbs_app_supported: true
+userIds: sharedId
+gvl_id: 724
+usp_supported: true
 ---
 
 ### Prebid.js Bid Params

@@ -9,6 +9,7 @@ userIds: sharedId, id5Id, uid2Id
 getFloor: true
 ---
 
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
