@@ -14,6 +14,7 @@ gvl_id: 50
 pbjs_version_notes: not in 5.x
 ---
 
+**Adform bid adapter is deprecated since Prebid 5.0. Please refer to [AdformOpenRTB adapter](#adf) documentation to fetch bids from Adform demand sources.**
 
 ### Bid Params
 

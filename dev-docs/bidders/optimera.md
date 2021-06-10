@@ -4,7 +4,7 @@ title: Optimera
 description: Optimera Bidder Adaptor
 pbjs: true
 biddercode: optimera
-pbjs_version_notes: not in 5.x
+pbjs_version_notes: for 5.x, use the module
 ---
 
 ### Bid Params
