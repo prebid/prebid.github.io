@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"`, `"mwOpenLinkId"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`,`"adtelligentId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"`, `"mwOpenLinkId"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -186,6 +186,49 @@ gulp build --modules=admixerIdSystem
    });
 {% endhighlight %}
 
+### Adtelligent
+
+The [Adtelligent](https://adtelligent.com) ID system is uniq per-session user identifier for providing high quality DMP data for advertisers
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,adtelligentIdSystem
+
+#### Adtelligent Configuration
+
+adtelligentIdSystem doesn't require any configuration and storage params, however, to it is asynchronous and to achieve better performance, it's recommended to store it for a short time period and configure refresh.
+
+#### Adtelligent Example
+ 
+{% highlight javascript %}
+ pbjs.setConfig({
+     userSync: {
+         userIds: [{
+             name: 'adtelligent'
+         }]
+     }
+ });
+{% endhighlight %}
+
+Example with a short storage for ~10 minutes and refresh in 5 minutes: 
+
+{% highlight javascript %}
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: 'adtelligent',
+                storage: {
+                    type: "html5",
+                    name: "adt_id",
+                    expires:0.003,
+                    refreshInSeconds: 60 * 5
+                }
+            }]
+        }
+    });
+{% endhighlight %}
+ 
 ### BritePool
 
 The [BritePool](https://britepool.com) ID is a persistent identifier that enables identity resolution for people-based marketing in the cookieless world. Every BritePool ID is associated with a real identity. As a result, publishers, SSPs and DSPs that integrate with BritePool, or automated
@@ -1751,6 +1794,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID System Name | ID System Host | Prebid.js Attr | Example Value |
 | --- | --- | --- | --- | --- | --- |
 | Admixer ID | Admixer | bidRequest.userId.admixerId | `"1111"` |
+| Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
 | BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
 | DMD ID | DMD | bidRequest.userId.dmdId | `"1111"` |
 | CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
@@ -1897,6 +1941,12 @@ Bidders that want to support the User ID module in Prebid Server, need to update
               "uids": [{
                 "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
                 "atype": 1
+              }]
+            },{
+              "source":"adtelligent.com",
+              "uids":[{
+              "id":"bLiZbX3M5ga1DL51ITNp-h1QXgAgbYRKfPrrqK_EWUrKUXGRWQ5GDxcL",
+              "atype":3
               }]
             }
           ]
