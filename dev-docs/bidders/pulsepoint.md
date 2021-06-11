@@ -30,3 +30,24 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 | `battr`    | optional | Blocked Creative Attributes                           | `[ 1, 2, 5 ]`                | `array of integers` |
 | `badv`     | optional | Blocked Advertisers by their domains                  | `['ford.com', 'pepsi.com']`  | `array of strings`  |
 | `bidfloor` | optional | Bid floor price CPM                                   | `1.23`                       | `float`             |
+| `video`    | required | Required for video requests. OpenRTB Video object.    | `{ w: 400, h: 300 }`         | `object`            |
+
+### Video parameters
+Parameters on the Video object in Bid params for PulsePoint. [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Video object specification is used. Below are some sample parameters from the OpenRTB Video specs.
+
+
+{: .table .table-bordered .table-striped }
+| Name                   | Scope    | Description                                                | Example                       |
+|------------------------|----------|------------------------------------------------------------|-------------------------------|
+| `video.mimes`          | required | Content MIME types supported                               | `['video/mp4','video/x-flv']` |
+| `video.minduration`    | optional | Minimum video ad duration in seconds                       | `8`                           |
+| `video.maxduration`    | optional | Maximum video ad duration in seconds                       | `20`                          |
+| `video.protocols`      | optional | Array of supported video protocols                         | `[2, 3]`                      |
+| `video.w`              | optional | Width of the video player in device independent pixels     | `400`                         |
+| `video.h`              | optional | Height of the video player in device independent pixels    | `300`                         |
+| `video.startdelay`     | optional | Start delay in seconds                                     | `5`                           |
+| `video.skip`           | optional | Indicates if the player will allow the video to be skipped | `1`                           |
+| `video.minbitrate`     | optional | Minumim bit rate in Kbps.                                  | `200`                         |
+| `video.maxbitrate`     | optional | Maximum bit rate in Kbps.                                  | `500`                         |
+| `video.api`            | optional | List of supported API frameworks for this impression       | `[1, 2]`                      |
+
