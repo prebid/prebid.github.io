@@ -94,13 +94,6 @@ See [the realTimeData setConfig](/dev-docs/publisher-api-reference/setConfig.htm
 | [**Server-to-Server Testing**](/dev-docs/modules/s2sTesting.html) | Adds A/B test support to ease into server-side header bidding. |
 | [**First Party Data Validation**](/dev-docs/modules/validationFpdModule.html) | Verify First Party Data ortb2 fields and data types. |
 
-## Deprecated Modules
-
-{: .table .table-bordered .table-striped }
-| Module              | Description  |
-|---------------------+--------------|
-| [**Publisher Common ID**](/dev-docs/modules/pubCommonId.html) | (Deprecated - please use User ID module) Adds a persisted user ID in the publisher's domain. |
-
 ## Further Reading
 
 + [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
