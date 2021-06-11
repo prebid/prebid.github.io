@@ -239,6 +239,24 @@ Targeting refers to strings which are sent to the adserver to
 `request.ext.prebid.targeting` is an optional property which causes Prebid Server
 to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.targeting`.
 
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| pricegranularity | no | Defines how PBS quantizes bid prices into buckets | (see below) | object |
+| pricegranularity.precision | no | How many decimal places are there in price buckets | Defaults to 2 | integer |
+| pricegranularity.ranges | no | Non-overlapping price bucket definitions  | (see below) | array of objects |
+| pricegranularity.ranges.max | no | Top end of this range of price buckets. The bottom end is 0 or the max of the previous bucket. Note: in order to prevent ranges with gaps, there's no 'min' attribute. | 5.55 | float |
+| pricegranularity.ranges.increment | no | Size of the buckets in this range. | 1.50 | float |
+| mediatypepricegranularity | no | Defines how PBS quantizes bid prices into buckets, allowing for different ranges by media type. | (see below) | object |
+| mediatypepricegranularity.banner | no | Defines how PBS quantizes bid prices into buckets for banners. | (see below) | object |
+| mediatypepricegranularity.video | no | Defines how PBS quantizes bid prices into buckets for video. | (see below) | object |
+| mediatypepricegranularity.TYPE.precision | no | How many decimal places are there in price buckets. | Defaults to 2 | integer |
+| mediatypepricegranularity.TYPE.ranges | no | Same as pricegranularity.ranges | (see below) | array of objects |
+| includewinners | no | Whether to include targeting for the winning bids in response.seatbid[].bid[].ext.prebid.targeting. Defaults to false. | true | boolean |
+| includebidderkeys | Whether to include targeting for the best bid from each bidder in response.seatbid[].bid[].ext.prebid.targeting. Defaults to false. | true | boolean |
+| includeformat | no | Whether to include the "hb_format" targeting key. Defaults to false. | false | boolean |
+| preferdeals | no | If targeting is returned and this is true, PBS will choose the highest value deal before choosing the highest value non-deal. Defaults to false. | true | boolean |
+
 **Request format** (optional param `request.ext.prebid.targeting`)
 
 ```
@@ -253,9 +271,10 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
             "increment": 0.10 // This is equivalent to the deprecated "pricegranularity": "medium"
           }]
         },
-        "includewinners": false, // Optional param defaulting to true
-        "includebidderkeys": false // Optional param defaulting to true
-        "includeformat": false // Optional param defaulting to false
+        "includewinners": true,     // Optional param defaulting to false
+        "includebidderkeys": false, // Optional param defaulting to false
+        "includeformat": false,     // Optional param defaulting to false
+        "preferdeals": true         // Optional param defaulting to false
       }
     }
   }
