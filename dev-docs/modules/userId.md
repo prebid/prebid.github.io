@@ -1376,9 +1376,7 @@ gulp build --modules=pubProvidedId
 
 ### Quantcast ID
 
-Quantcast ID enables publishers that use Quantcast Measure tag to uniquely identify
-their clients within Quantcast's extensive publisher network without relying on third party
-cookies. The Quantcast User ID submodule makes the existing Quantcast first party
+Quantcast User ID submodule makes a Quantcast first party cookie available in the bid request. The first party cookie in the bidstream allows Quantcast to more accurately bid on publishers’ inventory without third party cookies. The Quantcast User ID submodule makes the existing Quantcast first party
 cookie available in the bid request. The first party cookie allows Quantcast to correlate
 the bid request with Quantcast's Measure dataset.
 
@@ -1394,7 +1392,13 @@ gulp build --modules=userId,quantcastIdSystem
 
 #### Quantcast ID Configuration
 
-Quantcast ID module does not require any configuration parameters at this time.
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"quantcastId"` | `"quantcastId"` |
+| params | Required | Object | Details for Quantcast initialization. | |
+| params.ClientID | Required | Number | The Quantcast provided ClientID is required to enable the Quantcast ID module unless you’re an existing Quantcast customer.  | “p0-” |
+
 
 #### Quantcast ID Example
 
@@ -1403,10 +1407,14 @@ pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "quantcastId",
+            params: {
+                  ClientID:"p-ajMgSKt52th2B" /*example ID*/
+            }
         }]
     }
 });
 {% endhighlight %}
+
 
 
 ### Tapad ID
