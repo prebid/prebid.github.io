@@ -82,7 +82,7 @@ See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy
 
 For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
-- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) is parsed.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) is parsed.
 - A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
 - Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
@@ -119,6 +119,10 @@ It will return ad server targeting in seatbid.bid.ext.prebid.targeting depending
 The AMP endpoint is somewhat different because it doesn't receive the openrtb - just the targeting. PBS basically resolves the OpenRTB, and then merges all the seatbid.bid.ext.prebid.targeting sections.
 
 ## How does Prebid Server determine the winner of a given impression?
+
+Prebid Server doesn't decide the overall winner... that's the job of the
+ad server. However, there are two decisions it does make that influence
+which bids are submitted to the ad server.
 
 **Decision 1**: best bid from each bidder on each impression
 
@@ -158,3 +162,9 @@ The best way would be to [join Prebid.org](https://prebid.org/membership/) and
 participate in the [Prebid Server PMC](https://prebid.org/project-management-committees/).
 
 Another way is to [register for our host company mailing list](/prebid-server/hosting/pbs-hosting.html#optional-registration).
+
+## Why doesn't Prebid Server resolve OpenRTB macros?
+
+Prebid Server is not a full-fledged SSP. Any DSP bid adapters should keep this in mind when it comes to assuming SSP functionality like resolving OpenRTB macros. We debated building this functionality into PBS, but realized it would take precious milliseconds away from the overall header bidding auction to scan kilobytes of bidder creatives for the 9 different OpenRTB macros. Since so few bidders require this functionality, it makes sense to have those adapters do it themselves.
+
+If an adapter doesn't resolve its own macros, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity. This will likely cause reporting discrepancies.

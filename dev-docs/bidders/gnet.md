@@ -4,6 +4,7 @@ title: gnet
 description: Prebid Gnet Bidder Adaptor
 pbjs: true
 biddercode: gnet
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

@@ -563,7 +563,7 @@ If a currency rate doesn't exist in the request, the external file will be used.
 
 Basic supply chains are passed to Prebid Server on `source.ext.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
 
-Bidder-specific schains (PBS-Java only):
+Bidder-specific schains:
 
 ```
 ext.prebid.schains: [

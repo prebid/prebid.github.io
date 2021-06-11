@@ -8,6 +8,7 @@ biddercode: adman
 gdpr_supported: true
 usp_supported: true
 media_types: banner, video
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:
