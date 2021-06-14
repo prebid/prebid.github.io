@@ -5,7 +5,7 @@ display_name: Optimera RTD
 description: Optimera Optimization Targeting
 page_type: module
 module_type: rtd
-module_code : optimeraRTD
+module_code : optimeraRtdProvider
 enable_download : true
 sidebarType : 1
 ---
@@ -24,7 +24,7 @@ Optimera Real Time Data Module. Provides targeting for ad requests from data col
 `gulp build --modules=optimeraRtdProvider`...
 ```
 
-2) Use `setConfig` to instruct Prebid.js to initilize the optimera module, as specified below.
+2) Use `setConfig` to instruct Prebid.js to initialize the optimera module, as specified below.
 
 ## Configuration
 
