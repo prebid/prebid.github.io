@@ -493,7 +493,7 @@ pbjs.setConfig({
 
 The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](prebid@amxrtb.com)
 
-### AMX RTB ID Configuration
+#### AMX RTB ID Configuration
 
 First, add the AMX RTB ID module to your Prebid.js build:
 
@@ -522,7 +522,7 @@ This will add a `userId.amxId` property to all bidRequests. This will be read by
 
 ```javascript
 {
-  amxId: { id: '3ca11058-ecbc-419f-bda7-b52fe7baf02a', version: '1.0' }
+  amxId: '3ca11058-ecbc-419f-bda7-b52fe7baf02a'
 }
 ```
 
