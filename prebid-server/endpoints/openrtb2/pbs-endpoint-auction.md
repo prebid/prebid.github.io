@@ -802,7 +802,7 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
          "keywords": "",
          "search": "",
          "ext": {
-             data: { GLOBAL CONTEXT DATA } // only seen by bidders named in ext.prebid.data.bidders[]
+             data: { GLOBAL SITE DATA } // only seen by bidders named in ext.prebid.data.bidders[]
          }
     },
     "user": {
@@ -815,11 +815,10 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
         }
     },
     "imp": [
+        ...
         "ext": {
-            "context": {
-                "keywords": "",
-                "search": "",
-                "data": { ADUNIT SPECFIC CONTEXT DATA }  // can be seen by all bidders
+            "data": {
+                ADUNIT SPECFIC CONTEXT DATA  // can be seen by all bidders
             }
          }
     ]

@@ -285,10 +285,10 @@ pbjs.addAdUnits({
         video: {
             context: 'instream',
             playerSize: [640, 480],
-	    w: 640,
-	    h: 480,
-	    skip: 1,
-	    playbackmethod: [2]
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         },
     },
     bids: [{

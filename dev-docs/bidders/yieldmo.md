@@ -58,27 +58,25 @@ var videoAdUnits = [{
   code: 'div-video-ad-1234567890',
   mediaTypes: {
     video: {
-      playerSize: [640, 480],             // required
+      playerSize: [640, 480],           // required
       context: 'instream',
-      mimes: ['video/mp4']                // required, array of strings
+      mimes: ['video/mp4'],             // required, array of strings
+      placement: 1,                     // required, integer
+      maxduration: 30,                  // required, integer
+      minduration: 15,                  // optional, integer
+      pos: 1,                           // optional, integer
+      startdelay: 10,                   // required if placement == 1
+      protocols: [2, 3],                // required, array of integers
+      api: [2, 3],                      // required, array of integers
+      playbackmethod: [2,6],            // required, array of integers
+      skip: 1,                          // optional, boolean
+      skipafter: 10                     // optional, integer
     }
   },
   bids: [{
     bidder: 'yieldmo',
     params: {
-      placementId: '1524592390382976659', // required
-      video: {
-        placement: 1,                     // required, integer
-        maxduration: 30,                  // required, integer
-        minduration: 15,                  // optional, integer
-        pos: 1,                           // optional, integer
-        startdelay: 10,                   // required if placement == 1
-        protocols: [2, 3],                // required, array of integers
-        api: [2, 3],                      // required, array of integers
-        playbackmethod: [2,6],            // required, array of integers
-        skippable: true,                  // optional, boolean
-        skipafter: 10                     // optional, integer
-      }
+      placementId: '1524592390382976659' // required
     }
   }]
 }];
@@ -91,20 +89,18 @@ var videoAdUnit = [{
       video: {
           playerSize: [640, 480],   // required
           context: 'outstream',
-          mimes: ['video/mp4']      // required, array of strings
+          mimes: ['video/mp4'],      // required, array of strings
+          placement: 3,                      // required, integer ( 3,4,5 )
+          maxduration: 30,                   // required, integer
+          protocols: [2, 3],                 // required, array of integers
+          api: [2, 3],                       // required, array of integers
+          playbackmethod: [1,2]              // required, array of integers
       }
   },
   bids: [{
     bidder: 'yieldmo',
     params: {
-      placementId: '1524592390382976659',  // required
-      video: {
-        placement: 3,                      // required, integer ( 3,4,5 )
-        maxduration: 30,                   // required, integer
-        protocols: [2, 3],                 // required, array of integers
-        api: [2, 3],                       // required, array of integers
-        playbackmethod: [1,2]              // required, array of integers
-      }
+      placementId: '1524592390382976659'  // required
     }
   }]
 }];

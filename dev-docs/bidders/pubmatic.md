@@ -131,29 +131,27 @@ var videoAdUnits = [
     mediaTypes: {
         video: {
             playerSize: [640, 480],           // required
-            context: 'instream'
+            context: 'instream',
+            mimes: ['video/mp4','video/x-flv'],   // required
+            skip: 1,                              // optional
+            minduration: 5,                       // optional
+            maxduration: 30,                      // optional
+            startdelay: 5,                        // optional
+            playbackmethod: [1,3],                // optional
+            api: [ 1, 2 ],                        // optional
+            protocols: [ 2, 3 ],                  // optional
+            battr: [ 13, 14 ],                    // optional
+            linearity: 1,                         // optional
+            placement: 2,                         // optional
+            minbitrate: 10,                       // optional
+            maxbitrate: 10                        // optional
         }
     },
     bids: [{
       bidder: 'pubmatic',
       params: {
         publisherId: '32572',                     // required
-        adSlot: '38519891@300x250',              // required
-        video: {
-          mimes: ['video/mp4','video/x-flv'],   // required
-          skippable: true,                      // optional
-          minduration: 5,                       // optional
-          maxduration: 30,                      // optional
-          startdelay: 5,                        // optional
-          playbackmethod: [1,3],                // optional
-          api: [ 1, 2 ],                        // optional
-          protocols: [ 2, 3 ],                  // optional
-          battr: [ 13, 14 ],                    // optional
-          linearity: 1,                         // optional
-          placement: 2,                         // optional
-          minbitrate: 10,                       // optional
-          maxbitrate: 10                        // optional
-        }
+        adSlot: '38519891@300x250'                // required
       }
     }]
 }]
