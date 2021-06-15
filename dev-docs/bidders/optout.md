@@ -3,8 +3,10 @@ layout: bidder
 title: Opt Out Advertising
 description: Prebid Opt Out Advertising Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: optout
 gdpr_supported: true
+gvl_id:227
 ---
 
 ### Bid Params
