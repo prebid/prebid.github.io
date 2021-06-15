@@ -6,6 +6,7 @@ pbjs: true
 biddercode: platformio
 media_types: native, video
 gdpr_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Disclosure

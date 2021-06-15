@@ -11,6 +11,7 @@ media_types: banner, native
 userIds: all
 gdpr_supported: false
 prebid_member: false
+pbjs_version_notes: not in 5.x
 ---
 
 

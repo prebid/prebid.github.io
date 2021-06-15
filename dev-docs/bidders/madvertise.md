@@ -10,6 +10,7 @@ media_types: banner, video
 safeframes_ok: true
 pbs: true
 pbs_app_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Prebid.js Bid Params
