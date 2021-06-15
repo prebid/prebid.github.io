@@ -51,7 +51,7 @@ Prebid Server will then write sample log messages to the file you provided.
 ## Adding an Analytics Adapter in PBS-Java
 
 1. Define config params
-Analytics modules are enabled through the [Configuration](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/config.md).
+Analytics modules are enabled through the [Configuration](https://github.com/prebid/prebid-server-java/blob/master/docs/config.md).
 
 2. Implement your module
 Your new module org.prebid.server.analytics.{module}AnalyticsReporter needs to implement the org.prebid.server.analytics.AnalyticsReporter interface.
@@ -62,7 +62,7 @@ In order to make Prebid Server aware of the new analytics module it needs to be 
 ### Example
 {:.no_toc}
 
-The [log module](https://github.com/rubicon-project/prebid-server-java/blob/master/src/main/java/org/prebid/server/analytics/LogAnalyticsReporter.java) is provided as an example. This module will write dummy messages to a log.
+The [log module](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/analytics/LogAnalyticsReporter.java) is provided as an example. This module will write dummy messages to a log.
 
 It can be configured with:
 

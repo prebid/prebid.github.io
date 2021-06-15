@@ -6,9 +6,11 @@ pbjs: true
 pbs: true
 biddercode: synacormedia
 media_types: banner, video
+userIds: identityLink, verizonMediaId, pubCommonId, nextrollId
 gdpr_supported: false
 schain_supported: true
 usp_supported: true
+pbs_app_supported: true
 ---
 
 ### Note:
@@ -47,7 +49,7 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `seatId` | required | The seat ID from Synacor Media. This will be the same for all ad units. | `'prebid'` | `string` |
-| `placementId` | required | The placement ID from Synacor Media. | `'demo1'` | `string` |
+| `tagId` | required | The placement or tag ID from Synacor Media. | `'demo1'` | `string` |
 | `bidfloor` | optional | The floor price for the request. | `0.1` | `float` |
 | `pos` | optional | The position of the placement on the page, see Open RTB spec v2.5. | `0` | `int` |
 | `video` | optional | Optional properties specific to video, see next table | `{ }` | Object |
@@ -66,7 +68,7 @@ var adUnits = [{
         "bidder": "synacormedia",
         "params": {
             "seatId": "prebid",
-            "placementId": "demo1",
+            "tagId": "demo1",
             "bidfloor": 0.20,
             "pos": 1,
             "video": {

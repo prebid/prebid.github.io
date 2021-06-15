@@ -6,10 +6,11 @@ pbjs: true
 pbs: true
 schain_supported: true
 biddercode: kubient
-aliasCode: fidelity
 media_types: banner
 gdpr_supported: true
 usp_supported: true
+gvl_id: 794
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:
@@ -21,6 +22,5 @@ The Kubient Bidder Adapter requires setup and approval before beginning. Please 
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description                                      | Example                  | Type     |
 |--------|----------|--------------------------------------------------|--------------------------|----------|
-| zoneid | required | The ad zone or tag specific ID                   | `'27248'`                | `string` |
-| floor  | optional | The floor CPM price for the request              | `0.1234`                 | `float`  |
-| server | optional | Bidder domain (default `'x.fidelity-media.com'`) | `'kssp.kbntx.ch'`        | `string` |
+| zoneid | required | The AdUnit or Tag specific ID                    | `'5fbb948f1e22b'`        | `string` |
+

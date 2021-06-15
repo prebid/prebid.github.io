@@ -5,6 +5,7 @@ description: Prebid RtbSape Bidder Adaptor
 pbjs: true
 biddercode: rtbsape
 media_types: banner, video
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

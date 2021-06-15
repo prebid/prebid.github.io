@@ -6,8 +6,12 @@ title: Prebid Server | Use Cases | Prebid.js
 ---
 
 # Use Case: Prebid Server | Prebid.js
+{: .no_toc}
 
-When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
+* TOC
+{:toc}
+
+When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
 
 ## Workflow
 
@@ -21,7 +25,7 @@ Here are workflows diagramming how this works.
 1. Prebid Server parses the request and holds the auction.
 1. The response, including the body of the winning creative(s), is sent back to the browser.
 1. Prebid.js passes ad server targeting variables to the page, which forwards it to the ad server.
-1. When a header bidding ad wins, the ad server responds to the page with the [Prebid Universal Creative](overview/prebid-universal-creative.html).
+1. When a header bidding ad wins, the ad server responds to the page with the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative).
 1. Which calls the render function in Prebid.js to display the creative.
 
 ### Video
@@ -45,7 +49,7 @@ The following sections give additional details of the steps provided in the work
 
 ### Prebid.js s2sConfig is Placed in the Page
 
-Here's a page example assuming that you're running your own Prebid Server. See [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) for more information. Note that this config would handle both banner and video auctions server-side for bidderA and bidderB.
+Here's a page example assuming that you're running your own Prebid Server. See [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) for more information. Note that this config would handle both banner and video auctions server-side for bidderA and bidderB.
 
 ```
 pbjs.setConfig({
@@ -166,7 +170,7 @@ Next comes the auction and response:
 1. Enforce privacy regulations
 1. Call the bidders
 1. Collect responses
-1. Cache teh VAST XML as instructed (for video)
+1. Cache the VAST XML as instructed (for video)
 1. Prepare the OpenRTB response
 
 ### The Page Gets the Response
