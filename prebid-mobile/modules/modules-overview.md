@@ -9,18 +9,18 @@ sidebarType: 2
 
 # Prebid Mobile Modules Overview
 
-The design of Prebid Mobile is to provide a lightweight SDK with minimal logic, leveraging Prebid Server to handle requets for demand and a much logic as possible as far as auction dynamics go. Keeping with the spirit of this design principle, Prebid Mobile supoprts a modular architecture to add in new features sets, that can potentially bload the size of Prebid SDK, into components publishers can select to build when assybmling their apps. Modularity follows the approach used across the Prebid suite of products (Prebid JS and Prebid Server) to help reduce the overall size of the prebid library / package.
+The design of Prebid Mobile is to provide a lightweight SDK with minimal logic, leveraging Prebid Server to handle requests for demand and a much logic as possible as far as auction dynamics go. Keeping with the spirit of this design principle, Prebid Mobile supports a modular architecture to add in new feature sets, that can potentially load the size of Prebid SDK, into components publishers can select to build when assembling their apps. Modularity follows the approach used across the Prebid suite of products (Prebid JS and Prebid Server) to help reduce the overall size of the prebid library/package.
 
-This page will serve as the central location to link all modular packages, descipriptions and resource for modular links.
+This page will serve as the central location to link all modular packages, descriptions, and resources for modular links.
 
 ## Benefits and Features
 
-Some of the benefits to the modular achitecture are the following:
+Some of the benefits to the modular architecture are the following:
 
 -   Allows the ability to customize the Prebid SDK to the developer needs
--   Allows for reduced size of Prebid SDK, adding only modules need
--   Allows for community to add custom and / or 3rd party code without adding code to the core of Prebid SDK
--   Reduces size of Prebid SDK
+-   Allows for the reduced size of Prebid SDK, adding only modules need
+-   Allows for the community to add custom and/or 3rd party code without adding code to the core of Prebid SDK
+-   Reduces the size of Prebid SDK
 
 ## How It Works
 
@@ -37,7 +37,7 @@ Prior to Prebid SDK 1.12 there were two targets(PrebidMobile and PrebidMobileCor
 1. Set dependencies between them
 1. Edit final distribution binaries(FatFramework, CocoaPods, Carthage, SPM, cross-project dependency)
 
-Useage:
+Usage:
 
 ```bash
 import PrebidMobile
