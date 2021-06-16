@@ -111,8 +111,8 @@ To integrate Prebid SDK Rendering, developers are required to peform the followi
 
 Below are additional refences for Android:
 
-- [Deep Links Support](android-sdk-deeplinkplus.html)
-- [Impression Tracking](android-sdk-impression-tracking.html)
+- [Deep Links Support](rendering-deeplinkplus.html)
+- [Impression Tracking](rendering-impression-tracking.html)
 - [SDK Parameters](android-sdk-parameters.html)
 
 ### iOS
