@@ -19,21 +19,31 @@ sidebarType: 2
  
 #### Line Item: Display, Video
 
-To integrate the In-App Bidding into your app you have to create a Custom Ad Network Line Item with a specific Targeting keyword. Note that `Custom Ad Network` type is not suitable for Native Style Ads, see [Native Style Line Item and creative](#line-item-native) for more details.
-
-Regardless of the ability to name a Line Item in any way we strongly suggest using the price or targeting keyword in the name. It will help you when you will create a hundred of them.
+To integrate the In-App Bidding into your app you have to create a Custom Ad Network Line Items with a specific Targeting keyword. 
 
 - **Line Item Name**: hb_pb 0.10
 - **Type & Priority**: Network Line Item
 - **Network**: Custom SDK network
 - **Custom event class**: 
-    - For Banner API: **PrebidBannerAdapter**
-    - For Interstitial API: **PrebidInterstitialAdapter**
-    - For Rewarded API: **PrebidRewardedVideoAdapter**
-    - For Native API: **PrebidNativeAdapter**
+    - For Banner API:
+        - iOS: **PrebidBannerAdapter**
+        - Android: **com.mopub.mobileads.PrebidBannerAdapter**
+    - For Interstitial API: 
+        - iOS: **PrebidInterstitialAdapter**
+        - Android: **com.mopub.mobileads.PrebidInterstitialAdapter**
+    - For Rewarded API: 
+        - iOS: **PrebidRewardedVideoAdapter**
+        - Android: **com.mopub.mobileads.PrebidRewardedVideoAdapter**
+    - For Native API: 
+        - iOS: **PrebidNativeAdapter**
+        - Android: **com.mopub.nativeads.PrebidNativeAdapter**
 - **Custom event data**: {}
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-mopub-li-type.png" alt="Pipeline Screenshot" align="center">
+
+> Even though a Line Item can be named in any way, we strongly recommend to use the price or targeting keyword in the name. It will help to navigate through hundreds of them.
+
+Note that `Custom Ad Network` type is not suitable for Native Style Ads, see [Native Style Line Item and creative](#line-item-native) for more details.
 
 #### Line Item: Native
 
@@ -49,7 +59,7 @@ This property will show to the Rendering Module that it should render the ad fro
 
 #### Line Item: Native Style
 
-Native styles ads are using `non-guaranteed` line item type and Medium Rectangle format HTML creative.
+Native styles ads use `non-guaranteed` line item type and Medium Rectangle format HTML creative.
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-mopub-native-ad-li.png" alt="Pipeline Screenshot" align="center">
 

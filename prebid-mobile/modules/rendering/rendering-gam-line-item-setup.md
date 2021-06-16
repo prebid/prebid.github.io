@@ -18,7 +18,7 @@ sidebarType: 2
 
 To integrate the In-App Bidding into the app you have to create a Line Item with a specific price and targeting keyword.
 
-Regardless of the ability to name a Line Item in any way we strongly suggest using the price or targeting keyword in the name. It will help you when you create a hundred of them.
+> Even though a Line Item can be named in any way, we strongly recommend to use the price or targeting keyword in the name. It will help to navigate through hundreds of them.
 
 ### Select Type
 
@@ -69,6 +69,8 @@ https://sdk.prod.gcp.openx.org/ads/inapp_bidding/gam_rewarded.xml
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-creative-rewarded.png" alt="Pipeline Screenshot" align="center">
 
+If GAM Event Handler receives the tag's info it will render the winning bid. Otherwise the control will be passed to the GAM ad view and it will render the received creative.
+
 ### Native: Unified Ad
 
 Click on **ADD CREATIVE** -> **New Creative** -> **Native Format** -> **Select Template...** and chose one of the predefined system templates.
@@ -105,10 +107,9 @@ Select the `HTML & CSS editor` option.
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-ways-to-create-native-ad.png" alt="Ways to create Native Ad Screenshot" align="center">
 
-
 #### Step 2: Define ad settings
 
-For Ad size you can specify a specific size for the ad unit or specify the `fluid` size.
+For the Ad Size you can specify a specific size for the ad unit or specify the `fluid` size.
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-ad-settings.png" alt="Define Native Ad settings Screenshot" align="center">
 
