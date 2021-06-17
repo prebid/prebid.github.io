@@ -1,3 +1,12 @@
+---
+
+layout: page_v2
+title: Prebid Mobile Rendering Pure In-App Bidding Native Ads Integration
+description: Integration of native ads for pure In-App Bidding scenario
+sidebarType: 2
+
+---
+
 # Prebid Rendering: Native Ads Integration
 
 ## Native Ads
@@ -6,8 +15,8 @@ The general integration scenario requires these steps from publishers:
 
 1. Prepare the ad layout.
 2. Create Native Ad Unit.
-3. Configure the Native Ad unit using [NativeAdConfiguration](../../info-modules/native/in-app-bidding-native-ad-configuration.md).
-    * Provide the list of **[Native Assets](../../info-modules/in-app-bidding-native-guidelines-info.md#components)** representing the ad's structure.
+3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.md).
+    * Provide the list of **[Native Assets](rendering-native-guidelines.md#components)** representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
 5. Extract NativeAd using `NativeUtils.findNativeAd`
@@ -29,7 +38,7 @@ nativeAdUnit?.fetchDemand {
 
 ## Native Styles
 
-[See Pure In-App Bidding Integration page](../integration-gam/android-in-app-bidding-gam-info.md) for more details about SDK integration and supported ad types.
+[See Native Ads Guideline page](rendering-native-guidelines.md) for more details about SDK integration and supported ad types.
 
 To display an ad using Native Styles you'll need to implement these easy steps:
 
@@ -59,6 +68,7 @@ In the Pure In-App Bidding scenario you just need to initialize the Banner Ad Vi
 #### Step 2: Create and provide NativeAdConfiguration
 
 NativeAdConfiguration creation example:
+
 ``` kotlin
 private fun createNativeAdConfiguration(): NativeAdConfiguration {
     val nativeAdConfiguration = NativeAdConfiguration()
@@ -113,6 +123,7 @@ private fun createNativeAdConfiguration(): NativeAdConfiguration {
 ```
 
 Native Styles creative example:
+
 ``` html
 <div class="sponsored-post">
     <div class="thumbnail">
@@ -133,7 +144,8 @@ Native Styles creative example:
   window.pbNativeTag.startTrackers(pbNativeTagData);
 </script>
 ```
-See more NativeAdConfiguration options [here](../../info-modules/native/in-app-bidding-native-ad-configuration.md).
+
+See more NativeAdConfiguration options [here](rendering-native-ad-configuration.md).
 
 **IMPORTANT:**
 
@@ -141,7 +153,7 @@ You should add HTML and CSS to define your native ad template with universal cre
 
 #### Step 3: Load the Ad
 
-Simply call `loadAd()` and SDK will:
+Call `loadAd()` and SDK will:
 
 - make bid request to Prebid server
 - render the winning bid on display
