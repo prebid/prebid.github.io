@@ -157,5 +157,3 @@ Call `loadAd()` and SDK will:
 
 - make bid request to Prebid server
 - render the winning bid on display
-
-f

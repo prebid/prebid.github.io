@@ -16,7 +16,7 @@ The general integration scenario requires these steps from publishers:
 1. Prepare the ad layout.
 2. Create Native Ad Unit.
 3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.html).
-    * Provide the list of **[Native Assets](rendering-native-guidelines.html#components)** representing the ad's structure.
+    * Provide the list of [Native Assets](rendering-native-guidelines.html#components) representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
 5. Extract NativeAd using `NativeUtils.findNativeAd`

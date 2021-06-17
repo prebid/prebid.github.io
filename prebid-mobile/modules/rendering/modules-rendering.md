@@ -29,12 +29,20 @@ Prebid SDK rendering offers the following benefits:
 - **Flexible Ad Measurement**: Owning the rendering and Open Measurement process allows publishers to potentially configure any measurement provider in a transparent and open source process. Prebid SDK will eventually be IAB Open Measurement certified and listed on the IAB site once complete.  
 - **Community driven**: Being a part of Prebid, there is the ability to add features not readily or easily available either through the Ad Server or other SDKs 
 
+## Potential Features
+
+This set of features are not supported yet but they are intended for implementation in the nearest feature.
+
+- **Multiformat Ad Unit** - with rendering Prebid SDK is able to display any bid format in the given inventory regardless of Primary Ad Server capabilities. 
+- **Support of Custom Ad Servers** - potentially the Rendering Module can work with any ad server, so publishers won't be limited with GAM and MoPub on Mobile anymore.
+- **Rendering Delegation** - prebid SDK potentially can delegate rendering of the winning bid to the Demand Partner SDK if it is required for special creatives.
+
 ## How It Works
 
 Prebid Mobile Rendering supports two integration scenarios:
 
-* Pure In-App Bidding:  In this scenario, no Primay Ad Server is used. Prebid Mobile SDK will render the winning ad immediately whew available
-* Using a Primary Ad Server: Prebid SDK will detect when a Prebid line item is ready to serve from the Primary Ad Server to serve the winning ad in a Prebid Mobile owned webview
+* **Pure In-App Bidding** In this scenario, no Primay Ad Server is used. Prebid Mobile SDK will render the winning ad immediately whew available.
+* **Using a Primary Ad Server** Prebid SDK will detect when a Prebid line item is ready to serve from the Primary Ad Server to serve the winning ad in a Prebid Mobile owned webview or video view.
 
 In both scenarios, Prebid SDK with rendering modules will levarage Prebid Server for demand. Below are the flows for both In-App and Primary Ad Server modes:
 

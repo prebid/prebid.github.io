@@ -21,6 +21,7 @@ Please strictly follow the recommendations in the below tables and provide all ‚
 ## Targeting
 
 {: .table .table-bordered .table-striped }
+
 | **Parameter**              | **Method**                | Description                                                  | Required?|
 | -------------------------- | ------------------------- | ------------------------------------------------------------ | -------- |
 | age                        | `setUserAge`              | Age of the user in years. For example: `35`   | ‚ùó Highly Recommended  |
@@ -65,6 +66,7 @@ You can submit values through `Targeting` for the extended (`c.xxx`) ad-call
 parameters.
 
 {: .table .table-bordered .table-striped }
+
 | **Parameter**           | **Method**          | **Description**                                              |
 | ----------------------- | ------------------- | ------------------------------------------------------------ |
 | custom<br />parameter   | setCustomParameter  | A custom user parameter auto-prepended with c..<br />You should provide the plain name of the parameter, such as xxx, which will be changed to c.xxx when sent. |
@@ -73,6 +75,7 @@ parameters.
 ## PrebidRenderingSettings
 
 {: .table .table-bordered .table-striped }
+s
 | **Field**               | **Description**                                              | **Default** |
 | ----------------------- | ------------------------------------------------------------ | ----------- |
 | defaultAutoRefreshDelay | Controls the initial value of `autoRefreshDelay` for all newly created OXMAdViews in seconds. | 60          |

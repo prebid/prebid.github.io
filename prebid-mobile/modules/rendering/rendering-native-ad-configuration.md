@@ -14,6 +14,8 @@ The `NativeAdConfiguration` class provides an ability to set *assets*, *event tr
 
 ## Parameters
 
+{: .table .table-bordered .table-striped }
+
 | Property      | Default | Required    | Description |
 |:---------------|:--------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context        | Undefined | recommended | The context in  which the ad appears                                                                                                                                                                                                                                                                                       |
@@ -35,6 +37,8 @@ The event tracker object specifies the kinds of events the bidder can request to
 
 ### Event Trackers Properties
 
+{: .table .table-bordered .table-striped }
+
 | Name                 | Description                                                  |
 |:---------------------|:-------------------------------------------------------------|
 | eventType            | Type of event available for tracking                         |
@@ -46,6 +50,8 @@ The event tracker object specifies the kinds of events the bidder can request to
 
 #### NativeEventType
 
+{: .table .table-bordered .table-striped }
+
 | Name             | ID   | Description                                                                    |
 |:-----------------|:-----|:-------------------------------------------------------------------------------|
 | Impression       | 1    | Impression                                                                     |
@@ -55,6 +61,8 @@ The event tracker object specifies the kinds of events the bidder can request to
 | ExchangeSpecific | 500+ | Exchange specific                                                              |
 
 #### NativeEventTrackingMethod
+
+{: .table .table-bordered .table-striped }
 
 | Name   | ID   | Description                                                                                                                               |
 |:-------|:-----|:------------------------------------------------------------------------------------------------------------------------------------------|
@@ -67,6 +75,8 @@ The event tracker object specifies the kinds of events the bidder can request to
 
 ### NativeContextType
 
+{: .table .table-bordered .table-striped }
+
 | Name            | ID   | Description                                                                                  |
 |:----------------|:-----|:---------------------------------------------------------------------------------------------|
 | Undefined       | 0    | Unset |
@@ -78,6 +88,8 @@ The event tracker object specifies the kinds of events the bidder can request to
 ### NativeContextSubtype
 
 > **NOTE**: SubType should only be combined with the primary context type as indicated (ie for a context type of 1, only context subtypes that start with 1 are valid).
+
+{: .table .table-bordered .table-striped }
 
 | Name                 | ID   | Description                                                                                  |
 |:---------------------|:-----|:---------------------------------------------------------------------------------------------|
@@ -97,6 +109,8 @@ The event tracker object specifies the kinds of events the bidder can request to
 | ExchangeSpecific    | 500+ | To be defined by the exchange                                                                                             |
 
 ### NativePlacementType
+
+{: .table .table-bordered .table-striped }
 
 | Name                  | ID   | Description                                                                                                                    |
 |:----------------------|:-----|:-------------------------------------------------------------------------------------------------------------------------------|

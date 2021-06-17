@@ -18,8 +18,8 @@ The general integration scenario requires these steps from publishers:
 1. Prepare the ad layout:
     * HTML and CSS for the Native Styles format.
     * Native components for the Unified Ads format.
-1. Configure the Native Ad using [NativeAdConfiguration](rendering-native-ad-configuration.md).
-    * Provide the list of **[Native Assets](#components)** representing the ad's structure.
+1. Configure the Native Ad using [NativeAdConfiguration](rendering-native-ad-configuration.html).
+    * Provide the list of [Native Assets](#components) representing the ad's structure.
     * Tune other general properties of the ad.
 1. Make a bid request.
 1. **OPTIONAL** Bind the data from the bid response with the layout, if it is needed for the particular integration.
@@ -30,8 +30,8 @@ The general integration scenario requires these steps from publishers:
 
 1. Prepare the ad layout using the native components in the codebase of the app.
 2. Create Native Ad Unit.
-3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.md).
-    * Provide the list of **[Native Assets](#components)** representing the ad's structure.
+3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.html).
+    * Provide the list of [Native Assets](#components) representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
 5. Find the winning native ad using `GAMUtils.shared.findNativeAd` or `MoPubUtils.findNativeAd`.
@@ -62,7 +62,6 @@ In the case of integration of Native Styles ads without Primary Ad Server publis
 3. Prebid server runs the header bidding auction among preconfigured demand partners.
 3. The received creative will be rendered in the Web View of Prebid Rendering Module.
  
-
 ## Components
 
 The Prebid Rendering Module supports all Native Ad components proclaimed by the OpenRTB specification: **title**, **image**, **video**, **data**.
