@@ -15,7 +15,7 @@ If you do not have MoPub SDK in the app yet, refer the [MoPub's Documentation](h
 
 {% capture warning_note %}
 MoPub Adapters for the Prebid Rendering Module are compatible with **MoPub 5.16** and above. The ads won't be shown with earlier versions of MoPub SDK.
-% endcapture %}
+{% endcapture %}
 {% include /alerts/alert_important.html content=warning_note %}
 
 ## MoPub Integration Overview
