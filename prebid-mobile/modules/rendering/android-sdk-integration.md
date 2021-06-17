@@ -1,13 +1,13 @@
 ---
 
 layout: page_v2
-title: Prebid Mobile Rendering Modules GAM Integration
-description: Prebid Mobile Rendering Modules GAM Integration
+title: Integrating the Android SDK
+description: Prebid Android Rendering SDK Integration
 sidebarType: 2
 
 ---
 
-# Integrating the SDK with your project
+# Integrating the Android SDK with your project
 
 ## Gradle Integration
 
