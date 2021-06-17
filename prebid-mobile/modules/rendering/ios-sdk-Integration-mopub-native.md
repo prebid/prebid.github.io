@@ -122,7 +122,6 @@ Create the **MoPubBannerAdUnit** object with parameters:
 - **configID** - an ID of Stored Impression on the Prebid server
 - **size** - the size of the ad unit which will be used in the bid request.
 
-
 #### Step 3: Create and provide Native Assets
 
 To make a proper bid request publishers should provide the needed assets to the NativeAdConfiguration class. Each asset describes the UI element of the ad according to the [OpenRTB standarts](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).

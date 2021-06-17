@@ -38,7 +38,7 @@ nativeAdUnit?.fetchDemand {
 
 ## Native Styles
 
-[See Native Ads Guideline page](rendering-native-guidelines.md) for more details about SDK integration and supported ad types.
+[See Native Ads Guidelines page](rendering-native-guidelines.md) for more details about SDK integration and supported ad types.
 
 To display an ad using Native Styles you'll need to implement these easy steps:
 

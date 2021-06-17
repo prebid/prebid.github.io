@@ -126,7 +126,8 @@ To integrate Prebid SDK Rendering, developers are required to peform the followi
 1. Integrate app with the Prebid SDK Rendering Module scenario
     * Integrate with [Google Ad Manager (GAM)](ios-sdk-Integration-gam.md) as a Primary Ad Server
     * Integrate with [MoPub](ios-sdk-Integration-mopub.md) as a Primary Ad Server
-    * [Pure In-App Bidding]() integration without Primary Ad Server
+    * [Pure In-App Bidding](ios-sdk-integration-pb.md) integration without Primary Ad Server
 
 
 
+    
