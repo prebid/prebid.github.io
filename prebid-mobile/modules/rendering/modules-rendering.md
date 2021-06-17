@@ -105,7 +105,7 @@ To integrate Prebid SDK Rendering, developers are required to peform the followi
     * [MoPub](rendering-mopub-line-item-setup.html)
 1. Build the Prebid SDK project [integrate](android-sdk-integration.html) with the Prebid Rendering Module
 1. Integrate app with the Prebid SDK Rendering Module scenario
-    * Integrate with [Google Ad Manager (GAM)](android-sdk-gam-integration.html) as a Primary Ad Server
+    * Integrate with [Google Ad Manager (GAM)](android-sdk-integration-gam.html) as a Primary Ad Server
     * Integrate with [MoPub](android-sdk-integration-mopub.html) as a Primary Ad Server
     * [Pure In-App Bidding](android-sdk-integration-pb.html) integration without Primary Ad Server
 
