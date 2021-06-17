@@ -15,7 +15,7 @@ sidebarType: 2
 - [Banner](#banner-api)
 - [Interstitial](#interstitial-api)
 - [Rewarded](#rewarded-api)
-- [Native](android-sdk-integration-pb-native.md)
+- [Native](android-sdk-integration-pb-native.html)
 
 ## Mobile API
 
@@ -30,7 +30,7 @@ Prebid Rendering Module provides ability to integrate  these ad formats:
 - Video Interstitial 
 - Rewarded Video
 - Outstream Video
-- [Native](android-sdk-integration-pb-native.md)
+- [Native](android-sdk-integration-pb-native.html)
 
 However, the  Rendering Module provides only three kinds of API classes for these ads:
 

@@ -44,7 +44,7 @@ They can be integrated using these API categories.
 - [**Banner API**](#banner-api) - for **Display Banner**
 - [**Interstitial API**](#interstitial-api) - for **Display** and **Video** Interstitials
 - [**Rewarded API**](#rewarded-api) - for **Rewarded Video**
-- [**Native API**](android-sdk-integration-mopub-native.md)
+- [**Native API**](android-sdk-integration-mopub-native.html)
 
 
 ## Init Prebid Rendering Module

@@ -48,7 +48,7 @@ They can be integrated using these API categories.
 - [**Banner API**](#banner-api) - for *Display Banner*
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-- [**Native API**](ios-sdk-integration-mopub-native.md) - for *Native* and *Native Styles* ads
+- [**Native API**](ios-sdk-integration-mopub-native.html) - for *Native* and *Native Styles* ads
 
 ## Banner API
 

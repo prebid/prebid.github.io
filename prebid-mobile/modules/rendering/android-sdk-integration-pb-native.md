@@ -15,8 +15,8 @@ The general integration scenario requires these steps from publishers:
 
 1. Prepare the ad layout.
 2. Create Native Ad Unit.
-3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.md).
-    * Provide the list of **[Native Assets](rendering-native-guidelines.md#components)** representing the ad's structure.
+3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.html).
+    * Provide the list of **[Native Assets](rendering-native-guidelines.html#components)** representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
 5. Extract NativeAd using `NativeUtils.findNativeAd`
@@ -38,7 +38,7 @@ nativeAdUnit?.fetchDemand {
 
 ## Native Styles
 
-[See Native Ads Guidelines page](rendering-native-guidelines.md) for more details about SDK integration and supported ad types.
+[See Native Ads Guidelines page](rendering-native-guidelines.html) for more details about SDK integration and supported ad types.
 
 To display an ad using Native Styles you'll need to implement these easy steps:
 
@@ -145,7 +145,7 @@ Native Styles creative example:
 </script>
 ```
 
-See more NativeAdConfiguration options [here](rendering-native-ad-configuration.md).
+See more NativeAdConfiguration options [here](rendering-native-ad-configuration.html).
 
 **IMPORTANT:**
 
@@ -158,3 +158,4 @@ Call `loadAd()` and SDK will:
 - make bid request to Prebid server
 - render the winning bid on display
 
+f

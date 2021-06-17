@@ -30,7 +30,7 @@ The general integration scenario requires these steps from publishers:
 
 1. Prepare the ad layout using the native components in the codebase of the app.
 2. Create Native Ad Unit.
-3. Configure the Native Ad unit using [NativeAdConfiguration](endering-native-ad-configuration.md).
+3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.md).
     * Provide the list of **[Native Assets](#components)** representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.

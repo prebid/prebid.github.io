@@ -46,7 +46,7 @@ They can be integrated using these API categories.
 - [**Banner API**](#banner-api) - for *Display Banner* and *Outstream Video*
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-- [**Native API**](android-sdk-integration-gam-native.md) - for *Native Ads*
+- [**Native API**](android-sdk-integration-gam-native.html) - for *Native Ads*
 
 
 ## Init Prebid Rendering Module
@@ -127,7 +127,7 @@ And assign the listeners for processing ad events.
 
 #### Step 3: Load the Ad
 
-Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.md) flow. The In-App Bidding SDK starts the  bidding process right away.
+Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.html) flow. The In-App Bidding SDK starts the  bidding process right away.
 
 ### Outstream Video
 
@@ -210,7 +210,7 @@ Also, you can assign the listeners for processing ad events.
 
 #### Step 3: Load the Ad
 
-Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.md) flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
+Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.html) flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
 
 
 #### Step 4: Show the Ad when it is ready
@@ -284,7 +284,7 @@ Also, you can assign the listener for processing ad events.
 
 #### Step 3: Load the Ad
 
-Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.md) flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
+Simply call the `loadAd()` method to start an In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
 
 
 #### Step 4: Show the Ad when it is ready
@@ -305,8 +305,8 @@ The general integration scenario requires these steps from publishers:
 
 1. Prepare the ad layout.
 2. Create Native Ad Unit and appropriate GAM ad loader.
-3. Configure the Native Ad unit using [NativeAdConfiguration](../native/android-native-ad-configuration.md).
-    * Provide the list of **[Native Assets](../android-in-app-bidding-native-guidelines-info.md#components)** representing the ad's structure.
+3. Configure the Native Ad unit using [NativeAdConfiguration](../native/android-native-ad-configuration.html).
+    * Provide the list of **[Native Assets](../android-in-app-bidding-native-guidelines-info.html#components)** representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
 5. Prepare publisherAdRequest using `GamUtils.prepare`

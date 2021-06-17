@@ -128,7 +128,7 @@ private fun createNativeAdConfiguration(): NativeAdConfiguration {
     return nativeAdConfiguration
 }
 ```
-See more NativeAdConfiguration options [here](../../info-modules/native/in-app-bidding-native-ad-configuration.md).
+See more NativeAdConfiguration options [here](../../info-modules/native/in-app-bidding-native-ad-configuration.html).
 
 ### Step 4: Fetch Demand
 
@@ -144,7 +144,7 @@ To run an auction on Prebid run the `fetchDemand()` method which performs severa
 When the bid request has completed, the responsibility of making the Ad Request is passed to the publisher. That is why you have to invoke `loadAd()` on the MoPub's Ad View explicitly in the completion handler of `fetchDemand()`.
 ## Native Styles 
 
-[See MoPub Integration page](../integration-mopub/android-in-app-bidding-mopub-info.md) for more info about MoPub order setup and Adapter integration.
+[See MoPub Integration page](../integration-mopub/android-in-app-bidding-mopub-info.html) for more info about MoPub order setup and Adapter integration.
 
 To display an ad you need to implement these easy steps:
 

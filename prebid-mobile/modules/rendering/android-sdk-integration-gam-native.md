@@ -15,7 +15,7 @@ The general integration scenario requires these steps from publishers:
 
 1. Prepare the ad layout.
 2. Create Native Ad Unit and appropriate GAM ad loader.
-3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.md).
+3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.html).
     * Provide the list of **Native Assets** representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
@@ -58,7 +58,7 @@ private fun handleNativeAd(nativeAd: NativeAd) {
 
 ## Native Styles 
 
-[See Native Ads Guideline page](rendering-native-guidelines.md) for more details about SDK integration and supported ad types.
+[See Native Ads Guideline page](rendering-native-guidelines.html) for more details about SDK integration and supported ad types.
 
 Integration Example:
 
@@ -159,8 +159,8 @@ private fun createNativeAdConfiguration(): NativeAdConfiguration {
 }
 ```
 
-See more NativeAdConfiguration options [here](rendering-native-ad-configuration.md).
+See more NativeAdConfiguration options [here](rendering-native-ad-configuration.html).
 
 #### Step 4: Load the Ad
 
-Call the `loadAd()` method to start [In-App Bidding](../../info-modules/in-app-bidding-overview.md) flow.
+Call the `loadAd()` method to start an In-App Bidding flow.

@@ -36,7 +36,7 @@ They can be integrated using these API categories:
 - [**Banner API**](#banner-api) - for *Display Banner* and *Outstream Video*
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-- [**Native API**](ios-sdk-integration-pb-native.md) - for *Native Ads*
+- [**Native API**](ios-sdk-integration-pb-native.html) - for *Native Ads*
 
 ### Banner API
 
