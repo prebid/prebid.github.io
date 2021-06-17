@@ -14,7 +14,6 @@ pbjs: true
 safeframes_ok: false
 ---
 
-{: .alert.alert-danger :}
 ### Note:
 The WINR adapter requires setup and approval from the WINR team, even for partners that already work with us. Please reach out to our team at tech@winr.com.au
 
