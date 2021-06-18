@@ -14,17 +14,17 @@ sidebarType: 2
 To download and integrate the Rendering Module into your project using CocoaPods, add the following line to your project’s podfile:
 
 ```
-pod 'prebid-mobile-sdk-rendering'
+pod 'PrebidMobile/Rendering'
 ```
 
 If you integrate Prebid Rendering Module with GAM or MoPub add these pods respectively
 
 ```
 # + Google Ad Manager (optional)
-pod 'prebid-mobile-sdk-gam-event-handlers'
+pod 'PrebidMobile/GAMEventHandlers'
 
 # + MoPub (optional)
-pod 'prebid-mobile-sdk-mopub-adapters'
+pod 'PrebidMobile/MoPubAdapters'
 ```
 
 ## Init Prebid Rendering Module

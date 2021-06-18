@@ -75,7 +75,7 @@ parameters.
 ## PrebidRenderingSettings
 
 {: .table .table-bordered .table-striped }
-s
+
 | **Field**               | **Description**                                              | **Default** |
 | ----------------------- | ------------------------------------------------------------ | ----------- |
 | defaultAutoRefreshDelay | Controls the initial value of `autoRefreshDelay` for all newly created OXMAdViews in seconds. | 60          |

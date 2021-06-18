@@ -116,12 +116,7 @@ To integrate Prebid SDK Rendering, developers are required to peform the followi
     * Integrate with [Google Ad Manager (GAM)](android-sdk-integration-gam.html) as a Primary Ad Server
     * Integrate with [MoPub](android-sdk-integration-mopub.html) as a Primary Ad Server
     * [Pure In-App Bidding](android-sdk-integration-pb.html) integration without Primary Ad Server
-
-Below are additional refences for Android:
-
-- [Deep Links Support](rendering-deeplinkplus.html)
-- [Impression Tracking](rendering-impression-tracking.html)
-- [SDK Parameters](android-sdk-parameters.html)
+1. Actualize the [integration and targeting](android-sdk-parameters.html) properties.  
 
 ### iOS
 
@@ -135,7 +130,11 @@ To integrate Prebid SDK Rendering, developers are required to peform the followi
     * Integrate with [Google Ad Manager (GAM)](ios-sdk-integration-gam.html) as a Primary Ad Server
     * Integrate with [MoPub](ios-sdk-integration-mopub.html) as a Primary Ad Server
     * [Pure In-App Bidding](ios-sdk-integration-pb.html) integration without Primary Ad Server
+1. Actualize the [integration and targeting](ios-sdk-parameters.html) properties.
 
+## Additional refences
 
+- [Deep Links Support](rendering-deeplinkplus.html)
+- [Impression Tracking](rendering-impression-tracking.html)
 
     
