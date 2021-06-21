@@ -51,7 +51,7 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagement.ht
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
 * `_pbjs_id_optout` cookie or HTML5 local storage. The value can be anything -- if it exists, the user is considered opted out and no userId modules will fire.
-* `_pubcid_optout` cookie or HTML5 local storage. This is for backwards compatibility with the original PubCommonID module. Likewise, the value can be anything.
+* `_pubcid_optout` cookie or HTML5 local storage. This is for backwards compatibility with the original PubCommonID module, as of 5.0 known as the SharedId module. Likewise, the value can be anything.
 
 ### Publisher First Party Opt-Out
 
@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubCommonId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"`, `"mwOpenLinkId"`, `"amxId"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -1247,36 +1247,34 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### PubCommon ID
+### SharedID
 
 This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
-There is no special registration or configuration for PubCommon ID. Each publisher's privacy policy should take
-PubCommon ID into account.
+There is no special registration or configuration for SharedID. Each publisher's privacy policy should take
+SharedID into account.
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=pubCommonIdSystem
 
-#### PubCommon ID Configuration
+#### SharedID ID Configuration
 
-In addition to the parameters documented above in the Basic Configuration section the following PubCommon specific configuration is available:
+In addition to the parameters documented above in the Basic Configuration section the following SharedID specific configuration is available:
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'pubCommonId'` |
 | params | Optional | Object | Customized parameters | |
-| params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the PubCommon ID cookie.  Default is true. | `true` |
+| params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
 | params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
-| params.enableSharedId | Optional | Boolean | Invokes [SharedID](/dev-docs/modules/userId.html#shared-id-user-id-submodule) as well as setting PubCommon ID. Defaults to `false` | `true` |
 
+#### SharedID Examples
 
-#### PubCommon ID Examples
-
-1) Publisher supports PubCommonID and first party domain cookie storage
+1) Publisher supports SharedID and first party domain cookie storage
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -1293,7 +1291,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-2) Publisher supports both UnifiedID and PubCommonID and first party domain cookie storage
+2) Publisher supports both UnifiedID and SharedID and first party domain cookie storage
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -1310,9 +1308,6 @@ pbjs.setConfig({
             }
         },{
             name: "pubCommonId",
-            params: {
-                enableSharedId: true  // optionally enable Prebid sharedID
-            },
             storage: {
                 type: "cookie",
                 name: "_pubcid",      // create a cookie with this name
@@ -1323,10 +1318,6 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-{: .alert.alert-info :}
-When enableSharedId is true, the browser will make an additional call to id.sharedid.org/usync.  Calling to Shareid.org sets a user id in a 3rd party cookie under the sharedid.org domain. Anyone setting this additional identity should reference Sharedid.orgs optout policy at https://sharedid.org/. Prebid.js 5.0 will enable the enableSharedId option by default.
-
 
 ### PubProvided ID
 
@@ -1490,52 +1481,6 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-
-
-### SharedID User ID Submodule
-
-The SharedID User Module generates a UUID that can be utilized to improve user matching. This module enables timely synchronization and handles opt-out via sharedid.org. This module does not require any registration.
-
-#### Building Prebid with SharedID Support
-Add it to your Prebid.js package with:
-
-{: .alert.alert-info :}
-ex: $ gulp build --modules=sharedIdSystem
-
-#### Prebid Params
-
-Individual params may be set for the SharedID User ID Submodule.
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'sharedId',
-            params: {
-                      syncTime: 60 // in seconds, default is 24 hours
-             },
-            storage: {
-                name: 'sharedid',
-                type: 'cookie',
-                expires: 28
-            },
-        }]
-    }
-});
-```
-
-#### SharedID Configuration
-
-{: .table .table-bordered .table-striped }
-| Params under usersync.userIds[]| Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | ID value for the SharedID module - `"sharedId"` | `"sharedId"` |
-| params | Optional | Object | Details for sharedId syncing. | |
-| params.syncTime | Optional | Object | Configuration to define the frequency(in seconds) of id synchronization. By default id is synchronized every 24 hours | 60 |
-| storage | Required | Object | The publisher must specify the local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
-| storage.type | Required | String | This is where the results of the user ID will be stored. The recommended method is `localStorage` by specifying `html5`. | `"html5"` |
-| storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"sharedid"` |
-| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `28` |
 
 ### Unified ID
 
@@ -1802,7 +1747,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
 | NextRoll ID | NextRoll | bidRequest.userId.nextrollId | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
 | Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
-| PubCommon ID | n/a | bidRequest.userId.pubcid | `"1111"` |
+| SharedID ID | n/a | bidRequest.userId.pubcid | `"1111"` |
 | PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
 | Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
 | Tapad ID | Tapad | bidRequest.userId.tapadId | `"1111"` |
