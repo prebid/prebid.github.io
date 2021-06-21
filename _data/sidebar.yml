@@ -2077,8 +2077,8 @@
   subgroup: 0
 
 - sbSecId: 9
-  title: SharedID and PubCommon ID
-  link: /identity/sharedIdPubCommon.html
+  title: SharedID
+  link: /identity/sharedId.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
