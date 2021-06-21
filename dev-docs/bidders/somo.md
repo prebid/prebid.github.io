@@ -5,6 +5,7 @@ description: Somo Audience Bidder Adapter
 pbjs: true
 biddercode: somo
 prevBiddercode: somoAudience
+pbjs_version_notes: not in 5.x
 ---
 
 ### Disclosure

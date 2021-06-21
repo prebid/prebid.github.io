@@ -27,14 +27,14 @@ Prebid Server stores bidder IDs in the `uids` cookie in the host domain. For exa
 
 ## Setting the uids Cookie
 
-### Setting the uids cookie from Prebid.js 
+### Setting the uids cookie from Prebid.js
 
 Here's how these IDs get placed in the cookie from Prebid.js:
 
 ![Prebid Server Cookie Sync](/assets/images/prebid-server/pbs-cookie-sync.png){:class="pb-lg-img"}
 
 
-1) Prebid.js starts by calling the Prebid Server [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), letting it know which server-side bidders will be participating in the header bidding auction. 
+1) Prebid.js starts by calling the Prebid Server [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), letting it know which server-side bidders will be participating in the header bidding auction.
 
 ```
 POST https://prebid-server.example.com/cookie_sync
@@ -127,5 +127,5 @@ Then the next time the client then calls `www.prebid-domain.com/openrtb2/auction
 ## Further Reading
 
 - [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
-- [Prebid.js s2sConfig](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server)
+- [Prebid.js s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server)
 - [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-on-amp-pages.html)

@@ -5,6 +5,7 @@ description: Prebid GetIntent Bidder Adaptor
 pbjs: true
 biddercode: getintent
 media_types: video
+pbjs_version_notes: not in 5.x
 ---
 
 

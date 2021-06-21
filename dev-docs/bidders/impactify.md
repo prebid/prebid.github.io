@@ -12,6 +12,7 @@ schain_supported: true
 coppa_supported: true
 media_types: video
 gvl_id: 606
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

@@ -239,6 +239,24 @@ Targeting refers to strings which are sent to the adserver to
 `request.ext.prebid.targeting` is an optional property which causes Prebid Server
 to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.targeting`.
 
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| pricegranularity | no | Defines how PBS quantizes bid prices into buckets | (see below) | object |
+| pricegranularity.precision | no | How many decimal places are there in price buckets | Defaults to 2 | integer |
+| pricegranularity.ranges | no | Non-overlapping price bucket definitions  | (see below) | array of objects |
+| pricegranularity.ranges.max | no | Top end of this range of price buckets. The bottom end is 0 or the max of the previous bucket. Note: in order to prevent ranges with gaps, there's no 'min' attribute. | 5.55 | float |
+| pricegranularity.ranges.increment | no | Size of the buckets in this range. | 1.50 | float |
+| mediatypepricegranularity | no | Defines how PBS quantizes bid prices into buckets, allowing for different ranges by media type. | (see below) | object |
+| mediatypepricegranularity.banner | no | Defines how PBS quantizes bid prices into buckets for banners. | (see below) | object |
+| mediatypepricegranularity.video | no | Defines how PBS quantizes bid prices into buckets for video. | (see below) | object |
+| mediatypepricegranularity.TYPE.precision | no | How many decimal places are there in price buckets. | Defaults to 2 | integer |
+| mediatypepricegranularity.TYPE.ranges | no | Same as pricegranularity.ranges | (see below) | array of objects |
+| includewinners | no | Whether to include targeting for the winning bids in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
+| includebidderkeys | no | Whether to include targeting for the best bid from each bidder in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
+| includeformat | no | Whether to include the "hb_format" targeting key. Defaults to false. | false | boolean |
+| preferdeals | no | If targeting is returned and this is true, PBS will choose the highest value deal before choosing the highest value non-deal. Defaults to false. | true | boolean |
+
 **Request format** (optional param `request.ext.prebid.targeting`)
 
 ```
@@ -253,9 +271,10 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
             "increment": 0.10 // This is equivalent to the deprecated "pricegranularity": "medium"
           }]
         },
-        "includewinners": false, // Optional param defaulting to true
-        "includebidderkeys": false // Optional param defaulting to true
-        "includeformat": false // Optional param defaulting to false
+        "includewinners": true,     // Optional param defaulting to false
+        "includebidderkeys": false, // Optional param defaulting to false
+        "includeformat": false,     // Optional param defaulting to false
+        "preferdeals": true         // Optional param defaulting to false
       }
     }
   }
@@ -265,7 +284,7 @@ The list of price granularity ranges must be given in order of increasing `max` 
 
 For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/prebid-mobile/adops-price-granularity.html)
 
-One of "includewinners" or "includebidderkeys" must be true (both default to true if unset). If both were false, then no targeting keys would be set, which is better configured by omitting targeting altogether.
+One of "includewinners" or "includebidderkeys" must be true (both default to false if unset). If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
 
 The parameter "includeformat" indicates the type of the bid (banner, video, etc) for multiformat requests. It will add the key `hb_format` and/or `hb_format_{bidderName}` as per "includewinners" and "includebidderkeys" above.
 
@@ -563,7 +582,7 @@ If a currency rate doesn't exist in the request, the external file will be used.
 
 Basic supply chains are passed to Prebid Server on `source.ext.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
 
-Bidder-specific schains (PBS-Java only):
+Bidder-specific schains:
 
 ```
 ext.prebid.schains: [
@@ -577,7 +596,7 @@ If there's already an source.ext.schain and a bidder is named in ext.prebid.scha
 
 ##### User IDs
 
-Prebid Server adapters can support the [Prebid.js User ID modules](http://prebid.org/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
+Prebid Server adapters can support the [Prebid.js User ID modules](/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
 
 ```
 {
@@ -783,7 +802,7 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
          "keywords": "",
          "search": "",
          "ext": {
-             data: { GLOBAL CONTEXT DATA } // only seen by bidders named in ext.prebid.data.bidders[]
+             data: { GLOBAL SITE DATA } // only seen by bidders named in ext.prebid.data.bidders[]
          }
     },
     "user": {
@@ -796,11 +815,10 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
         }
     },
     "imp": [
+        ...
         "ext": {
-            "context": {
-                "keywords": "",
-                "search": "",
-                "data": { ADUNIT SPECFIC CONTEXT DATA }  // can be seen by all bidders
+            "data": {
+                ADUNIT SPECFIC CONTEXT DATA  // can be seen by all bidders
             }
          }
     ]
