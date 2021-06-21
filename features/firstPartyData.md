@@ -206,7 +206,7 @@ here to their page. For now, here's the beta table defining the segtax values:
 |-----------+---------------+---------+-------------|
 | 1 | Content | 2.1 | [IAB - Content Taxonomy version 2.1](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Content-Taxonomy-2.1-Final.xlsx) |
 | 2 | Content | 2.2 | [IAB - Content Taxonomy version 2.2](https://iabtechlab.com/wp-content/uploads/2020/12/IABTechLab_Content_Taxonomy_2-2_Final.xlsx) |
-| 3 | Audience | 1.0 | [IAB - Audience Taxonomy version 1.0](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Audience-Taxonomy-1.1-Final.xlsx) |
+| 3 | Audience | 1.1 | [IAB - Audience Taxonomy version 1.1](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Audience-Taxonomy-1.1-Final.xlsx) |
 
 {: .alert.alert-info :}
 Publishers need to check with their SSPs and DSPs to confirm which
