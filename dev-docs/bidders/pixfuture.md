@@ -6,6 +6,8 @@ biddercode: pixfuture
 media_types: banner
 gdpr_supported: true
 prebid_member: false
+coppa_supported: true
+usp_supported: true
 userIds: all
 pbs: true
 pbjs: false
