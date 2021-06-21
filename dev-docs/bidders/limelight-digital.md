@@ -3,7 +3,7 @@ layout: bidder
 title: Limelight Digital
 description: Prebid Limelight Digital Bidder Adaptor
 pbjs: true
-biddercode: limelight-digital
+biddercode: limelightDigital
 aliasCode: pll
 media_types: video
 ---
