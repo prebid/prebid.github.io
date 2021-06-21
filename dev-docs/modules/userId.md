@@ -1730,33 +1730,37 @@ pbjs.setConfig({
 Bidders that want to support the User ID module in Prebid.js, need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
 
 <div class="table-responsive" markdown="1">
-| ID System Name | ID System Host | Prebid.js Attr | Example Value |
-| --- | --- | --- | --- | --- | --- |
-| Admixer ID | Admixer | bidRequest.userId.admixerId | `"1111"` |
-| BritePool ID | BritePool | bidRequest.userId.britepoolid | `"1111"` |
-| DMD ID | DMD | bidRequest.userId.dmdId | `"1111"` |
-| CriteoID | Criteo | bidRequest.userId.criteoId | `"1111"` |
-| Halo ID | Audigent | bidRequest.userId.haloId | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
-| ID+ | Zeotap | bidRequest.userId.IDP | `"1111"` |
-| ID5 ID | ID5 | bidRequest.userId.id5id | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
-| IdentityLink | Trade Desk | bidRequest.userId.idl_env | `"1111"` |
-| Intent IQ ID | Intent IQ | bidRequest.userId.intentiqid | `"1111"` |
-| LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | `"1111"` |
-| Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
-| merkleID | Merkle | bidRequest.userId.merkleId | `"1111"` |
-| netID | netID | bidRequest.userId.netId | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
-| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
-| Parrable ID | Parrable | bidRequest.userId.parrableId | `{"eid":"01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"}` |
-| SharedID ID | n/a | bidRequest.userId.pubcid | `"1111"` |
-| PubProvided ID | n/a | bidRequest.userId.pubProvidedId | `"1111"` |
-| Quantcast ID | n/a | bidRequest.userId.quantcastId | `"1111"` |
-| Tapad ID | Tapad | bidRequest.userId.tapadId | `"1111"` |
-| SharedID | Prebid | bidRequest.userId.sharedid | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
-| Unified ID | Trade Desk | bidRequest.userId.tdid | `"1111"` |
-| Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | `"72d04af6e07c2eb93e9c584a131f48b6a9b963bcb2736d624e987ff8cf36d472"` |
-| MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | `"1111"` |
-| AMX RTB ID | AMX RTB | bidRequest.userId.amxId | `"3ca11058-ecbc-419f-bda7-b52fe7baf02a"` |
 {: .table .table-bordered .table-striped }
+| ID System Name | ID System Host | Prebid.js Attr | EID Source | Example Value |
+| --- | --- | --- | --- | --- | --- | --- |
+| Admixer ID | Admixer | bidRequest.userId.admixerId | "admixer.net" | `"1111"` |
+| AMX RTB ID | AMX RTB | bidRequest.userId.amxId | "amxrtb.com" | `"3ca11058-ecbc-419f-bda7-b52fe7baf02a"` |
+| BritePool ID | BritePool | bidRequest.userId.britepoolid | "britepool.com" | `"1111"` |
+| DeepIntent ID | Deep Intent | bidRequest.userId.deepintentId | "deepintent.com" | `"1111"` |
+| DMD ID | DMD | bidRequest.userId.dmdId | "hcn.health" | `"1111"` |
+| CriteoID | Criteo | bidRequest.userId.criteoId | "criteo.com" | `"1111"` |
+| Fabrick ID | Neustar | bidRequest.userId.fabrickId | "neustar.biz" | `"1111"` |
+| FLoC ID | n/a | bidRequest.userId.flocId | | |
+| Halo ID | Audigent | bidRequest.userId.haloId | "audigent.com" | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
+| ID+ | Zeotap | bidRequest.userId.IDP | "zeotap.com" | `"1111"` |
+| ID5 ID | ID5 | bidRequest.userId.id5id | "id5-sync.com" | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
+| IdentityLink | LiveRamp | bidRequest.userId.idl_env | "liveramp.com" | `"1111"` |
+| Intent IQ ID | Intent IQ | bidRequest.userId.intentiqid | "intentiq.com" | `"1111"` |
+| LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | "liveintent.com" | `"1111"` |
+| Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | "crwdcntrl.net" | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
+| MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | "mediawallahscript.com" | `"1111"` |
+| merkleID | Merkle | bidRequest.userId.merkleId | "merkleinc.com" | `"1111"` |
+| netID | netID | bidRequest.userId.netId | "netid.de" | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
+| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | "nextroll.com" | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
+| Novatiq ID | Novatiq | bidRequest.userId.novatiqId | "novatiq.com" | `"1111"` |
+| Parrable ID | Parrable | bidRequest.userId.parrableId | "parrable.com" | `{"eid":"01.1594654046.cd0972d861e..."}` |
+| PubProvided ID | n/a | bidRequest.userId.pubProvidedId | publisher domain | `"1111"` |
+| Quantcast ID | n/a | bidRequest.userId.quantcastId | "quantcast.com" | `"1111"` |
+| Tapad ID | Tapad | bidRequest.userId.tapadId | "tapad.com" | `"1111"` |
+| SharedID (PBJS 5.x) | n/a | bidRequest.userId.pubcid | "pubcid.org" | `"1111"` |
+| SharedID (PBJS 4.x)| Prebid | bidRequest.userId.sharedid | "sharedid.org" | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
+| Unified ID | Trade Desk | bidRequest.userId.tdid | "adserver.org" | `"1111"` |
+| Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | "verizonmedia.com" | `"72d04af6..."` |
 </div>
 
 For example, the adapter code might do something like:
@@ -1769,131 +1773,9 @@ For example, the adapter code might do something like:
 
 ### Prebid Server Adapters
 
-Bidders that want to support the User ID module in Prebid Server, need to update their server-side bid adapter to read the desired OpenRTB attributes noted in the example below and send them to their endpoint.
+Bidders that want to support the User ID module in Prebid Server, need to update their server-side bid adapter to read the desired OpenRTB 'user.ext.eids.source' object and forward the relevant values to their endpoint.
 
-{% highlight bash %}
-{
-    "user": {
-        "ext": {
-            "eids": [{
-                "source": "adserver.org",  // Unified ID
-                "uids": [{
-                    "id": "111111111111",
-                    "ext": {
-                        "rtiPartner": "TDID"
-                    }
-                }]
-            },{
-                "source": "pubcid.org",
-                "uids": [{
-                    "id":"11111111"
-                }]
-            },
-            {
-                "source": "id5-sync.com",
-                "uids": [{
-                    "id": "ID5-12345",
-                    "ext": {
-                      "linkType": 2,
-                      "abTestingControlGroup": false
-                    }
-                }]
-            },
-            {
-                source: "parrable.com",
-                uids: [{
-                    id: "01.1594654046.cd0972d861e98ff3723a368a6efa69287a0df3f1cac9142afc2e7aed1caa8dd1b7fc0590b3baf67525f53e1228024c2805b6041206c7a23e34bb823b0659547d7d1d0dac2a11938e867f"
-                }]
-            },{
-                "source": "audigent.com",
-                "atype": 1,
-                "uids": [{
-                    "id": "11111111"
-                }]
-            },{
-                "source": "identityLink",
-                "uids": [{
-                    "id": "11111111"
-                }]
-            },{
-                "source": "criteo.com",
-                "uids": [{
-                    "id": "11111111"
-                }]
-            },{
-            },{
-                "source": "hcn.health",
-                atype: 3,
-                "uids": [{
-                    "id": "11111111"
-                }]
-            },{
-                "source": "britepool.com",
-                "uids": [{
-                    "id": "11111111"
-                }]
-            },{
-                "source": "liveintent.com",
-                "uids": [{
-                    "id": "11111111"
-                }]
-            },{
-                "source": "crwdcntrl.net", // Lotame Panorama ID
-                "uids": [{
-                    "id": "e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"
-                }]
-            },{
-                "source": "netid.de",
-                "uids": [{
-                    "id": "11111111"
-                }]
-            },{
-               "source": "novatiq.com",
-               "uids": [{
-                   "id": "81b001ec-8914-488c-a96e-8c220d4ee08895ef",
-                   "atype":1
-               }]
-             },{
-               "source": "sharedid.org",  // SharedID
-                "uids": [{
-                    "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
-                    "ext": {
-                        "third": "01EAJWWNEPN3CYMM5N8M5VXY22"
-                    }
-                }]
-            },{
-               "source": "pub.com",  // Publisher must configure their domain here
-                "uids": [{
-                    "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
-                    "atype":1 //ADCOM - Type of user agent the match is from
-                    "ext": {
-                        "stype": "dmp" //currently supported values (dmp,ppuid,other)
-                    }
-                }]
-            },{
-               "source": "verizonmedia.com",
-               "uids": [{
-                   "id": "61cef5656fb05f16d53938069f1684df4b2257e27"
-               }]
-            },{
-              "source": "mediawallahscript.com",
-              "uids": [{
-                "id": "01EAJWWNEPN3CYMM5N8M5VXY22",
-                "atype": 1
-              }]
-            },
-            {
-              "source": "amxrtb.com",
-              "uids": [{
-                "id": "5d947552-16f3-4752-8e2f-c8ed29068a31",
-                "atype": 1
-              }]
-            }
-          ]
-        }
-    }
-}
-{% endhighlight %}
+See the [Prebid.js EIDs javascript source](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js) for the definitive list of user EID sources. 
 
 ### Exporting User IDs
 
