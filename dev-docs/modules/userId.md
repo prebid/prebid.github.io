@@ -663,34 +663,34 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### IdentityLink
+### RampID
 
-IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
+RampID, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=identityLinkIdSystem
 
-#### IdentityLink Registration
+#### RampID Registration
 
-Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`.
+Please sign up through our [Console](https://launch.liveramp.com) platform and request a `placementId`.
 
-The IdentityLink privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
+The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
 
-#### IdentityLink Configuration
+#### RampID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"identityLink"` | `"identityLink"` |
-| params | Required for Id Link | Object | Details for identityLink initialization. | |
-| params.pid | This parameter is required for IdentityLink | String | This is the placementId, value needed for obtaining user’s IdentityLink envelope
-| params.notUse3P | This parameter is not required for IdentityLink | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get IdentityLink envelope
+| params | Required for Id Link | Object | Details for RampID initialization. | |
+| params.pid | This parameter is required for RampID | String | This is the placementId, value needed for obtaining user’s RampID envelope
+| params.notUse3P | This parameter is not required for RampID | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get RampID envelope
 
-#### IdentityLink Examples
+#### RampID Examples
 
-1) Publisher passes a placement ID and elects to store the IdentityLink envelope in a cookie.
+1) Publisher passes a placement ID and elects to store the RampID envelope in a cookie.
 
 
 {% highlight javascript %}
@@ -699,7 +699,7 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',             // Set your real identityLink placement ID here
+                pid: '999',             // Set your real RampID placement ID here
                 // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
@@ -713,7 +713,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-2) Publisher passes a placement ID and elects to store the IdentityLink envelope in HTML5 localStorage.
+2) Publisher passes a placement ID and elects to store the RampID envelope in HTML5 localStorage.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -721,7 +721,7 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',          // Set your real identityLink placement ID here
+                pid: '999',          // Set your real RampID placement ID here
                 // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
