@@ -106,6 +106,9 @@ Below are some basic principles of ad unit floor definitions:
      ];
 {% endhighlight %}
 
+{: .alert.alert-info :}
+When defining floors at the adUnit level, the Floors Module requires the floors object to be defined in setConfig, even if the definition is an empty object as shown below: {% highlight js %}pbjs.setConfig({ floors: {} });{% endhighlight %}
+
 Floor definitions are set in the “values” object containing one or more rules, where the rule is the criteria that needs to be met for that given ad unit, with an associated CPM floor. In the above example, the floors are enforced when the bid from a bidder matches the “mediaType” and “size” combination. Since many bid adapters are not able to ingest floors per size, a simpler setup can be:
 
 {% highlight js %}
@@ -1001,6 +1004,11 @@ getFloor takes in a single object with the following params:
 
 {% endhighlight %}
 
+
+{: .alert.alert-warning :}
+Consider how floors will behave in multi-currency scenarios. A common pitfall is requesting floors without specifying currency, or specifying the wrong currency back to the bid adapter's platform. This may lead to bidders requesting one currency and bidding in an alternate currency.
+
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---|
@@ -1115,7 +1123,7 @@ For a bid adapter who does not wish to handle making a request for each size in 
       let floorInfo = bidRequest.getFloor({
         currency: 'USD',
         mediaType: 'banner',
-        size: '\*'
+        size: '*'
       });
       data['adapter_floor'] = floorInfo.currency === 'USD' ? floorInfo.floor : undefined;
     }

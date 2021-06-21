@@ -168,9 +168,6 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 {% assign module_pages = site.pages | where: "page_type", "module" %}
 {% assign analytics_pages = site.pages | where: "layout", "analytics" %}
 
-{: .alert.alert-danger :}
-**Note:** an important bug in the [DFP Video Module](/dev-docs/modules/dfp_video.html) was introduced with 3.27 and fixed in 4.3. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive.
-
 <form>
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
@@ -230,6 +227,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="flocIdSystem" class="bidder-check-box"> FLoC Cohort ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> Halo ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
@@ -251,10 +251,13 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="lotamePanoramaIdSystem" class="bidder-check-box"> Lotame ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="mwOpenLinkIdSystem" class="bidder-check-box"> MediaWallah OpenLink ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> Merkle ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> netID</label>
+<label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> NetID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> NextRoll ID</label>
@@ -266,7 +269,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formally known as PubCommon)</label>
+<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
@@ -290,7 +293,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> Zeotap ID+</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="mwOpenLinkIdSystem" class="bidder-check-box"> MediaWallah OpenLink ID</label>
+<label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID<div style="font-size:80%"> (not in 5.x)</div></label>
 </div></div>
 </div>
 

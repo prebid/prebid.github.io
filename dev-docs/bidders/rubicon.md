@@ -35,10 +35,86 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
 | `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
 | `latLong`     | optional           | Sets the latitude and longitude for the visitor (avail since PBJS 1.10)                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
-| `inventory`   | optional           |  Use this for First Party Data before PBJS 4.26. Between 4.26 and 4.29 (inclusive) use the `fpd` method of [First Party Data](/features/firstPartyData.html). In release 4.30 and later, use the `ortb2` method of setting First Party Data. In 4.25 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays.           | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
-| `visitor`      | optional           | Use this for First Party Data before PBJS 4.26. Between 4.26 and 4.29 (inclusive) use the `fpd` method of [First Party Data](/features/firstPartyData.html). In release 4.30 and later, use the `ortb2` method of setting First Party Data. In 4.25 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
-| `keywords`     | optional           | Deprecated - please use the [First Party Data feature](/features/firstPartyData.html), e.g. AdUnit.fpd.context.data.keywords. This is a legacy parameter that only works for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. The order of precedence for banner is: params.keywords, AdUnit.fpd.context.data.keywords, config.fpd.keywords. | `['travel', 'tourism']`                                                             | `Array<string>`  |
+| `inventory`   | optional           |  See below for details on First Party Data. In release 4.29 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
+| `visitor`      | optional           | See below for details on First Party Data. In release 4.29 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
+| `keywords`     | optional           | See below for details on First Party Data. In release 4.29 and earlier, this can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `['travel', 'tourism']`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
+
+#### First Party Data
+
+Rubicon Project requires that first party data be split into two categories: "inventory" and "visitor".
+
+For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
+```
+var adUnit = {
+    ...
+    bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: 7780,                     // replace account/site/zone params
+            siteId: 87184,
+            zoneId: 413290,
+            inventory: {
+                prodtype: ["tech","mobile"]
+            },
+            visitor: {
+                ucat:["new"]
+            }
+        }
+    }]
+};
+```
+
+In release 4.30 and later, we recommend using the ortb2 method of setting First Party Data. This can be done in two ways: global (cross-bidder) or bidder-specific.  For Inventory, you will need to use site.ext.data, and For Visitor, you will need to use the user.ext.data. For More information about Audience Segments in Magnite: https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/
+
+Example first party data available to all bidders and all adunits:
+```
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      keywords: "kw1,kw2",              // sent to Rubicon as 'keywords' available in reports for client-side display ads
+      ext: {
+        data: {
+           prodtype: ["tech","mobile"]  // site.ext.data is sent to Rubicon as "inventory" data
+        }
+      }
+    },
+    user: {
+      ext: {
+        data: {
+          ucat:["new"]                  // user.ext.data is sent to Rubicon as "visitor" data
+        }
+      }
+    }
+  }
+};
+```
+
+Example of first party data available only to the Rubicon Project bidder. Applies across all ad units.
+```
+pbjs.setBidderConfig({
+  bidders: ["rubicon"],
+  config: {
+    ortb2: {
+      site: {
+        keywords: "kw1,kw2",             // sent to Rubicon as 'keywords' available in reports for client-side display ads
+        ext: {
+          data: {
+            prodtype: ["tech","mobile"]  // site.ext.data is sent to Rubicon as "inventory" data
+          }
+        }
+      },
+      user: {
+        ext: {
+          data: {
+            ucat:["new"]                  // user.ext.data is sent to Rubicon as "visitor" data
+          }
+        }
+      }
+    }
+  }
+};
+```
 
 #### mediaTypes.video
 
@@ -91,9 +167,9 @@ var videoAdUnit = {
         }
     },
     bids: [{
-        bidder: 'rubicon',                         // replace bidders
+        bidder: 'rubicon',                        
         params: {
-            accountId: 7780,                     // and params
+            accountId: 7780,                       // replace params
             siteId: 87184,
             zoneId: 413290,
             video: {

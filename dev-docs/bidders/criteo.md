@@ -23,7 +23,7 @@ That means, `sendId: true` becomes mandatory for all fields receiving URLs, nota
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
 {: .alert.alert-warning :}
-Prebid-Server activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
+Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
 
 ### Disclosure
 
@@ -76,18 +76,16 @@ var adUnits = [
             maxduration: 30,
             api: [1, 2],
             playerSize: [640,480],
-            protocols: [2, 3]
+            protocols: [2, 3],
+	    skip: 0,
+	    playbackmethod: 1,
+            placement: 1
         }
     },
     bids: [{
         bidder: 'criteo',
         params: {
-            zoneId: 1455580,
-            video: {
-                skip: 0,
-                playbackmethod: 1,
-                placement: 1,
-            }
+            zoneId: 1455580
         }
     }]
 }];

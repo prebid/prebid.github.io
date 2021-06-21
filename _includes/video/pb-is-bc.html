@@ -36,18 +36,18 @@
 			code: 'video1',
 			mediaTypes: {
 				video: {
-					playerSize: [640, 480],
-					context: 'instream'
+				  context: 'instream',
+				  playerSize: [640, 480],
+				  mimes: ['video/mp4'],
+				  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+				  playbackmethod: [2],
+				  skip: 1
 				}
 			},
 			bids: [{
 				bidder: 'appnexus',
 				params: {
-					placementId: iosDevice ? 13239390 : 13232361, // Add your own placement id here. Note, skippable video is not supported on iOS 
-					video: {
-						skipppable: true,
-						playback_method: ['auto_play_sound_off']
-					}
+					placementId: iosDevice ? 13239390 : 13232361 // Add your own placement id here.
 				}
 			}]
 		};
