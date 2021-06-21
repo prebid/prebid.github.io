@@ -1729,45 +1729,43 @@ pbjs.setConfig({
 
 Bidders that want to support the User ID module in Prebid.js, need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
 
-<div class="table-responsive" markdown="1">
 {: .table .table-bordered .table-striped }
-| ID System Name | ID System Host | Prebid.js Attr | EID Source | Example Value |
+| ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
 | --- | --- | --- | --- | --- | --- | --- |
-| Admixer ID | Admixer | bidRequest.userId.admixerId | "admixer.net" | `"1111"` |
-| AMX RTB ID | AMX RTB | bidRequest.userId.amxId | "amxrtb.com" | `"3ca11058-ecbc-419f-bda7-b52fe7baf02a"` |
-| BritePool ID | BritePool | bidRequest.userId.britepoolid | "britepool.com" | `"1111"` |
-| DeepIntent ID | Deep Intent | bidRequest.userId.deepintentId | "deepintent.com" | `"1111"` |
-| DMD ID | DMD | bidRequest.userId.dmdId | "hcn.health" | `"1111"` |
-| CriteoID | Criteo | bidRequest.userId.criteoId | "criteo.com" | `"1111"` |
-| Fabrick ID | Neustar | bidRequest.userId.fabrickId | "neustar.biz" | `"1111"` |
-| FLoC ID | n/a | bidRequest.userId.flocId | | |
-| Halo ID | Audigent | bidRequest.userId.haloId | "audigent.com" | `{"haloId":"user-halo-id", "auSeg":["segment1","segment2"]}` |
-| ID+ | Zeotap | bidRequest.userId.IDP | "zeotap.com" | `"1111"` |
-| ID5 ID | ID5 | bidRequest.userId.id5id | "id5-sync.com" | `{ uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }` |
-| IdentityLink | LiveRamp | bidRequest.userId.idl_env | "liveramp.com" | `"1111"` |
-| Intent IQ ID | Intent IQ | bidRequest.userId.intentiqid | "intentiq.com" | `"1111"` |
-| LiveIntent ID | Live Intent | bidRequest.userId.lipb.lipbid | "liveintent.com" | `"1111"` |
-| Lotame Panorama ID | Lotame | bidRequest.userId.lotamePanoramaId | "crwdcntrl.net" | `"e4b96a3d9a8e8761cef5656fb05f16d53938069f1684df4b2257e276e8b89a0e"` |
-| MediaWallah OpenLink ID | MediaWallah | bidRequest.userId.mwOpenLinkId | "mediawallahscript.com" | `"1111"` |
-| merkleID | Merkle | bidRequest.userId.merkleId | "merkleinc.com" | `"1111"` |
-| netID | netID | bidRequest.userId.netId | "netid.de" | `"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"` |
-| NextRoll ID | NextRoll | bidRequest.userId.nextrollId | "nextroll.com" | `"bf3KawPMRifn1iXLtufo4AhoZHaBEYQpYOe1ZTJsY7IzuZ0LW/SjP/zpVGr09voA"` |
-| Novatiq ID | Novatiq | bidRequest.userId.novatiqId | "novatiq.com" | `"1111"` |
-| Parrable ID | Parrable | bidRequest.userId.parrableId | "parrable.com" | `{"eid":"01.1594654046.cd0972d861e..."}` |
-| PubProvided ID | n/a | bidRequest.userId.pubProvidedId | publisher domain | `"1111"` |
-| Quantcast ID | n/a | bidRequest.userId.quantcastId | "quantcast.com" | `"1111"` |
-| Tapad ID | Tapad | bidRequest.userId.tapadId | "tapad.com" | `"1111"` |
-| SharedID (PBJS 5.x) | n/a | bidRequest.userId.pubcid | "pubcid.org" | `"1111"` |
-| SharedID (PBJS 4.x)| Prebid | bidRequest.userId.sharedid | "sharedid.org" | `{"id":"01EAJWWNEPN3CYMM5N8M5VXY22","third":"01EAJWWNEPN3CYMM5N8M5VXY22"}` |
-| Unified ID | Trade Desk | bidRequest.userId.tdid | "adserver.org" | `"1111"` |
-| Verizon Media ConnectID | Verizon Media | bidRequest.userId.connectid | "verizonmedia.com" | `"72d04af6..."` |
-</div>
+| Admixer ID | Admixer | admixerId | admixer.net | "1111" |
+| AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
+| BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
+| DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
+| DMD ID | DMD | dmdId | hcn.health | "1111" |
+| CriteoID | Criteo | criteoId | criteo.com | "1111" |
+| Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
+| FLoC ID | n/a | flocId | | |
+| Halo ID | Audigent | haloId | audigent.com | {"haloId":"user-halo-id", "auSeg":["segment1", "segment2"]} |
+| ID+ | Zeotap | IDP | zeotap.com | "1111" |
+| ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
+| IdentityLink | LiveRamp | idl_env | liveramp.com | "1111" |
+| Intent IQ ID | Intent IQ | intentiqid | intentiq.com | "1111" |
+| LiveIntent ID | Live Intent | lipb.lipbid | liveintent.com | "1111" |
+| Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
+| MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |
+| merkleID | Merkle | merkleId | merkleinc.com | "1111" |
+| netID | netID | netId | netid.de | "fH5A..." |
+| NextRoll ID | NextRoll | nextrollId | nextroll.com | "bf3Ka.../SjP/zpVGr09voA" |
+| Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |
+| Parrable ID | Parrable | parrableId | parrable.com | {"eid":"01.15946..."} |
+| PubProvided ID | n/a | pubProvidedId | publisher domain | "1111" |
+| Quantcast ID | n/a | quantcastId | quantcast.com | "1111" |
+| Tapad ID | Tapad | tapadId | tapad.com | "1111" |
+| SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
+| SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
+| Unified ID | Trade Desk | tdid | adserver.org | "1111" |
+| Verizon Media ConnectID | Verizon Media | connectid | verizonmedia.com | "72d04af6..." |
 
 For example, the adapter code might do something like:
 
 {% highlight javascript %}
-   if (bidRequest.userId && bidRequest.userId.pubcid) {
-    url+="&pubcid="+bidRequest.userId.pubcid;
+   if (bidRequest.userId && bidRequest.userId.sharedid) {
+    url+="&pubcid="+bidRequest.userId.sharedid;
    }
 {% endhighlight %}
 
