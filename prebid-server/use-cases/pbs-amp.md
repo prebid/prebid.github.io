@@ -168,8 +168,8 @@ Only a few dynamic parameters on the query string are integrated into the result
 
 #### First Party Data Support
 
-Any targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
-into the OpenRTB JSON and permissions, if defined, are applied to each bidder.
+Ad Server targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
+into the OpenRTB JSON in imp[].ext.data for each bidder if permissions allow.
 
 #### Auction and Response
 

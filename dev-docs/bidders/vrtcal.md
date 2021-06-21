@@ -8,6 +8,7 @@ media_ytpes: banner
 gdpr_supported: false
 biddercode: vrtcal
 gvl_id: 706
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

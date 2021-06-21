@@ -8,6 +8,7 @@ biddercode: admixer
 media_types: video
 gdpr_supported: true
 usp_supported: true
+schain_supported: true
 gvl_id: 511
 ---
 

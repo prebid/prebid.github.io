@@ -8,6 +8,7 @@ biddercode: nanointeractive
 media_types: banner
 gdpr_supported: true
 gvl_id: 72
+pbjs_version_notes: not in 5.x
 ---
 
 ### Requirements:

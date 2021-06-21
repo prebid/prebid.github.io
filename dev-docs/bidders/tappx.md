@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Tappx
+title: :tappx
 pbs: true
 pbjs: true
 media_types: banner, video
@@ -11,6 +11,7 @@ coppa_supported: true
 schain_supported: true
 pbs_app_supported: true
 gvl_id: 628
+userIds: all
 ---
 
 ### Registration

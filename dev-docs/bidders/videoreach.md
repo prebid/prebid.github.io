@@ -6,6 +6,7 @@ pbjs: true
 biddercode: videoreach
 media_types: banner, video
 gdpr_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 

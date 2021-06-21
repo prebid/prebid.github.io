@@ -83,7 +83,7 @@ pbjs.setBidderConfig({
 });
 {% endhighlight%}
 
-You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig).
+You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/setBidderConfig.html).
 
 ### Global and Bidder-Specific Together
 

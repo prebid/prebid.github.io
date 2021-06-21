@@ -8,5 +8,5 @@ enable_download: false
 
 #### Registration
 
-Please visit [https://yield.assertcom.de/](https://yield.assertcom.de/) for more information.
+Please visit [https://assertiveyield.com/](https://assertiveyield.com/) for more information.
 

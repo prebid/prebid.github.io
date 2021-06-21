@@ -5,6 +5,7 @@ description: Prebid Clicktripz Bidder Adaptor
 pbjs: true
 biddercode: clicktripz
 media_types: banner
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params
