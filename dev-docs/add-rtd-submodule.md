@@ -92,7 +92,7 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 | name  | string  | required | must match the name provided by the publisher in the on-page config | n/a |
 |  init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
 |  getTargetingData  | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
-|  getBidRequestData  | function | optional | defines a function that provides ad server targeting data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
+|  getBidRequestData  | function | optional | defines a function that provides biq request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
 |  onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
 |  onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
 |  onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
