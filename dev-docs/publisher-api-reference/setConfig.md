@@ -268,6 +268,9 @@ pbjs.setConfig({ pageUrl: "https://example.com/index.html" })
 
 #### Publisher Domain
 
+{: .alert.alert-warning :}
+This API is deprecated. Please use 'pageUrl' instead.
+
 Set the publisher's domain where Prebid is running, for cross-domain iframe communication:
 
 {% highlight js %}
