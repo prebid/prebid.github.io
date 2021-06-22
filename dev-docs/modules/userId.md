@@ -188,7 +188,7 @@ gulp build --modules=admixerIdSystem
 
 ### Adtelligent
 
-The [Adtelligent](https://adtelligent.com) ID system is uniq per-session user identifier for providing high quality DMP data for advertisers
+The [Adtelligent](https://adtelligent.com) ID system is a uniq per-session user identifier for providing high quality DMP data for advertisers
 
 Add it to your Prebid.js package with:
 
@@ -197,7 +197,7 @@ gulp build --modules=userId,adtelligentIdSystem
 
 #### Adtelligent Configuration
 
-adtelligentIdSystem doesn't require any configuration and storage params, however, to it is asynchronous and to achieve better performance, it's recommended to store it for a short time period and configure refresh.
+adtelligentIdSystem adapter doesn't require any configuration or storage params. The adapter performs asynchronously and to achieve better performance it is recommended to set the `storage` object `refreshInSeconds` to a short period, such as ten minutes. At the end of the set storage refresh the adapter will refresh its configuration.
 
 #### Adtelligent Example
  
