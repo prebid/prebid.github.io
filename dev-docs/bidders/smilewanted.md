@@ -20,7 +20,7 @@ To use us as a bidder you must have an account and an active "zoneId" on our Smi
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example  | Type      |
 |----------|----------|-----------------------|----------|-----------|
-| `zoneId` | required | The placement zone ID | `test.com_header_bidding_display_atf` | `string` |
+| `zoneId` | required | The placement zone ID | `'test.com_header_bidding_display_atf'` | `string` |
 
 ### Testing
 
