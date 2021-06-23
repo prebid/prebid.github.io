@@ -1397,8 +1397,8 @@ The Quantcast ID module will only perform any action and return an ID in situati
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"quantcastId"` | `"quantcastId"` |
-| params | Required | Object | Details for Quantcast initialization. | |
-| params.ClientID | Required | Number | Optional parameter for Quantcast prebid managed service partners. Reach out to Quantcast for ClientID if you are not an existing Quantcast prebid managed service partner: quantcast-idsupport@quantcast.com  | |
+| params | Optional | Object | Details for Quantcast initialization. | |
+| params.ClientID | Optional | String | Optional parameter for Quantcast prebid managed service partners. Reach out to Quantcast for ClientID if you are not an existing Quantcast prebid managed service partner: quantcast-idsupport@quantcast.com  | |
 
 
 #### Quantcast ID Example
