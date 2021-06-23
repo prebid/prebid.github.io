@@ -1398,7 +1398,7 @@ The Quantcast ID module will only perform any action and return an ID in situati
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"quantcastId"` | `"quantcastId"` |
 | params | Required | Object | Details for Quantcast initialization. | |
-| params.ClientID | Required | Number | Optional parameter for Quantcast prebid managed service partners. Reach out to Quantcast for ClientID if you are not an existing Quantcast prebid managed service partner: quantcast-idsupport@quantcast.com  | “p0-” |
+| params.ClientID | Required | Number | Optional parameter for Quantcast prebid managed service partners. Reach out to Quantcast for ClientID if you are not an existing Quantcast prebid managed service partner: quantcast-idsupport@quantcast.com  | |
 
 
 #### Quantcast ID Example
@@ -1407,10 +1407,7 @@ The Quantcast ID module will only perform any action and return an ID in situati
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "quantcastId",
-            params: {
-                  ClientID:"p-ajMgSKt52th2B" /*example ID*/
-            }
+            name: "quantcastId"
         }]
     }
 });
