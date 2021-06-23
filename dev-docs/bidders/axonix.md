@@ -8,7 +8,7 @@ pbjs: true
 ---
 
 ### Prebid Server Note:
-The Axonix Bidding adapter requires setup before beginning. Please contact us at support+prebid@axonix.com.
+The Axonix Bidding adapter requires setup before beginning. Please contact us at support.axonix@emodoinc.com.
 
 ### Bid Params
 

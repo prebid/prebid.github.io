@@ -11,6 +11,8 @@ usp_supported: true
 schain_supported: true
 getFloor: true
 userIds: all
+tcf2_supported: true
+coppa_supported: true
 ---
 
 

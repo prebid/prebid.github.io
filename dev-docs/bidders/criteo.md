@@ -13,7 +13,7 @@ prebid_member: true
 getFloor: false*
 gvl_id: 91
 ---
-### Note
+### Notes
 {: .alert.alert-warning :}
 For Native Ads, in order to avoid further decoding issues of special characters, the assets need to be sent as placeholders. 
 That means, `sendId: true` becomes mandatory for all fields receiving URLs, notably: `icon`, `image`, `clickUrl`, `privacyLink`, `privacyIcon`.
@@ -23,7 +23,12 @@ That means, `sendId: true` becomes mandatory for all fields receiving URLs, nota
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
 {: .alert.alert-warning :}
-Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
+Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
+
+### Disclosure
+
+This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
+of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
 
 ### Bid Params
 
@@ -71,18 +76,16 @@ var adUnits = [
             maxduration: 30,
             api: [1, 2],
             playerSize: [640,480],
-            protocols: [2, 3]
+            protocols: [2, 3],
+	    skip: 0,
+	    playbackmethod: 1,
+            placement: 1
         }
     },
     bids: [{
         bidder: 'criteo',
         params: {
-            zoneId: 1455580,
-            video: {
-                skip: 0,
-                playbackmethod: 1,
-                placement: 1,
-            }
+            zoneId: 1455580
         }
     }]
 }];

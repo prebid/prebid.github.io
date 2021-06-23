@@ -5,6 +5,7 @@ description: Prebid Clickforce Bidder Adaptor
 pbjs: true
 biddercode: clickforce
 media_types: native
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params (display ad)
