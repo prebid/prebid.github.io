@@ -188,7 +188,7 @@ gulp build --modules=admixerIdSystem
 
 ### Adtelligent
 
-The [Adtelligent](https://adtelligent.com) ID system is a uniq per-session user identifier for providing high quality DMP data for advertisers
+The [Adtelligent](https://adtelligent.com) ID system is a unique per-session user identifier for providing high quality DMP data for advertisers
 
 Add it to your Prebid.js package with:
 
