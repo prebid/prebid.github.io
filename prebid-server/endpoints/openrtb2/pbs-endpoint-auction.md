@@ -893,6 +893,27 @@ In order to pull AMP parameters out into targeting, Prebid Server places AMP que
     }
 ```
 
+#### EID Permissions (PBS-Go only)
+
+This feature allows publishers to specify ext.prebid.eidpermissions, defining which extended ID
+in user.ext.eids is allowed to be passed to which bid adapter. For example:
+
+```
+{
+    ext: {
+        prebid: {
+            data: {
+                eidpermissions: [   // prebid server will use this to filter user.ext.eids
+                   {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
+                   {"source": "neustar.biz", "bidders": ["bidderB"]},
+                   {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
+                ]
+            }
+        }
+    }
+}
+```
+
 ##### MultiBid (PBS-Java only)
 
 Allows a single bidder to bid more than once into an auction and have extra bids passed
@@ -1064,7 +1085,6 @@ This section describes the ways in which Prebid Server **implements** OpenRTB sp
 
 - `request.cur`: If `request.cur` is not specified in the bid request, Prebid Server will consider it as being `USD` whereas OpenRTB spec doesn't mention any default currency for bid request.
 ```request.cur: ['USD'] // Default value if not set```
-
 
 ### OpenRTB Differences
 
