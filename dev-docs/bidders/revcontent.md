@@ -9,6 +9,8 @@ coppa_supported: false
 usp_supported: false
 pbjs: true
 pbs: true
+gvl_id: 203
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note

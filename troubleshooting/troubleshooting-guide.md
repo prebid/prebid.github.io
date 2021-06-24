@@ -182,7 +182,7 @@ Here's another scenario using the 'debugging' feature described in the previous 
 
 This section covers cases in which a particular server-side bidder doesn't always respond with a bid, or you want to try specific bid CPM values to verify line item setup.
 
-If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
+If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference/setconfig#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
 
 ```javascript
 javascript console> pbjs.setConfig({
@@ -214,7 +214,7 @@ javascript console> pbjs.setConfig({
 
 Open your browser console and type `pbjs.getBidResponses();` to see a list of the ad units that have been configured.  This also shows what bids have been returned from each of the bidder partners in chronological order as shown in the screenshot below.
 
-To see all of the winning bids, open your browser console and type [`pbjs.getAllWinningBids();`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getAllWinningBids).
+To see all of the winning bids, open your browser console and type [`pbjs.getAllWinningBids();`](/dev-docs/publisher-api-reference/getAllWinningBids.html).
 
 {: .alert.alert-danger :}
 Keep in mind that any bid responses that come back after [the timeout you configured during setup]({{site.github.url}}/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
@@ -397,9 +397,9 @@ To make sure your ad server is set up correctly, answer the following questions:
 
 + **Are there other higher priority campaigns running within your ad server?** Higher priority campaigns will prevent Prebid ads with a higher CPM bid from winning in the ad server's auction. For testing purposes, you may want to pause these campaigns or have them excluded when the prebid key values are present.
 
-+ **Is there other remnant inventory in the ad server with a higher CPM that is winning?** To test for this, you may want to use a test creative set up within a bidder partner that has a high CPM or create artificial demand with a [bidCPMadjustment]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings).
++ **Is there other remnant inventory in the ad server with a higher CPM that is winning?** To test for this, you may want to use a test creative set up within a bidder partner that has a high CPM or create artificial demand with a [bidCPMadjustment](/dev-docs/publisher-api-reference/bidderSettings.html).
 
-+ **Have you set up all of the line items in the ad server to match the [setPriceGranularity setting]({{site.github.url}}/dev-docs/examples/custom-price-buckets.html) within Prebid.js?**  All of the line items that correspond to your price granularity settings must be set up in your ad server.  When there are gaps in the price granularity of your line item setup, bids will be reduced according to the size of the gap.  For example, with [dense granularity]({{site.github.url}}/dev-docs/publisher-api-reference.html#dense-granularity), a $3.32 bid will be sent to the ad server as $3.30.
++ **Have you set up all of the line items in the ad server to match the [setPriceGranularity setting]({{site.github.url}}/dev-docs/examples/custom-price-buckets.html) within Prebid.js?**  All of the line items that correspond to your price granularity settings must be set up in your ad server.  When there are gaps in the price granularity of your line item setup, bids will be reduced according to the size of the gap.  For example, with [dense granularity](/dev-docs/publisher-api-reference/setConfig.html#denseGranularityBucket), a $3.32 bid will be sent to the ad server as $3.30.
 
 <hr>
 

@@ -51,7 +51,7 @@ sidebarType: 4
  The scripts themselves and a guide for choosing which ones
  you need can be found here:
 
- http://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html
+ https://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html
 --&gt;
 
 &lt;!-- CORE PLAYER REQUIRED --&gt;
@@ -98,18 +98,18 @@ sidebarType: 4
         code: 'video1',
         mediaTypes: {
             video: {
-                playerSize: [640, 480],
-                context: 'instream'
+		context: 'instream',
+		playerSize: [640, 480],
+		mimes: ['video/mp4'],
+		protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+		playbackmethod: [2],
+		skip: 1
             }
         },
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: iosDevice ? 13239390 : 13232361, // Add your own placement id here. Note, skippable video is not supported on iOS<br>
-                video: {
-                    skippable: true,
-                    playback_method: ['auto_play_sound_off']
-                }
+                placementId: iosDevice ? 13239390 : 13232361 // Add your own placement id here. 
             }
         }]
     };
@@ -196,7 +196,7 @@ sidebarType: 4
 
                For more information see the Ooyala docs:
 
-               http://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
+               https://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
 
                Make sure the ad parameters are properly formatted JSON.
              */
@@ -298,7 +298,7 @@ sidebarType: 4
 
                    For more information see the Ooyala docs:
 
-                   http://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
+                   https://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
 
                    Make sure the ad parameters are properly formatted JSON.
                  */

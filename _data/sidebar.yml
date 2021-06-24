@@ -180,7 +180,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /dev-docs/examples/native-ad-example.html
+  link: /formats/native.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -506,6 +506,14 @@
   sectionTitle:
   subgroup: 8
 
+- sbSecId: 1
+  title: Timeouts
+  link: /features/timeouts.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
 
 #--------------Prebid Mobile--------------|
 
@@ -626,6 +634,14 @@
   subgroup: 1
 
 - sbSecId: 2
+  title: In App Native Ad Unit
+  link: /prebid-mobile/pbm-api/ios/pbm-native-inapp-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
   title: Video Outstream Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-videooutstreamadunit-ios.html
   isHeader: 0
@@ -733,6 +749,14 @@
 - sbSecId: 2
   title: Native Ad Unit
   link: /prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: In App Native Ad Unit
+  link: /prebid-mobile/pbm-api/android/pbm-native-inapp-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1302,16 +1326,8 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: 'JW Player (Hosted)'
+  title: 'JW Player (Self-Hosted)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Playlist)'
-  link: /examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1375,24 +1391,8 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: 'JW Player (Hosted)'
+  title: 'JW Player (Self-Hosted)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Playlist)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Player 7)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1586,14 +1586,6 @@
 - sbSecId: 5
   title: 'PBS+Long-Form Video'
   link: /prebid-server/use-cases/pbs-lfv.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 5
-  title: 'Managed Solutions'
-  link: /prebid-server/hosting/hosted-servers.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1918,7 +1910,7 @@
 
 - sbSecId: 6
   title: Native
-  link: /dev-docs/show-native-ads.html
+  link: /prebid/native-implementation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1997,6 +1989,35 @@
 - sbSecId: 7
   title: Blog
   link: https://prebid.org/blog/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+ #-------------- Tools --------------|
+
+- sbSecId: 8
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Tools
+  sectionId: tools
+  subgroup: 1000
+  sbCollapseId: tools
+
+- sbSecId: 8
+  title:
+  link:
+  isHeader: 1
+  headerId: toolsinvis
+  isSectionHeader:
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 8
+  title: Line Item Manager
+  link: /tools/line-item-manager.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

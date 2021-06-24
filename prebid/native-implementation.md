@@ -88,6 +88,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 | ASSETCODE. aspect_ratios.min_height | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 75 | integer |
 | ASSETCODE. aspect_ratios.ratio_width | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 2 | integer |
 | ASSETCODE. aspect_ratios.ratio_height | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 3 | integer |
+| ext.CUSTOMASSET | optional | Non-standard or bidder-specific assets can be supplied on the `ext` here. Attributes on custom assets are documented by the vendor. | | |
 
 
 **Table 3: Native Assets Recognized by Prebid.js**
@@ -100,6 +101,38 @@ Specific bidders may not support all of the fields listed below or may return di
 ### 3.1. Two ways to define image sizes
 
 {% include dev-docs/native-image-asset-sizes.md %}
+
+### 3.2 Custom native assets
+
+In order to fit special bidder requirements, Prebid.js supports defining assets beyond the standard set. Simply define custom attributes in mediaTypes.native.ext, and they can be retrieved at render time. Other than being under the `ext` object, custom assets are declared in the same way as the standard ones.
+
+{: .alert.alert-success :}
+Note: The `native-render.js::renderNativeAd()` function must be called with `requestAllAssets: true`.
+
+Bid adapters will declare which custom assets they support in their documentation. It is recommended to prefix the asset name with the bidderCode to avoid collision issues.
+
+```javascript
+mediaTypes {
+  native: {
+    body: {
+      required: true
+    },
+    ext: {
+      bidderA_specialtracking: {    // custom asset
+        required: false
+      }
+  }
+}
+```
+
+In the native template, simply access the custom value with the normal Prebid ##macro## format assuming `hb_native_` as the prefix. For example:
+
+```
+    <div id="mytemplate">
+    ... render a lovely creative ...
+    ... refer to ##hb_native_bidderA_specialtracking## when appropriate ...
+    </div>
+```
 
 ## 4. Implementing the Native Template
 
@@ -323,7 +356,7 @@ In this scenario, the body of the native creative is managed from an external Ja
 When the Native AdUnit is defined in the page:
 
 - Declare`sendTargetingKeys: false` in the Native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
-- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. <style> tags) or in the AdServer creative.
+- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. `<style>` tags) or in the AdServer creative.
 
 Example AdUnit setup:
 ```

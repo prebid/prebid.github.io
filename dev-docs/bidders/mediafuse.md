@@ -3,6 +3,7 @@ layout: bidder
 title: MediaFuse
 description: Prebid MediaFuse Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: mediafuse
 aliasCode: adtelligent
 media_types: banner, video

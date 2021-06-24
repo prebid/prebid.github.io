@@ -1,7 +1,7 @@
 ---
 layout: video_sample
 title: Prebid Video | Instream Example with Akamai Adaptive Media Player (AMP)
-description: An example of an instream pre roll ad with AMP and Prebid.js. AMP also provides a built-in prebid plugin
+description: An example of an instream pre roll ad with Akamai AMP and Prebid.js. Akamai AMP also provides a built-in prebid plugin
     wich simplifies and integrates the common prebid.js bidding workflow without extra efforts.
 videoType: pb-is-amp
 isVideo: true
@@ -53,18 +53,18 @@ sidebarType: 4
 	    code: 'video1',
 	    mediaTypes: {
 	        video: {
-	            playerSize: [640, 480],
-	            context: 'instream'
+                  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
 	        }
 	    },
 	    bids: [{
 	        bidder: 'appnexus',
 	        params: {
-	            placementId: 13232361, /* Add own placement id */
-	            video: {
-	                skipppable: true,
-	                playback_method: ['auto_play_sound_off']
-	            }
+	            placementId: 13232361 /* Add own placement id */
 	        }
 	    }]
 	};
@@ -98,8 +98,19 @@ sidebarType: 4
 
 &lt;/script&gt;
 </pre>
+<style>
+  .sample-player {
+    width: 604px;
+    height: 340px;
+  }
 
-        </div>
+  @media (max-width: 600px) {
+  .sample-player {
+    height: 227px;
+  }
+}
+</style>
+</div>
 
         <!--body code example-->
         <div style="width:60vw;">
@@ -139,6 +150,8 @@ sidebarType: 4
         </div>
 
     </div>
+
+  
 </div>
 
 <div style="width:60vw;">
@@ -180,11 +193,7 @@ sidebarType: 4
                     {
                       bidder: "appnexus",
                       params: {
-                        placementId: 13232361, /* Test placementId not for prod */
-                        video: {
-                          skippable: true,
-                          playback_method: ["auto_play_sound_off"]
-                        }
+                        placementId: 13232361 /* Test placementId not for prod */
                       }
                     }
                   ]

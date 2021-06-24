@@ -6,7 +6,7 @@ pbjs: true
 biddercode: seedingAlliance
 media_types: native
 gdpr_supported: true
-tcf2_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid params
