@@ -5,6 +5,7 @@ description: Prebid vdo.ai Bidder Adaptor
 pbjs: true
 biddercode: vdoai
 media_types: banner, video
+pbjs_version_notes: not in 5.x
 ---
 
 

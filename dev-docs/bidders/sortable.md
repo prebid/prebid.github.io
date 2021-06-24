@@ -10,6 +10,7 @@ usp_supported: true
 schain_supported: true
 prebid_member: true
 gvl_id: 145
+pbjs_version_notes: not in 5.x
 ---
 
 **Table of Contents**

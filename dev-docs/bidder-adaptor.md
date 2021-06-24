@@ -631,7 +631,14 @@ Video ad units have a publisher-defined video context, which can be either `'ins
 ...
 mediaTypes: {
     video: {
-        context: 'outstream'
+        context: 'outstream',
+	playerSize: [640, 480],
+	mimes: ['video/mp4'],
+	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+	playbackmethod: [2],
+	skip: 1
+        // video params must be read from here in place of
+        // or instead of bidder-specific parameters
     },
 },
 ...
