@@ -16,5 +16,5 @@ pbjs: false
 
 | Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
-| `pix_id`       | required | The pix_id is an ID from PixFuture.  The `pix_id` parameter should be an`integer`                                                  | `234234`                                            | `integer`         |
+| `pix_id`       | required | The pix_id is an ID from PixFuture.  The `pix_id` parameter should be an`integer`                                                  | `Abc123`                                            | `string`         |
 
