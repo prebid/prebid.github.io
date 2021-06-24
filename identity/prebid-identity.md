@@ -13,7 +13,7 @@ keeping the Open Web healthy.
 To do this, Prebid offers a number of identity-related products that encourage awareness of privacy regulations such as GDPR, CCPA, and COPPA. The most important projects are:
 
 - [Prebid.js User Identity Module](/dev-docs/modules/userId.html). This module supports more than 20 different flavors of global IDs with different features that publishers can work with.
-- [SharedID](/identity/sharedId.html). This native hosted ID offering from Prebid is simple, free, robust, and privacy-minded.
+- [SharedID](/identity/sharedid.html). This native hosted ID offering from Prebid is simple, free, robust, and privacy-minded.
 - **Coming soon:** [Unified ID 2.0](https://prebid.org/blog/prebid-org-to-serve-as-operator-of-unified-id-2-0/)
 
 ## Prebid.js and Identity
@@ -59,5 +59,5 @@ the appropriate cookie-setting permissions from the user.
 ## Further Reading
 
 - [PBJS User ID module](/dev-docs/modules/userId.html)
-- [SharedID](/identity/sharedId.html)
+- [SharedID](/identity/sharedid.html)
 - [Prebid Server Privacy](/prebid-server/features/pbs-privacy.html)
