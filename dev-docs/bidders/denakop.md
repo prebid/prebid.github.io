@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: denakop
+title: Denakop
 description: Denakop Bidder Adaptor
 pbjs: true
 pbs: true
@@ -16,7 +16,7 @@ aliasCode : adkernel
 
 ### Note:
 
-The Denakop bidding adapter requires setup and approval before implementation. Please reach out to <luis@denakop.com> for more details.
+The Denakop bidding adapter requires setup and approval before implementation. Please reach out to <opec@denakop.com> for more details.
 
 ### Bid Params
 
