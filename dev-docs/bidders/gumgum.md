@@ -9,7 +9,7 @@ biddercode: gumgum
 media_types: banner, video
 schain_supported: true
 getFloor: true
-userIds: unifiedId
+userIds: unifiedId, identityLink
 gdpr_supported: true
 usp_supported: true
 ---
@@ -37,16 +37,6 @@ Client side and server side parameters differ slightly. For Server side (Prebid 
 ### Client Side Bid Params
 
 {: .table .table-bordered .table-striped }
-<<<<<<< HEAD
-| Name           | Scope                                      | Description       | Example                | Type      |
-|----------------|--------------------------------------------|-------------------|------------------------|-----------|
-| `zone`         | pubId or zone required for all bid requests| Tracking ID       | `'ggumtest'`           | `string`  |
-| `pubId`        | pubId or zone required for all bid requests| Publisher ID      | `123`                  | `integer` |
-| `slot`         | required for slot placement only           | Slot ID           | `9`                    | `integer` |
-| `iriscat`      | optional                                   | Iris.tv segments  | `'segment1,segment2'`  | `string`  |
-| `irisid`       | optional | Iris.tv ID                      | Iris.tv IDs       | `'123'`                | `string`  |
-| `bidfloor`     | optional                                   | CPM bidfloor      | `0.03`                 | `float`   |
-=======
 | Name           | Scope                                                            | Description           | Example                | Type      |
 |----------------|------------------------------------------------------------------|-----------------------|------------------------|-----------|
 | `zone`         | required for all bid requests tracking a single domain or site   | Tracking ID           | `'ggumtest'`           | `string`  |
@@ -55,7 +45,6 @@ Client side and server side parameters differ slightly. For Server side (Prebid 
 | `iriscat`      | optional                                                         | Iris.tv segments      | `'segment1,segment2'`  | `string`  |
 | `irisid`       | optional                                                         | Iris.tv ID            | `'123'`                | `string`  |
 | `bidfloor`     | optional                                                         | CPM bidfloor in USD   | `0.03`                 | `float`   |
->>>>>>> 8552563d3cad705e660268d619b97741213b7279
 
 ### Legacy Client Side Bid Params
 
