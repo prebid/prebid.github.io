@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: optout
 gdpr_supported: true
-gvl_id:227
+gvl_id: 227
 ---
 
 ### Bid Params
