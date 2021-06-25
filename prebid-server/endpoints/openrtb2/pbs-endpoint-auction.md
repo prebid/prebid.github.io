@@ -1288,6 +1288,7 @@ app.ext.prebid: {
 | resp | seatbid[].bid[].ext.prebid. events.win | URL for registering a BIDS_WON event for this bid | string | URL | n/a |
 | resp | seatbid[].bid[].ext.prebid. events.imp | URL for registering an impression event for this bid | string | URL | n/a |
 | resp | seatbid[].bid[].ext.prebid. bidid | defines a Prebid-generated id for this bid in case the bidder's ID isn't unique | string | UUID | n/a |
+| resp | seatbid[].bid[].ext.prebid. meta.ATTR | bidder-supplied metadata | object | see [docs](/prebid-server/developers/add-new-bidder-go.html) | n/a |
 | resp | seatbid[].bid[].ext.prebid. storedrequestattributes | results of the ext.prebid.options.echovideoattrs option above. | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes-pbs-java-only) | n/a |
 | resp | response.seatbid[].bid[].ext. origbidcpm | a copy of the unadjusted bid price | float | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm-pbs-java-only) | n/a |
 | resp | response.seatbid[].bid[].ext. origbidcur | a copy of the original bid currency | string | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm-pbs-java-only) | n/a |
