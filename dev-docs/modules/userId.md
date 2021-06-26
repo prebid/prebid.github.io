@@ -1387,7 +1387,7 @@ Quantcast’s privacy policies for the services rendered can be found at
  		https://www.quantcast.com/privacy/
       
 The Quantcast ID module will only perform any action and return an ID in situations where:
-1. ‘coppa’ flag is unset
+1. the publisher has not set a ‘coppa'  flag on the prebid configuration on their site (see https://dev.prebid.org/dev-docs/publisher-api-reference/setconfig#setConfig-coppa) 
 2. there is not a IAB us-privacy string indicating the digital property has provided user notice and the user has made a choice to opt out of sale
 3. if GDPR applies, an IAB TCF v2 string exists indicating that Quantcast does not have consent for purpose 1 (Cookies, device identifiers, or other information can be stored or accessed on your device for the purposes presented to you), or an established legal basis (by default legitimate interest) for purpose 10 (Your data can be used to improve existing systems and software, and to develop new products).
 
