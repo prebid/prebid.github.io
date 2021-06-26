@@ -1376,19 +1376,20 @@ gulp build --modules=pubProvidedId
 
 ### Quantcast ID
 
-Quantcast User ID submodule makes a Quantcast first party cookie available in the bid request. The first party cookie in the bidstream allows Quantcast to more accurately bid on publishers’ inventory without third party cookies. The Quantcast User ID submodule makes the existing Quantcast first party
-cookie available in the bid request. The first party cookie allows Quantcast to correlate
-the bid request with Quantcast's Measure dataset.
-
-Currently, Quantcast ID only works with the presence of Quantcast Measure tag. More information
-about Measure can be found in https://www.quantcast.com/measure.
-
-The Quantcast privacy policy is at https://www.quantcast.com/privacy/.
+The Prebid Quantcast ID module makes a Quantcast stores a Quantcast ID in a first party cookie. The ID is then made available in the bid request. The ID from the cookie added in the bidstream allows Quantcast to more accurately bid on publisher inventories without third party cookies, which can result in better monetization across publisher sites from Quantcast. And, it’s free to use! For easier integration, you can work with one of our SSP partners, like PubMatic, who can facilitate the legal process as well as the software integration for you.
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,quantcastIdSystem
+
+Quantcast’s privacy policies for the services rendered can be found at
+ 		https://www.quantcast.com/privacy/
+      
+The Quantcast ID module will only perform any action and return an ID in situations where:
+1. the publisher has not set a ‘coppa'  flag on the prebid configuration on their site (see https://dev.prebid.org/dev-docs/publisher-api-reference/setconfig#setConfig-coppa) 
+2. there is not a IAB us-privacy string indicating the digital property has provided user notice and the user has made a choice to opt out of sale
+3. if GDPR applies, an IAB TCF v2 string exists indicating that Quantcast does not have consent for purpose 1 (Cookies, device identifiers, or other information can be stored or accessed on your device for the purposes presented to you), or an established legal basis (by default legitimate interest) for purpose 10 (Your data can be used to improve existing systems and software, and to develop new products).
 
 #### Quantcast ID Configuration
 
@@ -1396,8 +1397,8 @@ gulp build --modules=userId,quantcastIdSystem
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"quantcastId"` | `"quantcastId"` |
-| params | Required | Object | Details for Quantcast initialization. | |
-| params.ClientID | Required | Number | The Quantcast provided ClientID is required to enable the Quantcast ID module unless you’re an existing Quantcast customer.  | “p0-” |
+| params | Optional | Object | Details for Quantcast initialization. | |
+| params.ClientID | Optional | String | Optional parameter for Quantcast prebid managed service partners. Reach out to Quantcast for ClientID if you are not an existing Quantcast prebid managed service partner: quantcast-idsupport@quantcast.com  | |
 
 
 #### Quantcast ID Example
@@ -1406,10 +1407,7 @@ gulp build --modules=userId,quantcastIdSystem
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "quantcastId",
-            params: {
-                  ClientID:"p-ajMgSKt52th2B" /*example ID*/
-            }
+            name: "quantcastId"
         }]
     }
 });
