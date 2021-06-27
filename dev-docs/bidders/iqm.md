@@ -1,10 +1,10 @@
-#Overview
-
-```
-Module Name: iQM Bidder Adapter
-Module Type: Bidder Adapter
-Maintainer: hbteam@iqm.com
-```
+---
+layout: bidder
+title: iQM
+description: Prebid iQM Bidder Adaptor
+pbjs: true
+biddercode: iqm
+---
 
 # Parameters
 
