@@ -18,7 +18,7 @@ prebid_member: false
 The Example Bidding adapter requires setup before beginning. Please contact us at hwads@huawei.com.
 1. The following parameters need to be registered on the HuaweiAds platform, and at the same time, the permission to access the server interface needs to be opened on the HuaweiAds platform.
 2. You can find ( publisherid, signkey, keyid ) on the platform after registration.
-3. You need to create your advertising space material on the platform and get the corresponding ( slotid, adtype ).
+3. You need to create your advertising creative on the platform and get the corresponding ( slotid, adtype ).
 4. We need OAID in our request, so when using prebidmobile, please add something like "TargetingParams.addUserData("oaid", "oaid-test")".
 
 ### Bid Params
