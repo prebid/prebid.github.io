@@ -468,6 +468,8 @@ The `s2sConfig` properties:
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
 | `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
 
+If `endpoint` and `syncEndpoint` are objects, these are the supported properties:
+
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description |
 |------------+---------+---------+---------------------------------------------------------------|
@@ -512,6 +514,38 @@ pbjs.setConfig({
 {% endhighlight %}
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
+
+s2sConfig example with the endpoint attributes defined as strings:
+{% highlight js %}
+pbjs.setConfig({
+    s2sConfig: [{
+        accountId: '1001',
+        bidders: ['bidderA', 'bidderB'],
+        endpoint: 'https://mypbs.example.com/path',
+	syncEndpoint: 'https://mypbs.example.com/path',
+        timeout: 300
+    }]
+})
+{% endhighlight %}
+
+s2sConfig example with the endpoint attributes defined as objects:
+{% highlight js %}
+pbjs.setConfig({
+    s2sConfig: [{
+        accountId: '1001',
+        bidders: ['bidderA', 'bidderB'],
+        endpoint: {
+	   p1Consent: 'https://mypbs.example.com/path',
+	   noP1Consent: 'https://mypbs2.example.com/path'
+	},
+        syncEndpoint: {
+	   p1Consent: 'https://mypbs.example.com/path',
+	   noP1Consent: 'https://mypbs2.example.com/path'
+	}
+        timeout: 300
+    }]
+})
+{% endhighlight %}
 
 **Server-Side Aliases**
 
