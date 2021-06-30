@@ -18,5 +18,5 @@ pbjs_version_notes: not in 5.x
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `key` | required | network or placement key | `'1234'`        | `string` |
+| `key` | required | Placement integration key | `'1234'`        | `string` |
 | `type` | optional | Supported values are `publisher` and `network`.  | `'publisher'`        | `string` |
