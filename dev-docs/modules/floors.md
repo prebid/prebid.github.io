@@ -49,7 +49,7 @@ There are several places where the Floor module changes the behavior of the Preb
 
 ![Floors Module Flow](/assets/images/floors/floors_flow.png)
 
-1. When building the Prebid.js package, the Floors module (and any analytics adapters) needs to be included with 'gulp build --modules=floors,...'
+1. When building the Prebid.js package, the Floors module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
 3. Bid Adapters are responsible for utilizing the getFloors() from the bidRequest object for each ad slot media type, size combination. The Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
@@ -105,6 +105,9 @@ Below are some basic principles of ad unit floor definitions:
          }
      ];
 {% endhighlight %}
+
+{: .alert.alert-info :}
+When defining floors at the adUnit level, the Floors Module requires the floors object to be defined in setConfig, even if the definition is an empty object as shown below: {% highlight js %}pbjs.setConfig({ floors: {} });{% endhighlight %}
 
 Floor definitions are set in the “values” object containing one or more rules, where the rule is the criteria that needs to be met for that given ad unit, with an associated CPM floor. In the above example, the floors are enforced when the bid from a bidder matches the “mediaType” and “size” combination. Since many bid adapters are not able to ingest floors per size, a simpler setup can be:
 
@@ -1001,6 +1004,11 @@ getFloor takes in a single object with the following params:
 
 {% endhighlight %}
 
+
+{: .alert.alert-warning :}
+Consider how floors will behave in multi-currency scenarios. A common pitfall is requesting floors without specifying currency, or specifying the wrong currency back to the bid adapter's platform. This may lead to bidders requesting one currency and bidding in an alternate currency.
+
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---|
@@ -1115,7 +1123,7 @@ For a bid adapter who does not wish to handle making a request for each size in 
       let floorInfo = bidRequest.getFloor({
         currency: 'USD',
         mediaType: 'banner',
-        size: '\*'
+        size: '*'
       });
       data['adapter_floor'] = floorInfo.currency === 'USD' ? floorInfo.floor : undefined;
     }

@@ -23,8 +23,8 @@ Video ads are supported by both Prebid.js and Prebid Server.
 
 - [Getting started with video](/prebid-video/video-getting-started.html)
 - [Outstream video ads](/dev-docs/show-outstream-video-ads.html)
-- [Prebid Server video ads](/use-cases/pbs-pbjs.html)
-- [Prebid Server Long Form Video](r/use-cases/pbs-lfv.html)
+- [Prebid Server video ads](/prebid-server/use-cases/pbs-pbjs.html)
+- [Prebid Server Long Form Video](/prebid-server/use-cases/pbs-lfv.html)
 
 ### Prebid.js bid adapters that support instream and outstream video ads
 

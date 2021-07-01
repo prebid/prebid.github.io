@@ -20,12 +20,12 @@ This module is required to use the Prebid Instream video examples with DFP Adser
 
 The standard options:
 
-- Build from a locally-cloned git repo 
+- Build from a locally-cloned git repo
 - Receive the email package from the Prebid [Download]({{site.baseurl}}/download.html) page
- 
+
 ### Step 2: Integrate into your prebid.js configuration
 
-The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl) method to use. For an example, see the DFP video guide linked below.
+The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) method to use. For an example, see the DFP video guide linked below.
 
 ## Further Reading
 

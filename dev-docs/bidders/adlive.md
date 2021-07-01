@@ -4,6 +4,7 @@ title: Adlive
 description: adlive bid adapter
 pbjs: true
 biddercode: adlive
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

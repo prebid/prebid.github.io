@@ -5,6 +5,7 @@ description: Prebid AdHash Bidder Adapter
 pbjs: true
 biddercode: adhash
 safeframes_ok: false
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note
