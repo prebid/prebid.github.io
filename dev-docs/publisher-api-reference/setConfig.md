@@ -459,8 +459,8 @@ The `s2sConfig` properties:
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
 | `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
-| `endpoint` | Required | URL or Object | Defines the auction endpoint for the Prebid Server cluster.  See table below for object config properties |
-| `syncEndpoint` | Required | URL or Object | Defines the cookie_sync endpoint for the Prebid Server cluster. See table below for object config properties |
+| `endpoint` | Required | URL or Object | Defines the auction endpoint for the Prebid Server cluster.  See table below for object config properties. |
+| `syncEndpoint` | Required | URL or Object | Defines the cookie_sync endpoint for the Prebid Server cluster. See table below for object config properties. |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
 | `coopSync` | Optional | Boolean | Whether or not PBS is allowed to perform "cooperative syncing" for bidders not on this page. Publishers help each other improve match rates by allowing this. Default is true. Supported in PBS-Java only. |
 | `defaultTtl` | Optional | Integer | Configures the default TTL in the Prebid Server adapter to use when Prebid Server does not return a bid TTL - 60 if not set |
@@ -473,15 +473,15 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description |
 |------------+---------+---------+---------------------------------------------------------------|
-| p1Consent | Required | String | Defines the auction endpoint or the cookie_sync endpoint for the Prebid Server cluster, used for non-consent requests or users who grant consent |
-| noP1Consent | Required | String | Defines the auction endpoint or the cookie_sync endpoint for the Prebid Server cluster, used for users who do not grant consent (useful for a server configured to not accept any cookies to ensure compliance regulations) |
+| p1Consent | Required | String | Defines the auction endpoint or the cookie_sync endpoint for the Prebid Server cluster for non-consent requests or users who grant consent. |
+| noP1Consent | Required | String | Defines the auction endpoint or the cookie_sync endpoint for the Prebid Server cluster for users who do not grant consent. (This is useful for a server configured to not accept any cookies to ensure compliance regulations.) |
 
 **Notes on s2sConfig properties**
 
-- Currently supported vendors are: appnexus, openx, & rubicon
+- Currently supported vendors are: appnexus, openx, and rubicon
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
-- When using the `endpoint` or `syncEndpoint` object configs, please define both properties.  If one property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
+- When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
 
 {: .alert.alert-warning :}
 **Errors in bidder parameters will cause Prebid Server to reject the
