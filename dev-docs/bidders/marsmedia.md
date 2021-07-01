@@ -7,11 +7,11 @@ pbs: true
 biddercode: marsmedia
 media_types: video, banner
 gdpr_supported: true
-tcf2_supported: true
 getFloor: true
 schain_supported: true
 usp_supported: true
 coppa_supported: true
+gvl_id: 776
 ---
 
 ### Bid Params

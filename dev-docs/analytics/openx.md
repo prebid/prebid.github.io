@@ -2,7 +2,7 @@
 layout: analytics
 title: OpenX
 description: OpenX Analytics Adapter
-modulecode: openxAnalyticsAdapter
+modulecode: openx
 prebid_member: true
 ---
 

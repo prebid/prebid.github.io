@@ -2,7 +2,7 @@
 layout: analytics
 title: PulsePoint
 description: PulsePoint Analytics Adapter
-modulecode: pulsepointAnalyticsAdapter
+modulecode: pulsepoint
 ---
 
 #### Registration

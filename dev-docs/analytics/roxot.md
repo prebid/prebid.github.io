@@ -2,7 +2,7 @@
 layout: analytics
 title: Roxot
 description: Roxot Analytics Adapter
-modulecode: roxotAnalyticsAdapter
+modulecode: roxot
 ---
 
 #### Registration

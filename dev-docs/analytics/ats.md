@@ -2,7 +2,7 @@
 layout: analytics
 title: ATS Analytics
 description: ATS Analytics Adapter
-modulecode: atsAnalyticsAdapter
+modulecode: ats
 ---
 
 #### Registration

@@ -33,16 +33,7 @@ The user must provide legal basis for the host company to read/write cookies or 
 
 ### TCF 1.1
 
-If Prebid Server determines that the user is in GDPR scope and doesn't consent
-to *all* of the vendor's 'purposes' as declared in the Global Vendor List, it 'anonymizes'
-the request to the adapters:
-
-- Mask take off the last byte of the IPv4 address and anonymize IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
-
-Full details are available [here](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit).
+No longer supported by Prebid Server.
 
 ### TCF 2.0
 
@@ -61,16 +52,18 @@ for each 'Purpose' with different consequences for each:
 
 More details are available in the [Prebid Support for TCF2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#) reference and in the [Prebid Server GDPR Reference](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#).
 
-### GDPR Configuration
+### Host Company GDPR Configuration
 
-There are a number of configuration settings that PBS Host Companies need
-to consider:
+There are a number of GDPR configuration settings that PBS Host Companies must
+consider:
 
-- Host company GVL ID. Currently PBS requires the host company to have a GVL-ID or the setting of the `uids` cookie in GDPR scope will fail.
-- The default expiration time of the uids cookie set in the host company domain should be defined to match what's in the TCF 2.1 `maxCookieAgeSeconds` GVL field.
-- GDPR enforcement flags for each Purpose and Vendor
+- **GDPR enabled** - Allows the host company to turn off GDPR support. Default setting is enabled=true.
+- **Default GDPR applies** - How Prebid Server should respond if the incoming request doesn't have the `gdpr` flag. (Note: this config is currently called `usersync_if_ambiguous` in PBS-Go and gdpr.default-value in PBS-Java.)
+- **Host company GVL ID** - Currently PBS requires the host company to have a GVL-ID or the setting of the `uids` cookie in GDPR scope will fail.
+- **GDPR enforcement flags** - for each Purpose
+- **Host Cookie TTL** - The default expiration time of the `uids` cookie set in the host company domain should be defined to match what's in the TCF 2.1 `maxCookieAgeSeconds` GVL field. (This is the host-cookie.ttl-days setting in both Go and Java.)
 
-The specific details vary slightly between PBS-Go and PBS-Java, so check the
+The specific details vary between [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) and [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md), so check the
 version-specific documentation for more information.
 
 ## COPPA
@@ -96,6 +89,11 @@ the following anonymization steps are taken:
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
+
+## Global Privacy Control
+
+In support of the [Global Privacy Control](https://globalprivacycontrol.org/), Prebid Server passes the `Sec-GPC` HTTP header through to bid adapters. It
+does not currently take action on this header.
 
 ## DNT
 

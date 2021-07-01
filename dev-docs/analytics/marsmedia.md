@@ -2,7 +2,7 @@
 layout: analytics
 title: MarsMedia
 description: MarsMedia Analytics Adapter
-modulecode: marsmediaAnalyticsAdapter
+modulecode: marsmedia
 ---
 
 #### Registration

@@ -2,7 +2,7 @@
 layout: analytics
 title: PubPerf
 description: PubPerf Analytics Adapter
-modulecode: pubperfAnalyticsAdapter
+modulecode: pubperf
 enable_download: false
 ---
 

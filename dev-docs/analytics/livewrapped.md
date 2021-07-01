@@ -2,7 +2,7 @@
 layout: analytics
 title: Livewrapped
 description: Livewrapped Analytics Adapter
-modulecode: livewrappedAnalyticsAdapter
+modulecode: livewrapped
 prebid_member: true
 ---
 

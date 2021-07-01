@@ -2,7 +2,7 @@
 layout: analytics
 title: STAQ
 description: STAQ Analytics Adapter
-modulecode: staqAnalyticsAdapter
+modulecode: staq
 ---
 
 #### Registration

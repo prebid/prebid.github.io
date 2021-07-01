@@ -8,6 +8,7 @@ media_types: no-display, video
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note

@@ -17,7 +17,7 @@ sidebarType : 1
 
 ## Overview
 
-This optional module will trigger a BID_VIEWABLE event which can be consumed by Analytics adapters, bidders will need to implement `onBidViewable` method to capture this event
+This optional module will trigger a BID_VIEWABLE event which can be consumed by Analytics adapters. In addition, the winning bidder can implement an `onBidViewable` method to capture this event.
 
 
 Notes:
@@ -63,3 +63,8 @@ This feature doesn't seem to work with [Instream Video](/dev-docs/examples/instr
 		console.log('got bid details in bidViewable event', bid);
 	});
 {% endhighlight %}
+
+## Related Reading
+
+- [Building a PBJS analytics adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
+- [Building a PBJS bidder adapter](/dev-docs/bidder-adaptor.html)

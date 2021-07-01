@@ -2,7 +2,7 @@
 layout: analytics
 title: Konduit
 description: Konduit Analytics Adapter
-modulecode: konduitAnalyticsAdapter
+modulecode: konduit
 ---
 
 #### Registration

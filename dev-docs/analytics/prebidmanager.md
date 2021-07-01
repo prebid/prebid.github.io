@@ -2,7 +2,7 @@
 layout: analytics
 title: PrebidManager
 description: PrebidManager Analytics Adapter
-modulecode: prebidmanagerAnalyticsAdapter
+modulecode: prebidmanager
 ---
 
 #### Registration

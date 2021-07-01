@@ -2,7 +2,7 @@
 layout: analytics
 title: Sortable
 description: Sortable Analytics Adapter
-modulecode: sortableAnalyticsAdapter
+modulecode: sortable
 ---
 
 #### Registration

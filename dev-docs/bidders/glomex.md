@@ -5,7 +5,6 @@ description: Prebid Glomex Bidder Adapter
 biddercode: glomex
 media_types: banner
 gdpr_supported: true
-tcf2_supported: true
 schain_supported: false
 prebid_member: false
 pbjs: true

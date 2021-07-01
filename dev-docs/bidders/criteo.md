@@ -3,17 +3,17 @@ layout: bidder
 title: Criteo
 description: Prebid Criteo Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: criteo
 media_types: display, native, video
 gdpr_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
-tcf2_supported: true
 getFloor: false*
 gvl_id: 91
 ---
-### Note
+### Notes
 {: .alert.alert-warning :}
 For Native Ads, in order to avoid further decoding issues of special characters, the assets need to be sent as placeholders. 
 That means, `sendId: true` becomes mandatory for all fields receiving URLs, notably: `icon`, `image`, `clickUrl`, `privacyLink`, `privacyIcon`.
@@ -22,6 +22,14 @@ That means, `sendId: true` becomes mandatory for all fields receiving URLs, nota
 
 See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#sending-asset-placeholders).
 
+{: .alert.alert-warning :}
+Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
+
+### Disclosure
+
+This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
+of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -29,8 +37,8 @@ See [Sending Asset Placeholders]({{site.baseurl}}/dev-docs/show-native-ads.html#
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
 | `zoneId`          | required | (deprecated) The zone ID from Criteo. Should be replaced by `networkId` when using zone matching.                                    | `234234`                                      | `integer`  |
 | `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
-| `nativeCallback`  | optional | Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
-| `integrationMode` | optional | Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
+| `nativeCallback`  | optional | (Prebid.js only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
+| `integrationMode` | optional | (Prebid.js only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
 
 ### Video Object
 
@@ -68,18 +76,16 @@ var adUnits = [
             maxduration: 30,
             api: [1, 2],
             playerSize: [640,480],
-            protocols: [2, 3]
+            protocols: [2, 3],
+	    skip: 0,
+	    playbackmethod: 1,
+            placement: 1
         }
     },
     bids: [{
         bidder: 'criteo',
         params: {
-            zoneId: 1455580,
-            video: {
-                skip: 0,
-                playbackmethod: 1,
-                placement: 1,
-            }
+            zoneId: 1455580
         }
     }]
 }];

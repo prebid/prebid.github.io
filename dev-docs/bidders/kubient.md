@@ -9,8 +9,8 @@ biddercode: kubient
 media_types: banner
 gdpr_supported: true
 usp_supported: true
-tcf2_supported: true
 gvl_id: 794
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

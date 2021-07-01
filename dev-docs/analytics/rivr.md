@@ -2,7 +2,7 @@
 layout: analytics
 title: Rivr
 description: Rivr Analytics Adapter
-modulecode: rivrAnalyticsAdapter
+modulecode: rivr
 ---
 
 #### Registration

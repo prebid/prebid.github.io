@@ -2,7 +2,7 @@
 layout: analytics
 title: PubStack
 description: PubStack Analytics Adapter
-modulecode: pubstackAnalyticsAdapter
+modulecode: pubstack
 prebid_member: true
 ---
 

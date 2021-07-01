@@ -2,7 +2,7 @@
 layout: analytics
 title: RealVu
 description: RealVu Analytics Adapter
-modulecode: realvuAnalyticsAdapter
+modulecode: realvu
 ---
 
 #### Registration

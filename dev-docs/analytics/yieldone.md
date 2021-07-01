@@ -2,7 +2,7 @@
 layout: analytics
 title: YieldOne
 description: YieldOne Analytics Adapter
-modulecode: yieldoneAnalyticsAdapter
+modulecode: yieldone
 ---
 
 #### Registration

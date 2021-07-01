@@ -4,7 +4,6 @@ title: AcuityAds
 description: Prebid AcuityAds Bidder Adaptor
 biddercode: acuityads
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

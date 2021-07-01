@@ -2,7 +2,7 @@
 layout: analytics
 title: ucFunnel
 description: ucFunnel Analytics Adapter
-modulecode: ucfunnelAnalyticsAdapter
+modulecode: ucfunnel
 ---
 
 #### Registration

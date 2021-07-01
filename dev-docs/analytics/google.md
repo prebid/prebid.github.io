@@ -2,7 +2,7 @@
 layout: analytics
 title: Google
 description: Google Analytics Adapter
-modulecode: googleAnalyticsAdapter
+modulecode: google
 ---
 
 #### Registration

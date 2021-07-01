@@ -1,17 +1,16 @@
 ---
-biddercode      : sharethrough
-description     : Prebid Sharethrough Adaptor
-gdpr_supported  : true
-hide            : true
-layout          : bidder
-media_types     : native
+layout: bidder
+title: Sharethrough
+biddercode: sharethrough
+description: Prebid Sharethrough Adaptor
+gdpr_supported: true
+coppa_supported: true
+media_types: native
 schain_supported: true
-tcf2_supported  : true
-title           : Sharethrough
-userIds         : pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
-usp_supported   : true
-pbjs            : true
-pbs             : true
+userIds: pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
+usp_supported: true
+pbjs: true
+pbs: true
 ---
 
 ### Note:
