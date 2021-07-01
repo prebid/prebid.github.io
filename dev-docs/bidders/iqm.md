@@ -8,6 +8,7 @@ biddercode: iqm
 
 # Parameters
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description               | Example              |
 | :------------ | :------- | :------------------------ | :------------------- |
 | `publisherId` | required | The Publisher ID from iQM | "df5fd732-c5f3-11e7-abc4-cec278b6b50a" |
