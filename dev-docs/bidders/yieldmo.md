@@ -19,10 +19,11 @@ pbs: true
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description          | Example                | Type     |
-|---------------|----------|----------------------|------------------------|----------|
-| `placementId` | required | Yieldmo placement id | `'825209316101005155'` | `string` |
-| `bidFloor`    | optional |      Bid Floor       |         `0.1`          |  `float` |
+| Name          | Scope    | Description            | Example                | Type     |
+|---------------|----------|------------------------|------------------------|----------|
+| `placementId` | required |  Yieldmo placement id  | `'825209316101005155'` | `string` |
+| `bidFloor`    | optional |       Bid Floor        |         `0.1`          | `float`  |
+| `lr_env`      | optional | Live Ramp ATS envelope |  `e3b0c44298fc1c149a`  | `string` |
 
 ### video parameters
 The Yieldmo adapter supports in-stream video as of Prebid v4.18. Out-stream will be supported as of Prebid v4.35.0. 
