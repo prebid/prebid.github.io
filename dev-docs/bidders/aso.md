@@ -14,7 +14,7 @@ getFloor: true
 ---
 ### Note:
 
-For more information about [Adserver.Online](https://adserver.online).
+For more information about [Adserver.Online](https://adserver.online), please contact support@adsrv.org.
 
 ### Bid Params
 
