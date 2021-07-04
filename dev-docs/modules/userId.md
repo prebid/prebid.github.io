@@ -539,7 +539,7 @@ In this system, no end-user identifier is supplied to the bid-stream, only cohor
 First, make sure to add the DAP submodule to your Prebid.js package with:
 
 ```
-gulp build --modules=akamaiDAPId,userId
+gulp build --modules=akamaiDAPIdSystem,userId
 ```
 
 The following configuration parameters are available:
@@ -553,13 +553,18 @@ pbjs.setConfig({
         apiHostname: '<see your Akamai account rep>',
         domain: 'your-domain.com',
         type: 'email' | 'mobile' | ... | 'dap-signature:1.0.0',
-        identity: ‘your@email.com’ | ‘6175551234' | ...
+        identity: ‘your@email.com’ | ‘6175551234' | ...,
+        apiVersion: 'v1' | 'x1',
+        attributes: '{ "cohorts": [ "3:14400", "5:14400", "7:0" ],"first_name": "...","last_name": "..." }'
       },
     }],
     auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
 });
 ```
+In order to make use of v1 APIs, "apiVersion" needs to explicitly mentioned as 'v1'. The "apiVersion" defaults to x1 if not specified.
+"attributes" can be configured in x1 API only and not v1 APIs. Please ensure that the "attributes" value is in same format as shown above.
+
 Contact Prebid@akamai.com(Akamai account rep) for apiHostname.
 
 
