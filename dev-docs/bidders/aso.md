@@ -10,6 +10,7 @@ safeframes_ok: true
 bidder_supports_deals: false
 pbjs: true
 pbs: false
+getFloor: true
 ---
 ### Note:
 
