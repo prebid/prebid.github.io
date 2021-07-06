@@ -9,7 +9,7 @@ biddercode: gumgum
 media_types: banner, video
 schain_supported: true
 getFloor: true
-userIds: unifiedId
+userIds: unifiedId, identityLink
 gdpr_supported: true
 usp_supported: true
 ---

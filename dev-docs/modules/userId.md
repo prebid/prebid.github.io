@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -569,6 +569,43 @@ This will add a `userId.amxId` property to all bidRequests. This will be read by
 }
 ```
 
+### AkamaiDAPId
+
+The Akamai Data Activation Platform (DAP) is a privacy-first system that protects end-user privacy by only allowing them to be targeted as part of a larger cohort.  DAP views hiding individuals in large cohorts as the best mechanism to prevent unauthorized tracking.
+
+The integration of DAP into Prebid.JS consists of creating a UserID plugin that interacts with the DAP API.  The UserID module tokenizes the end-user identity into an ephemeral, secure pseudonymization called a dapId.  The dapId is then supplied to the bid-stream where the SSP partner looks up cohort membership for that token, and supplies the cohorts to the rest of the bid-stream.
+
+In this system, no end-user identifier is supplied to the bid-stream, only cohorts.  This is a foundational privacy principal DAP is built upon.
+
+#### AkamaiDAPId Configuration
+
+First, make sure to add the DAP submodule to your Prebid.js package with:
+
+```
+gulp build --modules=akamaiDAPId,userId
+```
+
+The following configuration parameters are available:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'akamaiDAPId',
+      params: {
+        apiHostname: '<see your Akamai account rep>',
+        domain: 'your-domain.com',
+        type: 'email' | 'mobile' | ... | 'dap-signature:1.0.0',
+        identity: ‘your@email.com’ | ‘6175551234' | ...
+      },
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+```
+Contact Prebid@akamai.com(Akamai account rep) for apiHostname.
+
+
 ### Halo ID from Audigent
 
 Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HaloId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](mailto:prebid@audigent.com).
@@ -706,34 +743,34 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### IdentityLink
+### RampID
 
-IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
+RampID, formerly known as IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
 
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=identityLinkIdSystem
 
-#### IdentityLink Registration
+#### RampID Registration
 
-Please reach out to [prebid@liveramp.com](mailto:prebid@liveramp.com) and request your `placementId`.
+Please sign up through our [Console](https://launch.liveramp.com) platform and request a `placementId`.
 
-The IdentityLink privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
+The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
 
-#### IdentityLink Configuration
+#### RampID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"identityLink"` | `"identityLink"` |
-| params | Required for Id Link | Object | Details for identityLink initialization. | |
-| params.pid | This parameter is required for IdentityLink | String | This is the placementId, value needed for obtaining user’s IdentityLink envelope
-| params.notUse3P | This parameter is not required for IdentityLink | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get IdentityLink envelope
+| params | Required for Id Link | Object | Details for RampID initialization. | |
+| params.pid | This parameter is required for RampID | String | This is the placementId, value needed for obtaining user’s RampID envelope
+| params.notUse3P | This parameter is not required for RampID | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get RampID envelope
 
-#### IdentityLink Examples
+#### RampID Examples
 
-1) Publisher passes a placement ID and elects to store the IdentityLink envelope in a cookie.
+1) Publisher passes a placement ID and elects to store the RampID envelope in a cookie.
 
 
 {% highlight javascript %}
@@ -742,7 +779,7 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',             // Set your real identityLink placement ID here
+                pid: '999',             // Set your real RampID placement ID here
                 // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
@@ -756,7 +793,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-2) Publisher passes a placement ID and elects to store the IdentityLink envelope in HTML5 localStorage.
+2) Publisher passes a placement ID and elects to store the RampID envelope in HTML5 localStorage.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -764,7 +801,7 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',          // Set your real identityLink placement ID here
+                pid: '999',          // Set your real RampID placement ID here
                 // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
@@ -1777,6 +1814,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | --- | --- | --- | --- | --- | --- | --- |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
+| Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
