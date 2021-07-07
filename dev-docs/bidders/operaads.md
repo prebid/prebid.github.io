@@ -12,7 +12,7 @@ dchain_supported: false
 media_types: banner, video, native
 safeframes_ok: false
 bidder_supports_deals: false
-pbjs: false
+pbjs: true
 pbs: true
 prebid_member: false
 ---
@@ -28,4 +28,4 @@ If you have any questions regarding set up, please reach out to your account man
 |-------------|----------|------------------------|------------------|----------|
 | `placementId`| required | Placement Id          | `s12345678`      | `string` |
 | `endpointId`| required | Endpoint ID            | `ep1234566`      | `string` |
-| `publisherId`| required | Publisher ID          | `pub123456`      | `string` |ss
+| `publisherId`| required | Publisher ID          | `pub123456`      | `string` |
