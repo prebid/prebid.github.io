@@ -12,7 +12,8 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 gvl_id: 617
-prebid_member: true,
+prebid_member: true
+pbs: true
 ---
 
 ### Note
