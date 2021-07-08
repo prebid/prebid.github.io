@@ -5,7 +5,7 @@ display_name: Browsi Viewability
 description: Browsi Real Time Viewability
 page_type: module
 module_type: rtd
-module_code : browsi
+module_code : browsiRtdProvider
 enable_download : true
 sidebarType : 1
 ---
@@ -58,8 +58,6 @@ Syntax details:
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | name  | String | Real time data module name | Always 'browsi' |
-| auctionDelay  | Number | Max time in ms to delay the auction | Optional. Default to 0 |
-| timeout  | Number | timeout in ms (only if auctionDealy is 0) | Optional. Default to 1000 |
 | params  | Object   | |   |
 | params.siteKey  |String   |Site key|   |
 | params.pubKey  |String   |Publisher key|   |

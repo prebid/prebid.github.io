@@ -17,7 +17,7 @@ This endpoint returns a list of Bidders supported by Prebid Server.
 These are the core values allowed to be used as `request.imp[i].ext.{bidder}`
 keys in [Auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) requests.
 
-For detailed info about a specific Bidder, use [`/info/bidders/{bidderName}`](./bidders/bidderName.html)
+For detailed info about a specific Bidder, use [`/info/bidders/{bidderName}`](#get-infobiddersbiddername).
 
 ### Sample Response
 {:.no_toc}
@@ -37,7 +37,7 @@ This endpoint returns JSON like:
 ## GET /info/bidders/{bidderName}
 
 This endpoint returns some metadata about the Bidder whose name is `{bidderName}`.
-Legal values for `{bidderName}` can be retrieved from the [/info/bidders](../bidders.html) endpoint.
+Legal values for `{bidderName}` can be retrieved from the [`/info/bidders`](#get-infobidders) endpoint.
 
 ### Sample Response
 {:.no_toc}

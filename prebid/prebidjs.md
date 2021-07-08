@@ -58,6 +58,14 @@ in the Core that not every publisher needs. Example modules:
 + Server-to-server testing (the [s2sTest]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) module)
 + ... others
 
+## Cookies and Local Storage
+
+On behalf of publishers or third-parties, Prebid.js may set cookies or local storage in your browser. These are the first party cookies it can set on behalf of publishers, meaning that consent is not checked:
+- prebid.cookieTest - used to verify whether other cookies should be set.
+- _pbjs_userid_consent_data - used to make consent data conveniently available through various modules.
+
+All other cookies and local storage (including those set by Prebid.org-owned modules like [SharedId](/dev-docs/modules/userId.html#shared-id-user-id-submodule)) are subject to privacy regulations such as GDPR.
+
 ## Further Reading
 
 + [Getting Started With Prebid.js](/overview/getting-started.html)

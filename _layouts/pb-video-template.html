@@ -2,41 +2,46 @@
 
 {% include nav.html %}
 
-<div class="container bs-docs-container">
-	
-	<div class="row ">
-		
-		<div class="wrapper">
-		
-			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
-				
-				{% include left_nav.html %}							
-				
-			</div>	
-		
-		
-			<div class="col-sm-9 pb-content" markdown="1">
-				
-				<div id="myElement1"></div>
-				
-				<script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
+<div class="container pb-docs-container">
+
+  <div class="row ">
+
+    <div class="col-lg-3 sidebar" id="sidebar">
+
+      <div>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse d-lg-block" id="sidebarContent">
+          {% include left_nav.html %}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-9">
+      <div class="pb-content" markdown="1">
+
+        <div id="myElement1"></div>
+
+				<script src="https://cdn.jwplayer.com/libraries/dNV4UKpE.js"></script>
 				<script type="text/javascript">
 					alert("ok");
 					$.getScript("/assets/js/video/" + "{{ page.videoMFile }}" + ".js", function( data, status, jqxhr) {
-			  		if (status == "success") { 
+			  		if (status == "success") {
 				  		loadVideoData();
-				  	} else { 
+				  	} else {
 					  	alert("There was an error loading the video.");
 					}
 			  	});
 				</script>
-				
-				
-				
-			</div>
-			
-		</div>
-	</div>
+
+      </div>
+    </div>
+  </div>
 </div>
 
 {% include footer.html %}
+
+</body>
+</html>
