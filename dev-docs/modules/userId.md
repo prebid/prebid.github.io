@@ -562,7 +562,7 @@ pbjs.setConfig({
   }
 });
 ```
-In order to make use of v1 APIs, "apiVersion" needs to explicitly mentioned as 'v1'. The "apiVersion" defaults to x1 if not specified.
+In order to make use of v1 APIs, "apiVersion" needs to explicitly mention 'v1'. The "apiVersion" defaults to x1 if not specified.
 "attributes" can be configured in x1 API only and not v1 APIs. Please ensure that the "attributes" value is in same format as shown above.
 
 Contact Prebid@akamai.com(Akamai account rep) for apiHostname.
