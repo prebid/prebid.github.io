@@ -19,7 +19,7 @@ prebid_member: false
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to your account manager or yuanlinz@opera.com.
+If you have any questions regarding set up, please reach out to your account manager or adtech-prebid-group@opera.com.
 
 ### Bid Parameters
 
