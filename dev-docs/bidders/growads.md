@@ -7,9 +7,9 @@ biddercode: growads
 media_types: banner
 ---
 
-
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description  |  Example  | Type     |
 |----------|----------|-----------|--------------------|----------|
 | `zoneId` | required | ZoneId ID | `'unique-zone-id'` | `string` |
