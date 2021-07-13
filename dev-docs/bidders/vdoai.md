@@ -3,7 +3,8 @@ layout: bidder
 title: VDO.AI
 description: Prebid vdo.ai Bidder Adaptor
 pbjs: true
-biddercode: vdo.ai
+biddercode: vdoai
+media_types: banner, video
 ---
 
 

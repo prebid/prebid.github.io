@@ -3,9 +3,9 @@ layout: page_v2
 page_type: module
 title: Module - GPT Pre-Auction
 description: Adds PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters
-module_code : gptAPreAuction
+module_code : gptPreAuction
 display_name : GPT Pre-Auction
-enable_download : false
+enable_download : true
 sidebarType : 1
 ---
 
@@ -17,33 +17,66 @@ sidebarType : 1
 
 ## Overview
 
-When enabled, this module will add PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters.
+This module enables targeting and tracking at the ad server adunit level.
 
-* **Prebid Server Adapter** - pass `fpd.context.adserver.name` in the OpenRTB as `imp[].ext.context.data.adserver.name`, and pass `fpd.context.adserver.adSlot` in the OpenRTB as `imp[].ext.context.data.adserver.adslot`
+Enabled by default if compiled into your package, this module will add the [Prebid Ad Slot](/features/pbAdSlot.html) and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters.
 
-## How It Works
+* **Prebid.js Adapters** - will be able to utilize these values as:
+    * AdUnit.ortb2imp.ext.data.adserver.name="gam"
+    * AdUnit.ortb2imp.ext.data.adserver.adslot="/1111/home"
+    * AdUnit.ortb2imp.ext.data.pbadslot="/1111/home-left"
+* **Prebid Server Adapters** - will see the OpenRTB as:
+    * imp[].ext.data.adserver.name
+    * imp[].ext.data.adserver.adslot
+    * imp[].ext.data.pbadslot
 
-Accepts optional initialization parameters:
+## Configuration
 
-- ability to turn off module (on by default)
+{: .alert.alert-info :}
+Unlike many other modules, the GPT Pre-Auction Module is on by default if it's compiled
+into the Prebid.js package.
+
+Optional initialization parameters:
+
+- enabled (on by default)
 - customGptSlotMatching function
 - customPbAdSlot function
 
-If the module is on, use the BEFORE_REQUEST_BIDS hook to define a function that:
+```
+pbjs.setConfig({
+    gptPreAuction: {
+	enabled: true, // enabled by default
+	customPbAdSlot: function(adUnitCode, adServerAdSlot) {
+		...
+		return "customPbAdSlot";
+	},
+	customGptSlotMatching: function(gptSlotObj) {
+		...
+		return true; // or false
+	}
+    }
+});
+```
+
+## How It Works
+
+When this module is on, it uses the BEFORE_REQUEST_BIDS event to insert functionality that:
 
 - loops through each adunit in the auction
 - maps the adunit to the GPT slot using the same algorithm as setTargetingForGPTAsync including customGptSlotMatching
 
-If GPT slot matching succeeded:
+If GPT slot matching succeeds:
 
-- set fpd.context.adserver.name to 'gam'
-- copy the resulting GPT slot name to fpd.context.adserver.adSlot
+- it sets the Adunit ortb2imp.ext.data.adserver.name to 'gam'
+- it copies the resulting GPT slot name to ortb2imp.ext.data.adserver.adslot
 
-If customPbAdSlot function was specified, invoke it, writing the results to fpd.context.pbAdSlot. If not, use a default algorithm to determine fpd.context.pbAdSlot:
+The customPbAdSlot function is called if it was specified, writing the results to ortb2imp.ext.data.pbadslot.
+If there's no customPbAdSlot, a default algorithm is used to determine ortb2imp.ext.data.pbadslot:
 
-- first use the AdUnit's context.pbAdSlot if defined
+- first use the AdUnit's ortb2imp.ext.data.pbadslot if defined
 - else, see if the AdUnit.code corresponds to a div and if so, try to retrieve a data element from the div called data-adslotid.
 - else if the GPT slot matching succeeded, use the GPT slot name
 - else, just use the AdUnit.code, assuming that that's the ad unit slot
 
-customGptSlotMatchingFunction should be function(adUnitCode). For targeting, each slot is being matched to an ad unit. Since the input from the hook is the list of ad units, this module will work the other way: loop over the ad units and try to match each to a slot. The function should return a filter function for slot.
+# Further Reading
+- [Prebid Ad Slot](/features/pbAdSlot.html)

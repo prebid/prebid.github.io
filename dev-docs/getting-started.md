@@ -19,7 +19,8 @@ The easiest way to get started with Prebid.js is to use the example code below.
 
 {% include dev-docs/build-from-source-warning.md %}
 
-<div id="jsfiddle">
+<!-- JSFiddle -->
+<div id="jsfiddle" class="col-md-12">
 <h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
 <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
 </div>

@@ -15,6 +15,12 @@ sidebarType: 3
 # Setting up Prebid Native in Google Ad Manager (Alpha)
 {: .no_toc}
 
+{% capture version1 %}
+The procedures in this document still work, but we strongly recommend
+using the improved [Guide for Setting up Prebid Native in GAM](/adops/gam-native.html).
+{% endcapture %}
+{% include alerts/alert_warning.html content=version1 %}
+
 This page describes how to set up native creatives in Google Ad Manager for use with Prebid.js.
 
 For more information about Google Ad Manager native ad setup, see the [Google Ad Manager native ads documentation](https://support.google.com/admanager/answer/6366845).

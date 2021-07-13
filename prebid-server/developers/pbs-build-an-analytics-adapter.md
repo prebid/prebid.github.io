@@ -12,7 +12,11 @@ There aren't any open sourced analytics adapters for Prebid Server,
 but there is an internal interface that host companies can use to
 integrate their own modules.
 
-Here's an outline of how it's done for both versions of the server.
+Below is an outline of how it's done for both versions of the server.
+
+{: .alert.alert-warning :}
+Analytics adapters are subject to a number of specific technical rules. Please become familiar
+with the [module rules](/dev-docs/module-rules.html) that apply globally and to analytics adapters in particular.
 
 * TOC
 {:toc }
@@ -30,7 +34,9 @@ Your new module belongs in the analytics/{moduleName} package. It should impleme
 3. Connect your Config to the Implementation
 The `NewPBSAnalytics()` function inside analytics/config/config.go instantiates Analytics modules using the app config. You'll need to update this to recognize your new module.
 
-Example
+### Example
+{:.no_toc}
+
 A simple [filesystem](https://github.com/prebid/prebid-server/tree/master/analytics/filesystem) analytics module is provided as an example. This module will log dummy messages to a file.
 
 It can be configured with:
@@ -45,7 +51,7 @@ Prebid Server will then write sample log messages to the file you provided.
 ## Adding an Analytics Adapter in PBS-Java
 
 1. Define config params
-Analytics modules are enabled through the [Configuration](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/config.md).
+Analytics modules are enabled through the [Configuration](https://github.com/prebid/prebid-server-java/blob/master/docs/config.md).
 
 2. Implement your module
 Your new module org.prebid.server.analytics.{module}AnalyticsReporter needs to implement the org.prebid.server.analytics.AnalyticsReporter interface.
@@ -53,8 +59,10 @@ Your new module org.prebid.server.analytics.{module}AnalyticsReporter needs to i
 3. Add your implementation to Spring Context
 In order to make Prebid Server aware of the new analytics module it needs to be added to the Spring Context in org.prebid.server.spring.config.AnalyticsConfiguration as a bean.
 
-Example
-The [log module](https://github.com/rubicon-project/prebid-server-java/blob/master/src/main/java/org/prebid/server/analytics/LogAnalyticsReporter.java) is provided as an example. This module will write dummy messages to a log.
+### Example
+{:.no_toc}
+
+The [log module](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/analytics/LogAnalyticsReporter.java) is provided as an example. This module will write dummy messages to a log.
 
 It can be configured with:
 

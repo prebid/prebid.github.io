@@ -22,3 +22,5 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 | `accountId`    | required | Your publication ID at Blue Billywig  | `642` | `integer` |
 | `rendererCode`    | required | The name of the renderer to use in your Blue Billywig publication  | `"renderer"` | `string` |
 | `connections`     | required | Back-ends to connect with. For every value in this a param matching the back-end should exist too. | `["bluebillywig"]` | `array` |
+| `video`     | optional | Any OpenRTB 2.5 video params to additionally send along to the SSPs. | `{"maxduration": 30}` | `object` |
+| `rendererSettings`     | optional | Any playout property for the renderer you wish to override. | `{"autoPlay": "false", "interactivity_inView":"Play"}` | `object` |

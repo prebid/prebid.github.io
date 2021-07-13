@@ -34,8 +34,8 @@ PBS-Java look over the [feature list](/prebid-server/features/pbs-feature-idx.ht
 The repositories are currently in the Rubicon-Project GitHub organization, but
 will soon move to the Prebid org.
 
-- [Prebid Server - Go](https://github.com/rubicon-project/prebid-server-java)
-- [Prebid Cache Server - Go](https://github.com/prebid/prebid-cache-java)
+- [Prebid Server - Java](https://github.com/prebid/prebid-server-java)
+- [Prebid Cache Server - Java](https://github.com/prebid/prebid-cache-java)
 
 ## Installation
 
