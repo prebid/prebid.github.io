@@ -12,6 +12,7 @@ biddercode: iqm
 | Name          | Scope    | Description               | Example              |
 | :------------ | :------- | :------------------------ | :------------------- |
 | `publisherId` | required | The Publisher ID from iQM | "df5fd732-c5f3-11e7-abc4-cec278b6b50a" |
+| `geo.country` | required | The publisher country| "USA" |
 | `placementId` | required | The Placement ID from iQM | 23451                |
 | `bidfloor`    | optional | Bid Floor                 | 0.50                 |
 
