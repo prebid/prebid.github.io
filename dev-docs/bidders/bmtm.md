@@ -8,6 +8,7 @@ getFloor: true
 schain_supported: true
 pbjs: true
 pbs: true
+userIds: id5Id, sharedId
 ---
 
 ### Bid Params
