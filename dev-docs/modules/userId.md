@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
