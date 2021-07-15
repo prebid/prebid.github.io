@@ -29,17 +29,52 @@ OpenWeb header bidding adapter provides solution for accessing both Video and Di
 
 ### Test Parameters
 ```
-   var adUnits = [
-         // Banner adUnit
-         {
-           code: 'div-test-div',
-           sizes: [[300, 250]],
-           bids: [{
-             bidder: 'openweb',
-             params: {
-               aid: 529814
-             }
-           }]
+var adUnits = [
+    // Video instream adUnit
+    {
+        code: 'test-div',
+        mediaTypes: {
+          video: {
+            context: 'instream',
+            playerSize: [640, 480]
+          }
+        },
+        bids: [{
+          bidder: 'adtelligent',
+          params: {
+            aid: 650344
+          }
+        }]
+    },
+    // Banner adUnit
+    {
+        mediaTypes: {
+          banner: {
+            sizes: [[300, 250]]
+          }
+        },
+        code: 'div-test-div',
+        bids: [{
+         bidder: 'openweb',
+         params: {
+           aid: 650342
          }
-       ];
+        }]
+    },
+    // Prebid server 
+    {
+        mediaTypes: {
+          banner: {
+            sizes: [[300, 250]]
+          }
+        },
+        code: 'div-test-div',
+        bids: [{
+         bidder: 'openweb',
+         params: {
+           aid: 650346
+         }
+        }]
+    }
+];
 ```
