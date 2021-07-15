@@ -3,6 +3,7 @@ layout: bidder
 title: Duration Media
 description: Prebid Duration Media Bidder Adapter
 biddercode: duration
+aliasCode : nobid
 pbjs: true
 pbs: true
 media_types: banner, video
