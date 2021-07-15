@@ -7,7 +7,8 @@ gdpr_supported: true
 usp_supported: false
 gvl_id: 333
 coppa_supported: true
-media_types: banner, video
+schain_supported: true
+media_types: banner, video, native
 pbs: true
 pbs_app_supported: true
 ---
