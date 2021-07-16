@@ -11,7 +11,7 @@ usp_supported: true
 ---
 
 ### Note:
-[Vidoomy](https://vidoomy.com/), if you want more info please contact support@vidoomy.com
+[Vidoomy](https://vidoomy.com/), for more info please contact support@vidoomy.com
 
 ### Bid Params
 
