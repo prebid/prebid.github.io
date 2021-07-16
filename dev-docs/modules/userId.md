@@ -1385,27 +1385,27 @@ Or, the eids values can be passed directly into the `setConfig` call:
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "example.com",
+            name: "pubProvidedId",
             params: {
                 eids: [{
                     source: "domain.com",
-                    uids:[{
-                      id: "value read from cookie or local storage",
-                      atype: 1,
-                      ext: {
-                          stype: "ppuid"
-                      }
+                    uids: [{
+                        id: "value read from cookie or local storage",
+                        atype: 1,
+                        ext: {
+                            stype: "ppuid"
+                        }
 
-                  }]
-                },{
+                    }]
+                }, {
                     source: "3rdpartyprovided.com",
-                    uids:[{
-                      id: "value read from cookie or local storage",
-                      atype: 3,
-                      ext: {
-                          stype: "dmp"
-                      }
-                  }]
+                    uids: [{
+                        id: "value read from cookie or local storage",
+                        atype: 3,
+                        ext: {
+                            stype: "dmp"
+                        }
+                    }]
                 }]
             }
         }]
