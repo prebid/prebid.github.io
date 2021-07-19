@@ -1,0 +1,17 @@
+---
+layout: example
+title: Tracking Clicks with GAM
+description: Send event to Google Ad Manager when ad is clicked on page
+sidebarType: 1
+
+
+about:
+- Listen for click event and send eevent to Google Ad Manager
+
+
+
+jsfiddle_link: 
+
+code_height: 
+
+---
