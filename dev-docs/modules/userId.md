@@ -139,6 +139,48 @@ The Rubicon bid adapter would then receive
 
 ## User ID Sub-Modules
 
+### AkamaiDAPId
+
+The Akamai Data Activation Platform (DAP) is a privacy-first system that protects end-user privacy by only allowing them to be targeted as part of a larger cohort.  DAP views hiding individuals in large cohorts as the best mechanism to prevent unauthorized tracking.
+
+The integration of DAP into Prebid.JS consists of creating a UserID plugin that interacts with the DAP API.  The UserID module tokenizes the end-user identity into an ephemeral, secure pseudonymization called a dapId.  The dapId is then supplied to the bid-stream where the SSP partner looks up cohort membership for that token, and supplies the cohorts to the rest of the bid-stream.
+
+In this system, no end-user identifier is supplied to the bid-stream, only cohorts.  This is a foundational privacy principal DAP is built upon.
+
+#### AkamaiDAPId Configuration
+
+First, make sure to add the DAP submodule to your Prebid.js package with:
+
+```
+gulp build --modules=akamaiDAPIdSystem,userId
+```
+
+The following configuration parameters are available:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'akamaiDAPId',
+      params: {
+        apiHostname: '<see your Akamai account rep>',
+        domain: 'your-domain.com',
+        type: 'email' | 'mobile' | ... | 'dap-signature:1.0.0',
+        identity: ‘your@email.com’ | ‘6175551234' | ...,
+        apiVersion: 'v1' | 'x1',
+        attributes: '{ "cohorts": [ "3:14400", "5:14400", "7:0" ],"first_name": "...","last_name": "..." }'
+      },
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+```
+In order to make use of v1 APIs, "apiVersion" needs to explicitly mention 'v1'. The "apiVersion" defaults to x1 if not specified.
+"attributes" can be configured in x1 API only and not v1 APIs. Please ensure that the "attributes" value is in same format as shown above.
+
+Contact Prebid@akamai.com(Akamai account rep) for apiHostname.
+
+
 ### AdmixerID
 
 Admixer ID, provided by [Admixer] (https://admixer.com/), is a universal ID solution that doesn't rely on 3rd party cookies and helps publishers and advertisers to recognize users across various browsers and environments.  Our sub adapter takes deterministic signals like email and phone as input and returns an anonymous id that unlocks access to a wide range of Admixer's demand sources, amplifying audience segmentation, targeting and measurement.
@@ -185,6 +227,43 @@ gulp build --modules=admixerIdSystem
        }
    });
 {% endhighlight %}
+
+### AMX RTB ID
+
+The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](prebid@amxrtb.com)
+
+#### AMX RTB ID Configuration
+
+First, add the AMX RTB ID module to your Prebid.js build:
+
+```shell
+gulp build --modules=userId,amxIdSystem
+```
+
+Then configure the amxId in your `userSync` configuration:
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'amxId',
+            storage: {
+                name: 'amxId',
+                type: 'html5',
+                expires: 14,
+            }
+        }]
+    }
+});
+```
+
+This will add a `userId.amxId` property to all bidRequests. This will be read by the AMX RTB bid adapter, and any other adapters that support EIDs:
+
+```javascript
+{
+  amxId: '3ca11058-ecbc-419f-bda7-b52fe7baf02a'
+}
+```
 
 ### BritePool
 
@@ -489,85 +568,6 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### AMX RTB ID
-
-The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](prebid@amxrtb.com)
-
-#### AMX RTB ID Configuration
-
-First, add the AMX RTB ID module to your Prebid.js build:
-
-```shell
-gulp build --modules=userId,amxIdSystem
-```
-
-Then configure the amxId in your `userSync` configuration:
-
-```javascript
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'amxId',
-            storage: {
-                name: 'amxId',
-                type: 'html5',
-                expires: 14,
-            }
-        }]
-    }
-});
-```
-
-This will add a `userId.amxId` property to all bidRequests. This will be read by the AMX RTB bid adapter, and any other adapters that support EIDs:
-
-```javascript
-{
-  amxId: '3ca11058-ecbc-419f-bda7-b52fe7baf02a'
-}
-```
-
-### AkamaiDAPId
-
-The Akamai Data Activation Platform (DAP) is a privacy-first system that protects end-user privacy by only allowing them to be targeted as part of a larger cohort.  DAP views hiding individuals in large cohorts as the best mechanism to prevent unauthorized tracking.
-
-The integration of DAP into Prebid.JS consists of creating a UserID plugin that interacts with the DAP API.  The UserID module tokenizes the end-user identity into an ephemeral, secure pseudonymization called a dapId.  The dapId is then supplied to the bid-stream where the SSP partner looks up cohort membership for that token, and supplies the cohorts to the rest of the bid-stream.
-
-In this system, no end-user identifier is supplied to the bid-stream, only cohorts.  This is a foundational privacy principal DAP is built upon.
-
-#### AkamaiDAPId Configuration
-
-First, make sure to add the DAP submodule to your Prebid.js package with:
-
-```
-gulp build --modules=akamaiDAPIdSystem,userId
-```
-
-The following configuration parameters are available:
-
-```javascript
-pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: 'akamaiDAPId',
-      params: {
-        apiHostname: '<see your Akamai account rep>',
-        domain: 'your-domain.com',
-        type: 'email' | 'mobile' | ... | 'dap-signature:1.0.0',
-        identity: ‘your@email.com’ | ‘6175551234' | ...,
-        apiVersion: 'v1' | 'x1',
-        attributes: '{ "cohorts": [ "3:14400", "5:14400", "7:0" ],"first_name": "...","last_name": "..." }'
-      },
-    }],
-    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
-  }
-});
-```
-In order to make use of v1 APIs, "apiVersion" needs to explicitly mention 'v1'. The "apiVersion" defaults to x1 if not specified.
-"attributes" can be configured in x1 API only and not v1 APIs. Please ensure that the "attributes" value is in same format as shown above.
-
-Contact Prebid@akamai.com(Akamai account rep) for apiHostname.
-
-
 ### Halo ID from Audigent
 
 Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HaloId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](mailto:prebid@audigent.com).
@@ -702,78 +702,6 @@ pbjs.setConfig({
     }],
     auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
-});
-{% endhighlight %}
-
-### RampID
-
-RampID, formerly known as IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
-
-Add it to your Prebid.js package with:
-
-{: .alert.alert-info :}
-gulp build --modules=identityLinkIdSystem
-
-#### RampID Registration
-
-Please sign up through our [Console](https://launch.liveramp.com) platform and request a `placementId`.
-
-The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
-
-#### RampID Configuration
-
-{: .table .table-bordered .table-striped }
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | `"identityLink"` | `"identityLink"` |
-| params | Required for Id Link | Object | Details for RampID initialization. | |
-| params.pid | This parameter is required for RampID | String | This is the placementId, value needed for obtaining user’s RampID envelope
-| params.notUse3P | This parameter is not required for RampID | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get RampID envelope
-
-#### RampID Examples
-
-1) Publisher passes a placement ID and elects to store the RampID envelope in a cookie.
-
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "identityLink",
-            params: {
-                pid: '999',             // Set your real RampID placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
-            },
-            storage: {
-                type: "cookie",
-                name: "idl_env",       // create a cookie with this name
-                expires: 30            // cookie can last for 30 days
-            }
-        }],
-        syncDelay: 3000              // 3 seconds after the first auction
-    }
-});
-{% endhighlight %}
-
-2) Publisher passes a placement ID and elects to store the RampID envelope in HTML5 localStorage.
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "identityLink",
-            params: {
-                pid: '999',          // Set your real RampID placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
-            },
-            storage: {
-                type: "html5",
-                name: "idl_env",    // set localstorage with this name
-                expires: 30
-            }
-        }],
-        syncDelay: 3000
-    }
 });
 {% endhighlight %}
 
@@ -1098,6 +1026,49 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### MediaWallah OpenLinkID
+
+MediaWallah's openLink is an anonymous person based ID that enables buyers and sellers of media to connect a person and their devices across the web and mobile apps. openLink facilities the buying of media between DSPs, SSPs and publishers.
+
+Add support for MediaWallah OpenLinkID to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,mwOpenLinkIdSystem
+
+#### MediaWallah OpenLinkID Registration
+
+MediaWallah requires the creation of an accountId a partnerId in order to take advantage of openLink. Please contact your partner resource to get these Ids provisioned.
+
+#### MediaWallah OpenLinkID Configuration
+
+<div class="table-responsive" markdown="1">
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'mwOpenLinkId'` |
+| params | Required | Object | Details for mwOLID syncing. ||
+| params.accountId | Required | String | The MediaWallah assigned Account Id  | `1000` |
+| params.partnerId | Required | String | The MediaWallah assign partner Id |`'1001'`|
+| params.uid | Optional | String | Your unique Id for the user or browser. Used for matching. | `'u-123xyz'` |
+{: .table .table-bordered .table-striped }
+</div>
+
+#### MediaWallah OpenLinkID Examples
+
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'mwOpenLinkId',
+            params: {
+                accountId: '1000',
+                partnerId: '1001',
+                uid: 'u-123xyz'
+            }
+        }]
+    }
+})
+```
+
 ### Merkle ID
 
 [Merkury by Merkle](https://merkury.merkleinc.com/contact) enables marketers, media owners, and publishers to own, build, and control a cookie-less Private Identity Graph. Merkury uses an organization’s first-party CRM data and valuable interactions such as logins, outbound email campaigns and media reach to create and grow a universe of person-based IDs for cross-channel targeting, personalization, measurement and more.
@@ -1285,6 +1256,78 @@ pbjs.setConfig({
             }
         }],
         syncDelay: 1000
+    }
+});
+{% endhighlight %}
+
+### RampID
+
+RampID, formerly known as IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=identityLinkIdSystem
+
+#### RampID Registration
+
+Please sign up through our [Console](https://launch.liveramp.com) platform and request a `placementId`.
+
+The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
+
+#### RampID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"identityLink"` | `"identityLink"` |
+| params | Required for Id Link | Object | Details for RampID initialization. | |
+| params.pid | This parameter is required for RampID | String | This is the placementId, value needed for obtaining user’s RampID envelope
+| params.notUse3P | This parameter is not required for RampID | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get RampID envelope
+
+#### RampID Examples
+
+1) Publisher passes a placement ID and elects to store the RampID envelope in a cookie.
+
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "identityLink",
+            params: {
+                pid: '999',             // Set your real RampID placement ID here
+                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+            },
+            storage: {
+                type: "cookie",
+                name: "idl_env",       // create a cookie with this name
+                expires: 30            // cookie can last for 30 days
+            }
+        }],
+        syncDelay: 3000              // 3 seconds after the first auction
+    }
+});
+{% endhighlight %}
+
+2) Publisher passes a placement ID and elects to store the RampID envelope in HTML5 localStorage.
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "identityLink",
+            params: {
+                pid: '999',          // Set your real RampID placement ID here
+                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+            },
+            storage: {
+                type: "html5",
+                name: "idl_env",    // set localstorage with this name
+                expires: 30
+            }
+        }],
+        syncDelay: 3000
     }
 });
 {% endhighlight %}
@@ -1709,49 +1752,6 @@ pbjs.setConfig({
 })
 ```
 
-### MediaWallah OpenLinkID
-
-MediaWallah's openLink is an anonymous person based ID that enables buyers and sellers of media to connect a person and their devices across the web and mobile apps. openLink facilities the buying of media between DSPs, SSPs and publishers.
-
-Add support for MediaWallah OpenLinkID to your Prebid.js package with:
-
-{: .alert.alert-info :}
-gulp build --modules=userId,mwOpenLinkIdSystem
-
-#### MediaWallah OpenLinkID Registration
-
-MediaWallah requires the creation of an accountId a partnerId in order to take advantage of openLink. Please contact your partner resource to get these Ids provisioned.
-
-#### MediaWallah OpenLinkID Configuration
-
-<div class="table-responsive" markdown="1">
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module. | `'mwOpenLinkId'` |
-| params | Required | Object | Details for mwOLID syncing. ||
-| params.accountId | Required | String | The MediaWallah assigned Account Id  | `1000` |
-| params.partnerId | Required | String | The MediaWallah assign partner Id |`'1001'`|
-| params.uid | Optional | String | Your unique Id for the user or browser. Used for matching. | `'u-123xyz'` |
-{: .table .table-bordered .table-striped }
-</div>
-
-#### MediaWallah OpenLinkID Examples
-
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'mwOpenLinkId',
-            params: {
-                accountId: '1000',
-                partnerId: '1001',
-                uid: 'u-123xyz'
-            }
-        }]
-    }
-})
-```
-
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -1871,7 +1871,7 @@ If you're an ID provider that wants to get on this page:
 - Add your *IdSystem name into the modules/.submodules.json file
 - Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
 - Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify the /dev-docs/modules/userId.md, and submit a documentation Pull Request as well.
+- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify /dev-docs/modules/userId.md, /download.md, and submit a documentation Pull Request.
 
 <a name="getUserIds"></a>
 
