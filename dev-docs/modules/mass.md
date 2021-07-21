@@ -167,7 +167,7 @@ The instructions below assume that you have followed the installation instructio
 ### Testing using MASS compliant tags
 The bidsim tool ships with working DSP example tags that can be found under the bidsim/tags folder.
 
-A quick way to test the Integration test page in combination with the official bootloader is to use one of the following command:
+A quick way to test the Integration test page in combination with the official bootloader is to use the following command:
 ```
 node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "tags/inskin-housead-desktop.js" -o https://demo.massplatform.net/ix/prebid
 ```
