@@ -18,8 +18,6 @@ userIds: all
 
 Please contact tappx@tappx.com to get set up.
 
-**Note:** The Tappx prebid bidder only supports in app traffic at the moment
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
