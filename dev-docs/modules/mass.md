@@ -157,4 +157,25 @@ http://localhost:9999/integrationExamples/mass/index.html
 ```
 
 ### Option 2 - Hosted online
-Mass Platform Limited hosts an official integration and demo page that can be found using the following link: http://demo.massplatform.com/ix/prebid/
+Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: http://demo.massplatform.com/ix/prebid/
+
+## Testing MASS
+Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend to use the MASS Bid Simulation tool found at https://github.com/massplatform/bidsim. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.
+
+The instructions below assume that you have followed the installation instructions for the MASS Bidsim tool found at https://github.com/massplatform/bidsim/blob/master/README.md.
+
+### Testing using MASS compliant tags
+The bidsim tool ships with working DSP example tags that can be found under the bidsim/tags folder.
+
+A quick way to test the Integration test page in combination with the official bootloader is to use one of the following command:
+```
+node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "tags/inskin-housead-desktop.js" -o https://demo.massplatform.net/ix/prebid
+```
+### For third-party technology companies
+Third-parties that wish to integrate with the official MASS bootloader can get started by running the following command:
+```
+node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "tags/test.js" -o https://demo.massplatform.net/ix/prebid
+```
+
+Explanation: The tags/test.js tag calls a reference endpoint for developer that can be accessed here: https://demo.massplatform.net/reference/endpoint.js.
+When running the above command to invoke this reference endpoint, you will see all the params that MASS collected and passed onto your endpoint. This includes inputs, parsed inputs, tag parameters and MASS/Provider specific configuration.
