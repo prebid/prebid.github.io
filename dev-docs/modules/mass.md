@@ -139,6 +139,9 @@ pbjs.que.push(function() {
 
 ## Integration Example
 
+There are two options to view the integration example:
+
+### Option 1 - Your own development environment
 To view the integration example:
  
 1) in your cli run:
@@ -152,3 +155,6 @@ gulp serve --modules=ixBidAdapter,mass
 ```
 http://localhost:9999/integrationExamples/mass/index.html
 ```
+
+### Option 2 - Hosted online
+Mass Platform Limited hosts an official integration and demo page that can be found using the following link: http://demo.massplatform.com/ix/prebid/
