@@ -178,7 +178,7 @@ node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "
 ```
 
 Explanation: The tags/test.js tag calls a reference endpoint for developers that can be accessed here: https://demo.massplatform.net/reference/endpoint.js.
-When running the above command to invoke this reference endpoint, you will see all the params that MASS collected and passed onto your endpoint. This includes inputs, parsed inputs, tag parameters and MASS/Provider specific configuration.
+When running the above command to invoke this reference endpoint, you will see all the params that MASS collected and passed onto your endpoint. This includes inputs, parsed inputs, tag parameters and MASS/Provider specific configurations.
 
 ### Testing on live sites
 Any sites that have been MASS configured will work with the bidsim tool. This is a convenient way to test whether your publisher ad server and slot is correctly configured.
