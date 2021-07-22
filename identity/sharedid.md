@@ -203,7 +203,7 @@ Always use cookies and create an ID that expires in 30 days after creation.
 }
 ```
 
-Using a PubCID Server implementation, create the cookie once, which will be allowed to expire before it is created again.
+Using a SharedId Server implementation, create the cookie once, which will be allowed to expire before it is created again.
 
 ```
 { 
