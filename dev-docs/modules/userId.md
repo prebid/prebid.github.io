@@ -1359,7 +1359,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. |
 | storage.expires | Integer | Required | How long the user ID information will be stored. | `365` |
 | storage.name | String | Required | The name of the cookie or html5 local storage where the user ID will be stored. | `_pubcid`
-| storage.type | String | Required | This is where the results of the user ID will be stored. Must be either: Must be either: "cookie" or "html5" | `cookie`
+| storage.type | String | Required | This is where the results of the user ID will be stored. Must be either: Must be either: "cookie" or "html5". For server side implementations, which have the best identifier life and revenue impact, this must be a cookie. | `cookie`
 
 #### SharedID Examples
 
@@ -1370,12 +1370,9 @@ pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "pubCommonId",
-            params: {
-                pixelUrl: "/wp-json/pubcid/v1/extend/"
-            },
             storage: {
                 type: "cookie",
-                name: "_pubcid",         // create a cookie with this name
+                name: `"_pubcid"`,         // create a cookie with this name
                 expires: 365             // expires in 1 years
             }
         }]
@@ -1405,11 +1402,31 @@ pbjs.setConfig({
             },
             storage: {
                 type: "cookie",
-                name: "_pubcid",      // create a cookie with this name
+                name: `"_pubcid"`,      // create a cookie with this name
                 expires: 180
             }
         }],
         syncDelay: 5000       // 5 seconds after the first bidRequest()
+    }
+});
+{% endhighlight %}
+
+3) Publisher supports SharedID and first party domain cookie storage initiated by the server
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "pubCommonId",
+            params: {
+                pixelUrl: "/wp-json/pubcid/v1/extend/" //pixelUrl should be specified when the server plugin is used
+            },
+            storage: {
+                type: "cookie",
+                name: `"_pubcid"`,         // create a cookie with this name
+                expires: 365             // expires in 1 years
+            }
+        }]
     }
 });
 {% endhighlight %}
