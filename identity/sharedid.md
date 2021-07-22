@@ -154,7 +154,7 @@ For those not using Prebid's header bidding solution, Sharedid can deployed via 
 
 ### SharedId Script
 
-For those interested in implementing Sharedid outside of Prebid. 
+For those interested in implementing Sharedid without prebid.js. 
 1. Clone the [SharedId script repository](https://github.com/prebid/Shared-id-v2)
 2. Implement the pubcid.js script on the desired page by following the build instructions in the [readme.md](https://github.com/prebid/Shared-id-v2#readme)
 
