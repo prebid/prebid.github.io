@@ -227,7 +227,7 @@ Plugins are available for Wordpress and Drupal. Because CMS can cache pages to i
 2. Drupal : Install from [Github](https://github.com/prebid/sharedid-drupal).
 
 #### Server Implementations
-Below are some examples for how to implement PubCID in various languages or platforms.
+Below are some examples for how to implement SharedId Server in various languages or platforms.
 
 ##### JAVA
 ```JAVA
