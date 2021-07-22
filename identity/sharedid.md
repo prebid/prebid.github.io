@@ -24,7 +24,7 @@ There are multiple ways to integrate SharedId on your site. See the table below 
 | Implementation | Description | Cookie Lifetime | SAFARI COOKIE LIFETIME | TECHNICAL DIFFICULTY | REVENUE BENEFIT |
 | --- | --- | --- | --- | --- | --- |
 | 3rd Party Cookie Only | No first party cookie solution. | Some Blocked | Blocked | None | Low |
-| Prebid User Id | Including User Id Module in your Prebid installation. | 365 days | 7 days | Basic | Good |
+| User Id Submodule | Including User Id Module in your Prebid.js installation. | 365 days | 7 days | Basic | Good |
 | PubCID Script | Adding the PubCID script to work with our ad code or a custom integration. | 365 days | 7 days | Basic | Good |
 | PubCID Server | Writing cookie from your web server code directly. | 365 days | 365 days | Intermediate | Best |
 
