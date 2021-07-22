@@ -18,7 +18,7 @@ As of Prebid.js 5.0, PubCommon ID is no longer supported -- it's been merged int
 
 SharedId is a convenient Prebid-owned first party identifier within the [Prebid UserId Module framework](/dev-docs/modules/userId.html).
 
-There are multiple ways to integrate SharedId on your site. See the table below for a breakout of options, and the rest of this document for detailed integration instructions.
+There are multiple ways to integrate SharedId on your site. See the table below for a breakout of options, and the rest of this document for detailed integration instructions. Due to cookie life restrictions in Safari when the document.cookie javascript method is used, SharedId is most effective when a server side first party cookie is set.
 
 {: .table .table-bordered .table-striped }
 | Implementation | Description | Cookie Lifetime | SAFARI COOKIE LIFETIME | TECHNICAL DIFFICULTY | REVENUE BENEFIT |
