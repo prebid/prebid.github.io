@@ -31,7 +31,7 @@ There are multiple ways to integrate SharedId on your site. See the table below 
 ## How does the Prebid UserId Module implementation work?
 
 The SharedID ID system sets a user id cookie in the publisher’s domain.
-Since the cookie is set in the publisher's first party domain it does not fall in scope of browser restrictions on third party cookies.
+Since the cookie is set in the publisher's first party domain it does not fall in scope of browser restrictions on third party cookies. Safari has restrictions on first party cookies set via document.cookie. For this reason we recommend a server side installation for maximum effect.
 
 ### Prebid.js 5.x
 
