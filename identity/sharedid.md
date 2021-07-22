@@ -26,7 +26,7 @@ There are multiple ways to integrate SharedId on your site. See the table below 
 | 3rd Party Cookie Only | No first party cookie solution. | Some Blocked | Blocked | None | Low |
 | User Id Submodule | Including User Id Module in your Prebid.js installation. | 365 days | 7 days | Basic | Good |
 | PubCID Script | Adding the legacy PubCID script; not maintained by Prebid.org. | 365 days | 7 days | High | Varies |
-| PubCID Server | Writing cookie from your web server code directly. | 365 days | 365 days | Intermediate | Best |
+| SharedId Server | Writing cookie from your web server code directly. | 365 days | 365 days | Intermediate | Best |
 
 ## How does the Prebid UserId Module implementation work?
 
