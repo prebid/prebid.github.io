@@ -27,3 +27,11 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 | `bcat`      | optional | Array of blocked IAB Categories                                                                                                                                                  | `['IAB1-2', 'IAB1-3']`       | `string[]`           |
 | `badv`      | optional | Array of blocked Advertisers by their domains                                                                                                                                    | `['ford.com', 'pepsi.com']`  | `string[]`           |
 | `pkey`      | required | The placement key                                                                                                                                                                | `'DfFKxpkRGPMS7A9f71CquBgZ'` | `string`             |
+| `data`      | optional | Object containing additional first party data.  See [Data Object](#data-object) for details.                                                                        |`data: { pbadlot: 'string' }` | `object`             |
+
+#### Data Object
+
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                                                                                                 | Example             | Type   |
+|-------------|----------|-------------------------------------------------------------------------------------------------------------|---------------------|--------|
+| `pbadslot`  | optional | The [Prebid Ad Slot](https://docs.prebid.org/features/pbAdSlot.html), or Global Placement ID should go here | 'adslot-identifier' | string |                                                                     
