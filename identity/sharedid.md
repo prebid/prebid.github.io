@@ -45,7 +45,7 @@ pbjs.setConfig({
         userIds: [{
             name: 'sharedId', //"pubCommonId" as a name is supported for backwards compatibility,
             params: {
-                pixelUrl: "/wp-json/pubcid/v1/extend/"
+                pixelUrl: "/wp-json/pubcid/v1/extend/" // this parameter identifies your server side endpoint that will set a first party cookie if you have configued SharedId server'
             }, 
             storage: {
                 name: '_sharedID', // name of the 1st party cookie, _pubcid is supported for backwards compatibility
