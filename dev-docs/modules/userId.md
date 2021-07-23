@@ -1411,7 +1411,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-3) Publisher supports SharedID and first party domain cookie storage initiated by the server
+3) Publisher supports SharedID and first party domain cookie storage initiated by a first party server
 
 {% highlight javascript %}
 pbjs.setConfig({
