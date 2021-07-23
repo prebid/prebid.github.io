@@ -12,7 +12,7 @@ sidebarType: 9
 {:toc}
 
 {: .alert.alert-warning :}
-As of Prebid.js 5.0, PubCommon ID is no longer supported -- it's been merged into SharedID. Also, SharedID no longer syncs to sharedid.org like it did in Prebid.js 4.x.
+As of Prebid.js 5.0, PubCommon ID is no longer supported -- it's been merged into SharedId. Also, SharedId no longer syncs to sharedid.org like it did in Prebid.js 4.x.
 
 ## What is it?
 
@@ -21,12 +21,12 @@ SharedId is a convenient Prebid-owned first party identifier within the [Prebid 
 There are multiple ways to integrate SharedId on your site. See the table below for a breakout of options, and the rest of this document for detailed integration instructions. Due to cookie life restrictions in Safari when the document.cookie javascript method is used, SharedId is most effective when a server side first party cookie is set.
 
 {: .table .table-bordered .table-striped }
-| Implementation | Description | Cookie Lifetime | SAFARI COOKIE LIFETIME | TECHNICAL DIFFICULTY | REVENUE BENEFIT |
+| Implementation | Description | Cookie Lifetime | Safari Cookie Lifetime | Technical Difficulty | Revenue Benefit |
 | --- | --- | --- | --- | --- | --- |
 | 3rd Party Cookie Only | No first party cookie solution. | Some Blocked | Blocked | None | Low |
 | User Id Submodule | Including User Id Module in your Prebid.js installation. | 365 days | 7 days | Basic | Good |
 | PubCID Script | Adding the legacy PubCID script; not maintained by Prebid.org. | 365 days | 7 days | High | Varies |
-| SharedId Server | Writing cookie from your web server code directly. | 365 days | 365 days | Intermediate | Best |
+| SharedId First Party Server | Writing a first party cookie from your web server code. | 365 days | 365 days | Intermediate | Best |
 
 ## How does the Prebid UserId Module implementation work?
 
@@ -35,10 +35,27 @@ Since the cookie is set in the publisher's first party domain it does not fall i
 
 ### Prebid.js 5.x
 
-The SharedID module reads and/or sets a random ID in
+The SharedId module reads and/or sets a random ID in
 the cookie name defined by the publisher when initializing
 the module:
 
+Example 1: client-side cookie setting
+```
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'sharedId', //"pubCommonId" as a name is supported for backwards compatibility,
+            storage: {
+                name: '_sharedID', // name of the 1st party cookie, _pubcid is supported for backwards compatibility
+                type: 'cookie',
+                expires: 30
+            }
+        }]
+    }
+});
+```
+
+Example 2: setting the cookie with a first party server
 ```
 pbjs.setConfig({
     userSync: {
@@ -81,9 +98,9 @@ source value.
 
 ### Before Prebid.js 5.0
 
-In addition to setting a first party cookie, SharedID in Prebid.js 4.x also sets a third party cookie where possible, syncing the first and third party cookies (subject to browser capability and user opt-out).
+In addition to setting a first party cookie, SharedId in Prebid.js 4.x also sets a third party cookie where possible, syncing the first and third party cookies (subject to browser capability and user opt-out).
 
-SharedID in Prebid.js 4.x was transmitted through the header-bidding ecosystem on user.ext.eids with a different 'source':
+SharedId in Prebid.js 4.x was transmitted through the header-bidding ecosystem on user.ext.eids with a different 'source':
 ```
 user: {
     ext: {
@@ -105,20 +122,20 @@ user: {
 
 ### Detailed Walkthrough
 
-This diagram summarizes the workflow for SharedID:
+This diagram summarizes the workflow for SharedId:
 
-![SharedID](/assets/images/sharedid5.png){: .pb-lg-img :}
+![SharedId](/assets/images/sharedid5.png){: .pb-lg-img :}
 
 1. The page loads the Prebid.js package, which includes the SharedId module.
 2. The page enables one or more user ID modules with pbjs.setConfig({usersync}) per the module documentation. The publisher can control which bidders are allowed to receive each type of ID.
-3. If permitted, the SharedID module retrieves and/or sets the designated first party cookie for this user.
+3. If permitted, the SharedId module retrieves and/or sets the designated first party cookie for this user.
 4. When a header bidding auction is run, the ID modules are invoked to add their IDs into the bid requests.
 5. Bid adapters send the additional IDs to the bidding endpoints, along with other privacy information such as GDPR consent, US Privacy consent, and the Global Privacy Control header.
-6. SharedID is used by the bidder for ad targeting, frequency capping, and/or sequential ads.
+6. SharedId is used by the bidder for ad targeting, frequency capping, and/or sequential ads.
 7. Bids are sent to the publisher's ad server, where the best ad is chosen for rendering.
 
 {: .alert.alert-info :}
-In Prebid.js 4.x, when SharedID performed third-party syncing there
+In Prebid.js 4.x, when SharedId performed third-party syncing there
 was an extra step in the diagram between steps 3 and 4 where the module would connect to a server on sharedid.org. This step was
 removed in Prebid.js 5.0.
 
@@ -129,7 +146,7 @@ There are several privacy scenarios in which a user ID is not created or read:
 1. The User ID module suppresses all cookie reading and setting activity
 when the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) is in place and there's no consent for Purpose 1.
 2. The User ID module infrastructure supports a first-party opt-out, by setting the `_pbjs_id_optout` cookie or local storage to any value. No other cookies will be set if this one is set.
-3. The SharedID module will suppress the ID when the COPPA flag is set.
+3. The SharedId module will suppress the ID when the COPPA flag is set.
 
 For all other privacy-sensitive scenarios, it is encumbent upon bid adapters and endpoints
 to be aware of and enforce relevant regulations such as CCPA and Global Privacy Control.
@@ -150,11 +167,11 @@ Publishers that decide to build a first-party opt-out workflow might follow a pr
 
 ## Alternative Implementations
 
-For those not using Prebid's header bidding solution, Sharedid can deployed via in inline script reference or from a web server. 
+For those not using Prebid's header bidding solution, SharedId can deployed via in inline script reference or from a web server. 
 
 ### SharedId Script
 
-For those interested in implementing Sharedid without prebid.js. 
+For those interested in implementing SharedId without prebid.js. 
 1. Clone the [SharedId script repository](https://github.com/prebid/Shared-id-v2)
 2. Implement the pubcid.js script on the desired page by following the build instructions in the [readme.md](https://github.com/prebid/Shared-id-v2#readme)
 
@@ -177,7 +194,6 @@ If custom configurations are needed, define the pubcid_options object before inc
 
 #### Configuration
 
-Configuration
 Below are the available configuration options for the PubCID script.
 
 {: .table .table-bordered .table-striped }
@@ -217,17 +233,17 @@ Using a SharedId Server implementation, create the cookie once, which will be al
 
 ### SharedId Server
 
-Add server-side support for SharedId to better handle the ever-increasing restrictions on cookies in modern web browsers by having the SharedId cookie written and extended by your web server.
+Add server-side support for SharedId to better handle the ever-increasing restrictions on cookies in modern web browsers by having the SharedId first party cookie written and extended by your web server.
 
 #### CMS
 
-Plugins are available for Wordpress and Drupal. Because CMS can cache pages to improve scalability, it's impractical to extend cookies during page generation. Instead the plugins add a dynamic endpoint that serves back a blank pixel, and updates cookies at the same time. The client side script therefore needs one additional
+Plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to extend cookies during page generation. Instead the plugins add a dynamic endpoint that serves back a blank pixel, and updates cookies at the same time. The client side script therefore needs one additional
 
 1. Wordpress : Install directly from the [Wordpress admin page](https://wordpress.org/plugins/publisher-common-id/). Install from [GITHUB](https://github.com/prebid/sharedid-wordpress) 
 2. Drupal : Install from [Github](https://github.com/prebid/sharedid-drupal).
 
 #### Server Implementations
-Below are some examples for how to implement SharedId Server in various languages or platforms.
+Below are some examples for how to implement SharedId Server in various languages or platforms. It is up to the site owner to integrate an appropriate script for their specific scenario.
 
 ##### JAVA
 ```JAVA
