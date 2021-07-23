@@ -36,7 +36,7 @@ The Smaato adapter requires setup and approval from the Smaato team, even for ex
 
 ### Note
 
-The Smaato adapter supports bidfloor with 'USD' currency.
+The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 
 <a name="smaato-bid-params" />
 
