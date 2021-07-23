@@ -8,9 +8,8 @@ schain_supported: true
 media_types: banner, video, native
 gdpr_supported: true
 pbjs: true
-pbs: true
-pbs_app_supported: true
-pbjs_version_notes: not in 5.x
+pbs: false
+pbs_app_supported: false
 ---
 
 ### Prebid.JS Bid Params
@@ -18,14 +17,5 @@ pbjs_version_notes: not in 5.x
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `placementId` | required | Placement Id will be generated on BidMyAdz Platform. | `'1234'`        | `string` |
+| `placementId` | required | Placement Id will be generated on ContentExchange Platform. | `'1234'`        | `string` |
 | `adFormat` | required | `[banner, video, native]` | `'banner'`        | `string` |
-
-
-### Prebid Server Bid Params
-Currently adapter doesn't support multiimpression, so only the first impression will be delivered
-
-{: .table .table-bordered .table-striped }
-| Name           | Scope    | Description                                              | Example    | Type      |
-|----------------|----------|----------------------------------------------------------|------------|-----------|
-| `placementId` | required | Placement Id will be generated on BidMyAdz Platform. | `'1234'`        | `string` |
