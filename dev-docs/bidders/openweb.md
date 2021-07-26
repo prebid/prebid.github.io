@@ -21,7 +21,7 @@ gvl_id: 280
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from OpenWeb. | `350975` | `integer` |
+| `aid` | required | The source ID from OpenWeb. | `650342` | `integer` |
 
 ### Description
 OpenWeb.com official prebid adapter. Available in both client and server side versions.
@@ -40,7 +40,7 @@ var adUnits = [
           }
         },
         bids: [{
-          bidder: 'adtelligent',
+          bidder: 'openweb',
           params: {
             aid: 650344
           }
