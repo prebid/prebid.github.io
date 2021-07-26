@@ -300,10 +300,10 @@ Here is a sample Prebid configuration JSON object returned via URL:
     "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/prebid.js",
     "biddersSpec" : {
         "code" : "my-video-tag",
-        "sizes" : [640, 480],
         "mediaTypes": {
             "video": {
                 "context": "instream",
+		"playerSize": [640, 480],
                 "mimes": ["video/mp4", "application/javascript"],
                 "protocols" : [1,2,3,4,5,6,7,8],
                 "playbackmethod" : [1, 2],
@@ -314,11 +314,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
             {
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 9999,
-                    "video": {
-                        "skippable": true,
-                        "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 9999
                 }
             }
         ]

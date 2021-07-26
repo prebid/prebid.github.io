@@ -214,6 +214,10 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
 </div></div>
+<div class="row">  
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="akamaiDAPIdSystem" class="bidder-check-box"> Akamap DAP ID</label>
+</div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> BritePool ID</label>
 </div></div>
@@ -222,6 +226,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="deepintentDpesIdSystem" class="bidder-check-box"> Deepintent DPES ID</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="dmdIdSystem" class="bidder-check-box"> DMD ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
@@ -269,13 +276,13 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
+</div></div>
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
 </div></div>  
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> Quantcast ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> Shared ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
