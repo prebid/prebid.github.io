@@ -18,4 +18,3 @@ pbs_app_supported: false
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
 | `placementId` | required | Placement Id will be generated on MathildeAds Platform. | `'1234'`        | `string` |
-| `adFormat` | required | `[banner, video, native]` | `'banner'`        | `string` |
