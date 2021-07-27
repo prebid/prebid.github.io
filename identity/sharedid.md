@@ -237,7 +237,7 @@ Add server-side support for SharedId to better handle the ever-increasing restri
 
 #### CMS
 
-Plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to extend cookies during page generation. Instead the plugins add a dynamic endpoint that serves back a blank pixel, and updates cookies at the same time. The client side script therefore needs one additional
+Plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to extend cookies during page generation. Instead the plugins add a dynamic endpoint that serves back a blank pixel, and updates cookies at the same time. The client side script therefore needs one additional parameter for this URL. Please consult the corresponding plugin documents for default values.
 
 1. Wordpress : Install directly from the [Wordpress admin page](https://wordpress.org/plugins/publisher-common-id/). Install from [GITHUB](https://github.com/prebid/sharedid-wordpress) 
 2. Drupal : Install from [Github](https://github.com/prebid/sharedid-drupal).
