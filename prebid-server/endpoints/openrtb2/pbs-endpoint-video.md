@@ -110,7 +110,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 | regs | Optional   | `Object` |  Container object for data related to various regulations. See the [Regulations](#price-range) section below for more details. |
 | regs.ext.gdpr | Optional   | `Integer` |  Enable the user to indicate whether GDPR is in effect. `0` for disabled, `1` for enabled.  The default setting is disabled. See the [Regulations](#price-range) section below for more details. |
-| regs.ext.us_privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf). See the [Regulations](#price-range) section below for more details. |
+| regs.ext.us_privacy | Optional   | `String` |  Enables the user to apply California Consumer Protection Act (CCPA) settings per [IAB standards for U.S. Privacy](https://iabtechlab.com/standards/ccpa/). See the [Regulations](#price-range) section below for more details. |
 
 ### Pod Duration Range
 
@@ -243,7 +243,7 @@ Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to 
     ]
   },
   "site": {
-    "page": "http://www.foobar.com/1234.html"
+    "page": "https://www.foobar.com/1234.html"
   },
   "user": {
     "yob": 1982,

@@ -25,9 +25,9 @@ sidebarType: 4
 		<!--video placeholder | this should be formatted per the needs of each player-->
 		<div class="example-video-container">
             <video id="vid1" class="video-js vjs-default-skin vjs-big-play-centered" controls data-setup='{}' width='640' height='480'>
-                <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
-                <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
-                <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
+                <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+                <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
+                <source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
             </video>
         </div>
 
@@ -82,21 +82,18 @@ sidebarType: 4
         code: 'video1',
         mediaTypes: {
             video: {
-                playerSize: [640, 480],
                 context: 'instream',
+                playerSize: [640, 480],
                 mimes: ['video/mp4'],
-                protocols: [1, 2, 3, 4, 5, 6],
-                playbackmethod: [2]
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             }
         },
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: 13232361, // Add your own placement id here.
-                video: {
-                    skippable: true,
-                    playback_method: ['auto_play_sound_off']
-                }
+                placementId: 13232361  // Add your own placement id here.
             }
         }]
     };
@@ -111,7 +108,7 @@ sidebarType: 4
             },
             debug: true,
             s2sConfig: {
-                endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+                endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                 enabled: true,
                 accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e', // replace this with your account id <br>
                 bidders: ['appnexus']
@@ -153,9 +150,9 @@ sidebarType: 4
 <!--put body html and javascript here-->
 &lt;div class="example-video-container"&gt;
     &lt;video id="vid1" class="video-js vjs-default-skin vjs-big-play-centered" controls data-setup='{}' width='640' height='480'&gt;
-        &lt;source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/&gt;
-        &lt;source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/&gt;
-        &lt;source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/&gt;
+        &lt;source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/&gt;
+        &lt;source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/&gt;
+        &lt;source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/&gt;
     &lt;/video&gt;
 &lt;/div&gt;
 

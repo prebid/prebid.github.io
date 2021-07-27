@@ -21,7 +21,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following:
 
 ```
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'

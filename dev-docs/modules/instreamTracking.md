@@ -20,7 +20,7 @@ sidebarType : 1
 Instream tracking module allows Analytics Adapters and Bid Adapters to track `BID_WON` events for Instream video bids.
 
 {: .alert.alert-warning :}
-This module uses `window.getEntriesByType('resource')` to check the presence of Video Cache URL.
+This module uses `window.performance.getEntriesByType('resource')` to check the presence of Video Cache URL.
 
 ## Configuration
 
@@ -45,7 +45,7 @@ pbjs.setConfig({
 #### Example with urlPattern
 
 While checking for URLs having `videoCacheKey`, there are chances of false positives. To avoid those cases, we can set `instreamTracking.urlPattern: /REGEX_PATTERN/`.
- 
+
 {% highlight js %}
 pbjs.setConfig({
         'instreamTracking': {
@@ -80,4 +80,4 @@ pbjs.setConfig({
 ## Further Reading
 ​
 [Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)  
-[Client-side Caching of VAST XML]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-vast-cache)
+[Client-side Caching of VAST XML]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache)

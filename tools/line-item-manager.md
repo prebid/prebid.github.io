@@ -12,6 +12,7 @@ sidebarType: 8
 The Prebid Line Item Manager is a command line tool built in Python to aid in creation of line items for Prebid header bidding integrations.
 The goal of this tool is to allow publishers to save time, and prevent issues when creating the required Prebid line-item set up manually.
 
+
 ## Installation
 
 **Note:** This tool requires Python 3 to be installed on your machine, and support is for Python>=3.6.
@@ -22,20 +23,11 @@ From your command line run:
 $ pip install line-item-manager
 ```
 
-**Currently this is not in prod, so please use:**
-```
-pip install --extra-index-url https://pypi.org/simple -i https://test.pypi.org/simple/ line-item-manager
-```
-
 If you already have it installed you can upgrade it using
 ```
 $ pip install --upgrade line-item-manager
 ```
 
-**Currently this is not in prod, so please use:**
-```
-pip install --upgrade --extra-index-url https://pypi.org/simple -i https://test.pypi.org/simple/ line-item-manager
-```
 
 ## Usage
 
@@ -50,9 +42,64 @@ You can look at the full config [here](https://github.com/prebid/line-item-manag
 $ line_item_manager show config > my_config.yml
 ```
 
-Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. Options like `granularity`, `sizes`, `mediatypes`, `priority` etc can all be input there. Please ensure you are using YAML syntax to make your updates.
+Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. You can do things like `creative`, `line item`, `order` setups, as well as options like `granularity` and `targeting`, etc. can all be input there. Please ensure you are using __YAML__ syntax to make your updates.
 
+### Examples (the \# indicates comments in the YAML syntax)
+#### Creative setup
+```
+creative: # at least one of the following types is required {video, banner}
+    banner:
+        # safe_frame: False # optional: defaults to True
+        # size_override: False # optional: defaults to True with a 1x1 creative
+        sizes: # list
+            - height: 250
+            width: 300
+        snippet:
+            <script src = "https://..."></script>
+            <script>
+                ...
+            </script>
+    video:
+        sizes: # list
+            - height: 480
+            width: 640
+        vast_xml_url: "https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:{{ hb_cache_id }}%%"
+```
+#### Order setup
+```
+order:
+    name: "Prebid-{{ bidder_name }}-{{ media_type }}-{{ time }} {{ cpm_min }}-{{ cpm_max }}"
+```
+
+#### Line Item setup
+```
+line_item:
+    name: "Prebid-{{ bidder_name }}-{{ media_type }}-{{ time }} @ {{ cpm }}"
+    item_type: "price_priority"
+    # Optional
+    # priority: 12 # default is 12
+    # start_datetime: "11/17/20 21:28"
+    # end_datetime: "12/17/20 21:28"
+    # timezone: "UTC"
+```
+#### Custom Granularity setup
+```
+rate: 
+    currency: "USD" # required
+    granularity:
+        type: "custom" # required, choices: "low", "med", "high", "auto", "dense", "custom"
+        custom: # optional, requires type "custom" above
+            - min: 0.10
+              max: 30.00
+              interval: 0.10
+            - min: 30.50
+              max: 50.00
+              interval: 0.50
+    # optional properties
+    # vcpm: 100000 # viewable impressions will be enabled
+```
 __Note:__ The GAM Network ID, can also be input at runtime and will override the default Network ID in the config file.
+
 
 ## Line Item creation
 
@@ -99,7 +146,7 @@ The create function has certain modifiers that can be used to do dry runs and te
 |-k, --private-key-file |PATH |Path to json GAM credentials file. [default: gam_creds.json; required]
 |-s, --single-order||Create a single set of orders instead of orders per bidder. [default: False]
 -b, --bidder-code |TEXT |Bidder code may be used multiple times.
--t, --test-run||Execute a limited number of line_items for testing and manual review which will be auto-archived. [default: False]
+-t, --test-run||Execute a limited number of line_items for testing and manual review. Please ensure that you archive the orders so as not to clash with the actual production orders and line items you wish to create. [default: False]
 -n, --dry-run||Print commands that would be executed, but do not execute them. [default: False]
 -q, --quiet||Logging is limited to warnings and errors. [default: False]
 -v, --verbose||Verbose logging; use multiple times to increase verbosity. [default: False]
@@ -116,7 +163,9 @@ The create function has certain modifiers that can be used to do dry runs and te
 
 All commands can use the `--help` modifier to see various options for the command
 
+
 ## Troubleshooting (Coming soon!)
+
 
 ## Git Repository
 

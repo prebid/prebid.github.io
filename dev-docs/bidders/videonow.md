@@ -5,6 +5,7 @@ description: Prebid Videonow Bidder Adaptor
 biddercode: videonow
 pbjs: true
 media_types: banner
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

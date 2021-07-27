@@ -4,6 +4,7 @@ title: Meazy
 description: Prebid Meazy Bidder Adaptor
 pbjs: true
 biddercode: meazy
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid params
