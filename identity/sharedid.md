@@ -18,7 +18,7 @@ As of Prebid.js 5.0, PubCommon ID is no longer supported -- it's been merged int
 
 SharedId is a convenient Prebid-owned first party identifier within the [Prebid UserId Module framework](/dev-docs/modules/userId.html).
 
-There are multiple ways to integrate SharedId on your site. See the table below for a breakout of options, and the rest of this document for detailed integration instructions. Due to cookie life restrictions in Safari when the document.cookie javascript method is used, SharedId is most effective when a server side first party cookie is set.
+There are multiple ways to integrate SharedId on your site. See the table below for a breakout of options, and the rest of this document for detailed integration instructions.
 
 {: .table .table-bordered .table-striped }
 | Implementation | Description | Cookie Lifetime | Safari Cookie Lifetime | Technical Difficulty | Revenue Benefit |
@@ -26,12 +26,12 @@ There are multiple ways to integrate SharedId on your site. See the table below 
 | 3rd Party Cookie Only | No first party cookie solution. | Some Blocked | Blocked | None | Low |
 | User Id Submodule | Including User Id Module in your Prebid.js installation. | 365 days | 7 days | Basic | Good |
 | PubCID Script | Adding the legacy PubCID script; not maintained by Prebid.org. | 365 days | 7 days | High | Varies |
-| SharedId First Party Server | Writing a first party cookie from your web server code. | 365 days | 365 days | Intermediate | Best |
+| SharedId First Party Endpoint | Writing a first party cookie from your web server code. | 365 days | 365 days | Intermediate | Best |
 
 ## How does the Prebid UserId Module implementation work?
 
 The SharedID ID system sets a user id cookie in the publisher’s domain.
-Since the cookie is set in the publisher's first party domain it does not fall in scope of browser restrictions on third party cookies. Safari has restrictions on first party cookies set via document.cookie. For this reason we recommend a server side installation for maximum effect.
+Since the cookie is set in the publisher's first party domain it does not fall in scope of browser restrictions on third party cookies. Safari has restrictions on first party cookies set via document.cookie. For this reason we recommend considering a server endpoint installation for maximum effect. See the "Alternate Implementations" section below.
 
 ### Prebid.js 5.x
 
@@ -55,14 +55,14 @@ pbjs.setConfig({
 });
 ```
 
-Example 2: setting the cookie with a first party server
+Example 2: setting the cookie with a first party endpoint
 ```
 pbjs.setConfig({
     userSync: {
         userIds: [{
             name: 'sharedId', //"pubCommonId" as a name is supported for backwards compatibility,
             params: {
-                pixelUrl: "/wp-json/pubcid/v1/extend/" // this parameter identifies your server side endpoint that will set a first party cookie if you have configued SharedId server'
+                pixelUrl: "/wp-json/pubcid/v1/extend/" // this parameter identifies your server-side endpoint that will set a first party cookie'
             }, 
             storage: {
                 name: '_sharedID', // name of the 1st party cookie, _pubcid is supported for backwards compatibility
@@ -219,7 +219,7 @@ Always use cookies and create an ID that expires in 30 days after creation.
 }
 ```
 
-Using a SharedId Server implementation, create the cookie once, which will be allowed to expire before it is created again.
+Using a SharedId Endpoint implementation, create the cookie once, which will be allowed to expire before it is created again.
 
 ```
 { 
@@ -231,19 +231,21 @@ Using a SharedId Server implementation, create the cookie once, which will be al
 
 ```
 
-### SharedId Server
+### SharedId First Party Endpoint
 
 Add server-side support for SharedId to better handle the ever-increasing restrictions on cookies in modern web browsers by having the SharedId first party cookie written and extended by your web server.
 
 #### CMS
 
-Plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to extend cookies during page generation. Instead the plugins add a dynamic endpoint that serves back a blank pixel, and updates cookies at the same time. The client side script therefore needs one additional parameter for this URL. Please consult the corresponding plugin documents for default values.
+PubCID/SharedId plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to set unique cookies during page generation. Instead these plugins require a dynamic endpoint that serves back a blank pixel along with a unique cookie value. The client side script  needs one additional parameter for this URL. Please consult the corresponding plugin documents for default values:
 
 1. Wordpress : Install directly from the [Wordpress admin page](https://wordpress.org/plugins/publisher-common-id/). Install from [GITHUB](https://github.com/prebid/sharedid-wordpress) 
 2. Drupal : Install from [Github](https://github.com/prebid/sharedid-drupal).
 
-#### Server Implementations
-Below are some examples for how to implement SharedId Server in various languages or platforms. It is up to the site owner to integrate an appropriate script for their specific scenario.
+#### Endpoint Implementations
+
+The Wordpress and Drupal plugins require that the host company integrate a new endpoint into their webserver that can receive request from the page and set a unique cookie.
+Below are some examples for how to implement this function in various languages or platforms. It is up to the site owner to integrate an appropriate script for their specific scenario.
 
 ##### JAVA
 ```JAVA
