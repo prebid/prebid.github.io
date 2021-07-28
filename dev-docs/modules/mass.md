@@ -144,16 +144,16 @@ There are two options to view the integration example:
 ### Option 1 - Your own development environment
 To view the integration example:
  
-1) in your cli run:
+1) Build Prebid using the following required options
 
 ```
-gulp serve --modules=ixBidAdapter,mass
+gulp build --modules=ixBidAdapter,mass
 ```
 
-2) in your browser, navigate to:
+2) Use a http server with a valid hostname to access its content. It is not advices to run the bid simulation using localhost or 127.0.0.1
 
 ```
-http://localhost:9999/integrationExamples/mass/index.html
+http://hostname/integrationExamples/mass/index.html
 ```
 
 ### Option 2 - Hosted online
