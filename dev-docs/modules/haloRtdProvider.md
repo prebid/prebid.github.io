@@ -16,24 +16,24 @@ sidebarType : 1
 * TOC
 {:toc}
 
-Audigent is a next-generation, 1st party data management platform and the
+Audigent is a next-generation, first-party data management platform and the
 world’s first "data agency", powering the programmatic landscape and DTC
-eCommerce with actionable 1st party audience and contextual data from the
-world’s most influential retailers, lifestyle publishers, content creators,
-athletes and artists.
+eCommerce with actionable 1st party audience and contextual data from
+retailers, lifestyle publishers, content creators, athletes and artists.
 
-The Halo real-time data module in Prebid has been built so that publishers
+The Halo real-time data module in Prebid has been built so publishers
 can maximize the power of their first-party audiences and contextual data.
-This module provides both an integrated cookieless Halo identity with real-time
-contextual and audience segmentation solution that seamlessly and easily
+This module provides both an integrated cookieless Halo identity, contextual 
+targeting and audience segmentation solution that seamlessly and easily
 integrates into your existing Prebid deployment.
 
 Users, devices, content, cohorts and other features are identified and utilized
-to augment every bid request with targeted, 1st party data-derived segments
+to augment every bid request with targeted, first-party data-derived segments
 before being submitted to supply-side platforms. Enriching the bid request with
-robust 1st party audience and contextual data, Audigent's Halo RTD module
-optimizes targeting, increases the number of bids, increases bid value,
-and drives additional incremental revenue for publishers.
+robust first-party audience and contextual data, Audigent's Halo RTD module
+helps optimize targeting and header-bidding performance.  For more information, 
+please visit https://audigent.com or contact our Prebid integration team at
+prebid@audigent.com.
 
 
 ## Publisher Usage
