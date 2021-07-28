@@ -36,7 +36,6 @@ optimizes targeting, increases the number of bids, increases bid value,
 and drives additional incremental revenue for publishers.
 
 
-
 ## Publisher Usage
 
 Compile the Halo RTD module into your Prebid build:
