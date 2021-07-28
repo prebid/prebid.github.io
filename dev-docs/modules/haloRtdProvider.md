@@ -18,7 +18,7 @@ sidebarType : 1
 
 Audigent is a next-generation, first-party data management platform and the
 world’s first "data agency", powering the programmatic landscape and DTC
-eCommerce with actionable 1st party audience and contextual data from
+eCommerce with actionable first-party audience and contextual data from
 retailers, lifestyle publishers, content creators, athletes and artists.
 
 The Halo real-time data module in Prebid has been built so publishers
