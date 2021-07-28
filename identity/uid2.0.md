@@ -31,14 +31,14 @@ If using an SSO provider is not an option, publishers may ask for and obtain con
 Once available publishers may request UID2.0 API tokens from the IAB [here]()
 
 #### STEP 1
- Request a UID2.0 API token from the IAB.  **please note that as of Augest 2021, the IAB is not prepared to generate API tokens, when that changes this page will be udated**
+ Request a UID2.0 API token from the IAB.  **please note that as of August 2021, the IAB is not prepared to generate API tokens, when that changes this page will be udated**
 
 #### STEP 2
 Make an http GET request to the Prebid UID2.0 service endpoint 
 
 ##### Authentication and Authorization 
 
-All Endpoints are over HTTPs using API Key provided in step 1. 
+All Endpoints are over HTTPs using the API Key provided in step 1. 
 The API Key should be passed in an Authorization header on all requests. 
 ex. Authorization: Bearer <your api key> 
 
@@ -102,7 +102,7 @@ The page should include the following Script: https://integ.uidapi.com/static/js
 
 ###### Instantiating and Establishing Identity 
 
-Following is what what should be used to instantiate the Unified Id lifecycle on the client: 
+Following is what should be used to instantiate the Unified Id lifecycle on the client: 
 
 ```HTML
 <script> 
@@ -115,7 +115,7 @@ The identity payload is only required for initialy establishing the identity.
 
 ###### Getting Advertsing Coding for RTB Purposes 
 
-The call would return an AdvertisingToken or Empty String 
+The call would return an `AdvertisingToken` or Empty String 
 
 ```HTML
 <script> 
