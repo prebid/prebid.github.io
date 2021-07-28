@@ -216,6 +216,10 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div></div>
 <div class="row">  
 <div class="col-md-4"><div class="checkbox">
+<label><input type="checkbox" moduleCode="amxIdSystem" class="bidder-check-box"> AMX RTB ID</label>
+</div></div>
+<div class="row">  
+<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="akamaiDAPIdSystem" class="bidder-check-box"> Akamap DAP ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
