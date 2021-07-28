@@ -594,13 +594,21 @@ pbjs.setConfig({
 });
 ```
 
-The `request.userId.haloId` will contain the Audigent HaloId and associated segments:
+The `request.userId.haloId` will contain the Audigent HaloId:
 ```
 {
-  "haloId": "user-halo-id",
-  "auSeg": ["segment1", "segment2"]
+  "haloId": "0201chpvai07jv2yg08xizqr0bwpa1w0evvmq014d2ykn0b5oe"
 }
 ```
+The following configuration parameters are available:
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the HaloID module - `"haloId"` | `"haloId"` |
+| params | Optional | Object | Used to store params for the HaloId system |
+| params.url | Optional | String | Set an alternate GET url for HaloId with this parameter |
+| params.urlArg | Optional | Object | Optional url parameter for params.url |
 
 ### ID+
 
