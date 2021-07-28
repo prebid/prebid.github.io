@@ -4,7 +4,7 @@ title: pbjs.getEvents()
 description: 
 ---
 
-The `getEvents` method returns a copy of all emitted events since the beginning of page.
+The `getEvents` method returns a copy of all emitted events since the page loaded.
 
 **Kind**: static method of `pbjs`
 
