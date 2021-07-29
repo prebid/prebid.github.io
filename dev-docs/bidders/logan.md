@@ -8,10 +8,6 @@ schain_supported: true
 media_types: banner, video, native
 gdpr: true
 pbjs: true
-<<<<<<< HEAD
-=======
-pbjs_version_notes: not in 5.x
->>>>>>> prebid/master
 ---
 
 ### Bid Params
