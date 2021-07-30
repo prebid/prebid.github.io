@@ -359,7 +359,7 @@
   subgroup: 4
 
 - sbSecId: 1
-  title: Prebid Modules
+  title: Prebid.js Modules
   link:
   isHeader: 1
   headerId: pbjsmodules
@@ -1708,6 +1708,14 @@
 - sbSecId: 5
   title: First Party Data
   link: /prebid-server/features/pbs-fpd.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Modules
+  link: /prebid-server/pbs-modules/index.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

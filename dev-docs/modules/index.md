@@ -1,25 +1,23 @@
 ---
 layout: page_v2
-title: Prebid Modules
-description: Module Documentation
+title: Prebid.js Modules
+description: Prebid.js Module Documentation
 sidebarType: 1
 ---
 
 # Prebid.js Module Overview
 {:.no_toc}
 
-The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on or that covers a special case is being moved out into modules.  Examples of this kind of code include:
+The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on or that covers a special case is part of a module.
 
-- Bidder adapters
-- Special auction logic
-- Ad server API integrations
-- Any other extensible functionality
+Modules are in the [`modules` folder in the repo](https://github.com/prebid/Prebid.js/tree/master/modules). There are several categories:
 
-This section of the site contains user-submitted module documentation.  We're hoping that it will grow over time.
-
-To see all of the modules that are available, see the [`modules` folder in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
-
-If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html).
+- [Bid adapters](/dev-docs/bidders.html)
+- The [Prebid Server Bid Adapter](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) - this is a special case module that integrates with Prebid.js core.
+- [Analytics adapters](/overview/analytics.html)
+- [User ID Modules](/dev-docs/modules/userId.html)
+- General Modules - see below.
+- Real Time Data Modules - see below.
 
 * TOC
 {:toc}
@@ -33,18 +31,16 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | **ConsentManagement** | Collecting and passing consent information in support of privacy regulations:{::nomarkdown}<ul><li><a href="/dev-docs/modules/consentManagement.html">EU GDPR</a> with optional <a href="/dev-docs/modules/gdprEnforcement.html">GDPR Enforcement</a> module</li><li><a href="/dev-docs/modules/consentManagementUsp.html">US Privacy</a> (CCPA)</li></ul>{:/} See [CMP Best Practices.](/dev-docs/cmp-best-practices.html) |
 | [**Google Ad Manager Express**](/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. |
 | [**Supply Chain Object**](/dev-docs/modules/schain.html) | Validates and makes the Supply Object available to bidders |
-| [**User ID**](/dev-docs/modules/userId.html) | Sub-modules are available to support a range of identification approaches. |
 | [**ID Import Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
 | [**Advanced Size Mapping**](/dev-docs/modules/sizeMappingV2.html) | Display Responsive AdUnits in demanding page environments. |
 | [**Price Floors Module**](/dev-docs/modules/floors.html) | Configure and enforce minimum bids. |
 | [**GPT Pre-Auction Module**](/dev-docs/modules/gpt-pre-auction.html) | Adds a PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters. |
-| [**ID Import Library**](/dev-docs/modules/idLibrary.html) | Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing |  
 | [**First Party Data Enrichment**](/dev-docs/modules/enrichmentFpdModule.html) | Pulls well-known FPD from the environment to form a base of data available to all adapters. |
 | [**MASS**](/dev-docs/modules/mass.html) | Enables the MASS protocol for Prebid and custom renderers by DealID |  
 | [**MultiBid Module**](/dev-docs/modules/multibid.html) | Allows bidders to send multiple bids to the ad server. |
 | [**Bid Viewability**](/dev-docs/modules/bidViewable.html) | Triggers an event which can be consumed by analytics and bid adapters. |
 
-## Real-Time Data Providers
+## Real-Time Data Modules
 
 All of the modules that fall under the Real-Time Data (RTD) category conform to
 a consistent set of publisher controls. The pub can choose to run multiple
