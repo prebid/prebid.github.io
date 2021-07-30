@@ -825,9 +825,9 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | PRICE_BUCKET | `hb_pb` | yes | The results of the [price granularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) calculation. |
 | SIZE | `hb_size` | yes | '300x250' |
 | DEAL | `hb_deal` | yes | |
-| SOURCE | `hb_source` | yes | 'client' or 's2s' |
+| SOURCE | `hb_source` | no | 'client' or 's2s' |
 | FORMAT | `hb_format` | yes | 'banner', 'video', or 'native' |
-| UUID | `hb_uuid` | yes | Network cache ID for video |
+| UUID | `hb_uuid` | no | Network cache ID for video |
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
