@@ -71,7 +71,11 @@ Setting up Prebid ad units is almost the same whether you’re working with inst
         mediaTypes: {
             video: {
                 context: 'instream', //or 'outstream'
-                playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],    // required for Prebid Server
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             }
 ```
 
@@ -80,17 +84,6 @@ The mediaTypes.video.playerSize field is where you define the player size that w
 <div class="alert alert-info">
   <strong>Prebid Server</strong>
   <p>If you’re using Prebid Server, you must also include the mediaTypes.video.mimes field, as this is required by OpenRTB.</p>
-
-  <pre>
-        mediaTypes: {
-            video: {
-                context: 'instream', // or 'outstream'
-                playerSize: [640, 480],
-                mimes: ['video/mp4'],
-  </pre>
-
-  <p>For more on Prebid Server ad unit requirements, see <a href="{{site.github.url}}/dev-docs/get-started-with-prebid-server.html#using-prebid-server-to-show-video-ads">Getting Started with Prebid Server – Video</a>.</p>
-
 </div>
 
 In your ad unit you also need to define your list of bidders. For example, including AppNexus as a bidder would look something like this:
@@ -159,7 +152,6 @@ This section contains working examples of instream and outstream video ads for v
 + [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
 + [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
 + [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
-+ [JWPlayer - Playlist]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html)
 + [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
 + [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
 + [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
@@ -174,8 +166,6 @@ This section contains working examples of instream and outstream video ads for v
 + [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
 + [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
 + [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
-+ [JW Player - Playlist]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html)
-+ [JW Player - Player 7]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html)
 + [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
 + [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
 + [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)

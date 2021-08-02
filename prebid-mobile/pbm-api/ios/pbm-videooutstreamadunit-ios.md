@@ -61,7 +61,7 @@ OpenRTB Placement Type represented as an enumeration of values:
 * inFeed is transformed into OpenRTB value 4 to bid adapters
 
 
-### Paramaters
+### Parameters
 
 Parameters is a sub class of videoAdUnit. Create new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
 

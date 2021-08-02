@@ -47,7 +47,7 @@ Then you need to decide which of the two implementations to utilize:
 - [Prebid Server (Go)](/prebid-server/versions/pbs-versions-go.html) - the original Prebid Server is written in the Go language.
 - [Prebid Server (Java)](/prebid-server/versions/pbs-versions-java.html) - Prebid Server with a Java language port.
 
-To choose between them, see the [Prebid Server version overview](/prebid-server/versions/pbs-versions-overview.html) and the [FAQ](http://prebid.org/faq/prebid-server-faq.html#why-are-there-two-versions-of-prebid-server-are-they-kept-in-sync).
+To choose between them, see the [Prebid Server version overview](/prebid-server/versions/pbs-versions-overview.html) and the [FAQ](/faq/prebid-server-faq.html#why-are-there-two-versions-of-prebid-server-are-they-kept-in-sync).
 
 ## Which Server-Side Bidders to Utilize
 
