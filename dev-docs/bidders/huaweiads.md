@@ -19,7 +19,8 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 1. The following parameters need to be registered on the HuaweiAds platform, and at the same time, the permission to access the server interface needs to be opened on the HuaweiAds platform.
 2. You can find ( publisherid, signkey, keyid ) on the platform after registration.
 3. You need to create your advertising creative on the platform and get the corresponding ( slotid, adtype ).
-4. We need OAID in our request, so when using prebidmobile, please add something like "TargetingParams.addUserData("oaid", "oaid-test")".
+4. We need OAID, GAID, IMEI (One must not be empty, you can collect OAID first, or use GAID) in our request, so when using prebidmobile, please add something like "TargetingParams.addUserData("oaid", "oaid-test") TargetingParams.addUserData("gaid", "gaid-test") TargetingParams.addUserData("imei", "imei-test")".
+5. You can also send the clientTime to the HuaweiAds Adx server, like "TargetingParams.addUserData("clientTime", "2018-11-02 16:34:07.981+0800")". if not, it will use the prebid server time and zone.
 
 ### Bid Params
 
