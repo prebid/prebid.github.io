@@ -374,34 +374,44 @@ This implies that ranges should have max values that are really the min value of
 
 #### Media Type Price Granularity
 
-The default [Prebid price granularities](#setConfig-Price-Granularity) cap out at $20, which isn't always convenient for video ads, which can command more than $20. One solution is to just set up a
-custom price
-granularity as described above. Another approach is
-`mediaTypePriceGranularity` config that may be set to define granularities for each of five media types:
-banner, video, video-instream, video-outstream, and native. e.g.
+The standard [Prebid price granularities](#setConfig-Price-Granularity) cap out at 20, which isn't always convenient for video ads, which can command more than that. One solution is to set up a custom price
+granularity as described above. Another approach is to use
+`mediaTypePriceGranularity` config that may be set to define different price bucket
+structures for different types of media:
+- for each of five media types: banner, video, video-instream, video-outstream, and native.
+- it is recommended that defined granularities be custom. It's possible to define "standard" granularities (e.g. "medium"), but it's not possible to mix both custom and standard granularities.
 
 {% highlight js %}
-const customPriceGranularity = {
+const customPriceGranularityVideo = {
             'buckets': [
-              { 'precision': 2, 'max':x 5, 'increment': 0.25 },
+              { 'precision': 2, 'max': 5, 'increment': 0.25 },
               { 'precision': 2, 'max': 20, 'increment': 0.5 },
               { 'precision': 2, 'max': 100, 'increment': 1 }
+            ]
+};
+const customPriceGranularityBanner = {
+            'buckets': [
+              { 'precision': 2, 'max': 5, 'increment': 0.5 },
+              { 'precision': 2, 'max': 20, 'increment': 1 }
             ]
 };
 
 pbjs.setConfig({'mediaTypePriceGranularity': {
           'video': customPriceGranularity,   // used as default for instream video
-	  'video-outstream': customPriceGranularityOutstream,
-          'banner': 'medium',
-          'native': 'medium',
+	  'video-outstream': customPriceGranularityBanner,
+          'banner': 'customPriceGranularityBanner'
         }
 });
 {% endhighlight %}
 
 Any `mediaTypePriceGranularity` setting takes precedence over `priceGranularity`.
 
+{: .alert.alert-warning :}
+mediaTypePriceGranularity works in two modes: either auctions contain adunits with a single media type, or all defined price granularities are custom.
+i.e. You cannot run an auction containing a mix of mediatypes across an adunit AND having a mix of "custom" and "standard" price granularities across mediatypes.
+
 {: .alert.alert-info :}
-Note: mediaTypePriceGranularity is the only place that 'video-outstream' or 'video-instream'
+Note that mediaTypePriceGranularity is the only place that 'video-outstream' or 'video-instream'
 are recognized. This was driven by the recognition that outstream often shares line items with banner.
 If the mediatype is video, the price bucketing code further looks at the context (e.g. outstream) to see if there's
 a price granularity override. If it doesn't find 'video-outstream' defined, it will then look for just 'video'.
