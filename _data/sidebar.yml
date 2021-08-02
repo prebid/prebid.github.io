@@ -1674,6 +1674,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Modules
+  link: /prebid-server/pbs-modules/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Interstitials
   link: /prebid-server/features/pbs-interstitials.html
   isHeader: 0
@@ -1708,14 +1716,6 @@
 - sbSecId: 5
   title: First Party Data
   link: /prebid-server/features/pbs-fpd.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: Modules
-  link: /prebid-server/pbs-modules/index.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

@@ -5,12 +5,15 @@ description: Prebid Server Module Documentation
 sidebarType: 5
 ---
 
-# Prebid Server Module Overview
+# Prebid Server Modules
 {:.no_toc}
 
 The core of Prebid Server contains the foundational code needed for header bidding. Any functionality that could be considered an add-on or that covers a special case is covered by modules. 
 
 If you're looking for bidder adapter parameters, see [Bidders' Params](/dev-docs/pbs-bidders.html).
+
+{: .alert.alert-info :}
+Only the Java version of PBS currently supports the module infrastructure.
 
 * TOC
 {:toc}
