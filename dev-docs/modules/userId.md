@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`,`"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"ysspId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`,`"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -1787,58 +1787,6 @@ pbjs.setConfig({
 })
 ```
 
-### YSSP ConnectID
-
-YSSP ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of YSSP’s robust and proprietary ID Graph it delivers a higher find rate of audiences on publishers’ sites user targeting that respects privacy.
-
-YSSP ConnectID honors privacy choices from the [YSSP Privacy Dashboard](https://www.verizonmedia.com/policies/us/en/verizonmedia/privacy/dashboard/index.html) as well as global privacy acts.
-
-Add support for YSSP ConnectID to your Prebid.js package with:
-
-{: .alert.alert-info :}
-gulp build --modules=userId,ysspIdSystem
-
-#### YSSP ConnectID Registration
-
-A YSSP supplied publisher specific pixel Id is required. Reach out to your account manager for assistance with setup.
-
-#### YSSP ConnectID Configuration
-
-<div class="table-responsive" markdown="1">
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module. | `'ysspId'` |
-| params | Required | Object | Container of all module params. ||
-| params.pixelId | Required | Number | The YSSP supplied publisher specific pixel Id  | `8976` |
-| params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
-| storage | Required | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
-| storage.type | Required | String | Defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
-| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectid'` |
-| storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
-{: .table .table-bordered .table-striped }
-</div>
-
-#### YSSP ConnectID Examples
-
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "ysspId",
-            params: {
-              pixelId: 8976,
-              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
-            },
-            storage: {
-              type: "html5",
-              name: "connectid",
-              expires: 1
-            }
-        }]
-    }
-})
-```
-
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -1890,7 +1838,6 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
 | Verizon Media ConnectID | Verizon Media | connectid | verizonmedia.com | "72d04af6..." |
-| YSSP ConnectID | YSSP | connectid | verizonmedia.com | "72d04af6..." |
 
 For example, the adapter code might do something like:
 

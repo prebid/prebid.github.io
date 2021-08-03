@@ -301,9 +301,6 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> Verizon Media ID</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
-<label><input type="checkbox" moduleCode="ysspIdSystem" class="bidder-check-box"> YSSP ID</label>
-</div></div>
-<div class="col-md-4"><div class="checkbox">
 <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> Zeotap ID+</label>
 </div></div>
 <div class="col-md-4"><div class="checkbox">
