@@ -2,13 +2,18 @@
 layout: page_v2
 page_type: pbs-module
 title: Prebid Server ORTB2 Blocking Module
-description: Converts bids to the ad server currency
 display_name : ORTB2 Blocking Module
 sidebarType : 5
 ---
 
 # ORTB2 Blocking Module
 {:.no_toc}
+
+* TOC
+{:toc }
+
+{: .alert.alert-warning :}
+Currently only available for the Java version of Prebid Server
 
 ## Overview
 
@@ -505,3 +510,4 @@ Here's an example analytics tag:
 ## Further Reading
 
 - [Prebid Server Module List](/prebid-server/pbs-modules/index.html)
+- [Building a Prebid Server Module ](/prebid-server/developers/add-a-module.html)
