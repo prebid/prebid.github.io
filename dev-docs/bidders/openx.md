@@ -79,17 +79,15 @@ var adUnits = [
     mediaTypes: {
       video: {
         playerSize: [640, 480],
-        context: 'instream'
+        context: 'instream',
+        mimes: ['video/x-ms-wmv, video/mp4']
       }
     },
     bids: [{
       bidder: 'openx',
       params: {
         unit: '1611023124',
-        delDomain: 'PUBLISHER-d.openx.net',
-        video: {
-          mimes: ['video/x-ms-wmv, video/mp4']
-        }
+        delDomain: 'PUBLISHER-d.openx.net'
       }
     }]
   }

@@ -9,7 +9,7 @@ coppa_supported: true
 schain_supported: true
 getFloor: true
 media_types: banner, video
-userIds: criteo, identityLink, unifiedId
+userIds: criteo, identityLink, unifiedId, pubCommonId
 prebid_member: true
 safeframes_ok: true
 bidder_supports_deals: true

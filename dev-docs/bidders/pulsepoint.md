@@ -34,6 +34,7 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 
 ### Video parameters
 Parameters on the Video object in Bid params for PulsePoint. [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Video object specification is used. Below are some sample parameters from the OpenRTB Video specs.
+Please use `mediaTypes.video` to specify video params in place of this parameter for PBJS 5.0 and later.
 
 
 {: .table .table-bordered .table-striped }
