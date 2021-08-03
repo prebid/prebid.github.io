@@ -84,21 +84,18 @@ var videoAdUnit = {
   code: 'video1',
   mediaTypes: {
     video: {
-      playerSize: [640, 480],
-      context: 'instream',
-      mimes: ['video/mp4'],
-      protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-      playbackmethod: [2]
+	context: 'instream',
+	playerSize: [640, 480],
+	mimes: ['video/mp4'],
+	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+	playbackmethod: [2],
+	skip: 1
     }
   },
   bids: [{
     bidder: 'appnexus',
     params: {
-      placementId: 13232361, // Add your own placement id here.
-      video: {
-        skippable: true,
-        playback_method: ['auto_play_sound_off']
-      }
+      placementId: 13232361  // Add your own placement id here.
     }
   }]
 };
@@ -236,21 +233,18 @@ setTimeout(function () {
 		code: 'video1',
 		mediaTypes: {
 			video: {
-				playerSize: [640, 480],
-				context: 'instream',
-				mimes: ['video/mp4'],
-				protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-				playbackmethod: [2]
+			  context: 'instream',
+			  playerSize: [640, 480],
+			  mimes: ['video/mp4'],
+			  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			  playbackmethod: [2],
+			  skip: 1
 			}
 		},
 		bids: [{
 			bidder: 'appnexus',
 			params: {
-				placementId: 13232361, // Add your own placement id here.
-				video: {
-					skippable: true,
-					playback_method: ['auto_play_sound_off']
-				}
+				placementId: 13232361  // Add your own placement id here.
 			}
 		}]
 		};
@@ -262,7 +256,6 @@ setTimeout(function () {
 			cache: {
 				url: 'https://prebid.adnxs.com/pbc/v1/cache'
 			},
-			debug: true,
 			enableSendAllBids: true,
 			s2sConfig: {
 				endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',

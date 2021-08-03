@@ -295,7 +295,7 @@ There are a number of important values that a publisher expects to be handled in
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
-| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
+| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page Referrer | Intead of building your own function to find the page referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.referer |
 | Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
@@ -366,7 +366,6 @@ The `interpretResponse` function will be called when the browser has received th
         netRevenue: true,
         ttl: TIME_TO_LIVE,
         ad: CREATIVE_BODY,
-        dealId: DEAL_ID,
         mediaType: MEDIA_TYPE,
         meta: {
             advertiserDomains: [ARRAY_OF_ADVERTISER_DOMAINS],        
@@ -377,6 +376,7 @@ The `interpretResponse` function will be called when the browser has received th
             brandId: BRAND_ID,
             brandName: BRAND_NAME,
             dchain: DEMAND_CHAIN_OBJECT,
+	    demandSource: DEMAND_SOURCE
             mediaType: MEDIA_TYPE,
             networkId: NETWORK_ID,
             networkName: NETWORK_NAME,
@@ -422,10 +422,22 @@ The parameters of the `bidResponse` object are:
 | `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
 | `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
+| `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`                          
 | `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+
+#### Resolve OpenRTB Macros in the Creatives
+
+If your endpoint can return creatives with OpenRTB macros, your adapter
+should resolve them.
+
+Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments. This differs from how OpenRTB defines this value as being the clearing price in the 
+bid currency. Header Bidding is a first-price auction, the best candidate for
+"clearing price" is the original bid itself.
+
+Prebid won't resolve any other macros in the creative (e.g. AUCTION_ID, AUCTION_CURRENCY).
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
@@ -472,12 +484,12 @@ See below for an example implementation.  For more examples, search for `getUser
 
 ### Registering on Timeout
 
-The `onTimeout` function will be called when an adpater timed out for an auction. Adapter can fire a ajax or pixel call to register a timeout at thier end.
+The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end.
 
-Sample data received to this function:
+Sample data passed to this function:
 
 {% highlight js %}
-{
+[{
   "bidder": "example",
   "bidId": "51ef8751f9aead",
   "params": {
@@ -486,7 +498,7 @@ Sample data received to this function:
   "adUnitCode": "div-gpt-ad-1460505748561-0",
   "timeout": 3000,
   "auctionId": "18fd8b8b0bd757"
-}
+}]
 {% endhighlight %}
 
 ### Registering on Bid Won
@@ -632,7 +644,14 @@ Video ad units have a publisher-defined video context, which can be either `'ins
 ...
 mediaTypes: {
     video: {
-        context: 'outstream'
+        context: 'outstream',
+	playerSize: [640, 480],
+	mimes: ['video/mp4'],
+	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+	playbackmethod: [2],
+	skip: 1
+        // video params must be read from here in place of
+        // or instead of bidder-specific parameters
     },
 },
 ...

@@ -51,7 +51,7 @@ sidebarType: 4
  The scripts themselves and a guide for choosing which ones
  you need can be found here:
 
- http://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html
+ https://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html
 --&gt;
 
 &lt;!-- CORE PLAYER REQUIRED --&gt;
@@ -98,18 +98,18 @@ sidebarType: 4
         code: 'video1',
         mediaTypes: {
             video: {
-                playerSize: [640, 480],
-                context: 'instream'
+		context: 'instream',
+		playerSize: [640, 480],
+		mimes: ['video/mp4'],
+		protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+		playbackmethod: [2],
+		skip: 1
             }
         },
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: iosDevice ? 13239390 : 13232361, // Add your own placement id here. Note, skippable video is not supported on iOS<br>
-                video: {
-                    skippable: true,
-                    playback_method: ['auto_play_sound_off']
-                }
+                placementId: iosDevice ? 13239390 : 13232361 // Add your own placement id here. 
             }
         }]
     };
@@ -196,7 +196,7 @@ sidebarType: 4
 
                For more information see the Ooyala docs:
 
-               http://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
+               https://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
 
                Make sure the ad parameters are properly formatted JSON.
              */
@@ -259,107 +259,65 @@ sidebarType: 4
 </div>
 	
 <!--video player code-->
-	<script type="text/javascript">
-	__tcfapi("checkConsent", 2, (hasConsent, success) => {
-           if (hasConsent && success) {
-		invokeVideoPlayer = function(url) {
-		    console.log("invoking video player with url " + url);
+	<script>
+        var invokeVideoPlayer = function(url) {
+            console.log("invoking video player with url " + url);
 
-		    /* DEFINE PLAYER SETTINGS
+            /* DEFINE PLAYER SETTINGS
 
-		       Define the settings you want for your player in a JSON
-		       object. These lines will be part of the embed code you
-		       copy-paste from Ooyala Backlot, we just need to add the ad
-		       parameters.  */
+               Define the settings you want for your player in a JSON
+               object. These lines will be part of the embed code you
+               copy-paste from Ooyala Backlot, we just need to add the ad
+               parameters.  */
 
-		    var playerParam = {
-			'pcode': 'lsbWkyOjtI6LOjmlqk2o5I-TsWRA',
-			'playerBrandingId': '45b8294c6ad14265b2b47586c911cb07',
-			'debug': true,
-			'autoplay': true,
-			'initialVolume': 0.0,
-			'skin': {
-			    'config': '//player.ooyala.com/static/v4/stable/4.6.9/skin-plugin/skin.json',
-			    'inline': {
-				'adScreen': {
-				    'showAdMarquee': true,
-				    'showAdCountDown': true,
-				    'showControlBar': true,
-				    'useGoogleAdUI': true
-				}
-			    }
-			},
+            var playerParam = {
+                'pcode': 'lsbWkyOjtI6LOjmlqk2o5I-TsWRA',
+                'playerBrandingId': '45b8294c6ad14265b2b47586c911cb07',
+                'debug': true,
+                'autoplay': true,
+                'initialVolume': 0.0,
+                'skin': {
+                    'config': '//player.ooyala.com/static/v4/stable/4.6.9/skin-plugin/skin.json',
+                    'inline': {
+                        'adScreen': {
+                            'showAdMarquee': true,
+                            'showAdCountDown': true,
+                            'showControlBar': true,
+                            'useGoogleAdUI': true
+                        }
+                    }
+                },
 
-			/* ADD THE AD PARAMETERS TO THE PLAYER SETTINGS
+                /* ADD THE AD PARAMETERS TO THE PLAYER SETTINGS
 
-			   Create a new JSON object in the player parameters. The key
-			   should be the ad manager you're using (in our case we're
-			   using the Google IMA ads manager, so the key is
-			   `"google-ima-ads-manager"`). The IMA ads manager requires
-			   an ad set (which we've named `"all_ads"`).
+                   Create a new JSON object in the player parameters. The key
+                   should be the ad manager you're using (in our case we're
+                   using the Google IMA ads manager, so the key is
+                   `"google-ima-ads-manager"`). The IMA ads manager requires
+                   an ad set (which we've named `"all_ads"`).
 
-			   For more information see the Ooyala docs:
+                   For more information see the Ooyala docs:
 
-			   http://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
+                   https://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html:
 
-			   Make sure the ad parameters are properly formatted JSON.
-			 */
-			"google-ima-ads-manager": {
-			    "all_ads": [{
-				"position": "0",
-				"position_type": "t",
-				"tag_url": url
-			    }],
-			    'showAdControls': true
-			}
-		    };
+                   Make sure the ad parameters are properly formatted JSON.
+                 */
+                "google-ima-ads-manager": {
+                    "all_ads": [{
+                        "position": "0",
+                        "position_type": "t",
+                        "tag_url": url
+                    }],
+                    'showAdControls': true
+                }
+            };
 
-		    /* INITIALIZE THE PLAYER
+            /* INITIALIZE THE PLAYER
 
-		       Use the `OO.ready()` event to make sure that all the
-		       necessary Ooyala plugins have loaded before attempting to
-		       create the player. Once it has, call `create()` and pass
-		       in:
-
-		       - the div you're creating the player in
-
-		       - the ID of the content video
-
-		       - the player settings we created above */
-
-		    OO.ready(function() {
-			console.log("OO is ready, invoking");
-			console.dir(playerParam);
-			window.pp = OO.Player.create('container', 'ltcG54NzE6Bxk08Mqs1_KMcQZDN7lH8N', playerParam);
-		    });
-		}
-		/* ACCOUNT FOR PAGE SPEED
-
-		   If Prebid returned bids before the browser reached the end of
-		   the page, the first version of `invokeVideoPlayer` will have
-		   been called from `bidsBackHandler`, so the winning VAST tag will
-		   be stored in `tempTag`.
-
-		   If that's the case, we want to call the "real" version of
-		   `invokeVideoPlayer` with the stored URL to create the player and
-		   play the ad.
-
-		   If `tempTag` is not defined, that means the browser reached the
-		   end of the page before the bids came back from Prebid, meaning
-		   the "real" version of `invokeVideoPlayer` was already called.
-		 */
-		if (tempTag) {
-		    invokeVideoPlayer(tempTag);
-		    tempTag = false;
-		}
-	    } else { // don't have user consent to display video player
-		    document.getElementById("container").innerHTML += '(Cookie permissions needed to demo this video player. Update <a onclick="__tcfapi(\'showConsentManager\')" href="javascript:void(0);">Privacy Settings</a>.)';
-		}
-	    }, {
-		data: [{
-		    purposeIds: [1] // asking for ability to set cookies
-		}]
-	    });
+               Use the `OO.ready()` event to make sure that all the
+               necessary Ooyala plugins have loaded before attempting to
+               create the player. Once it has, call `create()` and pass
+               in:
 
 
     </script>	

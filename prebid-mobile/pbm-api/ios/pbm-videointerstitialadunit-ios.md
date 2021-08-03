@@ -20,7 +20,7 @@ Video Insterstital is only supported with Google Ad Manager.
 `configId(String)`: Prebid Server configuration ID.
 
 
-# Paramaters
+# Parameters
 
 Parameters is a sub class of VideoInterstitialAdUnit.Create new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
 

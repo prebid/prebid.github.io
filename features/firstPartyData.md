@@ -31,9 +31,9 @@ which can be used for more than just First Party Data.
 Publishers supply First Party Data (FPD) by specifying attributes as
 configuration or on a Prebid.js AdUnit:
 
-- Global site or user data that applies to all AdUnits and all bidders. Use [`setConfig()`](/dev-docs/publisher-api-reference.html#setConfig-fpd)
+- Global site or user data that applies to all AdUnits and all bidders. Use [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd)
 - AdUnit-specific data that applies to all bidders. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data)
-- Bidder-specific site or user data that applies to all AdUnits. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig)
+- Bidder-specific site or user data that applies to all AdUnits. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html)
 
 ## In-Page Examples
 
@@ -62,11 +62,11 @@ pbjs.setConfig({
            content: {
 		userrating: "4",
 		data: [{
-          	    "name": "www.dataprovider1.com",
-          	    "ext": { "taxonomyname": "iab_content_taxonomy" },
-		    "segment": [
-            		{ "id": "687" }, 
-            		{ "id": "123" }
+          	    name: "www.dataprovider1.com",
+          	    ext: { "segtax": 1 },
+		    segment: [
+            		{ id: "687" },
+            		{ id: "123" }
 		    ]
                 }]
 	   },
@@ -83,7 +83,7 @@ pbjs.setConfig({
            keywords: "a,b",
 	   data: [{
 	       name: "dataprovider.com",
-	       ext: { taxonomyname: "iab_audience_taxonomy" },
+	       ext: { segtax: 3 },
                segment: [
 		  { id: "1" }
                ]
@@ -122,7 +122,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
 	    data: {
-                pbAdSlot: "homepage-top-rect",
+                pbadslot: "homepage-top-rect",
                 adUnitSpecificAttribute: "123"
             }
         }
@@ -134,14 +134,14 @@ pbjs.addAdUnits({
 {: .alert.alert-info :}
 Prebid does not support AdUnit-specific **user** data, nor does it support
 bidder-specific AdUnit First Party Data. You could implement either of
-these scenarios with a publisher-specific callback on the [`requestBids` event](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
+these scenarios with a publisher-specific callback on the [`requestBids` event](/dev-docs/publisher-api-reference/onEvent.html)
 
 {: .alert.alert-warning :}
 If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb2Imp.ext.data' with 'fpd.context.data'.
 
 ### Supplying Bidder-Specific Data
 
-Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig) function to supply bidder-specific data. In this example, only bidderA and bidderB will get access to the supplied
+Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data. In this example, only bidderA and bidderB will get access to the supplied
 global data.
 
 {% highlight js %}
@@ -177,9 +177,44 @@ pbjs.setBidderConfig({ // different bidders can receive different data
 });
 {% endhighlight %}
 
+## Segments and Taxonomy
+
+The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in the examples above.
+
+{: .alert.alert-warning :}
+Segment support is still under development. You can follow the [Prebid.js discussion](https://github.com/prebid/Prebid.js/issues/6057) if you'd like.
+
+```
+        user: {
+	   data: [{
+	       name: "dataprovider.com", // who resolved the segments
+	       ext: { segtax: 3 },       // taxonomy used to encode the segments
+               segment: [
+		  { id: "1" }
+               ]
+	   }],
+```
+
+The new extension is `segtax`, which identifies the specific taxonomy used to
+determine the provided segments. This model supports using taxonomies other
+than IAB taxonomies, but all taxonomies must be registered with the IAB to be
+assigned a number. Once the IAB finalizes the process, we'll place a link
+here to their page. For now, here's the beta table defining the segtax values:
+
+{: .table .table-bordered .table-striped }
+| Segtax ID | Taxonomy Type | Version | Description |
+|-----------+---------------+---------+-------------|
+| 1 | Content | 1.x | IAB - Content Taxonomy version 1 |
+| 2 | Content | 2.x | [IAB - Content Taxonomy version 2](https://iabtechlab.com/wp-content/uploads/2020/12/IABTechLab_Content_Taxonomy_2-2_Final.xlsx) |
+| 4 | Audience | 1.1 | [IAB - Audience Taxonomy version 1.1](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Audience-Taxonomy-1.1-Final.xlsx) |
+
+{: .alert.alert-info :}
+The [IAB version of this table](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--category-taxonomies-) is associated with ADCOM. Publishers should check with their SSPs and DSPs to confirm which
+segment taxonomies they support.
+
 ## How Bid Adapters Should Read First Party Data
 
-To access global data, a Prebid.js bid adapter needs only to call [`getConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig), like this:
+To access global data, a Prebid.js bid adapter needs only to call [`getConfig()`](/dev-docs/publisher-api-reference/getConfig.html), like this:
 
 {% highlight js %}
 config.getConfig('ortb2'))

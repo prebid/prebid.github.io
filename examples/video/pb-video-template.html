@@ -177,9 +177,9 @@ sidebarType: 4
 	<!--put javascript code here-->
 	&lt;script async src="//www.googletagservices.com/tag/js/gpt.js"&gt;&lt;/script&gt;
 		&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;
-		&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
+		&lt;script type="text/javascript" src="https://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
         &lt;script type="text/javascript"&gt;
-            jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key
+            jwplayer.key = "ssbF6k0i9BPe87xfG/s0ipdp5gwbLoZaDON/GQvuwPU9nVJy"; //Test Key - replace this with your own valid JWPlayer license key
         &lt;/script&gt;
 
         &lt;script&gt;
@@ -197,18 +197,18 @@ sidebarType: 4
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: 'outstream'
+                        context: 'outstream',
+			mimes: ['video/mp4'],
+			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			playbackmethod: [2],
+			skip: 1
                     }
                 },
                 bids: [
                     {
                         bidder: 'appnexus',
                         params: {
-                            placementId: 13232385,
-                            video: {
-                                skippable: true,
-                                playback_method: ['auto_play_sound_off']
-                            }
+                            placementId: 13232385
                         }
                     }
                 ]
@@ -290,7 +290,7 @@ sidebarType: 4
             invokeVideoPlayer = function(url) {
                 console.log("starting player with url " + url);
                 jwPlayerInstance.setup({
-                    "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
+                    "file": "https://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
                     "width": 640,
                     "height": 480,
                     "autostart": true,

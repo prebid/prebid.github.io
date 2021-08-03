@@ -1,13 +1,11 @@
 ---
 layout: video_sample
-title: Prebid Video | Prebid Server Example with  JW Player (Platform) 
+title: Prebid Video | Prebid Server Example with JW Player (Platform) 
 description: An example of a pre-roll ad using Prebid Server and JW Player (Platform).  
 videoType: pbs-jw01
 isVideo: true
 sidebarType: 4
 ---
-
-
 
 <div class="container">
 	<div class="row">
@@ -65,21 +63,18 @@ sidebarType: 4
 	        code: 'video1',
 	        mediaTypes: {
 	            video: {
-	                playerSize: [640, 480],
-	                context: 'instream',
-	                mimes: ['video/mp4'],
-	                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-	                playbackmethod: [2]
+			context: 'instream',
+			playerSize: [640, 480],
+			mimes: ['video/mp4'],
+			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			playbackmethod: [2],
+			skip: 1
 	            }
 	        },
 	        bids: [{
 	            bidder: 'appnexus',
 	            params: {
-	                placementId: 13232361, // Add your own placement id here.<br>
-	                video: {
-	                    skippable: true,
-	                    playback_method: ['auto_play_sound_off']
-	                }
+	                placementId: 13232361  // Add your own placement id here.<br>
 	            }
 	        }]
 	    };
@@ -94,7 +89,7 @@ sidebarType: 4
 	            },
 	            debug: true,
 	            s2sConfig: {
-	                endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+	                endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
 	                enabled: true,
 	                accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
 	                bidders: ['appnexus']
@@ -134,7 +129,7 @@ sidebarType: 4
 <!--put body html and javascript here-->
 &lt;!-- This line loads a player without loading any video content --&gt;
 &lt;!-- Replace this with the correct url for your player --&gt;
-&lt;script src="https://content.jwplatform.com/libraries/72xIKEe6.js"&gt;&lt;/script&gt;
+&lt;script src="YOUR_JW_URL"&gt;&lt;/script&gt;
 &lt;script&gt;
     // we initialize our player instance, specifying the div to load it into<br>
     var playerInstance = jwplayer('myElement1');
@@ -143,17 +138,18 @@ sidebarType: 4
         // this calls setup on the player we initialized&nbsp;
         // this will use the settings defined in the player we loaded above unless you override them here<br>
         playerInstance.setup({
-            // this line loads a playlist from your jwplatform account (in either json or rss format)&nbsp;
-            // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"&nbsp;
-            // Replace this with the correct url for your playlist<br>
-            "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+            "file": "https://vjs.zencdn.net/v/oceans.mp4",
+            // or "file" could be replaced with "playlist" and a URL
+            // from your JW Platform account in either json or rss format.
             "width": 640,
             "height": 480,
+            "autostart": true,
+            "mute": true,
             // we enable vast advertising for this player<br>
             "advertising": {
                 "client": "vast",
                 // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header<br>
-                "tag": url,
+                "tag": url
             }
         });
     }
@@ -174,7 +170,7 @@ sidebarType: 4
 <!--video player code-->
 <!-- This line loads a player without loading any video content -->
 <!-- Replace this with the correct url for your player -->
-<script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
+<script src="https://cdn.jwplayer.com/libraries/dNV4UKpE.js"></script>
 <script>
     // we initialize our player instance, specifying the div to load it into
     var playerInstance = jwplayer('myElement1');
@@ -196,17 +192,18 @@ function videoHasConsent() {
         // this calls setup on the player we initialized
         // this will use the settings defined in the player we loaded above unless you override them here
         playerInstance.setup({
-            // this line loads a playlist from your jwplatform account (in either json or rss format)
-            // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-            // Replace this with the correct url for your playlist
-            "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+            "file": "https://vjs.zencdn.net/v/oceans.mp4",
+            // or "file" could be replaced with "playlist" and a URL
+            // from your JW Platform account in either json or rss format.
             "width": 640,
             "height": 480,
             // we enable vast advertising for this player
+            "autostart": true,
+            "mute": true,
             "advertising": {
                 "client": "vast",
                 // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-                "tag": url,
+                "tag": url
             }
         });
     }

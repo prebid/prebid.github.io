@@ -19,7 +19,7 @@
 	 The scripts themselves and a guide for choosing which ones
 	 you need can be found here:
 
-	 http://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html
+	 https://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html
    -->
 
     <!-- CORE PLAYER REQUIRED -->
@@ -72,17 +72,14 @@
                     context: 'instream',
                     mimes: ['video/mp4'],
                     protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                    playbackmethod: [2]
+                    playbackmethod: [2],
+                    skip: 1
                 }
             },
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: 13232361, // Add your own placement id here.
-                    video: {
-                        skippable: true,
-                        playback_method: ['auto_play_sound_off']
-                    }
+                    placementId: 13232361 // Add your own placement id here.
                 }
             }]
         };
@@ -95,15 +92,8 @@
                 cache: {
                     url: 'https://prebid.adnxs.com/pbc/v1/cache'
                 },
-		    consentManagement: {
-			gdpr: {
-			    cmpApi: "iab",
-			    defaultGdprScope: true
-			}
-		    },
-                debug: true,
                 s2sConfig: {
-                    endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+                    endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                     enabled: true,
                     accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e', // replace this with your account id
                     bidders: ['appnexus']

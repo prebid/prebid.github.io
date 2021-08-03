@@ -5,10 +5,12 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
-userIds: identityLink, netId, fabrickId, zeotapIdPlus
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2
 pbs_app_supported: true
 schain_supported: true
+coppa_supported: true
 gdpr_supported: true
+getFloor: true
 usp_supported: true
 media_types: banner, video
 gvl_id: 10
@@ -82,18 +84,18 @@ var adUnits = [{
 {: .table .table-bordered .table-striped }
 | Type   | Support |
 | ------ | ------- |
-| `Banner` | Fully supported for all IX approved sizes. |
-| `Video`  | Fully supported for all IX approved sizes. |
-| `Native` | Not supported. |
+| `Banner` | Fully supported for all IX approved sizes |
+| `Video`  | Fully supported for all IX approved sizes |
+| `Native` | Not supported |
 
 ### Supported Media Types (Prebid Server)
 
 {: .table .table-bordered .table-striped }
 | Type   | Support |
 | ------ | ------- |
-| `Banner` | Fully supported for all IX approved sizes. |
-| `Video`  | Fully supported for all IX approved sizes. |
-| `Native` | Not supported. |
+| `Banner` | Fully supported |
+| `Video`  | Fully supported, including ad pods for OTT |
+| `Native` | Not supported |
 
 ## Bid Parameters
 
