@@ -6,7 +6,6 @@ pbjs: true
 biddercode: boldwin
 gdpr_supported: true
 media_types: banner, video
-pbjs_version_notes: not in 5.x
 ---
 
 ### Note:
