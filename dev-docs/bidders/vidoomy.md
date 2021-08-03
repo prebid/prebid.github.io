@@ -8,6 +8,7 @@ media_types: banner, video
 gdpr_supported: true
 gvl_id: 380
 usp_supported: true
+coppa_supported: true
 ---
 
 ### Note:
