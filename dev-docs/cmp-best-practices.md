@@ -65,9 +65,17 @@ Community members are welcome to contribute more specific implementation
 approaches here. Please do not attempt to extoll the virtues of one CMP
 over another -- just help others with interface idiosyncacies.
 
+### Didomi
+
+Please follow the guidelines in the [Didomi documentation](https://developers.didomi.io/cmp/web-sdk/third-parties/custom-integrations/no-tag-manager) to make sure that the CMP is loaded before the ad server and Prebid.js.
+
 ### LiveRamp
 
 LiveRamp has verified that they create the tcfapi functions and set gdprApplies=false when their CMP is removed from a geo.
+
+### Sirdata
+
+Please follow the guidelines in the [Sirdata documentation](https://cmp.docs.sirdata.net/v/en/script-management/tag-conditioning) to make sure that the CMP is loaded and the user's choice exposed through the `__tcfapi()` function before the ad server and Prebid.js are invoked.
 
 ## Further Reading
 

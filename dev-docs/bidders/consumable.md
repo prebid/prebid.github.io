@@ -4,7 +4,10 @@ title: Consumable
 description: Prebid Consumable Bidder Adaptor
 pbjs: true
 pbs: true
+pbs_app_supported: true
 biddercode: consumable
+gdpr_supported: true
+gvl_id: 591
 ---
 
 ### Note:

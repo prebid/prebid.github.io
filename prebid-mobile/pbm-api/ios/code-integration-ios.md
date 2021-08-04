@@ -21,7 +21,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following:
 
 ```
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
@@ -89,7 +89,7 @@ This will output the PrebidMobile.framework.
 
 In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers:
 
-1. The simplest option is to sign up for a hosted solution. Several [Prebid.org members](/prebid-server/hosted-servers.html) provide hosting packages.
+1. The simplest option is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) provide hosting packages.
 
 2. Implement your own Prebid Server solution. You will need to [download](https://github.com/prebid/prebid-server) the source code from Github. The repository has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation.
 
