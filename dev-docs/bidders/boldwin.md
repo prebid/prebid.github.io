@@ -5,7 +5,7 @@ description: Prebid Boldwin Bidder Adapter
 
 biddercode: boldwin
 gdpr_supported: true
-media_types: banner, video
+media_types: banner, video, native
 ---
 
 ### Note:
