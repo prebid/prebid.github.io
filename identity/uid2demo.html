@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UID2 Demo</title>
+    <script>
+        let EMAIL = null;
+        let UID2TOKEN = null;
+        let PREBID_TIMEOUT = 2000;
+
+        let adUnits = [
+            {
+                code: 'test-div',
+                mediaTypes: {
+                    banner: {
+                        sizes: [[300, 250], [300, 600]]
+                    }
+                },
+                bids: [
+                    {
+                        bidder: 'rubicon',
+                        params: {
+                            accountId: 1001,
+                            siteId: 113932,
+                            zoneId: 535510
+                        }
+                    },
+                    {
+                        bidder: 'openx',
+                        params: {
+                            unit: '545631718',
+                            delDomain: 'oxv4support-d.openx.net',
+                        }
+                    }
+                ]
+            }
+        ];
+
+        let pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+    </script>
+    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
+
+    <script>
+        let googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        googletag.cmd.push(function () {
+            googletag.pubads().disableInitialLoad();
+        });
+
+        pbjs.que.push(function () {
+            pbjs.setConfig({
+                userSync: {
+                    userIds: [{
+                        name: "unifiedId",
+                        params: {
+                            partner: "rubicon"
+                        },
+                        storage: {
+                            type: "cookie",
+                            name: "pbjs-unifiedId",
+                            expires: 60
+                        }
+                    },
+                        {
+                            name: "digitrust",
+                            params: {
+                                member: "ABajkp8pGC",
+                                site: "10zc6MvcAT"
+                            },
+                            storage: {
+                                type: "cookie",
+                                name: "pbjs-dtId",
+                                expires: 60
+                            }
+                        }],
+                    syncDelay: 2000
+                }
+            });
+
+            pbjs.addAdUnits(adUnits);
+            pbjs.requestBids({
+                bidsBackHandler: sendAdserverRequest
+            });
+        });
+
+        function sendAdserverRequest() {
+            if (pbjs.adserverRequestSent) return;
+            pbjs.adserverRequestSent = true;
+            googletag.cmd.push(function () {
+                pbjs.que.push(function () {
+                    pbjs.setTargetingForGPTAsync();
+                    googletag.pubads().refresh();
+                });
+            });
+        }
+
+        setTimeout(function () {
+            sendAdserverRequest();
+        }, PREBID_TIMEOUT);
+    </script>
+
+    <script>
+        (function () {
+            let gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            let useSSL = 'https:' === document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') +
+                '//www.googletagservices.com/tag/js/gpt.js';
+            let node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        })();
+    </script>
+
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/112115922/FL_PB_MedRect', [[300, 250], [300, 600]], 'test-div').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+</head>
+
+<body>
+<h2>Prebid.org UID2.0 Test Page</h2>
+
+<form method="POST">
+    <div>
+        <label for="email_address">email?</label>
+        <input name="email_address" id="email_address" value="me@example.com">
+    </div>
+    <div>
+        <button>Generate Token</button>
+    </div>
+</form>
+
+<h3>UI2 Token: UID2_TOKEN</h3>
+
+<h3>Ad:</h3>
+<div id='test-div'>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.display('test-div');
+        });
+    </script>
+</div>
+</body>
+</html>
