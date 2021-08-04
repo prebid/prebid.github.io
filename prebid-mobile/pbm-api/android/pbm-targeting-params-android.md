@@ -113,6 +113,66 @@ storeUrl = TargetingParams.getStoreUrl();
 TargetingParams.setStoreUrl(storeUrl);
 ```
 
+
+### Open Measurment SDK (OMSDK)
+
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is elligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+
+There three components to signaling support for OMSDK:
+* Partner Name
+* Partner Version
+* API code
+
+**Partner Name**
+
+This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
+
+#### omidPartnerName
+Open Measurement partner name. 
+
+```
+TargetingParams.setOmidPartnerName()
+```
+
+Examples:
+
+Java
+```java
+TargetingParams.setOmidPartnerName("Google")
+```
+
+**Partner Version**
+
+The OMSDK version number the partner integrated with. See below for configuration and examples.
+
+
+#### omidPartnerVersion
+Partner's OMSDK version number implementation
+```
+TargetingParams.setOmidPartnerVersion();
+```
+
+Examples:
+
+Java
+```java
+TargetingParams.setOmidPartnerVersion("1.0");
+```
+
+**API Code**
+
+Per OpenRTB 2.5, support for OMSDK is signaled using the imp.[media type].api field represented in Prebid SDK withing each ad format type under the parameters object. Refer to the documentation of the respective ad unit class.
+
+Example:
+```
+BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 300, 250);
+bannerAdUnit.setUserKeyword("my_key", "my_value");
+BannerBaseAdUnit.Parameters parameters = new BannerBaseAdUnit.Parameters();
+parameters.setApi(Arrays.asList(new Signals.Api(6, 7)));
+```
+
+
+
 ### Inventory (Context) Keywords
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
 
@@ -308,6 +368,151 @@ Example:
 TargetingParams.setSubjectToCOPPA(true);
 ```
 
+
+## User Identity
+
+Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
+* Real-time in Prebid SDK's API field setExternalUserIds
+* Store User Id(s) in local storage
+
+Any identity vendor's details in local storage will be sent over to Prebid Server as is, unadulterated. If data is sent in the API and entered into local storage, the API detail will prevail.
+
+### Prebid SDK API Access
+
+Prebid SDK supports passing an array of UserID(s) at auction time in the field setExternalUserIds, that is globably scopped. It is sufficient enough to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+
+
+```java
+/**
+* List containing objects that hold External UserId parameters for the current application user. * @param externalUserIds
+*/
+public static void setExternalUserIds(List<ExternalUserId> externalUserIds){
+    PrebidMobile.externalUserIds = externalUserIds;
+}
+/**
+* Returns the List that hold External UserId parameters for the current application user * @@return externalUserIds as Array.
+*/
+public static List<ExternalUserId> getExternalUserIds() {
+    return PrebidMobile.externalUserIds;
+```
+
+
+*Exmaple*:
+
+Java
+```java
+// User Id from External Third Party Sources
+ArrayList<ExternalUserId> externalUserIdArray = new ArrayList<>();
+externalUserIdArray.add(new ExternalUserId("adserver.org", "111111111111", null, new HashMap() {
+    {
+        put ("rtiPartner", "TDID");
+    }
+
+}));
+externalUserIdArray.add(new ExternalUserId("netid.de", "999888777", null, null));
+externalUserIdArray.add(new ExternalUserId("criteo.com", "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", null, null));
+externalUserIdArray.add(new ExternalUserId("liveramp.com", "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg", null, null));
+externalUserIdArray.add(new ExternalUserId("sharedid.org", "111111111111", 1, new HashMap() {
+    {
+        put("third", "01ERJWE5FS4RAZKG6SKQ3ZYSKV");
+    }
+
+}));
+//Set External User ID
+PrebidMobile.setExternalUserIds(externalUserIdArray);
+```
+
+
+### Local Storage
+
+Prebid SDK provides a local storage interface to set, retrieve or update an array of user IDs with associated identity vendor details. Prebid SDK will retrieve and pass User IDs and ID vendor details to PBS if values are present in local storage. The main difference between the Prebid API interface and the local storage interface is the persistence of storage of data. Local Storage data will persist across user sessions whereas the Prebid API interface (setExternalUserIds) persists only for the user session. If a vendor's details are passed both in local storage and the Prebid API at the same time, the Prebid  API data (setExternalUserIds) will prevail.
+
+Prebid SDK Provides five functions to handle User ID details:
+* storeExternalUserId
+* fetchStoredExternalUserId
+* fetchStoredExternalUserIds
+* removeStoredExternalUserId
+* removeStoredExternalUserIds
+
+
+```java
+/**
+* Use this API for storing the externalUserId in the SharedPreference
+* @param externalUserId the externalUserId instance to be stored in the SharedPreference
+* */
+public static void storeExternalUserId(ExternalUserId externalUserId) {
+    if (externalUserId != null) {
+        StorageUtils.storeExternalUserId(externalUserId);
+    }
+
+    else {
+        LogUtil.e("Targeting", "External User ID can't be set as null");
+    }
+
+}
+
+/**
+* Returns the stored (in the SharedPreference) ExternalUserId instance for a given source
+* @param source
+* */
+public static ExternalUserId fetchStoredExternalUserId(@NonNull String source) {
+    if (!TextUtils.isEmpty(source)) {
+        return StorageUtils.fetchStoredExternalUserId(source);
+    }
+
+    return null;
+}
+
+/**
+* Returns the stored (in the SharedPreferences) External User Id list
+* */
+public static List<ExternalUserId> fetchStoredExternalUserIds() {
+    return StorageUtils.fetchStoredExternalUserIds();
+}
+
+/**
+* Removes the stored (in the SharedPreference) ExternalUserId instance for a given source
+* @param source
+* */
+public static void removeStoredExternalUserId(@NonNull String source) {
+    if (!TextUtils.isEmpty(source)) {
+        StorageUtils.removeStoredExternalUserId(source);
+    }
+
+}
+
+/**
+* Clear the Stored ExternalUserId list from the SharedPreference
+* */
+public static void removeStoredExternalUserIds() {
+    StorageUtils.removeStoredExternalUserIds();
+}
+
+```
+
+*Examples*
+
+```java
+//Set External User ID
+TargetingParams.storeExternalUserId(new ExternalUserId("sharedid.org", "111111111111", 1, new HashMap() {
+    {
+        put ("third", "01ERJWE5FS4RAZKG6SKQ3ZYSKV");
+    }
+
+}));
+
+//Get External User ID
+ExternalUserId externalUserId = TargetingParams.fetchStoredExternalUserId("sharedid.org");
+
+//Get All External User IDs
+List<ExternalUserId> externalUserIdList = TargetingParams.fetchStoredExternalUserIds();
+
+//Remove External UserID
+TargetingParams.removeStoredExternalUserId("adserver.org");
+
+//Remove All External UserID
+TargetingParams.removeStoredExternalUserIds();
+```
 
 ## Further Reading
 

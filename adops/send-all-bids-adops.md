@@ -4,11 +4,8 @@ title: Send All Bids to the Ad Server
 head_title: Send All Bids to the Ad Server
 description: Send all bids to the ad server for reporting and data analysis.
 pid: 2
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
-
 
 
 # Send all bids to the ad server - Ad Ops setup
@@ -16,28 +13,30 @@ sidebarType: 3
 
 This page shows how to set up your ad server so that you can send all bids and report on them.
 
-As a publisher, you may wish to have your ad server see **all** header bidding bids (instead of seeing only the winning bids in each auction).  Reasons you might want this behavior include:
-
-+ You want your ad server to see all header bidding bids, so that your ad server can report on bid prices, instead of only winning prices
-
-+ You have a contractual agreement with your header bidding partner
-
-{: .alert.alert-success :}
-See the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) for more details.
-
 * TOC
 {: toc }
 
 ## Overview
 
-+ Your developers may optionally add `enableSendAllBids: true` to `pbjs.setConfig()`.  This is not strictly necessary, as `enableSendAllBids` defaults to `true`.  For details, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids).
+As a publisher, you may want to have your ad server see **all** header bidding bids (instead of seeing only the winning bids in each auction).  Reasons you might want this behavior include:
 
-+ From the ad ops side, you may choose to set up one order per bidder, so that each order can have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon]({{site.baseurl}}/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
++ You want your ad server to see all header bidding bids so that your ad server can report on bid prices instead of only winning prices.
+
++ You have a contractual agreement with your header bidding partner.
+
+{: .alert.alert-success :}
+See the [Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for more details.
+
+
+If you decide to send all bids to the ad sever, your developers have the option of explicity adding `enableSendAllBids: true` to `pbjs.setConfig()`.  However, since the default value is `true` this addition is not strictly necessary.  For details, see the [Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids).
+
+From the ad ops side, you can choose to set up one order per bidder, which allows for each order to have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon](/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
 
 {% include send-all-bids-keyword-targeting.md %}
 
-{: .bg-info :}
-In this example we will use Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
 
 ## Step 1. Add an order
 
@@ -152,6 +151,8 @@ See note above in regards to replacing *BIDDERCODE* placeholders.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
+
+{% include adops/adops-creative-declaration.html %}
 
 For other ad servers:
 

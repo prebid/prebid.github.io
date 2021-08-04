@@ -21,55 +21,105 @@ For each bidder listed below, you'll find the following information:
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.
 
 
-{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true %}
+{% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true | sort_natural: "title" %}
 
-## Bidder List
+### Search a bidder
 
-<ul>
+<input type="text" id="autocomplete-filter" class="autocomplete-filter">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
+<script>
+var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}', value: '/dev-docs/bidders/{{ page.biddercode }}' },{% endfor %}];
+</script>
+<script src="{{site.baseurl}}/assets/js/autocomplete.js"></script>
+<div class="c-bidder-list-group" markdown="1">
+
+### Full List
+
+#### #-A
+<ul class="c-bidder-list">
 {% for page in bidder_pages %}
-<li>
-<a href="#{{ page.biddercode }}">{{ page.title }}</a>
-</li>
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "0" or firstletter == "1" or firstletter == "2" or firstletter == "3" or firstletter == "4" or firstletter == "5" or firstletter == "6" or firstletter == "7" or firstletter == "8" or firstletter == "9" or firstletter == "a" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-## Bidder Documentation
-
+#### B-C
+<ul class="c-bidder-list">
 {% for page in bidder_pages %}
-
-<div class="bs-docs-section" markdown="1">
-<a name="{{ page.biddercode }}" ></a>
-<h2>{{ page.title }}</h2>
-
-<h4>Features</h4>
-
-{: .table .table-bordered .table-striped }
-| **Bidder Code** | {{ page.biddercode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
-| **Media Types** | {% unless page.media_types contains 'no-display' %}display{% if page.media_types contains 'video' %},{% endif %}{% endunless %}{% if page.media_types contains 'video' %} video{% endif %}{% if page.media_types != "no-display, native" and page.media_types contains 'native' %}, native{% endif %}{% if page.media_types == "no-display, native" %}native{% endif %} | **GDPR TCF1 Support** | {% if page.gdpr_supported == true %}yes{% else %}no{% endif %} |
-| **User IDs** | {% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %} | **GDPR TCF2 Support** | {% if page.tcf2_supported == true %}yes{% else %}no{% endif %} |
-| **SChain Support** | {% if page.schain_supported  == true %}yes{% else %}no{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% else %}no{% endif %} |
-| **Safeframes OK** | {% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
-| **Supports Deals** | {% if page.bidder_supports_deals == false %}no{% elsif page.bidder_supports_deals == true %}yes{% else %}check with bidder{% endif %} | **Prebid.js Adapter** | yes |
-| | | **Prebid Server Adapter** | {% if page.pbs == true %}yes{% else %}no{% endif %} |
-
-<h3>"Send All Bids" Ad Server Keys</h3>
-
-<font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>
-
-{: .table .table-bordered .table-striped }
-| <code>{{ "hb_pb_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_bidder_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_adid_" | append: page.biddercode | slice: 0,20 }}</code> |
-| <code>{{ "hb_size_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_source_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_format_" | append: page.biddercode | slice: 0,20 }}</code> |
-| <code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code> |
-| <code>{{ "hb_cache_path_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_deal_" | append: page.biddercode | slice: 0,20 }}</code> | |
-
-{% if page.prevBiddercode %}
-
-This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
-
-{% endif %}
-
-{{ page.content }}
-
-</div>
-
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "b" or firstletter == "c" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
+</ul>
+
+#### D-G
+<ul class="c-bidder-list">
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "d" or firstletter == "e" or firstletter == "f" or firstletter == "g" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+#### H-L
+<ul class="c-bidder-list">
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "h" or firstletter == "i" or firstletter == "j" or firstletter == "k" or firstletter == "l" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+#### M-O
+<ul class="c-bidder-list">
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "m" or firstletter == "n" or firstletter == "o" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+#### P-R
+<ul class="c-bidder-list">
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "p" or firstletter == "q" or firstletter == "r" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+#### S-T
+<ul class="c-bidder-list">
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "s" or firstletter == "t" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+#### U-Z
+<ul class="c-bidder-list">
+{% for page in bidder_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "u" or firstletter == "v" or firstletter == "w" or firstletter == "x" or firstletter == "y" or firstletter == "z" %}{% continue %}{% endunless %}
+  <li>
+  <a href="bidders/{{ page.biddercode }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+</div>

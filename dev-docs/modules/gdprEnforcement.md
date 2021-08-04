@@ -71,9 +71,19 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
 
-Note:
+Notes:
 
-- To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "rubicon" instead of "52").
+- To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
+- An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
+
+```
+pbjs.setConfig({
+    gvlMapping: {
+	bidderA: 12345,
+        bidderB: 67890
+    }
+});
+````
 
 ### Examples
 
@@ -169,6 +179,45 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 
+## Modules that Support GVL ID
+
+The GDPR Enforcement module requires the GVL ID for a module to be specified. If no GVL ID is found the module will be blocked by default unless it is specifically listed under `vendorExceptions`. The following modules have listed their GVL IDs.
+
+{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module Type</th>
+      <th>Module</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in bidder_pages %}{% unless page.gvl_id %}{% continue %}{% endunless %}
+    <tr>
+      <td>Bid Adapter</td>
+      <td>{{page.title}}</td>
+    </tr>
+{% endfor %}
+    <tr>
+      <td>Analytics Adapter</td>
+      <td>AppNexus</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>ID5</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>Lotame Panorama Id</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>Parrable ID</td>
+    </tr>
+</tbody>
+</table>
+
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). Include the base consent management module and this enforcement module as additional options on the **gulp build** command:
@@ -182,5 +231,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 ## Further Reading
 
 - [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
+- [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
 - [IAB TCF2 Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md)
 - [Prebid TCF2 Support](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#)
+- [CMP Best Practices](/dev-docs/cmp-best-practices.html)

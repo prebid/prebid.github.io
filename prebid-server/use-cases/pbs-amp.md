@@ -6,6 +6,10 @@ title: Prebid Server | Use Cases | AMP
 ---
 
 # Use Case: Prebid Server | AMP
+{: .no_toc}
+
+* TOC
+{:toc}
 
 [Accelerated Mobile Pages (AMP)](https://ampproject.org/) is an alternate web technology that can speed page performance, but
 as part of the tradeoff, header bidding wrappers like Prebid.js don't work well. Instead, AMP supports a method of header bidding called Real Time Configuration(RTC), which is implemented by Prebid Server.
@@ -35,7 +39,7 @@ As described in the [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-
 
 There are two basic ways of invoking AMP RTC:
 
-- One option is to use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js).
+- One option is to use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js).
 
 ```
   <amp-ad width="300" height="50"
@@ -43,11 +47,12 @@ There are two basic ways of invoking AMP RTC:
     data-slot="/11111/amp_test"
     data-multi-size-validation="false"
     rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "14062-amp-AMP_Test-300x250"}, "ACCOUNT_ID": "1001"}}'
-    json='{ "targeting": {"site": {"tags": "autoestima","url": "/amp/familia/materias/33559-princesa-africana-da-disney-lembra-por-que-toda-crianca-precisa-se-sentir-representada"}}}' >
+    json='{ "targeting": {"site":{"keywords":"article, las vegas","cat":{"blah":"1"},"other-attribute":"other-value","ext":{"data":{"entry_group":["front-page","featured-stories"],"page_type":"AMP"}}},"user":{"gender":"m"},"bidders":["bidderA","bidderB"],"keywords":"las vegas hospitality employees","foo":{"bar":"baz"}}' >
   </amp-ad>
 ```
-**Note:** the `prebidrubicon` and `prebidappnexus` AMP vendors define different parameters. AppNexus uses "PLACEMENT_ID" as the argument to rtc-config while Rubicon uses "REQUEST_ID".
 
+{: .alert.alert-info :}
+**Note:** the `prebidrubicon` and `prebidappnexus` AMP vendor strings define slightly different parameters; AppNexus uses "PLACEMENT_ID" as the argument to rtc-config while Rubicon uses "REQUEST_ID". They both translate to `tag_id` when passed to Prebid Server.
 
 - The other option is to construct a direct URL from component pieces: w, h, slot, targeting, gdpr_consent, account, page url (purl), etc.
 
@@ -59,6 +64,9 @@ There are two basic ways of invoking AMP RTC:
     rtc-config='{"urls": ["https://prebid-server-qa.example.com/openrtb2/amp?tag_id=11111&w=300&h=50&slot=%2F000%2Famp_test&targeting=%7B%22site%22%3A%20%7B%22key1%22%3A%20%22val1%22%7D%2C%20%22user%22%3A%20%7B%22key2%22%3A%20%22val2%22%7D%7D%7D&purl=encoded_page_url&account=333&gdpr_consent=encoded_cmp_consent_string"]
   </amp-ad>
 ```
+
+{: .alert.alert-info :}
+First party data may be passed in on the "targeting" field. See the [`/openrtb2/amp` endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) documentation for more details.
 
 ### Prebid Server Receives the AMP Request
 
@@ -157,6 +165,11 @@ So for the /openrtb2/amp URL above, the resulting OpenRTB might be:
 ```
 Note that most of the above OpenRTB was prepared offline and stored in the Prebid Server database indexed by the `tag_id`.
 Only a few dynamic parameters on the query string are integrated into the results from the database.
+
+#### First Party Data Support
+
+Ad Server targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
+into the OpenRTB JSON in imp[].ext.data for each bidder if permissions allow.
 
 #### Auction and Response
 

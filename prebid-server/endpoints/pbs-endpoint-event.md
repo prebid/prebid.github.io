@@ -33,7 +33,7 @@ This endpoint alerts Prebid Server to process the event. Most of the time this j
 ### Sample request
 
 ```
-GET http://prebid.site.com/event?t=win&b=1234567890&bidder=rubicon&f=i
+GET https://prebid.site.com/event?t=win&b=1234567890&bidder=rubicon&f=i
 ```
 
 ## `POST /vtrack` 

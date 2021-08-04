@@ -5,9 +5,12 @@ description: Prebid EMX Digital Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: emx_digital
-bidder_supports_deals: false
 media_types: banner, video
 gdpr_supported: true
+gvl_id: 183
+usp_supported: true
+schain_supported: true
+userIds: identityLink, uid2
 ---
 
 ### Registration

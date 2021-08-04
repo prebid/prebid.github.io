@@ -1,11 +1,22 @@
 ---
 layout: bidder
 title: Brightroll
+description: Prebid Brightroll(Verizon Media) S2S Bidder Adaptor
 pbs: true
-media_types: video
-biddercode: Brightroll
+media_types: display, video
+biddercode: brightroll
 prebid_member: true
+gdpr_supported: true
+coppa_supported: true
+ccpa_supported: true
+schain_supported: true
+pbs_app_supported: false
 ---
+
+### Registration
+
+Brightroll requires registration for each Prebid Server host company
+and each publisher. Contact dsp-supply-prebid@verizonmedia.com
 
 ### Bid Params
 

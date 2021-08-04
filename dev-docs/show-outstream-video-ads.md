@@ -3,8 +3,6 @@ layout: page_v2
 title: Show Outstream Video Ads
 description: Show Outstream Video Ads with Prebid.js
 pid: 10
-top_nav_section: dev_docs
-nav_section: prebid-video
 sidebarType: 4
 ---
 
@@ -41,7 +39,11 @@ var videoAdUnits = [{
     mediaTypes: {
         video: {
             context: 'outstream',
-            playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
         }
     },
     bids: [{
@@ -49,7 +51,7 @@ var videoAdUnits = [{
         params: {
             placementId: 13232385,
             video: {
-                skippable: true,
+                skip: 1,
                 playback_method: ['auto_play_sound_off']
             }
         }
@@ -67,39 +69,56 @@ To display an outstream video, two things are needed:
 
 Prebid.js will select the `renderer` used to display the outstream video in the following way:
 
-1. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.
-2. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.
+1. If a `renderer` is associated with the Prebid adUnit's video mediaType, it will be used to display any outstream demand associated with that adUnit with a mediaType of "video". (This is the preferred method.)
+2. If a `renderer` is associated with the Prebid adUnit, it will be used to display any outstream demand associated with that adUnit.  Below, we will provide an example of an adUnit with an associated `renderer`.  This is legacy, and number 1 is the preferred way.
+3. If no `renderer` is specified on the Prebid adUnit, Prebid will invoke the renderer associated with the winning (or selected) demand partner video bid.
 
 {: .alert.alert-warning :}
 At this time, since not all demand partners return a renderer with their video bid responses, we recommend that publishers associate a `renderer` with their Prebid video adUnits, if possible.  By doing so, any Prebid adapter that supports video will be able to provide demand for a given outstream slot.
 
-Renderers are associated with adUnits through the `adUnit.renderer` object.  This object contains two fields:
+Renderers are associated with adUnits in two ways.
+Primarily through the `adUnit.renderer` object. But also, especially for multiFormat adUnits, through the specified mediaType `adUnit.mediaTypes.video.renderer`.
+This object contains these fields:
 
 1. `url` -- Points to a file containing the renderer script.
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.
+3. `backupOnly` -- Optional field, if set to true, buyer or adapter renderer will be preferred
 
+
+In a multiFormat adUnit, you might want the renderer to only apply to only one of the mediaTypes.  You can do this by defining the renderer on the media type itself.
 {% highlight js %}
 
 pbjs.addAdUnit({
     code: 'video1',
+    // This renderer would apply to all prebid creatives...
+    renderer: {
+        url: 'example.com/publishersCustomRenderer.js',
+        render: function(bid) { renderAdUnit(...)  }
+    },
     mediaTypes: {
         video: {
             context: 'outstream',
-            playerSize: [640, 480]
-        }
-    },
-    renderer: {
-        url: 'https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js',
-        render: function (bid) {
-            ANOutstreamVideo.renderAd({
-                targetId: bid.adUnitCode,
-                adResponse: bid.adResponse,
-            });
-        }
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
+
+            // but a renderer passed in here would apply only to this mediaType.
+            // This renderer would override the above renderer if it exists.
+            renderer: {
+                url: 'example.com/videoRenderer.js',
+                render: function (bid) { renderVideo(...)  }
+            }
+        },
+        display: {
+            // With the renderer property excluded here, the display bids would
+            // use the renderer defined on the adUnit level.
+            ...,
+        },
     },
     ...
 });
-
 {% endhighlight %}
 
 Some demand partners that return a renderer with their video bid responses may support renderer configuration with the `adUnit.renderer.options` object. These configurations are bidder specific and may include options for skippability, player size, and ad text, for example. An example renderer configuration follows:
@@ -111,7 +130,11 @@ pbjs.addAdUnit({
     mediaTypes: {
         video: {
             context: 'outstream',
-            playerSize: [640, 480]
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         }
     },
     renderer: {
@@ -124,7 +147,7 @@ pbjs.addAdUnit({
 
 {% endhighlight %}
 
-For more technical information about renderers, see [the pull request adding the 'Renderer' type](https://github.com/prebid/Prebid.js/pull/1082)
+For more technical information about renderers, see [the pull request originally adding the 'Renderer' type](https://github.com/prebid/Prebid.js/pull/1082) and [the pull request allowing the 'renderer' type in the mediaType](https://github.com/prebid/Prebid.js/pull/5760).
 
 ## Step 2: Show ads in the page body
 
@@ -178,9 +201,9 @@ pbjs.que.push(function () {
 
 For more information, see the API documentation for:
 
-+ [requestBids]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids)
-+ [getHighestCpmBids]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.getHighestCpmBids)
-+ [renderAd]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.renderAd)
++ [requestBids](/dev-docs/publisher-api-reference/requestBids.html)
++ [getHighestCpmBids](/dev-docs/publisher-api-reference/getHighestCpmBids.html)
++ [renderAd](/dev-docs/publisher-api-reference/renderAd.html)
 
 ## Working Examples
 
