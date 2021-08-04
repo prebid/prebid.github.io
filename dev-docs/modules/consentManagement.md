@@ -22,7 +22,7 @@ sidebarType : 1
 {% include /alerts/alert_important.html content=legalNotice %}
 
 {: .alert.alert-warning :}
-Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](/blog/tcf2) for timelines.
+Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](https://prebid.org/blog/tcf2) for timelines.
 
 ## Overview
 
@@ -58,7 +58,7 @@ Please start by understanding the IAB's [TCF Implementation Guide](https://githu
 
 To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/all-news/the-iab-europe-transparency-consent-framework-tcf-steering-group-votes-to-extend-technical-support-for-tcf-v1-1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
 
-In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html). 
+In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html).
 
 Once the CMP is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call.  Adapters that support this feature will then be able to retrieve the consent information and incorporate it in their requests.
 
@@ -74,7 +74,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr | `Object` | | |
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
-| gdpr.defaultGdprScope | `boolean` | (TCF v2.0 only) Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time. | `true` |
+| gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.allowAuctionWithoutConsent | `boolean` | (TCF v1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
@@ -318,8 +318,8 @@ Here are some things that publishers can do to control various activities:
 
 1. If the current page view is known to be in GDPR scope, make sure the adapters are aware of it even on the first page where CMP hasn't been activated by setting the defaultGdprScope: `consentManagement.gdpr.defaultGdprScope: true`
 2. If the user hasn't consented to Purpose 1:
-  - Set [deviceAccess: false](/dev-docs/publisher-api-reference.html#setConfig-deviceAccess)
-  - Don't enable [userSync](/dev-docs/publisher-api-reference.html#setConfig-Configure-User-Syncing)
+  - Set [deviceAccess: false](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess)
+  - Don't enable [userSync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
   - Don't enable [userId](/dev-docs/modules/userId.html) modules
 
 3. If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
@@ -420,53 +420,29 @@ This should be false if there was some error in the consent data; otherwise set 
 **_cmpLoaded_**  
 This should be be set to true once the parameters listed above are processed.
 
-## Adapters Supporting TCF v1.1
+## Adapters Supporting GDPR
 
-Bidders on this list have self-declared their TCF 1.1 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true".
+Bidders on this list have self-declared their GDPR support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-var adaptersSupportingGdpr1=[];
+var adaptersSupportingGdpr=[];
 var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
     {% if item.gdpr_supported == true %}
-	adaptersSupportingGdpr1[idx_gdpr]={};
-	adaptersSupportingGdpr1[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingGdpr1[idx_gdpr].text="{{item.title}}";
+	adaptersSupportingGdpr[idx_gdpr]={};
+	adaptersSupportingGdpr[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+	adaptersSupportingGdpr[idx_gdpr].text="{{item.title}}";
 	idx_gdpr++;
     {% endif %}
 {% endfor %}
 </script>
 
-<div id="adaptersTableGdpr1">
+<div id="adaptersTableGdpr">
         <script>
-           writeDynamicTable({div: "adaptersTableGdpr1", data: "adaptersSupportingGdpr1", sort: "rowFirst", striped: false} );
-        </script>
-</div>
-
-## Adapters Supporting TCF v2.0
-
-Bidders on this list have self-declared their TCF 2.0 support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "tcf2_supported: true".
-
-<script type="text/javascript">
-var adaptersSupportingGdpr2=[];
-var idx_gdpr=0;
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for item in bidder_pages %}
-    {% if item.tcf2_supported == true %}
-	adaptersSupportingGdpr2[idx_gdpr]={};
-	adaptersSupportingGdpr2[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingGdpr2[idx_gdpr].text="{{item.title}}";
-	idx_gdpr++;
-    {% endif %}
-{% endfor %}
-</script>
-
-<div id="adaptersTableGdpr2">
-        <script>
-           writeDynamicTable({div: "adaptersTableGdpr2", data: "adaptersSupportingGdpr2", sort: "rowFirst", striped: false} );
+           writeDynamicTable({div: "adaptersTableGdpr", data: "adaptersSupportingGdpr", sort: "rowFirst", striped: false} );
         </script>
 </div>
 
