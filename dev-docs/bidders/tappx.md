@@ -27,6 +27,9 @@ Please contact tappx@tappx.com to get set up.
 | tappxkey | required | An ID which identifies the adunit | 'key1' | string |
 | endpoint | required | Endpoint provided to publisher | 'endpoint1' | string |
 | bidfloor | optional | Minimum bid for this impression expressed in CPM (USD) | 1.2 | number |
+| mktag | optional | An ID which identifies a group of adunits | 'key1' | string |
+| bcid | optional | Block list of CID | ["1234"] | array of strings |
+| bcrid | optional | Block list of CRID | ["1234"] | array of strings |
 
 ### Test Parameters
 
