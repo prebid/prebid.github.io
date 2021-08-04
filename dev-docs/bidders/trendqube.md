@@ -2,10 +2,11 @@
 layout: bidder
 title: Trendqube
 description: Prebid Trendqube Bidder Adapter
-
+pbjs: true
 biddercode: trendqube
 gdpr_supported: true
 media_types: banner, video
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

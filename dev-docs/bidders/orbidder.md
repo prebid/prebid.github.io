@@ -3,7 +3,8 @@ layout: bidder
 title: Orbidder
 description: Prebid Orbidder Bidder Adaptor
 biddercode: orbidder
-
+pbjs: true
+pbs: true
 media_types: banner
 gdpr_supported: true
 ---

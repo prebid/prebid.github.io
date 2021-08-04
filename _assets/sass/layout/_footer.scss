@@ -1,0 +1,6 @@
+.pb-footer {
+  @include padding(50px null 30px);
+  background: $color--white;
+  font-size: 12px;
+  line-height: 1.2;
+}

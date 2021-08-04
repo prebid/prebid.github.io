@@ -2,8 +2,10 @@
 layout: bidder
 title: Luna Media
 description: Prebid Luna Media Bidder Adapter
-
+pbjs: true
+pbs: true
 biddercode: lunamedia
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

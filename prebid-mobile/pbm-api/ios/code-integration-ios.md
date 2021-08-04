@@ -21,12 +21,60 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following:
 
 ```
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
 end
 ```
+
+### Include with Carthage
+
+If you are not familiar with the Carthage package builder, please refere to the project [github page](https://github.com/Carthage/Carthage) for more details.
+
+Since Prebid SDK architecture supports a multi-module feature for future enhancements, that currently use the same module name for every schema, please use CarthageBuild.sh script to build a necessary binary.
+
+There are two shared schemes available ([issue #239](https://github.com/prebid/prebid-mobile-ios/issues/239)):
+
+- PrebidMobile
+- PrebidMobileCore
+
+Follow the next steps:
+
+1. Add PrebidSDK dependency into Cartfile. Release notes
+```
+github "prebid/prebid-mobile-ios" == 1.5
+```
+2. Update Carthage
+```
+carthage update
+```
+
+3. Build the specific schema `CarthageBuild.sh`
+    
+    **Variant 1**
+    
+    - Run CarthageBuild.sh script from Cartfile folder. The path should be:
+        `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
+    
+    - Enter Schema name (PrebidMobile or PrebidMobileCore)
+        - If you run CarthageBuild.sh and see Permission denied use:
+             `chmod +x <path_to_CarthageBuild.sh>`
+    
+    **Variant 2**
+    
+    - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
+    
+    - Manage Schemes -> Check Shared checkbox for a necessary schema
+    
+    - run `carthage build prebid-mobile-ios`
+4. Integrate the binary into your project
+
+
+
+You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
+
+
 
 ### Build framework from source
 
@@ -41,7 +89,7 @@ This will output the PrebidMobile.framework.
 
 In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers:
 
-1. The simplest option is to sign up for a hosted solution. Several [Prebid.org members](/prebid-server/hosted-servers.html) provide hosting packages.
+1. The simplest option is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) provide hosting packages.
 
 2. Implement your own Prebid Server solution. You will need to [download](https://github.com/prebid/prebid-server) the source code from Github. The repository has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation.
 

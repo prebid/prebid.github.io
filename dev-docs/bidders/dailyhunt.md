@@ -2,10 +2,11 @@
 layout: bidder
 title: Dailyhunt
 description: Prebid Dailyhunt Bidder Adaptor
-
+pbjs: true
 biddercode: dailyhunt
 media_types: display, native, video
 gdpr_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

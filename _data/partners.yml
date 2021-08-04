@@ -1,3 +1,8 @@
+- company: IndexExchange
+  link: https://www.indexexchange.com/
+  imgURL: /assets/images/partners/leader/IX-logo.png
+  type: leader
+  
 - company: Magnite
   link: https://www.magnite.com/
   imgURL: /assets/images/partners/leader/Magnite_logo.png
@@ -103,6 +108,16 @@
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
   
+- company: diDNA
+  link: https://didna.io/
+  imgURL: /assets/images/partners/publisher/didna-logo.png
+  type: publisher
+  
+- company: Freestar
+  link: https://freestar.com/
+  imgURL: /assets/images/partners/publisher/freestar-logo.png
+  type: publisher
+  
 - company: Glewed TV
   link: https://www.glewed.tv/
   imgURL: /assets/images/partners/publisher/glewed_logo.png
@@ -152,6 +167,11 @@
   link: https://www.sortable.com/
   imgURL: /assets/images/partners/publisher/sortable.png
   type: publisher
+
+- company: Havas 
+  link: https://havasmedia.com/
+  imgURL: /assets/images/partners/buyer/Havas_Media_Logo.png
+  type: buyer
 
 - company: AdForm
   link: https://site.adform.com/
@@ -210,6 +230,10 @@
   link: https://jwplayer.com
   type: community
 
+- company: Konduit
+  link: https://konduitvideo.com/
+  type: community
+
 - company: LiveIntent
   link: https://www.liveintent.com
   imgURL: /assets/images/partners/community/liveintent_logo.png
@@ -246,4 +270,12 @@
 
 - company: Yeahmobi
   link: https://yeahmobi.com
+  type: community
+
+- company: Yieldlab
+  link: https://yieldlab.de
+  type: community
+
+- company: Zeta Global
+  link: https://zetaglobal.com/
   type: community

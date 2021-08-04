@@ -2,7 +2,7 @@
 layout: bidder
 title: Vertoz
 description: Prebid Vertoz Bidder Adaptor
-
+pbjs: true
 biddercode: vertoz
 ---
 

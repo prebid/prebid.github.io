@@ -2,8 +2,9 @@
 layout: bidder
 title: LEMMA
 description: Prebid Lemma Bidder Adapter
-
+pbjs: true
 biddercode: lemma
+pbjs_version_notes: not in 5.x
 ---
 
 ### Integration Note:

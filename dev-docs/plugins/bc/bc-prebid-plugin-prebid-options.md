@@ -60,7 +60,7 @@ https://acdn.adnxs.com/prebid/not-for-prod/prebid.js
 
 **Example:**
 
-`options.prebidPath = 'http://your-path/prebid.js'`
+`options.prebidPath = 'https://your-path/prebid.js'`
 
 <a name="biddersSpec"></a>
 ### biddersSpec
@@ -190,7 +190,7 @@ For example:
 A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool in one of the following ways:
 
 - directly in the GitHub repository for the plugin: [https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
-- directly using this external link: [http://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html](http://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html)
+- directly using this external link: [https://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html](https://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html)
 
 See "bidderSettings" at [Prebid.org]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for details.
 
@@ -293,7 +293,7 @@ Additional options that are passed in to the prebid.js `setConfig()` method.
 
 JSON object.
 
-Supported fields are documented in the [Prebid.org Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)
+Supported fields are documented in the [Prebid.org Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html)
 
 **Required?**
 
@@ -314,7 +314,7 @@ None
 
 Parameters used when using Google Ad Manager as the ad server.
 
-See prebid.org documentation for [buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
+See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
 
 **Acceptable Values:**
 
@@ -494,9 +494,9 @@ Allows the user to specify a custom path used to load the Prebid plugin script. 
 
 In version 0.4, the original plugin was split into a loader and the main plugin.  The loader is the file that you specify when embedding the plugin into the player.  The loader will then load the main plugin itself at runtime.  This separation simplifies the process of debugging the plugin, especially when the plugin is embedded directly into the player in Brightcove Studio.  It also means that when updates are published for the plugin, publishers will be able to pick up the updates without having to re-publish their players.
 
-When registering the plugin to the Brightcove Player, you should continue to use the original path to the plugin.  This is now the path to the loader.  By default, this path is: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js`.
+When registering the plugin to the Brightcove Player, you should continue to use the original path to the plugin.  This is now the path to the loader.  By default, this path is: `https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js`.
 
-Also, by default, the loader will load in the plugin from: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`.
+Also, by default, the loader will load in the plugin from: `https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`.
 
 However, if you are trying to run custom or trial versions of the plugin, you can specify the path to this trial version using this new option: `prebidPluginPath`.
 
@@ -510,7 +510,7 @@ No.
 
 **Default Value:**
 
-http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
+https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
 
 **Example:**
 

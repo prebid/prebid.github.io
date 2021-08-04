@@ -2,9 +2,10 @@
 layout: bidder
 title: ablida
 description: Prebid ablida Bidder Adaptor
-
-media_types: banner
+pbjs: true
 biddercode: ablida
+media_types: banner, native, video
+gdpr_supported: true
 ---
 
 

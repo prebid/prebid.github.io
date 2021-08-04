@@ -55,6 +55,8 @@ The type of ad you want to test. This will be the ad type that is associated wit
 Select from:
 -	*Banner*
 -	*Interstitial*
+-    *Native*
+-    *Video*
 
 **Ad Size**
 
@@ -94,6 +96,10 @@ Select your Prebid Server host:
 
 -	*AppNexus*
 -	*Rubicon*
+-    *Custom*
+
+**Custom Server Host**
+Provide the url of the custom hosted prebid server 
 
 **Account ID**
 

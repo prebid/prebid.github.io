@@ -2,22 +2,22 @@
 layout: bidder
 title: DecenterAds
 description: Prebid DecenterAds Bidder Adaptor
-
+pbs: true
+pbjs: true
 biddercode: decenterads
-media_types: banner, native, video
-
+media_types: banner, video, native
+gdpr_supported: true
+pbs_app_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
-### Bid Params Prebid 0.34
+### Note:
+
+The Example Bidding adapter requires setup before beginning. Please contact us at support@decenterads.com
+
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description | Example | Type     |
-|-------------|----------|-------------|---------|----------|
-| `banner_id` | required |             |         | `string` |
-
-### Bid Params Prebid 1.x
-
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Description | Example | Type     |
-|---------------|----------|-------------|---------|----------|
-| `placementId` | required |             |         | `string` |
+| Name          | Scope    | Description  |  Example  | Type     |
+|---------------|----------|--------------|-----------|----------|
+| `placementId` | required | Placement ID | `'12345'` | `string` |

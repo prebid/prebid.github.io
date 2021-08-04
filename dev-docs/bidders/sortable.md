@@ -3,12 +3,15 @@ layout: bidder
 title: Sortable
 description: Prebid Sortable Bidder Adaptor
 biddercode: sortable
-
+pbjs: true
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
 prebid_member: true
+gvl_id: 145
+getFloor: true
+userIds: all
 ---
 
 **Table of Contents**

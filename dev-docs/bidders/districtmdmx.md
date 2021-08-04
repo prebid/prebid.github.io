@@ -2,13 +2,14 @@
 layout: bidder
 title: DistrictmDMX
 description: Prebid DistrictmDMX Bidder Adaptor
-
+pbjs: true
 biddercode: districtmDMX
 gdpr_supported: true
 schain_supported: true
+getFloor: true
 usp_supported: true
 coppa_supported: true
-userIds: digitrust, id5Id, identityLink, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 

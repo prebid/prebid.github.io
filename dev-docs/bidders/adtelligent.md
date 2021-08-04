@@ -2,14 +2,18 @@
 layout: bidder
 title: Adtelligent
 description: Prebid Adtelligent Bidder Adapter
-
 biddercode: adtelligent
 media_types: video,banner
 gdpr_supported: true
-userIds: britepoolId, criteo, digitrust, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+safeframes_ok: true
+prebid_member: true
+pbjs: true
+pbs: true
+gvl_id: 410
 ---
 
 ### Bid params

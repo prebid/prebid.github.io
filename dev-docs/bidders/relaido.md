@@ -3,7 +3,7 @@ layout: bidder
 title: Relaido
 description: Prebid Relaido Bidder Adapter
 biddercode: relaido
-
+pbjs: true
 media_types: banner, video
 ---
 

@@ -2,11 +2,13 @@
 layout: bidder
 title: Deepintent
 description: Prebid Deepintent Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: deepintent
 media_types: banner
 gdpr_supported: true
 usp_supported: true
+gvl_id: 541
 ---
 
 ### Bid Params
@@ -19,6 +21,8 @@ usp_supported: true
 | `custom`      | optional | custom key value params| `'{"position":"right-box"}''`| `object` |
 | `user`        | optional | user params according to IAB standards | `'{"gender":"F"}''`| `object` |
 | `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
+
+
 
 ### Configuration
 

@@ -2,9 +2,10 @@
 layout: bidder
 title: MobFox
 description: Prebid MobFox Bidder Adaptor
-
+pbjs: true
 biddercode: mobfox
 media_types: video
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

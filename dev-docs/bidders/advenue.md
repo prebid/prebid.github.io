@@ -2,8 +2,9 @@
 layout: bidder
 title: Advenue
 description: Prebid Advenue Bidder Adaptor
-
+pbjs: true
 biddercode: advenue
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params
