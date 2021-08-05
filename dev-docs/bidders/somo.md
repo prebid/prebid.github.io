@@ -2,11 +2,16 @@
 layout: bidder
 title: Somo Audience
 description: Somo Audience Bidder Adapter
-hide: true
+pbjs: true
 biddercode: somo
 prevBiddercode: somoAudience
+pbjs_version_notes: not in 5.x
 ---
 
+### Disclosure
+
+This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
+of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
 
 ### Bid Params
 

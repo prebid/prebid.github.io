@@ -133,7 +133,7 @@ A string indicating the type of content being displayed in the video player. The
                 mimes: ['video/mp4'],
   </pre>
 
-  <p>For more on Prebid Server ad unit requirements, see <a href="{{site.github.url}}/dev-docs/get-started-with-prebid-server.html#using-prebid-server-to-show-video-ads">Getting Started with Prebid Server – Video</a>.</p>
+  <p>For more on Prebid Server ad unit requirements, see <a href="/prebid-server/use-cases/pbs-pbjs.html">Getting Started with Prebid Server – Video</a>.</p>
 
 </div>
 
@@ -141,6 +141,84 @@ A string indicating the type of content being displayed in the video player. The
 
 After you’ve defined your ad units, you can continue with the rest of your configuration.
 
+#### Deal Support
+
+To prioritize certain video deals and ensure delivery and performance within the Freewheel stack Prebid has additional configurations that can be enabled.
+
+`prioritizeDeals`  
+A  boolean that indicates if deals should be given a higher preference. If true, Prebid will set the value of `hb_pb_cat_dur` with `bid.video.tier` replacing the cpm value. For example:
+
+  <pre>
+    hb_pb_cat_dur=dealId_395_15s
+  </pre>
+
+`dealTier`  
+An object that enables publishers to set a prefix and minimum deal tier for each bidder. The `dealTier` object enables publishers to have different line item setups with varying priorities.
+
+`dealTier.prefix`  
+An optional string that enables bidders to target deal line items.
+
+`dealTier.minDealTier`  
+An integer that will give higher preference to deal bids which return tier greater than minDealTier.  Bids with `minDealTier` values less than five will not be ignored, however their cache key will contain `dealId` in place of `cpm`. These bids will be auctioned as non-deal bids.
+
+    <pre>
+    // This will replace the cpm with dealId in cache key as well as targeting kv pair when prioritizeDeals flag is set to true.
+        pbjs.setConfig({
+        adpod: {
+          prioritizeDeals: true,
+          dealTier: {
+            'appnexus': {
+              prefix: 'tier',
+              minDealTier: 5
+            },
+            'some-other-bidder': {
+              prefix: 'deals',
+              minDealTier: 20
+            }
+          }
+        }
+        })
+    </pre>
+
+For adpods, the bidder will return multiple bids. Each bid can have a different priority/deal tier setting. To enable publishers to have control over the deal tier a `filterBids` setting has been added to `pbjs.adServers.freewheel.getTargeting` to select certain deal bids.
+
+  <pre>
+    pbjs.adServers.freewheel.getTargeting({
+      codes: [adUnitCode1],
+      callback: function(err, targeting) {
+          //pass targeting to player api
+      }
+    });
+  </pre>
+
+Below is an example of a bid response for deals.  
+
+  <pre>
+  // Sample return targeting key value pairs
+    {
+    'adUnitCode-1': [
+      {
+        'hb_pb_cat_dur': 'tier9_400_15s', // Bid with deal id
+      },
+      {
+        'hb_pb_cat_dur': 'tier7_401_15s', // Bid with deal id
+      },
+      {
+        'hb_pb_cat_dur': '15.00_402_15s',
+      },
+      {
+        'hb_cache_id': '123'
+      }
+    ]
+    }
+  </pre>
+
 ### Examples
 
-See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) for examples of long-form video ads. 
+See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) for examples of long-form video ads.
+
+## Further Reading
+
+-   [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)
+-   [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html)
+-   [What is Prebid?]({{site.github.url}}/overview/intro.html)

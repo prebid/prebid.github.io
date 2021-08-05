@@ -2,7 +2,7 @@
 layout: bidder
 title: Audience Media
 description: Prebid Audience Media Bidder Adaptor
-hide: true
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
 biddercode: audiencemedia

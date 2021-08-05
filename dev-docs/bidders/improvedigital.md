@@ -3,28 +3,39 @@ layout: bidder
 title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
-hide: true
+pbjs: true
+pbs: true
 gdpr_supported: true
+userIds: all
 usp_supported: true
 media_types: banner, native, video
 schain_supported: true
+gvl_id: 253
+pbs_app_supported: true
 ---
 
 ### Bid params
 
-Depending on your setup in our system, your placements will either have a globally-unique placement ID or a publisher-unique placement key as an identifier.  Therefore, to identify your placement you either need a placementId only, or a combination of publisherId and placementKey.
-
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                                                                                | Example                                                                | Type      |
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------|
-| `placementId`  | optional | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
-| `publisherId`  | optional | Your publisher ID.  This is only required when using a placementKey                                                        | `950`                                                                  | `integer` |
-| `placementKey` | optional | The placement key for your placement.  Must be used with `publisherId`.                                                    | `'myMainBannerPlacement300x200'`                                       | `string`  |
+| `placementId`  | required | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
-| `size`         | optional | Single size filter.  Where a placement supports multiple sizes, this forces the response to feature only one of the multiple sizes. This parameter is ignored when `usePrebidSizes` is enabled (see `Sizes` section below) | `{ w:300, h:250 }`                                                     | `object`  |
+| `size`         | optional | Single size filter.  Where a placement supports multiple sizes, this forces the response to feature only one of the multiple sizes. This parameter is ignored when `usePrebidSizes` is enabled (see the [Sizes](#improvedigital-sizes) section below). | `{ w:300, h:250 }`                                                     | `object`  |
 | `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
 | `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+| `video`    | optional | Object with video parameters. See the [Video params](#improvedigital-video) section below for details. | | `object` |
 
+<a name="improvedigital-video"></a>
+
+### Video params
+
+{: .table .table-bordered .table-striped }
+| Name             | Scope    | Description                                    | Example                                   | Type            |
+|------------------|----------|------------------------------------------------|-------------------------------------------|-----------------|
+| `skip`           | optional | Indicates if the player will allow the video to be skipped. | `1` | `integer` |
+| `skipmin`        | optional | Videos of total duration greater than this number of seconds can be skippable. | `15` | `integer` |
+| `skipafter`      | optional | Number of seconds a video must play before skipping is enabled. | `5` | `integer` |
 
 ### Configuration
 
@@ -38,6 +49,8 @@ pbjs.setConfig({
    improvedigital: {singleRequest: true}
 });
 ```
+
+<a name="improvedigital-sizes"></a>
 
 #### Sizes
 
@@ -67,22 +80,6 @@ pbjs.setConfig({
         ]
     }];
 
-#### Configuration With publisherId/placementKey
-
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
-        sizes: [[600, 290]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                    placementKey:'',
-                    publisherId:
-                }
-            }
-        ]
-    }];
-
 #### Configuration With PlacementId and Key-Values
 
     var adUnits = [{
@@ -96,25 +93,6 @@ pbjs.setConfig({
                     keyValues: {
                         testKey1: ["testValueA"],
                         testKey2: ["testValueB", "testValueC"]
-                    }
-                }
-            }
-        ]
-    }];
-
-#### Configuration With PlacementId and Size Filter
-
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
-        sizes: [[600, 290]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                    placementId:1053687,
-                    size: {
-                        w:300,
-                        h:300
                     }
                 }
             }

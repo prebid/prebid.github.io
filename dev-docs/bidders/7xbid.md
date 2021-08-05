@@ -2,9 +2,10 @@
 layout: bidder
 title: 7xbid
 description: Prebid 7xbid Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: 7xbid
 media_types: banner, native
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

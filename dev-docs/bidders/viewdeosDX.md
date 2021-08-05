@@ -1,11 +1,13 @@
 ---
 layout: bidder
-title: ViewDeos DX
+title: Viewdeos
 description: Prebid ViewDeos Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: viewdeosDX
 media_types: banner,video
 gdpr_supported: true
+gvl_id: 924
 ---
 
 ### Bid params

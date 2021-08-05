@@ -2,7 +2,7 @@
 layout: bidder
 title: ONE by AOL Mobile
 description: Prebid AOL Bidder Adaptor aliase
-hide: true
+pbjs: true
 biddercode: onemobile
 aliasCode : aol
 ---

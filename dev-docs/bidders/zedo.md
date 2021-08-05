@@ -2,8 +2,9 @@
 layout: bidder
 title: ZEDO
 description: Prebid ZEDO Bidder Adapter
-hide: true
+pbjs: true
 biddercode: zedo
+pbjs_version_notes: not in 5.x
 ---
 
 

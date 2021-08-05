@@ -2,7 +2,7 @@
 layout: bidder
 title: ANIVIEW
 description: Prebid ANIVIEW Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: aniview
 media_types: video
 gdpr_supported: true

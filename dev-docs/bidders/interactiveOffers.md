@@ -1,23 +1,23 @@
 ---
 layout: bidder
 title: InteractiveOffers
-description: Prebid InteractiveOffers.com Bidder Adaptor
-hide: true
+description: Prebid InteractiveOffers.com Bidder Adapter
+pbs: true
+pbjs: true
 biddercode: interactiveOffers
 gdpr_supported: false
 media_types: banner
 ---
 
 ### Note:
-Module that connects to interactiveOffers demand sources. Param pubId is required.
+Module that connects to interactiveOffers demand sources. Param pubid is required.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope    | Description                                                          | Example                           | Type      |
-|----------|----------|----------------------------------------------------------------------|-----------------------------------|-----------|
-| `pubId`  | required | The placement ID (site channel ID)                                   | `4`                               | `integer` |
-| `tmax`   | optional | Max timeout for response                                             | `150`                             | `integer` |
+| Name          | Scope    | Description | Example | Type     |
+|---------------|----------|-------------|---------|----------|
+| `pubid` | required |  Publisher id          | 35   | `integer` |
 
 Example:
 
@@ -25,8 +25,7 @@ Example:
 {
     bidder: "interactiveOffers",
     params: {
-        pubId: 4,
-        tmax: 150
+        pubid: 35
     }
 }
 ```

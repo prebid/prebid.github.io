@@ -2,7 +2,7 @@
 layout: bidder
 title: Huddled Masses
 description: Prebid Huddled Masses Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: huddledmasses
 ---
 

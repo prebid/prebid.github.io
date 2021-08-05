@@ -8,7 +8,6 @@ sidebarType: 4
 ---
 
 
-
 <div class="container">
 	<div class="row">
 		<div class="vidHeader" style="width:75vw;">
@@ -58,18 +57,19 @@ sidebarType: 4
       sizes: [640,480],
       mediaTypes: {
         video: {
-          context: "instream"
+                context: 'instream',
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
         }
       },
       bids: [
         {
           bidder: 'appnexusAst',
           params: {
-            placementId: '9333431', // Add your own placement id here<br>
-            video: {
-              skipppable: true,
-              playback_method: ['auto_play_sound_off']
-            }
+            placementId: '13232361' // Add your own placement id here<br>
           }
         }
       ]
@@ -80,7 +80,10 @@ sidebarType: 4
       pbjs.addAdUnits(videoAdUnit);
 
       pbjs.setConfig({
-        usePrebidCache: true
+        usePrebidCache: true,
+        cache: {
+          url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
       });
 
       pbjs.requestBids({

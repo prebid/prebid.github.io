@@ -6,23 +6,28 @@ sidebarType: 0
 ---
 
 # Project Management Committees
+{: .no_toc}
 
 Project Management Committees are responsible for the active management of one or more GitHub repositories, which are also identified by resolution of the Board.
 
 The committees meet periodically to:
 
 - establish and prioritize roadmap items
-- discuss issues and policies
+- review open issues and pull requests
+- discuss policies
 - create development plans
 
-The following sections describe the currently active committees.
+The following sections describe the committees.
+
+* TOC
+{:toc}
 
 ## Prebid.js
 
 {: .table .table-bordered .table-striped }
 | **Scope** | Prebid.js and related repositories |
 | **Description** | browser-based header bidding |
-| **Chair** | Matt Kendall (Blockthrough) |
+| **Chair** | Gareth Glaser (Rubicon Project) |
 | **Audience** | Product and Engineers |
 
 GitHub Repositories:
@@ -31,6 +36,7 @@ GitHub Repositories:
 + https://github.com/prebid/Prebid.js-packager
 + https://github.com/prebid/prebid-universal-creative
 + https://github.com/prebid/currency-file-generator
++ https://github.com/prebid/prebid-js-build-generator
 
 
 ## Prebid Mobile
@@ -59,8 +65,8 @@ GitHub Repositories:
 
 + https://github.com/prebid/prebid-server
 + https://github.com/prebid/prebid-cache
-+ https://github.com/rubicon-project/prebid-server-java
-+ https://github.com/rubicon-project/prebid-cache-java
++ https://github.com/prebid/prebid-server-java
++ https://github.com/prebid/prebid-cache-java
 
 
 ## Prebid Tools
@@ -75,6 +81,17 @@ GitHub Repositories:
 
 + https://github.com/prebid/header-bidder-expert
 
+## Identity
+
+{: .table .table-bordered .table-striped }
+| **Scope** | User Identification |
+| **Description** | Chart Prebid's role in the future of identity on the web and coordinate any implementation efforts |
+| **Chair** | Stephanie Layser (NewsCorp) |
+| **Audience** | Product, Business, and Engineers |
+
+GitHub Repositories:
+
++ TBD
 
 ## Video Taskforce
 
@@ -102,6 +119,7 @@ GitHub Repositories:
 | **Audience** | Business |
 
 ## Further Reading
+{: .no_toc}
 
 * [What is Prebid.org?](/overview/what-is-prebid-org.html)
 * [Prebid.org Membership and Partners](/partners/partners.html)
