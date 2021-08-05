@@ -23,4 +23,5 @@ The Adprime Bidding adapter requires setup before beginning. Please contact us a
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | required | Adprime placement id         | `'1234asdf'`    | `string` |
 | `keywords`    | optional | page context keywords | ['car','sport'] | `array` |
+| `audiences`    | optional | publisher audiences | ['aud1','aud2'] | `array` |
 
