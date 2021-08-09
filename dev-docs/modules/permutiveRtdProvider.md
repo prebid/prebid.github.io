@@ -17,7 +17,7 @@ sidebarType : 1
 {:toc}
 
 ## Overview
-This submodule reads cohorts from Permutive and attaches them as targeting keys to bid requests. Using this module will deliver best targeting results, leveraging Permutive's real-time segmentation and modelling capabilities.
+This module reads cohorts from Permutive and attaches them as targeting keys to bid requests.
 
 ## Usage
 Compile the Permutive RTD module into your Prebid build:
@@ -70,6 +70,6 @@ Key-values details for custom parameters:
 | name              | String               | This should always be `permutive` | - |
 | waitForIt         | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional) | `false` |
 | params            | Object               |                 | - |
-| params.acBidders  | String[]             | An array of bidders which should receive AC cohorts. | `[]` |
+| params.acBidders  | String[]             | An array of bidders which should receive Audience Connector cohorts. | `[]` |
 | params.maxSegs    | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500` |
 
