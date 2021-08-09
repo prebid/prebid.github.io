@@ -7,9 +7,11 @@ pbjs: true
 pbs: true
 media_types: banner, video
 gdpr_supported: true
+tcf2_supported: true
 schain_supported: true
 usp_supported: true
 userIds: id5Id, unifiedId
+gvl_id: 644
 ---
 
 ### Bid params

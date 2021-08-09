@@ -7,6 +7,7 @@ pbs: true
 media_ytpes: banner
 gdpr_supported: false
 biddercode: vrtcal
+gvl_id: 706
 ---
 
 ### Bid Params

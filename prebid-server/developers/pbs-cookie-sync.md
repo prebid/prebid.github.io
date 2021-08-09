@@ -27,14 +27,14 @@ Prebid Server stores bidder IDs in the `uids` cookie in the host domain. For exa
 
 ## Setting the uids Cookie
 
-### Setting the uids cookie from Prebid.js 
+### Setting the uids cookie from Prebid.js
 
 Here's how these IDs get placed in the cookie from Prebid.js:
 
 ![Prebid Server Cookie Sync](/assets/images/prebid-server/pbs-cookie-sync.png){:class="pb-lg-img"}
 
 
-1) Prebid.js starts by calling the Prebid Server [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), letting it know which server-side bidders will be participating in the header bidding auction. 
+1) Prebid.js starts by calling the Prebid Server [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), letting it know which server-side bidders will be participating in the header bidding auction.
 
 ```
 POST https://prebid-server.example.com/cookie_sync
@@ -69,7 +69,7 @@ See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#u
 ```
 <amp-iframe width="1" title="User Sync"
   height="1"
-  sandbox="allow-scripts"
+  sandbox="allow-scripts allow-same-origin"
   frameborder="0"
   src="https://PROVIDED_BY_HOSTCOMPANY/load-cookie.html?endpoint=HOSTCOMPANY&max_sync_count=5">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
@@ -83,37 +83,49 @@ Note: if the publisher has an AMP Consent Management Platform, they should use `
 
 ## Bidder Instructions for Building a Sync Endpoint
 
-Bidders must implement an endpoint under their domain which accepts an encoded URI for redirects. 
-This URL should be able to accept privacy parameters:
+Building a sync endpoint is optional -- mobile-only bidders don't benefit from
+ID syncing. But for browser-based bidding, ID syncing can help improve buyer bid rate. There are two main options a bidder can choose to support:
+
+- redirect: the client will drop an IMG tag into the page, then call the bidder's URL which needs to redirect to the Prebid Server /setuid endpoint.
+- iframe: the client will drop an IFRAME tag into the page, then call the bidder's URL which responds with HTML and Javascript that calls the Prebid Server /setuid endpoint at some point.
+
+PBS-Java allows bidders to support both options.
+
+Bidders must implement an endpoint under their domain which accepts an encoded URI for redirects. This URL should be able to accept privacy parameters:
 
 - gdpr: if 0, declares this request isn't in GDPR scope. If 1, declares it is in scope. Otherwise indeterminate.
 - gdpr_consent: the TCF1 or TCF2 consent string. This is unpadded base64-URL encoded.
 - us_privacy: the IAB US Privacy string
 
-These values will be passed to your usersync endpoint. For example:
+The specific attributes can differ for your endpoint. For instance, you could choose to receive gdprConsent rather than gdpr_consent.
 
-Here's an example that shows the privacy macros used by PBS-Go:
+Here's an example that shows the privacy macros as coded into PBS-Go:
 ```
-GET some-bidder-domain.com/usersync-url?gdpr={%raw%}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}{%endraw%}&redirectUri=prebid-server.example.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3D%24UID
+GET some-bidder-domain.com/usersync-url?gdpr={%raw%}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}{%endraw%}&redirectUri=prebid-server.example.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3DYOURMACRO
 ```
-PBS-Java uses slightly different macros:
+PBS-Java uses slightly different macros in the bidder config:
 ```
-GET some-bidder-domain.com/usersync-url?gdpr={%raw%}{{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}{%endraw%}&redirectUri=prebid-server.example.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3D%24UID
+    usersync:
+      url: https://some-bidder-domain.com/usersync-url?gdpr={%raw%}{{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}{%endraw%}&redirectUri=
+      redirect-url: /setuid?bidder=acuityads&gdpr={{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}&uid=YOURMACRO
 ```
-In either case, you can receive the values on whatever query string parameters you'd like -- these are
-the macros you can use to define the values.
+In either case, the {%raw%}{{}}{%endraw%} macros are resolved by PBS.
 
-This example endpoint would URL-decode the `redirectUri` param to get `prebid-server.example.com/setuid?bidder=somebidder&uid=$UID`.
-It would then replace the `$UID` macro with the user's ID from their cookie. Supposing this user's ID was "132",
-it would then return a redirect to `prebid-server.example.com/setuid?bidder=somebidder&uid=132`.
+{: .alert.alert-info :}
+Important: The "YOURMACRO" string here needs to be whatever your sync endpoint will recognize and resolve to the user's ID from your domain. Some examples of macros that bidders use: $UID, ${UID}, $$visitor_cookie$$, ${DI_USER_ID}, etc. Every bidder has their own value here.
 
-Prebid Server would then save this ID mapping of `somebidder: 132` under the cookie at `prebid-domain.com`.
+Here's how this all comes together:
 
-When the client then calls `www.prebid-domain.com/openrtb2/auction`, the ID for `somebidder` will be available in the Cookie.
-Prebid Server will then stick this into `request.user.buyeruid` in the OpenRTB request it sends to `somebidder`'s Bidder.
+1. Prebid.js calls Prebid Server's cookie_sync endpoint
+2. PBS responds with an array of user sync URLs, which may include your bidder's sync url
+3. Prebid.js drops an img or iframe into the page, causing the browser to connect to the your usersync endpoint.
+4. Your usersync endpoint will return with either a redirect to Prebid Server's /setuid endpoint or iframe HTML that eventually calls Prebid Server's /setuid endpoint.
+5. Prebid Server then saves this ID mapping of `mybidder: 132` under the cookie at `prebid-domain.com`.
+
+Then the next time the client then calls `www.prebid-domain.com/openrtb2/auction`, the ID for `mybidder` will be available in the Cookie. Prebid Server will then stick this value into `request.user.buyeruid` in the OpenRTB request it sends to `mybidder`'s bid adapter.
 
 ## Further Reading
 
 - [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
-- [Prebid.js s2sConfig](/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server)
+- [Prebid.js s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server)
 - [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-on-amp-pages.html)
