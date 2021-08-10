@@ -57,7 +57,7 @@ The Permutive RTD module sets Audience Connector cohorts as bidder-specific `ort
 | Ozone       | `ozone`    | No                   | Yes                |
 
 Key-values details for custom parameters:
-* **Custom Cohorts:** When enabling the respective Activation for a cohort in Permutive, this module will automatically attach that cohort ID to the bid request. There is no need to enable individual bidders in the module configuration, it will automatically reflect which SSP integrations you have enabled in your Permutive dashboard. Permutive cohorts will be sent in the `permutive` key-value.
+* **Custom Cohorts:** The module configuration will automatically reflect the SSP integrations (_Activations_) you have enabled in your Permutive dashboard. Any additional bidders you want to pass data to will need to be configured. Permutive cohorts will be sent in the permutive key-value.
 
 * **Audience Connector:** You'll need to define which bidders should receive Audience Connector cohorts. You need to include the `ID` of any bidder in the `acBidders` array. Audience Connector cohorts will be sent in the `p_standard` key-value.
 
