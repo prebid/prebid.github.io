@@ -1267,4 +1267,5 @@ If the currency function is unable to derive the correct cpm in any of the scena
 | Partner | Contact | About |
 | <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | Contact Magnite (Formerly Rubicon Project) support at [globalsupport@mangite.com](mailto:globalsupport@magnite.com) to use Magnite as a floor provider. | |
 | pubx.ai | Reach out to PubX at [hello@pubx.ai](mailto:hello@pubx.ai) to learn more about our AI-powered dynamic floor optimization. | |
-| Assertive Yield | [assertiveyield.com] | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
+| Assertive Yield | [assertiveyield.com] | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more | |
+| OpenX | Reach out to OpenX at [apollo@openx.com] | Dynamic floor optimization and more. |
