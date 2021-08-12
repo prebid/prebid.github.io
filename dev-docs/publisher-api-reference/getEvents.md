@@ -30,6 +30,7 @@ The available events are:
 | auctionInit   | The auction has started                 | Object containing auction details |
 | auctionEnd    | The auction has ended                   | Object containing auction details |
 | beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
+| beforeBidderRequest | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
 | bidResponse   | A bid response has arrived              | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
