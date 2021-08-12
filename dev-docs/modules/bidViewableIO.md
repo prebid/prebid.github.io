@@ -33,7 +33,7 @@ Notes:
 This feature is not intended to be a perfect measure of viewability. It is however inteneded to be a reasonable approximation of a bids viewability for creative types that are supported.
 
 1. Only supports Banner creatives
-2. Only works on browsers that support or on sites that have polyfilled the IntersectionObserver API
+2. Only works on browsers that support or on sites that have (polyfilled the IntersectionObserver API)[https://github.com/w3c/IntersectionObserver/tree/main/polyfill]
 3. Results can only be trusted if both the publisher and winning bidder are assumed to be acting in good faith.
 
 ## Configuration
