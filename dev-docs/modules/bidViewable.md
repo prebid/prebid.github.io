@@ -4,7 +4,7 @@ page_type: module
 title: Module - Bid Viewable Event
 description: Triggers BID_VIEWABLE event when a rendered PBJS-Bid is viewable according to [Active View criteria](https://support.google.com/admanager/answer/4524488)
 module_code : bidViewability
-display_name : Bid Viewable Event
+display_name : Bid Viewable Event - GAM
 enable_download : true
 sidebarType : 1
 ---

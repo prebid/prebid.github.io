@@ -4,7 +4,7 @@ page_type: module
 title: Module - Bid Viewable with IntersectionObserver
 description: Triggers BID_VIEWABLE event when a rendered PBJS-Bid is viewable according to an approximation of IAB viewability criteria
 module_code : bidViewabilityIO
-display_name : Bid Viewable with IntersectionObserver
+display_name : Bid Viewable Event - Ad Server Independent
 enable_download : true
 sidebarType : 1
 ---
@@ -41,7 +41,7 @@ This feature is not intended to be a perfect measure of viewability. It is howev
 {: .table .table-bordered .table-striped }
 | Field    | Scope   | Type   | Description                                                                           |
 |----------+---------+--------+---------------------------------------------------------------------------------------|
-| `bidViewabilityIO` | Required | Object | Configuration object for instream tracking |
+| `bidViewabilityIO` | Required | Object | Configuration object for viewability tracking for supported media types |
 | `bidViewabilityIO.enabled` | Required | Boolean | when set to true, the module will emit BID_VIEWABLE when applicable. Default: `false` |
 
 ## Example of setting module config
