@@ -23,4 +23,4 @@ The Brave Header Bidding adapter requires setup and approval from the Brave team
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                   | Example                             | Type      |
 |---------------|----------|-------------------------------|-------------------------------------|-----------|
-| `placementId` | required | Brave's platform placement id | `to0QI2aPgkbBZq6vgf0oHitouZduz0qw`  | `string`  |
+| `placementId` | required | Brave's platform placement id | `'to0QI2aPgkbBZq6vgf0oHitouZduz0qw'`  | `string`  |
