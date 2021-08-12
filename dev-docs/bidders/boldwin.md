@@ -5,8 +5,7 @@ description: Prebid Boldwin Bidder Adapter
 pbjs: true
 biddercode: boldwin
 gdpr_supported: true
-media_types: banner, video
-pbjs_version_notes: not in 5.x
+media_types: banner, video, native
 ---
 
 ### Note:

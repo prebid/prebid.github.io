@@ -10,10 +10,11 @@ safeframes_ok: true
 bidder_supports_deals: false
 pbjs: true
 pbs: false
+getFloor: true
 ---
 ### Note:
 
-For more information about [Adserver.Online](https://adserver.online).
+For more information about [Adserver.Online](https://adserver.online), please contact support@adsrv.org.
 
 ### Bid Params
 
