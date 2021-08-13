@@ -1,19 +1,20 @@
 ---
 layout: bidder
-title: Krushmedia
-description: Prebid server Krushmedia Adapter
-biddercode: krushmedia
+title: MathildeAds
+description: Prebid MathildeAds Bidder Adapter
+biddercode: mathildeads
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr: true
+gdpr_supported: true
 pbjs: true
-pbs: true
+pbs: false
+pbs_app_supported: false
 ---
 
-### Bid Params
+### Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `key` | required | Unique client id on krushmedia platform | `0`        | `string` |
+| `placementId` | required | Placement Id will be generated on MathildeAds Platform. | `'1234'`        | `string` |
