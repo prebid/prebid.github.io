@@ -428,6 +428,17 @@ The parameters of the `bidResponse` object are:
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
 
+#### Resolve OpenRTB Macros in the Creatives
+
+If your endpoint can return creatives with OpenRTB macros, your adapter
+should resolve them.
+
+Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments. This differs from how OpenRTB defines this value as being the clearing price in the 
+bid currency. Header Bidding is a first-price auction, the best candidate for
+"clearing price" is the original bid itself.
+
+Prebid won't resolve any other macros in the creative (e.g. AUCTION_ID, AUCTION_CURRENCY).
+
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
 ### Registering User Syncs

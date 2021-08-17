@@ -16,21 +16,24 @@ sidebarType : 1
 * TOC
 {:toc}
 
-Audigent is a next-generation data management platform and a first-of-a-kind
-"data agency" containing some of the most exclusive content-consuming audiences
-across desktop, mobile and social platforms.
+Audigent is a next-generation, first-party data management platform and the
+world’s first "data agency", powering the programmatic landscape and DTC
+eCommerce with actionable first-party audience and contextual data from
+retailers, lifestyle publishers, content creators, athletes and artists.
 
-This real-time data module provides an integrated post-cookie Halo identity and
-real-time user segmentation solution that seamlessly integrates into your bid
-request cycle. Users are identified and bid request objects are augmented
-with first-party data derived segments prior to being sent to exchange/ssp
-services in order to optimize targeting and increase publisher revenue.
+The Halo real-time data module in Prebid has been built so publishers
+can maximize the power of their first-party audiences and contextual data.
+This module provides both an integrated cookieless Halo identity, contextual 
+targeting and audience segmentation solution that seamlessly and easily
+integrates into your existing Prebid deployment.
 
-Audigent maintains a large database of first-party Tradedesk Unified ID,
-Audigent Halo ID and other id provider mappings to various third-party segment
-types that are utilizable across different backends. With the Halo RTD module,
-these segments and other data can be retrieved and utilized by supporting
-exchange and SSP backends in real-time during your bid request cycle.
+Users, devices, content, cohorts and other features are identified and utilized
+to augment every bid request with targeted, first-party data-derived segments
+before being submitted to supply-side platforms. Enriching the bid request with
+robust first-party audience and contextual data, Audigent's Halo RTD module
+helps optimize targeting and header-bidding performance.  For more information, 
+please visit https://audigent.com or contact our Prebid integration team at
+prebid@audigent.com.
 
 
 ## Publisher Usage

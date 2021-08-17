@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`,`"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -228,6 +228,49 @@ gulp build --modules=admixerIdSystem
    });
 {% endhighlight %}
 
+### Adtelligent
+
+The [Adtelligent](https://adtelligent.com) ID system is a unique per-session user identifier for providing high quality DMP data for advertisers
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,adtelligentIdSystem
+
+#### Adtelligent Configuration
+
+adtelligentIdSystem adapter doesn't require any configuration or storage params. The adapter performs asynchronously and to achieve better performance it is recommended to set the `storage` object `refreshInSeconds` to a short period, such as ten minutes. At the end of the set storage refresh the adapter will refresh its configuration.
+
+#### Adtelligent Example
+ 
+{% highlight javascript %}
+ pbjs.setConfig({
+     userSync: {
+         userIds: [{
+             name: 'adtelligent'
+         }]
+     }
+ });
+{% endhighlight %}
+
+Example with a short storage for ~10 minutes and refresh in 5 minutes: 
+
+{% highlight javascript %}
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: 'adtelligent',
+                storage: {
+                    type: "html5",
+                    name: "adt_id",
+                    expires:0.003,
+                    refreshInSeconds: 60 * 5
+                }
+            }]
+        }
+    });
+{% endhighlight %}
+ 
 ### AMX RTB ID
 
 The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](prebid@amxrtb.com)
@@ -594,13 +637,21 @@ pbjs.setConfig({
 });
 ```
 
-The `request.userId.haloId` will contain the Audigent HaloId and associated segments:
+The `request.userId.haloId` will contain the Audigent HaloId:
 ```
 {
-  "haloId": "user-halo-id",
-  "auSeg": ["segment1", "segment2"]
+  "haloId": "0201chpvai07jv2yg08xizqr0bwpa1w0evvmq014d2ykn0b5oe"
 }
 ```
+The following configuration parameters are available:
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the HaloID module - `"haloId"` | `"haloId"` |
+| params | Optional | Object | Used to store params for the HaloId system |
+| params.url | Optional | String | Set an alternate GET url for HaloId with this parameter |
+| params.urlArg | Optional | Object | Optional url parameter for params.url |
 
 ### ID+
 
@@ -1334,10 +1385,10 @@ pbjs.setConfig({
 
 ### SharedID
 
-This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
+This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support SharedId will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 There is no special registration or configuration for SharedID. Each publisher's privacy policy should take
-SharedID into account.
+SharedID into account.  Prebid  recommends implementing a method where users can easily opt-out of targeted advertising. Please refer to the User Opt-Out section located at the bottom of this page. For more information check out Prebid's dedicated [identity page](/identity/sharedid.html) 
 
 Add it to your Prebid.js package with:
 
@@ -1354,8 +1405,12 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | name | Required | String | The name of this module. | `'pubCommonId'` |
 | params | Optional | Object | Customized parameters | |
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
-| params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
+| params.pixelUrl | Optional | String | For publisher server support only. Where to call out to for a server cookie -- see [Prebid Identity](/identity/sharedid.html) for more information. | `/wp-json/pubcid/v1/extend/`
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
+| storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. |
+| storage.expires | Integer | Required | How long the user ID information will be stored. | `365` |
+| storage.name | String | Required | The name of the cookie or html5 local storage where the user ID will be stored. | `_pubcid`
+| storage.type | String | Required | This is where the results of the user ID will be stored. Must be either: Must be either: "cookie" or "html5". For server side implementations, which have the best identifier life and revenue impact, this must be a cookie. | `cookie`
 
 #### SharedID Examples
 
@@ -1368,7 +1423,7 @@ pbjs.setConfig({
             name: "pubCommonId",
             storage: {
                 type: "cookie",
-                name: "_pubcid",         // create a cookie with this name
+                name: `"_pubcid"`,         // create a cookie with this name
                 expires: 365             // expires in 1 years
             }
         }]
@@ -1393,13 +1448,36 @@ pbjs.setConfig({
             }
         },{
             name: "pubCommonId",
+            params: {
+                pixelUrl: "/wp-json/pubcid/v1/extend/"
+            },
             storage: {
                 type: "cookie",
-                name: "_pubcid",      // create a cookie with this name
+                name: `"_pubcid"`,      // create a cookie with this name
                 expires: 180
             }
         }],
         syncDelay: 5000       // 5 seconds after the first bidRequest()
+    }
+});
+{% endhighlight %}
+
+3) Publisher supports SharedID and first party domain cookie storage initiated by a first party server
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "pubCommonId",
+            params: {
+                pixelUrl: "/wp-json/pubcid/v1/extend/" //pixelUrl should be specified when the server plugin is used
+            },
+            storage: {
+                type: "cookie",
+                name: `"_pubcid"`,         // create a cookie with this name
+                expires: 365             // expires in 1 years
+            }
+        }]
     }
 });
 {% endhighlight %}
@@ -1783,6 +1861,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
 | --- | --- | --- | --- | --- | --- | --- |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
+| Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
 | Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
