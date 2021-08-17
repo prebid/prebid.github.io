@@ -1,19 +1,19 @@
 ---
 layout: bidder
-title: ANIVIEW
-description: Prebid ANIVIEW Bidder Adapter
+title: OpenWeb Video
+description: Prebid OpenWeb Video Bidder Adapter
 pbjs: true
-biddercode: aniview
+biddercode: openwebvideo
+aliasCode: aniview
 media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
-gvl_id: 780
 ---
 
 ### Note:
-For more information about [Aniview Ad Server](https://www.aniview.com/), please contact info@aniview.com.
+For more information about [OpenWeb](https://www.openweb.com/).
 
 ### Bid Params
 
@@ -35,7 +35,7 @@ videoAdUnit = [
     },
   },
   bids: [{
-    bidder: 'aniview',
+    bidder: 'openwebvideo',
     params: {
       AV_PUBLISHERID: '55b78633181f4603178b4568',
       AV_CHANNELID: '5d19dfca4b6236688c0a2fc4'
