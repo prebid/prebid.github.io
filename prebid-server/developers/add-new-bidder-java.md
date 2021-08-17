@@ -78,13 +78,7 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 ```yaml
 adapters:
   yourBidderCode:
-    enabled: false
     endpoint: http://possible.endpoint
-    pbs-enforces-gdpr: true
-    pbs-enforces-ccpa: true
-    modifying-vast-xml-allowed: true
-    deprecated-names:
-    aliases:
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -109,8 +103,10 @@ adapters:
 
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
-- Change the `modifyingVastXmlAllowed` value to `true` if you'd like to opt-in for video impression tracking.
-- Change the `enabled` value to `true` if you'd like to make your bid adapter enabled.
+- Change the `modifying-vast-xml-allowed` value to `true` if you'd like to opt-in for video impression tracking, can be omitted (defaults to `true`).
+- Change the `enabled` value to `true` if you'd like to make your bid adapter enabled, can be omitted (defaults to `false`).
+- Change the `pbs-enforces-gdpr` to `true` if you'd like to enable gdpr enforcement, can be omitted (defaults to `true`).
+- Change the `pbs-enforces-ccpa` to `true` if you'd like to enable ccpa enforcement, can be omitted (defaults to `true`).
 - Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 - Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
@@ -131,12 +127,7 @@ Example of adding bidder alias:
 ```yaml
 adapters:
   yourBidderCode:
-    enabled: false
     endpoint: http://possible.endpoint
-    pbs-enforces-gdpr: true
-    pbs-enforces-ccpa: true
-    modifying-vast-xml-allowed: true
-    deprecated-names:
     aliases: 
       yourBidderAlias:
         endpoint: http://possible.alias/endpoint
