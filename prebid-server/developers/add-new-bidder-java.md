@@ -133,7 +133,7 @@ adapter-defaults:
   pbs-enforces-gdpr: true
   pbs-enforces-ccpa: true
   deprecated-names:
-  aliases: { }
+  aliases: {}
   modifying-vast-xml-allowed: true
 ```
 
