@@ -120,6 +120,23 @@ The url of your user syncer can make use of the following privacy policy macros 
 
 - Change the `usersync:type` value to `redirect` or `iframe` specific to your bidder.
 
+### Default bidder configuration
+
+Prebid Server has default configuration for common bidder properties, which can be overriden by bidders in their
+configurations.
+
+Default configuration:
+
+```yaml
+adapter-defaults:
+  enabled: false
+  pbs-enforces-gdpr: true
+  pbs-enforces-ccpa: true
+  deprecated-names:
+  aliases: { }
+  modifying-vast-xml-allowed: true
+```
+
 ### Create bidder alias
 If you want to add bidder that is an alias of existing bidder, you need just to update configuration of parent bidder:
 
