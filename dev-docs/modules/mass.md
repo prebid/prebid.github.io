@@ -150,7 +150,7 @@ To view the integration example:
 gulp build --modules=ixBidAdapter,mass
 ```
 
-2) Use a http server with a valid hostname to access its content. It is not advices to run the bid simulation using localhost or 127.0.0.1
+2) Use a http server with a valid hostname to access its content. It is not advised to run the bid simulation using localhost or 127.0.0.1
 
 ```
 http://hostname/integrationExamples/mass/index.html
@@ -160,7 +160,7 @@ http://hostname/integrationExamples/mass/index.html
 Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: http://demo.massplatform.com/ix/prebid/
 
 ## Testing MASS
-Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend to use the MASS Bid Simulation tool found at https://github.com/massplatform/bidsim. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.
+Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend you use the MASS Bid Simulation tool found at https://github.com/massplatform/bidsim. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.
 
 The instructions below assume that you have followed the installation instructions for the MASS Bidsim tool found at https://github.com/massplatform/bidsim/blob/master/README.md.
 
@@ -181,4 +181,4 @@ Explanation: The tags/test.js tag calls a reference endpoint for developers that
 When running the above command to invoke this reference endpoint, you will see all the params that MASS collected and passed onto your endpoint. This includes inputs, parsed inputs, tag parameters and MASS/Provider specific configurations.
 
 ### Testing on live sites
-Any sites that have been MASS configured will work with the bidsim tool. This is a convenient way to test whether your publisher ad server and slot is correctly configured.
+Any sites that have been MASS configured will work with the Bidsim tool. This is a convenient way to test whether your publisher ad server and slot is correctly configured.
