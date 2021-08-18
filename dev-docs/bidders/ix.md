@@ -56,17 +56,19 @@ var adUnits = [{
 }];
 ```
 ### Supported Media Types (Prebid.js)
+
 {: .table .table-bordered .table-striped }
 | Type | Support |
-| --- | --- |
+|---|---|
 | `banner` | Fully supported for all IX approved sizes |
 | `video`  | Fully supported for all IX approved sizes |
 | `native` | Not supported |
 
 ### Supported Media Types (Prebid Server)
+
 {: .table .table-bordered .table-striped }
 | Type   | Support |
-| ------ | ------- |
+|------|-------|
 | `banner` | Fully supported |
 | `video`  | Fully supported, including ad pods for OTT |
 | `native` | Not supported |
@@ -82,16 +84,18 @@ The following parameters are specified in the ad unit `adUnits[].mediaTypes`. Th
 In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be defined at the ad unit level.
 
 ### Banner
+
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
-| --- | --- | --- | --- |
+|---|---|---|---|
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 | `sizes` | Optional | Number[Number[]] | The size/sizes associated with the site ID, as listed in the ad unit under `adUnits[].mediaTypes.banner.sizes`. For example, `[300, 250], [300, 600], [728, 90]`|
 
 ### Video
+
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
-| --- | --- | --- | --- |
+|---|---|---|---|
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 | `size` | Optional | Number[] | The single size that is associated with the site ID, as listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. For example, [300, 250], [300, 600]. <BR><BR>This parameter is optional in Prebid.js versions 5.0 and above. Versions prior to 5.0 will still require a size parameter.|
 | `video` | Optional | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level.|
