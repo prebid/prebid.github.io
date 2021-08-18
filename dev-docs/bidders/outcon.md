@@ -2,8 +2,9 @@
 layout: bidder
 title: Outcon
 description: Prebid Outcon Bidder Adaptor
-
+pbjs: true
 biddercode: outcon
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

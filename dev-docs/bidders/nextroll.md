@@ -2,11 +2,13 @@
 layout: bidder
 title: NextRoll
 description: Prebid NextRoll Bidder Adapter
-
+pbjs: true
 biddercode: nextroll
 media_types: display, native
 gdpr_supported: false
 usp_supported: true
+prebid_member: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

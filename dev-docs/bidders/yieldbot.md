@@ -2,7 +2,7 @@
 layout: bidder
 title: Yieldbot
 description: Prebid Yieldbot Bidder Adaptor
-
+pbjs: true
 biddercode: yieldbot
 ---
 

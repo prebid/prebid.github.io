@@ -2,9 +2,10 @@
 layout: bidder
 title: SMMS
 description: Prebid SMMS Bidder Adaptor
-
+pbjs: true
 biddercode: smms
 media_types: banner, native
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

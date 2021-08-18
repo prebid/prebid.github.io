@@ -7,8 +7,9 @@ media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 nav_section: reference
-
+pbjs: true
 biddercode: cedato
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid params

@@ -2,8 +2,9 @@
 layout: bidder
 title: Tim Media
 description: Prebid Tim Bidder Adaptor
-
+pbjs: true
 biddercode: tim
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

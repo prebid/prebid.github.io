@@ -2,10 +2,11 @@
 layout: bidder
 title: MANTIS Ad Network
 description: Prebid Mantis Bidder Adaptor
-
+pbjs: true
 biddercode: mantis
 media_types: native, video
-
+usp_supported: true
+gdpr_supported: true
 ---
 
 ### Bid Params

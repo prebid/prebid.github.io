@@ -2,7 +2,7 @@
 layout: bidder
 title: DAN Marketplace
 description: Dentsu Aegis Network Marketplace Bidder Adapter
-
+pbjs: true
 biddercode: danmarket
 gdpr_supported: true
 ---

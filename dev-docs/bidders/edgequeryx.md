@@ -2,13 +2,13 @@
 layout: bidder
 title: Edge Query X
 description: Prebid for Edge Query X Adaptor
-
+pbjs: true
 biddercode: edgequeryx 
 media_types: display
 gdpr_supported: true
 schain_supported: true
-tcf2_supported: true
 usp_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

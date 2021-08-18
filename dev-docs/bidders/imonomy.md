@@ -2,8 +2,9 @@
 layout: bidder
 title: Imonomy
 description: Prebid Imonomy Bidder Adaptor
-
+pbjs: true
 biddercode: imonomy
+pbjs_version_notes: not in 5.x
 ---
 
 

@@ -2,10 +2,11 @@
 layout: bidder
 title: Vuble
 description: Prebid Vuble Bidder Adaptor
-
+pbjs: true
 biddercode: vuble
 media_types: video
 gdpr_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

@@ -2,7 +2,7 @@
 layout: bidder
 title: DivReach
 description: Prebid DivReach Bidder Adaptor
-
+pbjs: true
 biddercode: divreach
 aliasCode: adbutler
 media_types: banner

@@ -2,9 +2,11 @@
 layout: bidder
 title: FeedAd
 description: Prebid FeedAd Bidder Adaptor
-
+pbjs: true
 biddercode: feedad
-media_types: banner, video
+gdpr_supported: true
+media_types: banner
+gvl_id: 781
 ---
 
 ### Bid Params

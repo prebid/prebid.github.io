@@ -1,0 +1,22 @@
+.social-media {
+  display: flex;
+  align-items: center;
+
+  @include media('>=tablet') {
+    justify-content: flex-end;
+    margin-top: 100px;
+  }
+
+  h5, a {
+    margin-right: 22px;
+    margin-bottom: 0;
+  }
+
+  h5 {
+    font-size: 18px;
+  }
+
+  a:last-child {
+    margin-right: 0;
+  }
+}

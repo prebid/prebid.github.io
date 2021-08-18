@@ -2,7 +2,7 @@
 layout: bidder
 title: Fyber
 description: Prebid Fyber Bidder Adaptor
-
+pbjs: true
 biddercode: fyber
 media_types: banner
 ---

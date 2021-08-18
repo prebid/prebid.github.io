@@ -2,7 +2,8 @@
 layout: bidder
 title: Gamma
 description: Prebid Gamma Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: gamma
 media_types: video
 ---

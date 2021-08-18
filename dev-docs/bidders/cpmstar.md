@@ -2,7 +2,8 @@
 layout: bidder
 title: CPMStar
 description: Prebid CPMStar Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: cpmstar
 media_types: banner, video
 gdpr_supported: true

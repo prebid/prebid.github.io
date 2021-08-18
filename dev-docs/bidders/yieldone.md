@@ -2,8 +2,10 @@
 layout: bidder
 title: YIELDONE
 description: Prebid YIELDONE Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: yieldone
+userIds: identityLink
 media_types: banner, video
 ---
 
