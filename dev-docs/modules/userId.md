@@ -814,7 +814,7 @@ The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacy
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `"imuid"` |
 | params | Required | Object | Details of module params. | |
-| params.cid | Required | String | This is the Customer ID value obtained via Intimate Merger. | `5126` |
+| params.cid | Required | Number | This is the Customer ID value obtained via Intimate Merger. | `5126` |
 | params.url | Optional | String | Use this to change the default endpoint URL. | `"https://example.com/some/api"` |
 
 #### IM-UID Example
@@ -823,9 +823,9 @@ The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacy
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "imuid"
+            name: "imuid",
             params: {
-                5126 // Set your Intimate Merger Customer ID here for production
+                cid: 5126 // Set your Intimate Merger Customer ID here for production
             }
         }]
     }
