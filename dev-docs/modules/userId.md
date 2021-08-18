@@ -1311,6 +1311,39 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### PublinkId
+PublinkId, provided by Conversant, allows sites to generate ids based on a users hashed email address
+
+#### PublinkId Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following SharedID specific configuration is available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'publinkId'` |
+| params | Required | Object | Customized parameters | |
+| params.e | Required | String | Hashed email address of the user | `e80b5017098950fc58aad83c8c14978e` |
+
+#### PublinkId Examples
+```javascript
+    pbjs.setConfig({
+       userSync: {
+           userIds: [{
+               name: "publinkId",
+               storage: {
+                   name: "pbjs_publink",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   e: "e80b5017098950fc58aad83c8c14978e", // example hashed email (md5)
+               }
+           }]
+       }
+   });
+```
+
 ### RampID
 
 RampID, formerly known as IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
