@@ -918,7 +918,7 @@ The Kinesso ID sub adapter sets two cookies, one as a third party cookie and the
 {: .table .table-bordered .table-striped }
 | kpuid | knsso | hid | account_id | created on |
 | --- | --- | --- | --- | --- |
-| <my_1pc> | <my_3pc> | <my_hashed_email> | <my_magnite_accountid> | <my_birthday> |
+| `<my_1pc>` | `<my_3pc>` | `<my_hashed_email>` | `<my_magnite_accountid>` | `<my_birthday>` |
 
 Kinesso will then attach these users to deals ids that they will target in the ORTB bid stream by brands and agencies represented by IPG.
    
