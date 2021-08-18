@@ -339,6 +339,35 @@ gulp build --modules=bidderModules.json
 
 ## Setting First Party Data (FPD)
 
+As a part of 4.30, IX will start to pick up FPD in the global FPD module, as well as continue to pick up IX bidder-specific FPD. Previous versions of IX Bid Adapter will only support the IX bidder-specific FPD.
+
+### Global FPD
+
+As of Prebid.js 4.30, use the more generic `ortb2` interface, which can be used for more than just First Party Data.
+
+The First Party Data feature allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
+
+To supply global data, use the [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html) function as illustrated below:
+
+```
+pbjs.setConfig({
+   ortb2: {
+       site: {
+            ...
+       },
+       user: {
+            ...
+       }
+    }
+});
+```
+
+Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data.
+
+For more information about the standard or more detailed examples, refer to [First Party Data Feature](/features/firstPartyData.html).
+
+### IX bidder-specific FPD
+
 FPD allows you to specify key-value pairs that are passed as part of the
 query string to IX for use in Private Marketplace Deals which rely on query
 string targeting for activation. For example, if a user is viewing a
@@ -365,6 +394,9 @@ pbjs.setConfig({
 
 The values can be updated at any time by calling `pbjs.setConfig` again. The
 changes will be reflected in any proceeding bid requests.
+
+{: .alert.alert-warning :}
+Continue to use IX bidder-specific First Party Data for IX deals. Global First Party Data is not yet supported in IX deals. Consult your IX representative with any questions.
 
 ## Setting a Server Side Timeout
 
