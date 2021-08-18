@@ -905,6 +905,42 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Kinesso ID
+
+Kinesso ID solution is a new approach to persistent cross domain authentication.
+
+How it works 
+The Kinesso identity solution creates a persistent cross domain authenticated user id, that is then used to link users with their interest signals commonly known as segments.  The Kinesso user ID (knsso) is never broadcasted into the bid stream. Instead it is sent to a server side data store, merged with accompanying data from the Prebid Id Library and shipped to Kinesso. All data is encrypted at rest and in transit so your identifiers are never stored or transmitted in an insecure manner. 
+
+The Kinesso ID sub adapter sets two cookies, one as a 3rd party cookie and a second as a first party cookie in the publisher's domain. These cookies are merged with the user's hashed email address (when present) server side and set to Kinesso. The combined output looks like this: 
+
+{: .table .table-bordered .table-striped }
+| kpuid | knsso | hid | account_id | created on |
+| --- | --- | --- | --- | --- |
+| <my_1pc> | <my_3pc> | <my_hashed_email> | <my_magnite_accountid> | <my_birthday> |
+
+Kinesso will then attach these users to deals ids that they will target in the ORTB bid stream by brands and agencies represented by IPG.
+   
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=kinessoIdSystem
+
+Kinesso ID Registration
+You can set up Kinesso ID sub adapter by
+- Register for your account ID with your Magnite Account representative if you do not know who that is please reach reference our [knowledge base](https://resources.rubiconproject.com/resource/publisher-resources/performance-analytics/)
+
+The Kinesso ID privacy policy is covered under the [https://kinesso.com/privacy-policy/]. Please note, at present the Kinesso ID module is not meant for use inside the EEA.
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'kinessoId'` |
+| params | Required | Object | Details for KinessoId initialization | |
+| params.accountid | Required | INT | Your Magnite Account Id | 123 |
+ 
+
+
 ### LiveIntent nonID
 
 LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
