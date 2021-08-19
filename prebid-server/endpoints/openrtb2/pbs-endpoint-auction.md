@@ -560,7 +560,7 @@ To set the desired 'ad server currency', use the standard OpenRTB `cur` attribut
 ```
 
 If you want or need to define currency conversion rates (e.g. for currencies that your Prebid Server doesn't support),
-define ext.prebid.currency.rates. (Currently supported in PBS-Java only)
+define ext.prebid.currency.rates.
 
 ```
 "ext": {

@@ -80,17 +80,17 @@ Here are a couple examples showing the logic behind the currency converter:
 
 ## Request-Defined Conversion Rates
 
-Using PBS-Java, rates can be passed in on the request:
+Rates can be passed in on the request:
 
 ```
 "ext": {
     "prebid": {
-	  "currency": {
-		  "rates": {
-			  "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }
-		  },
-                  "usepbsrates": false // defaults to true
-	  }
+    "currency": {
+      "rates": {
+        "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }
+      },
+      "usepbsrates": false // defaults to true
+    }
   }
 }
 ```
