@@ -234,6 +234,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 1
+  title: Meta Bid Filtering
+  link: /dev-docs/examples/meta-bid-filtering
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Troubleshooting
