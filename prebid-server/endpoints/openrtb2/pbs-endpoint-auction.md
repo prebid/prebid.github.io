@@ -211,10 +211,10 @@ It's also possible to define different bid adjustment factors by mediatype, whic
     "prebid": {
       "bidadjustmentfactors": {
         "bidderA": 0.9,
-        "bidderB": 0.8
+        "bidderB": 0.8,
         "mediatypes": {
           "banner": {
-            "bidderA": 0.8,
+            "bidderA": 0.8
           },
           "video-outstream": {
             "bidderC": 0.9
@@ -222,7 +222,7 @@ It's also possible to define different bid adjustment factors by mediatype, whic
           "video": {
             "bidderB": 0.85
           }
-       }
+        }
       }
     }
   }
@@ -268,7 +268,8 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
           "precision": 2,
           "ranges": [{
             "max": 20.00,
-            "increment": 0.10 // This is equivalent to the deprecated "pricegranularity": "medium"
+            "increment": 0.10 // This is equivalent to the deprecated
+                              // "pricegranularity": "medium"
           }]
         },
         "includewinners": true,     // Optional param defaulting to false
@@ -423,9 +424,9 @@ This prevents breaking API changes as new Bidders are added to the project.
 For example, if the Request defines an alias like this:
 
 ```
-  "aliases": {
-    "appnexus": "rubicon"
-  }
+"aliases": {
+  "appnexus": "rubicon"
+}
 ```
 
 then any `imp.ext.appnexus` params will actually go to the **rubicon** adapter.
@@ -438,13 +439,16 @@ For environments that have turned on [GDPR enforcement](/prebid-server/features/
 To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
 
 ```
-"ext":
+"ext": {
   "prebid": {
-      "aliases": { "newAlias": "originalBidderCode" },
-      "aliasgvlids": { "newAlias": 11111 }
+    "aliases": {
+      "newAlias": "originalBidderCode"
+    },
+    "aliasgvlids": {
+      "newAlias": 11111
     }
   }
-});
+}
 ```
 
 ##### Stored Requests
@@ -526,9 +530,7 @@ Example:
 {
   "imp": [{
     ...
-    "banner": {
-      ...
-    }
+    "banner": { ... }
     "instl": 1,
     ...
   }]
@@ -556,7 +558,7 @@ PBS with interstitial support will come preconfigured with a list of common ad s
 To set the desired 'ad server currency', use the standard OpenRTB `cur` attribute. Note that Prebid Server only looks at the first currency in the array.
 
 ```
-    "cur": ["USD"]
+"cur": ["USD"]
 ```
 
 If you want or need to define currency conversion rates (e.g. for currencies that your Prebid Server doesn't support),
@@ -565,11 +567,11 @@ define ext.prebid.currency.rates.
 ```
 "ext": {
   "prebid": {
-	  "currency": {
-		  "rates": {
-			  "USD": { "UAH": 24.47, "ETB": 32.04 }
-		  }
-	  }
+    "currency": {
+      "rates": {
+        "USD": { "UAH": 24.47, "ETB": 32.04 }
+      }
+    }
   }
 }
 ```
@@ -585,9 +587,9 @@ Basic supply chains are passed to Prebid Server on `source.ext.schain` and passe
 Bidder-specific schains:
 
 ```
-ext.prebid.schains: [
-   { bidders: ["bidderA"], schain: { SCHAIN OBJECT 1}},
-   { bidders: ["*"], schain: { SCHAIN OBJECT 2}}
+"ext.prebid.schains": [
+   { "bidders": ["bidderA"], "schain": { SCHAIN OBJECT 1}},
+   { "bidders": ["*"], "schain": { SCHAIN OBJECT 2}}
 ]
 ```
 In this scenario, Prebid Server sends the first schain object to `bidderA` and the second schain object to everyone else.
@@ -600,24 +602,23 @@ Prebid Server adapters can support the [Prebid.js User ID modules](/dev-docs/mod
 
 ```
 {
-    "user": {
-        "ext": {
-            "eids": [{
-                "source": "adserver.org",
-                "uids": [{
-                    "id": "111111111111",
-                    "ext": {
-                        "rtiPartner": "TDID"
-                    }
-                }]
-            },
-            {
-                "source": "pubcid.org",
-                "id":"11111111"
-            }
-            ]
-        }
+  "user": {
+    "ext": {
+      "eids": [{
+        "source": "adserver.org",
+        "uids": [{
+          "id": "111111111111",
+          "ext": {
+            "rtiPartner": "TDID"
+          }
+        }]
+      },
+      {
+        "source": "pubcid.org",
+        "id":"11111111"
+      }]
     }
+  }
 }
 ```
 
@@ -627,17 +628,17 @@ Publishers can constrain which bidders receive which user.ext.eids entries. See 
 
 ```
 {
-    ext: {
-        prebid: {
-            data: {
-                eidpermissions: [   // prebid server will use this to filter user.ext.eids
-                   {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
-                   {"source": "neustar.biz", "bidders": ["bidderB"]},
-                   {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
-                ]
-            }
-        }
+  "ext": {
+    "prebid": {
+      "data": {
+        "eidpermissions": [   // prebid server will use this to filter user.ext.eids
+          {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
+          {"source": "neustar.biz",  "bidders": ["bidderB"]},
+          {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
+        ]
+      }
     }
+  }
 }
 ```
 
@@ -678,24 +679,34 @@ When a storedauctionresponse ID is specified:
 This request:
 ```
 {
-  "test":1,
-  "tmax":500,
+  "test": 1,
+  "tmax": 500,
   "id": "test-auction-id",
   "app": { ... },
   "ext": {
-      "prebid": {
-             "targeting": {},
-             "cache": { "bids": {} }
-       }
+    "prebid": {
+      "targeting": {},
+      "cache": {
+        "bids": {}
+      }
+    }
   },
   "imp": [
     {
       "id": "a",
-      "ext": { "prebid": { "storedauctionresponse": { "id": "1111111111" } } }
+      "ext": {
+        "prebid": {
+          "storedauctionresponse": { "id": "1111111111" }
+        }
+      }
     },
     {
       "id": "b",
-      "ext": { "prebid": { "storedauctionresponse": { "id": "22222222222" } } }
+      "ext": {
+        "prebid": {
+          "storedauctionresponse": { "id": "22222222222" }
+        }
+      }
     }
   ]
 }
@@ -704,16 +715,16 @@ This request:
 Will result in this response, assuming that the ids exist in the appropriate DB table read by Prebid Server:
 ```
 {
-    "id": "test-auction-id",
-    "seatbid": [
-        {
-             // BidderA bids from storedauctionresponse=1111111111
-             // BidderA bids from storedauctionresponse=22222222
-        },
-       {
-             // BidderB bids from storedauctionresponse=1111111111
-             // BidderB bids from storedauctionresponse=22222222
-       }
+  "id": "test-auction-id",
+  "seatbid": [
+    {
+      // BidderA bids from storedauctionresponse=1111111111
+      // BidderA bids from storedauctionresponse=22222222
+    },
+    {
+      // BidderB bids from storedauctionresponse=1111111111
+      // BidderB bids from storedauctionresponse=22222222
+    }
   ]
 }
 ```
@@ -724,37 +735,37 @@ In contrast to what's outlined above, this approach lets some real auctions take
 
 ```
 {
-  "test":1,
-  "tmax":500,
+  "test": 1,
+  "tmax": 500,
   "id": "test-auction-id",
   "app": { ... },
   "ext": {
-      "prebid": {
-             "targeting": {},
-             "cache": { "bids": {} }
-       }
+    "prebid": {
+      "targeting": {},
+        "cache": { "bids": {} }
+    }
   },
   "imp": [
     {
       "id": "a",
       "ext": {
-          "prebid": {
-            "storedbidresponse": [
-                  { "bidder": "BidderA", "id": "333333" },
-                  { "bidder": "BidderB", "id": "444444" },
-             ]
-           }
+        "prebid": {
+          "storedbidresponse": [
+            { "bidder": "BidderA", "id": "333333" },
+            { "bidder": "BidderB", "id": "444444" },
+          ]
+        }
       }
     },
     {
       "id": "b",
       "ext": {
-          "prebid": {
-            "storedbidresponse": [
-                  { "bidder": "BidderA", "id": "5555555" },
-                  { "bidder": "BidderB", "id": "6666666" },
-             ]
-           }
+        "prebid": {
+          "storedbidresponse": [
+            { "bidder": "BidderA", "id": "5555555" },
+            { "bidder": "BidderB", "id": "6666666" },
+          ]
+        }
       }
     }
   ]
@@ -764,18 +775,18 @@ Could result in this response:
 
 ```
 {
-    "id": "test-auction-id",
-    "seatbid": [
-        {
-             "bid": [
-             // contents of storedbidresponse=3333333 as parsed by bidderA adapter
-             // contents of storedbidresponse=5555555 as parsed by bidderA adapter
-             ]
-        },
-       {
-             // contents of storedbidresponse=4444444 as parsed by bidderB adapter
-             // contents of storedbidresponse=6666666 as parsed by bidderB adapter
-       }
+  "id": "test-auction-id",
+  "seatbid": [
+    {
+      "bid": [
+      // contents of storedbidresponse=3333333 as parsed by bidderA adapter
+      // contents of storedbidresponse=5555555 as parsed by bidderA adapter
+      ]
+    },
+    {
+      // contents of storedbidresponse=4444444 as parsed by bidderB adapter
+      // contents of storedbidresponse=6666666 as parsed by bidderB adapter
+    }
   ]
 }
 ```
@@ -793,49 +804,50 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
 
 ```
 {
+  "ext": {
+    "prebid": {
+      "data": { "bidders": [ "rubicon", "appnexus" ] }  // these are the bidders allowed to see protected data
+    }
+  },
+  "site": {
+    "keywords": "",
+    "search": "",
     "ext": {
-       "prebid": {
-           "data": { "bidders": [ "rubicon", "appnexus" ] }  // these are the bidders allowed to see protected data
-       }
-    },
-    "site": {
-         "keywords": "",
-         "search": "",
-         "ext": {
-             data: { GLOBAL SITE DATA } // only seen by bidders named in ext.prebid.data.bidders[]
-         }
-    },
-    "user": {
-        "keywords": "",
-        "gender": "",
-        "yob": 1999,
-        "geo": {},
-        "ext": {
-            data: { GLOBAL USER DATA }  // only seen by bidders named in ext.prebid.data.bidders[]
-        }
-    },
-    "imp": [
-        ...
-        "ext": {
-            "data": {
-                ADUNIT SPECFIC CONTEXT DATA  // can be seen by all bidders
-            }
-         }
-    ]
+      "data": { GLOBAL SITE DATA } // only seen by bidders named in ext.prebid.data.bidders[]
+    }
+  },
+  "user": {
+    "keywords": "",
+    "gender": "",
+    "yob": 1999,
+    "geo": {},
+    "ext": {
+      "data": { GLOBAL USER DATA }  // only seen by bidders named in ext.prebid.data.bidders[]
+    }
+  },
+  "imp": [
+    ...
+    "ext": {
+      "data": {
+        ADUNIT SPECFIC CONTEXT DATA  // can be seen by all bidders
+      }
+    }
+  ]
+}
 ```
 
 Bidder-specific data can be defined with ext.prebid.bidderconfig:
 ```
-ext: {
-  prebid: {
-    bidderconfig:
-      bidders: ["bidderA", "bidderB"],
-      config: [
-	ortb2: {
-	  site: { ... },
-          user: { ... }
-	}
-      ]
+"ext": {
+  "prebid": {
+    "bidderconfig": {
+      "bidders": ["bidderA", "bidderB"]
+    },
+    "config": {
+      "ortb2": {
+        "site": { ... },
+        "user": { ... }
+      }
     }
   }
 }
@@ -858,20 +870,21 @@ An OpenRTB extension, whether in the the original request or the [stored-request
 The OpenRTB field is `ext.prebid.adservertargeting`. Here's an example:
 
 ```
-   ext.prebid.adservertargeting:  [{
-              "key": "hb_amp_ow",           // the targeting key
-              "source": "bidrequest",       // pull the value from the path specified in the bid request object
-              "value": "ext.prebid.amp.data.ow"  // path to value in the bidrequest
-            },{
-               "key": "hb_static_thing",
-               "source": "static",          // just use the 'value' provided
-               "value": "my-static-value"
-            },{
-               "key": "{{BIDDER}}_custom1", // {{BIDDER}} is a macro to be resolved
-               "source": "bidresponse",     // pull the value from the path specified in the bid response object
-               "value": "seatbid.bid.ext.custom1"
-            }
-   }]
+"ext.prebid.adservertargeting":  [
+  {
+    "key": "hb_amp_ow",           // the targeting key
+    "source": "bidrequest",       // pull the value from the path specified in the bid request object
+    "value": "ext.prebid.amp.data.ow"  // path to value in the bidrequest
+  },{
+    "key": "hb_static_thing",
+    "source": "static",          // just use the 'value' provided
+    "value": "my-static-value"
+  },{
+    "key": "{% raw %}{{BIDDER}}{% endraw %}_custom1", // {% raw %}{{BIDDER}}{% endraw %} is a macro to be resolved
+    "source": "bidresponse",     // pull the value from the path specified in the bid response object
+    "value": "seatbid.bid.ext.custom1"
+  }
+]
 ```
 `ext.prebid.adservertargeting` is an array objects. Each object has the following format:
 
@@ -884,30 +897,30 @@ The OpenRTB field is `ext.prebid.adservertargeting`. Here's an example:
 
 In order to pull AMP parameters out into targeting, Prebid Server places AMP query string parameters in ext.prebid.amp.data. e.g.
 ```
-    "ext": {
-	"prebid": {
-	    "amp": {
-		"data": {
-		    "adc": "GA1.2.662776284.1602172186",
-		    "curl": "https://example.com/index.html",
-		    "debug": "1",
-		    "pvid": "",  // page view ID
-		    "ms": "",    // multi-size
-		    "ow": "",    // override-width
-		    "oh": "",    // override-height
-		    "w": "300",
-		    "h": "50",
-		    "gdpr_consent": "",
-		    "purl": "https://example.com/index.html",
-		    "slot": "/11111/amp_test",
-		    "timeout": "1000",
-		    "targeting": "{\"site\":{\"attr\":\"val\"}}",
-		    "tag_id": "amp-AMP_Test-300x250",
-		    "account": "22222"
-		}
-	    }
-	}
+"ext": {
+  "prebid": {
+    "amp": {
+      "data": {
+        "adc": "GA1.2.662776284.1602172186",
+        "curl": "https://example.com/index.html",
+        "debug": "1",
+        "pvid": "",  // page view ID
+        "ms": "",    // multi-size
+        "ow": "",    // override-width
+        "oh": "",    // override-height
+        "w": "300",
+        "h": "50",
+        "gdpr_consent": "",
+        "purl": "https://example.com/index.html",
+        "slot": "/11111/amp_test",
+        "timeout": "1000",
+        "targeting": "{\"site\":{\"attr\":\"val\"}}",
+        "tag_id": "amp-AMP_Test-300x250",
+        "account": "22222"
+      }
     }
+  }
+}
 ```
 
 ##### EID Permissions (PBS-Go only)
@@ -917,17 +930,17 @@ in user.ext.eids is allowed to be passed to which bid adapter. For example:
 
 ```
 {
-    ext: {
-        prebid: {
-            data: {
-                eidpermissions: [   // prebid server will use this to filter user.ext.eids
-                   {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
-                   {"source": "neustar.biz", "bidders": ["bidderB"]},
-                   {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
-                ]
-            }
-        }
+  "ext": {
+    "prebid": {
+      "data": {
+        "eidpermissions": [   // prebid server will use this to filter user.ext.eids
+          {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
+          {"source": "neustar.biz",  "bidders": ["bidderB"]},
+          {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
+        ]
+      }
     }
+  }
 }
 ```
 
@@ -942,19 +955,19 @@ The Prebid extension to the OpenRTB protocol is `ext.prebid.multibid`. For examp
 
 ```
 {
-  ext: {
-    prebid: {
-      multibid: [{
-        bidder: "bidderA",
-        maxbids: 2,
-        targetbiddercodeprefix: "bidA"
-      },{
-        bidder: "bidderB",
-        maxbids: 3,
-        targetbiddercodeprefix: "bidB"
-      },{
-        bidders: ["bidderC", "bidderD"]
-        maxbids: 2
+  "ext": {
+    "prebid": {
+      "multibid": [{
+        "bidder": "bidderA",
+        "maxbids": 2,
+        "targetbiddercodeprefix": "bidA"
+      }, {
+        "bidder": "bidderB",
+        "maxbids": 3,
+        "targetbiddercodeprefix": "bidB"
+      }, {
+        "bidders": ["bidderC", "bidderD"],
+        "maxbids": 2
       }]
     }
   }
@@ -980,36 +993,36 @@ Prebid Server core does the following when it sees `ext.prebid.multibid`:
 Here's an example response:
 ```
 {
-seatbid: [{
-  seat: "bidderA",
-  bid: [{
-    id: "bid1",
-    impid: "imp1",
-    price: 1.04,
-    ext: {
-        prebid: {
-            targeting: {
-                hb_pb_bidderA: 1.00
-            },
-            targetbiddercode: "bidderA"
+  "seatbid": [{
+    "seat": "bidderA",
+    "bid": [{
+      "id": "bid1",
+      "impid": "imp1",
+      "price": 1.04,
+      "ext": {
+        "prebid": {
+          "targeting": {
+            "hb_pb_bidderA": 1.00
+          },
+          "targetbiddercode": "bidderA"
         }
-    }
-    ...
-  },{
-    id: "bid2",
-    impid: "imp1",   // same imp as above
-    price:0.8,
-    ext: {
-        prebid: {
-            targeting: {
-                hb_pb_bidA2: 0.50
-            },
-            targetbiddercode: "bidA2"
+      }
+      ...
+    }, {
+      "id": "bid2",
+      "impid": "imp1", // same imp as above
+      "price": 0.8,
+      "ext": {
+        "prebid": {
+          "targeting": {
+            "hb_pb_bidA2": 0.50
+          },
+          "targetbiddercode": "bidA2"
         }
-    }
-    ...
+      }
+      ...
+    }]
   }]
-}]
 }
 ```
 
@@ -1022,24 +1035,25 @@ which causes PBS-core to place the video-related attributes on the response.
 
 ```
 {
-   ... 
-    
-    "imp": [
-        {
-            "id": "123456789",
-            "video": { ... }, 
-            "ext": {
-                "prebid": {
-                    "storedrequest": { "id": "xxx" },
-                    "options": {
-                        "echovideoattrs": true
-                    } 
-                }
-            }, 
-	    ...
+  ...
+  "imp": [{
+    "id": "123456789",
+    "video": {
+      ...
+    },
+    "ext": {
+      "prebid": {
+        "storedrequest": {
+          "id": "xxx"
+        },
+        "options": {
+          "echovideoattrs": true
         }
-    ]
+      }
+    },
     ...
+  }]
+  ...
 }
 ```
 1. Prebid Server receives this request and expands the `storedrequest` value, merging it with the imp object.
@@ -1047,31 +1061,26 @@ which causes PBS-core to place the video-related attributes on the response.
 
 ```
 {
-    "seatbid": [{
-            "bid": [{
-                   ...
-                    "ext": {
-                        "prebid": {
-                            "storedrequestattributes":{
-                                "maxduration": 60, 
-                                "mimes": [
-                                    "video/mp4"
-                                ], 
-                                "minduration": 15, 
-                                "protocols": [
-                                    1, 
-                                    2
-                                ], 
-                                "skipafter": 0, 
-                                "skipmin": 0, 
-                                "startdelay": 0,
-                                "playbackmethod": [1]
-                            }
-                        }
-                    }
-                }]
-        }],
-...
+  "seatbid": [{
+    "bid": [{
+      ...
+      "ext": {
+        "prebid": {
+          "storedrequestattributes": {
+            "maxduration": 60,
+            "mimes": ["video/mp4"],
+            "minduration": 15,
+            "protocols": [1, 2],
+            "skipafter": 0,
+            "skipmin": 0,
+            "startdelay": 0,
+            "playbackmethod": [1]
+          }
+        }
+      }
+    }]
+  }],
+  ...
 }
 ```
 
@@ -1133,30 +1142,30 @@ Prebid Server will generate ad server targeting variables as defined by request 
 
 ```
 {
-seatbid: [{
-  seat: "bidderA",
-  bid: [{
-    id: "bid1",
-    impid: "imp1",
-    price: 1.04,
-    ext: {
-        prebid: {
-            targeting: {
-		hb_pb: 1.00, // values without prefixes on the winning bids only
-                hb_pb_bidderA: 1.00, // only if includebidderkeys is true
-		hb_bidder: "bidderA",
-		hb_size: "300x250",
-		hb_size_bidderA: "300x250",
-		hb_format: "video" // only if includeformat is specified
-		hb_deal: "123" // only if bid response contains a deal
-            }
+  "seatbid": [{
+    "seat": "bidderA",
+    "bid": [{
+      "id": "bid1",
+      "impid": "imp1",
+      "price": 1.04,
+      "ext": {
+        "prebid": {
+          "targeting": {
+            "hb_pb": 1.00, // values without prefixes on the winning bids only
+            "hb_pb_bidderA": 1.00, // only if includebidderkeys is true
+            "hb_bidder": "bidderA",
+            "hb_size": "300x250",
+            "hb_size_bidderA": "300x250",
+            "hb_format": "video", // only if includeformat is specified
+            "hb_deal": "123"      // only if bid response contains a deal
+          }
         }
-    }
-    ...
+      }
+      ...
+    }]
   }]
-}]
+}
 ```
-
 
 ##### Debug Output
 
@@ -1170,20 +1179,16 @@ It is only returned on `test` bids for performance reasons, but may be useful du
 This contains the request after the resolution of stored requests and implicit information (e.g. site domain, device user agent).
 
 ```
-  "ext": {
-    "debug": {
-      "httpcalls": {
-        "bidderA": [
-          ...
-        ]
-      },
-      "resolvedrequest": {
-        ...
-      },
-      "responsetimemillis": {
-        ...
-      }
-      ...
+"ext": {
+  "debug": {
+    "httpcalls": {
+      "bidderA": [ ... ]
+    },
+    "resolvedrequest": { ... },
+    "responsetimemillis": { ... }
+    ...
+  }
+}
 ```
 
 ##### Original Bid CPM (PBS-Java only)
@@ -1244,9 +1249,9 @@ The PBJS version comes from ext.prebid.channel: `{name: "pbjs", version: "4.39"}
 
 The Prebid SDK version comes from:
 ```
-app.ext.prebid: {
-   source:  "prebid-mobile"
-   version: "1.2.3"
+"app.ext.prebid": {
+   "source":  "prebid-mobile"
+   "version": "1.2.3"
 }
 ```
 
