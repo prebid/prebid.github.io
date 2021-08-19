@@ -62,7 +62,7 @@ Please be attentive in reading and responding to emails and [GitHub issues](http
 
 Prebid Server bid adapters consist of several components: bidder info, bidder parameters, adapter code, user sync code, registration with the core framework, and default configuration values. This chapter will guide you though each component.
 
-Please refer to [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance, but understand that our adapter interfaces and coding style evolve over time. Please prefer the examples in this document over differences you may find in  code.
+Please refer to [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance, but understand that our adapter interfaces and coding style evolve over time. Please prefer the examples in this document over differences you may find in code.
 
 Our project is written in the [Go programming language](https://golang.org/). We understand not everyone has prior experience writing Go code. Please try your best and we'll respectfully steer you in the right direction during the review process.
 
@@ -504,7 +504,7 @@ if request.Imp[i].W == nil && request.Imp[i].H == nil && len(request.Imp[i].Form
 </details>
 <p></p>
 
-The second argument, `requestInfo`, is for extra information and helper methods provided by the core framework. For now, this just includes `requestInfo.PbsEntryPoint` which is commonly used to determine if the request is for AMP or Long Form Video Ad Pods. This object will be expanded in the future to also include currency conversion and extension unmarshalling helper methods.
+The second argument, `requestInfo`, is for extra information and helper methods provided by the core framework. For now, this includes `requestInfo.PbsEntryPoint` which is commonly used to determine if the request is for AMP or Long Form Video Ad Pods and the currency conversion helper method `ConvertCurrency(value float64, from, to string) (float64, error)`. This object will be expanded in the future to also include an extension unmarshalling helper method.
 
 The `MakeRequests` method is expected to return a slice (similar to a C# `List` or a Java `ArrayList`) of `adapters.RequestData` objects representing the HTTP calls to be sent to your bidding server and a slice of type `error` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please return `nil` for both return values. Neither slices may contain `nil` elements.
 
@@ -546,7 +546,56 @@ func (a *adapter) MakeRequests(request *openrtb.BidRequest, requestInfo *adapter
 
 If your bidding server supports multiple currencies, please be sure to pass through the `request.cur` field. If your bidding server only bids in a single currency, such as USD or EUR, that's fine. Prebid Server will convert your bid to the request currency if you include it in the bid response, otherwise we assume USD and conversion will not occur.
 
-Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You'll soon have access to currency conversion helper methods if your endpoint only supports floors in a single currency.
+Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You have access to the currency conversion helper method `ConvertCurrency` in case your endpoint only supports floors in a single currency.
+
+<details markdown="1">
+  <summary>Example: Currency conversion needed for impression bid floor.</summary>
+
+```go
+func (a *adapter) MakeRequests(request *openrtb.BidRequest, requestInfo *adapters.ExtraRequestInfo) (*adapters.RequestData, []error) {
+  var requests []*adapters.RequestData
+  var errors []error
+  
+  requestCopy := *request
+  for _, imp := range request.Imp {
+
+    // Check if imp comes with bid floor amount defined in a foreign currency
+    if imp.BidFloor > 0 && imp.BidFloorCur != "" && strings.ToUpper(imp.BidFloorCur) != "USD" {
+
+      // Convert to US dollars
+      convertedValue, err := reqInfo.ConvertCurrency(imp.BidFloor, imp.BidFloorCur, "USD")
+      if err != nil {
+        errors = append(errors, err)
+        continue
+      }
+
+      // Update after conversion. All imp elements inside request.Imp are shallow copies
+      // therefore, their non-pointer values are not shared memory and are safe to modify
+      // without risking a data race condition
+      imp.BidFloorCur = "USD"
+      imp.BidFloor = convertedValue
+    }
+
+    requestCopy.Imp = []openrtb.Imp{imp}
+
+    requestJSON, err := json.Marshal(request)
+    if err != nil {
+      errors = append(errors, err)
+      continue
+    }
+  
+    requestData := &adapters.RequestData{
+      Method: "POST",
+      Uri:    a.endpoint,
+      Body:   requestJSON,
+    }
+    requests = append(requests, requestData)
+  }
+  return requests, errors
+}
+```
+</details>
+<p></p>
 
 There are a several values of a bid that publishers expect to be populated. Some are defined by the OpenRTB 2.5 specification and some are defined by Prebid conventions.
 
@@ -557,6 +606,7 @@ There are a several values of a bid that publishers expect to be populated. Some
 | COPPA | OpenRTB | `request.regs.ext.us_privacy`<br/> The publisher is specifying the Children's Online Privacy Protection flag.
 | Currency | OpenRTB |`request.cur` <br/> The publisher is specifying the desired bid currency. The Prebid Server default is USD.
 | [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | `request.ext.prebid.debug` <br/> The publisher is requesting verbose debugging information from Prebid Server.
+| [Request-Defined currency conversion rates](https://docs.prebid.org/prebid-server/features/pbs-currency.html) | Prebid | `request.ext.prebid.currency` <br/> The publisher decides to prioritize its own custom currency conversion rates over Prebid Server's currency conversion rates. If a currency rate is not found in `request.ext.prebid.currency`, Prebid Server's rates will be used unless `usepbsrates` is set to `false`.
 | [First Party Data (FPD)](https://docs.prebid.org/prebid-server/features/pbs-fpd.html)| Prebid | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*` <br/> The publisher may provide first party data (e.g. keywords).
 | GDPR | OpenRTB |  `request.regs.ext.gdpr`, `request.user.ext.consent` <br/> The publisher is specifying the European General Data Protection Regulation flag and TCF consent string.
 | Site or App | OpenRTB | `request.site`, `request.app` <br/> The publisher will provide either the site or app, but not both, representing the client's device. 
@@ -883,9 +933,9 @@ This chapter will guide you through the creation of automated unit tests to cove
 
 ### Adapter Code Tests
 
-Bid requests and server responses can be quite verbose. To avoid large blobs of text embedded within test code, we've created a framework for bid adapters which use a JSON body and/or a url. If your bidding server uses another payload format, such as XML, you're on your own.
+Bid requests and server responses can be quite verbose. To avoid large blobs of text embedded within test code, we've created a framework for bid adapters which use a JSON body and/or a url. If your bidding server uses another payload format, such as XML, you're on your own. Prebid Server core also makes use of JSON tests to find data race conditions in your adapter code. Hence, they are highly encouraged over coded tests or tests with other payload formats.
 
-We strive for as much test coverage as possible, but recognize that some code paths are impractical to simulate and rarely occur. You do not need to test the error conditions for `json.Marshal` calls, for template parse errors within `MakeRequests` or `MakeBids`, or for `url.Parse` calls. Following this guidance usually results in a coverage rate of around 90% - 95%, although we don't enforce a specific threshold.
+We strive for as much test coverage as possible, but recognize that some code paths are impractical to simulate and rarely occur. You do not need to test the error conditions for `json.Marshal` calls, for template parse errors within `MakeRequests` or `MakeBids`, or for `url.Parse` calls. Following this guidance usually results in a coverage rate of around 90% - 95%. Although we don't enforce a specific threshold, we encourage test coverage to be high in order to both assert adapter functionality and minimize the possibility of overwriting shared memory.
 
 To use the test framework, create a file with the path `adapters/{bidder}/{bidder}_test.go` with the following template:
 
@@ -1001,19 +1051,6 @@ func TestEmptyConfig(t *testing.T) {
   
   assert.NoError(t, buildErr)
   assert.Empty(t, bidder{Bidder}.extraInfo.SomeInfo)
-}
-```
-
-### Adapter Race Condition Tests
-
-You must define race condition tests for each media type supported by your bid adapter. We don't expect bid adapters to run concurrent code. Rather, these tests attempt to verify your bid adapter doesn't modify shared memory. We use Go's [race detector](https://golang.org/doc/articles/race_detector.html) which is a great line of defense, but it may produce false negatives. It will not produce false positives, so please investigate further if these tests ever fail.
-
-Create a file with the path `adapters/{bidder}/{bidder}test/params/race/{mediaType}.json` for each `banner`, `video`, `audio`, and `native` media type supported by your adapter. Include all required and optional bidder parameters defined by your JSON Schema.
-
-Here's an example file using the same example JSON Schema from other chapters:
-```json
-{
-  "placementId": "Some Placement"
 }
 ```
 
