@@ -504,7 +504,12 @@ if request.Imp[i].W == nil && request.Imp[i].H == nil && len(request.Imp[i].Form
 </details>
 <p></p>
 
-The second argument, `requestInfo`, is for extra information and helper methods provided by the core framework. For now, this includes `requestInfo.PbsEntryPoint` which is commonly used to determine if the request is for AMP or Long Form Video Ad Pods and the currency conversion helper method `ConvertCurrency(value float64, from, to string) (float64, error)`. This object will be expanded in the future to also include an extension unmarshalling helper method.
+The second argument, `requestInfo`, is for extra information and helper methods provided by the core framework. This includes:
+
+- `requestInfo.PbsEntryPoint` to access the entry point of the bid request, commonly used to determine if the request is for AMP or for a Long Form Video Ad Pod.
+- `requestInfo.GlobalPrivacyControlHeader` to read the value of the Sec-GPC Global Privacy Control (GPC) header of the bid request.
+- `requestInfo.ConvertCurrency` a method to perform currency conversions.
+
 
 The `MakeRequests` method is expected to return a slice (similar to a C# `List` or a Java `ArrayList`) of `adapters.RequestData` objects representing the HTTP calls to be sent to your bidding server and a slice of type `error` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please return `nil` for both return values. Neither slices may contain `nil` elements.
 
@@ -549,14 +554,11 @@ If your bidding server supports multiple currencies, please be sure to pass thro
 Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You have access to the currency conversion helper method `ConvertCurrency` in case your endpoint only supports floors in a single currency.
 
 <details markdown="1">
-  <summary>Example: Currency conversion needed for impression bid floor.</summary>
+  <summary>Example: Currency conversion needed for bid floor values in impressions.</summary>
 
 ```go
-func (a *adapter) MakeRequests(request *openrtb.BidRequest, requestInfo *adapters.ExtraRequestInfo) (*adapters.RequestData, []error) {
-  var requests []*adapters.RequestData
-  var errors []error
+func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapters.ExtraRequestInfo) (*adapters.RequestData, []error) {
   
-  requestCopy := *request
   for _, imp := range request.Imp {
 
     // Check if imp comes with bid floor amount defined in a foreign currency
@@ -565,8 +567,7 @@ func (a *adapter) MakeRequests(request *openrtb.BidRequest, requestInfo *adapter
       // Convert to US dollars
       convertedValue, err := reqInfo.ConvertCurrency(imp.BidFloor, imp.BidFloorCur, "USD")
       if err != nil {
-        errors = append(errors, err)
-        continue
+        return nil, []error{err}
       }
 
       // Update after conversion. All imp elements inside request.Imp are shallow copies
@@ -575,23 +576,20 @@ func (a *adapter) MakeRequests(request *openrtb.BidRequest, requestInfo *adapter
       imp.BidFloorCur = "USD"
       imp.BidFloor = convertedValue
     }
-
-    requestCopy.Imp = []openrtb.Imp{imp}
-
-    requestJSON, err := json.Marshal(request)
-    if err != nil {
-      errors = append(errors, err)
-      continue
-    }
-  
-    requestData := &adapters.RequestData{
-      Method: "POST",
-      Uri:    a.endpoint,
-      Body:   requestJSON,
-    }
-    requests = append(requests, requestData)
   }
-  return requests, errors
+
+  requestJSON, err := json.Marshal(request)
+  if err != nil {
+    return nil, []error{err}
+  }
+
+  requestData := &adapters.RequestData{
+    Method:  "POST",
+    Uri:     a.endpoint,
+    Body:    requestJSON,
+  }
+  
+  return []*adapters.RequestData{requestData}, nil
 }
 ```
 </details>
@@ -606,7 +604,7 @@ There are a several values of a bid that publishers expect to be populated. Some
 | COPPA | OpenRTB | `request.regs.ext.us_privacy`<br/> The publisher is specifying the Children's Online Privacy Protection flag.
 | Currency | OpenRTB |`request.cur` <br/> The publisher is specifying the desired bid currency. The Prebid Server default is USD.
 | [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | `request.ext.prebid.debug` <br/> The publisher is requesting verbose debugging information from Prebid Server.
-| [Request-Defined currency conversion rates](https://docs.prebid.org/prebid-server/features/pbs-currency.html) | Prebid | `request.ext.prebid.currency` <br/> The publisher decides to prioritize its own custom currency conversion rates over Prebid Server's currency conversion rates. If a currency rate is not found in `request.ext.prebid.currency`, Prebid Server's rates will be used unless `usepbsrates` is set to `false`.
+| [Request-Defined currency conversion rates](https://docs.prebid.org/prebid-server/features/pbs-currency.html) | Prebid | `request.ext.prebid.currency` <br/> The publisher decides to prioritize its own custom currency conversion rates over Prebid Server's currency conversion rates. If a currency rate is not found in `request.ext.prebid.currency`, Prebid Server's rates will be used unless `usepbsrates` is set to `false`. If missing, `usepbsrates` defaults to true.
 | [First Party Data (FPD)](https://docs.prebid.org/prebid-server/features/pbs-fpd.html)| Prebid | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*` <br/> The publisher may provide first party data (e.g. keywords).
 | GDPR | OpenRTB |  `request.regs.ext.gdpr`, `request.user.ext.consent` <br/> The publisher is specifying the European General Data Protection Regulation flag and TCF consent string.
 | Site or App | OpenRTB | `request.site`, `request.app` <br/> The publisher will provide either the site or app, but not both, representing the client's device. 
@@ -933,9 +931,9 @@ This chapter will guide you through the creation of automated unit tests to cove
 
 ### Adapter Code Tests
 
-Bid requests and server responses can be quite verbose. To avoid large blobs of text embedded within test code, we've created a framework for bid adapters which use a JSON body and/or a url. If your bidding server uses another payload format, such as XML, you're on your own. Prebid Server core also makes use of JSON tests to find data race conditions in your adapter code. Hence, they are highly encouraged over coded tests or tests with other payload formats.
+Bid requests and server responses can be quite verbose. To avoid large blobs of text embedded within test code, we've created a framework for bid adapters which use a JSON body and/or a url to send a bid request. We require the use of our test framework as it includes checks to ensure no changes are made to shared memory.
 
-We strive for as much test coverage as possible, but recognize that some code paths are impractical to simulate and rarely occur. You do not need to test the error conditions for `json.Marshal` calls, for template parse errors within `MakeRequests` or `MakeBids`, or for `url.Parse` calls. Following this guidance usually results in a coverage rate of around 90% - 95%. Although we don't enforce a specific threshold, we encourage test coverage to be high in order to both assert adapter functionality and minimize the possibility of overwriting shared memory.
+We strive for as much test coverage as possible, but recognize that some code paths are impractical to simulate and rarely occur. You do not need to test the error conditions for `json.Marshal` calls, for template parse errors within `MakeRequests` or `MakeBids`, or for `url.Parse` calls. Following this guidance usually results in a coverage rate of around 90% - 95%, although we don't enforce a specific threshold.
 
 To use the test framework, create a file with the path `adapters/{bidder}/{bidder}_test.go` with the following template:
 

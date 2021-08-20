@@ -80,7 +80,7 @@ Here are a couple examples showing the logic behind the currency converter:
 
 ## Request-Defined Conversion Rates
 
-With both PBS-Go and PBS-Java, custom currency conversion rates can be passed in the request:
+Rates can be passed in on the request:
 
 ```
 "ext": {
