@@ -84,12 +84,10 @@ Note: if the publisher has an AMP Consent Management Platform, they should use `
 ## Bidder Instructions for Building a Sync Endpoint
 
 Building a sync endpoint is optional -- mobile-only bidders don't benefit from
-ID syncing. But for browser-based bidding, ID syncing can help improve buyer bid rate. There are two main options a bidder can choose to support:
+ID syncing. But for browser-based bidding, ID syncing can help improve buyer bid rate. There are two main options a bidder can choose to support (either one or both):
 
 - redirect: the client will drop an IMG tag into the page, then call the bidder's URL which needs to redirect to the Prebid Server /setuid endpoint.
 - iframe: the client will drop an IFRAME tag into the page, then call the bidder's URL which responds with HTML and Javascript that calls the Prebid Server /setuid endpoint at some point.
-
-PBS-Java allows bidders to support both options.
 
 Bidders must implement an endpoint under their domain which accepts an encoded URI for redirects. This URL should be able to accept privacy parameters:
 
@@ -99,17 +97,21 @@ Bidders must implement an endpoint under their domain which accepts an encoded U
 
 The specific attributes can differ for your endpoint. For instance, you could choose to receive gdprConsent rather than gdpr_consent.
 
-Here's an example that shows the privacy macros as coded into PBS-Go:
+Here's an example that shows the privacy macros as configured in PBS-Go:
 ```
-GET some-bidder-domain.com/usersync-url?gdpr={%raw%}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}{%endraw%}&redirectUri=prebid-server.example.com%2Fsetuid%3Fbidder%3Dsomebidder%26uid%3DYOURMACRO
+userSync:
+  redirect:
+    url: https://some-bidder-domain.com/usersync-url?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
+    userMacro: YOURMACRO
 ```
+
 PBS-Java uses slightly different macros in the bidder config:
 ```
-    usersync:
-      url: https://some-bidder-domain.com/usersync-url?gdpr={%raw%}{{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}{%endraw%}&redirectUri=
-      redirect-url: /setuid?bidder=acuityads&gdpr={{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}&uid=YOURMACRO
+usersync:
+  url: https://some-bidder-domain.com/usersync-url?gdpr={%raw%}{{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}{%endraw%}&redirectUri=
+  redirect-url: /setuid?bidder=acuityads&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}&uid=YOURMACRO
 ```
-In either case, the {%raw%}{{}}{%endraw%} macros are resolved by PBS.
+In either case, the {%raw%}{{...}}{%endraw%} macros are resolved by PBS.
 
 {: .alert.alert-info :}
 Important: The "YOURMACRO" string here needs to be whatever your sync endpoint will recognize and resolve to the user's ID from your domain. Some examples of macros that bidders use: $UID, ${UID}, $$visitor_cookie$$, ${DI_USER_ID}, etc. Every bidder has their own value here.

@@ -84,7 +84,7 @@ Rates can be passed in on the request:
 
 ```
 "ext": {
-    "prebid": {
+  "prebid": {
     "currency": {
       "rates": {
         "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }

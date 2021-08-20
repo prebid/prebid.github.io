@@ -38,16 +38,8 @@ If in doubt, contact the company hosting Prebid Server and ask if they're GDPR-r
 
 ### Return Values
 
-PBS-Go: 
-
-- HTTP 200
-    - Success: blank body with Set-Cookies header
-    - Failure: error message in body
-
-PBS-Java:
-
 - HTTP 400 - The request is in GDPR scope and the consent string is missing or invalid.
-- HTTP 451 - PBS does not have permission to set a cookie due to GDPR or other privacy rule.
+- HTTP 451 - PBS does not have permission to set a cookie due to GDPR or another privacy rule.
 - HTTP 200
     - Success with image response: if the f=i parameter is specified or if the named bidder prefers redirect cookie_syncs, then PBS responds with a blank 1x1 PNG, set the Content-Length to the appropriate number of bytes, and set Content-Type to image/png
     - Success with empty response: if the f=b parameter is specified or if the named bidder prefers iframe cookie_syncs, then PBS responds with empty HTML, Content-Length 0 and Content-Type to text/html
