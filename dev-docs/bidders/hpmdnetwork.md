@@ -5,6 +5,7 @@ description: Prebid HPMD Network Bidder Adaptor
 pbjs: true
 biddercode: hpmdnetwork
 media_types: banner
+pbjs_version_notes: not in 5.x
 ---
 
 Note:

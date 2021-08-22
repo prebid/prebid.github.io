@@ -229,7 +229,7 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your AMP pages referring to `load-cookie.html` or if you're running an IAB-compliant AMP CMP you can use `load-cookie-with-consent.html`.
 
 {% capture tipNote %}
-The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
 {% endcapture %}
 {% include alerts/alert_tip.html content=tipNote %}
 
@@ -244,36 +244,44 @@ If you're using AppNexus' managed service, you would enter something like this:
   height="1"
   sandbox="allow-scripts allow-same-origin"
   frameborder="0"
-  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=appnexus&max_sync_count=5">
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=appnexus&max_sync_count=5&source=amp">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
 
-If you are utilizing Magnite's managed service, there's an extra parameter:
+If you are utilizing Magnite's managed service, there's an extra `args` parameter:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
   sandbox="allow-scripts allow-same-origin"
   frameborder="0"
-  src="https://PROVIDED_BY_MAGNITE/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:MAGNITE_ACCOUNT_ID">
+  src="https://GET_URL_FROM_MAGNITE_ACCOUNT_TEAM/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&source=amp&args=account:MAGNITE_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
+
+Or you can specify a full URL to another Prebid Server location (including a QA site) by setting `endpoint` to a URL-encoded string. e.g.
+```html
+<amp-iframe width="1" title="User Sync"
+  height="1"
+  sandbox="allow-scripts allow-same-origin"
+  frameborder="0"
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=https%3A%2F%2Fprebid-server-qa.example.com%2Fcookie_sync&max_sync_count=5&source=amp">
+  <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
+</amp-iframe>
+```
+
 The usage of `load-cookie.html` and `load-cookie-with-consent.html` is the same. The arguments available on the query string are:
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Values | Description |
 | --- | --- | --- | --- |
-| endpoint | recommended | appnexus or rubicon | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
+| endpoint | recommended | 'appnexus', 'rubicon', or URL | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
+| source | optional | recommended | Set it to 'amp' to tell Prebid Server to exclude iframe syncs, which don't work on AMP. |
 | max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
 | args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie_sync call. The attribute and value will be quoted by the system when appropriate. |
 | gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
 | gdpr_consent | optional | String | IAB CMP-formatted consent string |
-
-{% capture endpointNote %}
-Currently, if you need to sync with a Prebid Server other than appnexus or rubicon, you'll need to fork the repo, change the endpoint, and host it somewhere. There is an [issue open to resolve](https://github.com/prebid/prebid-universal-creative/issues/122) this.
-{% endcapture %}
-{% include alerts/alert_note.html content=endpointNote %}
 
 ### AMP RTC and GDPR
 
@@ -283,7 +291,25 @@ support passing GDPR consent to Prebid Server.
 The CONSENT_STRING macro will be populated if you've integrated with a CMP
 that supports amp-consent v2 -- custom CMP integration.
 
-If you're using a custom RTC callout, you'll need to add `gdpr_consent=CONSENT_STRING` to the list of parameters.
+If you're using a custom RTC callout, here are the parameters that can be passed through the RTC string:
+- tag_id
+- w=ATTR(width)
+- h=ATTR(height)
+- ow=ATTR(data-override-width)
+- oh=ATTR(data-override-height)
+- ms=ATTR(data-multi-size)
+- slot=ATTR(data-slot)
+- targeting=TGT
+- curl=CANONICAL_URL
+- timeout=TIMEOUT
+- adc=ADCID
+- purl=HREF
+- gdpr_consent=CONSENT_STRING
+- consent_type=CONSENT_METADATA(consentStringType)
+- gdpr_applies=CONSENT_METADATA(gdprApplies)
+- attl_consent=CONSENT_METADATA(additionalConsent)
+
+See the entries in the [AMP vendors callout file](https://github.com/ampproject/amphtml/blob/main/src/service/real-time-config/callout-vendors.js).
 
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:

@@ -11,6 +11,7 @@ prebid_member: true
 pbjs: true
 gvl_id: 142
 schain_supported: true
+getFloor: true
 ---
 
 ### Bid Params
@@ -53,7 +54,9 @@ var videoAdUnit = {
   mediaTypes: {
     video: {
       context: "instream",
-      playerSize: [640, 480]
+      playerSize: [640, 480],
+      mimes: ['video/mp4'],
+      placement: 1
     }
   },
   bids: [{
@@ -61,10 +64,6 @@ var videoAdUnit = {
     params: {
       cid: '8CUX0H51C',
       crid: '776755783',  
-      video: {
-        mimes: ['video/mp4'],
-        placement: 1
-      },
       // Site member is to be used only for testing
       site: {
         page: 'http://smoketesting.net/prebidtest/',

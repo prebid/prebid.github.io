@@ -6,7 +6,7 @@ biddercode: improvedigital
 pbjs: true
 pbs: true
 gdpr_supported: true
-userIds: criteo, id5Id
+userIds: all
 usp_supported: true
 media_types: banner, native, video
 schain_supported: true
