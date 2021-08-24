@@ -2,7 +2,7 @@
 layout: bidder
 title: AJA
 description: Prebid AJA Bidder Adaptor
-userIds: criteo, unifiedId
+userIds: criteo, unifiedId, imuid
 pbjs: true
 pbs: true
 biddercode: aja
