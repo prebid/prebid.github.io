@@ -5,7 +5,7 @@ description:
 ---
 
 
-The `getConfig` function is for retrieving the current configuration object or subscribing to configuration updates. When called with no parameters, the entire config object is returned. When called with a string parameter, a single configuration property matching that parameter is returned.
+The `getConfig` function is for retrieving the current configuration object or subscribing to configuration updates. When called with no parameters, the entire config object is returned. When called with a string parameter, a single configuration property matching that parameter is returned. Be very careful with use of this function, as it returns a reference to the configuration instead of a clone. The readConfig function has been introduced for safer use. 
 
 {% highlight js %}
 /* Get config object */
