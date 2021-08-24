@@ -71,7 +71,11 @@ Setting up Prebid ad units is almost the same whether you’re working with inst
         mediaTypes: {
             video: {
                 context: 'instream', //or 'outstream'
-                playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],    // required for Prebid Server
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             }
 ```
 
@@ -80,14 +84,6 @@ The mediaTypes.video.playerSize field is where you define the player size that w
 <div class="alert alert-info">
   <strong>Prebid Server</strong>
   <p>If you’re using Prebid Server, you must also include the mediaTypes.video.mimes field, as this is required by OpenRTB.</p>
-
-  <pre>
-        mediaTypes: {
-            video: {
-                context: 'instream', // or 'outstream'
-                playerSize: [640, 480],
-                mimes: ['video/mp4']
-  </pre>
 </div>
 
 In your ad unit you also need to define your list of bidders. For example, including AppNexus as a bidder would look something like this:
