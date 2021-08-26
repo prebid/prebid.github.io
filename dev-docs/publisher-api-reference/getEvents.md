@@ -4,23 +4,19 @@ title: pbjs.getEvents()
 description: 
 ---
 
+The `getEvents` method returns a copy of all emitted events since the page loaded.
 
-The methods `onEvent` and `offEvent` are provided for you to register
-a callback to handle a Prebid.js event.
+**Kind**: static method of `pbjs`
 
-The `getEvents` method returns a copy of all emitted events.
+**Args**: none
 
-The optional `id` parameter provides more finely-grained event
-callback registration.  This makes it possible to register callback
-events for a specific item in the event context.
+**Returns**: `array of objects`
 
-For example, `bidWon` events will accept an `id` for ad unit code.
-`bidWon` callbacks registered with an ad unit code id will be called
-when a bid for that ad unit code wins the auction. Without an `id`
-this method registers the callback for every `bidWon` event.
-
-{: .alert.alert-info :}
-Currently, `bidWon` is the only event that accepts the `id` parameter.
+**Returned Object Params**:
+- eventType (see table below)
+- args (varies for each event type)
+- id (only for bidWon, set to adUnit.code)
+- elapsedTime
 
 The available events are:
 
@@ -45,71 +41,15 @@ The available events are:
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 
-The examples below show how these events can be used.
+The example below shows how these events can be used.
 
-Events example 1
 {% highlight js %}
-
-        /* Log when ad units are added to Prebid */
-        pbjs.onEvent('addAdUnits', function() {
-          console.log('Ad units were added to Prebid.')
-          console.log(pbjs.adUnits);
-        });
-
-        /* Log when Prebid wins the ad server auction */
-        pbjs.onEvent('bidWon', function(data) {
-          console.log(data.bidderCode+ ' won the ad server auction for ad unit ' +data.adUnitCode+ ' at ' +data.cpm+ ' CPM');
-        });
-
+      pbjs.getEvents().forEach(event => {
+        console.log("event: "+event.eventType)
+      });
 {% endhighlight %}
 
-Events example 2: Use the optional 3rd parameter for the `bidWon` event
-{% highlight js %}
-        /* This handler will be called only for rightAdUnit */
-        /* Uses the `pbjs.offEvent` method to remove the handler once it has been called */
-        var bidWonHandler = function bidWonHandler() {
-            console.log('bidWonHandler: ', arguments);
-            pbjs.offEvent('bidWon', bidWonHandler, rightAdUnit);
-        };
 
-        var rightAdUnit="/111111/right";
-        pbjs.que.push(function () {
-            var adUnits = [{
-                code: rightAdUnit,
-		...
-	    },{
-		...
-	    }];
-
-	    pbjs.addAdUnits(adUnits);
-            pbjs.requestBids({
-		...
-            });
-
-            /* Register a callback for just the rightSlot `bidWon` event */
-            /* Note that defining an event that uses the 3rd parameter must come after initiating the auction */
-            pbjs.onEvent('bidWon', bidWonHandler, rightAdUnit);
-
-            ...
-{% endhighlight %}
-
-Events example 3: Dynamically modify the auction
-{% highlight js %}
-	var bidderFilter = function bidderFilter(adunits) {
-	    // pub-specific logic to optimize bidders
-            // e.g. "remove any that haven't bid in the last 4 refreshes"
-	};
-	pbjs.onEvent('beforeRequestBids', bidderFilter);
-{% endhighlight %}
-
-Events example 4: Log errors and render fails to your own endpoint
-{% highlight js %}
-        pbjs.onEvent('adRenderFailed', function () {
-              // pub-specific logic to call their own endpoint
-            });
-	pbjs.onEvent('auctionDebug', function () {
-              // pub-specific logic to call their own endpoint
-            });
-{% endhighlight %}
-
-<hr class="full-rule" />
+## See Also
+- [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
+- [offEvent](/dev-docs/publisher-api-reference/offEvent.html)

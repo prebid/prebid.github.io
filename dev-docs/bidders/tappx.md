@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: :tappx
+title: tappx
 pbs: true
 pbjs: true
 media_types: banner, video
