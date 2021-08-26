@@ -62,7 +62,7 @@ Please be attentive in reading and responding to emails and [GitHub issues](http
 
 Prebid Server bid adapters consist of several components: bidder info, bidder parameters, adapter code, user sync code, registration with the core framework, and default configuration values. This chapter will guide you though each component.
 
-Please refer to [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance, but understand that our adapter interfaces and coding style evolve over time. Please prefer the examples in this document over differences you may find in code.
+Please refer to [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance, but understand that our adapter interfaces and coding style evolve over time. Please refer to the examples in this document over differences you may find in an existing bid adapter.
 
 Our project is written in the [Go programming language](https://golang.org/). We understand not everyone has prior experience writing Go code. Please try your best and we'll respectfully steer you in the right direction during the review process.
 
