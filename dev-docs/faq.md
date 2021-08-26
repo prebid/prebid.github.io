@@ -165,6 +165,14 @@ If all this wasn't enough to warn you away from trying, it should work if you na
 Yes. Many bidders provide metadata about the bid that can be used in troubleshooting
 and filtering. See the [list of bid response metadata](/dev-docs/bidder-adaptor.html#interpreting-the-response) and the [filtering example](/dev-docs/examples/meta-bid-filtering.html).
 
+## Does Prebid.js resolve the AUCTION_PRICE macro?
+
+Yes, but in a way that could cause discrepancies in reporting. It's recommended
+that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve-openrtb-macros-in-the-creatives) themselves before giving them to Prebid.js.
+
+For historic reasons, Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments.
+This differs from how OpenRTB defines this value as being the clearing price in the bid currency. Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself.
+
 ## Related Reading
 
 + [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html)
