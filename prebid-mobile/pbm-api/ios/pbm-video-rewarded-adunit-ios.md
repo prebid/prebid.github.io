@@ -21,7 +21,7 @@ Create a new Video Rewarded Ad Unit associated with a Prebid Server configuratio
 
 
 
-# Paramaters
+# Parameters
 
 Parameters is a sub class of RewardedVideoAdUnit.Create new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
 

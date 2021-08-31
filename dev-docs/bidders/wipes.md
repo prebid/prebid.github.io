@@ -5,7 +5,6 @@ description: Prebid WIPES Bidder Adaptor
 pbjs: true
 biddercode: wipes
 media_types: video
-pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

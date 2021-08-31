@@ -38,10 +38,14 @@ into the Prebid.js package.
 
 Optional initialization parameters:
 
-- enabled (on by default)
-- customGptSlotMatching function
-- customPbAdSlot function
+{: .table .table-bordered .table-striped }
+| Param | Required? | Type | Description | Example |
+| enabled | no | boolean | allows turning off of module. Default value is true | true |
+| customGptSlotMatching | no | function | GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/publisher-api-reference/setTargetingForGPTAsync.html) | |
+| customPbAdSlot | no | function | Custom PB AdSlot function | |
+| mcmEnabled | no | boolean | Removes extra network IDs when Multiple Customer Management is active. Default is false. | true |
 
+For example:
 ```
 pbjs.setConfig({
     gptPreAuction: {
@@ -53,7 +57,8 @@ pbjs.setConfig({
 	customGptSlotMatching: function(gptSlotObj) {
 		...
 		return true; // or false
-	}
+	},
+	mcmEnabled: true
     }
 });
 ```
