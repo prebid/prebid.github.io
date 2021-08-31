@@ -1,0 +1,18 @@
+---
+layout: example
+title: Meta Bid Filtering
+description: Bid filtering on meta object example
+sidebarType: 1
+
+
+about:
+- Filter particular values or if meta object is provided
+- Integration with single Google Ad Manager ad slot
+- Default price granularity
+
+jsfiddle_link: 
+https://jsfiddle.net/Prebid_Examples/0s4eug1d/18/embedded/html,result
+
+code_height: 
+2300
+---
