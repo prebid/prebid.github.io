@@ -12,7 +12,7 @@ pbs: true
 pbs_app_supported: true
 ---
 
-### Bid Params
+### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description         | Example                              | Type     |
