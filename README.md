@@ -42,7 +42,7 @@ The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](ht
 For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
 
 1. follow the instructions at https://nodejs.dev to install Node.js for your OS
-1. `npm install` to install packages for building assets
+1. `npm ci` to install packages for building assets
 1. build assets as described below
 
 <a name="running-jekyll-locally" />
