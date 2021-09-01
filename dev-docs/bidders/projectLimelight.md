@@ -1,11 +1,12 @@
 ---
 layout: bidder
-title: Limelight Digital
-description: Prebid Limelight Digital Bidder Adaptor
+title: Project Limelight
+description: Prebid Project Limelight Bidder Adaptor
 pbjs: true
-biddercode: limelightDigital
-aliasCode: pll
+biddercode: project-limelight
+aliasCode: projectLimeLight
 media_types: video
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params
@@ -13,6 +14,6 @@ media_types: video
 {: .table .table-bordered .table-striped }
 | Name           | Scope      | Description                                                    | Example            |type|
 | :-----------   | :--------- | :------------                                                  | :----------------- |:---|
-| `host` | required | Ad network's RTB host | `'exchange.ortb.net` | `string` |
+| `host` | required | Ad network's RTB host | `'exchange.ortb.net'` | `string` |
 | `adUnitId` | required   | Ad Unit Id will be generated on Limelight Digital Platform. | 0                        |integer|
-| `adUnitType`      | required   | Type of Ad Unit ('video', 'banner')                                             | 'banner'                 |string|
+| `adUnitType`      | required   | Type of Ad Unit (`'video'`, `'banner'`)                                             | `'banner'`                 |string|
