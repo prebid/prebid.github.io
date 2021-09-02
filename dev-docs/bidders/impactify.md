@@ -11,8 +11,8 @@ usp_supported: true
 schain_supported: true
 coppa_supported: true
 media_types: video
+userIds: criteo, id5Id, pubCommonId, unifiedId, uid2, netId
 gvl_id: 606
-pbjs_version_notes: not in 5.x
 ---
 
 ### Note:
