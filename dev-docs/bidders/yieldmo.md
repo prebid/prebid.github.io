@@ -42,6 +42,7 @@ The Yieldmo adapter supports in-stream video as of Prebid v4.18. Out-stream will
 | `skippable`       | optional | If 'true', user can skip ad                            | `true`          | `boolean` |
 | `skipafter`       | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is `skippable` | `5`  | `integer` |
 | `mimes`           | required | List of the content MIME types supported by the player | `["video/mp4"]` | `Array<string>`  |
+| `device`       | optional | User's device information. Currently we are expecting `ip` property only| `{ip: "111.222.333.444"}`  | `object` |
 
 Following video parameters might be also defined in `mediaTypes.video` in order to simplify bidders configuration. If the same parameters was also defined in `params.video` it will be overriten by `params.video`. More details - https://docs.prebid.org/dev-docs/adunit-reference.html
 
@@ -52,7 +53,11 @@ In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.v
 |-------------------|----------|--------------------------------------------------------|-----------------|------------------|
 | `playerSize`      | required | Width and height of the player                         | `[640, 480]`    | `Array<integer>` |
 | `context`         | required | `instream` or `outstream ` are only supported                           | `instream`      | `string`         |
-
+#### device object
+{: .table .table-bordered .table-striped }
+| Name              | Scope    | Description                                            | Example         | Type             |
+|-------------------|----------|--------------------------------------------------------|-----------------|------------------|
+| `ip`              | optional | User's IP address  | `111.222.333.444` | `string`
 ### Example of in-stream Video Ad-unit
 ```javascript
 var videoAdUnits = [{
@@ -77,7 +82,10 @@ var videoAdUnits = [{
   bids: [{
     bidder: 'yieldmo',
     params: {
-      placementId: '1524592390382976659' // required
+      placementId: '1524592390382976659',// required,
+      device: {                          // optional, object
+        ip: '111.222.333.444'
+      }
     }
   }]
 }];
@@ -88,23 +96,26 @@ var videoAdUnit = [{
   code: 'div-video-ad-1234567890',
   mediaTypes: {
       video: {
-          playerSize: [640, 480],   // required
+          playerSize: [640, 480],        // required
           context: 'outstream',
-          mimes: ['video/mp4'],      // required, array of strings
-          placement: 3,                      // required, integer ( 3,4,5 )
-          maxduration: 30,                   // required, integer
-          protocols: [2, 3],                 // required, array of integers
-          api: [2, 3],                       // required, array of integers
-          playbackmethod: [1,2]              // required, array of integers
+          mimes: ['video/mp4'],          // required, array of strings
+          placement: 3,                  // required, integer ( 3,4,5 )
+          maxduration: 30,               // required, integer
+          protocols: [2, 3],             // required, array of integers
+          api: [2, 3],                   // required, array of integers
+          playbackmethod: [1,2]          // required, array of integers
       }
   },
   bids: [{
     bidder: 'yieldmo',
     params: {
-      placementId: '1524592390382976659'  // required
+      placementId: '1524592390382976659',  // required,
+      device: {                            // optional, object
+        ip: '111.222.333.444'
+      }
     }
   }]
 }];
 ```
 
-> Prebid out-stream demo - https://prebid-outstream-qa.yieldmo.com/prebid-outstream.html
+> [Prebid out-stream demo](https://prebid-outstream-qa.yieldmo.com/prebid-outstream.html)
