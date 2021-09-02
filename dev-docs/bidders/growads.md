@@ -4,12 +4,12 @@ title: GrowAdvertising
 description: Prebid GrowAdvertising Bidder Adapter
 pbjs: true
 biddercode: growads
-media_types: banner
+media_types: banner, native
 ---
-
 
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description  |  Example  | Type     |
 |----------|----------|-----------|--------------------|----------|
 | `zoneId` | required | ZoneId ID | `'unique-zone-id'` | `string` |
