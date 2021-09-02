@@ -530,10 +530,10 @@ Example:
 {
   "imp": [{
     ...
-    "banner": { ... }
+    "banner": { ... },
     "instl": 1,
     ...
-  }]
+  }],
   "device": {
     ...
     "h": 640,
@@ -826,10 +826,12 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
     }
   },
   "imp": [
-    ...
-    "ext": {
-      "data": {
-        ADUNIT SPECFIC CONTEXT DATA  // can be seen by all bidders
+    {
+      ...
+      "ext": {
+        "data": {
+          ADUNIT SPECFIC CONTEXT DATA  // can be seen by all bidders
+        }
       }
     }
   ]

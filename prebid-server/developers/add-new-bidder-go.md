@@ -62,7 +62,7 @@ Please be attentive in reading and responding to emails and [GitHub issues](http
 
 Prebid Server bid adapters consist of several components: bidder info, bidder parameters, adapter code, registration with the core framework, and default configuration values. This chapter will guide you though each component.
 
-Please refer to [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance, but understand that our adapter interfaces and coding style evolve over time. Please refer to the examples in this document over differences you may find in an existing bid adapter.
+Please refer to [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance, but understand that our adapter interfaces and coding style evolve over time. Please prefer the examples in this document over differences you may find in an existing bid adapter.
 
 Our project is written in the [Go programming language](https://golang.org/). We understand not everyone has prior experience writing Go code. Please try your best and we'll respectfully steer you in the right direction during the review process.
 
@@ -71,7 +71,7 @@ Our project is written in the [Go programming language](https://golang.org/). We
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, [GDPR Global Vendor List (GVL) id](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
@@ -104,7 +104,7 @@ Modify this template for your bid adapter:
 - Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
 - Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
-- Follow the guide below to set the endpoints for your bid adapter, or remove the `userSync` section if not supported.
+- Follow the [User Sync Configuration](#user-sync-configuration) chapter below to configure the endpoints for your bid adapter, or remove the `userSync` section if not supported.
 
 <details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
@@ -168,9 +168,9 @@ userSync:
 
 #### User Sync Configuration
 
-Prebid Server offers a federated [user sync](https://docs.prebid.org/prebid-server/developers/pbs-cookie-sync.html) process to store user ids from all participating bidders in a single cookie under the host's domain. You may add support for your bid adapter by configuring iframe and/or redirect endpoints.
+Prebid Server offers a federated [user sync](https://docs.prebid.org/prebid-server/developers/pbs-cookie-sync.html) process to store user ids from multiple bidders in a single cookie under the host's domain. You may add support for your bid adapter by configuring iframe and/or redirect endpoints.
 
-The template in this chapter demonstrates configuration of a `redirect` user sync. The `url` points to an endpoint under your bidding server which will honor the privacy policies, replace the `userMacro` in the redirect url with the user's tracking id, and respond with an HTTP 302 redirect to that url. You may also specify an `iframe` endpoint will return an HTML document to be rendered in an `iframe` on the user's device and use JavaScript to perform the redirect. You may omit the `{%raw%}{{.GDPR}}{%endraw%}`, `{%raw%}{{.GDPRConsent}}{%endraw%}`, and/or `{%raw%}{{.USPrivacy}}{%endraw%}` macros if they are not applicable to your legal situation.
+The template in this chapter demonstrates configuration of a `redirect` user sync. The `url` points to an endpoint to your bidding server which will honor the privacy policies, replace the `userMacro` in the redirect url with the user's tracking id, and respond with an HTTP 302 redirect to that url. You may also specify an `iframe` endpoint will return an HTML document to be rendered in an `iframe` on the user's device and use JavaScript to perform the redirect. You may omit the `{%raw%}{{.GDPR}}{%endraw%}`, `{%raw%}{{.GDPRConsent}}{%endraw%}`, and/or `{%raw%}{{.USPrivacy}}{%endraw%}` macros if they are not applicable to your legal situation.
 
 If both `iframe` and `redirect` endpoints are provided, you must specify a `default` field with a value of either `iframe` or `redirect`, based on your preference.
 
@@ -189,13 +189,14 @@ If your bid adapter supports user sync and doesn't have a good default, you may 
 
 ```yaml
 userSync:
-  # foo supports user syncing, but requires configuration by the host.
+  # foo supports user syncing, but requires configuration by the host. contact this
+  # bidder directly at the email address in this file to ask about enabling user sync.
   supports:
     - iframe
     - redirect
 ```
 
-Each user sync is assigned a case-sensitive key, defaulting to your bidder name. You may use a different `key` value, but we discourage doing so except when multiple bidders share the same bidding server. You may find yourself in this situation if you have configured a built-in alias or have multiple bid adapters implementing different protocols. Only one bid adapter may specify endpoints when using a shared key or Prebid Server will fail to startup due to the ambiguity.
+Each user sync is assigned a case-sensitive `key`, defaulting to your bidder name. You may use a different `key` value, but we discourage doing so except when multiple bidders share the same bidding server such as for built-in aliases for the implementation of different bidding protocols. Only one bid adapter may specify endpoints when using a shared key or Prebid Server will fail to startup due to the ambiguity.
 
 ```yaml
 foo.yaml
@@ -213,7 +214,7 @@ userSync:
 
 ### Bidder Parameters
 
-Your bid adapter might require extra information from the publisher to form a request to your bidding server. The bidder parameters JSON Schema codifies this information to allow Prebid Server to verify requests and to provide an API for third party configuration systems.
+Your bid adapter might require extra information from the publisher to form a request to your bidding server. The bidder parameters JSON Schema codifies this information to allow Prebid Server to verify requests and to provide an API for configuration systems.
 
 Publishers will provide extra information using an OpenRTB 2.5 Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's chosen location.
 
@@ -653,7 +654,6 @@ Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor
 func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapters.ExtraRequestInfo) (*adapters.RequestData, []error) {
   
   for _, imp := range request.Imp {
-
     // Check if imp comes with bid floor amount defined in a foreign currency
     if imp.BidFloor > 0 && imp.BidFloorCur != "" && strings.ToUpper(imp.BidFloorCur) != "USD" {
 
@@ -664,8 +664,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
       }
 
       // Update after conversion. All imp elements inside request.Imp are shallow copies
-      // therefore, their non-pointer values are not shared memory and are safe to modify
-      // without risking a data race condition
+      // therefore, their non-pointer values are not shared memory and are safe to modify.
       imp.BidFloorCur = "USD"
       imp.BidFloor = convertedValue
     }
@@ -1214,7 +1213,6 @@ Notes on the metadata fields:
   - `adapters/{bidder}/{bidder}_test.go`
   - `adapters/{bidder}/{bidder}test/exemplary/*.json`
   - `adapters/{bidder}/{bidder}test/supplemental/*.json`
-  - `adapters/{bidder}/{bidder}test/params/race/{mediaType}.json` 
 - Register With The Core
   - `openrtb_ext/bidders.go`
   - `exchange/adapter_builders.go`
