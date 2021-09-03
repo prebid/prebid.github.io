@@ -42,7 +42,8 @@ If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.b
 | [**First Party Data Enrichment**](/dev-docs/modules/enrichmentFpdModule.html) | Pulls well-known FPD from the environment to form a base of data available to all adapters. |
 | [**MASS**](/dev-docs/modules/mass.html) | Enables the MASS protocol for Prebid and custom renderers by DealID |  
 | [**MultiBid Module**](/dev-docs/modules/multibid.html) | Allows bidders to send multiple bids to the ad server. |
-| [**Bid Viewability**](/dev-docs/modules/bidViewable.html) | Triggers an event which can be consumed by analytics and bid adapters. |
+| [**Bid Viewability - GAM**](/dev-docs/modules/bidViewable.html) | Triggers an event which can be consumed by analytics and bid adapters. Supports Google Ad Manager. |
+| [**Bid Viewability - Ad Server Independent**](/dev-docs/modules/bidViewableIO.html) | Triggers an event which can be consumed by analytics and bid adapters. No ad server requirements. |
 
 ## Real-Time Data Providers
 

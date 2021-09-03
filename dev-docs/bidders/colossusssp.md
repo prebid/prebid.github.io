@@ -10,7 +10,6 @@ userIds: britepoolid, identityLink, unifiedId, id5Id
 gdpr: true
 pbjs: true
 pbs: false
-pbjs_version_notes: not in 5.x
 ---
 
 ### Prebid.JS Bid Params

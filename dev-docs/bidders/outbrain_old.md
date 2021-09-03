@@ -61,7 +61,7 @@ adapters:
 | `publisher.domain` | optional | The publisher domain                                           | `'publisher.com'`  | `string`       |
 | `tagid`            | optional | Identifier for specific ad placement or ad tag                 | `'tag-id'`         | `string`       |
 | `bcat`             | optional | Blocked advertiser categories using the IAB content categories | `['IAB1-1']`       | `string array` |
-| `badv`             | optional | Block list of advertisers by their domains                     | `['example.com]'`  | `string array` |
+| `badv`             | optional | Block list of advertisers by their domains                     | `['example.com']`  | `string array` |
 
 #### Native example
 
