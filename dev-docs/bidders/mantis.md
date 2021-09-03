@@ -7,7 +7,6 @@ biddercode: mantis
 media_types: native, video
 usp_supported: true
 gdpr_supported: true
-pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params
