@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: IQZone
-description: Prebid IQZone Bidder Adapter
+title: IQzone
+description: Prebid IQzone Bidder Adapter
 biddercode: iqzone
 usp_supported: true
 gdpr_supported: true
@@ -17,4 +17,5 @@ pbs_app_supported: true
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `placementId` | required | Placement Id | `'0'`        | `string` |
+| `placementId` | optional | Placement Id | `'0'`        | `string` |
+| `endpointId` | optional | Endpoint Id | `'0'`        | `string` |
