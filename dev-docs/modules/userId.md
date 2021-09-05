@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -792,6 +792,46 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### IM-UID by Intimate Merger
+
+IM-UID, provided by [Intimate Merger](https://corp.intimatemerger.com/), is a universal identifier that designed for publishers, platforms and advertisers to perform segmentation and targeting even in environments where 3rd party cookies are not available. IM-UID is currently only available in Japan.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=imuIdSystem
+
+#### IM-UID Registration
+
+Please visit [https://lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
+
+The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacypolicy/
+
+#### IM-UID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `"imuid"` |
+| params | Required | Object | Details of module params. | |
+| params.cid | Required | Number | This is the Customer ID value obtained via Intimate Merger. | `5126` |
+| params.url | Optional | String | Use this to change the default endpoint URL. | `"https://example.com/some/api"` |
+
+#### IM-UID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "imuid",
+            params: {
+                cid: 5126 // Set your Intimate Merger Customer ID here for production
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Intent IQ ID
 
 Intent IQ’s universal ID with its unparalleled coverage of over 80% of ad inventory, protects publishers’ ability to rely on advertising as their main revenue source while preserving user privacy in a third party cookieless world.
@@ -1144,6 +1184,24 @@ pbjs.setConfig({
           name: 'merkleId',
           expires: 30
         }
+      }]
+    }
+});
+{% endhighlight %}
+
+### Navegg ID
+
+[Navegg](https://www.navegg.com) enables publishers, advertisers and agencies to use their own first party data together to activate media in a cookie-less way across several Ad Tech platforms. Navegg has one of the largest data networks in Latin America which also allows the enhancement of data with unique categories.
+
+#### Navegg ID Examples
+
+Publisher stores NaveggId in local storage and/or 1st party cookies
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+        name: 'naveggId'
       }]
     }
 });
@@ -1879,6 +1937,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
 | MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |
 | merkleID | Merkle | merkleId | merkleinc.com | "1111" |
+| naveggId | Navegg | naveggId | navegg.com | "1111" |
 | netID | netID | netId | netid.de | "fH5A..." |
 | NextRoll ID | NextRoll | nextrollId | nextroll.com | "bf3Ka.../SjP/zpVGr09voA" |
 | Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |

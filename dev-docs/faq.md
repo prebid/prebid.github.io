@@ -160,6 +160,11 @@ It's technically possible, but we don't recommend doing this:
 
 If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/master/package.json#L20)
 
+## Can I filter bid responses that don't meet my criteria?
+
+Yes. Many bidders provide metadata about the bid that can be used in troubleshooting
+and filtering. See the [list of bid response metadata](/dev-docs/bidder-adaptor.html#interpreting-the-response) and the [filtering example](/dev-docs/examples/meta-bid-filtering.html).
+
 ## Does Prebid.js resolve the AUCTION_PRICE macro?
 
 Yes, but in a way that could cause discrepancies in reporting. It's recommended
@@ -168,9 +173,8 @@ that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve
 For historic reasons, Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments.
 This differs from how OpenRTB defines this value as being the clearing price in the bid currency. Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself.
 
-
 ## Related Reading
 
-+ [Prebid.js Dev Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
-+ [Prebid.js Common Issues]({{site.baseurl}}/dev-docs/common-issues.html)
++ [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html)
++ [Prebid.js Common Issues](/dev-docs/common-issues.html)
 + [Prebid.js issues tagged 'question'](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)

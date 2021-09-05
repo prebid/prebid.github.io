@@ -8,6 +8,7 @@ gvl_id: 31
 usp_supported: false
 coppa_supported: false
 schain_supported: false
+getFloor: true
 dchain_supported: false
 media_types: banner
 safeframes_ok: false
