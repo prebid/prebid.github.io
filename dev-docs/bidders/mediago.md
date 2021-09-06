@@ -5,6 +5,7 @@ description: MediaGo Prebid Bidder Adapter
 biddercode: mediago
 media_types: banner
 pbjs: true
+pbjs_version_notes: not in 5.x
 ---
 ### Note:
 

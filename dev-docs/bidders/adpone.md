@@ -7,6 +7,7 @@ pbs: true
 biddercode: adpone
 bidder_supports_deals: false
 media_types: banner
+gvl_id: 799
 ---
 
 

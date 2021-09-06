@@ -82,7 +82,7 @@ See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy
 
 For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
-- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) is parsed.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) is parsed.
 - A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
 - Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
@@ -120,6 +120,10 @@ The AMP endpoint is somewhat different because it doesn't receive the openrtb - 
 
 ## How does Prebid Server determine the winner of a given impression?
 
+Prebid Server doesn't decide the overall winner... that's the job of the
+ad server. However, there are two decisions it does make that influence
+which bids are submitted to the ad server.
+
 **Decision 1**: best bid from each bidder on each impression
 
 Prebid Server returns one bid from each bidder for each impression object. If there
@@ -129,6 +133,9 @@ are multiple bids from a given bidder for a given imp[], here how it chooses:
 - highest CPM deal (only when the ext.targeting.preferdeals is specified)
 - highest CPM
 - random tiebreaker
+
+Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only), then several bid responses from the same bidder may
+be returned to the client.
 
 **Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
 
@@ -142,3 +149,22 @@ first decision:
 - highest CPM
 - random tiebreaker
 
+## Can I host Prebid Server for myself or others?
+
+Yes. See the [PBS Hosting](/prebid-server/hosting/pbs-hosting.html) page to get started.
+
+You don't need to be a [Prebid.org member](https://prebid.org/membership/), but joining would help in case you need extra
+support with any technical hurdles.
+
+## I'm hosting Prebid Server - how can I get in the loop?
+
+The best way would be to [join Prebid.org](https://prebid.org/membership/) and
+participate in the [Prebid Server PMC](https://prebid.org/project-management-committees/).
+
+Another way is to [register for our host company mailing list](/prebid-server/hosting/pbs-hosting.html#optional-registration).
+
+## Why doesn't Prebid Server resolve OpenRTB macros?
+
+Prebid Server is not a full-fledged SSP. Any DSP bid adapters should keep this in mind when it comes to assuming SSP functionality like resolving OpenRTB macros. We debated building this functionality into PBS, but realized it would take precious milliseconds away from the overall header bidding auction to scan kilobytes of bidder creatives for the 9 different OpenRTB macros. Since so few bidders require this functionality, it makes sense to have those adapters do it themselves.
+
+If an adapter doesn't resolve its own macros, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity. This will likely cause reporting discrepancies.

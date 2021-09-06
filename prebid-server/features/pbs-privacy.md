@@ -14,7 +14,7 @@ title: Prebid Server | Features | Privacy
 
 If PBS receives 'device.lmt' flag in the OpenRTB request, it does the following anonymization:
 
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
+- Mask take off the last byte of the IPv4 address and anonymize IPv6 addresses
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
@@ -33,16 +33,7 @@ The user must provide legal basis for the host company to read/write cookies or 
 
 ### TCF 1.1
 
-If Prebid Server determines that the user is in GDPR scope and doesn't consent
-to *all* of the vendor's 'purposes' as declared in the Global Vendor List, it 'anonymizes'
-the request to the adapters:
-
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
-
-Full details are available [here](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit).
+No longer supported by Prebid Server.
 
 ### TCF 2.0
 
@@ -61,16 +52,18 @@ for each 'Purpose' with different consequences for each:
 
 More details are available in the [Prebid Support for TCF2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#) reference and in the [Prebid Server GDPR Reference](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#).
 
-### GDPR Configuration
+### Host Company GDPR Configuration
 
-There are a number of configuration settings that PBS Host Companies need
-to consider:
+There are a number of GDPR configuration settings that PBS Host Companies must
+consider:
 
-- Host company GVL ID. Currently PBS requires the host company to have a GVL-ID or the setting of the `uids` cookie in GDPR scope will fail.
-- The default expiration time of the uids cookie set in the host company domain should be defined to match what's in the TCF 2.1 `maxCookieAgeSeconds` GVL field.
-- GDPR enforcement flags for each Purpose and Vendor
+- **GDPR enabled** - Allows the host company to turn off GDPR support. Default setting is enabled=true.
+- **Default GDPR applies** - How Prebid Server should respond if the incoming request doesn't have the `gdpr` flag. (Note: this config is currently called `usersync_if_ambiguous` in PBS-Go and gdpr.default-value in PBS-Java.)
+- **Host company GVL ID** - Currently PBS requires the host company to have a GVL-ID or the setting of the `uids` cookie in GDPR scope will fail.
+- **GDPR enforcement flags** - for each Purpose
+- **Host Cookie TTL** - The default expiration time of the `uids` cookie set in the host company domain should be defined to match what's in the TCF 2.1 `maxCookieAgeSeconds` GVL field. (This is the host-cookie.ttl-days setting in both Go and Java.)
 
-The specific details vary slightly between PBS-Go and PBS-Java, so check the
+The specific details vary between [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) and [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md), so check the
 version-specific documentation for more information.
 
 ## COPPA
@@ -92,13 +85,30 @@ this state-specific rule into a [US Privacy](https://iabtechlab.com/standards/cc
 If `regs.ext.us_privacy` is parsed to find that the user has opted-out of a "sale",
 the following anonymization steps are taken:
 
-- Mask the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
+- Mask the last byte of the IPv4 address and anonymize IPv6 addresses
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
+
+## Global Privacy Control
+
+In support of the [Global Privacy Control](https://globalprivacycontrol.org/), Prebid Server passes the `Sec-GPC` HTTP header through to bid adapters. It
+does not currently take action on this header.
 
 ## DNT
 
 Prebid Server does **not** recognize the Do-Not-Track header. The committee determined that it's obsolete in general and not supported on Safari specifically. We prefer not to implement, test, and document unsupported privacy flags. Prebid Server is not going to make a dent in the overall problems with DNT.
 
 We may reconsider this position if community members provide evidence that the flag is meaningful to their customers or lawyers.
+
+## Anonymizing IPv6 Addresses
+
+IPv6 addresses may be anonymized differently for Prebid Server host companies depending on how they've configured the server:
+
+- There's a setting to mask the network portion of the IPv6 address when anonymization is called for. It defaults to 56 bits, meaning the rightmost 8 bits of the network is removed in these scenarios.
+- There's another setting to remove a number of bits in the MAC address portion of the IPv6 address regardless of whether it's a situation that calls for explicit privacy or not. This setting defaults to removing all 64 bits of the MAC address.
+
+## Related Topics
+
+- [Prebid Server Feature Matrix](/prebid-server/features/pbs-feature-idx.html)
+- [Prebid Server GDPR Requirements](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#)

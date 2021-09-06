@@ -4,13 +4,16 @@ title: Beachfront
 description: Prebid Beachfront Bidder Adapter
 biddercode: beachfront
 media_types: video
+getFloor: true
 gdpr_supported: true
 usp_supported: true
-userIds: unifiedId, identityLink
+userIds: unifiedId, identityLink, uid2, haloId
+schain_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+gvl_id: 335
 ---
 
 ### Registration
