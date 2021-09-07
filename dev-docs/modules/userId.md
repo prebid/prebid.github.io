@@ -918,7 +918,7 @@ The Kinesso ID sub adapter sets two cookies, one as a third party cookie and the
 {: .table .table-bordered .table-striped }
 | kpuid | knsso | hid | account_id | created on |
 | --- | --- | --- | --- | --- |
-| `<my_1pc>` | `<my_3pc>` | `<my_hashed_email>` | `<my_magnite_accountid>` | `<my_birthday>` |
+| `<my_1pc>` | `<my_3pc>` | `<my_hashed_email>` | `<my_ssp_accountid>` | `<my_birthday>` |
 
 Kinesso will then attach these users to deals ids that they will target in the ORTB bid stream by brands and agencies represented by IPG.
    
@@ -938,9 +938,7 @@ The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](http
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'kinessoId'` |
 | params | Required | Object | Details for KinessoId initialization | |
-| params.accountid | Required | Int | Your Magnite Account Id | 123 |
- 
-
+| params.accountid | Required | Int | Your SSP Account Id | 123 |
 
 ### LiveIntent nonID
 
@@ -1912,6 +1910,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
 | IdentityLink | LiveRamp | idl_env | liveramp.com | "1111" |
 | Intent IQ ID | Intent IQ | intentiqid | intentiq.com | "1111" |
+| Kinesso ID | Kinesso | kpuid | kpuid.com | "1111" |
 | LiveIntent ID | Live Intent | lipb.lipbid | liveintent.com | "1111" |
 | Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
 | MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |
