@@ -12,10 +12,17 @@ pbs: true
 pbs_app_supported: true
 ---
 
-### Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope    | Description                                              | Example    | Type      |
-|----------------|----------|----------------------------------------------------------|------------|-----------|
-| `placementId` | optional | Placement Id | `'0'`        | `string` |
-| `endpointId` | optional | Endpoint Id | `'0'`        | `string` |
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placementId`      | required | Placement Id         | `'0'`    | `'string'` |
+
+
+### Prebid server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `endpointId`      | required | Endpoint Id         | `'0'`    | `'string'` |
