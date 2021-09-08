@@ -66,3 +66,6 @@ pbjs.setConfig({
     }
   }
 });
+
+### Versions
+Prebid versions 5.0-5.3 are not supported

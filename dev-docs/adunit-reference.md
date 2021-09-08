@@ -74,6 +74,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | Name    | Scope    | Type                                  | Description                                                                             |
 |---------+----------+---------------------------------------+-----------------------------------------------------------------------------------------|
 | `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. |
+| `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
 | `name`  | Optional | String                                | Name for this banner ad unit.  Can be used for testing and debugging.                   |
 
 <a name="adUnit.mediaTypes.native" />
@@ -184,7 +185,9 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Optional    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`                                                                                           |
+| `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
+| `context`        | Recommended    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`. Defaults to 'instream'. |
+| `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
 | `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].                                                  |
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
@@ -209,10 +212,6 @@ enabled; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].  
 | `delivery`      | Optional    | Array[Integer]         | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB spec][openRTB].           |
 | `pos`      | Optional    | Integer         | Ad position on screen, see [OpenRTB spec][openRTB].           |
 | `playbackend`      | Optional    | Integer         | The event that causes playback to end, see [OpenRTB spec][openRTB].           |
-
-
-
-
 
 If `'video.context'` is set to `'adpod'` then the following parameters are also available.  
 
@@ -286,10 +285,10 @@ pbjs.addAdUnits({
         video: {
             context: 'instream',
             playerSize: [640, 480],
-	    w: 640,
-	    h: 480,
-	    skip: 1,
-	    playbackmethod: [2]
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         },
     },
     bids: [{
