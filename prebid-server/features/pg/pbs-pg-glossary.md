@@ -72,7 +72,7 @@ The basic design of the metrics offered by the PG system is a funnel that allows
 
 Here's a graphical representation showing what point in the delivery funnel each of these metrics measures:
 
-![PG Metrics](/assets/images/prebid-server/pg/pg-metrics.png){: .pb-lg-img :}
+![PG Metrics](/assets/images/prebid-server/pg/pg-metrics.png){: .pb-xlg-img :}
 
 ## Related Topics
 

@@ -32,10 +32,10 @@ no obligation to support other PG Bidders, but your publishers may request it.
 For now, the only information about building and running the servers is in
 the relevant GitHub repos:
 
-- [Prebid Server Java](https://github.com/prebid/prebid-server-java). Note that Prebid Server Go doesn't support Programmatic Guaranteed.
-- [General Planner](https://github.rp-core.com/ContainerTag/pg-general-planner)
-- [Delivery Stats Service](https://github.rp-core.com/ContainerTag/pg-del-stats-svc)
-- [Dimension Value API](https://github.rp-core.com/ContainerTag/pg-dim-val-api)
+- [Prebid Server Java](https://github.com/prebid/prebid-server-java). Note that Prebid Server Go doesn't currently support Programmatic Guaranteed.
+- [General Planner](https://github.com/prebid/pg-general-planner)
+- [Delivery Stats Service](https://github.com/prebid/pg-del-stats)
+- [Dimension Value API](https://github.com/prebid/pg-dim-val-api)
 
 Prebid does not offer specific guidance about fault-tolerant architectures.
 It's left up to each Host Company to determine what will happen if one of the servers goes down. i.e. Will there be load-balancing, automatic failover, a warm stand-by, or no fault tolerance?
@@ -43,7 +43,7 @@ It's left up to each Host Company to determine what will happen if one of the se
 ## General notes on testing the service
 
 There are a fair number of moving parts in a Prebid PG installation. Prebid.org
-does not run any test clusters. Changes are made by Prebid member companies, which do
+does not run a test cluster. Changes are made by Prebid member companies, which do
 have test clusters, but they may not test every possible configuration. e.g. different databases, geographic lookup vendors, 
 
 We recommend that PG Host Companies commit to regular testing of software updates

@@ -1,20 +1,19 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Programmatic Guaranteed
+title: Prebid Programmatic Guaranteed
 ---
 
-# Programmatic Guaranteed
+# Prebid Programmatic Guaranteed
 {: .no_toc}
 
 * TOC
 {:toc}
 
-## Programmatic Guaranteed
-
-Programmatic Guaranteed (PG) has existed for several years as an ad server-based function.
-While anchoring PG in the ad server was helpful from a deployment perspective,
-the lack of transparency and configurability in the ad server slowed down product momentum
+## Prebid Programmatic Guaranteed
+In general, Programmatic Guaranteed (PG) has existed for several years as an ad server-based function.
+While anchoring PG in the ad server is helpful from a deployment perspective,
+the lack of transparency and configurability in the ad server has slowed down product momentum
 and made it harder for buyers and sellers to flexibly adjust their strategy and
 configurations for PG deals. The introduction of open-source, standards-based
 Programmatic Guaranteed, anchored in Prebid Sever, helps both buyers and sellers in
@@ -30,7 +29,7 @@ At a high level, the system allows any **Host Company** running Prebid Server (o
 
 In addition, the Host Company can support other **PG Bidders** connecting into their system to make their environment richer for publishers.
 
-![PG High Level Framework](/assets/images/prebid-server/pg/pg-arch-1.png){: .pb-md-img :}
+![PG High Level Framework](/assets/images/prebid-server/pg/pg-arch-1.png){: .pb-sm-img :}
 
 We want to encourage an ecosystem where programmatic vendors can compete on their strengths: some companies may be excellent at hosting a technical infrastructure, while others may excel at usability, reporting, or delivery algorithms.
 
@@ -44,7 +43,7 @@ contact one of the companies hosting a PG cluster. They'll explain how it all wo
 
 If you're a publisher looking to try Programmatic Guaranteed or a PG bidder that wants to integrate into an existing cluster, here's a list of Prebid.org members to consider:
 
-- Magnite - contact your account representative or globalsupport@magnite.com
+- **Magnite** - contact your account representative or globalsupport@magnite.com
 
 ## PG for Bidders
 
