@@ -10,6 +10,8 @@ gdpr_supported: true
 gvl_id: 924
 ---
 
+Note that for Prebid Server, viewdeosDX is an alias of the Adtelligent server-side bid adapter. It has its own Prebid.js adapter.
+
 ### Bid params
 
 {: .table .table-bordered .table-striped }
