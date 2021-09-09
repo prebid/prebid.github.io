@@ -254,6 +254,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
   <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="kinessoIdSystem" class="bidder-check-box"> Kinesso ID</label>
+  </div></div>
+    <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> LiveIntent ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
