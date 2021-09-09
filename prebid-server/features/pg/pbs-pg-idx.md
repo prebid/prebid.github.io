@@ -53,6 +53,9 @@ If you have a demand source and are ready to implement a guaranteed delivery alg
 
 If you're ready to host a global high-performance cluster, learn how to [become a PG Host Company](/prebid-server/features/pg/pbs-pg-host.html).
 
+## Questions
+
+Contact prebid-server@prebid.org with questions.
 
 ## Related Topics
 
