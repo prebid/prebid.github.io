@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Price Floors
-description: Determine and enforce auction price floors
+description: Configure and enforce minimum bids.
 module_code : priceFloors
 display_name : Price Floors
 enable_download : true

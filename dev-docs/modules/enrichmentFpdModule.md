@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - First Party Data Enrichment
-description: Enriches First Party Data
+description: Injects additional data into the auction stream, including&#58; domain, keywords, and page url.
 module_code : enrichmentFpdModule
 display_name : First Party Data Enrichment
 enable_download : true
+recommended: true
 sidebarType : 1
 ---
 

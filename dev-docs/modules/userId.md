@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - User ID
-description: Supports multiple cross-vendor user IDs
+description: Vendor-specific user ID sub-modules are available to support a range of identification approaches.
 module_code : userId
 display_name : User ID
 enable_download : false
