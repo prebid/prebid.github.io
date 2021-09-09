@@ -1,12 +1,19 @@
 ---
 layout: bidder
-title: YSSP
+title: Yahoo SSP
+description: Yahoo SSP Bid Adapter
 pbs: true
-media_types: banner
-biddercode: yssp
+pbjs: true
+media_types: banner, video
+biddercode: yahoossp
 prebid_member: true
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
+coppa_supported: true
+floors_supported: true
 gvl_id: 25
+userIds: All
 ---
 
 ### Bid Params
