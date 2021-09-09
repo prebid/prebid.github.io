@@ -1369,6 +1369,49 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Publisher Link
+Publisher Link, provided by [Epsilon](https://www.epsilon.com/us),  is a cross-device identity solution that activates publisher first-party, authenticated 
+data to improve audience identification and increase bid opportunities, specifically designed for sites with authenticated 
+traffic.  Publisher first-party authenticated data and a user's unique encrypted ID is linked to an existing people-based 
+Epsilon CORE ID.  By utilizing Publisher Link, publishers are able to reap the benefits of Epsilon's CORE ID.
+
+#### Publisher Link  Registration
+There is no registration needed.
+
+The Epsilon privacy is covered in the [Epsilon Privacy Policy](https://www.epsilon.com/us/privacy-policy).
+
+The Publisher Link opt-out is include [here](https://www.epsilon.com/privacy/dms/opt-out/email)
+
+#### Publisher Link Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following Publisher Link specific configuration is available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'publinkId'` |
+| params | Required | Object | Customized parameters | |
+| params.e | Required | String | Hashed email address of the user | `e80b5017098950fc58aad83c8c14978e` |
+
+#### Publisher Link Examples
+```javascript
+    pbjs.setConfig({
+       userSync: {
+           userIds: [{
+               name: "publinkId",
+               storage: {
+                   name: "pbjs_publink",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   e: "e80b5017098950fc58aad83c8c14978e", // example hashed email (md5)
+               }
+           }]
+       }
+   });
+```
+
 ### RampID
 
 RampID, formerly known as IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
