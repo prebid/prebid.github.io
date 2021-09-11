@@ -6,6 +6,7 @@ pbjs: true
 biddercode: emoteev
 gdpr_supported: true
 userIds: pubCommonId
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

@@ -69,6 +69,7 @@ The use of the terms "must" and "should" in this document is deliberate.  Howeve
 1. In order to be listed on the Prebid.org website, a module must be in a Prebid open source repository.
 1. Each module must include maintainer information with a group email address for Prebid.org to contact for support or maintenance.
 1. Modules must not include polyfills or override standard or Prebid JavaScript functions.
+1. External modules must not use getEidPermissions function of userId module (e.g. prebidServerBidAdapter is an internal prebid module). 
 
 ### Bidder Adapter Rules
 

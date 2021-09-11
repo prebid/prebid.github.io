@@ -5,9 +5,9 @@ description: Prebid Teads Bidder Adapter
 pbjs: true
 biddercode: teads
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 schain_supported: true
+userIds: flocId, uid2Id
 media_types: banner, video
 gvl_id: 132
 bidder_supports_deals: true

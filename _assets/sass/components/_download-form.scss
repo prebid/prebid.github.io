@@ -1,0 +1,17 @@
+.download-form {
+  margin-bottom: 20px;
+
+  > .row {
+    flex-flow: column;
+  }
+
+  .adapters {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
+.download-form__modal,
+.modal-backdrop.fade {
+  opacity: 0;
+}

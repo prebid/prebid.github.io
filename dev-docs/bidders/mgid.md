@@ -7,6 +7,7 @@ pbs: true
 biddercode: mgid
 media_types: banner,native
 gdpr_supported: true
+gvl_id: 358
 ---
 
 ### Table of Contents
