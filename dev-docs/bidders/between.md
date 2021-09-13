@@ -8,7 +8,7 @@ biddercode: between
 schain_supported: true
 gdpr_supported: true
 pbs_app_supported: true
-userIds: admixerId, adtelligentId, akamaiDAPId, amxId, britepoolId, criteo, fabrickId, flocId, haloId, id5id, identityLink, idx, intentIqId, liveIntentId, lotamePanoramaId, merkleId, naveggId, mwOpenLinkId, netId, novatiqId, parrableId, quantcastId, pubProvidedId, sharedId, tapadId, unifiedId,uid2, verizonMediaId, zeotapIdPlus
+userIds: all
 gvl_id: 724
 usp_supported: true
 ---
