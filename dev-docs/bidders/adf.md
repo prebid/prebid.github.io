@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: AdformOpenRTB
-description: Prebid Adf Bidder Adaptor
+description: Prebid Adform Bidder Adaptor
 biddercode: adf
 media_types: banner, native, video
 gdpr_supported: true
@@ -9,6 +9,7 @@ usp_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
+schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
 gvl_id: 50
 prevBiddercode: adformOpenRTB
@@ -38,3 +39,7 @@ pbjs.setConfig({
   }
 });
 ```
+
+### Multi-format ads
+
+Adform bid adapter does not support multi-format ad unit setup. Please use [twin ad unit codes]({{site.baseurl}}/dev-docs/adunit-reference.html#twin-adunit-codes) to enable multi-format auctions.

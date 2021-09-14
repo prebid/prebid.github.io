@@ -58,8 +58,8 @@ you'll need to fully manage the targeting -- the default `hb_` targeting variabl
 **Keyword targeting for all bidders**
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
-Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
-In addition, video will receive additional keys: `hb_cache_id`, `hb_uuid`, and `hb_cache_host`.
+Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_format`) with their corresponding values.
+In addition, video will receive additional keys: `hb_cache_id` and `hb_cache_host`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
@@ -110,7 +110,7 @@ pbjs.bidderSettings = {
 {% endhighlight %}
 
 {: .alert.alert-warning :}
-Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, hb_source, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
+Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
 
 <a name="key-targeting-specific-bidder"></a>
 **Keyword targeting for a specific bidder**

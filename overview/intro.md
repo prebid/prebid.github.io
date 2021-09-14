@@ -31,7 +31,7 @@ Our flagship product, Prebid.js, is sometimes referred to as simply *Prebid*, bu
 
 ### What is Header Bidding?
 
-Header bidding is a response to a fragmented and inefficient process for digital ad display. It is an alternative to the "waterfall" method, in which impressions impressions are offered to one sales channel at a time, moving down an inflexible stack of sources.
+Header bidding is a response to a fragmented and inefficient process for digital ad display. It is an alternative to the "waterfall" method, in which impressions are offered to one sales channel at a time, moving down an inflexible stack of sources.
 With header bidding, the publisher creates a short delay in their ad serving to obtain bids from many SSPs and ad exchanges. In this way, publishers can receive high value bids on their inventory that may be unavailable through their primary ad server and exchange.
 The returned bids are then passed into the ad server so they can compete with direct demand and the primary ad server's exchange on a level playing field.
 

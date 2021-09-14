@@ -2,10 +2,12 @@
 layout: page_v2
 page_type: module
 title: Module - GPT Pre-Auction
-description: Adds PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters
+description: If you run GAM, this module generates the 'global placement id' that's becoming required for successful auctions.
 module_code : gptPreAuction
 display_name : GPT Pre-Auction
 enable_download : true
+recommended: true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -38,10 +40,14 @@ into the Prebid.js package.
 
 Optional initialization parameters:
 
-- enabled (on by default)
-- customGptSlotMatching function
-- customPbAdSlot function
+{: .table .table-bordered .table-striped }
+| Param | Required? | Type | Description | Example |
+| enabled | no | boolean | allows turning off of module. Default value is true | true |
+| customGptSlotMatching | no | function | GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/publisher-api-reference/setTargetingForGPTAsync.html) | |
+| customPbAdSlot | no | function | Custom PB AdSlot function | |
+| mcmEnabled | no | boolean | Removes extra network IDs when Multiple Customer Management is active. Default is false. | true |
 
+For example:
 ```
 pbjs.setConfig({
     gptPreAuction: {
@@ -53,7 +59,8 @@ pbjs.setConfig({
 	customGptSlotMatching: function(gptSlotObj) {
 		...
 		return true; // or false
-	}
+	},
+	mcmEnabled: true
     }
 });
 ```

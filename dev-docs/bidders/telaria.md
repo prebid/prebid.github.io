@@ -66,24 +66,7 @@ var adUnit = {
         "params": {
             "supplyCode": "ssp-demo-rm6rh",
             "adCode": "ssp-!demo!-lufip",
-            "videoId": "MyCoolVideo",
-// Other params go here,
-            "schain" : {
-                "ver":"1.0",
-                "complete":1,
-                "nodes":[
-                    {
-                        "asi":"exchange1.com",
-                        "sid":"1234",
-                        "hp":1
-                    },
-                    {
-                        "asi":"exchange2.com",
-                        "sid":"abcd",
-                        "hp":1
-                    }
-                ]
-            }
+            "videoId": "MyCoolVideo"
         }
     }]
 }

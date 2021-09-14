@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Size Mapping
-description: Display Conditional and Responsive Ad Units
+description: Display Responsive AdUnits in demanding page environments.
 module_code: sizeMappingV2
 display_name: Advanced Size Mapping
 enable_download: true
@@ -191,6 +191,7 @@ II. A request originating in the UK, viewport size: `[1700px, 900px]`
         },
         video: {
             context: 'instream',
+	    ... other video params ...
             sizeConfig: [
                 { minViewPort: [0, 0], playerSize: [] },
                 { minViewPort: [1200, 0], playerSize: [640, 400]}

@@ -4,6 +4,7 @@ title: ZEDO
 description: Prebid ZEDO Bidder Adapter
 pbjs: true
 biddercode: zedo
+pbjs_version_notes: not in 5.x
 ---
 
 
