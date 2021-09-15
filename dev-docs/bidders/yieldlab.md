@@ -24,7 +24,7 @@ pbs: true
 | `adSize`       | optional | Override the default prebid size                                                      | `'970x250'`                                 | `string` |
 | `targeting`    | optional | Key-Value Targeting                                                                   | `{ 'key1': 'value1', 'key2': 'value2' }`    | `object` |
 | `extId`        | optional | External Id                                                                           | `'abc'`                                     | `string` |
-| `iabContent`   | optional | Object of content information, see [IAB Content Object](#iab_content) for details.    | `{ 'id': 'foo', 'title': 'bar' }`           | `object` |
+| `iabContent`   | optional | Object of content information, see [IAB Content Object](#iab_content) for details. It will override the content object passed in [First Party Data](https://docs.prebid.org/features/firstPartyData.html)    | `{ 'id': 'foo', 'title': 'bar' }`           | `object` |
 | `customParams` | optional | Custom parameters to append to the query string of the bidding endpoint.              | `{ 'param': 'value1', 'param2': 'value2' }` | `object` |
 
 <a name="iab_content" />
