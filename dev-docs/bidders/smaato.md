@@ -2,19 +2,43 @@
 layout: bidder
 title: Smaato
 description: Prebid Smaato Bidder Adaptor
-hide: true
 biddercode: smaato
 gdpr_supported: true
+gvl_id: 82
 usp_supported: true
 coppa_supported: true
 media_types: banner, video
+userId: criteo, pubCommonId, unifiedId
 pbjs: true
 pbs: true
+pbs_app_supported: true
+prebid_member: true
+getFloor: true
 ---
+
+### Table of Contents
+
+- [Registration](#smaato-registration)
+- [Note](#smaato-note)
+- [Bid Params](#smaato-bid-params)
+- [App Object](#smaato-app-object)
+- [Example Ad Units](#smaato-example-ad-units)
+- [First Party Data](#smaato-first-party)
+- [Test Parameters](#smaato-test-parameters)
+
+<a name="smaato-registration" />
 
 ### Registration
 
 The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or prebid@smaato.com for more information.
+
+<a name="smaato-note" />
+
+### Note
+
+The Smaato adapter will convert bidfloors to 'USD' currency as needed.
+
+<a name="smaato-bid-params" />
 
 ### Bid Params
 
@@ -22,13 +46,31 @@ The Smaato adapter requires setup and approval from the Smaato team, even for ex
 | Name       | Scope    | Description          | Example    | Type     |
 |------------|----------|----------------------|------------|----------|
 | `publisherId` | required | Your Smaato publisher id  | `'1100012345'` | `string` |
-| `adspaceId` | required | Your Smaato adspace id | `'11002234'`   | `string` |
+| `adspaceId` | required | Your Smaato adspace id. Required for non adpod requests | `'11002234'`   | `string` |
+| `adbreakId` | required | Your Smaato adbreak id. Required for adpod (long-form video) requests | `'41002234'`   | `string` |
+| `app` | optional | Object containing mobile app parameters.  See the [App Object](#smaato-app-object) for details.| `app : { ifa: '56700000-9cf0-22bd-b23e-46b96e40003a'}` | `object` |
 
-### Example Banner Ad Unit
+<a name="smaato-app-object" />
+
+#### App Object
+
+Smaato supports using prebid within a mobile app's webview.
+
+{: .table .table-bordered .table-striped }
+| Name              | Description                                                                                                                     | Example                                                                  | Type             |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|------------------|
+| `ifa`             | String that contains the advertising identifier of the user (e.g. idfa or aaid).                                                | `'56700000-9cf0-22bd-b23e-46b96e40003a'`                                 | `string`         |
+| `geo`             | Object that contains the latitude (`lat`) and longitude (`lon`) of the user.                                                    | `{ lat: 33.3, lon: -88.8 }`                                              | `object`         |
+
+<a name="smaato-example-ad-units" />
+
+### Example Ad Units
+
+#### Example Banner Ad Unit
 
 ```javascript
 var adUnit = {
-    "code": "header-bid-tag-1",
+    "code": "banner unit",
     "mediaTypes": {
         "banner": {
             "sizes": [320, 50]
@@ -44,7 +86,7 @@ var adUnit = {
 }
 ```
 
-### Example Video Ad Unit
+#### Example Video Ad Unit
 
 ```javascript
 var adUnit = {
@@ -74,6 +116,40 @@ var adUnit = {
     }]
 };
 ```
+#### Example AdPod (long-form) Video Ad Unit
+
+```javascript
+var adUnit = {
+    "code": "adpod unit",
+    "mediaTypes": {
+        "video": {
+            "context": "adpod",
+            "playerSize": [640, 480],
+            "adPodDurationSec": 300,
+            "durationRangeSec": [15, 30],
+            "requireExactDuration": false,
+            "mimes": ["video/mp4"],
+            "startdelay": 0,
+            "linearity": 1,
+            "protocols": [7],
+            "skip": 1,
+            "skipmin": 5,
+            "api": [7],
+        }
+    },
+    "bids": [{
+        "bidder": "smaato",
+        "params": {
+            "publisherId": "1100042525",
+            "adbreakId": "400000000"
+        }
+    }]
+};
+```
+
+<a name="smaato-first-party" />
+
+### First Party Data
 
 The Smaato adapter supports passing through first party data configured in your prebid integration.
 
@@ -88,8 +164,11 @@ pbjs.setConfig({
             gender: "M",
             yob: 1984
         }
+    }
 });
 ```
+
+<a name="smaato-test-parameters" />
 
 ### Test Parameters
 
@@ -98,7 +177,7 @@ Following example includes sample `imp` object with publisherId and adSlot which
 ```
 "imp":[
       {
-         "id":“1C86242D-9535-47D6-9576-7B1FE87F282C,
+         "id":"1C86242D-9535-47D6-9576-7B1FE87F282C",
          "banner":{
             "format":[
                {

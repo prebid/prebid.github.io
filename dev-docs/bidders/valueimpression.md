@@ -4,19 +4,15 @@ title: Valueimpression
 description: Prebid Valueimpression Bidder Adapter
 pbjs: true
 biddercode: valueimpression
-aliasCode: quantumdex
+aliasCode: apacdex
 media_types: banner, video
 gdpr_supported: true
-tcf2_supported: true
 schain_supported: true
 usp_supported: true
+userIds: all
+getFloor: true
 pbs: true
 ---
 
-
-### Bid Params
-
-{: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                                                                                    | Example    | Type     |
-|-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
-| `siteId`    | required | Publisher site ID from Valueimpression                                                                                         | `'vi-site-id'` | `string` |
+# Description
+Valueimpression is an aliased bidder of Apacdex bid adapter. Please refer to [Apacdex documentation](https://docs.prebid.org/dev-docs/bidders/apacdex) for bid parameters and implementation guide.

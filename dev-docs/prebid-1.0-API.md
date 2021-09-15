@@ -29,12 +29,12 @@ The following functions and variables were removed as of 1.0:
   - `pbjs._adUnitCodes`
   - `pbjs._adsReceived`
   - `pbjs.cbTimeout`
-- `pbjs.addCallback` and `pbjs.removeCallback` in favor of the [onEvent API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
+- `pbjs.addCallback` and `pbjs.removeCallback` in favor of the [onEvent API](/dev-docs/publisher-api-reference/onEvent.html)
 - `pbjs.allBidsAvailable`
-- `pbjs.buildMasterVideoTagFromAdserverTag` in favor of [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
+- `pbjs.buildMasterVideoTagFromAdserverTag` in favor of [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
 - `adUnit.sizeMapping` in favor of [`pbjs.setConfig({sizeConfig:[ ... ]})`]({{site.baseurl}}/dev-docs/prebid-1.0-API.html#size-mapping-changes)
 
-Other methods were removed as part of the [new `setConfig` API]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig) - for details, see [the section below describing the new `pbjs.setConfig` API](#pbjs.setConfig).
+Other methods were removed as part of the [new `setConfig` API](/dev-docs/publisher-api-reference/setConfig.html) - for details, see [the section below describing the new `pbjs.setConfig` API](#pbjs.setConfig).
 
 {: .alert.alert-success :}
 For a complete list of methods that were removed, see the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
@@ -43,7 +43,7 @@ For a complete list of methods that were removed, see the [Publisher API Referen
 
 ## Legacy APIs replaced by `pbjs.setConfig`
 
-For 1.0, the following APIs were removed in favor of a generic "options" param object passed to [`pbjs.setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig):
+For 1.0, the following APIs were removed in favor of a generic "options" param object passed to [`pbjs.setConfig`](/dev-docs/publisher-api-reference/setConfig.html):
 
 - `pbjs.bidderTimeout` - use `pbjs.setConfig({bidderTimeout})` instead
 - `pbjs.logging` - use `pbjs.setConfig({debug})` instead

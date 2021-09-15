@@ -1,12 +1,16 @@
 ---
 layout: bidder
-title: ViewDeos DX
+title: Viewdeos
 description: Prebid ViewDeos Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: viewdeosDX
 media_types: banner,video
 gdpr_supported: true
+gvl_id: 924
 ---
+
+Note that for Prebid Server, viewdeosDX is an alias of the Adtelligent server-side bid adapter. It has its own Prebid.js adapter.
 
 ### Bid params
 

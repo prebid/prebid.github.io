@@ -1,0 +1,20 @@
+.banner {
+  @include padding(4rem null 5.5rem);
+}
+
+.banner--medium {
+  background: #7e8c97;
+  color: $t-text-color--reverse;
+}
+
+.banner--light {
+  background: #fff;
+  padding-bottom: 0;
+
+  hr {
+    margin-top: 30px;
+    border: 0;
+    border-top: 1px solid adjust-color($t-divider-color, $alpha: -0.51);
+    background: none;
+  }
+}

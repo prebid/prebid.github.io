@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: GDPR Enforcement Module
-description: Module to enforce GDPR consent
+description: If you have users in Europe, you'll want this module that enforces GDPR consent
 module_code : gdprEnforcement
 display_name : GDPR Enforcement
 enable_download : true
+recommended: true
 sidebarType : 1
 ---
 
@@ -71,9 +72,19 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
 
-Note:
+Notes:
 
-- To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "rubicon" instead of "52").
+- To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
+- An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
+
+```
+pbjs.setConfig({
+    gvlMapping: {
+	bidderA: 12345,
+        bidderB: 67890
+    }
+});
+````
 
 ### Examples
 
@@ -196,6 +207,14 @@ The GDPR Enforcement module requires the GVL ID for a module to be specified. If
     <tr>
       <td>User ID</td>
       <td>ID5</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>Lotame Panorama Id</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>Parrable ID</td>
     </tr>
 </tbody>
 </table>
