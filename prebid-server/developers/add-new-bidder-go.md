@@ -170,13 +170,13 @@ userSync:
 
 Prebid Server offers a federated [user sync](https://docs.prebid.org/prebid-server/developers/pbs-cookie-sync.html) process to store user ids from multiple bidders in a single cookie under the host's domain. You may add support for your bid adapter by configuring iframe and/or redirect endpoints.
 
-The template in this document demonstrates configuration of a `redirect` user sync. The `url` points to an endpoint to your bidding server which will honor the privacy policies, replace the `userMacro` in the redirect url with the user's tracking id, and respond with an HTTP 302 redirect to that url. You may also specify an `iframe` endpoint will return an HTML document to be rendered in an `iframe` on the user's device and use JavaScript to perform the redirect. You may omit the `{%raw%}{{.GDPR}}{%endraw%}`, `{%raw%}{{.GDPRConsent}}{%endraw%}`, and/or `{%raw%}{{.USPrivacy}}{%endraw%}` macros if they are not applicable to your legal situation.
+The Bidder Info template above demonstrates configuration of a `redirect` user sync. The `url` points to an endpoint on your bidding server which will honor the privacy policies, replace the `userMacro` in the redirect url with the user's tracking id, and respond with an HTTP 302 redirect to that url. You may also specify an `iframe` endpoint will return an HTML document to be rendered in an `iframe` on the user's device and use JavaScript to perform the redirect. You may omit the `{%raw%}{{.GDPR}}{%endraw%}`, `{%raw%}{{.GDPRConsent}}{%endraw%}`, and/or `{%raw%}{{.USPrivacy}}{%endraw%}` macros if they are not applicable to your legal situation.
 
 If both `iframe` and `redirect` endpoints are provided, you must specify a `default` field with a value of either `iframe` or `redirect`, based on your preference.
 
 ```yaml
 userSync:
-  default: redirect
+  default: iframe
   iframe:
     url: https://foo.com/iframe/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
     userMacro: $UID
@@ -196,7 +196,7 @@ userSync:
     - redirect
 ```
 
-Each user sync is assigned a case-sensitive `key`, defaulting to your bidder name. You may use a different `key` value, but we discourage doing so except when multiple bidders share the same bidding server such as for built-in aliases for the implementation of different bidding protocols. Only one bid adapter may specify endpoints when using a shared key or Prebid Server will fail to startup due to the ambiguity.
+Each user sync is assigned a case-sensitive `key`, defaulting to your bidder name. You may use a different `key` value, but we discourage doing so except for when multiple bidders share the same bidding server. You might encounter this use case for built-in aliases or for multiple bidders implementing different protocols for the same bidding server. Only one bid adapter may specify endpoints when using a shared key, or Prebid Server will fail to startup due to the ambiguity.
 
 ```yaml
 foo.yaml
@@ -766,7 +766,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata is *required* in Prebid.js 5.X+, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
@@ -777,13 +777,12 @@ Bid metadata is *required* in Prebid.js 5.X+, specifically for AdvertiserDomains
 | `.AgencyName` | Bidder-specific agency name.
 | `.AdvertiserID` | Bidder-specific advertiser id.
 | `.AdvertiserName` | Bidder-specific advertiser name.
-| `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain`.
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
 | `.DChain` | Demand chain object.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType`.
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe.
 
 <p></p>
 
@@ -814,13 +813,14 @@ func getBidMeta(bid *adapters.TypedBid) *openrtb_ext.ExtBidPrebidMeta {
     AgencyName:           "Some Agency Name",
     AdvertiserID:         3,
     AdvertiserName:       "Some Advertiser Name",
-    AdvertiserDomains:    bid.ADomain,
-    DChain:               bid.ext.dchain,
+    AdvertiserDomains:    []string{"Some Domain"},
+    DemandSource:         "Some Demand Source",
+    DChain:               json.RawMessage(`{Some Demand Chain JSON}`),
     BrandID:              4,
     BrandName:            "Some Brand Name",
     PrimaryCategoryID:    "IAB-1",
     SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
-    MediaType:            b.BidType,
+    MediaType:            "banner",
   }
 }
 ```

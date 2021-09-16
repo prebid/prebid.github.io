@@ -46,7 +46,8 @@ pbjs.refreshFpd();
 |---+---+---|
 | page URL | site.page | Uses pbjs getRefererInfo().canonicalUrl |
 | referer URL | site.ref | Uses pbjs getRefererInfo().referer |
-| domain | site.domain | Pulled from the getRefererInfo().canonicalUrl, the host domain is used, with www dropped. |
+| host domain | site.domain | Pulled from the getRefererInfo().canonicalUrl the host domain is used with the www component dropped. |
+| aggregated domain | site.publisher.domain | The highest level domain in which cookies can be set. |
 | viewport width | device.w | Hunts for window.innerWidth, window.document.documentElement.clientWidth, window.document.body.clientWidth |
 | viewport height | device.w | Hunts for window.innerHeight, window.document.documentElement.clientHeight, window.document.body.clientHeight |
 | meta keywords | site.keywords | Looks for a meta tag. e.g. <meta name="keywords" content="cars, boats"> |

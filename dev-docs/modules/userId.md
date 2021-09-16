@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -945,6 +945,41 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Kinesso ID
+
+Kinesso ID solution is a new approach to persistent cross domain authentication.
+
+#### How it works
+
+The Kinesso identity solution creates a persistent cross domain authenticated user id that is then used to link users with their interest signals (commonly known as segments).  The Kinesso user ID (knsso) is never broadcast into the bid stream. Instead it is sent to a server side data store, merged with accompanying data from the Prebid Id Library and shipped to Kinesso. All data is encrypted at rest and in transit so your identifiers are never stored or transmitted in an insecure manner. 
+
+The Kinesso ID sub adapter sets two cookies, one as a third party cookie and the other as a first party cookie in the publisher's domain. These cookies are merged with the user's hashed email address (when present) server side and sent to Kinesso. The combined output looks like this: 
+
+{: .table .table-bordered .table-striped }
+| kpuid | knsso | hid | account_id | created on |
+| --- | --- | --- | --- | --- |
+| `<my_1pc>` | `<my_3pc>` | `<my_hashed_email>` | `<my_ssp_accountid>` | `<my_birthday>` |
+
+Kinesso will then attach these users to deals ids that they will target in the ORTB bid stream by brands and agencies represented by IPG.
+   
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=kinessoIdSystem
+
+#### Kinesso ID Registration
+
+You can set up Kinesso ID sub adapter by contacting Kinesso at prebid@kinesso.com
+
+The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](https://kinesso.com/privacy-policy/). Please note, at present the Kinesso ID module is not meant for use inside the EEA.
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'kinessoId'` |
+| params | Required | Object | Details for KinessoId initialization | |
+| params.accountid | Required | Int | Your SSP Account Id | 123 |
+
 ### LiveIntent nonID
 
 LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
@@ -1189,6 +1224,24 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Navegg ID
+
+[Navegg](https://www.navegg.com) enables publishers, advertisers and agencies to use their own first party data together to activate media in a cookie-less way across several Ad Tech platforms. Navegg has one of the largest data networks in Latin America which also allows the enhancement of data with unique categories.
+
+#### Navegg ID Examples
+
+Publisher stores NaveggId in local storage and/or 1st party cookies
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+        name: 'naveggId'
+      }]
+    }
+});
+{% endhighlight %}
+
 ### netID
 
 The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
@@ -1350,6 +1403,49 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Publisher Link
+Publisher Link, provided by [Epsilon](https://www.epsilon.com/us),  is a cross-device identity solution that activates publisher first-party, authenticated 
+data to improve audience identification and increase bid opportunities, specifically designed for sites with authenticated 
+traffic.  Publisher first-party authenticated data and a user's unique encrypted ID is linked to an existing people-based 
+Epsilon CORE ID.  By utilizing Publisher Link, publishers are able to reap the benefits of Epsilon's CORE ID.
+
+#### Publisher Link  Registration
+There is no registration needed.
+
+The Epsilon privacy is covered in the [Epsilon Privacy Policy](https://www.epsilon.com/us/privacy-policy).
+
+The Publisher Link opt-out is include [here](https://www.epsilon.com/privacy/dms/opt-out/email)
+
+#### Publisher Link Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following Publisher Link specific configuration is available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'publinkId'` |
+| params | Required | Object | Customized parameters | |
+| params.e | Required | String | Hashed email address of the user | `e80b5017098950fc58aad83c8c14978e` |
+
+#### Publisher Link Examples
+```javascript
+    pbjs.setConfig({
+       userSync: {
+           userIds: [{
+               name: "publinkId",
+               storage: {
+                   name: "pbjs_publink",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   e: "e80b5017098950fc58aad83c8c14978e", // example hashed email (md5)
+               }
+           }]
+       }
+   });
+```
 
 ### RampID
 
@@ -1915,10 +2011,12 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
 | IdentityLink | LiveRamp | idl_env | liveramp.com | "1111" |
 | Intent IQ ID | Intent IQ | intentiqid | intentiq.com | "1111" |
+| Kinesso ID | Kinesso | kpuid | kpuid.com | "1111" |
 | LiveIntent ID | Live Intent | lipb.lipbid | liveintent.com | "1111" |
 | Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
 | MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |
 | merkleID | Merkle | merkleId | merkleinc.com | "1111" |
+| naveggId | Navegg | naveggId | navegg.com | "1111" |
 | netID | netID | netId | netid.de | "fH5A..." |
 | NextRoll ID | NextRoll | nextrollId | nextroll.com | "bf3Ka.../SjP/zpVGr09voA" |
 | Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |
