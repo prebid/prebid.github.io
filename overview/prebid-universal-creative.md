@@ -8,24 +8,23 @@ nav_section: intro
 
 <div class="bs-docs-section" markdown="1">
 
-# Prebid Universal Creative Overview
+# Prebid Universal Creative
 {:.no_toc}
 
 The Prebid Universal Creative makes it easier for publishers to configure Prebid in their ad server. The Prebid Universal Creative provides a single creative configuration that can be used across many formats, platforms, devices, and ad servers.
 
-## Where to Use Prebid Universal Creative
+Specifically, you need to use the Universal Creative in these scenarios:
 
-The Prebid Universal Creative supports the following formats:
+- AMP and Prebid SDK (these require loading creatives from cache)
+- when you need to support safeframes
+- when you need to support native
 
-- Banner
-- Outstream video
-- SafeFrame/Non-SafeFrame
+If you only ever need to display non-safeframed banner and outstream-video creatives, you may use
+the original simple approach of just calling the Prebid.js `renderAd` function directly:
 
-The Prebid Universal Creative supports the following channels:
-
-- Web/mobile web
-- Mobile app
-- AMP pages
+```
+<script> var w = window; for (i = 0; i < 10; i++) { w = w.parent; if (w.pbjs) { try { w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%'); break; } catch (e) { continue; } } } </script>
+```
 
 ## How to Implement
 

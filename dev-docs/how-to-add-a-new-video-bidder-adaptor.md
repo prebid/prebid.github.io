@@ -6,5 +6,5 @@ description: Documentation on how to add a new video bidder adapter
 pid: 26
 top_nav_section: dev_docs
 nav_section: adapters
-hide: true
+
 ---

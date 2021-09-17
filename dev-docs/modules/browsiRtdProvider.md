@@ -1,10 +1,13 @@
 ---
 layout: page_v2
 title: Browsi Viewability Module
+display_name: Browsi Viewability
 description: Browsi Real Time Viewability
-module_code : browsi
-display_name : Browsi
+page_type: module
+module_type: rtd
+module_code : browsiRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -55,12 +58,13 @@ Syntax details:
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| name  | String | Real time data module name | Always 'browsi' | 
+| name  | String | Real time data module name | Always 'browsi' |
 | params  | Object   | |   |
 | params.siteKey  |String   |Site key|   |
 | params.pubKey  |String   |Publisher key|   |
 | params.url  |String   |Server URL|   |
 | params.keyName  |String   |Key value name| Optional. Defaults to 'bv'. |
+
 
 
 

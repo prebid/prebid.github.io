@@ -2,7 +2,7 @@
 layout: example
 title: Multi-Format Ad Units
 description: Multi-Format Ad Units
-hide: true
+
 sidebarType: 1
 
 about:

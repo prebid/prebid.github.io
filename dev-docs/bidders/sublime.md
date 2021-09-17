@@ -2,14 +2,15 @@
 layout: bidder
 title: Sublime
 description: Prebid Sublime Bidder Adapter
-hide: true
+pbjs: true
 biddercode: sublime
 gdpr_supported: true
+gvl_id: 114
 ---
 
 ### Note
 
-Please contact us your account manager before using this adapter.
+Please contact your Sublime account manager before using this adapter.
 
 
 ### Bid params
@@ -18,3 +19,4 @@ Please contact us your account manager before using this adapter.
 | Name       | Scope    | Description                  | Example    | Type     |
 |------------|----------|------------------------------|------------|----------|
 | `zoneId`   | required | Sublime's publisher zone id  | `123`      | `integer`|
+| `notifyId` | required | Sublime's publisher notify id | `'foo'`   | `string` |

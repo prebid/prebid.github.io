@@ -2,9 +2,10 @@
 layout: bidder
 title: Piximedia
 description: Piximedia Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: piximedia
 media_types: banner
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

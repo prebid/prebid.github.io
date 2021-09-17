@@ -15,31 +15,35 @@
   <li><a href="#further-reading" id="markdown-toc-further-reading">Further Reading</a></li>
 </ul>
 
+<div class="alert alert-info" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span
+>
+  <span class="sr-only">Tip:</span>
+  Tip: Manually configuring GAM for Prebid can be a fair amount of work.
+  Consider using our official command line tool, <a href="/tools/line-item-manager.html">Prebid Line Item Manager</a>, to create the setup. Using this tool may save you time and help you avoid mistakes.
+</div>
+
 <h2 id="line-item-setup">Line Item Setup</h2>
 
 <ol>
   <li>In the <b>New line item</b> dialog, choose "Video".</li>
   <li>Select the appropriate Line Item Type, etc.</li>
   <li>In the <b>Expected creatives</b> section, choose your video size, e.g., 640x480v.</li>
-  <li>Set the dates, rate, limit, and targeting as desired. For example, for <a href="/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids">SendAllBids</a> include targeting for "hb_bidder_rubicon=rubicon" as well as the hb_pb_rubicon targeting. This isn't needed if only creating one set of orders for all bidders.</li>
+  <li>Set the dates, rate, limit, and targeting as desired. For example, for <a href="/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids">SendAllBids</a> include targeting for "hb_bidder_rubicon=rubicon" as well as the hb_pb_rubicon targeting. This isn't needed if only creating one set of orders for all bidders.</li>
   <li>Remember to set the hb_pb=BUCKET targeting for each line item, or hb_pb_BIDDER=BUCKET if using separate line items for each bidder.</li>
   <li>Save the line item.</li>
 </ol>
 <p>Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create. </p>
 <p class="alert alert-warning">By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs higher than $20.  In order to receive those bids, you’ll need to make sure your dev team implements custom price buckets as described in the <a href="/dev-docs/show-video-with-a-dfp-video-tag.html#implement-custom-price-buckets">engineering setup instructions</a>.  Once those changes are made on the engineering side, there should be no changes required from the ad ops side to support CPMs over $20.</p>
 
-<p class="alert alert-success"><b>Multiple Cache Services</b><br>You might need separate video line items for each cache service being used. For example, if both AppNexus and Rubicon Project are bidders, you’ll either need to create separate line items to support the different cache URLs required or provide separately-targeted creatives, as described below.</p>
-
 <h2 id="creative-setup">Creative Setup</h2>
 
 When setting up video creatives, it's important to understand where the VAST XML is stored for each of your bidders. The most common place to store VAST XML is AppNexus' cache, but some bidders (such as RubiconProject and SpotX) use their own cache services. To support such
-bidders, you will need to have either:
-<ul>
-<li>a separate line item for each bidder, or</li>
-<li>a creative for each cache service utilized by your implementation.</li>
-</ul>
+bidders, see the <a href="#multiple_cache_locations">Multiple Cache Locations</a> instructions below.
 
 <h3 id="creative-single-cache">Single Cache Location</h3>
+
+If you only use bidders that provide full VAST responses, do the following:
 
 <p>1. For each line item you create, click on the <b>Creatives</b> tab, click the <b>ADD CREATIVE</b> button, and choose the size you're entering.</p>
 
@@ -63,16 +67,28 @@ or
 
 <p class="alert alert-info"><strong>Prebid Cache and the VAST creative URL warning</strong><br />
    Google Ad Manager will show you a warning stating that fetching VAST from the creative
-   URL failed.  This is expected, since the creative URL above points
+   URL failed. This is expected, since the creative URL above points
    to a server-side asset cache hosted by Prebid Server.</p>
 
-<p>4. Set the <b>Duration</b> to <b>1</b>.</p>
+<p>4. Set the <b>Duration</b> to the max length of video ads you serve. If you don't know what the max length is, set it to <b>30</b>.</p>
+
+<p class="alert alert-warning">In the past Prebid used to recommend setting duration to 0 or 1, but GAM now requires that this field reflect the actual video ad length. Since ads flowing through header bidding are going to differ in length, choose a value that matches a common ad length like 15 or 30.</p>
 
 <p>The resulting creative should look something like the following:</p>
 
 <p><img src="/assets/images/ad-ops/dfp-creative-setup/appnexus_vast_tag.png" alt="Google Ad Manager Video Creative Setup"/></p>
 
+<a name="multiple_cache_locations">
 <h3 id="creative-multiple-cache">Multiple Cache Locations</h3>
+
+If you're utilizing any bidders that cache their own VAST, you have two options:
+
+<ul>
+<li>If you're using Prebid.js 4.28 or later, you can specify the <a href="/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache">ignoreBidderCacheKey</a> option on setConfig({cache}). This will cause the browser to generate a VAST wrapper and cache it in your standard location. Then you can use the instructions
+above for "Single Cache Location". The tradeoff is that this approach requires
+the video player to unwrap one extra level of VAST.</li>
+<li>Utilize creative-level targeting in the ad server. Keep reading for more details.</li>
+</ul>
 
 To set up multiple video creatives in the same line item (i.e., to run AppNexus, Rubicon, and SpotX all together in the same video line item), you can utilize creative targeting.
 <br/>

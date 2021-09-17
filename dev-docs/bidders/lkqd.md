@@ -2,12 +2,13 @@
 layout: bidder
 title: LKQD
 description: Prebid LKQD Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: lkqd
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:
-For more information about [LKQD Ad Serving and Management](http://www.lkqd.com/ad-serving-and-management/), please contact info@lkqd.com.
+For more information about [LKQD Ad Serving and Management](https://www.nexstardigital.com/), please contact info@lkqd.com.
 
 ### Bid Params
 

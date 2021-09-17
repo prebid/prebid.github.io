@@ -2,10 +2,12 @@
 layout: bidder
 title: Adpone
 description: Prebid Adpone Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: adpone
 bidder_supports_deals: false
 media_types: banner
+gvl_id: 799
 ---
 
 

@@ -5,18 +5,18 @@ description: Setup line items for MoPub
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-adops
-sidebarType: 2
+sidebarType: 3
 ---
 
 
 
 
-# Step by Step Line Item Setup for MoPub
+# Step-by-Step Line Item Setup for MoPub
 
 * TOC
 {:toc }
 
-This page describes step by step how to set up Prebid Mobile line items for MoPub to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
+This page provides step-by-step instructions to set up Prebid Mobile line items for MoPub to serve ads on app with the Prebid SDK. It is using the Universal Prebid Creative.
 
 ## Step 1. Add a line item
 
@@ -68,5 +68,3 @@ You can always get the latest version of the creative code below from [the Mobil
 ## Step 3. Duplicate line items
 
 Duplicate your line items according to your [price granularity]({{site.github.url}}/prebid-mobile/adops-price-granularity.html) setting.
-
-

@@ -2,8 +2,9 @@
 layout: bidder
 title: COSMOS
 description: Prebid COSMOS Bidder Adapter
-hide: true
+pbjs: true
 biddercode: cosmos
+pbjs_version_notes: not in 5.x
 ---
 
 ### Integration Note:

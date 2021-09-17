@@ -2,10 +2,11 @@
 layout: bidder
 title: SeedingAlliance
 description: Prebid SeedingAlliance Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: seedingAlliance
 media_types: native
 gdpr_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid params

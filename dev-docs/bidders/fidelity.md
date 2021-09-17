@@ -2,12 +2,14 @@
 layout: bidder
 title: Fidelity Media
 description: Prebid Fidelity Media Bidder Adapter
-hide: true
+pbjs: true
 schain_supported: true
 biddercode: fidelity
 media_types: banner
 gdpr_supported: true
 usp_supported: true
+gvl_id: 408
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

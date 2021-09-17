@@ -2,7 +2,7 @@
 layout: bidder
 title: YieldLift
 description: Prebid YieldLift Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: yieldlift
 media_types: banner
 gdpr_supported: true

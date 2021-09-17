@@ -2,9 +2,10 @@
 layout: bidder
 title: dgads
 description: Prebid dgads Bidder Adapter
-hide: true
+pbjs: true
 biddercode: dgads
 media_types: native
+pbjs_version_notes: not in 5.x
 ---
 
 

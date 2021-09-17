@@ -2,13 +2,14 @@
 layout: bidder
 title: Aardvark
 description: Prebid Aardvark Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: aardvark
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 schain_supported: true
 userIds: unifiedId
+gvl_id: 52
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

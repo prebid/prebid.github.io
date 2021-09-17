@@ -2,11 +2,13 @@
 layout: bidder
 title: NextRoll
 description: Prebid NextRoll Bidder Adapter
-hide: true
+pbjs: true
 biddercode: nextroll
-media_types: display
+media_types: display, native
 gdpr_supported: false
 usp_supported: true
+prebid_member: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params
@@ -48,6 +50,31 @@ var adUnits = [
             bidder: 'nextroll',
             params: {
                 bidfloor: 2.3,
+                zoneId: "13144370",
+                publisherId: "publisherId",
+                sellerId: "sellerId",
+            }
+        }]
+    }
+];
+```
+
+#### Example of Native Ad-unit
+```
+var adUnits = [
+    {
+        code: 'div-1',
+        mediaTypes: {
+            native: {
+                title: { required: true, len: 80 },
+                image: { required: true, sizes: [728, 90] },
+                sponsoredBy: { required: false, len: 20 }
+            }
+        },
+        bids: [{
+            bidder: 'nextroll',
+            params: {
+                bidfloor: 1,
                 zoneId: "13144370",
                 publisherId: "publisherId",
                 sellerId: "sellerId",

@@ -2,9 +2,10 @@
 layout: bidder
 title: Segmento
 description: Prebid Segmento Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: segmento
 media_types: banner
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

@@ -2,10 +2,13 @@
 layout: bidder
 title: Nano Interactive
 description: Prebid Nano Interactive Bidder Adapter
-hide: true
+pbjs: true
+pbs: true
 biddercode: nanointeractive
 media_types: banner
 gdpr_supported: true
+gvl_id: 72
+pbjs_version_notes: not in 5.x
 ---
 
 ### Requirements:

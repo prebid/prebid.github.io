@@ -2,10 +2,12 @@
 layout: bidder
 title: Kargo
 description: Prebid Kargo Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: kargo
+gdpr_supported: true
 userIds: unifiedId
 usp_supported: true
+gvl_id: 972
 ---
 
 ### Note:
