@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Size Mapping
-description: Display Conditional and Responsive Ad Units
+description: Display Responsive AdUnits in demanding page environments.
 module_code: sizeMappingV2
 display_name: Advanced Size Mapping
 enable_download: true
