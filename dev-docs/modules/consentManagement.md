@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Consent Management - GDPR
-description: Module to consume and distribute GDPR consent information to bidder adapters
+description: If you have users in Europe, this module works with your Consent Management Platform to pass consent info to bidders and help align with EU regulations. See also the GDPR Enforcement module.
 module_code : consentManagement
 display_name : Consent Management - GDPR
 enable_download : true
+recommended: true
 sidebarType : 1
 ---
 

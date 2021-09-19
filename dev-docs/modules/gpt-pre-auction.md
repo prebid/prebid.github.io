@@ -2,10 +2,12 @@
 layout: page_v2
 page_type: module
 title: Module - GPT Pre-Auction
-description: Adds PB Ad Slot and matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters
+description: If you run GAM, this module generates the 'global placement id' that's becoming required for successful auctions.
 module_code : gptPreAuction
 display_name : GPT Pre-Auction
 enable_download : true
+recommended: true
+vendor_specific: true
 sidebarType : 1
 ---
 
