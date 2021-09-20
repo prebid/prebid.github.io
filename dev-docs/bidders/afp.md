@@ -50,11 +50,26 @@ The code below returns a demo ad.
 				bidder: "afp",
 				params: {
 					placeType: "In-image",
-					placeId: "60e7039918047b3fae304850",
+					placeId: "613221112871613d1517d181",
 					placeContainer: '#iib-container',
 					imageUrl: "https://rtbinsight.ru/content/images/size/w1000/2021/05/ximage-30.png.pagespeed.ic.IfuX4zAEPP.png",
 					imageWidth: 1000,
 					imageHeight: 524,
+				}
+			}]
+		},{
+			code: 'jb-target',
+			mediaTypes: {
+				banner: {
+					sizes: [[300, 250]],
+				}
+			},
+			bids: [{
+				bidder: "afp",
+				params: {
+					placeType: "Just Banner",
+					placeId: "6139ae832871613d1517dee9", // id from personal account
+					placeContainer: '#jb-container',
 				}
 			}]
 		}];
@@ -74,6 +89,13 @@ The code below returns a demo ad.
 					if (params && params['hb_adid']) {
 						pbjs.renderAd(iframe.contentDocument, params['hb_adid']);
 					}
+					
+					params = pbjs.getAdserverTargetingForAdUnitCode("jb-target");
+					iframe = document.getElementById("jb-target");
+					
+					if (params && params['hb_adid']) {
+						pbjs.renderAd(iframe.contentDocument, params['hb_adid']);
+					}
 				}
 			});
 		});
@@ -82,10 +104,16 @@ The code below returns a demo ad.
 <body>
 <h2>In-image</h2>
 <div class="container-wrapper">
-	<div id="iib-container" style="width: 600px;">
+	<div id="iib-container" style="max-width: 600px;">
 		<img src="https://creative.astraone.io/files/default_image-1-600x400.jpg" width="100%" />
 	</div>
 	<iframe id="iib-target" style="display: none;"></iframe>
+</div>
+
+<h2>Just Banner</h2>
+<div class="container-wrapper">
+	<div id="jb-container"></div>
+	<iframe id="jb-target" style="display: none;"></iframe>
 </div>
 </body>
 </html>
@@ -112,7 +140,7 @@ The code below returns a demo ad.
 				bidder: "afp",
 				params: {
 					placeType: "In-image",
-					placeId: "60e7039918047b3fae304850",
+					placeId: "613221112871613d1517d181",
 					placeContainer: '#iib-container',
 					imageUrl: "https://rtbinsight.ru/content/images/size/w1000/2021/05/ximage-30.png.pagespeed.ic.IfuX4zAEPP.png",
 					imageWidth: 600,
