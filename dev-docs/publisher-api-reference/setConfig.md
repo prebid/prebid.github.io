@@ -52,7 +52,7 @@ Debug mode can be enabled permanently in a page if desired. In debug mode,
 Prebid.js will post additional messages to the browser console and cause Prebid Server to
 return additional information in its response. If not specified, debug is off.
 Note that debugging can be specified for a specific page view by adding
-`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
+`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting guide](/troubleshooting/troubleshooting-guide.html) for more information.
 
 Turn on debugging permanently in the page:
 {% highlight js %}

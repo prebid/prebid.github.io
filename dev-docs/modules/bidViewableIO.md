@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Bid Viewability - Ad Server Independent
-description: Triggers BID_VIEWABLE event when a rendered PBJS-Bid is viewable according to an approximation of IAB viewability criteria
+description: Triggers a BID_VIEWABLE event when a rendered bid is viewable according to an approximation of IAB viewability criteria
 module_code : bidViewabilityIO
 display_name : Bid Viewability - Ad Server Independent
 enable_download : true
