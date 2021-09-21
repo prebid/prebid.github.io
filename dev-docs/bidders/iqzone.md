@@ -19,10 +19,14 @@ pbs_app_supported: true
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | required | Placement Id         | `'0'`    | `'string'` |
 
-
 ### Prebid server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `endpointId`      | required | Endpoint Id         | `'0'`    | `'string'` |
+| `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
+| `endpointId`      | optional | Endpoint Id         | `'0'`    | `'string'` |
+
+### Note
+
+For the prebid server, you only need to use one parameter, placementId or endpointId
