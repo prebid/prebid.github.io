@@ -79,6 +79,8 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 adapters:
   yourBidderCode:
     endpoint: http://possible.endpoint
+    deprecated-names:
+    aliases: {}
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -131,8 +133,6 @@ adapter-defaults:
   enabled: false
   pbs-enforces-gdpr: true
   pbs-enforces-ccpa: true
-  deprecated-names:
-  aliases: {}
   modifying-vast-xml-allowed: true
 ```
 
@@ -144,6 +144,7 @@ Example of adding bidder alias:
 adapters:
   yourBidderCode:
     endpoint: http://possible.endpoint
+    deprecated-names:
     aliases: 
       yourBidderAlias:
         endpoint: http://possible.alias/endpoint
