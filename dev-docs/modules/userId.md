@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - User ID
-description: Supports multiple cross-vendor user IDs
+description: Vendor-specific user ID sub-modules are available to support a range of identification approaches.
 module_code : userId
 display_name : User ID
 enable_download : false
@@ -945,6 +945,41 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Kinesso ID
+
+Kinesso ID solution is a new approach to persistent cross domain authentication.
+
+#### How it works
+
+The Kinesso identity solution creates a persistent cross domain authenticated user id that is then used to link users with their interest signals (commonly known as segments).  The Kinesso user ID (knsso) is never broadcast into the bid stream. Instead it is sent to a server side data store, merged with accompanying data from the Prebid Id Library and shipped to Kinesso. All data is encrypted at rest and in transit so your identifiers are never stored or transmitted in an insecure manner. 
+
+The Kinesso ID sub adapter sets two cookies, one as a third party cookie and the other as a first party cookie in the publisher's domain. These cookies are merged with the user's hashed email address (when present) server side and sent to Kinesso. The combined output looks like this: 
+
+{: .table .table-bordered .table-striped }
+| kpuid | knsso | hid | account_id | created on |
+| --- | --- | --- | --- | --- |
+| `<my_1pc>` | `<my_3pc>` | `<my_hashed_email>` | `<my_ssp_accountid>` | `<my_birthday>` |
+
+Kinesso will then attach these users to deals ids that they will target in the ORTB bid stream by brands and agencies represented by IPG.
+   
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=kinessoIdSystem
+
+#### Kinesso ID Registration
+
+You can set up Kinesso ID sub adapter by contacting Kinesso at prebid@kinesso.com
+
+The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](https://kinesso.com/privacy-policy/). Please note, at present the Kinesso ID module is not meant for use inside the EEA.
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'kinessoId'` |
+| params | Required | Object | Details for KinessoId initialization | |
+| params.accountid | Required | Int | Your SSP Account Id | 123 |
+
 ### LiveIntent nonID
 
 LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
@@ -1368,6 +1403,49 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Publisher Link
+Publisher Link, provided by [Epsilon](https://www.epsilon.com/us),  is a cross-device identity solution that activates publisher first-party, authenticated 
+data to improve audience identification and increase bid opportunities, specifically designed for sites with authenticated 
+traffic.  Publisher first-party authenticated data and a user's unique encrypted ID is linked to an existing people-based 
+Epsilon CORE ID.  By utilizing Publisher Link, publishers are able to reap the benefits of Epsilon's CORE ID.
+
+#### Publisher Link  Registration
+There is no registration needed.
+
+The Epsilon privacy is covered in the [Epsilon Privacy Policy](https://www.epsilon.com/us/privacy-policy).
+
+The Publisher Link opt-out is include [here](https://www.epsilon.com/privacy/dms/opt-out/email)
+
+#### Publisher Link Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following Publisher Link specific configuration is available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'publinkId'` |
+| params | Required | Object | Customized parameters | |
+| params.e | Required | String | Hashed email address of the user | `e80b5017098950fc58aad83c8c14978e` |
+
+#### Publisher Link Examples
+```javascript
+    pbjs.setConfig({
+       userSync: {
+           userIds: [{
+               name: "publinkId",
+               storage: {
+                   name: "pbjs_publink",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   e: "e80b5017098950fc58aad83c8c14978e", // example hashed email (md5)
+               }
+           }]
+       }
+   });
+```
 
 ### RampID
 
@@ -1933,6 +2011,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
 | IdentityLink | LiveRamp | idl_env | liveramp.com | "1111" |
 | Intent IQ ID | Intent IQ | intentiqid | intentiq.com | "1111" |
+| Kinesso ID | Kinesso | kpuid | kpuid.com | "1111" |
 | LiveIntent ID | Live Intent | lipb.lipbid | liveintent.com | "1111" |
 | Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
 | MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |

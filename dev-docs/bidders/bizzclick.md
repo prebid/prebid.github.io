@@ -11,7 +11,6 @@ media_types: banner, video, native
 safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
-pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

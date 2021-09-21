@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - Google Ad Manager Video
-description: Addition of GAM Video to the Prebid package
+description: Required for serving instream video through Google Ad Manager.
 module_code : dfpAdServerVideo
-display_name : DFP Video
+display_name : Google Ad Manager Video Support
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
