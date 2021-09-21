@@ -137,7 +137,7 @@ adapter-defaults:
 ```
 
 ### Create bidder alias
-If you want to add bidder that is an alias of existing bidder, you need just to update configuration of parent bidder:
+If you want to add a bidder that is an alias of an existing bidder, you need to update the configuration of the parent bidder:
 
 Example of adding bidder alias:
 ```yaml
