@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - Freewheel
-description: Returns targeting key/value pairs for adpod mediaType adUnits.
+description: Passes key value targeting to Freewheel SDK for adpod mediaType adUnits.
 module_code : freeWheelAdserverVideo
-display_name : Freewheel
+display_name : Freewheel Video Support
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 

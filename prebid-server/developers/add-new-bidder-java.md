@@ -571,7 +571,7 @@ Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-conte
 | `.Bids[].Bid.Price` | Required | Net price CPM of the bid, not gross price. Publishers can correct for gross price bids by setting Bid Adjustments to account for fees. We recommend the most granular price a bidder can provide.
 | `.Bids[].Bid.W` | Optional | Width of the creative in pixels.
 | `.Bids[].Bid.H` | Optional | Height of the creative in pixels.
-| `.Bids[].Bid.Ext` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
+| `.Bids[].Bid.Ext.Prebid.Meta` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
 
 {: .alert.alert-info :}
 We recommend resolving creative OpenRTB macros in your adapter. Otherwise, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity.
@@ -592,7 +592,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in Prebid.js 5.x+ release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description |
@@ -603,13 +603,12 @@ Bid metadata will be *required* in Prebid.js 5.x+ release, specifically for Adve
 | `.AgencyName` | Bidder-specific agency name |
 | `.AdvertiserID` | Bidder-specific advertiser id |
 | `.AdvertiserName` | Bidder-specific advertiser name |
-| `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain` |
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands |
 | `.BrandName` | Bidder-specific brand name |
 | `.dchain` | Demand Chain Object
 | `.PrimaryCategoryID` | Primary IAB category id |
 | `.SecondaryCategoryIDs` | Secondary IAB category ids |
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType` |
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe. |
 
 <p></p>
 

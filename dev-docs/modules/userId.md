@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - User ID
-description: Supports multiple cross-vendor user IDs
+description: Vendor-specific user ID sub-modules are available to support a range of identification approaches.
 module_code : userId
 display_name : User ID
 enable_download : false
@@ -72,7 +72,7 @@ of sub-objects. The table below has the options that are common across ID system
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`,`"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"haloId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -228,6 +228,49 @@ gulp build --modules=admixerIdSystem
    });
 {% endhighlight %}
 
+### Adtelligent
+
+The [Adtelligent](https://adtelligent.com) ID system is a unique per-session user identifier for providing high quality DMP data for advertisers
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=userId,adtelligentIdSystem
+
+#### Adtelligent Configuration
+
+adtelligentIdSystem adapter doesn't require any configuration or storage params. The adapter performs asynchronously and to achieve better performance it is recommended to set the `storage` object `refreshInSeconds` to a short period, such as ten minutes. At the end of the set storage refresh the adapter will refresh its configuration.
+
+#### Adtelligent Example
+ 
+{% highlight javascript %}
+ pbjs.setConfig({
+     userSync: {
+         userIds: [{
+             name: 'adtelligent'
+         }]
+     }
+ });
+{% endhighlight %}
+
+Example with a short storage for ~10 minutes and refresh in 5 minutes: 
+
+{% highlight javascript %}
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: 'adtelligent',
+                storage: {
+                    type: "html5",
+                    name: "adt_id",
+                    expires:0.003,
+                    refreshInSeconds: 60 * 5
+                }
+            }]
+        }
+    });
+{% endhighlight %}
+ 
 ### AMX RTB ID
 
 The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](prebid@amxrtb.com)
@@ -594,13 +637,21 @@ pbjs.setConfig({
 });
 ```
 
-The `request.userId.haloId` will contain the Audigent HaloId and associated segments:
+The `request.userId.haloId` will contain the Audigent HaloId:
 ```
 {
-  "haloId": "user-halo-id",
-  "auSeg": ["segment1", "segment2"]
+  "haloId": "0201chpvai07jv2yg08xizqr0bwpa1w0evvmq014d2ykn0b5oe"
 }
 ```
+The following configuration parameters are available:
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID value for the HaloID module - `"haloId"` | `"haloId"` |
+| params | Optional | Object | Used to store params for the HaloId system |
+| params.url | Optional | String | Set an alternate GET url for HaloId with this parameter |
+| params.urlArg | Optional | Object | Optional url parameter for params.url |
 
 ### ID+
 
@@ -741,6 +792,46 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### IM-UID by Intimate Merger
+
+IM-UID, provided by [Intimate Merger](https://corp.intimatemerger.com/), is a universal identifier that designed for publishers, platforms and advertisers to perform segmentation and targeting even in environments where 3rd party cookies are not available. IM-UID is currently only available in Japan.
+
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=imuIdSystem
+
+#### IM-UID Registration
+
+Please visit [https://lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
+
+The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacypolicy/
+
+#### IM-UID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `"imuid"` |
+| params | Required | Object | Details of module params. | |
+| params.cid | Required | Number | This is the Customer ID value obtained via Intimate Merger. | `5126` |
+| params.url | Optional | String | Use this to change the default endpoint URL. | `"https://example.com/some/api"` |
+
+#### IM-UID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "imuid",
+            params: {
+                cid: 5126 // Set your Intimate Merger Customer ID here for production
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Intent IQ ID
 
 Intent IQ’s universal ID with its unparalleled coverage of over 80% of ad inventory, protects publishers’ ability to rely on advertising as their main revenue source while preserving user privacy in a third party cookieless world.
@@ -853,6 +944,41 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Kinesso ID
+
+Kinesso ID solution is a new approach to persistent cross domain authentication.
+
+#### How it works
+
+The Kinesso identity solution creates a persistent cross domain authenticated user id that is then used to link users with their interest signals (commonly known as segments).  The Kinesso user ID (knsso) is never broadcast into the bid stream. Instead it is sent to a server side data store, merged with accompanying data from the Prebid Id Library and shipped to Kinesso. All data is encrypted at rest and in transit so your identifiers are never stored or transmitted in an insecure manner. 
+
+The Kinesso ID sub adapter sets two cookies, one as a third party cookie and the other as a first party cookie in the publisher's domain. These cookies are merged with the user's hashed email address (when present) server side and sent to Kinesso. The combined output looks like this: 
+
+{: .table .table-bordered .table-striped }
+| kpuid | knsso | hid | account_id | created on |
+| --- | --- | --- | --- | --- |
+| `<my_1pc>` | `<my_3pc>` | `<my_hashed_email>` | `<my_ssp_accountid>` | `<my_birthday>` |
+
+Kinesso will then attach these users to deals ids that they will target in the ORTB bid stream by brands and agencies represented by IPG.
+   
+Add it to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=kinessoIdSystem
+
+#### Kinesso ID Registration
+
+You can set up Kinesso ID sub adapter by contacting Kinesso at prebid@kinesso.com
+
+The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](https://kinesso.com/privacy-policy/). Please note, at present the Kinesso ID module is not meant for use inside the EEA.
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'kinessoId'` |
+| params | Required | Object | Details for KinessoId initialization | |
+| params.accountid | Required | Int | Your SSP Account Id | 123 |
 
 ### LiveIntent nonID
 
@@ -1098,6 +1224,24 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Navegg ID
+
+[Navegg](https://www.navegg.com) enables publishers, advertisers and agencies to use their own first party data together to activate media in a cookie-less way across several Ad Tech platforms. Navegg has one of the largest data networks in Latin America which also allows the enhancement of data with unique categories.
+
+#### Navegg ID Examples
+
+Publisher stores NaveggId in local storage and/or 1st party cookies
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+        name: 'naveggId'
+      }]
+    }
+});
+{% endhighlight %}
+
 ### netID
 
 The [European netID Foundation (EnID)](https://developerzone.netid.de/index.html) aims to establish with the netID an independent European alternative in the digital market for Demand and Supply side. With the netID Single-Sign-On, the EnID established an open standard for consumer logins for services of Buyers and Brands, that also includes user-centric consent management capabilities that results in a standardized, EU-GDPR compliant, IAB TCF aware, cross-device enabled Advertising Identifier, which can be leveraged by publishers and advertisers (and vendors supporting them) to efficiently deliver targeted advertising through programmatic systems to already more than 38 million Europeans on mobile and desktop devices.
@@ -1260,6 +1404,49 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Publisher Link
+Publisher Link, provided by [Epsilon](https://www.epsilon.com/us),  is a cross-device identity solution that activates publisher first-party, authenticated 
+data to improve audience identification and increase bid opportunities, specifically designed for sites with authenticated 
+traffic.  Publisher first-party authenticated data and a user's unique encrypted ID is linked to an existing people-based 
+Epsilon CORE ID.  By utilizing Publisher Link, publishers are able to reap the benefits of Epsilon's CORE ID.
+
+#### Publisher Link  Registration
+There is no registration needed.
+
+The Epsilon privacy is covered in the [Epsilon Privacy Policy](https://www.epsilon.com/us/privacy-policy).
+
+The Publisher Link opt-out is include [here](https://www.epsilon.com/privacy/dms/opt-out/email)
+
+#### Publisher Link Configuration
+
+In addition to the parameters documented above in the Basic Configuration section the following Publisher Link specific configuration is available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `'publinkId'` |
+| params | Required | Object | Customized parameters | |
+| params.e | Required | String | Hashed email address of the user | `e80b5017098950fc58aad83c8c14978e` |
+
+#### Publisher Link Examples
+```javascript
+    pbjs.setConfig({
+       userSync: {
+           userIds: [{
+               name: "publinkId",
+               storage: {
+                   name: "pbjs_publink",
+                   type: "cookie",
+                   expires: 30
+               },
+               params: {
+                   e: "e80b5017098950fc58aad83c8c14978e", // example hashed email (md5)
+               }
+           }]
+       }
+   });
+```
+
 ### RampID
 
 RampID, formerly known as IdentityLink, provided by [LiveRamp](https://liveramp.com) is a single person-based identifier which allows marketers, platforms and publishers to perform personalized segmentation, targeting and measurement use cases that require a consistent, cross-channel view of the user in anonymous spaces.
@@ -1334,10 +1521,10 @@ pbjs.setConfig({
 
 ### SharedID
 
-This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
+This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support SharedId will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 There is no special registration or configuration for SharedID. Each publisher's privacy policy should take
-SharedID into account.
+SharedID into account.  Prebid  recommends implementing a method where users can easily opt-out of targeted advertising. Please refer to the User Opt-Out section located at the bottom of this page. For more information check out Prebid's dedicated [identity page](/identity/sharedid.html) 
 
 Add it to your Prebid.js package with:
 
@@ -1354,8 +1541,12 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | name | Required | String | The name of this module. | `'pubCommonId'` |
 | params | Optional | Object | Customized parameters | |
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
-| params.pixelUrl | Optional | String | For publisher server support only.  This is a URL of a pixel for updating cookies' expiration times.  Fired after a new ID has been created or an existing ID is being extended.  No default. | `'https://example.com/ping'`
+| params.pixelUrl | Optional | String | For publisher server support only. Where to call out to for a server cookie -- see [Prebid Identity](/identity/sharedid.html) for more information. | `/wp-json/pubcid/v1/extend/`
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
+| storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. |
+| storage.expires | Integer | Required | How long the user ID information will be stored. | `365` |
+| storage.name | String | Required | The name of the cookie or html5 local storage where the user ID will be stored. | `_pubcid`
+| storage.type | String | Required | This is where the results of the user ID will be stored. Must be either: Must be either: "cookie" or "html5". For server side implementations, which have the best identifier life and revenue impact, this must be a cookie. | `cookie`
 
 #### SharedID Examples
 
@@ -1368,7 +1559,7 @@ pbjs.setConfig({
             name: "pubCommonId",
             storage: {
                 type: "cookie",
-                name: "_pubcid",         // create a cookie with this name
+                name: `"_pubcid"`,         // create a cookie with this name
                 expires: 365             // expires in 1 years
             }
         }]
@@ -1393,13 +1584,36 @@ pbjs.setConfig({
             }
         },{
             name: "pubCommonId",
+            params: {
+                pixelUrl: "/wp-json/pubcid/v1/extend/"
+            },
             storage: {
                 type: "cookie",
-                name: "_pubcid",      // create a cookie with this name
+                name: `"_pubcid"`,      // create a cookie with this name
                 expires: 180
             }
         }],
         syncDelay: 5000       // 5 seconds after the first bidRequest()
+    }
+});
+{% endhighlight %}
+
+3) Publisher supports SharedID and first party domain cookie storage initiated by a first party server
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "pubCommonId",
+            params: {
+                pixelUrl: "/wp-json/pubcid/v1/extend/" //pixelUrl should be specified when the server plugin is used
+            },
+            storage: {
+                type: "cookie",
+                name: `"_pubcid"`,         // create a cookie with this name
+                expires: 365             // expires in 1 years
+            }
+        }]
     }
 });
 {% endhighlight %}
@@ -1783,6 +1997,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
 | --- | --- | --- | --- | --- | --- | --- |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
+| Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
 | Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
@@ -1796,10 +2011,12 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
 | IdentityLink | LiveRamp | idl_env | liveramp.com | "1111" |
 | Intent IQ ID | Intent IQ | intentiqid | intentiq.com | "1111" |
+| Kinesso ID | Kinesso | kpuid | kpuid.com | "1111" |
 | LiveIntent ID | Live Intent | lipb.lipbid | liveintent.com | "1111" |
 | Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
 | MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |
 | merkleID | Merkle | merkleId | merkleinc.com | "1111" |
+| naveggId | Navegg | naveggId | navegg.com | "1111" |
 | netID | netID | netId | netid.de | "fH5A..." |
 | NextRoll ID | NextRoll | nextrollId | nextroll.com | "bf3Ka.../SjP/zpVGr09voA" |
 | Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |

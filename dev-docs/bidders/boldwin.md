@@ -5,8 +5,7 @@ description: Prebid Boldwin Bidder Adapter
 pbjs: true
 biddercode: boldwin
 gdpr_supported: true
-media_types: banner, video
-pbjs_version_notes: not in 5.x
+media_types: banner, video, native
 ---
 
 ### Note:
@@ -18,4 +17,4 @@ The Boldwin Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | Adprime placement id         | `'1234asdf'`    | `'string'` |
+| `placementId`      | required | Boldwin placement id         | `'1234asdf'`    | `'string'` |
