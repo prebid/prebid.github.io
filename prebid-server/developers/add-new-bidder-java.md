@@ -134,6 +134,11 @@ adapter-defaults:
   modifying-vast-xml-allowed: true
 ```
 
+There are also some default properties which can't be overridden in adapter-defaults, but rather in particular adapter's config:
+- `aliases`: Defaults to empty
+- `deprecated-names`: Defaults to empty
+- `extra-info`: Defaults to empty
+
 ### Create bidder alias
 If you want to add bidder that is an alias of existing bidder, you need just to update configuration of parent bidder:
 
@@ -141,7 +146,7 @@ Example of adding bidder alias:
 ```yaml
 adapters:
   yourBidderCode:
-    endpoint: http://possible.endpoint
+    ...
     aliases: 
       yourBidderAlias:
         endpoint: http://possible.alias/endpoint
@@ -153,26 +158,6 @@ adapters:
           - video
         usersync:
           cookie-family-name: yourBidderCode
-    meta-info:
-      maintainer-email: maintainer@email.com
-      app-media-types:
-        - banner
-        - video
-        - audio
-        - native
-      site-media-types:
-        - banner
-        - video
-        - audio
-        - native
-      supported-vendors:
-      vendor-id: your_vendor_id
-    usersync:
-      url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
-      cookie-family-name: yourBidderCode
-      type: redirect
-      support-cors: false
 ```
 
 Aliases are configured by adding child configuration object at `adapters.yourBidderCode.aliases.yourBidderAlias`
