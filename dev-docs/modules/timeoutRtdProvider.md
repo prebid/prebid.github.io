@@ -11,7 +11,7 @@ sidebarType : 1
 
 ## Overview
 The timeout RTD module enables publishers to set rules that determine the timeout based on 
-certain features. It supports rule sets dynamically retrieved from a timeout provider as well as rules 
+certain features. It supports rules dynamically retrieved from a timeout provider as well as rules 
 set directly via configuration.
 Build the timeout RTD module into the Prebid.js package with: 
 ```
