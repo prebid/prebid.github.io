@@ -104,7 +104,6 @@ adapters:
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
 - Change the `modifying-vast-xml-allowed` value to `false` if you'd like to opt out of video impression tracking. It defaults to `true`.
-- Change the `pbs-enforces-gdpr` to `false` if you'd like to disable gdpr enforcement. Defaults to `true`.
 - Change the `pbs-enforces-ccpa` to `false` if you'd like to disable ccpa enforcement. Defaults to `true`.
 - Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
@@ -129,7 +128,6 @@ Default configuration:
 ```yaml
 adapter-defaults:
   enabled: false
-  pbs-enforces-gdpr: true
   pbs-enforces-ccpa: true
   modifying-vast-xml-allowed: true
 ```
@@ -797,7 +795,6 @@ Go to `test-application.properties` file and add folowing properties
 ```yaml
 adapters.{bidder}.enabled=true
 adapters.{bidder}.endpoint=http://localhost:8090/{bidder}-exchange
-adapters.{bidder}.pbs-enforces-gdpr=true
 adapters.{bidder}.usersync.url=//{bidder}-usersync
 ```
 
