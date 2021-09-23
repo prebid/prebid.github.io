@@ -50,9 +50,9 @@ POST https://prebid-server.example.com/cookie_sync
 
 3) When it receives the response, Prebid.js loops through each element of `bidder_status[]`, dropping a pixel for each `bidder_status[].usersync.url`.
 
-4) The bidder-specific endpoints read the users's cookie for the bidder's domain and respond with a redirect back to Prebid Server's [`/setuid` endpoint](/prebid-server/endpoints/pbs-endpoint-setuid.html)
+4) The bidder-specific endpoints read the users' cookie for the bidder's domain and respond with a redirect back to Prebid Server's [`/setuid` endpoint](/prebid-server/endpoints/pbs-endpoint-setuid.html)
 
-5) When the browser receives this redirect, it contacts Prebid Server, which will once again check the privacy settings and will update the `uids` cookie if allowed.
+5) When the browser receives this redirect, it contacts Prebid Server, which will once again check the privacy settings and if allowed,  update the `uids` cookie.
 
 ### Setting the uids cookie from AMP
 
@@ -60,7 +60,8 @@ Cookie sync for AMP works in a way quite similar to Prebid.js.
 
 1) The Prebid Server hosting company places a modified version of the `load-cookie` script onto a CDN. This script is part of the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative/blob/master/src/cookieSync.js) repo.
 
-Note that the only two values currently valid for 'endpoint' are 'appnexus' and 'rubicon' -- other host companies should update their copy to include their endpoint.
+{: .alert.alert-warning :}
+The only two values currently valid for 'endpoint' are 'appnexus' and 'rubicon' -- other host companies should update their copy to include their endpoint.
 
 See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for more information.
 
@@ -76,15 +77,15 @@ See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#u
 </amp-iframe>
 ```
 
-Note: if the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
+{: .alert.alert-info :}
+If the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
 
 3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works the same as described for Prebid.js above.
 
 
 ## Bidder Instructions for Building a Sync Endpoint
 
-Building a sync endpoint is optional -- mobile-only bidders don't benefit from
-ID syncing. But for browser-based bidding, ID syncing can help improve buyer bid rate. There are two main options a bidder can choose to support (either one or both):
+Building a sync endpoint is optional -- there is no benefit from ID syncing for mobile-only bidders. For browser-based bidding, ID syncing can help improve buyer bid rate. There are two main options a bidder can choose to support:
 
 - redirect: the client will drop an IMG tag into the page, then call the bidder's URL which needs to redirect to the Prebid Server /setuid endpoint.
 - iframe: the client will drop an IFRAME tag into the page, then call the bidder's URL which responds with HTML and Javascript that calls the Prebid Server /setuid endpoint at some point.
@@ -113,8 +114,8 @@ usersync:
 ```
 In either case, the {%raw%}{{...}}{%endraw%} macros are resolved by PBS.
 
-{: .alert.alert-info :}
-Important: The "YOURMACRO" string here needs to be whatever your sync endpoint will recognize and resolve to the user's ID from your domain. Some examples of macros that bidders use: $UID, ${UID}, $$visitor_cookie$$, ${DI_USER_ID}, etc. Every bidder has their own value here.
+{: .alert.alert-warning :}
+The "YOURMACRO" string here needs to be whatever your sync endpoint will recognize and resolve to the user's ID from your domain. Some examples of macros that bidders use: $UID, ${UID}, $$visitor_cookie$$, ${DI_USER_ID}, etc. Every bidder has their own value here.
 
 Here's how this all comes together:
 
