@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Consent Management - US Privacy
-description: Module to consume and distribute US Privacy information to bidder adapters
+description: If you have users in California, this module works with your Consent Management Platform to pass CCPA/US-Privacy data to bidders.
 module_code : consentManagementUsp
 display_name : Consent Management - US Privacy
 enable_download : true
+recommended: true
 sidebarType : 1
 ---
 

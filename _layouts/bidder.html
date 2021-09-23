@@ -53,26 +53,26 @@
                   <tr>
                     <th class="pbTh">Media Types</th>
                     <td class="pbTd">{% unless page.media_types contains 'no-display' %}display{% if page.media_types contains 'video' %},{% endif %}{% endunless %}{% if page.media_types contains 'video' %} video{% endif %}{% if page.media_types != "no-display, native" and page.media_types contains 'native' %}, native{% endif %}{% if page.media_types == "no-display, native" %}native{% endif %}</td>
-                    <th class="pbTh">GDPR TCF1 Support</th>
+                    <th class="pbTh">GDPR TCF Support</th>
                     <td class="pbTd">{% if page.gdpr_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">User IDs</th>
                     <td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td>
-                    <th class="pbTh">GDPR TCF2 Support</th>
-                    <td class="pbTd">{% if page.tcf2_supported == true %}yes{% else %}no{% endif %}</td>
+                    <th class="pbTh">USP/CCPA Support</th>
+                    <td class="pbTd">{% if page.usp_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
-                    <th class="pbTh">SChain Support</th>
+                    <th class="pbTh">Supply Chain Support</th>
                     <td class="pbTd">{% if page.schain_supported  == true %}yes{% else %}no{% endif %}</td>
                     <th class="pbTh">COPPA Support</th>
                     <td class="pbTd">{% if page.coppa_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
+                    <th class="pbTh">Demand Chain Support</th>
+                    <td class="pbTd">{% if page.dchain_supported  == true %}yes{% else %}no{% endif %}</td>
                     <th class="pbTh">Safeframes OK</th>
                     <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh">USP/CCPA Support</th>
-                    <td class="pbTd">{% if page.usp_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Supports Deals</th>

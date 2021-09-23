@@ -5,8 +5,8 @@ description: Prebid Missena Bidder Adapter
 biddercode: missena
 gvl_id: 867
 pbjs: true
-tcf2_supported: true
 safeframes_ok: false
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note
