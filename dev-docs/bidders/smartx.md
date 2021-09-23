@@ -47,6 +47,6 @@ Please reach out to your smartclip business contact for any questions and assist
 | `maxAdWidth`    | optional | Maximum size of the player.                                                                  | `900`            | `integer`   |
 | `title`         | optional | Makes a defined advertising text appear in the below right corner. `[remainingTime]` can be used to display the remaining time of the advertisement. | `'Advertisement [remainingTime]s'` | `string`    |
 | `skipOffset`    | optional | Define whenever the advertisement can be skipped. 0 = never                                  | `0`              | `integer`   |
-| `startOpen`     | optional | Define whether the player should be initialized open or open when it is within view.         | `false`          | `bool`      |
-| `endingScreen`  | optional | Define whether the player should stay open after advertising or not.                         | `true`           | `bool`      |
+| `startOpen`     | optional | Define whether the player should be initialized open or open when it is within view.         | `'false'`        | `string`    |
+| `endingScreen`  | optional | Define whether the player should stay open after advertising or not.                         | `'true'`         | `string`    |
 | `desiredBitrate`| optional | Define the desired bitrate of the mediafile.                                                 | `800`            | `integer`   |

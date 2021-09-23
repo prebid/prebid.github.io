@@ -9,9 +9,11 @@ usp_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
+schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
 gvl_id: 50
 prevBiddercode: adformOpenRTB
+getFloor: true
 ---
 
 ### Bid params
