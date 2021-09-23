@@ -28,6 +28,7 @@ var adUnits = [
         mediaTypes: {
             banner: {sizes: [[300, 250], [160, 600]]}
         },
+        // If floors module is enabled
         floors: {
             currency: "USD",
             schema: {
