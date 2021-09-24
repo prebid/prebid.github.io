@@ -9,10 +9,28 @@ sidebarType: 0
 
 # Prebid Website Maintenance Guide
 
-v 1.1  
-Sept 7, 2019
+v 1.2  
+Sept 24, 2021
 
 ***
+
+## Reviewing Pull Requests and Issues
+
+Being a reviewer means you're in weekly rotation where you keep an eye on pull requests (PRs) and issues opened in this repo.
+
+### PR Review Guidelines
+
+1. Make sure no inappropriate changes are made. This covers obvious things like bad language and content, but we also don't allow overt marketing language on the site. Phrases like "we're the best BLAH" or "number one FOOZIT" need to be toned down.
+2. Make sure competitors aren't messing with each other's docs. This can be hard to tell because we don't know which github handles belong to which companies, but in general, if a destructive or suspicious change is being made to a doc, check on the Prebid Slack channel to confirm that the affected company approves the change.
+3. Make sure the change doesn't break formatting. It's not always necessary to preview locally, but for large changes, it's worthwhile verifying visually because markdown can be cranky.
+4. Help the author with basic readability - if you as a reviewer don't understand a sentence, probably others will have trouble too. Push back and ask questions about what they're really trying to say.
+5. We don't generally merge a docs PR until the related code is released. Prebid.js releases happen on Weds or Thurs, and people really like to have their docs PRs merged shortly after the code is released. For Prebid Server, it's ok to merge the docs after the code is merged.
+6. Fix broken or out-of-date things you run across. At least flag it in the team slack channel so we can fix it someday.
+7. Bid Adapter Guidelines
+    1. Check the front-matter: required fields are title and either pbjs or pbs.
+    2. Every adapter needs a parameters table that contains exactly 5 columns in this order: Name, Scope, Description, Example, Type.
+    3. Discourage full-page HTML examples. Better to have just the bidder-specific logic and a pointer to a standard Prebid.js example.
+    4. All headers must be level 3, 4, or 5.
 
 ## Core Technologies
 
