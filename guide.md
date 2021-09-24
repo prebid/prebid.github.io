@@ -34,7 +34,7 @@ Being a reviewer means you're in weekly rotation where you keep an eye on pull r
 
 ## Core Technologies
 
-The Prebid website is developed using [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages.
+The Prebid website is developed using [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages. See the [main README file](https://github.com/prebid/prebid.github.io/blob/master/README.md) for instructions on how to set this up.
 
 **Markdown**: The majority of the content is written in Markdown language. Jekyll transform this into raw HTML.
 
@@ -56,7 +56,7 @@ Learn more about [Liquid](https://help.shopify.com/en/themes/liquid/basics)
 
 ## Site Config
 
-The _config.yml file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the _congig.yml file.
+The _config.yml file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the _config.yml file.
 
 ***
 
@@ -254,18 +254,14 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | ----- | ------ | ------ | ------ |
 | layout | yes | bidder | Links this file to the bidder.html layout |
 | title | yes | company name | For display |
+| pbjs | sorta | true or false | defines whether this is a Prebid.js bidder |
+| pbs | sorta | true or false | defines whether this is a Prebid Server bidder |
 | description | no | - | Not used |
-| hide | no | - | Not used |
 | biddercode | yes | preferred bidder code | Used as the default ad server targeting suffix and the default download filename |
 | aliasCode | no | download filename | Overrides the filename used to build the PBJS package on the download page |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
-| bidder_supports_deals | no | true or false, whether the adapter supports deals | For display. Defaults to 'true'. |
-| s2s_only | no | true or false, whether the adapter is server-to-server only | Adds a note to the display. Defaults to 'false'. |
-| gdpr_supported | no | true or false, whether the adapter supports GDPR | For display. Defaults to 'false'. |
-| coppa_supported | no | true or false, whether the adapter supports COPPA | For display. Defaults to 'false'. |
-| media_types | no | comma-separated list of: banner, video, native | For display. |
-| userIds | no | comma-separated list of supported user id modules | For display. |
-| prebid_member | no | true or false, whether this company is a prebid.org member | For display. |
+| pbjs_version_notes | no | string | Displays on the download page |
+| ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
 Some adapters have a longer bidderCode and a shorter bidderCode -- their adapter supports both (with the `alias` feature) but
