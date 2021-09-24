@@ -34,7 +34,7 @@ Being a reviewer means you're in weekly rotation where you keep an eye on pull r
 
 ## Core Technologies
 
-The Prebid website is developed using [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages. See the [main README file](https://github.com/prebid/prebid.github.io/blob/master/README.md) for instructions on how to set this up.
+The Prebid website is developed using [GitHub pages](https://pages.github.com/) and [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages. See the [main README file](https://github.com/prebid/prebid.github.io/blob/master/README.md) for instructions on how to set this up.
 
 **Markdown**: The majority of the content is written in Markdown language. Jekyll transform this into raw HTML.
 
@@ -52,7 +52,14 @@ Learn more about [Liquid](https://help.shopify.com/en/themes/liquid/basics)
 
 **CSS**: The site builds on the base Bootstrap template with custom CSS stored in the style.css file.
 
-***
+### Environment
+
+- prebid.org is built with Wordpress. We call it "the marketing site". We generally use a contracting company to make major updates there so it's pretty. But if you know Wordpress, we may give you permissions to do minor updates there.
+- docs.prebid.org is the Github pages site. We call it "the docs site".
+- dev.prebid.org is served through Netlify from the 'dev' branch of the repo. It's often out of date and only used for major projects or for sharing major docs for external review.
+- stage.prebid.org is also served through Netlify, but from the 'staging' branch. You should assume it's out of date.
+
+On the rare occasions where we need to use the 'dev' or 'stage' sites, we just check with each other to make sure it's not already being used for something.
 
 ## Site Config
 
