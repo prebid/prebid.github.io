@@ -8,7 +8,6 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 gvl_id: 902
-pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params
