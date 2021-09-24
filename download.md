@@ -252,7 +252,7 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="amxIdSystem" class="bidder-check-box"> AMX RTB ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="akamaiDAPIdSystem" class="bidder-check-box"> Akamap DAP ID</label>
+  <label><input type="checkbox" moduleCode="akamaiDAPIdSystem" class="bidder-check-box"> Akamai DAP ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> BritePool ID</label>
