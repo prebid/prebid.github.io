@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - Bid Viewability - GAM
-description: Triggers BID_VIEWABLE event when a rendered PBJS-Bid is viewable according to [Active View criteria](https://support.google.com/admanager/answer/4524488)
+description: Triggers a BID_VIEWABLE event when a rendered bid is viewable according to Active View criteria
 module_code : bidViewability
 display_name : Bid Viewability - GAM
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
