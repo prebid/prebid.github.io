@@ -27,4 +27,4 @@ The 'yahoossp' bid adapter supports 2 types of integration:
 |------------|----------|------------------------|---------|----------|
 | dcn | required (for dcn & pos integration) | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | required (for dcn & pos integration)| Placement ID | 'placement1' | string |
-| pubID | required (for pubId integration)| Publisher External ID | 'PublisherID' | string |
+| pubId | required (for pubId integration)| Publisher External ID | 'PublisherID' | string |
