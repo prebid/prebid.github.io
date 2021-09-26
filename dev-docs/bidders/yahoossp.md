@@ -17,9 +17,14 @@ userIds: All
 ---
 
 ### Bid Params
+The 'yahoossp' bid adapter supports 2 types of integration:
+1. **dcn & pos** DEFAULT (Site/App & Position targeting) - For Display partners/publishers.
+2. **pubId** (Publisher ID) - For legacy "oneVideo" AND New partners/publishers.
+**Important:** pubId integration (option 2) is only possible when your Seller account is setup for "Inventory Mapping".
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| dcn | required | Site ID provided by One Mobile | 'site1' | string |
-| pos | required | Placement ID | 'placement1' | string |
+| dcn | required (for dcn & pos integration) | Site ID provided by Yahoo SSP | 'site1' | string |
+| pos | required (for dcn & pos integration)| Placement ID | 'placement1' | string |
+| pubID | required (for pubId integration)| Publisher External ID | 'PublisherID' | string |
