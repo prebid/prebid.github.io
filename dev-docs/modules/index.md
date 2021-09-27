@@ -33,7 +33,7 @@ Prebid.org highly recommends that publishers utilize the following modules:
   <tbody>
 {% for page in module_pages %}{% if page.recommended == true %}
     <tr>
-      <td><a href="/dev-docs/modules/{{page.module_code}}.html"><strong>{{page.display_name}}</strong></a></td>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
       <td>{{page.description}}</td>
     </tr>
 {% endif %}{% endfor %}
