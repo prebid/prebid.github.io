@@ -84,13 +84,13 @@ Rates can be passed in on the request:
 
 ```
 "ext": {
-    "prebid": {
-	  "currency": {
-		  "rates": {
-			  "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }
-		  },
-                  "usepbsrates": false // defaults to true
-	  }
+  "prebid": {
+    "currency": {
+      "rates": {
+        "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }
+      },
+      "usepbsrates": false // defaults to true
+    }
   }
 }
 ```
