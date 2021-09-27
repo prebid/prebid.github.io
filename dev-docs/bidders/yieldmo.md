@@ -4,7 +4,7 @@ title: Yieldmo
 description: Prebid Yieldmo Bidder Adaptor
 biddercode: yieldmo
 media_types: banner, video
-userIds: pubCommonId, unifiedId, criteo
+userIds: pubCommonId, unifiedId, criteo, sharedId
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
@@ -14,7 +14,7 @@ pbs: true
 ---
 
 # Registration
-## In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
+### Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
 <br/>
 ### Bid Params
 
@@ -42,7 +42,6 @@ The Yieldmo adapter supports in-stream video as of Prebid v4.18. Out-stream will
 | `skippable`       | optional | If 'true', user can skip ad                            | `true`          | `boolean` |
 | `skipafter`       | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is `skippable` | `5`  | `integer` |
 | `mimes`           | required | List of the content MIME types supported by the player | `["video/mp4"]` | `Array<string>`  |
-| `device`       | optional | User's device information. Currently we are expecting `ip` property only| `{ip: "111.222.333.444"}`  | `object` |
 
 Following video parameters might be also defined in `mediaTypes.video` in order to simplify bidders configuration. If the same parameters was also defined in `params.video` it will be overriten by `params.video`. More details - https://docs.prebid.org/dev-docs/adunit-reference.html
 
@@ -53,11 +52,6 @@ In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.v
 |-------------------|----------|--------------------------------------------------------|-----------------|------------------|
 | `playerSize`      | required | Width and height of the player                         | `[640, 480]`    | `Array<integer>` |
 | `context`         | required | `instream` or `outstream ` are only supported                           | `instream`      | `string`         |
-#### device object
-{: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                            | Example         | Type             |
-|-------------------|----------|--------------------------------------------------------|-----------------|------------------|
-| `ip`              | optional | User's IP address  | `111.222.333.444` | `string`
 ### Example of in-stream Video Ad-unit
 ```javascript
 var videoAdUnits = [{
@@ -83,9 +77,6 @@ var videoAdUnits = [{
     bidder: 'yieldmo',
     params: {
       placementId: '1524592390382976659',// required,
-      device: {                          // optional, object
-        ip: '111.222.333.444'
-      }
     }
   }]
 }];
@@ -109,10 +100,7 @@ var videoAdUnit = [{
   bids: [{
     bidder: 'yieldmo',
     params: {
-      placementId: '1524592390382976659',  // required,
-      device: {                            // optional, object
-        ip: '111.222.333.444'
-      }
+      placementId: '1524592390382976659',  // required
     }
   }]
 }];
