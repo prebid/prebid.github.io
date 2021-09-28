@@ -220,7 +220,7 @@ pbjs.setConfig({
       ]
     }
   }
-}
+})
 
 {% endhighlight %}
 
