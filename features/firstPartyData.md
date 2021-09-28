@@ -183,44 +183,45 @@ Occasionally, an app which embeds a webview might run Prebid.js. In this case, t
 
 {% highlight js %}
 pbjs.setConfig({
-   ortb2: {
-  app: {
-    name: "myappname",
-    keywords: "power tools, drills",
-    content: {
-      data: [
-        {
-          name: "www.dataprovider1.com",
-          ext: {
-            segtax: 6
-          },
-          segment: [
-            {
-              id: "687"
+  ortb2: {
+    app: {
+      name: "myappname",
+      keywords: "power tools, drills",
+      content: {
+        data: [
+          {
+            name: "www.dataprovider1.com",
+            ext: {
+              segtax: 6
             },
-            {
-              id: "123"
-            }
-          ]
-        },
-        {
-          name: "www.dataprovider1.com",
-          ext: {
-            segtax: 7
+            segment: [
+              {
+                id: "687"
+              },
+              {
+                id: "123"
+              }
+            ]
           },
-          segment: [
-            {
-              id: "456"
+          {
+            name: "www.dataprovider1.com",
+            ext: {
+              segtax: 7
             },
-            {
-              id: "789"
-            }
-          ]
-        }
-      ]
+            segment: [
+              {
+                id: "456"
+              },
+              {
+                id: "789"
+              }
+            ]
+          }
+        ]
+     }
     }
   }
-})
+)
 
 {% endhighlight %}
 
