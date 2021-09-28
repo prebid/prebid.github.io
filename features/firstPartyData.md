@@ -63,7 +63,7 @@ pbjs.setConfig({
 		userrating: "4",
 		data: [{
           	    name: "www.dataprovider1.com",
-          	    ext: { "segtax": 1 },
+          	    ext: { segtax: 4 },
 		    segment: [
             		{ id: "687" },
             		{ id: "123" }
@@ -175,6 +175,53 @@ pbjs.setBidderConfig({ // different bidders can receive different data
      ortb2: { ... }
    }
 });
+{% endhighlight %}
+
+### Supplying App Content Data
+
+Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data.
+
+{% highlight js %}
+pbjs.setConfig({
+   ortb2: {
+  app: {
+    name: "myappname",
+    keywords: "power tools, drills",
+    content: {
+      data: [
+        {
+          name: "www.dataprovider1.com",
+          ext: {
+            segtax: 6
+          },
+          segment: [
+            {
+              id: "687"
+            },
+            {
+              id: "123"
+            }
+          ]
+        },
+        {
+          name: "www.dataprovider1.com",
+          ext: {
+            segtax: 7
+          },
+          segment: [
+            {
+              id: "456"
+            },
+            {
+              id: "789"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+
 {% endhighlight %}
 
 ## Segments and Taxonomy
