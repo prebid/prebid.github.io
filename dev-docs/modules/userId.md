@@ -1411,11 +1411,11 @@ traffic.  Publisher first-party authenticated data and a user's unique encrypted
 Epsilon CORE ID.  By utilizing Publisher Link, publishers are able to reap the benefits of Epsilon's CORE ID.
 
 #### Publisher Link  Registration
-There is no registration needed.
+Please contact [Epsilon](mailto:PublisherSupport@Epsilon.com) to sign up.
 
 The Epsilon privacy is covered in the [Epsilon Privacy Policy](https://www.epsilon.com/us/privacy-policy).
 
-The Publisher Link opt-out is include [here](https://www.epsilon.com/privacy/dms/opt-out/email)
+The Publisher Link opt-out is included [here](https://www.epsilon.com/privacy/dms/opt-out/email)
 
 #### Publisher Link Configuration
 
@@ -1425,8 +1425,10 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'publinkId'` |
-| params | Required | Object | Customized parameters | |
-| params.e | Required | String | Hashed email address of the user | `e80b5017098950fc58aad83c8c14978e` |
+| params | Required | Object | Customized parameters. | |
+| params.e | Required | String | Hashed email address of the user.  Supports MD5 and SHA256. | `'7D320454942620664D96EF78ED4E3A2A'` |
+| params.site_id | Required | String | Site ID provided by Epsilon. | `'123456'` |
+| params.api_key | Required | String | API key provided by Epsilon. | `'7ab62359-bdc0-4095-b573-ef474fb55d2'`
 
 #### Publisher Link Examples
 ```javascript
@@ -1440,7 +1442,9 @@ In addition to the parameters documented above in the Basic Configuration sectio
                    expires: 30
                },
                params: {
-                   e: "e80b5017098950fc58aad83c8c14978e", // example hashed email (md5)
+                   e: "7D320454942620664D96EF78ED4E3A2A", // example hashed email (md5)
+                   site_id: "123456",
+                   api_key: "7ab62359-bdc0-4095-b573-ef474fb55d2"
                }
            }]
        }
