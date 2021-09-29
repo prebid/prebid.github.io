@@ -54,7 +54,7 @@ pbjs.setConfig({
 | Name | Type  | Scope | Description |
 | :------------ | :------------ | :------------ |:------------ |
 | ``cdnUrl`` | ``string`` | Required | CDN URL of the script, which is to be used for protection. |
-| ``protectionMode`` | ``'full' \| 'bids' \| 'bids-nowait'`` | Required | Integration mode. Please refer to the "Integration modes" section for details. |
+| ``protectionMode`` | ``'full' or 'bids' or 'bids-nowait'`` | Required | Integration mode. Please refer to the "Integration modes" section for details. |
 
 
 ## Integration modes
