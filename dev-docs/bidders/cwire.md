@@ -18,4 +18,4 @@ media_types: banner, video
 |---------------|----------|-----------------------|-----------|-----------|
 | `pageId`      | required | C-WIRE page id        | `2453`    | `integer` |
 | `placementId` | required | C-WIRE placement id   | `113244`  | `integer` |
-| `adUnitElementId` | optional | Target div to write to  | `other_div_id`  | `string` |
+| `adUnitElementId` | optional | Target div to write to  | `'other_div_id'`  | `string` |
