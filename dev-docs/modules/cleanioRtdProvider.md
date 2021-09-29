@@ -1,18 +1,26 @@
-# Overview
+---
+layout: page_v2
+title: Clean.IO Real Time Data Provider
+display_name: Clean.IO Real-time Anti-Malvertising Module
+description: Clean.IO Real-time Anti-Malvertising Module
+page_type: module
+module_type: rtd
+module_code : cleanioRtdProvider
+enable_download : true
+vendor_specific: true
+sidebarType : 1
+---
 
-```
-Module Name: clean.io Rtd provider
-Module Type: Rtd Provider
-Maintainer: nick@clean.io
-```
+# Clean.IO Real-time Anti-Malvertising Module
+
+## Overview
 
 The clean.io Realtime module provides effective anti-malvertising solution for publishers, including, but not limited to,
 blocking unwanted 0- and 1-click redirects, deceptive ads or those with malicious landing pages, and various types of affiliate fraud.
 
 Using this module requires prior agreement with [clean.io](https://clean.io) to obtain the necessary distribution key.
 
-
-# Integration
+## Integration
 
 clean.io Realtime module can be built just like any other prebid module:
 
@@ -21,7 +29,7 @@ gulp build --modules=cleanioRtdProvider,...
 ```
 
 
-# Configuration
+## Configuration
 
 When built into prebid.js, this module can be configured through the following `pbjs.setConfig` call:
 
@@ -40,7 +48,7 @@ pbjs.setConfig({
 ```
 
 
-## Configuration parameters
+### Configuration parameters
 
 {: .table .table-bordered .table-striped }
 | Name | Type  | Scope | Description |
