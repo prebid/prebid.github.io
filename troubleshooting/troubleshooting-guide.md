@@ -484,6 +484,10 @@ function auctionOptionsLogging() {
         console.log(`Auction Options: Auction End! Timed Out! Bidders: ${Array.from(new Set(timedOutBidders.map(each => each.bidder))).join(',')} - ${auctionId}`);
     })
 
+    pbjs.onEvent('bidderError', { error, bidderRequest } => {
+        console.log(`Auction Error: Bidder ${bidderRequest.bidderCode} responded with ${error.status} ${error.statusText} - ${bidderRequest.auctionId}`);
+    })
+
     pbjs.onEvent('auctionEnd', auction => {
         let auctionId = auction.bidderRequests.length > 0 ? auction.bidderRequests[0].auctionId : 0
         let auctionStart = auction.bidderRequests.length > 0 ? auction.bidderRequests[0].auctionStart : 0

@@ -194,7 +194,8 @@ export const spec = {
     getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
-    onSetTargeting: function(bid) {}
+    onSetTargeting: function(bid) {},
+    onBidderError: function({ error, bidderRequest })
 }
 registerBidder(spec);
 
@@ -552,6 +553,34 @@ Sample data received by this function:
     "hb_pb": "0.20",
     "hb_size": "350x250"
   }
+}
+{% endhighlight %}
+
+### Registering on Bidder Error
+
+The `onBidderError` function will be called when the bidder responded with an error. Which means that the HTTP response status code is not between `200-299` and not equal to `304`.
+
+Sample data received by this function:
+
+{% highlight js %}
+{
+    error: XMLHttpRequest,
+    bidderRequest: {
+        {
+            auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+            auctionStart: 1579746300522,
+            bidderCode: "myBidderCode",
+            bidderRequestId: "15246a574e859f",
+            bids: [{...}],
+            gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+            refererInfo: {
+                canonicalUrl: undefined,
+                numIframes: 0,
+                reachedTop: true,
+                referer: "http://mypage?pbjs_debug=true"
+            }
+        }
+    }
 }
 {% endhighlight %}
 
@@ -1050,6 +1079,14 @@ export const spec = {
      * @param {Bid} The bid of which the targeting has been set
      */
     onSetTargeting: function(bid) {
+        // Bidder specific code
+    }
+
+    /**
+     * Register bidder specific code, which will execute if the bidder responded with an error
+     * @param {error, bidderRequest} An object with the XMLHttpRequest error and the bid request object
+     */
+    onBidderError: function({ error, bidderRequest }) {
         // Bidder specific code
     }
 }
