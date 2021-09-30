@@ -17,14 +17,27 @@ userIds: All
 ---
 
 ### Bid Params
-The 'yahoossp' bid adapter supports 2 types of integration:
-1. **dcn & pos** DEFAULT (Site/App & Position targeting) - For Display partners/publishers.
-2. **pubId** (Publisher ID) - For legacy "oneVideo" AND New partners/publishers.
-**Important:** pubId integration (option 2) is only possible when your Seller account is setup for "Inventory Mapping".
+The 'yahoossp' bid adapter supports 2 integration types:
+1. **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
+2. **pubId** (Publisher ID) - For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
+
+**Important:** pubId integration (option 2) is only possible when your Seller account is setup for "Inventory Mapping", Please contact your Account Manager to verify your setup.
+
+#### DCN & POS Parameters
+For legacy "aol", "oneMobile" adapter partners/publishers.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| dcn | required (for dcn & pos integration) | Site ID provided by Yahoo SSP | 'site1' | string |
-| pos | required (for dcn & pos integration)| Placement ID | 'placement1' | string |
-| pubId | required (for pubId integration)| Publisher External ID | 'PublisherID' | string |
+| dcn | required | Site ID provided by Yahoo SSP | 'site1' | string |
+| pos | required | Placement ID provided by Yahoo SSP | 'placement1' | string |
+
+#### PubId Parameters
+For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
+
+{: .table .table-bordered .table-striped }
+| Name       | Scope    | Description            | Example | Type     |
+|------------|----------|------------------------|---------|----------|
+| pubId | required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
+| inventoryid | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
+| placementid | Optional | Ability to target a specific Placement using an External ID provided by Yahoo SSP | 'header' | string |
