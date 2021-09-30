@@ -20,6 +20,7 @@ The 'yahoossp' bid adapter supports 2 integration types:
 1. **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
 2. **pubId** (Publisher ID) - For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
 
+
 **Important:** pubId integration (option 2) is only possible when your Seller account is setup for "Inventory Mapping", Please contact your Account Manager to verify your setup.
 
 #### DCN & POS Integration Parameters
