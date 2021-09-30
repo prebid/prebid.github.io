@@ -8,6 +8,7 @@ media_types: banner, video, native
 biddercode: adyoulike
 gdpr_supported: true
 usp_supported: true
+getFloor: true
 ---
 
 ### Note:

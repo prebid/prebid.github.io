@@ -37,7 +37,7 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 
 PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
 
-`adUnit.pbAdSlot = "/1111111/homepage/med-rect-2"`
+`adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
 
 ---
 

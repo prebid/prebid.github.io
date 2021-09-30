@@ -11,7 +11,7 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 getFloor: true
-userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, idxId, intentIqId, liveIntentId, lotamePanoramaId, merkleId, netId, parrableId, pubCommonId, quantcastId, sharedId, tapadId, unifiedId, verizonMediaId, zeotapIdPlus
+userIds: admixerId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, haloId, id5Id, identityLink, idxId, intentIqId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, netId, nextrollId, novatiq, parrableId, pubCommonId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 gvl_id: 69
 ---
@@ -79,17 +79,15 @@ var adUnits = [
     mediaTypes: {
       video: {
         playerSize: [640, 480],
-        context: 'instream'
+        context: 'instream',
+        mimes: ['video/x-ms-wmv, video/mp4']
       }
     },
     bids: [{
       bidder: 'openx',
       params: {
         unit: '1611023124',
-        delDomain: 'PUBLISHER-d.openx.net',
-        video: {
-          mimes: ['video/x-ms-wmv, video/mp4']
-        }
+        delDomain: 'PUBLISHER-d.openx.net'
       }
     }]
   }

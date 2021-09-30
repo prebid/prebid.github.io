@@ -77,7 +77,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 | Attribute | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
 | sendTargetingKeys | optional | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `true` for now, though we recommend setting this to `false` and utilizing one of the ways to define a native template. | `false` | boolean |
-| adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value controls the Native template right in the page. | See [example](#5-implementing-adunit-defined-creative) below. | escaped ES5 string |
+| adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value controls the Native template right in the page. | See [example](#42-implementing-adunit-defined-template) below. | escaped ES5 string |
 | rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | 'https://host/path.js' | string |
 | type | optional | A “type” is like a macro that defines a group of assets. The only value currently supported is ‘image’, which implies the following assets: image, title, sponsoredBy, clickUrl, body, icon, and cta. The first 4 are required attributes. | `image` | string |
 | ASSETCODE. required | optional | Defines whether native bids must include this asset. Defaults to `false`. | `true` | boolean |
@@ -136,9 +136,9 @@ In the native template, simply access the custom value with the normal Prebid ##
 
 ## 4. Implementing the Native Template
 
-- If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#4-implementing-adserver-defined-creative).
-- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#5-implementing-adunit-defined-creative)
-- If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#6-implementing-the-custom-renderer-scenario).
+- If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#41-implementing-adserver-defined-template).
+- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#42-implementing-adunit-defined-template)
+- If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#43-implementing-the-custom-renderer-scenario).
 
 ### 4.1. Implementing AdServer-Defined Template
 
@@ -356,7 +356,7 @@ In this scenario, the body of the native creative is managed from an external Ja
 When the Native AdUnit is defined in the page:
 
 - Declare`sendTargetingKeys: false` in the Native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
-- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. <style> tags) or in the AdServer creative.
+- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. `<style>` tags) or in the AdServer creative.
 
 Example AdUnit setup:
 ```

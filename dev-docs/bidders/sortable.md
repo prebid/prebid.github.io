@@ -10,6 +10,8 @@ usp_supported: true
 schain_supported: true
 prebid_member: true
 gvl_id: 145
+getFloor: true
+userIds: all
 ---
 
 **Table of Contents**
