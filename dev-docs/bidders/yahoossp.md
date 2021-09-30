@@ -11,7 +11,6 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 coppa_supported: true
-floors_supported: true
 gvl_id: 25
 userIds: All
 ---
@@ -23,7 +22,7 @@ The 'yahoossp' bid adapter supports 2 integration types:
 
 **Important:** pubId integration (option 2) is only possible when your Seller account is setup for "Inventory Mapping", Please contact your Account Manager to verify your setup.
 
-#### DCN & POS Parameters
+**DCN & POS Parameters**
 For legacy "aol", "oneMobile" adapter partners/publishers.
 
 {: .table .table-bordered .table-striped }
@@ -32,8 +31,9 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 | dcn | required | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | required | Placement ID provided by Yahoo SSP | 'placement1' | string |
 
-#### PubId Parameters
-For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
+**PubId Parameters**
+For New partners/publishers joining Yahoo SSP
+floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
