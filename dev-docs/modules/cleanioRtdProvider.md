@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: Clean.IO Real Time Data Provider
-display_name: Clean.IO Real-time Anti-Malvertising Module
-description: Clean.IO Real-time Anti-Malvertising Module
+title: clean.io Real Time Data Provider
+display_name: clean.io Real-time Anti-Malvertising Module
+description: clean.io Real-time Anti-Malvertising Module
 page_type: module
 module_type: rtd
 module_code : cleanioRtdProvider
@@ -11,7 +11,7 @@ vendor_specific: true
 sidebarType : 1
 ---
 
-# Clean.IO Real-time Anti-Malvertising Module
+# clean.io Real-time Anti-Malvertising Module
 
 ## Overview
 
