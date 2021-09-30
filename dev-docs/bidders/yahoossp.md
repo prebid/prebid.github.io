@@ -1,6 +1,5 @@
 ---
 layout: bidder
-<<<<<<< HEAD
 title: Yahoo SSP
 description: Yahoo SSP Bid Adapter
 pbs: true
@@ -35,27 +34,10 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 
 #### PubId Parameters
 For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
-=======
-title: YahooSSP
-pbs: true
-media_types: banner
-biddercode: yahoossp
-prebid_member: true
-gdpr_supported: true
-gvl_id: 25
----
-
-### Bid Params
->>>>>>> upstream/master
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-<<<<<<< HEAD
 | pubId | required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
 | inventoryId | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
 | placementId | Optional | Ability to target a specific Placement using an External ID provided by Yahoo SSP | 'header' | string |
-=======
-| dcn | required | Site ID provided by One Mobile | 'site1' | string |
-| pos | required | Placement ID | 'placement1' | string |
->>>>>>> upstream/master
