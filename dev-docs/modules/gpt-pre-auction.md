@@ -43,7 +43,7 @@ Optional initialization parameters:
 {: .table .table-bordered .table-striped }
 | Param | Required? | Type | Description | Example |
 | enabled | no | boolean | allows turning off of module. Default value is true | true |
-| customGptSlotMatching | no | function | GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/publisher-api-reference/setTargetingForGPTAsync.html) | |
+| customGptSlotMatching | no | function | GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) | |
 | customPbAdSlot | no | function | Custom PB AdSlot function | |
 | mcmEnabled | no | boolean | Removes extra network IDs when Multiple Customer Management is active. Default is false. | true |
 

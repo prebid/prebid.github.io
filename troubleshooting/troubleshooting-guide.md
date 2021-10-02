@@ -182,7 +182,7 @@ Here's another scenario using the 'debugging' feature described in the previous 
 
 This section covers cases in which a particular server-side bidder doesn't always respond with a bid, or you want to try specific bid CPM values to verify line item setup.
 
-If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference/setconfig#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
+If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
 
 ```javascript
 javascript console> pbjs.setConfig({
