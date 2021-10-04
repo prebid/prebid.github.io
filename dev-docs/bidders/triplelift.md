@@ -19,6 +19,11 @@ pbs_app_supported: true
 gvl_id: 28
 ---
 
+{% capture version2 %}
+The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
+{% endcapture %}
+{% include alerts/alert_important.html content=version2 %}
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
