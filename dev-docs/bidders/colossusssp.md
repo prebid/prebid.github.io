@@ -9,7 +9,7 @@ media_types: banner, video, native
 userIds: britepoolid, identityLink, unifiedId, id5Id, uid2
 gdpr: true
 pbjs: true
-pbs: true
+pbs: false
 ---
 
 ### Prebid.JS Bid Params
