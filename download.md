@@ -232,7 +232,7 @@ Prebid.org highly recommends that publishers utilize the following modules:
 <h4>General Modules</h4>
 <div class="row">
  {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
-  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.module_code}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endfor %}
 </div>
 
