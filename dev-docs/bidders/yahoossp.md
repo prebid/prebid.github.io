@@ -40,5 +40,5 @@ floors_supported: true and legacy "oneVideo" partners/publishers migrating to th
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
 | pubId | required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
-| inventoryId | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
+| siteId | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
 | placementId | Optional | Ability to target a specific Placement using an External ID provided by Yahoo SSP | 'header' | string |
