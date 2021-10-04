@@ -6,9 +6,11 @@ pbjs: true
 pbs: true
 biddercode: synacormedia
 media_types: banner, video
+userIds: identityLink, verizonMediaId, pubCommonId, nextrollId
 gdpr_supported: false
 schain_supported: true
 usp_supported: true
+pbs_app_supported: true
 ---
 
 ### Note:
@@ -59,7 +61,11 @@ var adUnits = [{
     "mediaTypes": {
         "video": {
             "playerSize": [300, 250],
-            "context": "instream"
+            "context": "instream",
+            "minduration": 15,
+            "maxduration": 30,
+            "startdelay": 1,
+            "linearity": 1
         }
     },
     "bids": [{
@@ -68,13 +74,7 @@ var adUnits = [{
             "seatId": "prebid",
             "tagId": "demo1",
             "bidfloor": 0.20,
-            "pos": 1,
-            "video": {
-                "minduration": 15,
-                "maxduration": 30,
-                "startdelay": 1,
-                "linearity": 1
-            }
+            "pos": 1
         }
     }]
 }]

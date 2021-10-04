@@ -1,13 +1,16 @@
 ---
 layout: bidder
 title: Rise
-description: Prebid  Bidder Adaptor
+description: Prebid Bidder Adaptor
 pbjs: true
 biddercode: rise
-media_types: no-display, video
+media_types: video
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
+getFloor: true
+userIds: all
+gvl_id: 1043
 ---
 
 ### Note
@@ -23,7 +26,7 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  Rise publisher Id provided by your Rise representative  | "56f91cd4d3e3660002000033"
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
-| `ifa` | optional | String |  The ID for advertisers (also referred to as "IDFA")  | "XXX-XXX"
+| `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
 ## Example
@@ -43,7 +46,7 @@ var adUnits = [
           params: {
             org: '56f91cd4d3e3660002000033', // Required
             floorPrice: 5.00, // Optional
-            ifa: 'XXX-XXX', // Optional
+            placementId: '12345678', // Optional
             testMode: false // Optional
           }
         }]
@@ -54,15 +57,5 @@ var adUnits = [
 ### Configuration
 Rise recommends setting UserSync by iframe for monetization.
 
-For Prebid.js v1.15.0 and later:
-
-pbjs.setConfig({
-  userSync: {
-    filterSettings: {
-      iframe: {
-        bidders: '*',      // '*' represents all bidders
-        filter: 'include'
-      }
-    }
-  }
-});
+### Versions
+Prebid versions 5.0-5.3 are not supported

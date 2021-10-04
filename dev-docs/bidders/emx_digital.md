@@ -8,9 +8,9 @@ biddercode: emx_digital
 media_types: banner, video
 gdpr_supported: true
 gvl_id: 183
-tcf2_supported: true
 usp_supported: true
 schain_supported: true
+userIds: identityLink, uid2
 ---
 
 ### Registration

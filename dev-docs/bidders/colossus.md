@@ -10,6 +10,7 @@ userIds: britepoolid, identityLink, unifiedId, id5Id
 gdpr: true
 pbjs: false
 pbs: true
+pbs_app_supported: true
 ---
 
 ### Prebid.Server Bid Params
