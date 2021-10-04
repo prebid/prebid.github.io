@@ -4,7 +4,7 @@ title: Timeout Rtd Module
 description: Module for managing timeouts in real time
 page_type: module
 module_type: rtd
-module_code : example
+module_code : timeoutRtdProvider
 enable_download : true
 sidebarType : 1
 ---
