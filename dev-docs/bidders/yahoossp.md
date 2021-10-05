@@ -29,8 +29,8 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| dcn | required | Site ID provided by Yahoo SSP | 'site1' | string |
-| pos | required | Placement ID provided by Yahoo SSP | 'placement1' | string |
+| dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
+| pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
 
 #### PubId Integration Parameters
 For New partners/publishers joining Yahoo SSP
@@ -39,6 +39,6 @@ floors_supported: true and legacy "oneVideo" partners/publishers migrating to th
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| pubId | required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
+| pubId | Required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
 | siteId | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
 | placementId | Optional | Ability to target a specific Placement using an External ID provided by Yahoo SSP | 'header' | string |
