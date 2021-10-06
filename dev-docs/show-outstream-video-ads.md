@@ -39,7 +39,11 @@ var videoAdUnits = [{
     mediaTypes: {
         video: {
             context: 'outstream',
-            playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
         }
     },
     bids: [{
@@ -47,7 +51,7 @@ var videoAdUnits = [{
         params: {
             placementId: 13232385,
             video: {
-                skippable: true,
+                skip: 1,
                 playback_method: ['auto_play_sound_off']
             }
         }
@@ -95,6 +99,11 @@ pbjs.addAdUnit({
         video: {
             context: 'outstream',
             playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
+
             // but a renderer passed in here would apply only to this mediaType.
             // This renderer would override the above renderer if it exists.
             renderer: {
@@ -121,7 +130,11 @@ pbjs.addAdUnit({
     mediaTypes: {
         video: {
             context: 'outstream',
-            playerSize: [640, 480]
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         }
     },
     renderer: {

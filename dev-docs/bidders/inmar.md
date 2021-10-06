@@ -8,7 +8,8 @@ usp_supported: true
 userIds: identityLink, liveIntentId, unifiedId, pubCommonId, pubProvidedId, sharedId
 media_types: banner, video
 safeframes_ok: false
-bidder_supports_deals: true
+deals_supported: true
+fpd_supported: true
 pbjs: true
 ---
 ### Note:

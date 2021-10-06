@@ -10,6 +10,7 @@ usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
 pbs: true
+floors_supported: true
 ---
 
 ### Registration

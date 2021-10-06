@@ -9,6 +9,7 @@ usp_supported: true
 schain_supported: true
 userIds: unifiedId
 gvl_id: 52
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

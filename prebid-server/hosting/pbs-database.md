@@ -99,7 +99,7 @@ create a view as desired. We'll fix this someday.
 Account data is queried on every request to pull in important data. There is an LRU cache in the server
 so the database isn't actually hit on every request.
 
-In PBS-Java, many account-configuration options come from the database, while in PBS-Go, those options are available in YAML configuration.
+In PBS-Java, many account-configuration options come from the database. In PBS-Go, those options are available in either a YAML configuration or from an HTTP API.
 
 In both versions the server can optionally validate the account against this database and reject accounts from
 unknown sources.
@@ -108,7 +108,7 @@ The algorithm the server uses for determining the account ID of the incoming req
 
 1. look in site.publisher.id
 2. look in app.publisher.id
-3. if AMP, look for the 'account' parameter on the query string (PBS-Java only)
+3. if AMP, look for the 'account' parameter on the query string
 
 Here are the fields the server can recognize in the database response:
 

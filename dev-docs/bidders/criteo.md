@@ -10,7 +10,8 @@ gdpr_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
-getFloor: false*
+floors_supported: false
+fpd_supported: true
 gvl_id: 91
 ---
 ### Notes
@@ -76,18 +77,16 @@ var adUnits = [
             maxduration: 30,
             api: [1, 2],
             playerSize: [640,480],
-            protocols: [2, 3]
+            protocols: [2, 3],
+	    skip: 0,
+	    playbackmethod: 1,
+            placement: 1
         }
     },
     bids: [{
         bidder: 'criteo',
         params: {
-            zoneId: 1455580,
-            video: {
-                skip: 0,
-                playbackmethod: 1,
-                placement: 1,
-            }
+            zoneId: 1455580
         }
     }]
 }];
