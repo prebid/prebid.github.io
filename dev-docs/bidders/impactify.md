@@ -3,7 +3,7 @@ layout: bidder
 title: Impactify
 description: Prebid Impactify Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
 biddercode: impactify
 gdpr_supported: true
 tcf2_supported: true
