@@ -5,7 +5,7 @@ description: Prebid Jixie Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: jixie
-bidder_supports_deals: false
+deals_supported: false
 media_types: banner, video
 gdpr_supported: false
 ---

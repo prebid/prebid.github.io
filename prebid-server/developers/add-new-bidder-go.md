@@ -1166,7 +1166,9 @@ dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
-bidder_supports_deals: true/false
+deals_supported: true/false
+floors_supported: true/false
+fpd_supported: true/false
 pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
@@ -1196,7 +1198,9 @@ Notes on the metadata fields:
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
-- If your bidder supports deals, set `bidder_supports_deals: true`. No default value.
+- If your bidder supports deals, set `deals_supported: true`. No default value.
+- If your bidder supports floors, set `floors_supported: true`. No default value.
+- If your bidder supports first party data, set `fpd_supported: true`. No default value.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 
