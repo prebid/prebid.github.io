@@ -7,15 +7,16 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-getFloor: true
+floors_supported: true
 media_types: video
 userIds: all
 prebid_member: true
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+fpd_supported: true
 gvl_id: 52
 ---
 

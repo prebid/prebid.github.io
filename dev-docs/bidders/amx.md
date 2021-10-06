@@ -14,6 +14,7 @@ media_types: banner, video
 pbjs: true
 pbs: true
 pbs_app_supported: true
+fpd_supported: true
 gvl_id: 737
 ---
 

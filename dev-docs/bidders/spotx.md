@@ -12,7 +12,7 @@ usp_supported: true
 safeframes_ok: false
 pbjs: true
 gvl_id: 165
-getFloor: true
+floors_supported: true
 pbjs_version_notes: avoid 4.31-4.35
 ---
 

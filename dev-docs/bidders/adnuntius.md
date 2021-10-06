@@ -6,6 +6,7 @@ pbjs: true
 biddercode: adnuntius
 media_types: banner
 gdpr_supported: true
+fpd_supported: true
 ---
 
 ### Bid Params

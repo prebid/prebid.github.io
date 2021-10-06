@@ -9,7 +9,7 @@ gdpr_supported: true
 schain_supported: true
 usp_supported: true
 userIds: all
-getFloor: true
+floors_supported: true
 ---
 
 ### Table of Contents
