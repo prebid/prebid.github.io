@@ -4,7 +4,6 @@ title: myTarget
 description: Prebid myTarget Bidder Adapter
 pbjs: true
 biddercode: mytarget
-pbjs_version_notes: not in 5.x
 ---
 
 
