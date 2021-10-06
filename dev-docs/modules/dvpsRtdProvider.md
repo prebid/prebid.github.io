@@ -6,7 +6,7 @@ Compile the DVPS Provider into your Prebid build:
 
 `gulp build --modules=dvpsRtdProvider`
 
-Add DVPS real time data provider configuration by setting up a Prebid Config:
+Add the DVPS provider configuration by setting up a Prebid config:
 
 ```javascript
 pbjs.setConfig({
@@ -18,7 +18,7 @@ pbjs.setConfig({
         params: {
           ctx: "test_publisher_id",
           cmp: "test_tag_id",
-          signals: ["ids", "bsc", "vlp", "tvp"],
+          signals: ["ids", "bsc", "vlp", "tvp"]
         }
       }
     ]
@@ -35,12 +35,12 @@ where:
 
 To view an example:
 
-- in your cli run:
+- in your CLI run:
 
-`gulp serve --modules=dvpsRtdProvider,appnexusBidAdapter,rubiconBidAdapter,trustxBidAdapter`
+  `gulp serve --modules=dvpsRtdProvider,appnexusBidAdapter,rubiconBidAdapter,trustxBidAdapter`
 
-Your could also use any other bid adapters.
+  You can also use any other bid adapters.
 
 - in your browser, navigate to:
 
-`http://localhost:9999/integrationExamples/gpt/dvpsRtdProvider_example.html`
+  http://localhost:9999/integrationExamples/gpt/dvpsRtdProvider_example.html
