@@ -1,10 +1,12 @@
-The purpose of this Real Time Data Provider is to allow publishers to set DoubleVerify Publisher Solution targeting on ad units.
+The purpose of this real-time data provider is to allow publishers to set DoubleVerify Publisher Solution targeting on ad units.
 
 **Usage for Publishers:**
 
-Compile the DVPS Provider into your Prebid build:
+Compile the DVPS provider into your Prebid build:
 
-`gulp build --modules=dvpsRtdProvider`
+```
+gulp build --modules=dvpsRtdProvider
+```
 
 Add the DVPS provider configuration by setting up a Prebid config:
 
@@ -16,8 +18,8 @@ pbjs.setConfig({
       {
         name: "dvps",
         params: {
-          ctx: "test_publisher_id",
-          cmp: "test_tag_id",
+          ctx: "11111111",
+          cmp: "22222222",
           signals: ["ids", "bsc", "vlp", "tvp"]
         }
       }
@@ -27,8 +29,8 @@ pbjs.setConfig({
 ```
 
 where:
-- `ctx` (required) - ID associated with the publisher
-- `cmp` (required) - Tag ID
+- `ctx` (required) - ID associated with the publisher.
+- `cmp` (required) - Tag ID.
 - `signals` (optional) - Array of signal names. Possible values are: `"ids"`, `"bsc"`, `"vlp"`, `"tvp"`. By default all signals available to the publisher are requested.
 
 **Example:**
