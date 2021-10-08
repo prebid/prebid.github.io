@@ -47,8 +47,8 @@ var adUnits = [
     bids: [{
         bidder: 'talkads',
         params: {
-            tag_id: 99,
-            bidder_url: 'https://test.natexo-programmatic.com/tad/tag/prebid',
+            tag_id: 0,
+            bidder_url: 'https://d.natexo-programmatic.com/tad/tag/testbid',
         },
     }]
 ];
@@ -66,8 +66,8 @@ var adUnits = [
     bids: [{
         bidder: 'talkads',
         params: {
-            tag_id: 99,
-            bidder_url: 'https://test.natexo-programmatic.com/tad/tag/prebid',
+            tag_id: 0,
+            bidder_url: 'https://d.natexo-programmatic.com/tad/tag/testbid',
         },
     }]
 ];
