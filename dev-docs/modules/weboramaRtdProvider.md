@@ -43,7 +43,7 @@ pbjs.setConfig(
         auctionDelay: 1000,
         dataProviders: [
             {
-                name: "WeboramaRTDModule",
+                name: "weborama",
                 waitForIt: true,
                 params: {
 			token: "<token-provided-by-weborama>"
