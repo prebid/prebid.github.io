@@ -21,6 +21,8 @@ prebid_member: false
 
 ### Note:
 
+Currently adapter doesn’t support multi impression, so only the first impression will be delivered.
+
 The Example Bidding adapter requires setup before beginning. Please contact us at partner@adview.com
 
 ### Bid Params
