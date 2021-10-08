@@ -8,13 +8,14 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-getFloor: true
+floors_supported: true
 userIds: all
 prebid_member: true
 safeframes_ok: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+fpd_supported: true
 gvl_id: 76
 ---
 

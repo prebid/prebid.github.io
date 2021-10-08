@@ -6,7 +6,7 @@ pbjs: true
 biddercode: adagio
 media_types: banner, native, video
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
-getFloor: true
+floors_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
@@ -14,6 +14,7 @@ schain_supported: true
 gvl_id: 617
 prebid_member: true
 pbs: true
+fpd_supported: true
 ---
 
 ### Note

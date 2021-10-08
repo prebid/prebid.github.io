@@ -49,8 +49,9 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 | **User IDs** | {% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
 | **Supply Chain Support** | {% if page.schain_supported  == true %}yes{% else %}no{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% else %}no{% endif %} |
 | **Demand Chain Support** | {% if page.dchain_supported  == true %}yes{% else %}no{% endif %} | **Safeframes OK** | {% if page.safeframes_ok and page.safeframes_ok == false %}no{% elsif page.safeframes_ok and page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %} |
-| **Supports Deals** | {% if page.bidder_supports_deals and page.bidder_supports_deals == false %}no{% else %}yes{% endif %} | **Prebid.js Adapter** | {% if page.pbjs == true %}yes{% else %}no{% endif %} |
+| **Supports Deals** | {% if page.deals_supported and page.deals_supported == false %}no{% else %}yes{% endif %} | **Prebid.js Adapter** | {% if page.pbjs == true %}yes{% else %}no{% endif %} |
 | **Mobile App Support** | {% if page.pbs_app_supported and page.pbs_app_supported == false %}no{% elsif page.pbs_app_supported and page.pbs_app_supported == true %}yes{% else %}check with bidder{% endif %} | **Prebid Server Adapter** | yes |
+| **Floors Support** | {% if page.floors_supported == false %}no{% elsif page.floors_supported == true %}yes{% else %}check with bidder{% endif %} | **First Party Data Support** | {% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %} |
 
 
 <h3>"Send All Bids" Ad Server Keys</h3>
