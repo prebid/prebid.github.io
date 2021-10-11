@@ -2,7 +2,18 @@
 layout: bidder
 title: NextMillennium
 description: NextMillennium bid adapter
+gdpr_supported: false
+usp_supported: false
+coppa_supported: false
+schain_supported: false
+dchain_supported: false
+safeframes_ok: false
+deals_supported: false
+floors_supported: false
+fpd_supported: false
+pbs_app_supported: false
 pbjs: true
+pbs: true
 biddercode: nextMillennium
 media_types: banner
 ---
