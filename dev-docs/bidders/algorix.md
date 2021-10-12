@@ -26,8 +26,8 @@ AlgoriX adapter requires setup and approval from the AlgoriX team, even for exis
 |---------------|----------|---------------|--------------------------------------|----------|
 | `sid`         | required | Sid           | `'30014'`                            | `string` |
 | `token`       | required | Token         | `'028bca2d3b5c4f0ba155fa34864b0c4d'` | `string` |
-| `placementId` | required | Placement Id  | `'123456'`                           | `string` |
-| `appId`       | required | App Id        | `'asdasdasd'`                        | `string` |
+| `placementId` | optional | Placement Id  | `'123456'`                           | `string` |
+| `appId`       | optional | App Id        | `'asdasdasd'`                        | `string` |
 
 Note:
 * Prebid Server adapter only checks for and uses first imp bid params. All other imp bid params are ignored.
