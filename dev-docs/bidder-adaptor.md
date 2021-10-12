@@ -993,8 +993,8 @@ export const spec = {
                 ad: CREATIVE_BODY
             };
             bidResponses.push(bidResponse);
+            return bidResponses;
         };
-        return bidResponses;
     },
 
     /**
