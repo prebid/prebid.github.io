@@ -1935,7 +1935,7 @@ Verizon Media ConnectID honors privacy choices from the [Yahoo Privacy Dashboard
 Add support for Yahoo ConnectID to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=userId,connectIDIdSystem
+gulp build --modules=userId,connectIdSystem
 
 #### Yahoo ConnectID Registration
 
@@ -1946,13 +1946,13 @@ A Yahoo supplied publisher specific pixel Id is required. Please reach out to yo
 <div class="table-responsive" markdown="1">
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module. | `'connectID'` |
+| name | Required | String | The name of this module. | `'connectId'` |
 | params | Required | Object | Container of all module params. ||
 | params.pixelId | Required | Number | The Yahoo supplied publisher specific pixel Id  | `8976` |
 | params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
 | storage | Required | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Required | String | Defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
-| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectID'` |
+| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectId'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
 {: .table .table-bordered .table-striped }
 </div>
@@ -1963,14 +1963,14 @@ A Yahoo supplied publisher specific pixel Id is required. Please reach out to yo
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "connectID",
+            name: "connectId",
             params: {
               pixelId: 8976,
               he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
             },
             storage: {
               type: "html5",
-              name: "connectID",
+              name: "connectId",
               expires: 15
             }
         }]
@@ -2031,7 +2031,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
-| ConnectID | Yahoo | connectid | yahoo.com | "72d04af6..." |
+| ConnectID | Yahoo | connectId | yahoo.com | "72d04af6..." |
 
 For example, the adapter code might do something like:
 
