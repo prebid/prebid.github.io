@@ -32,6 +32,7 @@ floors_supported: true
 | `siteId`*     | required | Publisher site ID from Apacdex                                                      | `'apacdex1234'`                                   | `string` |
 | `floorPrice`  | optional | CPM bidfloor in USD                                                                 | `0.03`                                            | `float`  |
 | `geo`         | optional | GEO data of device. See [Geo Object](#apacdex-geo-object) for details.              | `{"lat":17.98928,"lon":99.7741712,"accuracy":20}` | `object` |
+
 (*) Please do not use `placementId` and `siteId` at the same time.
 
 <a name="apacdex-geo-object" />
