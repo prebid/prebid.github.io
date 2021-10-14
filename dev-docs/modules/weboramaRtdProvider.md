@@ -46,7 +46,9 @@ pbjs.setConfig(
                 name: "weborama",
                 waitForIt: true,
                 params: {
-			token: "<token-provided-by-weborama>"
+			weboCtxConf: {
+				token: "<token-provided-by-weborama>"
+			}
                 }
             }
         ]
