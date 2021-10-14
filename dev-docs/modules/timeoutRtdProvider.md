@@ -1,6 +1,7 @@
 ---
 layout: page_v2
 title: Timeout Rtd Module
+display_name: Timeout RTD
 description: Module for managing timeouts in real time
 page_type: module
 module_type: rtd
