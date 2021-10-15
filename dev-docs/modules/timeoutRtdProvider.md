@@ -150,3 +150,9 @@ pbjs.setConfig({
     // The timeout RTD module will add time to `bidderTimeout` based on the rules set above.  
     "bidderTimeout": 1500, 
 ```
+
+## Timeout Providers
+
+{: .table  }
+| Partner | Contact | About |
+| OpenX | [apollo@openx.com](mailto:apollo@openx.com) | Dynamic timeout optimization and more |
