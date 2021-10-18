@@ -5,6 +5,7 @@ description: Prebid Limelight Digital Bidder Adaptor
 pbjs: true
 biddercode: limelightDigital
 media_types: video
+pbjs_version_notes: for 4.43.5 and later
 ---
 
 ### Bid Params
