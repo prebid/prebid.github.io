@@ -1,9 +1,8 @@
 ---
 layout: bidder
 title: NextMillennium
-description: NextMillennium bid adapter
-gdpr_supported: false
-usp_supported: false
+gdpr_supported: true
+usp_supported: true
 coppa_supported: false
 schain_supported: false
 dchain_supported: false
@@ -16,6 +15,10 @@ pbjs: true
 pbs: true
 biddercode: nextMillennium
 media_types: banner
+description: NextMillennium bid adapter is developed for its publishers.
+As input parameters, it accepts only `placement_id`, which is issued when registering in NextMillennium.
+The adapter also accepts `us_privacy` and `gdpr`. Further information for the auction
+on NextMillennium side is generated automatically.
 ---
 
 ### bid params
