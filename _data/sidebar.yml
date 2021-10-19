@@ -376,6 +376,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Recommended Modules
+  link: /dev-docs/modules/index.html#recommended-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: General Modules
   link: /dev-docs/modules/index.html#general-modules
   isHeader: 0
@@ -384,24 +392,8 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Real Time Data Providers
-  link: /dev-docs/modules/index.html#real-time-data-providers
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Video Modules
-  link: /dev-docs/modules/index.html#video-modules
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Testing and Debug Modules
-  link: /dev-docs/modules/index.html#testing-and-debug-modules
+  title: Vendor-Specific Modules
+  link: /dev-docs/modules/index.html#vendor-specific-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1674,14 +1666,6 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Modules
-  link: /prebid-server/pbs-modules/
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
   title: Interstitials
   link: /prebid-server/features/pbs-interstitials.html
   isHeader: 0
@@ -1716,6 +1700,14 @@
 - sbSecId: 5
   title: First Party Data
   link: /prebid-server/features/pbs-fpd.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Modules
+  link: /prebid-server/pbs-modules/
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

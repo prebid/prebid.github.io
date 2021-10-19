@@ -55,7 +55,7 @@ If you have an idea for a module that's not feasible (e.g. a new endpoint), open
 
 There are a number of things modules are not allowed to do
 without disclosing prominently on their documentation. Please review
-the [Module Rules](/dev-docs/module-rules.html) page. Here are some examples:
+the [Module Rules](/dev-docs/module-rules.html) page. Here are some highlights:
 
 - a module can't add pixels to the creative without disclosure
 - every module must obey privacy regulations: GDPR, CCPA, COPPA
@@ -166,7 +166,7 @@ The details of the implementation depend on the platform.
 
 Other rules for open source PBS pull request:
 
-- Unit test coverage must exceed 80%.
+- Unit test coverage must exceed 90%.
 - A maintainer email address must be provided and be a group, not an individual. e.g. "support@example.com rather than jsmith@example.com
 
 ### 9. Write the Module Documentation

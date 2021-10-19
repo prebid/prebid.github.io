@@ -18,7 +18,7 @@ Currently only available for the Java version of Prebid Server
 ## Overview
 
 This module helps support bidders that aren't full-service SSPs by allowing
-PBS host companies to configure per-account OpenRTB blocking configuration. 
+PBS host companies to configure per-account OpenRTB blocking details. 
 [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) defines the following 6 attributes available for some kind
 of bid exclusion logic:
 
@@ -62,47 +62,8 @@ This module supports running at two stages:
 - bidder-request: this is where outgoing auction requests to each bidder are enriched with the account-specific blocks.
 - raw-bidder-response: this is where incoming bid responses are verified and enforced. If a host-company or account don't want to do any enforcement activities, this part of the module doesn't need to be configured.
 
-Here's an example PBS execution-plan:
-
-```
-hooks: 
-  host-execution-plan: > 
-    {
-      "/openrtb2/auction": {
-        "stages": {
-          "bidder-request": {
-            "groups": [
-              {
-                "timeout": 5000,
-                "hook-sequence": [
-                  {
-                    "modulecode": "ortb2-blocking",
-                    "hookimplcode": "ortb2-blocking-bidder-request"
-                  }
-                ]
-              }
-            ]
-          },
-          "raw-bidder-response": { # assumes enforcement is turned on
-            "groups": [
-              {
-                "timeout": 5000,
-                "hook-sequence": [
-                  {
-                    "modulecode": "ortb2-blocking",
-                    "hookimplcode": "ortb2-blocking-bidder-response"
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      },
-      "/openrtb2/amp": {
-         ... same as above ...
-      }
-    }
-```
+We recommend defining the execution plan right in the account config
+so the module is only invoked for specific accounts. See below for an example.
 
 ### Global Config
 
@@ -110,10 +71,9 @@ There is no host-company level config for this module.
 
 ### Account-Level Config
 
-The basic form of the account config is:
+Here's a general template for the account config:
 ```
 {
-  "config": {
     "hooks": {
       "modules": {
         "ortb2-blocking": {   // start of this module's config
@@ -130,14 +90,116 @@ The basic form of the account config is:
             }
           }
         }
+      },
+      "execution-plan": {
+        ...
       }
     }
-  }
 }
 ```
 
 The 'ATTRIBUTE' above is one of the 5 blockable entities defined in OpenRTB. A 'SETTING' is a feature this module supports.
 The following sections detail each of the 5 blockable entities.
+
+Here's a detailed example:
+```
+{
+    "hooks": {
+        "modules": {
+            "ortb2-blocking": {
+                "attributes": {
+                    "badv": {
+                        "enforce-blocks": false,
+                        "blocked-adomain": [],
+                        "action-overrides": {
+                            "blocked-adomain": [
+                                {
+                                    "override": [ "example.com" ],
+                                    "conditions": {
+                                        "bidders": [ "bidderA" ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "bcat": {
+                        "enforce-blocks": false,
+                        "blocked-adv-cat": [],
+                        "action-overrides": {
+                            "blocked-adv-cat": [
+                                {
+                                    "override": [ "IAB7" ],
+                                    "conditions": {
+                                        "bidders": [ "bidderA" ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "battr": {
+                        "enforce-blocks": false,
+                        "action-overrides": {
+                            "blocked-banner-attr": [
+                                {
+                                    "override": [1,3,8,9,10,13,14,17],
+                                    "conditions": {
+                                        "bidders": [
+                                            "bidderA"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "blocked-banner-attr": []
+                    }
+                }
+            }
+        },
+        "execution-plan": {
+            "endpoints": {
+                "/openrtb2/amp": {
+                    "stages": {
+                        "bidder-request": {
+                            "groups": [
+                                {
+                                    "timeout": 5,
+                                    "hook-sequence": [
+                                        {
+                                            "module-code": "ortb2-blocking",
+                                            "hook-impl-code": "ortb2-blocking-bidder-request"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                "/openrtb2/auction": {
+                    "stages": {
+                        "bidder-request": {
+                            "groups": [
+                                {
+                                    "timeout": 5,
+                                    "hook-sequence": [
+                                        {
+                                            "module-code": "ortb2-blocking",
+                                            "hook-impl-code": "ortb2-blocking-bidder-request"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### Configuration Details
+
+The module supports flexibile definition of behavior surrounding the 5 blocked attributes. Here are the details.
 
 #### Blocked Advertiser Config
 
@@ -154,7 +216,6 @@ This attribute is related to the 'badv' of the request, and the 'adomain' of the
 Here's an example account config with several scenarios:
 ```
 {
-  "config": {
     "hooks": {
       "modules": {
         "ortb2-blocking": {   // start of this module's config
@@ -210,7 +271,6 @@ Here's an example account config with several scenarios:
         }
       }
     }
-  }
 }
 ```
 
@@ -229,7 +289,6 @@ This attribute is related to the 'bcat' of the request and 'cat' of the response
 Here's an example account config with several scenarios:
 ```
 {
-  "config": {
     "hooks": {
       "modules": {
         "ortb2-blocking": {   // start of this module's config
@@ -285,7 +344,6 @@ Here's an example account config with several scenarios:
         }
       }
     }
-  }
 }
 ```
 
@@ -303,7 +361,6 @@ This attribute is related to the 'bapp' of the request and 'bundle' of the respo
 Here's an example account config:
 ```
 {
-  "config": {
     "hooks": {
       "modules": {
         "ortb2-blocking": {   // start of this module's config
@@ -331,7 +388,6 @@ Here's an example account config:
         }
       }
     }
-  }
 }
 ```
 
@@ -353,7 +409,6 @@ parse creatives to derive the type.
 Here's an example account config:
 ```
 {
-  "config": {
     "hooks": {
       "modules": {
         "ortb2-blocking": {   // start of this module's config
@@ -379,7 +434,6 @@ Here's an example account config:
         }
       }
     }
-  }
 }
 ```
 
@@ -399,7 +453,6 @@ See Table 5.3 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2
 Here's an example account config:
 ```
 {
-  "config": {
     "hooks": {
       "modules": {
         "ortb2-blocking": {   // start of this module's config
@@ -427,7 +480,6 @@ Here's an example account config:
         }
       }
     }
-  }
 }
 ```
 ## Analytics Tags
@@ -452,7 +504,7 @@ It's only applied to attributes where `enforce-blocks` is true, which means 'bty
         1. **imp**: the seatbid.bid.impid of the blocked response 
         1. **bidder**: the biddercode of the blocked response
 
-Here's an example analytics tag:
+Here's an example analytics tag that might be produced for use in an analytics adapter:
 ```
 [{
    activities: [{
