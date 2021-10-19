@@ -38,3 +38,4 @@ pbjs.setBidderConfig({
     }
 })
 ```
+If it will be "true" this allow TheMediaGrid Bid Adapter to write userId in first party localStorage
