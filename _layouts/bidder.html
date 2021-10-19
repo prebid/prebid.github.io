@@ -76,7 +76,7 @@
                   </tr>
                   <tr>
                     <th class="pbTh">Supports Deals</th>
-                    <td class="pbTd">{% if page.bidder_supports_deals == false %}no{% elsif page.bidder_supports_deals == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <td class="pbTd">{% if page.deals_supported == false %}no{% elsif page.deals_supported == true %}yes{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">Prebid.js Adapter</th>
                     <td class="pbTd">yes</td>
                   </tr>
@@ -88,9 +88,9 @@
                   </tr>
                   <tr>
                     <th class="pbTh">Floors Module Support</th>
-                    <td class="pbTd">{% if page.getFloor  == true %}yes{% else %}no{% endif %}</td>
-                    <th class="pbTh"></th>
-                    <td class="pbTd"></td>
+                    <td class="pbTd">{% if page.floors_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <th class="pbTh">First Party Data Support</th>
+                    <td class="pbTd">{% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %}</td>
                   </tr>
                 </table>
 

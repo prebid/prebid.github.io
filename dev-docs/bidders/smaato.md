@@ -13,7 +13,8 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
-getFloor: true
+floors_supported: true
+fpd_supported: true
 ---
 
 ### Table of Contents

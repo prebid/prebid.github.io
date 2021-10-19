@@ -7,6 +7,7 @@ biddercode: gridNM
 media_types: video
 gdpr_supported: true
 usp_supported: true
+fpd_supported: true
 ---
 
 
