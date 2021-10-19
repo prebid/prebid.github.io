@@ -64,7 +64,7 @@ hooks:
           "entrypoint": { # stage
             "groups": [
               {
-                "timeout": 3000,  # in nanoseconds
+                "timeout": 3,  # in milliseconds
                 "hook-sequence": [
                   {
                     "modulecode": "modulecode1",
@@ -76,7 +76,7 @@ hooks:
                   }
                 ]
               },{ // this group depends on the results of the first group
-		"timeout": 5000,  # in nanoseconds
+		"timeout": 5,  # in milliseconds
 		"hook-sequence": [
                   {
                     "modulecode": "modulecode3",
@@ -97,7 +97,7 @@ hooks:
           "raw-auction-request": { # stage
             "groups": [
               {
-                "timeout": 5000,
+                "timeout": 5,
                 "hook-sequence": [
                   {
                     "modulecode": "modulecodeA",
