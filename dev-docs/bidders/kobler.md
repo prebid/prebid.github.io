@@ -5,8 +5,8 @@ description: Kobler Bidder Adapter
 biddercode: kobler
 pbjs: true
 media_types: banner
-getFloor: true
-bidder_supports_deals: true
+floors_supported: true
+deals_supported: true
 ---
 
 ### Note:

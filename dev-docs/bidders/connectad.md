@@ -11,7 +11,7 @@ schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 safeframes_ok: true
-getFloor: true
+floors_supported: true
 pbjs: true
 pbs: true
 gvl_id: 138
