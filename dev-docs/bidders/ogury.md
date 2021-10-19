@@ -8,11 +8,11 @@ gvl_id: 31
 usp_supported: false
 coppa_supported: false
 schain_supported: false
-getFloor: true
+floors_supported: true
 dchain_supported: false
 media_types: banner
 safeframes_ok: false
-bidder_supports_deals: false
+deals_supported: false
 pbjs: true
 pbs: false
 prebid_member: false

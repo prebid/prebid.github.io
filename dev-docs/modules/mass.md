@@ -2,9 +2,9 @@
 layout: page_v2
 page_type: module
 title: Module - MASS
-description: Enable MASS protocol for Prebid
+description: General deal rendering functionality.
 module_code : mass
-display_name : MASS
+display_name : Deal Rendering (aka MASS)
 enable_download : true
 sidebarType : 1
 ---

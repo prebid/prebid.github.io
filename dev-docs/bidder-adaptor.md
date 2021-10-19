@@ -993,8 +993,8 @@ export const spec = {
                 ad: CREATIVE_BODY
             };
             bidResponses.push(bidResponse);
+            return bidResponses;
         };
-        return bidResponses;
     },
 
     /**
@@ -1069,15 +1069,16 @@ registerBidder(spec);
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
     - If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
-    - If you have an IAB Global Vendor List ID, add `gvl_id: ID`. There's no default.
     - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     - If you support COPPA, add `coppa_supported: true`. Default is false.
     - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
-    - If you support passing a demadn chain on the response, add `dchain_supported: true`. Default is false.
+    - If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
-    - If you support deals, set `bidder_supports_deals: true`. No default value..
+    - If you support deals, set `deals_supported: true`. No default value..
+    - If you support floors, set `floors_supported: true`. No default value..
+    - If you support first party data, set `fpd_supported: true`. No default value..
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
 
@@ -1090,7 +1091,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 gdpr_supported: true/false
-gvl_id: 111
+gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
@@ -1098,11 +1099,12 @@ dchain_supported: true/false
 userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true/false
-bidder_supports_deals: true/false
+deals_supported: true/false
+floors_supported: true/false
+fpd_supported: true/false
 pbjs: true/false
 pbs: true/false
 prebid_member: true/false
-gvl_id: none
 ---
 ### Note:
 

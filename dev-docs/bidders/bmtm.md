@@ -4,7 +4,7 @@ title: Bright Mountain Media
 description: Prebid Bright Mountain Media Bidder Adapter
 biddercode: bmtm
 media_types: banner, video
-getFloor: true
+floors_supported: true
 schain_supported: true
 pbjs: true
 pbs: true
