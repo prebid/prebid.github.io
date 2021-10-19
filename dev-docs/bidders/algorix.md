@@ -5,12 +5,14 @@ description: Prebid AlgoriX Bidder Adapter
 biddercode: algorix
 gdpr_supported: false
 gvl_id:
-usp_supported: false
-coppa_supported: false
+usp_supported: true
+coppa_supported: true
+schain_supported: true
 media_types: banner, video, native
 pbjs: false
 pbs: true
 pbs_app_supported: true
+prebid_member: true
 ---
 
 ### Note:

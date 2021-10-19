@@ -234,6 +234,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 1
+  title: Meta Bid Filtering
+  link: /dev-docs/examples/meta-bid-filtering.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Troubleshooting
@@ -1704,6 +1713,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
+
+- sbSecId: 5
+  title: Programmatic Guaranteed
+  link: /prebid-server/features/pg/pbs-pg-idx.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 
 - sbSecId: 5
   title: Modules

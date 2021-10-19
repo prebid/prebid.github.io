@@ -4,7 +4,7 @@ page_type: module
 title: Module - Publisher Common ID
 description: User ID persisted in first party domain
 module_code : pubCommonId
-display_name : Publisher Common ID
+display_name : Publisher Common ID (not in 5.x)
 enable_download : true
 sidebarType : 1
 ---
