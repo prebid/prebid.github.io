@@ -82,3 +82,4 @@ title: Prebid Server | Features
 | [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html) | Integration and Targeting | Ability to load, target, and report PG line items | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Operations | [Request Logging Admin Endpoints](/troubleshooting/pbs-troubleshooting.html#request-logging) | Log a limited number of requests to understand the raw data clients are sending. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Metadata | [x-prebid header](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#http-headers) | Put version information in outgoing HTTP headers. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Modules | [ortb2-blocking](/prebid-server/pbs-modules/ortb2-blocking.html) | Configure per-account OpenRTB blocking details. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
