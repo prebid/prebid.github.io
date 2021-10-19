@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Instream Video Ads Tracking
-description: Allows to track `BID WON` events for instream ad units
+description: Allow Analytics Adapters and Bid Adapters to track `BID_WON` events for instream video bids.
 module_code : instreamTracking
 display_name : Instream Tracking
 enable_download : true

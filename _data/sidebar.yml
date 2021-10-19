@@ -234,6 +234,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 1
+  title: Meta Bid Filtering
+  link: /dev-docs/examples/meta-bid-filtering.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 1
   title: Troubleshooting
@@ -359,7 +368,7 @@
   subgroup: 4
 
 - sbSecId: 1
-  title: Prebid Modules
+  title: Prebid.js Modules
   link:
   isHeader: 1
   headerId: pbjsmodules
@@ -376,6 +385,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Recommended Modules
+  link: /dev-docs/modules/index.html#recommended-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: General Modules
   link: /dev-docs/modules/index.html#general-modules
   isHeader: 0
@@ -384,24 +401,8 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Real Time Data Providers
-  link: /dev-docs/modules/index.html#real-time-data-providers
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Video Modules
-  link: /dev-docs/modules/index.html#video-modules
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Testing and Debug Modules
-  link: /dev-docs/modules/index.html#testing-and-debug-modules
+  title: Vendor-Specific Modules
+  link: /dev-docs/modules/index.html#vendor-specific-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1714,6 +1715,23 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Programmatic Guaranteed
+  link: /prebid-server/features/pg/pbs-pg-idx.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+
+- sbSecId: 5
+  title: Modules
+  link: /prebid-server/pbs-modules/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Developers
   link:
   isHeader: 1
@@ -1741,6 +1759,14 @@
 - sbSecId: 5
   title: Building an Analytics Adapter
   link: /prebid-server/developers/pbs-build-an-analytics-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 5
+  title: Building a Module
+  link: /prebid-server/developers/add-a-module.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

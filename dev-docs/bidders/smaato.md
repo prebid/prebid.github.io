@@ -13,19 +13,31 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
+floors_supported: true
+fpd_supported: true
 ---
 
 ### Table of Contents
 
+- [Registration](#smaato-registration)
+- [Note](#smaato-note)
 - [Bid Params](#smaato-bid-params)
 - [App Object](#smaato-app-object)
 - [Example Ad Units](#smaato-example-ad-units)
 - [First Party Data](#smaato-first-party)
 - [Test Parameters](#smaato-test-parameters)
 
+<a name="smaato-registration" />
+
 ### Registration
 
 The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or prebid@smaato.com for more information.
+
+<a name="smaato-note" />
+
+### Note
+
+The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 
 <a name="smaato-bid-params" />
 
