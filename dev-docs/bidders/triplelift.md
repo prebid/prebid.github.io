@@ -2,16 +2,28 @@
 layout: bidder
 title: TripleLift
 description: Prebid TripleLift Bidder Adapter
-gdpr_supported: true
-tcf2_supported: true
-usp_supported: true
-schain_supported: true
-coppa_supported: true
 biddercode: triplelift
-userIds: criteo, identityLink, unifiedId
+gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+floors_supported: true
+media_types: banner, video
+userIds: criteo, identityLink, unifiedId, pubCommonId
+prebid_member: true
+safeframes_ok: true
+deals_supported: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
+fpd_supported: true
+gvl_id: 28
 ---
+
+{% capture version2 %}
+The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
+{% endcapture %}
+{% include alerts/alert_important.html content=version2 %}
 
 ### Bid Params
 

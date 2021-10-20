@@ -40,6 +40,28 @@ pbjs.setConfig({
     }
 });
 ```
+
+To use multiple prebid servers, just define `s2sConfig` as an array. 
+The same bidder cannot be set in both configs. For example:
+
+```
+pbjs.setConfig({
+    s2sConfig: [
+    {
+        accountId: '12345',
+        bidders: ['appnexus','rubicon'],
+        defaultVendor: 'appnexus',
+        timeout: 300,
+    },
+    {
+        accountId: '678910',
+        bidders: ['pubmatic'],
+        defaultVendor: 'rubicon',
+        timeout: 300,
+    },
+    ],
+});
+```
 Configuration options
 
 {: .table .table-bordered .table-striped }
@@ -69,18 +91,17 @@ var adUnits = [{
         video: {
             playerSize: [640, 480],
             context: 'outstream',
-            mimes: ['video/mp4']
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         }
     },
     bids: [
         {
             bidder: 'appnexus',
             params: {
-                placementId: 13232392,
-                video: {
-                    skippable: true,
-                    playback_method: ['auto_play_sound_off']
-                }
+                placementId: 13232392
             },
 
         }

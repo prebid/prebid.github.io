@@ -27,15 +27,15 @@ The Java version of Prebid Server is for those who:
 
 ## Features
 
-PBS-Java look over the [feature list](/prebid-server/features/pbs-feature-idx.html) to be familiar with the differences.
+We recommend you review the [feature comparison list](/prebid-server/features/pbs-feature-idx.html) to familiarize yourself with the differences between this and PBS-Go in deciding which version is right for you.
 
 ## Code Repositories
 
 The repositories are currently in the Rubicon-Project GitHub organization, but
 will soon move to the Prebid org.
 
-- [Prebid Server - Go](https://github.com/rubicon-project/prebid-server-java)
-- [Prebid Cache Server - Go](https://github.com/prebid/prebid-cache-java)
+- [Prebid Server - Java](https://github.com/prebid/prebid-server-java)
+- [Prebid Cache Server - Java](https://github.com/prebid/prebid-cache-java)
 
 ## Installation
 
