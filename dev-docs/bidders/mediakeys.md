@@ -6,14 +6,14 @@ biddercode: mediakeys
 media_types: banner
 gvl_id: 498
 pbjs: true
-getFloor: true
+floors_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
 safeframes_ok: true
 userIds: all
-
+fpd_supported: true
 ---
 ### Note:
 

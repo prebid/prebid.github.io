@@ -9,6 +9,7 @@ media_types: native
 schain_supported: true
 userIds: pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
 usp_supported: true
+fpd_supported: true
 pbjs: true
 pbs: true
 ---

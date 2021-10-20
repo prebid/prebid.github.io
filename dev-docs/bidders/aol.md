@@ -10,6 +10,19 @@ gvl_id: 25
 userIds: verizonMediaId
 
 ---
+### IMPORTANT NOTICE!
+**TL;DR**
+1. The `aol` adapter is scheduled to be depreciated.
+2. Our New `yahoossp` is available for early adoption.
+3. Please contact your Account Manager/Executive for migration details.
+
+Dear Publishers & Partners,
+As part of our platform consolidation process to simplify your integrations moving forward
+We invite you to switch from the `oneVideo` Adapter to our NEW `yahoossp` bid adapter for both Display & Video inventory.
+FYI - The oneVideo adapter is scheduled for depreciation in the upcoming months.
+
+Thanks in advance,
+Yahoo SSP
 
 ### Note:
 This adapter allows use of both ONE by AOL: Display and ONE by AOL: Mobile platforms. In order to differentiate these sources of demand in your ad server and reporting, you may use the optional `onedisplay` and `onemobile` adapter aliases instead.
