@@ -5,6 +5,7 @@ description: NextMillennium bid adapter
 pbjs: true
 biddercode: nextMillennium
 media_types: banner
+gdpr_supported: true
 ---
 
 ### bid params
