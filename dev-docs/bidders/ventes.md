@@ -2,7 +2,7 @@
 layout: bidder
 title: ventes
 description: Prebid ventes Bidder Adapter
-pbjs: false
+pbjs: true
 biddercode: ventes
 gdpr_supported: false
 usp_supported: false
@@ -51,18 +51,18 @@ var adUnits = [
     bidder: 'ventes',
     params: {
         placementId: 'VA-062-0013-0183',
-        publisherId: '5cebea3c9eea646c7b623d5e',
+        publisherId: '555555',
         IABCategories: "['IAB1', 'IAB5']",
         device:{
           ip: '123.145.167.189',
           ifa:"AEBE52E7-03EE-455A-B3C4-E57283966239",
         },
         app: {
-          id: "agltb3B1Yi1pbmNyDAsSA0FwcBiJkfIUDA",
-          name: "Yahoo Weather",
-          bundle: 'com.kiloo.subwaysurf',
-          storeurl: 'https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en',
-          domain: 'somoaudience.com',
+          id: "aaaaaa",
+          name: "Weather",
+          bundle: 'com.example',
+          storeurl: 'https://play.google.com/store/apps/details?id=com.example&hl=en',
+          domain: 'exaple.com',
         } 
     }
   }]
