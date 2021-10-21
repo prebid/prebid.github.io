@@ -5,6 +5,7 @@ description: Piximedia Bidder Adaptor
 pbjs: true
 biddercode: piximedia
 media_types: banner
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

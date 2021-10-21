@@ -43,7 +43,7 @@ If you're invoking Prebid Server from Prebid.js, turn on the OpenRTB `test` flag
 
 ### Invoked from AMP
 
-If you're invoking Prebid Server from, you'll be unable to get debug info from the AMP page. However, you can capture the Prebid Server AMP call and append `&debug=1` to it:
+If you're invoking Prebid Server from AMP, you'll be unable to get debug info from the AMP page. However, you can capture the Prebid Server AMP call and append `&debug=1` to it:
 
 {% highlight bash %}
 https://my-prebid-server.com/openrtb2/amp?tag_id=1111111111111&w=300&h=50&...&debug=1

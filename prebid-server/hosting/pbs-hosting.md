@@ -6,6 +6,10 @@ title: Prebid Server | Hosting
 ---
 
 # Hosting a Prebid Server Cluster
+{:.no_toc}
+
+* TOC
+{:toc}
 
 Spinning up a self-hosted cluster of Prebid Servers requires some up-front-planning.
 The components that will be needed are highlighted in this hardware
@@ -64,7 +68,7 @@ populating data from their internal systems.
 You'll want to hook both Prebid Server and Prebid Cache up to an
 operational monitoring system.
 
-- PBS-Go currently supports Influx and Promotheus
+- PBS-Go currently supports Influx and Prometheus
 - PBS-Java currently supports Influx and Graphite
 
 ## Installing the Software
@@ -72,6 +76,25 @@ operational monitoring system.
 The process for actually installing and configuring the software will differ for
 the Go and Java versions of the software. See the relevant section
 as a next step.
+
+## Optional Registration
+
+Prebid does not track who downloads Prebid Server, but sometimes we make
+announcements (bugs, features) and want to get feedback on proposals. You can get on
+this mailing list by emailing prebid-server@prebid.org. It's low volume
+Here's the information we're asking for:
+
+Required to get on the list:
+- A group email address to place on the list. No individual addresses please.
+
+Optional:
+- Which version of Prebid Server are you running: PBS-Go or PBS-Java?
+- A host URL so we can occasionally check what versions people are running.
+- Are there any features you'd like to see in Prebid Server?
+
+Even though this is not information about individuals, this information falls under the
+[Prebid website privacy policy](/privacy.html). You can remove your company from the
+email list at any time just by emailing us again at prebid-server@prebid.org.
 
 ## Further Reading
 
