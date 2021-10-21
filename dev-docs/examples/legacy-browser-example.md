@@ -11,7 +11,7 @@ about:
 - One strategy to do this is simply the module/nomodule approach discussed here https://philipwalton.com/articles/deploying-es2015-code-in-production-today/
 - Another strategy is to conditionally serve one file or another based on instructions to your cdn
 
-jsfiddle_link: jsfiddle.net/bau975xy/1/embedded/html,result
+jsfiddle_link: jsfiddle.net/bau975xy/2/embedded/html,result
 
 code_height: 3050
 
