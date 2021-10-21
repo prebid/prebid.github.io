@@ -1428,7 +1428,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params | Required | Object | Customized parameters. | |
 | params.e | Required | String | Hashed email address of the user.  Supports MD5 and SHA256. | `'7D320454942620664D96EF78ED4E3A2A'` |
 | params.site_id | Required | String | Site ID provided by Epsilon. | `'123456'` |
-| params.api_key | Required | String | API key provided by Epsilon. | `'7ab62359-bdc0-4095-b573-ef474fb55d2'`
+| params.api_key | Required | String | API key provided by Epsilon. | `'00000000-0000-0000-0000-00000000000'`
 
 #### Publisher Link Examples
 ```javascript
@@ -1444,7 +1444,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
                params: {
                    e: "7D320454942620664D96EF78ED4E3A2A", // example hashed email (md5)
                    site_id: "123456",
-                   api_key: "7ab62359-bdc0-4095-b573-ef474fb55d2"
+                   api_key: "00000000-0000-0000-0000-00000000000"
                }
            }]
        }
