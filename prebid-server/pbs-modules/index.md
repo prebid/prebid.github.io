@@ -49,7 +49,7 @@ If you want the module to run on every request regardless of account, this is a
 host-level config you should place in `application.yaml`. If the module should
 be active only for certain accounts, you'll need to place the plan in the account-specific config.
 
-To define a plab, you'll need to know the following module details, which should be availble in the module documenation:
+To define a plan, you'll need to know the following module details, which should be available in the module documentation:
 - urls: which PBS 'entry points' are relevant. e.g. /openrtb2/auction, /openrtb2/amp
 - stages: one or more of the 7 workflow stages where the module should be called: entrypoint, raw-auction-request, processed-auction-request, bidder-request, raw-bidder-response, processed-bidder-response, and/or auction-response.
 - hooks: for each stage where a module runs, its documentation will provide the hook function name.
@@ -58,7 +58,8 @@ Here's an example application.yaml entry:
 ```
 hooks: 
   host-execution-plan: >   # these hooks are always run for all accounts
-    {
+  {
+    "endpoints": {
       "/openrtb2/auction": { # endpoint
         "stages": {
           "entrypoint": { # stage
@@ -89,9 +90,11 @@ hooks:
         }
       }
     }
+  }
   # these hooks are run for all accounts unless overridden by DB config
   default-account-execution-plan: >
-    {
+  {
+   "endpoints": {
       "/openrtb2/amp": { # endpoint
         "stages": {
           "raw-auction-request": { # stage
@@ -110,6 +113,7 @@ hooks:
         }
       }
     }
+  }
 ```
 
 ### 3. Supply the module with configuration
