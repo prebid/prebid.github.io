@@ -13,9 +13,10 @@ sidebar_entry: /prebid-server/developers/add-a-module.html
 
 ## Overview
 
-Analytics Tags (aka ‘ATags’) are a log mechanism provided by PBS-core to modules
-to allow them to inform analytics adapters about what happened in the request.
-Use of the Analytics Tag structure is completely optional, for when there are application or reporting reasons for sharing the results.
+Analytics Tags (aka ‘ATags’) are a log mechanism provided by PBS-core to allow modules
+to inform analytics adapters about what happened in the request.
+Use of the Analytics Tag structure is completely optional. It's meant
+to be used when there are application or reporting reasons for sharing module results.
 See the [Prebid Server module overview](/prebid-server/developers/add-a-module.html) for background information.
 
 This document defines a convention aimed at allowing module developers to create
