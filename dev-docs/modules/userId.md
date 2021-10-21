@@ -2025,6 +2025,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | NextRoll ID | NextRoll | nextrollId | nextroll.com | "bf3Ka.../SjP/zpVGr09voA" |
 | Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |
 | Parrable ID | Parrable | parrableId | parrable.com | {"eid":"01.15946..."} |
+| Publisher Link ID | n/a | publinkId | epsilon.com | |
 | PubProvided ID | n/a | pubProvidedId | publisher domain | "1111" |
 | Quantcast ID | n/a | quantcastId | quantcast.com | "1111" |
 | Tapad ID | Tapad | tapadId | tapad.com | "1111" |

@@ -315,6 +315,9 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="publinkIdSystem" class="bidder-check-box"> Publisher Link ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
