@@ -4,6 +4,7 @@ title: Reload
 description: Reload Prebid Adaptor
 pbjs: true
 biddercode: reload
+pbjs_version_notes: not in 5.x
 ---
 
 

@@ -1,0 +1,121 @@
+body {
+  color: $t-text-color;
+  font-family: $t-font-family;
+  font-size: $t-font-size--mobile;
+  line-height: $t-line-height;
+
+  @include media('>phone') {
+    font-size: $t-font-size;
+  }
+
+  @include primary-font-loaded {
+    font-family: $t-font-family--primary;
+  }
+}
+
+// Paragraph
+//
+// Default Paragraph
+//
+// Markup: <p>Body text. Proxima Nova Regular. 18pt. 28pt leading. #666. Vector-H is a high-performance MPP SQL engine with vectorized query execution that runs natively in Hadoop, powering modern decision support systems and BI by enabling developers, data scientists and business analysts to query HDFS data for machine learning, advanced analytics, statistics and more.</p>
+//
+// Styleguide Typography.Body
+p {
+
+}
+
+// Anchor
+//
+// Anchor/Link Styling
+//
+// Markup: <a href="#">An Anchor Link</a>
+//
+// Styleguide Typography.Body
+a {
+  color: $t-anchor-color;
+  text-decoration: underline;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  @include font-weight-semibold;
+  color: $t-heading-color;
+
+  .typography-white & {
+    color: $t-text-reverse;
+  }
+
+  .no-margin-top &, &.no-margin-top {
+    margin-top: 0 !important;
+  }
+}
+
+// h1
+//
+// Heading 1 style
+//
+// Markup: <h1>A Main Heading</h1>
+//
+// Styleguide Typography.Headings
+h1, .h1 {
+  font-size: 12vw;
+  line-height: 1.2;
+
+  @include media(">=410px") {
+    font-size: 42px;
+  }
+
+  @include media(">=phone") {
+    font-size: 50px;
+  }
+}
+
+// h2
+//
+// Heading 2 style
+//
+// Markup: <h2>A Sub Heading</h2>
+//
+// Styleguide Typography.Headings
+h2, .h2 {
+  font-size: 36px;
+  line-height: 1.1;
+
+  @include media('>phone') {
+    font-size: 40px;
+  }
+}
+
+// h3
+//
+// Heading 3 style
+//
+// Markup: <h3>A Sub Heading</h3>
+//
+// Styleguide Typography.Headings
+h3, .h3 {
+  font-size: 26px;
+  line-height: 1.1;
+
+  @include media('>phone') {
+    font-size: 30px;
+  }
+}
+
+// h4
+//
+// Heading 4 style
+//
+// Markup: <h4>A Sub Heading</h4>
+//
+// Styleguide Typography.Headings
+h4, .h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 18px;
+}

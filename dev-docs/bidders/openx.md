@@ -10,9 +10,10 @@ schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+floors_supported: true
+userIds: admixerId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, haloId, id5Id, identityLink, idxId, intentIqId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, netId, nextrollId, novatiq, parrableId, pubCommonId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
-tcf2_supported: true
+fpd_supported: true
 gvl_id: 69
 ---
 
@@ -24,23 +25,23 @@ If you have any questions regarding set up, please reach out to your account man
 #### Banner
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type | 
-| ---- | ----- | ----------- | ------- | ---- | 
-| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative.  | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String | 
-| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String | 
-| `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object | 
-| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50 | Number | 
-| `doNotTrack` | optional | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean | 
-| `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean | 
+| Name | Scope | Description | Example | Type |
+| ---- | ----- | ----------- | ------- | ---- |
+| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative. Both may be present. `platform` is preferred | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String |
+| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
+| `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object |
+| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50 | Number |
+| `doNotTrack` | optional | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
+| `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
 
 #### Video
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type | 
-| ---- | ----- | ----------- | ------- | ---- | 
-| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String | 
-| `delDomain` | required | OpenX delivery domain provided by your OpenX representative.  | "PUBLISHER-d.openx.net" | String |  
-| `openrtb` | optional | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }` | Object | 
+| Name | Scope | Description | Example | Type |
+| ---- | ----- | ----------- | ------- | ---- |
+| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
+| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative. Both may be present. `platform` is preferred | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String |
+| `openrtb` | optional | An OpenRtb Impression with Video subtype properties | `{ imp: [{ video: {mimes: ['video/x-ms-wmv, video/mp4']} }] }` | Object |
 
 
 ## Example
@@ -79,17 +80,15 @@ var adUnits = [
     mediaTypes: {
       video: {
         playerSize: [640, 480],
-        context: 'instream'
+        context: 'instream',
+        mimes: ['video/x-ms-wmv, video/mp4']
       }
     },
     bids: [{
       bidder: 'openx',
       params: {
         unit: '1611023124',
-        delDomain: 'PUBLISHER-d.openx.net',
-        video: { 
-          mimes: ['video/x-ms-wmv, video/mp4']
-        }
+        delDomain: 'PUBLISHER-d.openx.net'
       }
     }]
   }

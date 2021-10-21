@@ -65,8 +65,8 @@ GitHub Repositories:
 
 + https://github.com/prebid/prebid-server
 + https://github.com/prebid/prebid-cache
-+ https://github.com/rubicon-project/prebid-server-java
-+ https://github.com/rubicon-project/prebid-cache-java
++ https://github.com/prebid/prebid-server-java
++ https://github.com/prebid/prebid-cache-java
 
 
 ## Prebid Tools
