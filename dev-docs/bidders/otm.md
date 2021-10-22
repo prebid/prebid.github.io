@@ -5,6 +5,7 @@ description: OTM Bidder Adapter
 pbjs: true
 biddercode: otm
 floors_supported: true
+media_types: banner
 ---
 
 ### Bid Params
