@@ -77,14 +77,8 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 
 ```yaml
 adapters:
-  {bidder}:
-    enabled: false
+  yourBidderCode:
     endpoint: http://possible.endpoint
-    pbs-enforces-gdpr: true
-    pbs-enforces-ccpa: true
-    modifying-vast-xml-allowed: true
-    deprecated-names:
-    aliases:
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -101,16 +95,16 @@ adapters:
       vendor-id: your_vendor_id
     usersync:
       url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder={bidder}&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
-      cookie-family-name: {bidder}
+      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
+      cookie-family-name: yourBidderCode
       type: redirect
       support-cors: false
 ```
 
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
-- Change the `modifyingVastXmlAllowed` value to `true` if you'd like to opt-in for video impression tracking.
-- Change the `enabled` value to `true` if you'd like to make your bid adapter enabled.
+- Change the `modifying-vast-xml-allowed` value to `false` if you'd like to opt out of video impression tracking. It defaults to `true`.
+- Change the `pbs-enforces-ccpa` to `false` if you'd like to disable ccpa enforcement. Defaults to `true`.
 - Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 - Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
@@ -123,6 +117,57 @@ The url of your user syncer can make use of the following privacy policy macros 
 - `{%raw%}{{gdpr_consent}}{%endraw%}`: Client's GDPR TCF consent string.
 
 - Change the `usersync:type` value to `redirect` or `iframe` specific to your bidder.
+
+### Default bidder configuration
+
+Prebid Server has default configuration for common bidder properties, which can be overriden by bidders in their
+configurations.
+
+Default configuration:
+
+```yaml
+adapter-defaults:
+  enabled: false
+  pbs-enforces-ccpa: true
+  modifying-vast-xml-allowed: true
+```
+
+There are also some default properties which can't be overridden in adapter-defaults, but rather in particular adapter's config:
+- `aliases`: Defaults to empty
+- `deprecated-names`: Defaults to empty
+- `extra-info`: Defaults to empty
+
+### Create bidder alias
+If you want to add bidder that is an alias of existing bidder, you need just to update configuration of parent bidder:
+
+Example of adding bidder alias:
+```yaml
+adapters:
+  yourBidderCode:
+    ...
+    aliases: 
+      yourBidderAlias:
+        endpoint: http://possible.alias/endpoint
+        app-media-types:
+          - banner
+          - video
+        site-media-types:
+          - banner
+          - video
+        usersync:
+          cookie-family-name: yourBidderCode
+```
+
+Aliases are configured by adding child configuration object at `adapters.yourBidderCode.aliases.yourBidderAlias`
+
+Aliases support the same configuration options that their bidder counterparts support except `aliases` (i.e. it's not possible
+to declare alias of an alias). 
+
+{: .alert.alert-warning :}
+**Aliases cannot declare support for media types not supported by their parent bidders**<br />
+However aliases could narrow down media types they support.<br />
+For example: if the bidder is written to not support native site requests, then an alias cannot magically decide to change that;
+However, if a bidder supports native site requests, and the alias does not want to for some reason, it has the ability to remove that support.
 
 ### Bidder Parameters
 
@@ -499,14 +544,17 @@ Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-conte
 | `.Currency` | Required | [3-letter ISO 4217 code](https://www.iso.org/iso-4217-currency-codes.html) defining the currency of the bid. The Prebid Server default is USD.
 | `.Bids[].BidType` | Required | Prebid Server defined value identifying the media type as `banner`, `video`, `audio`, or `native`. Should be mapped from the bidding server response.
 | `.Bids[].Bid.ADomain` | Optional | Advertiser domain for block list checking.
-| `.Bids[].Bid.AdM` | Optional | Ad markup to serve the creative if the bid wins. May be HTML, Native, or VAST/VMAP formats.
+| `.Bids[].Bid.AdM` | Optional | Ad markup to serve if the bid wins. May be HTML, Native, or VAST/VMAP formats. You should resolve any AUCTION_PRICE macros.
 | `.Bids[].Bid.CrID` | Required | Unique id of the creative.
 | `.Bids[].Bid.ID` | Required | Bidder generated id to assist with logging and tracking.
 | `.Bids[].Bid.ImpID` | Required | ID of the corresponding bid request Impression. Prebid Server validates the id is actually found in the bid request.
 | `.Bids[].Bid.Price` | Required | Net price CPM of the bid, not gross price. Publishers can correct for gross price bids by setting Bid Adjustments to account for fees. We recommend the most granular price a bidder can provide.
 | `.Bids[].Bid.W` | Optional | Width of the creative in pixels.
 | `.Bids[].Bid.H` | Optional | Height of the creative in pixels.
-| `.Bids[].Bid.Ext` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
+| `.Bids[].Bid.Ext.Prebid.Meta` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
+
+{: .alert.alert-info :}
+We recommend resolving creative OpenRTB macros in your adapter. Otherwise, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity.
 
 If you'd like to support Long Form Video Ad Pods, then you'll need to provide the followings information:
 
@@ -524,7 +572,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in Prebid.js 5.x+ release, specifically for AdvertiserDomains and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description |
@@ -535,13 +583,12 @@ Bid metadata will be *required* in Prebid.js 5.x+ release, specifically for Adve
 | `.AgencyName` | Bidder-specific agency name |
 | `.AdvertiserID` | Bidder-specific advertiser id |
 | `.AdvertiserName` | Bidder-specific advertiser name |
-| `.AdvertiserDomains` | Advertiser domains for the landing page(s). Should match `.Bids[].Bid.ADomain` |
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands |
 | `.BrandName` | Bidder-specific brand name |
 | `.dchain` | Demand Chain Object
 | `.PrimaryCategoryID` | Primary IAB category id |
 | `.SecondaryCategoryIDs` | Secondary IAB category ids |
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. Should match `.Bids[].BidType` |
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe. |
 
 <p></p>
 
@@ -748,7 +795,6 @@ Go to `test-application.properties` file and add folowing properties
 ```yaml
 adapters.{bidder}.enabled=true
 adapters.{bidder}.endpoint=http://localhost:8090/{bidder}-exchange
-adapters.{bidder}.pbs-enforces-gdpr=true
 adapters.{bidder}.usersync.url=//{bidder}-usersync
 ```
 
@@ -1122,7 +1168,9 @@ dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
-bidder_supports_deals: true/false
+deals_supported: true/false
+floors_supported: true/false
+fpd_supported: true/false
 pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
@@ -1152,7 +1200,9 @@ Notes on the metadata fields:
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported`: true. No default value.
-- If your bidder supports deals, set `bidder_supports_deals: true`. No default value.
+- If your bidder supports deals, set `deals_supported: true`. No default value.
+- If your bidder supports floors, set `floors_supported: true`. No default value.
+- If your bidder supports first party data, set `fpd_supported: true`. No default value.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 

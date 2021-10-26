@@ -5,6 +5,7 @@ description: Prebid Performax Bidder Adaptor
 pbjs: true
 biddercode: performax
 media_types: banner
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

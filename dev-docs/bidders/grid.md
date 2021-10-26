@@ -9,8 +9,11 @@ media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
-getFloor: true
+floors_supported: true
 userIds: all
+tcf2_supported: true
+coppa_supported: true
+fpd_supported: true
 ---
 
 

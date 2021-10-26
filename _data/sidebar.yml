@@ -180,7 +180,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /dev-docs/examples/native-ad-example.html
+  link: /formats/native.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -229,6 +229,15 @@
 - sbSecId: 1
   title: Filter Sizes Dynamically with Labels
   link: /dev-docs/examples/size-mapping.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 1
+  title: Meta Bid Filtering
+  link: /dev-docs/examples/meta-bid-filtering.html
   Item: 1
   isHeader: 0
   isSectionHeader: 0
@@ -1326,16 +1335,8 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: 'JW Player (Hosted)'
+  title: 'JW Player (Self-Hosted)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Playlist)'
-  link: /examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1399,24 +1400,8 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: 'JW Player (Hosted)'
+  title: 'JW Player (Self-Hosted)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Playlist)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Player 7)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1738,6 +1723,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Programmatic Guaranteed
+  link: /prebid-server/features/pg/pbs-pg-idx.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Developers
   link:
   isHeader: 1
@@ -1934,7 +1927,7 @@
 
 - sbSecId: 6
   title: Native
-  link: /dev-docs/show-native-ads.html
+  link: /prebid/native-implementation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2046,3 +2039,41 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+#-------------- Prebid Identity --------------|
+
+- sbSecId: 9
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Identity
+  sectionId: prebid-identity
+  subgroup: 1000
+  sbCollapseId: prebid-identity
+
+- sbSecId: 9
+  title: invis
+  link:
+  isHeader: 1
+  headerId: invis
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 9
+  title: Identity Overview
+  link: /identity/prebid-identity.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 9
+  title: SharedID
+  link: /identity/sharedid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+

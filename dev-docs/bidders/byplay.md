@@ -5,6 +5,7 @@ description: Prebid ByPlay Bidder Adaptor
 pbjs: true
 biddercode: byplay
 media_types: video
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

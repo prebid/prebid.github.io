@@ -4,10 +4,11 @@ title: Adyoulike
 description: Prebid Adyoulike Bidder Adaptor
 pbjs: true
 pbs: true
-media_types: banner, native
+media_types: banner, video, native
 biddercode: adyoulike
 gdpr_supported: true
 usp_supported: true
+floors_supported: true
 ---
 
 ### Note:
