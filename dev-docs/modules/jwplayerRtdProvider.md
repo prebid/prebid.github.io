@@ -7,6 +7,7 @@ page_type: module
 module_type: rtd
 module_code : jwplayerRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -95,7 +96,7 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
 | :------------ | :------------ | :------------ |:------------ |
 | ortb2Imp.ext.data.jwTargeting | Object | | |
 | ortb2Imp.ext.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
-| ortb2Imp.ext.data.jwTargeting.playerID | String | Id of the JW Player instance which will render the content associated to the Ad Unit | Optional but recommended |
+| ortb2Imp.ext.data.jwTargeting.playerID | String | the ID of the HTML div element used when instantiating the JW Player instance that will render the content associated with the Ad Unit | Optional but recommended. You can retrieve this ID by calling `player.id`, where player is the JW Player instance variable. |
 
 ## Implementation for Bid Adapters:
 

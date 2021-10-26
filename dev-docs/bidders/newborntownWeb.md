@@ -4,6 +4,7 @@ title: newborntownWeb
 description: Prebid newborntownWeb Bidder Adaptor
 pbjs: true
 biddercode: newborntownWeb
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

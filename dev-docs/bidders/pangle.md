@@ -8,7 +8,7 @@ coppa_supported: true
 schain_supported: false
 media_types: banner, video, native
 safeframes_ok: false
-bidder_supports_deals: false
+deals_supported: false
 pbjs: false
 pbs: true
 pbs_app_supported: true
@@ -22,6 +22,8 @@ The Pangle Bidding adapter requires setup before beginning. Please contact us at
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example   | Type     |
-|---------------|----------|--------------|-----------|----------|
-| token         | required | access token | 'aaaa123' | string   |
+| Name          | Scope    | Description                                           | Example     | Type     |
+|---------------|----------|-------------------------------------------------------|-------------|----------|
+| token         | required | access token                                          | 'aaaa123'   | string   |
+| appid         | optional | app id (must be used in conjunction with placementid) | '5123400'   | string   |
+| placementid   | optional | placement id (must be used in conjunction with appid) | '912340000' | string   |
