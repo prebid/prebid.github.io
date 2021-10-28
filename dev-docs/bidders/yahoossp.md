@@ -15,15 +15,22 @@ gvl_id: 25
 userIds: All
 ---
 
-### Bid Params
+### Important Notice (JS vs PBS)
+There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters. The Prebid-server adapter currently does not support Video inventory or integration via the `pubId` method.
+
+
+### Prebid.js Bid Params
 The 'yahoossp' bid adapter supports 2 integration types:
 1. **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
 2. **pubId** (Publisher ID) - For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
 
 
-**Important:** pubId integration (option 2) is only possible when your Seller account is setup for "Inventory Mapping", Please contact your Account Manager to verify your setup.
+### Prebid-Server Bid Params
+The 'yahoossp' bid adapter supports 2 integration types:
+* **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
 
-#### DCN & POS Integration Parameters
+
+#### DCN & POS Integration Parameters (JS & PBS)
 For legacy "aol", "oneMobile" adapter partners/publishers.
 
 {: .table .table-bordered .table-striped }
@@ -32,7 +39,7 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 | dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
 
-#### PubId Integration Parameters
+#### PubId Integration Parameters (JS Only)
 For New partners/publishers joining Yahoo SSP
 floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
 
