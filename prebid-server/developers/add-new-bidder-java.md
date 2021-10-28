@@ -683,7 +683,16 @@ public class {bidder}Configuration {
 }
 ```
 
-### Converting Floor Prices (optional)
+### Currency
+
+Prebid Server is a global product that is currency agnostic. Publishers may ask for bids in any currency. It's totally fine if your bidding endpoint only supports a single currency, but your adapter needs to deal with it. This section will describe how to do so.
+
+Here are 3 key points to consider:
+
+1. If your endpoint only bids in a particular currency, then your adapter must not blindly forward the openrtb to your endpoint. You should instead set $.cur to your server's required currency.
+2. Your adapter must label bid responses properly with the response currency. i.e. if you only bid in USD, then your adapter must set USD as the response currency. PBS will convert to the publisher's requested currency as needed. See the [currency feature](/prebid-server/features/pbs-currency.html) for more info.
+3. You should be aware that floors can be defined in any currency. If your bidding service supports floors, but only in a particular currency, then you must read use the CurrencyConversionService before sending $.imp[].bidfloor and $.imp[].bidfloorcur to your endpoint.
+
 If you need to convert floor prices from one currency into something your endpoint expects, you can use the convertCurrency function from CurrencyConversionService component.
 
 1) Inject CurrencyConversionService to your {bidder}Configuration class and pass it to your bidder constructor.
