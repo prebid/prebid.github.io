@@ -641,11 +641,13 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
 
 ##### Currency
 
-If your bidding server supports multiple currencies, please pass through the `request.cur` field. If your bidding server only bids in a single currency, such as USD or EUR, that's fine. Prebid Server will convert your bid to the request currency if you include it in the bid response, otherwise we assume USD and conversion will not occur.
+Prebid Server is a global product that is currency agnostic. Publishers may ask for bids in any currency. It's totally fine if your bidding endpoint only supports a single currency, but your adapter needs to deal with it. This section will describe how to do so.
 
-Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You can use of the `requestInfo.ConvertCurrency` helper method for currency conversions if your endpoint only supports floors in a specific currency.
+Here are 3 key points to consider:
 
-Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You have access to the currency conversion helper method `ConvertCurrency` in case your endpoint only supports floors in a single currency.
+1. If your endpoint only bids in a particular currency, then your adapter must not blindly forward the openrtb to your endpoint. You should instead set $.cur to your server's required currency.
+2. Your adapter must label bid responses properly with the response currency. i.e. if you only bid in USD, then your adapter must set USD as the response currency. PBS will convert to the publisher's requested currency as needed. See the [currency feature](/prebid-server/features/pbs-currency.html) for more info.
+3. You should be aware that floors can be defined in any currency. If your bidding service supports floors, but only in a particular currency, then you must read use the `requestInfo.ConvertCurrency` function before sending $.imp[].bidfloor and $.imp[].bidfloorcur to your endpoint.
 
 <details markdown="1">
   <summary>Example: Currency conversion needed for bid floor values in impressions.</summary>
