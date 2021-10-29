@@ -225,6 +225,34 @@ pbjs.setConfig({
 
 {% endhighlight %}
 
+### Supplying OpenRTB Content Data
+OpenRTB `content` object describes specific (mostly audio/video) content information, and it is useful for targeting.
+For website ad, the content object should be defined in `ortb2.site.content`, for non-browser ad, it should be defined in `ortb2.app.content`
+
+{% highlight js %}
+pbjs.setConfig({
+    ortb2: {
+        site: {
+            content: {
+                id: "some_id",
+                episode: "1",
+                title: "some title",
+                series: "some series",
+                season: "s1",
+                artist: "John Doe",
+                genre: "some genre",
+                isrc: "CC-XXX-YY-NNNNN",
+                url: "http://foo_url.de",
+                cat: ["IAB1-1", "IAB1-2", "IAB2-10"],
+                context: "7",
+                keywords: ["k1", "k2"],
+                live: "0"
+            }
+        }
+    }
+});
+{% endhighlight %}
+
 ## Segments and Taxonomy
 
 The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in the examples above.
