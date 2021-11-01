@@ -13,6 +13,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
+userIds: identityLink
 pbjs_version_notes: v4.35 and later
 ---
 
