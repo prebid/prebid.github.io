@@ -54,7 +54,7 @@ Once granted authenticated access to the Dimension Value endpoint, you'll use th
 - GET /dim-val/api/v2/attr/names?account=1001
 - GET /dim-val/api/v2/attr/values?account=1001
 
-There are various options for filtering data. See the [Dimension Value API documentation](https://github.rp-core.com/ContainerTag/pg-dim-val-api/blob/master-rubicon/docs/server_endpoints.md) for more details.
+There are various options for filtering data. See the [Dimension Value API documentation](https://github.com/prebid/pg-dim-val-api/blob/main/docs/server_endpoints.md) for more details.
 
 {: .alert.alert-info :}
 In order to access client-specific targeting data, you'll need to know the account ID the Host Company uses for each publisher.
@@ -71,8 +71,8 @@ There are two reasons PG Bidders need data from the Host Company's PG Delivery S
 
 Some example Delivery Stats queries:
 
-- GET /del-stats-summ/api/v1/report/line-item-summary?startTime=YYYY-MM-DDT00:00:00.000Z -- this returns an hourly aggregration for all of your line items since the specified time. See the [Line Item Summary Report endpoint documentation](https://github.rp-core.com/ContainerTag/pg-del-stats-svc/blob/master-rubicon/docs/line_item_summary_endpoint.md) for more info.
-- GET /del-stats-pa/api/v2/report/delivery?bidderCode=pgExample&startTime=YYYY-MM-DDT00:00:00.000Z -- this returns 5-minute aggregations for all of your line items since the specified time. See the [Delivery Report endpoint documentation](https://github.rp-core.com/ContainerTag/pg-del-stats-svc/blob/master-rubicon/docs/delivery_report_endpoints.md)
+- GET /del-stats-summ/api/v1/report/line-item-summary?startTime=YYYY-MM-DDT00:00:00.000Z -- this returns an hourly aggregration for all of your line items since the specified time. See the [Line Item Summary Report endpoint documentation](https://github.com/prebid/pg-del-stats/blob/main/docs/line_item_summary_endpoint.md) for more info.
+- GET /del-stats-pa/api/v2/report/delivery?bidderCode=pgExample&startTime=YYYY-MM-DDT00:00:00.000Z -- this returns 5-minute aggregations for all of your line items since the specified time. See the [Delivery Report endpoint documentation](https://github.com/prebid/pg-del-stats/blob/main/docs/delivery_report_endpoints.md)
 
 
 ### Answering General Planner requests
@@ -86,7 +86,7 @@ The path of this endpoint can be anything you'd like. It will receive these quer
 | since | string | no |  Timestamp in ISO-8601 format. For example, 2019-02-01T03:00:00.000Z. Service should respond with all meta data for active or nearly-active line items and schedules that got updated since this timestamp. Absence of this parameter signals request to return all active or nearly-active line items. |
 | hours | string | no |  Number of hours of plans desired i.e. provide the next 3 hours worth of plans |
 
-Here's an [example JSON response](https://github.rp-core.com/ContainerTag/pg-general-planner/blob/master-rubicon/docs/samples/pa_rsp.json) that might come from your bidder planner.
+Here's an [example JSON response](https://github.com/prebid/pg-general-planner/blob/main/docs/samples/pa_rsp.json) that might come from your bidder planner.
 
 At this point, your endpoint needs to respond quickly with the most recently calculated set of PG line item pacing plans. A `plan` is a set
 of instructions to Prebid Server that tells the system how often to serve
