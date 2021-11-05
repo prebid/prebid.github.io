@@ -1,5 +1,5 @@
 ---
-layout: page_v1
+layout: page_v2
 page_type: module
 title: Yieldmo Synthetic Inventory Module
 description: Yieldmo Synthetic Outstream ads
