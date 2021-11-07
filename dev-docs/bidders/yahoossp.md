@@ -15,59 +15,55 @@ gvl_id: 25
 userIds: All
 ---
 
-<<<<<<< HEAD
 ### Important Notice (JS vs PBS)
-There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters. The Prebid-server adapter currently does not support Video inventory or integration via the `pubId` method.
+There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters.
+The Prebid-server adapter currently does not support:
+1. Video inventory.
+2. Integration via the `pubId` method.
 
 
-### Prebid.js Bid Params
-=======
-### Bid Params
->>>>>>> 7f0006db9f22093571271c8e94b6f2821db97c95
-The 'yahoossp' bid adapter supports 2 integration types:
+### Yahoo SSP Adapter Overview
+The Yahoo SSP Bid Adapter is an OpenRTB interface that consolidates all previous "Oath.inc" adapters such as: "aol", "oneMobile", "oneDisplay" & "oneVideo" supply-side platforms.
+
+### Prebid.js Mandatory Bid Params
+The 'yahoossp' bid adapter supports 2 alternate integration types:
 1. **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
 2. **pubId** (Publisher ID) - For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
-
-<<<<<<< HEAD
-
-### Prebid-Server Bid Params
-The 'yahoossp' bid adapter supports 2 integration types:
+### Prebid-Server Mandatory Bid Params
+Prebid-server adapter supports one integration method:
 * **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
-
-
 #### DCN & POS Integration Parameters (JS & PBS)
-=======
-**Important:** pubId integration (option 2) is only possible when your Seller account is setup for "Inventory Mapping", Please contact your Account Manager to verify your setup.
-
-#### DCN & POS Integration Parameters
->>>>>>> 7f0006db9f22093571271c8e94b6f2821db97c95
 For legacy "aol", "oneMobile" adapter partners/publishers.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-<<<<<<< HEAD
 | dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
-
 #### PubId Integration Parameters (JS Only)
-=======
-| dcn | required | Site ID provided by Yahoo SSP | 'site1' | string |
-| pos | required | Placement ID provided by Yahoo SSP | 'placement1' | string |
-
-#### PubId Integration Parameters
->>>>>>> 7f0006db9f22093571271c8e94b6f2821db97c95
 For New partners/publishers joining Yahoo SSP
 floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-<<<<<<< HEAD
 | pubId | Required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
 | siteId | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
-=======
-| pubId | required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
-| inventoryId | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
->>>>>>> 7f0006db9f22093571271c8e94b6f2821db97c95
 | placementId | Optional | Ability to target a specific Placement using an External ID provided by Yahoo SSP | 'header' | string |
+
+### Prebid.js Adapter Supported Features
+For further setup details & examples please see https://github.com/prebid/Prebid.js/blob/master/modules/yahoosspBidAdapter.md
+* Media Types: Banner & Video
+* Outstream renderer
+* Multi-format adUnits
+* Schain module
+* Price floors module
+* Advertiser domains
+* End-2-End self-served testing mode
+* Outstream renderer/Player
+* User ID Modules - ConnectId and others
+* First Party Data (ortb2 & ortb2Imp)
+* Custom TTL (time to live)
+
+Thanks you,
+Yahoo SSP
