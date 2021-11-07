@@ -21,15 +21,11 @@ The Prebid-server adapter currently does not support:
 1. Video inventory.
 2. Integration via the `pubId` method.
 
-
-### Yahoo SSP Adapter Overview
-The Yahoo SSP Bid Adapter is an OpenRTB interface that consolidates all previous "Oath.inc" adapters such as: "aol", "oneMobile", "oneDisplay" & "oneVideo" supply-side platforms.
-
-### Prebid.js Mandatory Bid Params
+### yahoossp Prebid.js Mandatory Bid Params
 The 'yahoossp' bid adapter supports 2 alternate integration types:
 1. **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
 2. **pubId** (Publisher ID) - For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
-### Prebid-Server Mandatory Bid Params
+### yahoossp Prebid-Server Mandatory Bid Params
 Prebid-server adapter supports one integration method:
 * **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
 #### DCN & POS Integration Parameters (JS & PBS)
