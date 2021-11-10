@@ -8,7 +8,6 @@ gvl_id: 498
 pbjs: true
 floors_supported: true
 gdpr_supported: true
-userIds: all
 schain_supported: true
 coppa_supported: true
 usp_supported: true
