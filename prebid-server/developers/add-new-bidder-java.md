@@ -104,7 +104,6 @@ adapters:
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
 - Change the `modifying-vast-xml-allowed` value to `false` if you'd like to opt out of video impression tracking. It defaults to `true`.
-- Change the `pbs-enforces-gdpr` to `false` if you'd like to disable gdpr enforcement. Defaults to `true`.
 - Change the `pbs-enforces-ccpa` to `false` if you'd like to disable ccpa enforcement. Defaults to `true`.
 - Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
@@ -129,12 +128,14 @@ Default configuration:
 ```yaml
 adapter-defaults:
   enabled: false
-  pbs-enforces-gdpr: true
   pbs-enforces-ccpa: true
-  deprecated-names:
-  aliases: {}
   modifying-vast-xml-allowed: true
 ```
+
+There are also some default properties which can't be overridden in adapter-defaults, but rather in particular adapter's config:
+- `aliases`: Defaults to empty
+- `deprecated-names`: Defaults to empty
+- `extra-info`: Defaults to empty
 
 ### Create bidder alias
 If you want to add bidder that is an alias of existing bidder, you need just to update configuration of parent bidder:
@@ -143,7 +144,7 @@ Example of adding bidder alias:
 ```yaml
 adapters:
   yourBidderCode:
-    endpoint: http://possible.endpoint
+    ...
     aliases: 
       yourBidderAlias:
         endpoint: http://possible.alias/endpoint
@@ -155,26 +156,6 @@ adapters:
           - video
         usersync:
           cookie-family-name: yourBidderCode
-    meta-info:
-      maintainer-email: maintainer@email.com
-      app-media-types:
-        - banner
-        - video
-        - audio
-        - native
-      site-media-types:
-        - banner
-        - video
-        - audio
-        - native
-      supported-vendors:
-      vendor-id: your_vendor_id
-    usersync:
-      url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
-      cookie-family-name: yourBidderCode
-      type: redirect
-      support-cors: false
 ```
 
 Aliases are configured by adding child configuration object at `adapters.yourBidderCode.aliases.yourBidderAlias`
@@ -702,7 +683,16 @@ public class {bidder}Configuration {
 }
 ```
 
-### Converting Floor Prices (optional)
+### Currency
+
+Prebid Server is a global product that is currency agnostic. Publishers may ask for bids in any currency. It's totally fine if your bidding endpoint only supports a single currency, but your adapter needs to deal with it. This section will describe how to do so.
+
+Here are 3 key points to consider:
+
+1. If your endpoint only bids in a particular currency, then your adapter must not blindly forward the openrtb to your endpoint. You should instead set $.cur to your server's required currency.
+2. Your adapter must label bid responses properly with the response currency. i.e. if you only bid in USD, then your adapter must set USD as the response currency. PBS will convert to the publisher's requested currency as needed. See the [currency feature](/prebid-server/features/pbs-currency.html) for more info.
+3. You should be aware that floors can be defined in any currency. If your bidding service supports floors, but only in a particular currency, then you must read use the CurrencyConversionService before sending $.imp[].bidfloor and $.imp[].bidfloorcur to your endpoint.
+
 If you need to convert floor prices from one currency into something your endpoint expects, you can use the convertCurrency function from CurrencyConversionService component.
 
 1) Inject CurrencyConversionService to your {bidder}Configuration class and pass it to your bidder constructor.
@@ -814,7 +804,6 @@ Go to `test-application.properties` file and add folowing properties
 ```yaml
 adapters.{bidder}.enabled=true
 adapters.{bidder}.endpoint=http://localhost:8090/{bidder}-exchange
-adapters.{bidder}.pbs-enforces-gdpr=true
 adapters.{bidder}.usersync.url=//{bidder}-usersync
 ```
 
@@ -1188,7 +1177,9 @@ dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
-bidder_supports_deals: true/false
+deals_supported: true/false
+floors_supported: true/false
+fpd_supported: true/false
 pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
@@ -1218,7 +1209,9 @@ Notes on the metadata fields:
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported`: true. No default value.
-- If your bidder supports deals, set `bidder_supports_deals: true`. No default value.
+- If your bidder supports deals, set `deals_supported: true`. No default value.
+- If your bidder supports floors, set `floors_supported: true`. No default value.
+- If your bidder supports first party data, set `fpd_supported: true`. No default value.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 

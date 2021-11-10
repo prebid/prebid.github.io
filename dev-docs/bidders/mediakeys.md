@@ -4,17 +4,17 @@ title: Mediakeys
 description: Mediakeys Prebid Bidder Adapter
 biddercode: mediakeys
 media_types: banner, video, native
+gvl_id: 498
+pbjs: true
+floors_supported: true
 gdpr_supported: true
 userIds: all
 schain_supported: true
 coppa_supported: true
 usp_supported: true
 safeframes_ok: true
-getFloor: true
-pbjs: true
-pbs: false
-gvl_id: 498
-
+userIds: all
+fpd_supported: true
 ---
 <a name="table-of-contents" ></a>
 

@@ -9,7 +9,7 @@ gvl_id: 154
 schain_supported: true
 userIds: id5Id, unifiedId
 media_types: banner, video
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
 pbs: true
 ---

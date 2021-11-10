@@ -8,10 +8,11 @@ pbs_app_supported: true
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true
-getFloor: true
+floors_supported: true
 userIds: unifiedId, identityLink
 gdpr_supported: true
 usp_supported: true
+fpd_supported: true
 ---
 
 ### Note:
