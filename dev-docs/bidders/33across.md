@@ -162,7 +162,9 @@ We recommend using SRA mode to optimize the bidding process as this allows our a
 pbjs.setBidderConfig({
    bidders: ['33across'],
    config: {
-      enableSRAMode: true
+      ttxSettings: {
+        enableSRAMode: true
+      }
    }
 });
 ```
