@@ -767,6 +767,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
 | alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
+| addTargetingKeys   | Array of Strings | Selects targeting keys to be supported in addition to the default ones |
 | allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 
 {: .alert.alert-info :}
@@ -811,6 +812,8 @@ Given the varying nature of how sites are set up for advertising and the varying
 Between these two values (Prebid's targeting key count and the overall ad URL query character count), you will find the average number of characters that are used by your ad server.  It's likely that these ad server values will remain consistent given that type of setup.  So if you know your ad server has a particular character limit, you can assume that these ad server characters will be reserved and the difference is what you could allot to Prebid.
 
 Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
+
+<a name="targetingControls-allowTargetingKeys" />
 
 ##### Details on the allowTargetingKeys setting
 
@@ -878,6 +881,65 @@ config.setConfig({
   }
 });
 ```
+
+<a name="targetingControls-addTargetingKeys" />
+
+##### Details on the addTargetingKeys setting
+
+The `addTargetingKeys` config is similar to `allowTargetingKeys`, except it adds to the keys in CONSTANTS.DEFAULT_TARGETING_KEYS instead of replacing them. This is useful if you need Prebid.js to generate targeting for some keys that are not allowed by default without removing any of the default ones (see [allowTargetingKeys](#targetingControls-allowTargetingKeys) for details on how targeting is generated). 
+
+Note that you may specify only one of `allowTargetingKeys` or `addTargetingKeys`.
+
+For example, this allows every default key, plus `hb_adomain`:
+
+```javascript
+config.setConfig({
+    targetingControls: {
+        addTargetingKeys: ['ADOMAIN']
+    }
+});
+```
+
+Which is equivalent to:
+
+```javascript
+config.setConfig({
+    targetingControls: {
+        allowTargetingKeys: [
+            'BIDDER',
+            'AD_ID',
+            'PRICE_BUCKET',
+            'SIZE',
+            'DEAL',
+            'FORMAT',
+            'UUID',
+            'CACHE_HOST',
+            'title',
+            'body',
+            'body2',
+            'privacyLink',
+            'privacyIcon',
+            'sponsoredBy',
+            'image',
+            'icon',
+            'clickUrl',
+            'displayUrl',
+            'cta',
+            'rating',
+            'address',
+            'downloads',
+            'likes',
+            'phone',
+            'price',
+            'salePrice',
+            'rendererUrl',
+            'adTemplate',
+            'ADOMAIN'
+        ]
+    }
+});
+```
+
 
 ##### Details on the allowSendAllBidsTargetingKeys setting
 
