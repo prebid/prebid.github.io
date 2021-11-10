@@ -15,6 +15,7 @@ pbs_app_supported: true
 prebid_member: true
 floors_supported: true
 fpd_supported: true
+schain_supported: true
 ---
 
 ### Table of Contents
