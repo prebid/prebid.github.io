@@ -54,7 +54,7 @@ pbjs.addAdUnits({
         }
     },
     ortb2Imp: {
-        intl:1
+        instl:1
     },
     ...
 });
