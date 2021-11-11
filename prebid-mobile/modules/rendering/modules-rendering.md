@@ -9,10 +9,10 @@ sidebarType: 2
 
 # Prebid Mobile Rendering (Open Beta)
 
-Prebid Mobile is Open Beta releasing several modules to support rendering for all supported media types, leveraging Prebid Mobile's modular architecture to allow the introduction of new features without impacting the current core feature set or current interfaces. Rendering in the mobile landscape signifies Prebib Mobile will have full ownership of the WebView, inserting any associated ad markup into a Prebid Mobile controlled WebView. Having full control of the WebView gives Prebid Mobile the ability to offer publishers better control of features such as Open Measurement, MRAID, SKAdNetwork, and more. The same is relevant to the rendering of video (VAST) creatives with an internal video player. 
+Prebid Mobile release rendering Open Beta API for display and video media types, without impacting the current core feature set or current interfaces. Rendering in the mobile landscape signifies Prebib Mobile will have full ownership of the WebView, inserting any associated ad markup into a Prebid Mobile controlled WebView. Having full control of the WebView gives Prebid Mobile the ability to offer publishers better control of features such as Open Measurement, MRAID, SKAdNetwork, and more. The same is relevant to the rendering of video (VAST) creatives with an internal video player. 
  
 {% capture warning_note %}
-The initial release of Open Beta rendering will contain a temporary API structure before being released into general availability. It is not recommended to use this open beta product in a production serving environment due to the changes expected as the Beta progresses into GA.  
+The initial release of Open Beta rendering will contain a temporary API structure before being released into general availability. Eventually, the original API and rendering API will be merged in the consistent toolset.  
 {% endcapture %}
 {% include /alerts/alert_important.html content=warning_note %}
 
@@ -39,12 +39,12 @@ This set of features are not supported yet but they are intended for implementat
 
 ## How It Works
 
-Prebid Mobile Rendering supports two integration scenarios:
+Prebid Mobile SDK supports two integration scenarios:
 
-* **Pure In-App Bidding** In this scenario, no Primay Ad Server is used. Prebid Mobile SDK will render the winning ad immediately whew available.
-* **Using a Primary Ad Server** Prebid SDK will detect when a Prebid line item is ready to serve from the Primary Ad Server to serve the winning ad in a Prebid Mobile owned webview or video view.
+* **Pure In-App Bidding** In this scenario, no Primay Ad Server is used. Prebid Mobile SDK renders the winning bid immediately when it is available.
+* **Using a Primary Ad Server** Prebid SDK detects when a Prebid line item wins on the Ad Server and renders the cached bd in the owned Web View or Video View.
 
-In both scenarios, Prebid SDK with rendering modules will levarage Prebid Server for demand. Below are the flows for both In-App and Primary Ad Server modes:
+In both scenarios, Prebid SDK levarages Prebid Server for demand. Below are the flows for both In-App and Primary Ad Server modes:
 
 ### Pure In-App Bidding
 
@@ -78,29 +78,10 @@ Prebid Mobile Rendering supports the following ad formats:
 * Video Interstitial
 * Rewarded Video
 * Outstream Video (for GAM, Pure In-App Bidding)
-* Native Styles Ads
-* Native Ads
 
-## Rendering Modules
-
-![Rendering Modules](/assets/images/prebid-mobile/modules/rendering/rendering-modularization.png)
-
-{: .table .table-bordered .table-striped }
-
-| Module Name | Description |
-|---+---|
-| PrebidSDKRendering | The initial Open Beta will include similar functionality as the Prebid SDK module, however PrebidSDKRendering will have a new API logic until GA and additional logic required for rendering |
-| GAMEventHandler | Module required for GAM integrations when using Rendering Module. |
-| MoPubAdapters | Module required for MoPub integrations when using Rendering Module.  |
-
-
-
-## Prebid Setup
-
-Like the standard Prebid SDK (leveraging ad server render mode), publishers will be required to pass Prebid SDK rendering mobule the **Prebid Account ID** and a **config ID** for each Ad Unit type to receive ads from Prebid Server:
-
-- **Prebid Account ID** - an identifier within Prebid Server containing PBS top level stored request attributes such as targeting ranges and account ID.
-- **Config ID** - an identifier matching the Prebid Server stored request containing impression level details such as each bidder param.
+[//]: # (The support of native will be added later)
+[//]: # (* Native Styles Ads)
+[//]: # (* Native Ads)
 
 ## Integration Scenarios
 
