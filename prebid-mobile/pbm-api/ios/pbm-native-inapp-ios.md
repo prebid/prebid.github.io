@@ -126,10 +126,15 @@ An object representing the `NativeAd` to be displayed.
 
 Setting this option to `true`, in your instance of Prebid Mobile, enables you to add an id for each asset in the assets array. The default setting is `false`
 
+**Swift**
 ```
 Prebid.shared.shouldAssignNativeAssetID = true
 ```
 
+**Objective C**
+```
+[Prebid shared].shouldAssignNativeAssetID = YES;
+```
 ##### Methods
 
   *registerViews*
