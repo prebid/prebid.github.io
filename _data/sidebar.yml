@@ -586,30 +586,171 @@
   subgroup: 0
 
 - sbSecId: 2
-  title: Modules
+  title: Rendering API (Open Beta)
   link:
   isHeader: 1
-  headerId: pbsdkmodules
+  headerId: rendering
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-
+  subgroup: 1  
+  
 - sbSecId: 2
-  title: Modules Overview
-  link: /prebid-mobile/modules/modules-overview.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Rendering Modules
+  title: Rendering Overview
   link: /prebid-mobile/modules/rendering/modules-rendering.html
   isHeader: 0
   isSectionHeader: 0
-  hasSubMenus: 1
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 2
+  title: "iOS"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: SDK Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-Integration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Pure In-App Bidding
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Integration with GAM
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Integration with MoPub
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Targeting
+  link: /prebid-mobile/modules/rendering/ios-sdk-parameters.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: "Android"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: SDK Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Pure In-app Bidding
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Integration with GAM
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Integration with MoPub
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-mopub.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Targeting
+  link: /prebid-mobile/modules/rendering/android-sdk-parameters.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: "Ad Server"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Rendering Order - GAM
+  link: /prebid-mobile/modules/rendering/rendering-gam-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 2
+  title: Rendering Order - MoPub
+  link: /prebid-mobile/modules/rendering/rendering-mopub-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+# - sbSecId: 2
+#   title: Modules
+#   link:
+#   isHeader: 1
+#   headerId: pbsdkmodules
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 1
+#
+# - sbSecId: 2
+#   title: Modules Overview
+#   link: /prebid-mobile/modules/modules-overview.html
+#   isHeader: 0
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 1
+#
+#
+# - sbSecId: 2
+#   title: Rendering Modules
+#   link: /prebid-mobile/modules/rendering/modules-rendering.html
+#   isHeader: 0
+#   isSectionHeader: 0
+#   hasSubMenus: 1
+#   sectionTitle:
+#   subgroup: 1
   
 - sbSecId: 2
   title: For iOS
