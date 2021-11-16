@@ -10,9 +10,10 @@ pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 gdpr_supported: true
-getFloor: true
+floors_supported: true
 usp_supported: true
 media_types: banner, video
+fpd_supported: true
 gvl_id: 10
 prebid_member: yes
 ---
@@ -56,17 +57,19 @@ var adUnits = [{
 }];
 ```
 ### Supported Media Types (Prebid.js)
+
 {: .table .table-bordered .table-striped }
 | Type | Support |
-| --- | --- |
+|---|---|
 | `banner` | Fully supported for all IX approved sizes |
 | `video`  | Fully supported for all IX approved sizes |
 | `native` | Not supported |
 
 ### Supported Media Types (Prebid Server)
+
 {: .table .table-bordered .table-striped }
 | Type   | Support |
-| ------ | ------- |
+|------|-------|
 | `banner` | Fully supported |
 | `video`  | Fully supported, including ad pods for OTT |
 | `native` | Not supported |
@@ -82,16 +85,18 @@ The following parameters are specified in the ad unit `adUnits[].mediaTypes`. Th
 In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be defined at the ad unit level.
 
 ### Banner
+
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
-| --- | --- | --- | --- |
+|---|---|---|---|
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 | `sizes` | Optional | Number[Number[]] | The size/sizes associated with the site ID, as listed in the ad unit under `adUnits[].mediaTypes.banner.sizes`. For example, `[300, 250], [300, 600], [728, 90]`|
 
 ### Video
+
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
-| --- | --- | --- | --- |
+|---|---|---|---|
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 | `size` | Optional | Number[] | The single size that is associated with the site ID, as listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. For example, [300, 250], [300, 600]. <BR><BR>This parameter is optional in Prebid.js versions 5.0 and above. Versions prior to 5.0 will still require a size parameter.|
 | `video` | Optional | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level.|
@@ -335,6 +340,35 @@ gulp build --modules=bidderModules.json
 
 ## Setting First Party Data (FPD)
 
+As a part of 4.30, IX will start to pick up FPD in the global FPD module, as well as continue to pick up IX bidder-specific FPD. Previous versions of IX Bid Adapter will only support the IX bidder-specific FPD.
+
+### Global FPD
+
+As of Prebid.js 4.30, use the more generic `ortb2` interface, which can be used for more than just First Party Data.
+
+The First Party Data feature allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
+
+To supply global data, use the [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html) function as illustrated below:
+
+```
+pbjs.setConfig({
+   ortb2: {
+       site: {
+            ...
+       },
+       user: {
+            ...
+       }
+    }
+});
+```
+
+Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data.
+
+For more information about the standard or more detailed examples, refer to [First Party Data Feature](/features/firstPartyData.html).
+
+### IX bidder-specific FPD
+
 FPD allows you to specify key-value pairs that are passed as part of the
 query string to IX for use in Private Marketplace Deals which rely on query
 string targeting for activation. For example, if a user is viewing a
@@ -361,6 +395,9 @@ pbjs.setConfig({
 
 The values can be updated at any time by calling `pbjs.setConfig` again. The
 changes will be reflected in any proceeding bid requests.
+
+{: .alert.alert-warning :}
+Continue to use IX bidder-specific First Party Data for IX deals. Global First Party Data is not yet supported in IX deals. Consult your IX representative with any questions.
 
 ## Setting a Server Side Timeout
 
