@@ -199,7 +199,7 @@ gulp build --modules=admixerIdSystem
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"admixerId"` | `"admixerId"` |
 | params | Required | Object | Details for admixer initialization. | |
-| params.pid | Required | String | id provided by admixer | "458frgde-djd7-3ert-gyhu-12fghy76dnmko" |
+| params.pid | Optional | String | id provided by admixer | "458frgde-djd7-3ert-gyhu-12fghy76dnmko" |
 | params.e | Optional | String | The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha256. | "3d400b57e069c993babea0bd9efa79e5dc698e16c042686569faae20391fd7ea" |
 | params.p | Optional | String | The hashed phone number of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha256. | "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" |
 
