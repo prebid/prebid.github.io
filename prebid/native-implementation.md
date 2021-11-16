@@ -289,7 +289,7 @@ Example creative HTML:
     <div class="attribution">##hb_native_asset_id_3##</div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
     var ucTag = {};
     ucTag.pubUrl = "%%PATTERN:url%%";     // GAM specific
@@ -428,7 +428,7 @@ Even though the body of the native creative is defined in the AdUnit, an AdServe
 
 Example Creative HTML
 ```html
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist//%%PATTERN:hb_format%%.js"></script>
 <script>
     var ucTag = {};
     ucTag.pubUrl = "%%PATTERN:url%%";     // GAM specific
@@ -517,7 +517,7 @@ Even though the body of the native creative is defined in the external JavaScrip
 
 Example creative HTML:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist//%%PATTERN:hb_format%%.js"></script>
 <script>
     var ucTag = {};
     ucTag.pubUrl = "%%PATTERN:url%%";    // GAM specific

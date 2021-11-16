@@ -96,7 +96,7 @@ Example creative HTML:
     <div class="attribution">##hb_native_brand##</div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
     var pbNativeTagData = {};
     pbNativeTagData.pubUrl = "%%PATTERN:url%%";
@@ -106,8 +106,6 @@ Example creative HTML:
     window.pbNativeTag.renderNativeAd(pbNativeTagData);
 </script>
 ```
-
-If you plan to use same GAM creative for all formats, including native, then from the code above you should replace `native.js` with `%%PATTERN:hb_format%%.js`.
 
 {: .alert.alert-warning :}
 When using Send All Bids, use `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` rather than `pbNativeTagData.adId = "%%PATTERN:hb_adid%%";` for each bidder’s creative, replacing `BIDDERCODE` with the actual bidder code, such as `%%PATTERN:hb_adid_BidderA%%`.
@@ -174,7 +172,7 @@ The GAM creative is identical whether the template is defined in the AdUnit or t
 
 Example creative HTML:
 ```
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
     var pbNativeTagData = {};
     pbNativeTagData.pubUrl = "%%PATTERN:url%%";
