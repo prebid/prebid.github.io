@@ -79,7 +79,7 @@ For engineering instructions, see [Native Implementation Guide](/prebid/native-i
 There are three key aspects of the native template:
 
 1. Build the creative with special Prebid.js macros, e.g. `##hb_native_assetname##`. Note that macros can be placed in the body (HTML) and/or head (CSS) of the native creative.
-2. Load the Prebid.js native rendering code. You can utilize the jsdelivr version of native-render.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. (Go to **Privacy & messaging** and click the Settings icon under **GDPR**. Under **Review your ad partners** click into **Commonly used ad partners**.) See Step 6 under [Create a New Native Creative](#create-a-new-native-creative) below.
+2. Load the Prebid.js native rendering code. You can utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. (Go to **Privacy & messaging** and click the Settings icon under **GDPR**. Under **Review your ad partners** click into **Commonly used ad partners**.) See Step 6 under [Create a New Native Creative](#create-a-new-native-creative) below.
 3. Invoke the Prebid.js native rendering function with an object containing the following attributes:
     - adid - Used to identify which Prebid.js creative holds the appropriate native assets.
     - pubUrl - The URL of the page, which is needed for the HTML postmessage call.
@@ -96,7 +96,7 @@ Example creative HTML:
     <div class="attribution">##hb_native_brand##</div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native.js"></script>
 <script>
     var pbNativeTagData = {};
     pbNativeTagData.pubUrl = "%%PATTERN:url%%";
@@ -106,6 +106,8 @@ Example creative HTML:
     window.pbNativeTag.renderNativeAd(pbNativeTagData);
 </script>
 ```
+
+If you plan to use same GAM creative for all formats, including native, then from the code above you should replace `native.js` with `%%PATTERN:hb_format%%.js`.
 
 {: .alert.alert-warning :}
 When using Send All Bids, use `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` rather than `pbNativeTagData.adId = "%%PATTERN:hb_adid%%";` for each bidder’s creative, replacing `BIDDERCODE` with the actual bidder code, such as `%%PATTERN:hb_adid_BidderA%%`.
@@ -164,7 +166,7 @@ p {
 
 The GAM creative is identical whether the template is defined in the AdUnit or the external render JavaScript. There are two key aspects of the native creative in this scenario:
 
-1. Load the Prebid.js native rendering code. You can utilize the jsdelivr version of native-render.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. Admin → EU User Consent → Declare ad technology providers
+1. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. Admin → EU User Consent → Declare ad technology providers.
 2. Invoke the Prebid.js native rendering function with an object containing the following attributes:
     - adid - Used to identify which Prebid.js creative holds the appropriate native assets.
     - pubUrl - The URL of the page, which is needed for the HTML postmessage call.
@@ -172,7 +174,7 @@ The GAM creative is identical whether the template is defined in the AdUnit or t
 
 Example creative HTML:
 ```
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native.js"></script>
 <script>
     var pbNativeTagData = {};
     pbNativeTagData.pubUrl = "%%PATTERN:url%%";
