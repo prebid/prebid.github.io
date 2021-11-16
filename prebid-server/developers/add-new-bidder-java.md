@@ -469,9 +469,6 @@ The argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension inform
 
 The `MakeRequests` method is expected to return a  `List<HttpRequest<BidRequest>` object representing the HTTP calls to be sent to your bidding server and a `List<BidderError> errors` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please use different methods in `Result` class specific to your case.
 
-{: .alert.alert-info :}
-HTTP calls to your bidding server will automatically prefer GZIP compression. You should not specify it yourself using headers. You don't have to worry about decompressing the response in `MakeBids` either, as that will be taken care of automatically.
-
 An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
 
 <details markdown="1">
@@ -520,6 +517,21 @@ There are a several values of a bid that publishers expect to be populated. Some
 | Test | OpenRTB | `request.test` <br/> The publisher is sending non-production traffic which also enables verbose debugging information from Prebid Server.
 | Video | OpenRTB | `request.imp[].video` <br/> The publisher is specifying video ad requirements or preferences.
 | Rewarded inventory | OpenRTB | `request.imp[].ext.prebid.is_rewarded_inventory` <br/> Signal to indicate the inventory is rewarded. 
+
+##### Request compression
+
+If you want your request body to be GZIP compressed, you should add `Content-Encoding` header with `gzip` value.
+<details markdown="1">
+  <summary>Example: Creating headers for gzip compressed request.</summary>
+```java
+private static MultiMap resolveHeaders() {
+        return HttpUtil.headers()
+                .add(HttpUtil.CONTENT_ENCODING_HEADER, HttpHeaderValues.GZIP);
+    }
+```
+</details>
+<p></p>
+You don't have to worry about decompressing the response in `MakeBids` either, as that will be taken care of automatically.
 
 #### Response
 
