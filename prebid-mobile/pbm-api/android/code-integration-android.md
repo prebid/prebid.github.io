@@ -67,6 +67,20 @@ For details on creating the specific ad units and additional parameters and meth
 [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 
+#### Using Asset Ids with In-App Native Ad Units
+
+Setting this option to `true`, in your instance of Prebid Mobile, enables you to add an id for each asset in the assets array. The default setting is `false`
+
+**Kotlin**
+```
+PrebidMobile.assignNativeAssetID(true)
+```
+
+**Java**
+```
+PrebidMobile.assignNativeAssetID(true);
+```
+
 ### Resize ad slot
 
 Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.

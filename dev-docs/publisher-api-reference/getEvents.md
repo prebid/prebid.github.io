@@ -26,6 +26,7 @@ The available events are:
 | auctionInit   | The auction has started                 | Object containing auction details |
 | auctionEnd    | The auction has ended                   | Object containing auction details |
 | beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
+| beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
 | bidResponse   | A bid response has arrived              | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
@@ -38,6 +39,7 @@ The available events are:
 | adRenderSucceeded | Ad rendering succeeded| Object containing the document containing the ad, the bid, and the adId |
 | auctionDebug  | An error was logged to the console | Object containing 'type' and 'arguments' |
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
+| bidderError    | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 
 The example below shows how these events can be used.

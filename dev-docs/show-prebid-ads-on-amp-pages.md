@@ -91,33 +91,39 @@ that doesn't come from /amp parameters:
             }
         }
     },
-    "imp": [
-        {
-            "id": "some-impression-id",
-            "banner": {
-                "format": [
-                    {
-                        "w": 300,
-                        "h": 250
-                    }
-                ]
-            },
-            "ext": {
+    "imp": [{
+      "id": "some-impression-id",
+      "banner": {
+          "format": [{
+            "w": 300,
+            "h": 250
+          }]
+      },
+      "ext": {
+        "prebid": {
+          "bidder": {
                 "bidderA": {
                     // Insert parameters here
                 },
                 "bidderB": {
                     // Insert parameters here
                 }
-            }
+          }
         }
-    ]
+      }
+    }]
 }
-
 ```
 This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html).
 
 ### AMP content page
+
+First ensure that the amp-ad component is imported in the header.
+
+```
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+```
+This script provides code libraries that will convert `<amp-ad>` properties to the endpoint query parameters usint the [Real Time Config](https://github.com/ampproject/amphtml/blob/main/extensions/amp-a4a/rtc-documentation.md) (RTC) protocol.
 
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
@@ -130,7 +136,7 @@ e.g. for the AppNexus cluster of Prebid Servers:
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
-    data-slot="/19968336/universal_creative"
+    data-slot="/1111/universal_creative"
     rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
 ```
@@ -139,8 +145,17 @@ e.g. for Rubicon Project's cluster of Prebid Servers:
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
-    data-slot="/19968336/universal_creative"
+    data-slot="/1111/universal_creative"
     rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "1234-amp-pub-300x250"}}, "timeoutMillis": 500}'>
+</amp-ad>
+```
+
+For other hosts, you can specify the URL directly rather than using one of the convenient vendor aliases. e.g.
+```html
+<amp-ad width="300" height="250"
+    type="doubleclick"
+    data-slot="/1111/universal_creative"
+    rtc-config='{"urls": ["https://prebid-server.example.com/openrtb2/amp?tag_id=1001-amp&w=ATTR(width)&h=ATTR(height)&ow=ATTR(data-override-width)&oh=ATTR(data-override-height)&ms=ATTR(data-multi-size)&slot=ATTR(data-slot)&targeting=TGT&curl=CANONICAL_URL&timeout=TIMEOUT&adc=ADCID&purl=HREF&gdpr_consent=CONSENT_STRING&account=ACCOUNT_ID&gdpr_applies=CONSENT_METADATA(gdprApplies)&addtl_consent=CONSENT_METADATA(additionalConsent)&consent_type=CONSENT_METADATA(consentStringType)]}'
 </amp-ad>
 ```
 
