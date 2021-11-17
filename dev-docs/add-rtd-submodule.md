@@ -95,6 +95,7 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 |  getBidRequestData  | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
 |  onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
 |  onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
+|  onBidRequestEvent | function |optional | listens to the BID_REQUEST event and calls a sub-module function that lets it know when a bid is about to be requested | bidRequest, config, userConsent |
 |  onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
 
 For example:
@@ -230,6 +231,7 @@ export const subModuleObj = {
   init: init,
   onAuctionInitEvent: onAuctionInit,
   onAuctionEndEvent: onAuctionEnd,
+  onBidRequestEvent: onBidRequest,
   onBidResponseEvent: onBidResponse
 };
 
@@ -241,8 +243,12 @@ function onAuctionEnd(auctionDetails, config, userConsent) {
   // take note of auction end
 }
 
+function onBidRequest(bidRequest, config, userConsent) {
+  // optionally update bidRequest
+}
+
 function onBidResponse(bidResponse, config, userConsent) {
-  //optionally update bidResponse
+  // optionally update bidResponse
 }
 
 function init(config, userConsent) {
