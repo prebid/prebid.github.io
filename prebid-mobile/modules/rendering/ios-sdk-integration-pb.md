@@ -132,8 +132,8 @@ if interstitial.isReady {
 
 Initialize the Interstitial Ad Unit with properties:
     
-- **configID** - an ID of Stored Impression on the Prebid Server
-- **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+- `configID` - an ID of Stored Impression on the Prebid Server
+- `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
 > **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
 
