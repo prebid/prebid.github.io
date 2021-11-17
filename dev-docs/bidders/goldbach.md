@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: GoldbachXandr
-description: Prebid GoldbachXandr Bidder Adaptor
-biddercode: gb_xandr
+title: Goldbach
+description: Prebid Goldbach Bidder Adaptor
+biddercode: goldbach
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
@@ -13,53 +13,52 @@ usp_supported: true
 getFloor: true
 pbjs: true
 pbs: true
-gvl_id: 32
 ---
 
 ### Table of Contents
 
-- [Bid Params](#goldbach-xandr-bid-params)
-- [Video Object](#goldbach-xandr-video-object)
-- [User Object](#goldbach-xandr-user-object)
-- [App Object](#goldbach-xandr-app-object)
+- [Bid Params](#godlbach-bid-params)
+- [Video Object](#godlbach-video-object)
+- [User Object](#godlbach-user-object)
+- [App Object](#godlbach-app-object)
 - [Custom Targeting keys](#custom-targeting-keys)
-- [Passing Keys Without Values](#goldbach-xandr-no-value)
-- [User Sync in AMP](#goldbach-xandr-amp)
-- [Debug Auction](#goldbach-xandr-debug-auction)
+- [Passing Keys Without Values](#godlbach-no-value)
+- [User Sync in AMP](#godlbach-amp)
+- [Debug Auction](#godlbach-debug-auction)
 
-<a name="goldbach-xandr-bid-params" />
+<a name="godlbach-bid-params" />
 
 {: .alert.alert-danger :}
-All GoldbachXandr (Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the GoldbachXandr bidder will not return any demand for those placements. <br />
-*Note: This requirement does not apply to adapters that are [aliasing](/dev-docs/publisher-api-reference/aliasBidder.html) the GoldbachXandr adapter.*
+All Goldbach (Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the Goldbach bidder will not return any demand for those placements. <br />
+*Note: This requirement does not apply to adapters that are [aliasing](/dev-docs/publisher-api-reference/aliasBidder.html) the Goldbach adapter.*
 
 #### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
-| `placementId`       | required | The placement ID from GoldbachXandr.  You may identify a placement using the `invCode` and `member` instead of a placement ID. The `placementID` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string` value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
-| `member`            | optional | The member ID  from GoldbachXandr. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
-| `invCode`           | optional | The inventory code from GoldbachXandr. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
-| `publisherId`       | optional | The publisher ID from GoldbachXandr. It is used by the GoldbachXandr end point to identify the publisher when `placementId` is not provided and `invCode` goes wrong. The `publisherId` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred.                                                                                                                    | `12345`                                             | `integer`         |
+| `placementId`       | required | The placement ID from Goldbach.  You may identify a placement using the `invCode` and `member` instead of a placement ID. The `placementID` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string` value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
+| `member`            | optional | The member ID  from Goldbach. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
+| `invCode`           | optional | The inventory code from Goldbach. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
+| `publisherId`       | optional | The publisher ID from Goldbach. It is used by the Goldbach end point to identify the publisher when `placementId` is not provided and `invCode` goes wrong. The `publisherId` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred.                                                                                                                    | `12345`                                             | `integer`         |
 | `frameworks`        | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `integer` |
-| `user`              | optional | Object that specifies information about an external user. See [User Object](#goldbach-xandr-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
+| `user`              | optional | Object that specifies information about an external user. See [User Object](#godlbach-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes` | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS)    | optional | If `true`, Xandr will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
-| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#goldbach-xandr-no-value) below for examples. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an GoldbachXandr account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
-| `video`             | optional | Object containing video targeting parameters.  See [Video Object](#goldbach-xandr-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
-| `app`               | optional | Object containing mobile app parameters.  See the [App Object](#goldbach-xandr-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
-| `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the GoldbachXandr Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
+| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#godlbach-no-value) below for examples. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an Goldbach account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
+| `video`             | optional | Object containing video targeting parameters.  See [Video Object](#godlbach-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
+| `app`               | optional | Object containing mobile app parameters.  See the [App Object](#godlbach-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
+| `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the Goldbach Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
 | `position`          | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
 | `trafficSourceCode` | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
 | `supplyType`        | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
 | `supplyType`        | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
-| `pubClick`          | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using GoldbachXandr click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
+| `pubClick`          | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using Goldbach click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
 | `extInvCode`        | optional | Specifies predefined value passed on the query string that can be used in reporting. The value must be entered into the system before it is logged.                           | `'10039'`                                             | `string`         |
 | `externalImpId`     | optional | Specifies the unique identifier of an externally generated auction.                                                                                                           | `'bacbab02626452b097f6030b3c89ac05'`                  | `string`         |
-| `generate_ad_pod_id`| optional | Signal to GoldbachXandr to split impressions by ad pod and add unique ad pod id to each request. Specific to long form video endpoint only. Supported by Prebid Server, not Prebid JS.  | `true`                                                | `boolean`        |
+| `generate_ad_pod_id`| optional | Signal to Goldbach to split impressions by ad pod and add unique ad pod id to each request. Specific to long form video endpoint only. Supported by Prebid Server, not Prebid JS.  | `true`                                                | `boolean`        |
 
-<a name="goldbach-xandr-video-object" />
+<a name="godlbach-video-object" />
 
 #### Video Object
 
@@ -75,7 +74,7 @@ All GoldbachXandr (Xandr) placements included in a single call to `requestBids` 
 | `frameworks` | Array of integers listing API frameworks supported by the publisher.  Allowed values: None: `0`; VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; MRAID 2.0: `4`; ORMMA: `5`; OMID 1.0 `6`. | `Array<integer>` |
 
 
-<a name="goldbach-xandr-user-object" />
+<a name="godlbach-user-object" />
 
 #### User Object
 
@@ -90,11 +89,11 @@ All GoldbachXandr (Xandr) placements included in a single call to `requestBids` 
 | `language`        | Two-letter ANSI code for this user's language.                                                                                  | `EN`                                                                     | `string`         |
 
 
-<a name="goldbach-xandr-app-object" />
+<a name="godlbach-app-object" />
 
 #### App Object
 
-GoldbachXandr supports using prebid within a mobile app's webview. If you are interested in using an SDK, please see [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html) instead.
+Goldbach supports using prebid within a mobile app's webview. If you are interested in using an SDK, please see [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html) instead.
 
 {: .table .table-bordered .table-striped }
 | Name              | Description                                                                                                                     | Example                                                                  | Type             |
@@ -107,27 +106,27 @@ GoldbachXandr supports using prebid within a mobile app's webview. If you are in
 
 #### Custom Targeting keys
 
-GoldbachXandr returns custom keys that can be sent to the adserver through bidderSettings: buyerMemberId, dealPriority, and dealCode. The following snippet demonstrates how to add these custom keys as key-value pairs.
+Goldbach returns custom keys that can be sent to the adserver through bidderSettings: buyerMemberId, dealPriority, and dealCode. The following snippet demonstrates how to add these custom keys as key-value pairs.
 
 ```
 pbjs.bidderSettings = {
-  goldbach-xandr: {
+  godlbach: {
     adserverTargeting: [
       {
         key: "apn_buyer_memberid", // Use key configured in your adserver
         val: function(bidResponse) {
-          return bidResponse.goldbach-xandr.buyerMemberId;
+          return bidResponse.appnexus.buyerMemberId;
         }
       },
       {
         key: "apn_prio", // Use key configured in your adserver
         val: function(bidResponse) {
-          return bidResponse.goldbach-xandr.dealPriority;
+          return bidResponse.appnexus.dealPriority;
         }
       }, {
         key: "apn_dealcode", // Use key configured in your adserver
         val: function(bidResponse) {
-          return bidResponse.goldbach-xandr.dealCode;
+          return bidResponse.appnexus.dealCode;
         }
       }
     ]
@@ -135,11 +134,11 @@ pbjs.bidderSettings = {
 }
 ```
 
-<a name="goldbach-xandr-no-value" />
+<a name="godlbach-no-value" />
 
 #### Passing Keys Without Values
 
-It's possible to use the `keywords` parameter to define keys that do not have any associated values. Keys with empty values can be created in Prebid.js and can also be sent through Prebid Server to GoldbachXandr. The following are examples of sending keys with empty values:
+It's possible to use the `keywords` parameter to define keys that do not have any associated values. Keys with empty values can be created in Prebid.js and can also be sent through Prebid Server to Goldbach. The following are examples of sending keys with empty values:
 
 
 ```
@@ -160,27 +159,27 @@ keywords: {
 }
 ```
 
-<a name="goldbach-xandr-amp" />
+<a name="godlbach-amp" />
 
 #### User Sync in AMP
 
-If you are syncing user id's with Prebid Server and are using GoldbachXandr' managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
+If you are syncing user id's with Prebid Server and are using Goldbach' managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
 
-<a name="goldbach-xandr-debug-auction" />
+<a name="godlbach-debug-auction" />
 
 #### Mobile App Display Manager Version
 
-The GoldbachXandr endpoint expects `imp.displaymanagerver` to be populated for mobile app sources
+The Goldbach endpoint expects `imp.displaymanagerver` to be populated for mobile app sources
 requests, however not all SDKs will populate this field. If the `imp.displaymanagerver` field
 is not supplied for an `imp`, but `request.app.ext.prebid.source`
 and `request.app.ext.prebid.version` are supplied, the adapter will fill in a value for
 `diplaymanagerver`. It will concatenate the two `app` fields as `<source>-<version>` fo fill in
-the empty `displaymanagerver` before sending the request to GoldbachXandr.
+the empty `displaymanagerver` before sending the request to Goldbach.
 
 #### Debug Auction
 
 {: .alert.alert-danger :}
-Enabling the GoldbachXandr Debug Auction feature should only be done for diagnosing the GoldbachXandr auction. Do not enable this feature in a production setting where it may impact users.
+Enabling the Goldbach Debug Auction feature should only be done for diagnosing the Goldbach auction. Do not enable this feature in a production setting where it may impact users.
 
 To understand what is happening behind the scenes during an auction, you can enable a debug auction by adding an `apn_prebid_debug` cookie with a JSON string. For example:
 
