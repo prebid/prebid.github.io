@@ -445,7 +445,7 @@ public class {bidder}Bidder implements Bidder<BidRequest> {
 
 #### MakeRequests
 
-The `MakeRequests` method is responsible for returning none, one, or many HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
+The `MakeRequests` method is responsible for returning zero or more HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
 
 This method is called once by the core framework for bid requests which have at least one valid Impression for your adapter. Impressions not configured for your adapter will be removed and are not accessible.
 
@@ -468,9 +468,6 @@ The argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension inform
 <p></p>
 
 The `MakeRequests` method is expected to return a  `List<HttpRequest<BidRequest>` object representing the HTTP calls to be sent to your bidding server and a `List<BidderError> errors` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please use different methods in `Result` class specific to your case.
-
-{: .alert.alert-info :}
-HTTP calls to your bidding server will automatically prefer GZIP compression. You should not specify it yourself using headers. You don't have to worry about decompressing the response in `MakeBids` either, as that will be taken care of automatically.
 
 An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
 
@@ -502,7 +499,7 @@ If your bidding server supports multiple currencies, please be sure to pass thro
 
 Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement.
 
-There are a several values of a bid that publishers expect to be populated. Some are defined by the OpenRTB 2.5 specification and some are defined by Prebid conventions.
+There are a several values of a bid request that publishers may supply that your adapter and endpoint should be aware of. Some are defined by the OpenRTB 2.5 specification and some are defined by Prebid conventions:
 
 {: .table .table-bordered .table-striped }
 | Parameter | Definer | Path & Description
@@ -521,9 +518,22 @@ There are a several values of a bid that publishers expect to be populated. Some
 | Video | OpenRTB | `request.imp[].video` <br/> The publisher is specifying video ad requirements or preferences.
 | Rewarded inventory | OpenRTB | `request.imp[].ext.prebid.is_rewarded_inventory` <br/> Signal to indicate the inventory is rewarded. 
 
+##### Request compression
+
+If you want your request body to be GZIP compressed, you should add `Content-Encoding` header with `gzip` value.
+<details markdown="1">
+  <summary>Example: Creating headers for gzip compressed request.</summary>
+```java
+private static MultiMap resolveHeaders() {
+        return HttpUtil.headers()
+                .add(HttpUtil.CONTENT_ENCODING_HEADER, HttpHeaderValues.GZIP);
+    }
+```
+</details>
+
 #### Response
 
-The `MakeBids` method is responsible for parsing the bidding server's response and mapping it to the [OpenRTB 2.5 Bid Response object model](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
+The `MakeBids` method in your adapter is responsible for parsing the bidding server's response and mapping it to the [OpenRTB 2.5 Bid Response object model](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
 
 This method is called for each response received from your bidding server within the bidding window (`request.tmax`). If there are no requests or if all requests time out, the `MakeBids` method will not be called.
 
@@ -683,7 +693,16 @@ public class {bidder}Configuration {
 }
 ```
 
-### Converting Floor Prices (optional)
+### Currency
+
+Prebid Server is a global product that is currency agnostic. Publishers may ask for bids in any currency. It's totally fine if your bidding endpoint only supports a single currency, but your adapter needs to deal with it. This section will describe how to do so.
+
+Here are 3 key points to consider:
+
+1. If your endpoint only bids in a particular currency, then your adapter must not blindly forward the openrtb to your endpoint. You should instead set $.cur to your server's required currency.
+2. Your adapter must label bid responses properly with the response currency. i.e. if you only bid in USD, then your adapter must set USD as the response currency. PBS will convert to the publisher's requested currency as needed. See the [currency feature](/prebid-server/features/pbs-currency.html) for more info.
+3. You should be aware that floors can be defined in any currency. If your bidding service supports floors, but only in a particular currency, then you must read use the CurrencyConversionService before sending $.imp[].bidfloor and $.imp[].bidfloorcur to your endpoint.
+
 If you need to convert floor prices from one currency into something your endpoint expects, you can use the convertCurrency function from CurrencyConversionService component.
 
 1) Inject CurrencyConversionService to your {bidder}Configuration class and pass it to your bidder constructor.
