@@ -18,25 +18,25 @@ sidebarType: 2
 
 ## Mobile API
 
-The Pure In-App Bidding integration is similar to the integration of any other regular Ad SDK.
+The Pure In-App Bidding integration is similar to integration of regular Ad SDK with Prebid in the role ofthe Ad Server.
 
-![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Pure-In-App-Bidding-Integration.png)
+![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
-Prebid Rendering Module provides ability to integrate  these ad formats:
+Prebid supports rendering of these ad formats:
 
 - Display Banner
 - Display Interstitial
 - Video Interstitial
 - Rewarded Video
 - Outstream Video
-- Native
+[//]: # (- Native)
 
 They can be integrated using these API categories:
 
-- [**Banner API**](#banner-api) - for *Display Banner* and *Outstream Video*
+- [**Banner API**](#banner-api) - for *Display* and *Video* Banners
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-- [**Native API**](ios-sdk-integration-pb-native.html) - for *Native Ads*
+[//]: # (- [**Native API**](ios-sdk-integration-pb-native.html) - for *Native Ads*)
 
 ### Banner API
 

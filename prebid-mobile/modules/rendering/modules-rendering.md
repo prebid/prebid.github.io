@@ -57,7 +57,7 @@ In both scenarios, Prebid SDK levarages Prebid Server for demand. Below are the 
 
 ### Prebid Rendering Module with Primary Ad Server
 
-![Rendering with Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Pure-In-App-Bidding-Overview-Prebid-with-Primary-Ad-Server.png)
+![Rendering with Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/In-App-Bidding-Integration.png)
 
 1. Prebid Rendering Module sends the bid request to the Prebid server.
 1. Prebid server runs the header bidding auction among preconfigured demand partners.
