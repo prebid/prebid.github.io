@@ -38,7 +38,7 @@ Prebid Rendering API supports these ad formats:
 
 They can be integrated using these API categories:
 
-- [**Banner API**](#banner-api) - for *Display Banner* and *Outstream Video*
+- [**Banner API**](#banner-api) - for *Display* and *Video* Banner
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
 
