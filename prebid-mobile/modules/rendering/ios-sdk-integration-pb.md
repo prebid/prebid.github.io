@@ -18,7 +18,7 @@ sidebarType: 2
 
 ## Mobile API
 
-The Pure In-App Bidding integration is similar to integration of regular Ad SDK with Prebid in the role ofthe Ad Server.
+The Pure In-App Bidding integration is similar to the integration of regular Ad SDK with Prebid in the role of the Ad Server.
 
 ![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
@@ -29,6 +29,7 @@ Prebid supports rendering of these ad formats:
 - Video Interstitial
 - Rewarded Video
 - Outstream Video
+
 [//]: # (- Native)
 
 They can be integrated using these API categories:
@@ -36,6 +37,7 @@ They can be integrated using these API categories:
 - [**Banner API**](#banner-api) - for *Display* and *Video* Banners
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
+
 [//]: # (- [**Native API**](ios-sdk-integration-pb-native.html) - for *Native Ads*)
 
 ### Banner API
@@ -56,22 +58,22 @@ banner.loadAd()
 
 #### Step 1: Create Ad View
 
-Initialize the Banner Ad View with properties:
+Initialize the `BannerAdView` with properties:
 
-- **frame** - the frame rectangle for the view
-- **configID** - an ID of Stored Impression on the Prebid server
-- **size** - the size of the ad unit which will be used in the bid request.
+- `frame` - the frame rectangle for the view
+- `configID` - an ID of the Stored Impression on the Prebid Server
+- `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
 
 Call the method `loadAd()` which will:
 
-- make a bid request to Prebid server.
+- make a bid request to the Prebid Server.
 - render the winning bid on display.
 
 #### Outstream Video
 
-For **Outstream Video** you also need to specify the kind of expected ad:
+For **Banner Video** you also need to specify the ad format:
 
 ``` swift
 banner.adFormat = .video
@@ -83,7 +85,7 @@ Integration example:
 
 ``` swift
 // 1. Create an Interstitial Ad Unit
-interstitial = InterstitialAdUnit(configID: CONFIG_ID,
+interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
                                   minSizePercentage: CGSize(width: 30, height: 30))
     
 interstitial.delegate = self
@@ -100,15 +102,15 @@ if interstitial.isReady {
 
 ```
 
-The way of displaying **Video Interstitial Ad** is almost the same with two differences:
+The way of displaying **Video Interstitial** is almost the same with two differences:
 
-- Need to customize the ad unit kind
+- Need to customize the ad format
 - No need to set up `minSizePercentage`
 
 ``` swift
 
 // 1. Create an Interstitial Ad Unit
-let interstitial = InterstitialAdUnit(configID: CONFIG_ID)
+let interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID)
     
 interstitial.adFormat = .video
 interstitial.delegate = self
@@ -129,9 +131,8 @@ if interstitial.isReady {
 
 
 Initialize the Interstitial Ad Unit with properties:
-
-
-- **configID** - an ID of Stored Impression on the Prebid server
+    
+- **configID** - an ID of Stored Impression on the Prebid Server
 - **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
 > **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
@@ -146,13 +147,12 @@ Call the method `loadAd()` which will make a bid request to Prebid server.
 Wait until the ad will be loaded and present it to the user in any suitable time.
 
 ``` swift
-// MARK: InterstitialAdUnitDelegate
+// MARK: InterstitialRenderingAdUnitDelegate
     
-func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
+func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
     // Now the ad is ready for display
 }
 ```
-
 
 ### Rewarded API
 
@@ -177,9 +177,9 @@ if rewardedAd.isReady {
 
 #### Step 1: Create Rewarded Ad Unit
 
-Create the **RewardedAdUnit** object with parameter:
+Create the `RewardedAdUnit` object with parameter:
 
-- **configID** - an ID of Stored Impression on the Prebid server
+- **configID** - an ID of Stored Impression on the Prebid Server
 
 #### Step 2: Load the Ad
 
@@ -190,7 +190,7 @@ Call the `loadAd()` method which will make a bid request to Prebid server.
 Wait until the ad will be loaded and present it to the user in any suitable time.
 
 ``` swift
-// MARK: PBMRewardedAdUnitDelegate
+// MARK: RewardedAdUnitDelegate
     
 func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
     // Now the ad is ready for display
