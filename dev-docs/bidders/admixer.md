@@ -11,6 +11,8 @@ usp_supported: true
 schain_supported: true
 fpd_supported: true
 gvl_id: 511
+userIds: AdmixerID
+prebid_member: true
 ---
 
 ### Bid Params

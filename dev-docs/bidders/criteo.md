@@ -16,7 +16,7 @@ gvl_id: 91
 ---
 ### Notes
 {: .alert.alert-warning :}
-*Criteo currently only supports getFloor if floors are in USD and if the publisher is enabling the Criteo Publisher Tag external js call. 
+*Criteo currently only supports getFloor if floors are in USD and if the publisher is enabling the Criteo Publisher Tag external js call.
 
 
 {: .alert.alert-warning :}
@@ -44,7 +44,7 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 |-------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `minduration`     | optional | Minimum ad duration in seconds                                                                                                                                                                                                                                               | `5`     | `integer` |
 | `startdelay`      | optional | Duration offset (in second) from the start of the content for showing the video ad before the start of the Video. Pre-roll: `0` (default); Mid-roll: `>0`; Default mid-roll: `-1`; Post-roll: `-2`;                                                                          | `5`     | `integer` |
-| `playbackmethod`  | required | Defines how is initiated the video inventory. Page Load with Sound On: `1`; Page Load with Sound Off: `2`; Click with Sound On: `3`; Mouse-Over with Sound On: `4`; Entering Viewport with Sound On: `5`; Entering Viewport with Sound Off by Default: `6`;                  | `1`     | `integer` |
+| `playbackmethod`  | required | Defines how the video inventory is initiated. Page Load with Sound On: `1`; Page Load with Sound Off: `2`; Click with Sound On: `3`; Mouse-Over with Sound On: `4`; Entering Viewport with Sound On: `5`; Entering Viewport with Sound Off by Default: `6`;                  | `[4, 5]`     | `Array<integer>` |
 | `placement`       | required | Video placement type. In-Stream: `1`; In-Banner: `2`; In-Article: `3`: In-Feed: `4`; Interstitial: `5`;                                                                                                                                                                      | `1`     | `integer` |
 | `skip`            | required | Ability from the video player for the user to skip the video. Not skippable: `0`; Skippable: `1`;                                                                                                                                                                            | `1`     | `integer` |
 
@@ -75,7 +75,7 @@ var adUnits = [
             playerSize: [640,480],
             protocols: [2, 3],
 	    skip: 0,
-	    playbackmethod: 1,
+	    playbackmethod: [1],
             placement: 1
         }
     },
