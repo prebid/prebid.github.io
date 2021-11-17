@@ -7,17 +7,17 @@ sidebarType: 2
 
 ---
 
-# Integrating the iOS SDK with your project
+# Code Integration for iOS
 
 ## CocoaPods integration
 
-To download and integrate the Rendering Module into your project using CocoaPods, add the following line to your project’s podfile:
+Rendering is an essential part of Prebid SDK, so you just need to integrate it:
 
 ```
-pod 'PrebidMobile/Rendering'
+pod 'PrebidMobile'
 ```
 
-If you integrate Prebid Rendering Module with GAM or MoPub add these pods respectively
+If you need to integrate Prebid with GAM or MoPub add these pods respectively
 
 ```
 # + Google Ad Manager (optional)
@@ -27,16 +27,15 @@ pod 'PrebidMobile/GAMEventHandlers'
 pod 'PrebidMobile/MoPubAdapters'
 ```
 
-## Init Prebid Rendering Module
+## Init Prebid Rendering
 
-Firstly import Rendering Module. The best place to do it is the `application:didFinishLaunchingWithOptions` method.
-
+The best place for initialization is the `application:didFinishLaunchingWithOptions` method. Import the SDK first:
 
 ```
 import PrebidMobileRendering
 ```
 
-Then provide the **Prebid Account ID** of your organization. Set the predefined or costom prebid host.
+Then set the predefined or costom Prebid Server **host** and provide the **Prebid Account ID**.
  
 ```
 PrebidRenderingConfig.shared.accountID = YOUR_ACCOUNT_ID
