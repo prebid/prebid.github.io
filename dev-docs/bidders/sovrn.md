@@ -11,7 +11,8 @@ userIds: all
 prebid_member: true
 schain_supported: true
 gvl_id: 13
-getFloor: true
+floors_supported: true
+fpd_supported: true
 ---
 
 ### Bid Params
