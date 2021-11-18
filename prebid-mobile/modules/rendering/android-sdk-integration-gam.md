@@ -9,37 +9,38 @@ sidebarType: 2
 
 # Google Ad Manager Integration
 
-The integration of Prebid Rendering Module with Google Ad Manager (GAM) assumes that publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project. 
+The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project. 
 
 
 If you do not have GAM SDK in the app yet, refer the the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start).
 
-Prebid Rendering Module was tested with **GAM SDK 7.61.0**. 
+Prebid Rendering API was tested with **GAM SDK 20.4.0**. 
 
 
 ## GAM Integration Overview
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-GAM.png)
 
-**Steps 1-2** Prebid Rendering Module makes a bid request. Prebid server runs an auction and returns the winning bid.
+**Steps 1-2** Prebid SDK makes a bid request. Prebid server runs an auction and returns the winning bid.
 
 **Step 3** Prebid Rendering Module via GAM Event Handler sets up the targeting keywords into the GAM's ad unit.
 
-**Step 4** GMA SDK makes an ad request. GAM returns the winner of the waterfall.
+**Step 4** GMA SDK makes an ad request. GAM returns the winned line item.
 
-**Step 5** Basing on the ad response Prebid GAM Event Handler decided who won on the GAM - the Prebid bid or another ad source on GAM.
+**Step 5** Basing on the ad response Prebid GAM Event Handler defines which line item has won on the GAM - the Prebid's one or another ad source on GAM.
 
-**Step 6** The winner is displayed in the App with the respective rendering engine.
+**Step 6** The winner is displayed in the app with the respective rendering engine.
   
-Prebid Rendering Module supports these ad formats:
+Prebid Rendering API supports these ad formats:
 
 - Display Banner
+- Video Banner
 - Display Interstitial
-- Native
-- Native Styles
 - Video Interstitial 
 - Rewarded Video
-- Outstream Video
+
+[//]: # (- Native)
+[//]: # (- Native Styles)
 
 They can be integrated using these API categories.
 

@@ -9,7 +9,7 @@ sidebarType: 2
 
 # MoPub Integration
 
-The integration of Prebid Rendering Module with MoPub assumes that publisher has an account on MoPub and has already integrated the MoPub SDK into the app project.
+The integration of Prebid Rendering API with MoPub assumes that publisher has an account on MoPub and has already integrated the MoPub SDK into the app project.
 
 If you do not have MoPub SDK in the app yet, refer the [MoPub's Documentation](https://github.com/mopub/mopub-android-sdk).
 
@@ -20,36 +20,38 @@ The integration of header bidding into MoPub monetization is based on MoPub's Me
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-MoPub.png)
 
-**Steps 1-2** Prebid Rendering Module makes a bid request. Prebid server runs an auction and returns the winning bid to the SDK.
+**Steps 1-2** Prebid SDK makes a bid request. Prebid server runs an auction and returns the winning bid.
 
-**Step 3** Prebid Rendering Module via MoPub Adapters Framework sets up targeting keywords into the MoPub's ad unit.
+**Step 3** Prebid SDK via MoPub Adapters Framework sets up targeting keywords into the MoPub's ad unit.
 
-**Step 4** MoPub SDK makes an ad request. MoPub returns the winner of the waterfall.
+**Step 4** MoPub SDK makes an ad request. MoPub returns the mediation chain.
 
-**Step 5** If Prebid's creative won then the MoPub SDK will instantiate respective Prebid Adapter which will render the winning bid.
+**Step 5** If Prebid's creative wins in the waterfall then the MoPub SDK will instantiate respective Prebid Adapter which will render the winning bid.
 
 **Step 6** The winner is displayed in the App with the respective rendering engine.
 
-Prebid Rendering Module provides ability to integrate header bidding for these ad kinds:
+Prebid Rendering API provides ability to integrate header bidding for these ad kinds:
 
 - Display Banner
 - Display Interstitial
-- Native
-- Native Styles
 - Video Interstitial 
 - Rewarded Video
+
+[//]: # (- Native)
+[//]: # (- Native Styles)
 
 They can be integrated using these API categories.
 
 - [**Banner API**](#banner-api) - for **Display Banner**
 - [**Interstitial API**](#interstitial-api) - for **Display** and **Video** Interstitials
 - [**Rewarded API**](#rewarded-api) - for **Rewarded Video**
-- [**Native API**](android-sdk-integration-mopub-native.html)
+
+[//]: # (- [**Native API**](android-sdk-integration-mopub-native.html))
 
 
 ## Init Prebid Rendering Module
 
-Provide an **Account Id** of your organization on Prebid server:
+Set up a Prebid Server host amd provide an **Account Id** of your organization first.
 
 ```
 PrebidRenderingSettings.setBidServerHost(HOST)
@@ -62,9 +64,7 @@ The account ID is an identifier of the **Stored Request**.
 
 ### Prebid Adapters
 
-Adapters for Prebid Rendering Module are classes that serve like proxies between MoPub SDK and any other one. For more details about Mediation and Adapters read the [MoPub's Documentation](https://developers.mopub.com/networks/integrate/mopub-network-mediation-guidelines/).
-
-To integrate adapters for the Prebid Rendering Module just add the following lines in your build.gradle files:
+To integrate Prebid Adapters just add the following lines in your build.gradle files:
 
 Root build.gradle
 
@@ -84,9 +84,12 @@ App module build.gradle:
 implementation('org.prebid:prebid-mobile-sdk-mopubAdapters:x.x.x')
 ```
 
+For more details about Adapters read the [MoPub's Documentation](https://developers.mopub.com/networks/integrate/mopub-network-mediation-guidelines/).
+
+
 ## Banner API
 
-To display an ad you need to implement these easy steps:
+Integration example:
 
 
 ``` kotlin
@@ -108,7 +111,7 @@ private fun initBanner() {
 private fun fetchAdUnit(configId: String, size: AdSize) {
     if (bannerAdUnit == null) {
         // 2. initialize MoPubBannerAdUnit
-        bannerAdUnit = MoPubBannerAdUnit(requireContext(), configId, size)
+        bannerAdUnit = MediationBannerAdUnit(requireContext(), configId, size, MoPubMediationDelegate() )
     }
     // 3. Run an Header Bidding auction on Prebid and provide MoPubView as parameter. It is important to execute this method after MoPub SDK initialization.
     bannerAdUnit?.fetchDemand(bannerView!!) {
@@ -120,31 +123,32 @@ private fun fetchAdUnit(configId: String, size: AdSize) {
 
 #### Step 1: Create Ad View
 
-In the scenario with MoPub integration the MoPub's SDK plays the central role in managing ad views in the application's UI. You have to create and place MoPub's Ad View into the app page. If a winning bid on Prebid wins in the MoPub waterfall it will be rendered via Mediation in the place of original MoPub's Ad View by Prebid Rendering Module.
+Follow the [MoPub Instructions](https://developers.mopub.com/publishers/android/banner/) for Banner integration.
 
 #### Step 2: Create Ad Unit
 
-Create the **MoPubBannerAdUnit** object with parameters:
+Create the `MediationBannerAdUnit` object with parameters:
 
-- **configId** - an ID of Stored Impression on the Prebid server
-- **size** - the size of the ad unit which will be used in the bid request.
+- `configId` - an ID of Stored Impression on the Prebid server
+- `size` - the size of the ad unit which will be used in the bid request.
+- `mediationDelegate` - the object from the MoPubAdapters framework responsible for managing MoPub’s ad objects.
 
 #### Step 3: Fetch Demand
 
 To run an auction on Prebid run the `fetchDemand()` method which performs several actions:
 
-- Makes a bid request to Prebid
+- Makes a bid request to Prebid Server
 - Sets up the targeting keywords to the MoPub's ad unit
 - Passes the winning bid to the MoPub's ad unit
 - Returns the result of bid request for future processing
 
 #### Step 4: Load the Ad
 
-When the bid request has completed, the responsibility of making the Ad Request is passed to the publisher. That is why you have to invoke `loadAd()` on the MoPub's Ad View explicitly in the completion handler of `fetchDemand()`.
+When the bid request is completed, the responsibility of making the Ad Request is passed to the publisher. Call the `loadAd()` method on the MoPub's Ad View explicitly in the completion handler of the `fetchDemand()`.
 
 #### Step 5: Rendering
 
-If the Prebid bid wins on MoPub it will be rendered by `PrebidBannerAdapter`. You don't have to do anything for this.  Just make sure that your order had been set up correctly and an adapter is added.
+If the Prebid Line Item is processed in the waterfall the winning bid will be rendered by `PrebidBannerAdapter`. You shouldn't do anything for this.  Just make sure that your order has been set up correctly and an adapter has been added to the project.
 
 ## Interstitial API
 
@@ -157,7 +161,7 @@ private fun initInterstitial() {
     moPubInterstitial?.interstitialAdListener = this
 
     // 2. Initialize MoPubInterstitialAdUnit
-    moPubInterstitialAdUnit = MoPubInterstitialAdUnit(requireContext(), configId, minSizePercentage)
+    moPubInterstitialAdUnit = MediationInterstitialAdUnit(requireContext(), configId, minSizePercentage. MoPubMediationAdUnit())
 
     val builder = SdkConfiguration.Builder(adUnit)
     MoPub.initializeSdk(requireContext(), builder.build()) {
@@ -181,7 +185,7 @@ moPubInterstitial?.show()
 
 The way of displaying **Video Interstitial Ad** is almost the same with two differences:
 
-- Need customize the ad unit kind
+- Need customize the ad format
 - No need to set up `minSizePercentage`
 
 ``` kotlin
@@ -191,7 +195,7 @@ private fun initInterstitial() {
     moPubInterstitial?.interstitialAdListener = this
 
     // 2. Initialize MoPubInterstitialAdUnit and provide VIDEO AdUnitFormat
-    moPubInterstitialAdUnit = MoPubInterstitialAdUnit(requireContext(), configId, AdUnitFormat.VIDEO)
+    moPubInterstitialAdUnit = MediationInterstitialAdUnit(requireContext(), configId, AdUnitFormat.VIDEO, MoPubMediationAdUnit())
 
     val builder = SdkConfiguration.Builder(adUnit)
     MoPub.initializeSdk(requireContext(), builder.build()) {
@@ -212,33 +216,34 @@ private fun fetchInterstitial() {
 moPubInterstitial?.show()
 ```
 
-#### Step 1: Create Ad View
+#### Step 1: Integrate interstitial ad
 
-In the scenario with MoPub integration the MoPub SDK plays the central role in managing ad views in the application's UI. If a winning bid on Prebid wins in the MoPub waterfall it will be rendered via Mediation by Prebid Rendering Module.
+Follow the [MoPub Instructions](https://developers.mopub.com/publishers/android/interstitial/) and intgrate Interstital ad unit.
 
-#### Step 2: Create Ad Unit
 
-Create the **MoPubInterstitialAdUnit** object with parameters:
+#### Step 2: Create prebid Ad Unit
 
-- **configId** - an ID of Stored Impression on the Prebid server
+Create the `MediationInterstitialAdUnit` object with parameters:
+
+- `configId` - an ID of Stored Impression on the Prebid server
+- `mediationDelegate` - the object from the MoPubAdapters framework responsible for managing MoPub’s ad objects.
 
 #### Step 3: Fetch Demand
 
 To run an auction on Prebid run the`fetchDemand()` method which performs several actions:
 
-- Makes a bid request to Prebid
+- Makes a bid request to Prebid Server
 - Sets up the targeting keywords to the MoPub's ad unit
 - Passes the winning bid to the MoPub's ad unit
 - Returns the result of bid request for future processing
 
 #### Step 4: Load the Ad
 
-When the bid request has been completed the responsibility of making the Ad Request is passed on the publisher. That is why you have to invoke the `loadAd()` on the MoPub Ad View explicitly in the completion handler of the `fetchDemand()`.
-
+Call the `loadAd()` on the MoPub Interstitial Ad explicitly in the completion handler of the `fetchDemand()`.
 
 #### Step 5: Rendering
 
-If the Prebid bid wins on MoPub it will be rendered by `PrebidInterstitialAdapter`. You do not have to do anything for this.  Just make sure that your order had been set up correctly and an adapter is added.
+If the Prebid bid wins on MoPub it will be rendered by `PrebidInterstitialAdapter`. You shouldn't do anything for this.  Just make sure that your order has been set up correctly and an adapter has been added to the project.
 
 
 However, due to the expiration, the ad could become invalid with time. So it is always useful to check it with `interstitial?.isReady` before display.
@@ -246,12 +251,12 @@ However, due to the expiration, the ad could become invalid with time. So it is 
 
 ## Rewarded API
 
-To display an ad you need to implement these easy steps:
+Integration Example:
 
 ``` kotlin
 private fun initRewarded() {
     // 1. Create MoPubRewardedVideoAdUnit instance
-    rewardedAdUnit = MoPubRewardedVideoAdUnit(requireContext(), adUnitId, configId)
+    rewardedAdUnit = MediationRewardedAdUnit(requireContext(), adUnitId, configId)
     
     // 2. Initialize MoPub SDK and MoPubRewardedVideoManager.
     val builder = SdkConfiguration.Builder(adUnitId)
@@ -281,26 +286,28 @@ MoPubRewardedVideos.showRewardedVideo(adUnitId)
 
 #### Step 1: Create an Rewarded Ad Unit
 
-Create the **MoPubRewardedVideoAdUnit** object with parameters:
+Create the `MediationRewardedVideoAdUnit` object with parameters:
 
-- **configId** - an ID of Stored Impression on the Prebid server
+- `configId` - an ID of Stored Impression on the Prebid server
 
 #### Step 2: Fetch Demand
 
 To run an auction on Prebid run the `fetchDemand()` method which does several things:
 
-- Makes a bid request to Prebid
+- Makes a bid request to Prebid Server
 - Sets up the targeting keywords
 - Returns the result of bid request for future processing
 
 #### Step 3: Load the Ad
 
-When the bid request has completed, the responsibility of making the Ad Request is passed to the publisher. That is why you have to invoke the `loadAd()` of the MoPub's Ad View explicitly in the completion handler of the `fetchDemand()`.
+Call the `loadAd()` of the MoPub's Ad View explicitly in the completion handler of the `fetchDemand()`.
 
 
 #### Step 5: Rendering
 
-If the Prebid bid wins on MoPub it will be rendered by `PrebidRewardedVideoAdapter`. You do not have to do anything for this.  Just make sure that your order had been set up correctly and an adapter is added.
+If the Prebid bid wins on MoPub it will be rendered by ``. You do not have to do anything for this.  Just make sure that your order had been set up correctly and an adapter is added.
+
+If the Prebid Line Item is processed in the waterfall the winning bid will be rendered by `PrebidRewardedVideoAdapter `. You shouldn't do anything for this.  Just make sure that your order has been set up correctly and an adapter has been added to the project.
 
 
 

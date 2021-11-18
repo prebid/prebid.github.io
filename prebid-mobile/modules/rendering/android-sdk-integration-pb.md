@@ -11,28 +11,30 @@ sidebarType: 2
 
 ## Table of Contents
 
-- [Mobile API](#mobile-api)
+- [Overview of Rendering API](#mobile-api)
 - [Banner](#banner-api)
 - [Interstitial](#interstitial-api)
 - [Rewarded](#rewarded-api)
-- [Native](android-sdk-integration-pb-native.html)
 
-## Mobile API
+[//]: # (- [Native](android-sdk-integration-pb-native.html))
 
-The integration and usage of the Rendering Module are similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
+## Overview of Rendering API
 
-![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Pure-In-App-Bidding-Integration.png)
+The integration and usage of the Rendering API are similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
 
-Prebid Rendering Module provides ability to integrate  these ad formats:
+![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
+
+Prebid Rendering API provides ability to integrate  these ad formats:
 
 - Display Banner
 - Display Interstitial
 - Video Interstitial 
 - Rewarded Video
 - Outstream Video
-- [Native](android-sdk-integration-pb-native.html)
 
-However, the  Rendering Module provides only three kinds of API classes for these ads:
+[//]: # (- [Native](android-sdk-integration-pb-native.html))
+
+Rendering API provides three kinds of API classes for these ad formats:
 
 - **Banner API** - for **Display** and **Video**  Banners
 - **Interstitial API** - for **Display** and **Video** Interstitials
@@ -57,21 +59,21 @@ bannerView?.loadAd()
 
 #### Step 1: Create Ad View
 
-Initialize the Banner Ad View with correct properties:
+Initialize the `BannerAdView` with properties:
 
-- **configId** - an ID of Stored Impression on the Prebid server.
-- **size** - the size of the ad unit which will be used in the bid request.
+- `configId` - an ID of Stored Impression on the Prebid server.
+- `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
 
-Simply call `loadAd()` and SDK will:
+Call `loadAd()` and SDK will:
 
 - make bid request to Prebid
 - render the winning bid on display
 
 #### Outstream Video
 
-For **Outstream Video** you also need to specify video placement type of the expected ad:
+For **Banner Video** you also need to specify the `bannerView.videoPlacementType`:
 
 ``` kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
@@ -116,14 +118,14 @@ interstitialAdUnit?.show()
 
 #### Step 1: Create an Ad Unit
 
-Initialize the Interstitial Ad Unit with correct properties:
+Initialize the `InterstitialAdUnit ` with properties:
 
-- **configId** - an ID of Stored Impression on the Prebid server
-- **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+- `configId` - an ID of Stored Impression on the Prebid server
+- `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
 Also you can assign the listener for processing ad events.
 
-> **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
+> **NOTE:** the `minSizePercentage` - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
 
 #### Step 2: Load the Ad
 
@@ -160,9 +162,9 @@ rewardedAdUnit?.show()
 
 #### Step 1: Create Rewarded Ad Unit
 
-Create the **RewardedAdUnit** object with parameters:
+Create the `RewardedAdUnit` object with parameters:
 
-- **adUnitId** - an ID of Stored Impression on the Prebid server.
+- `adUnitId` - an ID of Stored Impression on the Prebid server.
 
 #### Step 2: Load the Ad
 
