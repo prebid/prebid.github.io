@@ -27,7 +27,7 @@ allprojects {
 
 dependencies {
     ...
-    implementation('org.prebid:prebid-mobile-sdk-rendering:x.x.x')
+    implementation('org.prebid:prebid-mobile-sdk:x.x.x')
     ...
 }
 ```
@@ -37,8 +37,7 @@ dependencies {
 
 Before you start, you need to integrate the SDK by updating your Android manifest.
 
-1.  Open your AndroidManifest.xml and add the following permissions and
-    activity declarations according to the bundle you are integrating.
+1.  Open your AndroidManifest.xml and add the following permissions and activity declarations according to the bundle you are integrating.
 
 ``` xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -56,9 +55,7 @@ Before you start, you need to integrate the SDK by updating your Android manifes
     -   `WRITE_EXTERNAL_STORAGE` is optional and only required for MRAID
         2.0 storePicture ads.
 
-2.  For *banner and interstitial ads only*, include the following custom
-    activities (even though you won't instantiate them directly). This
-    is not necessary for video interstitial ads.
+2.  For *banner and interstitial ads only*, include the following custom activities (even though you won't instantiate them directly). This is not necessary for video interstitial ads.
 
     Custom Activities:
 
