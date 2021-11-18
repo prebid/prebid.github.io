@@ -9,7 +9,7 @@ sidebarType: 2
 
 # Request parameters
 
-The tables below list methods and properties that the Rendering Module allows to customize in order to enrich the bid requests with actual data. The more info specified about the user, the app, and the device you provide the more chances to win a bid. 
+The tables below list methods and properties that the Rendering Module allows to customize in order to enrich the bid requests with actual data. The more info is provided about the user, the app, and the device the more chances to win a bid. 
 
 Please strictly follow the recommendations in the below tables and provide all ❗ **Required** and **Highly Recommended** values.
 
