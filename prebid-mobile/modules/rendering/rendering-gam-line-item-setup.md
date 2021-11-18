@@ -16,7 +16,7 @@ sidebarType: 2
 
 ## Step 2: Create Line Item
 
-To integrate the In-App Bidding into the app you have to create a Line Item with a specific price and targeting keyword.
+To integrate the Prebid demand you have to create a Line Items with a specific price and targeting keywords.
 
 > Even though a Line Item can be named in any way, we strongly recommend to use the price or targeting keyword in the name. It will help to navigate through hundreds of them.
 
@@ -24,7 +24,7 @@ To integrate the In-App Bidding into the app you have to create a Line Item with
 
 Create a Line Item depending on the type of expected creative kind:
 
-* **Display** - for the Banner, HTML Interstitial and Native ads
+* **Display** - for the Banner, HTML Interstitial
 * **Video and Audio** - for the Video Interstitial, Rewarded Video, and Outstream Video ads.
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-li-create.png" alt="Pipeline Screenshot" align="center">
@@ -45,11 +45,11 @@ The **Custom targeting** property should contain a special keyword with the pric
 
 ## Step 3: Prepare Prebid Creative
 
-### Display Banner, Display Interstitial, Video Interstitial, Outstream Video.
+### Display Banner, Video Banner, Display Interstitial, Video Interstitial.
 
-The In-App Bidding Facade for GAM is based on [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) feature almost for all kinds of ads. That means that creative should contain a special tag that will be processed by GAM Event Handlers.
+The Prebid SDK integrates with GAM basing on [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) feature, almost for all ad formats. That means that creative should contain a special tag that will be processed by Prebid's GAM Event Handlers.
 
-If GAM Event Handler receives the `PrebidAppEvent` event it will render the winning bid. Otherwise the control will be passed to the GAM ad view and it will render the received creative.
+If GAM Event Handler receives the `PrebidAppEvent` event it will render the winning bid. Otherwise the control will be passed to the GAM Ad View and it will render the received creative.
 
 ``` html
 <script type="text/javascript" src="https://media.admob.com/api/v1/google_mobile_app_ads.js">
@@ -61,7 +61,7 @@ If GAM Event Handler receives the `PrebidAppEvent` event it will render the winn
 
 ### Rewarded Video
 
-In-App Bidding facade for Rewarded video ads is based on [OnAdMetadataChangedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/rewarded/OnAdMetadataChangedListener). So you need to set up a special VAST tag in the creative.
+Prebid rendering for Rewarded video ads is based on the [OnAdMetadataChangedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/rewarded/OnAdMetadataChangedListener). So you need to set up a special VAST tag in the creative.
 
 ``` js
 https://sdk.prod.gcp.openx.org/ads/inapp_bidding/gam_rewarded.xml
@@ -69,7 +69,11 @@ https://sdk.prod.gcp.openx.org/ads/inapp_bidding/gam_rewarded.xml
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-creative-rewarded.png" alt="Pipeline Screenshot" align="center">
 
-If GAM Event Handler receives the tag's info it will render the winning bid. Otherwise the control will be passed to the GAM ad view and it will render the received creative.
+If GAM Event Handler receives the tag's info it will render the winning bid. Otherwise the control will be passed to the GAM Ad View and it will render the received creative.
+
+<!---
+
+Native ads are not released yet.
 
 ### Native: Unified Ad
 
@@ -199,3 +203,4 @@ p {
     padding: 4px;
 }
 ```
+-->
