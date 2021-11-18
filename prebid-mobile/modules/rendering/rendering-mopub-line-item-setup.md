@@ -19,7 +19,7 @@ sidebarType: 2
  
 #### Line Item: Display, Video
 
-To integrate the In-App Bidding into your app you have to create a Custom Ad Network Line Items with a specific Targeting keyword. 
+To integrate Prebid demand you have to create a Custom Ad Network Line Items with a specific Targeting keyword. 
 
 - **Line Item Name**: hb_pb 0.10
 - **Type & Priority**: Network Line Item
@@ -43,6 +43,7 @@ To integrate the In-App Bidding into your app you have to create a Custom Ad Net
 
 > Even though a Line Item can be named in any way, we strongly recommend to use the price or targeting keyword in the name. It will help to navigate through hundreds of them.
 
+<!---
 Note that `Custom Ad Network` type is not suitable for Native Style Ads, see [Native Style Line Item and creative](#line-item-native) for more details.
 
 #### Line Item: Native
@@ -88,6 +89,8 @@ MoPub 300x250 Medium Rectangle format HTML creative example:
   window.pbNativeTag.startTrackers(pbNativeTagData);
 </script>
 ```
+
+-->
  
 #### Ad Unit Targeting
 
