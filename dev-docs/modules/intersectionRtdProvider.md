@@ -49,7 +49,7 @@ This module is configured as part of the `realTimeData.dataProviders` object:
 
 ## Output
 
-For each bidder, the module add intersection in a JSON format.
+For each bidder, the module adds intersection in a JSON format.
 Example:
 ```
 {
