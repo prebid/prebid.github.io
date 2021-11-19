@@ -1534,7 +1534,7 @@ SharedID into account.  Prebid  recommends implementing a method where users can
 Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=pubCommonIdSystem
+gulp build --modules=sharedIdSystem
 
 #### SharedID ID Configuration
 
