@@ -163,7 +163,7 @@ keywords: {
 
 #### User Sync in AMP
 
-If you are syncing user id's with Prebid Server and are using Goldbach' managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
+If you are syncing user id's with Prebid Server and are using Goldbach's managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
 
 <a name="godlbach-debug-auction" />
 
