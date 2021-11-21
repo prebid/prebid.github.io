@@ -28,7 +28,7 @@ As a publisher, you may want to have your ad server see **all** header bidding b
 See the [Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for more details.
 
 
-If you decide to send all bids to the ad sever, your developers have the option of explicity adding `enableSendAllBids: true` to `pbjs.setConfig()`.  However, since the default value is `true` this addition is not strictly necessary.  For details, see the [Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids).
+If you decide to send all bids to the ad sever, your developers have the option of explicitly adding `enableSendAllBids: true` to `pbjs.setConfig()`.  However, since the default value is `true` this addition is not strictly necessary.  For details, see the [Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids).
 
 From the ad ops side, you can choose to set up one order per bidder, which allows for each order to have a set of line items using targeting keywords that include the bidder's name.  For example, if you are working with [Rubicon](/dev-docs/bidders.html#rubicon), you would use `hb_pb_rubicon` in your line item's key-value targeting, and `hb_adid_rubicon` in the creative.
 

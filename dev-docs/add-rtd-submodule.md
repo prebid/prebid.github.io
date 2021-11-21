@@ -280,6 +280,7 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
     ---
     layout: page_v2
     title: Example Module
+    display_name: Example
     description: Useful statement for what this does
     page_type: module
     module_type: rtd

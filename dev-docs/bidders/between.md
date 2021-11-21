@@ -11,6 +11,7 @@ pbs_app_supported: true
 userIds: all
 gvl_id: 724
 usp_supported: true
+safeframes_ok: false
 ---
 
 ### Prebid.js Bid Params
@@ -19,8 +20,6 @@ usp_supported: true
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `s` | required |  Section ID from Between SSP control panel | 999999 | `integer` |
-| `w`        | required | width of placement(Number)                | 240       |
-| `h`        | required | height of placement(Number)               | 400       |
 
 ### Prebid-Server Bid Params
 
