@@ -24,4 +24,4 @@ prebid_member: false
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description                                              | Example  | Type      |
 |--------|----------|----------------------------------------------------------|----------|-----------|
-| `adspotId`  | required | adspot id managed by LOGLY lift                   | `16` | `integer`  |
+| `adspotId`  | required | adspot id managed by LOGLY lift                   | `4302078` | `integer`  |
