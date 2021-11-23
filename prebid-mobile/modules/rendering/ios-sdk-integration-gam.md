@@ -44,6 +44,7 @@ They can be integrated using these API categories:
 
 [//]: #  (- [**Native API**](android-sdk-integration-gam-native.html) - for *Native Ads*)
 
+
 ## Banner API
 
 Integration example:
@@ -99,6 +100,13 @@ banner.adFormat = .video
 
 And all the rest code will be the same as for integration of Display Banner.
 
+### Migration from the original API
+
+1. Replace the `GAMBannerView` with `BannerView` in your UI. 
+3. Implement the protocol `BannerViewDelegate` in your View Controller.
+4. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
+5. Follow the instructions to integrate [Banner API](#banner-api).  
+6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. You can create a new order or just replace the code of creative in the old one and continue to use it for rendering integration.  
 
 ## Interstitial API
 
