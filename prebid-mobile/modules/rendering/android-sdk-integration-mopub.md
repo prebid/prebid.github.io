@@ -150,6 +150,12 @@ When the bid request is completed, the responsibility of making the Ad Request i
 
 If the Prebid Line Item is processed in the waterfall the winning bid will be rendered by `PrebidBannerAdapter`. You shouldn't do anything for this.  Just make sure that your order has been set up correctly and an adapter has been added to the project.
 
+### Migration from the original API
+
+1. Replace the `BannerAdUnit` with `MediationBannerlAdUnit`. 
+5. Follow the instructions to integrate [Banner API](#banner-api).  
+6. Setup the [MoPub Order](rendering-mopub-line-item-setup.html) for rendering. You should create a new order with **Network Line Items** instead of the original one. 
+
 ## Interstitial API
 
 To display an ad you need to implement these easy steps:
@@ -248,6 +254,11 @@ If the Prebid bid wins on MoPub it will be rendered by `PrebidInterstitialAdapte
 
 However, due to the expiration, the ad could become invalid with time. So it is always useful to check it with `interstitial?.isReady` before display.
 
+### Migration from the original API
+
+1. Replace the `InterstitialAdUnit` with `MediationInterstitialAdUnit`. 
+5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
+6. Setup the [MoPub Order](rendering-mopub-line-item-setup.html) for rendering. You should create a new order with **Network Line Items** instead of the original one. 
 
 ## Rewarded API
 
@@ -309,7 +320,9 @@ If the Prebid bid wins on MoPub it will be rendered by ``. You do not have to do
 
 If the Prebid Line Item is processed in the waterfall the winning bid will be rendered by `PrebidRewardedVideoAdapter `. You shouldn't do anything for this.  Just make sure that your order has been set up correctly and an adapter has been added to the project.
 
-
+1. Replace the `RewardedVideoAdUnit` with `MediationRewardedAdUnit`. 
+5. Follow the instructions to integrate [Rewarded Video API](#rewarded-api).  
+6. Setup the [MoPub Order](rendering-mopub-line-item-setup.html) for rendering. You should create a new order with **Network Line Items** instead of the original one.
 
 
 

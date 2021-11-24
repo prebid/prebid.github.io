@@ -47,7 +47,8 @@ They can be integrated using these API categories.
 - [**Banner API**](#banner-api) - for *Display Banner* and *Outstream Video*
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-- [**Native API**](android-sdk-integration-gam-native.html) - for *Native Ads*
+
+[//]: # (- [**Native API**](android-sdk-integration-gam-native.html) - for *Native Ads*)
 
 
 ## Init Prebid Rendering Module
@@ -138,6 +139,15 @@ For **Outstream Video** you also need to specify video placement type of the exp
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
+### Migration from the original API
+
+1. Replace the `AdManagerAdView` with `BannerView` in the UI. 
+3. Implement the interface `BannerViewListener`.
+4. Remove usage of `AdManagerAdView`, `AdManagerAdRequest`, and implementation of the `AdListener`.
+5. Remove original `BannerAdUnit`.
+5. Follow the instructions to integrate [Banner API](#banner-api).  
+6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. You can create a new order or just replace the code of creative in the original one and continue to use it for rendering integration.  
+
 ## Interstitial API
 
 To integrate interstitial ad you need to implement four easy steps:
@@ -224,6 +234,16 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 //Ad is ready for display
 }
 ```
+
+### Migration from the original API
+
+1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit`. 
+3. Implement the interface `InterstitialEventListener`.
+4. Remove usage of `AdManagerInterstitialAd`, `AdManagerAdRequest`.
+5. Remove original `InterstitialAdUnit`.
+5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
+6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you can replace the code of creative in the original order **only for display** ads. For video interstitial you have to create a special order and remove the original one.
+
 
 ## Rewarded API
 
@@ -345,3 +365,11 @@ private fun handleNativeAd(nativeAd: NativeAd) {
     }
 }
 ```
+
+### Migration from the original API
+
+1. Replace the `RewardedAd` with `RewardedAdUnit`. 
+3. Implement the interface `RewardedAdUnitListener`.
+5. Remove original `RewardedVideoAdUnit`.
+5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
+6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you have to create a new special order for rewarded video ad and remove the original one.

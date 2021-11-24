@@ -105,6 +105,7 @@ And all the rest code will be the same as for integration of Display Banner.
 1. Replace the `GAMBannerView` with `BannerView` in the UI. 
 3. Implement the protocol `BannerViewDelegate` in the View Controller.
 4. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
+5. Remove original `BannerAdUnit`.
 5. Follow the instructions to integrate [Banner API](#banner-api).  
 6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. You can create a new order or just replace the code of creative in the original one and continue to use it for rendering integration.  
 
@@ -200,6 +201,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
 1. Replace the `GAMInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
 3. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
 4. Remove usage of `GAMInterstitialAd`, `GAMRequest`.
+5. Remove original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
 6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you can replace the code of creative in the original order **only for display** ads. For video interstitial you have to create a special order and remove the original one.
 
@@ -230,7 +232,6 @@ if rewardedAd.isReady {
 ```
 
 The way of displaying the Rewarded Ad is totally the same as for the Interstitial Ad. 
-
 
 To be notified when user earns a reward - implement the method of `RewardedAdUnitDelegate`:
 
@@ -276,8 +277,9 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 
 ### Migration from the original API
 
-1. Replace the usahe of `GADRewardedAd` with `RewardedAdUnit` in the View Controller. 
+1. Replace the `GADRewardedAd` with `RewardedAdUnit` in the View Controller. 
 3. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
 4. Remove usage of `GAMRequest`.
+5. Remove original `RewardedVideoAdUnit`.
 5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
 6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you have to create a new special order for rewarded video ad and remove the original one.
