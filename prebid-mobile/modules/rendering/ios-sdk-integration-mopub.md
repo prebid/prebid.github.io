@@ -103,6 +103,12 @@ When the bid request is completed, the responsibility of making the Ad Request i
 
 If the Prebid bid wins on MoPub it will be rendered by `PrebidBannerAdapter`. You shouldn't do anything for this.  Just make sure that your order has been set up correctly and Prebid MoPub adapter is added to the project.
 
+### Migration from the original API
+
+1. Replace the `BannerAdUnit` with `MediationBannerAdUnit`. 
+5. Follow the instructions to integrate [Banner API](#banner-api).  
+6. Setup the [MoPub Order](rendering-mopub-line-item-setup.html) for rendering. You should create a new order with **Network Line Items** instead of the original one. 
+
 ## Interstitial API
 
 Integration example:
@@ -192,6 +198,12 @@ If the Prebid bid wins on MoPub it will be rendered by `MoPubInterstitialAdapter
 
 Pay attention that due to the expiration, the ad could become invalid with time. So it is always useful to check the availability with `interstitialController?.isReady` before displaying it.
 
+### Migration from the original API
+
+1. Replace the `InterstitialAdUnit` with `MediationInterstitialAdUnit`. 
+5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
+6. Setup the [MoPub Order](rendering-mopub-line-item-setup.html) for rendering. You should create a new order with **Network Line Items** instead of the original one. 
+
 ## Rewarded API
 
 Integration example:
@@ -251,4 +263,10 @@ When the bid request is completed, the responsibility of making the Ad Request i
 
 #### Step 5: Present the Rewarded Ad
 
-If the Prebid bid wins on MoPub it will be rendered by `MoPubRewardedVideoAdapter`. You shouldn't do anything for this.  Just make sure that your order has been set up correctly and an adapter is added to the project
+If the Prebid bid wins on MoPub it will be rendered by `MoPubRewardedVideoAdapter`. You shouldn't do anything for this. Just make sure that your order has been set up correctly and an adapter is added to the project
+
+### Migration from the original API
+
+1. Replace the `RewardedVideoAdUnit` with `MediationRewardedAdUnit`. 
+5. Follow the instructions to integrate [Rewarded Video API](#rewarded-api).  
+6. Setup the [MoPub Order](rendering-mopub-line-item-setup.html) for rendering. You should create a new order with **Network Line Items** instead of the original one.
