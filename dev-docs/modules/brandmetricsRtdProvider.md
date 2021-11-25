@@ -65,9 +65,10 @@ The module currently supports the following bidders:
 
 
 ## Parameters
+
 {: .table .table-bordered .table-striped }
 | Name              | Type                 | Description        | Default        |
-| :---------------- | :------------------- | :----------------- | :----------------- |
+| :---------------- | :------------------- | :----------------- | :------------- |
 | name              | String               | This should always be `brandmetrics` | - |
 | waitForIt         | Boolean              | Should be `true` if there's an `auctionDelay` defined (recommended) | `false` |
 | params            | Object               |                 | - |
