@@ -58,8 +58,9 @@ The scriptId- parameter is provided by brandmetrics or a brandmetrics partner.
 
 The module currently supports the following bidders:
 
+{: .table .table-bordered .table-striped }
 | Bidder | Id    |
-| ------ | ----- |
+| :----- | :---- |
 | Ozone  | ozone |
 
 
