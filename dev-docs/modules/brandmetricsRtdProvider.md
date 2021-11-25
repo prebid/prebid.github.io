@@ -33,7 +33,7 @@ gulp build --modules=brandmetricsRtdProvider,...
 
 ### Configuration
 
-```
+```javascript
 pbjs.setConfig({
   realTimeData: {
     auctionDelay: 500,
