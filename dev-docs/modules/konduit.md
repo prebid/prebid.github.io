@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - Konduit Accelerate
-description: Applies Konduit video ad acceleration optimization to a provided bid.
+description: Applies Konduit video ad acceleration optimization to wining video bid.
 module_code : konduitWrapper
 display_name : Konduit Accelerate
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 

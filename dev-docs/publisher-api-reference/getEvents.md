@@ -39,6 +39,7 @@ The available events are:
 | adRenderSucceeded | Ad rendering succeeded| Object containing the document containing the ad, the bid, and the adId |
 | auctionDebug  | An error was logged to the console | Object containing 'type' and 'arguments' |
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
+| bidderError    | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 
 The example below shows how these events can be used.

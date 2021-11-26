@@ -2,9 +2,9 @@
 layout: page_v2
 page_type: module
 title: Module - MASS
-description: Enable MASS protocol for Prebid
+description: General deal rendering functionality.
 module_code : mass
-display_name : MASS
+display_name : Deal Rendering (aka MASS)
 enable_download : true
 sidebarType : 1
 ---
@@ -157,7 +157,7 @@ http://hostname/integrationExamples/mass/index.html
 ```
 
 ### Option 2 - Hosted online
-Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: http://demo.massplatform.com/ix/prebid/
+Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: https://demo.massplatform.net/ix/prebid/
 
 ## Testing MASS
 Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend you use the MASS Bid Simulation tool found at https://github.com/massplatform/bidsim. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.
