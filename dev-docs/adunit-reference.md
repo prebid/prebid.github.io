@@ -594,7 +594,7 @@ For more information on Interstitial ads, reference the [Interstitial feature pa
 
 ## Related Topics
 
-+ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/)
++ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference)
 + [Conditional Ad Units][conditionalAds]
 + [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html)
 + [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)

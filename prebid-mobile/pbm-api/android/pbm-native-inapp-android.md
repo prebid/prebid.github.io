@@ -122,6 +122,20 @@ The `PrebidNativeAdListener` interface provides three methods to handle the disp
 
 An object representing the `PrebidNativeAd` to be displayed.
 
+#### Using Asset Ids with In-App Native Ad Units
+
+Setting this option to `true`, in your instance of Prebid Mobile, enables you to add an id for each asset in the assets array. The default setting is `false`
+
+**Kotlin**
+```
+PrebidMobile.assignNativeAssetID(true)
+```
+
+**Java**
+```
+PrebidMobile.assignNativeAssetID(true);
+```
+
 ##### Methods
 
   *registerView*

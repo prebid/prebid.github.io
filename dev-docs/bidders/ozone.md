@@ -8,7 +8,8 @@ media_types: banner
 gdpr_supported: true
 userIds: criteo, id5Id, tdid, identityLink, liveIntentId, parrableId, pubCommonId, lotamePanoramaId, sharedId, fabrickId
 gvl_id: 524
-bidder_supports_deals: true
+deals_supported: true
+fpd_supported: true
 
 ---
 
