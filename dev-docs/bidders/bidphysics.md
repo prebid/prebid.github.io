@@ -5,6 +5,7 @@ description: Prebid BidPhysics Bidder Adaptor
 pbjs: true
 biddercode: bidphysics
 gdpr_supported: true
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

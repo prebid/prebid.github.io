@@ -8,9 +8,9 @@
     
     <!--pbjs and player code -->	
     
-    <script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"></script>
+    <script type="text/javascript" src="https://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"></script>
         <script type="text/javascript">
-            jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key
+            jwplayer.key = "ssbF6k0i9BPe87xfG/s0ipdp5gwbLoZaDON/GQvuwPU9nVJy"; //Test Key - replace this with your own valid JWPlayer license key
         </script>
 
         <script>
@@ -43,21 +43,18 @@
                 code: 'video1',
                 mediaTypes: {
                     video: {
-                        playerSize: [640, 480],
-                        context: 'instream',
-                        mimes: ['video/mp4'],
-                        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                        playbackmethod: [2]
+			context: 'instream',
+			playerSize: [640, 480],
+			mimes: ['video/mp4'],
+			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			playbackmethod: [2],
+			skip: 1
                     }
                 },
                 bids: [{
                     bidder: 'appnexus',
                     params: {
-                        placementId: 13232361, // Add your own placement id here
-                        video: {
-                            skippable: true,
-                            playback_method: ['auto_play_sound_off']
-                        }
+                        placementId: 13232361  // Add your own placement id here
                     }
                 }]
             };
@@ -70,10 +67,9 @@
                     cache: {
                         url: 'https://prebid.adnxs.com/pbc/v1/cache'
                     },
-                    debug: true,
                     enableSendAllBids: true,
                     s2sConfig: {
-                        endpoint: 'http://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+                        endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
                         enabled: true,
                         accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
                         bidders: ['appnexus']

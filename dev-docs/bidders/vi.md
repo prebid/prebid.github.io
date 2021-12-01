@@ -4,6 +4,7 @@ title: vi
 description: vi bid adapter
 pbjs: true
 biddercode: vi
+pbjs_version_notes: not in 5.x
 ---
 
 ### bid params

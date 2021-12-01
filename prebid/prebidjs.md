@@ -9,7 +9,7 @@ sidebarType: 1
 
 # What is Prebid.js?
 
-Prebid.js is a feature-rich header bidding platform for the web, including more than 200 demand sources and 15 analytics adapters. It supports currency conversion, GDPR, common ID systems, and multiple ad servers.
+Prebid.js is a feature-rich header bidding platform for the web, including more than 300 demand sources and 50 analytics adapters. It supports currency conversion, GDPR, common ID systems, and multiple ad servers.
 
 ## How Does Prebid.js Work?
 
@@ -44,9 +44,9 @@ We want Prebid.js Core to be fast, fair, and open because it represents the head
 
 The Prebid.js Adapters plug into Prebid.js Core and are meant to be interchangeable depending on who the publisher wants to work with. There are two types of adapters: bidder and analytics.
 
-Bidder Adapters are supposed to represent the SSPs & Exchanges you want to work with. There are currently over 200 bidder adapters. This set of working header bidding integrations is part of what makes Prebid.js so special. Each company maintains their own Prebid.js adapter to provide the freshest code for publishers, rather than a proprietary wrapper solution trying to reverse engineer another company's adapter. It's a win-win for everyone.
+Bidder Adapters are supposed to represent the SSPs & Exchanges you want to work with. There are currently over 300 bidder adapters. This set of working header bidding integrations is part of what makes Prebid.js so special. Each company maintains their own Prebid.js adapter to provide the freshest code for publishers, rather than a proprietary wrapper solution trying to reverse engineer another company's adapter. It's a win-win for everyone.
 
-Analytics adapters offer the ability to learn more about latency, revenues, bid rates, etc. Please see our [analytics page]({{site.github.url}}/dev-docs/integrate-with-the-prebid-analytics-api.html) for more information.
+Analytics adapters offer the ability to learn more about latency, revenues, bid rates, etc. Please see our [analytics page](/dev-docs/integrate-with-the-prebid-analytics-api.html) for more information.
 
 ## Prebid.js Modules
 
@@ -54,17 +54,17 @@ Prebid.js Modules also plug into the Prebid.js Core. They add functionality not 
 in the Core that not every publisher needs. Example modules:
 
 + GDPR support (the [consentManagement]({{site.baseurl}}/dev-docs/modules/consentManagement.html) module)
-+ currency conversion (the [currency]({{site.baseurl}}/dev-docs/modules/currency.html) module)
++ Currency conversion (the [currency]({{site.baseurl}}/dev-docs/modules/currency.html) module)
 + Server-to-server testing (the [s2sTest]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) module)
-+ ... others
++ ... [many others](/dev-docs/modules/index.html)
 
 ## Cookies and Local Storage
 
-On behalf of publishers or third-parties, Prebid.js may set cookies or local storage in your browser. These are the first party cookies it can set on behalf of publishers, meaning that consent is not checked:
+On behalf of publishers or third-parties, Prebid.js may set cookies or local storage in your browser. These are the first party cookies it can set on behalf of publishers:
 - prebid.cookieTest - used to verify whether other cookies should be set.
 - _pbjs_userid_consent_data - used to make consent data conveniently available through various modules.
 
-All other cookies and local storage (including those set by Prebid.org-owned modules like [SharedId](/dev-docs/modules/userId.html#shared-id-user-id-submodule)) are subject to privacy regulations such as GDPR.
+All other cookies and local storage (including those set by Prebid.org-owned modules like [SharedId](/identity/sharedid.html) are subject to privacy regulations such as GDPR.
 
 ## Further Reading
 

@@ -180,7 +180,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /dev-docs/examples/native-ad-example.html
+  link: /formats/native.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -197,6 +197,14 @@
 - sbSecId: 1
   title: Individual Ad Unit Refresh/Infinite Scroll
   link: /dev-docs/examples/adunit-refresh.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Legacy Browser Example
+  link: /dev-docs/examples/legacy-browser-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -229,6 +237,15 @@
 - sbSecId: 1
   title: Filter Sizes Dynamically with Labels
   link: /dev-docs/examples/size-mapping.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 1
+  title: Meta Bid Filtering
+  link: /dev-docs/examples/meta-bid-filtering.html
   Item: 1
   isHeader: 0
   isSectionHeader: 0
@@ -359,7 +376,7 @@
   subgroup: 4
 
 - sbSecId: 1
-  title: Prebid Modules
+  title: Prebid.js Modules
   link:
   isHeader: 1
   headerId: pbjsmodules
@@ -376,6 +393,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Recommended Modules
+  link: /dev-docs/modules/index.html#recommended-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: General Modules
   link: /dev-docs/modules/index.html#general-modules
   isHeader: 0
@@ -384,24 +409,8 @@
   subgroup: 5
 
 - sbSecId: 1
-  title: Real Time Data Providers
-  link: /dev-docs/modules/index.html#real-time-data-providers
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Video Modules
-  link: /dev-docs/modules/index.html#video-modules
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 1
-  title: Testing and Debug Modules
-  link: /dev-docs/modules/index.html#testing-and-debug-modules
+  title: Vendor-Specific Modules
+  link: /dev-docs/modules/index.html#vendor-specific-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -491,7 +500,7 @@
   subgroup: 8
 
 - sbSecId: 1
-  title: Prebid Ad Slot
+  title: Prebid Ad Slot and GPID
   link: /features/pbAdSlot.html
   isHeader: 0
   isSectionHeader: 0
@@ -1334,16 +1343,8 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: 'JW Player (Hosted)'
+  title: 'JW Player (Self-Hosted)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Playlist)'
-  link: /examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1407,24 +1408,8 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: 'JW Player (Hosted)'
+  title: 'JW Player (Self-Hosted)'
   link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Playlist)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Player 7)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1746,6 +1731,23 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Programmatic Guaranteed
+  link: /prebid-server/features/pg/pbs-pg-idx.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+
+- sbSecId: 5
+  title: Modules
+  link: /prebid-server/pbs-modules/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Developers
   link:
   isHeader: 1
@@ -1773,6 +1775,14 @@
 - sbSecId: 5
   title: Building an Analytics Adapter
   link: /prebid-server/developers/pbs-build-an-analytics-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 5
+  title: Building a Module
+  link: /prebid-server/developers/add-a-module.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1942,7 +1952,7 @@
 
 - sbSecId: 6
   title: Native
-  link: /dev-docs/show-native-ads.html
+  link: /prebid/native-implementation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2054,3 +2064,41 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+#-------------- Prebid Identity --------------|
+
+- sbSecId: 9
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Identity
+  sectionId: prebid-identity
+  subgroup: 1000
+  sbCollapseId: prebid-identity
+
+- sbSecId: 9
+  title: invis
+  link:
+  isHeader: 1
+  headerId: invis
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 9
+  title: Identity Overview
+  link: /identity/prebid-identity.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 9
+  title: SharedID
+  link: /identity/sharedid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+

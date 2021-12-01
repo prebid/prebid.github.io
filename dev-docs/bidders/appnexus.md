@@ -6,10 +6,12 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, unifiedId, netId, identityLink
+userIds: criteo, unifiedId, netId, identityLink, flocId, uid2
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+floors_supported: true
+fpd_supported: true
 pbjs: true
 pbs: true
 gvl_id: 32
@@ -29,8 +31,8 @@ gvl_id: 32
 <a name="appnexus-bid-params" />
 
 {: .alert.alert-danger :}
-All AppNexus placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
-*Note: This requirement does not apply to adapters that are [aliasing]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) the AppNexus adapter.*
+All AppNexus (Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
+*Note: This requirement does not apply to adapters that are [aliasing](/dev-docs/publisher-api-reference/aliasBidder.html) the AppNexus adapter.*
 
 #### Bid Params
 
@@ -48,7 +50,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 | `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
 | `video`             | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 | `app`               | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
-| `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here.                | `0.90`                                                | `float`          |
+| `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
 | `position`          | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
 | `trafficSourceCode` | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
 | `supplyType`        | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
@@ -56,6 +58,7 @@ All AppNexus placements included in a single call to `requestBids` must belong t
 | `pubClick`          | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using AppNexus click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
 | `extInvCode`        | optional | Specifies predefined value passed on the query string that can be used in reporting. The value must be entered into the system before it is logged.                           | `'10039'`                                             | `string`         |
 | `externalImpId`     | optional | Specifies the unique identifier of an externally generated auction.                                                                                                           | `'bacbab02626452b097f6030b3c89ac05'`                  | `string`         |
+| `generate_ad_pod_id`| optional | Signal to AppNexus to split impressions by ad pod and add unique ad pod id to each request. Specific to long form video endpoint only. Supported by Prebid Server, not Prebid JS.  | `true`                                                | `boolean`        |
 
 <a name="appnexus-video-object" />
 
@@ -198,7 +201,7 @@ To view the results of the debug auction, add the `pbjs_debug=true` query string
 
 #### Prebid Server Test Request
 
-The following test parameters can be used to verify that Prebid Server is working properly with the 
+The following test parameters can be used to verify that Prebid Server is working properly with the
 server-side Appnexus adapter. This example includes an `imp` object with an Appnexus test placement ID and sizes
 that would match with the test creative.
 
