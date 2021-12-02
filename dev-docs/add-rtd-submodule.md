@@ -24,7 +24,7 @@ The RTD infrastructure is a generic module, not useful by itself. Instead, it al
 
 Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc. They will set limits on how long sub-modules are allowed to delay the auction, which will most likely be in the tens of milliseconds.
 
-See the [Publisher Real-Time Data Configuration](/dev-docs/publisher-api-reference.html#setConfig-realTimeData) reference for more information.
+See the [Publisher Real-Time Data Configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData) reference for more information.
 
 Your module should not look at the values of the auctionDelay or waitForIt flags - just do what needs to be done as fast as possible. It's ok to *ask* publishers in your documentation
 to give you a certain amount of time or to flag your module as important, but
@@ -92,7 +92,7 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 | name  | string  | required | must match the name provided by the publisher in the on-page config | n/a |
 |  init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
 |  getTargetingData  | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
-|  getBidRequestData  | function | optional | defines a function that provides ad server targeting data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
+|  getBidRequestData  | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
 |  onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
 |  onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
 |  onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
@@ -119,7 +119,7 @@ submodule('realTimeData', subModuleObject);
 Several of the interfaces get a `userConsent` object. It's an object that carries these attributes:
 - [gdpr](/dev-docs/modules/consentManagement.html#bidder-adapter-gdpr-integration) - GDPR
 - [usp](/dev-docs/modules/consentManagementUsp.html#bidder-adapter-us-privacy-integration) - US Privacy (aka CCPA)
-- [coppa](/dev-docs/publisher-api-reference.html#setConfig-coppa) - the Child Online Privacy Protection Act
+- [coppa](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa) - the Child Online Privacy Protection Act
 
 These are provided so you can do the right thing with respect to regulations. The only privacy requirement imposed by the RTD-core is that sub-modules make make use of the StorageManager instead of attempting to access cookies or localstorage directly.
 
@@ -182,8 +182,8 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
 2. Your sub-module may update the reqBidsConfigObj and hit the callback. To inject data into the bid requests, you should follow one of these conventions:
     - Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
         - For AdUnit-specific first party data, set AdUnit.fpd.context.data.ATTRIBUTES
-        - For global first party data, call 'pbjs.[getConfig](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig)({fpd.context})' or 'pbjs.getConfig({fpd.user})', merge in the new global data, and update with `pbjs.[setConfig](/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)()'.
-        - If the data is not meant to go to all bidders, the module should use 'pbjs.[setBidderConfig](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
+        - For global first party data, call 'pbjs.[getConfig](/dev-docs/publisher-api-reference/setConfig.html)({fpd.context})' or 'pbjs.getConfig({fpd.user})', merge in the new global data, and update with `pbjs.[setConfig](/dev-docs/publisher-api-reference/setConfig.html)()'.
+        - If the data is not meant to go to all bidders, the module should use 'pbjs.[setBidderConfig](/dev-docs/publisher-api-reference/setBidderConfig.html)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
     - Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
 
 **Code Example**
@@ -280,6 +280,7 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
     ---
     layout: page_v2
     title: Example Module
+    display_name: Example
     description: Useful statement for what this does
     page_type: module
     module_type: rtd

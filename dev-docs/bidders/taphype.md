@@ -4,6 +4,7 @@ title: TapHype
 description: Prebid TapHype Bidder Adaptor
 pbjs: true
 biddercode: taphype
+pbjs_version_notes: not in 5.x
 ---
 
 ### Note:

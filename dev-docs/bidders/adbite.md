@@ -3,7 +3,7 @@ layout: bidder
 title: Adbite
 description: Adbite LLC
 pbjs: true
-pbs: true
+pbs: false
 biddercode: adbite
 media_types: banner, native, video
 gdpr_supported: true

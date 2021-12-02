@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Tappx
+title: tappx
 pbs: true
 pbjs: true
 media_types: banner, video
@@ -11,14 +11,12 @@ coppa_supported: true
 schain_supported: true
 pbs_app_supported: true
 gvl_id: 628
-userId: all
+userIds: all
 ---
 
 ### Registration
 
 Please contact tappx@tappx.com to get set up.
-
-**Note:** The Tappx prebid bidder only supports in app traffic at the moment
 
 ### Bid Params
 
@@ -29,6 +27,9 @@ Please contact tappx@tappx.com to get set up.
 | tappxkey | required | An ID which identifies the adunit | 'key1' | string |
 | endpoint | required | Endpoint provided to publisher | 'endpoint1' | string |
 | bidfloor | optional | Minimum bid for this impression expressed in CPM (USD) | 1.2 | number |
+| mktag | optional | An ID which identifies a group of adunits | 'key1' | string |
+| bcid | optional | Block list of CID | ["1234"] | array of strings |
+| bcrid | optional | Block list of CRID | ["1234"] | array of strings |
 
 ### Test Parameters
 

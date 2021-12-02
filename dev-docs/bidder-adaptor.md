@@ -194,7 +194,8 @@ export const spec = {
     getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
-    onSetTargeting: function(bid) {}
+    onSetTargeting: function(bid) {},
+    onBidderError: function({ error, bidderRequest })
 }
 registerBidder(spec);
 
@@ -295,7 +296,7 @@ There are a number of important values that a publisher expects to be handled in
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
-| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
+| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page Referrer | Intead of building your own function to find the page referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.referer |
 | Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
@@ -376,6 +377,7 @@ The `interpretResponse` function will be called when the browser has received th
             brandId: BRAND_ID,
             brandName: BRAND_NAME,
             dchain: DEMAND_CHAIN_OBJECT,
+	    demandSource: DEMAND_SOURCE
             mediaType: MEDIA_TYPE,
             networkId: NETWORK_ID,
             networkName: NETWORK_NAME,
@@ -421,10 +423,22 @@ The parameters of the `bidResponse` object are:
 | `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
 | `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
+| `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`                          
 | `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+
+#### Resolve OpenRTB Macros in the Creatives
+
+If your endpoint can return creatives with OpenRTB macros, your adapter
+should resolve them.
+
+Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments. This differs from how OpenRTB defines this value as being the clearing price in the 
+bid currency. Header Bidding is a first-price auction, the best candidate for
+"clearing price" is the original bid itself.
+
+Prebid won't resolve any other macros in the creative (e.g. AUCTION_ID, AUCTION_CURRENCY).
 
 <a name="bidder-adaptor-Registering-User-Syncs" />
 
@@ -542,6 +556,34 @@ Sample data received by this function:
 }
 {% endhighlight %}
 
+### Registering on Bidder Error
+
+The `onBidderError` function will be called when the bidder responded with an error. Which means that the HTTP response status code is not between `200-299` and not equal to `304`.
+
+Sample data received by this function:
+
+{% highlight js %}
+{
+    error: XMLHttpRequest,
+    bidderRequest: {
+        {
+            auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+            auctionStart: 1579746300522,
+            bidderCode: "myBidderCode",
+            bidderRequestId: "15246a574e859f",
+            bids: [{...}],
+            gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+            refererInfo: {
+                canonicalUrl: undefined,
+                numIframes: 0,
+                reachedTop: true,
+                referer: "http://mypage?pbjs_debug=true"
+            }
+        }
+    }
+}
+{% endhighlight %}
+
 ### Adding adapter aliases
 
 Use aliases if you want to reuse your adapter using other name for your partner/client, or just a shortcut name.
@@ -631,7 +673,14 @@ Video ad units have a publisher-defined video context, which can be either `'ins
 ...
 mediaTypes: {
     video: {
-        context: 'outstream'
+        context: 'outstream',
+	playerSize: [640, 480],
+	mimes: ['video/mp4'],
+	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+	playbackmethod: [2],
+	skip: 1
+        // video params must be read from here in place of
+        // or instead of bidder-specific parameters
     },
 },
 ...
@@ -973,8 +1022,8 @@ export const spec = {
                 ad: CREATIVE_BODY
             };
             bidResponses.push(bidResponse);
+            return bidResponses;
         };
-        return bidResponses;
     },
 
     /**
@@ -1032,6 +1081,14 @@ export const spec = {
     onSetTargeting: function(bid) {
         // Bidder specific code
     }
+
+    /**
+     * Register bidder specific code, which will execute if the bidder responded with an error
+     * @param {error, bidderRequest} An object with the XMLHttpRequest error and the bid request object
+     */
+    onBidderError: function({ error, bidderRequest }) {
+        // Bidder specific code
+    }
 }
 registerBidder(spec);
 
@@ -1049,15 +1106,16 @@ registerBidder(spec);
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
     - If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
-    - If you have an IAB Global Vendor List ID, add `gvl_id: ID`. There's no default.
     - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     - If you support COPPA, add `coppa_supported: true`. Default is false.
     - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
-    - If you support passing a demadn chain on the response, add `dchain_supported: true`. Default is false.
+    - If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
-    - If you support deals, set `bidder_supports_deals: true`. No default value..
+    - If you support deals, set `deals_supported: true`. No default value..
+    - If you support floors, set `floors_supported: true`. No default value..
+    - If you support first party data, set `fpd_supported: true`. No default value..
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
 
@@ -1070,7 +1128,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 gdpr_supported: true/false
-gvl_id: 111
+gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
 schain_supported: true/false
@@ -1078,11 +1136,12 @@ dchain_supported: true/false
 userId: (list of supported vendors)
 media_types: banner, video, native
 safeframes_ok: true/false
-bidder_supports_deals: true/false
+deals_supported: true/false
+floors_supported: true/false
+fpd_supported: true/false
 pbjs: true/false
 pbs: true/false
 prebid_member: true/false
-gvl_id: none
 ---
 ### Note:
 
