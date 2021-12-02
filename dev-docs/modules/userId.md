@@ -1487,7 +1487,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 #### RampID Examples
 
-1) Publisher passes a placement ID and elects to store the RampID envelope in a cookie.
+1) Publisher passes a placement ID and elects to store the RampID envelope in a cookie. Make sure that the expiration time of the cookie is similar to what is set in ATS.
 
 
 {% highlight javascript %}
@@ -1502,7 +1502,7 @@ pbjs.setConfig({
             storage: {
                 type: "cookie",
                 name: "idl_env",       // create a cookie with this name
-                expires: 30            // cookie can last for 30 days
+                expires: 15            // cookie can last for 15 days
             }
         }],
         syncDelay: 3000              // 3 seconds after the first auction
@@ -1510,7 +1510,7 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-2) Publisher passes a placement ID and elects to store the RampID envelope in HTML5 localStorage.
+2) Publisher passes a placement ID and elects to store the RampID envelope in HTML5 localStorage. Make sure that the expiration time for localstorage is similar to what is set in ATS.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -1524,7 +1524,7 @@ pbjs.setConfig({
             storage: {
                 type: "html5",
                 name: "idl_env",    // set localstorage with this name
-                expires: 30
+                expires: 15
             }
         }],
         syncDelay: 3000
