@@ -5,7 +5,7 @@ description: Prebid AdMixer Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: admixer
-media_types: video
+media_types: banner, video, native
 gdpr_supported: true
 usp_supported: true
 schain_supported: true

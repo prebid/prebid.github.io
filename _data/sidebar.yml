@@ -500,7 +500,7 @@
   subgroup: 8
 
 - sbSecId: 1
-  title: Prebid Ad Slot
+  title: Prebid Ad Slot and GPID
   link: /features/pbAdSlot.html
   isHeader: 0
   isSectionHeader: 0
@@ -510,6 +510,14 @@
 - sbSecId: 1
   title: First Party Data
   link: /features/firstPartyData.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: Interstitial Ads
+  link: /features/interstitialAds.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
