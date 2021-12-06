@@ -66,8 +66,16 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 ## Basic Configuration
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
-all of them under the `userSync` object as attributes of the `userIds` array
-of sub-objects. The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
+under the `userSync` object as attributes of the `userIds` array
+of sub-objects. In addition, publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting. 
+The PPID has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. 
+
+{: .table .table-bordered .table-striped }
+| Param under userSync | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| ppid | Optional | String | Must be a source from the pbjs.getUserIdsAsEids() array | `"pubcid.org"` |
+
+The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |

@@ -219,7 +219,7 @@ parameters.api = [Signals.Api(7)]
 adUnit.setParameters(parameters);
 ```
 
-
+Note that the OMID value for imp.banner/video/native.api field should be 7, as defined by the IAB in the [OMSDK v1.2 document](https://s3-us-west-2.amazonaws.com/omsdk-files/docs/Open+Measurement+SDK+Onboarding_version_1.2.pdf).
 
 
 ## Inventory (Context) Keywords

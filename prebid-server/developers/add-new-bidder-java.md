@@ -58,6 +58,10 @@ Occasionally, we'll introduce changes to the core framework as part of our ongoi
 
 Please be attentive in reading and responding to emails and [GitHub issues](https://github.com/prebid/prebid-server-java/issues) from publishers, hosts, and Prebid.org project maintainers. If we receive complaints about your bid adapter and you do not respond to our communications, we may disable your adapter by default or remove it from the project entirely.
 
+## Generic Adapter
+
+Before creating your own bid adapter, consider looking into [generic adapter implementation](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/GenericBidder.java). Its main purpose is to simplify testing of PBS. As this adapter just passes requests through without any additional manipulations with data, it can be used to test behaviour of PBS core logic. But, it can be also used as template for simple bid adapters or even for aliasing the very basic ones.
+
 ## Create Your Adapter
 
 Prebid Server bid adapters consist of several components: bidder config yaml, bidder parameters, bid adapter code, configuration for framework and default configuration(.yaml) values. This chapter will guide you though each component.

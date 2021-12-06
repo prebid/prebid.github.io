@@ -5,6 +5,7 @@ description: Prebid Beachfront Bidder Adapter
 biddercode: beachfront
 media_types: video
 floors_supported: true
+fpd_supported: true
 gdpr_supported: true
 usp_supported: true
 userIds: unifiedId, identityLink, uid2, haloId
