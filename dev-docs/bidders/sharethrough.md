@@ -5,7 +5,9 @@ biddercode: sharethrough
 description: Prebid Sharethrough Adaptor
 gdpr_supported: true
 coppa_supported: true
-media_types: native
+floors_supported: true
+media_types: native, video
+safeframes_ok: true
 schain_supported: true
 userIds: pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
 usp_supported: true
