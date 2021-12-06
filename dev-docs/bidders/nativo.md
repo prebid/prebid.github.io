@@ -18,5 +18,5 @@ The Nativo Bidder adapter requires setup before beginning. Please contact us at 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                                     | Example      | Type      |
 |---------------|----------|---------------------------------------------------------------------------------|--------------|-----------|
-| `placementId` | required | Publication placement ID value from the Nativo Platform                         |  `13144370`  | `integer` |
+| `placementId` | optional | Publication placement ID value from the Nativo Platform                         |  `13144370`  | `integer` |
 | `url`         | optional | Publication url value associated with placement ID value in the Nativo Platform |  `https://test-sites.internal.nativo.net/testing/prebid_adpater.html`  | `string` |

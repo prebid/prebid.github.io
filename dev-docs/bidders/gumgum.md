@@ -8,10 +8,11 @@ pbs_app_supported: true
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true
-getFloor: true
+floors_supported: true
 userIds: unifiedId, identityLink
 gdpr_supported: true
 usp_supported: true
+fpd_supported: true
 ---
 
 ### Note:
@@ -33,6 +34,7 @@ Client side and server side parameters differ slightly. For Server side (Prebid 
 | `zone`         | required for all bid requests tracking a single domain or site   | Tracking ID           | `'ggumtest'`           | `string`  |
 | `pubId`        | required for all bid requests tracking multiple domains or sites | Publisher ID          | `123`                  | `integer` |
 | `irisid`       | optional                                                         | Iris.tv ID            | `'iris_6f9285823a4'`   | `string`  |
+| `slot`         | optional                                                         | Placement ID          | `40`                   | `number`  |
 
 ### Client Side Bid Params
 

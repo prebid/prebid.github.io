@@ -9,7 +9,6 @@ media_types: banner, video, native
 gdpr: true
 pbjs: true
 pbs: true
-pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params

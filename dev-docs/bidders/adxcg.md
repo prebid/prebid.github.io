@@ -2,7 +2,7 @@
 layout: bidder
 title: adxcg
 description: Prebid adxcg bidder adaptor
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true

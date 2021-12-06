@@ -5,7 +5,7 @@ description: Prebid pubGENIUS Bidder Adaptor
 pbjs: true
 biddercode: pubgenius
 media_types: banner
-getFloor: true
+floors_supported: true
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
