@@ -26,7 +26,7 @@ fpd_supported: true
 | `inv`       | required, if `mid` not set | Inventory source ID  | `1234`             | `integer` |
 | `mname`     | required, if `mid` not set | Placement name       | `"Leaderboard"`    | `string`  |
 | `adxDomain` | optional, Prebid.js only   | The Adform domain    | `"adx.adform.net"` | `string`  |
-| `priceType` | optional, Prebid.js only   | Price type           | `"gross"`          | `string`  |
+| `priceType` | optional                   | Price type           | `"gross"`          | `string`  |
 
 Note: Bid placement should be defined using the `mid` parameter or `inv` and `mname` parameters (dynamic master tag) but not both.
 
