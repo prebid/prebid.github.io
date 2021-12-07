@@ -31,4 +31,4 @@ pbs_app_supported: true
 
 ### Note
 
-For the prebid server, you only need to use one parameter, placementId or endpointId
+For the prebid server you only need to use one parameter: either placementId or endpointId
