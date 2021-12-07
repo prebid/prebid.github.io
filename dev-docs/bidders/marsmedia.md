@@ -7,7 +7,7 @@ pbs: true
 biddercode: marsmedia
 media_types: video, banner
 gdpr_supported: true
-getFloor: true
+floors_supported: true
 schain_supported: true
 usp_supported: true
 coppa_supported: true

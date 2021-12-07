@@ -5,6 +5,7 @@ description: Prebid Bridgewell Bidder Adaptor
 pbjs: true
 biddercode: bridgewell
 media_types: display, native
+userIds: all
 ---
 
 ### Bid Params

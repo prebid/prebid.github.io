@@ -138,6 +138,7 @@ Query Params
 - statusCode - specifies that only interactions resulting in this response status code should be logged; valid values: >=200 and <=500
 - account - specifies that only interactions involving this account should be logged
 - limit - number of interactions to log; there is an upper threshold for this value set in configuration
+- bidder - name of the bidder whose adapter request will be logged
 
 ## /logging/changelevel
 

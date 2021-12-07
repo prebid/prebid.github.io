@@ -51,30 +51,26 @@ carthage update
 ```
 
 3. Build the specific schema `CarthageBuild.sh`
-    
+
     **Variant 1**
-    
+
     - Run CarthageBuild.sh script from Cartfile folder. The path should be:
         `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
-    
+
     - Enter Schema name (PrebidMobile or PrebidMobileCore)
         - If you run CarthageBuild.sh and see Permission denied use:
              `chmod +x <path_to_CarthageBuild.sh>`
-    
+
     **Variant 2**
-    
+
     - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
-    
+
     - Manage Schemes -> Check Shared checkbox for a necessary schema
-    
+
     - run `carthage build prebid-mobile-ios`
 4. Integrate the binary into your project
 
-
-
 You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
-
-
 
 ### Build framework from source
 
@@ -140,6 +136,20 @@ For details on creating the specific ad units and additional parameters and meth
 
 [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
+
+#### Using Asset Ids with In-App Native Ad Units
+
+Setting this option to `true`, in your instance of Prebid Mobile, enables you to add an id for each asset in the assets array. The default setting is `false`
+
+**Swift**
+```
+Prebid.shared.shouldAssignNativeAssetID = true
+```
+
+**Objective C**
+```
+[Prebid shared].shouldAssignNativeAssetID = YES;
+```
 
 ### Resize ad slot
 
