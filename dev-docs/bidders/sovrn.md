@@ -11,6 +11,7 @@ userIds: all
 prebid_member: true
 schain_supported: true
 gvl_id: 13
+media_types: ["banner", "video"]
 ---
 
 ### Bid Params
