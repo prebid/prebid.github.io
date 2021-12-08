@@ -129,6 +129,7 @@ targeting configuration](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.
 ## Controls
 
 Over the years, quite a few options have been added to to Prebid.js to adjust the number of bids and the exact set of KVPs sent to the ad server. This is an overlapping-but-powerful set of controls. There are often
+
 multiple ways to implement the same requirements, and there's no "wrong"
 way to do it.
 

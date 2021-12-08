@@ -73,6 +73,9 @@
           {% if thisSubItem.link == page.url %}
             {% assign isOpen = 1 %}
           {% endif %}
+          {% if thisSubItem.link == page.sidebar_entry %}
+            {% assign isOpen = 1 %}
+          {% endif %}
         {% endfor %}
 
         {% assign item_classes = base_item_classes | push: 'list-group-item--level-1' %}
@@ -97,6 +100,10 @@
           {% assign lastIdx = arrSubItems.size | minus: 1 %}
           {% assign isPage = 0 %}
           {% if thisSubItem.link == page.url %}
+            {% assign isPage = 1 %}
+          {% endif %}
+
+          {% if thisSubItem.link == page.sidebar_entry %}
             {% assign isPage = 1 %}
           {% endif %}
 
