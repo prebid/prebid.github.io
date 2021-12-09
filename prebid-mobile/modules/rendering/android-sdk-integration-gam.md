@@ -83,7 +83,7 @@ allprojects {
 App module build.gradle:
 
 ```
-implementation('org.prebid:prebid-mobile-sdk-gamEventHandlers:x.x.x')
+implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 ```
 
 
@@ -316,53 +316,6 @@ The most convenient way to determine if the ad is ready for displaying is to lis
 ``` kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
-}
-```
-
-
-## Native Ads
-
-The general integration scenario requires these steps from publishers:
-
-1. Prepare the ad layout.
-2. Create Native Ad Unit and appropriate GAM ad loader.
-3. Configure the Native Ad unit using [NativeAdConfiguration](../native/android-native-ad-configuration.html).
-    * Provide the list of **[Native Assets](../android-in-app-bidding-native-guidelines-info.html#components)** representing the ad's structure.
-    * Tune other general properties of the ad.
-4. Make a bid request.
-5. Prepare publisherAdRequest using `GamUtils.prepare`
-6. After receiving response from GAM  - check if prebid has won and find native ad using `GamUtils`
-7. Bind the winner data from the native ad response with the layout.
-
-``` kotlin
-val builder = AdManagerAdRequest.Builder()
-val publisherAdRequest = builder.build()
-nativeAdUnit?.fetchDemand { result ->
-    val fetchDemandResult = result.fetchDemandResult
-    if (fetchDemandResult != FetchDemandResult.SUCCESS) {
-        loadGam(publisherAdRequest)
-        return@fetchDemand
-    }
-    
-    GamUtils.prepare(publisherAdRequest, result)
-    loadGam(publisherAdRequest)
-}
-```
-**NOTE:** `loadGam` method is creating GAM adLoader and executing `loadAd(publisherAdRequest)`.
-
-
-Example of handling NativeAd response (the same applies to Custom):
-
-``` kotlin
-private fun handleNativeAd(nativeAd: NativeAd) {
-    if (GamUtils.didPrebidWin(nativeAd)) {
-        GamUtils.findNativeAd(nativeAd) {
-            inflateViewContentWithPrebid(it)
-        }
-    }
-    else {
-        inflateViewContentWithNative(nativeAd)
-    }
 }
 ```
 

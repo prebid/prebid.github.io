@@ -81,7 +81,7 @@ allprojects {
 App module build.gradle:
 
 ```
-implementation('org.prebid:prebid-mobile-sdk-mopubAdapters:x.x.x')
+implementation('org.prebid:prebid-mobile-sdk-mopub-adapters:x.x.x')
 ```
 
 For more details about Adapters read the [MoPub's Documentation](https://developers.mopub.com/networks/integrate/mopub-network-mediation-guidelines/).

@@ -18,6 +18,7 @@ To add the dependency, open your project and update the app module’s build.gra
 allprojects {
     repositories {
       ...
+      google()
       mavenCentral()
       ...
     }
@@ -42,6 +43,7 @@ Before you start, you need to integrate the SDK by updating your Android manifes
 ``` xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
