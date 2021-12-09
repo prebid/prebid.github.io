@@ -420,7 +420,7 @@ The parameters of the `bidResponse` object are:
 | `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
 | `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | 3333                          |
 | `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
-| `meta.advertiserDomains`     | Optional                                    | Array of Advertiser Domains for the landing page(s). This is an array to align with the OpenRTB 'adomain' field.    | `["advertisera.com"]`     |
+| `meta.advertiserDomains`     | Required(*)                                    | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
 | `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
 | `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`                          
@@ -428,6 +428,11 @@ The parameters of the `bidResponse` object are:
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+
+{: .alert.alert-info :}
+**Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
+Prebid.org publishers have required that all bidders must eventually supply this value, so every bidder should be planning for it.
+There's often a long lag time between making a PBJS adapter update and when most pubs upgrade to it, so we minimally require adapters to be ready for the day when the endpoint responds with adomain.
 
 #### Resolve OpenRTB Macros in the Creatives
 
