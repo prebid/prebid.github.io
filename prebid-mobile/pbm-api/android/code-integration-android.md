@@ -16,17 +16,22 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 
 If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
 
-To include the Prebid Mobile SDK simply add this line to your gradle dependencies:
+To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the lastest stable release:
+
+```
+implementation 'org.prebid:prebid-mobile-sdk:1.2.1'
+```
+
+{% capture warning_note %}  
+Prebid is going to release beta versions of SDK from time to time. So if you don't want to update to beta versions - avoid Maven's range notation for the dependency versions.
+If you still use the range notation like this:
 
 ```
 implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
 
-If you wish to explicitly state the lastest stable release, please use the following:
-
-```
-implementation 'org.prebid:prebid-mobile-sdk:1.3'
-```
+please change it to the strict version.  {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 
 ### Build framework from source
