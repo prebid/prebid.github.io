@@ -16,6 +16,8 @@ The initial release of Open Beta rendering will contain a temporary API structur
 {% endcapture %}
 {% include /alerts/alert_important.html content=warning_note %}
 
+The rendering API is avaliable on iOS and Android starting from the `1.13.0-beta1` version.
+
 ## Benefits
 
 Prebid SDK rendering offers the following benefits:
