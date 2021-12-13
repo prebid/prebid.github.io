@@ -64,7 +64,7 @@ If GAM Event Handler receives the `PrebidAppEvent` event it will render the winn
 Prebid rendering for Rewarded video ads is based on the [OnAdMetadataChangedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/rewarded/OnAdMetadataChangedListener). So you need to set up a special VAST tag in the creative.
 
 ``` js
-https://sdk.prod.gcp.openx.org/ads/inapp_bidding/gam_rewarded.xml
+https://cdn.jsdelivr.net/npm/prebid-universal-creative/dist/prebid-mobile-rewarded-vast.xml
 ```
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-creative-rewarded.png" alt="Pipeline Screenshot" align="center">
