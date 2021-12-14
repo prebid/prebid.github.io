@@ -50,8 +50,8 @@ Optional initialization parameters:
 | Param | Required? | Type | Description | Example |
 | enabled | no | boolean | allows turning off of module. Default value is true | true |
 | customGptSlotMatching | no | function | GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) | |
-| useDefaultPreAuction | no | boolean | (PBJS 6.4+) If true, use default behavior for determining GPID and PbAdSlot. Defaults to false. | true |
-| customPreAuction | no | function | (PBJS 6.4+) Custom function for defining the GPID and PbAdSlot. | |
+| useDefaultPreAuction | no | boolean | (PBJS 6.5+) If true, use default behavior for determining GPID and PbAdSlot. Defaults to false. | true |
+| customPreAuction | no | function | (PBJS 6.5+) Custom function for defining the GPID and PbAdSlot. | |
 | customPbAdSlot | no | function | Custom PB AdSlot function. (Note, this function will be deprecated in the future.) | |
 | mcmEnabled | no | boolean | Removes extra network IDs when Multiple Customer Management is active. Default is false. | true |
 
@@ -111,7 +111,7 @@ Here's what the module does to define these values:
 ## Example customPbAdSlot function
 
 {: .alert.alert-info :}
-In PBJS 6.4 and later, we recommend using the useDefaultPreAuction flag or the customPreAuction function.
+In PBJS 6.5 and later, we recommend using the useDefaultPreAuction flag or the customPreAuction function.
 
 The following customPbAdSlot function will work for many publishers. Assumptions:
 - AdUnits have been registered with [pbjs.addAdUnits](/dev-docs/publisher-api-reference/addAdUnits.html).
