@@ -6,7 +6,7 @@ description: Prebid Sharethrough Adaptor
 gdpr_supported: true
 coppa_supported: true
 floors_supported: true
-media_types: native, video
+media_types: video
 safeframes_ok: true
 schain_supported: true
 userIds: pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
