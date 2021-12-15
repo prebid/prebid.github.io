@@ -41,10 +41,10 @@ If you need to integrate Prebid with GAM or MoPub add these pods respectively
 
 ```
 # + Google Ad Manager (optional)
-pod 'PrebidMobile/GAMEventHandlers', '1.13.0-beta1'
+pod 'PrebidMobileGAMEventHandlers', '1.13.0-beta1'
 
 # + MoPub (optional)
-pod 'PrebidMobile/MoPubAdapters', '1.13.0-beta1'
+pod 'PrebidMobileMoPubAdapters', '1.13.0-beta1'
 ```
 
 
