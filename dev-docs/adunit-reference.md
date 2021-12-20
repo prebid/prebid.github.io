@@ -37,7 +37,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [insterstitial](#adUnit-interstitial-example) signal. |
+| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [interstitial](#adUnit-interstitial-example) signal. |
 
 <a name="adUnit.bids" />
 
@@ -285,10 +285,10 @@ pbjs.addAdUnits({
         video: {
             context: 'instream',
             playerSize: [640, 480],
-	    w: 640,
-	    h: 480,
-	    skip: 1,
-	    playbackmethod: [2]
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         },
     },
     bids: [{
@@ -594,7 +594,7 @@ For more information on Interstitial ads, reference the [Interstitial feature pa
 
 ## Related Topics
 
-+ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/)
++ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference)
 + [Conditional Ad Units][conditionalAds]
 + [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html)
 + [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)

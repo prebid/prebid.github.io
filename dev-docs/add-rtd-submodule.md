@@ -92,9 +92,10 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 | name  | string  | required | must match the name provided by the publisher in the on-page config | n/a |
 |  init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
 |  getTargetingData  | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
-|  getBidRequestData  | function | optional | defines a function that provides ad server targeting data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
+|  getBidRequestData  | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
 |  onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
 |  onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
+|  onBidRequestEvent | function |optional | listens to the BID_REQUESTED event and calls a sub-module function that lets it know when a bid is about to be requested | bidRequest, config, userConsent |
 |  onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
 
 For example:
@@ -230,6 +231,7 @@ export const subModuleObj = {
   init: init,
   onAuctionInitEvent: onAuctionInit,
   onAuctionEndEvent: onAuctionEnd,
+  onBidRequestEvent: onBidRequest,
   onBidResponseEvent: onBidResponse
 };
 
@@ -241,8 +243,12 @@ function onAuctionEnd(auctionDetails, config, userConsent) {
   // take note of auction end
 }
 
+function onBidRequest(bidRequest, config, userConsent) {
+  // optionally update bidRequest
+}
+
 function onBidResponse(bidResponse, config, userConsent) {
-  //optionally update bidResponse
+  // optionally update bidResponse
 }
 
 function init(config, userConsent) {
@@ -280,6 +286,7 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
     ---
     layout: page_v2
     title: Example Module
+    display_name: Example
     description: Useful statement for what this does
     page_type: module
     module_type: rtd

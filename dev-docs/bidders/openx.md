@@ -10,9 +10,10 @@ schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-getFloor: true
-userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, idxId, intentIqId, liveIntentId, lotamePanoramaId, merkleId, netId, parrableId, pubCommonId, quantcastId, sharedId, tapadId, unifiedId, verizonMediaId, zeotapIdPlus
+floors_supported: true
+userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, haloId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, nextrollId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
+fpd_supported: true
 gvl_id: 69
 ---
 
@@ -79,17 +80,15 @@ var adUnits = [
     mediaTypes: {
       video: {
         playerSize: [640, 480],
-        context: 'instream'
+        context: 'instream',
+        mimes: ['video/x-ms-wmv, video/mp4']
       }
     },
     bids: [{
       bidder: 'openx',
       params: {
         unit: '1611023124',
-        delDomain: 'PUBLISHER-d.openx.net',
-        video: {
-          mimes: ['video/x-ms-wmv, video/mp4']
-        }
+        delDomain: 'PUBLISHER-d.openx.net'
       }
     }]
   }

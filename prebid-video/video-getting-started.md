@@ -71,7 +71,11 @@ Setting up Prebid ad units is almost the same whether you’re working with inst
         mediaTypes: {
             video: {
                 context: 'instream', //or 'outstream'
-                playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],    // required for Prebid Server
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             }
 ```
 
@@ -80,14 +84,6 @@ The mediaTypes.video.playerSize field is where you define the player size that w
 <div class="alert alert-info">
   <strong>Prebid Server</strong>
   <p>If you’re using Prebid Server, you must also include the mediaTypes.video.mimes field, as this is required by OpenRTB.</p>
-
-  <pre>
-        mediaTypes: {
-            video: {
-                context: 'instream', // or 'outstream'
-                playerSize: [640, 480],
-                mimes: ['video/mp4']
-  </pre>
 </div>
 
 In your ad unit you also need to define your list of bidders. For example, including AppNexus as a bidder would look something like this:
@@ -141,7 +137,7 @@ And this is where setups for instream and outstream diverge. Please follow one o
 Be sure to note the setting for price granularity.  You might need to set up a custom price granularity. (See “Custom CPM Bucket Sizing” under [Price Granularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity). Or, if you’re monetizing both banner and video inventory with Prebid, you might need to define format-specific price granularity settings through  [mediaTypePriceGranularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-MediaType-Price-Granularity).
 
 {: .alert.alert-info :}
-**Prebid Server**  If you’re using Prebid Server, you also need to configure your server-to-server bidder adapters. See [Getting Started with Prebid Server]({{site.github.url}}/dev-docs/get-started-with-prebid-server.html#step-4-configure-s2s-bidder-adapters) for details and examples.
+**Prebid Server**  If you’re using Prebid Server, you also need to configure your server-to-server bidder adapters. See [Getting Started with Prebid Server](/overview/prebid-server-overview.html).
 
 ### Examples
 

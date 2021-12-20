@@ -91,18 +91,17 @@ var adUnits = [{
         video: {
             playerSize: [640, 480],
             context: 'outstream',
-            mimes: ['video/mp4']
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         }
     },
     bids: [
         {
             bidder: 'appnexus',
             params: {
-                placementId: 13232392,
-                video: {
-                    skippable: true,
-                    playback_method: ['auto_play_sound_off']
-                }
+                placementId: 13232392
             },
 
         }

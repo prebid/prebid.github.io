@@ -76,7 +76,11 @@ The ad unit below supports the banner, native, and video media types.
             },
             video: {
                 context: 'outstream',
-                playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             },
         },
         bids: [
