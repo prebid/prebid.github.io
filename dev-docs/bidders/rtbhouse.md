@@ -6,10 +6,12 @@ gdpr_supported: true
 pbjs: true
 pbs: true
 biddercode: rtbhouse
+prebid_member: true
+floors_supported: true
 safeframes_ok: true
 media_types: banner, native
 schain_supported: true
-userIds: id5Id, identityLink
+userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
 ---
 
@@ -21,4 +23,11 @@ pbs_app_supported: true
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'`    | `string` |
 | `region`      | required | Assigned region     | `'prebid-eu'` | `string` |
-| `bidfloor`    | optional | Minimal CPM value   | `0.01`        | `float`  |
+| `bidfloor`    | optional | Minimal CPM value*   | `0.01`        | `float`  |
+| `channel`     | optional | Inventory channel** identifier, limited to 50 characters  | `0.01`        | `float`  |
+
+
+*Since 4.43 the bidfloor param will be ignored if a value is specified via floor module.
+
+**Please reach your RTBHouse representative for details on how to enable and use the channel param.
+
