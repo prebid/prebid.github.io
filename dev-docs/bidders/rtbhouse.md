@@ -24,7 +24,7 @@ pbs_app_supported: true
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'`    | `string` |
 | `region`      | required | Assigned region     | `'prebid-eu'` | `string` |
 | `bidfloor`    | optional | Minimal CPM value*   | `0.01`        | `float`  |
-| `channel`     | optional | Inventory channel** identifier, limited to 50 characters  | `0.01`        | `float`  |
+| `channel`     | optional | Inventory channel** identifier, limited to 50 characters  | `Partner 1 - News`        | `string`  |
 
 
 *Since 4.43 the bidfloor param will be ignored if a value is specified via floor module.
