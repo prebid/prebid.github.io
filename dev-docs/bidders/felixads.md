@@ -25,4 +25,4 @@ The felixads Bidding adaptor requires setup and approval before beginning. Pleas
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | felixads's RTB host   | `'cpm.felixads.com'`      | `string` |
-| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |
+| `zoneId` | required | RTB zone id           | `'30164'`                 | `integer` |
