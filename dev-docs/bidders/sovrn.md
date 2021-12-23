@@ -27,7 +27,7 @@ fpd_supported: true
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description                                                                                                                    | Example         | Type            |
-|------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|--------------------|---------- ---|
+|------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------|
 | `mimes`          | required | Content MIME types supported                                                                                                   | `['video/mp4']` | `string array`  |
 | `minduration`    | required | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
 | `maxduration`    | required | Maximum video ad duration in seconds                                                                                           | `10`            | `integer`       |
