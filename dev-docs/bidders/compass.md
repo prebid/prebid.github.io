@@ -12,16 +12,10 @@ media_types: banner, video, native
 pbjs: true
 pbs: true
 pbs_app_supported: true
+gvl_id: 883
 ---
 
-### Prebid.js Bid Params
-
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | Placement Id         | `'0'`    | `'string'` |
-
-### Prebid server Bid Params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
@@ -31,4 +25,4 @@ pbs_app_supported: true
 
 ### Note
 
-For the prebid server you only need to use one parameter: either placementId or endpointId
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
