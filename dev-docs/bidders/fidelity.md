@@ -9,6 +9,7 @@ media_types: banner
 gdpr_supported: true
 usp_supported: true
 gvl_id: 408
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

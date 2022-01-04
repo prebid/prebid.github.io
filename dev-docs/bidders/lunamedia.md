@@ -5,6 +5,7 @@ description: Prebid Luna Media Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: lunamedia
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

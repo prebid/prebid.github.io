@@ -6,6 +6,7 @@ pbjs: true
 biddercode: windtalker
 media_types: native, video
 gdpr_supported: true
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

@@ -6,6 +6,7 @@ pbjs: true
 biddercode: mobsmart
 media_types: banner
 userIds: pubCommonId
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

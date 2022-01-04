@@ -8,6 +8,7 @@ biddercode: decenterads
 media_types: banner, video, native
 gdpr_supported: true
 pbs_app_supported: true
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

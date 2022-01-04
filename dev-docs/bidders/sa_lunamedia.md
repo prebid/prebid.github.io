@@ -11,6 +11,7 @@ pbjs: false
 pbs: true
 pbs_app_supported: true
 gvl_id: 998
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

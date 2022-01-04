@@ -4,6 +4,7 @@ title: Imonomy
 description: Prebid Imonomy Bidder Adaptor
 pbjs: true
 biddercode: imonomy
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

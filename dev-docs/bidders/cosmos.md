@@ -4,6 +4,7 @@ title: COSMOS
 description: Prebid COSMOS Bidder Adapter
 pbjs: true
 biddercode: cosmos
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

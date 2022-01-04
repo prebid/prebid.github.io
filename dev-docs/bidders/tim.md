@@ -4,6 +4,7 @@ title: Tim Media
 description: Prebid Tim Bidder Adaptor
 pbjs: true
 biddercode: tim
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 
