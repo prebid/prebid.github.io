@@ -5,7 +5,7 @@ description: Reload Prebid Adaptor
 pbjs: true
 biddercode: reload
 enable_download: false
-pbjs_version_notes: not in 5.x
+pbjs_version_notes: not ported to 5.x
 ---
 
 
