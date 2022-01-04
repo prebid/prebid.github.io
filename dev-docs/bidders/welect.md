@@ -7,7 +7,7 @@ media_types: no-display, video
 gvlid: 282
 pbjs: true
 enable_download: false
-pbjs_version_notes: not in 5.x
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

@@ -7,7 +7,7 @@ biddercode: project-limelight
 aliasCode: projectLimeLight
 media_types: video
 enable_download: false
-pbjs_version_notes: not in 5.x
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Bid Params
