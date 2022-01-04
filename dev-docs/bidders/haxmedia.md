@@ -9,6 +9,7 @@ media_types: banner, video, native
 gdpr: true
 pbjs: true
 pbs: false
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

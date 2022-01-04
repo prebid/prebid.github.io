@@ -5,6 +5,7 @@ description: Bidfluence Adaptor for Prebidjs
 pbjs: true
 biddercode: bidfluence
 gdpr_supported: true
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

@@ -5,6 +5,7 @@ description: Prebid Shinez Bidder Adapter
 biddercode: shinez
 media_types: banner
 pbjs: true
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

@@ -5,6 +5,7 @@ description: Prebid Segmento Bidder Adaptor
 pbjs: true
 biddercode: segmento
 media_types: banner
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

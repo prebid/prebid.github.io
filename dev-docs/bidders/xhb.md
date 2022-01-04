@@ -6,6 +6,7 @@ biddercode: xhb
 pbjs: true
 media_types: video, native
 gdpr_supported: true
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

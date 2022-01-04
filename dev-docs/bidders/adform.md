@@ -11,6 +11,7 @@ pbjs: true
 pbs: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
 gvl_id: 50
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

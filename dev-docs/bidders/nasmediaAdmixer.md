@@ -4,6 +4,7 @@ title: Nasmedia Admixer
 description: Prebid Nasmedia Admixer Bidder Adapter
 pbjs: true
 biddercode: nasmediaAdmixer
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

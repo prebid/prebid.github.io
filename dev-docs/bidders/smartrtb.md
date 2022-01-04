@@ -9,6 +9,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 pbjs: true
 pbs: true
 pbs_app_supported: true
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

@@ -4,6 +4,7 @@ title: DJAX
 description: Prebid djax Bidder Adapter
 pbjs: true
 biddercode: djax
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 
