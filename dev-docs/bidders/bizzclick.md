@@ -16,7 +16,7 @@ pbs: true
 
 ### Note:
 
-The Example Bidding adapter requires setup before beginning. Please contact us at support@bizzclick.com 
+The Example Bidding adapter requires setup before beginning. Please contact us at support@bizzclick.com .BizzClick will only respond to the first impression and that multiple ad formats of that single impression are not supported.
 
 ### Bid Params
 
