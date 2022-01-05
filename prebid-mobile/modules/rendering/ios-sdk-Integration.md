@@ -34,17 +34,17 @@ pod 'PrebidMobile/MoPubAdapters'
 The rendering API is introduced as a beta release. In order to integrate it you have to set the beta version explisitly:
 
 ```
-pod 'PrebidMobile', '1.13.0-beta1'
+pod 'PrebidMobile', '1.13.0-beta2'
 ```
 
 If you need to integrate Prebid with GAM or MoPub add these pods respectively
 
 ```
 # + Google Ad Manager (optional)
-pod 'PrebidMobileGAMEventHandlers', '1.13.0-beta1'
+pod 'PrebidMobileGAMEventHandlers', '1.13.0-beta2'
 
 # + MoPub (optional)
-pod 'PrebidMobileMoPubAdapters', '1.13.0-beta1'
+pod 'PrebidMobileMoPubAdapters', '1.13.0-beta2'
 ```
 
 
