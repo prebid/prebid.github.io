@@ -8,6 +8,8 @@ usp_supported: true
 prebid_member: true
 gvl_id: 833
 enable_download: false
+pbjs: true
+pbjs_version_notes: v6.5.0 and later
 ---
 
 #### Registration
