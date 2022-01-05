@@ -10,6 +10,16 @@ sidebarType: 2
 The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project.
 
 If you do not have GMA SDK in the app yet, refer the the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/quick-start).
+
+{: .alert.alert-warning :}
+**Warning:** GMA SDK is a closed library that sometimes works in an unexpected way. The `GADMobileAds.sharedInstance().start()` should be called in all bundles where it is used. Otherwise, GMA SDK won't load the ads with error: `adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized.`
+
+To avoid the error add the following line to your app right after initialization of GMA SDK:
+
+```
+GAMUtils.shared.initializeGAM()
+```
+
  
 ## GAM Integration Overview
 
