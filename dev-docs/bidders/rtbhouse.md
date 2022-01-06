@@ -23,11 +23,12 @@ pbs_app_supported: true
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'`    | `string` |
 | `region`      | required | Assigned region     | `'prebid-eu'` | `string` |
-| `bidfloor`    | optional | Minimal CPM value*   | `0.01`        | `float`  |
-| `channel`     | optional | Inventory channel** identifier, limited to 50 characters  | `Partner 1 - News`        | `string`  |
+| `bidfloor`    | optional | Minimal CPM value   | `0.01`        | `float`  |
+| `channel`     | optional | Inventory channel identifier, limited to 50 characters  | `Partner 1 - News`        | `string`  |
 
 
-*Since 4.43 the bidfloor param will be ignored if a value is specified via floor module.
+### Please note:
 
-**Please reach your RTBHouse representative for details on how to enable and use the channel param.
+* Since 4.43 the bidfloor param will be ignored if a value is specified via floor module.
 
+* The channel param is available starting from Prebid 6.6.0. Please reach your RTBHouse representative for details on how to enable and use the channel param.
