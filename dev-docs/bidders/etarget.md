@@ -2,10 +2,11 @@
 layout: bidder
 title: Etarget
 description: Prebid Etarget Bidder Adaptor 
-hide: true
+pbjs: true
 biddercode: etarget
 media_types: banner, video
 gdpr_supported: true
+fpd_supported: true
 ---
 
 

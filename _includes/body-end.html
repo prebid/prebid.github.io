@@ -1,0 +1,23 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+  apiKey: 'e9e0827a8769cc3797d1d75add431a5c',
+  indexName: 'prebid',
+  inputSelector: '#site-search',
+  algoliaOptions: {
+    // 'facetFilters': ["tags:$TAGS"]
+    hitsPerPage: 30,
+  },
+  transformData: function(hits) {
+    var returned_hits = { };
+    hits.forEach( function(hit) {
+      var url = new URL(hit.url);
+      var key = url.origin + url.pathname;
+      if ( !returned_hits[key] ) {
+        returned_hits[key] = hit;
+      }
+    } );
+    return Object.values(returned_hits);
+  },
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>

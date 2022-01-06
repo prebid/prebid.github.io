@@ -3,8 +3,10 @@ layout: bidder
 title: EngageBDR
 description: Prebid EngageBDR Bidder Adaptor
 biddercode: ebdr
-hide: true
+pbjs: true
 media_types: video
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Bid params

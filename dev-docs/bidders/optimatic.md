@@ -2,7 +2,7 @@
 layout: bidder
 title: Optimatic
 description: Prebid Optimatic Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: optimatic
 media_types: video
 ---

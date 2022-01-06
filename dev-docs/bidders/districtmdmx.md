@@ -2,11 +2,14 @@
 layout: bidder
 title: DistrictmDMX
 description: Prebid DistrictmDMX Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: districtmDMX
 gdpr_supported: true
 schain_supported: true
+floors_supported: true
 usp_supported: true
+coppa_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 
@@ -30,4 +33,3 @@ usp_supported: true
 | `floor`    | optional | Bid floor price         | `"1.00"`           | `string`  |
 | `revShare` | optional | Publisher Revenue Share | `"0.85"`           | `string`  |
 | `currency` | optional | Currency code           | `"usd"`            | `string`  |
-

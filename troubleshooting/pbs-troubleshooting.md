@@ -33,17 +33,27 @@ POST https://prebid-server.rubiconproject.com/openrtb2/auction
 
 If you're invoking Prebid Server from Prebid.js, turn on the OpenRTB `test` flag from Prebid.js using one of these options:
 
-1) Add **?pbjs_debug=true** to the URL of the page.
+1) Add **?pbjs_debug=true** to the URL of the page. This will cause the pbsBidAdapter to send `ext.prebid.debug:1` to PBS, which will turn on additional debugging.
 
-2) Add the following `setConfig` to the page:
+2) Add the following `setConfig` to the page to get the same result:
 
 {% highlight bash %}
     pbjs.setConfig({"debug":true});
 {% endhighlight %}
 
+3) If instead of ext.prebid.debug you would like to set the OpenRTB 2.5 'test' flag, you can set that using the 'ortb2' approach:
+
+{% highlight bash %}
+    pbjs.setConfig({
+        "ortb2": {
+            "test":1
+        }
+    });
+{% endhighlight %}
+
 ### Invoked from AMP
 
-If you're invoking Prebid Server from, you'll be unable to get debug info from the AMP page. However, you can capture the Prebid Server AMP call and append `&debug=1` to it:
+If you're invoking Prebid Server from AMP, you'll be unable to get debug info from the AMP page. However, you can capture the Prebid Server AMP call and append `&debug=1` to it:
 
 {% highlight bash %}
 https://my-prebid-server.com/openrtb2/amp?tag_id=1111111111111&w=300&h=50&...&debug=1
@@ -120,6 +130,22 @@ Could result in this response, assuming that the IDs exist in the database table
   ]
 }
 {% endhighlight %}
+
+## Request Logging
+
+(PBS-Java only)
+
+Sometimes you want to see what's coming into the server before being processed by PBS.
+If the admin endpoints are enabled and you have the admin endpoint password, you can 
+hit these two URLs with the desired parameter values:
+
+- https://HOST/logging/[changelevel](/prebid-server/endpoints/pbs-endpoint-admin.html#loggingchangelevel)?level=debug&duration=10000
+- https://HOST/logging/[httpinteraction](/prebid-server/endpoints/pbs-endpoint-admin.html#logginghttpinteraction)?limit=100&endpoint=auction&account=1111
+
+Then you can check server logs for output like:
+```
+http-interaction : Requested URL: "/openrtb2/auction?debug=1", request body: "{ ... }"
+```
 
 ## Related Topics
 {:.no_toc}

@@ -4,7 +4,7 @@ title: Postbid Example
 description: Postbid Example
 sidebarType: 1
 
-hide: true
+
 
 why_link: /overview/what-is-post-bid.html
 

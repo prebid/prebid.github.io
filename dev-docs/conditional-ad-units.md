@@ -4,7 +4,7 @@ title: Conditional Ad Units
 description: Using labels for conditional ad units
 top_nav_section: dev_docs
 nav_section: features
-hide: false
+
 sidebarType: 1
 ---
 
@@ -13,7 +13,7 @@ sidebarType: 1
 # Conditional Ad Units
 {:.no_toc}
 
-The [global sizeConfig](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well:
+The [global sizeConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well:
 
 * TOC
 {:toc}
@@ -22,15 +22,15 @@ By supporting these scenarios, header bidding can be more efficient - the browse
 
 The basic steps are:
 
-1. Build up an array of 'labels' from two sources: as an output of [`sizeConfig`](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids), or both.
+1. Build up an array of 'labels' from two sources: as an output of [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html), or both.
 1. Apply label targeting to AdUnits or specific bids.
 
-See the [Publisher API reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads) for syntax.
+See the [Publisher API reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) for syntax.
 
 ## What if some bidders should be skipped for some devices?
 
 {: .alert.alert-info :}
-See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario.
+See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
 
 Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile
 to send them requests from display or tablets.
@@ -107,7 +107,7 @@ For instance, say that a given bidder wants to define different placements for d
 | Display | 1111 |
 | Phones and tablets | 2222 |
 
-### Using the Global sizeConfig Approach
+### Using the Global sizeConfig Approach (Banner only)
 
 Assuming the same `sizeConfig` as in the first use case above, the AdUnit would contain bids for both
 placements, but the conditional `labelAny` is added to them both. This will cause the bid to be fired only if one
@@ -191,7 +191,7 @@ var AdUnits = [{
 ## What if some ad unit auctions should be skipped entirely for some devices?
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
-on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. For example:
+on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the global sizeConfig approach (banner only):
 
 {% highlight js %}
 
@@ -219,11 +219,13 @@ var AdUnits = [{
    ]
 }]
 
+See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if you need to do something like this for video.
+
 {% endhighlight %}
 
 ## What if some bid requests apply only to users originating certain from countries?
 
-Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids) function as an argument.
+Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html) function as an argument.
 
 A specific use case: suppose that a certain bidder doesn't have a data center outside of a
 certain region. It's really not worth sending them bid
@@ -264,11 +266,11 @@ var AdUnits = [{
 This example shows that the 'euroMobileBidder' is only interested in receiving bids that have **both**
 labels:
 
-* "eur" as passed into [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids)
+* "eur" as passed into [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html)
 * "phone" as created by `sizeConfig`
 
 ## Further Reading
 
-+ [Responsive ad designs](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads)
++ [Responsive ad designs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads)
 + [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
 + [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)

@@ -51,6 +51,6 @@ To see how it works, follow the instructions in [Send all bids to the ad server 
 
 For more information, check out the following:
 
-+ [Before You Start](/overview/getting-started.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
++ [Before You Start](/adops/before-you-start.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
 + [Supported Ad Servers](/adops/before-you-start.html#supported-ad-servers): Ad ops docs arranged by ad server.
 + [Docs by Format](/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).

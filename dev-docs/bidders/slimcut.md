@@ -1,8 +1,8 @@
 ---
 layout: bidder
 title: Slimcut
-description: SlimCut Bidder Adaptor
-hide: true
+description: SlimCut Bidder Adapter
+pbjs: true
 biddercode: slimcut
 media_types: video, banner
 gdpr_supported: true
