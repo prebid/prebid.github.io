@@ -985,7 +985,7 @@ The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](http
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module. | `'kinessoId'` |
+| name | Required | String | The name of this module. | `'kpuid'` |
 | params | Required | Object | Details for KinessoId initialization | |
 | params.accountid | Required | Int | Your SSP Account Id | 123 |
 
