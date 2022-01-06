@@ -3,6 +3,7 @@ layout: bidder
 title: VideoByte
 description: Prebid VideoByte Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: videobyte
 media_types: video
 gdpr_supported: true
