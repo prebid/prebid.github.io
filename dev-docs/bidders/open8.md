@@ -5,7 +5,8 @@ description: Prebid OPEN8 Bidder Adaptor
 pbjs: true
 biddercode: open8
 media_types: video, banner
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Bid Params
