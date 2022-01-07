@@ -2,23 +2,17 @@
 layout: bidder
 title: Somo Audience
 description: Somo Audience Bidder Adapter
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
 biddercode: somoaudience
-
-biddercode_longer_than_12: false
-
-prebid_1_0_supported: true
+media_types: banner, native, video
+pbs: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `placementId` | required | Placement ID provided by Somo Audience | `22a58cfb0c9b656bff713d1236e930e8` |
+| Name          | Scope    | Description                            | Example                              | Type     |
+|---------------|----------|----------------------------------------|--------------------------------------|----------|
+| `placementId` | required | Placement ID provided by Somo Audience | `'22a58cfb0c9b656bff713d1236e930e8'` | `string` |

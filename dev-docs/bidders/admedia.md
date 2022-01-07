@@ -2,23 +2,18 @@
 layout: bidder
 title: AdMedia
 description: Prebid AdMedia Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
+pbjs: true
 biddercode: admedia
-
-biddercode_longer_than_12: false
-
+media_types: banner
+gdpr_supported: false
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `aid` | required | The Affiliate ID for the Publisher | `"1234"` |
-
+| Name  | Scope    | Description                        | Example  | Type     |
+|-------|----------|------------------------------------|----------|----------|
+| `aid` | required | The Affiliate ID for the Publisher | `'1234'` | `string` |

@@ -1,41 +1,52 @@
 ---
 layout: bidder
 title: Conversant
-description: Prebid Conversant Bidder Adaptor 
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+description: Prebid Conversant Bidder Adaptor
+pbjs: true
+pbs: true
 biddercode: conversant
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: video
 gdpr_supported: true
+userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
+prebid_member: true
+gvl_id: 24
 ---
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name | Type | Scope | Description | Example |
-| :--- | :--- | :---- | :---------- | :------ |
-| `site_id` | String | Required | The site ID from Conversant. | `"87293"` |
-| `secure` | Integer | Required (For Secure Pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1` |
-| `bidfloor` | Float | Optional | Bid floor | `0.50` |
-| `tag_id` | String | Optional | Identifies specific ad placement. | `"cnvr-test-tag"` |
-| `position` | Integer | Optional | Ad position on screen. See details below. | `1` |
-| `mimes` | String (Inside an Array) | Optional | Array of content MIME types supported. Required for video| `["video/mp4"]`|
-| `maxduration` | Integer | Optional | Maximum duration in seconds for this video as an integer. | `30` |
-| `api` | Integer (Inside an Array) | Optional | Array of supported API frameworks. See details below. | `[2]` |
-| `protocols` | Integer (Inside an Array) | Optional | Array of supported video protocols. See details below. | `[2]` |
+| Name          | Scope                       | Description                                                                                                               | Example           | Type             |
+|---------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
+| `site_id`     | required                    | The site ID from Conversant.                                                                                              | `'87293'`         | `string`         |
+| `secure`      | required (for secure pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1`               | `integer`        |
+| `bidfloor`    | optional                    | Bid floor                                                                                                                 | `0.50`            | `float`          |
+| `tag_id`      | optional                    | Identifies specific ad placement.                                                                                         | `'cnvr-test-tag'` | `string`         |
+| `white_label_url`| optional                  | Override the destination URL the request is sent to.                                                                       | `'https://mydomain.com/hbendpoint'`  | `string` |
+| `pubcid_name` | optional                    | Name of the pub common id. Conversant adapter can read the id directly if the UserID module is absent. Default is _pubcid.| `'_pubcid'`         | `string`         |
 
+### Video Params
+
+{: .table .table-bordered .table-striped }
+
+| Name          | Scope                       | Description                                                                                                               | Example           | Type             |
+|---------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
+| `position`    | optional                    | Ad position on screen. See details below.  Only supported in bids.params.                                                 | `1`               | `integer`        |
+| `mimes`       | optional                    | Array of content MIME types supported. Required for video                                                                 | `['video/mp4']`   | `Array<string>`  |
+| `maxduration` | optional                    | Maximum duration in seconds for this video as an integer.                                                                 | `30`              | `integer`        |
+| `api`         | optional                    | Array of supported API frameworks. See details below.                                                                     | `[2]`             | `Array<integer>` |
+| `protocols`   | optional                    | Array of supported video protocols. See details below.                                                                    | `[2]`             | `Array<integer>` |
+
+
+Video parameters can be included in either `mediaTypes.video` or `bids.params` except where noted.
 
 The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf).
 
 ### position
 
-+ `0` : Unknown 
++ `0` : Unknown
 + `1` : Above the Fold
 + `3` : Below the Fold
 + `4` : Header

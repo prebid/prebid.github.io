@@ -1,29 +1,27 @@
 ---
 layout: bidder
 title: OneTag
-description: Prebid OneTag Bidder Adaptor 
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
+description: Prebid OneTag Bidder Adaptor
+pbjs: true
+pbs: true
 biddercode: onetag
-
-biddercode_longer_than_12: false
-
-media_types: banner
+media_types: banner, video
 gdpr_supported: true
-
-prebid_1_0_supported : true
+gvl_id: 241
+usp_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `pubId` | required | | `386276e072` |
-| `type` | optional | The media type, default is banner | `"banner"` |
+| Name    | Scope    | Description                       | Example      | Type     |
+|---------|----------|-----------------------------------|--------------|----------|
+| `pubId` | required | The publisher's ID provided by OneTag | `'386276e072'` | `string` |
+| `ext`   | optional | A set of custom key-value pairs | `{ customKey: customValue }` | `object` |
+
+### Video Additional Information
+
+Note that right now video support is only provided when the context is "instream" or "outstream".

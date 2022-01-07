@@ -1,0 +1,33 @@
+<footer class="pb-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <p>All demos, instructions, documentation and code included on the Prebid.org website are released under the <a href="{{site.licenseUrl}}" target="_blank">{{site.license}}</a>.</p>
+      </div>
+      <div class="col-sm-3 offset-sm-1">
+        <p>Copyright© {{site.time | date: "%Y" }} Prebid.org | <a href="https://prebid.org/privacy-policy/">Privacy Policy</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+  <!-- / copyrights -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130832561-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130832561-2');
+</script>
+
+
+<script>
+	$(document).ready(function() {
+		$( 'a[href^="http://"]' ).attr( 'target','_blank' );
+	});
+</script>
+
+<script src="{{site.baseurl}}/assets/js/prism.js"></script>
+{% include body-end.html %}

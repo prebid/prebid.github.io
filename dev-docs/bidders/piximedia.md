@@ -1,28 +1,18 @@
 ---
 layout: bidder
 title: Piximedia
-description: Prebid Piximedia Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
+description: Piximedia Bidder Adaptor
+pbjs: true
 biddercode: piximedia
-
-biddercode_longer_than_12: false
-
+media_types: banner
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
-
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `siteId` | required | The site ID from Piximedia. | "SITE" |
-| `placementId` | required | The placement ID from Piximedia. | "PLACEMENT" |
-| `currency` | optional | Override the default currency (euro) | "USD" |
-| `sizes` | optional | Override the default prebid size array | [[300, 250]] |
-
-(Sizes set in `adUnit` object will also apply to the Piximedia bid requests.)
+| Name          | Scope    | Description        | Example       | Type     |
+|---------------|----------|--------------------|---------------|----------|
+| `siteId`      | required | the site ID        | `'SITE'`      | `string` |
+| `placementId` | required | the placement ID   | `'PLACEMENT'` | `string` |

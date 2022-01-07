@@ -1,0 +1,65 @@
+{% include head.html %}
+
+{% include nav.html %}
+
+<div class="container pb-docs-container">
+
+	<div class="row ">
+
+			<div class="col-lg-3 sidebar" id="sidebar">
+
+        <div>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse d-lg-block" id="sidebarContent">
+				    {% include left_nav.html %}
+          </div>
+        </div>
+
+			</div>
+
+
+      <div class="col-lg-9">
+			<div class="pb-content" markdown="1">
+
+			{{ content }}
+
+			{% if page.description == "Partners" %}
+				{% include partners.html %}
+			{% endif %}
+
+			</div>
+      </div>
+
+	</div>
+	<!--end row-->
+</div>
+
+{% if page.title != "Credits" %}
+	{% if page.layout != "home" %}
+		{% include footer.html %}
+	{% endif %}
+{% endif %}
+
+
+<!--
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $('#sidebarCollapse').on('click', function () {
+		   	$('#sidebar').toggleClass('active');
+	    });
+	});
+</script>
+
+-->
+
+</body>
+
+</html>
+
+
+
+
+
+

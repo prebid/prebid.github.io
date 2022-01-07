@@ -1,21 +1,20 @@
 ---
 layout: bidder
 title: LockerDome
-description: Prebid LockerDome Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+description: Prebid LockerDome Bidder Adapter
 biddercode: lockerdome
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
+pbjs: true
+pbs: true
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
 ---
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `adUnitId` | required | The ad unit ID from LockerDome | `10809467961050726` |
+| Name       | Scope    | Description                    | Example             | Type      |
+|------------|----------|--------------------------------|---------------------|-----------|
+| `adUnitId` | required | The ad unit ID from LockerDome | `'LD10809467961050726'` | `string` |

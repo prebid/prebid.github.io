@@ -1,50 +1,96 @@
 ---
-layout: page
-title: Prebid Modules
+layout: page_v2
+title: Prebid.js Modules
 description: Module Documentation
-pid: 27
-top_nav_section: dev_docs
-nav_section: reference
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
-
-# Prebid Modules
+# Prebid.js Module Overview
 {:.no_toc}
 
-Part of the [vision for Prebid.js version 1.0](https://github.com/prebid/Prebid.js/issues/891) is that the core of Prebid.js will contain only the foundational code needed for header bidding.  Any functionality that could be considered an add-on or that covers a special case is being moved out into modules.  Examples of this kind of code include:
+The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on is part of a module. These are the major categories:
 
-- Bidder adapters
-- Special auction logic
-- Ad server API integrations
-- Any other extensible functionality
-
-This section of the site contains user-submitted module documentation.  We're hoping that it will grow over time.
-
-To see all of the modules that are available, see the [`modules` folder in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
-
-If you are looking for bidder adapter parameters, see [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html).
+- [Bidder adapters](/dev-docs/bidders.html)
+- [Analytics adapters](/overview/analytics.html)
+- Any other extensible functionality - documented on this page
 
 * TOC
 {:toc}
 
-## Modules
+{% assign module_pages = site.pages | where: "page_type", "module" %}
 
-{: .table .table-bordered .table-striped }
-| Module              | Description  |
-|---------------------+--------------|
-| [**Currency**]({{site.baseurl}}/dev-docs/modules/currency.html) | Converts bid currency into ad server currency based on data in a supplied exchange rate file. |
-| [**DFP Express**]({{site.baseurl}}/dev-docs/modules/dfp_express.html) | A simplified installation mechanism for publishers that have DoubleClick Google Publisher Tag (GPT) ad calls in their pages. |
-| [**DigiTrust**]({{site.baseurl}}/dev-docs/modules/digitrust.html) | A method of including the standard cross-domain ID in a DigiTrust package. |
-| [**Server-to-Server Testing**]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) | Adds A/B test support for easing into server-side header bidding. |
-| [**DFP Video**]({{site.baseurl}}/dev-docs/modules/dfp_video.html) | Required for serving instream video through DFP. |
-| [**Publisher Common ID**]({{site.baseurl}}/dev-docs/modules/pubCommonId.html) | Adds a persisted user ID in the publisher's domain. |
-| [**GDPR ConsentManagement**]({{site.baseurl}}/dev-docs/modules/consentManagement.html) | Facilitates collecting/passing consent information in support of the EU GDPR. |
+## Recommended Modules
+
+Prebid.org highly recommends that publishers utilize the following modules:
+<br/>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in module_pages %}{% if page.recommended == true %}
+    <tr>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
+      <td>{{page.description}}</td>
+    </tr>
+{% endif %}{% endfor %}
+</tbody>
+</table>
+
+## General Modules
+
+Modules in the Real-Time Data (RTD) category conform to
+a consistent set of publisher controls. The publisher can choose to run multiple
+RTD modules, define an overall amount of time they're willing to wait for
+results, and even flag some of the modules as being higher priority
+than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData) reference for more details.
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Description</th>
+      <th>RTD?</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in module_pages %}{% if page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}
+    <tr>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
+      <td>{{page.description}}</td>
+      {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+## Vendor-Specific Modules
+These modules may require accounts with a service provider.
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Description</th>
+      <th>RTD?</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in module_pages %}{% if page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}
+    <tr>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
+      <td>{{page.description}}</td>
+      {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
+    </tr>
+{% endif %}{% endfor %}
+</tbody>
+</table>
 
 ## Further Reading
 
-+ [Prebid.js 1.0.0 Proposal - Intent to Implement](https://github.com/prebid/Prebid.js/issues/891)
 + [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
-+ [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html)
-
-</div>
++ [How to add a Bid Adapter](/dev-docs/bidder-adaptor.html)
++ [How to add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
++ [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)

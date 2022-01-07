@@ -1,11 +1,12 @@
 ---
-layout: page
+layout: page_v2
 title: About Prebid.js
 description: How prebid.js was started and what is it about
 pid: 60
 isNew: false
-hide: true
+
 isNavParent: true
+sidebarType: 0
 ---
 
 <style>

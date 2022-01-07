@@ -2,27 +2,24 @@
 layout: bidder
 title: Kumma
 description: Prebid Kumma Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: kumma
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: banner, native, video
+gdpr_supported: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope    | Description                         | Example |
-| :------------- | :------- | :---------------------------------- | :------ |
-| `pubId`        | required | The publisher account ID            | `'28082'` |
-| `siteId`       | required | The publisher site ID               | `'26047'` |
-| `placementId`  | required | Identifies specific ad placement    | `'17394'` |
-| `bidFloor`     | optional | The bid floor                       | `'0.001'` |
-| `ifa`          | optional | IFA ID                              | `'XXX-XXX'` |
-| `latitude`     | optional | Latitude                            | `'40.712775'` |
-| `longitude`    | optional | Longitude                           | `'-74.005973'` |
+| Name          | Scope    | Description                      | Example        | Type     |
+|---------------|----------|----------------------------------|----------------|----------|
+| `pubId`       | required | The publisher account ID         | `'28082'`      | `string` |
+| `siteId`      | required | The publisher site ID            | `'26047'`      | `string` |
+| `placementId` | required | Identifies specific ad placement | `'17394'`      | `string` |
+| `bidFloor`    | optional | The bid floor                    | `'0.001'`      | `string` |
+| `ifa`         | optional | IFA ID                           | `'XXX-XXX'`    | `string` |
+| `latitude`    | optional | Latitude                         | `'40.712775'`  | `string` |
+| `longitude`   | optional | Longitude                        | `'-74.005973'` | `string` |
 
 ### test params
 

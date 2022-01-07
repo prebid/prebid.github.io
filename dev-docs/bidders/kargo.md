@@ -2,20 +2,21 @@
 layout: bidder
 title: Kargo
 description: Prebid Kargo Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: kargo
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
+media_types: banner, video
+gdpr_supported: true
+userIds: unifiedId
+usp_supported: true
+gvl_id: 972
 ---
 
 ### Note:
 Kargo is an invitation-only marketplace.  Please reach out to your Kargo account manager to get setup.  Also, you *must* test on a mobile device, or emulate a mobile device by manipulating the user agent string sent to the server.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `placementId` | required | | |
+| Name          | Scope    | Description | Example | Type     |
+|---------------|----------|-------------|---------|----------|
+| `placementId` | required |             |         | `string` |

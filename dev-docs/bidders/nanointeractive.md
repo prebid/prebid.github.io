@@ -2,46 +2,31 @@
 layout: bidder
 title: Nano Interactive
 description: Prebid Nano Interactive Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
+pbs: true
 biddercode: nanointeractive
-biddercode_longer_than_12: true
-prebid_1_0_supported : true
 media_types: banner
 gdpr_supported: true
+gvl_id: 72
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
-<br>
 ### Requirements:
-To be able to get identification key (`pid`), please contact us at <br> 
+To be able to get identification key (`pid`), please contact us at <br>
 `https://www.nanointeractive.com/publishers` <br>
-<br><br><br>
 
-#### Send All Bids Ad Server Keys:
-(truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
-
-`hb_adid_nanointeract`
-`hb_bidder_nanointera`
-`hb_pb_nanointeractiv`
-`hb_format_nanointera`
-`hb_size_nanointeract`
-`hb_source_nanointera`
-
-#### Default Deal ID Keys:
-`hb_deal_nanointeract`
-
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope    | Description                                      | Example                      |
-| :------------- | :------- | :----------------------------------------------- | :--------------------------- |
-| `pid`          | required | Identification key, provided by Nano Interactive | `'5afaa0280ae8996eb578de53'` |
-| `category`     | optional | Contextual taxonomy                              | `'automotive'`               |
-| `categoryName` | optional | Contextual taxonomy (from URL query param)       | `'cat_name'`                 |
-| `nq`           | optional | User search query                                | `'automobile search query'`  |
-| `name`         | optional | User search query (from URL query param)         | `'search_param'`             |
-| `subId`        | optional | Channel - used to separate traffic sources       | `'123'`                      |
+| Name           | Scope    | Description                                      | Example                      | Type     |
+|----------------|----------|--------------------------------------------------|------------------------------|----------|
+| `pid`          | required | Identification key, provided by Nano Interactive | `'5afaa0280ae8996eb578de53'` | `string` |
+| `category`     | optional | Contextual taxonomy                              | `'automotive'`               | `string` |
+| `categoryName` | optional | Contextual taxonomy (from URL query param)       | `'cat_name'`                 | `string` |
+| `nq`           | optional | User search query                                | `'automobile search query'`  | `string` |
+| `name`         | optional | User search query (from URL query param)         | `'search_param'`             | `string` |
+| `subId`        | optional | Channel - used to separate traffic sources       | `'123'`                      | `string` |
 
 #### Configuration
 The `category` and `categoryName` are mutually exclusive. If you pass both, `categoryName` takes precedence.
@@ -59,7 +44,7 @@ The `nq` and `name` are mutually exclusive. If you pass both, `name` takes prece
             }
         }]
     }];
-    
+
 #### Example with `category`
     var adUnits = [{
         code: 'nano-div',
@@ -73,7 +58,7 @@ The `nq` and `name` are mutually exclusive. If you pass both, `name` takes prece
             }
         }]
     }];
-    
+
 #### Example with `categoryName`
     var adUnits = [{
         code: 'nano-div',
@@ -89,7 +74,7 @@ The `nq` and `name` are mutually exclusive. If you pass both, `name` takes prece
             }
         }]
     }];
-    
+
 #### Example with `nq`
     var adUnits = [{
         code: 'nano-div',
@@ -98,13 +83,13 @@ The `nq` and `name` are mutually exclusive. If you pass both, `name` takes prece
             bidder: 'nanointeractive',
             params: {
                 pid: '5afaa0280ae8996eb578de53',
-                // User searched "automobile search query" (extracted from search text field) 
+                // User searched "automobile search query" (extracted from search text field)
                 nq: 'automobile search query',
                 subId: '123'
             }
         }]
     }];
-    
+
 #### Example with `name`
     var adUnits = [{
         code: 'nano-div',
@@ -114,13 +99,13 @@ The `nq` and `name` are mutually exclusive. If you pass both, `name` takes prece
             params: {
                 pid: '5afaa0280ae8996eb578de53',
                 // User searched "automobile search query" and it is in the URL like:
-                // https://www....?search_param=automobile%20search%20query&... 
+                // https://www....?search_param=automobile%20search%20query&...
                 name: 'search_param',
                 subId: '123'
             }
         }]
     }];
-    
+
 #### Example with `category` and `nq`
     var adUnits = [{
         code: 'nano-div',

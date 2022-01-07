@@ -1,27 +1,17 @@
 ---
 layout: bidder
 title: Insticator
-description: Prebid Serverbid Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
+description: Prebid Insticator Bidder Adapter
 biddercode: insticator
-
-aliasCode: serverbid
-
-biddercode_longer_than_12: false
-prebid_1_0_supported: true
-
+gdpr_supported: true
+media_types: banner
+pbjs: true
+gvl_id: 910
 ---
 
-
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                                                                                          | Example                                       |
-| :---              | :----    | :----------                                                                                                          | :------                                       |
-| `siteId`      | required | The site ID from Insticator.                                                                           | `12345`                                       |
-| `networkId`       | required | The network ID from Insticator.           | `9969`                                       |
+| Name    | Scope    | Description     | Example              | Type      |
+|---------|----------|-----------------|----------------------|-----------|
+| `adUnitId`  | Required | The ad unit ID provided by Insticator | `'test'` | `string`  |

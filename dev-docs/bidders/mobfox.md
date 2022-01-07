@@ -2,19 +2,17 @@
 layout: bidder
 title: MobFox
 description: Prebid MobFox Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: mobfox
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: video
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `s` | required | The hash of your inventory to identify which app is making the request | 267d72ac3f77a3f447b32cf7ebf20673 |
-| `imp_instl` | optional | set to 1 if using interstitial otherwise delete or set to 0 | 1 |
+| Name        | Scope    | Description                                                            | Example                              | Type      |
+|-------------|----------|------------------------------------------------------------------------|--------------------------------------|-----------|
+| `s`         | required | The hash of your inventory to identify which app is making the request | `'267d72ac3f77a3f447b32cf7ebf20673'` | `string`  |
+| `imp_instl` | optional | set to 1 if using interstitial otherwise delete or set to 0            | `1`                                  | `integer` |

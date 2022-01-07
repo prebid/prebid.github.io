@@ -2,19 +2,17 @@
 layout: bidder
 title: Gamma
 description: Prebid Gamma Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
+pbs: true
 biddercode: gamma
-prebid_1_0_supported : true
 media_types: video
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name       | Scope    | Description           | Type    | Example                 |
-| :--------- | :------- | :-------------------- | :------ | :---------------------- |
-| siteId     | required | Site ID               | integer |`1465446377`             |
-| zoneId     | required | Zone ID               | integer |`1515999290`             |
+| Name     | Scope    | Description | Example      | Type      |
+|----------|----------|-------------|--------------|-----------|
+| `siteId` | required | Site ID     | `1465446377` | `integer` |
+| `zoneId` | required | Zone ID     | `1515999290` | `integer` |

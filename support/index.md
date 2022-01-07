@@ -1,14 +1,10 @@
 ---
-layout: page
+layout: page_v2
 title: Support
-description: Header Bidding Support - How to contact the Prebid Organization
-pid: 0
-is_top_nav: yeah
-top_nav_section: support
-nav_section: intro
+description: Header Bidding Support
+sidebarType: 7
 ---
 
-<div class="bs-docs-section" markdown="1">
 
 # Need Help?
 {:.no_toc}
@@ -22,18 +18,18 @@ There are several ways to ask for help or get involved with Prebid.  See below f
 
 For technical & feature requests or questions, it's best to use the GitHub or Stack Overflow forums. Prebid is worked on full-time by engineering teams from AppNexus and Rubicon Project.  There are also many publishers using and contributing to the project.
 
-For questions about how an adapter works, it's best to reach out to the company directly, or ask on Github. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
+For questions about how an adapter works, it's best to reach out to the company directly, or ask on GitHub. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
 
 For Prebid news or general questions, we recommend the Ad Ops Slack Channel, Quora, or Twitter.
 
 {: .alert.alert-success :}
-There are consulting and service companies that will install & maintain Prebid on a publisher's behalf.  
-We're working on getting a comprehensive list of these providers to share here.  
-If you're one of these companies, please email us at [support@prebid.org](mailto:support@prebid.org).
+There are serveral Prebid.org members that will install & maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](https://prebid.org/product-suite/managed-services/).
 
-## Github
+## GitHub
 
-[Submit a Github issue](https://github.com/prebid/Prebid.js/issues) if:
+Sometimes people have already gotten answers on the GitHub forums. See [issues with the 'question' tag on the Prebid.js repo](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)
+
+Submit a GitHub issue for [Prebid.js](https://github.com/prebid/Prebid.js/issues), [Prebid SDK iOS](https://github.com/prebid/prebid-mobile-ios/issues), [Prebid Mobile Android](https://github.com/prebid/prebid-mobile-android/issues) or [Prebid Server](https://github.com/prebid/prebid-server/issues) if:
 
 - You have a feature request to the code base.
 - You have found a bug in the code.
@@ -43,7 +39,7 @@ For more information about how to contribute, see the *Contribute* section of th
 
 ## Stack Overflow
 
-If you ask questions on [Stack Overflow](http://stackoverflow.com/), please use the following tags:
+If you ask questions on [Stack Overflow](https://stackoverflow.com/), please use the following tags:
 
 + `prebid`
 + `prebid.js`
@@ -63,12 +59,3 @@ Join the [Ad Ops Reddit Slack](https://redditadops.slack.com/messages/C0HVALS8P/
 [Post on Quora](https://www.quora.com/topic/Prebid-js) (Please tag the question with "Prebid.js") if:
 
 - You have high level questions, e.g. the best strategy to host unbiased header bidding auctions.
-
-## Twitter
-
-[Follow us on Twitter](https://twitter.com/prebidjs) to:
-
-- Get the latest release updates
-- Get the latest published studies
-
-</div>

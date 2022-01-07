@@ -1,20 +1,18 @@
 ---
-layout: page
-title: Integrate with the Prebid Analytics API
-description: Integrate with the Prebid Analytics API
+layout: page_v2
+title: How to Add a Prebid.js Analytics Adapter
+description: How to add a Prebid.js analytics adapter
 pid: 28
 top_nav_section: dev_docs
 nav_section: adapters
-hide: false
+
+sidebarType: 1
 ---
 
-<div class="bs-docs-section" markdown="1">
 
-# Integrate with the Prebid Analytics API
+
+# How to Add a Prebid.js Analytics Adapter
 {:.no_toc}
-
-{: .alert.alert-warning :}
-This page has been updated for Prebid 1.0. It adds the requirement for a markdown file containing the maintainer's contact info. Note also that there are a couple of new bidResponse attributes that may be of interest to analytics providers: bid currency and bid gross-vs-net.
 
 The Prebid Analytics API provides a way to get analytics data from `Prebid.js` and send it to the analytics provider of your choice, such as Google Analytics.  Because it's an open source API, you can write an adapter to send analytics data to any provider you like.  Integrating with the Prebid Analytics API has the following benefits:
 
@@ -35,73 +33,25 @@ The analytics adapter listens to events and may call out directly to the analyti
 
 For instructions on integrating an analytics provider, see the next section.
 
-{: .pb-img.pb-md-img :}
-![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png)
+![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png){: .pb-md-img :}
 
-## Integrate an Analytics Provider
+## Creating an Analytics Module
 
-You can integrate an analytics provider using the steps outlined below.  In the example we'll use Google Analytics for simplicity, but you can integrate any analytics provider you like as long as you have an adapter and any necessary libraries.
+Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:
 
-If you want to see how to write your own analytics adapters, look in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
+1. Fork the appropriate Prebid repository (e.g. [Prebid.js](https://github.com/prebid/Prebid.js)).
+2. Create a branch in your fork for your proposed code change. (e.g. feature/exAnalyticsAdapter)
+3. Build and test your feature/bug fix in the branch.
+4. Open a [pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) to the appropriate repository's master branch with a good description of the feature/bug fix.
+5. If there's something that needs to change on the prebid.org website, follow the above steps for the [website repo](https://github.com/prebid/prebid.github.io).
 
-Summary of the steps involved:
+{: .alert.alert-warning :}
+Analytics adapters are subject to a number of specific technical rules. Please become familiar
+with the [module rules](/dev-docs/module-rules.html) that apply globally and to analytics adapters in particular.
 
-+ <a href="#on-the-site">Plan the site integration</a>
-+ <a href="#in-the-prebidjs-repo">Create the <code>Prebid.js</code> analytics module</a>
-+ <a href="#build-the-package">Build the package</a>
+### Step 1: Add a markdown file describing the module
 
-<a name="on-the-site"></a>
-
-### Plan the site integration
-
-Some analytics adapters may require the publisher to load a library in the page. If this is the case for your analytics adapter, consider providing an example for users.
-
-For example, to use Google Analytics, publishers must load the Google Analytics library:
-
-{% highlight js %}
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'GOOGLE-ANALYTICS-ID', 'auto');
-{% endhighlight %}
-(See [the Google docs](https://developers.google.com/analytics/devguides/collection/analyticsjs/) for up-to-date instructions.)
-
-A call to `pbjs.enableAnalytics(analyticsAdapters)` is needed to initialize the module(s). It should be called once on the page, after any analytics libraries have been loaded. Note that more than one analytics adapter can be loaded, though this isn't necessarily recommended.
-
-{% highlight js %}
-pbjs.que.push(function () {
-    pbjs.enableAnalytics([{
-        provider: 'ga',
-        options: {
-            enableDistribution: false
-        }
-    },{
-        provider: 'abc',
-	options: {
-                account: 'ABC-ACCOUNT-ID',
-                endpoint: 'https://...'
-                }
-        });
-    }]);
-});
-{% endhighlight %}
-
-<a name="in-the-prebidjs-repo"></a>
-
-### Create the `Prebid.js` analytics module
-
-#### Step 1: Add a markdown file describing the module
-
-1. Create a markdown file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.md`
+Create a markdown file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.md`
 
 Example markdown file:
 {% highlight text %}
@@ -117,30 +67,28 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 {% endhighlight %}
 
-#### Step 2: Add analytics source code
-
-{: .alert.alert-danger :}
-**Breaking changes for Prebid 1.0**  
-There are two breaking changes to the data emitted from analytic events for Prebid 1.0:  
-1. Events that previously emitted a `requestId` property now emit that data as the `auctionId` property  
-2. The `BID_TIMEOUT` event that previously emitted an array of bidder code strings now emits an array of objects containing `bidId`, `bidder`, `adUnitCode`, and `auctionId` for timed out bids  
-
+### Step 2: Add analytics source code
 
 1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.js`
 
-2. Create an analytics adapter to listen for Prebid events and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
+2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference/onEvent.html) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
-3. There are several types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'library' and 'bundle' types.
+3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'bundle' type.
 
     * endpoint - Calls the specified URL on analytics events. Doesn't require a global context.
-    * library - The URL is considered to be a library to load. Expects a global context.
     * bundle - An advanced option expecting a global context.
 
 4. In order to get access to the configuration passed in from the page, the analytics
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-A basic prototype analytics adapter:
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagement.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf-v2-0/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+
+#### Basic prototype analytics adapter
+
+The best way to get started is to look at some of the existing AnalyticsAdapter.js files in [the repository](https://github.com/prebid/Prebid.js/tree/master/modules).
+
+Here's a skeleton outline:
 
 {% highlight js %}
 import {ajax} from 'src/ajax';
@@ -166,26 +114,88 @@ exAnalytics.enableAnalytics = function (config) {
 
 adaptermanager.registerAnalyticsAdapter({
   adapter: exAnalytics,
-  code: 'exAnalytic'
+  code: 'exAnalytics',
+  gvlid: 1
 });
+
+export default exAnalytics;
 {% endhighlight %}
 
-Analytics adapter best practices:
+#### Reading TCF2 enforcement actions
+
+Analytics adapters can learn what happened with regards to GDPR TCF2 enforcement by listening to the tcf2Enforcement event.
+
+The callback will receive an object with the following attributes:
+
+```
+{
+  storageBlocked: ['moduleA', 'moduleB'],
+  biddersBlocked: ['moduleB'],
+  analyticsBlocked: ['moduleC']
+}
+```
+
+#### Listening for errors
+
+There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID)
+
+#### Analytics adapter best practices
 
 + listen only to the events required
 + batch up calls to the backend for post-auction logging rather than calling immediately after each event.
 
-### Build the package
+### Step 3: Add unit tests
 
-To add the new analyticsAdapter into a prebid package, use a command like this:
+1. Create a JS file under `test/spec/modules` with the name of the bidder suffixed with 'AnalyticsAdapter_spec', e.g., `exAnalyticsAdapter_spec.js`
 
-{% highlight js %}
-gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
-{% endhighlight %}
+2. Write great unit tests. See the other AnalyticsAdapter_spec.js files for examples.
+
+### Step 4: Submit the code
+
+Once everything looks good, submit the code, tests, and markdown as a pull request to the [Prebid.js repo](https://github.com/prebid/Prebid.js).
+
+### Step 5: Website pull request
+
+Add a documentation file for your new analytics adapter.
+
+1. Create a fork of the [website repo](https://github.com/prebid/prebid.github.io) and a branch for your new adapter. (e.g. feature/exampleAnalyticsAdapter)
+
+2. Copy one of the '.md' files in `dev-docs/analytics` to a file for your adapter. e.g. example.md
+
+3. Update the metadata fields at the top of the file to suit your needs:
+
+```
+layout: analytics
+title: Your Company Name
+description: Your Company Analytics Adapter
+modulecode: exampleAnalyticsAdapter
+gdpr_supported: true/false   (EU GDPR support)
+usp_supported: true/false    (US Privacy support)
+coppa_supported: true/false  (COPPA support)
+prebid_member: true/false
+gvl_id:                      (IAB Global Vendor List ID)
+enable_download: false       (in case you don't want users of the website to download your adapter)
+```
+
+What does it mean to "support" the privacy protocols? At a high level, it means you have
+specifically discussed privacy policy actions and rules with your lawyers and implemented the results of that discussion.
+Some specific examples:
+
+- GDPR support means: the analytics endpoint respects GDPR consent, Special Feature 1, and deals with any other Purposes declared in the vendor's Global Vendor List
+- COPPA support means: analytics companies should not be building targeting profiles for users on sites flagged as COPPA
+- USP/CCPA support means: analytics adapters cannot share user information if that user has opted out of sale
+
+4. Update the body of the file to describe the options publishers have when
+configuring your adapter. See other adapters (e.g. rubicon.md) for a template.
+
+5. Submit the pull request to the prebid.github.io repo.
+
+### Step 6: Wait for Prebid volunteers to review
+
+We sometimes get pretty busy, so it can take a couple of weeks for the review process to complete, so while you're waiting, consider [joining Prebid.org](https://prebid.org/membership/) to help us out with code reviews. (!)
 
 ## Further Reading
 
-- [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
-- [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
-
-</div>
+- [Analytics for Prebid](/overview/analytics.html) (Overview and list of analytics providers)
+- [Module Rules](/dev-docs/module-rules.html)
+- [Instream Video Ads Tracking](/dev-docs/modules/instreamTracking.html)

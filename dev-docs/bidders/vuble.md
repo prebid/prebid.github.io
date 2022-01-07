@@ -2,13 +2,12 @@
 layout: bidder
 title: Vuble
 description: Prebid Vuble Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: vuble
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 media_types: video
+gdpr_supported: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:
@@ -17,13 +16,13 @@ The Vuble adapter requires setup and approval from the Vuble team, even for exis
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name         | Scope    | Description                                                                                       | Example                  |
-|--------------+----------+---------------------------------------------------------------------------------------------------+--------------------------|
-| `env`        | required | The environment. Must be 'net' or 'com'. This information will be given to you by the Vuble team. | `"net"`                  |
-| `pubId`      | required | Your publisher ID. This information will be given to you by the Vuble team.                       | `3`                      |
-| `zoneId`     | required | A zone ID for the SSP.                                                                            | `12345`                  |
-| `referrer`   | optional | The page's referrer. Not mandatory but recommended.                                               | `"http://www.vuble.tv/"` |
-| `floorPrice` | optional | The desired floor price. If none is given, the floor price will depend on the zone ID.            | `5.00`                   |
+| Name         | Scope    | Description                                                                                       | Example                  | Type      |
+|--------------|----------|---------------------------------------------------------------------------------------------------|--------------------------|-----------|
+| `env`        | required | The environment. Must be 'net' or 'com'. This information will be given to you by the Vuble team. | `'net'`                  | `string`  |
+| `pubId`      | required | Your publisher ID. This information will be given to you by the Vuble team.                       | `3`                      | `integer` |
+| `zoneId`     | required | A zone ID for the SSP.                                                                            | `12345`                  | `integer` |
+| `referrer`   | optional | The page's referrer. Not mandatory but recommended.                                               | `'http://www.vuble.tv/'` | `string`  |
+| `floorPrice` | optional | The desired floor price. If none is given, the floor price will depend on the zone ID.            | `5.00`                   | `float`   |
 
 ### Example
 

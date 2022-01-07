@@ -1,0 +1,99 @@
+<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
+
+<div class="partners">
+	
+	<div class="tableTitle"><h2>Prebid.org Leader Members</h2></div>
+	<script type="text/javascript">
+	var memberDataLeader=[];
+	var idx=0;
+	{% for item in site.data.partners %}
+		{% if item.type == "leader" %}
+			memberDataLeader[idx]={};
+			memberDataLeader[idx].href="{{item.link}}";
+			memberDataLeader[idx].text="<img src=\"{{item.imgURL}}\" width=\"150\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+	<div id="memberTableLeader"></div>
+	<script>
+	  writeDynamicTable({div:"memberTableLeader", data:"memberDataLeader", sort:"rowFirst", maxcols:4, striped: false, fixedHeight: true});
+	</script>
+
+	<div class="tableTitle"><h2>Prebid.org Technology Partner Members</h2></div>
+	<script type="text/javascript">
+	var memberDataTech=[];
+	var idx=0;
+	{% for item in site.data.partners %}
+		{% if item.type == "technology" %}
+			memberDataTech[idx]={};
+			memberDataTech[idx].href="{{item.link}}";
+			memberDataTech[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+	<div id="memberTableTech"></div>
+	<script>
+	  writeDynamicTable({div:"memberTableTech", data:"memberDataTech", sort:"rowFirst", maxcols: 4, striped: false, fixedHeight: true});
+	</script>
+
+	<div class="tableTitle"><h2>Prebid.org Publisher Members</h2></div>
+	<script type="text/javascript">
+	var memberDataPub=[];
+	var idx=0;
+	{% for item in site.data.partners %}
+		{% if item.type == "publisher" %}
+			memberDataPub[idx]={};
+			memberDataPub[idx].href="{{item.link}}";
+			memberDataPub[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+	<div id="memberTablePub"></div>
+	<script>
+	  writeDynamicTable({div: "memberTablePub", data: "memberDataPub", sort:"rowFirst", maxcols: 4, striped: false, fixedHeight: true});
+	</script>
+
+<!--
+	<div class="tableTitle"><h2>Prebid.org Buyer Members</h2></div>
+	<script type="text/javascript">
+	var memberDataBuyer=[];
+	var idx=0;
+	{% for item in site.data.partners %}
+		{% if item.type == "buyer" %}
+			memberDataBuyer[idx]={};
+			memberDataBuyer[idx].href="{{item.link}}";
+			memberDataBuyer[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+	<div id="memberTableBuyer"></div>
+	<script>
+	  writeDynamicTable({div: "memberTableBuyer", data: "memberDataBuyer", sort:"rowFirst", maxcols: 1, striped: false, fixedHeight: true});
+	</script>
+-->
+
+	<div class="tableTitle"><h2>Prebid.org Community Members</h2></div>
+	<script type="text/javascript">
+	var memberDataComm=[];
+	var idx=0;
+
+	{% for item in site.data.partners %}
+		{% if item.type == "community" %}
+			memberDataComm[idx]={};
+			memberDataComm[idx].href="{{item.link}}";
+			memberDataComm[idx].text="{{item.company}}";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+
+	<div id="memberTableComm"></div>
+	<script>
+	  writeDynamicTable({div: "memberTableComm", data: "memberDataComm", sort:"rowFirst", maxcols: 4, striped: false, fixedHeight: false});
+	</script>
+
+</div>

@@ -2,22 +2,23 @@
 layout: bidder
 title: Lifestreet
 description: Prebid Lifestreet Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
+pbs: true
 biddercode: lifestreet
-biddercode_longer_than_12: false
-prebid_1_0_supported: true
 media_types: video
 gdpr_supported: true
+usp_supported: true
+gvl_id: 67
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Description                          | Example                                   |
-|:----------------|:---------|:-------------------------------------|:------------------------------------------|
-| `slot`          | required | Ad Slot                              | `'slot166704'`                            |
-| `adkey`         | required | Ad Key                               | `'78c'`                                   |
-| `ad_size`       | required | Ad Size                              | `'160x600'`                               |
+| Name      | Scope    | Description | Example        | Type     |
+|-----------|----------|-------------|----------------|----------|
+| `slot`    | required | Ad Slot     | `'slot166704'` | `string` |
+| `adkey`   | required | Ad Key      | `'78c'`        | `string` |
+| `ad_size` | required | Ad Size     | `'160x600'`    | `string` |

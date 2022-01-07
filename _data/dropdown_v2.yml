@@ -1,0 +1,364 @@
+#-----------Overview---------------
+
+- sectionId: 0
+  sectionName: Overview
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  sectionClass: overview
+  submenus:
+
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: Overview
+    title: Introduction
+    link:  /overview/intro.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: Overview
+    title: Developers
+    link:  /developers.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 0
+    sectionId: 0
+    sectionName: Overview
+    title: Ad Ops
+    link:  /adops/before-you-start.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+
+
+#----------Product SubNav------------
+
+- sectionId: 1
+  sectionName: Product
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  sectionClass: product
+  submenus:
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Prebid.js
+    link: /prebid/prebidjs.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 1
+    isSubSectionStart: 1
+    nbCollapseId: prebidjs
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Analytics
+    link: /overview/analytics.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Modules
+    link: /dev-docs/modules/index.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Publisher API
+    link: /dev-docs/publisher-api-reference.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Bidder Params
+    link: /dev-docs/bidders.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Plugins
+    link: /dev-docs/plugins/index.html
+    needsDivider: 1
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 1
+    sectionId: 1
+    sectionName: Product
+    title: Prebid Server
+    link: /prebid-server/overview/prebid-server-overview.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 2
+    sectionId: 1
+    sectionName: Product
+    title: Prebid Mobile
+    link: /prebid-mobile/prebid-mobile.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 2
+    sectionId: 1
+    sectionName: Product
+    title: iOS
+    link: /prebid-mobile/pbm-api/ios/code-integration-ios.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 2
+    sectionId: 1
+    sectionName: Product
+    title: Android
+    link: /prebid-mobile/pbm-api/android/code-integration-android.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 1
+    sectionName: Product
+    title: Formats
+    link: /formats/formats.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 3
+    sectionId: 1
+    sectionName: Product
+    title: Display
+    link: /formats/display.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 1
+    sectionName: Product
+    title: Video
+    link: /formats/video.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 1
+    sectionName: Product
+    title: Native
+    link: /formats/native.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 1
+    sectionName: Product
+    title: AMP
+    link: /formats/amp.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 0
+    sectionName: Product
+    title: Multi-Format
+    link: /formats/multiformat.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+#-------------_Support Section---------------
+
+- sectionId: 2
+  sectionName: Support
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  sectionClass: support
+  submenus:
+
+  - subsectionId: 0
+    sectionId: 2
+    sectionName: Support
+    title: Ad Ops
+    link: /adops/before-you-start.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 1
+    sectionId: 2
+    sectionName: Support
+    title: Developers
+    link: /developers.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 2
+    sectionId: 2
+    sectionName: Support
+    title: Help
+    link: /support/index.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 2
+    sectionId: 2
+    sectionName: Support
+    title: Troubleshooting
+    link: /troubleshooting/troubleshooting.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 2
+    sectionId: 2
+    sectionName: Support
+    title: Training Videos
+    link: /videos/index.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 2
+    sectionId: 2
+    sectionName: Support
+    title: Debugging Extension
+    link: /debugging/debugging.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 2
+    sectionName: Support
+    title: FAQ
+    link: /faq/faq.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 3
+    sectionId: 2
+    sectionName: Support
+    title: Prebid.js
+    link: /dev-docs/faq.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 2
+    sectionName: Support
+    title: Prebid Server
+    link: /faq/prebid-server-faq.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 0
+
+#-----------_Downloads---------------
+
+- sectionId: 3
+  sectionName: Download
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  sectionClass: download
+  submenus:
+
+  - subsectionId: 0
+    sectionId: 3
+    sectionName: Download
+    title: Prebid.js
+    link:  /download.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 1
+    sectionId: 3
+    sectionName: Download
+    title: Prebid Mobile
+    link:  /prebid-mobile/download.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 1
+    sectionId: 3
+    sectionName: Download
+    title: iOS
+    link:  https://github.com/prebid/prebid-mobile-ios
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 1
+    sectionId: 3
+    sectionName: Download
+    title: Android
+    link:  https://github.com/prebid/prebid-mobile-android
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+#-----------Resources---------------
+
+- sectionId: 4
+  sectionName: Resources
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  sectionClass: resources
+  submenus:
+
+  - subsectionId: 0
+    sectionId: 4
+    sectionName: Resources
+    title: Prebid.org
+    link:  https://www.prebid.org
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 1
+    sectionId: 4
+    sectionName: Resources
+    title: Blog
+    link:  https://www.prebid.org/blog
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1

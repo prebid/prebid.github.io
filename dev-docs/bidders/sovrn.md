@@ -2,21 +2,23 @@
 layout: bidder
 title: Sovrn
 description: Prebid Sovrn Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
+pbs: true
 biddercode: sovrn
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
 gdpr_supported: true
+usp_supported: true
+userIds: all
+prebid_member: true
+schain_supported: true
+gvl_id: 13
+floors_supported: true
+fpd_supported: true
 ---
 
-
-
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-| :--- | :---- | :---------- | :------ |
-| `tagid` | required | The sovrn Ad Tag ID | "315045" |
-| `bidfloor` | optional | Bid floor in dollars | "0.04" |
+| Name       | Scope    | Description          | Example    | Type     |
+|------------|----------|----------------------|------------|----------|
+| `tagid`    | required | The sovrn Ad Tag ID  | `'315045'` | `string` |
+| `bidfloor` | optional | Bid floor in dollars | `'0.04'`   | `string` |

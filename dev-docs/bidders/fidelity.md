@@ -2,20 +2,22 @@
 layout: bidder
 title: Fidelity Media
 description: Prebid Fidelity Media Bidder Adapter
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
+schain_supported: true
 biddercode: fidelity
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
+media_types: banner
+gdpr_supported: true
+usp_supported: true
+gvl_id: 408
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
-### bid params
+### Bid Params
 
-{: .table .table-bordered .table-striped } 
-
-| Name 	 | Scope    | Description        					 			 | Example  							|
-| :------| :--------| :--------------------------------------------------| :------------------------------------|
-| zoneid | required | The ad zone or tag specific ID 					 | `"27248"` 							|
-| floor	 | optional | The floor CPM price for the request				 | `0.1234` 							|
-| server | optional | Bidder domain  					 				 | `"x.fidelity-media.com" by default` 	|
+{: .table .table-bordered .table-striped }
+| Name   | Scope    | Description                                      | Example                  | Type     |
+|--------|----------|--------------------------------------------------|--------------------------|----------|
+| zoneid | required | The ad zone or tag specific ID                   | `'27248'`                | `string` |
+| floor  | optional | The floor CPM price for the request              | `0.1234`                 | `float`  |
+| server | optional | Bidder domain (default `'x.fidelity-media.com'`) | `'x.fidelity-media.com'` | `string` |

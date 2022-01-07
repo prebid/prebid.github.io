@@ -1,15 +1,15 @@
 ---
-layout: page
+layout: page_v2
+page_type: module
 title: Module - Publisher Common ID
 description: User ID persisted in first party domain
-top_nav_section: dev_docs
-nav_section: modules
 module_code : pubCommonId
-display_name : Publisher Common ID
+display_name : Publisher Common ID (deprecated)
 enable_download : true
+sidebarType : 1
 ---
 
-<div class="bs-docs-section" markdown="1">
+
 
 # Publisher Common ID Module
 {:.no_toc}
@@ -28,7 +28,8 @@ Add a pubcid object in the setConfig() call.
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | enable | `boolean` | Enable or disable the module. Setting it to false will disable the module without having to remove it from the bundle.  Default is true. | true |
-| expInterval | `decimal` | Expiration interval of the cookie in minutes.  Default is 2628000, or 5 years.  | 525600 |
+| expInterval | `decimal` | Expiration interval of the id in minutes.  Default is 525600, or 1 years.  | 525600 |
+| type | `string` | Type of storage.  By default, the id is stored both as a cookie and in localStorage.  It's possible to choose just one or the other by setting either 'cookie' or 'html5'.  | 'cookie' |
 
 Example: Changing ID expiration to 1 year
 
@@ -41,11 +42,19 @@ Example: Changing ID expiration to 1 year
      });
 {% endhighlight %}
 
+### User Opt-Out
+
+Users must be allowed to opt out of targeted advertising. When implementing this module, you are required to place a link in your privacy policy or elsewhere on your website which allows the user to implement this opt-out. User opt-out is supported by setting the `_pubcid_optout` as a cookie in the publisher’s domain, or in local storage. When this flag is set, then Publisher Common ID is neither read nor updated, and it will not be made available to any adapters. The opt-out must also delete the Publisher Common ID value (shown in [example](../../examples/modules/pub_common_id_optout.html)).
+
+* Opt-In - `_pubcid_optout` flag is not present or set to 0
+* Opt-Out - `_pubcid_optout` flag is set to 1
+
+
 ### Build the package
  
 #### Step 1: Bundle the module code
 
-Follow the basic build instructions on the Github repo's main README. To include the module, an additional option must be added to the the gulp build command:
+Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
  
 {% highlight bash %}
 gulp build --modules=pubCommonId,bidAdapter1,bidAdapter2
@@ -84,8 +93,9 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
 
 ## Technical Details
 
-- The ID is UUID v4 and stored as a cookie called `_pubcid` in the page's domain.
-- This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the cookie, updates the expiration time, and decorates the adUnits objects.  A new cookie will be created if one doesn't exist already.
+- The ID is UUID v4 and stored as a cookie and a local storage item called `_pubcid` in the page's domain.
+- This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the id from cookie and local storage, updates the expiration time, and decorates the adUnits objects.  A new id will be created if one doesn't exist already.  
+- The id stored as cookie takes precedence over local storage.
 - Beware that if prebid.js is included in an ad server frame, then the ID would have ad server domain instead.
 
-</div>
+

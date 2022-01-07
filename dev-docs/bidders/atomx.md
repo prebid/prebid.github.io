@@ -2,18 +2,15 @@
 layout: bidder
 title: Atomx
 description: Prebid Atomx Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: atomx
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `id` | required | Atomx placement ID | 1234 |
+| Name | Scope    | Description        | Example | Type      |
+|------|----------|--------------------|---------|-----------|
+| `id` | required | Atomx placement ID | `1234`  | `integer` |

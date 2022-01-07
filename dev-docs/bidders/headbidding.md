@@ -6,23 +6,22 @@ description: Prebid Head Bidding Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 
-hide: true
+pbjs: true
 
 biddercode: headbidding
 
 aliasCode : adkernel
 
-biddercode_longer_than_12: false
 
 
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example |
-|:-----------|:---------|:------------|:-----------------|
-| `zoneId` | required | | |
-| `host` | required | | |
+| Name     | Scope    | Description | Example | Type     |
+|----------|----------|-------------|---------|----------|
+| `zoneId` | required |             |         | `string` |
+| `host`   | required |             |         | `string` |
 
 Head Bidding is an aliased bidder for AdKernel

@@ -4,17 +4,17 @@ title: Rtbdemand bidder
 description: Prebid Rtbdemand Media Bidder Adapter
 top_nav_section: dev_docs
 nav_section: reference
-hide: true
+pbjs: true
 biddercode: rtbdemand
-biddercode_longer_than_12: false
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-
-| Name   | Scope    | Description                                                                        | Example                                                      |
-| :------| :--------| :--------------------------------------------------| :------------------------------------|
-| zoneid | required | The ad zone or tag specific ID                                     | `"9999"`                                                     |
-| floor  | optional | The floor CPM price for the request                                | `0.1234`                                                     |
-| server | optional | Bidder domain                                                                      | `"bidding.rtbdemand.com" by default`  |
+| Name     | Scope    | Description                         | Example                   | Type     |
+|----------|----------|-------------------------------------|---------------------------|----------|
+| `zoneid` | required | The ad zone or tag specific ID      | `'9999'`                  | `string` |
+| `floor`  | optional | The floor CPM price for the request | `0.1234`                  | `float`  |
+| `server` | optional | Bidder domain                       | `'bidding.rtbdemand.com'` | `string` |

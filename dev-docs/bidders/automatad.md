@@ -1,27 +1,18 @@
 ---
 layout: bidder
-title: Automatad
-description: Prebid Serverbid Bidder Adaptor
-
-top_nav_section: dev_docs
-nav_section: reference
-
-hide: true
-
-biddercode: automatad
-
-aliasCode: serverbid
-
-biddercode_longer_than_12: false
-prebid_1_0_supported: true
-
+title: Automatad OpenRTB Bid Adapter
+description: Automatad OpenRTB Bid Adapter
+biddercode: automatad 
+pbjs: true
+media_types: banner
+fpd_supported: true
 ---
 
-
-### bid params
+#### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                                                                                          | Example                                       |
-| :---              | :----    | :----------                                                                                                          | :------                                       |
-| `siteId`      | required | The site ID from Automatad.                                                                           | `12345`                                       |
-| `networkId`       | required | The network ID from Automatad.           | `9969`                                       |
+
+| Name      | Scope    | Description               | Example    | Type     |
+|-----------|----------|---------------------------|------------|----------|
+| `siteId`    | required | The site ID from automatad.  | `"12adf45c"` | `string` |
+| `placementId`    | required | The placement ID from automatad.  | `"a34gh6d"` | `string` |

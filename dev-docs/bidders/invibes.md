@@ -2,19 +2,20 @@
 layout: bidder
 title: Invibes
 description: Prebid Invibes Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
-hide: true
+pbjs: true
 biddercode: invibes
-biddercode_longer_than_12: false
-prebid_1_0_supported : true
+gdpr_supported: true
+tcf2_supported: true
+userIds: pubCommonId, pubProvidedId, uid2, zeotapIdPlus, id5id
+pbs: true
 ---
 
-### bid params
+### Bid Params
 
-{: .table .table-bordered .table-striped } 
+{: .table .table-bordered .table-striped }
+| Name            | Scope    | Description                          | Example                                         | Type     |
+|-----------------|----------|--------------------------------------|-------------------------------------------------|----------|
+| `placementId`   | required | The Invibes placement ID             | `'1234567'`                                     | `string` |
+| `domainId`      | optional | Id of domain (only prebid server)    | `1001`                                          | `integer`|
+| `debug`         | optional | Debug paramentes (only prebid server)| `{ "testBvid": "1234", "testLog": true }`       | `object` |
 
-| Name           | Scope    | Description                                | Example                                            |
-| :------------- | :------- | :----------------------------------------- | :------------------------------------------------- |
-| placementId    | required | The Invibes placement ID                   | `"1234567"`                                        |
-| adContainerId  | optional | Id of ad container                         | `"test-div"`                                       |

@@ -1,0 +1,67 @@
+<header class="pb-header">
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/index.html"><img src="/assets/images/prebid-logo-knockout.svg" alt="Prebid Logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-md-auto">
+
+        <!--get all the sections and subsections -->
+        {% assign arrSections = site.data.dropdown_v2 | where: "isHeader", "1" %}
+
+        {% for item in arrSections %}
+
+          <li class="nav-item dropdown nav-item--{{item.sectionClass}}">
+            <a href="#" class="nav-link dropdown-toggle pb-mobile-dropdown nav-link--{{item.sectionClass}}" data-prebidclickid="{{item.sectionId}}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="{{item.sectionId}}">
+              {{ item.sectionName }}
+            </a>
+
+            <!-- if there are submenus - should be true each time-->
+            {% if item.hasSubMenus == 1 %}
+              <div class="dropdown-menu dropdown-menu--{{item.sectionClass}}" aria-labelledby="{{item.sectionId}}">
+                <!--get how many subsections-->
+                {% assign arrSubSections = item.submenus | where: "isSubSectionStart", "1" %}
+
+                {% for subSection in arrSubSections %}
+
+                  {% assign sectionOpen = 0 %}
+                  <!--get the items in each subsection-->
+                  {% assign idx = forloop.index0 %}
+                  {% assign arrSubItems = item.submenus | where: "subsectionId", idx %}
+
+                  <!--display subitem-->
+                  {% for subItem in arrSubItems %}
+
+                    {% if subItem.isSubSectionStart == 1 %}
+                      {% if sectionOpen == 1 %}
+                        </div>
+                      {% endif %}
+                      {% assign sectionOpen = 1 %}
+                      <div class="dropdown-section">
+                      <a href="{{subItem.link}}" class="dropdown-item dropdown-item--heading pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a>
+                    {% else %}
+                      <a href="{{subItem.link}}" class="dropdown-item pb-menu-click" data-prebidclickid="{{subSection.nbCollapseId}}">{{subItem.title}}</a>
+                    {% endif %}
+
+                  {% endfor %}
+                  {% if sectionOpen == 1 %}
+                    </div>
+                  {% endif %}
+
+
+                {% endfor %}
+              </div>
+            {% endif %}
+
+          </li>
+
+        {% endfor %}
+        <li class="nav-item"><div class="c-search"><input type="search" id="site-search"></div></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>

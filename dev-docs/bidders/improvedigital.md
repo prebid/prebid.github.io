@@ -2,36 +2,52 @@
 layout: bidder
 title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
-top_nav_section: dev_docs
-nav_section: reference
 biddercode: improvedigital
-biddercode_longer_than_12: true
-hide: true
-prebid_1_0_supported : true
+pbjs: true
+pbs: true
 gdpr_supported: true
+userIds: all
+usp_supported: true
+media_types: banner, native, video
+schain_supported: true
+gvl_id: 253
+pbs_app_supported: true
 ---
-
-### Send All Bids Ad Server Keys:
-(truncated to 20 chars due to [DFP limit](https://support.google.com/dfp_premium/answer/1628457?hl=en#Key-values))
-
-`hb_bidder_improvedig`
-`hb_pb_improvedigital`
-`hb_adid_improvedigit`
-`hb_size_improvedigit`
 
 ### Bid params
 
-Depending on your setup in our system, your placements will either have a globally-unique placement ID or a publisher-unique placement key as an identifier.  Therefore, to identify your placement you either need a placementId only, or a combination of publisherId and placementKey.
+{: .table .table-bordered .table-striped }
+| Name           | Scope    | Description                                                                                                                | Example                                                                | Type      |
+|----------------|----------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------|
+| `placementId`  | required | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
+| `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
+| `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
+| `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+| `video`    | optional | Object with video parameters. See the [Video params](#improvedigital-video) section below for details. | | `object` |
+
+<a name="improvedigital-video"></a>
+
+### Video params
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Description                                                                                                                                                                                                          | Example           |
-|------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------|
-| `placementId`    | optional | The placement ID from Improve Digital.                                                                                          | `1234567`      |
-| `publisherId` | optional | Your publisher ID.  This is only required when using a placementKey  | `950` |
-| `placementKey`        | optional | The placement key for your placement.  Must be used with `publisherId`.                                                                                                                                                        | `"myMainBannerPlacement300x200"`        |
-| `keyValues`         | optional | Contains one or more key-value pairings for key-value targeting                                                                                                                                                           | `{testKey1: ["testValueA"], testKey2: ["testValueB", "testValueC"]}`         |
-| `size`        | optional | Size filter.  Where a placement supports multiple sizes, this forces the response to featur only one of the multiple sizes                                                                                                                                                                     | `{w:300,h:250}`            |
+| Name             | Scope    | Description                                    | Example                                   | Type            |
+|------------------|----------|------------------------------------------------|-------------------------------------------|-----------------|
+| `skip`           | optional | Indicates if the player will allow the video to be skipped. | `1` | `integer` |
+| `skipmin`        | optional | Videos of total duration greater than this number of seconds can be skippable. | `15` | `integer` |
+| `skipafter`      | optional | Number of seconds a video must play before skipping is enabled. | `5` | `integer` |
 
+### Configuration
+
+<a name="improvedigital-sizes"></a>
+
+#### Sizes
+
+By default, the adapter doesn't send Prebid ad unit sizes to Improve Digital's ad server and the sizes defined for each placement in the Polaris platform will be used. If the ad server should only respond with creative sizes as defined in Prebid ad unit configuration, turn on `usePrebidSizes` adapter parameter like this:
+```
+pbjs.setConfig({
+   improvedigital: {usePrebidSizes: true}
+});
+```
 
 <a name="improvedigital-examples" />
 
@@ -47,22 +63,6 @@ Depending on your setup in our system, your placements will either have a global
                 bidder: 'improvedigital',
                 params: {
                     placementId:1053688
-                }
-            }
-        ]
-    }];
-
-#### Configuration With publisherId/placementKey
-
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
-        sizes: [[600, 290]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                    placementKey:'',
-                    publisherId: 
                 }
             }
         ]
@@ -86,25 +86,3 @@ Depending on your setup in our system, your placements will either have a global
             }
         ]
     }];
-
-#### Configuration With PlacementId and Size Filter
-
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
-        sizes: [[600, 290]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                    placementId:1053687,
-                    size: {
-                        w:300,
-                        h:300
-                    }
-                }
-            }
-        ]
-    }];
-
-{: .alert.alert-info :}
-Sizes set in the `adUnit` object will not be used since sizes are already defined as part of the placement setup.
