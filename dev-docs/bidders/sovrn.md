@@ -59,28 +59,13 @@ fpd_supported: true
 
 #### MIME types:
 
-##### iOS with VPAID2:
-
-video/3gpp,
-video/mov,
-video/mp4,
-video/mpv,
-application/javascript
-
-##### iOS without VPAID2:  
-
-video/3gpp,
-video/mov,
-video/mp4,
-video/mpv
-
-##### Others with VPAID2:  
+##### With VPAID2:  
 
 video/mp4,
 video/3gpp,
 application/javascript
 
-##### Others without VPAID2:
+##### Without VPAID2:
 
 video/mp4,
 video/3gpp
