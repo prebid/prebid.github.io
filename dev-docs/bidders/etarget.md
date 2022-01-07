@@ -30,7 +30,7 @@ gdpr_supported: true
 
 #### First Party Data
 
-In release 4.30 and later, publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+In release 5.0 and later, publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
 - ortb2.site.ext.data.*
 - ortb2.site.keywords
 - ortb2.site.content.data[]
