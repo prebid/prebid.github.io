@@ -37,7 +37,7 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 
 ### Respect The Rules
 
-We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://docs.prebid.org/wrapper_code_of_conduct.html) and [module rules](https://docs.prebid.org/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
+We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
 **Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
 - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
@@ -57,6 +57,10 @@ You are expected to provide support and maintenance for the code you contribute 
 Occasionally, we'll introduce changes to the core framework as part of our ongoing maintenance and enhancement of the project. If this causes a compilation error or a performance impact to your adapter, we will update the affected portion of your bid adapter code and provide full unit test coverage of our changes. We will notify you via email if this happens and give you at least one week to review the PR and provide comments. Please understand that we will not wait for your explicit approval for these kinds of changes unless you respond to our email or comment on the PR.
 
 Please be attentive in reading and responding to emails and [GitHub issues](https://github.com/prebid/prebid-server-java/issues) from publishers, hosts, and Prebid.org project maintainers. If we receive complaints about your bid adapter and you do not respond to our communications, we may disable your adapter by default or remove it from the project entirely.
+
+## Generic Adapter
+
+Before creating your own bid adapter, consider looking into [generic adapter implementation](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/GenericBidder.java). Its main purpose is to simplify testing of PBS. As this adapter just passes requests through without any additional manipulations with data, it can be used to test behaviour of PBS core logic. But, it can be also used as template for simple bid adapters or even for aliasing the very basic ones.
 
 ## Create Your Adapter
 
