@@ -44,8 +44,6 @@ In release 5.0 and later, publishers should use the `ortb2` method of setting Fi
 - ortb2.user.ext.data.*
 - ortb2.user.data[]
 
-With regards to Contextual and Audience segments, the Magnite exchange supports the IAB standard taxonomies. See [the segment management user guide](https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/) for more information.
-
 Example first party data that's available to all bidders and all adunits:
 ```
 pbjs.setConfig({
