@@ -44,6 +44,8 @@ In release 5.0 and later, publishers should use the `ortb2` method of setting Fi
 - ortb2.user.ext.data.*
 - ortb2.user.data[]
 
+The ETARGET exchange supports the IAB standard taxonomies.
+
 Example first party data that's available to all bidders and all adunits:
 ```
 pbjs.setConfig({
