@@ -2,9 +2,6 @@
 layout: bidder
 title: Etarget
 description: Prebid Etarget Bidder Adaptor 
-dev_docs
-nav_section: reference
-hide: true
 biddercode: etarget
 media_types: banner, video
 gdpr_supported: true
@@ -13,17 +10,6 @@ pbjs: true
 fpd_supported: true
 gvl_id: 29
 ---
-
-
-### bid params
-=======
-pbjs: true
-biddercode: etarget
-media_types: banner, video
-gdpr_supported: true
-fpd_supported: true
----
-
 
 ### Bid Params
 
