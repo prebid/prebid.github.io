@@ -20,7 +20,7 @@ gvl_id: 24
 
 | Name          | Scope                       | Description                                                                                                               | Example           | Type             |
 |---------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
-| `site_id`     | required                    | The site ID from Conversant.                                                                                              | `'87293'`         | `string`         |
+| `site_id`     | optional                    | The site ID from Conversant.                                                                                              | `'87293'`         | `string`         |
 | `secure`      | required (for secure pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1`               | `integer`        |
 | `bidfloor`    | optional                    | Bid floor                                                                                                                 | `0.50`            | `float`          |
 | `tag_id`      | optional                    | Identifies specific ad placement.                                                                                         | `'cnvr-test-tag'` | `string`         |
