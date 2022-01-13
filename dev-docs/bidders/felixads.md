@@ -3,7 +3,7 @@ layout: bidder
 title: felixads
 description: Prebid felixads Bidder Adaptor
 pbjs: true
-pbs: true
+pbs: false
 biddercode: felixads
 aliascode: adkernel
 media_types: banner, native, video
