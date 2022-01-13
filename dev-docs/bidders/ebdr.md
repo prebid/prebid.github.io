@@ -5,7 +5,8 @@ description: Prebid EngageBDR Bidder Adaptor
 biddercode: ebdr
 pbjs: true
 media_types: video
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Bid params

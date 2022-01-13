@@ -205,7 +205,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <br>
 <h4>Select Bidder Adapters</h4>
 <div class="row adapters">
-{% for page in bidder_pages %}{% if page.pbjs == true %}
+{% for page in bidder_pages %}{% if page.pbjs == true %}{% if page.enable_download == false %}{% continue %}{% endif %}
 <div class="col-md-4">
  <div class="checkbox">
   <label>

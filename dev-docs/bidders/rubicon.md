@@ -8,7 +8,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-media_types: video
+media_types: banner, video
 userIds: all
 prebid_member: true
 safeframes_ok: true
@@ -43,32 +43,16 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 
 #### First Party Data
 
-Rubicon Project requires that first party data be split into two categories: "inventory" and "visitor".
+In release 4.30 and later, publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- ortb2.site.ext.data.*
+- ortb2.site.keywords
+- ortb2.site.content.data[]
+- ortb2.user.ext.data.*
+- ortb2.user.data[]
 
-For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
-```
-var adUnit = {
-    ...
-    bids: [{
-        bidder: 'rubicon',
-        params: {
-            accountId: 7780,                     // replace account/site/zone params
-            siteId: 87184,
-            zoneId: 413290,
-            inventory: {
-                prodtype: ["tech","mobile"]
-            },
-            visitor: {
-                ucat:["new"]
-            }
-        }
-    }]
-};
-```
+With regards to Contextual and Audience segments, the Magnite exchange supports the IAB standard taxonomies. See [the segment management user guide](https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/) for more information.
 
-In release 4.30 and later, we recommend using the ortb2 method of setting First Party Data. This can be done in two ways: global (cross-bidder) or bidder-specific.  For Inventory, you will need to use site.ext.data, and For Visitor, you will need to use the user.ext.data. For More information about Audience Segments in Magnite: https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/
-
-Example first party data available to all bidders and all adunits:
+Example first party data that's available to all bidders and all adunits:
 ```
 pbjs.setConfig({
   ortb2: {
@@ -114,6 +98,27 @@ pbjs.setBidderConfig({
       }
     }
   }
+};
+```
+
+For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
+```
+var adUnit = {
+    ...
+    bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: 7780,                     // replace account/site/zone params
+            siteId: 87184,
+            zoneId: 413290,
+            inventory: {
+                prodtype: ["tech","mobile"]
+            },
+            visitor: {
+                ucat:["new"]
+            }
+        }
+    }]
 };
 ```
 
