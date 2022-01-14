@@ -20,14 +20,13 @@ Maintainer: publisher@glimpseprotocol.io
 
 ## Description
 
-This module connects publishers to Glimpse Protocol's demand sources via Prebid.js. Our
-innovative marketplace protects consumer privacy while allowing precise targeting.
+This module connects publishers to Glimpse Protocol's demand sources via Prebid.js. Our innovative marketplace protects consumer privacy while allowing precise targeting.
 
 ## Supported Media Types
 
-| Type     | Sizes                                                              |
-| -------- | ------------------------------------------------------------------ |
-| `Banner` | 300x250, 300x600, 320x50, 728x90, 970x250                          |
+| Type     | Sizes                                     |
+| -------- | ----------------------------------------- |
+| `Banner` | 300x250, 300x600, 320x50, 728x90, 970x250 |
 
 ## Setup
 
@@ -35,8 +34,7 @@ This section shows how to configure your Prebid.js integration to work with the 
 
 ### Prerequisites
 
-Before you start to configure Glimpse, you will need to build a `prebid.js` file with the Glimpse module included,
-and include both `gpt.js` and `prebid.js` in the `head` of each page with supply. An example of a typical pair of script tags might be:
+Before you start to configure Glimpse, you will need to build a `prebid.js` file with the Glimpse module included, and include both `gpt.js` and `prebid.js` in the `head` of each page with supply. An example of a typical pair of script tags might be:
 
 ```html
 <script
@@ -44,10 +42,7 @@ and include both `gpt.js` and `prebid.js` in the `head` of each page with supply
   src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
 ></script>
 
-<script
-  async
-  src="https://<PUBLISHER_DOMAIN>/prebid.js"
-></script>
+<script async src="https://<PUBLISHER_DOMAIN>/prebid.js"></script>
 ```
 
 ### Publisher Registration
@@ -68,58 +63,64 @@ Coming soon.
 
 Our adapter captures the following values in the `params` block of each bid request:
 
-| Name          | Scope    | Type   | Description                                                                                                      | Example                |
-| ------------- | -------- | ------ | ---------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `placementId` | Required | string | A unique identifier associated with a publisher and ad unit, provided by the Glimpse Publisher Portal when registering a unit | 'glimpse-placement-id' |
-| `keywords` | Optional | Record<string, any> | Audience targeting data (applies to the single ad unit) | { sticky: true } |
+| Name          | Scope    | Type                | Description                                                                                                                   | Example                |
+| ------------- | -------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `placementId` | Required | string              | A unique identifier associated with a publisher and ad unit, provided by the Glimpse Publisher Portal when registering a unit | 'glimpse-placement-id' |
+| `demand`      | Optional | string              | Target demand source (defaults to 'glimpse')                                                                                  | 'xandr'                |
+| `keywords`    | Optional | Record<string, any> | Audience targeting data (applies to the single ad unit)                                                                       | { sticky: true }       |
 
 #### Example
 
 ```javascript
-const units = [{
+const units = [
+  {
     code: "ad-unit-0",
     mediaTypes: {
-        banner: { sizes: [[300, 250]] },
+      banner: { sizes: [[300, 250]] },
     },
-    bids: [{
+    bids: [
+      {
         bidder: "glimpse",
         params: {
-            placementId: "glimpse-placement-id",
-            keywords: {
-              sticky: true,
-            },
+          placementId: "glimpse-placement-id",
+          demand: "glimpse",
+          keywords: {
+            sticky: true,
+          },
         },
-    }],
-}]
+      },
+    ],
+  },
+]
 ```
 
-### Bidder Config
+### First Party Data
 
-Our adapter captures the following values in the `glimpse` block of the `BidderConfig` object:
-
-| Name          | Scope    | Type   | Description                                                                                                      | Example                |
-| ------------- | -------- | ------ | ---------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `demo` | Optional | boolean | Triggers Glimpse to respond with dummy bids (defaults to false) | true |
-| `account` | Optional | number | Your Glimpse account id | 1234 |
-| `demand` | Optional | string | The target demand source (defaults to 'glimpse') | 'xandr' |
-| `keywords` | Optional | Record<string, any> | Audience targeting data (applies to all ad units) | { sticky: true } |
+Our adapter captures site and user level data that can be passed to all units using the `ortb2` block, as described [here](https://docs.prebid.org/features/firstPartyData.html).
 
 #### Example
 
 ```javascript
 pbjs.que.push(() => {
-  pbjs.setBidderConfig({
-    bidders: ["glimpse"],
-    config: {
-      glimpse: {
-        demo: true,
-        account: 1234,
-        demand: "glimpse",
-        keywords: {
-          "language": "en",
+  pbjs.setConfig({
+    ortb2: {
+      site: {
+        keywords: "sports, basketball",
+        ext: {
+          data: {
+            title: "The Premier League",
+          },
         },
       },
-    },
+      user: {
+        keywords: "food, takeaway",
+        ext: {
+          data: {
+            firstVisit: true,
+          },
+        },
+      },
+    }
   })
 
   ...
@@ -130,7 +131,7 @@ pbjs.que.push(() => {
 
 ### Can I test my setup without a Publisher Portal Account?
 
-Yes, you can test your setup by setting `demo: true` in the `glimpse` block of the `BidderConfig` object. This will trigger Glimpse to respond with randomly-generated bids for all bid requests you make to Glimpse.
+Yes, to test your setup, you can trigger Glimpse to respond with randomly-generated bids for your correctly-configured units by setting `demand: 'demo'` in the `params` of each unit.
 
 ### Can you provide additional support?
 
