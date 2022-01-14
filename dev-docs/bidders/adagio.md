@@ -13,8 +13,7 @@ coppa_supported: true
 schain_supported: true
 gvl_id: 617
 prebid_member: true
-pbs: true
-fpd_supported: true
+fpd_supported: false
 ---
 
 ### Note
@@ -23,7 +22,7 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 
 ### Bid Params
 
-**Important**: Adagio needs to collect attention data about the ads displayed on a page and must listen to some specifics ad-server events. Please refer to the [Adagio user guide](https://adagio-team.atlassian.net/wiki/spaces/AH/pages/67272705/EN+Adagio+Prebid.js+installation+guide+for+publishers) for details.
+**Important**: Adagio needs to collect attention data about the ads displayed on a page and must listen to some specifics ad-server events. Please refer to the [Adagio user guide](https://adagioio.notion.site/Adagio-Account-Setup-Guide-fbcd940649224cdfa10393d2f008792e) for details.
 
 {: .table .table-bordered .table-striped }
 
@@ -49,3 +48,7 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 | Name         | description                         |
 |--------------|-------------------------------------|
 | `adagio_bvw` | Url to handle Measure beacon        |
+
+### First Party Data
+
+Adagio does not support FPD for now. It will be added soon.
