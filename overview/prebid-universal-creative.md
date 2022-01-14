@@ -32,7 +32,7 @@ when a Prebid ad has won the auction. There are a number of use cases:
 | native: iframe | native-render.js | n/a | 
 | native: safeframe | native-render.js | n/a |
 
-The Prebid Universal Creative is the simplest approach for publishers to configure Prebid in their ad server. The PUC provides a single creative configuration that can be used across several formats, platforms, devices, and ad servers.
+The Prebid Universal Creative is the simplest approach for publishers to configure Prebid in their ad server. The PUC provides a creative configuration that can be used across several formats, platforms, devices, and ad servers.
 
 Here are the features of the PUC in various scenarios:
 
