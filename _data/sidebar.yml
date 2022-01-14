@@ -468,6 +468,14 @@
   subgroup: 8
 
 - sbSecId: 1
+  title: Ad Server Key Values
+  link: /features/adServerKvps.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
   title: Native Ads
   link: /prebid/native-implementation.html
   isHeader: 0
