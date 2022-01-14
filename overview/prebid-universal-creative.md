@@ -27,7 +27,7 @@ when a Prebid ad has won the auction. There are a number of use cases:
 | web banner: iframe | creative.js | [Banner and Outstream Video iframes](#banner-and-outstream-video-iframes) |
 | web banner: safeframe | creative.js | [Banner Safeframes](#banner-safeframes) |
 | web outstream video: iframe | creative.js | [Banner and Outstream Video iframes](#banner-and-outstream-video-iframes) |
-| web outstream video: safeframe | n/a | n/a |
+| web outstream video: safeframe | n/a | Outstream renderers each choose where to render differently, but none writes to the safeframe. |
 | AMP banner: always safeframe | creative.js | n/a |
 | native: iframe | native-render.js | n/a | 
 | native: safeframe | native-render.js | n/a |
