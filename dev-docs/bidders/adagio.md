@@ -36,7 +36,6 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 | `environment`*     | recommended        | Environment where the page is displayed.<br><i>- max length: 30</i><br><i>- max distinctives values: 10</i>          | `'desktop'`     | `string`  |
 | `category`*        | recommended        | Category of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>    | `'sport'`       | `string`  |
 | `subcategory`*     | optional           | Subcategory of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i> | `'handball'`    | `string`  |
-| `postBid`          | optional           | Used in Post-Bid context only.                                                                                       | `true`          | `boolean` |
 | `video`            | optional           | OpenRTB 2.5 video options object.<br> All options will override ones defined in mediaTypes.video                     | `{skip: 1, playbackmethod: [6]}` | `object` |
 | `native`           | optional           | Partial OpenRTB Native 1.2 request object. Supported fields are:<br>- context<br>-plcmttype                      | `{context: 1, plcmttype: 2}` | `object` |
 
