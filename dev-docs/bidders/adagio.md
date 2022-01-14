@@ -13,7 +13,7 @@ coppa_supported: true
 schain_supported: true
 gvl_id: 617
 prebid_member: true
-fpd_supported: true
+fpd_supported: false
 ---
 
 ### Note
@@ -48,3 +48,7 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 | Name         | description                         |
 |--------------|-------------------------------------|
 | `adagio_bvw` | Url to handle Measure beacon        |
+
+### First Party Data
+
+Adagio does not support FPD for now. It will be added soon.
