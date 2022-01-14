@@ -44,6 +44,10 @@ pbjs.que.push(function () {
                 params: {
                     setPrebidTargeting: true, // optional
                     sendToBidders: true,      // optional
+                    onData: function(data, site){ // optional
+                        var kind = (site)? 'site' : 'user';
+                        console.log('onData', kind, data);
+                    },
                     weboCtxConf: {
                         token: "to-be-defined", // mandatory
                         targetURL: "https://prebid.org", // default is document.URL
@@ -53,6 +57,7 @@ pbjs.que.push(function () {
                             webo_ctx: ['moon'],
                             webo_ds: ['bar']
                         }
+                        //, onData: function (data, ...) { ...}
                     },
                     weboUserDataConf: {
                         accountId: 12345,         // optional, used for logging
@@ -63,6 +68,7 @@ pbjs.que.push(function () {
                             webo_audiences: ['bam']
                         },
                         localStorageProfileKey: 'webo_wam2gam_entry' // default
+                        //, onData: function (data, ...) { ...}
                     }
                 }
             }]
@@ -80,6 +86,7 @@ pbjs.que.push(function () {
 | params | Object | | Optional |
 | params.setPrebidTargeting | Boolean | If true, may use the profile to set the prebid (GPT/GAM or AST) targeting of all adunits managed by prebid.js | Optional. Affects the `weboCtxConf` and `weboUserDataConf` sections |
 | params.sendToBidders | Boolean | If true, may send the profile to all bidders | Optional. Affects the `weboCtxConf` and `weboUserDataConf` sections |
+| params.onData | Callback | If set, will receive the profile and site flag | Optional. Affects the `weboCtxConf` and `weboUserDataConf` sections |
 | params.weboCtxConf | Object | Weborama Contextual Configuration | Optional 
 | params.weboUserDataConf | Object | Weborama User-Centric Configuration | Optional |
 
@@ -92,6 +99,7 @@ pbjs.que.push(function () {
 | setPrebidTargeting|Boolean|If true, will use the contextual profile to set the prebid (GPT/GAM or AST) targeting of all adunits managed by prebid.js| Optional. Default is `params.setPrebidTargeting` (if any) or **true**.|
 | sendToBidders|Boolean|If true, will send the contextual profile to all bidders| Optional. Default is `params.sendToBidders` (if any) or **true**.|
 | defaultProfile | Object | default value of the profile to be used when there are no response from contextual api (such as timeout)| Optional. Default is `{}` |
+| onData | Callback | If set, will receive the profile and site flag | Optional. Default is `params.onData` (if any) or log via prebid debug |
 
 #### User-Centric Configuration
 
@@ -102,6 +110,7 @@ pbjs.que.push(function () {
 | sendToBidders|Boolean|If true, will send the user profile to all bidders| Optional. Default is `params.sendToBidders` (if any) or **true**.|
 | defaultProfile | Object | default value of the profile to be used when there are no response from contextual api (such as timeout)| Optional. Default is `{}` |
 | localStorageProfileKey| String | can be used to customize the local storage key | Optional |
+| onData | Callback | If set, will receive the profile and site flag | Optional. Default is `params.onData` (if any) or log via prebid debug |
 
 ### Supported Bidders
 
