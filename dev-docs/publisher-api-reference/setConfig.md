@@ -1449,3 +1449,7 @@ ERROR: setConfig options must be an object
 If you don't see that message, you can assume the config object is valid.
 
 <hr class="full-rule" />
+
+## Related Reading
+
+- [Prebid.js and Ad Server Key Values](/features/adServerKvps.html)
