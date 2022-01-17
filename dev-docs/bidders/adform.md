@@ -9,7 +9,7 @@ usp_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
+userIds: all
 gvl_id: 50
 enable_download: false
 pbjs_version_notes: not ported to 5.x
