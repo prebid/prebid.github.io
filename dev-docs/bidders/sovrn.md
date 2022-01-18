@@ -23,7 +23,7 @@ fpd_supported: true
 | `tagid`    | required | The sovrn Ad Tag ID  | `'315045'` | `string` |
 | `bidfloor` | optional | Bid floor in dollars | `'0.04'`   | `string` |
 
-### Bid Params for video ads
+### Bid Params for video ads. These params should be added to `mediatype.video`.
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description                                                                                                                    | Example         | Type            |
