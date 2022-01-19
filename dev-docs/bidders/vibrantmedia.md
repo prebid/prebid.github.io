@@ -20,7 +20,10 @@ Note: For video, we support outstream only.
 
 ### Bid Params
 
-There are no Vibrant Media-specific bid params required, only Prebid.js-native ones (see examples below).
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description          | Example       | Type     |
+|-------------|----------|----------------------|---------------|----------|
+| placementId | required | Placement id from Vibrant Media | `12345` | integer |
 
 #### Banner example
 
@@ -62,11 +65,7 @@ var adUnits = [{
   bids: [{
     bidder: 'vibrantmedia',
     params: {
-      placementId: 67890,
-      video: {
-        skippable: true,
-        playback_method: 'auto_play_sound_off'
-      }
+      placementId: 67890
     }
   }]
 }];
@@ -97,8 +96,7 @@ var adUnits = [{
   bids: [{
     bidder: 'vibrantmedia',
     params: {
-      placementId: 13579,
-      allowSmallerSizes: true
+      placementId: 13579
     }
   }]
 }];
