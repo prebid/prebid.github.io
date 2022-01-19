@@ -3,13 +3,24 @@ layout: bidder
 title: Telaria
 description: Telaria Bidder Adaptor
 pbjs: true
+pbs: false
 biddercode: telaria
-media_types: video
+media_types: video, no-display
 gdpr_supported: true
+usp_supported: false
+coppa_supported: false
+schain_supported: true
+floors_supported: false
+prebid_member: true
+safeframes_ok: false
+deals_supported: false
+pbs_app_supported: false
+fpd_supported: false
+gvl_id: 52
 ---
 
 ### Overview
-This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found under [tremor](/dev-docs/bidders/tremor)
+This documentation covers the Telaria (Magnite CTV) exchange. Please reach out to your account manager to set up the account.
 
 ### Bid Params
 Please refer to the **Tag Parameters** section in the  [Telaria Console](https://console.telaria.com)
