@@ -52,7 +52,7 @@ Debug mode can be enabled permanently in a page if desired. In debug mode,
 Prebid.js will post additional messages to the browser console and cause Prebid Server to
 return additional information in its response. If not specified, debug is off.
 Note that debugging can be specified for a specific page view by adding
-`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
+`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting guide](/troubleshooting/troubleshooting-guide.html) for more information.
 
 Turn on debugging permanently in the page:
 {% highlight js %}
@@ -374,34 +374,44 @@ This implies that ranges should have max values that are really the min value of
 
 #### Media Type Price Granularity
 
-The default [Prebid price granularities](#setConfig-Price-Granularity) cap out at $20, which isn't always convenient for video ads, which can command more than $20. One solution is to just set up a
-custom price
-granularity as described above. Another approach is
-`mediaTypePriceGranularity` config that may be set to define granularities for each of five media types:
-banner, video, video-instream, video-outstream, and native. e.g.
+The standard [Prebid price granularities](#setConfig-Price-Granularity) cap out at 20, which isn't always convenient for video ads, which can command more than that. One solution is to set up a custom price
+granularity as described above. Another approach is to use
+`mediaTypePriceGranularity` config that may be set to define different price bucket
+structures for different types of media:
+- for each of five media types: banner, video, video-instream, video-outstream, and native.
+- it is recommended that defined granularities be custom. It's possible to define "standard" granularities (e.g. "medium"), but it's not possible to mix both custom and standard granularities.
 
 {% highlight js %}
-const customPriceGranularity = {
+const customPriceGranularityVideo = {
             'buckets': [
-              { 'precision': 2, 'max':x 5, 'increment': 0.25 },
+              { 'precision': 2, 'max': 5, 'increment': 0.25 },
               { 'precision': 2, 'max': 20, 'increment': 0.5 },
               { 'precision': 2, 'max': 100, 'increment': 1 }
+            ]
+};
+const customPriceGranularityBanner = {
+            'buckets': [
+              { 'precision': 2, 'max': 5, 'increment': 0.5 },
+              { 'precision': 2, 'max': 20, 'increment': 1 }
             ]
 };
 
 pbjs.setConfig({'mediaTypePriceGranularity': {
           'video': customPriceGranularity,   // used as default for instream video
-	  'video-outstream': customPriceGranularityOutstream,
-          'banner': 'medium',
-          'native': 'medium',
+	  'video-outstream': customPriceGranularityBanner,
+          'banner': 'customPriceGranularityBanner'
         }
 });
 {% endhighlight %}
 
 Any `mediaTypePriceGranularity` setting takes precedence over `priceGranularity`.
 
+{: .alert.alert-warning :}
+mediaTypePriceGranularity works in two modes: either auctions contain adunits with a single media type, or all defined price granularities are custom.
+i.e. You cannot run an auction containing a mix of mediatypes across an adunit AND having a mix of "custom" and "standard" price granularities across mediatypes.
+
 {: .alert.alert-info :}
-Note: mediaTypePriceGranularity is the only place that 'video-outstream' or 'video-instream'
+Note that mediaTypePriceGranularity is the only place that 'video-outstream' or 'video-instream'
 are recognized. This was driven by the recognition that outstream often shares line items with banner.
 If the mediatype is video, the price bucketing code further looks at the context (e.g. outstream) to see if there's
 a price granularity override. If it doesn't find 'video-outstream' defined, it will then look for just 'video'.
@@ -459,20 +469,30 @@ The `s2sConfig` properties:
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
 | `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
-| `endpoint` | Required | URL | Defines the auction endpoint for the Prebid Server cluster |
-| `syncEndpoint` | Required | URL | Defines the cookie_sync endpoint for the Prebid Server cluster |
+| `endpoint` | Required | URL or Object | Defines the auction endpoint for the Prebid Server cluster.  See table below for object config properties. |
+| `syncEndpoint` | Required | URL or Object | Defines the cookie_sync endpoint for the Prebid Server cluster. See table below for object config properties. |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
-| `coopSync` | Optional | Boolean | Whether or not PBS is allowed to perform "cooperative syncing" for bidders not on this page. Publishers help each other improve match rates by allowing this. Default is true. Supported in PBS-Java only. |
+| `syncTimeout` | Optional | Integer | Maximum number of milliseconds allowed for each server-side userSync to load. Default is 1000. |
+| `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
+| `coopSync` | Optional | Boolean | Whether or not PBS is allowed to perform "cooperative syncing" for bidders not on this page. Publishers help each other improve match rates by allowing this. Default is true. |
 | `defaultTtl` | Optional | Integer | Configures the default TTL in the Prebid Server adapter to use when Prebid Server does not return a bid TTL - 60 if not set |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in every impression object at request.imp[].ext.BIDDER. See the example above. |
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
-| `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
+
+If `endpoint` and `syncEndpoint` are objects, these are the supported properties:
+
+{: .table .table-bordered .table-striped }
+| Attribute | Scope | Type | Description |
+|------------+---------+---------+---------------------------------------------------------------|
+| p1Consent | Required | String | Defines the auction endpoint or the cookie_sync endpoint for the Prebid Server cluster for non-consent requests or users who grant consent. |
+| noP1Consent | Required | String | Defines the auction endpoint or the cookie_sync endpoint for the Prebid Server cluster for users who do not grant consent. (This is useful for a server configured to not accept any cookies to ensure compliance regulations.) |
 
 **Notes on s2sConfig properties**
 
-- Currently supported vendors are: appnexus & rubicon
+- Currently supported vendors are: appnexus, openx, and rubicon
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
+- When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
 
 {: .alert.alert-warning :}
 **Errors in bidder parameters will cause Prebid Server to reject the
@@ -505,6 +525,38 @@ pbjs.setConfig({
 {% endhighlight %}
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
+
+s2sConfig example with the endpoint attributes defined as strings:
+{% highlight js %}
+pbjs.setConfig({
+    s2sConfig: [{
+        accountId: '1001',
+        bidders: ['bidderA', 'bidderB'],
+        endpoint: 'https://mypbs.example.com/path',
+	syncEndpoint: 'https://mypbs.example.com/path',
+        timeout: 300
+    }]
+})
+{% endhighlight %}
+
+s2sConfig example with the endpoint attributes defined as objects:
+{% highlight js %}
+pbjs.setConfig({
+    s2sConfig: [{
+        accountId: '1001',
+        bidders: ['bidderA', 'bidderB'],
+        endpoint: {
+	   p1Consent: 'https://mypbs.example.com/path',
+	   noP1Consent: 'https://mypbs2.example.com/path'
+	},
+        syncEndpoint: {
+	   p1Consent: 'https://mypbs.example.com/path',
+	   noP1Consent: 'https://mypbs2.example.com/path'
+	}
+        timeout: 300
+    }]
+})
+{% endhighlight %}
 
 **Server-Side Aliases**
 
@@ -716,6 +768,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
 | alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
+| addTargetingKeys   | Array of Strings | Selects targeting keys to be supported in addition to the default ones |
 | allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 
 {: .alert.alert-info :}
@@ -761,6 +814,8 @@ Between these two values (Prebid's targeting key count and the overall ad URL qu
 
 Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
 
+<a name="targetingControls-allowTargetingKeys" />
+
 ##### Details on the allowTargetingKeys setting
 
 The `allowTargetingKeys` config creates a targeting key mask based on the default targeting keys defined in CONSTANTS.TARGETING_KEYS and CONSTANTS.NATIVE_KEYS. Any default keys that do not match the mask will not be sent to the adserver. This setting can be helpful if you find that your default Prebid.js implementation is sending key values that your adserver isn't configured to process; extraneous key values may lead to the ad server request being truncated, which can cause potential issues with the delivery or rendering ads.
@@ -784,9 +839,9 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | PRICE_BUCKET | `hb_pb` | yes | The results of the [price granularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) calculation. |
 | SIZE | `hb_size` | yes | '300x250' |
 | DEAL | `hb_deal` | yes | |
-| SOURCE | `hb_source` | yes | 'client' or 's2s' |
+| SOURCE | `hb_source` | no | 'client' or 's2s' |
 | FORMAT | `hb_format` | yes | 'banner', 'video', or 'native' |
-| UUID | `hb_uuid` | yes | Network cache ID for video |
+| UUID | `hb_uuid` | no | Network cache ID for video |
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
@@ -827,6 +882,65 @@ config.setConfig({
   }
 });
 ```
+
+<a name="targetingControls-addTargetingKeys" />
+
+##### Details on the addTargetingKeys setting
+
+The `addTargetingKeys` config is similar to `allowTargetingKeys`, except it adds to the keys in CONSTANTS.DEFAULT_TARGETING_KEYS instead of replacing them. This is useful if you need Prebid.js to generate targeting for some keys that are not allowed by default without removing any of the default ones (see [allowTargetingKeys](#targetingControls-allowTargetingKeys) for details on how targeting is generated). 
+
+Note that you may specify only one of `allowTargetingKeys` or `addTargetingKeys`.
+
+For example, this allows every default key, plus `hb_adomain`:
+
+```javascript
+config.setConfig({
+    targetingControls: {
+        addTargetingKeys: ['ADOMAIN']
+    }
+});
+```
+
+Which is equivalent to:
+
+```javascript
+config.setConfig({
+    targetingControls: {
+        allowTargetingKeys: [
+            'BIDDER',
+            'AD_ID',
+            'PRICE_BUCKET',
+            'SIZE',
+            'DEAL',
+            'FORMAT',
+            'UUID',
+            'CACHE_HOST',
+            'title',
+            'body',
+            'body2',
+            'privacyLink',
+            'privacyIcon',
+            'sponsoredBy',
+            'image',
+            'icon',
+            'clickUrl',
+            'displayUrl',
+            'cta',
+            'rating',
+            'address',
+            'downloads',
+            'likes',
+            'phone',
+            'price',
+            'salePrice',
+            'rendererUrl',
+            'adTemplate',
+            'ADOMAIN'
+        ]
+    }
+});
+```
+
 
 ##### Details on the allowSendAllBidsTargetingKeys setting
 
@@ -1335,3 +1449,7 @@ ERROR: setConfig options must be an object
 If you don't see that message, you can assume the config object is valid.
 
 <hr class="full-rule" />
+
+## Related Reading
+
+- [Prebid.js and Ad Server Key Values](/features/adServerKvps.html)

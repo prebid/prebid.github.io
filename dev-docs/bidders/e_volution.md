@@ -11,7 +11,8 @@ pbs: true
 pbs_app_supported: true
 usp_supported: true
 schain_supported: true
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:
