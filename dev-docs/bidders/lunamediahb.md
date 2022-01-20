@@ -5,6 +5,9 @@ description: Prebid Lunamedia Bidder Adapter
 biddercode: lunamediahb
 usp_supported: true
 schain_supported: true
+gdpr_supported: true
+coppa_supported: true
+schain_supported: true
 media_types: banner, video, native
 gdpr: true
 pbjs: true
