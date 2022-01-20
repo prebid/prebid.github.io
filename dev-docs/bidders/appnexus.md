@@ -24,6 +24,7 @@ gvl_id: 32
 - [User Object](#appnexus-user-object)
 - [App Object](#appnexus-app-object)
 - [Custom Targeting keys](#custom-targeting-keys)
+- [Auction Level Keywords](#appnexus-auction-keywords)
 - [Passing Keys Without Values](#appnexus-no-value)
 - [User Sync in AMP](#appnexus-amp)
 - [Debug Auction](#appnexus-debug-auction)
@@ -47,7 +48,7 @@ All AppNexus (Xandr) placements included in a single call to `requestBids` must 
 | `user`                                          | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes`                             | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS) | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
-| `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
+| `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. If you want to pass keywords for all adUnits, see [Auction Level Keywords](#appnexus-auction-keywords) for an example. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
 | `video`                                         | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 | `app`                                           | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
 | `reserve`                                       | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
@@ -135,6 +136,24 @@ pbjs.bidderSettings = {
   }
 }
 ```
+
+<a name="appnexus-auction-keywords" />
+
+#### Auction Level Keywords
+
+It's possible to pass a set of keywords for the whole request, rather than a particular adUnit.  Though they would apply to all adUnits (which include the appnexus bidder) in an auction, these keywords can work together with the bidder level keywords (if for example you want to have specific targeting for a particular adUnit).
+
+Below is an example of how to define these auction level keywords for the appnexus bidder:
+```
+pbjs.setConfig({
+  appnexusAuctionKeywords: {
+    genre: ['classical', 'jazz'],
+    instrument: 'piano'
+  }
+});
+```
+
+Like in the bidder.params.keywords, the values here can be empty.  Please see the section immediately below for more details.
 
 <a name="appnexus-no-value" />
 
