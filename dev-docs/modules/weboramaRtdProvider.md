@@ -29,7 +29,7 @@ Compile the Weborama RTD module into your Prebid build:
 
 Add the Weborama RTD provider to your Prebid config.
 
-```javascript
+```
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
 
@@ -100,6 +100,7 @@ pbjs.que.push(function () {
 | sendToBidders|Boolean|If true, will send the contextual profile to all bidders| Optional. Default is `params.sendToBidders` (if any) or **true**.|
 | defaultProfile | Object | default value of the profile to be used when there are no response from contextual api (such as timeout)| Optional. Default is `{}` |
 | onData | Callback | If set, will receive the profile and site flag | Optional. Default is `params.onData` (if any) or log via prebid debug |
+| enabled | Boolean| if false, will ignore this configuration| default true|
 
 #### User-Centric Configuration
 
@@ -111,6 +112,7 @@ pbjs.que.push(function () {
 | defaultProfile | Object | default value of the profile to be used when there are no response from contextual api (such as timeout)| Optional. Default is `{}` |
 | localStorageProfileKey| String | can be used to customize the local storage key | Optional |
 | onData | Callback | If set, will receive the profile and site flag | Optional. Default is `params.onData` (if any) or log via prebid debug |
+| enabled | Boolean| if false, will ignore this configuration| default true|
 
 ### Supported Bidders
 
