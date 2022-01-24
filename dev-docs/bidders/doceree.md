@@ -5,6 +5,8 @@ description: Prebid DivReach Bidder Adapter
 pbjs: true
 biddercode: doceree
 media_types: banner
+tcf2_supported: true
+gdpr_supported: true
 ---
 
 ### Bid Params

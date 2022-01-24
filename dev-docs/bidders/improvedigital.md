@@ -5,9 +5,10 @@ description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
 pbjs: true
 pbs: true
+coppa_supported: true
 gdpr_supported: true
-userIds: all
 usp_supported: true
+userIds: all
 media_types: banner, native, video
 schain_supported: true
 gvl_id: 253
