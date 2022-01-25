@@ -29,6 +29,36 @@ Compile the Weborama RTD module into your Prebid build:
 
 Add the Weborama RTD provider to your Prebid config.
 
+Minimal configuration:
+```
+var pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+
+pbjs.que.push(function () {
+    pbjs.setConfig({
+        debug: true,
+        realTimeData: {
+            auctionDelay: 1000,
+            dataProviders: [{
+                name: "weborama",
+                waitForIt: true,
+                params: {
+                    // you should choose activate the site-centric and/or the user-centric data management below:
+                    weboCtxConf: {
+                        token: "to-be-defined", // mandatory to use the contextual api
+                    },
+                    weboUserDataConf: { 
+                        accountId: 12345,       // recommended to use the site-centric profile
+                    }
+                }
+            }]
+        }
+    });
+});
+
+```
+
+More complete configuration
 ```
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
