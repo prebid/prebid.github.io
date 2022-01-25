@@ -9,7 +9,6 @@ gdpr_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr: true
 pbjs: true
 pbs: false
 ---
