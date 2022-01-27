@@ -6,12 +6,13 @@ pbjs: true
 pbs: true
 biddercode: sovrn
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
-userIds: britepoolId, criteo, id5Id, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
+userIds: all
 prebid_member: true
 schain_supported: true
 gvl_id: 13
+floors_supported: true
+fpd_supported: true
 ---
 
 ### Bid Params

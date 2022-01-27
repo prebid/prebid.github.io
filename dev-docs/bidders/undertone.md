@@ -6,6 +6,7 @@ biddercode: undertone
 media_types: display, video
 gdpr_supported: true
 usp_supported: true
+schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
 ---
@@ -30,6 +31,7 @@ pbjs: true
 | `maxDuration`    | optional | Maximum video ad duration in seconds. | `30` | `integer` |
 | `skippable`      | optional | Skippability of the inventory. Possible values: `true` - only skippable inventory is allowed, `false` - skippable inventory is not allowed, null/missing - all inventory is allowed (default value). | `true` | `boolean` |
 
+Supported from version 3.27.0 and above
 
 ### Configuration
 

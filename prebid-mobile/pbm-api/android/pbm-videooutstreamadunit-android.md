@@ -39,10 +39,9 @@ VideoAdUnit("configID", width, height, VideoAdUnit.PlacementType.placement); //p
 	* IN_FEED
 
 
-### Paramaters
+### Parameters
 
-Parameters is a sub class of videoAdUnit.Create new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
-
+Parameters is a sub class of videoAdUnit. Create new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
 
 **Parameters**
 
@@ -67,13 +66,12 @@ Parameters is a sub class of videoAdUnit.Create new Parameters class to define t
 
 #### placement
 
-[OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Placement Type for the auction can be expressed as an integer array or can use an enum for easier readability. Option 1 (in-stream) is intentionally left out due to lack of in-stream support in Prebid SDK. 
+[OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Placement Type for the auction can be expressed as an integer array or can use an enum for easier readability. Option 1 (in-stream) is intentionally left out due to lack of in-stream support in Prebid SDK.
 
 * `2` or `IN_BANNER` : In-Banner placement exists within a web banner that leverages the banner space to deliver a video experience as opposed to another static or rich media format. The format relies on the existence of display ad inventory on the page for its delivery.
 * `3` or `IN_ARTICLE` : In-Article placement loads and plays dynamically between paragraphs of editorial content; existing as a standalone branded message.
 * `4` or `IN_FEED` : In-Feed placement is found in content, social, or product feeds.
 * `5` : `Slider` / `Floater` While OpenRTB uses "5" to also designate interstitial as a placement type, interstitial is not used in the standard outsream format. For Interstital, use the videointerstital or RewardedVideoAdUnit ad unit
-
 
 #### api
 
@@ -86,31 +84,25 @@ Array of integers or enum representing the supported OpenRTB Frameworks:
 * `5` or `Signals.Api.MARAID_2` : MRAID-2
 * `6` or `Signals.Api.MARAID_3` : MRAID-3
 
-
 #### maxBitrate
 
-Integer representing the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) maximum bit rate in Kbps. 
-
+Integer representing the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) maximum bit rate in Kbps.
 
 #### minBitrate
 
 Integer representing the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) minimum bit rate in Kbps.
 
-
 #### maxDuration
 
 Integer representing the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) maximum video ad duration in seconds.
-
 
 #### minDuration
 
 Integer representing the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) minimum video ad duration in seconds.
 
-
 #### mimes
 
 Array of string representing the supported [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) content MIME types (e.g., “video/x-ms-wmv”, “video/mp4”).
-
 
 #### playbackMethod
 
@@ -123,10 +115,9 @@ Array of [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-AP
 * `5` or `Signals.PlaybackMethod.EnterSoundOn` : Initiates on Entering Viewport with Sound On
 * `6` or `Signals.PlaybackMethod.EnterSoundOff`: Initiates on Entering Viewport with Sound Off by Default
 
-
 #### protocols
 
-Array or enum of [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) supported Protocols. Values can be one of: 
+Array or enum of [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) supported Protocols. Values can be one of:
 
 * `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
 * `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0

@@ -14,7 +14,7 @@ sbUUID: 3.2
 Prebid products are designed to integrate with the ad ops line item configuration on the publisher's selected ad server. Whether using Prebid.js, Prebid Server or Prebid Mobile, bid targeting parameters are passed to the ad server. The ad server then attempts to  match the targeting parameters to a preset line item. If successful, that line item is compared to other line items and if the Prebid bid wins the auction, the creative is returned to the web page or app for display.
 
 {% capture importantNote %}
-This page assumes you have read [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
+This page assumes you have read [Getting Started with Prebid.js](/overview/getting-started.html), though it applies to Prebid SDK and Server as well.
 {% endcapture %}
 
 {% include alerts/alert_important.html content=importantNote %}
@@ -29,14 +29,14 @@ The table below lists ad servers supported by Prebid and provides links to step 
 {: .table .table-bordered .table-striped }  
 | Server       | Page                                                                                                                                    |
 |--------------+-----------------------------------------------------------------------------------------------------------------------------------------|
-| **Google Ad Manager**      | [Step by step guide to Google Ad Manager setup]({{site.baseurl}}/adops/step-by-step.html)                                                          |
-|              | [Send all bids to the ad server]({{site.baseurl}}/adops/send-all-bids-adops.html)                                                    |
-|              | [Setting up Prebid for AMP in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)                                     |
-|              | [Setting up Prebid Video in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)                                         |
-|              | [Setting up Prebid Native in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html)                                       |
-| **AppNexus** | [Setting up Prebid with the AppNexus Publisher Ad Server]({{site.baseurl}}/adops/setting-up-prebid-with-the-appnexus-ad-server.html) |
-| **Smart Ad Server** | [Setting up Prebid.js with Smart Ad Server]({{site.baseurl}}/adops/setting-up-prebidjs-with-Smart-Ad-Server.html) |
-| **FreeWheel** | [FreeWheel Guide for Premium Long-Form Video]({{site.baseurl}}/adops/setting-up-prebid-video-in-freewheel.html) |
+| **Google Ad Manager**      | [Step by step guide to Google Ad Manager setup](/adops/step-by-step.html)                                                          |
+|              | [Send all bids to the ad server](/adops/send-all-bids-adops.html)                                                    |
+|              | [Setting up Prebid for AMP in Google Ad Manager](/adops/setting-up-prebid-for-amp-in-dfp.html)                                     |
+|              | [Setting up Prebid Video in Google Ad Manager](/adops/setting-up-prebid-video-in-dfp.html)                                         |
+|              | [Setting up Prebid Native in Google Ad Manager](/adops/gam-native.html)                                       |
+| **AppNexus** | [Setting up Prebid with the AppNexus Publisher Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html) |
+| **Smart Ad Server** | [Setting up Prebid.js with Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html) |
+| **FreeWheel** | [FreeWheel Guide for Premium Long-Form Video](/adops/setting-up-prebid-video-in-freewheel.html) |
 
 ## Decide on price bucket granularity
 
@@ -54,7 +54,7 @@ Our recommendation is to start with $1 or 10 cent granularity until you're more 
 
 {% capture dfpNote %}
 
-[Google Ad Manager has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity).
+[Google Ad Manager has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity).
 {% endcapture %}
 
 {% include alerts/alert_note.html content= dfpNote %}
@@ -125,6 +125,7 @@ Implementing header bidding requires much more collaboration with your dev team 
 
 ## Related Topics
 
-- [Getting Started with Prebid.js]({{site.baseurl}}/overview/getting-started.html): How Prebid.js works at a high level.
-- [What is Prebid?]({{site.baseurl}}/overview/intro.html): Overview and history of header bidding and Prebid.js.
-+ [Docs by Format]({{site.baseurl}}/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
+- [Getting Started with Prebid.js](/overview/getting-started.html): How Prebid.js works at a high level.
+- [Prebid.js and Ad Server Key Values](/features/adServerKvps.html)
+- [What is Prebid?](/overview/intro.html): Overview and history of header bidding and Prebid.js.
++ [Docs by Format](/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).

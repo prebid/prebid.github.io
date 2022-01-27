@@ -8,6 +8,9 @@ media_types: banner, video
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
 pbs: true
+pbs_app_supported: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Registration

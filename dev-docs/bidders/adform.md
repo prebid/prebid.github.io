@@ -6,14 +6,16 @@ biddercode: adform
 media_types: banner, video
 gdpr_supported: true
 usp_supported: true
-tcf2_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
+userIds: all
 gvl_id: 50
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
+**Adform bid adapter is deprecated since Prebid 5.0. Please refer to [AdformOpenRTB adapter](#adf) documentation to fetch bids from Adform demand sources.**
 
 ### Bid Params
 

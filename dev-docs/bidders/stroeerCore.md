@@ -8,13 +8,12 @@ gdpr_supported: false
 schain_supported: false
 coppa_supported: false
 usp_supported: false
-tcf2_supported: true
 safeframes_ok: true
 prebid_member: false
 pbjs: true
 pbs: false
 gvl_id: 136
-bidder_supports_deals: true
+deals_supported: true
 ---
 
 ### Bid Params

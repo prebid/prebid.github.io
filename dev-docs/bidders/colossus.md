@@ -6,10 +6,11 @@ biddercode: colossus
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-userIds: britepoolid, identityLink, unifiedId, id5Id
+userIds: britepoolid, identityLink, unifiedId, id5Id, uid2
 gdpr: true
 pbjs: false
 pbs: true
+pbs_app_supported: true
 ---
 
 ### Prebid.Server Bid Params
