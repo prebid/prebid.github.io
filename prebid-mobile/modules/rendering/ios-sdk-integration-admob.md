@@ -55,45 +55,80 @@ They can be integrated using these API categories:
 Integration example:
 
 ``` swift
-// 1. Create an Event Handler
-let eventHandler = GAMBannerEventHandler(adUnitID: GAM_AD_UNIT_ID,
-                                         validGADAdSizes: [NSValueFromGADAdSize(adSize)])
-       
-// 2. Create a Banner View
-let banner = BannerView(configID: CONFIG_ID,
-                        eventHandler: eventHandler)
+// 1. Create GADRequest and GADBannerView
+gadRequest = GADRequest()
 
-banner.delegate = self
-
-addBannerToUI(banner: banner)
-        
-// 3. Load an Ad
-banner.loadAd()
+gadBanner = GADBannerView(adSize: size)
+gadBanner.delegate = self
+gadBanner.rootViewController = self
+    
+gadBanner.adUnitID = adUnitId
+    
+// 2. Create AdMobMediationBannerUtils
+mediationDelegate = AdMobMediationBannerUtils(gadRequest: gadRequest,
+                                              bannerView: gadBanner)
+    
+// 3. Create MediationBannerAdUnit
+prebidAdMobMediaitonAdUnit = MediationBannerAdUnit(configID: configID,
+                                                   size: CGSize(width: 320, height: 50),
+                                                   mediationDelegate: mediationDelegate)
+    
+// 4. Make a bid request
+prebidAdMobMediaitonAdUnit.fetchDemand { [weak self] result in
+    
+    // 5. Store the winning bid in the GADRequest extras
+    // You must provide a winning bid via extras to the GADRequest here.
+    // Prebid SDK can't do it internally.
+    // Otherwise, the Prebid adapter won't be able to retrieve and render the winning bid.
+    let extras = GADCustomEventExtras()
+    extras.setExtras(self?.mediationDelegate.getEventExtras(), 
+                     forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
+    
+    self?.gadRequest.register(extras)
+    
+    // 6. Make an ad request to AdMob
+    self?.gadBanner.load(self?.gadRequest)
+}
 ```
 
-#### Step 1: Create Event Handler
+#### Step 1: Create GADRequest and GADBannerView
 
-To create the `GAMBannerEventHandler ` you should provide:
-
-- a **GAM Ad Unit Id** 
-- the list of available **sizes** for this ad unit.
+This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/ios/banner). You don't have to make any modifications here.
 
 
-#### Step 2: Create Ad View
+#### Step 2: Create AdMobMediationBannerUtils
 
-`BannerView` - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
+The `AdMobMediationBannerUtils` is a helper class, wich performs spcific utilty work for `MediationBannerAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
-- `configID` - an ID of Stored Impression on the Prebid server
-- `eventHandler` - the instance of the banner event handler
+#### Step 3: Create MediationBannerAdUnit
 
-Also, you should add the instance of `BannerView` to the UI.
+The `MediationBannerAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
 
-#### Step 3: Load the Ad
+#### Step 4: Make bid request
 
-Call the method `loadAd()` which will:
+The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
 
-- make a bid request to Prebid Server.
-- render the winning bid on display.
+#### Step 5: Store the winning bid in the GADRequest extras
+
+GMA SDK doesn't provide extras to the adapter if they were set up not in the app scope. 
+
+That is why you must add the code for forwarding the winning bid to the adapters. In the most cases you'll just need to copy and paste the following lines inside the completion closure: 
+
+
+```
+let extras = GADCustomEventExtras()
+
+extras.setExtras(self?.mediationDelegate.getEventExtras(), 
+                 forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
+    
+self?.gadRequest.register(extras)
+```
+
+Make sure that you use the proper label for extras - `AdMobConstants.PrebidAdMobEventExtrasLabel`. Prebid adapters will extract the winnig bid by this key.
+
+#### Step 6: Make an Ad Reuest
+
+Now you should just make a regulat AdMob's ad request. Evetything else will be handled by prebid adapters.
 
 ### Banner Video
 
