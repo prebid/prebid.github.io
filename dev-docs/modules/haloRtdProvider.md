@@ -5,8 +5,8 @@ display_name: Audigent Halo Real-time Segmentation Module
 description: Audigent Halo Real-time Segmentation Module
 page_type: module
 module_type: rtd
-module_code : haloRtdProvider
-enable_download : true
+module_code: haloRtdProvider
+enable_download: false
 vendor_specific: true
 sidebarType : 1
 ---
