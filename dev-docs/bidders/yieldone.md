@@ -5,7 +5,7 @@ description: Prebid YIELDONE Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: yieldone
-userIds: identityLink
+userIds: identityLink, imuid
 media_types: banner, video
 ---
 
