@@ -16,7 +16,7 @@ gvl_id: 918
 
 ### Note
 
-The MinuteMedia adapter requires setup and approval. Please reach out to prebid-rise-engage@risecodes.com to setup an MinuteMedia account. //TODO
+The MinuteMedia adapter requires setup and approval. Please reach out to hb@minutemedia.com to setup an MinuteMedia account.
 
 ### Bid Parameters
 
