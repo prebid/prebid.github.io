@@ -8,7 +8,7 @@ floors_supported: true
 fpd_supported: true
 gdpr_supported: true
 usp_supported: true
-userIds: unifiedId, identityLink, uid2, haloId
+userIds: unifiedId, identityLink, uid2, hadronId
 schain_supported: true
 prebid_member: true
 pbjs: true

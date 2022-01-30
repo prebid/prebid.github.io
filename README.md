@@ -1,6 +1,6 @@
 This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).
 
-Please see the sections below for more information.
+Please see the sections below for more information:
 
 + [Contributing](#contributing)
 + [License](#license)
