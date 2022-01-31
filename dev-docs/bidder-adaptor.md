@@ -184,10 +184,14 @@ A high level example of the structure:
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
 import { config } from 'src/config';
+import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
-    aliases: ['ex'], // short code
+    gvlid: IAB_GVL_ID_FOR_GDPR,
+    aliases: [
+      { code: "myalias", gvlid: IAB_GVL_ID_FOR_GDPR_IF_DIFFERENT }
+    ],
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
@@ -195,7 +199,8 @@ export const spec = {
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
-    onBidderError: function({ error, bidderRequest })
+    onBidderError: function({ error, bidderRequest }),
+    supportedMediaTypes: [BANNER, VIDEO, NATIVE]
 }
 registerBidder(spec);
 
@@ -623,6 +628,17 @@ If the alias entry is an object, the following attributes are supported:
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
 
+### Supporting Privacy Regulations
+
+If your bid adapter is going to be used in Europe, you should support GDPR:
+- Get a [Global Vendor ID](https://iabeurope.eu/vendor-list-tcf-v2-0/) from the IAB-Europe
+- Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
+- Read the gdprConsent string from the bid request object and pass it through to your endpoint
+
+If your bid adapter is going to be used in the United States, you should support COPPA and CCPA:
+- Read the uspConsent string from the bid request object and pass it through t
+o your endpoint
+- Call config.getConfig('coppa') and forward to your endpoint
 
 ## Supporting Video
 
@@ -630,13 +646,13 @@ Follow the steps in this section to ensure that your adapter properly supports v
 
 ### Step 1: Register the adapter as supporting video
 
-Add the `supportedMediaTypes` argument to the spec object, and make sure `video` is in the list:
+Add the `supportedMediaTypes` argument to the spec object, and make sure VIDEO is in the list:
 
 {% highlight js %}
 
 export const spec = {
     code: BIDDER_CODE,
-    supportedMediaTypes: ['video'],
+    supportedMediaTypes: [VIDEO],
     ...
 }
 
@@ -649,22 +665,20 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
 
-| parameter |
-|-|
-| mimes |
-| minduration |
-| maxduration |
-| protocols |
-| startdelay |
-| placement |
-| skip |
-| skipafter |
-| minbitrate |
-| maxbitrate |
-| delivery |
-| playbackmethod |
-| api |
-| linearity |
+- mimes
+- minduration
+- maxduration
+- protocols
+- startdelay
+- placement
+- skip
+- skipafter
+- minbitrate
+- maxbitrate
+- delivery
+- playbackmethod
+- api
+- linearity
 
 The design of these parameters may vary depending on what your server-side bidder accepts.  If possible, we recommend using the video parameters in the [OpenRTB specification](https://iabtechlab.com/specifications-guidelines/openrtb/).
 
@@ -705,7 +719,7 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 #### Long-Form Video Content
 
 {: .alert.alert-info :}
-Following is Prebid's way to setup bid request for long-form, apadters are free to choose their own approach.
+The following is Prebid's way to setup bid request for long-form, adapters are free to choose their own approach.
 
 Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement.
 
@@ -890,6 +904,7 @@ In order for your bidder to support the native media type:
 1. Your (server-side) bidder needs to return a response that contains native assets.
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
 3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads](/prebid/native-implementation.html).
+4. Your spec must declare NATIVE in the supportedMediaTypes array.
 
 The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
@@ -963,10 +978,13 @@ For example tests, see [the existing adapter test suites](https://github.com/pre
 import * as utils from 'src/utils';
 import {config} from 'src/config';
 import {registerBidder} from 'src/adapters/bidderFactory';
+import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
 const BIDDER_CODE = 'example';
 export const spec = {
         code: BIDDER_CODE,
-        aliases: ['ex'], // short code
+	gvlid: 0000000000,
+	supportedMediaTypes: [BANNER, VIDEO, NATIVE],
+        aliases: [{code: "myAlias", gvlid: 99999999999} ],
         /**
          * Determines whether or not the given bid request is valid.
          *
