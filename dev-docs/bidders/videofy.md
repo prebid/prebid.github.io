@@ -7,6 +7,8 @@ biddercode: videofy
 media_types: video
 gdpr_supported: true
 usp_supported: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

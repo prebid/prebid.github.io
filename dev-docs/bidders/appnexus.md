@@ -6,11 +6,12 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, unifiedId, netId, identityLink
+userIds: criteo, unifiedId, netId, identityLink, flocId, uid2
 schain_supported: true
 coppa_supported: true
 usp_supported: true
-tcf2_supported: true
+floors_supported: true
+fpd_supported: true
 pbjs: true
 pbs: true
 gvl_id: 32
@@ -23,6 +24,7 @@ gvl_id: 32
 - [User Object](#appnexus-user-object)
 - [App Object](#appnexus-app-object)
 - [Custom Targeting keys](#custom-targeting-keys)
+- [Auction Level Keywords](#appnexus-auction-keywords)
 - [Passing Keys Without Values](#appnexus-no-value)
 - [User Sync in AMP](#appnexus-amp)
 - [Debug Auction](#appnexus-debug-auction)
@@ -30,33 +32,34 @@ gvl_id: 32
 <a name="appnexus-bid-params" />
 
 {: .alert.alert-danger :}
-All AppNexus placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
-*Note: This requirement does not apply to adapters that are [aliasing]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.aliasBidder) the AppNexus adapter.*
+All AppNexus (Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
+*Note: This requirement does not apply to adapters that are [aliasing](/dev-docs/publisher-api-reference/aliasBidder.html) the AppNexus adapter.*
 
 #### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
-| `placementId`       | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID. The `placementID` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string` value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
-| `member`            | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
-| `invCode`           | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
-| `publisherId`       | optional | The publisher ID from AppNexus. It is used by the AppNexus end point to identify the publisher when `placementId` is not provided and `invCode` goes wrong. The `publisherId` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred.                                                                                                                    | `12345`                                             | `integer`         |
-| `frameworks`        | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `integer` |
-| `user`              | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
-| `allowSmallerSizes` | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
-| `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS)    | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
-| `keywords`          | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
-| `video`             | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
-| `app`               | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
-| `reserve`           | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here.                | `0.90`                                                | `float`          |
-| `position`          | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
-| `trafficSourceCode` | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
-| `supplyType`        | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
-| `supplyType`        | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
-| `pubClick`          | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using AppNexus click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
-| `extInvCode`        | optional | Specifies predefined value passed on the query string that can be used in reporting. The value must be entered into the system before it is logged.                           | `'10039'`                                             | `string`         |
-| `externalImpId`     | optional | Specifies the unique identifier of an externally generated auction.                                                                                                           | `'bacbab02626452b097f6030b3c89ac05'`                  | `string`         |
+| `placement_id` (PBS) or `placementID` (PBJS)    | required | The placement ID from AppNexus.  You may identify a placement using the `invCode` and `member` instead of a placement ID. This parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. Legacy code can retain the `string` value. **Prebid Server requires an integer value.**                                                    | `234234`                                            | `integer`         |
+| `member`                                        | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
+| `invCode`                                       | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
+| `publisherId`                                   | optional | The publisher ID from AppNexus. It is used by the AppNexus end point to identify the publisher when placement id is not provided and `invCode` goes wrong. The `publisherId` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred.                                                                                                                    | `12345`                                             | `integer`         |
+| `frameworks`                                    | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `integer` |
+| `user`                                          | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
+| `allowSmallerSizes`                             | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
+| `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS) | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
+| `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. If you want to pass keywords for all adUnits, see [Auction Level Keywords](#appnexus-auction-keywords) for an example. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
+| `video`                                         | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
+| `app`                                           | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
+| `reserve`                                       | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
+| `position`                                      | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
+| `trafficSourceCode`                             | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
+| `supplyType`                                    | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
+| `supplyType`                                    | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
+| `pubClick`                                      | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using AppNexus click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
+| `extInvCode`                                    | optional | Specifies predefined value passed on the query string that can be used in reporting. The value must be entered into the system before it is logged.                           | `'10039'`                                             | `string`         |
+| `externalImpId`                                 | optional | Specifies the unique identifier of an externally generated auction.                                                                                                           | `'bacbab02626452b097f6030b3c89ac05'`                  | `string`         |
+| `generate_ad_pod_id`                            | optional | Signal to AppNexus to split impressions by ad pod and add unique ad pod id to each request. Specific to long form video endpoint only. Supported by Prebid Server, not Prebid JS.  | `true`                                                | `boolean`        |
 
 <a name="appnexus-video-object" />
 
@@ -134,6 +137,24 @@ pbjs.bidderSettings = {
 }
 ```
 
+<a name="appnexus-auction-keywords" />
+
+#### Auction Level Keywords
+
+It's possible to pass a set of keywords for the whole request, rather than a particular adUnit.  Though they would apply to all adUnits (which include the appnexus bidder) in an auction, these keywords can work together with the bidder level keywords (if for example you want to have specific targeting for a particular adUnit).
+
+Below is an example of how to define these auction level keywords for the appnexus bidder:
+```
+pbjs.setConfig({
+  appnexusAuctionKeywords: {
+    genre: ['classical', 'jazz'],
+    instrument: 'piano'
+  }
+});
+```
+
+Like in the bidder.params.keywords, the values here can be empty.  Please see the section immediately below for more details.
+
 <a name="appnexus-no-value" />
 
 #### Passing Keys Without Values
@@ -199,7 +220,7 @@ To view the results of the debug auction, add the `pbjs_debug=true` query string
 
 #### Prebid Server Test Request
 
-The following test parameters can be used to verify that Prebid Server is working properly with the 
+The following test parameters can be used to verify that Prebid Server is working properly with the
 server-side Appnexus adapter. This example includes an `imp` object with an Appnexus test placement ID and sizes
 that would match with the test creative.
 
@@ -217,7 +238,7 @@ that would match with the test creative.
 		},
 		"ext": {
 			"appnexus": {
-				"placementId": 13144370
+				"placement_id": 13144370
 			}
 		}
 	}]

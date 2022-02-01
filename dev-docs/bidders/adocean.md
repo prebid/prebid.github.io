@@ -6,7 +6,6 @@ pbjs: true
 pbs: true
 biddercode: adocean
 gdpr_supported: true
-tcf2_supported: true
 ---
 
 ### Note

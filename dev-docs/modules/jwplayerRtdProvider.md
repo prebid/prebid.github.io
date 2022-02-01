@@ -5,8 +5,9 @@ display_name: JW Player video ad targeting
 description: makes JW Player's video ad targeting information accessible to Bid Adapters.
 page_type: module
 module_type: rtd
-module_code : jwplayer
+module_code : jwplayerRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -68,8 +69,8 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
    const adUnit = {
      code: '/19968336/prebid_native_example_1',
      ...,
-     fpd: {
-       context: {
+     ortb2Imp: {
+       ext: {
          data: {
            jwTargeting: {
              // Note: the following Ids are placeholders and should be replaced with your Ids.
@@ -86,16 +87,16 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
        pbjs.requestBids({...});
    });
 ```
-**Note**: You may also include `jwTargeting` information in the prebid config's `fpd.context.data`. Information provided in the adUnit will always supersede the information in the config; use the config to set fallback information or information that applies to all adUnits.
+**Note**: You may also include `jwTargeting` information in the prebid config's `ortb2.site.ext.data`. Information provided in the adUnit will always supersede the information in the config; use the config to set fallback information or information that applies to all adUnits.
 
 **AdUnit Syntax details:**
 
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| fpd.context.data.jwTargeting | Object | | |
-| fpd.context.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
-| fpd.context.data.jwTargeting.playerID | String | Id of the JW Player instance which will render the content associated to the Ad Unit | Optional but recommended |
+| ortb2Imp.ext.data.jwTargeting | Object | | |
+| ortb2Imp.ext.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
+| ortb2Imp.ext.data.jwTargeting.playerID | String | the ID of the HTML div element used when instantiating the JW Player instance that will render the content associated with the Ad Unit | Optional but recommended. You can retrieve this ID by calling `player.id`, where player is the JW Player instance variable. |
 
 ## Implementation for Bid Adapters:
 
@@ -109,31 +110,43 @@ Each bidRequest for which targeting information was found will conform to the fo
    adUnitCode: 'xyz',
    bidId: 'abc',
    ...,
-   rtd: {
-       jwplayer: {
-           targeting: {
-               segments: ['123', '456'],
-               content: {
-                   id: 'jw_abc123'
-               }
-           }
-       }   
-   }
+    ortb2: {
+      site: {
+        content: {
+          id: 'jw_abc123',
+          data: [{
+            name: 'jwplayer',
+            ext: {
+              segtax: 502
+            },
+            segment: [{
+              id: '123'
+            }, {
+              id: '456'
+            }]
+          }]
+        }
+      }
+    }
 }
 ```
+Each bid for which targeting information was found will have a ortb2 param conforming to the [oRTB v2 object structure](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf). The `ortb2` object will contain our proprietaty targeting segments in a format compliant with the [IAB's segment taxonomy structure](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/extensions/community_extensions/segtax.md).
 
-Read the bidRequest.jwTargeting object and pass the values to your endpoint as appropriate.
+The content's ID can be obtained in the `bid.ortb2.site.content.id` property path and the targeting segments can be found in `bid.ortb2.site.content.data.segment`.
   
 **BidRequest Syntax details:**
 
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| rtd.jwplayer.targeting | Object | | |
-| rtd.jwplayer.targeting.segments | Array of Strings | jwpseg targeting segments | |
-| rtd.jwplayer.targeting.content | Object | | |
-| rtd.jwplayer.targeting.content.id | String | Unique identifier for the specific media asset | |
-  
+| ortb2.site.content | Object | | |
+| ortb2.site.content.id | String | Unique identifier for the specific media asset | |
+| ortb2.site.content.data | Array | Contains segment taxonomy objects | |
+| ortb2.site.content.data[index].name | String | the `jwplayer` string indicating the provider name | |
+| ortb2.site.content.data[index].ext.segtax | Integer | the `502` value is the unique identifier for JW Player's proprietary taxonomy | |
+| ortb2.site.content.data[index].segment | Array | Contains the segment taxonomy values as an object | |
+| ortb2.site.content.data[index].segment[index].id | String | String representation of the data segment value | |
+
 ## Example
 
 To view an example:
