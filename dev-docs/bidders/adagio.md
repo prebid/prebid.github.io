@@ -4,14 +4,16 @@ title: Adagio
 description: Prebid Adagio Bidder Adaptor
 pbjs: true
 biddercode: adagio
-media_types: banner, video
+media_types: banner, native, video
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
+floors_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-tcf2_supported: true
 gvl_id: 617
+prebid_member: true
+fpd_supported: false
 ---
 
 ### Note
@@ -20,7 +22,7 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 
 ### Bid Params
 
-**Important**: Adagio needs to collect attention data about the ads displayed on a page and must listen to some specifics ad-server events. Please refer to the [Adagio user guide](https://adagio-team.atlassian.net/wiki/spaces/AH/pages/67272705/EN+Adagio+Prebid.js+installation+guide+for+publishers) for details.
+**Important**: Adagio needs to collect attention data about the ads displayed on a page and must listen to some specifics ad-server events. Please refer to the [Adagio user guide](https://adagioio.notion.site/Adagio-Account-Setup-Guide-fbcd940649224cdfa10393d2f008792e) for details.
 
 {: .table .table-bordered .table-striped }
 
@@ -34,7 +36,18 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 | `environment`*     | recommended        | Environment where the page is displayed.<br><i>- max length: 30</i><br><i>- max distinctives values: 10</i>          | `'desktop'`     | `string`  |
 | `category`*        | recommended        | Category of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>    | `'sport'`       | `string`  |
 | `subcategory`*     | optional           | Subcategory of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i> | `'handball'`    | `string`  |
-| `postBid`          | optional           | Used in Post-Bid context only.                                                                                       | `true`          | `boolean` |
 | `video`            | optional           | OpenRTB 2.5 video options object.<br> All options will override ones defined in mediaTypes.video                     | `{skip: 1, playbackmethod: [6]}` | `object` |
+| `native`           | optional           | Partial OpenRTB Native 1.2 request object. Supported fields are:<br>- context<br>-plcmttype                      | `{context: 1, plcmttype: 2}` | `object` |
+
 
 <i>*These parameters will have its accentuated characters converted to their non-accentuated version:&nbsp;`é`&nbsp;=>&nbsp;`e`</i>
+
+### Native Custom assets
+
+| Name         | description                         |
+|--------------|-------------------------------------|
+| `adagio_bvw` | Url to handle Measure beacon        |
+
+### First Party Data
+
+Adagio does not support FPD for now. It will be added soon.

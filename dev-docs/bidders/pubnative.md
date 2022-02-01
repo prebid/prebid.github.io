@@ -5,7 +5,6 @@ pbs: true
 media_types: banner, video, native
 biddercode: pubnative
 gdpr_supported: true
-tcf2_supported: true
 prebid_member: true
 schain_supported: true
 coppa_supported: true

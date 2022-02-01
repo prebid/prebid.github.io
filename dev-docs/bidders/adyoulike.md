@@ -3,10 +3,12 @@ layout: bidder
 title: Adyoulike
 description: Prebid Adyoulike Bidder Adaptor
 pbjs: true
-media_types: banner, native
+pbs: true
+media_types: banner, video, native
 biddercode: adyoulike
 gdpr_supported: true
 usp_supported: true
+floors_supported: true
 ---
 
 ### Note:
@@ -18,4 +20,6 @@ The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoul
 | Name        | Scope    | Description                      | Example                              | Type     |
 |-------------|----------|----------------------------------|--------------------------------------|----------|
 | `placement` | required | The placement ID from Adyoulike. | `'194f787b85c829fb8822cdaf1ae64435'` | `string` |
-| `DC`        | optional | The data center name             | `'usa01'`                            | `string` |
+
+
+Same 'placement' parameter can be used from either prebid JS or prebid server.

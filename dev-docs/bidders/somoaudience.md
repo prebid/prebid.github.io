@@ -5,6 +5,8 @@ description: Somo Audience Bidder Adapter
 biddercode: somoaudience
 media_types: banner, native, video
 pbs: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

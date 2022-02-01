@@ -4,6 +4,7 @@ title: Adrelevantis
 description: Prebid Adrelevantis (adrelevantis.xyz) Bidder Adaptor
 biddercode: adrelevantis
 media_types: banner, video, native
+fpd_supported: true
 pbjs: true
 ---
 
@@ -25,12 +26,10 @@ Page content is analyzed at DOMContentLoaded event. The results (keywords and ca
 pbjs.setBidderConfig({
 	bidders: ['adrelevantis'],
 	config: {
-		fpd: {
+		ortb2: {
 			context: {
 				keywords: keywords,
-				data: {
-					category: categories
-				}
+				category: categories
 			}
 		}
 	}
