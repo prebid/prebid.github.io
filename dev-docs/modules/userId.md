@@ -1354,13 +1354,14 @@ pbjs.setConfig({
 #### Parameters for the Novatiq Module
 
 <div class="table-responsive" markdown="1">
-    | Param  | Scope | Type | Description | Example |
-    | --- | --- | --- | --- | --- |
-    | name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
-    | params | Required | Object | Configuration specifications for the Novatiq module. | |
-    | params.sourceid | Required | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
-    {: .table .table-bordered .table-striped }
+| Param  | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
+| params | Required | Object | Configuration specifications for the Novatiq module. | |
+| params.sourceid | Required | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
+{: .table .table-bordered .table-striped }
 </div>
+
 
 ### Novatiq Hyper ID with Prebid SharedID support
 You can make use of the Prebid.js SharedId module as follows. 
@@ -1414,28 +1415,28 @@ pbjs.setConfig({
 #### Parameters for the Novatiq Module
 
 <div class="table-responsive" markdown="1">
-    | Param  | Scope | Type | Description | Example |
-    | --- | --- | --- | --- | --- |
-    | name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
-    | params | Required | Object | Configuration specifications for the Novatiq module. | |
-    | params.sourceid | Required | String | The Novatiq Partner Number obtained via Novatiq | `1a3` |
-    | params.useSharedId | Optional | Boolean | Use the sharedID module if it's activated. | `true` |
-    | params.sharedIdName | Optional | String | Same as the SharedID "name" parameter <br /> Defaults to "_pubcid" | `"demo_pubcid"` |
-    {: .table .table-bordered .table-striped }
+| Param  | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
+| params | Required | Object | Configuration specifications for the Novatiq module. | |
+| params.sourceid | Required | String | The Novatiq Partner Number obtained via Novatiq | `1a3` |
+| params.useSharedId | Optional | Boolean | Use the sharedID module if it's activated. | `true` |
+| params.sharedIdName | Optional | String | Same as the SharedID "name" parameter <br /> Defaults to "_pubcid" | `"demo_pubcid"` |
+{: .table .table-bordered .table-striped }
 </div>
 
 #### Parameters for the SharedID Module
 
 <div class="table-responsive" markdown="1">
-    | Param  | Scope | Type | Description | Example |
-    | --- | --- | --- | --- | --- |
-    | name | Required | String | Module identification: `"pubCommonId"` | `"pubCommonId"` |
-    | params | Required | Object | Configuration specifications for the SharedID module. | | |
-    | params.storage | Required | Object |  | |
-    | params.storage.type | Required | String | Storage type, Set to `"cookie"` | `"cookie"` |
-    | params.storage.name | Optional | String | Storage cookie name. If this is changed must match sharedIdName <br /> in the Novatiq module | `"demo_pubcid"` ||
-    | params.storage.expires | Required | integer | Time to expire | `365` |
-    {: .table .table-bordered .table-striped }
+| Param  | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | Module identification: `"pubCommonId"` | `"pubCommonId"` |
+| params | Required | Object | Configuration specifications for the SharedID module. | | |
+| params.storage | Required | Object |  | |
+| params.storage.type | Required | String | Storage type, Set to `"cookie"` | `"cookie"` |
+| params.storage.name | Optional | String | Storage cookie name. If this is changed must match sharedIdName <br /> in the Novatiq module | `"demo_pubcid"` ||
+| params.storage.expires | Required | integer | Time to expire | `365` |
+{: .table .table-bordered .table-striped }
 </div>
 
 If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)
