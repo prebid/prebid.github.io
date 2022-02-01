@@ -432,7 +432,7 @@ For example, if the Request defines an alias like this:
 then any `imp.ext.appnexus` params will actually go to the **rubicon** adapter.
 It will become impossible to fetch bids from AppNexus within that Request.
 
-##### Bidder Alias GVL IDs (PBS-Java only)
+##### Bidder Alias GVL IDs
 
 For environments that have turned on [GDPR enforcement](/prebid-server/features/pbs-privacy.html#gdpr), it can be important to define the Global Vendor List (GVL) ID with an alias.
 
