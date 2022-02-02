@@ -4,6 +4,7 @@ title: Collectcent
 description: Prebid Collectcent Bidder Adaptor
 pbjs: true
 biddercode: collectcent
+enable_download: false
 pbjs_version_notes: not in 5.x
 ---
 

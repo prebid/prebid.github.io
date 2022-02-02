@@ -52,7 +52,7 @@ Debug mode can be enabled permanently in a page if desired. In debug mode,
 Prebid.js will post additional messages to the browser console and cause Prebid Server to
 return additional information in its response. If not specified, debug is off.
 Note that debugging can be specified for a specific page view by adding
-`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting tips](/dev-docs/troubleshooting-tips.html) for more information.
+`pbjs_debug=true` to the URL's query string. e.g. <code>/pbjs_demo.html?pbjs_debug=true</code> See [Prebid.js troubleshooting guide](/troubleshooting/troubleshooting-guide.html) for more information.
 
 Turn on debugging permanently in the page:
 {% highlight js %}
@@ -472,11 +472,12 @@ The `s2sConfig` properties:
 | `endpoint` | Required | URL or Object | Defines the auction endpoint for the Prebid Server cluster.  See table below for object config properties. |
 | `syncEndpoint` | Required | URL or Object | Defines the cookie_sync endpoint for the Prebid Server cluster. See table below for object config properties. |
 | `userSyncLimit` | Optional | Integer | Max number of userSync URLs that can be executed by Prebid Server cookie_sync per request.  If not defined, PBS will execute all userSync URLs included in the request. |
-| `coopSync` | Optional | Boolean | Whether or not PBS is allowed to perform "cooperative syncing" for bidders not on this page. Publishers help each other improve match rates by allowing this. Default is true. Supported in PBS-Java only. |
+| `syncTimeout` | Optional | Integer | Maximum number of milliseconds allowed for each server-side userSync to load. Default is 1000. |
+| `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
+| `coopSync` | Optional | Boolean | Whether or not PBS is allowed to perform "cooperative syncing" for bidders not on this page. Publishers help each other improve match rates by allowing this. Default is true. |
 | `defaultTtl` | Optional | Integer | Configures the default TTL in the Prebid Server adapter to use when Prebid Server does not return a bid TTL - 60 if not set |
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in every impression object at request.imp[].ext.BIDDER. See the example above. |
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
-| `syncUrlModifier` | Optional | Object | Function to modify a bidder's sync url before the actual call to the sync endpoint. Bidder must be enabled for s2sConfig. |
 
 If `endpoint` and `syncEndpoint` are objects, these are the supported properties:
 
@@ -767,6 +768,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
 | alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
+| addTargetingKeys   | Array of Strings | Selects targeting keys to be supported in addition to the default ones |
 | allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 
 {: .alert.alert-info :}
@@ -811,6 +813,8 @@ Given the varying nature of how sites are set up for advertising and the varying
 Between these two values (Prebid's targeting key count and the overall ad URL query character count), you will find the average number of characters that are used by your ad server.  It's likely that these ad server values will remain consistent given that type of setup.  So if you know your ad server has a particular character limit, you can assume that these ad server characters will be reserved and the difference is what you could allot to Prebid.
 
 Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
+
+<a name="targetingControls-allowTargetingKeys" />
 
 ##### Details on the allowTargetingKeys setting
 
@@ -878,6 +882,65 @@ config.setConfig({
   }
 });
 ```
+
+<a name="targetingControls-addTargetingKeys" />
+
+##### Details on the addTargetingKeys setting
+
+The `addTargetingKeys` config is similar to `allowTargetingKeys`, except it adds to the keys in CONSTANTS.DEFAULT_TARGETING_KEYS instead of replacing them. This is useful if you need Prebid.js to generate targeting for some keys that are not allowed by default without removing any of the default ones (see [allowTargetingKeys](#targetingControls-allowTargetingKeys) for details on how targeting is generated). 
+
+Note that you may specify only one of `allowTargetingKeys` or `addTargetingKeys`.
+
+For example, this allows every default key, plus `hb_adomain`:
+
+```javascript
+config.setConfig({
+    targetingControls: {
+        addTargetingKeys: ['ADOMAIN']
+    }
+});
+```
+
+Which is equivalent to:
+
+```javascript
+config.setConfig({
+    targetingControls: {
+        allowTargetingKeys: [
+            'BIDDER',
+            'AD_ID',
+            'PRICE_BUCKET',
+            'SIZE',
+            'DEAL',
+            'FORMAT',
+            'UUID',
+            'CACHE_HOST',
+            'title',
+            'body',
+            'body2',
+            'privacyLink',
+            'privacyIcon',
+            'sponsoredBy',
+            'image',
+            'icon',
+            'clickUrl',
+            'displayUrl',
+            'cta',
+            'rating',
+            'address',
+            'downloads',
+            'likes',
+            'phone',
+            'price',
+            'salePrice',
+            'rendererUrl',
+            'adTemplate',
+            'ADOMAIN'
+        ]
+    }
+});
+```
+
 
 ##### Details on the allowSendAllBidsTargetingKeys setting
 
@@ -1386,3 +1449,7 @@ ERROR: setConfig options must be an object
 If you don't see that message, you can assume the config object is valid.
 
 <hr class="full-rule" />
+
+## Related Reading
+
+- [Prebid.js and Ad Server Key Values](/features/adServerKvps.html)

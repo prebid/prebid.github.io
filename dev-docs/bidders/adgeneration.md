@@ -6,7 +6,6 @@ pbjs: true
 pbs: true
 biddercode: adgeneration
 media_types: native
-pbjs_version_notes: not in 5.x
 ---
 
 
