@@ -672,7 +672,7 @@ While testing SDK and video integrations, it's important, but often difficult, t
 
 When a storedauctionresponse ID is specified:
 
-- the rest of the ext.prebid block is irrelevant and ignored
+- the rest of the imp.ext.prebid block is irrelevant and ignored
 - nothing is sent to any bidder adapter for that imp
 - the response retrieved from the stored-response-id is assumed to be the entire contents of the seatbid object corresponding to that impression.
 
@@ -718,21 +718,60 @@ Will result in this response, assuming that the ids exist in the appropriate DB 
   "id": "test-auction-id",
   "seatbid": [
     {
-      // BidderA bids from storedauctionresponse=1111111111
-      // BidderA bids from storedauctionresponse=22222222
+      "bid": [{
+        // BidderA bid from storedauctionresponse=11111111111
+      },{
+        // BidderA bid from storedauctionresponse=22222222222
+      }],
+      "seat": "bidderA"
     },
     {
-      // BidderB bids from storedauctionresponse=1111111111
-      // BidderB bids from storedauctionresponse=22222222
+      "bid": [{
+        // BidderB bid from storedauctionresponse=11111111111
+      },{
+        // BidderB bid from storedauctionresponse=22222222222
+      }],
+      "seat": "bidderB"
     }
   ]
 }
 ```
 
+In this scenario, the contents of the storedauctionresponse entry is
+an array of ortb2 seatbid objects. e.g.
+```
+[
+  {
+    "bid": [{
+        "impid": "a", // doesn't have to match the request
+        ... bid 1 ...
+    },{
+        "impid": "b", // doesn't have to match the request
+        ... bid 2 ...
+    }],
+    "seat": "bidderA"
+  },{
+    "bid": [{
+        "impid": "a", // doesn't have to match the request
+        ... bid 1 ...
+    },{
+        "impid": "b", // doesn't have to match the request
+        ... bid 2 ...
+    }],
+    "seat": "bidderB"
+  }
+]
+```
 **Multiple Stored Bid Response IDs**
 
-In contrast to what's outlined above, this approach lets some real auctions take place while some bidders have test responses that still exercise bidder code. For example, this request:
+In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
+PBS removes imp.ext.prebid.bidder parameters for those 
+bidders specified in storedbidresponse but if there's a bidder present
+in imp.ext.prebid.bidder that's doesn't have a storedbidresponse specified,
+the adapter will be called as usual.
+
+For example, this request:
 ```
 {
   "test": 1,
@@ -750,6 +789,10 @@ In contrast to what's outlined above, this approach lets some real auctions take
       "id": "a",
       "ext": {
         "prebid": {
+          "bidder: {
+            "bidderA": { ... params ... },
+            "bidderB": { ... params ... }
+          },
           "storedbidresponse": [
             { "bidder": "BidderA", "id": "333333" },
             { "bidder": "BidderB", "id": "444444" },
@@ -761,9 +804,13 @@ In contrast to what's outlined above, this approach lets some real auctions take
       "id": "b",
       "ext": {
         "prebid": {
+          "bidder: {
+            "bidderA": { ... params ... },
+            "bidderB": { ... params ... }
+          },
           "storedbidresponse": [
-            { "bidder": "BidderA", "id": "5555555" },
-            { "bidder": "BidderB", "id": "6666666" },
+            { "bidder": "BidderA", "id": "5555555" }
+            // note: no storedbidrespose for bidderB
           ]
         }
       }
@@ -778,20 +825,29 @@ Could result in this response:
   "id": "test-auction-id",
   "seatbid": [
     {
-      "bid": [
-      // contents of storedbidresponse=3333333 as parsed by bidderA adapter
-      // contents of storedbidresponse=5555555 as parsed by bidderA adapter
-      ]
+      "bid": [{
+        // contents of storedbidresponse=3333333 as parsed by bidderA adapter
+      },{
+        // contents of storedbidresponse=5555555 as parsed by bidderA adapter
+      }],
+      "seat": "bidderA"
     },
     {
-      // contents of storedbidresponse=4444444 as parsed by bidderB adapter
-      // contents of storedbidresponse=6666666 as parsed by bidderB adapter
+      "bid": [{
+        // contents of storedbidresponse=4444444 as parsed by bidderB adapter
+      },{
+        // actual bid response from bidderB
+      }],
+      "seat": "bidderB"
     }
   ]
 }
 ```
 
-Setting up the storedresponse DB entries is the responsibility of each Prebid Server host company.
+Note that the storedresponse DB entries for this scenario are very different:
+they're whatever format the bid adapter's endpoint responds with. i.e. the host company will
+need to capture an actual bid response from the specific bidders and enter it
+into the DB table.
 
 See Prebid.org troubleshooting pages for how to utilize this feature within the context of the browser.
 
