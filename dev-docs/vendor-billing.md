@@ -16,7 +16,7 @@ Prebid.js now supports a new event type: **Billable Event**. Billable events all
 
 In order to emit events, **RTD** modules simply need to utilize the existing Events system already integrated into Prebid.js. A new event, **“BILLABLE_EVENT”**, is registered inside the constants.json file for usage.
 
-Currently there are limited requirements about the contents of billable events. However, it should be expected that partners who choose to leverage Billable Events may have unique requirements or implementations that will be documented individually, including adding additional parameters to the events as they see fit.
+At this time there are limited requirements about the contents of billable events. However, it should be expected that partners who choose to leverage `Billable Events` may have unique requirements or implementations that will be documented individually, including adding additional parameters to the events as they see fit.
 
 **Required Parameters**
 
