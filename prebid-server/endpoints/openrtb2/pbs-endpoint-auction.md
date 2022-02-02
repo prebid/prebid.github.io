@@ -796,7 +796,7 @@ Setting up the storedresponse DB entries is the responsibility of each Prebid Se
 See Prebid.org troubleshooting pages for how to utilize this feature within the context of the browser.
 
 
-##### First Party Data Support (PBS-Java only)
+##### First Party Data Support
 
 This is the Prebid Server version of the Prebid.js First Party Data feature. It's a standard way for the page (or app) to supply first party data and control which bidders have access to it.
 
