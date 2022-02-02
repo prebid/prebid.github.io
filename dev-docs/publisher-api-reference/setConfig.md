@@ -465,6 +465,7 @@ The `s2sConfig` properties:
 |------------+---------+---------+---------------------------------------------------------------|
 | `accountId` | Required | String | Your Prebid Server account ID. This is obtained from whoever's hosting your Prebid Server. |
 | `bidders` | Required | Array of Strings | Which bidders auctions should take place on the server side |
+| `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
@@ -493,6 +494,7 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 - When using `defaultVendor` option, `accountId` and `bidders` properties still need to be defined.
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
 - When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
+- <a name="allowUnknownBidderCodes" /> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid; in particular, "unknown" bidders will not trigger a [`bidRequested`](getEvents.html) event and will have an undefined `payload.bidRequest` in [MASS custom renderers](../modules/mass.html#configuration-parameters).
 
 {: .alert.alert-warning :}
 **Errors in bidder parameters will cause Prebid Server to reject the
