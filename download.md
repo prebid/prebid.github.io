@@ -312,7 +312,7 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> NextRoll ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Snowflake ID</label>
+  <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Hyper ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
@@ -323,6 +323,9 @@ These modules may require accounts with a service provider.<br/>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
   </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="trustpidSystem" class="bidder-check-box"> Trustpid</label>
+  </div></div>  
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
   </div></div>  

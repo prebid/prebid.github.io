@@ -1377,42 +1377,126 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### Novatiq Snowflake ID
+### Novatiq Hyper ID
 
-Novatiq proprietary dynamic snowflake ID is a unique, non sequential and single use identifier for marketing activation. Our in network solution matches verification requests to telco network IDs, safely and securely inside telecom infrastructure. Novatiq snowflake ID can be used for identity validation and as a secured 1st party data delivery mechanism.
+The [Novatiq](https://www.novatiq.com) proprietary dynamic Hyper ID is a unique, non sequential and single use identifier for marketing activation. Our in network solution matches verification requests to telco network IDs safely and securely inside telecom infrastructure. The Novatiq Hyper ID can be used for identity validation and as a secured 1st party data delivery mechanism.
 
-#### Novatiq Snowflake ID Configuration
+#### Novatiq Hyper ID Configuration
 
 Enable by adding the Novatiq submodule to your Prebid.js package with:
 
-```
+{: .alert.alert-info :}
 gulp build --modules=novatiqIdSystem,userId
-```
+
 
 Module activation and configuration:
 
-```javascript
+{% highlight javascript %}
 pbjs.setConfig({
   userSync: {
     userIds: [{
       name: 'novatiq',
       params: {
-        sourceid '1a3',            // change to the Partner Number you received from Novatiq
+        // change to the Partner Number you received from Novatiq
+        sourceid '1a3'            
         }
       }
     }],
-    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+    // 50ms maximum auction delay, applies to all userId modules
+    auctionDelay: 50             
   }
 });
-```
+{% endhighlight %}
 
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
+#### Parameters for the Novatiq Module
+
+<div class="table-responsive" markdown="1">
+| Param  | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
 | params | Required | Object | Configuration specifications for the Novatiq module. | |
 | params.sourceid | Required | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
+{: .table .table-bordered .table-striped }
+</div>
 
-If you have any questions, please reach out to us at prebid@novatiq.com.
+
+### Novatiq Hyper ID with Prebid SharedID support
+You can make use of the Prebid.js SharedId module as follows. 
+
+#### Novatiq Hyper ID Configuration
+
+Enable by adding the Novatiq and SharedId submodule to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=novatiqIdSystem,userId,pubCommonId
+
+Module activation and configuration:
+
+{% highlight javascript %}
+pbjs.setConfig({
+  userSync: {
+    userIds: [
+      {
+        name: "pubCommonId",
+        storage: {
+          type: "cookie",   
+          // optional: will default to _pubcid if left blank
+          name: "demo_pubcid",     
+          
+          // expires in 1 years
+          expires: 365             
+        },
+        bidders: [ 'adtarget' ]
+      },                                            
+      {
+      name: 'novatiq',
+      params: {
+        // change to the Partner Number you received from Novatiq
+        sourceid '1a3',
+
+        // Use the sharedID module
+        useSharedId: true,
+
+        // optional: will default to _pubcid if left blank. 
+        // If not left blank must match "name" in the the module above
+        sharedIdName: 'demo_pubcid'   
+        }
+      }
+    }],
+    // 50ms maximum auction delay, applies to all userId modules
+    auctionDelay: 50             
+  }
+});
+{% endhighlight %}
+
+#### Parameters for the Novatiq Module
+
+<div class="table-responsive" markdown="1">
+| Param  | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
+| params | Required | Object | Configuration specifications for the Novatiq module. | |
+| params.sourceid | Required | String | The Novatiq Partner Number obtained via Novatiq | `1a3` |
+| params.useSharedId | Optional | Boolean | Use the sharedID module if it's activated. | `true` |
+| params.sharedIdName | Optional | String | Same as the SharedID "name" parameter <br /> Defaults to "_pubcid" | `"demo_pubcid"` |
+{: .table .table-bordered .table-striped }
+</div>
+
+#### Parameters for the SharedID Module
+
+<div class="table-responsive" markdown="1">
+| Param  | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | Module identification: `"pubCommonId"` | `"pubCommonId"` |
+| params | Required | Object | Configuration specifications for the SharedID module. | | |
+| params.storage | Required | Object |  | |
+| params.storage.type | Required | String | Storage type, Set to `"cookie"` | `"cookie"` |
+| params.storage.name | Optional | String | Storage cookie name. If this is changed must match sharedIdName <br /> in the Novatiq module | `"demo_pubcid"` ||
+| params.storage.expires | Required | integer | Time to expire | `365` |
+{: .table .table-bordered .table-striped }
+</div>
+
+If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)
 
 ### Parrable ID
 
@@ -1703,6 +1787,53 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Trustpid
+
+Trustpid generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `trustpid.com`. A website visitor’s Trustpid is generated based on network identifiers provided by network operators and requires explicit user consent.
+
+Trustpid is also the brand name of the service, which is provided by Vodafone Sales and Services Limited (“VSSL”).
+
+#### Trustpid configuration
+
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of the module | `"trustpid"`
+| params | Required | Object | Object with configuration parameters for trustpid User Id submodule | - |
+| params.maxDelayTime | Required | Integer | Max amount of time (in seconds) before looking into storage for data | 2500 |
+| bidders | Required | Array of Strings | An array of bidder codes to which this user ID may be sent. Currently required and supporting AdformOpenRTB | `['adf']` |
+| storage | Required | Object | Local storage configuration object | - |
+| storage.type | Required | String | Type of the storage that would be used to store user ID. Must be `"html5"` to utilise HTML5 local storage. | `"html5"` |
+| storage.name | Required | String | The name of the key in local storage where the user ID will be stored. | `"trustpid"` |
+| storage.expires | Required | Integer | How long (in days) the user ID information will be stored. For safety reasons, this information is required.| `1` |
+
+Configuration example:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    userIds: [
+      {
+        name: "trustpid",
+        params: {
+          maxDelayTime: 2500,
+        },
+        bidders: ["adf"],
+        storage: {
+          type: "html5",
+          name: "trustpid",
+          expires: 1,
+        },
+      }],
+    syncDelay: 3000,
+    auctionDelay: 3000
+  }
+});
+```
+
+#### Truspid onboarding
+
+If you wish to find out more about Trustpid, please contact onboarding@trustpid.com 
 
 ### PubProvided ID
 

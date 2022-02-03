@@ -33,7 +33,7 @@ to augment every bid request with targeted, first-party data-derived segments
 before being submitted to supply-side platforms. Enriching the bid request with
 robust first-party audience and contextual data, Audigent's Hadron RTD module
 helps optimize targeting and header-bidding performance.  For more information, 
-please visit https://audigent.com or contact our Prebid integration team at
+please visit <a href="https://audigent.com">https://audigent.com</a> or contact our Prebid integration team at
 prebid@audigent.com.
 
 
