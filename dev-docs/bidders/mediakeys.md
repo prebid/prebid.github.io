@@ -37,6 +37,7 @@ fpd_supported: true
 The Mediakeys Bidding adapter requires setup before beginning and will respond with bids for whitelisted domains only.
 
 Please contact us at prebidjs@mediakeys.com.
+
 <a name="bid-params"></a>
 
 ### Bid Params
