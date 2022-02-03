@@ -1009,7 +1009,7 @@ pbjs.setConfig({
 
 #### Just ID  Disclosure
 
-This module in `ADVANCED` mode loads external JavaScript to generate optimal quality User ID. It is possible to retrieve user ID, without loading additional script by this module in `BASIC` mode.
+This module in `ADVANCED` mode loads external JavaScript to generate optimal quality user ID. It is possible to retrieve user ID, without loading additional script by this module in `BASIC` mode.
 
 ### Kinesso ID
 
