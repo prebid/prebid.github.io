@@ -110,7 +110,7 @@ The `fetchDemand` method makes a bid request to prebid server and provide the re
 
 #### Step 5: Store the winning bid in the GADRequest extras
 
-GMA SDK doesn't provide extras to the adapter if they were set up not in the app scope. 
+GMA SDK doesn't provide extras to the adapter if they were set not in the app scope. 
 
 That is why you must add the code for forwarding the winning bid to the adapters. In the most cases you'll just need to copy and paste the following lines inside the completion closure: 
 
@@ -138,188 +138,184 @@ For **Banner Video** you also need to specify the ad format:
 banner.adFormat = .video
 ```
 
-And all the rest code will be the same as for integration of Display Banner.
-
-### Migration from the original API
-
-1. Replace the `GAMBannerView` with `BannerView` in the UI. 
-3. Implement the protocol `BannerViewDelegate` in the View Controller.
-4. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
-5. Remove original `BannerAdUnit`.
-5. Follow the instructions to integrate [Banner API](#banner-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. You can create a new order or just replace the code of creative in the original one and continue to use it for rendering integration.  
+And all the rest code will be the same as for integration of Display Banner.  
 
 ## Interstitial API
 
 Integration example:
 
 ``` swift
-// 1. Create Event Handler
-let eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)
-    
-// 2. Create Interstitial Ad Unit
-interstitial = InterstitialRenderingAdUnit  (configID: CONFIG_ID,
-                                  minSizePercentage: CGSize(width: 30, height: 30),
-                                  eventHandler: eventHandler)
-    
-interstitial.delegate = self
-    
-// 3. Load an Ad
-interstitial.loadAd()
+// 1. Create GADRequest
+gadRequest = GADRequest()
 
-/// .......
+// 2. Create AdMobMediationInterstitialUtils
+mediationDelegate = AdMobMediationInterstitialUtils(gadRequest: self.gadRequest)
 
-// 4. Show Ad
-if interstitial.isReady {
-    interstitial.show(from: self)
-}
+// 3. Create MediationInterstitialAdUnit
+admobAdUnit = MediationInterstitialAdUnit(configId: configID,
+                                          mediationDelegate: mediationDelegate!)
 
+// 4. Make a bid request
+admobAdUnit?.fetchDemand(completion: { [weak self]result in
+    
+    // 5. Store the winning bid in the GADRequest extras
+    // You must provide a winning bid via extras to the GADRequest here.
+    // Prebid SDK can't do it internally.
+    // Otherwise, the Prebid adapter won't be able to retrieve and render the winning bid.
+    let extras = GADCustomEventExtras()
+    let prebidExtras = self?.mediationDelegate!.getEventExtras()
+    extras.setExtras(prebidExtras, forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
+    
+    self?.gadRequest.register(extras)
+    
+    // 6. Make an ad request to AdMob
+    GADInterstitialAd.load(withAdUnitID: adUnitID, request: self?.gadRequest) { [weak self] ad, error in
+        guard let self = self else { return }
+        if let error = error {
+            PBMLog.error(error.localizedDescription)
+            return
+        }
+        
+        // 7. Present the interstitial ad
+        self.interstitial = ad
+        self.interstitial?.fullScreenContentDelegate = self
+        self.interstitial?.present(fromRootViewController: self)
+    }
+})
 ```
 
-The way of displaying **Video Interstitial Ad** is almost the same with two differences:
-
-- Need to customize the ad format
-- No need to set up `minSizePercentage`
+The way of displaying **Video Interstitial Ad** is almost the same but you have to customize the ad format.
 
 ``` swift
- // 1. Create Event Handler
-let eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)
-    
-// 2. Create Interstitial Ad Unit
-interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
-                                  eventHandler: eventHandler)
-    
-interstitial.adFormat = .video
-interstitial.delegate = self
-    
-// 3. Load an Ad
-interstitial.loadAd()
+// 1. Create GADRequest
+gadRequest = GADRequest()
 
-/// .......
+// 2. Create AdMobMediationInterstitialUtils
+mediationDelegate = AdMobMediationInterstitialUtils(gadRequest: self.gadRequest)
 
-// 4. Show Ad
-if interstitial.isReady {
-    interstitial.show(from: self)
-}
+// 3. Create MediationInterstitialAdUnit
+admobAdUnit = MediationInterstitialAdUnit(configId: configID,
+                                          mediationDelegate: mediationDelegate!)
+                                          
+                                                   admobAdUnit.adFormat = .video
 
+
+// 4. Make a bid request
+admobAdUnit?.fetchDemand(completion: { [weak self]result in
+    
+    // The same as for display interstitial 
+    // ...
+    
+    }
+})
 ```
 
-#### Step 1: Create Event Handler
+#### Step 1: Create GADRequest 
 
-To create an event handler you should provide a **GAM Ad Unit**.
-
-#### Step 2: Create Interstitial Ad Unit
-
-Initialize the `InterstitialRenderingAdUnit` with properties:
-
-- `configID` - an ID of Stored Impression on the Prebid server
-- `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
-- `eventHandler` - the instance of the interstitial event handler
-
-> **NOTE:** the `minSizePercentage` - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
+This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/ios/interstitial#swift). You don't have to make any modifications here.
 
 
-#### Step 3: Load the Ad
+#### Step 2: Create AdMobMediationInterstitialUtils
 
-Call the method `loadAd()` which will make a bid request to Prebid Server.
+The `AdMobMediationInterstitialUtils ` is a helper class, wich performs spcific utilty work for `MediationInterstitialAdUnit `, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
-#### Step 4: Show the Ad when it is ready
+#### Step 3: Create MediationInterstitialAdUnit
 
-Wait for the ad to and show it to the user in any suitable time.
+The `MediationInterstitialAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+
+#### Step 4: Make bid request
+
+The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
+
+#### Step 5: Store the winning bid in the GADRequest extras
+
+GMA SDK doesn't provide extras to the adapter if they were set not in the app scope. 
+
+That is why you must add the code for forwarding the winning bid to the adapters. In the most cases you'll just need to copy and paste the following lines inside the completion closure: 
 
 
-``` swift
-// MARK: InterstitialRenderingAdUnitDelegate
-    
-func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
-    // Now the ad is ready for display
-}
+```
+let extras = GADCustomEventExtras()
+let prebidExtras = self?.mediationDelegate!.getEventExtras()
+extras.setExtras(prebidExtras, forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
+
+self?.gadRequest.register(extras)
 ```
 
-### Migration from the original API
+Make sure that you use the proper label for extras - `AdMobConstants.PrebidAdMobEventExtrasLabel`. Prebid adapters will extract the winnig bid by this key.
 
-1. Replace the `GAMInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
-3. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
-4. Remove usage of `GAMInterstitialAd`, `GAMRequest`.
-5. Remove original `InterstitialAdUnit`.
-5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you can replace the code of creative in the original order **only for display** ads. For video interstitial you have to create a special order and remove the original one.
+#### Step 6: Make an Ad Reuest
+
+Now you should just make a regulat AdMob's ad request. Evetything else will be handled by prebid adapters.
+
+#### Steps 7: Display an ad
+
+Once the interstitial ad is recieved you can display it. Folow the [AdMob instructions](https://developers.google.com/admob/ios/interstitial#swift) about how to do it. 
 
 ## Rewarded API
 
 Integration example:
 
 ``` swift
- // 1. Create an Event Handler
-let eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)
-    
-// 2. Create an Ad Unit
-rewardedAd = RewardedAdUnit(configID: CONFIG_ID,
-                               eventHandler: eventHandler)
-    
-rewardedAd.delegate = self
-    
-// 3. Load an Ad
-rewardedAd.loadAd()
+// 1. Create GADRequest
+let request = GADRequest()
 
-/// .......
+// 2. Create AdMobMediationInterstitialUtils
+let mediationDelegate = AdMobMediationRewardedUtils(gadRequest: request)
 
-// 4. Display Ad
-if rewardedAd.isReady {
-    rewardedAd.show(from: self)
+// 3. Create MediationInterstitialAdUnit
+admobRewardedAdUnit = MediationRewardedAdUnit(configId: "12f58bc2-b664-4672-8d19-638bcc96fd5c", mediationDelegate: mediationDelegate)
+
+// 4. Make a bid request
+admobRewardedAdUnit.fetchDemand { [weak self] result in
+    guard let self = self else { return }
+
+    // 5. Make an ad request to AdMob
+    GADRewardedAd.load(withAdUnitID: self.admobPrebidAdUnitId, request: request) { [weak self] ad, error in
+        guard let self = self else { return }
+        if let error = error {
+            PBMLog.error(error.localizedDescription)
+            return
+        }
+        
+        // 6. Present the interstitial ad
+        self.gadRewardedAd = ad
+        self.gadRewardedAd?.fullScreenContentDelegate = self
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            self.gadRewardedAd?.present(fromRootViewController: self, userDidEarnRewardHandler: {
+                print("Reward user")
+            })
+        }
+    }
 }
-
 ```
 
 The way of displaying the Rewarded Ad is totally the same as for the Interstitial Ad. 
 
-To be notified when user earns a reward - implement the method of `RewardedAdUnitDelegate`:
+To be notified when user earns a reward follow the [AdMob intructions](https://developers.google.com/admob/ios/rewarded#show_the_ad).
 
-``` swift
-- (void)rewardedAdUserDidEarnReward:(RewardedAdUnit *)rewardedAd;
-```
+#### Step 1: Create GADRequest 
 
-The actual reward object is stored in the `RewardedAdUnit`:
-
-```
-if let reward = rewardedAd.reward as? GADAdReward {
-    // ...
-}
-```
-
-#### Step 1: Create Event Handler
-
-To create an event handler you should provide a **GAM Ad Unit ID**.
-
-#### Step 2: Create Rewarded Ad Unit
-
-Create the `RewardedAdUnit` object with parameters:
-
-- `configID` - an ID of Stored Impression on the Prebid server
-- `eventHandler` - the instance of rewarded event handler
-
-#### Step 3: Load the Ad
-
-Call the `loadAd()` method which will make a bid request to Prebid server.
-
-#### Step 4: Show the Ad when it is ready
-
-Wait for the ad to load and show it to the user in any suitable time.
+This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/ios/rewarded). You don't have to make any modifications here.
 
 
-``` swift
-// MARK: RewardedAdUnitDelegate
-    
-func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
-    // Now the ad is ready for display
-}
-```
+#### Step 2: Create MediationRewardedAdUnit
 
-### Migration from the original API
+The `AdMobMediationRewardedUtils` is a helper class, wich performs spcific utilty work for `MediationRewardedAdUnit `, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
-1. Replace the `GADRewardedAd` with `RewardedAdUnit` in the View Controller. 
-3. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
-4. Remove usage of `GAMRequest`.
-5. Remove original `RewardedVideoAdUnit`.
-5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you have to create a new special order for rewarded video ad and remove the original one.
+#### Step 3: Create MediationInterstitialAdUnit
+
+The `MediationRewardedAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+
+#### Step 4: Make bid request
+
+The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
+
+#### Step 5: Make an Ad Reuest
+
+Now you should just make a regulat AdMob's ad request. Evetything else will be handled by prebid adapters.
+
+#### Steps 6: Display an ad
+
+Once the rewarded ad is recieved you can display it. Folow the [AdMob instructions](https://developers.google.com/admob/ios/rewarded#swift) about how to do it. 
+
