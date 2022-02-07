@@ -184,6 +184,37 @@ Exceptions are made for extensions with "standard" recommendations:
 
 #### OpenRTB Request Extensions
 
+##### Global Bid Adapter Parameters
+
+If a bid adapter has a parameter that is the same across all imp[] entries,
+it can be supplied
+
+```
+{
+"ext": {
+  "prebid": {
+    "bidderparams": { 
+       "adapter1": { 
+          "key1": "data specific to key1", 
+          "key2": "  { 
+            "version": 3.3, 
+             "profileid": 1234 
+            } 
+          }, 
+      "adapter2": { 
+         "key3": "data specific to key3" 
+      }, 
+      "adapter3": { 
+          "key4": [ 
+            "data" 
+          ] 
+       } 
+    }
+  }
+} 
+```
+Bid adapters do not need to read this data from ext.prebid. PBS will merge the attributes to each imp[] in the request so the adapter can read them normally.
+
 ##### Bid Adjustments
 
 Bidders are encouraged to make Net bids. However, there's no way for Prebid to enforce this.
@@ -981,27 +1012,6 @@ In order to pull AMP parameters out into targeting, Prebid Server places AMP que
 }
 ```
 
-##### EID Permissions (PBS-Go only)
-
-This feature allows publishers to specify ext.prebid.eidpermissions, defining which extended ID
-in user.ext.eids is allowed to be passed to which bid adapter. For example:
-
-```
-{
-  "ext": {
-    "prebid": {
-      "data": {
-        "eidpermissions": [   // prebid server will use this to filter user.ext.eids
-          {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
-          {"source": "neustar.biz",  "bidders": ["bidderB"]},
-          {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
-        ]
-      }
-    }
-  }
-}
-```
-
 ##### MultiBid (PBS-Java only)
 
 Allows a single bidder to bid more than once into an auction and have extra bids passed
@@ -1328,6 +1338,7 @@ The Prebid SDK version comes from:
 | req | app.ext.source | defined by Prebid SDK | string | "prebid-mobile" | yes |
 | req | app.ext.version | defined by Prebid SDK | string | "1.6" | yes |
 | req | ext.prebid.bidadjustmentfactors | Adjust the CPM value of bidrequests | object | See [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) | no |
+| req | ext.prebid.bidderparams | Publishers can specify any adapter-specific cross-impression attributes. | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | no |
 | req | ext.prebid.targeting | defines the targeting values PBS-core places in seatbid.bid.ext.prebid.targeting | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | no |
 | req | ext.prebid.adservertargeting | advanced targeting value rules | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#custom-targeting-pbs-java-only) | no |
 | req | ext.prebid.integration | host-dependent integration type passed through to events and analytics | string | "managed" | yes |
