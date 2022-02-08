@@ -16,6 +16,7 @@ pbs: true
 | Name            | Scope    | Description                          | Example                                         | Type     |
 |-----------------|----------|--------------------------------------|-------------------------------------------------|----------|
 | `placementId`   | required | The Invibes placement ID             | `'1234567'`                                     | `string` |
-| `domainId`      | optional | Id of domain (only prebid server)    | `1001`                                          | `integer`|
+| `domainId`      | optional | Id of domain                         | `1001`                                          | `integer`|
+| `customEndpoint`| optional | Custom test domain                   | `https://bid.videostep.com/Bid/VideoAdContent`  | `integer`|
 | `debug`         | optional | Debug paramentes (only prebid server)| `{ "testBvid": "1234", "testLog": true }`       | `object` |
 

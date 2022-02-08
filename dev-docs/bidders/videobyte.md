@@ -3,8 +3,9 @@ layout: bidder
 title: VideoByte
 description: Prebid VideoByte Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: videobyte
-media_types: video
+media_types: display, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
@@ -12,7 +13,14 @@ schain_supported: true
 
 ### Note:
 
-VideoByte adapter only supports video ads.
+The VideoByte Prebid.js client adapter only supports video ads while our Prebid Server adapter supports both display and video.
+
+See [Videobyte Prebid Client Documentation](https://videobyte.readme.io/reference/vbx-integration-prebid-client)
+for more details about Prebid Client integration.
+
+See [Videobyte Prebid Server Documentation](https://videobyte.readme.io/reference/vbx-integration-prebid-server)
+for more details about Prebid Server integration.
+
 
 ### Bid Params
 
