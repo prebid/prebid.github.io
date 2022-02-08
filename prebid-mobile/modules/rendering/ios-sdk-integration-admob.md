@@ -7,7 +7,7 @@ sidebarType: 2
 
 # AdMob Integration
 
-The integration of Prebid Mobile with AdMob assumes that publisher has an AdMob account and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project.
+The integration of Prebid Mobile with Google AdMob assumes that publisher has an AdMob account and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project.
 
 If you do not have GMA SDK in the app yet, refer the the [Google Integration Documentation](https://developers.google.com/admob/ios/quick-start).
 
@@ -19,9 +19,8 @@ To avoid the error add the following line to your app right after initialization
 ```
 GAMUtils.shared.initializeGAM()
 ```
-
  
-## MoPub Integration Overview
+## AdMob Integration Overview
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-admob.png)
 
@@ -31,7 +30,7 @@ GAMUtils.shared.initializeGAM()
 
 **Step 4** For each Prebid Ad Source, the GMA SDK instantiates an adapter. 
 
-**Step 5** The adapter verifies the targeting keywords of the winning bid and server properties of the given Ad Source. If they match adapter will render the winning bid. If no bids or 
+**Step 5** The adapter verifies the targeting keywords of the winning bid and server properties of the given Ad Source. If they match adapter will render the winning bid. Otherwise, it will fail with "no ad" immediately and the next ad source will instantiate the same adapter but for another set of server parpams. 
   
 Prebid Mobile supports these ad formats:
 
@@ -128,7 +127,7 @@ Make sure that you use the proper label for extras - `AdMobConstants.PrebidAdMob
 
 #### Step 6: Make an Ad Reuest
 
-Now you should just make a regulat AdMob's ad request. Evetything else will be handled by prebid adapters.
+Now you should just make a regular AdMob's ad request. Evetything else will be handled by prebid adapters.
 
 ### Banner Video
 
@@ -246,7 +245,7 @@ Make sure that you use the proper label for extras - `AdMobConstants.PrebidAdMob
 
 #### Step 6: Make an Ad Reuest
 
-Now you should just make a regulat AdMob's ad request. Evetything else will be handled by prebid adapters.
+Now you should just make a regular AdMob's ad request. Evetything else will be handled by prebid adapters.
 
 #### Steps 7: Display an ad
 
@@ -313,7 +312,7 @@ The `fetchDemand` method makes a bid request to prebid server and provide the re
 
 #### Step 5: Make an Ad Reuest
 
-Now you should just make a regulat AdMob's ad request. Evetything else will be handled by prebid adapters.
+Now you should just make a regular AdMob's ad request. Evetything else will be handled by prebid adapters.
 
 #### Steps 6: Display an ad
 

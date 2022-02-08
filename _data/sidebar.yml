@@ -709,6 +709,14 @@
   subgroup: 1
   
 - sbSecId: 2
+  title: Integration with AdMob
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-admob.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
   title: Integration with MoPub
   link: /prebid-mobile/modules/rendering/android-sdk-integration-mopub.html
   isHeader: 0
