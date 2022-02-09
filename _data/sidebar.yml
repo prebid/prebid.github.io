@@ -1850,6 +1850,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Native
+  link: /prebid-server/features/pbs-native.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Caching
   link: /prebid-server/features/pbs-caching.html
   isHeader: 0
