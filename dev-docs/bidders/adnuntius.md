@@ -74,6 +74,22 @@ pbjs.setBidderConfig({
 });
 ```
 
+### Disable cookies for adnuntius
+
+You have the option to tell adnuntius not to set cookies in your browser. This does not mean that third party ads being served through the ad server will not set cookies. Just that Adnuintius will not set it for internal ads.
+
+```
+
+pbjs.setBidderConfig({
+    bidders: ['adnuntius'],
+    config: {
+        useCookie: false
+    }
+});
+```
+
+Use cookie will always be set to true by default. Changing it to false will disable cookies.
+
 ### Prebid Server Test Request
 
 The following test parameters can be used to verify that Prebid Server is working properly with the server-side Adnuntius adapter. the `auId` below will not return a creative. Please substitute it with your own.

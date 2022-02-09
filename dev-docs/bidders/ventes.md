@@ -20,7 +20,8 @@ prebid_member: false
 | `placementId`   | required | Placement ID from Ventes Avenues 			 | `'VA-062-0013-0183'` 			| `string`	|
 | `publisherId`   | required | Publisher ID from Ventes Avenues 			 | `'VA-062'` 					| `string`	|
 | `user`          | optional | Object that specifies information about an external user. | `user: { age: 25, gender: 0, dnt: true}` 	| `object`	|
-| `app`           | optional | Object containing mobile app parameters.  		 | `app : { id: 'app-id'}`			| `object`	|
+| `app`           | required | Object containing mobile app parameters.  		 | `app : { id: 'app-id'}`			| `object`	|
+| `device`        | required | Object containing device info mandatory for mobile devices| `device : { ifa: 'device-id'}`	        | `object`	|
 
 #### User Object
 
@@ -35,7 +36,7 @@ prebid_member: false
 | `language`        | Two-letter ANSI code for this user's language.						| `EN`			| `string`		|
 
 
-### Ad Unit Setup for Banner
+### Ad Unit Setup for Banner through mobile devices
 ```javascript
 var adUnits = [
 {
@@ -51,21 +52,43 @@ var adUnits = [
     bidder: 'ventes',
     params: {
         placementId: 'VA-062-0013-0183',
-        publisherId: '555555',
+        publisherId: '5cebea3c9eea646c7b623d5e',
         IABCategories: "['IAB1', 'IAB5']",
         device:{
           ip: '123.145.167.189',
           ifa:"AEBE52E7-03EE-455A-B3C4-E57283966239",
         },
         app: {
-          id: "aaaaaa",
-          name: "Weather",
-          bundle: 'com.example',
-          storeurl: 'https://play.google.com/store/apps/details?id=com.example&hl=en',
-          domain: 'exaple.com',
+          id: "agltb3B1Yi1pbmNyDAsSA0FwcBiJkfIUDA",
+          name: "Yahoo Weather",
+          bundle: 'com.kiloo.subwaysurf',
+          storeurl: 'https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en',
+          domain: 'somoaudience.com',
         } 
     }
   }]
  }
 ]
 ```
+
+### Ad Unit Setup for Banner through Websites
+```javascript
+var adUnits = [
+{
+  code: 'test-hb-ad-11111-1',
+  mediaTypes: {
+    banner: {  
+      sizes: [
+          [300, 250]
+      ]
+    }   
+  }, 
+  bids: [{
+    bidder: 'ventes',
+    params: {
+        placementId: 'VA-002-0007-0799',
+        publisherId: '5cebea3c9eea646c7b623d5e',
+    }
+  }]
+ }
+]
