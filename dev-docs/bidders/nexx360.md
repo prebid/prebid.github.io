@@ -4,7 +4,6 @@ title: Nexx360
 description: Prebid Nexx360 Bidder Adapter
 pbjs: true
 biddercode: nexx360
-aliasCode: revenuemaker
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
