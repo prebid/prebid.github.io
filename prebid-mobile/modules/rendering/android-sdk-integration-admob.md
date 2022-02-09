@@ -108,14 +108,14 @@ adUnit?.fetchDemand { result ->
 }
 ```
 
-#### Step 1: Create AdMob activity 
+#### Step 1: Create AdView and AdRequest
 
 This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
 
 
 #### Step 2: Create AdMobMediationBannerUtils
 
-The `AdMobBannerMediationUtils` is a helper class, wich performs spcific utilty work for `MediationBannerAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobBannerMediationUtils` is a helper class, wich performs certain utilty work for `MediationBannerAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 
@@ -131,178 +131,149 @@ Now you should just make a regular AdMob's ad request. Evetything else will be h
 
 ## Interstitial API
 
-To integrate interstitial ad you need to implement four easy steps:
+Integration example:
 
 ``` kotlin
-// 1. Create interstitial custom event handler for GAM ad server.
-val eventHandler = GamInterstitialEventHandler(requireContext(), gamAdUnit)
+// 1. Create AdRequest
+val extras = Bundle()
+val request = AdRequest
+    .Builder()
+    .addCustomEventExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
+    .build()
 
-// 2. Create interstitialAdUnit instance and provide GAM event handler
-interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, minSizePercentage, eventHandler)
-// (Optional) set an event listener
-interstitialAdUnit?.setInterstitialAdUnitListener(this)
+// 2. Create AdMobInterstitialMediationUtils
+val mediationUtils = AdMobInterstitialMediationUtils(extras)
 
-// 3. Execute ad load
-interstitialAdUnit?.loadAd()
+// 3. Create MediationInterstitialAdUnit
+adUnit = MediationInterstitialAdUnit(
+    activity,
+    configId,
+    AdUnitFormat.DISPLAY,
+    mediationUtils
+)
 
-//....
+// 4. Make bid request
+adUnit?.fetchDemand { result ->
+    Log.d("Prebid", "Fetch demand result: $result")
 
-// 4. After ad is loaded you can execute `show` to trigger ad display
-interstitialAdUnit?.show()
+    // 5. Make ad request
+    InterstitialAd.load(activity, adUnitId, request, object : InterstitialAdLoadCallback() {
+        override fun onAdLoaded(interstitial: InterstitialAd) {
+            interstitialAd = interstitial
 
-```
+            // 6. Display the ad
+            interstitialAd?.show(activity)
+        }
 
-The way of displaying **Video Interstitial Ad** is almost the same with two differences:
-
-- Need to customize the ad unit format
-- No need to set up `minSizePercentage`
-
-``` kotlin
-// 1. Create interstitial custom event handler for GAM ad server.
-val eventHandler = GamInterstitialEventHandler(requireContext(), gamAdUnit)
-
-// 2. Create interstitialAdUnit instance and provide GAM event handler
-interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, AdUnitFormat.VIDEO, eventHandler)
-
-// (Optional) set an event listener
-interstitialAdUnit?.setInterstitialAdUnitListener(this)
-
-// 3. Execute ad load
-interstitialAdUnit?.loadAd()
-
-//....
-
-// 4. After ad is loaded you can execute `show` to trigger ad display
-interstitialAdUnit?.show()
-
-```
-
-
-#### Step 1: Create Event Handler
-
-GAM's event handlers are special containers that wrap the GAM Ad Views and help to manage collaboration between GAM and Prebid views.
-
-**Important:** you should create and use a unique event handler for each ad view.
-
-To create an event handler you should provide a GAM Ad Unit.
-
-#### Step 2: Create Interstitial Ad Unit
-
-**InterstitialAdUnit** - is an object that will load and display the particular ad. To create it you should provide:
-
-- **configId** - an ID of Stored Impression on the Prebid server
-- **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
-- **eventHandler** - the instance of the interstitial event handler
-
-Also, you can assign the listeners for processing ad events.
-
-> **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
-
-
-#### Step 3: Load the Ad
-
-Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.html) flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
-
-
-#### Step 4: Show the Ad when it is ready
-
-
-The most convenient way to determine if the interstitial ad is ready for displaying is to listen to the particular listener method:
-
-``` kotlin
-override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
-//Ad is ready for display
+        override fun onAdFailedToLoad(error: LoadAdError) {
+            interstitialAd = null
+        }
+    })
 }
 ```
 
-### Migration from the original API
+#### Step 1: Create AdRequest
 
-1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit`. 
-3. Implement the interface `InterstitialEventListener`.
-4. Remove usage of `AdManagerInterstitialAd`, `AdManagerAdRequest`.
-5. Remove original `InterstitialAdUnit`.
-5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you can replace the code of creative in the original order **only for display** ads. For video interstitial you have to create a special order and remove the original one.
+This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/android/interstitial). You don't have to make any modifications here.
+
+#### Step 2: Create AdMobInterstitialMediationUtils
+
+The `AdMobInterstitialMediationUtils` is a helper class, wich performs certain utilty work for `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+
+#### Step 3: Create MediationInterstitialAdUnit
+
+The `MediationInterstitialAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+
+If you need to make a bid request for `video` ad - provide the respective ad format `AdUnitFormat.VIDEO` to the constructor of `MediationInterstitialAdUnit`:
+
+```
+adUnit = MediationInterstitialAdUnit(
+    activity,
+    configId,
+    AdUnitFormat.VIDEO,
+    mediationUtils
+)
+```
+
+#### Step 4: Make a bid request
+
+The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
+
+#### Step 5: Make an ad reuest
+
+Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
+
+#### Step 6: Display an ad
+
+Once you received the interstitial ad it is ready for display. You can do it right in the listener or later when it makes sense to your app.
 
 
 ## Rewarded API
 
-To display an Rewarded Ad need to implement four easy steps:
+Integration example:
 
 
 ``` kotlin
-// 1. Create rewarded custom event handler for GAM ad server.
-val eventHandler = GamRewardedEventHandler(requireActivity(), gamAdUnitId)
+// 1. Create AsRequest
+val extras = Bundle()
+val request = AdRequest
+    .Builder()
+    .addNetworkExtrasBundle(PrebidRewardedAdapter::class.java, extras)
+    .build()
 
-// 2. Create rewardedAdUnit instance and provide GAM event handler
-rewardedAdUnit = RewardedAdUnit(requireContext(), configId, eventHandler)
+// 2. Create AdMobRewardedMediationUtils
+val mediationUtils = AdMobRewardedMediationUtils(extras)
 
-// (Optional) set an event listener
-rewardedAdUnit?.setRewardedAdUnitListener(this)
+// 3. Create MediationRewardedVideoAdUnit
+adUnit = MediationRewardedVideoAdUnit(activity, configId, mediationUtils)
 
-// 3. Execute ad load
-rewardedAdUnit?.loadAd()
+// 4. Make a bid request
+adUnit?.fetchDemand { result ->
+    Log.d("Prebid", "Fetch demand result: $result")
 
-//...
+    // 5. Make an ad request 
+    RewardedAd.load(activity, adUnitId, request, object : RewardedAdLoadCallback() {
+        override fun onAdLoaded(ad: RewardedAd) {
+            Log.d(TAG, "Ad was loaded.")
+            rewardedAd = ad
 
-// 4. After ad is loaded you can execute `show` to trigger ad display
-rewardedAdUnit?.show()
-```
+            // 6. Display an ad 
+            rewardedAd?.show(activity) { rewardItem ->
+                val rewardAmount = rewardItem.amount
+                val rewardType = rewardItem.type
+                Log.d(TAG, "User earned the reward ($rewardAmount, $rewardType)")
+            }
+        }
 
-The way of displaying the **Rewarded Ad** is totally the same as for the Interstitial Ad. You can customize a kind of ad:
-
-
-To be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
-
-``` kotlin
- fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit)
-```
-
-The actual reward object is stored in the `RewardedAdUnit`:
-
-``` kotlin
-val reward = rewardedAdUnit.getUserReward()
-```
-
-#### Step 1: Create Event Handler
-
-GAM's event handlers are special containers that wrap the GAM Ad Views and help to manage collaboration between GAM and Prebid views.
-
-**Important:** you should create and use a unique event handler for each ad view.
-
-To create an event handler you should provide a GAM Ad Unit.
-
-
-#### Step 2: Create Rewarded Ad Unit
-
-**RewardedAdUnit** - is an object that will load and display the particular ad. To create it you should provide
-
-- **configId** - an ID of Stored Impression on the Prebid server
-- **eventHandler** - the instance of rewarded event handler
-
-Also, you can assign the listener for processing ad events.
-
-
-#### Step 3: Load the Ad
-
-Simply call the `loadAd()` method to start an In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
-
-
-#### Step 4: Show the Ad when it is ready
-
-
-The most convenient way to determine if the ad is ready for displaying is to listen for particular listener method:
-
-``` kotlin
-override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
-//Ad is ready for display
+        override fun onAdFailedToLoad(adError: LoadAdError) {
+            Log.e(TAG, adError.message)
+            rewardedAd = null
+        }
+    })
 }
 ```
 
-### Migration from the original API
+#### Step 1: Create AdRequest
 
-1. Replace the `RewardedAd` with `RewardedAdUnit`. 
-3. Implement the interface `RewardedAdUnitListener`.
-5. Remove original `RewardedVideoAdUnit`.
-5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you have to create a new special order for rewarded video ad and remove the original one.
+This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
+
+#### Step 2: Create AdMobRewardedMediationUtils
+
+The `AdMobRewardedMediationUtils ` is a helper class, wich performs certain utilty work for `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+
+#### Step 3: Create MediationRewardedVideoAdUnit
+
+The `MediationRewardedVideoAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.
+
+
+#### Step 4: Make a bid request
+
+The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
+
+#### Step 5: Make an ad reuest
+
+Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
+
+#### Step 6: Display an ad
+
+Once you received the rewarded ad it is ready for display. You can do it right in the listener or later when it makes sense to your app.

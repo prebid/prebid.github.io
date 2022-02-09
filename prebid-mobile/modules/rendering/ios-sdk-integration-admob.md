@@ -97,7 +97,7 @@ This step is totally the same as for pure [AdMob integration](https://developers
 
 #### Step 2: Create AdMobMediationBannerUtils
 
-The `AdMobMediationBannerUtils` is a helper class, wich performs spcific utilty work for `MediationBannerAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobMediationBannerUtils` is a helper class, wich performs certain utilty work for `MediationBannerAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 
@@ -216,7 +216,7 @@ This step is totally the same as for pure [AdMob integration](https://developers
 
 #### Step 2: Create AdMobMediationInterstitialUtils
 
-The `AdMobMediationInterstitialUtils ` is a helper class, wich performs spcific utilty work for `MediationInterstitialAdUnit `, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobMediationInterstitialUtils ` is a helper class, wich performs certain utilty work for `MediationInterstitialAdUnit `, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 
@@ -300,7 +300,7 @@ This step is totally the same as for pure [AdMob integration](https://developers
 
 #### Step 2: Create MediationRewardedAdUnit
 
-The `AdMobMediationRewardedUtils` is a helper class, wich performs spcific utilty work for `MediationRewardedAdUnit `, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobMediationRewardedUtils` is a helper class, wich performs certain utilty work for `MediationRewardedAdUnit `, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 
@@ -375,7 +375,7 @@ Prepare the `GADRequest` object before you make the bid request. It will be need
 
 #### Step 2: Create AdMobMediationNativeUtils
 
-The `AdMobMediationNativeUtils` is a helper class, wich performs spcific utilty work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobMediationNativeUtils` is a helper class, wich performs certain utilty work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create and configure MediationNativeAdUnit
 
