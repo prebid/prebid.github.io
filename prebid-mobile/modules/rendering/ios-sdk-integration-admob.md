@@ -364,14 +364,14 @@ nativeAdUnit.fetchDemand { [weak self] result in
     
     self.adLoader?.delegate = self
     
+    // 8. Make an ad request
     self.adLoader?.load(self.gadRequest)
 }
 ```
 
-
 #### Step 1: Create GAD Request
 
-Prepare the `GADRequest` object before you make the bid request. It will be needed to prebid mediation utils. 
+Prepare the `GADRequest` object before you make the bid request. It will be needed for prebid mediation utils. 
 
 #### Step 2: Create AdMobMediationNativeUtils
 
@@ -438,6 +438,6 @@ self?.gadRequest.register(extras)
 
 Make sure that you use the proper label for extras - AdMobConstants.PrebidAdMobEventExtrasLabel. Prebid adapters will extract the winnig bid by this key.
     
-#### Step : Load AdMob Native ad
+#### Step 8: Load AdMob Native ad
     
 Now just load a Native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/ios/native/start). 

@@ -277,3 +277,128 @@ Now you should just make a regular AdMob's ad request. Evetything else will be h
 #### Step 6: Display an ad
 
 Once you received the rewarded ad it is ready for display. You can do it right in the listener or later when it makes sense to your app.
+
+## Native API
+
+Integration example: 
+
+```
+// 1. Create AdLoader and AdRequest
+val nativeAdOptions = NativeAdOptions
+    .Builder()
+    .build()
+
+val adLoader = AdLoader
+    .Builder(wrapper.context, adUnitId)
+    .forNativeAd { ad: NativeAd ->
+        nativeAd = ad
+        createCustomView(wrapper, nativeAd!!)
+    }
+    .withAdListener(object : AdListener() {
+        override fun onAdFailedToLoad(adError: LoadAdError) {
+            Log.e(TAG, "Error: ${adError.message}")
+        }
+    })
+    .withNativeAdOptions(nativeAdOptions)
+    .build()
+
+val extras = Bundle()
+val adRequest = AdRequest
+    .Builder()
+    .addCustomEventExtrasBundle(PrebidNativeAdapter::class.java, extras)
+    .build()
+
+// 2. Create Native AdUnit
+val nativeAdUnit = NativeAdUnit(configId)
+
+// 3. Configure NativeAdUnit
+configureNativeAdUnit(nativeAdUnit)
+
+// 4. Make a bid request
+nativeAdUnit.fetchDemand(extras) { resultCode ->
+    Log.d(TAG, "Fetch demand result: $resultCode")
+
+    // 5. Make ad request
+    adLoader.loadAd(adRequest)
+}
+```
+
+
+#### Step 1: Create AdRequest
+
+Prepare the `AdLoader` and `AdRequest` objects before you make the bid request. It will be needed for prebid mediation utils. Follow the [AdMob integration instructions](https://developers.google.com/admob/android/native/start) for this step.
+
+#### Step 2: Create NativeAdUnit
+
+The `NativeAdUnit` is responsible for making bid requests. Once the bid responce recived you can load an ad from AdMob.
+ 
+#### Step 3: Configure NativeAdUnit
+
+The bid request for Native Ads should have the descrition of expected asstes. The full spec for the Native template you can find in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). 
+
+The example of creating the asstes array and tunning the NativeAdUnit:
+
+``` kotlin
+private fun configureNativeAdUnit(nativeAdUnit: NativeAdUnit) {
+
+    // Configure Ad Unit
+    nativeAdUnit.setContextType(NativeAdUnit.CONTEXT_TYPE.SOCIAL_CENTRIC)
+    nativeAdUnit.setPlacementType(NativeAdUnit.PLACEMENTTYPE.CONTENT_FEED)
+    nativeAdUnit.setContextSubType(NativeAdUnit.CONTEXTSUBTYPE.GENERAL_SOCIAL)
+
+    // Create the list of required assets
+    val title = NativeTitleAsset()
+    title.setLength(90)
+    title.isRequired = true
+    nativeAdUnit.addAsset(title)
+
+    val icon = NativeImageAsset()
+    icon.imageType = NativeImageAsset.IMAGE_TYPE.ICON
+    icon.wMin = 20
+    icon.hMin = 20
+    icon.isRequired = true
+    nativeAdUnit.addAsset(icon)
+
+    val image = NativeImageAsset()
+    image.imageType = NativeImageAsset.IMAGE_TYPE.MAIN
+    image.hMin = 200
+    image.wMin = 200
+    image.isRequired = true
+    nativeAdUnit.addAsset(image)
+
+    val data = NativeDataAsset()
+    data.len = 90
+    data.dataType = NativeDataAsset.DATA_TYPE.SPONSORED
+    data.isRequired = true
+    nativeAdUnit.addAsset(data)
+
+    val body = NativeDataAsset()
+    body.isRequired = true
+    body.dataType = NativeDataAsset.DATA_TYPE.DESC
+    nativeAdUnit.addAsset(body)
+
+    val cta = NativeDataAsset()
+    cta.isRequired = true
+    cta.dataType = NativeDataAsset.DATA_TYPE.CTATEXT
+    nativeAdUnit.addAsset(cta)
+
+    // Create the list of required event trackers
+    val methods: ArrayList<NativeEventTracker.EVENT_TRACKING_METHOD> = ArrayList()
+    methods.add(NativeEventTracker.EVENT_TRACKING_METHOD.IMAGE)
+    methods.add(NativeEventTracker.EVENT_TRACKING_METHOD.JS)
+    try {
+        val tracker = NativeEventTracker(NativeEventTracker.EVENT_TYPE.IMPRESSION, methods)
+        nativeAdUnit.addEventTracker(tracker)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+```
+
+#### Step 4: Make a bid request
+
+The `fetchDemand` method makes a bid request to prebid server and provide a result in the completion handler.
+        
+#### Step 5: make an ad request
+    
+Now just load a Native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). 
