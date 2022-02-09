@@ -962,7 +962,7 @@ pbjs.setConfig({
 
 - **BASIC** - In this mode we rely on Justtag library that already exists on publisher page. Typicaly that library expose global variable called `__atm`
 
-- **ADVANCED** - Just ID generation process may differ between various cases depends on publishers. This mode is required to deal with custom integrations between publisher and Justtag.
+- **COMBINED** - Just ID generation process may differ between various cases depends on publishers. This mode combines our js library with prebid for ease of integration
 
 If you have any questions about Just ID, please reach out by emailing [prebid@justtag.com](mailto:prebid@justtag.com).
 
@@ -973,14 +973,14 @@ If you have any questions about Just ID, please reach out by emailing [prebid@ju
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID of the module - `'justId'` | `'justId'` |
 | params | Optional | Object | Details for Just ID syncing. | |
-| params.mode | Optional | String | Mode in which the module works. Available Modes: `'ADVANCED'`, `'BASIC'`(default)   | `'ADVANCED'` |
+| params.mode | Optional | String | Mode in which the module works. Available Modes: `'COMBINED'`, `'BASIC'`(default)   | `'COMBINED'` |
 | params.atmVarName | Optional | String | Name of global object property that point to Justtag ATM Library. Defaults to `'__atm'` | `'__atm'` |
-| params.url | Optional | String | Optional API Url, used in `ADVANCED` mode | `'https://id.nsaudience.pl/getId.js'` |
+| params.url | Optional | String | API Url, **required** in `COMBINED` mode | `'https://id.nsaudience.pl/getId.js'` |
 | params.partner | Optional | String | This is the Justtag Partner Id which may be required in some custom integrations with Justtag | `'some-publisher'` |
 
 #### Just ID Example
 
-ex. 1. Mode `ADVANCED`
+ex. 1. Mode `COMBINED`
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -988,7 +988,8 @@ pbjs.setConfig({
         userIds: [{
             name: 'justId',
             params: {
-                mode: 'ADVANCED'
+                mode: 'COMBINED',
+                url: 'https://id.nsaudience.pl/getId.js'
             }
         }]
     }
@@ -1009,7 +1010,7 @@ pbjs.setConfig({
 
 #### Just ID  Disclosure
 
-This module in `ADVANCED` mode loads external JavaScript to generate optimal quality user ID. It is possible to retrieve user ID, without loading additional script by this module in `BASIC` mode.
+This module in `COMBINED` mode loads external JavaScript to generate optimal quality user ID. It is possible to retrieve user ID, without loading additional script by this module in `BASIC` mode.
 
 ### Kinesso ID
 
