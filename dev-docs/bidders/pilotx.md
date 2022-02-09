@@ -12,4 +12,4 @@ pbjs: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `placementId` | required | id to represent placement for pilotx          | `234234`   | `string` |
+| `placementId` | required | id to represent placement for pilotx          | `'234234'`   | `string` |
