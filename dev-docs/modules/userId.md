@@ -1651,7 +1651,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module. | `'pubCommonId'` |
+| name | Required | String | The name of this module. | `'sharedId'` |
 | params | Optional | Object | Customized parameters | |
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
 | params.pixelUrl | Optional | String | For publisher server support only. Where to call out to for a server cookie -- see [Prebid Identity](/identity/sharedid.html) for more information. | `/wp-json/pubcid/v1/extend/`
@@ -1669,7 +1669,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "pubCommonId",
+            name: "sharedId",
             storage: {
                 type: "cookie",
                 name: `"_pubcid"`,         // create a cookie with this name
@@ -1696,7 +1696,7 @@ pbjs.setConfig({
                 expires: 60
             }
         },{
-            name: "pubCommonId",
+            name: "sharedId",
             params: {
                 pixelUrl: "/wp-json/pubcid/v1/extend/"
             },
@@ -1717,7 +1717,7 @@ pbjs.setConfig({
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: "pubCommonId",
+            name: "sharedId",
             params: {
                 pixelUrl: "/wp-json/pubcid/v1/extend/" //pixelUrl should be specified when the server plugin is used
             },
