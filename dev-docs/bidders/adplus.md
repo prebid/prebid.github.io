@@ -8,7 +8,7 @@ pbjs: true
 ---
 ### Note:
 
-The AdPlus Bidding adapter requires setup before beginning. Please contact us at adplus.destek@yaani.com.tr
+The AdPlus Bidding adapter requires setup before beginning. Please contact us at <adplusdestek@turkcell.com.tr>.
 
 ### Bid Params
 
