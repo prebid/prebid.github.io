@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: pilotx
+title: PilotX
 description: Pilotx Prebid Adapter
 biddercode: pilotx
 media_types: banner, video
