@@ -2,7 +2,7 @@
 layout: bidder
 title: BigRichMedia
 description: Prebid Big Richmedia Bidder Adapter
-biddercode: bigRichMedia
+biddercode: big-richmedia
 pbjs: true
 media_types: banner, video
 userIds: criteo, unifiedId, netId, identityLink, flocId, uid2
@@ -39,9 +39,10 @@ pbjs.que.push(function() {
 | `member`                                        | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
 | `invCode`                                       | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
 | `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
-| `video`                                         | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 
 #### Video Object
+
+Those configuration parameters are read from mediaTypes.video
 
 {: .table .table-bordered .table-striped }
 | Name              | Description                                                                                                                                                                                                                                  | Type             |
@@ -51,5 +52,4 @@ pbjs.que.push(function() {
 |`context` | A string that indicates the type of video ad requested.  Allowed values: `"pre_roll"`; `"mid_roll"`; `"post_roll"`; `"outstream"`. | `string` |
 | `skippable` | Boolean which, if `true`, means the user can click a button to skip the video ad.  Defaults to `false`. | `boolean` |
 |`skipoffset`| Integer that defines the number of seconds until an ad can be skipped.  Assumes `skippable` setting was set to `true`. | `integer` |
-| `playback_method` | A string that sets the playback method supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouse_over"`; `"auto_play_sound_unknown"`. | `string` |
 | `frameworks` | Array of integers listing API frameworks supported by the publisher.  Allowed values: None: `0`; VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; MRAID 2.0: `4`; ORMMA: `5`; OMID 1.0 `6`. | `Array<integer>` |
