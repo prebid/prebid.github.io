@@ -748,6 +748,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 2
+  title: Mediation Group - AdMob
+  link: /prebid-mobile/modules/rendering/rendering-admob-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 2
   title: Rendering Order - MoPub
