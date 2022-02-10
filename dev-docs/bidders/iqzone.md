@@ -17,16 +17,9 @@ pbs_app_supported: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | Placement Id         | `'0'`    | `'string'` |
-
-### Prebid server Bid Params
-
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
 | `endpointId`      | optional | Endpoint Id         | `'0'`    | `'string'` |
 
 ### Note
 
-For the prebid server, you only need to use one parameter, placementId or endpointId
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
