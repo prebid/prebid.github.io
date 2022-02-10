@@ -37,7 +37,7 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 
 ### Respect The Rules
 
-We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://docs.prebid.org/wrapper_code_of_conduct.html) and [module rules](https://docs.prebid.org/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
+We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
 **Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
 - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
@@ -583,7 +583,9 @@ If you'd like to support Long Form Video Ad Pods, then you'll need to provide th
 {: .alert.alert-info :}
 Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provided.
 
-Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
+##### Metadata
+
+In order to share granular bid response data with publishers, analytics, and reporting systems, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
 Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
