@@ -9,6 +9,7 @@ usp_supported: true
 schain_supported: true
 userIds: id5Id
 media_types: banner, video, native
+floors_supported: true
 glv_id: 791
 ---
 
