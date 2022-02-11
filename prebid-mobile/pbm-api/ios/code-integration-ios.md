@@ -94,21 +94,27 @@ Build Prebid Mobile from source code. After [cloning the repo](https://github.co
 ```
 This will output the PrebidMobile.framework.
 
-### Setup Prebid Server Account
+### Setup Prebid Server
 
-In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers:
+In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers described at [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html).
 
-1. The simplest option is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) provide hosting packages.
-
-2. Implement your own Prebid Server solution. You will need to [download](https://github.com/prebid/prebid-server) the source code from Github. The repository has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation.
-
-Once you have a Prebid Server account, you will need to add your account credentials to the app.
+Once you have a Prebid Server, you will add 'account' info to the app. For
+example, if you're using the AppNexus Prebid Server:
 
 
 ```
 Prebid.shared.prebidServerAccountId = @"YOUR_ACCOUNT_ID";
 Prebid.shared.prebidServerHost = PrebidHostAppnexus;
 ```
+
+{: .alert.alert-info :}
+Note that in actuality, the "account ID" is just the name of the "top-level"
+stored request as described on the [Prebid Server Stored Request](/prebid-server/features/pbs-storedreqs.html) page. By convention, most Prebid Server host companies define the top level stored request ID as the
+account ID they assign to the publisher. This is a convenient convention since
+publishers generally set the same timeout and price granularity across all
+apps. But it may not be the case for your
+Prebid Server host company, so please check with them. If you're hosting your own
+Prebid Server, this value can be whatever value you wish, not necessarily an account ID.
 
 If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app.
 
