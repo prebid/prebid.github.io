@@ -9,7 +9,7 @@ floors_supported: true
 media_types: banner, video
 safeframes_ok: true
 schain_supported: true
-userIds: pubCommonId, unifiedId, identityLink, id5Id, sharedId, liveIntentId
+userIds: all
 usp_supported: true
 fpd_supported: true
 pbjs: true
