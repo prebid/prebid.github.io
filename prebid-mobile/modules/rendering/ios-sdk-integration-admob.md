@@ -320,6 +320,11 @@ Once the rewarded ad is recieved you can display it. Folow the [AdMob instructio
 
 ## Native Ads
 
+{: .alert.alert-warning :}
+**Warning:** If you use Native Ads you **must** integrate AdMob Adapters via the source files instead of cocoapods integration. The integration using framework leads to [runtime errors](https://github.com/prebid/prebid-mobile-ios/issues/516) related to the type casting. 
+
+In order to integrate AdMob adapters just add the adapters' source files to your app project.
+
 Integration example:
 
 ``` swift
