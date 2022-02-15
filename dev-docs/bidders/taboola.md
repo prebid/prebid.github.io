@@ -15,16 +15,18 @@ floors_supported: true
 safeframes_ok: true
 ---
 
-### Note:
-Module that connects to Taboola bidder to fetch bids.
-- Supports ‘display’ format
-- Uses OpenRTB standard
+### Note
+- Supports `display` format.
+- Uses `OpenRTB` standard.
 
-The Taboola Bidding adapter requires setup before beginning. Please contact us on prebid@taboola.com
+### Registration
+
+The Taboola Adapter requires setup before beginning. Please contact us at prebid@taboola.com.
+
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
-### Bid Params
 | Name           | Scope    | Description                                             | Example                    | Type         |
 |----------------|----------|---------------------------------------------------------|----------------------------|--------------|
 | `tagId`        | required | Tag ID / Placement Name <br>(as provided by Taboola)    | `'Below The Article'`      | `String`     |
