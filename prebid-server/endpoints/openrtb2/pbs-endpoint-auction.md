@@ -1152,6 +1152,34 @@ which causes PBS-core to place the video-related attributes on the response.
 }
 ```
 
+##### PG Deals Extensions (PBS-Java only)
+
+In support of [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html),
+there are two extensions at the bidder level to control behavior:
+
+- imp[].ext.prebid.bidder.BIDDER.`dealsonly` - if `true`, PBS will call the bidder, but if there's no deal ID in the response, it will reject the bid. This allows for scenarios where a bidder is called twice, once for Open Market bids, once for deals bids. Defaults to `false`.
+- imp[].ext.prebid.bidder.BIDDER.`pgdealsonly` - If `true` and no PG line item for this bidder matches in this impression, PBS will not even call the bid adapter. This saves network bandwidth when no PG line items are available. Defaults to `false`.
+
+These flags can be used separately or together. For example:
+
+```
+{
+  "imp": [{
+    "ext": {
+      "prebid": {
+        "bidder": {
+          "bidderA": {
+            ...,
+            "dealsonly": true,
+            "pgdealsonly": true
+          }
+        }
+      }
+    }
+  }]
+}
+```
+
 #### OpenRTB Response Extensions
 
 ##### Bidder Response Times
