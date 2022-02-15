@@ -9,13 +9,11 @@ sidebarType: 2
 
 # AdMob Integration
 
-The integration of Prebid Mobile with Google AdMob assumes that publisher has an AdMob account has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project. 
+The integration of Prebid Mobile with Google AdMob assumes that the publisher has an AdMob account and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app. 
 
+See the [Google's integration documentation](https://developers.google.com/admob/android/quick-start) for the AdMob integration details.
 
-If you do not have GAM SDK in the app yet, refer the the [Google Integration Documentation](https://developers.google.com/admob/android/quick-start).
-
-
-
+Prebid is integrated into the AdMob monetization via adapters.
 
 ## AdMob Integration Overview
 
@@ -25,16 +23,24 @@ If you do not have GAM SDK in the app yet, refer the the [Google Integration Doc
 
 **Step 3** GMA SDK makes an ad request. AdMob returns the mediation chain with respective ad sources.
 
-**Step 4** For each Prebid Ad Source, the GMA SDK instantiates an adapter. 
+**Step 4** For each prebid's ad source, the GMA SDK sequentially instantiates an adapter. 
 
-**Step 5** The adapter verifies the targeting keywords of the winning bid and server properties of the given Ad Source. If they match adapter will render the winning bid. Otherwise, it will fail with "no ad" immediately and the next ad source will instantiate the same adapter but for another set of server parpams.
+**Step 5** The adapter verifies the targeting keywords of the winning bid and the server properties of the given ad source. If they match adapter will render the winning bid. Otherwise, it will fail with "no ad" immediately and the next ad source will instantiate the same adapter but for another set of server params.
 
-They can be integrated using these API categories.
+Prebid Mobile supports these ad formats:
 
-- [**Banner API**](#banner-api) - for *Display Banner* and *Outstream Video*
+- Display Banner
+- Display Interstitial
+- Video Interstitial 
+- Rewarded Video
+- Native
+
+They can be integrated using these mediation API categories:
+
+- [**Banner API**](#banner-api) - for *Display Banner* 
 - [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
 - [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-- [**Native API**](#native-api) - for *Native Ads*)
+- [**Native API**](#native-api) - for *Native Ads*
 
 
 ## Init Prebid Rendering Module
@@ -50,7 +56,7 @@ The best place to do it is the `onCreate()` method of your Application class. Th
 
 ### Prebid Adapters
 
-To integrate Prebid Adapters just add the following lines in your build.gradle files:
+To integrate Prebid Adapters just add the following lines into your build.gradle files:
 
 Root build.gradle
 
@@ -110,20 +116,20 @@ adUnit?.fetchDemand { result ->
 
 #### Step 1: Create AdView and AdRequest
 
-This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
+This step is totally the same as for the pure [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
 
 
 #### Step 2: Create AdMobMediationBannerUtils
 
-The `AdMobBannerMediationUtils` is a helper class, wich performs certain utilty work for `MediationBannerAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobBannerMediationUtils` is a helper class, wich performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 
-The `MediationBannerAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+The `MediationBannerAdUnit` is part of the prebid mediation API. This class is responsible for making the bid request and providing the winning bid and targeting keywords to the mediating SDKs.  
 
-#### Step 4: Make bid request
+#### Step 4: Make a bid request
 
-The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
+The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
 #### Step 5: Make an Ad Reuest
 
@@ -152,11 +158,11 @@ adUnit = MediationInterstitialAdUnit(
     mediationUtils
 )
 
-// 4. Make bid request
+// 4. Make a bid request
 adUnit?.fetchDemand { result ->
     Log.d("Prebid", "Fetch demand result: $result")
 
-    // 5. Make ad request
+    // 5. Make an ad request
     InterstitialAd.load(activity, adUnitId, request, object : InterstitialAdLoadCallback() {
         override fun onAdLoaded(interstitial: InterstitialAd) {
             interstitialAd = interstitial
@@ -178,11 +184,11 @@ This step is totally the same as for pure [AdMob integration](https://developers
 
 #### Step 2: Create AdMobInterstitialMediationUtils
 
-The `AdMobInterstitialMediationUtils` is a helper class, wich performs certain utilty work for `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobInterstitialMediationUtils` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
 
 #### Step 3: Create MediationInterstitialAdUnit
 
-The `MediationInterstitialAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+The `MediationInterstitialAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing the winning bid and targeting keywords to mediating SDKs.  
 
 If you need to make a bid request for `video` ad - provide the respective ad format `AdUnitFormat.VIDEO` to the constructor of `MediationInterstitialAdUnit`:
 
@@ -197,7 +203,7 @@ adUnit = MediationInterstitialAdUnit(
 
 #### Step 4: Make a bid request
 
-The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
+The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
 #### Step 5: Make an ad reuest
 
@@ -205,13 +211,12 @@ Now you should just make a regular AdMob's ad request. Evetything else will be h
 
 #### Step 6: Display an ad
 
-Once you received the interstitial ad it is ready for display. You can do it right in the listener or later when it makes sense to your app.
+Once you receive the ad it will be ready for display. You can show interstitial right in the listener or later according to the app logic.
 
 
 ## Rewarded API
 
 Integration example:
-
 
 ``` kotlin
 // 1. Create AsRequest
@@ -255,20 +260,19 @@ adUnit?.fetchDemand { result ->
 
 #### Step 1: Create AdRequest
 
-This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
+This step is totally the same as for the pure [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
 
 #### Step 2: Create AdMobRewardedMediationUtils
 
-The `AdMobRewardedMediationUtils ` is a helper class, wich performs certain utilty work for `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobRewardedMediationUtils ` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
 
 #### Step 3: Create MediationRewardedVideoAdUnit
 
-The `MediationRewardedVideoAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.
-
+The `MediationRewardedVideoAdUnit` is part of the prebid mediation API. This class is responsible for making bid request and managing the winning bid.
 
 #### Step 4: Make a bid request
 
-The `fetchDemand` method makes a bid request to prebid server and provide the results in the completion handler.
+The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
 #### Step 5: Make an ad reuest
 
@@ -276,7 +280,7 @@ Now you should just make a regular AdMob's ad request. Evetything else will be h
 
 #### Step 6: Display an ad
 
-Once you received the rewarded ad it is ready for display. You can do it right in the listener or later when it makes sense to your app.
+Once you receive the ad it will be ready for display. You can show interstitial right in the listener or later according to the app logic.
 
 ## Native API
 
@@ -318,7 +322,7 @@ configureNativeAdUnit(nativeAdUnit)
 nativeAdUnit.fetchDemand(extras) { resultCode ->
     Log.d(TAG, "Fetch demand result: $resultCode")
 
-    // 5. Make ad request
+    // 5. Make an ad request
     adLoader.loadAd(adRequest)
 }
 ```
@@ -326,17 +330,17 @@ nativeAdUnit.fetchDemand(extras) { resultCode ->
 
 #### Step 1: Create AdRequest
 
-Prepare the `AdLoader` and `AdRequest` objects before you make the bid request. It will be needed for prebid mediation utils. Follow the [AdMob integration instructions](https://developers.google.com/admob/android/native/start) for this step.
+Prepare the `AdLoader` and `AdRequest` objects before you make the bid request. They are needed for prebid mediation utils. Follow the [AdMob integration instructions](https://developers.google.com/admob/android/native/start) for this step.
 
 #### Step 2: Create NativeAdUnit
 
-The `NativeAdUnit` is responsible for making bid requests. Once the bid responce recived you can load an ad from AdMob.
+The `NativeAdUnit` is responsible for making bid requests. Once the bid responce is received you can load an ad from AdMob.
  
 #### Step 3: Configure NativeAdUnit
 
-The bid request for Native Ads should have the descrition of expected asstes. The full spec for the Native template you can find in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). 
+The bid request for native ad should have a descrition of expected assets. The full spec for the Native template you can find in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). 
 
-The example of creating the asstes array and tunning the NativeAdUnit:
+The example of creating the assets array and configuring the `NativeAdUnit`:
 
 ``` kotlin
 private fun configureNativeAdUnit(nativeAdUnit: NativeAdUnit) {
@@ -397,8 +401,8 @@ private fun configureNativeAdUnit(nativeAdUnit: NativeAdUnit) {
 
 #### Step 4: Make a bid request
 
-The `fetchDemand` method makes a bid request to prebid server and provide a result in the completion handler.
+The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
         
 #### Step 5: make an ad request
     
-Now just load a Native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). 
+Now just load a native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). Everything else will be handled by GMA SDK and prebid adapters. 

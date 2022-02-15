@@ -71,7 +71,7 @@ The fields in this dialog are critical for the proper integration:
     - Native: 
         - iOS: `PrebidAdMobNativeAdapter `
         - Android: `org.prebid.mobile.admob.PrebidNativeAdapter`
-- `Parameter` is a keywords for the current ad source. **Important**: make sure that the price of the ad spurce is the same as price in the keyword. For example:
+- `Parameter` is a keywords for the current ad source. **Important**: make sure that the price of the ad source is the same as the price in this keyword. For example:
 
 ```
 {"hb_pb":"0.10"}
@@ -80,14 +80,14 @@ The fields in this dialog are critical for the proper integration:
 Prebid SDK will compare the keywords in the winning bids with keywords provided in the `Parameter` fields. 
 
 {: .alert.alert-warning :}
-The adapter will render the winning bid only if the bid targeting keywords contain `all` keywords from the Parameter field.
+The adapter will render the winning bid only if the bid's targeting keywords contain `all` keywords from the Parameter field.
 
 
-Press `DONE` and repeat adding the custom events for all needed prices. 
+Press `DONE` and repeat the adding of the custom events for all needed prices. 
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-admob-create-list-custom-events.png" alt="Pipeline Screenshot" align="center">
 
-Once you add all needed custom events - press `DONE`. The Mediation Group is ready to serve prebid demand to your app. 
+Once you add all needed custom events - press `DONE`. The Mediation Group is ready to serve the prebid demand to your app. 
 
 
 
