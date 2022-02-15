@@ -25,6 +25,7 @@ mediaTypes: {
             required: true,
             aspect_ratios: [{
                 min_width: 300,        /* Optional */
+                min_height: 200,       /* Optional */
                 ratio_width: 2,        /* Required */
                 ratio_height: 3,       /* Required */
          }]

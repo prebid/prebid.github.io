@@ -51,11 +51,11 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 
 1. Create the ad units and add sizes for banner ad units.  Be sure to replace `@"PREBID-MOBILE-SLOT-ID"` with a unique user-defined identifier.
 
-   NOTE: The [fluid ad size](https://developers.google.com/mobile-ads-sdk/docs/dfp/ios/api/reference/Constants#/c:@kGADAdSizeFluid) (used in DFP) is not supported.
+   NOTE: The [fluid ad size](https://developers.google.com/mobile-ads-sdk/docs/dfp/ios/api/reference/Constants#/c:@kGADAdSizeFluid) (used in Google Ad Manager) is not supported.
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either DFP or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+4. Set the primary adserver for the bid to either Google Ad Manager or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
 5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
@@ -124,7 +124,7 @@ Set targeting parameters for the ad units (Optional).
 
  If you are using a Prebid Server host other than AppNexus, be sure  to replace `PBServerHostAppNexus`.
 
- **DFP Example**
+ **Google Ad Manager Example**
 
 ```
  self.dfpView = [[DFPBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
@@ -190,7 +190,7 @@ Prebid.shared.shareGeoLocation = true
 let bannerUnit = BannerAdUnit(configId: "PREBID-SERVER-CONFIGURATION-ID", size: CGSize(width: 300, height: 250))
  bannerUnit.setAutoRefreshMillis(time: 35000)
 ```
-**DFP Example**  
+**Google Ad Manager Example**  
 
 ```
 dfpBanner = DFPBannerView(adSize: kGADAdSizeMediumRectangle)
@@ -202,7 +202,7 @@ appBannerView.addSubview(dfpBanner)
 request.testDevices = [ kGADSimulatorID,"cc7ca766f86b43ab6cdc92bed424069b"]
 
 bannerUnit.fetchDemand(adObject:self.request) { (ResultCode) in
-        print("Prebid demand fetch for DFP \(ResultCode.name())")
+        print("Prebid demand fetch for Google Ad Manager \(ResultCode.name())")
         self.dfpBanner!.load(self.request)
  }
 ```
@@ -249,12 +249,12 @@ Use the table below to see which ad objects are supported currently.
 {: .table .table-bordered .table-striped }
 | Primary Ad Server | Ad Object Type | Ad Server Ad View            | Ad Server Ad Load Method                    |
 |-------------------|----------------|------------------------------|---------------------------------------------|
-| DFP               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
-| DFP               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
+| Google Ad Manager               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
+| Google Ad Manager               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
 | MoPub             | Banner         | `MPAdView`                   | `- (void)loadAd`                            |
 | MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            | -->
 
 ## Further Reading
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)

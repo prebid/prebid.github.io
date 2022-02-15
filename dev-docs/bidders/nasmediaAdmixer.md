@@ -2,8 +2,10 @@
 layout: bidder
 title: Nasmedia Admixer
 description: Prebid Nasmedia Admixer Bidder Adapter
-hide: true
+pbjs: true
 biddercode: nasmediaAdmixer
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
@@ -15,6 +17,7 @@ Please reach out to <prebid@nasmedia.co.kr> for more information.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope    | Description                                | Example      | Type     |
-|----------|----------|--------------------------------------------|--------------|----------|
-| `ax_key` | required | Publisher Key provided by Nasmedia Admixer | `'ajj7jba3'` | `string` |
+| Name        | Scope    | Description                                | Example      | Type     |
+|-------------|----------|--------------------------------------------|--------------|----------|
+| `media_key` | required | Publisher Key provided by Nasmedia Admixer | `'19038695'` | `string` |
+| `adunit_id` | required | Adunit Id provided by Nasmedia Admixer     | `'24190632'` | `string` |

@@ -2,9 +2,6 @@
 layout: page_v2
 title: Specifying Multiple Ad Breaks for a Video
 description: Specifying Multiple Ad Breaks for a Video
-top_nav_section: dev_docs
-nav_section: plugins
-pid: 10
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -33,6 +30,7 @@ Therefore, for the following configuration options, the plugin will use the valu
 - `scriptLoadTimeout`: used to specify the maximum time in milliseconds that the plugin will wait for a script file to load
 - `frequencyRules`: used to express control of ad frequency in a playlist
 - `adRenderer`: used to override the default behavior of selecting the plugin used to render the ad
+- `loggerLevel`: used to control the amount of information that is emitted by the plugin into the browser’s console.log
 
 ## Sample Code
 
@@ -44,29 +42,25 @@ The following is a sample JSON definition of the plugin configuration defining c
 [
 {
 	"label" : "preroll-ad",
-    "prebidPath" : "//files.prebid.org/prebid-org.js",
+    "prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
     "scriptLoadTimeout": 3000,
 	"biddersSpec" : {
         "code" : "my-video-tag",
-        "sizes" : [640, 480],
         "mediaTypes": {
         	"video": {
-                "context": "instream",
-                "mimes": ["video/mp4", "application/javascript"],
-                "protocols" : [1,2,3,4,5,6,7,8],
-                "playbackmethod" : [1, 2],
-                "api":[1,2]
+                  "context": "instream",
+		  "playerSize": [640,480],
+                  "mimes": ["video/mp4", "application/javascript"],
+                  "protocols" : [1,2,3,4,5,6,7,8],
+                  "playbackmethod" : [1, 2],
+                  "api":[1,2]
             }
         },
         "bids": [
             {
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 12527596,
-                    "video": {
-                        "skippable": true,
-                        "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 12527596
                 }
             }
 		]
@@ -144,28 +138,24 @@ The following is a sample JSON definition of the plugin configuration defining c
 },
 {
 	"label" : "postroll-ad",
-	"prebidPath" : "//files.prebid.org/prebid-org.js",
+	"prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
 	"biddersSpec" : {
         "code" : "my-video-tag",
-        "sizes" : [640, 480],
         "mediaTypes": {
         	"video": {
-                "context": "instream",
-                "mimes": ["video/mp4", "application/javascript"],
-                "protocols" : [1,2,3,4,5,6,7,8],
-                "playbackmethod" : [1, 2],
-                "api":[1,2]
+                  "context": "instream",
+		  "playerSize": [640,480],
+                  "mimes": ["video/mp4", "application/javascript"],
+                  "protocols" : [1,2,3,4,5,6,7,8],
+                  "playbackmethod" : [1, 2],
+                  "api":[1,2]
             }
         },
         "bids": [
             {
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 12531984,
-                    "video": {
-                        "skippable": true,
-                        "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 12531984
                 }
             }
 		]
@@ -252,29 +242,26 @@ The following is a sample JSON definition of the plugin configuration defining c
 [
 {
 	"label" : "preroll-ad",
-    "prebidPath" : "//files.prebid.org/prebid-org.js",
+    "prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
     "scriptLoadTimeout": 3000,
 	"biddersSpec" : {
         "code" : "my-video-tag",
-        "sizes" : [640, 480],
         "mediaTypes": {
         	"video": {
-                "context": "instream",
-                "mimes": ["video/mp4", "application/javascript"],
-                "protocols" : [1,2,3,4,5,6,7,8],
-                "playbackmethod" : [1, 2],
-                "api":[1,2]
+                  "context": "instream",
+		  "playerSize": [640,480],
+                  "mimes": ["video/mp4", "application/javascript"],
+                  "protocols" : [1,2,3,4,5,6,7,8],
+                  "playbackmethod" : [1, 2],
+                  "api":[1,2],
+		  "skip": 1
             }
         },
         "bids": [
             {
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 12527596,
-                    "video": {
-                        "skippable": true,
-                        "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 12527596
                 }
             }
 		]
@@ -352,28 +339,25 @@ The following is a sample JSON definition of the plugin configuration defining c
 },
 {
 	"label" : "midroll-5",
-	"prebidPath" : "//files.prebid.org/prebid-org.js",
+	"prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
 	"biddersSpec" : {
         "code" : "my-video-tag",
-        "sizes" : [640, 480],
         "mediaTypes": {
         	"video": {
-                "context": "instream",
-                "mimes": ["video/mp4", "application/javascript"],
-                "protocols" : [1,2,3,4,5,6,7,8],
-                "playbackmethod" : [1, 2],
-                "api":[1,2]
+                  "context": "instream",
+		  "playerSize": [640,480],
+                  "mimes": ["video/mp4", "application/javascript"],
+                  "protocols" : [1,2,3,4,5,6,7,8],
+                  "playbackmethod" : [1, 2],
+                  "api":[1,2],
+		  "skip": 1
             }
         },
         "bids": [
             {
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 12531984,
-                    "video": {
-                        "skippable": true,
-                        "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 12531984
                 }
             }
 		]
@@ -451,28 +435,25 @@ The following is a sample JSON definition of the plugin configuration defining c
 },
 {
 	"label" : "midroll-15",
-	"prebidPath" : "//files.prebid.org/prebid-org.js",
+	"prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
 	"biddersSpec" : {
         "code" : "my-video-tag",
-        "sizes" : [640, 480],
         "mediaTypes": {
         	"video": {
-                "context": "instream",
-                "mimes": ["video/mp4", "application/javascript"],
-                "protocols" : [1,2,3,4,5,6,7,8],
-                "playbackmethod" : [1, 2],
-                "api":[1,2]
+                  "context": "instream",
+		  "playerSize": [640,480],
+                  "mimes": ["video/mp4", "application/javascript"],
+                  "protocols" : [1,2,3,4,5,6,7,8],
+                  "playbackmethod" : [1, 2],
+                  "api":[1,2],
+		  "skip": 1
             }
         },
         "bids": [
             {
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 12531977,
-                    "video": {
-                        "skippable": true,
-                        "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 12531977
                 }
             }
 		]

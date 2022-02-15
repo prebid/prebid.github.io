@@ -2,7 +2,7 @@
 layout: bidder
 title: Defy Media
 description: Prebid Defy Media Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: defymedia
 aliasCode : appnexus
 ---

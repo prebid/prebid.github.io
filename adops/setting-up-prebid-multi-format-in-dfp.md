@@ -1,10 +1,10 @@
 ---
 layout: page_v2
-title: Setting up Prebid Multi-Format in DFP
-head_title: Setting up Prebid Multi-Format in DFP
-description: Setting up Prebid Multi-Format in DFP
+title: Setting up Prebid Multi-Format in Google Ad Manager
+head_title: Setting up Prebid Multi-Format in Google Ad Manager
+description: Setting up Prebid Multi-Format in Google Ad Manager
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3
@@ -12,7 +12,7 @@ sidebarType: 3
 
 
 
-# Setting up Prebid Multi-Format in DFP
+# Setting up Prebid Multi-Format in Google Ad Manager
 {: .no_toc}
 
 This page shows how to set up your ad server so that you can serve multi-format ads.
@@ -25,23 +25,27 @@ For instructions on how to set up multi-format ads from the engineering side, se
 * TOC
 {: toc }
 
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
+
 ## Step 1. Add an Ad Unit
 
-In DFP, [create an ad unit](https://support.google.com/dfp_premium/answer/177203?hl=en).
+In Google Ad Manager, [create an ad unit](https://support.google.com/admanager/answer/177203).
 
 Decide what combination of formats will be permitted on the ad unit.  This will determine what sizes you allow to serve.  The ad unit's sizes must be configured properly to support the combination of formats that will be permitted.
 
-If your ad unit will support native ads, you may want to create a custom **Prebid Native Format** and at least one **Prebid Native Style**.  Examples of each are given in [Setting up Prebid Native in DFP][nativeAdSetup].
+If your ad unit will support native ads, you may want to create a custom **Prebid Native Format** and at least one **Prebid Native Style**.  Examples of each are given in [Setting up Prebid Native in Google Ad Manager][nativeAdSetup].
 
 ## Step 2. Add an Order
 
-In DFP, create a new order.  This order will be associated with the multiple line items needed to run multi-format auctions.
+In Google Ad Manager, create a new order.  This order will be associated with the multiple line items needed to run multi-format auctions.
 
 ## Step 3. Add Line Items and Creatives for each Media Type
 
 Multi-format ad units which support native require at least two distinct sets of line items and creatives:
 
-+ One for [banners and/or outstream video][bannerAdSetup].  Banners and outstream videos will serve into a DFP banner creative.
++ One for [banners and/or outstream video][bannerAdSetup].  Banners and outstream videos will serve into a Google Ad Manager banner creative.
 
 + One for [native][nativeAdSetup].  Native ads will serve into a native creative with native format and styles.
 
@@ -56,7 +60,7 @@ Follow the instructions for creating line items and creatives in [Send all bids 
     ![Set hb_format to 'banner,video']({{site.baseurl}}/assets/images/ad-ops/multi-format/hb_format_video_banner.png)
 
 + Make sure that you're targeting the right sizes for both banner ads and any outstream ads you want to serve in this slot, e.g.,
-    + 1x1 for outstream (or whatever size you pass into DFP as your outstream impression)
+    + 1x1 for outstream (or whatever size you pass into Google Ad Manager as your outstream impression)
     + whatever banner sizes are valid for your site / use case
 
 ### Native
@@ -70,7 +74,7 @@ Follow the instructions for creating line items, creatives, custom native format
 + Make sure you're targeting the right sizes for the native ads you want to serve:
     + Fixed-size native, where you specify one or more absolute sizes
     + Fluid, which expands to fit whatever space it's put in
-    + For more information on fluid vs. fixed, see [the DFP docs](https://support.google.com/dfp_premium/answer/6366914?hl=en)
+    + For more information on fluid vs. fixed, see [the Google Ad Manager docs](https://support.google.com/admanager/answer/6366914)
 
 ## Related Topics
 
@@ -81,6 +85,5 @@ Follow the instructions for creating line items, creatives, custom native format
 
 <!-- Reference Links -->
 
-[bannerAdSetup]: {{site.baseurl}}/adops/send-all-bids-adops.html
-[nativeAdSetup]: {{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html
-[createCustomNativeFormat]: {{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html#create-a-custom-native-ad-format
+[bannerAdSetup]: /adops/send-all-bids-adops.html
+[nativeAdSetup]: /adops/gam-native.html

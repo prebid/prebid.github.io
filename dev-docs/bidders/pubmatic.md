@@ -2,10 +2,21 @@
 layout: bidder
 title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
-hide: true
 biddercode: pubmatic
 media_types: banner, video, native
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+floors_supported: true
+userIds: all
+prebid_member: true
+safeframes_ok: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
+fpd_supported: true
+gvl_id: 76
 ---
 
 ### Prebid Server Note:
@@ -31,6 +42,8 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 | `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
 | `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
 | `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
+| `deals`    | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.) | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |
+| `outstreamAU`    | optional | Oustream AdUnit described in Blue BillyWig UI. This field is mandatory if mimeType is described as video and context is outstream (i.e., for outstream videos)           | `'renderer_test_pubmatic'`           | `string` |
 
 ### Configuration
 
@@ -77,22 +90,22 @@ Support and behavior differs by Prebid.js version
 
 Prebid.js v2.13.0 and later:
 
-adSlot parameter is now optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  All options will send the ad request with all sizes specified in the Prebid ad unit configuration.
+adSlot parameter is now optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  All options will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
 Prebid.js v2.9.0 to v2.12.0:
 
-Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
+Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
-Prebid.js v1.1.18 to v2.8.0:
+Prebid.js v1.18.0 to v2.8.0:
 
-Both formats are supported.  Without Size is the recommended option unless you are using Prebid Server, in which case, With Size is required.   Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
+Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
 
-Prebid.js v1.1.17 and earlier:
+Prebid.js v1.17.0 and earlier:
 
 Only With Size is supported.  To support multi-size ad units, list the PubMatic bidder entry multiple times, once for each size.  Mutli-sized ad units are not supported when using Prebid Server.
 
 ### video parameters
-The PubMatic adapter supports video as of Prebid 1.16.0
+The PubMatic adapter supports video as of Prebid v1.16.0
 
 {: .table .table-bordered .table-striped }
 | Name 					 | Scope    | Description        										  | Example |
@@ -119,29 +132,27 @@ var videoAdUnits = [
     mediaTypes: {
         video: {
             playerSize: [640, 480],           // required
-            context: 'instream'
+            context: 'instream',
+            mimes: ['video/mp4','video/x-flv'],   // required
+            skip: 1,                              // optional
+            minduration: 5,                       // optional
+            maxduration: 30,                      // optional
+            startdelay: 5,                        // optional
+            playbackmethod: [1,3],                // optional
+            api: [ 1, 2 ],                        // optional
+            protocols: [ 2, 3 ],                  // optional
+            battr: [ 13, 14 ],                    // optional
+            linearity: 1,                         // optional
+            placement: 2,                         // optional
+            minbitrate: 10,                       // optional
+            maxbitrate: 10                        // optional
         }
     },
     bids: [{
       bidder: 'pubmatic',
       params: {
         publisherId: '32572',                     // required
-        adSlot: '38519891@300x250',              // required
-        video: {
-          mimes: ['video/mp4','video/x-flv'],   // required
-          skippable: true,                      // optional
-          minduration: 5,                       // optional
-          maxduration: 30,                      // optional
-          startdelay: 5,                        // optional
-          playbackmethod: [1,3],                // optional
-          api: [ 1, 2 ],                        // optional
-          protocols: [ 2, 3 ],                  // optional
-          battr: [ 13, 14 ],                    // optional
-          linearity: 1,                         // optional
-          placement: 2,                         // optional
-          minbitrate: 10,                       // optional
-          maxbitrate: 10                        // optional
-        }
+        adSlot: '38519891@300x250'                // required
       }
     }]
 }]
@@ -190,5 +201,37 @@ pbjs.setConfig({
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }
 });
+```
+
+### Prebid Server Test Request
+
+The following test parameters can be used to verify that Prebid Server is working properly with the
+PubMatic adapter. This example includes an `imp` object with an PubMatic test publisher ID, ad slot,
+and sizes that would match with the test creative.
+
+```
+"imp":[
+      {
+         "id":“"some-impression-id”,
+         "banner":{
+            "format":[
+               {
+                  "w":300,
+                  "h":250
+               },
+               {
+                  "w":300,
+                  "h":600
+               }
+            ]
+         },
+         "ext":{
+            "pubmatic":{
+               "publisherId":“156276”,
+               "adSlot":"pubmatic_test"
+            }
+         }
+      }
+   ]
 ```
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->

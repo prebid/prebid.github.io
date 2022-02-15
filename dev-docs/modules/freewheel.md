@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - Freewheel
-description: Returns targeting kev/value pairs for adpod mediaType adUnits.
+description: Passes key value targeting to Freewheel SDK for adpod mediaType adUnits.
 module_code : freeWheelAdserverVideo
-display_name : Freewheel
+display_name : Freewheel Video Support
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -24,8 +25,8 @@ If you are using FreeWheel as your ad server for long-form header bidding then i
 ```javascript
 pbjs.adServers.freewheel.getTargeting({
     codes: [adUnitCode1],
-    callback: function(err, targeting) { 
-        //pass targeting to player api 
+    callback: function(err, targeting) {
+        //pass targeting to player api
     }
 });
 
@@ -60,7 +61,7 @@ pbjs.adServers.freewheel.getTargeting({
 }
 ```
 
-The values returned by `getTargeting` are concatenation of CPM, industy code, and video duration. FreeWheel SDK will send those values to FreeWheel Ad Server within the following query: 
+The values returned by `getTargeting` are concatenation of CPM, industy code, and video duration. FreeWheel SDK will send those values to FreeWheel Ad Server within the following query:
 
 ```
 http://[customerId].v.fwmrm.net/ad/g/1[globalParams];hb_pb_cat_dur=10.00_400_15s&hb_pb_cat_dur=15.00_402_30s&hb_cacheid=123;[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];

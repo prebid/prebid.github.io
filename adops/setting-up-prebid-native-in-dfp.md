@@ -1,10 +1,10 @@
 ---
 layout: page_v2
-title: Setting up Prebid Native in DFP (Alpha)
-head_title: Setting up Prebid Native in DFP
-description: Setting up Prebid Native in DFP
+title: Setting up Prebid Native in Google Ad Manager (Alpha)
+head_title: Setting up Prebid Native in Google Ad Manager
+description: Setting up Prebid Native in Google Ad Manager
 pid: 3
-hide: false
+
 top_nav_section: adops
 nav_section: tutorials
 sidebarType: 3
@@ -12,12 +12,18 @@ sidebarType: 3
 
 
 
-# Setting up Prebid Native in DFP (Alpha)
+# Setting up Prebid Native in Google Ad Manager (Alpha)
 {: .no_toc}
 
-This page describes how to set up native creatives in DFP for use with Prebid.js.
+{% capture version1 %}
+The procedures in this document still work, but we strongly recommend
+using the improved [Guide for Setting up Prebid Native in GAM](/adops/gam-native.html).
+{% endcapture %}
+{% include alerts/alert_warning.html content=version1 %}
 
-For more information about DFP native ad setup, see the [DFP native ads documentation](https://support.google.com/dfp_premium/answer/6366845?hl=en).
+This page describes how to set up native creatives in Google Ad Manager for use with Prebid.js.
+
+For more information about Google Ad Manager native ad setup, see the [Google Ad Manager native ads documentation](https://support.google.com/admanager/answer/6366845).
 
 * TOC
 {:toc}
@@ -144,7 +150,5 @@ p {
 ## Related Topics
 
 + [Show Native Ads with Prebid.js]({{site.github.url}}/dev-docs/show-native-ads.html) (Engineering setup instructions)
-+ [Step by Step Guide to DFP Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
++ [Step by Step Guide to Google Ad Manager Setup]({{site.github.url}}/adops/step-by-step.html) (Send top bid to ad server)
 + [Send all bids to the ad server]({{site.github.url}}/adops/send-all-bids-adops.html)
-
-

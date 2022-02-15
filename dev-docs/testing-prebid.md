@@ -6,7 +6,7 @@ description: How to write tests for the Prebid.js library
 pid: 199
 
 top_nav_section: dev_docs
-hide: true
+
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -104,8 +104,8 @@ describe('<Adapter>', () => {
 
 The Prebid.js testing stack contains some of the following tools. It may be helpful to consult their documentation during the testing process.
 
-- [Mocha - test framework](http://mochajs.org/)
-- [Chai - BDD/TDD assertion library](http://chaijs.com/)
-- [Sinon - spy, stub, and mock library](http://sinonjs.org/)
+- [Mocha - test framework](https://mochajs.org/)
+- [Chai - BDD/TDD assertion library](https://chaijs.com/)
+- [Sinon - spy, stub, and mock library](https://sinonjs.org/)
 
 </div>

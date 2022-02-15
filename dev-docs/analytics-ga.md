@@ -6,7 +6,7 @@ description: Prebid.js Analytics with GA
 pid: 30
 top_nav_section: dev_docs
 nav_section: reference
-hide: true
+
 ---
 
 
@@ -48,7 +48,7 @@ pbjs.que.push(function() {
 
 ##### Distribution Data
 
-Note: we recommend disabling `enableDistribution` if you are using more than 4 bidders. This is because GA throttles the number of events that can be logged (20 initial + 2/second). Distribution data provides you with a histogram of CPM distribution and bid load time (latency) for each bidder. See distribution data [demo here](/blog/header-bidding-analytics-coming-soon/#histogram-analysis-of-latency-and-cpm-distribution).
+Note: we recommend disabling `enableDistribution` if you are using more than 4 bidders. This is because GA throttles the number of events that can be logged (20 initial + 2/second). Distribution data provides you with a histogram of CPM distribution and bid load time (latency) for each bidder. See distribution data [demo here](https://prebid.org/blog/header-bidding-analytics-coming-soon/#histogram-analysis-of-latency-and-cpm-distribution).
 
 See [this link](https://developers.google.com/analytics/devguides/collection/protocol/v1/limits-quotas) for details on GA's throttling.
 
@@ -89,7 +89,7 @@ In this example, the page has 1 ad unit with 3 bidders. The timeout is set to 40
 |	274ms |	Pubmatic's bid came back with a CPM of $0 and a latency of 259ms. |	No bid event sent out because it is a no bid. <br> Event 1: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`appnexus`, Value=259 |
 | 415ms | Timeout is up because 400ms has passed since bid requests were sent. OpenX has timed out. | Event 1: Category=`Prebid.js Bids`, Action=`Timeouts`, Label=`openx`, Value=1 |
 | 476ms | OpenX's bid came back with a CPM of $2.831 and a latency of 461ms (a bid may still come back after a timeout). | Event 1: Category=`Prebid.js Bids`, Action=`Bids`, Label=`openx`, Value=283. <br> Event 2: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`openx`, Value=461 |
-| 572ms | DFP completed its auction and the AppNexus $2.314 bid won. | Event 3: Category=`Prebid.js Bids`, Action=`Wins`, Label=`appnexus`, Value=231 |
+| 572ms | Google Ad Manager completed its auction and the AppNexus $2.314 bid won. | Event 3: Category=`Prebid.js Bids`, Action=`Wins`, Label=`appnexus`, Value=231 |
 
 
 Note that a Win event is a true win, meaning that it is not just the highest bid in the header bidding auction, but the winning bid across the entire auction hosted by the ad server and its creative is served back to the page.

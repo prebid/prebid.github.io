@@ -2,8 +2,10 @@
 layout: bidder
 title: Collectcent
 description: Prebid Collectcent Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: collectcent
+enable_download: false
+pbjs_version_notes: not in 5.x
 ---
 
 ### Bid Params
@@ -12,4 +14,4 @@ biddercode: collectcent
 | Name           | Scope      | Description                                                    | Example            |type|
 | :-----------   | :--------- | :------------                                                  | :----------------- |:---|
 | `placementId` | required   | Placement Id will be generated on Collectcent Platform. | 0                        |integer|
-| `traffic`      | optional   | Type traffic                                             | 'banner'                 |string|
+| `traffic`      | required   | Type traffic                                             | 'banner'                 |string|

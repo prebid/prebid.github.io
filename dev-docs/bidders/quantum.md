@@ -2,7 +2,7 @@
 layout: bidder
 title: Quantum
 description: Prebid Quantum Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: quantum
 media_types: native
 ---
