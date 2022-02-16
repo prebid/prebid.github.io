@@ -1,12 +1,12 @@
 ---
 layout: bidder
-title: MediaFuse
-description: Prebid MediaFuse Bidder Adapter
+title: Streamkey
+description: Prebid Streamkey.tv Bidder Adapter
 pbjs: true
 pbs: true
-biddercode: mediafuse
+biddercode: streamkey
 aliasCode: adtelligent
-media_types: banner, video
+media_types: video
 ---
 
 ### Bid params
@@ -14,7 +14,7 @@ media_types: banner, video
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The traffic source ID | `529814` | `integer` |
+| `aid` | required | The traffic source ID | `232131` | `integer` |
 
 
 ### Test Parameters
@@ -31,7 +31,7 @@ media_types: banner, video
           }
         },
         bids: [{
-          bidder: 'mediafuse',
+          bidder: 'streamkey',
           params: {
             aid: 331133
           }
@@ -48,23 +48,11 @@ media_types: banner, video
           }
         },
         bids: [{
-          bidder: 'mediafuse',
+          bidder: 'streamkey',
           params: {
             aid: 331133
           }
         }]
       },
-
-      // Banner adUnit
-      {
-        code: 'div-test-div',
-        sizes: [[300, 250]],
-        bids: [{
-          bidder: 'mediafuse',
-          params: {
-            aid: 529814
-          }
-        }]
-      }
     ];
 ```

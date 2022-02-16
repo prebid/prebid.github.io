@@ -9,7 +9,7 @@ coppa_supported: true
 schain_supported: true
 media_types: banner, video, native
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
 pbs: false
 ---

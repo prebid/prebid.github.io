@@ -6,7 +6,8 @@ pbjs: true
 biddercode: stv
 media_types: banner,video
 gdpr_supported: false
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

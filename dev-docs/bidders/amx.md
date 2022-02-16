@@ -14,6 +14,7 @@ media_types: banner, video
 pbjs: true
 pbs: true
 pbs_app_supported: true
+fpd_supported: true
 gvl_id: 737
 ---
 
@@ -22,8 +23,8 @@ gvl_id: 737
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                     | Example                         | Type     |
 |-------------|----------|-----------------------------------------------------------------|---------------------------------|----------|
+| `tagId`     | required | Tag ID                                                          | `'cHJlYmlkLm9yZw'`              | `string` |
 | `testMode`  | optional | Activate 100% fill ads                                          | `true`                          | `boolean`|
-| `tagId`     | optional | Tag ID                                                          | `'cHJlYmlkLm9yZw'`              | `string` |
 | `adUnitId`  | optional | Ad Unit ID used in reporting. Will default to `bid.adUnitCode`  | `'sticky_banner'`               | `string` |
 
 ### Test Parameters
@@ -37,4 +38,6 @@ To enable 100% fill test ads, you can use the following `params`:
 }
 ```
 
-Note that the `tagId` is case-sensitive. This will produce a bid at $10 with a test creative.
+This will produce a bid at $10 with a test creative.
+
+Note that the `tagId` is case-sensitive. Do not use `cHJlYmlkLm9yZw` in production environments: this ID is for testing only.

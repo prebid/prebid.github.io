@@ -4,6 +4,7 @@ title: Adrelevantis
 description: Prebid Adrelevantis (adrelevantis.xyz) Bidder Adaptor
 biddercode: adrelevantis
 media_types: banner, video, native
+fpd_supported: true
 pbjs: true
 ---
 
