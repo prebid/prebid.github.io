@@ -593,6 +593,7 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 {: .table .table-bordered .table-striped }
 | Path | Description |
 | - | - |
+| `.DemandSource` | Bidder-specific demand source |
 | `.NetworkID` | Bidder-specific network/DSP id |
 | `.NetworkName` | Bidder-specific network/DSP name |
 | `.AgencyID` | Bidder-specific agency id |
