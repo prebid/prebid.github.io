@@ -80,7 +80,7 @@ The table below has the options that are common across ID systems. See the secti
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -953,6 +953,64 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### Just ID
+
+[Justtag Group](https://www.justtag.com/en) is a European, privacy focused DMP and segment provider. Having a leading position in Poland and growing presence in the CEE region, we created Just ID - an alternative ID solution, designed to respect users’ privacy choices which doesn’t rely on 3rd party cookies. Our aim is to help Publishers and Advertisers to recognize users across various environments and enable ad-tech market players with a smooth transition into post 3rd party cookie era.
+
+#### Just ID Modes
+
+- **BASIC** - In this mode we rely on Justtag library that already exists on publisher page. Typicaly that library expose global variable called `__atm`
+
+- **COMBINED** - Just ID generation process may differ between various cases depends on publishers. This mode combines our js library with prebid for ease of integration
+
+If you have any questions about Just ID, please reach out by emailing [prebid@justtag.com](mailto:prebid@justtag.com).
+
+#### Just ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under usersync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | ID of the module - `'justId'` | `'justId'` |
+| params | Optional | Object | Details for Just ID syncing. | |
+| params.mode | Optional | String | Mode in which the module works. Available Modes: `'COMBINED'`, `'BASIC'`(default)   | `'COMBINED'` |
+| params.atmVarName | Optional | String | Name of global object property that point to Justtag ATM Library. Defaults to `'__atm'` | `'__atm'` |
+| params.url | Optional | String | API Url, **required** in `COMBINED` mode | `'https://id.nsaudience.pl/getId.js'` |
+| params.partner | Optional | String | This is the Justtag Partner Id which may be required in some custom integrations with Justtag | `'some-publisher'` |
+
+#### Just ID Example
+
+ex. 1. Mode `COMBINED`
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'justId',
+            params: {
+                mode: 'COMBINED',
+                url: 'https://id.nsaudience.pl/getId.js'
+            }
+        }]
+    }
+});
+{% endhighlight %}
+
+ex. 2. Mode `BASIC`
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'justId'
+        }]
+    }
+});
+{% endhighlight %}
+
+#### Just ID  Disclosure
+
+This module in `COMBINED` mode loads external JavaScript to generate optimal quality user ID. It is possible to retrieve user ID, without loading additional script by this module in `BASIC` mode.
 
 ### Kinesso ID
 
