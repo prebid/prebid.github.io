@@ -114,7 +114,7 @@ You can also print this data to the console in [table format](#see-all-bids-in-t
 Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`.
 
 {: .pb-alert .pb-alert-warning :}
-While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid.
+While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid; for that functionality, see the [debugging module](/dev-docs/modules/debugging.html).
 
 ```javascript
 // Filtering bidders
