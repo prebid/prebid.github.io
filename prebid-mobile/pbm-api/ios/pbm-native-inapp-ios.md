@@ -29,7 +29,7 @@ The cached assets might expire. If this occurs the publisher will receive a noti
 {% include alerts/alert_important.html content=importantNote %}
 
 {% capture importantNote %}
-Starting from the `1.14.0-beta1` version the converting of the native ad template to the ad objects is changed respectively to the IAB specs. See this [issue](https://github.com/prebid/prebid-mobile-ios/issues/494) for the details. If you update SDK from the previous version - verify the native ads integration before the release.
+Starting with the `1.14.0-beta1` version the converting of the native ad template to the ad objects is changed respectively to the IAB specs. See this [issue](https://github.com/prebid/prebid-mobile-ios/issues/494) for the details. If you update SDK from the previous version - verify the native ads integration before the release.
 {% endcapture %}
 
 {% include alerts/alert_important.html content=importantNote %}
