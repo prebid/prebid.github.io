@@ -228,6 +228,10 @@ either specific bid adapter(s) or all bid adapters the permission for these bids
 
 ##### 2.6. storageAllowed
 
-By default, bid adapters can access browser cookies and local storage. This can be disabled by setting `storageAllowed` to `false`.     
+By default, bid adapters can access browser cookies and local storage. This can be disabled by setting `storageAllowed` to `false`.
 
+Note that:
+ - [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
+ - `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
+ 
 <hr class="full-rule" />
