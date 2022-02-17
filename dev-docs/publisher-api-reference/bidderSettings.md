@@ -44,7 +44,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
-| storageAllowed | standard or adapter-specific | 6.11.0 | true | Allow use of cookies and local storage. |  
+| storageAllowed | standard or adapter-specific | 6.13.0 | true | Allow use of cookies and local storage. |  
 
 ##### 2.1. adserverTargeting
 
