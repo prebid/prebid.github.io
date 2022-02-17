@@ -1,16 +1,15 @@
 ---
 layout: bidder
-title: MediaSquare
-description: Prebid MediaSquare Bidder Adapter
+title: Nexx360
+description: Prebid Nexx360 Bidder Adapter
 pbjs: true
-biddercode: mediasquare
+biddercode: nexx360
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
 userIds: id5Id
-media_types: banner, video, native
-floors_supported: true
-glv_id: 791
+media_types: banner
+glv_id: 965
 ---
 
 
@@ -19,5 +18,5 @@ glv_id: 791
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                              | Type      |
 |---------------|----------|-----------------------|--------------------------------------|-----------|
-| `owner `      | required | Mediasquare owner ID  | `'test'`                               | `string`  |
-| `code`        | required | Mediasquare code ID   | `'publishername_atf_desktop_rg_pave'`  | `string`  |
+| `account`     | required | Mediasquare owner ID  | `'1067'`                            | `string`  |
+| `tagId`       | required | Mediasquare code ID   | `'luvxjvgn'`                        | `string`  |

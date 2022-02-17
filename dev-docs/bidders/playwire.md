@@ -14,6 +14,7 @@ userIds: all
 tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
+prebid_member: true
 ---
 
 
