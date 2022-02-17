@@ -13,12 +13,12 @@ pbjs.getConsentMetadata() // returns e.g.
     "coppa": false,
     "gdpr": {
         "apiVersion": 2,
-        "consentStringExists": true,
+        "consentStringSize": 100,
         "gdprApplies": true,
-        "timestamp": 1644358143306
+        "generatedAt": 1644358143306
     },
     "usp": {
-        "timestamp": 1644358143306,
+        "generatedAt": 1644358143306,
         "usp": "1YYY"
     }
 }
