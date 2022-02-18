@@ -12,7 +12,7 @@ dchain_supported: false
 userIds: unifiedId, uid2
 media_types: banner, video
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 pbjs: true
 pbs: false
 prebid_member: true
@@ -30,10 +30,7 @@ Name | Scope | Description | Example | Type
 `publisherId` | required | The publisher ID. This should be the same as the seller_id in the sellers.json for the site being trafficked. | `'1427ab10f2e448057ed3b422'` | `String`
 `siteId` | required | The publisher defined site ID. This should be unique per site. Can be any string that is under 50 characters. | `'site_123'` | `String`
 `placementId` | required | The publisher defined placement ID. Can be any string that is under 128 characters. | `'side-Bar_1/123'` | `String`
-`categories` | recommended | Array of IAB content categories describing the current page. See Section 5.1 of [OpenRTB 2.5 docs](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for possible values. | `['IAB23', 'IAB11-3']` | `Array[String]`
-`secure` | optional | Override the bidder's determination of whether the request needs secure assets, where `1` = force secure assets on the response, `0` = force non-secure assets. | `1` | `integer`
 `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object`
-`keywords` | optional | Set of keywords used for deal targeting. A keyword can be any string that is 128 characters or less. There can be a maximum of 10 keywords. | `['shopping', 'highViewability']` | `Array[String]`
 
 ### Banner Object
 
@@ -68,12 +65,9 @@ var bannerAdUnit = {
                 publisherId: '1427ab10f2e448057ed3b422',
                 siteId: 'site-123',
                 placementId: 'sidebar_1',
-                categories: ['IAB23', 'IAB11-3'],
-                secure: 1,
                 banner: {
                     expdir: [1, 3]
-                },
-                keywords: ['highVisibility', 'holiday shopping']
+                }
             }
         }
     ]
@@ -85,7 +79,7 @@ var bannerAdUnit = {
 #### `mediaTypes.video` Parameters
 
 The TTD adapter for video requires certain parameters in the AdUnit's
-[mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition. Specifically, `minduration`, `maxduration`, `playerSize`, `api`, `mimes`, `placement`, and `protocols` are all required for video ad units. `startdelay`, `playbackmethod`, and `pos` are recommended. `minbitrate`, `maxbitrate`, `skip`, `skipmin`, and `skipafter` are optional.
+[mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition. Specifically, `minduration`, `maxduration`, `api`, `mimes`, `placement`, and `protocols` are all required for video ad units. `playerSize`, `startdelay`, `playbackmethod`, and `pos` are recommended. `minbitrate`, `maxbitrate`, `skip`, `skipmin`, and `skipafter` are optional.
 
 Note: TTD does not currently support `adpod` video contexts.
 
