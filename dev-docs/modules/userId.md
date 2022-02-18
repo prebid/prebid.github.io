@@ -1411,8 +1411,6 @@ pbjs.setConfig({
 
 #### Parameters for the Novatiq Module
 
-#### Parameters for the Novatiq Module
-
 <div class="table-responsive" markdown="1">
 | Param  | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
@@ -1423,7 +1421,7 @@ pbjs.setConfig({
 | params.sharedIdName | Optional | String | Same as the SharedID "name" parameter <br /> Defaults to "_pubcid" | `"demo_pubcid"` |
 | params.useCallbacks | Optional | Boolean | Use callbacks for custom integrations | `false` |
 | params.urlParams | Optional | Object | Sync URl configuration for custom integrations | |
-| params.urlParams.novatiqId | Optional | String | The name of the parameter used to indicate the novatiq ID uuid | `snowflake` |
+| params.urlParams.novatiqId | Optional | String | The name of the parameter used to indicate the Novatiq ID uuid | `snowflake` |
 | params.urlParams.useStandardUuid | Optional | Boolean | Use a standard UUID format, or the Novatiq UUID format | `false` |
 | params.urlParams.useSspId | Optional | Boolean | Send the sspid (sourceid) along with the sync request <br > Makes the params.sourceid optional if set | `false` |
 | params.urlParams.useSspHost | Optional | Boolean | Send the ssphost along with the sync request | `false` |
