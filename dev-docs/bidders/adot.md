@@ -8,6 +8,7 @@ gdpr_supported: true
 gvl_id: 272
 pbjs: true
 pbs: true
+floors_supported: true
 ---
 
 ### Prebid JS

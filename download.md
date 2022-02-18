@@ -288,6 +288,9 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="justIdSystem" class="bidder-check-box"> JustId</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="kinessoIdSystem" class="bidder-check-box"> Kinesso ID</label>
   </div></div>
     <div class="col-md-4"><div class="checkbox">
@@ -320,6 +323,9 @@ These modules may require accounts with a service provider.<br/>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
   </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="trustpidSystem" class="bidder-check-box"> Trustpid</label>
+  </div></div>  
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
   </div></div>  
