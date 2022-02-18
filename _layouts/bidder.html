@@ -35,9 +35,15 @@
 
                 <h2>{{ page.title }}</h2>
 
+                {% if page.enable_download == false %}
+                  <div class="pb-bidder-s2">
+                    <h4>Note:</h4> This adapter is not available in current versions of Prebid.js. Reason: {{page.pbjs_version_notes}}
+                  </div>
+                {% endif %}
+
                 {% if page.s2s_only == true %}
                   <div class="pb-bidder-s2">
-                    <h3>Note:</h3> This is a S2S adapter only.</h3>
+                    <h3>Note:</h3> This is a Prebid Server adapter only.
                   </div>
                 {% endif %}
 
