@@ -59,5 +59,3 @@ Sizes set in the `adUnit` object will also apply to the ucfunnel bid requests.
 |--------|----------|-------------------------------------------------|---------|----------|
 | `adunitid` | required | ID for ad unit |         | `string` |
 | `partnerid` | required | ID for partner |         | `string` |
-
-```

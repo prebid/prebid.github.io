@@ -3,7 +3,7 @@ layout: bidder
 title: Yieldlab
 description: Prebid Yieldlab Bidder Adapter
 biddercode: yieldlab
-media_types: video
+media_types: video, banner, native
 gdpr_supported: true
 schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
