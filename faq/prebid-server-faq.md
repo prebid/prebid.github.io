@@ -210,5 +210,5 @@ and parameters were placed was imp[].ext. Now the recommended location
 is imp[].ext.prebid.bidder. This change was driven by the existence of
 other fields in imp[].ext that aren't bidders, like `skadn`, `data`, etc.
 
-Bidders will be copied from imp[].ext to imp[].ext.prebid.bidder for years to come, but we would ask that new implementations of stored requests
+Bidders are copied from imp[].ext to imp[].ext.prebid.bidder, and they will be copied for years to come, but we would ask that new implementations of stored requests
 utilize the new location.
