@@ -38,8 +38,12 @@ This is a sample OpenRTB 2.5 bid request:
       }]
     },
     "ext": {
-      "appnexus": {
-        "placementId": 12883451
+      "prebid": {
+        "bidder": {
+          "bidderA": {
+            "placement": 12883451
+          }
+        }
       }
     }
   }],
