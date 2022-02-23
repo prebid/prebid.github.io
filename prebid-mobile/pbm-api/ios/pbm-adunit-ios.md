@@ -193,8 +193,56 @@ func removeContextKeyword(_ element: String)
 func clearContextKeywords()
 ```
 
+### App Content
 
+The `ContentObject` alows you to provide more details about content whithin the app. All proeprties provided to `ContentObject` will be sent in the `app.content` field of the bid request.
 
+```
+func setAppContent(_ appContent: ContentObject) 
+```
+   
+```  
+func getAppContent() -> ContentObject? 
+```
+
+```        
+func clearAppContent() 
+```
+    
+### App Content Data
+
+Using the next methods you can add `app.content.data` objects to the bid requests.  
+    
+```
+func addAppContentData(_ dataObjects: [ContentDataObject]) 
+```
+
+```
+func removeAppContentData(_ dataObject: ContentDataObject) 
+```
+    
+```
+func clearAppContentData() 
+```
+
+### User Data
+
+Using the next methods you can add `user.data` objects to the bid requests.  
+
+```
+func getUserData() -> [PBMORTBContentData]? 
+```    
+```
+func addUserData(_ userDataObjects: [PBMORTBContentData]) 
+```
+
+```    
+func removeUserData(_ userDataObject: PBMORTBContentData) 
+```
+
+```    
+func clearUserData() 
+```
 
 ### Data Object
 
