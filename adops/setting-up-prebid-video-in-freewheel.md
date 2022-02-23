@@ -3,14 +3,13 @@ layout: page_v2
 title: Setting up Prebid Video in FreeWheel
 head_title: Setting up Prebid Video in FreeWheel
 description: Setting up Prebid Video in FreeWheel
-pid: 3
-
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
 
 # FreeWheel Guide for Premium Long-Form Video
+
+{: .alert.alert-warning :}
+This guide is not written, maintained, or endorsed by Freewheel. Freewheel recommends speaking to your account team before implementing any header-bidding setup to ensure full implications for direct-sold ad delivery, forecasting, and reporting is understood.
 
 This page describes how to set up Campaigns for long form video using FreeWheel's ad server.
 
