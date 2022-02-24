@@ -24,3 +24,4 @@ Please give a short description and check the matching checkboxes to help us rev
 ## 📋 Checklist
 
 - [ ] Related pull requests in prebid.js or server are linked
+- [ ] For new adapters check [submitting your adapter docs](https://docs.prebid.org/dev-docs/bidder-adaptor.html#submitting-your-adapter)
