@@ -80,7 +80,7 @@ The table below has the options that are common across ID systems. See the secti
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"admixerId"`, `"qid"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -235,6 +235,43 @@ gulp build --modules=admixerIdSystem
        }
    });
 {% endhighlight %}
+
+### adQuery QiD
+
+The adQuery QiD is a first-party identifier designed for publishers using the Adquery adapter. For more information please contact [prebid@adquery.io](prebid@adquery.io)
+
+#### adQuery QiD Configuration
+
+First, add the adQuery QiD module to your Prebid.js build:
+
+```shell
+gulp build --modules=userId,adqueryIdSystem
+```
+
+Then configure the qui in your `userSync` configuration:
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'qid',
+            storage: {
+                name: 'qid',
+                type: 'html5',
+                expires: 365,
+            }
+        }]
+    }
+});
+```
+
+This will add a `userId.qid` property to all bidRequests. This will be read by the Adquery bid adapter, and any other adapters that support EIDs:
+
+```javascript
+{
+  qid: 'p9v2dpnuckkzhuc92i'
+}
+```
 
 ### Adtelligent
 
@@ -2215,6 +2252,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
 | --- | --- | --- | --- | --- | --- | --- |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
+| adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
 | Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
 | Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
