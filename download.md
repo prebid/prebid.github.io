@@ -249,6 +249,9 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="adqueryIdSystem" class="bidder-check-box"> adQuery QiD</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="amxIdSystem" class="bidder-check-box"> AMX RTB ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
