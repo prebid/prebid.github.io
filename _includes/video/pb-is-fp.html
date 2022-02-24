@@ -2,32 +2,32 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
     <link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/stable/style/flowplayer.css">
     <script src="//cdn.flowplayer.com/releases/native/stable/flowplayer.min.js"></script>
     <script src="//cdn.flowplayer.com/releases/native/stable/plugins/ads.min.js"></script>
     <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    
+
     <style>
 	        #player {
 	            max-width: 40em;
 	            width: 100%;
 	            float: left;
 	        }
-	
+
 	        #controls {
 	            float: left;
 	            padding: 1em;
 	        }
 	    </style>
-	    
+
     <script type="text/javascript">
-	    
+
       var pbjs = pbjs || {};
       pbjs.que = pbjs.que || [];
 
@@ -100,9 +100,9 @@
           }
         });
       });
-			     
+
 	</script>
-    
+
 </head>
 
 <body>
