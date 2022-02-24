@@ -468,6 +468,14 @@
   subgroup: 8
 
 - sbSecId: 1
+  title: Ad Server Key Values
+  link: /features/adServerKvps.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
   title: Native Ads
   link: /prebid/native-implementation.html
   isHeader: 0
@@ -1836,6 +1844,14 @@
 - sbSecId: 5
   title: Feature Summary
   link: /prebid-server/features/pbs-feature-idx.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Native
+  link: /prebid-server/features/pbs-native.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
