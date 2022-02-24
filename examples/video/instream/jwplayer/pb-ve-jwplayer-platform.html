@@ -1,7 +1,7 @@
 ---
 layout: video_sample
-title: Prebid Video | Instream Example with  JW Player (Platform) 
-description: An example of an instream pre-roll ad using Prebid.js and JW Player (Platform).  
+title: Prebid Video | Instream Example with  JW Player (Platform)
+description: An example of an instream pre-roll ad using Prebid.js and JW Player (Platform).
 videoType: pb-is-jw01
 isVideo: true
 sidebarType: 4
@@ -15,31 +15,31 @@ sidebarType: 4
 			<h1>{{ page.title }}</h1>
 			<p>{{page.description }}</p>
 		</div>
-		
+
 		<!--video warning-->
 		<div class="pb-alert pb-alert-important" style="width:60vw;">
 			<p style="color:#85720f"><b>Important:</b>
 			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
 		</div>
-		
+
 		<!--video placeholder | this should be formatted per the needs of each player-->
 		<div id="myElement1"></div>
-		
+
 		<!--video code fencing-->
-					
+
 		<!--header code example-->
 		<div class="pb-alert pb-alert-warning" style="width:60vw;">
 			<i class="fa fa-exclamation-circle"></i>
 			<p style="color:#a94443"><b>Warning:</b>
 			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
 		</div>
-		
+
 		<div style="width:60vw;">
 			<h4>Place this code in the page header.</h4>
 <pre class="pb-code-hl" style="width:60vw;">
 <!--put javascript code here-->
 &lt;!--Prebid.js and video player code--&gt;
-&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;
+&lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
 &lt;script&gt;
     var pbjs = pbjs || {};
     pbjs.que = pbjs.que || [];
@@ -72,7 +72,7 @@ sidebarType: 4
 
     pbjs.que.push(function() {
 	    //put your adunits here<br>
-        pbjs.addAdUnits(videoAdUnit); 
+        pbjs.addAdUnits(videoAdUnit);
 
         pbjs.setConfig({
             debug: true,
@@ -103,7 +103,7 @@ sidebarType: 4
 </pre>
 
 		</div>
-					
+
 		<!--body code example-->
 		<div style="width:60vw;">
 			<h4>Place this code in the page body.</h4>
@@ -140,14 +140,14 @@ sidebarType: 4
         tempTag = false;
     }
 
-&lt;/script&gt;   
+&lt;/script&gt;
 
 </pre>
 		</div>
-	
+
 	</div>
 </div>
-	
+
 <!--video player code-->
 <!-- This line loads a player without loading any video content -->
 <!-- Replace this with the correct url for your player -->
@@ -179,8 +179,7 @@ sidebarType: 4
         tempTag = false;
     }
 
-</script>   
+</script>
 
-	
+
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
-	
