@@ -5,7 +5,9 @@ description:
 ---
 
 
-`setConfig` supports a number of advanced configuration options:
+`setConfig` supports a number of configuration options. Every
+call to setConfig overwrites supplied values at the top level. e.g. if `ortb2` is provided as a value, any previously-supplied `ortb2` values will disappear.
+If this is not the desired behavior, there is a [`mergeConfig()`](mergeConfig.html) function that will preserve previous values to do not conflict with the newly supplied values.
 
 See below for usage examples.
 
