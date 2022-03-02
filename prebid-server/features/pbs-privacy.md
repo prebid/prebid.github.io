@@ -58,7 +58,7 @@ There are a number of GDPR configuration settings that PBS Host Companies must
 consider:
 
 - **GDPR enabled** - Allows the host company to turn off GDPR support. Default setting is enabled=true.
-- **Default GDPR applies** - How Prebid Server should respond if the incoming request doesn't have the `gdpr` flag. (Note: this config is currently called `usersync_if_ambiguous` in PBS-Go and gdpr.default-value in PBS-Java.)
+- **Default GDPR applies** - How Prebid Server should respond if the incoming request doesn't have the `gdpr` flag. (Note: this config is currently called `gdpr.default_value` in PBS-Go and `gdpr.default-value` in PBS-Java.)
 - **Host company GVL ID** - Currently PBS requires the host company to have a GVL-ID or the setting of the `uids` cookie in GDPR scope will fail.
 - **GDPR enforcement flags** - for each Purpose
 - **Host Cookie TTL** - The default expiration time of the `uids` cookie set in the host company domain should be defined to match what's in the TCF 2.1 `maxCookieAgeSeconds` GVL field. (This is the host-cookie.ttl-days setting in both Go and Java.)
