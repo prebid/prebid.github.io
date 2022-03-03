@@ -131,6 +131,19 @@ none
 boolean isShareGeoLocation()
 ```
 
+### setCustomHeaders
+
+The next methods allow to customize the HTTP call to the prebid server:
+
+```
+public static void setCustomHeaders(HashMap<String, String> customHeaders)
+```
+
+Also you can inspect the current custon headers using: 
+
+```
+public static HashMap<String, String> getCustomHeaders()
+```
 
 ### setApplicationContext
 
