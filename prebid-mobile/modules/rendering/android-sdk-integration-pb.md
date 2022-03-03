@@ -40,6 +40,19 @@ Rendering API provides three kinds of API classes for these ad formats:
 - **Interstitial API** - for **Display** and **Video** Interstitials
 - **Rewarded API** - for **Rewarded Video**
 
+### Init Prebid Rendering Module
+
+To start running bid requests you have to provide an **Account Id** for your organization on Prebid server to the SDK:
+
+```
+PrebidRenderingSettings.setBidServerHost(HOST)
+PrebidRenderingSettings.setAccountId(YOUR_ACCOUNT_ID)
+```
+
+The best place to do it is the `onCreate()` method of your Application class.
+
+> **NOTE:** The account ID is an identifier of the **Stored Request**.
+
 ### Banner API
 
 Integration example:
