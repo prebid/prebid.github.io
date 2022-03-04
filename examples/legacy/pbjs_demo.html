@@ -90,7 +90,7 @@
                 eventLogger.logEventTime('loadPBJS', 'start');
                 var d = document, pbs = d.createElement("script");
                 pbs.type = "text/javascript";
-                pbs.src = 'https://acdn.adnxs.com/prebid/not-for-prod/prebid.js';
+                pbs.src = 'https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js';
                 var target = document.getElementsByTagName("head")[0];
                 target.insertBefore(pbs, target.firstChild);
                 eventLogger.logEventTime('loadPBJS', 'end');

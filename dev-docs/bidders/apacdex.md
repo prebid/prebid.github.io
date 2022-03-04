@@ -9,7 +9,9 @@ gdpr_supported: true
 schain_supported: true
 usp_supported: true
 userIds: all
-getFloor: true
+floors_supported: true
+pbs: true
+pbs_app_supported: true
 ---
 
 ### Table of Contents
@@ -32,6 +34,7 @@ getFloor: true
 | `siteId`*     | required | Publisher site ID from Apacdex                                                      | `'apacdex1234'`                                   | `string` |
 | `floorPrice`  | optional | CPM bidfloor in USD                                                                 | `0.03`                                            | `float`  |
 | `geo`         | optional | GEO data of device. See [Geo Object](#apacdex-geo-object) for details.              | `{"lat":17.98928,"lon":99.7741712,"accuracy":20}` | `object` |
+
 (*) Please do not use `placementId` and `siteId` at the same time.
 
 <a name="apacdex-geo-object" />

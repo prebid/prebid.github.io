@@ -95,6 +95,7 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 |  getBidRequestData  | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
 |  onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
 |  onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
+|  onBidRequestEvent | function |optional | listens to the BID_REQUESTED event and calls a sub-module function that lets it know when a bid is about to be requested | bidRequest, config, userConsent |
 |  onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
 
 For example:
@@ -181,9 +182,9 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
     - userConsent object (see above)
 2. Your sub-module may update the reqBidsConfigObj and hit the callback. To inject data into the bid requests, you should follow one of these conventions:
     - Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
-        - For AdUnit-specific first party data, set AdUnit.fpd.context.data.ATTRIBUTES
-        - For global first party data, call 'pbjs.[getConfig](/dev-docs/publisher-api-reference/setConfig.html)({fpd.context})' or 'pbjs.getConfig({fpd.user})', merge in the new global data, and update with `pbjs.[setConfig](/dev-docs/publisher-api-reference/setConfig.html)()'.
-        - If the data is not meant to go to all bidders, the module should use 'pbjs.[setBidderConfig](/dev-docs/publisher-api-reference/setBidderConfig.html)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
+        - For AdUnit-specific first party data, set AdUnit.ortb2Imp.ext.data.ATTRIBUTES
+        - For global first party data, call 'pbjs.[mergeConfig](/dev-docs/publisher-api-reference/mergeConfig.html)()' 
+        - If the data is not meant to go to all bidders, the module should use 'pbjs.[mergeBidderConfig](/dev-docs/publisher-api-reference/mergeBidderConfig.html)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
     - Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
 
 **Code Example**
@@ -204,7 +205,7 @@ function init(config, userConsent) {
 
 function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
   // do stuff
-  // put data in AdUnit.fpd.* or rtd.RTDPROVIDERCODE.*
+  // put data in AdUnit.ortb2Imp.ext.data.* or rtd.RTDPROVIDERCODE.*
   callback();
 }
 
@@ -230,6 +231,7 @@ export const subModuleObj = {
   init: init,
   onAuctionInitEvent: onAuctionInit,
   onAuctionEndEvent: onAuctionEnd,
+  onBidRequestEvent: onBidRequest,
   onBidResponseEvent: onBidResponse
 };
 
@@ -241,8 +243,12 @@ function onAuctionEnd(auctionDetails, config, userConsent) {
   // take note of auction end
 }
 
+function onBidRequest(bidRequest, config, userConsent) {
+  // optionally update bidRequest
+}
+
 function onBidResponse(bidResponse, config, userConsent) {
-  //optionally update bidResponse
+  // optionally update bidResponse
 }
 
 function init(config, userConsent) {
@@ -280,6 +286,7 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
     ---
     layout: page_v2
     title: Example Module
+    display_name: Example
     description: Useful statement for what this does
     page_type: module
     module_type: rtd

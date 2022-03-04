@@ -126,5 +126,6 @@ Implementing header bidding requires much more collaboration with your dev team 
 ## Related Topics
 
 - [Getting Started with Prebid.js](/overview/getting-started.html): How Prebid.js works at a high level.
+- [Prebid.js and Ad Server Key Values](/features/adServerKvps.html)
 - [What is Prebid?](/overview/intro.html): Overview and history of header bidding and Prebid.js.
 + [Docs by Format](/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).

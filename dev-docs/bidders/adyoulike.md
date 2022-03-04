@@ -6,9 +6,11 @@ pbjs: true
 pbs: true
 media_types: banner, video, native
 biddercode: adyoulike
+userIds: criteo, sharedId
 gdpr_supported: true
+gvl_id: 259
 usp_supported: true
-getFloor: true
+floors_supported: true
 ---
 
 ### Note:
