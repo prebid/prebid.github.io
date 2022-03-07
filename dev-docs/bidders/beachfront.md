@@ -37,7 +37,7 @@ For further information, please contact adops@beachfront.com.
 
 <a name="beachfront-video"></a>
 
-### video params
+#### video params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description                                    | Example                                   | Type            |
@@ -56,7 +56,7 @@ For further information, please contact adops@beachfront.com.
 
 <a name="beachfront-banner"></a>
 
-### banner params
+#### banner params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                             | Example                                  | Type     |
@@ -67,7 +67,7 @@ For further information, please contact adops@beachfront.com.
 
 <a name="beachfront-player"></a>
 
-### player params
+#### player params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                             | Example                                  | Type     |
@@ -76,6 +76,37 @@ For further information, please contact adops@beachfront.com.
 | `adPosterColor` | optional | The color of the ad poster formatted as a CSS value. | `'#FFFFFF'` | `string` |
 | `expandInView` | optional | Defines whether to expand the player when the ad slot is in view. Defaults to `false`. | `false` | `boolean` |
 | `collapseOnComplete` | optional | Defines whether to collapse the player when ad playback has completed. Defaults to `true`. | `true` | `boolean` |
+
+### First Party Data
+
+Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- ortb2.site.ext.data.*
+- ortb2.site.keywords
+- ortb2.site.content.data[]
+- ortb2.user.ext.data.*
+- ortb2.user.data[]
+
+The IAB standard taxonomies are not supported.
+
+Example first party data that's available to all bidders and all adunits:
+```
+pbjs.setConfig({
+    ortb2: {
+        site: {
+            keywords: "kw1,kw2", 
+            content: {
+                title: "title1",
+                series: "series1"
+            }
+        }, 
+        user: {
+            keywords: "a,b", 
+            gender: "M", 
+            yob: 1984
+        }
+    }
+});
+```
 
 ### Prebid Server
 
