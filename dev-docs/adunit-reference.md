@@ -32,7 +32,6 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | Name         | Scope    | Type                                  | Description                                                                                                                                                                                |
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `code`       | Required | String                                | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) to match which auction is for which ad slot. |
-| `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, define sizes within the appropriate `mediaTypes.{banner,native,video}` object. |
 | `bids`       | Required | Array[Object]                         | Array of bid objects representing demand partners and associated parameters for a given ad unit.  See [Bids](#adUnit.bids) below.                                                          |
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
@@ -73,7 +72,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 {: .table .table-bordered .table-striped }
 | Name    | Scope    | Type                                  | Description                                                                             |
 |---------+----------+---------------------------------------+-----------------------------------------------------------------------------------------|
-| `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. |
+| `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. Prebid recommends that the sizes auctioned by Prebid should be the same auctioned by AdX and GAM OpenBidding, which means AdUnit sizes should match the GPT sizes. |
 | `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
 | `name`  | Optional | String                                | Name for this banner ad unit.  Can be used for testing and debugging.                   |
 
@@ -103,7 +102,7 @@ The `native` object contains the following properties that correspond to the ass
 | Name            | Scope    | Type                                  | Description                                                                                                                                           |
 |-----------------+----------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `required`      | Optional | Boolean                               | Whether this asset is required.                                                                                                                       |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                               |
+| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this image can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                               |
 | `aspect_ratios` | Optional | Array[Object]                         | Alongside `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#adUnit.mediaTypes.native.image.aspect_ratios). |
 
 <a name="adUnit.mediaTypes.native.image.aspect_ratios" />
@@ -164,7 +163,7 @@ The `native` object contains the following properties that correspond to the ass
 | Name            | Scope    | Type                                  | Description                                                                                                                                          |
 |-----------------+----------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `required`      | Optional | Boolean                               | Whether an icon asset is required on this ad.                                                                                                        |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                              |
+| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this icon can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                              |
 | `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`icon.aspect_ratios`](#adUnit.mediaTypes.native.icon.aspect_ratios). |
 
 <a name="adUnit.mediaTypes.native.icon.aspect_ratios" />
