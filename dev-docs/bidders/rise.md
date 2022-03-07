@@ -83,3 +83,4 @@ Rise recommends setting UserSync by iframe for monetization.
 
 ### Versions
 Prebid versions 5.0-5.3 are not supported
+Banner >= 6.14.0
