@@ -2,12 +2,12 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    	    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"/>
     <script type="text/javascript" src="https://mssl.fwmrm.net/libs/adm/6.24.0/AdManager-debug.js"></script>
@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
+
     <!--style specific to the long-form demo-->
 	<style type="text/css">
-	
+
     	#videoPlayer {
     		height: 480px;
     		width: 100%;
@@ -54,12 +54,12 @@
 	        left: 20px;
 	        top: 20px;
 	      }
-	      
+
     </style>
 
-    
+
 	<script>
-      
+
       var pbjs = pbjs || {};
       pbjs.que = pbjs.que || [];
 
@@ -87,7 +87,7 @@
 
       pbjs.que.push(function(){
         pbjs.addAdUnits(videoAdUnit);
-        pbjs.setConfig({ 
+        pbjs.setConfig({
           debug: true,
           cache: {
             url: 'https://prebid.adnxs.com/pbc/v1/cache'
@@ -115,7 +115,7 @@
         });
       });
     </script>
-    
+
     <script type="text/javascript">
     $(function() {
       $("#tabs").tabs();
@@ -146,7 +146,7 @@
           }
         }
         return industry;
-      } 
+      }
     }
 
     function loadKv(targetingArr) {
@@ -158,7 +158,7 @@
             html += '<tr id='+targeting[key]+'><td>'+key+'</td><td>'+targeting[key]+'</td></tr>'
           });
         });
-      });  
+      });
       html += '</tbody></table>';
       div.innerHTML = html;
     }
@@ -184,7 +184,7 @@
             }
           });
         });
-      });  
+      });
       html += '</tbody></table>';
       div.innerHTML = html;
     }
@@ -277,7 +277,7 @@
         comBreak++;
       }
     }
-    
+
     function skipAd() {
       clearInterval(timerId);
       if (!adCount) {
@@ -289,7 +289,7 @@
         adCount--;
       }
     }
-    </script>    
+    </script>
 </head>
 
 <body>
