@@ -43,7 +43,8 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Could, for example, adjust a bidder's gross-price bid to net price. |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
-| allowZeroCpmBids | standard of adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
+| allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
+| storageAllowed | standard or adapter-specific | 6.13.0 | true | Allow use of cookies and local storage. |  
 
 ##### 2.1. adserverTargeting
 
@@ -225,4 +226,12 @@ By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a 
 either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server 
 (depending on the Prebid.js auction results).
 
+##### 2.6. storageAllowed
+
+By default, bid adapters can access browser cookies and local storage. This can be disabled by setting `storageAllowed` to `false`.
+
+Note that:
+ - [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
+ - `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
+ 
 <hr class="full-rule" />
