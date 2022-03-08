@@ -4,7 +4,7 @@ title: Rise
 description: Prebid Bidder Adaptor
 pbjs: true
 biddercode: rise
-media_types: video
+media_types: banner, video
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
@@ -32,27 +32,50 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 
 ## Example
 ```javascript
-var adUnits = [
-       {
-        code: 'dfp-video-div',
-        sizes: [[640, 480]],
+var adUnits = [{
+        code: 'banner-div',
         mediaTypes: {
-          video: {
-            playerSize: [[640, 480]],
-            context: 'instream'
-          }
+            banner: {
+                sizes: [
+                    [300, 250],
+                    [728, 90]
+                ]
+            }
         },
         bids: [{
-          bidder: 'rise',
-          params: {
-            org: '56f91cd4d3e3660002000033', // Required
-            floorPrice: 5.00, // Optional
-            placementId: '12345678', // Optional
-            testMode: false // Optional
-          }
+            bidder: 'rise',
+            params: {
+                org: '56f91cd4d3e3660002000033', // Required
+                floorPrice: 0.05, // Optional
+                placementId: '12345678', // Optional
+                testMode: false // Optional
+            }
         }]
-      }
-   ];
+    },
+    {
+        code: 'dfp-video-div',
+        sizes: [
+            [640, 480]
+        ],
+        mediaTypes: {
+            video: {
+                playerSize: [
+                    [640, 480]
+                ],
+                context: 'instream'
+            }
+        },
+        bids: [{
+            bidder: 'rise',
+            params: {
+                org: '56f91cd4d3e3660002000033', // Required
+                floorPrice: 5.00, // Optional
+                placementId: '12345678', // Optional
+                testMode: false // Optional
+            }
+        }]
+    }
+];
 ```
 
 ### Configuration
@@ -60,3 +83,4 @@ Rise recommends setting UserSync by iframe for monetization.
 
 ### Versions
 Prebid versions 5.0-5.3 are not supported
+Banner >= 6.14.0
