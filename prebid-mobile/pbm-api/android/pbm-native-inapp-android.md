@@ -28,6 +28,10 @@ The cached assets might expire. If this occurs the publisher will receive a noti
 
 {% include alerts/alert_important.html content=importantNote %}
 
+{% capture importantNote %}
+Starting with the `1.14.0-beta1` version the converting of the native ad template to the ad objects is changed to match the IAB specs. See this [issue](https://github.com/prebid/prebid-mobile-ios/issues/494) for the details. If you update SDK from the previous version - verify the native ads integration before the release.
+{% endcapture %}
+
 ## Ad Ops Setup
 
 These instructions will enable you to create a creative template in either Google Ad Manager or MoPub that can then be applied to native ads in your app.
@@ -110,7 +114,7 @@ The `PrebidNativeAdListener` interface provides three methods to handle the disp
 
   **onPrebidNativeNotFound**
 
-  Use this method when a Prebid Native is not found in the server returned response. The ad should be displayed as a regular AdUnit type.
+  Use this method when a Prebid Native ad is not found in the server returned response. The ad should be displayed as a regular AdUnit type.
 
   **onPrebidNativeNotValid**
 
