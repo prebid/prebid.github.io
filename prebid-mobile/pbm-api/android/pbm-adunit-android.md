@@ -259,7 +259,7 @@ none
 
 ### UserData
 
-The next methods allows adding `user.data[]` objects into the bid request:
+The following methods enable adding `user.data[]` objects into the bid request:
 
 ```
 public void addUserData(DataObject dataObject)
