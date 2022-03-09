@@ -32,12 +32,11 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | Name         | Scope    | Type                                  | Description                                                                                                                                                                                |
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `code`       | Required | String                                | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) to match which auction is for which ad slot. |
-| `sizes`      | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, define sizes within the appropriate `mediaTypes.{banner,native,video}` object. |
 | `bids`       | Required | Array[Object]                         | Array of bid objects representing demand partners and associated parameters for a given ad unit.  See [Bids](#adUnit.bids) below.                                                          |
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [insterstitial](#adUnit-interstitial-example) signal. |
+| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [interstitial](#adUnit-interstitial-example) signal. |
 
 <a name="adUnit.bids" />
 
@@ -73,7 +72,8 @@ See the table below for the list of properties in the `mediaTypes` object of the
 {: .table .table-bordered .table-striped }
 | Name    | Scope    | Type                                  | Description                                                                             |
 |---------+----------+---------------------------------------+-----------------------------------------------------------------------------------------|
-| `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. |
+| `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. Prebid recommends that the sizes auctioned by Prebid should be the same auctioned by AdX and GAM OpenBidding, which means AdUnit sizes should match the GPT sizes. |
+| `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
 | `name`  | Optional | String                                | Name for this banner ad unit.  Can be used for testing and debugging.                   |
 
 <a name="adUnit.mediaTypes.native" />
@@ -102,7 +102,7 @@ The `native` object contains the following properties that correspond to the ass
 | Name            | Scope    | Type                                  | Description                                                                                                                                           |
 |-----------------+----------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `required`      | Optional | Boolean                               | Whether this asset is required.                                                                                                                       |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                               |
+| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this image can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                               |
 | `aspect_ratios` | Optional | Array[Object]                         | Alongside `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#adUnit.mediaTypes.native.image.aspect_ratios). |
 
 <a name="adUnit.mediaTypes.native.image.aspect_ratios" />
@@ -163,7 +163,7 @@ The `native` object contains the following properties that correspond to the ass
 | Name            | Scope    | Type                                  | Description                                                                                                                                          |
 |-----------------+----------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `required`      | Optional | Boolean                               | Whether an icon asset is required on this ad.                                                                                                        |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                              |
+| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this icon can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                              |
 | `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`icon.aspect_ratios`](#adUnit.mediaTypes.native.icon.aspect_ratios). |
 
 <a name="adUnit.mediaTypes.native.icon.aspect_ratios" />
@@ -184,7 +184,9 @@ The `native` object contains the following properties that correspond to the ass
 {: .table .table-bordered .table-striped }
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | Optional    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`                                                                                           |
+| `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
+| `context`        | Recommended    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`. Defaults to 'instream'. |
+| `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
 | `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].                                                  |
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
@@ -209,10 +211,6 @@ enabled; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].  
 | `delivery`      | Optional    | Array[Integer]         | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB spec][openRTB].           |
 | `pos`      | Optional    | Integer         | Ad position on screen, see [OpenRTB spec][openRTB].           |
 | `playbackend`      | Optional    | Integer         | The event that causes playback to end, see [OpenRTB spec][openRTB].           |
-
-
-
-
 
 If `'video.context'` is set to `'adpod'` then the following parameters are also available.  
 
@@ -286,10 +284,10 @@ pbjs.addAdUnits({
         video: {
             context: 'instream',
             playerSize: [640, 480],
-	    w: 640,
-	    h: 480,
-	    skip: 1,
-	    playbackmethod: [2]
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         },
     },
     bids: [{
@@ -595,7 +593,7 @@ For more information on Interstitial ads, reference the [Interstitial feature pa
 
 ## Related Topics
 
-+ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/)
++ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference)
 + [Conditional Ad Units][conditionalAds]
 + [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html)
 + [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)

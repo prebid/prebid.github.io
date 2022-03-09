@@ -33,12 +33,22 @@ POST https://prebid-server.rubiconproject.com/openrtb2/auction
 
 If you're invoking Prebid Server from Prebid.js, turn on the OpenRTB `test` flag from Prebid.js using one of these options:
 
-1) Add **?pbjs_debug=true** to the URL of the page.
+1) Add **?pbjs_debug=true** to the URL of the page. This will cause the pbsBidAdapter to send `ext.prebid.debug:1` to PBS, which will turn on additional debugging.
 
-2) Add the following `setConfig` to the page:
+2) Add the following `setConfig` to the page to get the same result:
 
 {% highlight bash %}
     pbjs.setConfig({"debug":true});
+{% endhighlight %}
+
+3) If instead of ext.prebid.debug you would like to set the OpenRTB 2.5 'test' flag, you can set that using the 'ortb2' approach:
+
+{% highlight bash %}
+    pbjs.setConfig({
+        "ortb2": {
+            "test":1
+        }
+    });
 {% endhighlight %}
 
 ### Invoked from AMP

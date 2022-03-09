@@ -114,9 +114,9 @@ TargetingParams.setStoreUrl(storeUrl);
 ```
 
 
-### Open Measurment SDK (OMSDK)
+### Open Measurement SDK (OMSDK)
 
-OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is elligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There three components to signaling support for OMSDK:
 * Partner Name
@@ -168,9 +168,10 @@ Example:
 BannerAdUnit bannerAdUnit = new BannerAdUnit("PREBID_SERVER_CONFIGURATION_ID", 300, 250);
 bannerAdUnit.setUserKeyword("my_key", "my_value");
 BannerBaseAdUnit.Parameters parameters = new BannerBaseAdUnit.Parameters();
-parameters.setApi(Arrays.asList(new Signals.Api(6, 7)));
+parameters.setApi(Arrays.asList(new Signals.Api(7)));
 ```
 
+Note that the OMID value for imp.banner/video/native.api field should be 7, as defined by the IAB in the [OMSDK v1.2 document](https://s3-us-west-2.amazonaws.com/omsdk-files/docs/Open+Measurement+SDK+Onboarding_version_1.2.pdf).
 
 
 ### Inventory (Context) Keywords
@@ -212,7 +213,7 @@ Data is broken up into two different data types:
   * Global scope
   * Ad Unit grain
 
- The below first party user and inventory context will apply to all ad units. For ad unit level first party data, refer to [First Partay Data section in the Ad Unit](pbm-adunit-android#first-party-data) page.
+ The below first party user and inventory context will apply to all ad units. For ad unit level first party data, refer to [First Party Data section in the Ad Unit](pbm-adunit-android#first-party-data) page.
 
 ### First Party User Data
 User specic data is passed in the global scope (i.e. applicable to all ad units).

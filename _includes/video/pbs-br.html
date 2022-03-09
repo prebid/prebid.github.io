@@ -2,12 +2,12 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    	    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
 	<script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
     <script>
         var pbjs = pbjs || {};
@@ -39,21 +39,18 @@
             code: 'video1',
             mediaTypes: {
                 video: {
-                    playerSize: [640, 480],
-                    context: 'instream',
-                    mimes: ['video/mp4'],
-                    protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                    playbackmethod: [2]
+                  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
                 }
             },
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: 13232361, // Add your own placement id here
-                    video: {
-                        skippable: true,
-                        playback_method: ['auto_play_sound_off']
-                    }
+                    placementId: 13232361 // Add your own placement id here
                 }
             }]
         };
@@ -66,7 +63,6 @@
                 cache: {
                     url: 'https://prebid.adnxs.com/pbc/v1/cache'
                 },
-                debug: true,
                 enableSendAllBids: true,
                 s2sConfig: {
                     endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
@@ -98,7 +94,7 @@
             });
         });
 
-    </script>    
+    </script>
 </head>
 
 <body>
