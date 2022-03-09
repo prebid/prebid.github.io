@@ -97,7 +97,7 @@ pbsDebug = BOOL
 
 ### Custom headers
 
-The next methods allows to customize HTTP call to the prebid server:
+The following methods enables the customization of the HTTP call to the prebid server:
 
 ```
 func addCustomHeader(name: String, value: String) 
