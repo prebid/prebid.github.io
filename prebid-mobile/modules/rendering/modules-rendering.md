@@ -9,7 +9,7 @@ sidebarType: 2
 
 # Prebid Mobile Rendering (Open Beta)
 
-The Prebid Mobile has added a rendering module (currently in open beta) which provides an API for rendering display and video media types independently of the current core feature set and interfaces. The API enables Prebid Mobile to have full ownership of the Web view selected for rendering and will pass any associated ad markup to the controlled view. This new functionality enables publishers to have improved control of features such as Open Measurement, MRAID, SKAdNetwork. This same functionality is available for rendering video (VAST) creatives through an internal video player.
+Prebid Mobile has added a rendering module (currently in open beta) which provides an API for rendering display and video media types independently of the current core feature set and interfaces. The API enables Prebid Mobile to have full ownership of the Web view selected for rendering and will pass any associated ad markup to the controlled view. This new functionality enables publishers to have improved control of features such as Open Measurement, MRAID, SKAdNetwork. This same functionality is available for rendering video (VAST) creatives through an internal video player.
 
 {% capture warning_note %}
 This open beta release will contain a temporary API structure and is subject to change when a general audience release is made available.   
@@ -24,9 +24,9 @@ Starting with `1.14.0-beta1` Prebid mobile supports integration with AdMob.
 
 Prebid SDK rendering offers the following benefits:
 
-- **Monetization without an Ad Server**: Publishers who do not have a direct sales force or have no need for an ad server can still access Prebid's mobile demand stack. Publishers will be able to  render ads directly without relying on any 3rd party SDKs.
+- **Monetization without an Ad Server**: Publishers who do not have a direct sales force or have no need for an ad server can still access Prebid's mobile demand stack. Publishers will be able to render ads directly without relying on any 3rd party SDKs.
 - **Reduced ad delivery latency**: The rendering module enables Prebid SDK to render ads immediately when demand is returned from Prebid Server or when receiving the render signal from an ad server. The render process should vastly reduce ad delivery speeds.
-- **Less infrastructure**: The rendering API does not rely on Prebid Server's Cache server reducing the cost and utility of Prebid Server Cache.
+- **Less infrastructure**: The rendering API does not rely on Prebid Server's Cache server, reducing the cost and utility of Prebid Server Cache.
 - **Less discrepancy**: Having control of the rendering process provides the potential to reduce discrepancy by having ads instantly available (less http calls, less infrastructure, less setup). This control enables the publisher to follow open and transparent industry standards or even potentially custom requirements from buyers.
 - **Framework support**: Full support of SKAdNetworks and similar frameworks
 - **MRAID 3.0 support**
