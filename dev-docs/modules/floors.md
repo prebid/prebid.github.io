@@ -301,7 +301,7 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 | data.modelTimestamp | integer | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
 | data.schema | object |allows for flexible definition of how floor data is formatted. | - |
 | data.schema.delimiter | string | Character separating the floor keys. | '\|' |
-| data.schema.fields | array of strings | Supported values are: gptSlot, adUnitCode, mediaType, size | - |
+| data.schema.fields | array of strings | Supported values are: gptSlot, adUnitCode, mediaType, size, domain | - |
 | data.values | key / values | A series of attributes representing a hash of floor data in a format defined by the schema object. | - |
 | data.values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.values."rule floor value" | float | The floor value for this key. | - |
