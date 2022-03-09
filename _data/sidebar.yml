@@ -652,6 +652,14 @@
   subgroup: 1
   
 - sbSecId: 2
+  title: Integration with AdMob
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-admob.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
   title: Integration with MoPub
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-mopub.html
   isHeader: 0
@@ -701,6 +709,14 @@
   subgroup: 1
   
 - sbSecId: 2
+  title: Integration with AdMob
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-admob.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
   title: Integration with MoPub
   link: /prebid-mobile/modules/rendering/android-sdk-integration-mopub.html
   isHeader: 0
@@ -728,6 +744,14 @@
 - sbSecId: 2
   title: Rendering Order - GAM
   link: /prebid-mobile/modules/rendering/rendering-gam-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Mediation Group - AdMob
+  link: /prebid-mobile/modules/rendering/rendering-admob-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
