@@ -389,13 +389,13 @@ public class {bidder}Bidder implements Bidder<BidRequest> {
     @Override
     public Result<List<HttpRequest<BidRequest>>> makeHttpRequests(BidRequest request) {
 
-        return Result.withValues(Collections.singletonList(HttpRequest.<BidRequest>builder()
+        return Result.withValue(HttpRequest.<BidRequest>builder()
                 .method(HttpMethod.POST)
                 .uri(endpointUrl)
                 .headers(HttpUtil.headers())
                 .payload(request)
                 .body(mapper.encode(request))
-                .build()));
+                .build());
     }
 
     @Override
@@ -618,7 +618,7 @@ with the following content
 package org.prebid.server.spring.config.bidder;
 
 import org.prebid.server.bidder.BidderDeps;
-import org.prebid.server.bidder.between.{bidder}Bidder;
+import org.prebid.server.bidder.{bidder}Bidder;
 import org.prebid.server.json.JacksonMapper;
 import org.prebid.server.spring.config.bidder.model.BidderConfigurationProperties;
 import org.prebid.server.spring.config.bidder.util.BidderDepsAssembler;
@@ -638,14 +638,14 @@ public class {bidder}Configuration {
 
     private static final String BIDDER_NAME = "{bidder}";
 
-    @Bean("betweenConfigurationProperties")
+    @Bean("{bidder}ConfigurationProperties")
     @ConfigurationProperties("adapters.{bidder}")
     BidderConfigurationProperties configurationProperties() {
             return new BidderConfigurationProperties();
     }
 
     @Bean
-    BidderDeps betweenBidderDeps(BidderConfigurationProperties betweenConfigurationProperties,
+    BidderDeps{bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
                                  @NotBlank @Value("${external-url}") String externalUrl,
                                  JacksonMapper mapper) {
 
