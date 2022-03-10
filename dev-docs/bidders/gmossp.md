@@ -4,6 +4,7 @@ title: GMOSSP
 description: Prebid GMOSSP Bidder Adaptor
 pbjs: true
 biddercode: gmossp
+userIds: imuid, sharedId, identityLink
 media_types: banner
 ---
 
