@@ -74,14 +74,17 @@ Prebid.js code loads within the page header and sends a bid request to each vide
 2.	**Demand partners respond.**  
 Demand partners respond with their respective bids, which may contain a video renderer. (Publishers are encouraged to associate their own video renderer with each outstream video ad unit to include video demand that was not returned with its own renderer.)
 
-3.	**Prebid passes key-value targeting to ad server.**  
+3.	**Prebid.js may cache video bids.**  
+If the configuration is set up, video bids are cached server-side and mapped to a unique cache ID. This may be used at render time. See [Notes on Prebid Cache](/dev-docs/show-video-with-a-dfp-video-tag.html#notes-on-prebid-cache) for details.)
+
+4.	**Prebid passes key-value targeting to ad server.**  
 Prebid assigns a unique hb_adid to each video bid/renderer combination, and passes this ID to the ad server via key-value targeting (along with other standard Prebid key-value pairs). This ad ID serves the same role for outstream video ad units as it does for banner ad units.
 
-4.	**Ad server chooses winning line item.**  
+5.	**Ad server chooses winning line item.**  
 The ad server chooses the winning line item. If a Prebid line item is selected, the Prebid creative is returned. The creative can be the standard call to `renderAd` or the Universal Creative.
 
-5.	**Prebid renders the outstream video.**  
-Prebid retrieves the winning outstream video bid and renderer from the ad ID (hb_adid).  Prebid renders the outstream video into the banner slot.
+6.	**Prebid renders the outstream video.**  
+Prebid retrieves the winning outstream video bid and renderer from the ad ID (hb_adid).  Prebid renders the outstream video into the banner slot. It is up to the rendering code to retrieve the VAST, which may have been returned fully-formed to the browser, or it may be just a URL where the VAST is cached that the renderer has to load.
 
 ### Long-form Video 
 
