@@ -1,3 +1,4 @@
+
 ---
 layout: bidder
 title: C-WIRE
@@ -18,4 +19,6 @@ media_types: banner, video
 |---------------|----------|-----------------------|-----------|-----------|
 | `pageId`      | required | C-WIRE page id        | `2453`    | `integer` |
 | `placementId` | required | C-WIRE placement id   | `113244`  | `integer` |
-| `adUnitElementId` | optional | Target div to write to  | `'other_div_id'`  | `string` |
+| `cwcreative` | required | C-WIRE creative id to force   | `42`  | `integer` |
+| `refgroups` | required | C-WIRE group name to force   | `'test-user'`  | `string` |
+| `cwapikey` | required | C-WIRE API key for integration testing   | `'xxx-yyy-some-uuid'`  | `string` |
