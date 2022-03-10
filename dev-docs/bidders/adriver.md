@@ -5,7 +5,7 @@ description: Adriver adapter
 biddercode: adriver
 pbjs: true
 deals_supported: true
-userIds: sharedId, id5Id, uid2Id
+userIds: sharedId, id5Id, uid2Id, adriverId
 floors_supported: true
 ---
 
