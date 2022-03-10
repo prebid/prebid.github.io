@@ -31,4 +31,4 @@ pbs_app_supported: true
 |---------------|----------|---------------------|--------------------------------------|----------|
 | `partnerName` | required | Unique partner name | `'partnertest'`                      | `string` |
 | `seat`        | required | Seat value          | `'9Q20EdGxzgWdfPYShScl'`             | `string` |
-| `token`       | required | Token               | `'eKmw6alpP3zWQhRCe3flOpz0wpuwRFjW'`  | `string` |
+| `token`       | required | Token               | `'eKmw6alpP3zWQhRCe3flOpz0wpuwRFjW'` | `string` |
