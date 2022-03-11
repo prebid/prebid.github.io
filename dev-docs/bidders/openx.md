@@ -10,10 +10,12 @@ schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-getFloor: true
-userIds: admixerId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, haloId, id5Id, identityLink, idxId, intentIqId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, netId, nextrollId, novatiq, parrableId, pubCommonId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
+floors_supported: true
+userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, nextrollId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
+fpd_supported: true
 gvl_id: 69
+fpd_supported: true
 ---
 
 ### Registration
@@ -92,6 +94,42 @@ var adUnits = [
     }]
   }
 ];
+```
+
+#### First Party Data
+OpenX supports FPD configured under `ortb2.user`and `ortb2.site.content` as described [here]((/features/firstPartyData.html)).
+Ad unit specific FPD is not supported, and segment taxonomies (`segtax`) are simply passed through. If you have any 
+questions, please reach out to us at prebid@openx.com
+
+Example: 
+```
+pbjs.setConfig({
+   ...
+   ortb2: {
+       site: {
+            content: {
+                data: [{
+                    name: "www.dataprovider1.com",
+                    ext: { segtax: 4 },
+                    segment: [
+                        { id: "687" },
+                        { id: "123" }
+                    ]
+                }]
+            },
+       },
+       user: {
+           data: [{
+               name: "dataprovider.com",
+               ext: { segtax: 4 },
+               segment: [
+                    { id: "1" }
+               ]
+           }],
+       }
+   }
+   ...
+});
 ```
 
 ### Configuration

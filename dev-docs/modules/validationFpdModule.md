@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - First Party Data Validation
-description: Validates First Party Data
+description: Verify First Party Data fields and data types. Not recommended for production use.
 module_code : validationFpdModule
 display_name : First Party Data Validation
 enable_download : true

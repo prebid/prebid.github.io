@@ -5,14 +5,15 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 gdpr_supported: true
-getFloor: true
+floors_supported: true
 usp_supported: true
 media_types: banner, video
+fpd_supported: true
 gvl_id: 10
 prebid_member: yes
 ---
@@ -27,37 +28,16 @@ Maintainer: prebid.support@indexexchange.com
 
 ## Description
 
-Publishers may access Index Exchange's (IX) network of demand
-sources through our Prebid.js and Prebid Server adapters. Both of these modules are GDPR and CCPA compliant.
+Publishers may access Index Exchange's (IX) network of demand sources through our Prebid.js and Prebid Server adapters. Both of these modules are GDPR and CCPA compliant.
 
 ### IX Prebid.js Adapter
 
-Our Prebid.js adapter is compatible with both the older ad unit format where the `sizes` and
-`mediaType` properties are placed at the top-level of the ad unit, and the newer
-format where this information is encapsulated within the `mediaTypes` object. We
-recommend that you use the newer format when possible as it will be better able
-to accommodate new feature additions.
+This module connects publishers to Index Exchange's (IX) network of demand sources through Prebid.js. This module is GDPR and CCPA compliant.
 
-If a mix of properties from both formats is present within an ad unit, the
-newer format's properties will take precedence.
+It is compatible with the new Prebid.js 5.0 ad unit format where banner and video properties, including the size parameter, are stored in the `adUnits[].mediaTypes` object. IX still supports both size as an optional parameter and the Missing Sizes feature, but we recommend upgrading to the Prebid.js 5.0 format.
 
-Here are examples of both formats.
+For more information about how the `adUnits[].mediaTypes` object is formatted in Prebid.js 5.0, refer to the following example.
 
-##### Older Format
-```javascript
-var adUnits = [{
-    // ...
-
-    sizes: [
-        [300, 250],
-        [300, 600]
-    ]
-
-    // ...
-}];
-```
-
-##### Newer Format
 ```javascript
 var adUnits = [{
     // ...
@@ -70,60 +50,63 @@ var adUnits = [{
         },
         video: {
             context: 'instream',
-            playerSize: [
-                [1280, 720]
-            ]
+            playerSize: [300, 250]
         }
     },
     // ...
 }];
 ```
-
 ### Supported Media Types (Prebid.js)
 
 {: .table .table-bordered .table-striped }
-| Type   | Support |
-| ------ | ------- |
-| `Banner` | Fully supported for all IX approved sizes |
-| `Video`  | Fully supported for all IX approved sizes |
-| `Native` | Not supported |
+| Type | Support |
+|---|---|
+| `banner` | Fully supported for all IX approved sizes |
+| `video`  | Fully supported for all IX approved sizes |
+| `native` | Not supported |
 
 ### Supported Media Types (Prebid Server)
 
 {: .table .table-bordered .table-striped }
 | Type   | Support |
-| ------ | ------- |
-| `Banner` | Fully supported |
-| `Video`  | Fully supported, including ad pods for OTT |
-| `Native` | Not supported |
+|------|-------|
+| `banner` | Fully supported |
+| `video`  | Fully supported, including ad pods for OTT |
+| `native` | Not supported |
 
-## Bid Parameters
+# Ad Unit or Bidder Parameters
 
-Each of the IX-specific parameters provided under the `adUnits[].bids[].params`
-object are detailed here.
+These params can be specified in the ad unit level, which will be the preferred way going forward with PBJS 5.0
+
+Each of the IX-specific parameters provided under the object are detailed here.
+
+The following parameters are specified in the ad unit `adUnits[].mediaTypes`. This includes each of the IX-specific parameters provided under `adUnits[].bids[].params`. 
+
+In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be defined at the ad unit level.
 
 ### Banner
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-| ---- | ----- | ----------- | ------- | ---- |
-| `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` | 
-| `size` | Required for client-side serving | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.banner.sizes`. Note that the 'ix' Prebid Server bid adapter ignores this parameter. | `[300, 250]` | `Array<integer>` | 
-| `id` | Optional | An alphanumerical value used to identify the `slot_id` in reporting | `id: 'billboardHomepage'`, `id: 'billboardArticle'` | `string` |
+| Key | Scope | Type | Description |
+|---|---|---|---|
+| `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
+| `sizes` | Optional | Number[Number[]] | The size/sizes associated with the site ID, as listed in the ad unit under `adUnits[].mediaTypes.banner.sizes`. For example, `[300, 250], [300, 600], [728, 90]`|
 
 ### Video
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-| ---- | ----- | ----------- | ------- | ---- |
-| `siteId` | Required | An IX-specific identifier that is associated with a specific size on this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. | `'3723'` | `string` |
-| `size` | Required | The single size associated with the site ID. It should be one of the sizes listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. | `[300, 600]` | `Array<integer>` |
-| `video` | Required | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes`, `protocols`, `minduration`, `maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level. | `video: { startdelay: 0 }` | `object` |
-| `video.mimes` | Required | Array list of content MIME types supported. | `['video/mp4', 'video/x-flv']` | `Array<string>` |
-| `video.minduration` | Required | Minimum video ad duration in seconds. | `0` | `integer` |
-| `video.maxduration` | Required | Maximum video ad duration in seconds. | `300` | `integer` |
-| `video.protocol` / `video.protocols` | Required | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper | `[2,3,5,6]` | `integer` / `Array<integer>` |
-| `id` | Optional | An alphanumerical value used to identify the `slot_id` in reporting | `id: 'inStreamCTP'`, `id: 'inStreamAutoPlay'` | `string` |
+| Key | Scope | Type | Description |
+|---|---|---|---|
+| `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
+| `size` | Optional | Number[] | The single size that is associated with the site ID, as listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. For example, [300, 250], [300, 600]. <BR><BR>This parameter is optional in Prebid.js versions 5.0 and above. Versions prior to 5.0 will still require a size parameter.|
+| `video` | Optional | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level.|
+| `video.w` | Required | Integer | The video player size width in pixels that will be passed to demand partners.|
+| `video.h` | Required | Integer | The video player size height in pixels that will be passed to demand partners.|
+| `video.playerSize` | Optional* | Integer | The video player size that will be passed to demand partners. * In the absence of `video.w` and `video.h`, this field is required.|
+| `video.mimes` | Required | String[] | Array list of content MIME types supported. Popular MIME types include, but are not limited to, `"video/x-ms- wmv"` for Windows Media and `"video/x-flv"` for Flash Video.|
+| `video.minduration` | Required | Integer | Minimum video ad duration in seconds.|
+| `video.maxduration` | Required | Integer | Maximum video ad duration in seconds.|
+| `video.protocol` / `video.protocols` | Required | Integer / Integer[] | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper|
 
 ## Setup Guide
 
@@ -152,9 +135,7 @@ var adUnits = [{
     mediaTypes: {
         video: {
             context: 'instream',
-            playerSize: [
-                [1280, 720]
-            ]
+            playerSize: [1280, 720]
         }
     },
     bids: []
@@ -170,13 +151,12 @@ bid objects under `adUnits[].bids`:
 {
     bidder: 'ix',
     params: {
-        siteId: '123456',
-        size: [300, 250]
+        siteId: '123456'
     }
 }
 ```
 
-Set `params.siteId` and `params.size` in each bid object to the values provided
+Set `params.siteId` in the bid object to the values provided
 by your IX representative.
 
 **Examples**
@@ -196,14 +176,12 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '123456',
-            size: [300, 250]
+            siteId: '123456'
         }
     }, {
         bidder: 'ix',
         params: {
-            siteId: '123456',
-            size: [300, 600]
+            siteId: '123456'
         }
     }]
 }];
@@ -211,28 +189,33 @@ var adUnits = [{
 **Video (Instream):**
 ```javascript
 var adUnits = [{
-    code: 'video-request-a',
+    code: 'video-div-a',
     mediaTypes: {
         video: {
+            // Preferred location for openrtb v2.5 compatible video obj
             context: 'instream',
-            playerSize: [
-                [1280, 720]
-            ]
+            playerSize: [300, 250],
+            mimes: [
+                    'video/mp4',
+                    'video/webm'
+                ],
+            minduration: 0,
+            maxduration: 60,
+            protocols: [6]
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '123456',
-            size: [1280, 720],
+            siteId: '12345'
+        }
+    }, {
+        bidder: 'ix',
+        params: {
+            siteId: '12345',
             video: {
-                mimes: [
-                    'video/mp4',
-                    'video/webm'
-                ],
-                minduration: 0,
-                maxduration: 60,
-                protocols: [6]
+                // openrtb v2.5 compatible video obj
+                // If required, use this to override mediaTypes.video.XX properties
             }
         }
     }]
@@ -250,7 +233,14 @@ var adUnits = [{
     mediaTypes: {
         video: {
             context: 'outstream',
-            playerSize: [[640, 360]]
+            playerSize: [300, 250],
+            mimes: [
+                    'video/mp4',
+                    'video/webm'
+                ],
+            minduration: 0,
+            maxduration: 60,
+            protocols: [6]
         }
     },
     renderer: {
@@ -262,16 +252,9 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '123456',
-            size: [640, 360],
+            siteId: '12345',
             video: {
-                mimes: [
-                    'video/mp4',
-                    'video/webm'
-                ],
-                minduration: 0,
-                maxduration: 60,
-                protocols: [6]
+                // If required, use this to override mediaTypes.video.XX properties   
             }
         }
     }]
@@ -312,21 +295,21 @@ pbjs.setConfig({
 By default, the IX bidding adapter bids on all banner sizes available in the ad unit when configured to at least one banner size. If you want the IX bidding adapter to only bid on the banner size it’s configured to, switch off this feature using `detectMissingSizes`.
 ```
 pbjs.setConfig({
-                ix: {
-                    detectMissingSizes: false
-                }
-            });
+    ix: {
+        detectMissingSizes: false
+    }
+});
 ```
 OR
 ```
 pbjs.setBidderConfig({
-                bidders: ["ix"],
-                config: {
-                    ix: {
-                        detectMissingSizes: false
-                    }
-                }
-            });
+    bidders: ["ix"],
+    config: {
+        ix: {
+            detectMissingSizes: false
+        }
+    }
+});
 ```
 
 ### 2. Include `ixBidAdapter` in your build process
@@ -357,6 +340,35 @@ gulp build --modules=bidderModules.json
 
 ## Setting First Party Data (FPD)
 
+As a part of 4.30, IX will start to pick up FPD in the global FPD module, as well as continue to pick up IX bidder-specific FPD. Previous versions of IX Bid Adapter will only support the IX bidder-specific FPD.
+
+### Global FPD
+
+As of Prebid.js 4.30, use the more generic `ortb2` interface, which can be used for more than just First Party Data.
+
+The First Party Data feature allows publishers to specify key/value data in one place where each compatible bid adapter can read it.
+
+To supply global data, use the [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html) function as illustrated below:
+
+```
+pbjs.setConfig({
+   ortb2: {
+       site: {
+            ...
+       },
+       user: {
+            ...
+       }
+    }
+});
+```
+
+Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data.
+
+For more information about the standard or more detailed examples, refer to [First Party Data Feature](/features/firstPartyData.html).
+
+### IX bidder-specific FPD
+
 FPD allows you to specify key-value pairs that are passed as part of the
 query string to IX for use in Private Marketplace Deals which rely on query
 string targeting for activation. For example, if a user is viewing a
@@ -383,6 +395,9 @@ pbjs.setConfig({
 
 The values can be updated at any time by calling `pbjs.setConfig` again. The
 changes will be reflected in any proceeding bid requests.
+
+{: .alert.alert-warning :}
+Continue to use IX bidder-specific First Party Data for IX deals. Global First Party Data is not yet supported in IX deals. Consult your IX representative with any questions.
 
 ## Setting a Server Side Timeout
 
@@ -454,18 +469,11 @@ towards total impressions on IX's side.
 
 ## FAQs
 
-### Why do I have to input size in `adUnits[].bids[].params` for IX when the size is already in the ad unit?
+#### Why do I have to input size in `adUnits[].bids[].params` for IX when the size is already in the ad unit?
 
-There are two important reasons why we require it:
+If you are using Prebid.js version 5.0 and above, the `size` parameter is not a required field. Only the `siteID` is required, and it is stored with the sizes in the ad unit.
 
-1. An IX site ID maps to a single size, whereas an ad unit can have multiple
-sizes. To ensure that the right site ID is mapped to the correct size in the ad
-unit we require the size to be explicitly stated.
-
-2. An ad unit may have sizes that IX does not support. By explicitly stating the
-size, you can choose not to have IX bid on certain sizes that are invalid.
-
-### How can I view the bid request sent to IX by Prebid.js?
+#### How can I view the bid request sent to IX by Prebid.js?
 
 In your browser of choice, create a new tab and open the developer tools. In
 developer tools, select the network tab. Then, navigate to a page where IX is

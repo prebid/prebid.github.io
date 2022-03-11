@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Size Mapping
-description: Display Conditional and Responsive Ad Units
+description: Display Responsive AdUnits in demanding page environments.
 module_code: sizeMappingV2
 display_name: Advanced Size Mapping
 enable_download: true
@@ -56,7 +56,7 @@ If you've used [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#s
 {% highlight js %}
   mediaTypes: {
     banner: {
-      sizeConfig = [
+      sizeConfig: [
         { minViewPort: [0, 0], sizes: [] }, // deactivate if viewport < 750px
         { minViewPort: [750, 0], sizes: [[300, 250], [300, 600]] } // activate viewport > 750px
       ];

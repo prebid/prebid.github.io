@@ -13,6 +13,7 @@ coppa_supported: true
 pbs_app_supported: true
 gvl_id: 248
 schain_supported: true
+userIds: all
 ---
 
 ### Note:
