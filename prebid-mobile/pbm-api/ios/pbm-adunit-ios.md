@@ -193,12 +193,60 @@ func removeContextKeyword(_ element: String)
 func clearContextKeywords()
 ```
 
+### App Content
 
+The `ContentObject` alows you to provide more details about content whithin the app. All proeprties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
 
+```
+func setAppContent(_ appContent: ContentObject) 
+```
+   
+```  
+func getAppContent() -> ContentObject? 
+```
+
+```        
+func clearAppContent() 
+```
+    
+### App Content Data
+
+Using the following methods you can add `app.content.data` objects to the bid requests.  
+    
+```
+func addAppContentData(_ dataObjects: [ContentDataObject]) 
+```
+
+```
+func removeAppContentData(_ dataObject: ContentDataObject) 
+```
+    
+```
+func clearAppContentData() 
+```
+
+### User Data
+
+Using the following methods you can add `user.data` objects to the bid requests.  
+
+```
+func getUserData() -> [PBMORTBContentData]? 
+```    
+```
+func addUserData(_ userDataObjects: [PBMORTBContentData]) 
+```
+
+```    
+func removeUserData(_ userDataObject: PBMORTBContentData) 
+```
+
+```    
+func clearUserData() 
+```
 
 ### Data Object
 
-The Data object is free form data (also known as First Party Data)supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
+The Data object is free form data (also known as First Party Data) supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
 
 Data is broken up into two different data types:
 * User
@@ -207,7 +255,7 @@ Data is broken up into two different data types:
   * Global scope
   * Ad Unit grain
 
- The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
+The first party inventory context below will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
 
 #### addContextData
 ```

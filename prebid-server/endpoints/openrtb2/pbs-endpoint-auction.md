@@ -38,8 +38,12 @@ This is a sample OpenRTB 2.5 bid request:
       }]
     },
     "ext": {
-      "appnexus": {
-        "placementId": 12883451
+      "prebid": {
+        "bidder": {
+          "bidderA": {
+            "placement": 12883451
+          }
+        }
       }
     }
   }],
@@ -183,6 +187,37 @@ Exceptions are made for extensions with "standard" recommendations:
 - `request.app.ext.source` and `request.app.ext.version` -- To support identifying the displaymanager/SDK in mobile apps. If given, we expect these to be strings.
 
 #### OpenRTB Request Extensions
+
+##### Global Bid Adapter Parameters
+
+If a bid adapter has a parameter that is the same across all imp[] entries,
+it can be supplied
+
+```
+{
+"ext": {
+  "prebid": {
+    "bidderparams": { 
+       "adapter1": { 
+          "key1": "data specific to key1", 
+          "key2": "  { 
+            "version": 3.3, 
+             "profileid": 1234 
+            } 
+          }, 
+      "adapter2": { 
+         "key3": "data specific to key3" 
+      }, 
+      "adapter3": { 
+          "key4": [ 
+            "data" 
+          ] 
+       } 
+    }
+  }
+} 
+```
+Bid adapters do not need to read this data from ext.prebid. PBS will merge the attributes to each imp[] in the request so the adapter can read them normally.
 
 ##### Bid Adjustments
 
@@ -432,7 +467,7 @@ For example, if the Request defines an alias like this:
 then any `imp.ext.appnexus` params will actually go to the **rubicon** adapter.
 It will become impossible to fetch bids from AppNexus within that Request.
 
-##### Bidder Alias GVL IDs (PBS-Java only)
+##### Bidder Alias GVL IDs
 
 For environments that have turned on [GDPR enforcement](/prebid-server/features/pbs-privacy.html#gdpr), it can be important to define the Global Vendor List (GVL) ID with an alias.
 
@@ -672,7 +707,7 @@ While testing SDK and video integrations, it's important, but often difficult, t
 
 When a storedauctionresponse ID is specified:
 
-- the rest of the ext.prebid block is irrelevant and ignored
+- the rest of the imp.ext.prebid block is irrelevant and ignored
 - nothing is sent to any bidder adapter for that imp
 - the response retrieved from the stored-response-id is assumed to be the entire contents of the seatbid object corresponding to that impression.
 
@@ -718,21 +753,60 @@ Will result in this response, assuming that the ids exist in the appropriate DB 
   "id": "test-auction-id",
   "seatbid": [
     {
-      // BidderA bids from storedauctionresponse=1111111111
-      // BidderA bids from storedauctionresponse=22222222
+      "bid": [{
+        // BidderA bid from storedauctionresponse=11111111111
+      },{
+        // BidderA bid from storedauctionresponse=22222222222
+      }],
+      "seat": "bidderA"
     },
     {
-      // BidderB bids from storedauctionresponse=1111111111
-      // BidderB bids from storedauctionresponse=22222222
+      "bid": [{
+        // BidderB bid from storedauctionresponse=11111111111
+      },{
+        // BidderB bid from storedauctionresponse=22222222222
+      }],
+      "seat": "bidderB"
     }
   ]
 }
 ```
 
+In this scenario, the contents of the storedauctionresponse entry is
+an array of ortb2 seatbid objects. e.g.
+```
+[
+  {
+    "bid": [{
+        "impid": "a", // doesn't have to match the request
+        ... bid 1 ...
+    },{
+        "impid": "b", // doesn't have to match the request
+        ... bid 2 ...
+    }],
+    "seat": "bidderA"
+  },{
+    "bid": [{
+        "impid": "a", // doesn't have to match the request
+        ... bid 1 ...
+    },{
+        "impid": "b", // doesn't have to match the request
+        ... bid 2 ...
+    }],
+    "seat": "bidderB"
+  }
+]
+```
 **Multiple Stored Bid Response IDs**
 
-In contrast to what's outlined above, this approach lets some real auctions take place while some bidders have test responses that still exercise bidder code. For example, this request:
+In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
+PBS removes imp.ext.prebid.bidder parameters for those 
+bidders specified in storedbidresponse but if there's a bidder present
+in imp.ext.prebid.bidder that's doesn't have a storedbidresponse specified,
+the adapter will be called as usual.
+
+For example, this request:
 ```
 {
   "test": 1,
@@ -750,6 +824,10 @@ In contrast to what's outlined above, this approach lets some real auctions take
       "id": "a",
       "ext": {
         "prebid": {
+          "bidder: {
+            "bidderA": { ... params ... },
+            "bidderB": { ... params ... }
+          },
           "storedbidresponse": [
             { "bidder": "BidderA", "id": "333333" },
             { "bidder": "BidderB", "id": "444444" },
@@ -761,9 +839,13 @@ In contrast to what's outlined above, this approach lets some real auctions take
       "id": "b",
       "ext": {
         "prebid": {
+          "bidder: {
+            "bidderA": { ... params ... },
+            "bidderB": { ... params ... }
+          },
           "storedbidresponse": [
-            { "bidder": "BidderA", "id": "5555555" },
-            { "bidder": "BidderB", "id": "6666666" },
+            { "bidder": "BidderA", "id": "5555555" }
+            // note: no storedbidrespose for bidderB
           ]
         }
       }
@@ -778,25 +860,34 @@ Could result in this response:
   "id": "test-auction-id",
   "seatbid": [
     {
-      "bid": [
-      // contents of storedbidresponse=3333333 as parsed by bidderA adapter
-      // contents of storedbidresponse=5555555 as parsed by bidderA adapter
-      ]
+      "bid": [{
+        // contents of storedbidresponse=3333333 as parsed by bidderA adapter
+      },{
+        // contents of storedbidresponse=5555555 as parsed by bidderA adapter
+      }],
+      "seat": "bidderA"
     },
     {
-      // contents of storedbidresponse=4444444 as parsed by bidderB adapter
-      // contents of storedbidresponse=6666666 as parsed by bidderB adapter
+      "bid": [{
+        // contents of storedbidresponse=4444444 as parsed by bidderB adapter
+      },{
+        // actual bid response from bidderB
+      }],
+      "seat": "bidderB"
     }
   ]
 }
 ```
 
-Setting up the storedresponse DB entries is the responsibility of each Prebid Server host company.
+Note that the storedresponse DB entries for this scenario are very different:
+they're whatever format the bid adapter's endpoint responds with. i.e. the host company will
+need to capture an actual bid response from the specific bidders and enter it
+into the DB table.
 
 See Prebid.org troubleshooting pages for how to utilize this feature within the context of the browser.
 
 
-##### First Party Data Support (PBS-Java only)
+##### First Party Data Support
 
 This is the Prebid Server version of the Prebid.js First Party Data feature. It's a standard way for the page (or app) to supply first party data and control which bidders have access to it.
 
@@ -919,27 +1010,6 @@ In order to pull AMP parameters out into targeting, Prebid Server places AMP que
         "targeting": "{\"site\":{\"attr\":\"val\"}}",
         "tag_id": "amp-AMP_Test-300x250",
         "account": "22222"
-      }
-    }
-  }
-}
-```
-
-##### EID Permissions (PBS-Go only)
-
-This feature allows publishers to specify ext.prebid.eidpermissions, defining which extended ID
-in user.ext.eids is allowed to be passed to which bid adapter. For example:
-
-```
-{
-  "ext": {
-    "prebid": {
-      "data": {
-        "eidpermissions": [   // prebid server will use this to filter user.ext.eids
-          {"source": "sharedid.org", "bidders": ["*"]},  // * is the default
-          {"source": "neustar.biz",  "bidders": ["bidderB"]},
-          {"source": "id5-sync.com", "bidders": ["bidderA","bidderC"]}
-        ]
       }
     }
   }
@@ -1083,6 +1153,34 @@ which causes PBS-core to place the video-related attributes on the response.
     }]
   }],
   ...
+}
+```
+
+##### PG Deals Extensions (PBS-Java only)
+
+In support of [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html),
+there are two extensions at the bidder level to control behavior:
+
+- imp[].ext.prebid.bidder.BIDDER.`dealsonly` - if `true`, PBS will call the bidder, but if there's no deal ID in the response, it will reject the bid. This allows for scenarios where a bidder is called twice, once for Open Market bids, once for deals bids. Defaults to `false`.
+- imp[].ext.prebid.bidder.BIDDER.`pgdealsonly` - If `true` and no PG line item for this bidder matches in this impression, PBS will not even call the bid adapter. This saves network bandwidth when no PG line items are available. Defaults to `false`. If set to 'true', this flag forces the `dealsonly` flag (above) to true.
+
+These flags can be used separately or together. For example:
+
+```
+{
+  "imp": [{
+    "ext": {
+      "prebid": {
+        "bidder": {
+          "bidderA": {
+            ...,
+            "dealsonly": true,
+            "pgdealsonly": true
+          }
+        }
+      }
+    }
+  }]
 }
 ```
 
@@ -1272,6 +1370,7 @@ The Prebid SDK version comes from:
 | req | app.ext.source | defined by Prebid SDK | string | "prebid-mobile" | yes |
 | req | app.ext.version | defined by Prebid SDK | string | "1.6" | yes |
 | req | ext.prebid.bidadjustmentfactors | Adjust the CPM value of bidrequests | object | See [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) | no |
+| req | ext.prebid.bidderparams | Publishers can specify any adapter-specific cross-impression attributes. | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | no |
 | req | ext.prebid.targeting | defines the targeting values PBS-core places in seatbid.bid.ext.prebid.targeting | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | no |
 | req | ext.prebid.adservertargeting | advanced targeting value rules | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#custom-targeting-pbs-java-only) | no |
 | req | ext.prebid.integration | host-dependent integration type passed through to events and analytics | string | "managed" | yes |

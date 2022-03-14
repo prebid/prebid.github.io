@@ -583,7 +583,9 @@ If you'd like to support Long Form Video Ad Pods, then you'll need to provide th
 {: .alert.alert-info :}
 Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provided.
 
-Prebid has historically struggled with sharing granular bid response data with publishers, analytics, and reporting systems. To address this, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
+##### Metadata
+
+In order to share granular bid response data with publishers, analytics, and reporting systems, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
 Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
@@ -591,6 +593,7 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 {: .table .table-bordered .table-striped }
 | Path | Description |
 | - | - |
+| `.DemandSource` | Bidder-specific demand source |
 | `.NetworkID` | Bidder-specific network/DSP id |
 | `.NetworkName` | Bidder-specific network/DSP name |
 | `.AgencyID` | Bidder-specific agency id |
