@@ -19,7 +19,7 @@ This document guides you through the process of developing a new bid adapter for
 **NOTE:** There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months.
 
 
-## Overview
+## Introduction
 
 Bid adapters are responsible for translating an [OpenRTB 2.5 Bid Request](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) to your bidding server's protocol and mapping your server's response to an [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
 
@@ -342,7 +342,7 @@ Now it's time to write the bulk of your bid adapter code.
 Each adapter has its own directory (a 'package' in java parlance) for all code and tests associated with translating an OpenRTB 2.5 Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.5 Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
 
 Create a file with the path `org.prebid.server.bidder.{bidder}/{bidder}Bidder.java`. Your bid adapter code will need to implement Bidder<T> interface where `T` is a model which will represent HttpRequest body.
-- The `Bidder<T>` interface consisting of the `MakeRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
+- The `Bidder<T>` interface consisting of the `MakeHttpRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
 
 Here is a reference implementation for a bidding server which uses the OpenRTB 2.5 protocol:
 
@@ -389,20 +389,20 @@ public class {bidder}Bidder implements Bidder<BidRequest> {
     @Override
     public Result<List<HttpRequest<BidRequest>>> makeHttpRequests(BidRequest request) {
 
-        return Result.of(Collections.singletonList(HttpRequest.<BidRequest>builder()
+        return Result.withValue(HttpRequest.<BidRequest>builder()
                 .method(HttpMethod.POST)
                 .uri(endpointUrl)
                 .headers(HttpUtil.headers())
                 .payload(request)
                 .body(mapper.encode(request))
-                .build()), Collections.emptyList());
+                .build()));
     }
 
     @Override
     public final Result<List<BidderBid>> makeBids(HttpCall<BidRequest> httpCall, BidRequest bidRequest) {
         try {
             final BidResponse bidResponse = mapper.decodeValue(httpCall.getResponse().getBody(), BidResponse.class);
-            return Result.of(extractBids(httpCall.getRequest().getPayload(), bidResponse), Collections.emptyList());
+            return Result.withValues(extractBids(httpCall.getRequest().getPayload(), bidResponse));
         } catch (DecodeException | PreBidException e) {
             return Result.withError(BidderError.badServerResponse(e.getMessage()));
         }
@@ -447,9 +447,9 @@ public class {bidder}Bidder implements Bidder<BidRequest> {
 ```
 
 
-#### MakeRequests
+#### MakeHttpRequests
 
-The `MakeRequests` method is responsible for returning zero or more HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
+The `MakeHttpRequests` method is responsible for returning zero or more HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
 
 This method is called once by the core framework for bid requests which have at least one valid Impression for your adapter. Impressions not configured for your adapter will be removed and are not accessible.
 
@@ -471,7 +471,7 @@ The argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension inform
 </details>
 <p></p>
 
-The `MakeRequests` method is expected to return a  `List<HttpRequest<BidRequest>` object representing the HTTP calls to be sent to your bidding server and a `List<BidderError> errors` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please use different methods in `Result` class specific to your case.
+The `MakeHttpRequests` method is expected to return a  `List<HttpRequest<BidRequest>` object representing the HTTP calls to be sent to your bidding server and a `List<BidderError> errors` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please use different methods in `Result` class specific to your case.
 
 An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
 
@@ -609,33 +609,6 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 
 <p></p>
 
-### Simple Bidder Creation
-Remember if your bidder does not have much specific logic beyond standard OpenRTB 2.5, you don't have to implement `Bidder<BidRequest>`
-but could choose to extend OpenrtbBidder<T>(where T is ImpExt type), which already implements Bidder<BidRequest> and has a default implementation of different methods. You can override each of them with your own implementation as needed.
-
-Here is the list of methods in OpenrtbBidder which you can override:
-
-1) `void validateRequest(BidRequest bidRequest)`
-    - A hook for bidder-specific request validation if any is required.
-
-
-2) `Imp modifyImp(Imp imp, T impExt)`
-    - A hook for bidder-specific impression changes, impression validation and impression extension validation if any are required
-
-
-3) `void modifyRequest(BidRequest bidRequest, BidRequest.BidRequestBuilder requestBuilder, List<ImpWithExt<T>> impsWithExts)`
-    - A hook for any request changes other than Imps (although Impressions can be modified as well)
-
-
-4) `BidType getBidType(String impId, List<Imp> imps)`
-    - A hook for resolving bidder-specific bid type.
-
----
-Using this class(OpenrtbBidder), you can define whether the outgoing
-requests can contain multiple impressions (`RequestCreationStrategy.SINGLE_REQUEST`) or whether each each request should have only one impression (`RequestCreationStrategy.REQUEST_PER_IMP`). Pass this value to parent constructor as the second argument.
-
-Check the class file to find which methods are overridable.
-
 ### Create Config Class 
 
 Go to `org.prebid.server.spring.config.bidder` and create new class `Configuration{bidder}`
@@ -648,13 +621,9 @@ import org.prebid.server.bidder.BidderDeps;
 import org.prebid.server.bidder.{bidder}.{bidder}Bidder;
 import org.prebid.server.json.JacksonMapper;
 import org.prebid.server.spring.config.bidder.model.BidderConfigurationProperties;
-import org.prebid.server.spring.config.bidder.model.UsersyncConfigurationProperties;
 import org.prebid.server.spring.config.bidder.util.BidderDepsAssembler;
-import org.prebid.server.spring.config.bidder.util.BidderInfoCreator;
 import org.prebid.server.spring.config.bidder.util.UsersyncerCreator;
 import org.prebid.server.spring.env.YamlPropertySourceFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -668,18 +637,7 @@ import javax.validation.constraints.NotBlank;
 public class {bidder}Configuration {
 
     private static final String BIDDER_NAME = "{bidder}";
-
-    @Value("${external-url}")
-    @NotBlank
-    private String externalUrl;
-
-    @Autowired
-    private JacksonMapper mapper;
-
-    @Autowired
-    @Qualifier("{bidder}ConfigurationProperties")
-    private BidderConfigurationProperties configProperties;
-
+    
     @Bean("{bidder}ConfigurationProperties")
     @ConfigurationProperties("adapters.{bidder}")
     BidderConfigurationProperties configurationProperties() {
@@ -687,14 +645,14 @@ public class {bidder}Configuration {
     }
 
     @Bean
-    BidderDeps {bidder}BidderDeps() {
-        final UsersyncConfigurationProperties usersync = configProperties.getUsersync();
-
+    BidderDeps{bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
+                                  @NotBlank @Value("${external-url}") String externalUrl,
+                                  JacksonMapper mapper) {
+        
         return BidderDepsAssembler.forBidder(BIDDER_NAME)
-                .withConfig(configProperties)
-                .bidderInfo(BidderInfoCreator.create(configProperties))
-                .usersyncerCreator(UsersyncerCreator.create(usersync, externalUrl))
-                .bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), mapper))
+                .withConfig({bidder}ConfigurationProperties)
+                .usersyncerCreator(UsersyncerCreator.create(externalUrl))
+                .bidderCreator(config -> new {bidder}Bidder(config.getEndpoint(), mapper))
                 .assemble();
     }
 }
@@ -783,25 +741,25 @@ Try to create models by using following methods specified to your case in your t
 
 ```java
 private static BidRequest givenBidRequest(
-            Function<BidRequest.BidRequestBuilder, BidRequest.BidRequestBuilder> bidRequestCustomizer,
-            Function<Imp.ImpBuilder, Imp.ImpBuilder> impCustomizer) {
+            UnaryOperator<BidRequest.BidRequestBuilder> bidRequestCustomizer,
+            UnaryOperator<Imp.ImpBuilder> impCustomizer) {
 
         return bidRequestCustomizer.apply(BidRequest.builder()
                 .imp(singletonList(givenImp(impCustomizer))))
                 .build();
     }
 
-    private static BidRequest givenBidRequest(Function<Imp.ImpBuilder, Imp.ImpBuilder> impCustomizer) {
+    private static BidRequest givenBidRequest(UnaryOperator<Imp.ImpBuilder> impCustomizer) {
         return givenBidRequest(identity(), impCustomizer);
     }
 
-    private static Imp givenImp(Function<Imp.ImpBuilder, Imp.ImpBuilder> impCustomizer) {
+    private static Imp givenImp(UnaryOperator<Imp.ImpBuilder> impCustomizer) {
         return impCustomizer.apply(Imp.builder()
                 .ext(mapper.valueToTree(ExtPrebid.of(null, ExtImp{bidder}.of(param, secondParam)))))
                 .build();
     }
 
-    private static BidResponse givenBidResponse(Function<Bid.BidBuilder, Bid.BidBuilder> bidCustomizer) {
+    private static BidResponse givenBidResponse(UnaryOperator<Bid.BidBuilder> bidCustomizer) {
         return BidResponse.builder()
                 .seatbid(singletonList(SeatBid.builder().bid(singletonList(bidCustomizer.apply(Bid.builder()).build()))
                         .build()))
@@ -1106,8 +1064,6 @@ import io.restassured.response.Response;
 import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
@@ -1117,7 +1073,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
-import static io.restassured.RestAssured.given;
 import static java.util.Collections.singletonList;
 
 @RunWith(SpringRunner.class)
@@ -1127,8 +1082,6 @@ public class {bidder}Test extends IntegrationTest {
     public void openrtb2AuctionShouldRespondWithBidsFrom{bidder}() throws IOException, JSONException {
         // given
         WIRE_MOCK_RULE.stubFor(post(urlPathEqualTo("/{bidder}-exchange"))
-                .withHeader("Accept", equalTo("application/json"))
-                .withHeader("Content-Type", equalTo("application/json;charset=UTF-8"))
                 .withRequestBody(equalToJson(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-request.json")))
                 .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-response.json"))));
 
@@ -1138,22 +1091,11 @@ public class {bidder}Test extends IntegrationTest {
                 .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-cache-{bidder}-response.json"))));
 
         // when
-        final Response response = given(SPEC)
-                .header("Referer", "http://www.example.com")
-                .header("X-Forwarded-For", "193.168.244.1")
-                .header("User-Agent", "userAgent")
-                .header("Origin", "http://www.example.com")
-                // this uids cookie value stands for {"uids":{"{bidder}":"BTW-UID"}}
-                .cookie("uids", "eyJ1aWRzIjp7ImJldHdlZW4iOiJCVFctVUlEIn19")
-                .body(jsonFrom("openrtb2/{bidder}/test-auction-{bidder}-request.json"))
-                .post("/openrtb2/auction");
+        final Response response = responseFor("openrtb2/{bidder}/test-auction-{bidder}-request.json",
+                Endpoint.OPENRTB2_AUCTION);
 
         // then
-        final String expectedAuctionResponse = openrtbAuctionResponseFrom(
-                "openrtb2/{bidder}/test-auction-{bidder}-response.json",
-                response, singletonList("{bidder}"));
-
-        JSONAssert.assertEquals(expectedAuctionResponse, response.asString(), JSONCompareMode.NON_EXTENSIBLE);
+        assertJsonEquals("openrtb2/{bidder}/test-auction-{bidder}-response.json", response, singletonList("{bidder}"));
     }
 }
 
@@ -1242,8 +1184,8 @@ Notes on the metadata fields:
 - Adapter Code
   - `org/prebid/server/bidder/{bidder}/{bidder}Bidder.java`
   - `org/prebid/server/bidder/{bidder}/{bidder}BidderTest.java` (test directory)
-  - `org/prebid/server/it/{bidder}Test.java` (test directory)
 - Integration test files
+  - `org/prebid/server/it/{bidder}Test.java` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-auction-{bidder}-request.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-auction-{bidder}-response.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-{bidder}-bid-request.json` (test directory)
