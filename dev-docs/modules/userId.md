@@ -88,7 +88,7 @@ The table below has the options that are common across ID systems. See the secti
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
-| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 
 ## Permissions
@@ -1466,26 +1466,14 @@ You can make use of the Prebid.js SharedId module as follows.
 Enable by adding the Novatiq and SharedId submodule to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=novatiqIdSystem,userId,pubCommonId
+gulp build --modules=novatiqIdSystem,userId
 
 Module activation and configuration:
 
 {% highlight javascript %}
 pbjs.setConfig({
   userSync: {
-    userIds: [
-      {
-        name: "pubCommonId",
-        storage: {
-          type: "cookie",   
-          // optional: will default to _pubcid if left blank
-          name: "demo_pubcid",     
-          
-          // expires in 1 years
-          expires: 365             
-        },
-        bidders: [ 'adtarget' ]
-      },                                            
+    userIds: [                                          
       {
       name: 'novatiq',
       params: {
@@ -1767,7 +1755,7 @@ pbjs.setConfig({
             name: "sharedId",
             storage: {
                 type: "cookie",
-                name: `"_pubcid"`,         // create a cookie with this name
+                name: "_sharedid",         // create a cookie with this name
                 expires: 365             // expires in 1 years
             }
         }]
@@ -1797,7 +1785,7 @@ pbjs.setConfig({
             },
             storage: {
                 type: "cookie",
-                name: `"_pubcid"`,      // create a cookie with this name
+                name: "_sharedid",      // create a cookie with this name
                 expires: 180
             }
         }],
@@ -1818,8 +1806,8 @@ pbjs.setConfig({
             },
             storage: {
                 type: "cookie",
-                name: `"_pubcid"`,         // create a cookie with this name
-                expires: 365             // expires in 1 years
+                name: "_sharedid",        // create a cookie with this name
+                expires: 365              // expires in 1 year
             }
         }]
     }
