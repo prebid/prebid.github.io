@@ -59,6 +59,8 @@ The client code is responsible for taking the `url` response parameter and invok
 | bidders | optional | Array of bid adapters on the page or those the publisher wishes to sync. | ["bidderA"] | array of strings |
 | gdpr | optional | Flag indicating whether the request is in-scope for GDPR processing. | 1 | 0 or 1 |
 | gdpr_consent | optional | GDPR consent string from the CMP. | | string |
+| gpp          | optional | Global Privacy Platform String. | DBABTA~1--- | string |
+| gpp_sid          | optional | GPP Section ID . | "7" | string |
 | us_privacy | optional | US Privacy consent string from the CMP. | 1NYN | string |
 | limit | optional | Max number of sync URLs to return. | 5 | integer |
 | coopSync | optional | Cooperative syncing is a way for publishers to help each other by allowing PBS to sync bidders beyond those specified by the `bidders` argument. See below for details. The default depends on PBS host company settings. | true | boolean |
