@@ -27,9 +27,13 @@ pbjs.setBidderConfig({
 	bidders: ['adrelevantis'],
 	config: {
 		ortb2: {
-			context: {
+			site: {
 				keywords: keywords,
-				category: categories
+				ext: {
+					data: {
+						category: categories
+					}
+				}
 			}
 		}
 	}
