@@ -75,12 +75,12 @@ The PPID has strict rules; refer to [Google AdManager documentation](https://sup
 | --- | --- | --- | --- | --- |
 | ppid | Optional | String | Must be a source from the pbjs.getUserIdsAsEids() array | `"pubcid.org"` |
 
-Google now supports Encrypted Signals for Publishers, a programme that allows publishers can explicitly share encrypted signals on bid requests with the third-party bidders. User ID modules now supports code which will register the signal sources anad encypted signal are created and is send to GAM request in a3 parameter. encryptedSignalSources configuration under userSync Module will help to configure signal sources.
+Google now supports Encrypted Signals for Publishers, a programme that allows publishers can explicitly share encrypted signals on bid requests with the third-party bidders. User ID modules now supports code which will register the signal sources anad encrypted signal are created and is send to GAM request in a3p parameter. 'encryptedSignalSources' configuration under userSync Module will help to configure signal sources.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| encryptedSignalSources | Optional | Array | An array of Signal Source for registering signal Source to support google tag ESP functionality | `["pubcid.org", "sharedid.org","criteo.com"]` |
+| encryptedSignalSources | Optional | Array | An array of Signal Source for which encrypted signals are created by registering a function under window.googletag.encryptedSignalSource to support google tag ESP functionality | `["pubcid.org", "sharedid.org","criteo.com"]` |
 
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
