@@ -26,12 +26,10 @@ The easiest way to get started with Prebid.js is to use the example code below.
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/bryzc7g6/3/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
+Optanon.InsertHtml('<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/bryzc7g6/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
 </script>
 
 ### Next Steps
 
 1. Set up your ad server using the [corresponding Ad Ops setup instructions]({{site.baseurl}}/adops/send-all-bids-adops.html)
 2. Once you're comfortable with the basic setup, check out [the examples showing other use cases]({{site.baseurl}}/dev-docs/examples/basic-example.html)
-
-
