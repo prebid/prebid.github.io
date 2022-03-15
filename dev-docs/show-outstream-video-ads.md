@@ -30,7 +30,7 @@ There should be no changes required on the ad ops side, since the outstream unit
 
 Use the `adUnit.mediaTypes` object to set up your ad units with the `video` media type and assign the appropriate context
 
-The fields supported in a given `bid.params.video` object will vary based on the rendering options supported by each bidder.  For more information, see [Bidders' Params]({{site.github.url}}/dev-docs/bidders.html).
+For full details on video ad unit parameters, see [Ad Unit Reference for Video]({{site.baseurl}}/dev-docs/adunit-reference.html#adunitmediatypesvideo)
 
 {% highlight js %}
 
@@ -43,17 +43,14 @@ var videoAdUnits = [{
                 mimes: ['video/mp4'],
                 protocols: [1, 2, 3, 4, 5, 6, 7, 8],
                 playbackmethod: [2],
-                skip: 1
+                skip: 1,
+                playback_method: ['auto_play_sound_off']
         }
     },
     bids: [{
         bidder: 'appnexus',
         params: {
             placementId: 13232385,
-            video: {
-                skip: 1,
-                playback_method: ['auto_play_sound_off']
-            }
         }
     }]
 }];
