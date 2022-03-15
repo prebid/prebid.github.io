@@ -188,24 +188,20 @@ The `native` object contains the following properties that correspond to the ass
 | `context`        | Recommended    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`. Defaults to 'instream'. |
 | `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
-| `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].                                                  |
+| `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].  If your video player or video ads SDK supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
 | `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                            |
 | `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                     |
 | `minduration`      | Recommended    | Integer         | Minimum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
 | `maxduration`      | Recommended    | Integer         | Maximum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
-| `w`      | Recommended    | Integer         |
-Width of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
+| `w`      | Recommended    | Integer         | Width of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
 | `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
 | `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB spec][openRTB].           |
 | `placement`      | Optional    | Integer         | Placement type for the impression, see [OpenRTB spec][openRTB].           |
 | `linearity`      | Optional    | Integer         | Indicates if the impression must be linear, nonlinear, etc, see [OpenRTB spec][openRTB].           |
-| `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped,
-where 0 = no, 1 = yes., see [OpenRTB spec][openRTB].           |
-| `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds
-can be skippable; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
-| `skipafter`      | Optional    | Integer         | Number of seconds a video must play before skipping is
-enabled; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
+| `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes., see [OpenRTB spec][openRTB].           |
+| `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
+| `skipafter`      | Optional    | Integer         | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
 | `minbitrate`      | Optional    | Integer         | Minimum bit rate in Kbps., see [OpenRTB spec][openRTB].           |
 | `maxbitrate`      | Optional    | Integer         | Maximum bit rate in Kbps., see [OpenRTB spec][openRTB].           |
 | `delivery`      | Optional    | Array[Integer]         | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB spec][openRTB].           |
@@ -611,3 +607,4 @@ For more information on Interstitial ads, reference the [Interstitial feature pa
 [configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: {{site.baseurl}}/prebid-server/overview/prebid-server-overview.html
+[OpenMeasurement]: https://iabtechlab.com/standards/open-measurement-sdk/
