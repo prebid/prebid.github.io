@@ -75,7 +75,6 @@ The PPID has strict rules; refer to [Google AdManager documentation](https://sup
 | --- | --- | --- | --- | --- |
 | ppid | Optional | String | Must be a source from the pbjs.getUserIdsAsEids() array | `"pubcid.org"` |
 
-
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
 {: .table .table-bordered .table-striped }
@@ -90,66 +89,6 @@ The table below has the options that are common across ID systems. See the secti
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
-
-
-ESP Configurations.
-
-Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
-
-{: .table .table-bordered .table-striped }
-| Param under userSync | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| encryptedSignal | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignal.eids | Required | Object |  Object consist of sources list and encryption flag | Check below config as an example  |
-| encryptedSignal.eids.sources | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
-| encryptedSignal.eids.encrypt | Required | Boolean | Set to true if signals needs to be encoded with Base64 | `true` or `false`|
-| encryptedSignal.custom | Optional | Object | Object consist of Source list and its associated function to retrieve the data  |  |
-| encryptedSignal.custom.sources | Required | Array of Object | Object consist of source list and respective custom function  | Check below config as an example |
-| encryptedSignal.custom.sources.source | Required | Array  | List of custom sources for which signals needs to be registered   | Check below config as an example |
-| encryptedSignal.custom.sources.customFunc | Required | function | Function will be called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignal.custom.encrypt | Required | Boolean | Default to true, Custom data will be encoded by Base64. (Currently base64 encode is enabled by default) | `true` | 
-| encryptedSignal.registerDelay | Required | Integer | The amount of time (in seconds) after which registering of signals will happen   |  `3000`
-
-Example:
-
-```
-pbjs.setConfig({
-    userSync: {
-        ...,
-        encryptedSignal: {
-            // Eids sources for which signals needs to registered.
-            "eids": {
-                "sources": [
-                    "sharedid.org",
-                    "criteo.com",
-                    "id5-sync.com",
-                    "pubcid.org",
-                    "audigent.com"
-                ],
-                "encrypt": false
-            },
-            // Custom Sources having custom function which returns respective data
-            "custom": {
-                "sources": [{
-                    source: ['pubmatic.com'],
-                    customFunc: () => {
-                        return '{"keywords":["tech","auto"]}';
-                    },
-                }, {
-                    source: ['segment.com'],
-                    customFunc: () => {
-                        return '[{ "id": "1", "value": "seg1" },{ "id": "2", "value": "seg2" }]';
-                    },
-                }],
-                "encrypt": true // Encryption value which will encode the data in base64 format
-            },
-            "registerDelay": 3000 // To delay the Registration of function to create encrypted signals
-        },
-        ....
-    }
-})
-
-```
 
 ## Permissions
 Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
@@ -2408,6 +2347,72 @@ If you're an ID provider that wants to get on this page:
 ## Passing UserIds to Google Ad Manager for targeting
 
 User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or could be passed ahead to Google Open Bidding using ```userIdTargeting``` module. Note Google deprecated the ability to pass key values, including identifiers, to OB partners and then later began a closed beta to resume it with details non-public (see  https://developers.google.com/authorized-buyers/rtb/request-guide ). More details on the user id module can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
+
+
+## ESP Configurations.
+
+Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
+
+Please find more details [Share encrypted signals with bidders (Beta)](https://support.google.com/admanager/answer/10488752?hl=en)
+
+{: .table .table-bordered .table-striped }
+| Param under userSync | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| encryptedSignal | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
+| encryptedSignal.eids | Required | Object |  Object consist of sources list and encryption flag | Check below config as an example  |
+| encryptedSignal.eids.sources | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
+| encryptedSignal.eids.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
+| encryptedSignal.custom | Optional | Object | Object consist of Source list and its associated function to retrieve the data  |  |
+| encryptedSignal.custom.sources | Required | Array of Object | Object consist of source list and respective custom function  | Check below config as an example |
+| encryptedSignal.custom.sources.source | Required | Array  | List of custom sources for which signals needs to be registered   | Check below config as an example |
+| encryptedSignal.custom.sources.customFunc | Required | function | Function will be called which will return the custom data set from the page  | Check below config as an example  |
+| encryptedSignal.custom.encrypt | Required | Boolean | Default to true, Custom data will be encoded by Base64. (Currently base64 encode is enabled by default) | `true` | 
+| encryptedSignal.registerDelay | Required | Integer | The amount of time (in seconds) after which registering of signals will happen   |  `3000`
+
+
+**NOTE:**
+For eids encryption (encryptedSignal.eids.encrypt) set to true is not recommended unless downstream is informed of the changes.
+
+ESP Configuration Example:
+
+```
+pbjs.setConfig({
+    userSync: {
+        ...,
+        encryptedSignal: {
+            // Eids sources for which signals needs to registered.
+            "eids": {
+                "sources": [
+                    "sharedid.org",
+                    "criteo.com",
+                    "id5-sync.com",
+                    "pubcid.org",
+                    "audigent.com"
+                ],
+                "encrypt": false
+            },
+            // Custom Sources having custom function which returns respective data
+            "custom": {
+                "sources": [{
+                    source: ['pubmatic.com'],
+                    customFunc: () => {
+                        return '{"keywords":["tech","auto"]}';
+                    },
+                }, {
+                    source: ['segment.com'],
+                    customFunc: () => {
+                        return '[{ "id": "1", "value": "seg1" },{ "id": "2", "value": "seg2" }]';
+                    },
+                }],
+                "encrypt": true // Encryption value which will encode the data in base64 format
+            },
+            "registerDelay": 3000 // To delay the Registration of function to create encrypted signals
+        },
+        ....
+    }
+})
+
+```
 
 ## Further Reading
 
