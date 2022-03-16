@@ -83,12 +83,12 @@ Google now supports Encrypted Signals for Publishers, a programme that allows pu
 | encryptedSignal | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
 | encryptedSignal.eids | Required | Object |  Object consist of sources list and encryption flag | Check below config as an example  |
 | encryptedSignal.eids.sources | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
-| encryptedSignal.eids.encrypt | Required | Boolean | true or false  | Set to true if signals needs to be encoded with Base64 | `true` |
+| encryptedSignal.eids.encrypt | Required | Boolean | Set to true if signals needs to be encoded with Base64 | `true` or `false`|
 | encryptedSignal.custom | Optional | Object | Object consist of Source list and its associated function to retrieve the data  |  |
-| encryptedSignal.custom.sources | Required | Array of Object which consist of source list and respective custom function|   |  |
+| encryptedSignal.custom.sources | Required | Array of Object | Object consist of source list and respective custom function  | Check below config as an example |
 | encryptedSignal.custom.sources.source | Required | Array  | List of custom sources for which signals needs to be registered   | Check below config as an example |
 | encryptedSignal.custom.sources.customFunc | Required | function | Function will be called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignal.custom.encrypt | Required | Boolean | Default to true, Custom data will be encoded by Base64. (Currently base64 encode is enabled by default) |
+| encryptedSignal.custom.encrypt | Required | Boolean | Default to true, Custom data will be encoded by Base64. (Currently base64 encode is enabled by default) | `true` | 
 | encryptedSignal.registerDelay | Required | Integer | The amount of time (in seconds) after which registering of signals will happen   |  `3000`
 
 Example:
