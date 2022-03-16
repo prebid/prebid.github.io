@@ -94,7 +94,7 @@ The table below has the options that are common across ID systems. See the secti
 
 ESP Configurations.
 
-Google now supports Encrypted Signals for Publishers(ESP), a programme that allows publishers can explicitly share encrypted signals on bid requests with the third-party bidders. User ID modules now supports code which will register the signal sources anad encrypted signal are created and is send to GAM request in a3p parameter. 'encryptedSignalSources' configuration under userSync Module will help to configure signal sources.
+Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
