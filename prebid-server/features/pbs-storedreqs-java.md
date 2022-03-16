@@ -6,8 +6,20 @@ title: Prebid Server | Features | Setting Up Stored Requests for Java
 ---
 
 # Prebid Server | Features | Setting Up Stored Requests for Java
+{: .no_toc}
+
+* TOC
+{:toc }
+
+## Overview
+
+There are two different kinds of stored requests:
+- impression-level stored requests: these are scoped to the contents of a single OpenRTB `imp` object
+- top-level stored requests: these are scoped to the entire OpenRTB package, and is where you can place details in ext.prebid, tmax, site, etc. It is not recommended to place imp objects in this type of stored request.
 
 ## PBS-Java Stored Request Quickstart
+
+Stored requests can be placed in the database or files. See below for how to set up the database. This guide assumes that new Prebid Server host companies will start with files.
 
 Configure your server to read stored requests from the filesystem:
 
@@ -71,7 +83,7 @@ Start your server and then `POST` to [`/openrtb2/auction`](/prebid-server/endpoi
 
 The auction will occur as if the HTTP request had included the content from `stored_requests/{id}.json` instead.
 
-## Partially Stored Requests
+## Partially Stored Impression-level Requests
 
 You can also store _part_ of the Imp on the server. For example:
 
@@ -127,7 +139,7 @@ If the Stored Request and the HTTP request have conflicting properties,
 they will be resolved with a [JSON Merge Patch](https://tools.ietf.org/html/rfc7386).
 HTTP request properties will overwrite the Stored Request ones.
 
-## Stored BidRequests
+## Top-Level Stored Requests
 
 So far, our examples have only used Stored Imp data. However, Stored Requests
 are also allowed on the [BidRequest](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=15).
