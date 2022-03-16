@@ -80,7 +80,55 @@ Google now supports Encrypted Signals for Publishers, a programme that allows pu
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| encryptedSignalSources | Optional | Array | An array of Signal Source for which encrypted signals are created by registering a function under window.googletag.encryptedSignalSource to support google tag ESP functionality | `["pubcid.org", "sharedid.org","criteo.com"]` |
+| encryptedSignal | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
+| encryptedSignal.eids | Required | Object |  Object consist of sources list and encryption flag |  |
+| encryptedSignal.eids.sources | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
+| encryptedSignal.eids.encrypt | Required | Boolean | true or false  | Set to true if signals needs to be encoded with Base64 | `true` |
+| encryptedSignal.custom | Optional | Object | Object consist of Source list and its associated function to retrieve the data  |  |
+| encryptedSignal.custom.sources | Required | Array of Object |   |  |
+| encryptedSignal.custom.sources.source | Required | Array  | List of custom sources for which signals needs to be registered   |  |
+| encryptedSignal.custom.sources.customFunc | Required | function | Function will be called which will return the custom data set from the page  |   |
+| encryptedSignal.custom.encrypt | Required | Boolean | Default to true, Custom data will be encoded by Base64. (Currently base64 encode is enabled by default) |
+| encryptedSignal.registerDelay | Required | Integer | true or false  | The amount of time (in seconds) after which registering of signals will happen   |
+
+```
+pbjs.setConfig({
+    userSync: {
+        ...,
+        encryptedSignal: {
+            // Eids sources for which signals needs to registered.
+            "eids": {
+                "sources": [
+                    "sharedid.org",
+                    "criteo.com",
+                    "id5-sync.com",
+                    "pubcid.org",
+                    "audigent.com"
+                ],
+                "encrypt": false
+            },
+            // Custom Sources having custom function which returns respective data
+            "custom": {
+                "sources": [{
+                    source: ['pubmatic.com'],
+                    customFunc: () => {
+                        return '{"keywords":["tech","auto"]}';
+                    },
+                }, {
+                    source: ['segment.com'],
+                    customFunc: () => {
+                        return '[{ "id": "1", "value": "seg1" },{ "id": "2", "value": "seg2" }]';
+                    },
+                }],
+                "encrypt": true // Encryption value which will encode the data in base64 format
+            },
+            "registerDelay": 3000 // To delay the Registration of function to create encrypted signals
+        },
+        ....
+    }
+})
+
+```
 
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
