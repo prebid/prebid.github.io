@@ -2367,9 +2367,9 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 | encryptedSignal.custom.sources.source | Required | Array  | List of custom sources for which signals needs to be registered   | Check below config as an example |
 | encryptedSignal.custom.sources.customFunc | Required | function | Function will be called which will return the custom data set from the page  | Check below config as an example  |
 | encryptedSignal.custom.encrypt | Required | Boolean | Default to true, Custom data will be encoded by Base64. (Currently base64 encode is enabled by default) | `true` | 
-| encryptedSignal.registerDelay | Required | Integer | The amount of time (in seconds) after which registering of signals will happen   |  `3000`
+| encryptedSignal.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
 
-
+{: .alert.alert-info :}
 **NOTE:**
 For eids encryption (encryptedSignal.eids.encrypt) set to true is not recommended unless downstream is informed of the changes.
 
