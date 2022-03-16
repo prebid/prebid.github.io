@@ -14,8 +14,8 @@ title: Prebid Server | Features | Setting Up Stored Requests for Java
 ## Overview
 
 There are two different kinds of stored requests:
-- impression-level stored requests: these are scoped to the contents of a single OpenRTB `imp` object
-- top-level stored requests: these are scoped to the entire OpenRTB package, and is where you can place details in ext.prebid, tmax, site, etc. It is not recommended to place imp objects in this type of stored request.
+- **impression-level stored requests**: these are scoped to the contents of a single OpenRTB `imp` object
+- **top-level stored requests**: these are scoped to the entire OpenRTB package, and is where you can place details in ext.prebid, tmax, site, etc. It is not recommended to place imp objects in this type of stored request.
 
 ## PBS-Java Stored Request Quickstart
 
@@ -33,7 +33,7 @@ settings:
 
 Choose an ID to reference your stored request data. Throughout this doc, replace {id} with the ID you've chosen.
 
-Add the file `stored_imps/{id}.json` and populate it with some [Imp](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=17) data.
+Add the file `stored_imps/{id}.json` and populate it with some [imp](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=17) data. This will create an impression-level stored request.
 
 ```json
 {
@@ -83,9 +83,9 @@ Start your server and then `POST` to [`/openrtb2/auction`](/prebid-server/endpoi
 
 The auction will occur as if the HTTP request had included the content from `stored_requests/{id}.json` instead.
 
-## Partially Stored Impression-level Requests
+## Partial Stored Impression-level Requests
 
-You can also store _part_ of the Imp on the server. For example:
+You can also store _part_ of the `imp` on the server. For example:
 
 ```json
 {
@@ -293,3 +293,6 @@ settings:
 ```
 
 Refresh rate can be negative or zero - in such case the data will be fetched once and never updated.
+
+## Related Reading
+- [Stored Responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses-pbs-java-only)
