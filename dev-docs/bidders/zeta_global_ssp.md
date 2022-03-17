@@ -4,13 +4,14 @@ title: Zeta Global Ssp
 description: Zeta Global Ssp Prebid Bidder Adapter
 pbjs: true
 biddercode: zeta_global_ssp
-bidder_supports_deals: false
+deals_supported: false
 media_types: banner
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: all
 prebid_member: true
+fpd_supported: true
 gvl_id: 833
 ---
 

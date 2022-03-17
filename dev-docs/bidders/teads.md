@@ -10,7 +10,7 @@ schain_supported: true
 userIds: flocId, uid2Id
 media_types: banner, video
 gvl_id: 132
-bidder_supports_deals: true
+deals_supported: true
 ---
 
 ### Note:

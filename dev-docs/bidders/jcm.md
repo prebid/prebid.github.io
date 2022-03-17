@@ -4,7 +4,8 @@ title: J Carter Marketing
 description: Prebid J Carter Marketing Bidder Adaptor
 pbjs: true
 biddercode: jcm
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Bid Params
