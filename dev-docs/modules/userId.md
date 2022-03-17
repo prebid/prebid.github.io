@@ -2358,16 +2358,16 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| encryptedSignal | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignal.sources | Required | Object |  An array of Object consist of sources list and encryption flag | Check below config as an example  |
-| encryptedSignal.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
-| encryptedSignal.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
-| encryptedSignal.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignal.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+| encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
+| encryptedSignalSources.sources | Required | Object |  An array of Object consist of sources list and encryption flag | Check below config as an example  |
+| encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
+| encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
+| encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
 
 {: .alert.alert-info :}
 **NOTE:**
-For eids encryption (encryptedSignal.eids.encrypt) set to true is not recommended unless downstream is informed of the changes.
+For eids encryption (encryptedSignalSources.encrypt) set to true is not recommended unless downstream is informed of the changes.
 
 {: .alert.alert-info :}
 **NOTE:**
