@@ -2349,7 +2349,7 @@ If you're an ID provider that wants to get on this page:
 User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or could be passed ahead to Google Open Bidding using ```userIdTargeting``` module. Note Google deprecated the ability to pass key values, including identifiers, to OB partners and then later began a closed beta to resume it with details non-public (see  https://developers.google.com/authorized-buyers/rtb/request-guide ). More details on the user id module can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
 
 
-## ESP Configurations.
+## ESP Configurations
 
 Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
 
@@ -2359,19 +2359,19 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | encryptedSignal | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignal.eids | Required | Object |  Object consist of sources list and encryption flag | Check below config as an example  |
-| encryptedSignal.eids.sources | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
-| encryptedSignal.eids.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
-| encryptedSignal.custom | Optional | Object | Object consist of Source list and its associated function to retrieve the data  |  |
-| encryptedSignal.custom.sources | Required | Array of Object | Object consist of source list and respective custom function  | Check below config as an example |
-| encryptedSignal.custom.sources.source | Required | Array  | List of custom sources for which signals needs to be registered   | Check below config as an example |
-| encryptedSignal.custom.sources.customFunc | Required | function | Function will be called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignal.custom.encrypt | Required | Boolean | Default to true, Custom data will be encoded by Base64. (Currently base64 encode is enabled by default) | `true` | 
+| encryptedSignal.sources | Required | Object |  An array of Object consist of sources list and encryption flag | Check below config as an example  |
+| encryptedSignal.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
+| encryptedSignal.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
+| encryptedSignal.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
 | encryptedSignal.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
 
 {: .alert.alert-info :}
 **NOTE:**
 For eids encryption (encryptedSignal.eids.encrypt) set to true is not recommended unless downstream is informed of the changes.
+
+{: .alert.alert-info :}
+**NOTE:**
+Publishers enabling passing eids/signal through ESP should reach out to SSPs integrated through OB to make sure to take any additional steps needed to ensure impact on 3p cookie based transaction is handled and impact is minimal.
 
 ESP Configuration Example:
 
@@ -2379,34 +2379,24 @@ ESP Configuration Example:
 pbjs.setConfig({
     userSync: {
         ...,
-        encryptedSignal: {
-            // Eids sources for which signals needs to registered.
-            "eids": {
-                "sources": [
-                    "sharedid.org",
-                    "criteo.com",
-                    "id5-sync.com",
-                    "pubcid.org",
-                    "audigent.com"
-                ],
-                "encrypt": false
-            },
-            // Custom Sources having custom function which returns respective data
-            "custom": {
-                "sources": [{
-                    source: ['pubmatic.com'],
-                    customFunc: () => {
-                        return '{"keywords":["tech","auto"]}';
-                    },
-                }, {
-                    source: ['segment.com'],
-                    customFunc: () => {
-                        return '[{ "id": "1", "value": "seg1" },{ "id": "2", "value": "seg2" }]';
-                    },
-                }],
-                "encrypt": true // Encryption value which will encode the data in base64 format
-            },
-            "registerDelay": 3000 // To delay the Registration of function to create encrypted signals
+        encryptedSignalSources: {
+            "sources": [{
+                source: ['sharedid.org', 'criteo.com', 'id5-sync.com', 'pubcid.org', 'audigent.com'],
+                encrypt: false
+            }, {
+                source: ['pubmatic.com'],
+                customFunc: () => {
+                    return '{"keywords":["tech","auto"]}';
+                },
+                encrypt: true
+            }, {
+                source: ['segment.com'],
+                customFunc: () => {
+                    return '[{ "id": "1", "value": "seg1" },{ "id": "2", "value": "seg2" }]';
+                },
+                encrypt: true
+            }],
+            "registerDelay": 3000
         },
         ....
     }
