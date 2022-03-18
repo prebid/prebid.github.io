@@ -5,6 +5,7 @@ description: Prebid Ad Generation Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adgeneration
+userIds: novatiq
 media_types: native
 ---
 
