@@ -26,6 +26,8 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 {% endcapture %}
 {% include alerts/alert_important.html content=version2 %}
 
+This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder.
+
 ### Table of Contents
 
 - [Bid Params](#triplelift-bid-params)
