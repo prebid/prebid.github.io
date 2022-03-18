@@ -6,7 +6,7 @@ biddercode: huaweiads
 gvl_id: 856
 media_types: banner, video, native
 safeframes_ok: false
-bidder_supports_deals: true
+deals_supported: true
 pbjs: false
 pbs: true
 pbs_app_supported: true

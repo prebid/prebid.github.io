@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Prebid Modules
+title: Prebid.js Modules
 description: Module Documentation
 sidebarType: 1
 ---

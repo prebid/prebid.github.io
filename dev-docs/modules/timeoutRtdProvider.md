@@ -1,6 +1,7 @@
 ---
 layout: page_v2
 title: Timeout Rtd Module
+display_name: Timeout RTD
 description: Module for managing timeouts in real time
 page_type: module
 module_type: rtd
@@ -150,3 +151,9 @@ pbjs.setConfig({
     // The timeout RTD module will add time to `bidderTimeout` based on the rules set above.  
     "bidderTimeout": 1500, 
 ```
+
+## Timeout Providers
+
+{: .table  }
+| Partner | Contact | About |
+| OpenX | [apollo@openx.com](mailto:apollo@openx.com) | Dynamic timeout optimization and more |
