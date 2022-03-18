@@ -9,7 +9,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-media_types: banner, video, native
+media_types: native
 userIds: criteo, identityLink, unifiedId
 prebid_member: true
 safeframes_ok: true
