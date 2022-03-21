@@ -8,7 +8,7 @@ usp_supported: false
 coppa_supported: false
 schain_supported: false
 dchain_supported: false
-userId: none
+userId: all
 media_types: banner, video, native
 floors_supported: true
 pbjs: true
@@ -19,9 +19,9 @@ prebid_member: false
 
 ### Note:
 
-* The Buzzoola Header Bidding adaptor requires setup and approval before beginning. Please reach out to <support@buzzoola.com> for more details.
+* The Buzzoola Header Bidding adapter requires setup and approval before beginning. Please reach out to <support@buzzoola.com> for more details.
 * Please note that cookie support is required.
-* Floors supported only by Prebid Server Adapter.
+* Floors supported only by Prebid Server adapter.
 
 ### Bid Params
 
