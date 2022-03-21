@@ -17,5 +17,5 @@ The Mediasniper Bidding adapter requires setup before beginning. Please contact 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placement` | required | Placement id         | `'11111'`    | `string` |
+| `placementId` | required | Placement id         | `'11111'`    | `string` |
 | `siteid` | optional | Site id         | `'11111'`    | `string` |
