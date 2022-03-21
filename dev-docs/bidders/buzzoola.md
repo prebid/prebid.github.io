@@ -8,7 +8,7 @@ usp_supported: false
 coppa_supported: false
 schain_supported: false
 dchain_supported: false
-userId: all
+userIds: all
 media_types: banner, video, native
 floors_supported: true
 pbjs: true
