@@ -104,7 +104,9 @@ private void loadMPRewardedVideo() {
 }
 ```
 
+### setAppContent
 
+Provides targeting information for the `app.content` field of the bid request. Parameter is an `ContentObject` wich provides all respective fields. 
 
 
 ### setAutoRefreshPeriodMillis
@@ -254,6 +256,42 @@ Clear all key-value combinations from the Prebid Mobile ad unit.
 
 none
 </div>
+
+### UserData
+
+The following methods enable adding `user.data[]` objects into the bid request:
+
+```
+public void addUserData(DataObject dataObject)
+```
+
+```
+public ArrayList<DataObject> getUserData() 
+```
+
+```
+public void clearUserData() 
+```
+
+### App Content Data
+
+In order to set the `app.contnent.data[]` objects use the `getAppContent()` first and then one of the respective methods of the `ContentObject` class:
+
+```
+public void addData(@NonNull DataObject dataObject)
+```
+
+```
+public ArrayList<DataObject> getDataList()
+```
+
+```
+public void setDataList(@NonNull ArrayList<DataObject> dataObjects) 
+```
+
+```
+public void clearDataList()     
+```
 
 ## Example
 
