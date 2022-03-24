@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: gnet
+title: Gnet
 description: Prebid Gnet Bidder Adaptor
 pbjs: true
 biddercode: gnet
@@ -11,6 +11,6 @@ biddercode: gnet
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                | Example                             | Type     |
 |---------------|----------|--------------------------------------------|-------------------------------------|----------|
-| `websiteId`      | required | The Gnet website ID                            | `'4'`                                    | `string` |
-| `externalId`      | required | The Gnet external ID                          | `'4d52cccf30309282256012cf30309282'`     | `string` |
+| `websiteId`   | required | The Gnet website ID                        | `'1'`                               | `string` |
+| `adunitId`    | required | The Gnet adunit ID                         | `'1'`                               | `string` |
 

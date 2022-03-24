@@ -5,9 +5,10 @@ description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
 pbjs: true
 pbs: true
+coppa_supported: true
 gdpr_supported: true
-userIds: criteo, id5Id
 usp_supported: true
+userIds: all
 media_types: banner, native, video
 schain_supported: true
 gvl_id: 253
@@ -21,7 +22,6 @@ pbs_app_supported: true
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------|
 | `placementId`  | required | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
-| `size`         | optional | Single size filter.  Where a placement supports multiple sizes, this forces the response to feature only one of the multiple sizes. This parameter is ignored when `usePrebidSizes` is enabled (see the [Sizes](#improvedigital-sizes) section below). | `{ w:300, h:250 }`                                                     | `object`  |
 | `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
 | `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
 | `video`    | optional | Object with video parameters. See the [Video params](#improvedigital-video) section below for details. | | `object` |
@@ -38,17 +38,6 @@ pbs_app_supported: true
 | `skipafter`      | optional | Number of seconds a video must play before skipping is enabled. | `5` | `integer` |
 
 ### Configuration
-
-#### Single-Request
-
-By default, the adapter sends one request for each ad unit to Improve Digital's ad server. For example, if there are 4 Prebid ad units defined on the page, you'll see 4 calls out to ad.360yield.com/hb.
-
-The Improve Digital adapter supports `Single Request` mode, where all ad unit requests are made in a single call to ad.360yield.com/hb. To turn this feature on, call `setConfig`:
-```
-pbjs.setConfig({
-   improvedigital: {singleRequest: true}
-});
-```
 
 <a name="improvedigital-sizes"></a>
 

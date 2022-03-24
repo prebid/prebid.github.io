@@ -14,7 +14,7 @@ about:
 - There is no need to create line items for each price bucket as the postbid creative is served after the ad server has chosen the line item. 
 - This postbid creative <strong>supports passback</strong>. See how this works below.
 
-jsfiddle_link: jsfiddle.net/Prebid_Examples/mtuq7kz0/2/embedded/html,result
+jsfiddle_link: jsfiddle.net/Prebid_Examples/mtuq7kz0/embedded/html,result
 
 code_height: 1450
 ---
