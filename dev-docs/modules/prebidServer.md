@@ -18,7 +18,7 @@ all the auctions server side (S2S), responding in time for Prebid.js to
 send the results to the ad server. This lightens the performance load on the user's device.
 
 ### Configuration
-To enable prebid server, set the following configuration.
+Here's an example config enabling the AppNexus Prebid Server:
 
 ```javascript
 pbjs.setConfig({
@@ -39,20 +39,20 @@ pbjs.setConfig({
     s2sConfig: [
     {
         accountId: '12345',
-        bidders: ['appnexus','rubicon'],
+        bidders: ['appnexus','pubmatic'],
         defaultVendor: 'appnexus',
         timeout: 300,
     },
     {
         accountId: '678910',
-        bidders: ['pubmatic'],
+        bidders: ['rubicon'],
         defaultVendor: 'rubicon',
         timeout: 300,
     },
     ],
 });
 ```
-Configuration options:
+There are many configuration options for s2sConfig:
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Type | Description                                                                                   |
@@ -238,3 +238,6 @@ pbjs.addAdUnits([{
   }
 }])
 ```
+
+## Related Reading
+- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
