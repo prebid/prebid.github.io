@@ -21,9 +21,11 @@ description: NextMillennium bid adapter
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope    | Description                              | Example   | Type    |
-|----------------+----------+------------------------------------------+-----------|---------|
-| `placement_id` | required | Placement ID, provided by nextMillennium | `'12345'` | String  |
+| Name           | Description                              | Example   | Type    |
+|----------------+------------------------------------------+-----------|---------|
+| `placement_id` | Placement ID, provided by nextMillennium | `'12345'` | String  |
+| `group_id`     | Group ID, provided by nextMillennium     | `'12345'` | String  |
 
-As input parameters, it accepts only `placement_id`, which is issued when registering in NextMillennium.
+Required one of the two parameters placement_id or group_id.
+
 Further information for the auction on NextMillennium side is generated automatically.
