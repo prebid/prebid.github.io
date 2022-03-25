@@ -242,7 +242,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 1
   title: Meta Bid Filtering
   link: /dev-docs/examples/meta-bid-filtering.html
@@ -359,6 +359,8 @@
   sectionTitle:
   subgroup: 4
 
+
+
 - sbSecId: 1
   title: How to Add an Analytics Adapter
   link: /dev-docs/integrate-with-the-prebid-analytics-api.html
@@ -370,6 +372,14 @@
 - sbSecId: 1
   title: How to Add A Real Time Data submodule
   link: /dev-docs/add-rtd-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: Vendor Billing in Prebid.js
+  link: /dev-docs/vendor-billing.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -608,8 +618,8 @@
   headerId: rendering
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1  
-  
+  subgroup: 1
+
 - sbSecId: 2
   title: Rendering Overview
   link: /prebid-mobile/modules/rendering/modules-rendering.html
@@ -617,7 +627,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: "iOS"
   link:
@@ -650,7 +660,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Integration with AdMob
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-admob.html
@@ -674,7 +684,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: "Android"
   link:
@@ -691,7 +701,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Pure In-app Bidding
   link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
@@ -699,7 +709,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Integration with GAM
   link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
@@ -707,7 +717,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Integration with AdMob
   link: /prebid-mobile/modules/rendering/android-sdk-integration-admob.html
@@ -723,7 +733,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Targeting
   link: /prebid-mobile/modules/rendering/android-sdk-parameters.html
@@ -731,7 +741,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: "Ad Server"
   link:
@@ -740,7 +750,7 @@
   isCatHeader: 1
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Rendering Order - GAM
   link: /prebid-mobile/modules/rendering/rendering-gam-line-item-setup.html
@@ -791,7 +801,7 @@
 #   hasSubMenus: 1
 #   sectionTitle:
 #   subgroup: 1
-  
+
 - sbSecId: 2
   title: For iOS
   link:
