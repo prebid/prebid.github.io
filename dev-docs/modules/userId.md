@@ -441,6 +441,35 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### DAC ID by DAC
+
+DAC ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
+Please contact D.A.Consortium Inc. before using this ID.
+
+Add the DAC ID to your Prebid.js Package with:
+
+{: .alert.alert-info :}
+gulp build --modules=dacIdSystem
+
+#### DAC ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"dacId"` |
+
+#### DAC ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'dacId'
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Deepintent DPES ID by Deepintent
 
 The DeepIntent Healthcare Marketing Platform is the first and only DSP that combines real-world health data, premium partnerships, and custom integrations to reach patients and providers across any device.  DeepIntent empowers publishers to maximize their inventory, collaborate and transact directly with advertisers, and grow their business in a safe, controlled, transparent, and privacy-compliant way. Our publisher partners sell inventory on every channel via real-time bidding or conducting one-to-one trading with hundreds of the country’s leading healthcare brands and agencies.
@@ -2248,6 +2277,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
+| DAC ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
 | CriteoID | Criteo | criteoId | criteo.com | "1111" |
