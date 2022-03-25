@@ -291,6 +291,9 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="imuIdSystem" class="bidder-check-box"> IM-UID by Intimate Merger</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
