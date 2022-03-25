@@ -100,7 +100,7 @@ The includes directory contains HTML files that can be included within files, su
 
 **_bidders**
 
-The bidders directory is not a standard part of Jekyll; it’s a special use directory specifically for the Prebid.org site. The files in this directory are used to construct the table of partners on the partners/partners.html page.
+The bidders directory is not a standard part of Jekyll; it’s a special use directory specifically to construct the table of bidders on dev-docs/bidders.md and dev-docs/pbs-bidders.md
 
 **_sites**
 

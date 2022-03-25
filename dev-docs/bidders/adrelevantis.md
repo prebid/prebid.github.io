@@ -4,6 +4,7 @@ title: Adrelevantis
 description: Prebid Adrelevantis (adrelevantis.xyz) Bidder Adaptor
 biddercode: adrelevantis
 media_types: banner, video, native
+fpd_supported: true
 pbjs: true
 ---
 
@@ -26,9 +27,13 @@ pbjs.setBidderConfig({
 	bidders: ['adrelevantis'],
 	config: {
 		ortb2: {
-			context: {
+			site: {
 				keywords: keywords,
-				category: categories
+				ext: {
+					data: {
+						category: categories
+					}
+				}
 			}
 		}
 	}

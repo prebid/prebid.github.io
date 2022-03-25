@@ -37,7 +37,7 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 
 ### Respect The Rules
 
-We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://docs.prebid.org/wrapper_code_of_conduct.html) and [module rules](https://docs.prebid.org/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
+We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
 **Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
   - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
@@ -641,11 +641,13 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
 
 ##### Currency
 
-If your bidding server supports multiple currencies, please pass through the `request.cur` field. If your bidding server only bids in a single currency, such as USD or EUR, that's fine. Prebid Server will convert your bid to the request currency if you include it in the bid response, otherwise we assume USD and conversion will not occur.
+Prebid Server is a global product that is currency agnostic. Publishers may ask for bids in any currency. It's totally fine if your bidding endpoint only supports a single currency, but your adapter needs to deal with it. This section will describe how to do so.
 
-Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You can use of the `requestInfo.ConvertCurrency` helper method for currency conversions if your endpoint only supports floors in a specific currency.
+Here are 3 key points to consider:
 
-Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement. You have access to the currency conversion helper method `ConvertCurrency` in case your endpoint only supports floors in a single currency.
+1. If your endpoint only bids in a particular currency, then your adapter must not blindly forward the openrtb to your endpoint. You should instead set $.cur to your server's required currency.
+2. Your adapter must label bid responses properly with the response currency. i.e. if you only bid in USD, then your adapter must set USD as the response currency. PBS will convert to the publisher's requested currency as needed. See the [currency feature](/prebid-server/features/pbs-currency.html) for more info.
+3. You should be aware that floors can be defined in any currency. If your bidding service supports floors, but only in a particular currency, then you must read use the `requestInfo.ConvertCurrency` function before sending $.imp[].bidfloor and $.imp[].bidfloorcur to your endpoint.
 
 <details markdown="1">
   <summary>Example: Currency conversion needed for bid floor values in impressions.</summary>
@@ -779,6 +781,7 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 | `.AdvertiserName` | Bidder-specific advertiser name.
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
+| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
 | `.DChain` | Demand chain object.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
@@ -1166,7 +1169,9 @@ dchain_supported: true/false
 userId: <list of supported vendors>
 media_types: banner, video, audio, native
 safeframes_ok: true/false
-bidder_supports_deals: true/false
+deals_supported: true/false
+floors_supported: true/false
+fpd_supported: true/false
 pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
@@ -1196,7 +1201,9 @@ Notes on the metadata fields:
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
-- If your bidder supports deals, set `bidder_supports_deals: true`. No default value.
+- If your bidder supports deals, set `deals_supported: true`. No default value.
+- If your bidder supports floors, set `floors_supported: true`. No default value.
+- If your bidder supports first party data, set `fpd_supported: true`. No default value.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 

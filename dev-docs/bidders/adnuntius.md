@@ -3,9 +3,12 @@ layout: bidder
 title: Adnuntius
 description: Prebid Adnuntius Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: adnuntius
 media_types: banner
 gdpr_supported: true
+fpd_supported: true
+gvl_id: 855
 ---
 
 ### Bid Params
@@ -53,23 +56,60 @@ Here's an example of sending targeting information about categories to adnuntius
 There's an option to send segment id in the bidder config that will be picked up and sent to the ad server. Below is an example on how to do this:
 
 ```
+pbjs.setBidderConfig({
+    bidders: ['adnuntius', 'bidderB'],
+    config: {
+        ortb2: {
+            user: {
+                data: [{
+                    name: "adnuntius",
+                    segment: [
+                        { id: "1" },
+                        { id: "2" }
+                    ]
+                }]
+            }
+        }
+    }
+});
+```
 
-			pbjs.setBidderConfig({
-				bidders: ['adnuntius', 'bidderB'],
-				config: {
-					ortb2: {
-						user: {
-							data: [{
-								name: "adnuntius",
-								segment: [
-									{ id: "1" },
-									{ id: "2" }
-								]
-							}]
-						}
-					}
-				}
-			});
+### Disable cookies for adnuntius
 
-´´´
+You have the option to tell adnuntius not to set cookies in your browser. This does not mean that third party ads being served through the ad server will not set cookies. Just that Adnuintius will not set it for internal ads.
+
+```
+
+pbjs.setBidderConfig({
+    bidders: ['adnuntius'],
+    config: {
+        useCookie: false
+    }
+});
+```
+
+Use cookie will always be set to true by default. Changing it to false will disable cookies.
+
+### Prebid Server Test Request
+
+The following test parameters can be used to verify that Prebid Server is working properly with the server-side Adnuntius adapter. the `auId` below will not return a creative. Please substitute it with your own.
+
+```
+"imp": [{
+    "id": "impression-id",
+    "banner": {
+        "format": [{
+            "w": 980,
+            "h": 240
+        }, {
+            "w": 980,
+            "h": 360
+        }]
+    },
+    "ext": {
+        "adnuntius": {
+            "auId": "abc123"
+        }
+    }
+}]
 ```

@@ -205,7 +205,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <br>
 <h4>Select Bidder Adapters</h4>
 <div class="row adapters">
-{% for page in bidder_pages %}{% if page.pbjs == true %}
+{% for page in bidder_pages %}{% if page.pbjs == true %}{% if page.enable_download == false %}{% continue %}{% endif %}
 <div class="col-md-4">
  <div class="checkbox">
   <label>
@@ -232,7 +232,7 @@ Prebid.org highly recommends that publishers utilize the following modules:
 <h4>General Modules</h4>
 <div class="row">
  {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
-  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.module_code}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endfor %}
 </div>
 
@@ -247,6 +247,9 @@ These modules may require accounts with a service provider.<br/>
 <div class="row">  
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="adqueryIdSystem" class="bidder-check-box"> adQuery QiD</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="amxIdSystem" class="bidder-check-box"> AMX RTB ID</label>
@@ -273,7 +276,10 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="flocIdSystem" class="bidder-check-box"> FLoC Cohort ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> Halo ID</label>
+  <label><input type="checkbox" moduleCode="ftrackIdSystem" class="bidder-check-box"> FTrack ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="hadronIdSystem" class="bidder-check-box"> Hadron ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> ID5 ID</label>
@@ -285,7 +291,13 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="imuIdSystem" class="bidder-check-box"> IM-UID by Intimate Merger</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="justIdSystem" class="bidder-check-box"> JustId</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="kinessoIdSystem" class="bidder-check-box"> Kinesso ID</label>
@@ -309,14 +321,20 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> NextRoll ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Snowflake ID</label>
+  <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Hyper ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="publinkIdSystem" class="bidder-check-box"> Publisher Link ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
   </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="trustpidSystem" class="bidder-check-box"> Trustpid</label>
+  </div></div>  
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
   </div></div>  
@@ -333,7 +351,7 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="uid2IdSystem" class="bidder-check-box"> Unified ID 2</label>
   </div></div>  
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="verizonMediaIdSystem" class="bidder-check-box"> Verizon Media ID</label>
+  <label><input type="checkbox" moduleCode="connectIdSystem" class="bidder-check-box"> Yahoo ConnectID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> Zeotap ID+</label>
