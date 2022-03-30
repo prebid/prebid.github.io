@@ -243,7 +243,6 @@ At a high level, here's how each of the hbInventory sub-modules works to choose 
 In all cases, these rules are applied:
 1. If multiple AUPs match, PPI will choose the first one without a wildcard in the slotPattern or the first match if all matching patterns have wildcards.
 1. If a custom mapping function is provided, it will be called to veto matches.
-1. An AUP can match only once per auction.
 1. The resulting PBJS AdUnit "code" is a hashed value from the AUP.
 1. The sizes in the PBJS AdUnit are constrained by any sizes defined in the transaction object.
 1. If the AUP refers to a Media Type Object, it will be resolved.
@@ -262,7 +261,6 @@ When processing AUPSlotPath transactions, PPI does the following:
 1. Compare values.name to the AUP slotPattern, which may be a regular expression. The intention is that values.name corresponds to an actual Ad Server AdUnit name, but this is not necessary.
 1. Call the custom matching function if defined.
 1. If there are multiple matches, choose the first amongst the most specific (any without wildcards). Else choose first amongst those that matched with a wildcard.
-1. Flag this AUP as not matchable for other transactions in the auction.
 1. Resolve any MediaType Objects as appropriate and determine sizes.
 1. Create the PBJS AdUnit
 
@@ -318,7 +316,6 @@ This method is different from the others. It scans all the GPT slots in the page
 1. Compare GPT div to the AUP divPattern, which may be a regular expression.
 1. Call the custom matching function if defined.
 1. If there are multiple matches, first choose the first amongst the most specific (any without wildcards). Then choose first amongst those that matched with a wildcard.
-1. Flag this AUP as not matchable for other transactions in the auction.
 1. Resolve any Media Type Objects as appropriate and filter sizes.
 1. Create PBJS AdUnit
 
@@ -363,7 +360,6 @@ Here's how it works in detail:
       remove AUP as a possible match if no sizes match
       if pbjs.ppi.setCustomMappingFunction is defined, call it
         filter any matches where this returns false
-    filter out AUPs already matched
     if more than one match, pick first
     create AU from the chosen match
 ```
@@ -453,6 +449,15 @@ window.pbjs.ppi.addAdUnitPatterns(
     ]
 }]
 ```
+
+##### Creating PBJS AdUnits
+
+PPI creates the PBJS AdUnit from the matched AUP:
+1. Copies the entire AUP
+1. Deletes the following fields from the new AU: slotPattern, divPattern
+1. Add the 'code' field as a hash of the adunit
+1. Add the 'aupname' field as a concatentation of slotPattern, divPattern, and each attribute of customMappingParams.
+
 ### hbSource Processing Stage
 
 The hbSource stage defines where the bids for a given auction should come from. There are two sources: Auction and Cache.
@@ -909,9 +914,12 @@ loop through groups
         remove AUP as possible match if no sizes are left
       if pbjs.ppi.setCustomMappingFunction is defined, call it
         filter any matches when this returns false
-    filter out AUPs already matched
     if more than one match, pick first
     create AU from the chosen match
+      copy the entire AUP
+      delete the following fields from the new AU: slotPattern, divPattern
+      add the 'code' field as a hash of the adunit
+      add the 'aupname' field as a concatentation of slotPattern, divPattern, and each attribute of customMappingParams.
     apply imp-level FPD to AU from hbInv.ortb2Imp
     set TO.div
       if hbInv=SLOTOBJ, div=hbInv.values.slot.getSlotElementId()
