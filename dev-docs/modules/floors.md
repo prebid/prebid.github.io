@@ -301,7 +301,7 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 | data.modelTimestamp | integer | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
 | data.schema | object |allows for flexible definition of how floor data is formatted. | - |
 | data.schema.delimiter | string | Character separating the floor keys. | '\|' |
-| data.schema.fields | array of strings | Supported values are: gptSlot, adUnitCode, mediaType, size | - |
+| data.schema.fields | array of strings | Supported values are: gptSlot, adUnitCode, mediaType, size, domain | - |
 | data.values | key / values | A series of attributes representing a hash of floor data in a format defined by the schema object. | - |
 | data.values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.values."rule floor value" | float | The floor value for this key. | - |
@@ -601,7 +601,6 @@ Priority order for three column rule sets:
  \_ \| \_ \| \*  
  \_ \| \* \| \_  
  \* \| \_ \| \_  
- \* \| \_ \| \*  
  \_ \| \* \| \*  
  \* \| \_ \| \*  
  \* \| \* \| \_  
@@ -1269,7 +1268,8 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 {: .table  }
 | Partner | Contact | About |
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors 
-| pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
+| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors |
+| <img src="/assets/images/partners/leader/openx.png" style="height:50px;"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
+| <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
 | Assertive Yield | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
-| OpenX | Reach out to OpenX at [apollo@openx.com] | Dynamic floor optimization and more |
+| pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |

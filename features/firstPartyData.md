@@ -64,7 +64,7 @@ pbjs.setConfig({
 		data: [{
           	    name: "www.dataprovider1.com",
           	    ext: {
-		        segtax: 4,
+		        segtax: 7,
 			cids: [ "iris_c73g5jq96mwso4d8" ]
 		    },
 		    segment: [
