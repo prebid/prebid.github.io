@@ -10,7 +10,7 @@ sidebarType: 2
 
 # Code Integration for Android
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
+Get started with Prebid Mobile by getting access to a [Prebid Server](/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
 
 ### Include with Maven
 
@@ -19,7 +19,7 @@ If you are not familar with using Maven for build management visit the [Maven we
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the lastest stable release:
 
 ```
-implementation 'org.prebid:prebid-mobile-sdk:1.13.1'
+implementation 'org.prebid:prebid-mobile-sdk:1.12.2'
 ```
 
 {% capture warning_note %}  

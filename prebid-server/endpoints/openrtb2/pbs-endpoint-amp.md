@@ -98,8 +98,6 @@ Note that other ext.prebid extensions can be specified in the stored request suc
 
 #### First Party Data
 
-(Currently only supported in PBS-Java)
-
 The nature of AMP is that user-level FPD is difficult or impossible. All of the pages are cached on a CDN and page javascript that can modify RTC calls is severely limited.
 
 Contextual First Party Data must be defined in the stored request entries.
@@ -218,7 +216,7 @@ Specifically:
 
 ## Configuration Options
 
-- settings.generate-storedrequest-bidrequest-id: replace the stored request `id` with a UUID (PBS-Java only)
+- settings.generate-storedrequest-bidrequest-id: replace the stored request `id` with a UUID
 - amp.default-timeout-ms: default operation timeout for AMP requests
 - amp.timeout-adjustment-ms: reduces timeout value passed in AMP request. Can be used to account for estimated latency so that Prebid Server can respond to the AMP RTC request before it times out.
 - amp.max-timeout-ms: maximum operation timeout for AMP requests
