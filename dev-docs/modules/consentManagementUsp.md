@@ -44,11 +44,13 @@ If the timeout period expires or an error from the USP-API is thrown, the auctio
 
  The string has four characters:
 
-String Component |  Values
-1) Specification Version	1
-2) Explicit Notice/Opportunity to Opt Out	(N = No,Y = Yes,– = Not Applicable)
-3) Has user opted-out of the sale of his or her personal information? 	(N = No,Y = Yes,– = Not Applicable)
-4) Publisher is a signatory to the IAB Limited Service Provider Agreement 	(N = No,Y = Yes,– = Not Applicable)
+{: .table .table-bordered .table-striped }
+| String Component | Values |
+| --- | --- |
+| 1) Specification Version|	1|
+| 2) Explicit Notice/Opportunity to Opt Out|	(N = No,Y = Yes,– = Not Applicable)|
+| 3) Has user opted-out of the sale of his or her personal information?| 	(N = No,Y = Yes,– = Not Applicable)|
+| 4) Publisher is a signatory to the IAB Limited Service Provider Agreement| 	(N = No,Y = Yes,– = Not Applicable)|
 
 ## Page Integration
 
