@@ -2400,11 +2400,6 @@ If you're an ID provider that wants to get on this page:
 
 <a name="getUserIds"></a>
 
-## Passing UserIds to Google Ad Manager for targeting
-
-User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or could be passed ahead to Google Open Bidding using ```userIdTargeting``` module. Note Google deprecated the ability to pass key values, including identifiers, to OB partners and then later began a closed beta to resume it with details non-public (see  https://developers.google.com/authorized-buyers/rtb/request-guide ). More details on the user id module can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
-
-
 ## ESP Configurations
 
 Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
