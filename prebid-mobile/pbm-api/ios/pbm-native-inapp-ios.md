@@ -28,6 +28,12 @@ The cached assets might expire. If this occurs the publisher will receive a noti
 
 {% include alerts/alert_important.html content=importantNote %}
 
+{% capture importantNote %}
+Starting with the `1.14.0-beta1` version converting the native ad template to the ad objects is changed to match the IAB specs. See this [issue](https://github.com/prebid/prebid-mobile-ios/issues/494) for the details. If you update SDK from the previous version - verify the native ads integration before the release.
+{% endcapture %}
+
+{% include alerts/alert_important.html content=importantNote %}
+
 ## Ad Ops Setup
 
 These instructions will enable you to create a creative template in either Google Ad Manager or MoPub that can then be applied to native ads in your app.
@@ -58,7 +64,7 @@ These instructions will enable you to create a creative template in either Googl
   | isPrebid            | 1                                |
   | hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
 
-9. Now create Prebid line items with price priority and a display ad type that are targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
+9. Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
 
 ### MoPub
 

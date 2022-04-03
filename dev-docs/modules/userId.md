@@ -29,6 +29,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
    1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
+1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html) or [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html)
 
 {: .alert.alert-info :}
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
@@ -67,13 +68,15 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
 under the `userSync` object as attributes of the `userIds` array
-of sub-objects. In addition, publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting. 
-The PPID has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. 
+of sub-objects. 
+
+Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting. 
+The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command] (https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method] (https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| ppid | Optional | String | Must be a source from the pbjs.getUserIdsAsEids() array | `"pubcid.org"` |
+| ppid | Optional | String | Must be a source from the [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html) array | `"pubcid.org"` |
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
@@ -88,8 +91,7 @@ The table below has the options that are common across ID systems. See the secti
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
-| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "pubcid": {2222}, "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
-
+| value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 ## Permissions
 Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
@@ -438,6 +440,35 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### DAC ID by DAC
+
+DAC ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
+Please contact D.A.Consortium Inc. before using this ID.
+
+Add the DAC ID to your Prebid.js Package with:
+
+{: .alert.alert-info :}
+gulp build --modules=dacIdSystem
+
+#### DAC ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"dacId"` |
+
+#### DAC ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'dacId'
+        }]
+    }
+});
+{% endhighlight %}
+
 ### Deepintent DPES ID by Deepintent
 
 The DeepIntent Healthcare Marketing Platform is the first and only DSP that combines real-world health data, premium partnerships, and custom integrations to reach patients and providers across any device.  DeepIntent empowers publishers to maximize their inventory, collaborate and transact directly with advertisers, and grow their business in a safe, controlled, transparent, and privacy-compliant way. Our publisher partners sell inventory on every channel via real-time bidding or conducting one-to-one trading with hundreds of the country’s leading healthcare brands and agencies.
@@ -655,6 +686,47 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
+
+### FTrack ID from Flashtalking By Mediaocean
+
+The FTrack Identity Framework (["FTrack"](https://www.flashtalking.com/identity-framework#FTrack)) User ID Module allows publishers to take advantage of Flashtalking's FTrack ID during the bidding process.
+
+Flashtalking’s cookieless tracking technology uses probabilistic device recognition to derive a privacy-friendly persistent ID for each device.
+
+Questions? Comments? Bugs? Praise? Please contact FlashTalking's Prebid Support at [prebid-support@flashtalking.com](mailto:prebid-support@flashtalking.com)
+
+Complete information available on the Flashtalking [privacy policy page](https://www.flashtalking.com/privacypolicy).
+
+#### FTrack ID from Flashtalking By Mediaocean Configuration
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'FTrack',
+      params: {
+        url: 'https://d9.flashtalking.com/d9core' // required, if not populated ftrack will not run
+      },
+      storage: {
+        type: 'html5',           // "html5" is the required storage type
+        name: 'FTrackId',        // "FTrackId" is the required storage name
+        expires: 90,             // storage lasts for 90 days
+        refreshInSeconds: 8*3600 // refresh ID every 8 hours to ensure it's fresh
+      }
+    }],
+    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+  }
+});
+```
+
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| :-- | :-- | :-- | :-- | :-- |
+| name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` |
+| storage | Required | Object | Storage settings for how the User ID module will cache the FTrack ID locally | |
+| storage.type | Required | String | This is where the results of the user ID will be stored. FTrack **requires** `"html5"`. | `"html5"` |
+| storage.name | Required | String | The name of the local storage where the user ID will be stored. FTrack **requires** `"FTrackId"`. | `"FTrackId"` |
+| storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. FTrack recommends `90`. | `90` |
+| storage.refreshInSeconds | Optional | Integer | How many seconds until the FTrack ID will be refreshed. FTrack strongly recommends 8 hours between refreshes | `8*3600` |
 
 ### Hadron ID from Audigent
 
@@ -1232,11 +1304,11 @@ pbjs.setConfig({
 
 Lotame’s Panorama ID module sends information from the request to its identity graph in order to successfully generate a Panorama ID. For more information on how the Panorama ID works, please visit [https://www.lotame.com/panorama/id/](https://www.lotame.com/panorama/id/).
 
-**Ease of Implementation**: Deployment of the Lotame Panorama ID module has been optimized for ease by not requiring any registration to utilize. Simply add the generic module to start producing the Panorama ID across your inventory. Clients who would like the advantage of additional options can register to receive their own client ID. Reach out to prebid@lotame.com to learn more about the optional registration.
+**Ease of Implementation**: Deployment of the Lotame Panorama ID module has been optimized for ease by not requiring any registration to utilize. Simply add the generic module to start producing the Panorama ID across your inventory. Clients who would like the advantage of additional options can register to receive their own client ID. Reach out to [PanoramaID@lotame.com](mailto:PanoramaID@lotame.com) to learn more about the optional registration.
 
 Lotame's privacy policy related to the Panorama ID and the collection of data and how data is used is available at [https://www.lotame.com/about-lotame/privacy/lotames-products-services-privacy-policy/](https://www.lotame.com/about-lotame/privacy/lotames-products-services-privacy-policy/). Consult with your legal counsel to determine the appropriate user disclosures with respect to use of the Lotame Panorama ID module.
 
-If you have any questions about Panorama ID, please reach out by emailing [prebid@lotame.com](mailto:prebid@lotame.com).
+If you have any questions about Panorama ID, please reach out by emailing [PanoramaID@lotame.com](mailto:PanoramaID@lotame.com).
 
 Add it to your Prebid.js package with:
 
@@ -1454,6 +1526,14 @@ pbjs.setConfig({
 | name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
 | params | Required | Object | Configuration specifications for the Novatiq module. | |
 | params.sourceid | Required | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
+| params.useSharedId | Optional | Boolean | Use the sharedID module if it's activated. | `true` |
+| params.sharedIdName | Optional | String | Same as the SharedID "name" parameter <br /> Defaults to "_pubcid" | `"demo_pubcid"` |
+| params.useCallbacks | Optional | Boolean | Use callbacks for custom integrations | `false` |
+| params.urlParams | Optional | Object | Sync URl configuration for custom integrations | |
+| params.urlParams.novatiqId | Optional | String | The name of the parameter used to indicate the Novatiq ID uuid | `snowflake` |
+| params.urlParams.useStandardUuid | Optional | Boolean | Use a standard UUID format, or the Novatiq UUID format | `false` |
+| params.urlParams.useSspId | Optional | Boolean | Send the sspid (sourceid) along with the sync request <br > Makes the params.sourceid optional if set | `false` |
+| params.urlParams.useSspHost | Optional | Boolean | Send the ssphost along with the sync request | `false` |
 {: .table .table-bordered .table-striped }
 </div>
 
@@ -1466,26 +1546,14 @@ You can make use of the Prebid.js SharedId module as follows.
 Enable by adding the Novatiq and SharedId submodule to your Prebid.js package with:
 
 {: .alert.alert-info :}
-gulp build --modules=novatiqIdSystem,userId,pubCommonId
+gulp build --modules=novatiqIdSystem,userId
 
 Module activation and configuration:
 
 {% highlight javascript %}
 pbjs.setConfig({
   userSync: {
-    userIds: [
-      {
-        name: "pubCommonId",
-        storage: {
-          type: "cookie",   
-          // optional: will default to _pubcid if left blank
-          name: "demo_pubcid",     
-          
-          // expires in 1 years
-          expires: 365             
-        },
-        bidders: [ 'adtarget' ]
-      },                                            
+    userIds: [                                          
       {
       name: 'novatiq',
       params: {
@@ -1507,32 +1575,6 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-#### Parameters for the Novatiq Module
-
-<div class="table-responsive" markdown="1">
-| Param  | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
-| params | Required | Object | Configuration specifications for the Novatiq module. | |
-| params.sourceid | Required | String | The Novatiq Partner Number obtained via Novatiq | `1a3` |
-| params.useSharedId | Optional | Boolean | Use the sharedID module if it's activated. | `true` |
-| params.sharedIdName | Optional | String | Same as the SharedID "name" parameter <br /> Defaults to "_pubcid" | `"demo_pubcid"` |
-{: .table .table-bordered .table-striped }
-</div>
-
-#### Parameters for the SharedID Module
-
-<div class="table-responsive" markdown="1">
-| Param  | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | Module identification: `"pubCommonId"` | `"pubCommonId"` |
-| params | Required | Object | Configuration specifications for the SharedID module. | | |
-| params.storage | Required | Object |  | |
-| params.storage.type | Required | String | Storage type, Set to `"cookie"` | `"cookie"` |
-| params.storage.name | Optional | String | Storage cookie name. If this is changed must match sharedIdName <br /> in the Novatiq module | `"demo_pubcid"` ||
-| params.storage.expires | Required | integer | Time to expire | `365` |
-{: .table .table-bordered .table-striped }
-</div>
 
 If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)
 
@@ -1767,7 +1809,7 @@ pbjs.setConfig({
             name: "sharedId",
             storage: {
                 type: "cookie",
-                name: `"_pubcid"`,         // create a cookie with this name
+                name: "_sharedid",         // create a cookie with this name
                 expires: 365             // expires in 1 years
             }
         }]
@@ -1797,7 +1839,7 @@ pbjs.setConfig({
             },
             storage: {
                 type: "cookie",
-                name: `"_pubcid"`,      // create a cookie with this name
+                name: "_sharedid",      // create a cookie with this name
                 expires: 180
             }
         }],
@@ -1818,8 +1860,8 @@ pbjs.setConfig({
             },
             storage: {
                 type: "cookie",
-                name: `"_pubcid"`,         // create a cookie with this name
-                expires: 365             // expires in 1 years
+                name: "_sharedid",        // create a cookie with this name
+                expires: 365              // expires in 1 year
             }
         }]
     }
@@ -2257,6 +2299,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
+| DAC ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
 | CriteoID | Criteo | criteoId | criteo.com | "1111" |
@@ -2308,7 +2351,7 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
 
-You can use [`getUserIdsAsEids()`](/dev-docs/publisher-api-reference/getUserIds.html) to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+You can use [`getUserIdsAsEids()`](/dev-docs/publisher-api-reference/getUserIdsAsEids.html) to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
 ```
 pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
@@ -2360,6 +2403,62 @@ If you're an ID provider that wants to get on this page:
 ## Passing UserIds to Google Ad Manager for targeting
 
 User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or could be passed ahead to Google Open Bidding using ```userIdTargeting``` module. Note Google deprecated the ability to pass key values, including identifiers, to OB partners and then later began a closed beta to resume it with details non-public (see  https://developers.google.com/authorized-buyers/rtb/request-guide ). More details on the user id module can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
+
+
+## ESP Configurations
+
+Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
+
+Please find more details [Share encrypted signals with bidders (Beta)](https://support.google.com/admanager/answer/10488752?hl=en)
+
+{: .table .table-bordered .table-striped }
+| Param under userSync | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
+| encryptedSignalSources.sources | Required | Object |  An array of Object consist of sources list and encryption flag | Check below config as an example  |
+| encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
+| encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
+| encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+
+{: .alert.alert-info :}
+**NOTE:**
+For eids encryption (encryptedSignalSources.encrypt) set to true is not recommended unless downstream is informed of the changes.
+
+{: .alert.alert-info :}
+**NOTE:**
+Publishers enabling passing eids/signal through ESP should reach out to SSPs integrated through OB to make sure to take any additional steps needed to ensure impact on 3p cookie based transaction is handled and impact is minimal.
+
+ESP Configuration Example:
+
+```
+pbjs.setConfig({
+    userSync: {
+        ...,
+        encryptedSignalSources: {
+            "sources": [{
+                source: ['sharedid.org', 'criteo.com', 'id5-sync.com', 'pubcid.org', 'audigent.com'],
+                encrypt: false
+            }, {
+                source: ['pubmatic.com'],
+                customFunc: () => {
+                    return '{"keywords":["tech","auto"]}';
+                },
+                encrypt: true
+            }, {
+                source: ['segment.com'],
+                customFunc: () => {
+                    return '[{ "id": "1", "value": "seg1" },{ "id": "2", "value": "seg2" }]';
+                },
+                encrypt: true
+            }],
+            "registerDelay": 3000
+        },
+        ....
+    }
+})
+
+```
 
 ## Further Reading
 
