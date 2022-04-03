@@ -20,7 +20,7 @@ The MinuteMedia adapter requires setup and approval. Please reach out to hb@minu
 
 ### Bid Parameters
 
-#### Video
+#### Banner ,Video
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description | Example
