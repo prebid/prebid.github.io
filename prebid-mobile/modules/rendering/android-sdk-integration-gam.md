@@ -120,7 +120,7 @@ To create the event handler you should provide a GAM Ad Unit Id and the list of 
 
 **BannerView** - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
 
-- **configId** - an ID of Stored Impression on the Prebid server
+- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - **eventHandler** - the instance of the banner event handler
 
 Also, you should add the instance of `BannerView` to the UI.
@@ -210,7 +210,7 @@ To create an event handler you should provide a GAM Ad Unit.
 
 **InterstitialAdUnit** - is an object that will load and display the particular ad. To create it you should provide:
 
-- **configId** - an ID of Stored Impression on the Prebid server
+- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 - **eventHandler** - the instance of the interstitial event handler
 
@@ -297,7 +297,7 @@ To create an event handler you should provide a GAM Ad Unit.
 
 **RewardedAdUnit** - is an object that will load and display the particular ad. To create it you should provide
 
-- **configId** - an ID of Stored Impression on the Prebid server
+- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - **eventHandler** - the instance of rewarded event handler
 
 Also, you can assign the listener for processing ad events.
