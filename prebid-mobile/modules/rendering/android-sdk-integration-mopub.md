@@ -129,7 +129,7 @@ Follow the [MoPub Instructions](https://developers.mopub.com/publishers/android/
 
 Create the `MediationBannerAdUnit` object with parameters:
 
-- `configId` - an ID of Stored Impression on the Prebid server
+- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - `size` - the size of the ad unit which will be used in the bid request.
 - `mediationDelegate` - the object from the MoPubAdapters framework responsible for managing MoPub’s ad objects.
 
@@ -231,7 +231,7 @@ Follow the [MoPub Instructions](https://developers.mopub.com/publishers/android/
 
 Create the `MediationInterstitialAdUnit` object with parameters:
 
-- `configId` - an ID of Stored Impression on the Prebid server
+- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - `mediationDelegate` - the object from the MoPubAdapters framework responsible for managing MoPub’s ad objects.
 
 #### Step 3: Fetch Demand
@@ -299,7 +299,7 @@ MoPubRewardedVideos.showRewardedVideo(adUnitId)
 
 Create the `MediationRewardedVideoAdUnit` object with parameters:
 
-- `configId` - an ID of Stored Impression on the Prebid server
+- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 
 #### Step 2: Fetch Demand
 

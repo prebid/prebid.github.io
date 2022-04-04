@@ -70,7 +70,7 @@ You have to create and place MoPub's Ad View into the app page.
 
 Create the **MoPubBannerAdUnit** object with parameters:
 
-- **configId** - an ID of Stored Impression on the Prebid server
+- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server.
 - **size** - the size of the ad unit which will be used in the bid request.
 
 

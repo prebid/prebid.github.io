@@ -30,7 +30,7 @@ Video instream is only supported with Google Ad Manager.
 
  **Parameters**
 
- `configId(String)`: Prebid Server configuration ID.
+ `configId(String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
  `size(CGSize)`: Width and height of the video ad unit.
 

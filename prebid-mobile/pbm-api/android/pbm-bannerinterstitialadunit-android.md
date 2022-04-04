@@ -29,7 +29,7 @@ Prebid Server will send the eligible size list to each bidder to solicit a bid. 
 
 **Parameters**
 
-`configId`: Prebid Server configuration ID.
+`configId`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occuy of a device's real estate. Support in SDK version 1.2+
 

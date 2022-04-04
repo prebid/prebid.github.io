@@ -30,7 +30,7 @@ VideoAdUnit("configID", width, height, VideoAdUnit.PlacementType.placement); //p
 
 **Parameters**
 
-* `configId`: String; Prebid Server configuration ID.
+* `configId`: String; Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 * `width`: Integer; Width of the video player.
 * `height`: Integer; Height of the video player.
 * `placement` (DEPRECATED FIELD) Enumeration. Possible values:

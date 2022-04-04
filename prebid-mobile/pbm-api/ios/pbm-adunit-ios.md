@@ -27,7 +27,7 @@ Create a new Banner Ad Unit or Interstitial Ad Unit with a Prebid Server configu
 
 **Parameters**
 
-`configId`:  String containing the Prebid Server configuration ID.
+`configId`:  String containing the Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `size:`: CGSize conatining width and height of the AdUnit.
 
