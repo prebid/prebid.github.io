@@ -19,11 +19,11 @@ Use the `BannerAdUnit` object to create and configure a banner ad unit in your a
 
 ### BannerAdUnit
 
-Create a new Banner Ad Unit associated with a Prebid Server configuration ID and a banner size.
+Create a new Banner Ad Unit associated with a Prebid Server 'configuration ID' and a banner size.
 
 **Parameters**
 
-- `configId`: String; Prebid Server configuration ID.
+- `configId`: String; Prebid Server configuration ID. Note: This is the PBS [stored request ID](/prebid-server/features/pbs-storedreqs.html).
 - `width`: Integer; Width of the ad unit.
 - `height`: Integer; Height of the ad unit.
 
