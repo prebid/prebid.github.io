@@ -82,6 +82,22 @@ If the publisher has an AMP Consent Management Platform, they should use `load-c
 
 3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works the same as described for Prebid.js above.
 
+### Cooperative Syncing
+
+Prebid Server supports a 'Cooperative Syncing' mode where all enabled bidders may be returned in a sync request even if they aren't on this particular page. This allows bidders to get their IDs in place for the next page where they are utilized.
+
+Cooperative syncing can be configured at the host level. See the doc for [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md) and [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/usersync.go).
+
+This is how to control the coop syncing behavior from Prebid.js:
+```
+pbjs.setConfig({
+  s2sConfig: {
+    ...
+    coopSync: true,
+    userSyncLimit: 5
+    ...
+  }
+```
 
 ## Bidder Instructions for Building a Sync Endpoint
 
