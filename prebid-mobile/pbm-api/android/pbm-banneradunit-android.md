@@ -23,7 +23,7 @@ Create a new Banner Ad Unit associated with a Prebid Server 'configuration ID' a
 
 **Parameters**
 
-- `configId`: String; Prebid Server configuration ID. Note: This is the PBS [stored request ID](/prebid-server/features/pbs-storedreqs.html).
+- `configId`: String; Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 - `width`: Integer; Width of the ad unit.
 - `height`: Integer; Height of the ad unit.
 
