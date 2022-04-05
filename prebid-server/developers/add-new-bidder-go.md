@@ -172,11 +172,10 @@ Prebid Server offers a federated [user sync](https://docs.prebid.org/prebid-serv
 
 The Bidder Info template above demonstrates configuration of a `redirect` user sync. The `url` points to an endpoint on your bidding server which will honor the privacy policies, replace the `userMacro` in the redirect url with the user's tracking id, and respond with an HTTP 302 redirect to that url. You may also specify an `iframe` endpoint which will return an HTML document to be rendered in an `iframe` on the user's device and use JavaScript to perform the redirect. You may omit the `{%raw%}{{.GDPR}}{%endraw%}`, `{%raw%}{{.GDPRConsent}}{%endraw%}`, and/or `{%raw%}{{.USPrivacy}}{%endraw%}` macros if they are not applicable to your legal situation.
 
-If both `iframe` and `redirect` endpoints are provided, you must specify a `default` field with a value of either `iframe` or `redirect`, based on your preference.
+If both `iframe` and `redirect` endpoints are provided, the `iframe` endpoint will be used by default.
 
 ```yaml
 userSync:
-  default: iframe
   iframe:
     url: https://foo.com/iframe/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
     userMacro: $UID
@@ -185,7 +184,7 @@ userSync:
     userMacro: $UID
 ```
 
-If your bid adapter supports user sync and doesn't have a good default, you may optionally specify a `supports` array with the items `iframe` and/or `redirect` to inform Prebid Server hosts. Hosts will receive a warning on startup if a bid adapter supports user sync and isn't configured. Expect hosts to contact you at the maintainer email address in this file for instructions.
+If your bid adapter supports user sync and doesn't have a good default endpoint, you may optionally specify a `supports` array with the items `iframe` and/or `redirect` to inform Prebid Server hosts. Hosts will receive a warning on startup if a bid adapter supports user sync and isn't configured. Expect hosts to contact you at the maintainer email address for instructions.
 
 ```yaml
 userSync:
