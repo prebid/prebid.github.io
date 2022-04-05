@@ -68,3 +68,5 @@ pbjs.setConfig({
 ```
 
 Note: these configs should be combined with any other UserSync config calls, as subsequent calls to setConfig for the same attribute overwrite each other.
+
+Note: deprecated in PBJS 7. Replace with [Freestar](https://docs.prebid.org/dev-docs/bidders/freestar.html) module.
