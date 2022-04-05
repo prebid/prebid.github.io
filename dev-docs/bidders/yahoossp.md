@@ -18,8 +18,7 @@ userIds: All
 ### Important Notice (JS vs PBS)
 There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters.
 The Prebid-server adapter currently does not support:
-1. Video inventory.
-2. Integration via the `pubId` method.
+1. Integration via the `pubId` method.
 
 ### yahoossp Prebid.js Mandatory Bid Params
 The 'yahoossp' bid adapter supports 2 alternate integration types:
