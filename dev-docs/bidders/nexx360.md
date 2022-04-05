@@ -8,7 +8,7 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 userIds: id5Id
-media_types: banner
+media_types: banner, video
 glv_id: 965
 ---
 
@@ -18,5 +18,5 @@ glv_id: 965
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                              | Type      |
 |---------------|----------|-----------------------|--------------------------------------|-----------|
-| `account`     | required | Mediasquare owner ID  | `'1067'`                            | `string`  |
-| `tagId`       | required | Mediasquare code ID   | `'luvxjvgn'`                        | `string`  |
+| `account`     | required | Nexx360 account ID    | `'1067'`                             | `string`  |
+| `tagId`       | required | Nexx360 tag ID        | `'luvxjvgn'`                         | `string`  |
