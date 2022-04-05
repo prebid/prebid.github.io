@@ -22,7 +22,6 @@ Prebid Page Integration (PPI) provides a framework for advanced integrations of 
 - **Simplified page integration** - PPI can manage GPT slot definition or it can scan existing GPT slots and figure out which Prebid AdUnits to create.
 - **Manage use of the bid cache** - Pages can be designed to run the Prebid auction up front and then quickly load bids from cache when ad slots are ready.
 - **Serving ads without an adserver** - PPI comes with a built-in ability to display the highest bid.
-- **Coordination with Amazon APS** - PPI can initiate APS to run in parallel with the Prebid auction.
 
 Of course, pages can still be built with the original Prebid.js javascript functions. This module just provides additional functions built to support these additional scenarios. 
 
@@ -126,7 +125,6 @@ For those who prefer to see examples rather than reading a crazy-long document, 
 - [PPI Callback Example](/examples/ppi/ppi-callback.html)
 - [PPI Custom Mapping Example](/examples/ppi/ppi-custommapping.html)
 - [PPI No Adserver Example](/examples/ppi/ppi-noadserver.html)
-- [PPI Amazon APS Example](https://github.com/prebid/Prebid.js/tree/master/integrationExamples/ppi/ppi-amazon.html)
 
 ## PPI Transactions
 
@@ -153,7 +151,6 @@ Here's a summary of the values that can be part of a transaction object. See the
 | hbInventory.values.adUnitPatterns | optional | A list of AUPs to use instead of the global set | object |
 | hbInventory.sizes | optional | Constrains the sizes used in the final PBJS AdUnit. e.g. [[300,250],[300,600]] | array of integer arrays |
 | hbSource.type | required | Defines the source sub-module to use. Values auction, cache | string |
-| hbSource.values.amazonEnabled | optional when hbDestination=gpt | Coordinates a parallel APS auction | boolean |
 | hbDestination.type | required | Defines the destination sub-module to use. Values: gpt, page, cache and callback | string |
 | hbDestination.values.div | required when type=gpt or page | Defines where the results should be rendered. | string |
 | hbDestination.values.callback | required when type = callback | Defines a function where the results should be sent. | function |
@@ -465,8 +462,6 @@ The hbSource stage defines where the bids for a given auction should come from. 
 - **Auction**: hold a new Prebid auction to gather new bids for the defined AdUnits.
 - **Cache**: for high performance, consult the Prebid cache and use values there. If the cache is empty for a given adunit, hold a new Prebid auction.  
 
-Both sub-modules support invoking Amazon's APS library by including the hbSource.values.amazonEnabled flag. If enabled, PPI will initialize the [Amazon APS](https://aps.amazon.com/aps/index.html) auction as described below.
-
 #### hbSource Auction Sub-Module
 
 This module initiates the auction, returning to the destination after the auction is done or timed out.
@@ -475,43 +470,19 @@ If the limited bid cache is enabled, both new and cached bids will be sent to th
 
 ##### Transaction Object Parameters for hbSource=Auction
 
-{: .table .table-bordered .table-striped }
-| Parameter  | Scope     | Description | Type |
-|---------+----+-------+---------|
-| hbSource. values.amazonEnabled | optional | if true, PPI will initiate the Amazon auction in parallel to the Prebid auction. Note that hbDestination must be GPT for this flag to render properly. See below for more information. | boolean |
+none
 
 #### hbSource Cache Sub-Module
 
 This module is designed for the use case where the page does an early auction with hbDestination=cache. Then later on, when the page div is ready for display, the results are read with this sub-module.
 
 Here's how it works:
-- If the amazonEnabled flag is true, PPI initiates and waits for the Amazon auction to complete before going on to the next step. Note that Amazon auction results cannot be cached.
-- Otherwise, if the PBJS ad unit has auction results, immediately invokes the callback with all cached bids.
+- if the PBJS ad unit has auction results, immediately invokes the callback with all cached bids.
 - Otherwise, for PBJS ad units that don't have any cached bids from previous auctions, initiate an auction and invoke the callback once those are done or timed out.
 
 ##### Transaction Object Parameters for hbSource=Cache
 
-{: .table .table-bordered .table-striped }
-| Parameter  | Scope     | Description | Type |
-|---------+----+-------+---------|
-| hbSource. values.amazonEnabled | optional | if true, PPI will initiate the Amazon auction in parallel to the Prebid auction. Note that hbDestination must be GPT for this flag to render properly. See below for more information. | boolean |
-
-#### Amazon APS support
-
-As a convenience to publishers who want to integrate both Prebid and Amazon ad technology but are light on engineering resources, PPI supports coordinating both auctions.
-
-Note, the [Amazon APS](https://aps.amazon.com/aps/index.html) library depends on GPT, so this option is limited to Transaction Objects where hbDestination=gpt.
-
-If hbSource.values.amazonEnabled is set to true, PPI will coordinate with the APS library in the page to initiate the Prebid and Amazon auctions in parallel.
-
-Here's how it works:
-
-- The publisher must have already loaded apstag.js in the page
-- The Amazon auction is initiated in parallel with the Prebid auction
-- PPI creates Amazon slots in the named div
-- The ad server must contain line items targeted to APS-standard key-value pairs. (e.g. amznbid)
-
-See the [PPI Amazon APS example](https://github.com/prebid/Prebid.js/tree/master/integrationExamples/ppi/ppi-amazon.html).
+none
 
 ### hbDestination Processing Stage
 
