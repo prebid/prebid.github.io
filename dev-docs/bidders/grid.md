@@ -16,6 +16,13 @@ coppa_supported: true
 fpd_supported: true
 ---
 
+### Table of Contents
+
+- [Bid Params](#grid-bid-params)
+- [Bidder Config](#grid-bidder-config)
+- [First Party Data](#grid-first-party)
+
+<a name="grid-bid-params" />
 
 ### Bid Params
 
@@ -49,7 +56,9 @@ Parameter `keywords` must have following format:
 }
 ```
 
-###Bidder Config
+<a name="grid-bidder-config" />
+
+### Bidder Config
 
 You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `grid`
 ```
@@ -61,3 +70,24 @@ pbjs.setBidderConfig({
 })
 ```
 If it will be "true" this allow TheMediaGrid Bid Adapter to write userId in first party localStorage
+
+<a name="grid-first-party" />
+
+### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+
+Global site or user data using `setConfig()`, or Bidder-specific using `setBidderConfig()` supports following fields:
+
+- `ortb2.user.data[]`: Standard IAB segment taxonomy user data
+- `ortb2.user.ext.device`: Non standard arbitrary user device
+- `ortb2.user.keywords`: Standard IAB OpenRTB 2.5 user.keywords field. It will be included in ext.keywords.user.ortb2
+- `ortb2.site.keywords`: Standard IAB OpenRTB 2.5 site.keywords field. It will be included in ext.keywords.site.ortb2
+- `ortb2.site.cat[]`: Standard IAB OpenRTB 2.5 site.cat field. It will be sent as part of site.cat array
+- `ortb2.site.pagecat[]`: Standard IAB OpenRTB 2.5 site.pagecat field. It will be sent as part of site.cat array
+- `ortb2.site.content.genre`: Standard IAB OpenRTB 2.5 site.content.genre field
+
+AdUnit-specific data using `AdUnit.ortb2Imp` supports following fields:
+
+- `ortb2.imp[].ext.data.*`
+- `ortb2.imp[].instl`
