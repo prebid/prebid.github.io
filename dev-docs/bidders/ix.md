@@ -99,7 +99,7 @@ In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be 
 |---|---|---|---|
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 | `size` | Optional | Number[] | The single size that is associated with the site ID, as listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. For example, [300, 250], [300, 600]. <BR><BR>This parameter is optional in Prebid.js versions 5.0 and above. Versions prior to 5.0 will still require a size parameter.|
-| `video` | Optional | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level.|
+| `video` | Optional | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level. If you are sending a video request using mediaTypes.video in PBJS 5.0+, an empty params.video object is required. Size is optional.|
 | `video.w` | Required | Integer | The video player size width in pixels that will be passed to demand partners.|
 | `video.h` | Required | Integer | The video player size height in pixels that will be passed to demand partners.|
 | `video.playerSize` | Optional* | Integer | The video player size that will be passed to demand partners. * In the absence of `video.w` and `video.h`, this field is required.|
@@ -214,8 +214,8 @@ var adUnits = [{
         params: {
             siteId: '12345',
             video: {
-                // openrtb v2.5 compatible video obj
-                // If required, use this to override mediaTypes.video.XX properties
+                // OpenRTB v2.5 compatible video object.
+                // If you are sending a video request using mediaTypes.video in PBJS 5.0+, an empty params.video object is required. Size is optional.
             }
         }
     }]
