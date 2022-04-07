@@ -705,7 +705,12 @@ pbjs.setConfig({
     userIds: [{
       name: 'FTrack',
       params: {
-        url: 'https://d9.flashtalking.com/d9core' // required, if not populated ftrack will not run
+        url: 'https://d9.flashtalking.com/d9core', // required, if not populated ftrack will not run
+        ids: {
+          'device id': true,
+          'single device id': true,
+          'household id': true
+        }
       },
       storage: {
         type: 'html5',           // "html5" is the required storage type
@@ -721,7 +726,12 @@ pbjs.setConfig({
 
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | :-- | :-- | :-- | :-- | :-- |
-| name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` |
+| name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` || params | Required | Object | The IDs available, if not populated then the defaults "Device ID" and "Single Device ID" will be returned | |
+| params.url | Required | String | The URL for the ftrack library reference. If not populate, ftrack will not run. | 'https://d9.flashtalking.com/d9core' |
+| params.ids | Optional | Object | The ftrack IDs available, if not populated then the defaults "Device ID" and "Single Device ID" will be returned | |
+| params.ids['device id'] | Optional | Boolean | Should ftrack return "device id". Set to `true` to return it. If set to `undefined` or `false`, ftrack will not return "device id". Default is `false` | `true` |
+| params.ids['single device id'] | Optional | Boolean | Should ftrack return "single device id". Set to `true` to return it. If set to `undefined` or `false`, ftrack will not return "single device id". Default is `false` | `true` |
+| params.ids['household id'] | Optional | Boolean | Should ftrack return "household id". Set to `true` to attempt to return it. If set to `undefined` or `false`, ftrack will not return "household id". Default is `false` _This will only return "household id" if value of this field is `true` **AND** Household ID is defined on the device._  | `true` |
 | storage | Required | Object | Storage settings for how the User ID module will cache the FTrack ID locally | |
 | storage.type | Required | String | This is where the results of the user ID will be stored. FTrack **requires** `"html5"`. | `"html5"` |
 | storage.name | Required | String | The name of the local storage where the user ID will be stored. FTrack **requires** `"FTrackId"`. | `"FTrackId"` |
