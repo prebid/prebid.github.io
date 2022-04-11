@@ -1728,7 +1728,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | storage.refreshInSeconds | Required | Integer | The amount of time (in seconds) the RampID envelope should be cached in storage before calling LiveRamp again to retrieve a potentially updated value for the RampID envelope. | `1800`
 
 {: .alert.alert-info :}
-**NOTE:** The RampID envelope that is delivered to Prebid will be encrypted by LiveRamp with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to 15 minutes (1800 seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
+**NOTE:** The RampID envelope that is delivered to Prebid will be encrypted by LiveRamp with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to 30 minutes (1800 seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
 
 #### RampID Examples
 
