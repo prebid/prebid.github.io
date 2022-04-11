@@ -726,8 +726,9 @@ pbjs.setConfig({
 
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | :-- | :-- | :-- | :-- | :-- |
-| name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` || params | Required | Object | The IDs available, if not populated then the defaults "Device ID" and "Single Device ID" will be returned | |
-| params.url | Required | String | The URL for the ftrack library reference. If not populate, ftrack will not run. | 'https://d9.flashtalking.com/d9core' |
+| name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` |
+| params | Required | Object | The IDs available, if not populated then the defaults "Device ID" and "Single Device ID" will be returned | |
+| params.url | Required | String | The URL for the ftrack library reference. If not populated, ftrack will not run. | 'https://d9.flashtalking.com/d9core' |
 | params.ids | Optional | Object | The ftrack IDs available, if not populated then the defaults "Device ID" and "Single Device ID" will be returned | |
 | params.ids['device id'] | Optional | Boolean | Should ftrack return "device id". Set to `true` to return it. If set to `undefined` or `false`, ftrack will not return "device id". Default is `false` | `true` |
 | params.ids['single device id'] | Optional | Boolean | Should ftrack return "single device id". Set to `true` to return it. If set to `undefined` or `false`, ftrack will not return "single device id". Default is `false` | `true` |
