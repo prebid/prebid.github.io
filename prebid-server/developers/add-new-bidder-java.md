@@ -1144,6 +1144,7 @@ pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
 prebid_member: true/false
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ---
 
 ### Note:
