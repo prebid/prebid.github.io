@@ -98,6 +98,12 @@
                     <th class="pbTh">First Party Data Support</th>
                     <td class="pbTd">{% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %}</td>
                   </tr>
+                  <tr>
+                    <th class="pbTh">Multi Format Support</th>
+                    <td class="pbTd">{% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh"></th>
+                    <td class="pbTd"></td>
+                  </tr>
                 </table>
 
                 <h3>"Send All Bids" Ad Server Keys</h3>
