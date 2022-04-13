@@ -43,8 +43,8 @@ pbjs.setConfig({
           apiHostname: '<see your Akamai account rep>',
           apiVersion: "x1",
           domain: 'your-domain.com',
-          identityType: 'email' | 'mobile' | ... | 'dap-signature:1.0.0',
-          segtax: <Akamai_taxonomy_name>,
+          identityType: 'email' | 'mobile' | ... | 'dap-signature:1.3.0',
+          segtax: 504,
           tokenTtl: 5,
         }
       }
@@ -66,8 +66,8 @@ Please reach out to your Akamai account representative(Prebid@akamai.com) to get
 | apiHostname | String | host name | Please reach out to your Akamai account representative(Prebid@akamai.com) for this value|
 | apiVersion | String | this holds the API version| It will be "x1" always |
 | domain | String | the domain name | |
-| identityType | String | Something like this email' | 'mobile' | ... | 'dap-signature:1.0.0' | |
-| segtax | Integer | the taxonomy for Akamai | Getting this value is in progress, once done this will become optional |
+| identityType | String | Something like this email' | 'mobile' | ... | 'dap-signature:1.3.0' | |
+| segtax | Integer | the taxonomy for Akamai | The value will be 504 |
 | tokenTtl | Integer | time to live | |
 
 ### Testing
