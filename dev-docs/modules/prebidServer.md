@@ -9,15 +9,22 @@ enable_download : true
 vendor_specific: false
 sidebarType : 1
 ---
-### Overview
+
+# Prebid Server Adapter
+{: .no_toc}
+
+* TOC
+{:toc }
+
+## Overview
 
 The Prebid Server Adapter is a meta-adapter. It's not an actual bidder, but
 rather a way to get a batch of bids from other bidders with one request.
 A request for the set of auctions is sent to Prebid Server, which performs
-all the auctions server side (S2S), responding in time for Prebid.js to
+all the auctions server-to-server (S2S), responding in time for Prebid.js to
 send the results to the ad server. This lightens the performance load on the user's device.
 
-### Configuration
+## Configuration
 Here's an example config enabling the AppNexus Prebid Server:
 
 ```javascript
@@ -101,7 +108,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 * Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
 
-### Bid Params
+## Bid Params
 
 Bid params are sourced from the adapter configurations set for client side. These do not need to change for Prebid Server.
 
@@ -113,9 +120,11 @@ we assume you will test changes, and that it will be easier to notice a
 the bad parameter.
 
 
-### Examples
+## Examples
 
-s2sConfig example with the endpoint attributes defined as strings:
+### Defining endpoints
+
+s2sConfig example with the endpoint attributes defined instead of using the 'defaultVendor' approach:
 ```javascript
 pbjs.setConfig({
     s2sConfig: [{
@@ -128,7 +137,7 @@ pbjs.setConfig({
 })
 ```
 
-s2sConfig example with the endpoint attributes defined as objects:
+A similar example with the endpoint attributes defined as objects:
 ```javascript
 pbjs.setConfig({
     s2sConfig: [{
@@ -147,7 +156,7 @@ pbjs.setConfig({
 })
 ```
 
-**Server-Side Aliases**
+### Server-Side Aliases
 
 You may want to run a particular bidder on the client for banner, but that same bidder on the
 server for video. You would do this by setting a **server-side** alias. For example:
@@ -174,7 +183,7 @@ Here's how it works:
 1. The s2sConfig.bidders array contains 'tripleliftVideo' telling Prebid.js to direct bids for that code to the server
 1. Finally, the extPrebid.aliases line tells Prebid Server to route the 'tripleliftVideo' biddercode to the 'triplelift' server-side adapter.
 
-**Video via s2sConfig**
+### Video via s2sConfig
 
 Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid` object. e.g.
 
@@ -199,9 +208,9 @@ pbjs.setConfig({
 
 <a name="stored-imp" />
 
-**Stored impressions**
+### Stored impressions
 
-Prebid Server stored [requests](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-requests) and [responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses-pbs-java-only) can be requested through the adUnit `ortb2Imp` property. For these cases, it's not necessary to specify `bids`:  
+Prebid Server stored [requests](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-requests) can be requested through the adUnit `ortb2Imp` property. This is useful to move the list of bidders and parameters from the page to blocks of JSON stored on the server. For these cases, it's not necessary to specify `bids`:  
 
 ```javascript
 pbjs.addAdUnits([{
@@ -219,8 +228,18 @@ pbjs.addAdUnits([{
         }
       }
     }
-  },
-}, {
+  }
+}])
+```
+
+### Stored responses
+
+For debugging purposes, it can be useful to have a page that retrieves a static value rather than running an actual auction.
+For this you can use PBS [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses-pbs-java-only).
+Here's an example:
+
+```javascript
+pbjs.addAdUnits([{
   code: 'example-stored-response',
   mediaTypes: {
     banner: {
