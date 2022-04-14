@@ -1908,8 +1908,8 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Interstitials
-  link: /prebid-server/features/pbs-interstitials.html
+  title: Floors
+  link: /prebid-server/features/pbs-floors.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1918,6 +1918,14 @@
 - sbSecId: 5
   title: Privacy Support (GDPR, CCPA, etc)
   link: /prebid-server/features/pbs-privacy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Interstitials
+  link: /prebid-server/features/pbs-interstitials.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
