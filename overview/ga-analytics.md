@@ -80,14 +80,65 @@ Similar query for bidders' bid CPM:
 
 ## How does it work?
 
-Prebid.js has a seamless integration with Google Analytics and Google Spreadsheet, as well as [several other Analytics providers]({{site.baseurl}}/overview/analytics.html).
+Prebid.js has a seamless integration with Google Analytics and Google Spreadsheet, as well as [several other Analytics providers](/overview/analytics.html).
 
-1. Prebid.js has a built-in plugin for Google Analytics, i.e. zero development work if your site uses Prebid.js.
+1. Prebid.js has a module for Google Analytics.
 2. All data are sent as Events to Google Analytics. You can build reports and dashboards there just as you do today with web traffic data.
 3. We've also built dashboards and data visualization in Spreadsheet (where all the above diagrams come from). You can copy our demo dashboard and link it to your Google Analytics account in a few minutes!
 4. The Spreadsheet dashboard can be scheduled to run every morning (or in other intervals). You can get 7 day revenue lookback, latency/CPM distribution analysis and more every morning!
 
+### Building the Prebid.js Package with GA
+
+You can build the Google Analytics module into your Prebid package in two ways:
+
+1. The "Easy Button" - use the handy web-based [Prebid.js Download](/download.html) tool, and check the Google Analytics adapter box along with the other modules and adapters desired.
+2. From the command line
+
+```
+gulp build --modules=googleAnalyticsAdapter, OTHER_MODULES, OTHER_ADAPTERS, ...
+```
+### Enabling the GA Adapter in Your Page
+
+1. First, make sure GA is on your page as directed by Google. Get the 'tracking code' from the GA interface. It will look something like:
+
+```
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1111111"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-1111111');
+</script>
+```
+
+2. Enable the Prebid.js GA module:
+
+```
+pbjs.que.push(function() {
+  pbjs.enableAnalytics({
+    provider: 'ga',
+    options: {
+      sampling: 0.1
+    }
+  });
+});
+```
+
+Here are the options available. None of them are required.
+
+{: .table .table-bordered .table-striped }
+| Option | Type | Example | Notes |
+|---+---+---+---|
+|global | string | ga | Name of the global analytics object. Default is `ga` |
+|trackerName | string | "mytracker" | Use another tracker for prebid events. Default is the default tracker. |
+|sampling | float | 0.1 | Choose a value from `0` to `1`, where `0` means 0% and `1` means 100% tracked. |
+|enableDistribution | boolean | true | Enables additional events that track load time and cpm distribution by creating buckets for load time and cpm. Default is false. |
+|cpmDistribution | (cpm: number => string) | | Customize the cpm bucketsfor the cpm distribution. |
+|sendFloors | boolean | true | if set, will include floor data in the eventCategory field and include ad unit code in eventAction field. Defaults to false. |
+
 ## Further Reading
 
-- [Analytics for Prebid]({{site.baseurl}}/overview/analytics.html) (Overview and list of analytics providers)
-- [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
+- [Analytics for Prebid](/overview/analytics.html) (Overview and list of analytics providers)
+- [Integrate with the Prebid Analytics API](/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)
