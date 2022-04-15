@@ -120,10 +120,16 @@ pbjs.que.push(function() {
   pbjs.enableAnalytics({
     provider: 'ga',
     options: {
-      sampling: 0.1
+      sampling: 0.1,
+      cpmDistribution: myBucketFunction
     }
   });
 });
+
+// takes a CPM value and returns a string price bucket
+var myBucketFunction = function(cpm) {
+   return cpm <= 1 ? '<= 1$' : '> 1$';
+}
 ```
 
 Here are the options available. None of them are required.
@@ -135,7 +141,7 @@ Here are the options available. None of them are required.
 |trackerName | string | "mytracker" | Use another tracker for prebid events. Default is the default tracker. |
 |sampling | float | 0.1 | Choose a value from `0` to `1`, where `0` means 0% and `1` means 100% tracked. |
 |enableDistribution | boolean | true | Enables additional events that track load time and cpm distribution by creating buckets for load time and cpm. Default is false. |
-|cpmDistribution | (cpm: number => string) | | Customize the cpm bucketsfor the cpm distribution. |
+|cpmDistribution | function | see example | A function that customizes the buckets for cpm distribution. |
 |sendFloors | boolean | true | if set, will include floor data in the eventCategory field and include ad unit code in eventAction field. Defaults to false. |
 
 ## Further Reading
