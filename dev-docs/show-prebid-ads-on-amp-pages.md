@@ -286,17 +286,7 @@ Or you can specify a full URL to another Prebid Server location (including a QA 
 </amp-iframe>
 ```
 
-The usage of `load-cookie.html` and `load-cookie-with-consent.html` is the same. The arguments available on the query string are:
-
-{: .table .table-bordered .table-striped }
-| Param | Scope | Values | Description |
-| --- | --- | --- | --- |
-| endpoint | recommended | 'appnexus', 'rubicon', or URL | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
-| source | optional | recommended | Set it to 'amp' to tell Prebid Server to exclude iframe syncs, which don't work on AMP. |
-| max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
-| args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie_sync call. The attribute and value will be quoted by the system when appropriate. |
-| gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
-| gdpr_consent | optional | String | IAB CMP-formatted consent string |
+See [manually initiating a sync](/prebid-server/developers/pbs-cookie-sync.html#manually-initiating-a-sync) for more information about the available parameters.
 
 ### AMP RTC and GDPR
 
