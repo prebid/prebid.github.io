@@ -20,7 +20,7 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 
 ### Bid Parameters
 
-#### Banner, Video
+#### Video
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description | Example
