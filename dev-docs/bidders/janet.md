@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Appaloosa
-description: Prebid Appaloosa Bidder Adapter
-biddercode: appaloosa
+title: JANet
+description: Prebid JANet Bidder Adapter
+biddercode: janet
 aliasCode: adtelligent
 media_types: video,banner
 gdpr_supported: true
@@ -21,15 +21,12 @@ pbs: false
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from Appaloosa.   | `529814` | `integer` |
+| `aid` | required | The source ID from janet.   | `529814` | `integer` |
 
 ### Description
-Get access to multiple demand partners across Appaloosa AdExchange and maximize your yield with Appaloosa header bidding adapter.
-
-Appaloosa header bidding adapter connects with Appaloosa demand sources in order to fetch bids.
+JANet header bidding adapter connects with JANet demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-Appaloosa now supports adpod. 
 
 ### Test Parameters
 ```
@@ -45,7 +42,7 @@ Appaloosa now supports adpod.
           }
         },
         bids: [{
-          bidder: 'appaloosa',
+          bidder: 'janet',
           params: {
             aid: 472386
           }
@@ -62,7 +59,7 @@ Appaloosa now supports adpod.
           }
         },
         bids: [{
-          bidder: 'appaloosa',
+          bidder: 'janet',
           params: {
             aid: 472386
           }
@@ -80,7 +77,7 @@ Appaloosa now supports adpod.
           }
         },
         bids: [{
-          bidder: 'appaloosa',
+          bidder: 'janet',
           params: {
             aid: 472386
           }
@@ -96,7 +93,7 @@ Appaloosa now supports adpod.
             }
         }
         bids: [{
-          bidder: 'appaloosa',
+          bidder: 'janet',
           params: {
             aid: 529814
           }
@@ -113,11 +110,9 @@ It is possible to configure requests to be split into chunks so as to have fewer
 ```
     pbjs.setBidderConfig({
         config: {              
-            appaloosa: {
+            janet: {
                 chunkSize: 1   // makes 1 http request per 1 adunit configured
             }
         }
     });
 ```
-
-Appaloosa is an aliased bidder for Adtelligent
