@@ -15,6 +15,7 @@ pbs_app_supported: true
 prebid_member: true
 userIds: id5Id, identityLink
 pbjs_version_notes: v4.35 and later
+floors_supported: true
 ---
 
 ### Registration
