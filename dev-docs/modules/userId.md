@@ -2223,7 +2223,7 @@ pbjs.setConfig({
 
 Yahoo ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of Yahoo’s robust and proprietary ID Graph it delivers a higher find rate of audiences on publishers’ sites user targeting that respects privacy.
 
-Verizon Media ConnectID honors privacy choices from the [Yahoo Privacy Dashboard](https://legal.yahoo.com/us/en/yahoo/privacy/dashboard/index.html) as well as global privacy acts.
+Yahoo ConnectID honors privacy choices from the [Yahoo Privacy Dashboard](https://legal.yahoo.com/us/en/yahoo/privacy/dashboard/index.html) as well as global privacy acts.
 
 Add support for Yahoo ConnectID to your Prebid.js package with:
 
@@ -2399,11 +2399,6 @@ If you're an ID provider that wants to get on this page:
 - Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify /dev-docs/modules/userId.md, /download.md, and submit a documentation Pull Request.
 
 <a name="getUserIds"></a>
-
-## Passing UserIds to Google Ad Manager for targeting
-
-User IDs from Prebid User ID module can be passed to GAM for targeting in Google Ad Manager or could be passed ahead to Google Open Bidding using ```userIdTargeting``` module. Note Google deprecated the ability to pass key values, including identifiers, to OB partners and then later began a closed beta to resume it with details non-public (see  https://developers.google.com/authorized-buyers/rtb/request-guide ). More details on the user id module can be found [here](https://github.com/prebid/Prebid.js/blob/master/modules/userIdTargeting.md). In short, you just need to add the optional userIdTargeting sub-module into your `gulp build` command and the additional `userIdTargeting` config becomes available.
-
 
 ## ESP Configurations
 

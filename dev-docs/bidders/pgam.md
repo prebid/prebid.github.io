@@ -1,9 +1,8 @@
 ---
 layout: bidder
-title: Navelix
-description: Prebid Navelix Bidder Adapter
-biddercode: navelix
-aliasCode: adtelligent
+title: PGAM
+description: Prebid PGAM Bidder Adapter
+biddercode: pgam
 media_types: video,banner
 gdpr_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
@@ -12,8 +11,7 @@ coppa_supported: true
 usp_supported: true
 safeframes_ok: true
 prebid_member: true
-pbjs: true
-pbs: false
+pbs: true
 ---
 
 ### Bid params
@@ -21,15 +19,12 @@ pbs: false
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from navelix.   | `529814` | `integer` |
+| `aid` | required | The source ID from PGAM.   | `529814` | `integer` |
 
 ### Description
-Get access to multiple demand partners across Navelix AdExchange and maximize your yield with Navelix header bidding adapter.
-
-Navelix header bidding adapter connects with Navelix demand sources in order to fetch bids.
+PGAM header bidding adapter connects with PGAM demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-Navelix now supports adpod. 
 
 ### Test Parameters
 ```
@@ -45,7 +40,7 @@ Navelix now supports adpod.
           }
         },
         bids: [{
-          bidder: 'navelix',
+          bidder: 'pgam',
           params: {
             aid: 472386
           }
@@ -62,7 +57,7 @@ Navelix now supports adpod.
           }
         },
         bids: [{
-          bidder: 'navelix',
+          bidder: 'pgam',
           params: {
             aid: 472386
           }
@@ -80,7 +75,7 @@ Navelix now supports adpod.
           }
         },
         bids: [{
-          bidder: 'navelix',
+          bidder: 'pgam',
           params: {
             aid: 472386
           }
@@ -96,26 +91,11 @@ Navelix now supports adpod.
             }
         }
         bids: [{
-          bidder: 'navelix',
+          bidder: 'pgam',
           params: {
             aid: 529814
           }
         }]
       }
     ];
-```
-
-### Additional Configuration
-
-It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
-(default value is 10).
-
-```
-    pbjs.setBidderConfig({
-        config: {              
-            navelix: {
-                chunkSize: 1   // makes 1 http request per 1 adunit configured
-            }
-        }
-    });
 ```

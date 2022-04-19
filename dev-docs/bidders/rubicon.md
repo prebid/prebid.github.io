@@ -18,6 +18,7 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 52
+multiformat_supported: will-bid-on-one
 ---
 
 ### Registration
