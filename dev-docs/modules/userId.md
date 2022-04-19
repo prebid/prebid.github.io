@@ -29,7 +29,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
    1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
-1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html) or [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html)
+1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
 
 {: .alert.alert-info :}
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
@@ -76,7 +76,7 @@ The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rul
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| ppid | Optional | String | Must be a source from the [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html) array | `"pubcid.org"` |
+| ppid | Optional | String | Must be a source from the [pbjs.getUserIdsAsEids()](#getUserIdsAsEids) array | `"pubcid.org"` |
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
@@ -2348,6 +2348,7 @@ Bidders that want to support the User ID module in Prebid Server, need to update
 
 See the [Prebid.js EIDs javascript source](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js) for the definitive list of user EID sources.
 
+<a name="getUserIds"/>
 ### Exporting User IDs
 
 If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
@@ -2356,7 +2357,9 @@ If you need to export the user IDs stored by Prebid User ID module, the `getUser
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
 
-You can use [`getUserIdsAsEids()`](/dev-docs/publisher-api-reference/getUserIdsAsEids.html) to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
+<a name="getUserIdsAsEids"/>
+
+You can use `getUserIdsAsEids()` to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
 ```
 pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
@@ -2391,6 +2394,19 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
       }]
   }
 ]
+```
+
+<a name="getUserIdsAsync" />
+
+`pbjs.getUserIds()` and `pbjs.getUserIdsAsEids()` may return only some IDs, or none at all, if they are called before all ID providers have had a chance to initialize - depending on [`auctionDelay` and/or `syncDelay`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties), that may need to wait until an auction has completed.
+To access the complete set of IDs, you may use `getUserIdsAsync`, which returns a promise that is guaranteed to resolve only once all IDs are available:
+
+```
+pbjs.getUserIdsAsync().then(function (userIds) {
+   // all IDs are available here:
+   pbjs.getUserIds()       // same as the `userIds` argument
+   pbjs.getUserIdsAsEids() 
+});
 ```
 
 ## ID Providers
