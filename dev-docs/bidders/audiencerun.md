@@ -5,7 +5,13 @@ description: Prebid AudienceRun Bidder Adaptor
 pbjs: true
 biddercode: audiencerun
 media_types: banner
+gvl_id: 944
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
+safeframes_ok: false
+prebid_member: false
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 ---
 
 ### Bid Params
