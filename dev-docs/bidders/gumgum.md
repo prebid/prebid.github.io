@@ -4,14 +4,15 @@ title: GumGum
 description: Prebid GumGum Bidder Adaptor
 pbjs: true
 pbs: true
+pbs_app_supported: true
 biddercode: gumgum
 media_types: banner, video
 schain_supported: true
-getFloor: true
-userIds: unifiedId
+floors_supported: true
+userIds: unifiedId, identityLink
 gdpr_supported: true
 usp_supported: true
-tcf2_supported: true
+fpd_supported: true
 ---
 
 ### Note:
@@ -28,33 +29,38 @@ Client side and server side parameters differ slightly. For Server side (Prebid 
 ### Server Side Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope    | Description       | Example                | Type      |
-|----------------|----------|-------------------|------------------------|-----------|
-| `zone`         | required | Tracking ID       | `'ggumtest'`           | `string`  |
+| Name           | Scope                                                            | Description           | Example                | Type      |
+|----------------|------------------------------------------------------------------|-----------------------|------------------------|-----------|
+| `zone`         | required for all bid requests tracking a single domain or site   | Tracking ID           | `'ggumtest'`           | `string`  |
+| `pubId`        | required for all bid requests tracking multiple domains or sites | Publisher ID          | `123`                  | `integer` |
+| `irisid`       | optional                                                         | Iris.tv ID            | `'iris_6f9285823a4'`   | `string`  |
+| `slot`         | optional                                                         | Placement ID          | `40`                   | `number`  |
 
 ### Client Side Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope                                      | Description       | Example                | Type      |
-|----------------|--------------------------------------------|-------------------|------------------------|-----------|
-| `zone`         | pubId or zone required for all bid requests| Tracking ID       | `'ggumtest'`           | `string`  |
-| `pubId`        | pubId or zone required for all bid requests| Publisher ID      | `123`                  | `integer` |
-| `slot`         | required for slot placement only           | Slot ID           | `9`                    | `integer` |
-| `iriscat`      | optional                                   | Iris.tv segments  | `'segment1,segment2'`  | `string`  |
-| `bidfloor`     | optional                                   | CPM bidfloor      | `0.03`                 | `float`   |
+| Name           | Scope                                                            | Description           | Example                | Type      |
+|----------------|------------------------------------------------------------------|-----------------------|------------------------|-----------|
+| `zone`         | required for all bid requests tracking a single domain or site   | Tracking ID           | `'ggumtest'`           | `string`  |
+| `pubId`        | required for all bid requests tracking multiple domains or sites | Publisher ID          | `123`                  | `integer` |
+| `slot`         | required for slot placement only                                 | Slot ID               | `9`                    | `integer` |
+| `iriscat`      | optional                                                         | Iris.tv segments      | `'segment1,segment2'`  | `string`  |
+| `irisid`       | optional                                                         | Iris.tv ID            | `'123'`                | `string`  |
+| `bidfloor`     | optional                                                         | CPM bidfloor in USD   | `0.03`                 | `float`   |
 
 ### Legacy Client Side Bid Params
+
 {: .table .table-bordered .table-striped }
-| Name           | Scope                                 | Description       | Example                | Type      |
-|----------------|---------------------------------------|-------------------|------------------------|-----------|
-| `inScreen`     | required for in-screen placement only | Tracking ID       | `'ggumtest'`           | `string`  |
-| `inScreenPubID`| required for in-screen placement only | Publisher ID      | `123`                  | `integer` |
-| `inSlot`       | required for slot placement only      | Slot ID           | `9`                    | `integer` |
-| `video`        | required for video placement only     | Tracking ID       | `'ggumtest'`           | `string`  |
-| `videoPubID`   | required for video placement only     | Publisher ID      | `123`                  | `integer` |
-| `inVideo`      | required for in-video placement only  | Tracking ID       | `'ggumtest'`           | `string`  |
-| `ICV`          | required for ICV placement only       | ICV ID            | `19`                   | `integer` |
-| `bidfloor`     | optional                              | CPM bidfloor      | `0.03`                 | `float`   |
+| Name           | Scope                                      | Description           | Example                | Type      |
+|----------------|--------------------------------------------|-----------------------|------------------------|-----------|
+| `inScreen`     | required for in-screen placement only      | Tracking ID           | `'ggumtest'`           | `string`  |
+| `inScreenPubID`| required for in-screen placement only      | Publisher ID          | `123`                  | `integer` |
+| `inSlot`       | required for slot placement only           | Slot ID               | `9`                    | `integer` |
+| `video`        | required for video placement only          | Tracking ID           | `'ggumtest'`           | `string`  |
+| `videoPubID`   | required for video placement only          | Publisher ID          | `123`                  | `integer` |
+| `inVideo`      | required for in-video placement only       | Tracking ID           | `'ggumtest'`           | `string`  |
+| `ICV`          | required for ICV placement only            | ICV ID                | `19`                   | `integer` |
+| `bidfloor`     | optional                                   | CPM bidfloor in USD   | `0.03`                 | `float`   |
 
 Please note that both video and in-video products require a mediaType of video while all other products 
 require a mediaType of banner.

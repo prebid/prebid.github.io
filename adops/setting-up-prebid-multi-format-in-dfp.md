@@ -25,6 +25,10 @@ For instructions on how to set up multi-format ads from the engineering side, se
 * TOC
 {: toc }
 
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
+
 ## Step 1. Add an Ad Unit
 
 In Google Ad Manager, [create an ad unit](https://support.google.com/admanager/answer/177203).

@@ -39,7 +39,7 @@ As described in the [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-
 
 There are two basic ways of invoking AMP RTC:
 
-- One option is to use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js).
+- One option is to use one of the pre-defined [vendors listed in the AMP repo](https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js).
 
 ```
   <amp-ad width="300" height="50"
@@ -47,7 +47,7 @@ There are two basic ways of invoking AMP RTC:
     data-slot="/11111/amp_test"
     data-multi-size-validation="false"
     rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "14062-amp-AMP_Test-300x250"}, "ACCOUNT_ID": "1001"}}'
-    json='{ "targeting": {"site":{"keywords":"article, las vegas","cat":{"blah":"1"},"other-attribute":"other-value","ext":{"data":{"entry_group":["front-page","featured-stories"],"page_type":"AMP"}}},"user":{"gender":"m"},"bidders":["bidderA","bidderB"],"keywords":"las vegas hospitality employees","foo":{"bar":"baz"}}' >
+    json='{ "targeting": {"attr1": "val1", "attr2": "val2"}}' >
   </amp-ad>
 ```
 
@@ -61,12 +61,9 @@ There are two basic ways of invoking AMP RTC:
     type="doubleclick"
     data-slot="/000/amp_test"
     data-multi-size-validation="false"
-    rtc-config='{"urls": ["https://prebid-server-qa.example.com/openrtb2/amp?tag_id=11111&w=300&h=50&slot=%2F000%2Famp_test&targeting=%7B%22site%22%3A%20%7B%22key1%22%3A%20%22val1%22%7D%2C%20%22user%22%3A%20%7B%22key2%22%3A%20%22val2%22%7D%7D%7D&purl=encoded_page_url&account=333&gdpr_consent=encoded_cmp_consent_string"]
+    rtc-config='{"urls": ["https://prebid-server-qa.example.com/openrtb2/amp?tag_id=11111&w=300&h=50&slot=%2F000%2Famp_test&purl=encoded_page_url&account=333&gdpr_consent=encoded_cmp_consent_string"]
   </amp-ad>
 ```
-
-{: .alert.alert-info :}
-First party data may be passed in on the "targeting" field. See the [`/openrtb2/amp` endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) documentation for more details.
 
 ### Prebid Server Receives the AMP Request
 
@@ -76,15 +73,8 @@ Prebid Server's first job on the [/openrtb2/amp endpoint](/prebid-server/endpoin
 
 The `tag_id` in the AMP URL is used to look up the bulk of the request. If the lookup fails, the request can't proceed. If it's successful, the
 next step is to parse the AMP query string parameters and place them
-in the appropriate OpenRTB locations:
-
-- w added into the openrtb packet at imp.banner.format[0].w
-- h added into the openrtb packet at imp.banner.format[0].h
-- ms (multiple-sizes) - takes values like "970x90, 728x90". Parse sizes and add to imp.banner.format array
-- ow, oh - override width, override height
-- curl added as site.page
-- slot added as imp.tagid
-- timeout added as tmax
+in the appropriate OpenRTB locations. See the [AMP endpoint documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
+for details.
 
 So for the /openrtb2/amp URL above, the resulting OpenRTB might be:
 ```
@@ -116,17 +106,7 @@ So for the /openrtb2/amp URL above, the resulting OpenRTB might be:
             "id": "0000"
         },
         "ext": {
-            "amp": 1,
-            "data": {
-                "key1": "val1"
-            }
-        }
-    },
-    "user": {
-        "ext": {
-            "data": {
-                "key2": "val2"
-            }
+            "amp": 1
         }
     },
     "device": {
@@ -168,8 +148,8 @@ Only a few dynamic parameters on the query string are integrated into the result
 
 #### First Party Data Support
 
-Any targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
-into the OpenRTB JSON and permissions, if defined, are applied to each bidder.
+Ad Server targeting data passed in through the [`/openrtb2/amp`](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html) endpoint is merged
+into the OpenRTB JSON in imp[].ext.data.
 
 #### Auction and Response
 
@@ -179,7 +159,6 @@ From here, the header bidding auction is mostly the same as it is for Prebid.js:
 1. Call the bidders
 1. Collect responses
 1. Prepare the response
-
 
 ### AMP Gets the Response
 
@@ -216,4 +195,5 @@ into an iframe for display.
 
 ## Further Reading
 
-- [AMP Support](/formats/amp.html)
+- [Prebid AMP Support](/formats/amp.html)
+- [PBS AMP endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)

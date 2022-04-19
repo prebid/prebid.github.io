@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: GDPR Enforcement Module
-description: Module to enforce GDPR consent
+description: If you have users in Europe, you'll want this module that enforces GDPR consent
 module_code : gdprEnforcement
 display_name : GDPR Enforcement
 enable_download : true
+recommended: true
 sidebarType : 1
 ---
 
@@ -210,6 +211,10 @@ The GDPR Enforcement module requires the GVL ID for a module to be specified. If
     <tr>
       <td>User ID</td>
       <td>Lotame Panorama Id</td>
+    </tr>
+    <tr>
+      <td>User ID</td>
+      <td>Parrable ID</td>
     </tr>
 </tbody>
 </table>

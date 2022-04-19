@@ -82,13 +82,13 @@ See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy
 
 For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
-- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Server-to-Server) is parsed.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) is parsed.
 - A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
 - Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
 [AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
 
-- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html`.
+- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html` or `load-cookie-with-consent.html`.
 - Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
 - The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
 - In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
@@ -120,6 +120,10 @@ The AMP endpoint is somewhat different because it doesn't receive the openrtb - 
 
 ## How does Prebid Server determine the winner of a given impression?
 
+Prebid Server doesn't decide the overall winner... that's the job of the
+ad server. However, there are two decisions it does make that influence
+which bids are submitted to the ad server.
+
 **Decision 1**: best bid from each bidder on each impression
 
 Prebid Server returns one bid from each bidder for each impression object. If there
@@ -129,6 +133,9 @@ are multiple bids from a given bidder for a given imp[], here how it chooses:
 - highest CPM deal (only when the ext.targeting.preferdeals is specified)
 - highest CPM
 - random tiebreaker
+
+Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only), then several bid responses from the same bidder may
+be returned to the client.
 
 **Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
 
@@ -142,3 +149,70 @@ first decision:
 - highest CPM
 - random tiebreaker
 
+## Can I host Prebid Server for myself or others?
+
+Yes. See the [PBS Hosting](/prebid-server/hosting/pbs-hosting.html) page to get started.
+
+You don't need to be a [Prebid.org member](https://prebid.org/membership/), but joining would help in case you need extra
+support with any technical hurdles.
+
+## I'm hosting Prebid Server - how can I get in the loop?
+
+The best way would be to [join Prebid.org](https://prebid.org/membership/) and
+participate in the [Prebid Server PMC](https://prebid.org/project-management-committees/).
+
+Another way is to [register for our host company mailing list](/prebid-server/hosting/pbs-hosting.html#optional-registration).
+
+## Why doesn't Prebid Server resolve OpenRTB macros?
+
+Prebid Server is not a full-fledged SSP. Any DSP bid adapters should keep this in mind when it comes to assuming SSP functionality like resolving OpenRTB macros. We debated building this functionality into PBS, but realized it would take precious milliseconds away from the overall header bidding auction to scan kilobytes of bidder creatives for the 9 different OpenRTB macros. Since so few bidders require this functionality, it makes sense to have those adapters do it themselves.
+
+If an adapter doesn't resolve its own macros, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity. This will likely cause reporting discrepancies.
+
+## Does Prebid Server support region-specific endpoints for bidders?
+
+Yes. This is handled by the PBS host company in their datacenter config.
+Bidders that want to make use of region-specific endpoints will need to work
+with each PBS host company:
+
+- determine which regions the host company supports
+- map the regions to the bidder's endpoints
+- the host company overrides the bidder's default auction endpoint when they deploy the configuration for each region.
+
+We recognize that it's inconvenient for bidders to be required to have this
+conversation with each host company, but there's really not a better way
+in an open source project. Any number of companies may choose to host
+PBS and we cannot constrain them into a defined set of regions.
+
+## Can bidder endpoints differ by publisher?
+
+You may not use an endpoint domain as a bidder parameter. Prebid Server is not
+an open proxy. If absolutely necessary, you may specify a portion of the
+domain as a parameter to support geo regions or account specific servers.
+However, this is discouraged and may degrade the performance of your adapter
+since the server needs to maintain more outgoing connections. Host companies
+may choose to disable your adapter if it uses a dynamically configured domain.
+
+e.g. this config is not allowed because the entire domain name is a variable:
+
+```
+endpoint: "https://{host}/path"
+```
+but this would be ok:
+```
+endpoint: "https://{host}.example.com/path"
+```
+
+## Did the location of the bidder parameters change?
+
+Why yes, glad you noticed. The original 2017 OpenRTB extension where bidders
+and parameters were placed was imp[].ext.BIDDER. Since 2020, the recommended location
+is imp[].ext.prebid.bidder.BIDDER. This change was driven by the existence of
+other fields in imp[].ext that aren't bidders, like `skadn`, `data`, etc.
+
+Bidders are copied from imp[].ext to imp[].ext.prebid.bidder, and they will be copied for years to come, but we would ask that new implementations of stored requests
+utilize the new location.
+
+## Does PBS support SSL?
+
+No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.

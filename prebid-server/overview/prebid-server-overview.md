@@ -18,7 +18,7 @@ Prebid Server is a header bidding server with a growing list of features. At a h
   - Resolves dynamic stored requests
   - Enforces privacy regulations
 2. Next, it calls server-side bid adapters
-  - There are currently 75+ server-side bid adapters available
+  - There are currently 100+ server-side bid adapters available
 3. After everyone's responded (or the timeout period has expired), it formulates an appropriate response
   - Handles currency conversion
   - Quantizes bids
@@ -36,7 +36,7 @@ Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that
 
 ### Hosted
 
-The simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members](/prebid-server/hosting/hosted-servers.html) host up-to-date server software with a global footprint, and provide tools to manage stored requests.
+The simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) host up-to-date server software with a global footprint, and provide tools to manage stored requests.
 
 ### DIY
 
@@ -47,13 +47,13 @@ Then you need to decide which of the two implementations to utilize:
 - [Prebid Server (Go)](/prebid-server/versions/pbs-versions-go.html) - the original Prebid Server is written in the Go language.
 - [Prebid Server (Java)](/prebid-server/versions/pbs-versions-java.html) - Prebid Server with a Java language port.
 
-To choose between them, see the [Prebid Server version overview](/prebid-server/versions/pbs-versions-overview.html) and the [FAQ](http://prebid.org/faq/prebid-server-faq.html#why-are-there-two-versions-of-prebid-server-are-they-kept-in-sync).
+To choose between them, see the [Prebid Server version overview](/prebid-server/versions/pbs-versions-overview.html) and the [FAQ](/faq/prebid-server-faq.html#why-are-there-two-versions-of-prebid-server-are-they-kept-in-sync).
 
 ## Which Server-Side Bidders to Utilize
 
 We've provided a [full list of Prebid Server bidders](/dev-docs/pbs-bidders.html), including various details about those bidders, such as media types supported and contact info.
 
-If you're a demand source, we also have information about [creating your own server-side adapter](/prebid-server/bidders/pbs-build-a-bid-adapter.html).
+If you're a demand source, we also have information about [creating your own server-side adapter](/prebid-server/developers/add-new-bidder-go.html).
 
 ## Where to Find Help
 

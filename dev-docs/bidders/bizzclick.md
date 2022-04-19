@@ -4,19 +4,19 @@ title: BizzClick
 description: Prebid BizzClick Bidder Adaptor
 biddercode: bizzclick
 gdpr_supported: true
-tcf2_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: banner, video, native
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
+pbs: true
 ---
 
 ### Note:
 
-The Example Bidding adapter requires setup before beginning. Please contact us at support@bizzclick.com 
+The Example Bidding adapter requires setup before beginning. Please contact us at support@bizzclick.com .BizzClick will only respond to the first impression and that multiple ad formats of that single impression are not supported.
 
 ### Bid Params
 

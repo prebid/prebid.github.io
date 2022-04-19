@@ -91,33 +91,39 @@ that doesn't come from /amp parameters:
             }
         }
     },
-    "imp": [
-        {
-            "id": "some-impression-id",
-            "banner": {
-                "format": [
-                    {
-                        "w": 300,
-                        "h": 250
-                    }
-                ]
-            },
-            "ext": {
+    "imp": [{
+      "id": "some-impression-id",
+      "banner": {
+          "format": [{
+            "w": 300,
+            "h": 250
+          }]
+      },
+      "ext": {
+        "prebid": {
+          "bidder": {
                 "bidderA": {
                     // Insert parameters here
                 },
                 "bidderB": {
                     // Insert parameters here
                 }
-            }
+          }
         }
-    ]
+      }
+    }]
 }
-
 ```
 This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html).
 
 ### AMP content page
+
+First ensure that the amp-ad component is imported in the header.
+
+```
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+```
+This script provides code libraries that will convert `<amp-ad>` properties to the endpoint query parameters usint the [Real Time Config](https://github.com/ampproject/amphtml/blob/main/extensions/amp-a4a/rtc-documentation.md) (RTC) protocol.
 
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
@@ -130,7 +136,7 @@ e.g. for the AppNexus cluster of Prebid Servers:
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
-    data-slot="/19968336/universal_creative"
+    data-slot="/1111/universal_creative"
     rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
 ```
@@ -139,8 +145,17 @@ e.g. for Rubicon Project's cluster of Prebid Servers:
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
-    data-slot="/19968336/universal_creative"
+    data-slot="/1111/universal_creative"
     rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "1234-amp-pub-300x250"}}, "timeoutMillis": 500}'>
+</amp-ad>
+```
+
+For other hosts, you can specify the URL directly rather than using one of the convenient vendor aliases. e.g.
+```html
+<amp-ad width="300" height="250"
+    type="doubleclick"
+    data-slot="/1111/universal_creative"
+    rtc-config='{"urls": ["https://prebid-server.example.com/openrtb2/amp?tag_id=1001-amp&w=ATTR(width)&h=ATTR(height)&ow=ATTR(data-override-width)&oh=ATTR(data-override-height)&ms=ATTR(data-multi-size)&slot=ATTR(data-slot)&targeting=TGT&curl=CANONICAL_URL&timeout=TIMEOUT&adc=ADCID&purl=HREF&gdpr_consent=CONSENT_STRING&account=ACCOUNT_ID&gdpr_applies=CONSENT_METADATA(gdprApplies)&addtl_consent=CONSENT_METADATA(additionalConsent)&consent_type=CONSENT_METADATA(consentStringType)]}'
 </amp-ad>
 ```
 
@@ -226,48 +241,52 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 
 ### User Sync
 
-To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your AMP pages referring to the `load-cookie.html` file made available as part of the [Prebid Universal Creative repository](https://github.com/prebid/prebid-universal-creative). Hosting for the `load-cookie.html` file is not provided by Prebid.org.
+To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your AMP pages referring to `load-cookie.html` or if you're running an IAB-compliant AMP CMP you can use `load-cookie-with-consent.html`.
 
 {% capture tipNote %}
-The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://ampbyexample.com/components/amp-iframe/)
+The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
 {% endcapture %}
-
 {% include alerts/alert_tip.html content=tipNote %}
+
+{% capture consentNote %}
+ The load-cookie-with-consent.html file has the same argument syntax as load-cookie.html. It's a different file because it's larger and depends on the existence of an AMP Consent Management Platform. Note that the `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
+{% endcapture %}
+{% include alerts/alert_tip.html content=consentNote %}
 
 If you're using AppNexus' managed service, you would enter something like this:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
-  sandbox="allow-scripts"
+  sandbox="allow-scripts allow-same-origin"
   frameborder="0"
-  src="https://PROVIDED_BY_APPNEXUS/load-cookie.html?endpoint=appnexus&max_sync_count=5">
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=appnexus&max_sync_count=5&source=amp">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
 
-See the AppNexus bidder parameters page [for more details](/).
-
-If you are utilizing Rubicon Project's managed service, there's an extra parameter:
+If you are utilizing Magnite's managed service, there's an extra `args` parameter:
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
-  sandbox="allow-scripts"
+  sandbox="allow-scripts allow-same-origin"
   frameborder="0"
-  src="https://PROVIDED_BY_RUBICON/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&args=account:RUBICON_ACCOUNT_ID">
+  src="https://GET_URL_FROM_MAGNITE_ACCOUNT_TEAM/prebid/load-cookie.html?endpoint=rubicon&max_sync_count=5&source=amp&args=account:MAGNITE_ACCOUNT_ID">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
 
-Available arguments for the `load-cookie.html` query string:
+Or you can specify a full URL to another Prebid Server location (including a QA site) by setting `endpoint` to a URL-encoded string. e.g.
+```html
+<amp-iframe width="1" title="User Sync"
+  height="1"
+  sandbox="allow-scripts allow-same-origin"
+  frameborder="0"
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=https%3A%2F%2Fprebid-server-qa.example.com%2Fcookie_sync&max_sync_count=5&source=amp">
+  <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
+</amp-iframe>
+```
 
-{: .table .table-bordered .table-striped }
-| Param | Scope | Values | Description |
-| --- | --- | --- | --- |
-| endpoint | recommended | appnexus or rubicon | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
-| max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
-| args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie-sync call. The attribute and value will be quoted by the system when appropriate. |
-| gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
-| gdpr_consent | optional | String | IAB CMP-formatted consent string |
+See [manually initiating a sync](/prebid-server/developers/pbs-cookie-sync.html#manually-initiating-a-sync) for more information about the available parameters.
 
 ### AMP RTC and GDPR
 
@@ -277,7 +296,25 @@ support passing GDPR consent to Prebid Server.
 The CONSENT_STRING macro will be populated if you've integrated with a CMP
 that supports amp-consent v2 -- custom CMP integration.
 
-If you're using a custom RTC callout, you'll need to add `gdpr_consent=CONSENT_STRING` to the list of parameters.
+If you're using a custom RTC callout, here are the parameters that can be passed through the RTC string:
+- tag_id
+- w=ATTR(width)
+- h=ATTR(height)
+- ow=ATTR(data-override-width)
+- oh=ATTR(data-override-height)
+- ms=ATTR(data-multi-size)
+- slot=ATTR(data-slot)
+- targeting=TGT
+- curl=CANONICAL_URL
+- timeout=TIMEOUT
+- adc=ADCID
+- purl=HREF
+- gdpr_consent=CONSENT_STRING
+- consent_type=CONSENT_METADATA(consentStringType)
+- gdpr_applies=CONSENT_METADATA(gdprApplies)
+- attl_consent=CONSENT_METADATA(additionalConsent)
+
+See the entries in the [AMP vendors callout file](https://github.com/ampproject/amphtml/blob/main/src/service/real-time-config/callout-vendors.js).
 
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:
@@ -295,4 +332,4 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 <!-- Reference Links -->
 
 [PBS]: /prebid-server/overview/prebid-server-overview.html
-[callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/0.1/callout-vendors.js
+[callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js

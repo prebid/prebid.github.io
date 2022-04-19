@@ -23,12 +23,12 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 
 **Parameters**
 
-- `configId`: String containing the Prebid Server configuration ID.
+- `configId`: String containing the Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 - `adType`: `BANNER` or `INTERSITIAL`. This value will be set by the object based on which type of ad unit object you create.
 
 **Properties**
 
-- `configId`: Prebid Server configuration ID.
+- `configId`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 - `adType`: `BANNER` or `INTERSITIAL`.
 - `periodMillis`: Integer defining the refresh time in milliseconds. Default = 0, meaning no auto refresh.
 - `keywords`: ArrayList containing keys and values.
@@ -37,7 +37,7 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 
 PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
 
-`adUnit.pbAdSlot = "/1111111/homepage/med-rect-2"`
+`adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
 
 ---
 
@@ -104,7 +104,9 @@ private void loadMPRewardedVideo() {
 }
 ```
 
+### setAppContent
 
+Provides targeting information for the `app.content` field of the bid request. Parameter is an `ContentObject` wich provides all respective fields. 
 
 
 ### setAutoRefreshPeriodMillis
@@ -254,6 +256,42 @@ Clear all key-value combinations from the Prebid Mobile ad unit.
 
 none
 </div>
+
+### UserData
+
+The following methods enable adding `user.data[]` objects into the bid request:
+
+```
+public void addUserData(DataObject dataObject)
+```
+
+```
+public ArrayList<DataObject> getUserData() 
+```
+
+```
+public void clearUserData() 
+```
+
+### App Content Data
+
+In order to set the `app.contnent.data[]` objects use the `getAppContent()` first and then one of the respective methods of the `ContentObject` class:
+
+```
+public void addData(@NonNull DataObject dataObject)
+```
+
+```
+public ArrayList<DataObject> getDataList()
+```
+
+```
+public void setDataList(@NonNull ArrayList<DataObject> dataObjects) 
+```
+
+```
+public void clearDataList()     
+```
 
 ## Example
 
