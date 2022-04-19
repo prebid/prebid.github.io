@@ -19,12 +19,6 @@ fpd_supported: true
 gvl_id: 76
 ---
 
-### Prebid Server Note:
-Before configuring the PubMatic adapter as S2S, you must reach out to the PubMatic team for approval and setup steps.
-
-### Prebid 1.0 Upgrade Note:
-If you upgrading from a Prebid version prior to 1.0, please reach out to your PubMatic Customer Success Manager prior to your upgrade.  Publisher accounts need new settings to function correctly with the PubMatic Prebid 1.0 adapter and your Customer Success Manager will ensure your account is setup correctly.
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -50,8 +44,6 @@ If you upgrading from a Prebid version prior to 1.0, please reach out to your Pu
 
 PubMatic recommends the UserSync configuration below.  Without it, the PubMatic adapter will not able to perform user syncs, which lowers match rate and reduces monetization.
 
-For Prebid.js v1.15.0 and later:
-
 ```javascript
 pbjs.setConfig({
   userSync: {
@@ -63,16 +55,6 @@ pbjs.setConfig({
     }
   }
 });
-```
-
-For Prebid.js v1.14.0 and before:
-
-```javascript
-pbjs.setConfig({
-   userSync: {
-    iframeEnabled: true,
-    enabledBidders: ['pubmatic']
- }});
 ```
 
 Note: Combine the above the configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only last call for a given attribute will take effect.
@@ -87,23 +69,7 @@ The adSlot parameter supports two different formats:
 | Without Size   | `'38519891'`         |
 | With Size      | `'38519891@300x205'` |
 
-Support and behavior differs by Prebid.js version
-
-Prebid.js v2.13.0 and later:
-
-adSlot parameter is now optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  All options will send the ad request with all sizes specified in the Prebid ad unit configuration.
-
-Prebid.js v2.9.0 to v2.12.0:
-
-Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Both formats will send the ad request with all sizes specified in the Prebid ad unit configuration.
-
-Prebid.js v1.18.0 to v2.8.0:
-
-Both formats are supported.  Without Size is the recommended option.  If you are using Prebid Server, Prebid Server v0.69.0 or higher (Go version) or v1.18.0 or higher (Java version) is required to use Without Size.  If you are using a managed service provider for Prebid Server, consult the provider to find out which version of Prebid Server they are using.  Without Size will send the ad request with all sizes specified in the Prebid ad unit configuration.  With Size will only request the specified size.  Mutli-sized ad units are not supported when using Prebid Server.
-
-Prebid.js v1.17.0 and earlier:
-
-Only With Size is supported.  To support multi-size ad units, list the PubMatic bidder entry multiple times, once for each size.  Mutli-sized ad units are not supported when using Prebid Server.
+adSlot parameter is optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option.  Both options will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
 ### video parameters
 The PubMatic adapter supports video as of Prebid v1.16.0
@@ -192,7 +158,6 @@ var adUnits = [
     }]
 }];
 ```
-
 
 ### Configuration for video
 For Video ads, prebid cache needs to be enabled for PubMatic adapter.
