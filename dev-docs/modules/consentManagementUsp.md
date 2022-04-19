@@ -38,11 +38,19 @@ Here's a summary of the interaction process:
 2. Incorporate this data into the auction objects for adapters to collect.
 3. Proceed with the auction.
 
-In the the case of a new user, the USP-API will generally respond only after there is notice and opt-out status information available (i.e., the user has made their choices).
-Making these selections can take some time for the average user, so the module provides timeout settings.
+The IAB USP-API will respond immediately if it is available. The module timeout settings are not related to user selection, but only to API availability.
 
+If the timeout period expires or an error from the USP-API is thrown, the auction proceeds without a US Privacy string attached.
 
-If the timeout period expires or an error from the USP-API is thrown, the auction proceeds without the user's notice and opt-out status information.
+ The string has four characters:
+
+{: .table .table-bordered .table-striped }
+| String Component | Values |
+| --- | --- |
+| 1) Specification Version|	1|
+| 2) Explicit Notice/Opportunity to Opt Out|	(N = No,Y = Yes,– = Not Applicable)|
+| 3) Has user opted-out of the sale of his or her personal information?| 	(N = No,Y = Yes,– = Not Applicable)|
+| 4) Publisher is a signatory to the IAB Limited Service Provider Agreement| 	(N = No,Y = Yes,– = Not Applicable)|
 
 ## Page Integration
 
@@ -60,12 +68,15 @@ Here are the parameters supported in the `consentManagement` object:
 | --- | --- | --- | --- |
 | usp | `Object` | | |
 | usp.cmpApi | `string` | The USP-API interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
-| usp.timeout | `integer` | Length of time (in milliseconds) to allow the USP-API to obtain the CCPA string. Default is `10000`. | `10000` |
+| usp.timeout | `integer` | Length of time (in milliseconds) to allow the USP-API to obtain the CCPA string. Default is `50`. | `50` |
 | usp.consentData | `Object` | An object representing the CCPA notice and opt-out status data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 
 {: .alert.alert-info :}
 Note that the term 'CMP' (Consent Management Platform) was chosen in Prebid to keep the interface similar
 to the GDPR implementation, though US-Privacy doesn't specifically use that term.
+
+
+
 
 ### Examples
 
