@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Aax
-description: Prebid Media.net Bidder Adaptor
+description: Prebid Aax Bidder Adaptor
 biddercode: aax
 gdpr_supported: true  
 media_types: banner,native
@@ -12,8 +12,10 @@ pbjs: false
 gvl_id: 142
 schain_supported: true
 floors_supported: true
-fpd_supported: truef
+fpd_supported: true
 pbs: true
+safeframes_ok: true
+multiformat_supported: will-not-bid
 ---
 
 ### Bid Params
