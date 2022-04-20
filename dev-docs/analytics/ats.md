@@ -27,7 +27,6 @@ The LiveRamp privacy policy is at [https://liveramp.com/privacy/service-privacy-
 
 #### Example Configuration
 
-{% highlight javascript %}
     pbjs.que.push(function () {
       pbjs.enableAnalytics([{
         provider: "atsAnalytics",
@@ -36,4 +35,3 @@ The LiveRamp privacy policy is at [https://liveramp.com/privacy/service-privacy-
         }
       }])
     });
-{% endhighlight %}
