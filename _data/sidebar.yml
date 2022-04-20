@@ -668,14 +668,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
-- sbSecId: 2
-  title: Integration with MoPub
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
 
 - sbSecId: 2
   title: Targeting
@@ -725,14 +717,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
-- sbSecId: 2
-  title: Integration with MoPub
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
 
 - sbSecId: 2
   title: Targeting
@@ -762,14 +746,6 @@
 - sbSecId: 2
   title: Mediation Group - AdMob
   link: /prebid-mobile/modules/rendering/rendering-admob-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Rendering Order - MoPub
-  link: /prebid-mobile/modules/rendering/rendering-mopub-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1262,30 +1238,6 @@
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Line Items For MoPub
-  link: /prebid-mobile/adops-line-item-setup-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Rewarded Video Line Items For MoPub
-  link: /prebid-mobile/adops-setup-rewarded-video-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Full Screen Video Line Items For MoPub
-  link: /prebid-mobile/adops-setup-full-screen-video-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
